@@ -1,0 +1,70 @@
+﻿@* TODO set routing paths for a sample, see: URLs in React sample browser,
+e.g. https://staging.infragistics.com/react-demos/samples/charts/category-chart-annotations *@
+@page "/samples/charts/category-chart-annotations"
+@page         "/charts/category-chart-annotations"
+
+@* NOTE this namespace is required for Infragistics controls *@
+@using Infragistics.Blazor.Controls
+
+@* NOTE you can change this HTML code to re-design this page.
+however, use igContainer, igOptions, or igComponent as class styles of DIV containers *@
+<div class="igContainer">
+    <div class="igOptions">
+
+        @* TODO add options (if any) for IG control here otherwise remove DIV with igOptions *@
+    </div>
+
+    <div class="igComponent">
+
+        @* NOTE this is example of displaying data loaded from code behind *@
+        @if (DataSource != null)
+        {
+
+            @* TODO add IG control here *@
+
+            @* NOTE at this point DataSource is ready to be displayed: *@
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Country</th>
+                        <th>Coal</th>
+                        <th>Oil</th>
+                        <th>Nuclear</th>
+                        <th>Hydro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var dataItem in DataSource)
+                    {
+                        <tr>
+                            <td>@dataItem.Country</td>
+                            <td>@dataItem.Coal</td>
+                            <td>@dataItem.Oil</td>
+                            <td>@dataItem.Nuclear</td>
+                            <td>@dataItem.Hydro</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+
+    </div>
+</div>
+
+@* NOTE you can change this C# code to affect behaviour of this page: *@
+@code {
+
+    // NOTE here, you can add properties to store values and data for this component
+    private List<DataChartSharedData.Energy> DataSource;
+
+    // NOTE here, you can Initialize properties/state/data of the sample
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("OnInitializedAsync is called");
+
+        DataSource = DataChartSharedData.getEnergyProduction().Take(20).ToList();
+
+        await Task.Delay(100);
+    }
+
+}
