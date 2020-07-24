@@ -22,17 +22,28 @@ https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install
 
 ## Implementation
 
-- implement the sample in `SampleName.razor` page
-
 - implement data source (if any) in the `Service` folder
 
-- do not add/change any files in the `wwwroot` folder
+- implement the sample in one of these pages:
+    - `SampleWithFetchedData.razor`
+    - `SampleWithLocalData.razor`
+    - `SampleWithOptions.razor`
+    - `SampleWithOptionsAndData.razor`
 
-- make sure you make change for `TODO` items
+NOTE: `App.razor` file controls which `.razor` is loaded
 
-- remove `NOTE` comments
+NOTE: Do not add/change any files in the `wwwroot` folder
+
+- make sure you make changes for `TODO` items
+
+- remove all `NOTE` and `TODO` comments when you are done implementing sample
 
 - remove any code that does not apply to the sample
 
-- add content of this project to [**IgniteUI for Blazor**](https://github.com/IgniteUI/igniteui-blazor-examples) repo under the `Samples` folder, e.g.
-`/Samples/charts/category-chart/annotations/`
+- remove not used `.razor` file in `Pager` folder
+
+- remove not used `.cs` file in `Services` folder
+
+- add content of this project to [**IgniteUI for Blazor**](https://github.com/IgniteUI/igniteui-blazor-examples) repo under the `Samples` folder, for example:
+
+`/samples/charts/category-chart/annotations/`
