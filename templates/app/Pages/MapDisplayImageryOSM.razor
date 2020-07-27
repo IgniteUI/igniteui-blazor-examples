@@ -5,13 +5,19 @@
 <div class="igContainer">
     <div class="igOptions">
         @* TODO add options (if any) for IG control here otherwise remove DIV with igOptions *@
-        <button class="btn btn-primary" @onclick="OnButtonClick">Click me</button>
     </div>
 
     <div class="igComponent">
 
-        @* TODO add IG control here *@
-        <p>Current count: @CurrentCount</p>
+        @* NOTE making sure data is loaded before we can render it *@
+        @if (DataSource != null)
+        {
+            <GeographicMap Height="100%"
+                           Width="100%" >
+            </GeographicMap>
+
+        }
+
     </div>
 </div>
 
@@ -19,26 +25,27 @@
 @code {
 
     // NOTE here, you can add properties to store values and data for this component
-    private int CurrentCount;
+    private List<GeLocation> DataSource;
 
     // NOTE here, you can Initialize properties/state/data of the sample
     protected override async Task OnInitializedAsync()
     {
         Console.WriteLine("Sample OnInitializedAsync...");
 
-        CurrentCount = 10;
-
+        DataSource = new List<GeLocation>();
         await Task.Delay(100);
     }
 
+    public class GeLocation {
+        public double Lat { get; set; }
+        public double Lon { get; set; }
+
+    }
+
     // NOTE here is example of even handler that update a field that is bound in HTML code above
-    protected void OnButtonClick()
+    protected void OnSliceClick()
     {
         Console.WriteLine("Sample OnButtonClick");
 
-        CurrentCount++;
-
-        // NOTE you can also call this function to force rending of the component
-        // this.StateHasChanged();
     }
 }

@@ -1,33 +1,22 @@
-﻿@* TODO set routing paths for a sample, see: URLs in React sample browser,
-e.g. https://staging.infragistics.com/react-demos/samples/charts/category-chart-annotations *@
-@page "/samples/charts/category-chart-annotations"
-@page         "/charts/category-chart-annotations"
-
-@* NOTE this lines is need only for samples that load data *@
+﻿@* NOTE this lines is need only for samples that load data *@
 @inject HttpClient Http
 
 @* NOTE this namespace is required for Infragistics controls *@
 @using Infragistics.Blazor.Controls
 
-@* NOTE you can change this HTML code to re-design this page.
-however, use igContainer, igOptions, or igComponent as class styles of DIV containers *@
+@* NOTE use this HTML code to design a sample *@
 <div class="igContainer">
     <div class="igOptions">
         @* TODO add options (if any) for IG control here otherwise remove DIV with igOptions *@
     </div>
 
     <div class="igComponent">
-        @* NOTE this is example of displaying data loaded from code behind *@
-        @if (DataSource == null)
-        {
-            @* <p><em>Loading...</em></p> *@
-            <img class="app-loading" src="http://static.infragistics.com/xplatform/images/browsers/loading.gif" />
-        }
-        else
+        @* NOTE making sure data is loaded before we can render it *@
+        @if (DataSource != null)
         {
             @* TODO add IG control here *@
 
-             @* NOTE at this point DataSource is ready to be displayed: *@
+            @* NOTE here is an example of displaying DataSource: *@
             <table class="table">
                 <thead>
                     <tr>
@@ -63,7 +52,7 @@ however, use igContainer, igOptions, or igComponent as class styles of DIV conta
     // NOTE here, you can Initialize properties/state/data of the sample
     protected override async Task OnInitializedAsync()
     {
-        Console.WriteLine("OnInitializedAsync is called");
+        Console.WriteLine("Sample OnInitializedAsync...");
 
         // NOTE sample is fetching data from CDN http://static.infragistics.com/xplatform/
         DataSource = await Http.GetJsonAsync<WorldCity[]>("http://static.infragistics.com/xplatform/data/WorldCities.json");

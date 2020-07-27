@@ -7,7 +7,7 @@ namespace Samples
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("CreateHostBuilder...");
+            Console.WriteLine("App Main...");
             CreateHostBuilder(args).Build().Run();
         }
 

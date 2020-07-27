@@ -22,7 +22,11 @@ https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install
 
 ## Implementation
 
-- implement data source (if any) in the `Service` folder
+- implement data source (if any) in the `Service` folder, e.g.
+    - `DataChartSharedData.cs`
+    - `WorldCity.cs`
+
+NOTE: make sure `class` is under  `Samples` namespace
 
 - implement the sample in one of these pages:
     - `SampleWithFetchedData.razor`
@@ -40,10 +44,16 @@ NOTE: Do not add/change any files in the `wwwroot` folder
 
 - remove any code that does not apply to the sample
 
-- remove not used `.razor` file in `Pager` folder
+- remove not used `.razor` file in `Pager` folder such there is only one `.razor` file
 
 - remove not used `.cs` file in `Services` folder
 
-- add content of this project to [**IgniteUI for Blazor**](https://github.com/IgniteUI/igniteui-blazor-examples) repo under the `Samples` folder, for example:
+- add content of this project to [**IgniteUI for Blazor**](https://github.com/IgniteUI/igniteui-blazor-examples) repository under the `Samples` folder, for example:
 
 `/samples/charts/category-chart/annotations/`
+
+## Resources
+
+- [Razor Component Models](https://www.codemag.com/article/1911052)
+- [Razor Syntax](https://docs.microsoft.com/en-us/aspnet/core/blazor/components/?view=aspnetcore-3.1#razor-syntax)
+- [Getting reference to components](https://docs.microsoft.com/en-us/aspnet/core/blazor/components/?view=aspnetcore-3.1#capture-references-to-components)

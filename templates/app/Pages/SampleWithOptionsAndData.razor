@@ -1,32 +1,25 @@
-﻿@* TODO set routing paths for a sample, see: URLs in React sample browser,
-e.g. https://staging.infragistics.com/react-demos/samples/charts/category-chart-annotations *@
-@page "/samples/charts/category-chart-annotations"
-@page         "/charts/category-chart-annotations"
-
-@* NOTE this lines is need only for samples that load data *@
+﻿@* NOTE this lines is need only for samples that load data *@
 @inject HttpClient Http
 
 @* NOTE this namespace is required for Infragistics controls *@
 @using Infragistics.Blazor.Controls
 
-@* NOTE you can change this HTML code to re-design this page.
-however, use igContainer, igOptions, or igComponent as class styles of DIV containers *@
+@* NOTE use this HTML code to design a sample *@
 <div class="igContainer">
     <div class="igOptions">
-
         @* TODO add options (if any) for IG control here otherwise remove DIV with igOptions *@
         <button class="btn btn-primary" @onclick="OnButtonClick">Click me</button>
     </div>
 
     <div class="igComponent">
 
-        @* NOTE this is example of displaying data loaded from code behind *@
+        @* NOTE making sure data is loaded before we can render it *@
         @if (DataSource != null)
         {
             @* TODO add IG control here *@
             <p>Current count: @CurrentCount</p>
 
-             @* NOTE at this point DataSource is ready to be displayed: *@
+            @* NOTE here is an example of displaying DataSource: *@
             <table class="table">
                 <thead>
                     <tr>
@@ -63,11 +56,11 @@ however, use igContainer, igOptions, or igComponent as class styles of DIV conta
     // NOTE here, you can Initialize properties/state/data of the sample
     protected override async Task OnInitializedAsync()
     {
-        Console.WriteLine("OnInitializedAsync is called");
+        Console.WriteLine("Sample OnInitializedAsync...");
 
         CurrentCount = 10;
 
-        // TODO samples loading data should be using CDN URLs to fetch data
+        // NOTE samples should be loading data from CDN URLs:
         DataSource = await Http.GetJsonAsync<WorldCity[]>("http://static.infragistics.com/xplatform/data/WorldCities.json");
         DataSource = DataSource.Take(20).ToArray();
         // DataSource = await Http.GetJsonAsync<WeatherForecast[]>("data/WeatherForecast.json");
@@ -78,7 +71,7 @@ however, use igContainer, igOptions, or igComponent as class styles of DIV conta
     // NOTE here is example of even handler that update a field that is bound in HTML code above
     protected void OnButtonClick()
     {
-        Console.WriteLine("OnButtonClick is called");
+        Console.WriteLine("Sample OnButtonClick");
 
         CurrentCount++;
 
