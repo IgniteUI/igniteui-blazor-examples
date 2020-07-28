@@ -1,5 +1,6 @@
-﻿@* NOTE this namespace is required for Infragistics controls *@
+﻿@* this namespace is required for Infragistics controls *@
 @using Infragistics.Blazor.Controls
+@* @inject IInfragisticsBlazor InfragisticsBlazor; *@
 
 @* NOTE use this HTML code to design a sample *@
 <div class="igContainer">
@@ -9,14 +10,16 @@
         @* NOTE making sure data is loaded before we can render it *@
         @if (DataSource != null)
         {
-            @*   AutoGenerateColumns="True" *@
             @* NOTE here is an example of binding data to IG control *@
-            @* <DataGrid Height="500px"
-                      Width="600px"
-                      DataSource="@DataSource">
+            <DataGrid Height="500"
+                      Width="600"
+                      DataSource="@DataSource"
+                      AutoGenerateColumns="false">
+                <TextColumn PropertyPath="Country" />
+                <NumericColumn PropertyPath="OrderValue" PositivePrefix="$" ShowGroupingSeparator="true" MaxFractionDigits="2" MinFractionDigits="2" />
 
-            </DataGrid> *@
-            @*<TextColumn PropertyPath="Country" />*@
+            </DataGrid>
+            @*<TextColumn PropertyPath="Country" Width="*>125"/>*@
         }
 
     </div>
@@ -26,7 +29,7 @@
 @code {
 
     // NOTE here, you can add properties to store values and data for this component
-    private List<SaleInfo> DataSource;
+    private SaleInfo[] DataSource;
 
     // NOTE here, you can Initialize properties/state/data of the sample
     protected override async Task OnInitializedAsync()
@@ -35,9 +38,13 @@
 
         DataSource = generateData();
 
-        await Task.Delay(100);
+        await Task.Delay(10);
     }
 
+    protected override void OnInitialized()
+    {
+        @* DataGridModule.Register(InfragisticsBlazor); *@
+    }
     // public Date getRandomDate(): Date {
     //     const today: Date = new Date();
     //     const year: number = today.getFullYear();
@@ -47,21 +54,24 @@
     // }
 
     private Random Rand = new Random();
-    public double getRandomNumber(double min, double max) {
+    public double getRandomNumber(double min, double max)
+    {
         return Math.Round(min + (Rand.NextDouble() * (max - min)));
     }
 
-    public string getRandomItem(string[] array) {
+    public string getRandomItem(string[] array)
+    {
         var index = (int)Math.Round(getRandomNumber(0, array.Length - 1));
         return array[index];
     }
 
-    public string getCountryFlag(string country) {
+    public string getCountryFlag(string country)
+    {
         var flag = "https://static.infragistics.com/xplatform/images/flags/" + country + ".png";
         return flag;
     }
 
-    public List<SaleInfo> generateData() {
+    public SaleInfo[] generateData() {
 
         string[] names = new string[] {
             "Intel CPU", "AMD CPU",
@@ -81,7 +91,8 @@
 
         var sales = new List<SaleInfo>();
 
-        for (var i = 0; i < 200; i++) {
+        for (var i = 0; i < 200; i++)
+        {
             var price = getRandomNumber(10000, 90000) / 100;
             var items = getRandomNumber(4, 30);
             var value = Math.Round(price * items);
@@ -89,11 +100,12 @@
             var profit = Math.Round((price * margin / 100) * items);
             var country = getRandomItem(countries);
 
-            var item = new SaleInfo() {
+            var item = new SaleInfo()
+            {
                 Country = country,
                 CountryFlag = getCountryFlag(country),
                 Margin = margin,
-            //    OrderDate = getRandomDate(),
+                //    OrderDate = getRandomDate(),
                 OrderItems = items,
                 OrderValue = value,
                 ProductID = 1001 + i,
@@ -106,10 +118,11 @@
         }
 
         Console.WriteLine("Sample data " + sales.Count);
-        return sales;
+        return sales.ToArray();
     }
 
-    public class SaleInfo {
+    public class SaleInfo
+    {
         public string Status { get; set; }
         public string ProductName { get; set; }
         public string CountryFlag { get; set; }
