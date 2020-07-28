@@ -1,0 +1,61 @@
+﻿@page "/MapDisplayImageryOSM"
+
+@* this namespace is required for Infragistics controls *@
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+@* NOTE use this HTML code to design a sample *@
+<div class="igContainer">
+    <div class="igOptions">
+        @* TODO add options (if any) for IG control here otherwise remove DIV with igOptions *@
+    </div>
+
+    <div class="igComponent">
+        
+        <GeographicMap Height="100%" Width="100%">
+        </GeographicMap>
+
+        @*<GeographicMap Height="600px" Width="600px">
+        </GeographicMap>*@
+
+    </div>
+</div>
+
+@* NOTE you can change this C# code to affect behaviour of this page: *@
+@code {
+
+    // NOTE here, you can add properties to store values and data for this component
+    private List<GeLocation> DataSource;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        // Console.WriteLine("Sample runtime: " + InfragisticsBlazor.JsRuntime);
+        Console.WriteLine("Sample OnInitialized...");
+        RadialGaugeModule.Register(InfragisticsBlazor);
+    }
+
+    // NOTE here, you can Initialize properties/state/data of the sample
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Sample OnInitializedAsync...");
+        
+        DataSource = new List<GeLocation>();
+        await Task.Delay(10);
+    }
+
+    public class GeLocation
+    {
+        public double Lat { get; set; }
+        public double Lon { get; set; }
+
+    }
+
+    // NOTE here is example of even handler that update a field that is bound in HTML code above
+    protected void OnSliceClick()
+    {
+        Console.WriteLine("Sample OnButtonClick");
+
+    }
+}
