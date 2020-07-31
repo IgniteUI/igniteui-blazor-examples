@@ -1,0 +1,48 @@
+﻿@page "/RadialGaugeRanges"
+@* this is required for Infragistics controls *@
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+@* NOTE use this HTML code to design a sample *@
+<div class="igContainer">    
+    <div class="igComponent">        
+        <RadialGauge Height="100%" Width="100%"
+                     MinimumValue="0" Value="80"
+                     MaximumValue="80" Interval="10"
+                     RangeBrushes="#A4BD29, #F86232"
+                     RangeOutlines="#A4BD29, #F86232">
+            <RadialGaugeRange StartValue="10"
+                              EndValue="25"
+                              InnerStartExtent="0.50"
+                              InnerEndExtent="0.50"
+                              OuterStartExtent="0.57"
+                              OuterEndExtent="0.57">
+            </RadialGaugeRange>
+            <RadialGaugeRange StartValue="25"
+                              EndValue="40"
+                              InnerStartExtent="0.50"
+                              InnerEndExtent="0.50"
+                              OuterStartExtent="0.57"
+                              OuterEndExtent="0.57">
+            </RadialGaugeRange>
+        </RadialGauge>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        // Console.WriteLine("Sample runtime: " + InfragisticsBlazor.JsRuntime);
+        Console.WriteLine("Sample OnInitialized...");
+        RadialGaugeModule.Register(InfragisticsBlazor);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Sample OnInitializedAsync...");
+
+        await Task.Delay(10);
+    }
+}
