@@ -1,15 +1,78 @@
 ﻿@inherits LayoutComponentBase
+@inject NavigationManager NavManager
+@inject IJSRuntime JSRuntime;
 
-<div class="sidebar">
-    <NavMenu />
-</div>
+<div class="sb-root">
+    <div class="sb-sidebar-menu" style="@SidebarStyle">
+        <NavMenu />
+    </div>
 
-<div class="main">
-    @*<div class="top-row px-4">
-        <a href="http://blazor.net" target="_blank" class="ml-md-auto">About</a>
-    </div>*@
+    <div class="sb-main">
 
-    <div class="content px-4">
-        @Body
+        <div class="sb-toolbar" style="@ToolbarStyle">
+            <span class="sb-toolbar-toggle" @onclick="ToggleSidebarMenu">
+                <span class="oi oi-menu" aria-hidden="true"></span>
+            </span>
+            @* <span class="sb-toolbar-name"> CurrentSample</span> *@
+            @* <a href="https://infragistics.com/blazorsite/components/general-getting-started.html" target="_blank" class="ml-md-auto">Help Docs</a> *@
+
+        </div>
+
+        <div class="sb-container">
+            @Body
+        </div>
     </div>
 </div>
+
+@code {
+    protected static bool ToolbarCollapsed = false;
+    protected string ToolbarStyle => ToolbarCollapsed ? "display: none" : "display: flex";
+
+    protected static bool SidebarCollapsed = false;
+    protected string SidebarStyle => SidebarCollapsed ? "display: none" : "display: flex";
+
+    public static void ToggleSidebarMenu()
+    {
+        SidebarCollapsed = !SidebarCollapsed;
+    }
+
+    public void EnterFullScreen()
+    {
+        var url = NavManager.Uri;
+        Console.WriteLine("EnterFullScreen1 " + url);
+        if (url.Contains("samples/"))
+        {
+            url = url.Replace("samples/", "");
+            Console.WriteLine("EnterFullScreen2 " + url);
+            NavManager.NavigateTo(url);
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(1);
+    }
+
+    protected override void OnInitialized()
+    {
+        NavManager.LocationChanged += this.OnLocationChanged;
+    }
+
+    public void OnSamplesLoaded(object sender, EventArgs arg)
+    {
+        // Console.WriteLine("SB.NAV Base " + NavManager.BaseUri);
+        Console.WriteLine("SB.NAV Uri  " + NavManager.Uri);
+
+        StateHasChanged();
+    }
+
+    public async void OnLocationChanged(object sender, LocationChangedEventArgs arg)
+    {
+        // Console.WriteLine("SB.NAV Base " + NavManager.BaseUri);
+        Console.WriteLine("SB.NAV Uri  " + NavManager.Uri);
+
+        await Task.Delay(10);
+        StateHasChanged();
+    }
+
+}
