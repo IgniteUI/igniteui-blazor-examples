@@ -1,0 +1,60 @@
+﻿@page "/RadialGaugeTypeColumn"
+@* this is required for Infragistics controls *@
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+@* NOTE use this HTML code to design a sample *@
+<div class="igContainer">    
+    <div class="igComponent">        
+        <RadialGauge Height="100%" Width="100%"                     
+                     MinimumValue="0"
+                     MaximumValue="360"
+                     Value="270"
+                     Interval="30"
+                     TransitionDuration="500"
+                     LabelInterval="30"
+                     LabelExtent="0.85"                     
+                     Font="15px Verdana,Arial"
+                     ScaleStartAngle="0"
+                     ScaleEndAngle="360"
+                     ScaleBrush="#E0DFDF"
+                     ScaleOversweepShape="RadialGaugeScaleOversweepShape.Circular"
+                     ScaleSweepDirection="SweepDirection.Clockwise"
+                     ScaleEndExtent="0.7"
+                     ScaleStartExtent="0.6" 
+                     MinorTickCount="4"                     
+                     MinorTickStartExtent="0.6"
+                     MinorTickEndExtent="0.65"                     
+                     MinorTickStrokeThickness="1"
+                     MinorTickBrush="transparent"                     
+                     TickStartExtent="0.6"
+                     TickEndExtent="0.65"
+                     TickStrokeThickness="1"
+                     TickBrush="#79797A"                     
+                     BackingShape="RadialGaugeBackingShape.Circular"
+                     BackingBrush="transparent"
+                     BackingOutline="transparent"                     
+                     NeedleShape="RadialGaugeNeedleShape.None"
+                     NeedlePivotShape="RadialGaugePivotShape.None"                     
+                     >                                 
+        </RadialGauge>
+    </div>
+</div>
+
+@code {        
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        // Console.WriteLine("Sample runtime: " + InfragisticsBlazor.JsRuntime);
+        Console.WriteLine("Sample OnInitialized...");
+        RadialGaugeModule.Register(InfragisticsBlazor);       
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Sample OnInitializedAsync...");
+
+        await Task.Delay(10);
+    }
+}

@@ -1,0 +1,47 @@
+﻿@page "/RadialGaugeLabels"
+@* this is required for Infragistics controls *@
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+@* NOTE use this HTML code to design a sample *@
+<div class="igContainer">    
+    <div class="igComponent">
+        <RadialGauge Height="100%" Width="100%"
+                     BackingShape="RadialGaugeBackingShape.Fitted"
+                     BackingBrush="#FCFCFC"
+                     BackingOutline="DodgerBlue"
+                     BackingOversweep="5"
+                     BackingCornerRadius="10"
+                     BackingStrokeThickness="5"
+                     BackingOuterExtent="0.8"
+                     BackingInnerExtent="0.15"
+
+                     ScaleStartAngle="135"
+                     ScaleEndAngle="45"
+                     ScaleBrush="#DDDDDD"
+
+                     MinimumValue="0"
+                     MaximumValue="80"
+                     Value="50"
+                     Interval="10">
+        </RadialGauge>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        // Console.WriteLine("Sample runtime: " + InfragisticsBlazor.JsRuntime);
+        Console.WriteLine("Sample OnInitialized...");
+        RadialGaugeModule.Register(InfragisticsBlazor);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Sample OnInitializedAsync...");
+
+        await Task.Delay(10);
+    }
+}
