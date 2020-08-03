@@ -1,0 +1,48 @@
+﻿@page "/BulletGraphMeasures"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+<div class="igContainer">
+    <div class="igComponent">
+        <BulletGraph Height="80px" Width="100%"
+                     MinimumValue="0"
+                     MaximumValue="100"
+                     
+                     Value="50"
+                     ValueBrush="DodgerBlue"
+                     ValueStrokeThickness="1"
+                     ValueInnerExtent="0.5"
+                     ValueOuterExtent="0.65"
+                     
+                     TargetValue="80"
+                     TargetValueBreadth="10"
+                     TargetValueBrush="LimeGreen"
+                     TargetValueOutline="LimeGreen"
+                     TargetValueStrokeThickness="1"
+                     TargetValueInnerExtent="0.3"
+                     TargetValueOuterExtent="0.85"
+                     
+                     ScaleBackgroundBrush="#E5E5E5"
+                     ScaleBackgroundOutline="#E5E5E5"
+                     BackingBrush="#F7F7F7"
+                     BackingOutline="#BFBFBF"
+                     TickStrokeThickness="1.5">
+        </BulletGraph>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();        
+        BulletGraphModule.Register(InfragisticsBlazor);
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Sample OnInitializedAsync...");
+        await Task.Delay(10);
+    }
+}
