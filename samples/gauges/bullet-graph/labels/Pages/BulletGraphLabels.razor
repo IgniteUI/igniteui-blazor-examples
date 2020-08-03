@@ -1,0 +1,34 @@
+﻿@page "/BulletGraphLabels"
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igComponent">
+        <BulletGraph Height="80px" Width="100%"
+                     MinimumValue="0" Value="70" Interval="10"
+                     MaximumValue="100" TargetValue="90"
+                     LabelInterval="10"
+                     LabelExtent="0.025"
+                     LabelsPreTerminal="0"
+                     LabelsPostInitial="0"
+                     FontBrush="DodgerBlue"
+                     Font="11px Verdana">
+        </BulletGraph>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();               
+        BulletGraphModule.Register(InfragisticsBlazor);
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Sample OnInitializedAsync...");
+        await Task.Delay(10);
+    }
+}
