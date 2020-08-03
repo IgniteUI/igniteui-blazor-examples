@@ -1,0 +1,130 @@
+﻿@page "/LinearGaugeTypeFilled"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">    
+    <div class="igComponent">
+        <LinearGauge Height="120px" Width="100%"
+                     MinimumValue="0"
+                     MaximumValue="100"
+                     Value="80"
+                     Interval="10"
+                     TransitionDuration="500"
+                     LabelInterval="10"
+                     LabelExtent="0.1"
+                     IsNeedleDraggingEnabled="false"
+                     NeedleBrush="transparent"
+                     NeedleOutline="transparent"
+                     ScaleStrokeThickness="0"
+                     ScaleBrush="#E0DFDF"
+                     ScaleOutline="#E0DFDF"
+                     ScaleInnerExtent="0.25"
+                     ScaleOuterExtent="0.65"
+                     ScaleStartExtent="0.05"
+                     ScaleEndExtent="0.95"
+                     TickBrush="Gray"
+                     TickStartExtent="0.25"
+                     TickEndExtent="0.15"
+                     TickStrokeThickness="1"
+                     MinorTickBrush="transparent"
+                     BackingBrush="transparent"
+                     BackingOutline="transparent">
+            <LinearGraphRange Brush="Green"
+                              Outline="Green"
+                              StartValue="0"
+                              EndValue="80"
+                              InnerStartExtent="0.25"
+                              InnerEndExtent="0.25"
+                              OuterStartExtent="0.65"
+                              OuterEndExtent="0.65">
+            </LinearGraphRange>
+        </LinearGauge>
+        <LinearGauge Height="120px" Width="100%"
+                     MinimumValue="0"
+                     MaximumValue="100"
+                     Value="50"
+                     Interval="10"
+                     TransitionDuration="500"
+                     LabelInterval="10"
+                     LabelExtent="0.1"
+                     IsNeedleDraggingEnabled="false"
+                     NeedleBrush="transparent"
+                     NeedleOutline="transparent"
+                     ScaleStrokeThickness="0"
+                     ScaleBrush="#E0DFDF"
+                     ScaleOutline="#E0DFDF"
+                     ScaleInnerExtent="0.25"
+                     ScaleOuterExtent="0.65"
+                     ScaleStartExtent="0.05"
+                     ScaleEndExtent="0.95"
+                     TickBrush="Gray"
+                     TickStartExtent="0.25"
+                     TickEndExtent="0.15"
+                     TickStrokeThickness="1"
+                     MinorTickBrush="transparent"
+                     BackingBrush="transparent"
+                     BackingOutline="transparent">
+            <LinearGraphRange Brush="Orange"
+                              Outline="Orange"
+                              StartValue="0"
+                              EndValue="50"
+                              InnerStartExtent="0.25"
+                              InnerEndExtent="0.25"
+                              OuterStartExtent="0.65"
+                              OuterEndExtent="0.65">
+            </LinearGraphRange>
+        </LinearGauge>
+        <LinearGauge Height="120px" Width="100%"
+                     MinimumValue="0"
+                     MaximumValue="100"
+                     Value="30"
+                     Interval="10"
+                     TransitionDuration="500"
+                     LabelInterval="10"
+                     LabelExtent="0.1"
+                     IsNeedleDraggingEnabled="false"
+                     NeedleBrush="transparent"
+                     NeedleOutline="transparent"
+                     ScaleStrokeThickness="0"
+                     ScaleBrush="#E0DFDF"
+                     ScaleOutline="#E0DFDF"
+                     ScaleInnerExtent="0.25"
+                     ScaleOuterExtent="0.65"
+                     ScaleStartExtent="0.05"
+                     ScaleEndExtent="0.95"
+                     TickBrush="Gray"
+                     TickStartExtent="0.25"
+                     TickEndExtent="0.15"
+                     TickStrokeThickness="1"
+                     MinorTickBrush="transparent"
+                     BackingBrush="transparent"
+                     BackingOutline="transparent">
+            <LinearGraphRange Brush="Red"
+                              Outline="Red"
+                              StartValue="0"
+                              EndValue="30"
+                              InnerStartExtent="0.25"
+                              InnerEndExtent="0.25"
+                              OuterStartExtent="0.65"
+                              OuterEndExtent="0.65">
+            </LinearGraphRange>
+        </LinearGauge>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();        
+        LinearGaugeModule.Register(InfragisticsBlazor);
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Sample OnInitializedAsync...");
+        await Task.Delay(10);
+    }
+}
