@@ -5,7 +5,7 @@ https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install
 
 ## Create Local NuGet Package
 
-- open Visual Studio 2019 as an Administrator
+- open `Visual Studio 2015` as an Administrator
 - open **Tools - Options** menu
 - expand **NuGet Package Manager** menu
 - select **Package Sources**
@@ -60,7 +60,7 @@ NOTE: VS 2019 has better code highlighting and error detection than VS Code does
     - `DataChartSharedData.cs`
     - `WorldCity.cs`
 
-NOTE: make sure `class` is under  `Samples` namespace
+NOTE: make sure `class` is under `Samples` namespace
 
 - implement the sample in one of `.razor` pages, e.g.
     - `DataGridBindingLocalData.razor`
@@ -82,7 +82,7 @@ NOTE: Do not add/change any files in the `wwwroot` folder
 
 - remove not used `.cs` file in `Services` folder
 
-- make your commits and create a pull request
+- create one pull request for a sample
 
 
 ## Resources
