@@ -1,0 +1,42 @@
+﻿@page "/BulletGraphTickmarks"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igComponent">
+        <BulletGraph Height="80px" Width="100%"
+                     MinimumValue="0" Value="70" Interval="10"
+                     MaximumValue="100" TargetValue="90"
+                     
+                     TickBrush="DodgerBlue"
+                     TicksPreTerminal="0"
+                     TicksPostInitial="0"
+                     TickStrokeThickness="2"
+                     TickStartExtent="0.2"
+                     TickEndExtent="0.075"
+
+                     MinorTickCount="4"
+                     MinorTickBrush="DarkViolet"
+                     MinorTickEndExtent="0.1"
+                     MinorTickStartExtent="0.2"
+                     MinorTickStrokeThickness="1">
+        </BulletGraph>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();        
+        BulletGraphModule.Register(InfragisticsBlazor);
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Sample OnInitializedAsync...");
+        await Task.Delay(10);
+    }
+}
