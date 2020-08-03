@@ -1,0 +1,42 @@
+﻿@page "/LinearGaugeTickmarks"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igComponent">
+        <LinearGauge Height="80px" Width="100%"
+                     MinimumValue="0" Value="50"
+                     MaximumValue="100" Interval="10"
+                     
+                     TickBrush="DodgerBlue"
+                     TicksPreTerminal="0"
+                     TicksPostInitial="0"
+                     TickStrokeThickness="2"
+                     TickStartExtent="0.25"
+                     TickEndExtent="0.05"
+                     
+                     MinorTickCount="4"
+                     MinorTickBrush="DarkViolet"
+                     MinorTickEndExtent="0.05"
+                     MinorTickStartExtent="0.15"
+                     MinorTickStrokeThickness="1">
+        </LinearGauge>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();        
+        LinearGaugeModule.Register(InfragisticsBlazor);
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Sample OnInitializedAsync...");
+        await Task.Delay(10);
+    }
+}

@@ -1,0 +1,110 @@
+﻿@page "/LinearGaugeTypeCurved"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">    
+    <div class="igComponent">
+        <LinearGauge Height="120px" Width="100%"
+                     MinimumValue="0"
+                     MaximumValue="100"
+                     Value="80"
+                     Interval="10"
+                     LabelInterval="10"
+                     LabelExtent="0.0"
+                     FontBrush="Black"
+                     TransitionDuration="500"
+                     
+                     IsNeedleDraggingEnabled="true"
+                     NeedleShape="LinearGraphNeedleShape.Triangle"
+                     NeedleBrush="#494949"
+                     NeedleOutline="#494949"
+                     NeedleStrokeThickness="1"
+                     NeedleOuterExtent="0.9"
+                     NeedleInnerExtent="0.6"
+                     NeedleBreadth="20"
+                     
+                     TickBrush="Gray"
+                     TickStartExtent="0.1"
+                     TickEndExtent="0.0"
+                     TickStrokeThickness="1"
+                     
+                     MinorTickBrush="Gray"
+                     MinorTickStartExtent="0.1"
+                     MinorTickEndExtent="0.05"
+                     MinorTickStrokeThickness="1"
+                     MinorTickCount="9"
+                     
+                     BackingBrush="transparent"
+                     BackingOutline="transparent"
+                     
+                     ScaleStrokeThickness="0"
+                     ScaleBrush="#E0DFDF"
+                     ScaleOutline="#E0DFDF"
+                     ScaleInnerExtent="0.1"
+                     ScaleOuterExtent="0.95">
+            @for(int i=0; i<RangeInfo.Count; i++)
+            {
+                GaugeRangeInfo info = RangeInfo[i];
+
+                <LinearGraphRange StartValue=info.StartValue
+                                  EndValue=info.EndValue
+                                  InnerEndExtent=info.InnerEndExtent
+                                  InnerStartExtent=info.InnerStartExtent
+                                  OuterEndExtent=info.OuterEndExtent
+                                  OuterStartExtent=info.OuterStartExtent
+                                  Brush="@info.Brush"
+                                  Outline="@info.Outline">
+                </LinearGraphRange>
+            }
+        </LinearGauge>
+    </div>
+</div>
+
+@code {
+
+    private System.Collections.ObjectModel.ObservableCollection<GaugeRangeInfo> RangeInfo;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();        
+        LinearGaugeModule.Register(InfragisticsBlazor);
+
+        RangeInfo = new System.Collections.ObjectModel.ObservableCollection<GaugeRangeInfo>();
+
+        string[] colors = "#009f00,#16a316,#23a724,#2eab2f,#36af39,#3eb342,#46b74a,#4dbb52,#54bf5a,#5bc361,#62c768,#69cb6e,#70cf74,#77d37a,#7fd77f,#86db83,#8edf87,#97e38a,#9fe78d,#a8eb8e,#b2ef8e,#bcf28b,#c7f686,#d3f97d,#e0fd6a,#f5f732,#f7ef37,#f9e73b,#fbdf3e,#fcd741,#fdcf44,#fec746,#ffbe48,#ffb649,#ffae4b,#ffa64c,#ff9d4c,#ff944d,#ff8b4d,#ff824d,#fe794d,#fd6f4c,#fc654b,#fb5b4a,#f95048,#f74445,#f53742,#f2273e,#ef1438,#e9002c".Split(',');
+
+        double rangeSpan = 100;
+        double rangeValueInterval = rangeSpan / colors.Length;
+        double curveInterval = 180 / colors.Length;
+
+        for(int i=0;i<colors.Length; i++)
+        {
+            string color = colors[i];
+
+            double start = 0.75 * Math.Sin(i * curveInterval * Math.PI / 180);
+            double end = 0.75 * Math.Sin((i + 1) * curveInterval * Math.PI / 180);
+
+            GaugeRangeInfo info = new GaugeRangeInfo()
+            {
+                StartValue = rangeValueInterval * i,
+                EndValue = rangeValueInterval * (i + 1),
+                Brush = color,
+                Outline = color,
+                InnerStartExtent = 0.1,
+                InnerEndExtent = 0.1,
+                OuterStartExtent = 0.95 - start,
+                OuterEndExtent = 0.95 - end
+            };
+
+            RangeInfo.Add(info);
+        }
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Sample OnInitializedAsync...");
+        await Task.Delay(10);
+    }
+}
