@@ -78,11 +78,15 @@ NOTE: Do not add/change any files in the `wwwroot` folder
 
 - remove any code that does not apply to the sample
 
-- remove not used `.razor` file in `Pager` folder such there is only one `.razor` file
+- remove not used `.razor` file in `Pager` folder such there is only one `.razor` file in that folder
 
 - remove not used `.cs` file in `Services` folder
 
-- create one pull request for a sample
+- make sure there are only 2 files in wwwroot folder:
+    - index.css
+    - index.html
+
+- create one pull request for up to 3 samples
 
 
 ## Resources
