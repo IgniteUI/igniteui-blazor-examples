@@ -1,0 +1,35 @@
+﻿@page "/BulletGraphScale"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igComponent">
+        <BulletGraph Height="80px" Width="100%"
+                     MinimumValue="0" Value="70" Interval="10"
+                     MaximumValue="100" TargetValue="90"
+                     IsScaleInverted="false"
+                     ScaleBackgroundBrush="DodgerBlue"
+                     ScaleBackgroundOutline="Red"
+                     ScaleBackgroundThickness="2"
+                     ScaleStartExtent="0.05"
+                     ScaleEndExtent="0.95">
+        </BulletGraph>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();        
+        BulletGraphModule.Register(InfragisticsBlazor);
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Sample OnInitializedAsync...");
+        await Task.Delay(10);
+    }
+}
