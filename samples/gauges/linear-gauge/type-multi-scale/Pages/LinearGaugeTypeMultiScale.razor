@@ -1,0 +1,114 @@
+﻿@page "/LinearGaugeTypeMultiScale"
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">    
+    <div class="igComponent">
+        <LinearGauge Height="80px" Width="100%"
+                     MinimumValue="-40"
+                     MaximumValue="100"
+                     Value="20"
+                     Interval="10"
+                     LabelInterval="10"
+                     LabelExtent="0.15"
+                     TransitionDuration="500"
+                     IsNeedleDraggingEnabled="false"
+                     NeedleBrush="transparent"
+                     NeedleOutline="transparent"
+                     BackingBrush="transparent"
+                     BackingOutline="transparent"
+                     ScaleStrokeThickness="0"
+                     ScaleBrush="transparent"
+                     ScaleOutline="transparent"
+                     ScaleInnerExtent="0.35"
+                     ScaleOuterExtent="1.0"
+                     ScaleStartExtent="0.05"
+                     ScaleEndExtent="0.95"
+                     MinorTickBrush="Gray"
+                     MinorTickStartExtent="-0.2"
+                     MinorTickEndExtent="-0.1"
+                     MinorTickStrokeThickness="1"
+                     MinorTickCount="4"
+                     TickStartExtent="-0.2"
+                     TickEndExtent="0.0"
+                     TickStrokeThickness="1"
+                     TickBrush="Gray">
+            <LinearGraphRange Brush="linear-gradient(#FF0000, #C70101)"
+                              Outline="transparent"
+                              StartValue="-40"
+                              EndValue="20"
+                              InnerStartExtent="0.35"
+                              InnerEndExtent="0.35"
+                              OuterStartExtent="0.675"
+                              OuterEndExtent="0.675">
+            </LinearGraphRange>
+            <LinearGraphRange Brush="linear-gradient(#FA8F8F, #FA5151)"
+                              Outline="transparent"
+                              StartValue="-40"
+                              EndValue="20"
+                              InnerStartExtent="0.675"
+                              InnerEndExtent="0.675"
+                              OuterStartExtent="1.0"
+                              OuterEndExtent="1.0">
+            </LinearGraphRange>
+        </LinearGauge>
+        <LinearGauge Height="80px" Width="100%"
+                     MinimumValue="-40"
+                     MaximumValue="100"
+                     Value="20"
+                     Interval="10"
+                     LabelInterval="10"
+                     LabelExtent="0.1"
+                     TransitionDuration="500"
+                     IsNeedleDraggingEnabled="false"
+                     NeedleBrush="transparent"
+                     NeedleOutline="transparent"
+                     BackingBrush="transparent"
+                     BackingOutline="transparent"
+                     ScaleStrokeThickness="0"
+                     ScaleBrush="#E0DFDF"
+                     ScaleOutline="#E0DFDF"
+                     ScaleInnerExtent="0.35"
+                     ScaleOuterExtent="1.0"
+                     ScaleStartExtent="0.05"
+                     ScaleEndExtent="0.95"
+                     MinorTickBrush="Gray"
+                     MinorTickStartExtent="0.25"
+                     MinorTickEndExtent="0.35"
+                     MinorTickStrokeThickness="1"
+                     MinorTickCount="4"
+                     TickStartExtent="0.15"
+                     TickEndExtent="0.35"
+                     TickStrokeThickness="1"
+                     TickBrush="Gray">
+            <LinearGraphRange Brush="linear-gradient(#FF0000, #C70101)"
+                              Outline="transparent"
+                              StartValue="-40"
+                              EndValue="20"
+                              InnerStartExtent="0.35"
+                              InnerEndExtent="0.35"
+                              OuterStartExtent="0.675"
+                              OuterEndExtent="0.675">
+            </LinearGraphRange>
+            <LinearGraphRange Brush="linear-gradient(#FA8F8F, #FA5151)"
+                              Outline="transparent"
+                              StartValue="-40"
+                              EndValue="20"
+                              InnerStartExtent="0.675"
+                              InnerEndExtent="0.675"
+                              OuterStartExtent="1.0"
+                              OuterEndExtent="1.0">
+            </LinearGraphRange>
+        </LinearGauge>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();        
+        LinearGaugeModule.Register(InfragisticsBlazor);
+    }
+}
