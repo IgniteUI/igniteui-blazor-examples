@@ -1,0 +1,36 @@
+﻿@page "/LinearGaugeBacking"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igComponent">
+        <LinearGauge Height="80px" Width="100%"
+                     MinimumValue="0"
+                     MaximumValue="100"
+                     Value="50"
+                     Interval="10"
+                     BackingBrush="#BDDCFC"
+                     BackingOutline="DodgerBlue"
+                     BackingStrokeThickness="4"
+                     BackingInnerExtent="0"
+                     BackingOuterExtent="1">
+        </LinearGauge>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();        
+        LinearGaugeModule.Register(InfragisticsBlazor);
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Sample OnInitializedAsync...");
+        await Task.Delay(10);
+    }
+}

@@ -1,0 +1,45 @@
+﻿@page "/LinearGaugeRanges"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">    
+    <div class="igComponent">
+        <LinearGauge Height="80px" Width="100%"
+                     MinimumValue="0" Value="50"
+                     MaximumValue="100" Interval="10"
+                     RangeBrushes="#A4BD29, #F86232"
+                     RangeOutlines="#A4BD29, #F86232">
+            <LinearGraphRange StartValue="0"
+                              EndValue="50"
+                              InnerStartExtent="0.075"
+                              InnerEndExtent="0.075"
+                              OuterStartExtent="0.25"
+                              OuterEndExtent="0.4">
+            </LinearGraphRange>
+            <LinearGraphRange StartValue="50"
+                              EndValue="100"
+                              InnerStartExtent="0.075"
+                              InnerEndExtent="0.075"
+                              OuterStartExtent="0.4"
+                              OuterEndExtent="0.55">
+            </LinearGraphRange>
+        </LinearGauge>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();        
+        LinearGaugeModule.Register(InfragisticsBlazor);
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Sample OnInitializedAsync...");
+        await Task.Delay(10);
+    }
+}
