@@ -1,0 +1,43 @@
+﻿@page "/BulletGraphRanges"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igComponent">
+        <BulletGraph Height="80px" Width="100%"
+                     MinimumValue="0" Value="80" Interval="10"
+                     MaximumValue="100" TargetValue="90"
+                     RangeBrushes="#C62828,#F96232,#FF9800"
+                     RangeOutlines="#C62828,#F96232,#FF9800">
+            <LinearGraphRange StartValue="0" EndValue="40" Brush="#C62828" Outline="#C62828"
+                              InnerStartExtent="0.075" InnerEndExtent="0.075"
+                              OuterStartExtent="0.95" OuterEndExtent="0.95">
+            </LinearGraphRange>
+            <LinearGraphRange StartValue="40" EndValue="70" Brush="#F96232" Outline="#F96232"
+                              InnerStartExtent="0.075" InnerEndExtent="0.075"
+                              OuterStartExtent="0.95" OuterEndExtent="0.95">
+            </LinearGraphRange>
+            <LinearGraphRange StartValue="70" EndValue="100" Brush="#FF9800" Outline="#FF9800"
+                              InnerStartExtent="0.075" InnerEndExtent="0.075"
+                              OuterStartExtent="0.95" OuterEndExtent="0.95">
+            </LinearGraphRange>
+        </BulletGraph>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        BulletGraphModule.Register(InfragisticsBlazor);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Sample OnInitializedAsync...");
+        await Task.Delay(10);
+    }
+}
