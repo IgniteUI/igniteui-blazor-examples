@@ -102,7 +102,7 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();        
+        base.OnInitialized();
         LinearGaugeModule.Register(InfragisticsBlazor);
 
         this.MinimumValue = 0;
@@ -129,12 +129,6 @@
         this.RangeInfo = new System.Collections.ObjectModel.ObservableCollection<GaugeRangeInfo>();
 
         this.onAnimateToGauge3();
-    }
-    
-    protected override async Task OnInitializedAsync()
-    {
-        Console.WriteLine("Sample OnInitializedAsync...");
-        await Task.Delay(10);
     }
 
     private void onAnimateToGauge1()
@@ -183,11 +177,11 @@
 
         this.RangeInfo.Clear();
 
-        string[] colors = "#A4BD29,#F86232".Split(',');
+        List<string> colors = new List<string>() { "#A4BD29", "#F86232" };
         double[] startValues = { 0, 40 };
         double[] endValues = { 40, 80 };
 
-        for (int i = 0; i < colors.Length; i++)
+        for (int i = 0; i < colors.Count; i++)
         {
             GaugeRangeInfo info = new GaugeRangeInfo()
             {
@@ -251,11 +245,11 @@
 
         this.RangeInfo.Clear();
 
-        string[] colors = "#0078C8,#0099FF,#21A7FF,#45B9FF".Split(',');
+        List<string> colors = new List<string>() { "#0078C8","#0099FF","#21A7FF","#45B9FF" };
         double[] startValues = { 100, 125, 150, 175 };
         double[] endValues = { 125, 150, 175, 200 };
 
-        for (int i = 0; i < colors.Length; i++)
+        for (int i = 0; i < colors.Count; i++)
         {
             GaugeRangeInfo info = new GaugeRangeInfo()
             {
@@ -319,11 +313,11 @@
 
         this.RangeInfo.Clear();
 
-        string[] colors = "#9FB328,#438C47,#3F51B5".Split(',');
+        List<string> colors = new List<string>() { "#9FB328", "#438C47", "#3F51B5" };
         double[] startValues = { 0, 30, 70 };
         double[] endValues = { 30, 70, 100 };
 
-        for (int i = 0; i < colors.Length; i++)
+        for (int i = 0; i < colors.Count; i++)
         {
             GaugeRangeInfo info = new GaugeRangeInfo()
             {

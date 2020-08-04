@@ -64,22 +64,22 @@
 
 @code {
 
-    private System.Collections.ObjectModel.ObservableCollection<GaugeRangeInfo> RangeInfo;
+    private List<GaugeRangeInfo> RangeInfo;
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();        
+        base.OnInitialized();
         LinearGaugeModule.Register(InfragisticsBlazor);
 
-        RangeInfo = new System.Collections.ObjectModel.ObservableCollection<GaugeRangeInfo>();
+        RangeInfo = new List<GaugeRangeInfo>();
 
-        string[] colors = "#009f00,#16a316,#23a724,#2eab2f,#36af39,#3eb342,#46b74a,#4dbb52,#54bf5a,#5bc361,#62c768,#69cb6e,#70cf74,#77d37a,#7fd77f,#86db83,#8edf87,#97e38a,#9fe78d,#a8eb8e,#b2ef8e,#bcf28b,#c7f686,#d3f97d,#e0fd6a,#f5f732,#f7ef37,#f9e73b,#fbdf3e,#fcd741,#fdcf44,#fec746,#ffbe48,#ffb649,#ffae4b,#ffa64c,#ff9d4c,#ff944d,#ff8b4d,#ff824d,#fe794d,#fd6f4c,#fc654b,#fb5b4a,#f95048,#f74445,#f53742,#f2273e,#ef1438,#e9002c".Split(',');
+        List<string> colors = new List<string>() { "#009f00", "#16a316", "#23a724", "#2eab2f", "#36af39", "#3eb342", "#46b74a", "#4dbb52", "#54bf5a", "#5bc361", "#62c768", "#69cb6e", "#70cf74", "#77d37a", "#7fd77f", "#86db83", "#8edf87", "#97e38a", "#9fe78d", "#a8eb8e", "#b2ef8e", "#bcf28b", "#c7f686", "#d3f97d", "#e0fd6a", "#f5f732", "#f7ef37", "#f9e73b", "#fbdf3e", "#fcd741", "#fdcf44", "#fec746", "#ffbe48", "#ffb649", "#ffae4b", "#ffa64c", "#ff9d4c", "#ff944d", "#ff8b4d", "#ff824d", "#fe794d", "#fd6f4c", "#fc654b", "#fb5b4a", "#f95048", "#f74445", "#f53742", "#f2273e", "#ef1438", "#e9002c" };
 
         double rangeSpan = 100;
-        double rangeValueInterval = rangeSpan / colors.Length;
-        double curveInterval = 180 / colors.Length;
+        double rangeValueInterval = rangeSpan / colors.Count;
+        double curveInterval = 180 / colors.Count;
 
-        for(int i=0;i<colors.Length; i++)
+        for(int i=0;i<colors.Count; i++)
         {
             string color = colors[i];
 
@@ -100,11 +100,5 @@
 
             RangeInfo.Add(info);
         }
-    }
-    
-    protected override async Task OnInitializedAsync()
-    {
-        Console.WriteLine("Sample OnInitializedAsync...");
-        await Task.Delay(10);
     }
 }

@@ -4,7 +4,7 @@
 @inject IInfragisticsBlazor InfragisticsBlazor;
 @inject IJSRuntime JSRuntime;
 
-<div class="igContainer">    
+<div class="igContainer">
     <div class="igComponent">
         <BulletGraph Height="100%" Width="120px"
                      Orientation="LinearScaleOrientation.Vertical"
@@ -92,34 +92,34 @@
 
 @code {
 
-    private System.Collections.ObjectModel.ObservableCollection<GaugeRangeInfo> RangeInfo1;
-    private System.Collections.ObjectModel.ObservableCollection<GaugeRangeInfo> RangeInfo2;
-    private System.Collections.ObjectModel.ObservableCollection<GaugeRangeInfo> RangeInfo3;
+    private List<GaugeRangeInfo> RangeInfo1;
+    private List<GaugeRangeInfo> RangeInfo2;
+    private List<GaugeRangeInfo> RangeInfo3;
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();        
+        base.OnInitialized();
         BulletGraphModule.Register(InfragisticsBlazor);
 
-        RangeInfo1 = new System.Collections.ObjectModel.ObservableCollection<GaugeRangeInfo>();
-        RangeInfo2 = new System.Collections.ObjectModel.ObservableCollection<GaugeRangeInfo>();
-        RangeInfo3 = new System.Collections.ObjectModel.ObservableCollection<GaugeRangeInfo>();
+        RangeInfo1 = new List<GaugeRangeInfo>();
+        RangeInfo2 = new List<GaugeRangeInfo>();
+        RangeInfo3 = new List<GaugeRangeInfo>();
 
-        string[] colors1 = "#008000,#10B401,#45EC03,#2EFA2E".Split(',');
-        string[] colors2 = "#E29B03,#FDB417,#FDC957,#FDD682".Split(',');
-        string[] colors3 = "#CF0000,#FF0000,#FD3939,#FA6363".Split(',');
+        List<string> colors1 = new List<string>() { "#008000", "#10B401", "#45EC03", "#2EFA2E" };
+        List<string> colors2 = new List<string>() { "#E29B03", "#FDB417", "#FDC957", "#FDD682" };
+        List<string> colors3 = new List<string>() { "#CF0000", "#FF0000", "#FD3939", "#FA6363" };
 
         CreateGaugeRangeCollection(colors1, RangeInfo1);
         CreateGaugeRangeCollection(colors2, RangeInfo2);
         CreateGaugeRangeCollection(colors3, RangeInfo3);
     }
 
-    private void CreateGaugeRangeCollection(string[] colors, System.Collections.ObjectModel.ObservableCollection<GaugeRangeInfo> collection)
+    private void CreateGaugeRangeCollection(List<string> colors, List<GaugeRangeInfo> collection)
     {
         double rangeSpan = 100;
-        double rangeValueInterval = rangeSpan / colors.Length;
+        double rangeValueInterval = rangeSpan / colors.Count;
 
-        for (int i = 0; i < colors.Length; i++)
+        for (int i = 0; i < colors.Count; i++)
         {
             string color = colors[i];
 
@@ -137,11 +137,5 @@
 
             collection.Add(info);
         }
-    }
-    
-    protected override async Task OnInitializedAsync()
-    {
-        Console.WriteLine("Sample OnInitializedAsync...");
-        await Task.Delay(10);
     }
 }
