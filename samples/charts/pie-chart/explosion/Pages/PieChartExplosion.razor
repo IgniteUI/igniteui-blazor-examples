@@ -12,7 +12,7 @@
         @if (DataSource != null)
         {
             <PieChart Height="600px" Width="600px"
-                      DataSource="@DataSource"
+                      DataSource="DataSource"
                       LabelMemberPath="Summary"
                       ValueMemberPath="MarketShare"
                       LegendLabelMemberPath="Company"
@@ -21,7 +21,7 @@
                       StartAngle="0"
                       SliceClick="OnSliceClick"
                       AllowSliceExplosion="true"
-                      ExplodedSlices="@explodedSlices"
+                      ExplodedSlices="ExplodedSlices"
                       >             
             </PieChart>
         }
@@ -32,7 +32,7 @@
 @code {
 
     private List<DataItem> DataSource;
-    public int[] explodedSlices { get; set; } = new int[0];
+    public int[] ExplodedSlices { get; set; } = new int[0];
 
     protected override void OnInitialized()
     {
