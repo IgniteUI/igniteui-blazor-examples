@@ -1,0 +1,60 @@
+﻿@page "/PieChartLegend"
+
+@* this namespace is required for Infragistics controls *@
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+
+	<div className="igLegend">
+          <ItemLegend @ref=ItemLegend/>
+    </div>
+				
+    <div class="igComponent">
+
+        @if (DataSource != null)
+        {
+            <PieChart Height="600px" Width="600px"
+                      @ref="PieChart"
+                      DataSource="@DataSource"
+                      LabelMemberPath="Summary"
+                      ValueMemberPath="MarketShare"
+                      LegendLabelMemberPath="Company"
+                      Outlines="white">
+            </PieChart>
+        }
+
+    </div>
+</div>
+
+@code {
+
+    public PieChart PieChart;
+    public ItemLegend ItemLegend;
+    private List<DataItem> DataSource;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        PieChartModule.Register(InfragisticsBlazor);
+
+        var dataItems = new List<DataItem>();
+        dataItems.Add(new DataItem() { MarketShare = 30, Company = "Google", });
+        dataItems.Add(new DataItem() { MarketShare = 25, Company = "Apple", });
+        dataItems.Add(new DataItem() { MarketShare = 20, Company = "Microsoft", });
+        dataItems.Add(new DataItem() { MarketShare = 15, Company = "Samsung", });
+        dataItems.Add(new DataItem() { MarketShare = 10, Company = "Other", });
+
+        DataSource = dataItems;
+        //PieChart.legend = ItemLegend;
+    }
+
+    public class DataItem
+    {
+        public string Company { get; set; }
+        public double MarketShare { get; set; }
+
+        public string Summary { get { return Company + " " + MarketShare + "%"; } }
+    }
+}

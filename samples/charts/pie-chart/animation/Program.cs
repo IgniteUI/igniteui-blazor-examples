@@ -25,6 +25,8 @@ namespace Samples
             // registering Infragistics Blazor
             builder.Services.AddScoped(typeof(IInfragisticsBlazor), typeof(InfragisticsBlazor));
 
+            builder.Services.AddScoped(typeof(Samples.Shared.Services.SampleTimer));
+
             await builder.Build().RunAsync();
         }
     }

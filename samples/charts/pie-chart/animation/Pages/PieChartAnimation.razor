@@ -1,0 +1,118 @@
+﻿@page "/PieChartAnimation"
+@* this namespace is required for Infragistics controls *@
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+@inject Samples.Shared.Services.SampleTimer Timer;
+
+<div class="igContainer">
+
+    <div class="igOptions-horizontal">
+        <button @onclick="onAnimationToggle">Animate Chart</button>
+    </div>
+
+    <div class="igComponent">
+
+        @if (DataSource != null)
+        {
+            <PieChart Height="600px" Width="600px"
+                      DataSource="@DataSource"
+                      LabelMemberPath="Summary"
+                      ValueMemberPath="MarketShare"
+                      LegendLabelMemberPath="Company"
+                      LabelsPosition="LabelsPosition.InsideEnd"
+                      StartAngle="@StartAngle"
+                      LabelExtent="@LabelExtent"
+                      RadiusFactor="@RadiusFactor">
+            </PieChart>
+        }
+
+    </div>
+</div>
+
+@code {
+
+    private List<DataItem> DataSource;
+    public double StartAngle = 0;
+    public double RadiusFactor = 0.1;
+    public double LabelExtent = 0.7;
+    public Boolean isAnimating = false;
+
+    public void onAnimationToggle()
+    {
+        if (!this.isAnimating)
+        {
+            this.StartAngle = 0;
+            this.RadiusFactor = 0.1;
+            this.isAnimating = true;
+
+            Timer.Start(15);
+            Timer.OnTick += OnTimerTick;
+        }
+        else
+        {
+            this.isAnimating = false;
+            this.onAnimationClear();
+        }
+    }
+
+
+    public void onAnimationClear()
+    {
+        StopTimer();
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+		PieChartModule.Register(InfragisticsBlazor)
+
+        var dataItems = new List<DataItem>();
+        dataItems.Add(new DataItem() { MarketShare = 30, Company = "Google", });
+        dataItems.Add(new DataItem() { MarketShare = 25, Company = "Apple", });
+        dataItems.Add(new DataItem() { MarketShare = 20, Company = "Microsoft", });
+        dataItems.Add(new DataItem() { MarketShare = 15, Company = "Samsung", });
+        dataItems.Add(new DataItem() { MarketShare = 10, Company = "Other", });
+
+        DataSource = dataItems;
+
+        this.onAnimationClear();
+        this.onAnimationToggle();
+    }
+
+    private void OnTimerTick()
+    {
+        if (this.isAnimating)
+        {
+            if (this.RadiusFactor < 1.0)
+                this.RadiusFactor += 0.0025;
+
+            if (this.StartAngle < 360)
+                this.StartAngle++;
+
+            if (this.RadiusFactor >= 1.0 &&
+                this.StartAngle >= 360)
+            {
+                this.isAnimating = false;
+                this.onAnimationClear();
+            }
+        }
+       
+        this.StateHasChanged();
+    }
+
+    protected void StopTimer()
+    {
+        Console.WriteLine("Sample StopTimer");
+
+        Timer.Stop();
+    }
+
+    public class DataItem
+    {
+        public string Company { get; set; }
+        public double MarketShare { get; set; }
+
+        public string Summary { get { return Company + " " + MarketShare + "%"; } }
+    }
+}
