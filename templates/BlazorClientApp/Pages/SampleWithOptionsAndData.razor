@@ -56,7 +56,7 @@
     private WorldCity[] DataSource;
 
     // NOTE here, you can Initialize properties/state/data of the sample
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         Console.WriteLine("Sample OnInitializedAsync...");
 
@@ -68,7 +68,6 @@
         // DataSource = await Http.GetJsonAsync<WeatherForecast[]>("data/WeatherForecast.json");
         DataSource = new WorldCity[] { new WorldCity() };
 
-        await Task.Delay(10);
     }
 
     // NOTE here is example of even handler that update a field that is bound in HTML code above

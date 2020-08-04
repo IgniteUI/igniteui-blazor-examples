@@ -37,11 +37,7 @@
         // Console.WriteLine("Sample runtime: " + InfragisticsBlazor.JsRuntime);
         Console.WriteLine("Sample OnInitialized...");
         CategoryChartModule.Register(InfragisticsBlazor);
-    }
-
-    // NOTE here, you can Initialize properties/state/data of the sample
-    protected override async Task OnInitializedAsync()
-    {
+   
         Console.WriteLine("Sample OnInitializedAsync...");
 
         var olympicMedals = new List<OlympicMedals>();
@@ -53,7 +49,6 @@
         olympicMedals.Add(new OlympicMedals() { Year = "2016", USA = 146, CHN = 112, RUS = 88 });
 
         DataSource = olympicMedals;
-        await Task.Delay(10);
     }
 
     public class OlympicMedals

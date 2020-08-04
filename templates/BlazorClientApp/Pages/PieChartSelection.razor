@@ -50,13 +50,7 @@
         // Console.WriteLine("Sample runtime: " + InfragisticsBlazor.JsRuntime);
         Console.WriteLine("Sample OnInitialized...");
         PieChartModule.Register(InfragisticsBlazor);
-    }
-
-    // NOTE here, you can Initialize properties/state/data of the sample
-    protected override async Task OnInitializedAsync()
-    {
-        Console.WriteLine("Sample OnInitializedAsync...");
-
+    
         var dataItems = new List<DataItem>();
         dataItems.Add(new DataItem() { MarketShare = 30, Company = "Google", });
         dataItems.Add(new DataItem() { MarketShare = 25, Company = "Apple", });
@@ -65,8 +59,6 @@
         dataItems.Add(new DataItem() { MarketShare = 10, Company = "Other", });
 
         DataSource = dataItems;
-
-        await Task.Delay(10);
     }
 
     public class DataItem
