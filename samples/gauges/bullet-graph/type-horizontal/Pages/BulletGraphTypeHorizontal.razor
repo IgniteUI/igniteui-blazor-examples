@@ -92,18 +92,18 @@
 
 @code {
 
-    private System.Collections.ObjectModel.ObservableCollection<GaugeRangeInfo> RangeInfo1;
-    private System.Collections.ObjectModel.ObservableCollection<GaugeRangeInfo> RangeInfo2;
-    private System.Collections.ObjectModel.ObservableCollection<GaugeRangeInfo> RangeInfo3;
+    private List<GaugeRangeInfo> RangeInfo1;
+    private List<GaugeRangeInfo> RangeInfo2;
+    private List<GaugeRangeInfo> RangeInfo3;
 
     protected override void OnInitialized()
     {
         base.OnInitialized();        
         BulletGraphModule.Register(InfragisticsBlazor);
 
-        RangeInfo1 = new System.Collections.ObjectModel.ObservableCollection<GaugeRangeInfo>();
-        RangeInfo2 = new System.Collections.ObjectModel.ObservableCollection<GaugeRangeInfo>();
-        RangeInfo3 = new System.Collections.ObjectModel.ObservableCollection<GaugeRangeInfo>();
+        RangeInfo1 = new List<GaugeRangeInfo>();
+        RangeInfo2 = new List<GaugeRangeInfo>();
+        RangeInfo3 = new List<GaugeRangeInfo>();
 
         string[] colors1 = "#008000,#10B401,#45EC03,#2EFA2E".Split(',');
         string[] colors2 = "#E29B03,#FDB417,#FDC957,#FDD682".Split(',');
@@ -114,7 +114,7 @@
         CreateGaugeRangeCollection(colors3, RangeInfo3);
     }
 
-    private void CreateGaugeRangeCollection(string[] colors, System.Collections.ObjectModel.ObservableCollection<GaugeRangeInfo> collection)
+    private void CreateGaugeRangeCollection(string[] colors, List<GaugeRangeInfo> collection)
     {
         double rangeSpan = 100;
         double rangeValueInterval = rangeSpan / colors.Length;
@@ -137,11 +137,5 @@
 
             collection.Add(info);
         }
-    }
-    
-    protected override async Task OnInitializedAsync()
-    {
-        Console.WriteLine("Sample OnInitializedAsync...");
-        await Task.Delay(10);
     }
 }

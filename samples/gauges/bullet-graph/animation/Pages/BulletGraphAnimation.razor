@@ -1,4 +1,5 @@
 ﻿@page "/BulletGraphAnimation"
+@using System.Collections.ObjectModel; 
 @using Infragistics.Blazor.Controls
 @inject IInfragisticsBlazor InfragisticsBlazor;
 @inject IJSRuntime JSRuntime;
@@ -41,7 +42,8 @@
             @for(int i=0; i<RangeInfo.Count; i++)
             {
                 GaugeRangeInfo info = RangeInfo[i];
-                <LinearGraphRange StartValue=info.StartValue
+                <LinearGraphRange Name=info.Name
+                                  StartValue=info.StartValue
                                   EndValue=info.EndValue
                                   InnerStartExtent=info.InnerStartExtent
                                   InnerEndExtent=info.InnerEndExtent
@@ -90,11 +92,11 @@
     private string BackingOutline;
     private double BackingStrokeThickness;
 
-    private System.Collections.ObjectModel.ObservableCollection<GaugeRangeInfo> RangeInfo;
+    private ObservableCollection<GaugeRangeInfo> RangeInfo;
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();       
+        base.OnInitialized();
         BulletGraphModule.Register(InfragisticsBlazor);
 
         this.MinimumValue = 0;
@@ -111,15 +113,9 @@
         this.ScaleBackgroundBrush = "#DBDBDB";
         this.ScaleBackgroundOutline = "Gray";
 
-        this.RangeInfo = new System.Collections.ObjectModel.ObservableCollection<GaugeRangeInfo>();
+        this.RangeInfo = new ObservableCollection<GaugeRangeInfo>();
 
         this.onAnimateToGauge3();
-    }
-    
-    protected override async Task OnInitializedAsync()
-    {
-        Console.WriteLine("Sample OnInitializedAsync...");
-        await Task.Delay(10);
     }
 
     private void onAnimateToGauge1()
@@ -166,12 +162,13 @@
 
         this.RangeInfo.Clear();
 
-        string[] colors = "#A4BD29, #F86232".Split(',');
+        List<string> colors = new List<string>() { "#A4BD29", "#F86232" };
 
-        for (int i = 0; i < colors.Length; i++)
+        for (int i = 0; i < colors.Count; i++)
         {
             GaugeRangeInfo info = new GaugeRangeInfo()
             {
+                Name = "range " + i.ToString(),
                 StartValue = i * 40,
                 EndValue = (i * 40) + 40,
                 Brush = colors[i],
@@ -230,14 +227,15 @@
 
         this.RangeInfo.Clear();
 
-        string[] colors = "#0078C8,#0099FF,#21A7FF,#4FB9FF".Split(',');
+        List<string> colors = new List<string>() { "#0078C8", "#0099FF", "#21A7FF", "#4FB9FF" };
         double[] startValues = { 100, 125, 150, 175 };
         double[] endValues = { 125, 150, 175, 200 };
 
-        for (int i = 0; i < colors.Length; i++)
+        for (int i = 0; i < colors.Count; i++)
         {
             GaugeRangeInfo info = new GaugeRangeInfo()
             {
+                Name = "range " + i.ToString(),
                 StartValue = startValues[i],
                 EndValue = endValues[i],
                 Brush = colors[i],
@@ -296,12 +294,13 @@
 
         this.RangeInfo.Clear();
 
-        string[] colors = "#FF9800,#F96232,#C62828".Split(',');
+        List<string> colors = new List<string>() { "#FF9800", "#F96232", "#C62828" };
 
-        for(int i=0; i<colors.Length; i++)
+        for(int i=0; i<colors.Count; i++)
         {
             GaugeRangeInfo info = new GaugeRangeInfo()
             {
+                Name = "range " + i.ToString(),
                 StartValue = i * 40,
                 EndValue = (i * 40) + 40,
                 Brush = colors[i],
