@@ -1,0 +1,141 @@
+﻿@page "/CategoryChartHighFrequency"
+
+@using System.Timers; 
+@using System.Collections.ObjectModel; 
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igOptions">
+        <label className="igOptions-label">Refresh Interval: </label>
+        <label className="igOptions-value">
+            @RefreshInfo
+        </label>
+        <input className="igOptions-slider" type="range" min="10" max="500"
+               value=@RefreshInterval
+               @onchange="OnRefreshFrequencyChanged" />
+        <label className="igOptions-label">Data Points: </label>
+        <label className="igOptions-value">
+            @DataInfo
+        </label>
+        <input className="igOptions-slider" type="range" min="10000" max="1000000" step="1000"
+               value=@DataPoints
+               @onchange="OnDataPointsChanged" />
+        <button @onclick="OnDataGenerateClick">Generate Data</button>
+    </div>
+
+    <div class="igComponent">        
+        @if (DataSource != null)
+        {
+            <CategoryChart Height="100%" Width="100%"
+                           DataSource="DataSource"
+                           ChartType="CategoryChartType.Line">
+            </CategoryChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private ObservableCollection<DataChartSharedData.DataItem> DataSource;
+
+    private string RefreshInfo;
+    private string DataInfo;
+    private int RefreshInterval;
+    private double DataPoints;
+    private int DataIndex;
+    private double RefreshMilliseconds;    
+
+    Timer timer;
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        CategoryChartModule.Register(InfragisticsBlazor);
+
+        this.DataPoints = 100000;
+        this.DataInfo = DataChartSharedData.toShortString(this.DataPoints);
+        this.DataIndex = 0;
+        this.RefreshMilliseconds = 10;
+        this.RefreshInterval = 10;
+        this.RefreshInfo = (this.RefreshMilliseconds / 1000).ToString() + "s";
+    }
+
+    private void OnDataGenerateClick()
+    {
+        var dataList = DataChartSharedData.getDataItems(100, (int)this.DataPoints, false);
+
+        this.DataSource = new ObservableCollection<DataChartSharedData.DataItem>(dataList);
+
+        this.DataIndex = this.DataSource.Count;
+        SetupInterval();
+    }
+
+    private void OnDataPointsChanged(ChangeEventArgs args)
+    {
+        double num = double.Parse(args.Value.ToString());
+
+        if(num < 10000)
+        {
+            num = 10000;
+        }
+        if(num > 1000000)
+        {
+            num = 1000000;
+        }
+
+        string info = DataChartSharedData.toShortString(num);
+        this.DataPoints = num;
+        this.DataInfo = info;
+    }
+
+    private void OnRefreshFrequencyChanged(ChangeEventArgs args)
+    {
+        double num = double.Parse(args.Value.ToString());
+        
+        if (num < 10)
+        {
+            num = 10;
+        }
+        if (num > 500)
+        {
+            num = 500;
+        }
+
+        this.RefreshMilliseconds = num;
+        this.RefreshInfo = (this.RefreshMilliseconds / 1000).ToString() + "s";
+
+        if (this.DataSource.Count > 0)
+        {
+            SetupInterval();                
+        }
+    }
+
+    private void SetupInterval()
+    {
+        if (timer == null)
+        {
+            timer = new Timer()
+            {
+                Interval = this.RefreshMilliseconds
+            };
+
+            timer.Elapsed += new ElapsedEventHandler(OnTick);
+            timer.Start();
+        }
+        else
+        {
+            timer.Interval = this.RefreshMilliseconds;
+        }
+    }
+
+    private void OnTick(object sender, ElapsedEventArgs args)
+    {
+        this.DataIndex++;
+
+        var item = this.DataSource[0];
+        var newItem = DataChartSharedData.getNewItem(this.DataSource.ToList(), this.DataIndex);
+
+        this.DataSource.Add(newItem);
+    }
+}

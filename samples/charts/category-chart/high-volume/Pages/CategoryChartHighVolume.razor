@@ -1,0 +1,57 @@
+﻿@page "/CategoryChartHighVolume"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igOptions">
+        <label className="igOptions-label">Data Points: </label>
+        <label className="igOptions-value">@DataInfo</label>
+        <input className="igOptions-slider" type="range" min="10000" max="1000000" step="1000"
+               value="@DataPoints" @onchange="OnDataPointsChanged" />
+        <button @onclick="OnDataGenerateClick">Generate Data</button>
+    </div>
+    <div class="igComponent">        
+        @if (DataSource != null)
+        {
+            <CategoryChart Height="100%" Width="100%"
+                           ChartType="CategoryChartType.Line"
+                           DataSource="DataSource">
+            </CategoryChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private int DataPoints;
+    private string DataInfo;
+    private List<DataChartSharedData.DataItem> DataSource;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        CategoryChartModule.Register(InfragisticsBlazor);
+
+        this.DataPoints = 1000;
+        this.DataInfo = DataChartSharedData.toShortString(this.DataPoints);
+        this.DataSource = DataChartSharedData.getDataItems(0, this.DataPoints, true);
+    }
+
+    private void OnDataPointsChanged(ChangeEventArgs args)
+    {
+        this.DataPoints = int.Parse(args.Value.ToString());
+        this.DataInfo = DataChartSharedData.toShortString(this.DataPoints);
+    }
+
+    private void OnDataGenerateClick()
+    {
+        this.GenerateData();
+    }
+
+    private void GenerateData()
+    {
+        this.DataSource = DataChartSharedData.getDataItems(0, this.DataPoints, true);
+    }
+}
