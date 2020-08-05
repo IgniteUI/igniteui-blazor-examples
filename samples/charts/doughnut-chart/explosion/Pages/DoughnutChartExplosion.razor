@@ -1,0 +1,75 @@
+﻿@page "/DoughnutChartExplosion"
+
+@* this namespace is required for Infragistics controls *@
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+@* todo: ExplodedSlices not working *@
+
+<div class="igContainer">
+   
+    <div class="igComponent">
+        @*ExplodedSlices="@explodedSlices"*@
+
+        @if (DataSource != null)
+        {
+            <DoughnutChart Height="100%" Width="100%" AllowSliceExplosion="true" SliceClick="OnSliceClick">
+                <RingSeries DataSource="@DataSource" 
+                            LabelMemberPath="Summary"
+                            ValueMemberPath="MarketShare"
+                            LegendLabelMemberPath="Company"
+                            Outlines="white"
+                            SelectedSliceStroke="white"
+                            SelectedSliceFill="rgb(143,143,143)"
+                            SelectedSliceOpacity="1.0"
+                            SelectedSliceStrokeThickness="2"
+                            RadiusFactor="0.9"
+                            StartAngle="0">
+                </RingSeries>
+            </DoughnutChart>
+        }
+
+    </div>
+</div>
+
+@code {
+
+    private List<DataItem> DataSource;
+	public int[] explodedSlices { get; set; } = new int[0];
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        // Console.WriteLine("Sample runtime: " + InfragisticsBlazor.JsRuntime);
+        Console.WriteLine("Sample OnInitialized...");
+        DoughnutChartModule.Register(InfragisticsBlazor);
+
+        var dataItems = new List<DataItem>();
+        dataItems.Add(new DataItem() { MarketShare = 30, Company = "Google", });
+        dataItems.Add(new DataItem() { MarketShare = 25, Company = "Apple", });
+        dataItems.Add(new DataItem() { MarketShare = 20, Company = "Microsoft", });
+        dataItems.Add(new DataItem() { MarketShare = 15, Company = "Samsung", });
+        dataItems.Add(new DataItem() { MarketShare = 10, Company = "Other", });
+
+        DataSource = dataItems;
+
+    }
+
+    public class DataItem
+    {
+        public string Company { get; set; }
+        public double MarketShare { get; set; }
+        public string Summary { get { return Company + " " + MarketShare + "%"; } }
+    }
+
+    // NOTE here is example of even handler that update a field that is bound in HTML code above
+    protected void OnSliceClick(SliceClickEventArgs e)
+    {
+        Console.WriteLine("Sample OnButtonClick");
+
+       // e.IsExploded = !e.IsExploded;
+        //e.IsSelected = false;
+		//explodedSlices = new int[] { e.Index };
+    }
+}
