@@ -1,0 +1,142 @@
+﻿@page "/CategoryChartTrendline"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igOptions">
+        <span className="igOptions-label">Trend Line Type: </span>
+        <select @onchange="OnChartTrendlineChanged">
+            <option>LinearFit</option>
+            <option>QuadraticFit</option>
+            <option>CubicFit</option>
+            <option>QuarticFit</option>
+            <option>QuinticFit</option>
+            <option>LogarithmicFit</option>
+            <option>ExponentialFit</option>
+            <option>PowerLawFit</option>
+            <option>SimpleAverage</option>
+            <option>ExponentialAverage</option>
+            <option>ModifiedAverage</option>
+            <option>CumulativeAverage</option>
+            <option>WeightedAverage</option>
+            <option>None</option>
+        </select>
+    </div>
+    <div class="igComponent">      
+        @if (DataSource != null)
+        {
+            <CategoryChart Height="100%" Width="100%"
+                           DataSource="@DataSource"
+                           ChartType="CategoryChartType.Point"
+                           ChartTitle="Average Temperature over 2000 Years"
+                           TrendLineType="@ChartTrendline"
+                           TrendLineThickness="2"
+                           TrendLinePeriod="20"
+                           YAxisMinimumValue="0"
+                           YAxisTitle="Temperature (C)"
+                           XAxisTitle="Years"
+                           IncludedProperties="@IncludedProps"
+                           ExcludedProperties="@ExcludedProps">
+            </CategoryChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<DataChartSharedData.Temperature> DataSource;
+
+    private string[] IncludedProps;
+    private string[] ExcludedProps;
+
+    private TrendLineType ChartTrendline;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        CategoryChartModule.Register(InfragisticsBlazor);
+
+        this.IncludedProps = new string[] { "Value", "Label" };
+        this.ExcludedProps = new string[] { "High", "Low" };
+
+        this.DataSource = DataChartSharedData.getTemperatures(30, 0, 2000);
+
+        this.ChartTrendline = TrendLineType.LinearFit;
+    }
+
+    private void OnChartTrendlineChanged(ChangeEventArgs args)
+    {
+        string value = args.Value.ToString();
+
+        switch (value)
+        {
+            case "LinearFit":
+                {
+                    this.ChartTrendline = TrendLineType.LinearFit;
+                    break;
+                }
+            case "QuadraticFit":
+                {
+                    this.ChartTrendline = TrendLineType.QuadraticFit;
+                    break;
+                }
+            case "CubicFit":
+                {
+                    this.ChartTrendline = TrendLineType.CubicFit;
+                    break;
+                }
+            case "QuarticFit":
+                {
+                    this.ChartTrendline = TrendLineType.QuarticFit;
+                    break;
+                }
+            case "LogarithmicFit":
+                {
+                    this.ChartTrendline = TrendLineType.LogarithmicFit;
+                    break;
+                }
+            case "ExponentialFit":
+                {
+                    this.ChartTrendline = TrendLineType.ExponentialFit;
+                    break;
+                }
+            case "PowerLawFit":
+                {
+                    this.ChartTrendline = TrendLineType.PowerLawFit;
+                    break;
+                }
+            case "SimpleAverage":
+                {
+                    this.ChartTrendline = TrendLineType.SimpleAverage;
+                    break;
+                }
+            case "ExponentialAverage":
+                {
+                    this.ChartTrendline = TrendLineType.ExponentialAverage;
+                    break;
+                }
+            case "ModifiedAverage":
+                {
+                    this.ChartTrendline = TrendLineType.ModifiedAverage;
+                    break;
+                }
+            case "CumulativeAverage":
+                {
+                    this.ChartTrendline = TrendLineType.CumulativeAverage;
+                    break;
+                }
+            case "WeightedAverage":
+                {
+                    this.ChartTrendline = TrendLineType.WeightedAverage;
+                    break;
+                }
+            case "None":
+                {
+                    this.ChartTrendline = TrendLineType.None;
+                    break;
+                }
+        }
+    }
+}

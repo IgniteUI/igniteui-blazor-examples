@@ -1,0 +1,116 @@
+﻿@page "/CategoryChartOverview"
+@* this namespace is required for Infragistics controls *@
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+@* NOTE use this HTML code to design a sample *@
+<div class="igContainer">
+    <div class="igOptions">
+        <span className="igOptions-label">Chart Type: </span>
+        <select @onchange="OnChartTypeChanged">
+            <option>Auto</option>
+            <option>Area</option>
+            <option>Column</option>
+            <option>Point</option>
+            <option>Line</option>
+            <option>Spline</option>
+            <option>SplineArea</option>
+            <option>StepArea</option>
+            <option>StepLine</option>
+            <option>Waterfall</option>
+        </select>
+    </div>
+    <div class="igComponent">        
+        @if (DataSource != null)
+        {
+            <CategoryChart Height="100%" Width="100%" ChartType="@ChartType"
+                           DataSource="DataSource"
+                           ChartTitle="Olympic Medals By Country"
+                           IsSeriesHighlightingEnabled="true"
+                           YAxisMinimumValue="0">
+            </CategoryChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<OlympicMedals> DataSource;
+    private CategoryChartType ChartType;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        CategoryChartModule.Register(InfragisticsBlazor);        
+
+        ChartType = CategoryChartType.Auto;
+
+        var olympicMedals = new List<OlympicMedals>();
+        olympicMedals.Add(new OlympicMedals() { Year = "1996", USA = 148, CHN = 110, RUS = 95 });
+        olympicMedals.Add(new OlympicMedals() { Year = "2000", USA = 142, CHN = 115, RUS = 91 });
+        olympicMedals.Add(new OlympicMedals() { Year = "2004", USA = 134, CHN = 121, RUS = 86 });
+        olympicMedals.Add(new OlympicMedals() { Year = "2008", USA = 131, CHN = 129, RUS = 65 });
+        olympicMedals.Add(new OlympicMedals() { Year = "2012", USA = 135, CHN = 115, RUS = 77 });
+        olympicMedals.Add(new OlympicMedals() { Year = "2016", USA = 146, CHN = 112, RUS = 88 });
+
+        DataSource = olympicMedals;
+    }
+
+    private void OnChartTypeChanged(ChangeEventArgs args)
+    {
+        string str = args.Value.ToString();
+        switch (str)
+        {
+            case "Auto":
+                {
+                    ChartType = CategoryChartType.Auto;
+                    break;
+                }
+            case "Area":
+                {
+                    ChartType = CategoryChartType.Area;
+                    break;
+                }
+            case "Column":
+                {
+                    ChartType = CategoryChartType.Column;
+                    break;
+                }
+            case "Point":
+                {
+                    ChartType = CategoryChartType.Point;
+                    break;
+                }
+            case "Line":
+                {
+                    ChartType = CategoryChartType.Line;
+                    break;
+                }
+            case "Spline":
+                {
+                    ChartType = CategoryChartType.Spline;
+                    break;
+                }
+            case "SplineArea":
+                {
+                    ChartType = CategoryChartType.SplineArea;
+                    break;
+                }
+            case "StepArea":
+                {
+                    ChartType = CategoryChartType.StepArea;
+                    break;
+                }
+            case "StepLine":
+                {
+                    ChartType = CategoryChartType.StepLine;
+                    break;
+                }
+            case "Waterfall":
+                {
+                    ChartType = CategoryChartType.Waterfall;
+                    break;
+                }
+        }
+    }
+}
