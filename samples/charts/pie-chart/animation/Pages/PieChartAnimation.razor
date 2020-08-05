@@ -14,7 +14,7 @@
 
         @if (DataSource != null)
         {
-            <PieChart Height="600px" Width="600px"
+            <PieChart Height="100%" Width="100%"
                       DataSource="DataSource"
                       LabelMemberPath="Summary"
                       ValueMemberPath="MarketShare"
@@ -52,24 +52,8 @@
             this.isAnimating = false;
         }
     }
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-        PieChartModule.Register(InfragisticsBlazor);
-
-        var dataItems = new List<DataItem>();
-        dataItems.Add(new DataItem() { MarketShare = 30, Company = "Google", });
-        dataItems.Add(new DataItem() { MarketShare = 25, Company = "Apple", });
-        dataItems.Add(new DataItem() { MarketShare = 20, Company = "Microsoft", });
-        dataItems.Add(new DataItem() { MarketShare = 15, Company = "Samsung", });
-        dataItems.Add(new DataItem() { MarketShare = 10, Company = "Other", });
-
-        DataSource = dataItems;
-        this.onAnimationToggle();
-    }
-
-    private void OnTimerTick()
+	
+	private void OnTimerTick()
     {
         if (this.isAnimating)
         {
@@ -89,6 +73,22 @@
         }
 
         this.StateHasChanged();
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        PieChartModule.Register(InfragisticsBlazor);
+
+        var dataItems = new List<DataItem>();
+        dataItems.Add(new DataItem() { MarketShare = 30, Company = "Google", });
+        dataItems.Add(new DataItem() { MarketShare = 25, Company = "Apple", });
+        dataItems.Add(new DataItem() { MarketShare = 20, Company = "Microsoft", });
+        dataItems.Add(new DataItem() { MarketShare = 15, Company = "Samsung", });
+        dataItems.Add(new DataItem() { MarketShare = 10, Company = "Other", });
+
+        DataSource = dataItems;
+        this.onAnimationToggle();
     }
 
     public class DataItem

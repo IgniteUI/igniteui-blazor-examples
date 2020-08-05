@@ -17,7 +17,7 @@
 
 		@if (DataSource != null)
 		{
-			<PieChart Height="600px" Width="600px"
+			<PieChart Height="calc(100% - 2rem)" Width="calc(100% - 2rem)"
 					  @ref="pieChart"
 					  DataSource="DataSource"
 					  LabelMemberPath="Summary"
@@ -47,8 +47,6 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-
-        Console.WriteLine("Sample OnInitialized...");
         PieChartModule.Register(InfragisticsBlazor);
 		
 		var dataItems = new List<DataItem>();
