@@ -4,8 +4,6 @@
 @inject IInfragisticsBlazor InfragisticsBlazor;
 @inject IJSRuntime JSRuntime;
 
-
-
 @*TODO  : Bug in the component because RingSeries does not update neither with nor without "@" binding and calling StateHasChanged().*@
 
 <div class="igContainer">
@@ -43,11 +41,9 @@
 
     private void onAnimationToggle()
     {
-        //Console.WriteLine("onAnimationToggle" + this.isAnimating);
-
+        
         if (!this.isAnimating)
         {
-            //this.ringSeries1.StartAngle;
             this.StartAngle = 0;
             this.RadiusFactor = 0.1;
             this.isAnimating = true;
@@ -82,8 +78,6 @@
     {
         if (!this.isAnimating)
         {
-            // Console.WriteLine("in");
-
             if (this.RadiusFactor < 1.0)
                 this.RadiusFactor += 0.0025;
 
@@ -96,7 +90,6 @@
                 this.isAnimating = false;
             }
 
-            //Console.WriteLine("OnTimerTick " + this.StartAngle);
             Task.Delay(16).ContinueWith((t) => OnTimerTick());
             this.StateHasChanged();
         }

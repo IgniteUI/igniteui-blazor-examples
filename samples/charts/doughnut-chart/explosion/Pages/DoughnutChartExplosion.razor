@@ -1,6 +1,5 @@
 ﻿@page "/DoughnutChartExplosion"
 
-@* this namespace is required for Infragistics controls *@
 @using Infragistics.Blazor.Controls
 @inject IInfragisticsBlazor InfragisticsBlazor;
 @inject IJSRuntime JSRuntime;
@@ -10,8 +9,7 @@
 <div class="igContainer">
    
     <div class="igComponent">
-        @*ExplodedSlices="@explodedSlices"*@
-
+        
         @if (DataSource != null)
         {
             <DoughnutChart Height="100%" Width="100%" AllowSliceExplosion="true" SliceClick="OnSliceClick">
@@ -40,9 +38,7 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
-        // Console.WriteLine("Sample runtime: " + InfragisticsBlazor.JsRuntime);
-        Console.WriteLine("Sample OnInitialized...");
+        base.OnInitialized();       
         DoughnutChartModule.Register(InfragisticsBlazor);
 
         var dataItems = new List<DataItem>();
@@ -63,7 +59,6 @@
         public string Summary { get { return Company + " " + MarketShare + "%"; } }
     }
 
-    // NOTE here is example of even handler that update a field that is bound in HTML code above
     protected void OnSliceClick(SliceClickEventArgs e)
     {
         Console.WriteLine("Sample OnButtonClick");
