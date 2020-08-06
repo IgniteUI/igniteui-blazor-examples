@@ -1,0 +1,80 @@
+﻿@page "/SparklineTrendlines"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+@*done just check the ds if need to modify*@
+
+    <div class="igContainer">
+
+        <div class="igOptions-horizontal">
+            <label>Trendline Type: </label>
+            <select @bind="SelectedTrendlineType" >
+                @foreach (var trendLineType in Enum.GetValues(typeof(TrendLineType)))
+                {
+                    <option>@trendLineType</option>
+                }
+            </select>
+        </div>
+
+        <div class="igComponent">
+            @if (DataSource != null)
+            {
+                <Sparkline Height="100%"
+                        Width="100%"
+                        DataSource="DataSource"
+                        ValueMemberPath="Value"
+                        DisplayType="SparklineDisplayType.Area"                       
+                        TrendLineThickness="3"
+                        TrendLinePeriod="5"
+                        TrendLineType="@SelectedTrendlineType"
+                        TrendLineBrush="Red">
+                </Sparkline>
+            }
+
+        </div>
+    </div>
+
+@code {
+
+    private List<DataItem> DataSource;
+    private TrendLineType SelectedTrendlineType = TrendLineType.ExponentialFit;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        SparklineModule.Register(InfragisticsBlazor);
+
+        var dataItems = new List<DataItem>();
+
+        var index = 0;
+        var min = 1000.0;
+        var max = -1000.0;
+
+        for (var angle = 0; angle <= 360 * 4.0; angle += 5)
+        {
+            var v1 = Math.Sin(angle * Math.PI / 180);
+            var v2 = Math.Sin(3 * angle * Math.PI / 180) / 3;
+            var revenu = v1 + v2;
+
+            dataItems.Add(new DataItem()
+            {
+                Index = index++,
+                Angle = angle,
+                Value = revenu
+            });
+            min = Math.Min(min, v1 + v2);
+            max = Math.Max(max, v1 + v2);
+        }
+
+        DataSource = dataItems;
+    }
+
+    public class DataItem
+    {
+        public double Index { get; set; }
+        public double Value { get; set; }
+        public double Angle { get; set; }
+    }  
+}
