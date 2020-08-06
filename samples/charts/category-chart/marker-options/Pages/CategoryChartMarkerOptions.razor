@@ -7,32 +7,32 @@
 <div class="igContainer">
     <div class="igOptions">
         <span className="igOptions-label">Chart Type: </span>
-        <select @onchange="OnChartTypeChanged">
-            <option>Auto</option>
-            <option>Area</option>
-            <option>Column</option>
-            <option>Point</option>
-            <option>Line</option>
-            <option>Spline</option>
-            <option>SplineArea</option>
-            <option>StepArea</option>
-            <option>StepLine</option>
-            <option>Waterfall</option>
+        <select @bind="@ChartType">
+            <option>@CategoryChartType.Auto</option>
+            <option>@CategoryChartType.Area</option>
+            <option>@CategoryChartType.Column</option>
+            <option>@CategoryChartType.Point</option>
+            <option>@CategoryChartType.Line</option>
+            <option>@CategoryChartType.Spline</option>
+            <option>@CategoryChartType.SplineArea</option>
+            <option>@CategoryChartType.StepArea</option>
+            <option>@CategoryChartType.StepLine</option>
+            <option>@CategoryChartType.Waterfall</option>
         </select>
         <span className="igOptions-label"> Marker Type: </span>
-        <select @onchange="OnMarkerTypeChanged">
-            <option>Automatic</option>
-            <option>Circle</option>
-            <option>Triangle</option>
-            <option>Pyramid</option>
-            <option>Square</option>
-            <option>Diamond</option>
-            <option>Pentagon</option>
-            <option>Hexagon</option>
-            <option>Tetragram</option>
-            <option>Pentagram</option>
-            <option>Hexagram</option>
-            <option>None</option>
+        <select @bind="@ChartMarkerType">
+            <option>@MarkerType.Automatic</option>
+            <option>@MarkerType.Circle</option>
+            <option>@MarkerType.Triangle</option>
+            <option>@MarkerType.Pyramid</option>
+            <option>@MarkerType.Square</option>
+            <option>@MarkerType.Diamond</option>
+            <option>@MarkerType.Pentagon</option>
+            <option>@MarkerType.Hexagon</option>
+            <option>@MarkerType.Tetragram</option>
+            <option>@MarkerType.Pentagram</option>
+            <option>@MarkerType.Hexagram</option>
+            <option>@MarkerType.None</option>
         </select>
     </div>
     <div class="igComponent">
@@ -46,9 +46,9 @@
                            YAxisMinimumValue="0">
             </CategoryChart>
 
-            @*MarkerTypes="@MarkerTypes"*@
+            @* TODO - Cannot currently change MarkerType on category chart
+            MarkerTypes="@MarkerTypes"*@
         }
-
     </div>
 </div>
 
@@ -56,6 +56,7 @@
 
     private List<OlympicMedals> DataSource;
     private CategoryChartType ChartType;
+    private MarkerType ChartMarkerType = MarkerType.Automatic;
 
     protected override void OnInitialized()
     {
@@ -73,119 +74,5 @@
         DataSource = olympicMedals;
 
         this.ChartType = CategoryChartType.Auto;
-    }
-
-    private void OnChartTypeChanged(ChangeEventArgs args)
-    {
-        string str = args.Value.ToString();
-        switch (str)
-        {
-            case "Automatic":
-                {
-                    ChartType = CategoryChartType.Auto;
-                    break;
-                }
-            case "Area":
-                {
-                    ChartType = CategoryChartType.Area;
-                    break;
-                }
-            case "Column":
-                {
-                    ChartType = CategoryChartType.Column;
-                    break;
-                }
-            case "Point":
-                {
-                    ChartType = CategoryChartType.Point;
-                    break;
-                }
-            case "Line":
-                {
-                    ChartType = CategoryChartType.Line;
-                    break;
-                }
-            case "Spline":
-                {
-                    ChartType = CategoryChartType.Spline;
-                    break;
-                }
-            case "SplineArea":
-                {
-                    ChartType = CategoryChartType.SplineArea;
-                    break;
-                }
-            case "StepArea":
-                {
-                    ChartType = CategoryChartType.StepArea;
-                    break;
-                }
-            case "StepLine":
-                {
-                    ChartType = CategoryChartType.StepLine;
-                    break;
-                }
-            case "Waterfall":
-                {
-                    ChartType = CategoryChartType.Waterfall;
-                    break;
-                }
-        }
-    }
-
-    private void OnMarkerTypeChanged(ChangeEventArgs args)
-    {
-        string str = args.Value.ToString();
-        switch (str)
-        {
-            case "Automatic":
-                {
-                    break;
-                }
-            case "Circle":
-                {
-                    break;
-                }
-            case "Triangle":
-                {
-                    break;
-                }
-            case "Pyramid":
-                {
-                    break;
-                }
-            case "Square":
-                {
-                    break;
-                }
-            case "Diamond":
-                {
-                    break;
-                }
-            case "Pentagon":
-                {
-                    break;
-                }
-            case "Hexagon":
-                {
-                    break;
-                }
-            case "Tetragram":
-                {
-                    break;
-                }
-            case "Pentagram":
-                {
-                    break;
-                }
-            case "Hexagram":
-                {
-                    break;
-                }
-            case "None":
-                {
-                    break;
-                }
-        }
     }
 }

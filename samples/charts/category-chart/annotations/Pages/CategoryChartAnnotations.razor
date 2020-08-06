@@ -16,9 +16,9 @@
         <label className="igOptions-item">
             <input type="checkbox" @onchange="OnFinalValuesCheckboxChange" checked="@FinalValuesVisible"/> Final Values
         </label>
-        @*<label className="igOptions-item">
-            <input type="checkbox"              
-                   onChange={this.onMarkersVisible} /> Markers
+        @* TODO - Changing markers is not currently possible at this time
+        <label className="igOptions-item">
+            <input type="checkbox" onChange={this.onMarkersVisible} /> Markers
         </label>*@
     </div>
 
@@ -38,7 +38,7 @@
                            CalloutsVisible="@CalloutsVisible"
                            CalloutsXMemberPath="Index"
                            CalloutsYMemberPath="Value"
-                           CalloutsLabelMemberPath="Info"
+                           CalloutsLabelMemberPath="Info"                           
 
                            CrosshairsSnapToData="true"                           
                            CrosshairsDisplayMode="@CrosshairMode"
@@ -53,14 +53,14 @@
 @code {
 
     private List<TemperatureData> DataSource;
-    private string[] IncludedProps;
+    private string[] IncludedProps = new string[] { "Date", "Temperature" };
 
-    private bool MarkersVisible;
-    private bool FinalValuesVisible;
-    private bool CalloutsVisible;
-    private bool CrosshairsVisible;
+    private bool MarkersVisible = true;
+    private bool FinalValuesVisible = true;
+    private bool CalloutsVisible = true;
+    private bool CrosshairsVisible = true;
 
-    private CrosshairsDisplayMode CrosshairMode;
+    private CrosshairsDisplayMode CrosshairMode = CrosshairsDisplayMode.Both;
 
     protected override void OnInitialized()
     {
@@ -68,14 +68,7 @@
         CategoryChartModule.Register(InfragisticsBlazor);
 
         this.DataSource = new List<TemperatureData>();
-        this.CrosshairMode = CrosshairsDisplayMode.Both;
-        this.CrosshairsVisible = true;
-        this.FinalValuesVisible = true;
-        this.CalloutsVisible = true;
-
-        InitData();
-
-        IncludedProps = new string[] { "Date", "Temperature" };
+        InitData();        
     }
 
     private void OnFinalValuesCheckboxChange(ChangeEventArgs args)
