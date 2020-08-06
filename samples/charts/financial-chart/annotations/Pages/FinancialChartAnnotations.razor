@@ -1,0 +1,182 @@
+﻿@page "/CategoryChartOverview"
+@* this namespace is required for Infragistics controls *@
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+@inject Samples.Services.StocksUtility StocksUtility;
+@inject Samples.Services.Stock Stock;
+
+@* NOTE use this HTML code to design a sample *@
+<div class="igContainer">
+    <div class="igOptions">
+        <label class="igOptions-label">Annotations: </label>
+        <label class="igOptions-item">
+            <input type="checkbox"
+                   checked=@CrosshairsVisible
+                   onchange=OnCrosshairsVisible /> Crosshair
+        </label>
+        <label className="igOptions-item">
+            <input type="checkbox"
+                   checked=@CalloutsVisible
+                   onchange=OnCalloutsVisible /> Callouts
+        </label>
+        <label className="igOptions-item">
+            <input type="checkbox"
+                   checked=@FinalValuesVisible
+                   onchange=OnFinalValuesVisible /> Final Values
+        </label>
+        <label className="igOptions-item">
+            <input type="checkbox"
+                   checked=@MarkersVisible
+                   onchange=OnMarkersVisible /> Markers
+        </label>
+    </div>
+
+    <div class="igComponent">
+
+        @* NOTE making sure data is loaded before we can render it *@
+        @if (DataSource != null)
+        {
+            <FinancialChart Width="100%"
+                            Height="100%"
+                            ChartType=FinancialChartType.Line
+                            Thickness=2
+                            ExcludedProperties="ExcludedProperties"
+                            XAxisMode="XAxisMode"
+                            YAxisMode="YAxisMode"
+                            DataSource="DataSource"
+                            
+                            CalloutsVisible="CalloutsVisible"
+                            CalloutsXMemberPath="Index"
+                            CalloutsYMemberPath="Value"
+                            CalloutsLabelMemberPath="Info"
+                            CalloutsContentMemberPath="Info"
+                            CrosshairsSnapToData=false
+                            CrosshairsDisplayMode="CrosshairsMode"
+                            CrosshairsAnnotationEnabled="CrosshairsVisible"
+                            FinalValueAnnotationsVisible="FinalValuesVisible" />
+        }
+
+    </div>
+</div>
+
+@* NOTE you can change this C# code to affect behaviour of this page: *@
+@code {
+
+    public string[] ExcludedProperties;
+    public FinancialChartXAxisMode XAxisMode;
+    public FinancialChartYAxisMode YAxisMode;
+    Samples.Services.Stock[] DataSource;
+    public Boolean CalloutsVisible;
+    public String Index;
+    public string Value;
+    public CrosshairsDisplayMode CrosshairsMode;
+    public Boolean CrosshairsVisible;
+    public Boolean FinalValuesVisible;
+    public Boolean MarkersVisible;
+    public MarkerType MarkerTypes;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        // Console.WriteLine("Sample runtime: " + InfragisticsBlazor.JsRuntime);
+        Console.WriteLine("Sample OnInitialized...");
+        FinancialChartModule.Register(InfragisticsBlazor);
+        initData();
+    }
+
+    protected void OnCrosshairsVisible(CheckedChangedEventArgs e)
+    {
+        var isVisible = e.IsChecked;
+        CrosshairsVisible = isVisible;
+        if (isVisible)
+        {
+            CrosshairsMode = CrosshairsDisplayMode.Both;
+        }
+        else
+        {
+            CrosshairsMode = CrosshairsDisplayMode.None;
+        }
+    }
+    public void OnCalloutsVisible(CheckedChangedEventArgs e)
+    {
+        CalloutsVisible = e.IsChecked;
+    }
+    public void OnFinalValuesVisible(CheckedChangedEventArgs e)
+    {
+        FinalValuesVisible = e.IsChecked;
+    }
+    public void OnMarkersVisible(CheckedChangedEventArgs e)
+    {
+        var visible = e.IsChecked;
+        var markers = e.IsChecked ? "Circle" : "None";
+        //MarkerTypes = markers;
+        MarkersVisible = visible;
+    }
+
+    public void initData()
+    {
+        var today = new DateTime();
+        var year = today.Year;
+        var dateMonth = today.Month;
+        var dateEnd = new DateTime(year, dateMonth, 1);
+        var dateStart = new DateTime(year - 1, dateMonth, 1);
+
+        var stockData = StocksUtility.GetStocksBetween(dateStart, dateEnd);
+
+        var minVal = double.MaxValue;
+        var maxVal = double.MinValue;
+        var minIndex = 0;
+        var maxIndex = 0;
+        var idx = 0;
+        DateTime currentYear = new DateTime();
+        double currentQuarter = 0;
+
+        // adding annotation data for some data item
+        foreach (var item in stockData) {
+
+            if (minVal > item.close)
+            {
+                minVal = item.close;
+                minIndex = idx;
+            }
+            if (maxVal < item.close)
+            {
+                maxVal = item.close;
+                maxIndex = idx;
+            }
+            var itemYear = StocksUtility.GetYear(item.time.Date);
+            if (currentYear.Year != itemYear.Year)
+            {
+                currentYear = itemYear;
+                item.info = itemYear.ToString();
+            }
+
+            var itemQuarter = StocksUtility.GetQuarter(item.time.Date);
+            if (currentQuarter != itemQuarter)
+            {
+                currentQuarter = itemQuarter;
+                item.info = "Q" + itemQuarter.ToString();
+            }
+
+            item.index = idx;
+            item.value = item.close;
+            idx++;
+        }
+
+        stockData[100].info = "SPLIT";
+        stockData[200].info = "SPLIT";
+        stockData[250].info = "SPLIT";
+
+        stockData[130].info = "DIV";
+        stockData[270].info = "DIV";
+        stockData[320].info = "DIV";
+
+        stockData[minIndex].info = "MIN";
+        stockData[maxIndex].info = "MAX";
+
+        this.DataSource = stockData;
+        Console.WriteLine(stockData);
+    }
+
+}
