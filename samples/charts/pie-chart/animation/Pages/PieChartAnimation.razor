@@ -15,14 +15,14 @@
         @if (DataSource != null)
         {
             <PieChart Height="100%" Width="100%"
-                      DataSource="DataSource"
-                      LabelMemberPath="Summary"
-                      ValueMemberPath="MarketShare"
-                      LegendLabelMemberPath="Company"
-                      LabelsPosition="LabelsPosition.InsideEnd"
-                      StartAngle="StartAngle"
-                      LabelExtent="LabelExtent"
-                      RadiusFactor="RadiusFactor">
+                DataSource="DataSource"
+                LabelMemberPath="Summary"
+                ValueMemberPath="MarketShare"
+                LegendLabelMemberPath="Company"
+                LabelsPosition="LabelsPosition.InsideEnd"
+                StartAngle="StartAngle"
+                LabelExtent="LabelExtent"
+                RadiusFactor="RadiusFactor">
             </PieChart>
         }
 
@@ -70,9 +70,8 @@
             }
 
             Task.Delay(16).ContinueWith((t) => OnTimerTick());
-        }
-
-        this.StateHasChanged();
+			this.StateHasChanged();
+        }        
     }
 
     protected override void OnInitialized()
