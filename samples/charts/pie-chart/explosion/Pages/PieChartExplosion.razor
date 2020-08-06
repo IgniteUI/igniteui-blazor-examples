@@ -1,56 +1,43 @@
-﻿@page "/PieChartSelection"
+﻿@page "/PieChartExplosion"
 
 @* this namespace is required for Infragistics controls *@
 @using Infragistics.Blazor.Controls
 @inject IInfragisticsBlazor InfragisticsBlazor;
 @inject IJSRuntime JSRuntime;
 
-@* NOTE use this HTML code to design a sample *@
 <div class="igContainer">
-    <div class="igOptions-horizontal">
-        @* TODO add options (if any) for IG control here otherwise remove DIV with igOptions *@
-    </div>
-
+    
     <div class="igComponent">
 
-        @* NOTE making sure data is loaded before we can render it *@
         @if (DataSource != null)
         {
-            @* TODO add SliceClick event handler *@
             <PieChart Height="100%" Width="100%"
-                DataSource="@DataSource"
+                DataSource="DataSource"
                 LabelMemberPath="Summary"
                 ValueMemberPath="MarketShare"
                 LegendLabelMemberPath="Company"
                 Outlines="white"
-                SelectionMode="SliceSelectionMode.Multiple"
-                SelectedSliceStroke="white"
-                SelectedSliceFill="rgb(143,143,143)"
-                SelectedSliceOpacity="1.0"
-                SelectedSliceStrokeThickness="2"
-                RadiusFactor="0.9"
-                StartAngle="0">
+                RadiusFactor="0.9"                      
+                StartAngle="0"
+                SliceClick="OnSliceClick"
+                AllowSliceExplosion="true"
+                ExplodedSlices="ExplodedSlices">             
             </PieChart>
         }
 
     </div>
 </div>
 
-@* NOTE you can change this C# code to affect behaviour of this page: *@
 @code {
 
-    // NOTE here, you can add properties to store values and data for this component
     private List<DataItem> DataSource;
-    // TODO uncomment
-    // private string SelectedSlices = "";
+    public int[] ExplodedSlices { get; set; } = new int[0];
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        // Console.WriteLine("Sample runtime: " + InfragisticsBlazor.JsRuntime);
-        Console.WriteLine("Sample OnInitialized...");
         PieChartModule.Register(InfragisticsBlazor);
-    
+		
         var dataItems = new List<DataItem>();
         dataItems.Add(new DataItem() { MarketShare = 30, Company = "Google", });
         dataItems.Add(new DataItem() { MarketShare = 25, Company = "Apple", });
@@ -69,12 +56,9 @@
         public string Summary { get { return Company + " " + MarketShare + "%"; } }
     }
 
-    // NOTE here is example of even handler that update a field that is bound in HTML code above
-    protected void OnSliceClick()
+    protected void OnSliceClick(SliceClickEventArgs e)
     {
-        Console.WriteLine("Sample OnButtonClick");
-
-        // TODO get Selected Slices and update SelectedSlices variable
-        // SelectedSlices = "";
+		//TODO
+        //explodedSlices = new int[] { e.Index };
     }
 }
