@@ -7,17 +7,17 @@
 <div class="igContainer">
     <div class="igOptions">
         <span className="igOptions-label">Chart Type: </span>
-        <select @onchange="OnChartTypeChanged">
-            <option>Auto</option>
-            <option>Area</option>
-            <option>Column</option>
-            <option>Point</option>
-            <option>Line</option>
-            <option>Spline</option>
-            <option>SplineArea</option>
-            <option>StepArea</option>
-            <option>StepLine</option>
-            <option>Waterfall</option>
+        <select @bind="@ChartType">
+            <option>@CategoryChartType.Auto</option>
+            <option>@CategoryChartType.Area</option>
+            <option>@CategoryChartType.Column</option>
+            <option>@CategoryChartType.Point</option>
+            <option>@CategoryChartType.Line</option>
+            <option>@CategoryChartType.Spline</option>
+            <option>@CategoryChartType.SplineArea</option>
+            <option>@CategoryChartType.StepArea</option>
+            <option>@CategoryChartType.StepLine</option>
+            <option>@CategoryChartType.Waterfall</option>
         </select>
     </div>
     <div class="igComponent">        
@@ -36,14 +36,12 @@
 @code {
 
     private List<OlympicMedals> DataSource;
-    private CategoryChartType ChartType;
+    private CategoryChartType ChartType = CategoryChartType.Auto;
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
         CategoryChartModule.Register(InfragisticsBlazor);        
-
-        ChartType = CategoryChartType.Auto;
 
         var olympicMedals = new List<OlympicMedals>();
         olympicMedals.Add(new OlympicMedals() { Year = "1996", USA = 148, CHN = 110, RUS = 95 });
@@ -54,63 +52,5 @@
         olympicMedals.Add(new OlympicMedals() { Year = "2016", USA = 146, CHN = 112, RUS = 88 });
 
         DataSource = olympicMedals;
-    }
-
-    private void OnChartTypeChanged(ChangeEventArgs args)
-    {
-        string str = args.Value.ToString();
-        switch (str)
-        {
-            case "Auto":
-                {
-                    ChartType = CategoryChartType.Auto;
-                    break;
-                }
-            case "Area":
-                {
-                    ChartType = CategoryChartType.Area;
-                    break;
-                }
-            case "Column":
-                {
-                    ChartType = CategoryChartType.Column;
-                    break;
-                }
-            case "Point":
-                {
-                    ChartType = CategoryChartType.Point;
-                    break;
-                }
-            case "Line":
-                {
-                    ChartType = CategoryChartType.Line;
-                    break;
-                }
-            case "Spline":
-                {
-                    ChartType = CategoryChartType.Spline;
-                    break;
-                }
-            case "SplineArea":
-                {
-                    ChartType = CategoryChartType.SplineArea;
-                    break;
-                }
-            case "StepArea":
-                {
-                    ChartType = CategoryChartType.StepArea;
-                    break;
-                }
-            case "StepLine":
-                {
-                    ChartType = CategoryChartType.StepLine;
-                    break;
-                }
-            case "Waterfall":
-                {
-                    ChartType = CategoryChartType.Waterfall;
-                    break;
-                }
-        }
-    }
+    }    
 }

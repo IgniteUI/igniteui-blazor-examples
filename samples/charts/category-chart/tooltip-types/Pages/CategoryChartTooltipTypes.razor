@@ -7,18 +7,18 @@
 <div class="igContainer">
     <div class="igOptions">
         <span className="igOptions-label">Tooltip Type: </span>
-        <select @onchange="OnTooltipTypeChange">
-            <option>Default</option>
-            <option>Item</option>
-            <option>Category</option>            
-            <option>None</option>
+        <select @bind="@ChartTooltip">
+            <option>@ToolTipType.Default</option>
+            <option>@ToolTipType.Item</option>
+            <option>@ToolTipType.Category</option>            
+            <option>@ToolTipType.None</option>
         </select>
     </div>
-    <div class="igComponent">        
+    <div class="igComponent">
         @if (DataSource != null)
         {
             <CategoryChart Height="100%" Width="100%"
-                           DataSource="DataSource"
+                           DataSource="@DataSource"
                            ChartTitle="Olympic Medals By Country"
                            ChartType="CategoryChartType.Column"
                            YAxisMinimumValue="0"
@@ -34,7 +34,7 @@
 
     private List<OlympicMedals> DataSource;
 
-    private ToolTipType ChartTooltip;
+    private ToolTipType ChartTooltip = ToolTipType.Default;
 
     protected override void OnInitialized()
     {
@@ -50,36 +50,5 @@
         olympicMedals.Add(new OlympicMedals() { Year = "2016", USA = 146, CHN = 112, RUS = 88 });
 
         DataSource = olympicMedals;
-
-        ChartTooltip = ToolTipType.Default;
-    }
-
-    private void OnTooltipTypeChange(ChangeEventArgs args)
-    {
-        string value = args.Value.ToString();
-
-        switch (value)
-        {
-            case "Default":
-                {
-                    this.ChartTooltip = ToolTipType.Default;
-                    break;
-                }
-            case "Item":
-                {
-                    this.ChartTooltip = ToolTipType.Item;
-                    break;
-                }
-            case "Category":
-                {
-                    this.ChartTooltip = ToolTipType.Category;
-                    break;
-                }
-            case "None":
-                {
-                    this.ChartTooltip = ToolTipType.None;
-                    break;
-                }
-        }
-    }
+    }   
 }
