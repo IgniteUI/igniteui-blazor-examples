@@ -1,0 +1,83 @@
+﻿@page "/CategoryChartAxisOptions"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">    
+    <div class="igComponent">        
+        @if (DataSource != null)
+        {
+            <CategoryChart Height="100%" Width="100%"
+                           DataSource="DataSource"
+                           ChartType="CategoryChartType.Line"
+                           ChartTitle="Olympic Medals By Country"
+                           Thickness="3"
+                           
+                           XAxisLabelTextStyle="9pt Verdana"
+                           XAxisLabelTopMargin="5"
+                           XAxisLabelTextColor="Gray"
+                           YAxisLabelLocation="AxisLabelsLocation.OutsideRight"
+                           YAxisLabelTextStyle="9pt Verdana"
+                           YAxisLabelRightMargin="0"
+                           YAxisLabelTextColor="Gray"
+
+                           XAxisTitle="Olympic Games"
+                           XAxisTitleTextColor="Gray"
+                           XAxisTitleTextStyle="10pt Verdana"
+                           XAxisTitleAngle="0"
+                           YAxisTitle="Total Medals"
+                           YAxisTitleTextStyle="10pt Verdana"
+                           YAxisTitleTextColor="Gray"
+                           YAxisTitleAngle="90"
+                           YAxisTitleLeftMargin="5"
+
+                           XAxisTickLength="10"
+                           XAxisTickStrokeThickness="0.5"
+                           XAxisTickStroke="Black"
+                           YAxisTickLength="10"
+                           YAxisTickStrokeThickness="0.5"
+                           YAxisTickStroke="Black"
+
+                           YAxisMinimumValue="50"
+                           YAxisMaximumValue="150"
+
+                           XAxisInterval="1"
+                           XAxisMajorStroke="Gray"
+                           XAxisMajorStrokeThickness="0.5"
+
+                           YAxisInterval="25"
+                           YAxisMajorStroke="Black"
+                           YAxisMajorStrokeThickness="1"
+                           YAxisMinorInterval="5"
+                           YAxisMinorStroke="Gray"
+                           YAxisMinorStrokeThickness="0.5"
+
+                           XAxisGap="0.125"
+                           XAxisOverlap="0"
+                           >
+            </CategoryChart>
+        }
+    </div>
+</div>
+
+@code {
+    
+    private List<OlympicMedals> DataSource;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        CategoryChartModule.Register(InfragisticsBlazor);          
+
+        var olympicMedals = new List<OlympicMedals>();
+        olympicMedals.Add(new OlympicMedals() { Year = "1996", USA = 148, CHN = 110, RUS = 95 });
+        olympicMedals.Add(new OlympicMedals() { Year = "2000", USA = 142, CHN = 115, RUS = 91 });
+        olympicMedals.Add(new OlympicMedals() { Year = "2004", USA = 134, CHN = 121, RUS = 86 });
+        olympicMedals.Add(new OlympicMedals() { Year = "2008", USA = 131, CHN = 129, RUS = 65 });
+        olympicMedals.Add(new OlympicMedals() { Year = "2012", USA = 135, CHN = 115, RUS = 77 });
+        olympicMedals.Add(new OlympicMedals() { Year = "2016", USA = 146, CHN = 112, RUS = 88 });
+
+        DataSource = olympicMedals;
+    }
+}
