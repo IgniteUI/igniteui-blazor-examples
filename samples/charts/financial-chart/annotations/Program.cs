@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 // required for registering InfragisticsBlazor
 using Infragistics.Blazor.Controls;
 
+
 namespace Samples
 {
     public class Program
@@ -25,8 +26,8 @@ namespace Samples
             // registering Infragistics Blazor
             builder.Services.AddScoped(typeof(IInfragisticsBlazor), typeof(InfragisticsBlazor));
 
-            builder.Services.AddScoped(typeof(Samples.Services.StocksUtility));
-            builder.Services.AddScoped(typeof(Samples.Services.Stock));
+            builder.Services.AddScoped(typeof(Samples.Services.StockItem));
+            builder.Services.AddScoped(typeof(Samples.Services.StockList));
 
             await builder.Build().RunAsync();
         }
