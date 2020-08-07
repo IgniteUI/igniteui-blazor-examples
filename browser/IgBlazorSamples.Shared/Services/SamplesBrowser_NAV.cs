@@ -32,13 +32,12 @@ namespace Samples.Shared.Services
             set { _CurrentComponent = value; NotifyPropertyChanged(); }
         }
 
-        private bool _IsEmbedded = true;
+        private bool _IsEmbedded = false;
         public bool IsEmbedded
         {
             get { return _IsEmbedded; }
             set { _IsEmbedded = value; NotifyPropertyChanged(); }
         }
-
 
         private bool _IsHostingOnStaging = true;
         public bool IsHostingOnStaging
@@ -46,15 +45,14 @@ namespace Samples.Shared.Services
             get { return _IsHostingOnStaging; }
             set { _IsHostingOnStaging = value; NotifyPropertyChanged(); }
         }
-
-
+        
         public void ToggleComponent(string name)
         {
             if (this.IsLoading) return;
 
-            foreach (var group in GroupsLookup.Values)
+            foreach (var group in TOC.Groups)
             {
-                foreach (var comp in group)
+                foreach (var comp in group.Components)
                 {
                     if (comp.Name == name) {
                         comp.IsExpanded = !comp.IsExpanded;
@@ -78,21 +76,20 @@ namespace Samples.Shared.Services
             var sampleFound = false;
             this.IsEmbedded = !url.Contains("/samples") && url != this.NavManager.BaseUri;
             
-            foreach (var group in GroupsLookup.Values)
+            foreach (var group in TOC.Groups)
             {
-                foreach (var comp in group)
+                foreach (var comp in group.Components)
                 {
                     foreach (var sample in comp.Samples)
                     {
-                        if (url.Contains(sample.Path))
+                        if (url.Contains(sample.Route))
                         {
                             sampleFound = true;
                             this.CurrentPath = url;
                             this.CurrentSample = sample.Component + " - " +  sample.Name;
-                            this.CurrentHelpTopic = comp.Topic;
+                        //  this.CurrentHelpTopic = comp.Topic;
                             if (!this.IsEmbedded)
-                                this.SetMetadata(sample);
-
+                                 this.SetMetadata(sample);
                             break;
                         }
                     }
@@ -105,7 +102,7 @@ namespace Samples.Shared.Services
                 this.CurrentSample = "";
                 this.CurrentHelpTopic = "";
                 if (!this.IsEmbedded)
-                    this.SetMetadata(null);
+                     this.SetMetadata(null);
             }
 
             if (string.IsNullOrEmpty(this.CurrentHelpTopic))

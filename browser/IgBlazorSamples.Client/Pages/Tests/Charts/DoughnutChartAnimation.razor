@@ -1,4 +1,5 @@
-﻿@page "/DoughnutChartAnimation"
+﻿@page "/charts/doughnut-chart-animation"
+@page "/samples/charts/doughnut-chart-animation"
 
 @using Infragistics.Blazor.Controls
 @inject IInfragisticsBlazor InfragisticsBlazor;
@@ -56,7 +57,7 @@
             this.isAnimating = false;
         }
     }
-    
+
     private void OnTimerTick()
     {
         if (this.isAnimating)
@@ -72,8 +73,8 @@
             {
                 this.isAnimating = false;
             }
-            
-            Console.WriteLine("OnTimerTick " + this.StartAngle);
+
+         //  Console.WriteLine("OnTimerTick " + this.StartAngle);
             Task.Delay(16).ContinueWith((t) => OnTimerTick());
             this.StateHasChanged();
         }
