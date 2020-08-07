@@ -1,10 +1,8 @@
 ﻿@page "/CategoryChartOverview"
 @* this namespace is required for Infragistics controls *@
 @using Infragistics.Blazor.Controls
-@using Services
+@using Samples.Services
 @inject IInfragisticsBlazor InfragisticsBlazor;
-@inject Samples.Services.StockItem StockItem;
-@inject Samples.Services.StockList StockList;
 @inject IJSRuntime JSRuntime;
 
 <div class="igContainer">
@@ -13,22 +11,22 @@
         <label class="igOptions-item">
             <input type="checkbox"
                    checked=CrosshairsVisible
-                   @onchange="eventArgs => { OnCrosshairsVisible(eventArgs.Value); }" /> Crosshair
+                   @onchange="OnCrosshairsVisible" /> Crosshair
         </label>
         <label class="igOptions-item">
             <input type="checkbox"
                    checked=CalloutsAnnotationVisible
-                   @onchange="eventArgs => { OnCalloutsVisible(eventArgs.Value); }" /> Callouts
+                   @onchange="OnCalloutsVisible" /> Callouts
         </label>
         <label class="igOptions-item">
             <input type="checkbox"
                    checked=FinalValuesVisible
-                   @onchange="eventArgs => { OnFinalValuesVisible(eventArgs.Value); }" /> Final Values
+                   @onchange="OnFinalValuesVisible" /> Final Values
         </label>
         <label class="igOptions-item">
             <input type="checkbox"
                    checked=MarkersVisible
-                   @onchange="eventArgs => { OnMarkersVisible(eventArgs.Value); }" /> Markers
+                   @onchange="OnMarkersVisible" /> Markers
         </label>
     </div>
 
@@ -85,10 +83,11 @@
         this.DataSource = vm.DataSources;
     }
 
-    public void OnCrosshairsVisible(object e)
+    private void OnCrosshairsVisible(ChangeEventArgs e)
     {
-        CrosshairsVisible = (Boolean)e;
-        if (CrosshairsVisible == true)
+        var value = (bool)e.Value;
+
+        if (value == true)
         {
             CrosshairsMode = CrosshairsDisplayMode.Both;
         }
@@ -97,25 +96,24 @@
             CrosshairsMode = CrosshairsDisplayMode.None;
         }
     }
-    public void OnCalloutsVisible(object e)
+    private void OnCalloutsVisible(ChangeEventArgs e)
     {
-        CalloutsAnnotationVisible = (Boolean)e;
+        CalloutsAnnotationVisible = (bool)e.Value;
     }
-    public void OnFinalValuesVisible(object e)
+    private void OnFinalValuesVisible(ChangeEventArgs e)
     {
-        FinalValuesVisible = (Boolean)e;
+        FinalValuesVisible = (bool)e.Value;
     }
-    public void OnMarkersVisible(object e)
+    private void OnMarkersVisible(ChangeEventArgs e)
     {
-        //TODO
-        var visible = (Boolean)e;
+        var visible = (bool)e.Value;
         var markers = visible ? "Circle" : "None";
-
+        //TODO
         //MarkerTypes = markers;
         MarkersVisible = visible;
     }
 
-    public void OnSeriesAdded(ChartSeriesEventArgs e)
+    private void OnSeriesAdded(ChartSeriesEventArgs e)
     {
         //todo set series title
     }
