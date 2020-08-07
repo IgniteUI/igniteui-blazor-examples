@@ -1,0 +1,86 @@
+﻿@inject NavigationManager NavManager
+@inject Samples.Shared.Services.SampleBrowser SB
+
+<div class="sb-sidebar-header">
+    <div>Blazor Samples</div>
+</div>
+
+<div id="sb-sidebar-list">
+    <NavLink class="sb-sidebar-link" href="/samples" Match="NavLinkMatch.All">
+        <span class="oi oi-home" aria-hidden="true"></span>Home
+    </NavLink>
+
+    @*SB == null ||  ||
+        SB.SampleGroups.Length == 0*@
+
+    @if (SB.IsLoading)
+    {
+        @* <p><em>Loading...</em></p> *@
+        <img class="sb-progress" src="_content/Samples.Shared/images/progress.gif" />
+    }
+    else
+    {
+        @foreach (var group in SB.SampleGroups)
+        {
+            if (group.Count > 1)
+            {
+                <span class="sb-sidebar-group">
+                    @* <span class="oi oi-list-rich" aria-hidden="true"></span> *@
+                    @group.Name
+                </span>
+            }
+
+            @foreach (var comp in group)
+            {
+                <div class="sb-sidebar-control" @onclick="@(e => OnClickComponent(comp.Name))">
+                    <span class="oi oi-list-rich" aria-hidden="true">
+                    </span>@comp.Name
+                </div>
+
+                @if (comp.IsExpanded)
+                {
+                    @foreach (var sample in comp.Samples)
+                    {
+                        <NavLink class="sb-sidebar-link" href=@sample.Path Match="NavLinkMatch.All">
+                            <span class="oi oi-media-play" aria-hidden="true">
+                            </span>@sample.Name
+                        </NavLink>
+                    }
+                }
+
+            }
+        }
+
+    }
+</div>
+
+@code {
+
+    public void OnClickComponent(string name)
+    {
+        SB.ToggleComponent(name);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("SB.Nav Menu");
+        //await SB.LoadTOC();
+        SB.SamplesLoaded += OnSamplesLoaded;
+        //StateHasChanged();
+        await Task.Delay(1);
+    }
+
+    public void OnSamplesLoaded(object sender, EventArgs arg)
+    {
+        StateHasChanged();
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            //Console.WriteLine("SB.Nav Menu OnAfter");
+            StateHasChanged();
+        }
+    }
+}
