@@ -4,7 +4,6 @@
 @inject IInfragisticsBlazor InfragisticsBlazor;
 @inject IJSRuntime JSRuntime;
 
-@*TODO binding is not working*@
 
     <div class="igContainer">       
 
@@ -61,18 +60,13 @@
     public void onRangeVisibilityChanged(ChangeEventArgs e)
     {
         bool selection = (bool)e.Value;
-        Console.WriteLine("selection:::::" + selection);
-
+        
         if (selection)
         {
-            Console.WriteLine("LinearInterpolate");
-
             this.unknownValuePlotting = UnknownValuePlotting.LinearInterpolate;
         }
         else
         {
-            Console.WriteLine("DontPlot");
-
             this.unknownValuePlotting = UnknownValuePlotting.DontPlot;
         }
     }
