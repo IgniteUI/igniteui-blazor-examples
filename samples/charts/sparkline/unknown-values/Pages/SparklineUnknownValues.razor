@@ -4,24 +4,13 @@
 @inject IInfragisticsBlazor InfragisticsBlazor;
 @inject IJSRuntime JSRuntime;
 
-@*done just check the ds if need to modify*@
+@*TODO binding is not working*@
 
-    <div class="igContainer">
+    <div class="igContainer">       
 
-        @*<div class="igOptions-horizontal">
-
-            <label>Trendline Type: </label>
-            <select @bind="SelectedTrendlineType" >
-                @foreach (var trendLineType in Enum.GetValues(typeof(TrendLineType)))
-                {
-                    <option>@trendLineType</option>
-                }
-            </select>
-        </div>*@
         <div className="igOptions">
             <label className="igOptions-item">
-                @*<input @bind="RangeVisibility" defaultChecked="False" onchange="onRangeVisibilityChanged"
-                       type="checkbox"/>Plot Unknown Values*@
+                <input @onchange="onRangeVisibilityChanged" type="checkbox" checked="checked" />Plot Unknown Values
             </label>
         </div>
 
@@ -31,9 +20,9 @@
                 <Sparkline Height="100%"
                            Width="100%"
                            DataSource="DataSource"
-                           ValueMemberPath="Value"
+                           ValueMemberPath="Label"
                            DisplayType="SparklineDisplayType.Area"
-                           UnknownValuePlotting="UnknownValuePlotting.LinearInterpolate">
+                           UnknownValuePlotting="@unknownValuePlotting">
                 </Sparkline>
             }
 
@@ -44,7 +33,8 @@
 
     private List<DataItem> DataSource;
     private TrendLineType SelectedTrendlineType = TrendLineType.ExponentialFit;
-    // private RangeVisibility= False ;
+    private UnknownValuePlotting unknownValuePlotting = UnknownValuePlotting .LinearInterpolate;
+
 
     protected override void OnInitialized()
     {
@@ -52,48 +42,46 @@
         SparklineModule.Register(InfragisticsBlazor);
 
         var dataItems = new List<DataItem>();
+       
+        dataItems.Add(new DataItem() { Label =4,Value =4 });
+        dataItems.Add(new DataItem() { Label = 5, Value = 5});
+        dataItems.Add(new DataItem() { Label = 2, Value = null });
+        dataItems.Add(new DataItem() { Label = 7, Value = 7 });
+        dataItems.Add(new DataItem() { Label = -1, Value = -1 });
 
-        var index = 0;
-        var min = 1000.0;
-        var max = -1000.0;
-
-        for (var angle = 0; angle <= 360 * 4.0; angle += 5)
-        {
-            var v1 = Math.Sin(angle * Math.PI / 180);
-            var v2 = Math.Sin(3 * angle * Math.PI / 180) / 3;
-            var revenu = v1 + v2;
-
-            dataItems.Add(new DataItem()
-            {
-                Index = index++,
-                Angle = angle,
-                Value = revenu
-            });
-            min = Math.Min(min, v1 + v2);
-            max = Math.Max(max, v1 + v2);
-        }
+        dataItems.Add(new DataItem() { Label = 3, Value = 3 });
+        dataItems.Add(new DataItem() { Label = -2, Value = -2 });
+        dataItems.Add(new DataItem() { Label = 5, Value = null });
+        dataItems.Add(new DataItem() { Label = 2, Value = 2 });
+        dataItems.Add(new DataItem() { Label = 6, Value = 6 });
 
         DataSource = dataItems;
     }
 
+    public void onRangeVisibilityChanged(ChangeEventArgs e)
+    {
+        bool selection = (bool)e.Value;
+        Console.WriteLine("selection:::::" + selection);
+
+        if (selection)
+        {
+            Console.WriteLine("LinearInterpolate");
+
+            this.unknownValuePlotting = UnknownValuePlotting.LinearInterpolate;
+        }
+        else
+        {
+            Console.WriteLine("DontPlot");
+
+            this.unknownValuePlotting = UnknownValuePlotting.DontPlot;
+        }
+    }
+
     public class DataItem
     {
-        public double Index { get; set; }
-        public double Value { get; set; }
-        public double Angle { get; set; }
+        public double Label { get; set; }
+        public double? Value { get; set; }
     }
 
-    public void onRangeVisibilityChanged()
-    {
-        //const selection = e.target.checked as boolean;
 
-        //if (selection)
-        //{
-        //    this.sparkline.unknownValuePlotting = UnknownValuePlotting.LinearInterpolate;
-        //}
-        //else
-        //{
-        //    this.sparkline.unknownValuePlotting = UnknownValuePlotting.DontPlot;
-        //}
-    }
 }
