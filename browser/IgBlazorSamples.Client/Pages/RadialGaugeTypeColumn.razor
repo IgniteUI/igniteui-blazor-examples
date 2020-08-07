@@ -1,0 +1,77 @@
+﻿@page "/RadialGaugeTypeColumn"
+
+@* this is required for Infragistics controls *@
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+@* NOTE use this HTML code to design a sample *@
+    <div class="igContainer">
+        <div class="igOptions-horizontal">
+            @* TODO add options (if any) for IG control here otherwise remove DIV with igOptions *@
+        </div>
+        <div class="igComponent">
+
+            @* NOTE example of creating IG component *@
+            <RadialGauge Height="100%" Width="100%"
+                         MinimumValue="0"
+                         MaximumValue="360"
+                         Value="270"
+                         Interval="30"
+                         TransitionDuration="500"
+                         LabelInterval="30"
+                         LabelExtent="0.85"
+                         Font="15px Verdana,Arial"
+                         NeedleShape="RadialGaugeNeedleShape.None"
+                         NeedlePivotShape="RadialGaugePivotShape.None"
+                         ScaleStartAngle="0"
+                         ScaleEndAngle="360"
+                         ScaleBrush="#e0dfdf"
+                         ScaleOversweepShape="RadialGaugeScaleOversweepShape.Circular"
+                         ScaleSweepDirection="SweepDirection.Clockwise"
+                         ScaleEndExtent="@endExt"
+                         ScaleStartExtent="@startExt"
+                         MinorTickCount="4"
+                         MinorTickStartExtent="@endExt"
+                         MinorTickEndExtent="@(endExt + 0.025)"
+                         MinorTickStrokeThickness="1"
+                         MinorTickBrush="transparent"
+                         TickStartExtent="@endExt"
+                         TickEndExtent="@(endExt + 0.05)"
+                         TickStrokeThickness="1"
+                         TickBrush="#79797a"
+                         BackingBrush="transparent"
+                         BackingOutline="transparent"
+                         BackingShape="RadialGaugeBackingShape.Circular">
+
+                <RadialGaugeRange StartValue="0"
+                                  EndValue="270"
+                                  Brush="#1e90ff"
+                                  Outline="#1e90ff">
+                </RadialGaugeRange>
+            </RadialGauge>
+        </div>
+    </div>
+
+@* NOTE use this C# code to affect behaviour of this page: *@
+@code {
+
+    // NOTE here, you can add properties to store values and data for this component
+    double endExt = 0.7;
+    double startExt = 0.6;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        // Console.WriteLine("Sample runtime: " + InfragisticsBlazor.JsRuntime);
+        Console.WriteLine("Sample OnInitialized...");
+        RadialGaugeModule.Register(InfragisticsBlazor);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Sample OnInitializedAsync...");
+
+        await Task.Delay(10);
+    }
+}
