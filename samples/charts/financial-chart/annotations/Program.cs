@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 // required for registering InfragisticsBlazor
 using Infragistics.Blazor.Controls;
 
+
 namespace Samples
 {
     public class Program
