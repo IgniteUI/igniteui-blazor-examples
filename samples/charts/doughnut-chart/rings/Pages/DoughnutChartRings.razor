@@ -1,0 +1,86 @@
+﻿@page "/DoughnutChartRings"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igComponent">
+
+        @if (DataSource1 != null && DataSource2 != null)
+        {
+        <DoughnutChart Height="100%"
+                       Width="100%"
+                       AllowSliceSelection="true"
+                       AllowSliceExplosion="false">
+            <RingSeries DataSource="@DataSource2"
+                        LabelMemberPath="Label"
+                        ValueMemberPath="Value"
+                        LabelsPosition=LabelsPosition.Center
+                        RadiusFactor="0.9"
+                        Outlines="white"
+                        Brushes="#3cbdc9, #9fb328, #f96232,#8a58d6">
+            </RingSeries>
+            <RingSeries DataSource="@DataSource1"
+                        LabelMemberPath="Label"
+                        ValueMemberPath="Value"
+                        RadiusFactor="0.9"
+                        Outlines="white"
+                        LabelsPosition=LabelsPosition.Center
+                        Brushes="#3cbdc9, #3cbdc9, #3cbdc9, #9fb328, #9fb32, #9fb328,#f96232 , #f96232, #f96232,#8a58d6, #8a58d6, #8a58d6">
+            </RingSeries>
+        </DoughnutChart>
+        }
+
+    </div>
+</div>
+
+@code {
+
+    private List<Months> DataSource1;
+    private List<Seasons> DataSource2;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        DoughnutChartModule.Register(InfragisticsBlazor);
+        
+        var months = new List<Months>();
+        months.Add(new Months() { Value = 1, Label = "December", });
+        months.Add(new Months() { Value = 1, Label = "January", });
+        months.Add(new Months() { Value = 1, Label = "February", });
+        months.Add(new Months() { Value = 1, Label = "March", });
+        months.Add(new Months() { Value = 1, Label = "April", });
+        months.Add(new Months() { Value = 1, Label = "May", });
+        months.Add(new Months() { Value = 1, Label = "June", });
+        months.Add(new Months() { Value = 1, Label = "July", });
+        months.Add(new Months() { Value = 1, Label = "August", });
+        months.Add(new Months() { Value = 1, Label = "September", });
+        months.Add(new Months() { Value = 1, Label = "October", });
+        months.Add(new Months() { Value = 1, Label = "November", });
+
+        DataSource1 = months ;
+
+        var seasons = new List<Seasons>();
+        seasons.Add(new Seasons() { Value = 4, Label = "Winter" });
+        seasons.Add(new Seasons() { Value = 4, Label = "Spring" });
+        seasons.Add(new Seasons() { Value = 4, Label = "Summer" });
+        seasons.Add(new Seasons() { Value = 4, Label = "Fall" });
+
+        DataSource2 = seasons;
+
+    }
+
+    public class Months
+    {
+        public double  Value { get; set; }
+        public string Label { get; set; }
+    }
+
+    public class Seasons
+    {
+        public double Value { get; set; }
+        public string Label { get; set; }
+    }
+
+}

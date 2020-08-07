@@ -1,0 +1,78 @@
+﻿@page "/CategoryChartMarkerOptions"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igOptions">
+        <span className="igOptions-label">Chart Type: </span>
+        <select @bind="@ChartType">
+            <option>@CategoryChartType.Auto</option>
+            <option>@CategoryChartType.Area</option>
+            <option>@CategoryChartType.Column</option>
+            <option>@CategoryChartType.Point</option>
+            <option>@CategoryChartType.Line</option>
+            <option>@CategoryChartType.Spline</option>
+            <option>@CategoryChartType.SplineArea</option>
+            <option>@CategoryChartType.StepArea</option>
+            <option>@CategoryChartType.StepLine</option>
+            <option>@CategoryChartType.Waterfall</option>
+        </select>
+        <span className="igOptions-label"> Marker Type: </span>
+        <select @bind="@ChartMarkerType">
+            <option>@MarkerType.Automatic</option>
+            <option>@MarkerType.Circle</option>
+            <option>@MarkerType.Triangle</option>
+            <option>@MarkerType.Pyramid</option>
+            <option>@MarkerType.Square</option>
+            <option>@MarkerType.Diamond</option>
+            <option>@MarkerType.Pentagon</option>
+            <option>@MarkerType.Hexagon</option>
+            <option>@MarkerType.Tetragram</option>
+            <option>@MarkerType.Pentagram</option>
+            <option>@MarkerType.Hexagram</option>
+            <option>@MarkerType.None</option>
+        </select>
+    </div>
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+            <CategoryChart Height="100%" Width="100%"
+                           DataSource="DataSource"
+                           ChartTitle="Olympic Medals By Country"
+                           IsSeriesHighlightingEnabled="true"
+                           ChartType="@ChartType"
+                           YAxisMinimumValue="0">
+            </CategoryChart>
+
+            @* TODO - Cannot currently change MarkerType on category chart
+            MarkerTypes="@MarkerTypes"*@
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<OlympicMedals> DataSource;
+    private CategoryChartType ChartType;
+    private MarkerType ChartMarkerType = MarkerType.Automatic;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        CategoryChartModule.Register(InfragisticsBlazor);
+
+        var olympicMedals = new List<OlympicMedals>();
+        olympicMedals.Add(new OlympicMedals() { Year = "1996", USA = 148, CHN = 110, RUS = 95 });
+        olympicMedals.Add(new OlympicMedals() { Year = "2000", USA = 142, CHN = 115, RUS = 91 });
+        olympicMedals.Add(new OlympicMedals() { Year = "2004", USA = 134, CHN = 121, RUS = 86 });
+        olympicMedals.Add(new OlympicMedals() { Year = "2008", USA = 131, CHN = 129, RUS = 65 });
+        olympicMedals.Add(new OlympicMedals() { Year = "2012", USA = 135, CHN = 115, RUS = 77 });
+        olympicMedals.Add(new OlympicMedals() { Year = "2016", USA = 146, CHN = 112, RUS = 88 });
+
+        DataSource = olympicMedals;
+
+        this.ChartType = CategoryChartType.Auto;
+    }
+}
