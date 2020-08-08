@@ -87,6 +87,7 @@ class SampleInfo {
     // public SampleImportPackages: string[];
     // public SampleImportFiles: string[];
 
+    public IsComplete: boolean;
     public SampleReadMe: string;       // content of ReadMe.md file generated for /samples/maps/geo-map/binding-csv-points/
     // public SampleFilePaths: string[];  // relative paths to files in sample folder: /samples/maps/geo-map/binding-csv-points/
     // public SampleFileNames: string[];  // names of files in sample folder: /samples/maps/geo-map/binding-csv-points/
@@ -262,14 +263,14 @@ class Transformer {
             // ../samples/maps/geo-map/binding-csv-points
             // let relativePath = this.getRelative(SampleDirectory);
             // .., samples, maps, geo-map, binding-csv-points
-            console.log("pro SampleFolderPath " + info.SampleFolderPath);
+            // console.log("pro SampleFolderPath " + info.SampleFolderPath);
             let folders = info.SampleFolderPath.split('/');
 
             if (folders.length > 3) info.ComponentGroup = folders[3];
             if (folders.length > 4) info.ComponentFolder = folders[4];
             if (folders.length > 5) info.SampleFolderName = folders[5];
 
-            console.log("pro ComponentFolder " + info.ComponentFolder);
+            // console.log("pro ComponentFolder " + info.ComponentFolder);
 
             info.ComponentName = Strings.toTitleCase(info.ComponentFolder, '-');
             info.ComponentName = info.ComponentName.replace("Geo Map", "Geographic Map");
@@ -277,31 +278,35 @@ class Transformer {
             // info.SampleFolderPath = relativePath;
             info.SampleRoute = "/" +  info.ComponentGroup + "/" + info.ComponentFolder + "-" + info.SampleFolderName;
 
-            console.log("pro " + info.SampleFolderPath + "/" + " === " + info.SampleRoute);
+            // console.log("pro " + info.SampleFolderPath + " >> " + info.SampleRoute);
 
-            let fileNames = [];
+            let razorFiles: SampleFile[] = [];
             // finding .razor files in Pages folder
             for (const file of info.SampleFiles) {
-                console.log("pro path: " + file.Path);
                 if (Strings.includes(file.Path, igConfig.SamplesFolderName) &&
                     Strings.includes(file.Path, igConfig.SamplesFileExtension) &&
                     Strings.excludes(file.Path, igConfig.SamplesFileExclusions, true)) {
-                        fileNames.push(file.Path);
+                        razorFiles.push(file);
+                        // console.log("pro name: " + file.Path);
                     // console.log(filePath);
                 }
             }
 
             // checking if we have only one .razor file in Pages folder
-            if (fileNames.length === 0) {
+            if (razorFiles.length === 0) {
+                info.IsComplete = false;
                 console.log("WARNING Transformer cannot match any " + igConfig.SamplesFileExtension + " files in sample: " + info.SampleFolderPath);
                 for (const file of info.SampleFiles) {
                     console.log('- ' + file.Path);
                 }
-            } else if (fileNames.length > 1) {
+            } else if (razorFiles.length > 1) {
+                info.IsComplete = false;
                 console.log("WARNING Transformer cannot decide which " + igConfig.SamplesFileExtension + " file to use for sample name: ");
-                console.log(" - " + fileNames.join("\n - "));
+                console.log(" - " + razorFiles.join("\n - "));
             } else { // good we have only one .razor file per sample
-                info.SampleSourceFile = new SampleSourceFile(fileNames[0])
+                info.IsComplete = true;
+                info.SampleSourceFile = new SampleSourceFile(razorFiles[0]);
+                info.SampleFileName = info.SampleSourceFile.Name;
                 // info.SampleSourceFile.LocalPath = "./Pages/" + info.SampleFileName;
                 // info.SampleSourceFile.Blocks = this.getSampleBlocks(info.SampleSourceFile.Content);
                 // auto-generating routing paths for a sample with and without SB navigation
@@ -341,7 +346,7 @@ class Transformer {
                 info.SampleDisplayName = Strings.replaceAll(info.SampleDisplayName, "Map Display ", "Display ");
                 info.SampleDisplayName = Strings.replaceAll(info.SampleDisplayName, "Data Chart Type ", "");
                 info.SampleDisplayName = Strings.replaceAll(info.SampleDisplayName, info.ComponentName + " ", "");
-                console.log("pro SampleDisplayName: " + info.SampleDisplayName);
+                // console.log("pro SampleDisplayName: " + info.SampleDisplayName + " file=" + info.SampleFileName);
 
                 info.SandboxUrlView = this.getSandboxUrl(info, igConfig.SandboxUrlView);
                 info.SandboxUrlEdit = this.getSandboxUrl(info, igConfig.SandboxUrlEdit);
@@ -516,7 +521,12 @@ class Transformer {
             let file = new SampleFile();
             file.Path = filePath;
             file.Name = parts[parts.length - 1];
-            file.Content = transFS.readFileSync(filePath, "utf8");
+
+            if (file.Path.indexOf(".razor") > 0 ||
+                file.Path.indexOf(".cs") > 0) {
+                file.Content = transFS.readFileSync(filePath, "utf8");
+                // console.log("pro file " + file.Path + "   " + file.Name);
+            }
 
             info.SampleFiles.push(file);
             // info.SampleFileNames.push(parts[parts.length - 1]);
@@ -627,15 +637,17 @@ class Transformer {
     public static getRoutingGroups(samples: SampleInfo[]): SampleGroup[] {
         let componentsMap = new Map<string, SampleComponent>();
 
-        for (const item of samples) {
-            if (componentsMap.has(item.ComponentName)) {
-                componentsMap.get(item.ComponentName).Samples.push(item);
+        for (const sample of samples) {
+            if (!sample.IsComplete) continue;
+
+            if (componentsMap.has(sample.ComponentName)) {
+                componentsMap.get(sample.ComponentName).Samples.push(sample);
             } else {
                 let component = new SampleComponent();
-                component.Name = item.ComponentName;
-                component.Group = item.ComponentGroup;
-                component.Samples.push(item);
-                componentsMap.set(item.ComponentName, component);
+                component.Name = sample.ComponentName;
+                component.Group = sample.ComponentGroup;
+                component.Samples.push(sample);
+                componentsMap.set(sample.ComponentName, component);
             }
         }
 
@@ -697,46 +709,68 @@ class Transformer {
         return 0;
     }
 
-    public static getRoutingFile(group: SampleGroup): string {
+    public static tabs(times): string {
+        return "  ".repeat(times);
+    }
 
-        let imports = '\n';
-        imports += "import * as React from 'react';"
-        imports += "import { RoutingGroup } from '../../navigation/SamplesData'; \n";
+    public static getTocSample(info: SampleInfo): string {
+        let toc = this.tabs(6) + '{ "route": "' + info.SampleRoute + '", "name": "' + info.SampleDisplayName + '" }';
+        return toc;
+    }
 
-        let routes = "// creating routing data for " + group.Name + " samples: \n";
-        routes += "export const " + group.Name + "RoutingData: RoutingGroup = { \n";
-        routes += "    name: '" + group.Name + "',\n";
-        routes += "    components: [\n";
+    public static getTocComponent(component: SampleComponent): string {
+        let toc = '';
+        toc += this.tabs(4) + '{\n';
+        toc += this.tabs(5) + '"name": "' + component.Name + '", \n';
+        toc += this.tabs(5) + '"samples": [ \n';
 
-        for (const component of group.Components) {
-            console.log('coping samples for ' + component.Name + ' component');
+        for (let i = 0; i < component.Samples.length; i++) {
+            const sample = component.Samples[i];
+            toc += '' + this.getTocSample(sample);
+            if (i < component.Samples.length - 1) toc += ','
+            toc += '\n'
+        }
+        toc += this.tabs(5) + '] \n';
+        toc += this.tabs(4) + '}'
+        return toc;
+    }
 
-            // let componentPath = '/' + group.name + '/' + component.name;
-            // routes += "    {     path: '" + componentPath +  "', name: '" + component.name + "', routes: [ \n";
-            // let componentName = component.Name; // .replace("Geo Map", "Geographic Map");
-            routes += "    {     name: '" + component.Name + "', routes: [ \n";
+    public static getTocGroup(group: SampleGroup): string {
+        let toc = '';
+        toc += this.tabs(2) + '{\n';
+        toc += this.tabs(3) + '"name": "' + Strings.toTitleCase(group.Name) + '", \n';
+        toc += this.tabs(3) + '"components": [ \n';
 
-            imports += "// importing " + component.Name + " samples: \n";
-
-            for (const info of component.Samples) {
-                console.log('- copied: ' + info.SampleFileName);
-
-                // console.log('sample ' + sample.SampleFolderName);
-                // let sampleClass = info.SampleFileName.replace('.razor','');
-                // let samplePath = './' + info.ComponentFolder + '/' + info.SampleFolderName + '/' + info.SampleClassName;
-                // imports += "const " + info.SampleImportName +  " = React.lazy(() => import('" + info.SampleImportPath + "')); \n";
-
-                // routes += "        { path: '" + info.SampleRoute + "', name: '" + info.SampleDisplayName + "', component: " + info.SampleImportName + " }, \n";
-            }
-            routes += '    ]},\n';
+        for (let i = 0; i < group.Components.length; i++) {
+            const component = group.Components[i];
+            toc += '' + this.getTocComponent(component);
+            if (i < group.Components.length - 1) toc += ','
+            toc += '\n'
         }
 
-        routes += '    ]\n';
-        routes += '};\n';
+        toc += this.tabs(3) + '] \n';
+        // toc += this.tabs(3) + '], \n';
+        toc += this.tabs(2) + '}'
+        return toc;
+    }
 
-        let content = imports + "\n" + routes;
-        // console.log(content);
-        return content;
+    public static getRoutingFile(groups: SampleGroup[]): string {
+
+        let toc = '{\n';
+
+        toc += this.tabs(1) + '"groups": [ \n';
+        for (let i = 0; i < groups.length; i++) {
+            const group = groups[i];
+            toc += this.getTocGroup(group);
+            if (i < groups.length - 1) toc += ","
+            toc += "\n"
+        }
+
+        toc += this.tabs(1) + '] \n';
+        toc += "}"
+        console.log("================== TOC =============== ");
+        // console.log(toc);
+        return toc;
     }
 
     public static lintSample(info: SampleInfo) {

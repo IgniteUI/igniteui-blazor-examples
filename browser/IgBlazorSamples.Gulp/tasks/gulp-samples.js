@@ -32,20 +32,21 @@ log('loaded');
 
 // NOTE you can comment out strings in this array to run subset of samples
 var sampleSource = [
-    // igConfig.SamplesCopyPath + '/charts/category-chart/**/Pages/*.razor',
+    igConfig.SamplesCopyPath + '/charts/category-chart/**/Pages/*.razor',
     // igConfig.SamplesCopyPath + '/charts/data-chart/**/Pages/*.razor',
-    // igConfig.SamplesCopyPath + '/charts/doughnut-chart/**/Pages/*.razor',
+    igConfig.SamplesCopyPath + '/charts/doughnut-chart/**/Pages/*.razor',
     // igConfig.SamplesCopyPath + '/charts/financial-chart/**/Pages/*.razor',
-    // igConfig.SamplesCopyPath + '/charts/pie-chart/**/Pages/*.razor',
+    igConfig.SamplesCopyPath + '/charts/pie-chart/**/Pages/*.razor',
     // igConfig.SamplesCopyPath + '/charts/sparkline/**/Pages/*.razor',
     // igConfig.SamplesCopyPath + '/charts/tree-map/**/Pages/*.razor',
     // igConfig.SamplesCopyPath + '/charts/zoomslider/**/Pages/*.razor',
-    // igConfig.SamplesCopyPath + '/maps/geo-map/**/Pages/*.razor',
+    igConfig.SamplesCopyPath + '/maps/geo-map/**/Pages/*.razor',
     igConfig.SamplesCopyPath + '/gauges/bullet-graph/**/Pages/',
-    // igConfig.SamplesCopyPath + '/gauges/linear-gauge/**/Pages/*.razor',
-    // igConfig.SamplesCopyPath + '/gauges/radial-gauge/**/Pages/*.razor',
+    igConfig.SamplesCopyPath + '/gauges/linear-gauge/**/Pages/*.razor',
+    igConfig.SamplesCopyPath + '/gauges/radial-gauge/**/Pages/*.razor',
     // igConfig.SamplesCopyPath + '/grids/**/Pages/*.razor',
     // igConfig.SamplesCopyPath + '/layouts/**/Pages/*.razor',
+
     // igConfig.SamplesCopyPath + '/excel/excel-library/**/Pages/*.razor',
     // igConfig.SamplesCopyPath + '/excel/spreadsheet/**/Pages/*.razor',
 
@@ -151,7 +152,7 @@ function getSamples(cb) {
         .pipe(es.map(function(file, fileCallback) {
             let fileDir = Transformer.getRelative(file.dirname);
             sampleFiles.push(fileDir + "/" + file.basename);
-            console.log("get file " + fileDir + "/" + file.basename);
+            // console.log("get file " + fileDir + "/" + file.basename);
             fileCallback(null, file);
         }))
         .on("end", function() {
@@ -231,42 +232,36 @@ function deleteSamples() {
 
 function copySamples(cb) {
 
-    deleteSamples();
-    log('copying sample files... ');
-    for (const sample of samples) {
-        let outputPath = './src' + sample.SampleFolderPath.replace('.','');
-        // log(outputPath);
+    // deleteSamples();
+    let outputFolder = './'
+    // log('copying sample files... ');
+    // for (const sample of samples) {
+    //     let outputPath = './src' + sample.SampleFolderPath.replace('.','');
+    //     // log(outputPath);
 
-        gulp.src([
-              sample.SampleFolderPath + '/src/*.*',
-        '!' + sample.SampleFolderPath + '/src/index.css',
-        '!' + sample.SampleFolderPath + '/src/index.tsx',
-        '!' + sample.SampleFolderPath + '/src/typedecls.d.ts',
-        '!' + sample.SampleFolderPath + '/src/react-app-env.d.ts',
-        '!' + sample.SampleFolderPath + '/sandbox.config.json',
-        '!' + sample.SampleFolderPath + '/README.md',
-        '!' + sample.SampleFolderPath + '/ReadMe.md',
-        '!' + sample.SampleFolderPath + '/readme.md',
-        '!' + sample.SampleFolderPath + '/package.json',
-        '!' + sample.SampleFolderPath + '/package-lock.json',
-        '!' + sample.SampleFolderPath + '/.eslintrc.js',
-        '!' + sample.SampleFolderPath + '/.gitignore',
-        ])
-        // .pipe(copyExclude(['ReadMe.md', 'index.tsx']))
-        // .pipe(logFile())
-        .pipe(gulp.dest(outputPath))
-    }
+    //     gulp.src([
+    //           sample.SampleFolderPath + '/Pages/*.razor',
+    //           sample.SampleFolderPath + '/Services/.cs',
+    //     // '!' + sample.SampleFolderPath + '/src/index.tsx',
+    //     ])
+    //     // .pipe(copyExclude(['ReadMe.md', 'index.tsx']))
+    //     // .pipe(logFile())
+    //     .pipe(gulp.dest(outputPath))
+    // }
 
+    let outputToc = outputFolder + 'toc.json'
     let routingGroups = Transformer.getRoutingGroups(samples);
+    let routingFile = Transformer.getRoutingFile(routingGroups);
+    fs.writeFileSync(outputToc, routingFile);
 
-    for (const group of routingGroups) {
-        let outputPath = "./src/samples/" + group.Name + "/RoutingData.ts";
-        makeDirectoryFor(outputPath);
+    // for (const group of routingGroups) {
+    //     let outputPath = "./src/samples/" + group.Name + "/RoutingData.ts";
+    //     makeDirectoryFor(outputPath);
 
-        // log('created ' + outputPath);
-        let routingFile = Transformer.getRoutingFile(group);
-        fs.writeFileSync(outputPath, routingFile);
-    }
+    //     // log('created ' + outputPath);
+    //     let routingFile = Transformer.getRoutingFile(group);
+    //     fs.writeFileSync(outputPath, routingFile);
+    // }
 
     cb();
 } exports.copySamples = copySamples;
