@@ -14,7 +14,7 @@
             <section>Revenue Sparkline</section>
             <Sparkline Height="100%"
                        Width="100%"
-                       DataSource="DataSource"
+                       DataSource="@DataSource"
                        DisplayType="SparklineDisplayType.Column"
                        ValueMemberPath="Value"
                        LabelMemberPath="Angle"
@@ -24,7 +24,7 @@
             <section>Income Sparkline</section>
             <Sparkline Height="100%"
                        Width="100%"
-                       DataSource="DataSource"
+                       DataSource="@DataSource"
                        DisplayType="SparklineDisplayType.Column"
                        ValueMemberPath="Income"
                        LabelMemberPath="Angle"
@@ -34,7 +34,7 @@
             <section>Expanse Sparkline</section>
             <Sparkline Height="100%"
                        Width="100%"
-                       DataSource="DataSource"
+                       DataSource="@DataSource"
                        DisplayType="SparklineDisplayType.Column"
                        ValueMemberPath="Expanse"
                        LabelMemberPath="Angle"
@@ -48,50 +48,14 @@
 
 @code {
 
-    private List<DataItem> DataSource;
-   
+    private List<SparklineData.DataItem> DataSource;
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        SparklineModule.Register(InfragisticsBlazor);
+        SparklineModule.Register(InfragisticsBlazor);        
 
-        var dataItems = new List<DataItem>();
-
-        var index = 0;
-        var min = 1000.0;
-        var max = -1000.0;
-
-        for (var angle = 0; angle <= 360 * 4.0; angle += 5)
-        {
-            var v1 = Math.Sin(angle * Math.PI / 180);
-            var v2 = Math.Sin(3 * angle * Math.PI / 180) / 3;
-            var revenu = v1 + v2;
-
-            var expanse = revenu < 0 ? revenu : 0;
-            var income = revenu > 0 ? revenu : 0;
-      
-            dataItems.Add(new DataItem()
-            {
-                Index = index++,
-                Angle = angle,
-                Value = revenu,
-                Expanse = expanse,
-                Income = income
-            });
-            min = Math.Min(min, v1 + v2);
-            max = Math.Max(max, v1 + v2);
-        }
-
-        DataSource = dataItems;
-    }
-
-    public class DataItem
-    {
-        public double Index { get; set; }
-        public double Value { get; set; }
-        public double Angle { get; set; }
-        public double Expanse { get; set; }
-        public double Income { get; set; }
-    }
+        this.DataSource = SparklineData.getData();
+    }   
 
 }
