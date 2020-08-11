@@ -1,0 +1,40 @@
+﻿@page "/FinancialChartOverview"
+@* this namespace is required for Infragistics controls *@
+@using Infragistics.Blazor.Controls
+@using Samples.Services
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    
+    <div class="igComponent">
+
+        @if (DataSource != null)
+        {
+            <FinancialChart Width="100%"
+                            Height="100%"
+                            ChartType=FinancialChartType.Bar
+                            Thickness=2
+                            DataSource="DataSource"
+                            ZoomSliderType="FinancialChartZoomSliderType.Bar"
+                            ChartTitle="Tesla vs Microsoft"
+                            Subtitle="Between 2013 and 2017"
+                            IsToolbarVisible="true"
+                            YAxisMode="FinancialChartYAxisMode.PercentChange"/>
+        }
+        
+    </div>
+</div>
+
+@code {
+
+    List<StockList> DataSource;
+    
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        FinancialChartModule.Register(InfragisticsBlazor);
+        var vm = new IGFinancialChart.Samples.StockMultipleSources();
+        this.DataSource = vm;
+    }
+}

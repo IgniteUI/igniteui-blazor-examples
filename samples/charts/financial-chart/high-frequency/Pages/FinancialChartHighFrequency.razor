@@ -1,0 +1,102 @@
+﻿@page "/FinancialChartHighFrequency"
+@* this namespace is required for Infragistics controls *@
+@using Infragistics.Blazor.Controls
+@using Samples.Services
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igOptions">
+        <label class="igOptions-label">Data Points: </label>
+        <label className="igOptions-value">
+
+        </label>
+        <input className="igOptions-slider" type="range" min="10000" max="100000" step="1000"
+               value=@DataPoints
+               onChange=OnDataPointsChanged/>
+        <button class="igOptions-button" onclick="OnDataGenerateClick"></button>
+        <label class="igOptions-label">Optimize Scaling: </label>
+        <label class="igOptions-label">FPS: </label>
+    </div>
+
+    <div class="igComponent">
+
+        @if (DataSource != null)
+        {
+            <FinancialChart Width="100%"
+                            Height="100%"
+                            ChartType=FinancialChartType.Line
+                            Thickness=2                           
+                            DataSource="DataSource"
+                            ZoomSliderType="FinancialChartZoomSliderType.None"/>
+        }
+    </div>
+</div>
+
+@code {
+
+    public FinancialChartXAxisMode XAxisMode = FinancialChartXAxisMode.Ordinal;
+    public FinancialChartYAxisMode YAxisMode = FinancialChartYAxisMode.Numeric;
+    public RealTimeDataViewModel DataViewModel;
+    public RealTimeDataCollection DataSource;
+    public int DataInfo { get; set; }
+    public int DataPoints { get; set; }
+    public String Index = "";
+    public String Value = "";
+    public int dataIndex = 0;
+    public System.Collections.ObjectModel.ObservableCollection<RealTimeDataPoint> data;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        FinancialChartModule.Register(InfragisticsBlazor);
+        this.DataViewModel = new RealTimeDataViewModel();
+        this.DataSource = this.DataViewModel.Data;
+        Console.WriteLine(this.DataSource);
+    }
+
+    private void OnDataGenerateclick(ButtonClickEventArgs e)
+    {
+        //this.data = StocksUtility.GetStocksItems(this.dataPoints);
+        //this.dataIndex = this.data.length;
+
+        //this.setState({ dataSource: this.data });
+
+        this.data = DataViewModel.Data;
+        this.dataIndex = this.data.Count;
+
+        DataSource = (RealTimeDataCollection)this.data;
+
+
+    }
+
+    private void OnDataGenerateclick(ChangeEventArgs e)
+    {
+        int num = int.Parse((string)e.Value);
+        num = 10;
+        bool isNumeric = int.TryParse("123", out num);
+
+        if (isNumeric)
+        {
+            num = 10000;
+        }
+        if (num < 10000)
+        {
+            num = 10000;
+        }
+        if (num > 1000000)
+        {
+            num = 1000000;
+        }
+
+        //var info = StocksUtility.toShortString(num);
+        //this.dataPoints = num;
+        //this.setState({ dataPoints: num, dataInfo: info });
+
+        DataPoints = num;
+
+
+    }
+
+
+}

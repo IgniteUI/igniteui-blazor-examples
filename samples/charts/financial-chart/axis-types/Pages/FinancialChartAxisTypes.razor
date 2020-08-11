@@ -1,4 +1,4 @@
-﻿@page "/FinancialChartAnnotations"
+﻿@page "/FinancialChartAxisTypes"
 @* this namespace is required for Infragistics controls *@
 @using Infragistics.Blazor.Controls
 @using Samples.Services
@@ -7,27 +7,18 @@
 
 <div class="igContainer">
     <div class="igOptions">
-        <label class="igOptions-label">Annotations: </label>
+        <label class="igOptions-label">X-Axis Mode: </label>
         <label class="igOptions-item">
-            <input type="checkbox"
-                   checked=CrosshairsVisible
-                   @onchange="OnCrosshairsVisible" /> Crosshair
-        </label>
-        <label class="igOptions-item">
-            <input type="checkbox"
-                   checked=CalloutsAnnotationVisible
-                   @onchange="OnCalloutsVisible" /> Callouts
-        </label>
-        <label class="igOptions-item">
-            <input type="checkbox"
-                   checked=FinalValuesVisible
-                   @onchange="OnFinalValuesVisible" /> Final Values
-        </label>
-        <label class="igOptions-item">
-            <input type="checkbox"
-                   checked=MarkersVisible
-                   @onchange="OnMarkersVisible" /> Markers
-        </label>
+            <select @bind="@XAxisMode">
+                <option>@FinancialChartXAxisMode.Time</option>
+                <option>@FinancialChartXAxisMode.Ordinal</option>
+            </select>
+            <label class="igOptions-label">Y-Axis Mode: </label>
+            <select @bind="@YAxisMode">
+                <option>@FinancialChartYAxisMode.PercentChange</option>
+                <option>@FinancialChartYAxisMode.Numeric</option>
+            </select>
+        </label>        
     </div>
 
     <div class="igComponent">
@@ -35,26 +26,13 @@
         @if (DataSource != null)
         {
             <FinancialChart Width="100%"
-                            Height="100%"
-                            ChartType=FinancialChartType.Line
-                            Thickness=2
-                            XAxisMode="XAxisMode"
-                            YAxisMode="YAxisMode"
-                            DataSource="DataSource"
-                            CalloutsVisible="CalloutsAnnotationVisible"
-                            CalloutsXMemberPath="Index"
-                            CalloutsYMemberPath="Value"
-                            CalloutsLabelMemberPath="Content"
-                            CalloutsContentMemberPath="Content"
-                            CrosshairsSnapToData=false
-                            CrosshairsDisplayMode="CrosshairsMode"
-                            CrosshairsAnnotationEnabled="CrosshairsVisible"
-                            FinalValueAnnotationsVisible="FinalValuesVisible"
-                            SeriesAdded="OnSeriesAdded"/>
+                Height="100%"
+                DataSource="DataSource"
+                ChartType=FinancialChartType.Line
+                Thickness=2
+                XAxisMode="XAxisMode"
+                YAxisMode="YAxisMode"/>
         }
-        @*TODO MarkerType="MarkerType" *@
-        @*TODO test callouts with a new build when fixed*@
-
     </div>
 </div>
 
@@ -64,57 +42,13 @@
     public FinancialChartYAxisMode YAxisMode = FinancialChartYAxisMode.Numeric;
     List<StockList> DataSource;
     List<StockEvent> CalloutsDataSource;
-
-    public String Index = "";
-    public String Value = "";
-    public CrosshairsDisplayMode CrosshairsMode = CrosshairsDisplayMode.Default;
-    public Boolean CalloutsAnnotationVisible = true;
-    public Boolean CrosshairsVisible = true;
-    public Boolean FinalValuesVisible = true;
-    public Boolean MarkersVisible = true;
-    public MarkerType MarkerTypes = MarkerType.Automatic;
-
+    
     protected override void OnInitialized()
     {
         base.OnInitialized();
         FinancialChartModule.Register(InfragisticsBlazor);
         var vm = new StockDataWithEvents();
         this.DataSource = vm.DataSources;
-    }
-
-    private void OnCrosshairsVisible(ChangeEventArgs e)
-    {
-        var value = (bool)e.Value;
-
-        if (value == true)
-        {
-            CrosshairsMode = CrosshairsDisplayMode.Both;
-        }
-        else
-        {
-            CrosshairsMode = CrosshairsDisplayMode.None;
-        }
-    }
-    private void OnCalloutsVisible(ChangeEventArgs e)
-    {
-        CalloutsAnnotationVisible = (bool)e.Value;
-    }
-    private void OnFinalValuesVisible(ChangeEventArgs e)
-    {
-        FinalValuesVisible = (bool)e.Value;
-    }
-    private void OnMarkersVisible(ChangeEventArgs e)
-    {
-        var visible = (bool)e.Value;
-        var markers = visible ? "Circle" : "None";
-        //TODO
-        //MarkerTypes = markers;
-        MarkersVisible = visible;
-    }
-
-    private void OnSeriesAdded(ChartSeriesEventArgs e)
-    {
-        //todo set series title
     }
 
     public class StockEvent
