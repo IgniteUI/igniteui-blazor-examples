@@ -17,11 +17,10 @@ namespace Samples.Shared.Services
             set { _IsLoading = value; NotifyPropertyChanged(); }
         }
 
-        public SampleGroup[] SampleGroups { get { return GroupsLookup.Values.ToArray(); } }
-        protected Dictionary<string, SampleGroup> GroupsLookup = new Dictionary<string, SampleGroup>();
-        protected List<SampleTOC> TocFiles = new List<SampleTOC>();
-
-        protected List<string> Components = new List<string>();
+        public TocGroup[] SampleGroups { get { return Groups.Values.ToArray(); } }
+        protected Dictionary<string, TocGroup> Groups = new Dictionary<string, TocGroup>();
+        
+        protected List<string> ComponentNames = new List<string>();
         private int _ComponentsCount = 0;
         public int ComponentsCount
         {
@@ -29,7 +28,7 @@ namespace Samples.Shared.Services
             set { _ComponentsCount = value; NotifyPropertyChanged(); }
         }
 
-        protected List<string> Samples = new List<string>();
+        protected List<string> SampleRoutes = new List<string>();
         private int _SamplesCount = 0;
         public int SamplesCount
         {
@@ -37,89 +36,64 @@ namespace Samples.Shared.Services
             set { _SamplesCount = value; NotifyPropertyChanged(); }
         }
 
-        public async Task LoadTOC(string[] tocNames)
+        public TOC TOC { get; set; }
+
+        public async Task Load(TOC toc)
         {
-            Console.WriteLine("SB.TOC loading...");
-
             this.IsLoading = true;
-            this.Samples = new List<string>();
+            Console.WriteLine("SB.TOC parsing ");
 
-            //var tocNames = new string[] {
-            //    "toc/radial-gauge-toc.json",
-            //    "toc/linear-gauge-toc.json",
-            //};
-
-            foreach (var tocName in tocNames)
+            foreach (var group in toc.Groups)
             {
-                try
+                foreach (var component in group.Components)
                 {
-                    //var toc = await HttpClient.GetJsonAsync<SampleTOC>(tocName);
-                    //toc.File = tocName.Replace("toc/", "");
-                    //this.TocFiles.Add(toc);
+                    foreach (var sample in component.Samples)
+                    {
+                        sample.Route = "/samples" + sample.Route;
+                        sample.Component = component.Name;
+                        sample.Group = group.Name;
+
+                        if (this.SampleRoutes.Contains(sample.Route))
+                            Console.WriteLine("SB.TOC duplicate: " + sample.Route.Replace("/samples", ""));
+                        else
+                            this.SampleRoutes.Add(sample.Route);
+                    }
+
+                    if (this.ComponentNames.Contains(component.Name))
+                    {
+                        Console.WriteLine("SB.TOC duplicate component: " + component.Name);
+                    }
+                    else
+                    {
+                        this.ComponentNames.Add(component.Name);
+                    }
+                    // comp.IsExpanded = TocFiles.Count == 1;
+                    // comp.Name += " (" + comp.Samples.Length + ")";
+                    // comp.Name += " Samples";
+                    component.Group = group.Name;
                 }
-                catch (System.Exception)
+
+                if (this.Groups.ContainsKey(group.Name))
                 {
-                    //  Console.WriteLine("TOC failed on: " + toc + "\n" + ex.Message);
+                    Console.WriteLine("SB.TOC duplicate group " + group.Name);
+                }
+                else
+                {
+                    Groups.Add(group.Name, group);
+                    //Console.WriteLine("SB.TOC added group " + group.Name);
                 }
             }
 
-            foreach (var toc in this.TocFiles)
-            {
-                Parse(toc);
-            }
+            // Console.WriteLine("SB.TOC added samples " + comp.Samples.Length);
 
-            this.SamplesCount = this.Samples.Count;
-            this.ComponentsCount = this.Components.Count;
+            TOC = toc;
+
+            _SamplesCount = this.SampleRoutes.Count;
+            _ComponentsCount = this.ComponentNames.Count;
 
             this.IsLoading = false;
             OnLoaded();
             await Task.Delay(1);
-        }
-
-        public void Parse(SampleTOC comp)
-        {
-            Console.WriteLine("SB.TOC parsing " + comp.File);
-
-            foreach (var sample in comp.Samples)
-            {
-                sample.Path = "/samples" + sample.Path;
-            }
-
-            if (this.Components.Contains(comp.Name))
-            {
-                 Console.WriteLine("SB.TOC duplicate component: " + comp.Name);
-                 return;
-            }
-            else
-            {
-                this.Components.Add(comp.Name);
-            }
-
-            if (!this.GroupsLookup.ContainsKey(comp.Group))
-            {
-                GroupsLookup.Add(comp.Group, new SampleGroup() { Name = comp.Group});
-                Console.WriteLine("SB.TOC added group " + comp.Group);
-            }
-            comp.IsExpanded = TocFiles.Count == 1;
-            // comp.Name += " (" + comp.Samples.Length + ")";
-            // comp.Name += " Samples";
-
-            var group = this.GroupsLookup[comp.Group];
-            group.Add(comp);
-
-            Console.WriteLine("SB.TOC added comp: " + comp.Name);
-
-            foreach (var sample in comp.Samples)
-            {
-                sample.Component = comp.Name;
-
-                if (this.Samples.Contains(sample.Path))
-                    Console.WriteLine("SB.TOC duplicate: " + sample.Path.Replace("/samples", ""));
-                else
-                    this.Samples.Add(sample.Path);
-            }
-
-            Console.WriteLine("SB.TOC added samples " + comp.Samples.Length);
         }
 
         public event EventHandler<EventArgs> SamplesLoaded;

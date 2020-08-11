@@ -49,12 +49,12 @@ exports.lintSamples = lintSamples = gulp.series(
 //     sb.updateSharedFiles,
 // );
 
-// exports.updateBrowser = updateBrowser = gulp.series(
-//     sb.updateVersion,
-//     sb.getSamples,
-//     sb.copySamples,
-//     // sb.copyPackageJson,
-// );
+exports.updateBrowser = updateBrowser = gulp.series(
+    // sb.updateVersion,
+    sb.getSamples,
+    sb.copySamples,
+    // sb.copyPackageJson,
+);
 
 // exports.updateVersion = updateVersion = sb.updateVersion;
 

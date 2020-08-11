@@ -18,7 +18,7 @@ namespace Samples.Shared.Services
            JSRuntime.InvokeVoidAsync("setKeywords", string.Join(",", keywords));
         }
 
-        public void SetMetadata(SampleInfo sample = null) {
+        public void SetMetadata(TocSample sample = null) {
             var defaultKeys = new List<string> { "Blazor", "Sample", "Demo", "Infragistics", "IgniteUI for Blazor", "Components" };
 
             if (sample == null) {

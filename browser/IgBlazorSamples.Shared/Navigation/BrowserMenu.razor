@@ -6,9 +6,9 @@
 </div>
 
 <div id="sb-sidebar-list">
-    <NavLink class="sb-sidebar-link" href="/samples" Match="NavLinkMatch.All">
+    @*<NavLink class="sb-sidebar-link" href="/samples" Match="NavLinkMatch.All">
         <span class="oi oi-home" aria-hidden="true"></span>Home
-    </NavLink>
+    </NavLink>*@
 
     @*SB == null ||  ||
         SB.SampleGroups.Length == 0*@
@@ -22,33 +22,14 @@
     {
         @foreach (var group in SB.SampleGroups)
         {
-            if (group.Count > 1)
-            {
+             
                 <span class="sb-sidebar-group">
                     @* <span class="oi oi-list-rich" aria-hidden="true"></span> *@
                     @group.Name
                 </span>
-            }
+             
 
-            @foreach (var comp in group)
-            {
-                <div class="sb-sidebar-control" @onclick="@(e => OnClickComponent(comp.Name))">
-                    <span class="oi oi-list-rich" aria-hidden="true">
-                    </span>@comp.Name
-                </div>
-
-                @if (comp.IsExpanded)
-                {
-                    @foreach (var sample in comp.Samples)
-                    {
-                        <NavLink class="sb-sidebar-link" href=@sample.Path Match="NavLinkMatch.All">
-                            <span class="oi oi-media-play" aria-hidden="true">
-                            </span>@sample.Name
-                        </NavLink>
-                    }
-                }
-
-            }
+           
         }
 
     }

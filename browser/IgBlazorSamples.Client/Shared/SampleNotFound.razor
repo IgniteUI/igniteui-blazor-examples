@@ -1,0 +1,60 @@
+﻿@inject NavigationManager NavManager
+
+<div class="sb-note">
+
+    <div>
+        <span class="oi oi-bell mr-2" aria-hidden="true"></span>
+        <span>
+            Sorry, there's no sample at this address. Please inform Infragistics support about this issue:
+        </span>
+    </div>
+    <div>
+        <span class="oi oi-warning mr-2" aria-hidden="true"></span>
+        <span>
+            Blazor samples browser is missing a sample with these page directives:
+        </span>
+
+        <div class="sb-code">
+            <strong>@@page "@NavPath"</strong>
+        </div>
+        <div class="sb-code">
+            <strong>@@page         "@DocPath"</strong>
+        </div>
+    </div>
+    @*<img class="sb-progress" src="_content/Samples.Shared/images/progress.gif" />*@
+</div>
+
+@code {
+
+    public string NavPath { get; set; }
+    public string DocPath { get; set; }
+
+    protected override void OnInitialized()
+    {
+        NavManager.LocationChanged += this.OnLocationChanged;
+    }
+
+    protected void UpdatePaths()
+    {
+         var baseUri = NavManager.BaseUri;
+         var pathUri = NavManager.Uri;
+         this.DocPath = "/" + pathUri.Replace(baseUri, "");
+         this.NavPath = "/samples" + this.DocPath;
+         StateHasChanged();
+    }
+
+    public void OnLocationChanged(object sender, LocationChangedEventArgs arg)
+    {
+        UpdatePaths();
+
+        StateHasChanged();
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            UpdatePaths();
+        }
+    }
+}

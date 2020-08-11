@@ -5,6 +5,63 @@ using System.Threading.Tasks;
 
 namespace Samples.Shared.Services
 {
+    public class TOC : ObservableObject
+    {
+        public TocGroup[] Groups { get; set; }
+    }
+
+    public class TocItem : ObservableObject
+    {
+        public string Name { get; set; }
+        public bool IsExpanded { get; set; }
+
+        public TocItem()
+        {
+            IsExpanded = false;
+        }
+    }
+
+    public class TocGroup : TocItem
+    {
+        //public string Name { get; set; }
+        //public bool IsExpanded { get; set; }
+        public TocComponent[] Components { get; set; }
+
+        public TocGroup()
+        {
+            IsExpanded = false;
+        }
+    }
+
+    public class TocComponent : TocItem
+    {
+        public string Group { get; set; }
+        //public string Name { get; set; }
+        //public bool IsExpanded { get; set; }
+
+        public TocSample[] Samples { get; set; }
+
+        public TocComponent()
+        {
+            IsExpanded = false;
+             
+        }
+    }
+
+    public class TocSample : TocItem
+    {
+        //public string Name { get; set; }
+        public string Route { get; set; }
+        public string Component { get; set; }
+        public string Group { get; set; }
+        //public bool IsExpanded { get; set; }
+
+        public TocSample()
+        {
+            IsExpanded = false;
+        }
+    }
+
     public class SampleTOC : ObservableObject
     {
         /// <summary>Gets or set toc file name with routing path for the component, e.g. radial-gauge.toc </summary>
@@ -47,6 +104,7 @@ namespace Samples.Shared.Services
         public string Name { get; set; }
         public string Path { get; set; }
         public string Component { get; set; }
+
         public string IsNew { get; set; }
         public string IsCTP { get; set; }
         public string IsUPD { get; set; }
