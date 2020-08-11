@@ -15,22 +15,11 @@
         @if (DataSource != null)
         {
             <FinancialChart Width="100%"
-                            Height="100%"
-                            ChartType=FinancialChartType.Line
-                            Thickness=2
-                            XAxisMode="XAxisMode"
-                            YAxisMode="YAxisMode"
-                            DataSource="DataSource"
-                            CalloutsVisible="CalloutsAnnotationVisible"
-                            CalloutsXMemberPath="Index"
-                            CalloutsYMemberPath="Value"
-                            CalloutsLabelMemberPath="Content"
-                            CalloutsContentMemberPath="Content"
-                            CrosshairsSnapToData=false
-                            CrosshairsDisplayMode="CrosshairsMode"
-                            CrosshairsAnnotationEnabled="CrosshairsVisible"
-                            FinalValueAnnotationsVisible="FinalValuesVisible"
-                            SeriesAdded="OnSeriesAdded"/>
+                Height="100%"
+                ChartType=FinancialChartType.Line
+                Thickness=2
+                DataSource="DataSource"
+                />
         }
         
     </div>
@@ -38,20 +27,8 @@
 
 @code {
 
-    public FinancialChartXAxisMode XAxisMode = FinancialChartXAxisMode.Ordinal;
-    public FinancialChartYAxisMode YAxisMode = FinancialChartYAxisMode.Numeric;
     List<StockList> DataSource;
-    List<StockEvent> CalloutsDataSource;
-
-    public String Index = "";
-    public String Value = "";
-    public CrosshairsDisplayMode CrosshairsMode = CrosshairsDisplayMode.Default;
-    public Boolean CalloutsAnnotationVisible = true;
-    public Boolean CrosshairsVisible = true;
-    public Boolean FinalValuesVisible = true;
-    public Boolean MarkersVisible = true;
-    public MarkerType MarkerTypes = MarkerType.Automatic;
-
+    
     protected override void OnInitialized()
     {
         base.OnInitialized();
@@ -80,12 +57,12 @@
 
         private void Initialize()
         {
-            var start = DateTime.Now.Year - 2;
+            var start = DateTime.Now.Year - 100;
             var stop = DateTime.Now.Year + 1;
             var interval = TimeSpan.FromDays(1);
             DataSources = new List<StockList>();
-            DataSources.Add(new StockList(start, 1, 1, stop, 1, 1, "TSLA", interval, 300, 30000));
-            DataSources.Add(new StockList(start, 1, 1, stop, 1, 1, "MSFT", interval, 200, 20000));
+            DataSources.Add(new StockList(start, 1, 1, stop, 1, 1, "Stock Data", interval, 300, 30000));
+            
 
             this.DataEvents = new List<StockEvent>();
 
