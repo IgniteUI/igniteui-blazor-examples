@@ -256,6 +256,7 @@ class Transformer {
         // ]},
     }
 
+
     public static process(samples: SampleInfo[]): void {
 
         for (const info of samples) {
@@ -357,6 +358,37 @@ class Transformer {
             }
 
             // console.log(info.SampleFolderPath + " => " + info.SampleRoute + " => " + info.SampleDisplayName);
+
+        }
+    }
+
+    public static verify(samples: SampleInfo[]): void {
+
+        let comparedFiles: string[] = [];
+
+        for (const sampleA of samples) {
+
+            for (const fileA of sampleA.SampleFiles) {
+                if (fileA.Name.indexOf(".razor") > 0) continue;
+                if (comparedFiles.includes(fileA.Name)) continue;
+
+                for (const sampleB of samples) {
+                    if (sampleA.SampleFolderName == sampleB.SampleFolderName) continue;
+
+                    for (const fileB of sampleB.SampleFiles) {
+                        if (fileA.Name != fileB.Name) continue; // different file names
+
+                        let contentA = transFS.readFileSync(fileA.Path).toString();
+                        let contentB = transFS.readFileSync(fileB.Path).toString();
+
+                        if (contentA !== contentB) {
+                            this.WARN('Sample file "' + fileA.Name + '" has different content in these locations: \n' + fileA.Path + '\n' + fileB.Path)
+                        }
+
+                    }
+                }
+                comparedFiles.push(fileA.Name);
+            }
 
         }
     }

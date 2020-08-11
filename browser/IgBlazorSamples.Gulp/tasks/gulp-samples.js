@@ -32,28 +32,30 @@ log('loaded');
 
 // NOTE you can comment out strings in this array to run subset of samples
 var sampleSource = [
-    igConfig.SamplesCopyPath + '/charts/category-chart/**/Pages/*.razor',
-    // igConfig.SamplesCopyPath + '/charts/data-chart/**/Pages/*.razor',
-    igConfig.SamplesCopyPath + '/charts/doughnut-chart/**/Pages/*.razor',
-    // igConfig.SamplesCopyPath + '/charts/financial-chart/**/Pages/*.razor',
-    igConfig.SamplesCopyPath + '/charts/pie-chart/**/Pages/*.razor',
-    // igConfig.SamplesCopyPath + '/charts/sparkline/**/Pages/*.razor',
-    // igConfig.SamplesCopyPath + '/charts/tree-map/**/Pages/*.razor',
-    // igConfig.SamplesCopyPath + '/charts/zoomslider/**/Pages/*.razor',
-    igConfig.SamplesCopyPath + '/maps/geo-map/**/Pages/*.razor',
+    // igConfig.SamplesCopyPath + '/charts/category-chart/**/Pages/',
+    // igConfig.SamplesCopyPath + '/charts/data-chart/**/Pages/',
+    // igConfig.SamplesCopyPath + '/charts/doughnut-chart/**/Pages/',
+    // igConfig.SamplesCopyPath + '/charts/financial-chart/**/Pages/',
+    // igConfig.SamplesCopyPath + '/charts/pie-chart/**/Pages/',
+    // igConfig.SamplesCopyPath + '/charts/sparkline/**/Pages/',
+    // igConfig.SamplesCopyPath + '/charts/tree-map/**/Pages/',
+    // igConfig.SamplesCopyPath + '/charts/zoomslider/**/Pages/',
+    // igConfig.SamplesCopyPath + '/maps/geo-map/**/Pages/',
     igConfig.SamplesCopyPath + '/gauges/bullet-graph/**/Pages/',
-    igConfig.SamplesCopyPath + '/gauges/linear-gauge/**/Pages/*.razor',
-    igConfig.SamplesCopyPath + '/gauges/radial-gauge/**/Pages/*.razor',
-    // igConfig.SamplesCopyPath + '/grids/**/Pages/*.razor',
-    // igConfig.SamplesCopyPath + '/layouts/**/Pages/*.razor',
+    igConfig.SamplesCopyPath + '/gauges/linear-gauge/**/Pages/',
+    igConfig.SamplesCopyPath + '/gauges/radial-gauge/**/Pages/',
+    // igConfig.SamplesCopyPath + '/grids/**/Pages/',
+    // igConfig.SamplesCopyPath + '/layouts/**/Pages/',
 
-    // igConfig.SamplesCopyPath + '/excel/excel-library/**/Pages/*.razor',
-    // igConfig.SamplesCopyPath + '/excel/spreadsheet/**/Pages/*.razor',
+    // igConfig.SamplesCopyPath + '/excel/excel-library/**/Pages/',
+    // igConfig.SamplesCopyPath + '/excel/spreadsheet/**/Pages/',
 
     // excluding project's .razor files
-    "!" + igConfig.SamplesCopyPath + '/Shared/*.razor',
-    "!" + igConfig.SamplesCopyPath + '/**/App.razor',
-    "!" + igConfig.SamplesCopyPath + '/**/_Imports.razor',
+    // "!" + igConfig.SamplesCopyPath + '/Shared/*.razor',
+    // "!" + igConfig.SamplesCopyPath + '/**/App.razor',
+    // "!" + igConfig.SamplesCopyPath + '/**/_Imports.razor',
+    // "!" + igConfig.SamplesCopyPath + '/**/wwwroot/index.html',
+    // "!" + igConfig.SamplesCopyPath + '/**/wwwroot/index.css',
 ];
 
 // this variable stores detailed information about all samples in ./samples/ folder
@@ -140,14 +142,17 @@ function getSamples(cb) {
 
         let sampleFolder = Transformer.getRelative(sample.dirname);
         // console.log("get " + sampleFolder + '/' + sample.basename);
-        console.log("get " + sampleFolder + '/');
+        // console.log("get " + sampleFolder + '/');
 
         let sampleFiles = [];
         gulp.src([
-            sampleFolder + "/Pages/*",
-            sampleFolder + "/Components/*",
-            sampleFolder + "/Services/*",
-            sampleFolder + "/wwwroot/*"])
+                sampleFolder + "/Pages/*",
+                sampleFolder + "/Components/*",
+                sampleFolder + "/Services/*",
+                sampleFolder + "/wwwroot/*",
+          '!' + sampleFolder + "/wwwroot/index.html",
+          '!' + sampleFolder + "/wwwroot/index.css",
+          '!' + sampleFolder + "/Pages/_*.razor"])
         .pipe(flatten({ "includeParents": -1 }))
         .pipe(es.map(function(file, fileCallback) {
             let fileDir = Transformer.getRelative(file.dirname);
@@ -170,8 +175,8 @@ function getSamples(cb) {
     .on("end", function() {
         Transformer.sort(samples);
         Transformer.process(samples);
+        Transformer.verify(samples);
 
-        // Transformer.verify(samples);
         // Transformer.print(samples);
 
         log('getSamples found ' + samples.length + " samples");
@@ -202,54 +207,70 @@ function makeDirectoryFor(filePath) {
     // fs.mkdir(sampleOutputFolder + 'src', { recursive: true }, (err) => { if (err) throw err; });
 }
 
-function copyExclude(files) {
+function exclude(fileWithString) {
     return es.map(function(file, cb) {
-        if (files.indexOf(file.basename) >= 0) {
-            // log('+ share data ' + file.basename);
-            cb(null, file);
-        } else {
+        if (file.basename.indexOf(fileWithString) >= 0 ||
+            file.dirname.indexOf(fileWithString) >= 0) {
             // log('- share data ' + file.basename);
             cb(null);
+        } else {
+            // log('+ share data ' + file.basename);
+            cb(null, file);
         }
     });
 }
 
+let outputRoot = './Samples'
 function deleteSamples() {
 
     log('deleting sample files... ');
-    del.sync("./src/samples/**/*.*", {force:true});
-    del.sync("./src/samples/*.*", {force:true});
-    del.sync("./src/samples/*", {force:true});
-
-    // del.sync("./samples-test-files/public", {force:true});
-    // del.sync("./samples-test-files/**/*.md", {force:true});
-    // del.sync("./samples-test-files/**/*.ts", {force:true});
-    // del.sync("./samples-test-files/**/*.css", {force:true});
-    // del.sync("./samples-test-files/**/*.json", {force:true});
-    // del.sync("./samples-test-files/*.json", {force:true});
-
+    del.sync(outputRoot + "/**/*.*", {force:true});
+    del.sync(outputRoot + "/*.*", {force:true});
+    del.sync(outputRoot + "/*", {force:true});
 }
 
 function copySamples(cb) {
-
-    // deleteSamples();
-    let outputFolder = './'
+    deleteSamples();
+    let copiedFiles = [];
     // log('copying sample files... ');
-    // for (const sample of samples) {
-    //     let outputPath = './src' + sample.SampleFolderPath.replace('.','');
+    for (const sample of samples) {
+
+        let outputFolder = outputRoot + '/Pages/' + sample.ComponentGroup + '/' + sample.ComponentFolder
+        outputFolder = Strings.toTitleCase(outputFolder);
+
+        for (const sampleFile of sample.SampleFiles) {
+            // log("copy " + sample.SampleRoute + " " + sample.ComponentFolder + " " + file.Path);
+            let outputPath = outputFolder + '/' + sampleFile.Name
+            makeDirectoryFor(outputPath);
+            if (!fs.existsSync(outputPath)) {
+                 fs.writeFileSync(outputPath, sampleFile.Content);
+                  console.log("copied " + outputPath);
+            }
+
+
+            // gulp.src([sampleFile.Path])
+            // .pipe(es.map(function(file, fileCallback) {
+            //     let outputFile = outputRoot + '/Pages/' + outputPath + '/' + file.basename;
+            //     if (!copiedFiles.includes(outputFile)) {
+            //          copiedFiles.push(outputFile);
+            //         //  console.log("copied " + outputFile);
+            //          fileCallback(null, file);
+            //     } else {
+            //         // console.log("skip " + outputFile);
+            //         fileCallback(null);
+            //     }
+            // }))
+            // .pipe(gulp.dest(outputRoot + '/Pages/' + outputPath))
+
+            // gulp.src([file.Path])
+            // .pipe(exclude('.razor'))
+            // // .pipe(gulp.dest(outputRoot + sample.SampleRoute))
+            // .pipe(gulp.dest(outputRoot + '/Services/' + outputPath))
+        }
     //     // log(outputPath);
+    }
 
-    //     gulp.src([
-    //           sample.SampleFolderPath + '/Pages/*.razor',
-    //           sample.SampleFolderPath + '/Services/.cs',
-    //     // '!' + sample.SampleFolderPath + '/src/index.tsx',
-    //     ])
-    //     // .pipe(copyExclude(['ReadMe.md', 'index.tsx']))
-    //     // .pipe(logFile())
-    //     .pipe(gulp.dest(outputPath))
-    // }
-
-    let outputToc = outputFolder + 'toc.json'
+    let outputToc = outputRoot + '/toc.json'
     let routingGroups = Transformer.getRoutingGroups(samples);
     let routingFile = Transformer.getRoutingFile(routingGroups);
     fs.writeFileSync(outputToc, routingFile);
