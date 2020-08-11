@@ -1,0 +1,62 @@
+﻿@page "/SparklineDisplayArea"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+
+<div class="igContainer"> 
+
+    <div class="igComponent">
+
+        @if (DataSource != null)
+        {
+            <section>Revenue Sparkline</section>
+            <Sparkline Height="100%"
+                       Width="100%"
+                       DataSource="@DataSource"
+                       DisplayType="SparklineDisplayType.Area"
+                       ValueMemberPath="Value"
+                       LabelMemberPath="Angle"
+                       Minimum="-1" Maximum="1">
+            </Sparkline>
+
+            <section>Income Sparkline</section>
+            <Sparkline Height="100%"
+                       Width="100%"
+                       DataSource="@DataSource"
+                       DisplayType="SparklineDisplayType.Area"
+                       ValueMemberPath="Income"
+                       LabelMemberPath="Angle"
+                       Minimum="-1" Maximum="1">
+            </Sparkline>
+
+            <section>Expanse Sparkline</section>
+            <Sparkline Height="100%"
+                       Width="100%"
+                       DataSource="@DataSource"
+                       DisplayType="SparklineDisplayType.Area"
+                       ValueMemberPath="Expanse"
+                       LabelMemberPath="Angle"
+                       Minimum="-1" Maximum="1">
+            </Sparkline>
+           
+        }
+
+    </div>
+</div>
+
+@code {
+
+    private List<SparklineData.DataItem> DataSource;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        SparklineModule.Register(InfragisticsBlazor);
+
+        DataSource = SparklineData.getData();
+    }
+   
+
+}
