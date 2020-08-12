@@ -51,15 +51,14 @@
 
 @code {
 
-        List<StockList> DataSource;
+        List<StockItem[]> DataSource;
         public TrendLineType TrendLineType = TrendLineType.QuinticFit;
 
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
             base.OnInitialized();
             FinancialChartModule.Register(InfragisticsBlazor);
-            var vm = new StockMultipleSources();
-            this.DataSource = vm;
+            this.DataSource = await StocksHistory.getMultipleStocks();
         }  
     }
 }

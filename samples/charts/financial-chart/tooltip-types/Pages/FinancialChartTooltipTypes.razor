@@ -35,14 +35,13 @@
 
 @code {
 
-    List<StockList> DataSource;
+    List<StockItem[]> DataSource;
     public ToolTipType TooltipType { get; set; } = ToolTipType.Item;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         base.OnInitialized();
         FinancialChartModule.Register(InfragisticsBlazor);
-        var vm = new StockMultipleSources();
-        this.DataSource = vm;
+        this.DataSource = await StocksHistory.getMultipleStocks();
     }
 }

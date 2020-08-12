@@ -6,21 +6,27 @@
 @inject IJSRuntime JSRuntime;
 
 <div class="igContainer">
-    
+    <div class="igLegend">
+        <Legend @ref="FinancialLegend" Orientation="LegendOrientation.Horizontal" >
+
+        </Legend>
+    </div>
     <div class="igComponent">
 
         @if (DataSource != null)
         {
-            <FinancialChart Width="100%"
-                            Height="100%"
-                            ChartType=FinancialChartType.Bar
-                            Thickness=2
-                            DataSource="DataSource"
-                            ZoomSliderType="FinancialChartZoomSliderType.Bar"
-                            ChartTitle="Tesla vs Microsoft"
-                            Subtitle="Between 2013 and 2017"
-                            IsToolbarVisible="true"
-                            YAxisMode="FinancialChartYAxisMode.PercentChange"/>
+            <FinancialChart 
+                Width="100%"                
+                Height="100%"
+                Legend="@FinancialLegend"
+                ChartType=FinancialChartType.Bar
+                Thickness=2
+                DataSource="DataSource"
+                ZoomSliderType="FinancialChartZoomSliderType.Bar"
+                ChartTitle="Tesla vs Microsoft"
+                Subtitle="Between 2013 and 2017"
+                IsToolbarVisible="true"
+                YAxisMode="FinancialChartYAxisMode.PercentChange"/>
         }
         
     </div>
@@ -28,13 +34,13 @@
 
 @code {
 
-    List<StockList> DataSource;
-    
-    protected override void OnInitialized()
+    List<StockItem[]> DataSource;
+    Legend FinancialLegend { get; set; }
+
+    protected override async Task OnInitializedAsync()
     {
         base.OnInitialized();
         FinancialChartModule.Register(InfragisticsBlazor);
-        var vm = new IGFinancialChart.Samples.StockMultipleSources();
-        this.DataSource = vm;
+        this.DataSource = await StocksHistory.getMultipleStocks();
     }
 }

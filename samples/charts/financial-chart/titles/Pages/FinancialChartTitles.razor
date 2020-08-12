@@ -29,13 +29,12 @@
 
 @code {
 
-    List<StockList> DataSource;
+    StockItem[] DataSource;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         base.OnInitialized();
         FinancialChartModule.Register(InfragisticsBlazor);
-        var vm = new StockMultipleSources();
-        this.DataSource = vm;
+        this.DataSource = await StocksHistory.getAmazonStock();
     }
 }
