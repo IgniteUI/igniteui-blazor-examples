@@ -185,6 +185,8 @@ namespace Samples.Services
         public double Close { get; set; }
         public double Volume { get; set; }
         public int Index { get; set; }
+        public string Info { get; set; }
+        public int Value { get; set; }
         //public string Label {  get { return this.Time.ToShortDateString(); } }
 
         //public new string ToString()

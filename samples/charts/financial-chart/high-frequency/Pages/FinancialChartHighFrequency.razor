@@ -7,96 +7,155 @@
 
 <div class="igContainer">
     <div class="igOptions">
-        <label class="igOptions-label">Data Points: </label>
-        <label className="igOptions-value">
-
-        </label>
-        <input className="igOptions-slider" type="range" min="10000" max="100000" step="1000"
+        <label class="igOptions-label">Refresh Interval: @RefreshInterval</label>
+        <input class="igOptions-slider" type="range" min="5" max="1000"
+               value=@RefreshInterval
+               @onchange=OnRefreshFrequencyChanged />
+        <label class="igOptions-label">Data Points: @DataPoints</label>
+        <input class="igOptions-slider" type="range" min="250" max="100000" step="1000"
                value=@DataPoints
-               onChange=OnDataPointsChanged/>
-        <button class="igOptions-button" onclick="OnDataGenerateClick"></button>
+               @onchange=OnDataPointsChanged />
+        <button class="igOptions-button" @onclick="OnDataGenerateClick">Assign Data</button>
         <label class="igOptions-label">Optimize Scaling: </label>
-        <label class="igOptions-label">FPS: </label>
+        <input type="checkbox" @onchange="OnOptimizeScalingChanged" />
+        <label class="igOptions-label">FPS: @FPS</label>
     </div>
 
     <div class="igComponent">
 
         @if (DataSource != null)
         {
-            <FinancialChart Width="100%"
-                            Height="100%"
-                            ChartType=FinancialChartType.Line
-                            Thickness=2                           
-                            DataSource="DataSource"
-                            ZoomSliderType="FinancialChartZoomSliderType.None"/>
+            <FinancialChart Width="100%" @ref="Chart"
+                Height="100%"
+                ChartType=FinancialChartType.Line
+                Thickness=2                           
+                DataSource="DataSource"
+                PixelScalingRatio="ScalingRatio"
+                ZoomSliderType="FinancialChartZoomSliderType.None"/>
         }
     </div>
 </div>
 
 @code {
 
-    public FinancialChartXAxisMode XAxisMode = FinancialChartXAxisMode.Ordinal;
-    public FinancialChartYAxisMode YAxisMode = FinancialChartYAxisMode.Numeric;
-    public RealTimeDataViewModel DataViewModel;
-    public RealTimeDataCollection DataSource;
-    public int DataInfo { get; set; }
-    public int DataPoints { get; set; }
-    public String Index = "";
-    public String Value = "";
-    public int dataIndex = 0;
-    public System.Collections.ObjectModel.ObservableCollection<RealTimeDataPoint> data;
+    //markup properties
+    public List<StockItem> DataSource;
+    public FinancialChart Chart;
+    public int DataPoints { get; set; } = 250;
+    public int DataIndex { get; set; }
+    public string DataInfo { get; set; }
+    public double ScalingRatio = 1;
+    public decimal RefreshInterval { get; set; } = 10;
+    public int Interval { get; set; } = -1;
+    public int FPS { get; set; }
+
+    //app properties
+    public int _currValue = 150;
+    public int _currIndex = 0;
+    public DateTime _currDate = new DateTime(2018, 3, 1);
+    private int _maxPoints = 250;
+    public int _frames { get; set; }
+    public int _frameCount { get; set; }
+    public DateTime _time { get; set; }
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
         FinancialChartModule.Register(InfragisticsBlazor);
-        this.DataViewModel = new RealTimeDataViewModel();
-        this.DataSource = this.DataViewModel.Data;
-        Console.WriteLine(this.DataSource);
+
+        this.DataSource = StocksUtility.GetStocksItems(this.DataPoints);
+
+        //TODO set up timer
+        this.SetupInterval();
     }
 
-    private void OnDataGenerateclick(ButtonClickEventArgs e)
+    private void OnOptimizeScalingChanged(ChangeEventArgs e)
     {
-        //this.data = StocksUtility.GetStocksItems(this.dataPoints);
-        //this.dataIndex = this.data.length;
-
-        //this.setState({ dataSource: this.data });
-
-        this.data = DataViewModel.Data;
-        this.dataIndex = this.data.Count;
-
-        DataSource = (RealTimeDataCollection)this.data;
-
-
+        if ((bool)e.Value == true)
+        {
+            this.ScalingRatio = 1.0;
+        }
+        else
+        {
+            this.ScalingRatio = 0;
+        }
     }
 
-    private void OnDataGenerateclick(ChangeEventArgs e)
+    private void OnDataGenerateClick()
     {
+        Console.Write("Data Click");
+        this.DataSource = StocksUtility.GetStocksItems(this.DataPoints);
+        this.DataIndex = this.DataSource.Count;
+    }
+
+    private void OnRefreshFrequencyChanged(ChangeEventArgs e)
+    {
+        var val = (string)e.Value;
+        var num = decimal.Parse(val);
+
+        if (num <= 10) {
+            num = (10 / 1000);
+        }
+        if (num > 500) {
+            num = (500 / 1000);
+        }
+        this.RefreshInterval = num;
+        this.SetupInterval();
+    }
+
+    private void OnDataPointsChanged(ChangeEventArgs e)
+    {
+        Console.WriteLine("Data Points changed");
         int num = int.Parse((string)e.Value);
         num = 10;
         bool isNumeric = int.TryParse("123", out num);
 
         if (isNumeric)
         {
-            num = 10000;
+            num = 250;
         }
-        if (num < 10000)
+        if (num < 250)
         {
-            num = 10000;
+            num = 250;
         }
         if (num > 1000000)
         {
             num = 1000000;
         }
 
-        //var info = StocksUtility.toShortString(num);
-        //this.dataPoints = num;
-        //this.setState({ dataPoints: num, dataInfo: info });
-
-        DataPoints = num;
-
+        this.DataPoints = num;
 
     }
 
+    public void SetupInterval()
+    {
+        Task.Delay(100).ContinueWith((t) => OnTimerTick());
+    }
 
+    private void OnTimerTick()
+    {
+        this.DataIndex++;
+        var oldItem = this.DataSource[0];
+        var newItem = StocksUtility.GetNewItem(this.DataSource);
+
+        // updating data source and notifying category chart
+        this.DataSource.Add(newItem);
+        this.Chart.NotifyInsertItem(this.DataSource, this.DataSource.Count - 1, newItem);
+        this.DataSource.RemoveAt(0);
+        this.Chart.NotifyRemoveItem(this.DataSource, 0, oldItem);
+
+        this._frameCount++;
+        var currTime = DateTime.Now;
+        var elapsed = (currTime.TimeOfDay - this._time.TimeOfDay);
+        if (elapsed.Ticks > 5000)
+        {
+            var fps = this._frameCount / (elapsed.Ticks / 1000.0);
+            this._time = currTime;
+            this._frameCount = 0;
+            this.FPS = (int)Math.Round(fps);
+        }
+
+        Task.Delay(16).ContinueWith((t) => OnTimerTick());
+        this.StateHasChanged();
+    }
 }

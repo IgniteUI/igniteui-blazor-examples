@@ -136,7 +136,7 @@ namespace Samples.Services
             return array.LastOrDefault();
         }
 
-        public static List<StockItem> GetNewItem(List<StockItem> array, int ?interval)
+        public static StockItem GetNewItem(List<StockItem> array, int ?interval = 0)
         {
             var lastItem = GetLastItem(array);
 
@@ -170,7 +170,7 @@ namespace Samples.Services
                 v = Math.Abs(v) + 10000;
             }
 
-            var newValue = new List<StockItem> { new StockItem { Date = time, Open = o, High = h, Low = l, Close = c, Volume = v } };
+            var newValue = new StockItem { Date = time, Open = o, High = h, Low = l, Close = c, Volume = v };
 
             return newValue;
         }
@@ -185,6 +185,8 @@ namespace Samples.Services
         public double Close { get; set; }
         public double Volume { get; set; }
         public int Index { get; set; }
+        public string Info { get; set; }
+        public int Value { get; set; }
         //public string Label {  get { return this.Time.ToShortDateString(); } }
 
         //public new string ToString()
