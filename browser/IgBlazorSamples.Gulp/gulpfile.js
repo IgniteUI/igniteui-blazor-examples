@@ -31,7 +31,7 @@ exports.getSamples = getSamples = gulp.series(
 exports.lintSamples = lintSamples = gulp.series(
     sb.getSamples,
     sb.lintSamples,
-    // sb.saveSamples,
+    sb.saveSamples,
 );
 
 // exports.updateReadme = updateReadme = gulp.series(

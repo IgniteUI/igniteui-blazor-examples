@@ -41,9 +41,10 @@ var sampleSource = [
     // igConfig.SamplesCopyPath + '/charts/tree-map/**/Pages/',
     // igConfig.SamplesCopyPath + '/charts/zoomslider/**/Pages/',
     // igConfig.SamplesCopyPath + '/maps/geo-map/**/Pages/',
-    igConfig.SamplesCopyPath + '/gauges/bullet-graph/**/Pages/',
-    igConfig.SamplesCopyPath + '/gauges/linear-gauge/**/Pages/',
-    igConfig.SamplesCopyPath + '/gauges/radial-gauge/**/Pages/',
+    igConfig.SamplesCopyPath + '/gauges/bullet-graph/**/animation/Pages/',
+    // igConfig.SamplesCopyPath + '/gauges/bullet-graph/**/Pages/',
+    // igConfig.SamplesCopyPath + '/gauges/linear-gauge/**/Pages/',
+    // igConfig.SamplesCopyPath + '/gauges/radial-gauge/**/Pages/',
     // igConfig.SamplesCopyPath + '/grids/**/Pages/',
     // igConfig.SamplesCopyPath + '/layouts/**/Pages/',
 
@@ -78,13 +79,13 @@ function lintSamples(cb) {
     cb();
 } exports.lintSamples = lintSamples;
 
-// function saveSamples(cb) {
-//     for (const info of samples) {
-//         log('saving ' + info.SampleFolderPath)
-//         fs.writeFileSync(nfo.SampleFilePath, info.SampleFileSourceCode);
-//     }
-//     cb();
-// } exports.saveSamples = saveSamples;
+function saveSamples(cb) {
+    for (const info of samples) {
+        log('saving ' + info.SourceRazorFile.Path)
+        fs.writeFileSync(info.SourceRazorFile.Path, info.SourceRazorFile.Content);
+    }
+    cb();
+} exports.saveSamples = saveSamples;
 
 function lintSamples2(cb) {
 
@@ -238,15 +239,14 @@ function copySamples(cb) {
         let outputFolder = outputRoot + '/Pages/' + sample.ComponentGroup + '/' + sample.ComponentFolder
         outputFolder = Strings.toTitleCase(outputFolder);
 
-        for (const sampleFile of sample.SampleFiles) {
+        for (const file of sample.SourceFiles) {
             // log("copy " + sample.SampleRoute + " " + sample.ComponentFolder + " " + file.Path);
-            let outputPath = outputFolder + '/' + sampleFile.Name
+            let outputPath = outputFolder + '/' + file.Name
             makeDirectoryFor(outputPath);
             if (!fs.existsSync(outputPath)) {
-                 fs.writeFileSync(outputPath, sampleFile.Content);
+                 fs.writeFileSync(outputPath, file.Content);
                   console.log("copied " + outputPath);
             }
-
 
             // gulp.src([sampleFile.Path])
             // .pipe(es.map(function(file, fileCallback) {
@@ -437,7 +437,7 @@ function updateSharedFiles(cb) {
                 }
         }
         fileCallback(null, file);
-        // SampleFiles.push(fileDir + "/" + file.basename);
+        // SourceFiles.push(fileDir + "/" + file.basename);
     }))
 
     // update these shared files if a sample is using them

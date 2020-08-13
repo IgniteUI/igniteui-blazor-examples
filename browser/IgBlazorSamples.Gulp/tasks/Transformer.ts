@@ -91,8 +91,8 @@ class SampleInfo {
     public SampleReadMe: string;       // content of ReadMe.md file generated for /samples/maps/geo-map/binding-csv-points/
     // public SampleFilePaths: string[];  // relative paths to files in sample folder: /samples/maps/geo-map/binding-csv-points/
     // public SampleFileNames: string[];  // names of files in sample folder: /samples/maps/geo-map/binding-csv-points/
-    public SampleFiles: SampleFile[];
-    public SampleSourceFile: SampleSourceFile;
+    public SourceFiles: SampleFile[];
+    public SourceRazorFile: SampleSourceFile;
 
     public DocsUrl: string             // https://infragistics.com/Reactsite/components/geo-map.html
 
@@ -107,13 +107,13 @@ class SampleInfo {
         // this.SampleFileSourceCode = '';
         // this.SampleFilePaths = [];
         // this.SampleFileNames = [];
-        this.SampleFiles = [];
+        this.SourceFiles = [];
         this.PackageDependencies = [];
         // this.PackageDependencies.indexOf
     }
 
     public isUsingFileName(name: string): boolean {
-        for (const file of this.SampleFiles) {
+        for (const file of this.SourceFiles) {
             if (file.Name.indexOf(name)) {
                 return true;
             }
@@ -283,7 +283,7 @@ class Transformer {
 
             let razorFiles: SampleFile[] = [];
             // finding .razor files in Pages folder
-            for (const file of info.SampleFiles) {
+            for (const file of info.SourceFiles) {
                 if (Strings.includes(file.Path, igConfig.SamplesFolderName) &&
                     Strings.includes(file.Path, igConfig.SamplesFileExtension) &&
                     Strings.excludes(file.Path, igConfig.SamplesFileExclusions, true)) {
@@ -297,7 +297,7 @@ class Transformer {
             if (razorFiles.length === 0) {
                 info.IsComplete = false;
                 console.log("WARNING Transformer cannot match any " + igConfig.SamplesFileExtension + " files in sample: " + info.SampleFolderPath);
-                for (const file of info.SampleFiles) {
+                for (const file of info.SourceFiles) {
                     console.log('- ' + file.Path);
                 }
             } else if (razorFiles.length > 1) {
@@ -306,21 +306,23 @@ class Transformer {
                 console.log(" - " + razorFiles.join("\n - "));
             } else { // good we have only one .razor file per sample
                 info.IsComplete = true;
-                info.SampleSourceFile = new SampleSourceFile(razorFiles[0]);
-                info.SampleFileName = info.SampleSourceFile.Name;
-                // info.SampleSourceFile.LocalPath = "./Pages/" + info.SampleFileName;
-                // info.SampleSourceFile.Blocks = this.getSampleBlocks(info.SampleSourceFile.Content);
+                info.SourceRazorFile = new SampleSourceFile(razorFiles[0]);
+                info.SampleFileName = info.SourceRazorFile.Name;
+                // this.lintSample(info);
+
+                // info.SourceRazorFile.LocalPath = "./Pages/" + info.SampleFileName;
+                // info.SourceRazorFile.Blocks = this.getSampleBlocks(info.SourceRazorFile.Content);
                 // auto-generating routing paths for a sample with and without SB navigation
-                // info.SampleSourceFile.Blocks.ImportLines.splice(0, 0, "@page /samples" + info.SampleRoute);
-                // info.SampleSourceFile.Blocks.ImportLines.splice(1, 0, "@page         " + info.SampleRoute);
-                // info.SampleSourceFile.Blocks.ImportLines.splice(2, 0, "");
+                // info.SourceRazorFile.Blocks.ImportLines.splice(0, 0, "@page /samples" + info.SampleRoute);
+                // info.SourceRazorFile.Blocks.ImportLines.splice(1, 0, "@page         " + info.SampleRoute);
+                // info.SourceRazorFile.Blocks.ImportLines.splice(2, 0, "");
 
                 // info.SampleFilePath = fileNames[0];
                 // info.SampleFileName = this.getFileName(info.SampleFilePath);
-                // info.SampleFileSourcePath = "./Pages/" + info.SampleFileName;
-                // info.SampleFileSourceCode = transFS.readFileSync(info.SampleFilePath, "utf8");
+                // info.SourceFileSourcePath = "./Pages/" + info.SampleFileName;
+                // info.SourceFileSourceCode = transFS.readFileSync(info.SampleFilePath, "utf8");
 
-                // console.log("pro code: \n" + info.SampleFileSourceCode);
+                // console.log("pro code: \n" + info.SourceFileSourceCode);
 
                 // info.SampleImportLines = sampleBlocks.ImportLines;
                 // info.SampleImportFiles = sampleBlocks.ImportFiles;
@@ -328,13 +330,13 @@ class Transformer {
 
 
                 // console.log("pro ==============================");
-                // console.log("pro ImportLines:\n" + info.SampleSourceFile.Blocks.ImportLines.join('\n'));
+                // console.log("pro ImportLines:\n" + info.SourceRazorFile.Blocks.ImportLines.join('\n'));
                 // console.log("pro ==============================");
-                // console.log("pro HtmlCodeLines:\n" + info.SampleFileSourceBlock.HtmlCodeLines.join('\n'));
+                // console.log("pro HtmlCodeLines:\n" + info.SourceFileSourceBlock.HtmlCodeLines.join('\n'));
                 // console.log("pro ==============================");
-                // console.log("pro CsharpCodeLines:\n" + info.SampleFileSourceBlock.CsharpCodeLines.join('\n'));
+                // console.log("pro CsharpCodeLines:\n" + info.SourceFileSourceBlock.CsharpCodeLines.join('\n'));
                 // console.log("pro ==============================");
-                // console.log("pro OtherCodeLines:\n" + info.SampleFileSourceBlock.OtherCodeLines.join('\n'));
+                // console.log("pro OtherCodeLines:\n" + info.SourceFileSourceBlock.OtherCodeLines.join('\n'));
                 // console.log("pro ==============================");
 
                 // info.SampleImportName = info.SampleFileName.replace('.razor','');
@@ -368,21 +370,21 @@ class Transformer {
 
         for (const sampleA of samples) {
 
-            for (const fileA of sampleA.SampleFiles) {
+            for (const fileA of sampleA.SourceFiles) {
                 if (fileA.Name.indexOf(".razor") > 0) continue;
                 if (comparedFiles.includes(fileA.Name)) continue;
 
                 for (const sampleB of samples) {
                     if (sampleA.SampleFolderName == sampleB.SampleFolderName) continue;
 
-                    for (const fileB of sampleB.SampleFiles) {
+                    for (const fileB of sampleB.SourceFiles) {
                         if (fileA.Name != fileB.Name) continue; // different file names
 
                         let contentA = transFS.readFileSync(fileA.Path).toString();
                         let contentB = transFS.readFileSync(fileB.Path).toString();
 
                         if (contentA !== contentB) {
-                            this.WARN('Sample file "' + fileA.Name + '" has different content in these locations: \n' + fileA.Path + '\n' + fileB.Path)
+                            console.log('WARNING: File "' + fileA.Name + '" has different content in these locations: \n' + fileA.Path + '\n' + fileB.Path)
                         }
 
                     }
@@ -559,8 +561,12 @@ class Transformer {
                 file.Content = transFS.readFileSync(filePath, "utf8");
                 // console.log("pro file " + file.Path + "   " + file.Name);
             }
-
-            info.SampleFiles.push(file);
+            if (file.Name.indexOf(".razor") > 0){
+                info.SourceFiles.splice(0, 0, file);
+            } else {
+                info.SourceFiles.push(file);
+            }
+            // info.SourceFiles.push(file);
             // info.SampleFileNames.push(parts[parts.length - 1]);
         }
         return info;
@@ -642,8 +648,8 @@ class Transformer {
         readMe = Strings.replaceAll(readMe, "{SampleDisplayName}", sample.SampleDisplayName);
         readMe = Strings.replaceAll(readMe, "{SampleFileName}", sample.SampleFileName);
         readMe = Strings.replaceAll(readMe, "{SampleFilePath}", sample.SampleFilePath);
-        readMe = Strings.replaceAll(readMe, "{SampleFileSourcePath}", sample.SampleSourceFile.Path);
-        readMe = Strings.replaceAll(readMe, "{SampleFileSourceCode}", sample.SampleSourceFile.Content);
+        readMe = Strings.replaceAll(readMe, "{SampleFileSourcePath}", sample.SourceRazorFile.Path);
+        readMe = Strings.replaceAll(readMe, "{SampleFileSourceCode}", sample.SourceRazorFile.Content);
 
         readMe = Strings.replaceAll(readMe, "{DocsUrl}", sample.DocsUrl);
 
@@ -800,38 +806,43 @@ class Transformer {
 
         toc += this.tabs(1) + '] \n';
         toc += "}"
-        console.log("================== TOC =============== ");
+        // console.log("================== TOC =============== ");
         // console.log(toc);
         return toc;
     }
 
+
     public static lintSample(info: SampleInfo) {
 
-        for (const file of info.SampleFiles) {
+        for (let i = 0; i < info.SourceFiles.length; i++) {
+            let file = info.SourceFiles[i];
+
+            // console.log("NOTE: lintSample() " + file.Path);
+
             let orgContent = file.Content;
             if (file.Path.indexOf(".razor") > 0) {
-                this.lintRazor(file);
+                this.lintRazor(info);
+                this.lintFile(file);
+            } else {
+                this.lintFile(file);
             }
 
             if (file.Content !== orgContent) {
                 file.IsChanged = true;
-                this.NOTE("lintSample() changed " + file.Path);
+                // console.log("NOTE: lintSample() changed " + file.Path);
+                // console.log("NOTE: lintSample() changed \n" + file.Content);
             }
+            // else {
+            //     // console.log("NOTE: lintSample() not changed \n" + file.Content);
+            // }
         }
-
     }
 
-    public static WARN(msg: string) {
-        console.log("WARN: " + msg);
-    }
-    public static NOTE(msg: string) {
-        console.log("NOTE: " + msg);
-    }
-
-    public static lintRazor(file: SampleFile) {
+    public static lintRazor(sample: SampleInfo) {
 
         let invalidLines: string[] = [
             "@page ",
+            "@inject IJSRuntime JSRuntime;",
         ];
 
         let csharpCodeLines: string[] = [];
@@ -843,12 +854,11 @@ class Transformer {
         let isHtml = false;
         let isCS = false;
 
-        let fileLines = file.Content.split('\n');
+        let fileLines = sample.SourceRazorFile.Content.split('\n');
         for (const line of fileLines) {
             // if (line.indexOf(" from 'react'") > 0) continue;
 
             // skipping page routes because they will be auto-generated
-
             let isInvalidLine = false;
             for (const invalid of invalidLines) {
                 if (line.indexOf(invalid) >= 0) {
@@ -877,24 +887,29 @@ class Transformer {
         }
 
         if (otherLines.length > 0) {
-            this.WARN("lintRazor() failed in " + file.Path + " on line: " + otherLines[0]);
+            console.log("WARNING: lintRazor() failed in " + sample.SourceRazorFile.Path + " on line: " + otherLines[0]);
         }
         // if (csharpCodeLines.length === 0) {
-        //     this.WARN("lintRazor() found no CS code in " + file.Path);
+        //     console.log("WARNING: lintRazor() found no CS code in " + sample.SourceRazorFile.Path);
         // }
         // if (htmlCodeLines.length === 0) {
-        //     this.WARN("lintRazor() found no HTML code in " + file.Path);
+        //     console.log("WARNING: lintRazor() found no HTML code in " + sample.SourceRazorFile.Path);
         // }
         // if (importLines.length === 0) {
-        //     this.WARN("lintRazor() found no @using/@inject statements in " + file.Path);
+        //     console.log("WARNING: lintRazor() found no @using/@inject statements in " + sample.SourceRazorFile.Path);
         // }
+
+        // auto-generating routing paths for a sample with and without SB navigation
+        importLines.splice(0, 0, '@page "/samples' + sample.SampleRoute + '"');
+        importLines.splice(1, 0, '@page         "' + sample.SampleRoute + '"');
 
         let newContent =
             importLines.join('\n') + "\n" +
             htmlCodeLines.join('\n') + "\n" +
             csharpCodeLines.join('\n') + "\n";
 
-        file.Content = newContent;
+        sample.SourceFiles[0].Content = newContent;
+        sample.SourceRazorFile.Content = newContent;
     }
 
     // public static lintFile(
@@ -904,60 +919,83 @@ class Transformer {
     //     // callback: (err: any, results: string | null) => void
     //     ): string {
 
+    public static lintFile(file: SampleFile) {
+        // sample: SampleInfo,
+        let firstLine = true;
+        let validLines: string[] = [];
+        let fileLines = file.Content.split("\n");
+        let spacedSymbols: string[] = ['(\\+)', '(\-)', '(\\*)', '(\{)', '(\})']; // '(\<)', '(\>)',  '(\=)',
 
+        for (let i = 0; i < fileLines.length; i++) {
+            let currentLine = fileLines[i].trimRight();
+            let nextLine = i === fileLines.length - 1 ? '' : fileLines[i + 1].trimRight();
 
-    //     let firstLine = true;
-    //     let validLines: string[] = [];
-    //     let fileLines = fileContent.split("\n");
-    //     for (let i = 0; i < fileLines.length; i++) {
-    //         const currentLine = fileLines[i].trimRight();
-    //         const nextLine = i === fileLines.length - 1 ? '' : fileLines[i + 1].trimRight();
+            // if (currentLine !== '' && nextLine !== '') {
+            //     validLines.push(currentLine);
+            // }
+            if (currentLine === '' && firstLine) { continue; }
+            if (currentLine === '' && nextLine === '') { continue; }
 
-    //         // if (currentLine !== '' && nextLine !== '') {
-    //         //     validLines.push(currentLine);
-    //         // }
-    //         if (currentLine === '' && firstLine) { continue; }
-    //         if (currentLine === '' && nextLine === '') { continue; }
+            currentLine = Strings.replaceAll(currentLine, ';;', ';');
 
-    //         firstLine = false;
-    //         validLines.push(currentLine);
+            for (const symbol of spacedSymbols) {
+                currentLine = currentLine.replace(new RegExp('([A-Za-z0-9])' + symbol), '$1 $2');
+                currentLine = currentLine.replace(new RegExp(symbol + '([A-Za-z0-9])'), '$1 $2');
+                // currentLine = currentLine.replace('/([a-z0-9])(\=)/g', '$1 $2');
+                // currentLine = currentLine.replace(new RegExp('([a-z0-9])(\=)'), '$1 $2');
+                // currentLine = currentLine.replace(/([a-z0-9])(\=)/gi, '_');
+            }
+            // currentLine = currentLine.replace(new RegExp('(using)([A-Za-z0-9])(;)'), '$1 $2');
+            currentLine = currentLine.replace(new RegExp('(@using\.*.*)(\;)'), '$1');
+            currentLine = currentLine.replace(new RegExp('(@inject\.*.*)(\;)'), '$1');
 
-    //         // if (i === fileLines.length - 1)
-    //         //     validLines.push(nextLine);
-    //     }
+            currentLine = currentLine.replace(new RegExp("(for\.*.*)([A-Za-z0-9])(\=)"), '$1$2 $3');
+            currentLine = currentLine.replace(new RegExp('(for\.*.*)([A-Za-z0-9])(\<)'), '$1$2 $3');
+            currentLine = currentLine.replace(new RegExp('(for\.*.*)([A-Za-z0-9])(\>)'), '$1$2 $3');
 
-    //     let importingLines = true;
-    //     let importLines: string[] = [];
-    //     let sourceLines: string[] = [];
-    //     for (const line of validLines) {
+            currentLine = currentLine.replace(new RegExp('(for\.*.*)(\=)([A-Za-z0-9])'), '$1$2 $3');
+            currentLine = currentLine.replace(new RegExp('(for\.*.*)(\<)([A-Za-z0-9])'), '$1$2 $3');
+            currentLine = currentLine.replace(new RegExp('(for\.*.*)(\>)([A-Za-z0-9])'), '$1$2 $3');
+            currentLine = currentLine.replace(new RegExp('(for\.*.*)(\;)([A-Za-z0-9])'), '$1$2 $3');
+            currentLine = currentLine.replace(new RegExp("(for\.*.*)(\;)([A-Za-z0-9])"), '$1$2 $3');
 
-    //         if (line.indexOf('import') !== 0 && line.indexOf('//') !== 0 && line !== '')
-    //             importingLines = false;
+            currentLine = currentLine.replace(new RegExp("(for)(\\()(\.*.*)"), '$1 $2$3');
+            // currentLine = currentLine.replace(new RegExp("(for\.*.*)(\\()(\.*.*)"), '$1$2$3');
 
-    //         if (importingLines) {
-    //             if (line !== '') importLines.push(line);
-    //         }
-    //         else
-    //             sourceLines.push(line);
+            currentLine = Strings.replaceAll(currentLine, ' ++', '++');
 
-    //     }
+            // if (Strings.contains(currentLine, "for")){
+            //     console.log('linting >>>> ' + currentLine);
+            // }
+            // console.log('linting ' + currentLine);
 
-    //     // importLines = importLines.sort();
-    //     let lintedContent = importLines.join('\n') + '\n\n' + sourceLines.join('\n') + '\n';
+            firstLine = false;
+            validLines.push(currentLine);
 
-    //     // console.log('======================================================');
-    //     // console.log(importLines.join('\n') + '\n\n' + sourceLines.join('\n'));
-    //     // console.log(validLines.join('\n'));
-    //     // console.log('======================================================');
-    //     // console.log('linting ' + fileLocation + ' done');
-    //     // callback(null, vfile.toString());
-    //     // callback(null, lintedContent);
-    //     return lintedContent;
-    // }
+            // if (i === fileLines.length - 1)
+            //     validLines.push(nextLine);
+        }
+
+        // importLines = importLines.sort();
+        file.Content = validLines.join('\n');
+
+        // console.log('======================================================');
+        // console.log(importLines.join('\n') + '\n\n' + sourceLines.join('\n'));
+        // console.log(validLines.join('\n'));
+        // console.log('======================================================');
+        // console.log('linting ' + fileLocation + ' done');
+        // callback(null, vfile.toString());
+        // callback(null, lintedContent);
+        // return lintedContent;
+    }
 }
 
 
 class Strings {
+
+    public static contains(str: string, pattern: string): boolean {
+        return str.indexOf(pattern) >= 0;
+    }
 
     public static excludes(str: string, exclusions: string[], useEndsWith?: boolean): boolean {
         for (const exclusion of exclusions) {
