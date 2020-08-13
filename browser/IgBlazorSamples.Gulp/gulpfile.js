@@ -10,7 +10,7 @@ let del = require('del');
 let es = require('event-stream');
 
 function log(msg) {
-    console.log('gulpfile.js ' + msg);
+    console.log('GULP ' + msg);
 }
 
 var sb = require('./tasks/gulp-samples.js')
