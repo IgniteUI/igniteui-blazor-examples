@@ -1,69 +1,90 @@
 ﻿@page "/FinancialChartHighFrequency"
 @* this namespace is required for Infragistics controls *@
 @using Infragistics.Blazor.Controls
+@using System.Collections.ObjectModel
 @using Samples.Services
-@inject IInfragisticsBlazor InfragisticsBlazor;
-@inject IJSRuntime JSRuntime;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
 <div class="igContainer">
     <div class="igOptions">
-        <label className="igOptions-label">Refresh Interval:</label>
-        <label className="igOptions-value">@RefreshInfo</label>
-        <input className="igOptions-slider" type="range" min="5" max="1000"
-               value=@RefreshInterval
-               @onchange=OnRefreshFrequencyChanged />
+        <label className="igOptions-label">Data Update:</label>
+        <label className="igOptions-value">@DataUpdateInfo</label>
+        <input className="igOptions-slider" type="range" min="20" max="1000" step="10"
+               value=@DataUpdateInterval
+               @onchange=OnDataUpdateIntervalChanged />
+
+        <button className="igOptions-button" @onclick="OnDataToggleFeedClick">@DataFeedStatus</button>
+        <label className="igOptions-label">FPS: @FramePerSecond</label>
+    </div>
+
+    <div class="igOptions">
         <label className="igOptions-label">Data Points:</label>
         <label className="igOptions-value">@DataPoints</label>
-        <input className="igOptions-slider" type="range" min="250" max="100000" step="1000"
+        <input className="igOptions-slider" type="range" min="10" max="10000" step="1"
                value=@DataPoints
                @onchange=OnDataPointsChanged />
+
         <button className="igOptions-button" @onclick="OnDataGenerateClick">Generate Data</button>
         <label className="igOptions-label">Optimize Scaling: </label>
         <input type="checkbox" @onchange="OnOptimizeScalingChanged" />
-        <label className="igOptions-label">FPS: @FPS</label>
     </div>
 
     <div class="igComponent">
 
         @if (DataSource != null)
         {
-            <FinancialChart Width="100%" @ref="Chart"
-                Height="100%"
-                ChartType=FinancialChartType.Line
-                Thickness=2                           
-                DataSource="DataSource"
-                PixelScalingRatio="ScalingRatio"
-                ZoomSliderType="FinancialChartZoomSliderType.None"/>
+            <FinancialChart Width="100%" @ref="Chart" Height="100%"
+                            ChartType="FinancialChartType.Line"
+                            Thickness=2
+                            DataSource="DataSource"
+                            PixelScalingRatio="ScalingRatio"
+                            ZoomSliderType="FinancialChartZoomSliderType.None" />
         }
     </div>
 </div>
 
 @code {
 
-    private System.Collections.ObjectModel.ObservableCollection<StockItem> DataSource;
     private FinancialChart Chart;
-    private double DataPoints { get; set; } = 1000;
-    private int DataIndex { get; set; } = 0;
-    private string DataInfo { get; set; }
     private double ScalingRatio { get; set; } = 1;
-    private int RefreshInterval { get; set; } = 10;
-    private double RefreshMilliseconds = 10;
-    private string RefreshInfo { get; set; }
-    private int FPS { get; set; } = 1;
-    public int _frameCount;
-    public DateTime _time;
+    private ObservableCollection<StockItem> DataSource;
 
-    protected override void OnInitialized()
+    private string DataInfo { get; set; }
+    private int DataPoints { get; set; } = 1000;
+
+    private int DataUpdateInterval { get; set; } = 100; // milliseconds
+    private string DataUpdateInfo { get; set; }
+    private string DataFeedStatus { get; set; } = "Live Data";
+    private bool DataFeedActive { get; set; } = false;
+
+    private int FramePerSecond { get; set; } = 0;
+    private int FrameCount = 0;
+    private DateTime FrameUpdateTime;
+
+    void InitalizeChart()
     {
-        base.OnInitialized();
         FinancialChartModule.Register(InfragisticsBlazor);
 
-        var dataList = StocksUtility.GetStocksItems((int)this.DataPoints);
-        this.DataSource = new System.Collections.ObjectModel.ObservableCollection<StockItem>(dataList);
-        this.DataIndex = this.DataSource.Count;
+        var dataList = StocksUtility.GetStocksItems(this.DataPoints);
+        this.DataSource = new ObservableCollection<StockItem>(dataList);
+
         this.DataInfo = StocksUtility.toShortString(this.DataPoints);
-        this.RefreshInfo = (this.RefreshMilliseconds / 1000).ToString() + "s";
-        this.SetupInterval();
+        this.FrameUpdateTime = DateTime.Now;
+        this.DataUpdateInfo = (this.DataUpdateInterval / 1000.0).ToString("0.0") + "s ";
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        InitalizeChart();
+        await Task.Delay(1000);
+        this.OnDataToggleFeedClick();
+    }
+
+    private void OnDataToggleFeedClick()
+    {
+        DataFeedActive = !DataFeedActive;
+        DataFeedStatus = DataFeedActive ? "Stop Data" : "Live Data";
+        SetupInterval();
     }
 
     private void OnOptimizeScalingChanged(ChangeEventArgs e)
@@ -80,80 +101,75 @@
 
     private void OnDataGenerateClick()
     {
-        var dataList = StocksUtility.GetStocksItems((int)this.DataPoints);
+        var dataList = StocksUtility.GetStocksItems(this.DataPoints);
 
-        this.DataSource = new System.Collections.ObjectModel.ObservableCollection<StockItem>(dataList);
-        this.DataIndex = this.DataSource.Count;
+        this.DataSource = new ObservableCollection<StockItem>(dataList);
         SetupInterval();
     }
 
-    private void OnRefreshFrequencyChanged(ChangeEventArgs e)
+    private void OnDataUpdateIntervalChanged(ChangeEventArgs e)
     {
-        double num = double.Parse(e.Value.ToString());
+        int num = int.Parse(e.Value.ToString());
 
-        if (num < 10) {
-            num = 10;
-        }
-        if (num > 500) {
-            num = 500;
-        }
-        this.RefreshMilliseconds = num;
-        this.RefreshInfo = (this.RefreshMilliseconds / 1000).ToString() + "s";
+        if (num < 10) num = 10;
+        if (num > 1000) num = 1000;
+
+        this.DataUpdateInterval = num;
+        this.DataUpdateInfo = (this.DataUpdateInterval / 1000.0).ToString("0.0") + "s ";
 
         if (this.DataSource.Count > 0)
         {
             this.SetupInterval();
         }
-
     }
 
     private void OnDataPointsChanged(ChangeEventArgs e)
     {
-        double num = double.Parse(e.Value.ToString());
-        num = 10;
+        var num = int.Parse(e.Value.ToString());
 
-        if (num < 250)
-        {
-            num = 250;
-        }
-        if (num > 1000000)
-        {
-            num = 1000000;
-        }
+        if (num < 10) num = 10;
+        if (num > 100000) num = 100000;
 
-        string info = StocksUtility.toShortString(num);
         this.DataPoints = num;
-        this.DataInfo = info;
-
+        this.DataInfo = StocksUtility.toShortString(num);
     }
 
     private void SetupInterval()
     {
-        Task.Delay((int)this.RefreshMilliseconds).ContinueWith((t) => OnTimerTick());
+        if (DataFeedActive)
+            Task.Delay(this.DataUpdateInterval).ContinueWith((t) => OnTimerTick());
     }
 
     private void OnTimerTick()
     {
-        this.DataIndex++;
+        if (!DataFeedActive) return;
+
         var oldItem = this.DataSource[0];
-        var newItem = StocksUtility.GetNewItem(this.DataSource.ToList(), this.DataIndex);
+        var newItem = StocksUtility.GetNewItem(this.DataSource.ToList(), 60);
+
         this.DataSource.Add(newItem.FirstOrDefault());
         this.Chart.NotifyInsertItem(this.DataSource, this.DataSource.Count - 1, newItem);
         this.DataSource.RemoveAt(0);
         this.Chart.NotifyRemoveItem(this.DataSource, 0, oldItem);
 
-        this._frameCount++;
+        this.FrameCount++;
         var currTime = DateTime.Now;
-        var elapsed = (currTime.TimeOfDay - this._time.TimeOfDay);
-        if (elapsed.Ticks > 5000)
+        var elapsed = currTime.Subtract(FrameUpdateTime);
+
+
+        if (elapsed.TotalSeconds > 5)
         {
-            var fps = this._frameCount / (elapsed.Ticks / 1000.0);
-            this._time = currTime;
-            this._frameCount = 0;
-            this.FPS = (int)Math.Round(fps);
+            var fps = this.FrameCount / elapsed.TotalSeconds;
+            this.FrameUpdateTime = currTime;
+            this.FrameCount = 0;
+            this.FramePerSecond = (int)Math.Round(fps);
+            this.StateHasChanged();
         }
 
-        Task.Delay((int)this.RefreshMilliseconds).ContinueWith((t) => OnTimerTick());
-        this.StateHasChanged();
+        if (DataFeedActive)
+        {
+            Task.Delay(this.DataUpdateInterval).ContinueWith((t) => OnTimerTick());
+        }
+
     }
 }
