@@ -9,9 +9,9 @@
     <div class="igOptions">
         <label class="igOptions-label">Tooltip Type: </label>
         <select @bind="@TooltipType">
-            <option>@ToolTipType.Default</option>
             <option>@ToolTipType.Item</option>
             <option>@ToolTipType.Category</option>
+            <option>@ToolTipType.Default</option>
             <option>@ToolTipType.None</option>
         </select>
     </div>
@@ -40,7 +40,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        base.OnInitialized();
         FinancialChartModule.Register(InfragisticsBlazor);
         this.DataSource = await StocksHistory.getMultipleStocks();
     }

@@ -43,15 +43,13 @@
     {
         var dateStart = DateTime.Now.AddYears(-5);
         var dateEnd = DateTime.Now.Date;
-        var yearStart = dateStart.Year;
-        var yearEnd = dateEnd.Year;
 
         StocksUtility.intervalDays = 0;
         StocksUtility.intervalHours = 1;
         StocksUtility.intervalMinutes = 0;
         this.DataSource = StocksUtility.GetStocksBetween(dateStart, dateEnd);
-        Title = "Stock Prices " + yearStart.ToString() + "-" + yearEnd.ToString();
-        Console.WriteLine("DataItems " + this.DataSource.Count.ToString());
+        Title = "Stock Prices " + dateStart.Year + "-" + dateEnd.Year;
+        Console.WriteLine("DataItems " + this.DataSource.Count);
         SubTitle = StocksUtility.toShortString(this.DataSource.Count) + " data points";
     }
 }

@@ -19,7 +19,7 @@
                 Width="100%"                
                 Height="100%"
                 Legend="@FinancialLegend"
-                ChartType=FinancialChartType.Bar
+                ChartType="FinancialChartType.Bar"
                 Thickness=2
                 DataSource="DataSource"
                 ZoomSliderType="FinancialChartZoomSliderType.Bar"
@@ -39,7 +39,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        base.OnInitialized();
         FinancialChartModule.Register(InfragisticsBlazor);
         this.DataSource = await StocksHistory.getMultipleStocks();
     }

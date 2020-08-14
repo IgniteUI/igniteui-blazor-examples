@@ -100,6 +100,7 @@ namespace Samples.Services
 
     public class StockItem
     {
+		//TODO - get date to show up on xAxis
         public string Date { get; set; }
         public double Open { get; set; }
         public double High { get; set; }
@@ -107,6 +108,5 @@ namespace Samples.Services
         public double Close { get; set; }
         public double Volume { get; set; }
         public int Index { get; set; }
-        //public string Label { get { return this.Date.ToString(); } }
     }
 }

@@ -16,6 +16,8 @@ namespace Samples.Services
         public static double volumeRange = 1000;
         public static double volumeStart = 20000000;
 
+        public static Random rand;
+
         public static List<StockItem> GetStocksFrom(DateTime dateEnd, int years)
         {
             var dateStart = dateEnd.AddYears(-years);
@@ -45,10 +47,10 @@ namespace Samples.Services
             var time = dateStart.AddDays(0);
             var v = volumeStart;
             var o = priceStart;
-            Random random = new Random();
-            var h = o + (random.NextDouble() * priceRange);
-            var l = o - (random.NextDouble() * priceRange);
-            var c = l + (random.NextDouble() * (h - l));
+            
+            var h = o + (rand.NextDouble() * priceRange);
+            var l = o - (rand.NextDouble() * priceRange);
+            var c = l + (rand.NextDouble() * (h - l));
 
             List<StockItem> stock = new List<StockItem> { };
             Console.WriteLine(time);
@@ -58,23 +60,20 @@ namespace Samples.Services
 
                 var stockItem =
                 new StockItem{
-                    Open = o,
-                    High = h,
-                    Low = l,
-                    Close = c,
-                    Volume = v };
+                    Open = o, High = h, Low = l, Close = c, Volume = v 
+                };
 
                 stock.Add(stockItem);
 
-                o = c + ((random.NextDouble() - 0.5) * priceRange);
+                o = c + ((rand.NextDouble() - 0.5) * priceRange);
                 if (o < 0)
                 {
                     o = Math.Abs(o) + 2;
                 }
-                h = o + (random.NextDouble() * priceRange);
-                l = o - (random.NextDouble() * priceRange);
-                c = l + (random.NextDouble() * (h - l));
-                v = v + ((random.NextDouble() - 0.5) * volumeRange);
+                h = o + (rand.NextDouble() * priceRange);
+                l = o - (rand.NextDouble() * priceRange);
+                c = l + (rand.NextDouble() * (h - l));
+                v = v + ((rand.NextDouble() - 0.5) * volumeRange);
                 if (v < 0)
                 {
                     v = Math.Abs(v) + 10000;
@@ -154,17 +153,15 @@ namespace Samples.Services
             var l = lastItem.Low;
             var c = lastItem.Close;
 
-            Random random = new Random();
-
-            o = c + ((random.NextDouble() - 0.5) * priceRange);
+            o = c + ((rand.NextDouble() - 0.5) * priceRange);
             if (o < 0)
             {
                 o = Math.Abs(o) + 2;
             }
-            h = o + (random.NextDouble() * priceRange);
-            l = o - (random.NextDouble() * priceRange);
-            c = l + (random.NextDouble() * (h - l));
-            v = v + ((random.NextDouble() - 0.5) * volumeRange);
+            h = o + (rand.NextDouble() * priceRange);
+            l = o - (rand.NextDouble() * priceRange);
+            c = l + (rand.NextDouble() * (h - l));
+            v = v + ((rand.NextDouble() - 0.5) * volumeRange);
             if (v < 0)
             {
                 v = Math.Abs(v) + 10000;
@@ -187,13 +184,7 @@ namespace Samples.Services
         public int Index { get; set; }
         public string Info { get; set; }
         public int Value { get; set; }
-        //public string Label {  get { return this.Time.ToShortDateString(); } }
-
-        //public new string ToString()
-        //{
-        //    return this.Date.ToString("MMM/dd/yyyy") + " " + this.Open.ToString("0");
-        //}
-
+        
         public StockItem Clone()
         {
             var copy = new StockItem();
