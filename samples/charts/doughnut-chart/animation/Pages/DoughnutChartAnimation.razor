@@ -1,8 +1,8 @@
-﻿@page "/DoughnutChartAnimation"
+@page "/samples/charts/doughnut-chart-animation"
+@page         "/charts/doughnut-chart-animation"
 
 @using Infragistics.Blazor.Controls
 @inject IInfragisticsBlazor InfragisticsBlazor;
-@inject IJSRuntime JSRuntime;
 
 @*TODO  : Bug in the component because RingSeries does not update neither with nor without "@" binding and calling StateHasChanged().*@
 
@@ -76,7 +76,7 @@
 
     private void OnTimerTick()
     {
-        if (!this.isAnimating)
+        if (this.isAnimating)
         {
             if (this.RadiusFactor < 1.0)
                 this.RadiusFactor += 0.0025;

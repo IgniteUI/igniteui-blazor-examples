@@ -1,0 +1,88 @@
+@page "/samples/charts/sparkline-normal-range"
+@page         "/charts/sparkline-normal-range"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+
+
+    <div class="igContainer">
+        <div className="igOptions">
+            <label className="igOptions-item">
+                <input @onchange="onRangeVisibilityChanged" checked="checked" type="checkbox"  />Range Visibility</label>
+            
+            <label className="igOptions-item">
+                <input type="range" min="-2" max="7" step="0.5" value=@normalRangeMinimum @onchange="onMinSliderChanged" />Min Range @normalRangeMinimum
+            </label>
+            <label className="igOptions-item">
+                <input type="range" min="-2" max="7" step="0.5" value=@normalRangeMaximum @onchange="onMaxSliderChanged" />Max Range @normalRangeMaximum
+            </label>
+        </div>
+
+        <div class="igComponent">
+
+            @if (DataSource != null)
+            {
+                <Sparkline Height="100%"
+                    Width="100%"
+                    DataSource="@DataSource"
+                    DisplayType="SparklineDisplayType.Area"
+                    ValueMemberPath="Value"
+                    LabelMemberPath="Label"
+                    NormalRangeVisibility="@normalRangeVisibility"
+                    NormalRangeMinimum=@normalRangeMinimum
+                    NormalRangeMaximum=@normalRangeMaximum
+                    NormalRangeFill="rgba(255, 0, 0, 0.4)"
+                    DisplayNormalRangeInFront="true">
+                </Sparkline>              
+
+            }
+
+        </div>
+    </div>
+
+@code {
+
+    private List<SparklineData.DataItem> DataSource;
+    private float normalRangeMinimum = 1;
+    private float normalRangeMaximum = 4;
+    private Visibility normalRangeVisibility = Visibility.Visible ;
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        SparklineModule.Register(InfragisticsBlazor);
+
+        this.DataSource = SparklineData.getData();
+    }
+
+    public void onRangeVisibilityChanged(ChangeEventArgs e)
+    {
+        bool selection = (bool)e.Value;
+
+        if (selection)
+        {
+            this.normalRangeVisibility = Visibility.Visible ;
+        }
+        else
+        {
+            this.normalRangeVisibility = Visibility.Collapsed ;
+        }
+
+    }
+
+    public void onMinSliderChanged(ChangeEventArgs e)
+    {
+        float value = float.Parse(e.Value.ToString());
+        this.normalRangeMinimum = value ;
+
+    }
+
+    public void onMaxSliderChanged(ChangeEventArgs e)
+    {
+        float value = float.Parse(e.Value.ToString());
+        this.normalRangeMaximum = value;
+    }
+
+}
+
