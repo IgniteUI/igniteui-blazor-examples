@@ -1,6 +1,6 @@
 using System;
 
-namespace BlazorApp.Server.Data
+namespace IgBlazorSamples.Server.Data
 {
     public class WeatherForecast
     {
