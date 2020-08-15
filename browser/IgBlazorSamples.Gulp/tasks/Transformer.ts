@@ -23,6 +23,10 @@ class SampleFile {
         this.Name = "";
         this.IsChanged = false;
     }
+
+    public isRazor(): boolean {
+        return this.Name.indexOf(".razor") > 0;
+    }
 }
 
 

@@ -221,8 +221,9 @@ function exclude(fileWithString) {
 }
 
 // let outputPathPages = './Samples';
-let outputPathPages = '../../browser/IgBlazorSamples.Client/Pages';
-let outputPathTOC   = '../../browser/IgBlazorSamples.Client/wwwroot';
+let outputPathPages    = '../../browser/IgBlazorSamples.Client/Pages';
+let outputPathServices = '../../browser/IgBlazorSamples.Client/Services';
+let outputPathTOC      = '../../browser/IgBlazorSamples.Client/wwwroot';
 
 function deleteSamples() {
 
@@ -247,11 +248,19 @@ function copySamples(cb) {
 
         for (const file of sample.SourceFiles) {
             // log("copy " + sample.SampleRoute + " " + sample.ComponentFolder + " " + file.Path);
-            let outputPath = outputFolder + '/' + file.Name
-            makeDirectoryFor(outputPath);
-            if (!fs.existsSync(outputPath)) {
-                 fs.writeFileSync(outputPath, file.Content);
-                //   console.log("copied " + outputPath);
+            if (file.isRazor()) {
+                let outputPath = outputFolder + '/' + file.Name;
+                makeDirectoryFor(outputPath);
+                if (!fs.existsSync(outputPath)) {
+                     fs.writeFileSync(outputPath, file.Content);
+                    //   console.log("copied " + outputPath);
+                }
+            } else {
+                let outputPath = outputPathServices + '/' + file.Name;
+                if (!fs.existsSync(outputPath)) {
+                     fs.writeFileSync(outputPath, file.Content);
+                   //   console.log("copied " + outputPath);
+                }
             }
 
             // gulp.src([sampleFile.Path])
