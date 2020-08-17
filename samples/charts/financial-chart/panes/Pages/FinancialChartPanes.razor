@@ -1,0 +1,49 @@
+﻿@page "/FinancialChartPanes"
+@* this namespace is required for Infragistics controls *@
+@using Infragistics.Blazor.Controls
+@using Samples.Services
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    
+    <div class="igComponent">
+
+        @if (DataSource != null)
+        {
+            <FinancialChart Width="100%"
+                            Height="100%"
+                            ChartType=FinancialChartType.Candle
+                            DataSource="DataSource"
+                            ZoomSliderType="FinancialChartZoomSliderType.Candle"
+                            VolumeType="FinancialChartVolumeType.Area"
+                            OverlayBrushes="rgba(5, 138, 0, 0.17)"
+                            OverlayOutlines="rgba(5, 138, 0, 0.4)"
+                            OverlayThickness=1 />
+        }
+        @*TODO OverlayTypes="FinancialOverlayType.PriceChannel"*@
+
+    </div>
+</div>
+
+@code {
+
+    List<StockItem> DataSource;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        FinancialChartModule.Register(InfragisticsBlazor);
+        InitData();
+    }
+
+    public void InitData()
+    {
+        var today = DateTime.Now;
+        var year = today.Year;
+        var month = today.Month;
+        var dateEnd = new DateTime(year, month, 1);
+        var dateStart = new DateTime(year - 1, month, 1);
+        this.DataSource = StocksUtility.GetStocksBetween(dateStart, dateEnd);
+    }
+}

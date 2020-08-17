@@ -1,0 +1,36 @@
+﻿@page "/FinancialChartMultipleData"
+@* this namespace is required for Infragistics controls *@
+@using Infragistics.Blazor.Controls
+@using Samples.Services
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">    
+    <div class="igComponent">
+
+        @if (DataSource != null)
+        {
+            <FinancialChart Width="100%"
+                Height="100%"
+                ChartType=FinancialChartType.Line
+                Thickness=2
+                DataSource="DataSource"
+                ChartTitle="Tesla vs Amazon vs Microsoft Changes"
+                Subtitle="Between 2013 and 2017"
+                YAxisMode="FinancialChartYAxisMode.PercentChange"
+                YAxisTitle="Percent Changed Since 2013"
+             />
+        }
+    </div>
+</div>
+
+@code {
+
+    List<StockHistoryItem[]> DataSource;
+
+    protected override async Task OnInitializedAsync()
+    {
+        FinancialChartModule.Register(InfragisticsBlazor);
+        this.DataSource = await StocksHistory.getMultipleStocks();
+    }
+}

@@ -1,0 +1,47 @@
+﻿@page "/FinancialChartPerformance"
+@* this namespace is required for Infragistics controls *@
+@using Infragistics.Blazor.Controls
+@using Samples.Services
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igComponent">
+
+        @if (DataSource != null)
+        {
+            <FinancialChart Width="100%"
+                Height="100%"
+                ChartType=FinancialChartType.Line
+                Thickness=2
+                XAxisMode="FinancialChartXAxisMode.Ordinal"
+                YAxisMode="FinancialChartYAxisMode.Numeric"
+                YAxisExtent=60
+                DataSource="DataSource"
+                />
+        }
+    </div>
+</div>
+
+@code {
+
+    List<StockItem> DataSource;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        FinancialChartModule.Register(InfragisticsBlazor);
+        InitData();
+    }
+
+    public void InitData()
+    {
+        var dateStart = DateTime.Now.AddYears(-10);
+        var dateEnd = DateTime.Now.Date;        
+
+        StocksUtility.intervalDays = 0;
+        StocksUtility.intervalHours = 1;
+        StocksUtility.intervalMinutes = 0;
+        this.DataSource = StocksUtility.GetStocksBetween(dateStart, dateEnd);
+    }
+}

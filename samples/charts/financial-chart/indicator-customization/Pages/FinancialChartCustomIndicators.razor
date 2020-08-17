@@ -1,0 +1,97 @@
+﻿@page "/FinancialChartCustomIndicators"
+@* this namespace is required for Infragistics controls *@
+@using Infragistics.Blazor.Controls
+@using Samples.Services
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igComponent">
+
+        @if (DataSource != null)
+        {
+            //*TODO set customindicator properties  
+            //CustomIndicatorNames="Custom Indicator(Price Changes)"
+            <FinancialChart Width="100%"
+                Height="100%"
+                ChartType=FinancialChartType.Line
+                Thickness=2                            
+                DataSource="DataSource"
+                
+                ApplyCustomIndicators="OnApplyCustomIndicators"/>
+        }
+    </div>
+</div>
+
+@code {
+
+    List<StockItem> DataSource;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        FinancialChartModule.Register(InfragisticsBlazor);
+
+        getStockData();
+    }
+
+    public void getStockData() {
+        var today = DateTime.Now;
+        var year = today.Year;
+        var month = today.Month;
+        var dateEnd = new DateTime(year, month, 1);
+        var dateStart = new DateTime(year - 2, month, 1);
+
+        this.DataSource = StocksUtility.GetStocksBetween(dateStart, dateEnd);
+    }
+
+    //TODO
+    protected void OnApplyCustomIndicators(FinancialChartCustomIndicatorArgs e) {
+
+        //if (e.Index == 0) {
+
+        //    var info = e.IndicatorInfo;
+
+        //    if (info = null)
+        //    {
+        //        Console.WriteLine("indicatorInfo is undefined"); return;
+        //    }
+
+        //    var ds = info.dataSource;
+        //    if (ds == null)
+        //    {
+        //        Console.WriteLine("dataSource is undefined"); return;
+        //    }
+        //    if (ds.openColumn == null)
+        //    {
+        //        Console.WriteLine("dataSource has no openColumn"); return;
+        //    }
+        //    if (ds.indicatorColumn.length == 0)
+        //    {
+        //        Console.WriteLine("dataSource has no indicatorColumn"); return;
+        //    }
+
+        //    var prices = ds.openColumn;
+        //    var priceStart = ds.openColumn[0];
+        //    var min = int.MaxValue;
+        //    var max = int.MinValue;
+
+        //    // calculating price changes using start price as reference
+        //    for (var i = 0; i < ds.indicatorColumn.length; i++)
+        //    {
+        //        var priceChange = prices[i] - priceStart;
+        //        var pricePercentage = (priceChange / priceStart) * 100;
+        //        min = Math.Min(min, pricePercentage);
+        //        max = Math.Max(max, pricePercentage);
+        //        // setting values for indicator
+        //        ds.indicatorColumn[i] = pricePercentage;
+        //    }
+
+        //    // setting min and max on data source
+        //    ds.minimumValue = min;
+        //    ds.maximumValue = max;
+
+        //    Console.WriteLine("custom indicator created between " + min + "  " + max);
+        //}
+    }
+}

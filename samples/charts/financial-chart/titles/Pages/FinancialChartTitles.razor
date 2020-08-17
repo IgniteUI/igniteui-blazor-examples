@@ -1,0 +1,39 @@
+﻿@page "/FinancialChartTitles"
+@* this namespace is required for Infragistics controls *@
+@using Infragistics.Blazor.Controls
+@using Samples.Services
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    
+    <div class="igComponent">
+
+        @if (DataSource != null)
+        {
+            <FinancialChart Width="100%"
+                Height="100%"
+                ChartType=FinancialChartType.Line
+                Thickness=2
+                DataSource="DataSource"
+                ZoomSliderType="FinancialChartZoomSliderType.None"
+                ChartTitle="Amazon Stock Prices"
+                Subtitle="Between 2013 and 2017"
+                YAxisTitle="Closing Prices ($)"
+                XAxisTitle="Time Range (1-Day Interval)"
+                />
+        }
+        
+    </div>
+</div>
+
+@code {
+
+    StockItem[] DataSource;
+
+    protected override async Task OnInitializedAsync()
+    {
+        FinancialChartModule.Register(InfragisticsBlazor);
+        this.DataSource = await StocksHistory.getAmazonStock();
+    }
+}
