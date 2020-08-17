@@ -39,10 +39,10 @@ exports.lintSamples = lintSamples = gulp.series(
 //     sb.updateReadme,
 // );
 
-// exports.updatePackages = updatePackages = gulp.series(
-//     sb.getSamples,
-//     sb.updatePackages,
-// );
+exports.updateProjects = updateProjects = gulp.series(
+    // sb.getSamples,
+    sb.updateProjects,
+);
 
 // exports.updateSharedFiles = updateSharedFiles = gulp.series(
 //     sb.getSamples,
@@ -55,6 +55,7 @@ exports.updateBrowser = updateBrowser = gulp.series(
     sb.copySamples,
     // sb.copyPackageJson,
 );
+
 
 // exports.updateVersion = updateVersion = sb.updateVersion;
 

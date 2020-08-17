@@ -32,21 +32,21 @@ log('loaded');
 
 // NOTE you can comment out strings in this array to run subset of samples
 var sampleSource = [
-    // igConfig.SamplesCopyPath + '/charts/category-chart/**/Pages/',
-    // igConfig.SamplesCopyPath + '/charts/data-chart/**/Pages/',
-    // igConfig.SamplesCopyPath + '/charts/doughnut-chart/**/Pages/',
+    igConfig.SamplesCopyPath + '/charts/category-chart/**/Pages/',
+    igConfig.SamplesCopyPath + '/charts/data-chart/**/Pages/',
+    igConfig.SamplesCopyPath + '/charts/doughnut-chart/**/Pages/',
     // igConfig.SamplesCopyPath + '/charts/financial-chart/**/Pages/',
-    // igConfig.SamplesCopyPath + '/charts/pie-chart/**/Pages/',
-    // igConfig.SamplesCopyPath + '/charts/sparkline/**/Pages/',
-    // igConfig.SamplesCopyPath + '/charts/tree-map/**/Pages/',
-    // igConfig.SamplesCopyPath + '/charts/zoomslider/**/Pages/',
-    // igConfig.SamplesCopyPath + '/maps/geo-map/**/Pages/',
-    // igConfig.SamplesCopyPath + '/gauges/bullet-graph/**/animation/Pages/',
+    igConfig.SamplesCopyPath + '/charts/pie-chart/**/Pages/',
+    igConfig.SamplesCopyPath + '/charts/sparkline/**/Pages/',
+    igConfig.SamplesCopyPath + '/charts/tree-map/**/Pages/',
+    igConfig.SamplesCopyPath + '/charts/zoomslider/**/Pages/',
+    igConfig.SamplesCopyPath + '/maps/geo-map/**/Pages/',
+    igConfig.SamplesCopyPath + '/gauges/bullet-graph/**/animation/Pages/',
     igConfig.SamplesCopyPath + '/gauges/bullet-graph/**/Pages/',
     igConfig.SamplesCopyPath + '/gauges/linear-gauge/**/Pages/',
-    // igConfig.SamplesCopyPath + '/gauges/radial-gauge/**/Pages/',
-    // igConfig.SamplesCopyPath + '/grids/**/Pages/',
-    // igConfig.SamplesCopyPath + '/layouts/**/Pages/',
+    igConfig.SamplesCopyPath + '/gauges/radial-gauge/**/Pages/',
+    igConfig.SamplesCopyPath + '/grids/**/Pages/',
+    igConfig.SamplesCopyPath + '/layouts/**/Pages/',
 
     // igConfig.SamplesCopyPath + '/excel/excel-library/**/Pages/',
     // igConfig.SamplesCopyPath + '/excel/spreadsheet/**/Pages/',
@@ -66,8 +66,10 @@ var sampleOutputFolder = '';
 
 function cleanSamples() {
     // cleaning up obsolete files in individual samples
-    del.sync("./samples/**/src/sandbox.config.json", {force:true});
-    del.sync("./samples/**/manifest.json", {force:true});
+    // del.sync("../../samples/**/src/sandbox.config.json", {force:true});
+    // del.sync("../../samples/**/manifest.json", {force:true});
+
+    del.sync("../../samples/**/css/open-iconic/README.md", {force:true});
 }
 
 function lintSamples(cb) {
@@ -149,6 +151,7 @@ function getSamples(cb) {
                 sampleFolder + "/Pages/*",
                 sampleFolder + "/Components/*",
                 sampleFolder + "/Services/*",
+                sampleFolder + "/*.csproj",
                 sampleFolder + "/wwwroot/*",
           '!' + sampleFolder + "/wwwroot/index.html",
           '!' + sampleFolder + "/wwwroot/index.css",
@@ -311,52 +314,88 @@ function updateReadme(cb) {
 } exports.updateReadme = updateReadme;
 
 // updating package.json files for all sample using a template
-function updatePackages(cb) {
+function updateProjects(cb) {
 
-    // getting content of package.json file from templates
-    let templatePackageFile = fs.readFileSync("./templates/sample/package.json");
-    let templatePackageJson = JSON.parse(templatePackageFile.toString());
+    // del.sync("../../samples/**/css/open-iconic/README.md", {force:true});
+    // del.sync("../../samples/**/css/open-iconic/BlazorClientApp.sln", {force:true});
+    // del.sync("../../samples/**/css/open-iconic/BlazorClientApp.csproj", {force:true});
+    // del.sync("../../samples/**/css/open-iconic/_Imports.razor", {force:true});
+    // del.sync("../../samples/**/css/open-iconic/Program.cs", {force:true});
+    // del.sync("../../samples/**/css/open-iconic/wwwroot", {force:true});
+    // del.sync("../../samples/**/css/open-iconic/Properties", {force:true});
 
-    // let last = samples[samples.length - 1];
-    // let content = Transformer.getPackage(last, templatePackageJson);
-    // fs.writeFileSync(sampleOutputFolder + "package.json", content);
+    // getting content of Project file from templates
+    let templateProject = fs.readFileSync("../../templates/sample/BlazorClientApp.csproj");
 
+    gulp.src(["../../samples/**/*.csproj"])
+    // .pipe(flatten({ "includeParents": -1 }))
+    .pipe(es.map(function(file, fileCallback) {
+        let fileDir = Transformer.getRelative(file.dirname);
 
-    for (const sample of samples) {
-        let outputPath = sampleOutputFolder + sample.SampleFolderPath + "/package.json";
-        let oldPackageFile = fs.readFileSync(outputPath).toString();
-
-        makeDirectoryFor(outputPath);
-
-        let newPackageFile = Transformer.getPackage(sample, templatePackageJson);
-        if (newPackageFile !== oldPackageFile) {
-            // log('updated: ' + outputPath);
-            fs.writeFileSync(outputPath, newPackageFile);
+        if (file.dirname.indexOf("wwwroot") > 0 ||
+            file.dirname.indexOf("Pages") > 0 ||
+            file.dirname.indexOf("Services") > 0) {
+            log("ERROR invalid project location: " + file.dirname)
+        } else {
+            let filePath = fileDir + "/" + file.basename;
+            // let filePath = file.dirname + "/" + file.basename;
+            let oldContent = file.contents.toString();
+            var newContent = templateProject + '';
+            if (newContent !== oldContent) {
+                fs.writeFileSync(filePath, newContent);
+                log('updated project: ' + filePath);
+                // file.contents = new Buffer(newContent);
+            }
         }
-    }
+        // send the updated file down the pipe
+        fileCallback(null, file);
+    }))
+    .on("end", function() {
+        cb();
+    });
 
-    cb();
-} exports.updatePackages = updatePackages;
+    // for (const sample of samples) {
+    //     if (sample.ProjectFile) {
+    //         let outputPath = sample.ProjectFile.Path;
+    //         let oldPackageFile = fs.readFileSync(outputPath).toString();
+    //         let newPackageFile = templateProject + ''; // Transformer.updateProject(sample.ProjectFile);
+    //         if (newPackageFile !== oldPackageFile) {
+    //             log('updated: ' + outputPath);
+    //             fs.writeFileSync(outputPath, newPackageFile);
+    //         }
+    //     }
+    // }
+    // gulp.src(sampleSource)
+    // // .pipe(gSort( { asc: false } ))
+    // .pipe(es.map(function(sample, sampleCallback) {
 
-// updating browser's package.json file using template's package.json
-function copyPackageJson(cb) {
+    //     let sampleFolder = Transformer.getRelative(sample.dirname);
+    //     gulp.src([sampleFolder + "/*.csproj"])
+    //     // .pipe(flatten({ "includeParents": -1 }))
+    //     .pipe(es.map(function(file, fileCallback) {
+    //         let fileDir = Transformer.getRelative(file.dirname);
+    //         let filePath = fileDir + "/" + file.basename;
+    //         let oldContent =  file.contents.toString();
+    //         var newContent = templateProject + '';
+    //         if (newContent !== oldContent) {
+    //             log('updated: ' + filePath);
+    //             file.contents = new Buffer(newContent);
+    //         }
+    //         // send the updated file down the pipe
+    //         fileCallback(null, file);
+    //     }))
+    //     .on("end", function() {
+    //         // cb();
+    //         sampleCallback(null, sample);
+    //     });
+    // }))
+    // .on("end", function() {
+    //     cb();
+    // });
 
-    // getting content of package.json file from templates
-    let templatePackageFile = fs.readFileSync("./templates/sample/package.json");
-    let templatePackageJson = JSON.parse(templatePackageFile.toString());
 
-    // getting content of package.json file from the browser
-    let browserPackageFile = fs.readFileSync("./package.json");
-    let browserPackageJson = JSON.parse(browserPackageFile.toString());
+} exports.updateProjects = updateProjects;
 
-    let browserPackageNew = Transformer.updatePackage(browserPackageJson, templatePackageJson);
-    if (browserPackageNew !== browserPackageFile) {
-        fs.writeFileSync(sampleOutputFolder + "package.json", browserPackageNew);
-        // console.log("updated browser's package.json file");
-    }
-
-    cb();
-} exports.copyPackageJson = copyPackageJson;
 
 // updates ./public/meta.json with version in ./package.json file
 function updateVersion(cb) {
@@ -490,15 +529,6 @@ function updateSharedFiles(cb) {
 
 } exports.updateSharedFiles = updateSharedFiles;
 
-function task1(cb) {
-    log('task1  ');
-    cb();
-} exports.task1 = task1;
-
-function task2(cb) {
-    log('task2  ');
-    cb();
-} exports.task2 = task2;
 
 
 // testing

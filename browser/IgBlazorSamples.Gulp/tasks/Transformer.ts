@@ -97,6 +97,7 @@ class SampleInfo {
     // public SampleFileNames: string[];  // names of files in sample folder: /samples/maps/geo-map/binding-csv-points/
     public SourceFiles: SampleFile[];
     public SourceRazorFile: SampleSourceFile;
+    public ProjectFile: SampleFile;
 
     public DocsUrl: string             // https://infragistics.com/Reactsite/components/geo-map.html
 
@@ -424,6 +425,29 @@ class Transformer {
         return url;
     }
 
+    public static updateProject(projectFile: SampleFile): string {
+
+        if (projectFile.Content === undefined) {
+            console.log("reading " + projectFile.Path);
+            projectFile.Content = transFS.readFileSync(projectFile.Path, "utf8");
+        }
+        let lines = projectFile.Content.split('\n');
+        for (let line of lines) {
+
+            for (let pack of igConfig.PackageReferences) {
+                if (Strings.contains(line, pack.Name)) {
+                    //     <PackageReference Include="Infragistics.Blazor" Version="20.1.53-dev" />
+                    line = '    <PackageReference Include="' + pack.Name + '" Version="' + pack.Version+ '" />'
+                    console.log("updating " + projectFile.Path + " with " + pack.Name);
+                    break;
+                }
+            }
+        }
+
+        let content = lines.join('\n');
+        return content;
+    }
+
     public static updatePackage(browsersPackage: PackageJson, templatePackage: PackageJson): string {
 
         let errors: string[] = [];
@@ -467,84 +491,6 @@ class Transformer {
         return JSON.stringify(browsersPackage, null, '  ');
     }
 
-    // gets updated package.json file for a sample using a template
-    public static getPackage(sample: SampleInfo, tempPackage: PackageJson): string {
-
-        let title = tempPackage.name;
-        title = Strings.replaceAll(title, 'platform-name', igConfig.PlatformName);
-        title = Strings.replaceAll(title, 'component-name', sample.ComponentName);
-        title = Strings.replaceAll(title, 'sample-name', sample.SampleDisplayName);
-        title = Strings.replaceAll(title, ' ', '-');
-        title = title.toLowerCase();
-
-        let descr = tempPackage.description;
-        descr = Strings.replaceAll(descr, 'platform-name', igConfig.PlatformName);
-        descr = Strings.replaceAll(descr, 'component-name', sample.ComponentName);
-        descr = Strings.replaceAll(descr, 'sample-name', sample.SampleDisplayName);
-
-        let samplePackage = sample.PackageFileContent;
-        samplePackage.name = title;
-        samplePackage.description = descr;
-        samplePackage.author = tempPackage.author;
-        samplePackage.homepage = tempPackage.homepage;
-        samplePackage.version = tempPackage.version;
-        samplePackage.private = tempPackage.private;
-        samplePackage.browserslist = tempPackage.browserslist;
-        samplePackage.scripts = tempPackage.scripts;
-
-        // updating scripts in a sample using scripts from the template
-        // for (let name in tempPackage.scripts) {
-        //     if (tempPackage.scripts.hasOwnProperty(name) &&
-        //         samplePackage.scripts.hasOwnProperty(name)) {
-        //         samplePackage.scripts[name] = tempPackage.scripts[name]
-        //     }
-        // }
-
-        // updating devDependencies in a sample using devDependencies from the template
-        for (let name in tempPackage.devDependencies) {
-            if (tempPackage.devDependencies.hasOwnProperty(name) &&
-                samplePackage.devDependencies.hasOwnProperty(name)) {
-                samplePackage.devDependencies[name] = tempPackage.devDependencies[name]
-            }
-        }
-
-        // overriding sample dependencies
-        samplePackage.dependencies = {};
-
-        // // updating dependencies in sa sample by checking against OPTIONAL dependencies in the template
-        // for (let name in tempPackage.dependenciesOptional) {
-
-        //     let dependency = tempPackage.dependenciesOptional[name];
-        //     if (dependency.usage === "always") {
-        //         samplePackage.dependencies[name] = dependency.version;
-        //     } else if (dependency.usage === "detect") {
-        //         let isDependencyImported = sample.SampleFileSourceCode.indexOf(name) >= 0;
-        //         if (isDependencyImported) {
-        //             samplePackage.dependencies[name] = dependency.version;
-        //         // using keywords to check if the dependency is used by some other file, e.g. ExcelUtility.ts
-        //         } else if (dependency.keywords !== undefined && dependency.keywords.length > 0) {
-        //             for (let keyword of dependency.keywords) {
-        //                 let isDependencyUsed = sample.SampleFileSourceCode.indexOf(keyword) >= 0;
-        //                 if (isDependencyUsed) {
-        //                     samplePackage.dependencies[name] = dependency.version;
-        //                     break;
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
-
-        // updating dependencies in sa sample by checking against REQUIRED dependencies in the template
-        for (let name in tempPackage.dependencies) {
-            samplePackage.dependencies[name] = tempPackage.dependencies[name];
-        }
-        // console.log("sample: " + sample.SampleFolderPath);
-        // console.log("dependencies \n" + JSON.stringify(samplePackage.dependencies, null, '  '));
-
-        return JSON.stringify(samplePackage, null, '  ');
-    }
-
-
 
     public static getSampleInfo(sampleFile: any, sampleFilePaths?: string[]): SampleInfo {
 
@@ -565,8 +511,11 @@ class Transformer {
                 file.Content = transFS.readFileSync(filePath, "utf8");
                 // console.log("pro file " + file.Path + "   " + file.Name);
             }
+
             if (file.Name.indexOf(".razor") > 0){
                 info.SourceFiles.splice(0, 0, file);
+            } else if (file.Name.indexOf(".csproj") > 0){
+                info.ProjectFile = file;
             } else {
                 info.SourceFiles.push(file);
             }

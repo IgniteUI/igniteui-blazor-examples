@@ -11,9 +11,7 @@ log('loaded for ' + platformTarget + ' platform' );
 
 // this configuration defines variables for each platform
 let config = {
-    PackageKeyword: "igniteui",
-    PackageVersion: "^16.11.7",
-    PlatformCode: "tsx",
+    PlatformCode: "razor",
     PlatformName: "Blazor",
     BrowserHostUrl: "http://localhost:4200/",
     BrowserRoute: "/samples",
@@ -39,6 +37,10 @@ let config = {
     SandboxUrlView:  "https://codesandbox.io/embed/{RepositoryPath}?{SandboxUrlOptions}",
     SandboxUrlEdit:  "https://codesandbox.io/s/{RepositoryPath}?{SandboxUrlOptions}",
     SandboxUrlShort: "https://codesandbox.io/embed/{RepositoryPath}",
+
+    PackageReferences: [
+        { Name: "Infragistics.Blazor", Version: "20.1.53-dev"},
+    ],
 }
 
 // exporting only config for one platform since SB do not need other variables
