@@ -29,6 +29,7 @@ exports.getSamples = getSamples = gulp.series(
 // );
 
 exports.lintSamples = lintSamples = gulp.series(
+    // sb.makeSamplesWritable,
     sb.getSamples,
     sb.lintSamples,
     sb.saveSamples,

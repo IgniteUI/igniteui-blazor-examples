@@ -899,7 +899,8 @@ class Transformer {
             }
 
             currentLine = Strings.replaceAll(currentLine, ';;', ';');
-            if (currentLine.indexOf('"') === -1) {
+            if (currentLine.indexOf('"') === -1 &&
+                currentLine.indexOf('//') === -1) {
 
                 for (const symbol of spacedSymbols) {
                     currentLine = currentLine.replace(new RegExp('([A-Za-z0-9])' + symbol), '$1 $2');
@@ -930,6 +931,8 @@ class Transformer {
                 currentLine = Strings.replaceAll(currentLine, 'linear - gradient', 'linear-gradient');
 
             }
+
+            currentLine = Strings.replaceAll(currentLine, 'className', 'class');
 
             // if (Strings.contains(currentLine, "for")){
             //     console.log('linting >>>> ' + currentLine);
