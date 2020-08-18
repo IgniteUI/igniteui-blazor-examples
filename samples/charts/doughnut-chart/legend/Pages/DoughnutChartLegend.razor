@@ -4,20 +4,17 @@
 @using Infragistics.Blazor.Controls
 @inject IInfragisticsBlazor InfragisticsBlazor;
 
-
-@*TODO  : legend not exposed*@
-
 <div class="igContainer">
+
     <div class="igLegend">
-        <Legend ></Legend>
-		<ItemLegend @ref=ItemLegend/>
-		
-    </div>
+		<ItemLegend @ref="Legend"/>
+	</div>
+
     <div class="igComponent">
 
         @if (DataSource != null)
         {
-            <DoughnutChart Height="100%" Width="100%" @ref="doughnutChart">
+            <DoughnutChart Height="100%" Width="100%" @ref="Chart">
                 <RingSeries DataSource="@DataSource"
                             LabelMemberPath="Summary"
                             ValueMemberPath="MarketShare"
@@ -32,13 +29,15 @@
 
 @code {
 
-    private List<DataItem> DataSource;
-   
+    public DoughnutChart Chart;
+    public ItemLegend Legend;
+    public List<DataItem> DataSource;
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
         DoughnutChartModule.Register(InfragisticsBlazor);
-   
+
         var dataItems = new List<DataItem>();
         dataItems.Add(new DataItem() { MarketShare = 30, Company = "Google", });
         dataItems.Add(new DataItem() { MarketShare = 25, Company = "Apple", });
@@ -47,7 +46,8 @@
         dataItems.Add(new DataItem() { MarketShare = 10, Company = "Other", });
 
         DataSource = dataItems;
-		//doughnutChart.legend = ItemLegend;
+        //TODO
+        //Chart.Legend = this.Legend;
 
     }
 
@@ -57,6 +57,6 @@
         public double MarketShare { get; set; }
         public string Summary { get { return Company + " " + MarketShare + "%"; } }
     }
-    
+
 }
 

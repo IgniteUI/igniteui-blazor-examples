@@ -8,15 +8,15 @@
 <div class="igContainer-horizontal">
 
 	<div className="igLegend">
-          <ItemLegend @ref=ItemLegend/>
+          <ItemLegend @ref="Legend"/>
     </div>
-				
+
     <div class="igComponent">
 
         @if (DataSource != null)
         {
             <PieChart Height="100%" Width="100%"
-                @ref="pieChart"
+                @ref="Chart"
                 DataSource="DataSource"
                 LabelMemberPath="Summary"
                 ValueMemberPath="MarketShare"
@@ -30,9 +30,9 @@
 
 @code {
 
-    public PieChart pieChart;
-    public ItemLegend ItemLegend;
-    private List<DataItem> DataSource;
+    public PieChart Chart;
+    public ItemLegend Legend;
+    public List<DataItem> DataSource;
 
     protected override void OnInitialized()
     {
@@ -48,7 +48,7 @@
 
         DataSource = dataItems;
 		//TODO
-        //pieChart.legend = ItemLegend;
+        //Chart.Legend = this.Legend;
     }
 
     public class DataItem

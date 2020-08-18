@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace Samples
 {
+    public class Temperature
+    {
+        public string Label { get; set; }
+        public double Value { get; set; }
+        public double Low { get; set; }
+        public double High { get; set; }
+    }
+
     public static class TemperatureHistory
     {
-        public class Temperature
-        {
-            public string Label { get; set; }
-            public double Value { get; set; }
-            public double Low { get; set; }
-            public double High { get; set; }
-        }
-
         public static List<Temperature> Generate(double startValue, double startYear, double endYear)
         {
             var data = new List<Temperature>();
