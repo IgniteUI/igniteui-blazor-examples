@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 let gulp = require('gulp');
+var gulpChangeMod = require('gulp-chmod');
 let gulpIgnore = require('gulp-ignore');
 let uglify = require('gulp-uglify');
 
@@ -214,6 +215,15 @@ function makeDirectoryFor(filePath) {
     fs.mkdirSync(dirname);
     // fs.mkdir(sampleOutputFolder + 'src', { recursive: true }, (err) => { if (err) throw err; });
 }
+
+function makeSamplesWritable(cb) {
+    gulp.src(sampleSource)
+        .pipe(gulpChangeMod(666))
+        .pipe(gulp.dest(sampleSource))
+        .on("end", function() {
+            cb();
+        });
+} exports.makeSamplesWritable = makeSamplesWritable;
 
 function exclude(fileWithString) {
     return es.map(function(file, cb) {

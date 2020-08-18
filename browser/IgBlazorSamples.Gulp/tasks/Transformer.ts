@@ -795,7 +795,7 @@ class Transformer {
 
         let invalidLines: string[] = [
             "@page ",
-            "@inject IJSRuntime JSRuntime;",
+            "@inject IJSRuntime JSRuntime",
         ];
 
         let csharpCodeLines: string[] = [];
@@ -857,9 +857,9 @@ class Transformer {
         importLines.splice(1, 0, '@page         "' + sample.SampleRoute + '"');
 
         let newContent =
-            importLines.join('\n') + "\n" +
-            htmlCodeLines.join('\n') + "\n" +
-            csharpCodeLines.join('\n') + "\n";
+            importLines.join('\n\r') +
+            htmlCodeLines.join('\n\r') +
+            csharpCodeLines.join('\n\r');
 
         sample.SourceFiles[0].Content = newContent;
         sample.SourceRazorFile.Content = newContent;
