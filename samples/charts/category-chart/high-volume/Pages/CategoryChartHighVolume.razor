@@ -2,13 +2,13 @@
 @page         "/charts/category-chart-high-volume"
 
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
 <div class="igContainer">
     <div class="igOptions">
-        <label className="igOptions-label">Data Points: </label>
-        <label className="igOptions-value">@DataInfo</label>
-        <input className="igOptions-slider" type="range" min="10000" max="1000000" step="1000"
+        <label class="igOptions-label">Data Points: </label>
+        <label class="igOptions-value">@DataInfo</label>
+        <input class="igOptions-slider" type="range" min="10000" max="1000000" step="1000"
                value="@DataPoints" @onchange="OnDataPointsChanged" />
         <button @onclick="OnDataGenerateClick">Generate Data</button>
     </div>
@@ -31,7 +31,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         CategoryChartModule.Register(InfragisticsBlazor);
 
         this.DataInfo = CategoryDataSource.ToShortString(this.DataPoints);
@@ -54,4 +53,3 @@
         this.DataSource = CategoryDataSource.Generate(0, this.DataPoints, true);
     }
 }
-

@@ -2,11 +2,11 @@
 @page         "/charts/category-chart-overview"
 @* this namespace is required for Infragistics controls *@
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IInfragisticsBlazor InfragisticsBlazor
 @* NOTE use this HTML code to design a sample *@
 <div class="igContainer">
     <div class="igOptions">
-        <span className="igOptions-label">Chart Type: </span>
+        <span class="igOptions-label">Chart Type: </span>
         <select @bind="@ChartType">
             <option>@CategoryChartType.Auto</option>
             <option>@CategoryChartType.Area</option>
@@ -20,7 +20,7 @@
             <option>@CategoryChartType.Waterfall</option>
         </select>
     </div>
-    <div class="igComponent">        
+    <div class="igComponent">
         @if (DataSource != null)
         {
             <CategoryChart Height="100%" Width="100%" ChartType="@ChartType"
@@ -40,8 +40,7 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
-        CategoryChartModule.Register(InfragisticsBlazor);        
+        CategoryChartModule.Register(InfragisticsBlazor);
 
         var olympicMedals = new List<OlympicMedals>();
         olympicMedals.Add(new OlympicMedals() { Year = "1996", USA = 148, CHN = 110, RUS = 95 });
@@ -52,6 +51,5 @@
         olympicMedals.Add(new OlympicMedals() { Year = "2016", USA = 146, CHN = 112, RUS = 88 });
 
         DataSource = olympicMedals;
-    }    
+    }
 }
-

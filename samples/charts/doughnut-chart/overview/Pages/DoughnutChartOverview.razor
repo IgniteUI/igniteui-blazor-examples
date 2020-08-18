@@ -2,7 +2,7 @@
 @page         "/charts/doughnut-chart-overview"
 
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
 <div class="igContainer">
     <div class="igComponent">
@@ -26,12 +26,11 @@
 @code {
 
     private List<DataItem> DataSource;
-   
+
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         DoughnutChartModule.Register(InfragisticsBlazor);
-   
+
         var dataItems = new List<DataItem>();
         dataItems.Add(new DataItem() { MarketShare = 30, Company = "Google", });
         dataItems.Add(new DataItem() { MarketShare = 25, Company = "Apple", });
@@ -49,6 +48,5 @@
         public double MarketShare { get; set; }
         public string Summary { get { return Company + " " + MarketShare + "%"; } }
     }
-    
-}
 
+}

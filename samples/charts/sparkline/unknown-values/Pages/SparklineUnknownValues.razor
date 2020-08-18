@@ -1,15 +1,13 @@
 @page "/samples/charts/sparkline-unknown-values"
 @page         "/charts/sparkline-unknown-values"
 
-
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
-
+@inject IInfragisticsBlazor InfragisticsBlazor
 
     <div class="igContainer">
 
-        <div className="igOptions">
-            <label className="igOptions-item">
+        <div class="igOptions">
+            <label class="igOptions-item">
                 <input @onchange="onChanged" type="checkbox" checked="checked" />Plot Unknown Values
             </label>
         </div>
@@ -36,19 +34,18 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         SparklineModule.Register(InfragisticsBlazor);
 
         var dataItems = new List<DataItem>();
 
         dataItems.Add(new DataItem() { Label =4,Value =4 });
-        dataItems.Add(new DataItem() { Label = 5, Value = 5});
+        dataItems.Add(new DataItem() { Label = 5, Value = 5 });
         dataItems.Add(new DataItem() { Label = 2, Value = double.NaN });
         dataItems.Add(new DataItem() { Label = 7, Value = 7 });
-        dataItems.Add(new DataItem() { Label = -1, Value = -1 });
+        dataItems.Add(new DataItem() { Label = - 1, Value = -1 });
 
         dataItems.Add(new DataItem() { Label = 3, Value = 3 });
-        dataItems.Add(new DataItem() { Label = -2, Value = -2 });
+        dataItems.Add(new DataItem() { Label = - 2, Value = -2 });
         dataItems.Add(new DataItem() { Label = 5, Value = double.NaN });
         dataItems.Add(new DataItem() { Label = 2, Value = 2 });
         dataItems.Add(new DataItem() { Label = 6, Value = 6 });
@@ -76,6 +73,4 @@
         public double Value { get; set; }
     }
 
-
 }
-

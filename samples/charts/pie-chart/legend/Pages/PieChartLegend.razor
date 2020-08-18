@@ -3,11 +3,11 @@
 
 @* this namespace is required for Infragistics controls *@
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
 <div class="igContainer-horizontal">
 
-	<div className="igLegend">
+	<div class="igLegend">
           <ItemLegend @ref="Legend"/>
     </div>
 
@@ -36,7 +36,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         PieChartModule.Register(InfragisticsBlazor);
 
         var dataItems = new List<DataItem>();
@@ -59,4 +58,3 @@
         public string Summary { get { return Company + " " + MarketShare + "%"; } }
     }
 }
-

@@ -2,11 +2,11 @@
 @page         "/charts/category-chart-trendline"
 
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
 <div class="igContainer">
     <div class="igOptions">
-        <span className="igOptions-label">Trend Line Type: </span>
+        <span class="igOptions-label">Trend Line Type: </span>
         <select @bind="@ChartTrendline">
             <option>@TrendLineType.LinearFit</option>
             <option>@TrendLineType.QuadraticFit</option>
@@ -55,10 +55,8 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         CategoryChartModule.Register(InfragisticsBlazor);
 
         this.DataSource = TemperatureHistory.Generate(30, 0, 2000);
     }
 }
-

@@ -2,10 +2,10 @@
 @page         "/charts/category-chart-axis-options"
 
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
-<div class="igContainer">    
-    <div class="igComponent">        
+<div class="igContainer">
+    <div class="igComponent">
         @if (DataSource != null)
         {
             <CategoryChart Height="100%" Width="100%"
@@ -13,7 +13,7 @@
                            ChartType="CategoryChartType.Line"
                            ChartTitle="Olympic Medals By Country"
                            Thickness="3"
-                           
+
                            XAxisLabelTextStyle="9pt Verdana"
                            XAxisLabelTopMargin="5"
                            XAxisLabelTextColor="Gray"
@@ -62,13 +62,12 @@
 </div>
 
 @code {
-    
+
     private List<OlympicMedals> DataSource;
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
-        CategoryChartModule.Register(InfragisticsBlazor);          
+        CategoryChartModule.Register(InfragisticsBlazor);
 
         var olympicMedals = new List<OlympicMedals>();
         olympicMedals.Add(new OlympicMedals() { Year = "1996", USA = 148, CHN = 110, RUS = 95 });
@@ -81,4 +80,3 @@
         DataSource = olympicMedals;
     }
 }
-

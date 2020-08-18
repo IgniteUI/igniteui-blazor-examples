@@ -2,18 +2,18 @@
 @page         "/charts/doughnut-chart-explosion"
 
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
 @* todo: ExplodedSlices not working *@
 
 <div class="igContainer">
-   
+
     <div class="igComponent">
-        
+
         @if (DataSource != null)
         {
             <DoughnutChart Height="100%" Width="100%" AllowSliceExplosion="true" SliceClick="OnSliceClick">
-                <RingSeries DataSource="@DataSource" 
+                <RingSeries DataSource="@DataSource"
                             LabelMemberPath="Summary"
                             ValueMemberPath="MarketShare"
                             LegendLabelMemberPath="Company"
@@ -38,7 +38,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();       
         DoughnutChartModule.Register(InfragisticsBlazor);
 
         var dataItems = new List<DataItem>();
@@ -68,4 +67,3 @@
 		//explodedSlices = new int[] { e.Index };
     }
 }
-

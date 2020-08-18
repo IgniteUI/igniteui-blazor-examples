@@ -3,19 +3,19 @@
 
 @* this namespace is required for Infragistics controls *@
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
 @* TODO: selectedItem not working  *@
 <div class="igContainer">
     <div class="igOptions">
-        <label>Selected Slice: @SelectedSlices</label>    
+        <label>Selected Slice: @SelectedSlices</label>
     </div>
 
     <div class="igComponent">
 
         @if (DataSource != null)
-        {            
-            <DoughnutChart Height="100%" Width="100%" 
+        {
+            <DoughnutChart Height="100%" Width="100%"
                            AllowSliceSelection="true"
                            SliceClick="OnSliceClick">
                 <RingSeries DataSource="@DataSource"
@@ -43,7 +43,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         DoughnutChartModule.Register(InfragisticsBlazor);
 
         var dataItems = new List<DataItem>();
@@ -64,7 +63,6 @@
         public string Summary { get { return Company + " " + MarketShare + "%"; } }
     }
 
-  
     protected void OnSliceClick(SliceClickEventArgs e)
     {
         Console.WriteLine("Sample OnButtonClick");
@@ -73,4 +71,3 @@
        // SelectedSlices = e.dataContext.company;
     }
 }
-

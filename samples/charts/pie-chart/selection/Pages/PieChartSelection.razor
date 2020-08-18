@@ -3,10 +3,10 @@
 
 @* this namespace is required for Infragistics controls *@
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
 <div class="igContainer">
-   
+
 	<div class="igOptions-horizontal">
 		<label>
 			Selected Slices: @SelectedItems
@@ -30,7 +30,7 @@
 				SelectedSliceOpacity="1.0"
 				SelectedSliceStrokeThickness="2"
 				RadiusFactor="0.9"
-				StartAngle="0"                         
+				StartAngle="0"
 				SliceClick="OnSliceClick">
 			</PieChart>
 		}
@@ -46,9 +46,8 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         PieChartModule.Register(InfragisticsBlazor);
-		
+
 		var dataItems = new List<DataItem>();
         dataItems.Add(new DataItem() { MarketShare = 30, Company = "Google", });
         dataItems.Add(new DataItem() { MarketShare = 25, Company = "Apple", });
@@ -80,4 +79,3 @@
         SelectedItems = selectedSlices;
     }
 }
-

@@ -2,7 +2,7 @@
 @page         "/charts/pie-chart-animation"
 @* this namespace is required for Infragistics controls *@
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
 <div class="igContainer">
 
@@ -52,7 +52,7 @@
             this.isAnimating = false;
         }
     }
-	
+
 	private void OnTimerTick()
     {
         if (this.isAnimating)
@@ -71,12 +71,11 @@
 
             Task.Delay(16).ContinueWith((t) => OnTimerTick());
 			this.StateHasChanged();
-        }        
+        }
     }
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         PieChartModule.Register(InfragisticsBlazor);
 
         var dataItems = new List<DataItem>();

@@ -2,9 +2,9 @@
 @page         "/charts/category-chart-stack-columns"
 
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
-<div class="igContainer">   
+<div class="igContainer">
     @*YAxisFormatLabel="this.onFormatYAxisLabel"*@
 
     <div class="igComponent">
@@ -47,12 +47,11 @@
 </div>
 
 @code {
-    
+
     private List<StatData> DataSource;
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         CategoryChartModule.Register(InfragisticsBlazor);
 
         this.InitData();
@@ -87,13 +86,13 @@
         };
 
         foreach (StatData item in this.DataSource)
-        {            
+        {
             item.Blogging = item.T + item.M + item.N + item.S + item.B;
             item.Social = item.T + item.M + item.N + item.S;
             item.News = item.T + item.M + item.N;
             item.Music = item.T + item.M;
             item.TV = item.T;
-            
+
             item.Blogging = Math.Round(item.Blogging * 10) / 10;
             item.Social = Math.Round(item.Social * 10) / 10;
             item.News = Math.Round(item.News * 10) / 10;
@@ -102,4 +101,3 @@
         }
     }
 }
-

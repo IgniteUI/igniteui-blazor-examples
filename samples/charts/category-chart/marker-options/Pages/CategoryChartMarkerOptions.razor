@@ -2,11 +2,11 @@
 @page         "/charts/category-chart-marker-options"
 
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
 <div class="igContainer">
     <div class="igOptions">
-        <span className="igOptions-label">Chart Type: </span>
+        <span class="igOptions-label">Chart Type: </span>
         <select @bind="@ChartType">
             <option>@CategoryChartType.Auto</option>
             <option>@CategoryChartType.Area</option>
@@ -19,7 +19,7 @@
             <option>@CategoryChartType.StepLine</option>
             <option>@CategoryChartType.Waterfall</option>
         </select>
-        <span className="igOptions-label"> Marker Type: </span>
+        <span class="igOptions-label"> Marker Type: </span>
         <select @bind="@ChartMarkerType">
             <option>@MarkerType.Automatic</option>
             <option>@MarkerType.Circle</option>
@@ -60,7 +60,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         CategoryChartModule.Register(InfragisticsBlazor);
 
         var olympicMedals = new List<OlympicMedals>();
@@ -76,4 +75,3 @@
         this.ChartType = CategoryChartType.Auto;
     }
 }
-

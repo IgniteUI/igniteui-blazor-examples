@@ -2,31 +2,31 @@
 @page         "/charts/category-chart-highlighting"
 
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
 <div class="igContainer">
     <div class="igOptions">
-        <label className="igOptions-label">Enable Highlighting: </label>
-        <label className="igOptions-item">
+        <label class="igOptions-label">Enable Highlighting: </label>
+        <label class="igOptions-item">
             <input type="checkbox"
                    checked="@IsSeriesHighlighting"
                    @onchange="OnSeriesHighlightingChanged" /> Series
         </label>
-        <label className="igOptions-item">
+        <label class="igOptions-item">
             <input type="checkbox"
                    checked="@IsItemHighlighting"
                    @onchange="OnItemHighlightingChanged" />Item
         </label>
-        <label className="igOptions-item">
+        <label class="igOptions-item">
             <input type="checkbox"
                    checked="@IsCategoryHighlighting"
                    @onchange="OnCategoryHighlightingChanged" />Category
         </label>
     </div>
-    <div class="igComponent">        
+    <div class="igComponent">
         @if (DataSource != null)
         {
-            <CategoryChart Height="100%" Width="100%"                           
+            <CategoryChart Height="100%" Width="100%"
                            DataSource="@DataSource"
                            IsCategoryHighlightingEnabled="@IsCategoryHighlighting"
                            IsItemHighlightingEnabled="@IsItemHighlighting"
@@ -48,7 +48,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         CategoryChartModule.Register(InfragisticsBlazor);
 
         this.DataSource = new List<OlympicMedals>();
@@ -78,4 +77,3 @@
         this.IsCategoryHighlighting = value;
     }
 }
-

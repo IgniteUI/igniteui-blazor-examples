@@ -2,22 +2,22 @@
 @page         "/charts/category-chart-annotations"
 
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
 <div class="igContainer">
     <div class="igOptions">
-        <label className="igOptions-label">Annotations: </label>
-        <label className="igOptions-item">
+        <label class="igOptions-label">Annotations: </label>
+        <label class="igOptions-item">
             <input type="checkbox" @onchange="OnCrosshairsVisibleCheckboxChange" checked="@CrosshairsVisible" /> Crosshair
         </label>
-        <label className="igOptions-item">
+        <label class="igOptions-item">
             <input type="checkbox" @onchange="OnCalloutsVisibleCheckboxChange" checked="@CalloutsVisible"/> Callouts
         </label>
-        <label className="igOptions-item">
+        <label class="igOptions-item">
             <input type="checkbox" @onchange="OnFinalValuesCheckboxChange" checked="@FinalValuesVisible"/> Final Values
         </label>
         @* TODO - Changing markers is not currently possible at this time
-        <label className="igOptions-item">
+        <label class="igOptions-item">
             <input type="checkbox" onChange={this.onMarkersVisible} /> Markers
         </label>*@
     </div>
@@ -64,7 +64,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         CategoryChartModule.Register(InfragisticsBlazor);
 
         this.DataSource = new List<TemperatureData>();
@@ -103,12 +102,12 @@
         double[] tempValues = { 74, 74, 76, 78, 83, 87, 94, 97, 93, 86, 81, 79 };
 
         // generating data item
-        for(int i=0; i<12; i++)
+        for (int i = 0; i < 12; i++)
         {
             this.DataSource.Add(new TemperatureData()
             {
                 Temperature = tempValues[i],
-                Date = new DateTime(year, (i+1), 1)
+                Date = new DateTime(year, (i + 1), 1)
             });
         }
 
@@ -169,4 +168,3 @@
         public double Index { get; set; }
     }
 }
-

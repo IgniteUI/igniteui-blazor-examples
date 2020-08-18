@@ -1,20 +1,20 @@
 @page "/samples/charts/category-chart-high-frequency"
 @page         "/charts/category-chart-high-frequency"
 
-@using System.Collections.ObjectModel;
+@using System.Collections.ObjectModel
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
 <div class="igContainer">
     <div class="igOptions">
-        <label className="igOptions-label">Refresh Interval: </label>
-        <label className="igOptions-value">@RefreshInfo</label>
-        <input className="igOptions-slider" type="range" min="10" max="500"
+        <label class="igOptions-label">Refresh Interval: </label>
+        <label class="igOptions-value">@RefreshInfo</label>
+        <input class="igOptions-slider" type="range" min="10" max="500"
                value=@RefreshInterval
                @onchange="OnRefreshFrequencyChanged" />
-        <label className="igOptions-label">Data Points: </label>
-        <label className="igOptions-value">@DataInfo</label>
-        <input className="igOptions-slider" type="range" min="10000" max="1000000" step="1000"
+        <label class="igOptions-label">Data Points: </label>
+        <label class="igOptions-value">@DataInfo</label>
+        <input class="igOptions-slider" type="range" min="10000" max="1000000" step="1000"
                value=@DataPoints @onchange="OnDataPointsChanged" />
         <button @onclick="OnDataGenerateClick">Generate Data</button>
     </div>
@@ -43,7 +43,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         CategoryChartModule.Register(InfragisticsBlazor);
 
         this.DataInfo = CategoryDataSource.ToShortString(this.DataPoints);
@@ -117,4 +116,3 @@
         Task.Delay((int)this.RefreshMilliseconds).ContinueWith((t) => OnTick());
     }
 }
-

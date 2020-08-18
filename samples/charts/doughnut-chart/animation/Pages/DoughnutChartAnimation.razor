@@ -2,7 +2,7 @@
 @page         "/charts/doughnut-chart-animation"
 
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
 @*TODO  : Bug in the component because RingSeries does not update neither with nor without "@" binding and calling StateHasChanged().*@
 
@@ -41,7 +41,7 @@
 
     private void onAnimationToggle()
     {
-        
+
         if (!this.isAnimating)
         {
             this.StartAngle = 0;
@@ -58,10 +58,9 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
-        
+
         DoughnutChartModule.Register(InfragisticsBlazor);
-       
+
         var dataItems = new List<DataItem>();
         dataItems.Add(new DataItem() { MarketShare = 30, Company = "Google", });
         dataItems.Add(new DataItem() { MarketShare = 25, Company = "Apple", });
@@ -93,7 +92,6 @@
             Task.Delay(16).ContinueWith((t) => OnTimerTick());
             this.StateHasChanged();
         }
-
 
     }
 

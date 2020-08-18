@@ -2,15 +2,15 @@
 @page         "/charts/category-chart-tooltip-types"
 
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
 <div class="igContainer">
     <div class="igOptions">
-        <span className="igOptions-label">Tooltip Type: </span>
+        <span class="igOptions-label">Tooltip Type: </span>
         <select @bind="@ChartTooltip">
             <option>@ToolTipType.Default</option>
             <option>@ToolTipType.Item</option>
-            <option>@ToolTipType.Category</option>            
+            <option>@ToolTipType.Category</option>
             <option>@ToolTipType.None</option>
         </select>
     </div>
@@ -24,7 +24,7 @@
                            YAxisMinimumValue="0"
                            YAxisMaximumValue="200"
                            XAxisInterval="1"
-                           ToolTipType="@ChartTooltip">                           
+                           ToolTipType="@ChartTooltip">
             </CategoryChart>
         }
     </div>
@@ -38,7 +38,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         CategoryChartModule.Register(InfragisticsBlazor);
 
         var olympicMedals = new List<OlympicMedals>();
@@ -50,6 +49,5 @@
         olympicMedals.Add(new OlympicMedals() { Year = "2016", USA = 146, CHN = 112, RUS = 88 });
 
         DataSource = olympicMedals;
-    }   
+    }
 }
-
