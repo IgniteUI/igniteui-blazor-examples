@@ -51,7 +51,8 @@ var sampleSource = [
     // igConfig.SamplesCopyPath + '/excel/spreadsheet/**/Pages/',
 
     // excluding project's .razor files
-    // "!" + igConfig.SamplesCopyPath + '/Shared/*.razor',
+    "!" + igConfig.SamplesCopyPath + '/**/obj/**',
+    "!" + igConfig.SamplesCopyPath + '/**/bin/**',
     // "!" + igConfig.SamplesCopyPath + '/**/App.razor',
     // "!" + igConfig.SamplesCopyPath + '/**/_Imports.razor',
     // "!" + igConfig.SamplesCopyPath + '/**/wwwroot/index.html',
@@ -154,7 +155,12 @@ function getSamples(cb) {
                 sampleFolder + "/wwwroot/*",
           '!' + sampleFolder + "/wwwroot/index.html",
           '!' + sampleFolder + "/wwwroot/index.css",
-          '!' + sampleFolder + "/Pages/_*.razor"])
+          '!' + sampleFolder + "/Pages/_*.razor",
+          '!' + sampleFolder + "/Pages/*.g.cs",
+          '!' + sampleFolder + "/obj/**",
+          '!' + sampleFolder + "/obj/*.*",
+          '!' + sampleFolder + "/bin/**",
+          '!' + sampleFolder + "/bin/*.*",])
         .pipe(flatten({ "includeParents": -1 }))
         .pipe(es.map(function(file, fileCallback) {
             let fileDir = Transformer.getRelative(file.dirname);

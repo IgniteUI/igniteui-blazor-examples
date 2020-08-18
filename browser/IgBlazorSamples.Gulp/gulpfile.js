@@ -49,12 +49,13 @@ exports.updateProjects = updateProjects = gulp.series(
 //     sb.updateSharedFiles,
 // );
 
-exports.updateBrowser = updateBrowser = gulp.series(
+exports.copySamples = copySamples = gulp.series(
     // sb.updateVersion,
     sb.getSamples,
     sb.copySamples,
     // sb.copyPackageJson,
 );
+exports.updateBrowser = updateBrowser = copySamples;
 
 
 // exports.updateVersion = updateVersion = sb.updateVersion;
