@@ -2,9 +2,9 @@
 @page         "/gauges/linear-gauge-type-horizontal"
 
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
-<div class="igContainer">    
+<div class="igContainer">
     <div class="igComponent">
         <LinearGauge Height="120px" Width="100%"
                      Orientation="LinearScaleOrientation.Horizontal"
@@ -98,7 +98,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         LinearGaugeModule.Register(InfragisticsBlazor);
 
         RangeInfo1 = new List<GaugeRangeInfo>();
@@ -119,7 +118,7 @@
         double rangeSpan = 100;
         double rangeValueInterval = rangeSpan / colors.Count;
 
-        for(int i=0; i<colors.Count; i++)
+        for (int i = 0; i < colors.Count; i++)
         {
             string color = colors[i];
 
@@ -139,4 +138,3 @@
         }
     }
 }
-

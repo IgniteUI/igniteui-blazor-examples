@@ -2,9 +2,9 @@
 @page         "/gauges/linear-gauge-type-curved"
 
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
-<div class="igContainer">    
+<div class="igContainer">
     <div class="igComponent">
         <LinearGauge Height="120px" Width="100%"
                      MinimumValue="0"
@@ -15,7 +15,7 @@
                      LabelExtent="0.0"
                      FontBrush="Black"
                      TransitionDuration="500"
-                     
+
                      IsNeedleDraggingEnabled="true"
                      NeedleShape="LinearGraphNeedleShape.Triangle"
                      NeedleBrush="#494949"
@@ -24,27 +24,27 @@
                      NeedleOuterExtent="0.9"
                      NeedleInnerExtent="0.6"
                      NeedleBreadth="20"
-                     
+
                      TickBrush="Gray"
                      TickStartExtent="0.1"
                      TickEndExtent="0.0"
                      TickStrokeThickness="1"
-                     
+
                      MinorTickBrush="Gray"
                      MinorTickStartExtent="0.1"
                      MinorTickEndExtent="0.05"
                      MinorTickStrokeThickness="1"
                      MinorTickCount="9"
-                     
+
                      BackingBrush="transparent"
                      BackingOutline="transparent"
-                     
+
                      ScaleStrokeThickness="0"
                      ScaleBrush="#E0DFDF"
                      ScaleOutline="#E0DFDF"
                      ScaleInnerExtent="0.1"
                      ScaleOuterExtent="0.95">
-            @for(int i=0; i<RangeInfo.Count; i++)
+            @for (int i = 0; i < RangeInfo.Count; i++)
             {
                 GaugeRangeInfo info = RangeInfo[i];
 
@@ -68,7 +68,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         LinearGaugeModule.Register(InfragisticsBlazor);
 
         RangeInfo = new List<GaugeRangeInfo>();
@@ -79,7 +78,7 @@
         double rangeValueInterval = rangeSpan / colors.Count;
         double curveInterval = 180 / colors.Count;
 
-        for(int i=0;i<colors.Count; i++)
+        for (int i = 0; i < colors.Count; i++)
         {
             string color = colors[i];
 
@@ -102,4 +101,3 @@
         }
     }
 }
-

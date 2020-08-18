@@ -3,10 +3,10 @@
 
 @* this is required for Infragistics controls *@
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
-    <div class="igContainer">        
-        <div class="igComponent">            
+    <div class="igContainer">
+        <div class="igComponent">
             <RadialGauge Height="100%" Width="100%"
                          BackingShape="RadialGaugeBackingShape.Fitted"
                          BackingBrush="#FCFCFC"
@@ -16,11 +16,11 @@
                          BackingStrokeThickness="5"
                          BackingOuterExtent="0.8"
                          BackingInnerExtent="0.15"
-                         
+
                          ScaleStartAngle="135"
                          ScaleEndAngle="45"
                          ScaleBrush="#DDDDDD"
-                         
+
                          MinimumValue="0"
                          MaximumValue="80"
                          Value="50"
@@ -33,7 +33,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         // Console.WriteLine("Sample runtime: " + InfragisticsBlazor.JsRuntime);
         Console.WriteLine("Sample OnInitialized...");
         RadialGaugeModule.Register(InfragisticsBlazor);
@@ -46,4 +45,3 @@
         await Task.Delay(10);
     }
 }
-

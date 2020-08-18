@@ -1,8 +1,8 @@
 @page "/samples/gauges/bullet-graph-animation"
 @page         "/gauges/bullet-graph-animation"
-@using System.Collections.ObjectModel; 
+@using System.Collections.ObjectModel
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
 <div class="igContainer">
     <div class="igOptions">
@@ -39,7 +39,7 @@
                      BackingBrush=@BackingBrush
                      BackingOutline=@BackingOutline
                      BackingStrokeThickness=@BackingStrokeThickness>
-            @for(int i=0; i<RangeInfo.Count; i++)
+            @for (int i = 0; i < RangeInfo.Count; i++)
             {
                 GaugeRangeInfo info = RangeInfo[i];
                 <LinearGraphRange Name=info.Name
@@ -51,7 +51,7 @@
                                   OuterEndExtent=info.OuterEndExtent
                                   Brush="@info.Brush"
                                   Outline="@info.Outline">
-                </LinearGraphRange>                
+                </LinearGraphRange>
             }
         </BulletGraph>
     </div>
@@ -96,7 +96,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         BulletGraphModule.Register(InfragisticsBlazor);
 
         this.MinimumValue = 0;
@@ -296,7 +295,7 @@
 
         List<string> colors = new List<string>() { "#FF9800", "#F96232", "#C62828" };
 
-        for(int i=0; i<colors.Count; i++)
+        for (int i = 0; i < colors.Count; i++)
         {
             GaugeRangeInfo info = new GaugeRangeInfo()
             {
@@ -315,5 +314,3 @@
         }
     }
 }
-
-
