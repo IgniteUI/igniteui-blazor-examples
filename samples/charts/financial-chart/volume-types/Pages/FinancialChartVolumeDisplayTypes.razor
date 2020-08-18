@@ -1,14 +1,14 @@
-﻿@page "/FinancialChartVolumeDisplayTypes"
+@page "/samples/charts/financial-chart-volume-types"
+@page         "/charts/financial-chart-volume-types"
 @* this namespace is required for Infragistics controls *@
 @using Infragistics.Blazor.Controls
 
-@inject IInfragisticsBlazor InfragisticsBlazor;
-@inject IJSRuntime JSRuntime;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
 <div class="igContainer">
     <div class="igOptions">
-        <label className="igOptions-label">Volume Type: </label>
-        <label className="igOptions-item">
+        <label class="igOptions-label">Volume Type: </label>
+        <label class="igOptions-item">
             <select @bind="@VolumeType">
                 <option>@FinancialChartVolumeType.Area</option>
                 <option>@FinancialChartVolumeType.Column</option>
@@ -44,7 +44,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         FinancialChartModule.Register(InfragisticsBlazor);
         InitData();
     }
