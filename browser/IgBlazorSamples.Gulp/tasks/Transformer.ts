@@ -796,6 +796,7 @@ class Transformer {
         let invalidLines: string[] = [
             "@page ",
             "@inject IJSRuntime JSRuntime",
+            "base.OnInitialized",
         ];
 
         let csharpCodeLines: string[] = [];
@@ -857,12 +858,14 @@ class Transformer {
         importLines.splice(1, 0, '@page         "' + sample.SampleRoute + '"');
 
         let newContent =
-            importLines.join('\n\r') +
-            htmlCodeLines.join('\n\r') +
-            csharpCodeLines.join('\n\r');
+            importLines.join('\n') + '\n' +
+            htmlCodeLines.join('\n') + '\n' +
+            csharpCodeLines.join('\n') + '\n';
 
         sample.SourceFiles[0].Content = newContent;
         sample.SourceRazorFile.Content = newContent;
+
+        this.lintFile(sample.SourceRazorFile);
     }
 
     // public static lintFile(
@@ -889,33 +892,44 @@ class Transformer {
             if (currentLine === '' && firstLine) { continue; }
             if (currentLine === '' && nextLine === '') { continue; }
 
-            currentLine = Strings.replaceAll(currentLine, ';;', ';');
-
-            for (const symbol of spacedSymbols) {
-                currentLine = currentLine.replace(new RegExp('([A-Za-z0-9])' + symbol), '$1 $2');
-                currentLine = currentLine.replace(new RegExp(symbol + '([A-Za-z0-9])'), '$1 $2');
-                // currentLine = currentLine.replace('/([a-z0-9])(\=)/g', '$1 $2');
-                // currentLine = currentLine.replace(new RegExp('([a-z0-9])(\=)'), '$1 $2');
-                // currentLine = currentLine.replace(/([a-z0-9])(\=)/gi, '_');
+            if (currentLine.indexOf('@page') >= 0) {
+                firstLine = false;
+                validLines.push(currentLine);
+                continue;
             }
-            // currentLine = currentLine.replace(new RegExp('(using)([A-Za-z0-9])(;)'), '$1 $2');
-            currentLine = currentLine.replace(new RegExp('(@using\.*.*)(\;)'), '$1');
-            currentLine = currentLine.replace(new RegExp('(@inject\.*.*)(\;)'), '$1');
 
-            currentLine = currentLine.replace(new RegExp("(for\.*.*)([A-Za-z0-9])(\=)"), '$1$2 $3');
-            currentLine = currentLine.replace(new RegExp('(for\.*.*)([A-Za-z0-9])(\<)'), '$1$2 $3');
-            currentLine = currentLine.replace(new RegExp('(for\.*.*)([A-Za-z0-9])(\>)'), '$1$2 $3');
+            currentLine = Strings.replaceAll(currentLine, ';;', ';');
+            if (currentLine.indexOf('"') === -1) {
 
-            currentLine = currentLine.replace(new RegExp('(for\.*.*)(\=)([A-Za-z0-9])'), '$1$2 $3');
-            currentLine = currentLine.replace(new RegExp('(for\.*.*)(\<)([A-Za-z0-9])'), '$1$2 $3');
-            currentLine = currentLine.replace(new RegExp('(for\.*.*)(\>)([A-Za-z0-9])'), '$1$2 $3');
-            currentLine = currentLine.replace(new RegExp('(for\.*.*)(\;)([A-Za-z0-9])'), '$1$2 $3');
-            currentLine = currentLine.replace(new RegExp("(for\.*.*)(\;)([A-Za-z0-9])"), '$1$2 $3');
+                for (const symbol of spacedSymbols) {
+                    currentLine = currentLine.replace(new RegExp('([A-Za-z0-9])' + symbol), '$1 $2');
+                    currentLine = currentLine.replace(new RegExp(symbol + '([A-Za-z0-9])'), '$1 $2');
+                    // currentLine = currentLine.replace('/([a-z0-9])(\=)/g', '$1 $2');
+                    // currentLine = currentLine.replace(new RegExp('([a-z0-9])(\=)'), '$1 $2');
+                    // currentLine = currentLine.replace(/([a-z0-9])(\=)/gi, '_');
+                }
+                // currentLine = currentLine.replace(new RegExp('(using)([A-Za-z0-9])(;)'), '$1 $2');
+                currentLine = currentLine.replace(new RegExp('(@using\.*.*)(\;)'), '$1');
+                currentLine = currentLine.replace(new RegExp('(@inject\.*.*)(\;)'), '$1');
 
-            currentLine = currentLine.replace(new RegExp("(for)(\\()(\.*.*)"), '$1 $2$3');
-            // currentLine = currentLine.replace(new RegExp("(for\.*.*)(\\()(\.*.*)"), '$1$2$3');
+                currentLine = currentLine.replace(new RegExp("(for\.*.*)([A-Za-z0-9])(\=)"), '$1$2 $3');
+                currentLine = currentLine.replace(new RegExp('(for\.*.*)([A-Za-z0-9])(\<)'), '$1$2 $3');
+                currentLine = currentLine.replace(new RegExp('(for\.*.*)([A-Za-z0-9])(\>)'), '$1$2 $3');
 
-            currentLine = Strings.replaceAll(currentLine, ' ++', '++');
+                currentLine = currentLine.replace(new RegExp('(for\.*.*)(\=)([A-Za-z0-9])'), '$1$2 $3');
+                currentLine = currentLine.replace(new RegExp('(for\.*.*)(\<)([A-Za-z0-9])'), '$1$2 $3');
+                currentLine = currentLine.replace(new RegExp('(for\.*.*)(\>)([A-Za-z0-9])'), '$1$2 $3');
+                currentLine = currentLine.replace(new RegExp('(for\.*.*)(\;)([A-Za-z0-9])'), '$1$2 $3');
+                currentLine = currentLine.replace(new RegExp("(for\.*.*)(\;)([A-Za-z0-9])"), '$1$2 $3');
+
+                currentLine = currentLine.replace(new RegExp("(for)(\\()(\.*.*)"), '$1 $2$3');
+                // currentLine = currentLine.replace(new RegExp("(for\.*.*)(\\()(\.*.*)"), '$1$2$3');
+
+                currentLine = Strings.replaceAll(currentLine, ' ++', '++');
+                currentLine = Strings.replaceAll(currentLine, '"- ', '"-');
+                currentLine = Strings.replaceAll(currentLine, 'linear - gradient', 'linear-gradient');
+
+            }
 
             // if (Strings.contains(currentLine, "for")){
             //     console.log('linting >>>> ' + currentLine);
