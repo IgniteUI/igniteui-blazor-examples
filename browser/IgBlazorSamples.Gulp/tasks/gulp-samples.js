@@ -33,20 +33,19 @@ log('loaded');
 // NOTE you can comment out strings in this array to run subset of samples
 var sampleSource = [
     igConfig.SamplesCopyPath + '/charts/category-chart/**/Pages/',
-    igConfig.SamplesCopyPath + '/charts/data-chart/**/Pages/',
+    // igConfig.SamplesCopyPath + '/charts/data-chart/**/Pages/',
     igConfig.SamplesCopyPath + '/charts/doughnut-chart/**/Pages/',
     // igConfig.SamplesCopyPath + '/charts/financial-chart/**/Pages/',
     igConfig.SamplesCopyPath + '/charts/pie-chart/**/Pages/',
     igConfig.SamplesCopyPath + '/charts/sparkline/**/Pages/',
-    igConfig.SamplesCopyPath + '/charts/tree-map/**/Pages/',
-    igConfig.SamplesCopyPath + '/charts/zoomslider/**/Pages/',
-    igConfig.SamplesCopyPath + '/maps/geo-map/**/Pages/',
-    igConfig.SamplesCopyPath + '/gauges/bullet-graph/**/animation/Pages/',
+    // igConfig.SamplesCopyPath + '/charts/tree-map/**/Pages/',
+    // igConfig.SamplesCopyPath + '/charts/zoomslider/**/Pages/',
+    // igConfig.SamplesCopyPath + '/maps/geo-map/**/Pages/',
     igConfig.SamplesCopyPath + '/gauges/bullet-graph/**/Pages/',
     igConfig.SamplesCopyPath + '/gauges/linear-gauge/**/Pages/',
     igConfig.SamplesCopyPath + '/gauges/radial-gauge/**/Pages/',
-    igConfig.SamplesCopyPath + '/grids/**/Pages/',
-    igConfig.SamplesCopyPath + '/layouts/**/Pages/',
+    // igConfig.SamplesCopyPath + '/grids/**/Pages/',
+    // igConfig.SamplesCopyPath + '/layouts/**/Pages/',
 
     // igConfig.SamplesCopyPath + '/excel/excel-library/**/Pages/',
     // igConfig.SamplesCopyPath + '/excel/spreadsheet/**/Pages/',
@@ -232,7 +231,8 @@ function deleteSamples() {
 
     log('deleting sample files... ');
     del.sync([
-          outputPathPages + "/**",     // auto-generated samples
+          outputPathServices + "/*.*", // auto-copied files
+          outputPathPages + "/**",     // auto-copied samples
     "!" + outputPathPages + "/*.razor" // e.g. home.razor
     ], {force:true});
     // del.sync(outputPathPages + "/**/*.*", {force:true});
