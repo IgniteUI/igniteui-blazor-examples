@@ -928,6 +928,7 @@ class Transformer {
 
                 currentLine = Strings.replaceAll(currentLine, ' ++', '++');
                 currentLine = Strings.replaceAll(currentLine, '"- ', '"-');
+                currentLine = Strings.replaceAll(currentLine, '(- ', '(-');
                 currentLine = Strings.replaceAll(currentLine, 'linear - gradient', 'linear-gradient');
 
             }
