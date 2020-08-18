@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Samples.Services
+namespace Samples
 {
     public class StocksUtility
     {
@@ -47,7 +47,7 @@ namespace Samples.Services
             var time = dateStart.AddDays(0);
             var v = volumeStart;
             var o = priceStart;
-            
+
             var h = o + (rand.NextDouble() * priceRange);
             var l = o - (rand.NextDouble() * priceRange);
             var c = l + (rand.NextDouble() * (h - l));
@@ -60,7 +60,7 @@ namespace Samples.Services
 
                 var stockItem =
                 new StockItem{
-                    Open = o, High = h, Low = l, Close = c, Volume = v 
+                    Open = o, High = h, Low = l, Close = c, Volume = v
                 };
 
                 stock.Add(stockItem);
@@ -95,7 +95,7 @@ namespace Samples.Services
             return stock;
         }
 
-        public static string toShortString(double largeValue)
+        public static string ToShortString(double largeValue)
         {
             double roundValue;
 
@@ -184,7 +184,7 @@ namespace Samples.Services
         public int Index { get; set; }
         public string Info { get; set; }
         public int Value { get; set; }
-        
+
         public StockItem Clone()
         {
             var copy = new StockItem();

@@ -1,12 +1,12 @@
 ﻿@page "/FinancialChartTitles"
 @* this namespace is required for Infragistics controls *@
 @using Infragistics.Blazor.Controls
-@using Samples.Services
+
 @inject IInfragisticsBlazor InfragisticsBlazor;
 @inject IJSRuntime JSRuntime;
 
 <div class="igContainer">
-    
+
     <div class="igComponent">
 
         @if (DataSource != null)
@@ -23,7 +23,7 @@
                 XAxisTitle="Time Range (1-Day Interval)"
                 />
         }
-        
+
     </div>
 </div>
 
@@ -34,6 +34,6 @@
     protected override async Task OnInitializedAsync()
     {
         FinancialChartModule.Register(InfragisticsBlazor);
-        this.DataSource = await StocksHistory.getAmazonStock();
+        this.DataSource = await StocksHistory.GetAmazonStock();
     }
 }

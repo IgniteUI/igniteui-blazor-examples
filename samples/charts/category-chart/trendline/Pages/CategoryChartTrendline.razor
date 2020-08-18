@@ -24,7 +24,7 @@
             <option>@TrendLineType.None</option>
         </select>
     </div>
-    <div class="igComponent">      
+    <div class="igComponent">
         @if (DataSource != null)
         {
             <CategoryChart Height="100%" Width="100%"
@@ -46,7 +46,7 @@
 
 @code {
 
-    private List<DataChartSharedData.Temperature> DataSource;
+    private List<Temperature> DataSource;
 
     private string[] IncludedProps = new string[] { "Value", "Label" };
     private string[] ExcludedProps = new string[] { "High", "Low" };
@@ -58,7 +58,7 @@
         base.OnInitialized();
         CategoryChartModule.Register(InfragisticsBlazor);
 
-        this.DataSource = DataChartSharedData.getTemperatures(30, 0, 2000);
-    }    
+        this.DataSource = TemperatureHistory.Generate(30, 0, 2000);
+    }
 }
 

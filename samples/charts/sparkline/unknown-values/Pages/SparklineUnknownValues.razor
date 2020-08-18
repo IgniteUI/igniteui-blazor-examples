@@ -1,11 +1,12 @@
 @page "/samples/charts/sparkline-unknown-values"
 @page         "/charts/sparkline-unknown-values"
 
+
 @using Infragistics.Blazor.Controls
 @inject IInfragisticsBlazor InfragisticsBlazor;
 
 
-    <div class="igContainer">       
+    <div class="igContainer">
 
         <div className="igOptions">
             <label className="igOptions-item">
@@ -41,7 +42,7 @@
         SparklineModule.Register(InfragisticsBlazor);
 
         var dataItems = new List<DataItem>();
-       
+
         dataItems.Add(new DataItem() { Label =4,Value =4 });
         dataItems.Add(new DataItem() { Label = 5, Value = 5});
         dataItems.Add(new DataItem() { Label = 2, Value = double.NaN });
@@ -60,7 +61,7 @@
     public void onChanged(ChangeEventArgs e)
     {
         bool selection = (bool)e.Value;
-        
+
         if (selection)
         {
             this.unknownValuePlotting = UnknownValuePlotting.LinearInterpolate;

@@ -1,7 +1,7 @@
 @page "/samples/charts/category-chart-high-frequency"
 @page         "/charts/category-chart-high-frequency"
 
-@using System.Collections.ObjectModel; 
+@using System.Collections.ObjectModel;
 @using Infragistics.Blazor.Controls
 @inject IInfragisticsBlazor InfragisticsBlazor;
 
@@ -19,7 +19,7 @@
         <button @onclick="OnDataGenerateClick">Generate Data</button>
     </div>
 
-    <div class="igComponent">        
+    <div class="igComponent">
         @if (DataSource != null)
         {
             <CategoryChart Height="100%" Width="100%"
@@ -32,7 +32,7 @@
 
 @code {
 
-    private ObservableCollection<DataChartSharedData.DataItem> DataSource;
+    private ObservableCollection<CategoryDataItem> DataSource;
 
     private int RefreshInterval = 10;
     private int DataIndex = 0;
@@ -40,21 +40,21 @@
     private double DataPoints = 100000;
     private string RefreshInfo;
     private string DataInfo;
-    
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
         CategoryChartModule.Register(InfragisticsBlazor);
 
-        this.DataInfo = DataChartSharedData.toShortString(this.DataPoints);
+        this.DataInfo = CategoryDataSource.ToShortString(this.DataPoints);
         this.RefreshInfo = (this.RefreshMilliseconds / 1000).ToString() + "s";
     }
 
     private void OnDataGenerateClick()
     {
-        var dataList = DataChartSharedData.getDataItems(100, (int)this.DataPoints, false);
+        var dataList = CategoryDataSource.Generate(100, (int)this.DataPoints, false);
 
-        this.DataSource = new ObservableCollection<DataChartSharedData.DataItem>(dataList);
+        this.DataSource = new ObservableCollection<CategoryDataItem>(dataList);
 
         this.DataIndex = this.DataSource.Count;
         SetupInterval();
@@ -73,7 +73,7 @@
             num = 1000000;
         }
 
-        string info = DataChartSharedData.toShortString(num);
+        string info = CategoryDataSource.ToShortString(num);
         this.DataPoints = num;
         this.DataInfo = info;
     }
@@ -110,7 +110,7 @@
         this.DataIndex++;
 
         var item = this.DataSource[0];
-        var newItem = DataChartSharedData.getNewItem(this.DataSource.ToList(), this.DataIndex);
+        var newItem = CategoryDataSource.GetNewItem(this.DataSource.ToList(), this.DataIndex);
 
         this.DataSource.Add(newItem);
 

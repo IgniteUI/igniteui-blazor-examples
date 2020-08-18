@@ -1,11 +1,11 @@
 ﻿@page "/FinancialChartMultipleData"
 @* this namespace is required for Infragistics controls *@
 @using Infragistics.Blazor.Controls
-@using Samples.Services
+
 @inject IInfragisticsBlazor InfragisticsBlazor;
 @inject IJSRuntime JSRuntime;
 
-<div class="igContainer">    
+<div class="igContainer">
     <div class="igComponent">
 
         @if (DataSource != null)
@@ -31,6 +31,6 @@
     protected override async Task OnInitializedAsync()
     {
         FinancialChartModule.Register(InfragisticsBlazor);
-        this.DataSource = await StocksHistory.getMultipleStocks();
+        this.DataSource = await StocksHistory.GetMultipleStocks();
     }
 }

@@ -1,6 +1,7 @@
 @page "/samples/charts/sparkline-display-column"
 @page         "/charts/sparkline-display-column"
 
+
 @using Infragistics.Blazor.Controls
 @inject IInfragisticsBlazor InfragisticsBlazor;
 
@@ -48,15 +49,15 @@
 
 @code {
 
-    private List<SparklineData.DataItem> DataSource;
+    private List<SparklineItem> DataSource;
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        SparklineModule.Register(InfragisticsBlazor);        
+        SparklineModule.Register(InfragisticsBlazor);
 
-        this.DataSource = SparklineData.getData();
-    }   
+        this.DataSource = SparklineData.Generate();
+    }
 
 }
 

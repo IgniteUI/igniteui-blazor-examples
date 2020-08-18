@@ -1,10 +1,11 @@
 @page "/samples/charts/sparkline-display-types"
 @page         "/charts/sparkline-display-types"
 
+
 @using Infragistics.Blazor.Controls
 @inject IInfragisticsBlazor InfragisticsBlazor;
 
-<div class="igContainer">   
+<div class="igContainer">
 
     <div class="igComponent">
 
@@ -52,15 +53,15 @@
 
 @code {
 
-    private List<SparklineData.DataItem> DataSource;
+    private List<SparklineItem> DataSource;
 
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
         SparklineModule.Register(InfragisticsBlazor);
-       
-        this.DataSource = SparklineData.getData();
+
+        this.DataSource = SparklineData.Generate();
     }
 
 }

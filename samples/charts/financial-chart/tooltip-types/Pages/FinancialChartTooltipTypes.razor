@@ -1,7 +1,7 @@
 ﻿@page "/FinancialChartTooltipTypes"
 @* this namespace is required for Infragistics controls *@
 @using Infragistics.Blazor.Controls
-@using Samples.Services
+
 @inject IInfragisticsBlazor InfragisticsBlazor;
 @inject IJSRuntime JSRuntime;
 
@@ -29,7 +29,7 @@
                 ZoomSliderType="FinancialChartZoomSliderType.None"
                 ToolTipType="@TooltipType"/>
         }
-        
+
     </div>
 </div>
 
@@ -41,6 +41,6 @@
     protected override async Task OnInitializedAsync()
     {
         FinancialChartModule.Register(InfragisticsBlazor);
-        this.DataSource = await StocksHistory.getMultipleStocks();
+        this.DataSource = await StocksHistory.GetMultipleStocks();
     }
 }

@@ -1,7 +1,7 @@
 ﻿@page "/FinancialChartOverview"
 @* this namespace is required for Infragistics controls *@
 @using Infragistics.Blazor.Controls
-@using Samples.Services
+
 @inject IInfragisticsBlazor InfragisticsBlazor;
 @inject IJSRuntime JSRuntime;
 
@@ -15,8 +15,8 @@
 
         @if (DataSource != null)
         {
-            <FinancialChart 
-                Width="100%"                
+            <FinancialChart
+                Width="100%"
                 Height="100%"
                 Legend="@FinancialLegend"
                 ChartType="FinancialChartType.Bar"
@@ -28,7 +28,7 @@
                 IsToolbarVisible="true"
                 YAxisMode="FinancialChartYAxisMode.PercentChange"/>
         }
-        
+
     </div>
 </div>
 
@@ -40,6 +40,6 @@
     protected override async Task OnInitializedAsync()
     {
         FinancialChartModule.Register(InfragisticsBlazor);
-        this.DataSource = await StocksHistory.getMultipleStocks();
+        this.DataSource = await StocksHistory.GetMultipleStocks();
     }
 }

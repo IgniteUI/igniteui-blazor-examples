@@ -3,23 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Samples.Pages
+namespace Samples
 {
+    public class SparklineItem
+    {
+        public double Index { get; set; }
+        public double Value { get; set; }
+        public double Angle { get; set; }
+        public double Expanse { get; set; }
+        public double Income { get; set; }
+    }
+
     public static class SparklineData
     {
-        
-        public class DataItem
+        public static List<SparklineItem> Generate()
         {
-            public double Index { get; set; }
-            public double Value { get; set; }
-            public double Angle { get; set; }
-            public double Expanse { get; set; }
-            public double Income { get; set; }
-        }
-
-        public static List<DataItem> getData()
-        {
-            var dataItems = new List<DataItem>();
+            var SparklineItems = new List<SparklineItem>();
             var index = 0;
             var min = 1000.0;
             var max = -1000.0;
@@ -28,16 +27,16 @@ namespace Samples.Pages
             {
                 var v1 = Math.Sin(angle * Math.PI / 180);
                 var v2 = Math.Sin(3 * angle * Math.PI / 180) / 3;
-                var revenu = v1 + v2;
+                var revenue = v1 + v2;
+                var expanse = revenue < 0 ? revenue : 0;
+                var income = revenue > 0 ? revenue : 0;
 
-                var expanse = revenu < 0 ? revenu : 0;
-                var income = revenu > 0 ? revenu : 0;
-
-                dataItems.Add(new DataItem()
+                SparklineItems.Add(new SparklineItem()
                 {
                     Index = index++,
                     Angle = angle,
-                    Value = revenu,
+                    // Value = v1 + v2
+                    Value = revenue,
                     Expanse = expanse,
                     Income = income
                 });
@@ -45,7 +44,7 @@ namespace Samples.Pages
                 max = Math.Max(max, v1 + v2);
             }
 
-            return dataItems;
+            return SparklineItems;
         }
     }
 }

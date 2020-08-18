@@ -5,25 +5,25 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Json;
 
-namespace Samples.Services
+namespace Samples
 {
     public class StocksHistory
     {
-        public static async Task<List<StockItem[]>> getMultipleStocks()
+        public static async Task<List<StockItem[]>> GetMultipleStocks()
         {
             // getting prices of multiples stocks asynchronously
             var dataSources = new List<StockItem[]> {
-                await getAmazonStock(),
-                await getGoogleStock(),
-                await getMicrosoftStock(),
-                await getTeslaStock()
+                await GetAmazonStock(),
+                await GetGoogleStock(),
+                await GetMicrosoftStock(),
+                await GetTeslaStock()
             };
 
             return dataSources;
         }
 
         /** gets Amazon stock OHLC prices from a .JSON file */
-        public static async Task<StockItem[]> getAmazonStock() {
+        public static async Task<StockItem[]> GetAmazonStock() {
             var url = "https://static.infragistics.com/xplatform/data/stocks/stockAmazon.json";
 
             //TODO
@@ -38,11 +38,11 @@ namespace Samples.Services
             //Console.WriteLine("Label" + " " + data.Length);
             //Console.WriteLine("Date" + " " + data[0].Date);
             return data;
-                   
+
         }
 
         /** gets Tesla stock OHLC prices from a .JSON file */
-        public static async Task<StockItem[]> getTeslaStock()
+        public static async Task<StockItem[]> GetTeslaStock()
         {
             var url = "https://static.infragistics.com/xplatform/data/stocks/stockTesla.json";
 
@@ -61,7 +61,7 @@ namespace Samples.Services
         }
 
         /** gets Microsoft stock OHLC prices from a .JSON file */
-        public static async Task<StockItem[]> getMicrosoftStock()
+        public static async Task<StockItem[]> GetMicrosoftStock()
         {
             var url = "https://static.infragistics.com/xplatform/data/stocks/stockMicrosoft.json";
 
@@ -79,7 +79,7 @@ namespace Samples.Services
 
         }
 
-        public static async Task<StockItem[]> getGoogleStock()
+        public static async Task<StockItem[]> GetGoogleStock()
         {
             var url = "https://static.infragistics.com/xplatform/data/stocks/stockGoogle.json";
 

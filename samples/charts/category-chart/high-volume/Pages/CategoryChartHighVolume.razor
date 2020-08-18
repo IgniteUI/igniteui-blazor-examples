@@ -12,7 +12,7 @@
                value="@DataPoints" @onchange="OnDataPointsChanged" />
         <button @onclick="OnDataGenerateClick">Generate Data</button>
     </div>
-    <div class="igComponent">        
+    <div class="igComponent">
         @if (DataSource != null)
         {
             <CategoryChart Height="100%" Width="100%"
@@ -27,21 +27,21 @@
 
     private int DataPoints = 1000;
     private string DataInfo;
-    private List<DataChartSharedData.DataItem> DataSource;
+    private List<CategoryDataItem> DataSource;
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
         CategoryChartModule.Register(InfragisticsBlazor);
-        
-        this.DataInfo = DataChartSharedData.toShortString(this.DataPoints);
-        this.DataSource = DataChartSharedData.getDataItems(0, this.DataPoints, true);
+
+        this.DataInfo = CategoryDataSource.ToShortString(this.DataPoints);
+        this.DataSource = CategoryDataSource.Generate(0, this.DataPoints, true);
     }
 
     private void OnDataPointsChanged(ChangeEventArgs args)
     {
         this.DataPoints = int.Parse(args.Value.ToString());
-        this.DataInfo = DataChartSharedData.toShortString(this.DataPoints);
+        this.DataInfo = CategoryDataSource.ToShortString(this.DataPoints);
     }
 
     private void OnDataGenerateClick()
@@ -51,7 +51,7 @@
 
     private void GenerateData()
     {
-        this.DataSource = DataChartSharedData.getDataItems(0, this.DataPoints, true);
+        this.DataSource = CategoryDataSource.Generate(0, this.DataPoints, true);
     }
 }
 

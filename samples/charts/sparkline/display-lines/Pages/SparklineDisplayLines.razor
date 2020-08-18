@@ -1,6 +1,7 @@
 @page "/samples/charts/sparkline-display-lines"
 @page         "/charts/sparkline-display-lines"
 
+
 @using Infragistics.Blazor.Controls
 @inject IInfragisticsBlazor InfragisticsBlazor;
 
@@ -48,14 +49,14 @@
 
 @code {
 
-    private List<SparklineData.DataItem> DataSource;
+    private List<SparklineItem> DataSource;
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        SparklineModule.Register(InfragisticsBlazor);       
+        SparklineModule.Register(InfragisticsBlazor);
 
-        DataSource = SparklineData.getData ();
+        DataSource = SparklineData.Generate ();
     }
 
 

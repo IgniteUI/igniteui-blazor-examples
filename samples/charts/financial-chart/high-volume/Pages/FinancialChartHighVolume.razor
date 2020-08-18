@@ -1,12 +1,12 @@
 ﻿@page "/FinancialChartHighVolume"
 @* this namespace is required for Infragistics controls *@
 @using Infragistics.Blazor.Controls
-@using Samples.Services
+
 @inject IInfragisticsBlazor InfragisticsBlazor;
 @inject IJSRuntime JSRuntime;
 
 <div class="igContainer">
-    
+
     <div class="igComponent">
 
         @if (DataSource != null)
@@ -20,7 +20,7 @@
                 Subtitle="SubTitle"
                 />
         }
-        
+
     </div>
 </div>
 
@@ -47,6 +47,6 @@
         this.DataSource = StocksUtility.GetStocksBetween(dateStart, dateEnd);
         Title = "Stock Prices " + dateStart.Year + "-" + dateEnd.Year;
         Console.WriteLine("DataItems " + this.DataSource.Count);
-        SubTitle = StocksUtility.toShortString(this.DataSource.Count) + " data points";
+        SubTitle = StocksUtility.ToShortString(this.DataSource.Count) + " data points";
     }
 }

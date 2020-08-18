@@ -2,7 +2,7 @@
 @* this namespace is required for Infragistics controls *@
 @using Infragistics.Blazor.Controls
 @using System.Collections.ObjectModel
-@using Samples.Services
+
 @inject IInfragisticsBlazor InfragisticsBlazor
 
 <div class="igContainer">
@@ -68,7 +68,7 @@
         var dataList = StocksUtility.GetStocksItems(this.DataPoints);
         this.DataSource = new ObservableCollection<StockItem>(dataList);
 
-        this.DataInfo = StocksUtility.toShortString(this.DataPoints);
+        this.DataInfo = StocksUtility.ToShortString(this.DataPoints);
         this.FrameUpdateTime = DateTime.Now;
         this.DataUpdateInfo = (this.DataUpdateInterval / 1000.0).ToString("0.0") + "s ";
     }
@@ -131,7 +131,7 @@
         if (num > 100000) num = 100000;
 
         this.DataPoints = num;
-        this.DataInfo = StocksUtility.toShortString(num);
+        this.DataInfo = StocksUtility.ToShortString(num);
     }
 
     private void SetupInterval()

@@ -22,7 +22,7 @@
         </label>*@
     </div>
 
-    <div class="igComponent">               
+    <div class="igComponent">
         @if (DataSource != null)
         {
             <CategoryChart Height="100%" Width="100%"
@@ -38,13 +38,13 @@
                            CalloutsVisible="@CalloutsVisible"
                            CalloutsXMemberPath="Index"
                            CalloutsYMemberPath="Value"
-                           CalloutsLabelMemberPath="Info"                           
+                           CalloutsLabelMemberPath="Info"
 
-                           CrosshairsSnapToData="true"                           
+                           CrosshairsSnapToData="true"
                            CrosshairsDisplayMode="@CrosshairMode"
                            CrosshairsAnnotationEnabled="@CrosshairsVisible"
 
-                           FinalValueAnnotationsVisible="@FinalValuesVisible">                           
+                           FinalValueAnnotationsVisible="@FinalValuesVisible">
             </CategoryChart>
         }
     </div>
@@ -68,7 +68,7 @@
         CategoryChartModule.Register(InfragisticsBlazor);
 
         this.DataSource = new List<TemperatureData>();
-        InitData();        
+        InitData();
     }
 
     private void OnFinalValuesCheckboxChange(ChangeEventArgs args)
@@ -156,6 +156,15 @@
 
         this.DataSource[minIndex].Info = "MIN";
         this.DataSource[maxIndex].Info = "MAX";
+    }
+
+    public class TemperatureData
+    {
+        public double Temperature { get; set; }
+        public DateTime Date { get; set; }
+        public string Info { get; set; }
+        public double Value { get; set; }
+        public double Index { get; set; }
     }
 }
 

@@ -1,11 +1,12 @@
 @page "/samples/charts/sparkline-display-area"
 @page         "/charts/sparkline-display-area"
 
+
 @using Infragistics.Blazor.Controls
 @inject IInfragisticsBlazor InfragisticsBlazor;
 
 
-<div class="igContainer"> 
+<div class="igContainer">
 
     <div class="igComponent">
 
@@ -40,7 +41,7 @@
                        LabelMemberPath="Angle"
                        Minimum="-1" Maximum="1">
             </Sparkline>
-           
+
         }
 
     </div>
@@ -48,16 +49,16 @@
 
 @code {
 
-    private List<SparklineData.DataItem> DataSource;
+    private List<SparklineItem> DataSource;
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
         SparklineModule.Register(InfragisticsBlazor);
 
-        DataSource = SparklineData.getData();
+        DataSource = SparklineData.Generate();
     }
-   
+
 
 }
 

@@ -1,11 +1,12 @@
 @page "/samples/charts/sparkline-markers"
 @page         "/charts/sparkline-markers"
 
+
 @using Infragistics.Blazor.Controls
 @inject IInfragisticsBlazor InfragisticsBlazor;
 
 
-    <div class="igContainer">      
+    <div class="igContainer">
 
         <div className="igOptions">
             <label className="igOptions-item">
@@ -53,7 +54,7 @@
 
 @code {
 
-        private List<SparklineData.DataItem> DataSource;
+        private List<SparklineMarkerItem> DataSource;
 
         private Visibility highMarkerVisibility = Visibility.Collapsed ;
         private Visibility lowMarkerVisibility = Visibility.Collapsed;
@@ -69,7 +70,7 @@
             base.OnInitialized();
             SparklineModule.Register(InfragisticsBlazor);
 
-            this.DataSource = SparklineData.getData();
+            this.DataSource = SparklineMarkerData.Generate();
 
         }
 
@@ -78,11 +79,11 @@
             bool selection = (bool)e.Value;
             if (selection)
             {
-                this.highMarkerVisibility = Visibility.Visible;                
+                this.highMarkerVisibility = Visibility.Visible;
             }
             else
             {
-                this.highMarkerVisibility = Visibility.Collapsed;                
+                this.highMarkerVisibility = Visibility.Collapsed;
             }
         }
 
@@ -91,11 +92,11 @@
             bool selection = (bool)e.Value;
             if (selection)
             {
-                this.lowMarkerVisibility = Visibility.Visible;                
+                this.lowMarkerVisibility = Visibility.Visible;
             }
             else
             {
-                this.lowMarkerVisibility = Visibility.Collapsed;                
+                this.lowMarkerVisibility = Visibility.Collapsed;
             }
         }
 
@@ -104,11 +105,11 @@
             bool selection = (bool)e.Value;
             if (selection)
             {
-                this.firstMarkerVisibility = Visibility.Visible;                
+                this.firstMarkerVisibility = Visibility.Visible;
             }
             else
             {
-                this.firstMarkerVisibility = Visibility.Collapsed;                
+                this.firstMarkerVisibility = Visibility.Collapsed;
             }
         }
 
@@ -117,11 +118,11 @@
             bool selection = (bool)e.Value;
             if (selection)
             {
-                this.lastMarkerVisibility = Visibility.Visible;                
+                this.lastMarkerVisibility = Visibility.Visible;
             }
             else
             {
-                this.lastMarkerVisibility = Visibility.Collapsed;                
+                this.lastMarkerVisibility = Visibility.Collapsed;
             }
         }
 
@@ -131,11 +132,11 @@
             if (selection)
             {
                 this.negativeMarkerVisibility = Visibility.Visible;
-                
+
             }
             else
             {
-                this.negativeMarkerVisibility = Visibility.Collapsed;                
+                this.negativeMarkerVisibility = Visibility.Collapsed;
             }
         }
 
@@ -145,11 +146,11 @@
             if (selection)
             {
                 this.markerVisibility = Visibility.Visible;
-                
+
             }
             else
             {
-                this.markerVisibility = Visibility.Collapsed;                
+                this.markerVisibility = Visibility.Collapsed;
             }
         }
 }

@@ -1,7 +1,7 @@
 ﻿@page "/FinancialChartTrendlines"
 @* this namespace is required for Infragistics controls *@
 @using Infragistics.Blazor.Controls
-@using Samples.Services
+
 @inject IInfragisticsBlazor InfragisticsBlazor;
 @inject IJSRuntime JSRuntime;
 
@@ -25,7 +25,7 @@
                 <option>@TrendLineType.None</option>
             </select>
         </label>
-        
+
     </div>
 
     <div class="igComponent">
@@ -57,7 +57,7 @@
         protected override async Task OnInitializedAsync()
         {
             FinancialChartModule.Register(InfragisticsBlazor);
-            this.DataSource = await StocksHistory.getMultipleStocks();
-        }  
+            this.DataSource = await StocksHistory.GetMultipleStocks();
+        }
     }
 }
