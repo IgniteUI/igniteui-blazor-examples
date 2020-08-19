@@ -16,7 +16,7 @@ namespace Samples
         public static double volumeRange = 1000;
         public static double volumeStart = 20000000;
 
-        public static Random rand;
+        public static Random rand = new Random();
 
         public static List<StockItem> GetStocksFrom(DateTime dateEnd, int years)
         {

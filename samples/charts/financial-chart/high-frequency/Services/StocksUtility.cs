@@ -24,7 +24,7 @@ namespace Samples
             return GetStocksBetween(dateStart, dateEnd);
         }
 
-        public static List<StockItem> GetStocksItems(double points)
+        public static List<StockItem> GetStocksItems(int points)
         {
             intervalDays = 0;
             intervalHours = 1;
