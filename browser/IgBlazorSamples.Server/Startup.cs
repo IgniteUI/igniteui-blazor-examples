@@ -9,9 +9,12 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using IgBlazorSamples.Server.Data;
+//using Samples.Data;
 
-namespace IgBlazorSamples.Server
+using System.Net.Http;
+using Infragistics.Blazor.Controls;
+
+namespace Samples
 {
     public class Startup
     {
@@ -28,7 +31,26 @@ namespace IgBlazorSamples.Server
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
+            
+            // required for Infragistics Blazor controls:
+            services.AddScoped(typeof(IInfragisticsBlazor), typeof(InfragisticsBlazor));
+
+            // Server Side Blazor doesn't register HttpClient by default
+            if (!services.Any(x => x.ServiceType == typeof(HttpClient)))
+            {
+                // Setup HttpClient for server side in a client side compatible fashion
+                services.AddScoped<HttpClient>(s =>
+                {
+                    // Creating the URI helper needs to wait until the JS Runtime is initialized, so defer it.      
+                    var uriHelper = s.GetRequiredService<NavigationManager>();
+                    return new HttpClient { BaseAddress = new Uri(uriHelper.BaseUri) };
+                });
+
+                services.AddScoped(typeof(Samples.Shared.Services.SampleBrowser));
+                //services.AddSingleton<Samples.Shared.Services.SampleBrowser>();
+                services.AddSingleton<Samples.Shared.Services.SampleTimer>();
+                services.AddSingleton<WeatherForecastService>();
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

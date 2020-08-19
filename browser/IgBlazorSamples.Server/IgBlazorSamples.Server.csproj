@@ -2,12 +2,28 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssemblyName>IgBlazorSamples.Server</AssemblyName>
-    <RootNamespace>IgBlazorSamples.Server</RootNamespace>
+    <AssemblyName>Samples</AssemblyName>
+    <RootNamespace>Samples</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="PagesOLD\**" />
+    <Content Remove="PagesOLD\**" />
+    <EmbeddedResource Remove="PagesOLD\**" />
+    <None Remove="PagesOLD\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\BulletGraphAnimation.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\IgBlazorSamples.Shared\IgBlazorSamples.Shared.csproj" />
+  </ItemGroup>
+    
+  <ItemGroup>
+      <PackageReference Include="Infragistics.Blazor" Version="20.1.53-dev" />
+      <PackageReference Include="System.Net.Http.Json" Version="3.2.0" />
   </ItemGroup>
 
 </Project>

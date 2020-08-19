@@ -1,5 +1,6 @@
 ﻿@page "/"
-@namespace IgBlazorSamples.Server.Pages
+@using Samples;
+@namespace Samples.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = null;
@@ -10,27 +11,44 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IgBlazorSamples.Server</title>
+
+    <title>Samples | Server-Side | IgniteUI for Blazor | Infragistics</title>
+    <meta name="description" content="Explore samples of IgniteUI for Blazor controls running on server-side.">
+    <meta name="keywords" content="Examples, Blazor, IgniteUI for Blazor, Controls, Infragistics">
+    <meta name="author" content="Infragistics">
+
     <base href="~/" />
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
-    <link href="css/site.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />*@
+    @*<link href="css/site.css" rel="stylesheet" />*@
+
+    <link href="_content/Samples.Shared/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="_content/Samples.Shared/css/browser.css" rel="stylesheet" />
+    <link href="_content/Samples.Shared/css/index.css" rel="stylesheet" />
+
+    <link href="https://static.infragistics.com/xplatform/images/browsers/blazor.ico" rel="icon" type="image/x-icon">
 </head>
 <body>
-    <app>
+    <app class="sb-app">
         <component type="typeof(App)" render-mode="ServerPrerendered" />
     </app>
 
-    <div id="blazor-error-ui">
-        <environment include="Staging,Production">
-            An error has occurred. This application may no longer respond until reloaded.
-        </environment>
-        <environment include="Development">
-            An unhandled exception has occurred. See browser dev tools for details.
-        </environment>
+    @*<div id="blazor-error-ui">
+            <environment include="Staging,Production">
+                An error has occurred. This application may no longer respond until reloaded.
+            </environment>
+            <environment include="Development">
+                An unhandled exception has occurred. See browser dev tools for details.
+            </environment>
+            <a href="" class="reload">Reload</a>
+            <a class="dismiss">🗙</a>
+        </div>*@
+    <div class="sb-error-ui">
+        An unhandled error has occurred.
         <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
+        <a class="sb-error-dismiss">ðŸ—™</a>
     </div>
 
+    <script src="_content/Infragistics.Blazor/app.bundle.js"></script>
     <script src="_framework/blazor.server.js"></script>
 </body>
 </html>

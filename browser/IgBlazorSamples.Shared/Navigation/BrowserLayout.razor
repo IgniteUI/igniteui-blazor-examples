@@ -1,13 +1,15 @@
 ﻿@inherits LayoutComponentBase
 
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Routing
+
 @inject NavigationManager NavManager
 @*@inject IJSRuntime JSRuntime;*@
 @inject Samples.Shared.Services.SampleBrowser SB
 
 <div class="sb-root">
 
-    @* class="sidebar" *@
-    <div class="sb-sidebar-menu" style="@SidebarStyle">
+    <div class="sb-sidebar-menu no-selection" style="@SidebarStyle">
         <BrowserMenu />
     </div>
 
@@ -17,19 +19,19 @@
             <span class="sb-toolbar-toggle" @onclick="ToggleSidebarMenu">
                 <span class="oi oi-menu" aria-hidden="true"></span>
             </span>
-            <span class="sb-toolbar-name">@SB.CurrentSample</span>
+            <span class="sb-toolbar-name no-selection">@SB.CurrentSample</span>
             @* <a href="https://infragistics.com/blazorsite/components/general-getting-started.html" target="_blank" class="ml-md-auto">Help Docs</a> *@
 
             @*fullscreen-enter*@
-            <span class="sb-toolbar-toggle" @onclick="EnterFullScreen">
+            @*<span class="sb-toolbar-toggle" @onclick="EnterFullScreen">
                 <span class="oi oi-monitor" aria-hidden="true"></span>
-            </span>
+            </span>*@
 
-            <a target="_blank" href="@SB.CurrentHelpUrl">
+            @*<a target="_blank" href="@SB.CurrentHelpUrl">
                 <span class="sb-toolbar-toggle">
                     <span class="oi oi-file" aria-hidden="true"></span>
                 </span>
-            </a>
+            </a>*@
         </div>
 
         <div class="sb-container">
@@ -42,9 +44,11 @@
 
 @code {
     protected static bool ToolbarCollapsed = false;
+    //protected string ToolbarStyle => ToolbarCollapsed || SB.IsEmbedded ? "display: none" : "display: flex";
     protected string ToolbarStyle => ToolbarCollapsed || SB.IsEmbedded ? "display: none" : "display: flex";
 
     protected static bool SidebarCollapsed = false;
+    //protected string SidebarStyle => SidebarCollapsed || SB.IsEmbedded ? "display: none" : "display: flex";
     protected string SidebarStyle => SidebarCollapsed || SB.IsEmbedded ? "display: none" : "display: flex";
 
     public static void ToggleSidebarMenu()
@@ -52,21 +56,9 @@
         SidebarCollapsed = !SidebarCollapsed;
     }
 
-    public void EnterFullScreen()
-    {
-        var url = NavManager.Uri;
-        Console.WriteLine("EnterFullScreen1 " + url);
-        if (url.Contains("samples/"))
-        {
-            url = url.Replace("samples/", "");
-            Console.WriteLine("EnterFullScreen2 " + url);
-            NavManager.NavigateTo(url);
-        }
-    }
-
     public BrowserLayout()
     {
-        Console.WriteLine("SB.NAV Layout ");
+        Console.WriteLine("SB.NAV BrowserLayout ");
     }
 
     protected override async Task OnInitializedAsync()
@@ -91,19 +83,30 @@
         Console.WriteLine("SB.NAV Base " + NavManager.BaseUri);
         Console.WriteLine("SB.NAV Uri  " + NavManager.Uri);
 
-        SB.CheckUI(NavManager.Uri);
+        // SB.CheckUI(NavManager.Uri);
         StateHasChanged();
     }
-       
-    public void OnLocationChanged(object sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs arg)
+
+    public async void OnLocationChanged(object sender, LocationChangedEventArgs arg)
     {
         Console.WriteLine("SB.NAV Base " + NavManager.BaseUri);
         Console.WriteLine("SB.NAV Uri  " + NavManager.Uri);
 
-        //await Task.Delay(10);
-        //await SB.CheckUIAsync(arg.Location);
-        SB.CheckUI(arg.Location);
+        await Task.Delay(10);
+        await SB.CheckUIAsync(arg.Location);
+        // SB.CheckUI(arg.Location);
         StateHasChanged();
+    }
+    public void EnterFullScreen()
+    {
+        var url = NavManager.Uri;
+        Console.WriteLine("EnterFullScreen1 " + url);
+        if (url.Contains("samples/"))
+        {
+            url = url.Replace("samples/", "");
+            Console.WriteLine("EnterFullScreen2 " + url);
+            NavManager.NavigateTo(url);
+        }
     }
 
 }

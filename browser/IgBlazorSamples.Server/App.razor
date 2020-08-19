@@ -1,11 +1,29 @@
 ﻿
+@using Samples.Shared.Navigation
+@inject Samples.Shared.Services.SampleBrowser SB
+
 <Router AppAssembly="@typeof(Program).Assembly">
     <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        @*MainLayout*@
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(BrowserLayout)" />
     </Found>
     <NotFound>
-        <LayoutView Layout="@typeof(MainLayout)">
-            <p>Sorry, there's nothing at this address.</p>
+        @*MainLayout*@
+        <LayoutView Layout="@typeof(BrowserLayout)">
+            <SampleNotFound></SampleNotFound>
+            @*<p>Sorry, there's nothing at this address.</p>*@
         </LayoutView>
     </NotFound>
 </Router>
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("SB App");
+        //SB.AppName = "Blazor Samples Server-Side";
+        SB.HomeTitle = "Blazor Samples running on Server-Side";
+
+        await Task.Delay(1);
+    }
+}

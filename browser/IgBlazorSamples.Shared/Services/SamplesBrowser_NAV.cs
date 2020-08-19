@@ -7,6 +7,13 @@ namespace Samples.Shared.Services
 {
     public partial class SampleBrowser
     {
+        private string _AppName = "Blazor Samples";
+        public string AppName
+        {
+            get { return _AppName; }
+            set { _AppName = value; NotifyPropertyChanged(); }
+        }
+
         public string CurrentPath { get; set; }
 
         private string DefaultHelpTopic = "general-getting-started.html";
@@ -16,6 +23,13 @@ namespace Samples.Shared.Services
         {
             get { return _CurrentHelpUrl; }
             set { _CurrentHelpUrl = value; NotifyPropertyChanged(); }
+        }
+
+        private string _HomeTitle = "";
+        public string HomeTitle
+        {
+            get { return _HomeTitle; }
+            set { _HomeTitle = value; NotifyPropertyChanged(); }
         }
 
         private string _CurrentSample = "";
@@ -73,46 +87,59 @@ namespace Samples.Shared.Services
         {
             if (this.IsLoading) return;
 
+            Console.WriteLine("SB CheckUI " + url);
+
             var sampleFound = false;
             this.IsEmbedded = !url.Contains("/samples") && url != this.NavManager.BaseUri;
             
-            foreach (var group in TOC.Groups)
+            if (url.EndsWith("/home") || url.EndsWith("/index") || url.EndsWith("/samples"))
             {
-                foreach (var comp in group.Components)
+                this.CurrentPath = url;
+                this.CurrentSample = this.HomeTitle;
+                this.CurrentHelpTopic = "";
+            }
+            else
+            {
+                foreach (var group in TOC.Groups)
                 {
-                    foreach (var sample in comp.Samples)
+                    foreach (var comp in group.Components)
                     {
-                        if (url.Contains(sample.Route))
+                        foreach (var sample in comp.Samples)
                         {
-                            sampleFound = true;
-                            this.CurrentPath = url;
-                            this.CurrentSample = sample.Component + " - " +  sample.Name;
-                        //  this.CurrentHelpTopic = comp.Topic;
-                            if (!this.IsEmbedded)
-                                 this.SetMetadata(sample);
-                            break;
+                            if (url.Contains(sample.Route))
+                            {
+                                sampleFound = true;
+                                this.CurrentPath = url;
+                                this.CurrentSample = sample.Component + " - " + sample.Name;
+                                //  this.CurrentHelpTopic = comp.Topic;
+                                if (!this.IsEmbedded)
+                                    this.SetMetadata(sample);
+                                break;
+                            }
                         }
                     }
                 }
+
+                if (!sampleFound)
+                {
+                    // Console.WriteLine("SB.NAV not found " + url);
+                    this.CurrentPath = url;
+                    this.CurrentSample = "";
+                    this.CurrentHelpTopic = "";
+                    if (!this.IsEmbedded)
+                        this.SetMetadata(null);
+                }
+
+                if (string.IsNullOrEmpty(this.CurrentHelpTopic))
+                    this.CurrentHelpTopic = this.DefaultHelpTopic;
+
+                this.IsHostingOnStaging = url.Contains("staging") || url.Contains("localhost");
+                if (this.IsHostingOnStaging)
+                    this.CurrentHelpUrl = "https://staging.infragistics.com/reactsite/components/" + this.CurrentHelpTopic;
+                else
+                    this.CurrentHelpUrl = "https://infragistics.com/reactsite/components/" + this.CurrentHelpTopic;
+
             }
-
-            if (!sampleFound) {
-                // Console.WriteLine("SB.NAV not found " + url);
-                this.CurrentPath = url;
-                this.CurrentSample = "";
-                this.CurrentHelpTopic = "";
-                if (!this.IsEmbedded)
-                     this.SetMetadata(null);
-            }
-
-            if (string.IsNullOrEmpty(this.CurrentHelpTopic))
-                this.CurrentHelpTopic = this.DefaultHelpTopic;
-
-            this.IsHostingOnStaging = url.Contains("staging") || url.Contains("localhost");
-            if (this.IsHostingOnStaging)
-                this.CurrentHelpUrl = "https://staging.infragistics.com/reactsite/components/" + this.CurrentHelpTopic;
-            else
-                this.CurrentHelpUrl = "https://infragistics.com/reactsite/components/" + this.CurrentHelpTopic;
 
         }
 
