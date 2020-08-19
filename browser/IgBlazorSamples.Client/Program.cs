@@ -9,7 +9,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 using Samples.Shared;
-// required for registering InfragisticsBlazor
 using Infragistics.Blazor.Controls;
 
 namespace Samples
@@ -23,9 +22,7 @@ namespace Samples
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             builder.Services.AddScoped(typeof(Samples.Shared.Services.SampleBrowser));
-
             builder.Services.AddScoped(typeof(Samples.Shared.Services.SampleTimer));
-            // services.AddSingleton<SamplesCore.Services.SampleBrowser>();
 
             // registering Infragistics Blazor
             builder.Services.AddScoped(typeof(IInfragisticsBlazor), typeof(InfragisticsBlazor));

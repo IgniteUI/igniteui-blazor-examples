@@ -6,14 +6,30 @@
 @*<Samples.Pages.PieChartSelection />*@
 @*<Samples.Pages.RadialGaugeTypeColumn />*@
 @*<Samples.Pages.SparklineDisplayTypes />*@
- 
+
+@using Samples.Shared.Navigation
+@inject Samples.Shared.Services.SampleBrowser SB
+
 <Router AppAssembly="@typeof(Program).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(BrowserLayout)" />
     </Found>
     <NotFound>
         <LayoutView Layout="@typeof(BrowserLayout)">
-            <p class="no-selection">Sorry, there's nothing at this address.</p>
+            <SampleNotFound></SampleNotFound>
+            @*<p class="no-selection">Sorry, there's nothing at this address.</p>*@
         </LayoutView>
     </NotFound>
 </Router>
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("SB App");
+        //SB.AppName = "Blazor Samples Server-Side";
+        SB.HomeTitle = "Blazor Samples running on Client-Side";
+
+        await Task.Delay(1);
+    }
+}
