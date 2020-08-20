@@ -239,28 +239,15 @@ function exclude(fileWithString) {
     });
 }
 
-let outputClientPages    = '../../browser/IgBlazorSamples.Client/Pages';
-let outputClientServices = '../../browser/IgBlazorSamples.Client/Services';
-let outputClientTOC      = '../../browser/IgBlazorSamples.Client/wwwroot';
+function cleanupBrowser(outputPath) {
 
-let outputServerPages    = '../../browser/IgBlazorSamples.Server/Pages';
-let outputServerServices = '../../browser/IgBlazorSamples.Server/Services';
-let outputServerTOC      = '../../browser/IgBlazorSamples.Server/wwwroot';
-
-function deleteSamples() {
-
-    log('deleting razor files... ');
-    del.sync([
-          outputClientServices + "/*.*",  // auto-copied files
-          outputClientPages + "/**",      // auto-copied samples
-    "!" + outputClientPages + "/_*.razor", // e.g. _Home.razor
-    ], {force:true});
+    log('cleaning up files in ' + outputPath);
 
     del.sync([
-          outputServerServices + "/*.*",  // auto-copied files
-          outputServerPages + "/**",      // auto-copied samples
-    "!" + outputServerPages + "/_*.razor", // e.g. _Home.razor
-    "!" + outputServerPages + "/_*.cshtml" // e.g. _Host.cshtml
+          outputPath + "/Services/*.*",  // auto-copied files
+          outputPath + "/Pages/**",      // auto-copied samples
+    "!" + outputPath + "/Pages/_*.razor", // e.g. _Home.razor
+    "!" + outputPath + "/Pages/_*.cshtml" // e.g. _Host.cshtml
     ], {force:true});
 }
 
@@ -271,25 +258,22 @@ function saveFile(filePath, fileContent) {
     //   console.log("copied " + filePath);
 }
 
-function copySamples(cb) {
-    deleteSamples();
+function copySamples(cb, outputPath) {
+    cleanupBrowser(outputPath);
 
-    log('copying razor files... ');
+    log('copying samples to: ' + outputPath + '/Pages/');
     // log('copying sample files... ');
     for (const sample of samples) {
 
-        let outputServerFolder = outputServerPages + '/' + sample.ComponentGroup + '/' + sample.ComponentFolder
-        let outputClientFolder = outputClientPages + '/' + sample.ComponentGroup + '/' + sample.ComponentFolder
+        let sampleFolder = sample.ComponentGroup + '/' + sample.ComponentFolder
         // outputFolder = Strings.toTitleCase(outputClient);
 
         for (const file of sample.SourceFiles) {
             // log("copy " + sample.SampleRoute + " " + sample.ComponentFolder + " " + file.Path);
             if (file.isRazor()) {
-                saveFile(outputClientFolder + '/' + file.Name, file.Content);
-                saveFile(outputServerFolder + '/' + file.Name, file.Content);
+                saveFile(outputPath + '/Pages/' + sampleFolder + '/' + file.Name, file.Content);
             } else {
-                saveFile(outputClientServices + '/' + file.Name, file.Content);
-                saveFile(outputServerServices + '/' + file.Name, file.Content);
+                saveFile(outputPath + '/Services/' + file.Name, file.Content);
             }
 
             // gulp.src([sampleFile.Path])
@@ -314,17 +298,29 @@ function copySamples(cb) {
     //     // log(outputPath);
     }
 
-    let outputToc = outputClientTOC + '/toc.json'
+    log('copying toc to: ' + outputPath + '/wwwroot/toc.json');
     let routingGroups = Transformer.getRoutingGroups(samples);
     let routingFile = Transformer.getRoutingFile(routingGroups);
 
-    log('copying toc files... ');
-    saveFile(outputClientTOC + '/toc.json', routingFile);
-    saveFile(outputServerTOC + '/toc.json', routingFile);
+    saveFile(outputPath + '/wwwroot/toc.json', routingFile);
     // fs.writeFileSync(outputToc, routingFile);
 
     cb();
-} exports.copySamples = copySamples;
+}
+
+// '../../browser/IgBlazorSamples.Server/Pages'
+// '../../browser/IgBlazorSamples.Server/Services'
+// '../../browser/IgBlazorSamples.Server/wwwroot'
+function copySamplesToServer(cb) {
+    copySamples(cb, "../../browser/IgBlazorSamples.Server");
+} exports.copySamplesToServer = copySamplesToServer;
+
+// '../../browser/IgBlazorSamples.Client/Pages'
+// '../../browser/IgBlazorSamples.Client/Services'
+// '../../browser/IgBlazorSamples.Client/wwwroot'
+function copySamplesToClient(cb) {
+    copySamples(cb, "../../browser/IgBlazorSamples.Client");
+} exports.copySamplesToClient = copySamplesToClient;
 
 function updateReadme(cb) {
 

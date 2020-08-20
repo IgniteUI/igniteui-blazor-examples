@@ -32,16 +32,15 @@ https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install
 
 - type `npm install` command in terminal window
 
-- type `gulp copySamples` command in terminal window
+- type `gulp copySamplesToClient` command in terminal window
 
 NOTE: above command will copy .razor pages and their .cs files from `./samples/` folder to:
 
     ./browser/IgBlazorSamples.Client/
-    ./browser/IgBlazorSamples.Server/
 
 - open `./browser/IgBlazorSamples.Client/` folder in VS Code
 
-- type `dotnet build` command in terminal to restore assemblies
+- type `dotnet build` command in terminal to build app
 
 <!-- ## Resources -->
 

@@ -50,13 +50,18 @@ exports.updateProjects = updateProjects = gulp.series(
 //     sb.updateSharedFiles,
 // );
 
-exports.copySamples = copySamples = gulp.series(
+exports.copySamplesToServer = copySamplesToServer = gulp.series(
     // sb.updateVersion,
     sb.getSamples,
-    sb.copySamples,
-    // sb.copyPackageJson,
+    sb.copySamplesToServer,
 );
-exports.updateBrowser = updateBrowser = copySamples;
+
+exports.copySamplesToClient = copySamplesToClient = gulp.series(
+    // sb.updateVersion,
+    sb.getSamples,
+    sb.copySamplesToClient,
+);
+// exports.updateBrowser = updateBrowser = copySamples;
 
 
 // exports.updateVersion = updateVersion = sb.updateVersion;
