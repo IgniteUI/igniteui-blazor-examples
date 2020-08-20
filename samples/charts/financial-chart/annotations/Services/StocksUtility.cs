@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Samples
 {
@@ -147,13 +146,12 @@ namespace Samples
             }
 
             var time = lastItem.Date.AddMinutes(interval.Value);
-            var v = lastItem.Volume;
-            var o = lastItem.Open;
-            var h = lastItem.High;
-            var l = lastItem.Low;
-            var c = lastItem.Close;
+            double v = lastItem.Volume;
+            double c = lastItem.Close;
+            double h;
+            double l;
 
-            o = c + ((rand.NextDouble() - 0.5) * priceRange);
+            double o = c + ((rand.NextDouble() - 0.5) * priceRange);
             if (o < 0)
             {
                 o = Math.Abs(o) + 2;
@@ -161,7 +159,7 @@ namespace Samples
             h = o + (rand.NextDouble() * priceRange);
             l = o - (rand.NextDouble() * priceRange);
             c = l + (rand.NextDouble() * (h - l));
-            v = v + ((rand.NextDouble() - 0.5) * volumeRange);
+            v += ((rand.NextDouble() - 0.5) * volumeRange);
             if (v < 0)
             {
                 v = Math.Abs(v) + 10000;

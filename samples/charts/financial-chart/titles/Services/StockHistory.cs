@@ -9,10 +9,10 @@ namespace Samples
 {
     public class StocksHistory
     {
-        public static async Task<List<StockItem[]>> GetMultipleStocks()
+        public static async Task<List<StockPrice[]>> GetMultipleStocks()
         {
             // getting prices of multiples stocks asynchronously
-            var dataSources = new List<StockItem[]> {
+            var dataSources = new List<StockPrice[]> {
                 await GetAmazonStock(),
                 await GetGoogleStock(),
                 await GetMicrosoftStock(),
@@ -23,7 +23,7 @@ namespace Samples
         }
 
         /** gets Amazon stock OHLC prices from a .JSON file */
-        public static async Task<StockItem[]> GetAmazonStock() {
+        public static async Task<StockPrice[]> GetAmazonStock() {
             var url = "https://static.infragistics.com/xplatform/data/stocks/stockAmazon.json";
 
             //TODO
@@ -34,7 +34,7 @@ namespace Samples
             // console.log("fetchAmazonStock: ", stockData.length);
 
             var http = new HttpClient();
-            var data = await http.GetFromJsonAsync<StockItem[]>(url);
+            var data = await http.GetFromJsonAsync<StockPrice[]>(url);
             //Console.WriteLine("Label" + " " + data.Length);
             //Console.WriteLine("Date" + " " + data[0].Date);
             return data;
@@ -42,7 +42,7 @@ namespace Samples
         }
 
         /** gets Tesla stock OHLC prices from a .JSON file */
-        public static async Task<StockItem[]> GetTeslaStock()
+        public static async Task<StockPrice[]> GetTeslaStock()
         {
             var url = "https://static.infragistics.com/xplatform/data/stocks/stockTesla.json";
 
@@ -54,14 +54,14 @@ namespace Samples
             // console.log("fetchAmazonStock: ", stockData.length);
 
             var http = new HttpClient();
-            var data = await http.GetFromJsonAsync<StockItem[]>(url);
+            var data = await http.GetFromJsonAsync<StockPrice[]>(url);
 
             return data;
 
         }
 
         /** gets Microsoft stock OHLC prices from a .JSON file */
-        public static async Task<StockItem[]> GetMicrosoftStock()
+        public static async Task<StockPrice[]> GetMicrosoftStock()
         {
             var url = "https://static.infragistics.com/xplatform/data/stocks/stockMicrosoft.json";
 
@@ -73,13 +73,13 @@ namespace Samples
             // console.log("fetchAmazonStock: ", stockData.length);
 
             var http = new HttpClient();
-            var data = await http.GetFromJsonAsync<StockItem[]>(url);
+            var data = await http.GetFromJsonAsync<StockPrice[]>(url);
 
             return data;
 
         }
 
-        public static async Task<StockItem[]> GetGoogleStock()
+        public static async Task<StockPrice[]> GetGoogleStock()
         {
             var url = "https://static.infragistics.com/xplatform/data/stocks/stockGoogle.json";
 
@@ -91,14 +91,14 @@ namespace Samples
             // console.log("fetchAmazonStock: ", stockData.length);
 
             var http = new HttpClient();
-            var data = await http.GetFromJsonAsync<StockItem[]>(url);
+            var data = await http.GetFromJsonAsync<StockPrice[]>(url);
 
             return data;
 
         }
     }
 
-    public class StockItem
+    public class StockPrice
     {
 		//TODO - get date to show up on xAxis
         public string Date { get; set; }
