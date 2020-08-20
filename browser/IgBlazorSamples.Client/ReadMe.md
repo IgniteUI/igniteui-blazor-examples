@@ -3,90 +3,47 @@
 - instal **.NET SDK** from this website:
 https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install
 
-## Create Local NuGet Package
-
-- open Visual Studio 2019 as an Administrator
-- open **Tools - Options** menu
-- expand **NuGet Package Manager** menu
-- select **Package Sources**
-- click add button
-- type **IG Blazor Local** in Name field
-- type local path to [**igniteui-blazor-examples/NuGet**](https://github.com/IgniteUI/igniteui-blazor-examples) folder in the Source field, e.g.
-`C:\REPOS\igniteui-blazor-examples\NuGet`
-
-- move the new **IG Blazor Local** to top of the list of packages
-
 ## Running App in Visual Studio 2019
 
-NOTE: VS 2019 has better code highlighting and error detection than VS Code does.
-
 - open Visual Studio 2019 as an Administrator
 
-- open the **BlazorClientApp.sln** solution
+- open the **IgBlazorSamplesBrowser.sln** solution
 
 - right click solution and select Restore NuGet Packages
 
 - click Debug menu and select Start Debugging or press F5 key
 
-
 ## Running App in VS Code
 
-- open VS Code as an Administrator
+- open `./browser/IgBlazorSamples.Client/` folder in VS Code
 
-- open this folder in VS Code
+- type `dotnet restore` command in terminal to restore assemblies
 
-- open a terminal window
-- to restore assemblies, run this command:
-```dotnet restore```
-
-- to run samples, run this command:
-```dotnet watch run```
+- type `dotnet watch run` command in terminal to host app locally
 
 - wait for for message:
 **Now listening on: http://localhost:4200**
 
 - open **http://localhost:4200** in your browser
 
-## Implementation
+## Building Samples Browser
 
-- create a new branch from the **master** branch
+- open `./browser/IgBlazorSamples.Gulp/` folder in VS Code
 
-- copy content of this folder to [**IgniteUI for Blazor**](https://github.com/IgniteUI/igniteui-blazor-examples) repository under the `samples` folder, for example:
+- type `npm install` command in terminal window
 
-`/samples/charts/category-chart/annotations/`
+- type `gulp copySamples` command in terminal window
 
-- implement data source (if any) in the `Service` folder, e.g.
-    - `DataChartSharedData.cs`
-    - `DataChartSharedData.cs`
-    - `WorldCity.cs`
+this will copy .razor sample pages and their .cs files from:
+`./samples/` folder
+to:
+`./browser/IgBlazorSamples.Client/` folder
+`./browser/IgBlazorSamples.Server/` folder
 
-NOTE: make sure `class` is under  `Samples` namespace
+- open `./browser/IgBlazorSamples.Client/` folder in VS Code
 
-- implement the sample in one of `.razor` pages, e.g.
-    - `DataGridBindingLocalData.razor`
-    - `DoughnutChartSelection.razor`
-    - `PieChartSelection.razor`
-    - `RadialGaugeTypeColumn.razor`
+- type `dotnet build` command in terminal to restore assemblies
 
-NOTE: `App.razor` file controls which `.razor` is loaded
+<!-- ## Resources -->
 
-NOTE: Do not add/change any files in the `wwwroot` folder
-
-- make sure you make changes for `TODO` items
-
-- remove all `NOTE` and `TODO` comments when you are done implementing sample
-
-- remove any code that does not apply to the sample
-
-- remove not used `.razor` file in `Pager` folder such there is only one `.razor` file
-
-- remove not used `.cs` file in `Services` folder
-
-- make your commits and create a pull request
-
-
-## Resources
-
-- [Razor Component Models](https://www.codemag.com/article/1911052)
-- [Razor Syntax](https://docs.microsoft.com/en-us/aspnet/core/blazor/components/?view=aspnetcore-3.1#razor-syntax)
-- [Getting reference to components](https://docs.microsoft.com/en-us/aspnet/core/blazor/components/?view=aspnetcore-3.1#capture-references-to-components)
+<!-- - [Getting reference to components](https://docs.microsoft.com/en-us/aspnet/core/blazor/components/?view=aspnetcore-3.1#capture-references-to-components) -->
