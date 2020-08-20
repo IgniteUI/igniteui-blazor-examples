@@ -5,17 +5,17 @@ https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install
 
 ## Running App in Visual Studio 2019
 
-- open Visual Studio 2019 as an Administrator
+- open **Visual Studio 2019** as an Administrator
 
 - open the **IgBlazorSamplesBrowser.sln** solution
 
-- right click solution and select Restore NuGet Packages
+- right click solution and select **Restore NuGet Packages**
 
-- click Debug menu and select Start Debugging or press F5 key
+- click **Debug** menu and select **Start Debugging** or press F5 key
 
 ## Running App in VS Code
 
-- open `./browser/IgBlazorSamples.Client/` folder in VS Code
+- open `./browser/IgBlazorSamples.Client/` folder in **VS Code**
 
 - type `dotnet restore` command in terminal to restore assemblies
 
@@ -28,17 +28,16 @@ https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install
 
 ## Building Samples Browser
 
-- open `./browser/IgBlazorSamples.Gulp/` folder in VS Code
+- open `./browser/IgBlazorSamples.Gulp/` folder in **VS Code**
 
 - type `npm install` command in terminal window
 
 - type `gulp copySamples` command in terminal window
 
-this will copy .razor sample pages and their .cs files from:
-`./samples/` folder
-to:
-`./browser/IgBlazorSamples.Client/` folder
-`./browser/IgBlazorSamples.Server/` folder
+NOTE: above command will copy .razor pages and their .cs files from `./samples/` folder to:
+
+    ./browser/IgBlazorSamples.Client/
+    ./browser/IgBlazorSamples.Server/
 
 - open `./browser/IgBlazorSamples.Client/` folder in VS Code
 
