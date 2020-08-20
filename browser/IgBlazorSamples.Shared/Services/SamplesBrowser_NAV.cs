@@ -16,7 +16,7 @@ namespace Samples.Shared.Services
 
         public string CurrentPath { get; set; }
 
-        private string DefaultHelpTopic = "general-getting-started.html";
+        private readonly string DefaultHelpTopic = "general-getting-started.html";
         private string CurrentHelpTopic = "";
         private string _CurrentHelpUrl = "";
         public string CurrentHelpUrl

@@ -189,7 +189,7 @@ function getSamples(cb) {
 
         // Transformer.print(samples);
 
-        log('getSamples found ' + samples.length + " samples");
+        log('getSamples() found ' + samples.length + " samples");
         // for (const sample of samples) {
         //     log(' ' + sample.SampleFolderPath);
         // }
@@ -239,53 +239,62 @@ function exclude(fileWithString) {
     });
 }
 
-// let outputPathPages = './Samples';
-let outputPathPages    = '../../browser/IgBlazorSamples.Client/Pages';
-let outputPathServices = '../../browser/IgBlazorSamples.Client/Services';
-let outputPathTOC      = '../../browser/IgBlazorSamples.Client/wwwroot';
+let outputClientPages    = '../../browser/IgBlazorSamples.Client/Pages';
+let outputClientServices = '../../browser/IgBlazorSamples.Client/Services';
+let outputClientTOC      = '../../browser/IgBlazorSamples.Client/wwwroot';
+
+let outputServerPages    = '../../browser/IgBlazorSamples.Server/Pages';
+let outputServerServices = '../../browser/IgBlazorSamples.Server/Services';
+let outputServerTOC      = '../../browser/IgBlazorSamples.Server/wwwroot';
 
 function deleteSamples() {
 
-    log('deleting sample files... ');
+    log('deleting razor files... ');
     del.sync([
-          outputPathServices + "/*.*", // auto-copied files
-          outputPathPages + "/**",     // auto-copied samples
-    "!" + outputPathPages + "/*.razor" // e.g. home.razor
+          outputClientServices + "/*.*",  // auto-copied files
+          outputClientPages + "/**",      // auto-copied samples
+    "!" + outputClientPages + "/_*.razor", // e.g. _Home.razor
     ], {force:true});
-    // del.sync(outputPathPages + "/**/*.*", {force:true});
-    // del.sync(outputPathPages + "/*.*", {force:true});
-    // del.sync(outputPathPages + "/*", {force:true});
+
+    del.sync([
+          outputServerServices + "/*.*",  // auto-copied files
+          outputServerPages + "/**",      // auto-copied samples
+    "!" + outputServerPages + "/_*.razor", // e.g. _Home.razor
+    "!" + outputServerPages + "/_*.cshtml" // e.g. _Host.cshtml
+    ], {force:true});
+}
+
+function saveFile(filePath, fileContent) {
+    makeDirectoryFor(filePath);
+    // if (!fs.existsSync(outputClientRazor)) {
+    fs.writeFileSync(filePath, fileContent);
+    //   console.log("copied " + filePath);
 }
 
 function copySamples(cb) {
     deleteSamples();
-    let copiedFiles = [];
+
+    log('copying razor files... ');
     // log('copying sample files... ');
     for (const sample of samples) {
 
-        let outputFolder = outputPathPages + '/' + sample.ComponentGroup + '/' + sample.ComponentFolder
-        outputFolder = Strings.toTitleCase(outputFolder);
+        let outputServerFolder = outputServerPages + '/' + sample.ComponentGroup + '/' + sample.ComponentFolder
+        let outputClientFolder = outputClientPages + '/' + sample.ComponentGroup + '/' + sample.ComponentFolder
+        // outputFolder = Strings.toTitleCase(outputClient);
 
         for (const file of sample.SourceFiles) {
             // log("copy " + sample.SampleRoute + " " + sample.ComponentFolder + " " + file.Path);
             if (file.isRazor()) {
-                let outputPath = outputFolder + '/' + file.Name;
-                makeDirectoryFor(outputPath);
-                if (!fs.existsSync(outputPath)) {
-                     fs.writeFileSync(outputPath, file.Content);
-                    //   console.log("copied " + outputPath);
-                }
+                saveFile(outputClientFolder + '/' + file.Name, file.Content);
+                saveFile(outputServerFolder + '/' + file.Name, file.Content);
             } else {
-                let outputPath = outputPathServices + '/' + file.Name;
-                if (!fs.existsSync(outputPath)) {
-                     fs.writeFileSync(outputPath, file.Content);
-                   //   console.log("copied " + outputPath);
-                }
+                saveFile(outputClientServices + '/' + file.Name, file.Content);
+                saveFile(outputServerServices + '/' + file.Name, file.Content);
             }
 
             // gulp.src([sampleFile.Path])
             // .pipe(es.map(function(file, fileCallback) {
-            //     let outputFile = outputPathPages + '/' + outputPath + '/' + file.basename;
+            //     let outputFile = outputClientPages + '/' + outputPath + '/' + file.basename;
             //     if (!copiedFiles.includes(outputFile)) {
             //          copiedFiles.push(outputFile);
             //         //  console.log("copied " + outputFile);
@@ -305,10 +314,14 @@ function copySamples(cb) {
     //     // log(outputPath);
     }
 
-    let outputToc = outputPathTOC + '/toc.json'
+    let outputToc = outputClientTOC + '/toc.json'
     let routingGroups = Transformer.getRoutingGroups(samples);
     let routingFile = Transformer.getRoutingFile(routingGroups);
-    fs.writeFileSync(outputToc, routingFile);
+
+    log('copying toc files... ');
+    saveFile(outputClientTOC + '/toc.json', routingFile);
+    saveFile(outputServerTOC + '/toc.json', routingFile);
+    // fs.writeFileSync(outputToc, routingFile);
 
     cb();
 } exports.copySamples = copySamples;
