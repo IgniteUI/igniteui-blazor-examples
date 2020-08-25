@@ -63,6 +63,7 @@
 
     protected override async Task OnInitializedAsync()
     {
+        Console.WriteLine("SB.NAV BrowserLayout Initialized Async");
         @* await SB.CheckUIAsync(NavManager.Uri);
             StateHasChanged(); *@
         await Task.Delay(1);
@@ -70,10 +71,13 @@
 
     protected override void OnInitialized()
     {
+        Console.WriteLine("SB.NAV BrowserLayout Initialized");
+        Console.WriteLine("SB.NAV BrowserLayout " + NavManager.BaseUri);
         @* await Task.Delay(10);  *@
 
         NavManager.LocationChanged += this.OnLocationChanged;
 
+        SB.AppBaseUri = NavManager.BaseUri;
         SB.SamplesLoaded += OnSamplesLoaded;
         @* await Task.Delay(1); *@
     }

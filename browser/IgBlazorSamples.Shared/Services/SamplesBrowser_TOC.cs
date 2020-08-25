@@ -42,6 +42,9 @@ namespace Infragistics.Samples.Shared.Services
         {
             this.IsLoading = true;
             Console.WriteLine("SB.TOC parsing ");
+            Console.WriteLine("SB.TOC " + this.AppBaseUri);
+
+            this.AppHomeUri = this.AppBaseUri + "samples/home";
 
             foreach (var group in toc.Groups)
             {
@@ -49,7 +52,7 @@ namespace Infragistics.Samples.Shared.Services
                 {
                     foreach (var sample in component.Samples)
                     {
-                        sample.Route = "/samples" + sample.Route;
+                        sample.Route = this.AppBaseUri + "samples" + sample.Route;
                         sample.Component = component.Name;
                         sample.Group = group.Name;
 

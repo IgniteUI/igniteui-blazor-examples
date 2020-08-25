@@ -71,7 +71,7 @@ namespace Infragistics.Samples
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UsePathBase("/blazor-server");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapBlazorHub();

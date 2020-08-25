@@ -7,6 +7,9 @@ namespace Infragistics.Samples.Shared.Services
 {
     public partial class SampleBrowser
     {
+        public string AppBaseUri { get; set; }
+        public string AppHomeUri { get; set; }
+
         private string _AppName = "Blazor Samples";
         public string AppName
         {

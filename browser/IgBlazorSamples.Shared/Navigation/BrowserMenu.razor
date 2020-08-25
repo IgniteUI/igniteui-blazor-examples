@@ -13,13 +13,7 @@
 </div>
 
 <div class="sb-sidebar-list">
-    <NavLink class="sb-sidebar-home" href="/samples/home" Match="NavLinkMatch.All">
-        <span class="oi oi-home" aria-hidden="true"></span>Home
-    </NavLink>
-
-    @*SB == null ||  ||
-        SB.SampleGroups.Length == 0*@
-
+    
     @if (SB.IsLoading)
     {
         <p><em>Loading...</em></p>
@@ -27,6 +21,10 @@
     }
     else
     {
+        <NavLink class="sb-sidebar-home" href=@SB.AppHomeUri Match="NavLinkMatch.All">
+            <span class="oi oi-home" aria-hidden="true"></span>Home
+        </NavLink>
+
         @foreach (var group in SB.TOC.Groups)
         {
             <span class="sb-sidebar-group">
@@ -68,6 +66,7 @@
     protected override async Task OnInitializedAsync()
     {
         Console.WriteLine("SB.Nav Menu");
+        Console.WriteLine("SB.NAV Menu " + NavManager.BaseUri);
         //var toc = await Http.GetAsync<TOC>("toc.json");
         //var client = new HttpClient();
         //var response = await client.GetAsync("toc.json");
