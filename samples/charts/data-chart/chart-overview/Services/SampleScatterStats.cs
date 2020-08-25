@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Samples
+namespace Infragistics.Samples
 {
     public class SampleScatterStats
     {
@@ -359,7 +359,7 @@ namespace Samples
             return shortValue.ToString("0.0") + suffixes[suffixNum];
         }
     }
-        
+
     public class Country
     {
         public double Population { get; set; }

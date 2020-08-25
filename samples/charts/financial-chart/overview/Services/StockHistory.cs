@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Json;
 
-namespace Samples
+namespace Infragistics.Samples
 {
     public class StocksHistory
     {

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Samples
+namespace Infragistics.Samples
 {
     public class CategoryDataItem
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Samples
+namespace Infragistics.Samples
 {
     public class StocksUtility
     {

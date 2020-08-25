@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 using Infragistics.Blazor.Controls;
 
 
-namespace Samples
+namespace Infragistics.Samples
 {
     public class Program
     {
