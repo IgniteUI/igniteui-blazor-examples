@@ -9,12 +9,12 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-//using Samples.Data;
+//using Infragistics.Samples.Data;
 
 using System.Net.Http;
 using Infragistics.Blazor.Controls;
 
-namespace Samples
+namespace Infragistics.Samples
 {
     public class Startup
     {

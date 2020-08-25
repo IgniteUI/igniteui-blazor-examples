@@ -1,6 +1,6 @@
 using System;
 
-namespace Samples
+namespace Infragistics.Samples
 {
     public class WeatherForecast
     {

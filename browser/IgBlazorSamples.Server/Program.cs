@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 
-namespace Samples
+namespace Infragistics.Samples
 {
     public class Program
     {

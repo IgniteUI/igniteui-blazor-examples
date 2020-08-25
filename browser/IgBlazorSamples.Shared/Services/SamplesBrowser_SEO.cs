@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.JSInterop;
 
-namespace Samples.Shared.Services
+namespace Infragistics.Samples.Shared.Services
 {
     public partial class SampleBrowser
     {

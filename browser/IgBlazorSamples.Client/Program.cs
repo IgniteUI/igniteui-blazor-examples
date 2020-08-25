@@ -8,10 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-using Samples.Shared;
 using Infragistics.Blazor.Controls;
 
-namespace Samples
+namespace Infragistics.Samples
 {
     public class Program
     {
@@ -21,8 +20,8 @@ namespace Samples
             builder.RootComponents.Add<App>("app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            builder.Services.AddScoped(typeof(Samples.Shared.Services.SampleBrowser));
-            builder.Services.AddScoped(typeof(Samples.Shared.Services.SampleTimer));
+            builder.Services.AddScoped(typeof(Infragistics.Samples.Shared.Services.SampleBrowser));
+            builder.Services.AddScoped(typeof(Infragistics.Samples.Shared.Services.SampleTimer));
 
             // registering Infragistics Blazor
             builder.Services.AddScoped(typeof(IInfragisticsBlazor), typeof(InfragisticsBlazor));

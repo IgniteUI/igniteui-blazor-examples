@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Samples.Shared.Services
+namespace Infragistics.Samples.Shared.Services
 {
     public partial class SampleBrowser
     {

@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Samples
+namespace Infragistics.Samples
 {
     public class WeatherForecastService
     {
