@@ -1,7 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System; 
+using System.Linq; 
+using System.Net.Http;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -9,9 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-//using Infragistics.Samples.Data;
-
-using System.Net.Http;
+using Microsoft.Extensions.Logging;
 using Infragistics.Blazor.Controls;
 
 namespace Infragistics.Samples
@@ -20,6 +17,7 @@ namespace Infragistics.Samples
     {
         public Startup(IConfiguration configuration)
         {
+            Console.WriteLine("SB Startup ");
             Configuration = configuration;
         }
 
@@ -54,8 +52,48 @@ namespace Infragistics.Samples
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        //public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        //{
+        //    Console.WriteLine("SB Startup Configure app/env/log");
+
+        //    if (env.IsDevelopment())
+        //    {
+        //        app.UseDeveloperExceptionPage();
+        //    }
+        //    else
+        //    {
+        //        app.UseExceptionHandler("/Error");
+        //        // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+        //        app.UseHsts();
+        //    }
+
+        //    app.UseHttpsRedirection();
+        //    app.UseStaticFiles();
+
+        //    app.UseRouting();
+        //    app.UsePathBase("/blazor-server");
+        //    app.UseEndpoints(endpoints =>
+        //    {
+        //        endpoints.MapBlazorHub();
+        //        endpoints.MapFallbackToPage("/_Host");
+        //    });
+        //}
+
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+            ILoggerFactory loggerFactory)
         {
+            Console.WriteLine("SB Startup Configure app/env/log");
+            //loggerFactory.AddProvider(new CustomLoggerProvider(new CustomLoggerConfiguration()));
+
+            // Custom registration with a configuration object.
+            // Default registration.
+            loggerFactory.AddProvider(new ColorConsoleLoggerProvider(
+                                      new ColorConsoleLoggerConfiguration
+                                      {
+                                          LogLevel = LogLevel.Information,
+                                          Color = ConsoleColor.DarkGreen
+                                      }));
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -78,5 +116,6 @@ namespace Infragistics.Samples
                 endpoints.MapFallbackToPage("/_Host");
             });
         }
+
     }
 }

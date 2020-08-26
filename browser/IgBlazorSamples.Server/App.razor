@@ -3,6 +3,9 @@
 @using Infragistics.Samples.Shared.Navigation
 @inject Infragistics.Samples.Shared.Services.SampleBrowser SB
 
+@using Microsoft.Extensions.Logging;
+@inject ILogger<App> logger;
+
 <Router AppAssembly="@typeof(Program).Assembly">
     <Found Context="routeData">
         @*MainLayout*@
@@ -21,8 +24,11 @@
 
     protected override async Task OnInitializedAsync()
     {
+        logger.LogWarning(    "SB App WARN OnInitializedAsync");
+        logger.LogInformation("SB App INFO OnInitializedAsync"); 
+
         Console.WriteLine("SB App");
-        SB.AppName = "Blazor (Server) Samples";
+        SB.AppName = "Blazor Server Samples";
         SB.HomeTitle = "Home"; // "Blazor Samples running on Server-Side";
 
         await Task.Delay(1);
