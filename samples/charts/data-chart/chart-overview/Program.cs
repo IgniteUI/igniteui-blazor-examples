@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 // required for registering InfragisticsBlazor
-using Infragistics.Blazor.Controls;
+using Infragistics.Blazor.Controls; 
 
 namespace Infragistics.Samples
 {
