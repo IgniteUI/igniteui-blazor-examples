@@ -1,7 +1,7 @@
 using System;
 
 // NOTE make sure data models are implemented under Samples namespace:
-namespace Samples
+namespace Infragistics.Samples
 {
     public class WorldCity
     {
