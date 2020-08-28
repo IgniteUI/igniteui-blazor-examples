@@ -1,0 +1,35 @@
+﻿@page "/MapSynchronization"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igOptions">
+        @* TODO add options (if any) for IG control here otherwise remove DIV with igOptions *@
+    </div>
+
+    <div class="igComponent">
+        <GeographicMap Height="100%" Width="100%" Zoomable="true">
+        </GeographicMap>
+    </div>
+</div>
+
+@code {
+
+    private List<GeLocation> DataSource;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        GeographicMapModule.Register(InfragisticsBlazor);
+    
+        DataSource = new List<GeLocation>();
+    }
+
+    public class GeLocation
+    {
+        public double Lat { get; set; }
+        public double Lon { get; set; }
+    }
+}
