@@ -1,0 +1,70 @@
+﻿@page "/MapDisplayImageryBing"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+@inject NavigationManager NavManager;
+
+<div class="igContainer-horizontal">
+    <GeographicMap Height="100%" Width="100%" Zoomable="true" BackgroundContent="@AerialImagery" @ref="Map1">
+    </GeographicMap>
+    <GeographicMap Height="100%" Width="100%" Zoomable="true" BackgroundContent="@AerialWithLabelsImagery" @ref="Map2">
+    </GeographicMap>
+    <GeographicMap Height="100%" Width="100%" Zoomable="true" BackgroundContent="@RoadImagery" @ref="Map3">
+    </GeographicMap>
+</div>
+
+@code {
+
+    //TODO - BingMaps not working currently...
+
+    private BingMapsMapImagery AerialImagery;
+    private BingMapsMapImagery AerialWithLabelsImagery;
+    private BingMapsMapImagery RoadImagery;
+
+    private GeographicMap Map1;
+    private GeographicMap Map2;
+    private GeographicMap Map3;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        GeographicMapModule.Register(InfragisticsBlazor);
+
+        this.AerialImagery = new BingMapsMapImagery();
+
+        bool isHttpSecured = NavManager.Uri.StartsWith("https");
+
+        string httpPrefix = "http";
+
+        if (isHttpSecured)
+        {
+            httpPrefix = httpPrefix + "s";
+        }
+
+        httpPrefix = httpPrefix + "://dev.virtualearth.net/REST/v1/Imagery/Metadata/";
+
+        BingMapsMapImagery _aerialImagery = new BingMapsMapImagery();
+        _aerialImagery.ApiKey = MapUtils.GetBingKey();
+        _aerialImagery.ImageryStyle = BingMapsImageryStyle.Aerial;
+        _aerialImagery.BingImageryRestUri = httpPrefix;
+
+        BingMapsMapImagery _aerialWithLabelsImagery = new BingMapsMapImagery();
+        _aerialWithLabelsImagery.ApiKey = MapUtils.GetBingKey();
+        _aerialWithLabelsImagery.ImageryStyle = BingMapsImageryStyle.AerialWithLabels;
+        _aerialWithLabelsImagery.BingImageryRestUri = httpPrefix;
+
+        BingMapsMapImagery _roadImagery = new BingMapsMapImagery();
+        _roadImagery.ApiKey = MapUtils.GetBingKey();
+        _roadImagery.ImageryStyle = BingMapsImageryStyle.Road;
+        _roadImagery.BingImageryRestUri = httpPrefix;
+
+        this.AerialImagery = _aerialImagery;
+        this.AerialWithLabelsImagery = _aerialWithLabelsImagery;
+        this.RoadImagery = _roadImagery;
+
+        Map1.BackgroundContent = this.AerialImagery;
+        Map2.BackgroundContent = this.AerialWithLabelsImagery;
+        Map3.BackgroundContent = this.RoadImagery;
+    }
+}

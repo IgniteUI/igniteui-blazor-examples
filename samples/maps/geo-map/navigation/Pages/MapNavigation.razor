@@ -1,0 +1,133 @@
+﻿@page "/MapNavigation"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer-horizontal">
+    <div className="igOverlay-top-left" style={{color: "black", padding: "10px"}}>
+        <label className="igOverlay-label">Select Map Region</label>
+        <select @onchange="OnMapRegionSelectionChanged">
+            <option>Australia</option>
+            <option>Caribbean</option>
+            <option>Egypt</option>
+            <option>European</option>
+            <option>Hawaii</option>
+            <option>Japan</option>
+            <option>Poland</option>
+            <option>SouthAfrica</option>
+            <option>UnitedKingdom</option>
+            <option>UnitedStates</option>
+            <option>Uruguay</option>
+        </select>
+        <label className="igOverlay-label">Map Geographic Rect</label>
+        <div className="igOverlay-row">
+            <label className="igOverlay-field">Top:</label>
+            <label className="igOverlay-value">@MapUtils.ToLat(MapRegionRect.Top)</label>
+        </div>
+        <div className="igOverlay-row">
+            <label className="igOverlay-field">Left:</label>
+            <label className="igOverlay-value">@MapUtils.ToLng(MapRegionRect.Left)</label>
+        </div>
+        <div className="igOverlay-row">
+            <label className="igOverlay-field">Height:</label>
+            <label className="igOverlay-value">@MapUtils.ToLat(MapRegionRect.Height)</label>
+        </div>
+        <div className="igOverlay-row">
+            <label className="igOverlay-field">Width:</label>
+            <label className="igOverlay-value">@MapUtils.ToLng(MapRegionRect.Width)</label>
+        </div>
+        <label className="igOverlay-label">Map Window Rect</label>
+        @*<div className="igOverlay-row">
+                <label className="igOverlay-field">Top:</label>
+                <label className="igOverlay-value">@GeoMap.ActualWindowRect.Top</label>
+            </div>
+            <div className="igOverlay-row">
+                <label className="igOverlay-field">Left:</label>
+                <label className="igOverlay-value">@GeoMap.ActualWindowRect.Left</label>
+            </div>
+            <div className="igOverlay-row">
+                <label className="igOverlay-field">Height:</label>
+                <label className="igOverlay-value">@GeoMap.ActualWindowRect.Height</label>
+            </div>
+            <div className="igOverlay-row">
+                <label className="igOverlay-field">Width:</label>
+                <label className="igOverlay-value">@GeoMap.ActualWindowRect.Width</label>
+            </div>
+            <label className="igOverlay-label">Map Window Position</label>
+            <div className="igOverlay-row">
+                <label className="igOverlay-field">Horizontal:</label>
+                <label className="igOverlay-value">@GeoMap.WindowPositionHorizontal</label>
+            </div>
+            <div className="igOverlay-row">
+                <label className="igOverlay-field">Vertical:</label>
+                <label className="igOverlay-value">@GeoMap.WindowPositionVertical</label>
+            </div>
+            <div className="igOverlay-row">
+                <label className="igOverlay-field">Scale:</label>
+                <label className="igOverlay-value">@GeoMap.WindowScale</label>
+            </div>*@
+        <label className="igOverlay-label">Map Hover Coordinates</label>
+        @*<div className="igOverlay-row">
+                <label className="igOverlay-field">Longitude:</label>
+                <label className="igOverlay-value">@MapUtils.ToLng(this.state.mapHoverGeographicCoordinate.x)</label>
+            </div>
+            <div className="igOverlay-row">
+                <label className="igOverlay-field">Latitude:</label>
+                <label className="igOverlay-value">@MapUtils.ToLat(this.state.mapHoverGeographicCoordinate.y)</label>
+            </div>
+            <div className="igOverlay-row">
+                <label className="igOverlay-field">Window X:</label>
+                <label className="igOverlay-value">{this.state.mapHoverWindowCoordinate.x}</label>
+            </div>
+            <div className="igOverlay-row">
+                <label className="igOverlay-field">Window Y:</label>
+                <label className="igOverlay-value">{this.state.mapHoverWindowCoordinate.y}</label>
+            </div>
+            <div className="igOverlay-row">
+                <label className="igOverlay-field">Pixel X:</label>
+                <label className="igOverlay-value">@MapUtils.ToPixel(this.state.mapHoverRelativeCoordinate.x)</label>
+            </div>
+            <div className="igOverlay-row">
+                <label className="igOverlay-field">Pixel Y:</label>
+                <label className="igOverlay-value">@MapUtils.ToPixel(this.state.mapHoverRelativeCoordinate.y)</label>
+            </div>*@
+    </div>
+
+    @*<div className="igOverlay-bottom-right">Imagery Tiles: ESRI/ArcGIS</div>*@
+
+    <div class="igComponent">
+        <GeographicMap Height="100%" Width="100%" Zoomable="true" @ref="GeoMap">
+        </GeographicMap>
+    </div>
+</div>
+
+@code {
+
+    private GeographicMap GeoMap;
+    private Rect MapRegionRect;
+    private MapRegion Region;
+
+    Dictionary<MapRegion, Rect> regions;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        GeographicMapModule.Register(InfragisticsBlazor);
+
+        regions = MapUtils.GetRegions();
+        this.MapRegionRect = regions[MapRegion.Australia];        
+    }    
+
+    public void OnMapRegionSelectionChanged(ChangeEventArgs args)
+    {
+        MapRegion region = (MapRegion)Enum.Parse(typeof(MapRegion), args.Value.ToString());
+        this.MapRegionRect = regions[region];
+        MapUtils.NavigateTo(this.GeoMap, region);
+    }
+
+    public void OnMapMouseMove(MouseEventArgs args)
+    {
+
+    }
+}
