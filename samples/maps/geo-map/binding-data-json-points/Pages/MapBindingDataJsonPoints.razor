@@ -1,0 +1,48 @@
+﻿@page "/MapBindingDataJsonPoints"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+@inject HttpClient Http;
+
+<div class="igContainer">
+    <div class="igComponent">
+        <GeographicMap Height="100%" Width="100%" Zoomable="true">
+            <GeographicSymbolSeries DataSource="@DataSource"
+                                    MarkerType="@MarkerType.Circle"
+                                    LatitudeMemberPath="Lat"
+                                    LongitudeMemberPath="Lon"
+                                    MarkerBrush="LightGray"
+                                    MarkerOutline="Black" />
+        </GeographicMap>
+    </div>
+</div>
+
+@code {
+
+    private WorldPlaceJson[] DataSource;
+   
+    protected override async Task OnInitializedAsync()
+    {
+        GeographicMapModule.Register(InfragisticsBlazor);
+
+        string url = "https://static.infragistics.com/xplatform/data/WorldCities.json";
+        this.DataSource = await Http.GetFromJsonAsync<WorldPlaceJson[]>(url);
+        
+        await Task.Delay(1);
+    }
+
+    public class WorldPlaceJson {
+
+        public string Name { get; set; }
+
+        public double Lat { get; set; }
+
+        public double Lon { get; set; }
+
+        public double Pop { get; set; }
+
+        public string Country { get; set; }
+        public bool Cap { get; set; }
+    }
+}
