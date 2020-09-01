@@ -1,0 +1,23 @@
+﻿@page "/MapTypeScatterPolygonSeries"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igComponent">
+        <GeographicMap Height="100%" Width="100%" Zoomable="true">
+        </GeographicMap>
+    </div>
+</div>
+
+@code {
+
+    //TODO - THIS SAMPLE IN REACT PARSES THE SHAPEDATASOURCE, NOT SURE IF WE ARE GOING THAT ROUTE OR HOW TO DO THIS IN BLAZOR
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        GeographicMapModule.Register(InfragisticsBlazor);
+    }
+}
