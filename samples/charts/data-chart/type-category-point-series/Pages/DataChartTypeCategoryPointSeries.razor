@@ -1,0 +1,68 @@
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor
+
+<div class="igContainer">
+    <div class="igComponent">
+
+        <DataChart Height="100%" Width="100%"
+                   ChartTitle="Total Olympic Medals"
+                   Subtitle="United States vs China vs Russia"
+                   TitleTopMargin="10"
+                   IsHorizontalZoomEnabled="true"
+                   IsVerticalZoomEnabled="true">
+
+            <CategoryXAxis Name="xAxis" Title="Olympic Years" Label="Year" DataSource="@DataSource" />
+            <NumericYAxis Name="yAxis" Title="Olympic Medals" TitleLeftMargin="10" />
+
+            <PointSeries XAxisName="xAxis"
+                         YAxisName="yAxis"
+                         DataSource="@DataSource"
+                         ValueMemberPath="USA" Title="USA"
+                         AreaFillOpacity="1"
+                         ShowDefaultTooltip="true"
+                         IsTransitionInEnabled="true"
+                         MarkerType=@MarkerType.Circle>
+            </PointSeries>
+            <PointSeries XAxisName="xAxis"
+                         YAxisName="yAxis"
+                         DataSource="@DataSource"
+                         ValueMemberPath="CHN" Title="China"
+                         AreaFillOpacity="1"
+                         ShowDefaultTooltip="true"
+                         IsTransitionInEnabled="true"
+                         MarkerType=@MarkerType.Circle>
+            </PointSeries>
+            <PointSeries XAxisName="xAxis"
+                         YAxisName="yAxis"
+                         DataSource="@DataSource"
+                         ValueMemberPath="RUS" Title="Russia"
+                         AreaFillOpacity="1"
+                         ShowDefaultTooltip="true"
+                         IsTransitionInEnabled="true"
+                         MarkerType=@MarkerType.Circle>
+            </PointSeries>
+
+
+
+        </DataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private List<SampleCategoryItem> DataSource;
+
+    protected override void OnInitialized()
+    { 
+        DataChartCoreModule.Register(InfragisticsBlazor);
+        DataChartCategoryCoreModule.Register(InfragisticsBlazor);
+        DataChartCategoryModule.Register(InfragisticsBlazor);
+        DataChartInteractivityModule.Register(InfragisticsBlazor);
+
+        DataSource = SampleCategoryData.Create();
+
+        Console.WriteLine("DataSource " + DataSource.Count);
+    }
+}
