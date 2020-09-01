@@ -382,7 +382,7 @@ namespace Infragistics.Samples
 
             this.Population = pop;
             this.GdpPerCapita = gdp;
-            this.GdpTotal = gdp * pop; // / 1000000;
+            this.GdpTotal = gdp * pop; 
             this.DptPerCapita = dpt;
             this.PhonePer100 = phones;
         }
