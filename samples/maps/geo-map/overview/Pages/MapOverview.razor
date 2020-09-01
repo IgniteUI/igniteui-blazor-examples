@@ -1,0 +1,24 @@
+﻿@page "/MapOverview"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">    
+    <div class="igComponent">
+        <GeographicMap Height="100%" Width="100%" Zoomable="true" WorldRect="@WorldRect">
+        </GeographicMap>
+    </div>
+    <div class="igOverlay-bottom-right">Imagery Tiles - OpenStreetMap</div>
+</div>
+
+@code {
+
+    private Rect WorldRect = new Rect() { Left = 0.2, Top = 0.1, Width = 0.7, Height = 0.7 };
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        GeographicMapModule.Register(InfragisticsBlazor);
+    }
+}
