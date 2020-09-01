@@ -436,7 +436,7 @@ class Transformer {
 
             for (let pack of igConfig.PackageReferences) {
                 if (Strings.contains(line, pack.Name)) {
-                    //     <PackageReference Include="Infragistics.Blazor" Version="20.1.73-dev" />
+                    //     <PackageReference Include="Infragistics.Blazor" Version="20.1.7" />
                     line = '    <PackageReference Include="' + pack.Name + '" Version="' + pack.Version+ '" />'
                     console.log("updating " + projectFile.Path + " with " + pack.Name);
                     break;
