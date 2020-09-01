@@ -1,0 +1,61 @@
+@page "/samples/charts/data-chart-overview"
+@page         "/charts/data-chart-overview"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor
+
+<div class="igContainer">
+    <div class="igComponent">
+
+        @*TODO: fix RuntimeError: memory access out of bounds*@
+        @if (DataSource != null)
+        {
+            <DataChart Height="100%" Width="100%"
+                       Subtitle="House Floor Plan"
+                       SubtitleTopMargin="10"
+                       IsHorizontalZoomEnabled="true"
+                       IsVerticalZoomEnabled="true">
+
+                <NumericXAxis Name="xAxis"
+                              TitleBottomMargin="10"
+                              Title=" "
+                              MinimumValue="-1" MaximumValue="11" Interval="1">
+                </NumericXAxis>
+                <NumericYAxis Name="yAxis"
+                              TitleLeftMargin="10"
+                              Title=" "
+                              MinimumValue="-1" MaximumValue="11" Interval="1">
+                </NumericYAxis>
+
+                <ScatterPolygonSeries XAxisName="xAxis"
+                                      YAxisName="yAxis"
+                                      Title="Rooms"
+                                      DataSource="@DataSource"
+                                      ShapeMemberPath="Points"
+                                      ShowDefaultTooltip="true">
+                </ScatterPolygonSeries>
+
+            </DataChart>
+        }
+
+    </div>
+</div>
+
+@code {
+
+    private List<SampleShapeItem> DataSource;  
+
+    protected override void OnInitialized()
+    { 
+        LegendModule.Register(InfragisticsBlazor);
+        DataChartCoreModule.Register(InfragisticsBlazor);
+        DataChartScatterCoreModule.Register(InfragisticsBlazor);
+        DataChartScatterModule.Register(InfragisticsBlazor);
+        DataChartInteractivityModule.Register(InfragisticsBlazor); 
+        ScatterPolygonSeriesModule.Register(InfragisticsBlazor);
+          
+        DataSource = SampleShapeData.Create(); 
+
+        //Console.WriteLine("DataSource " + DataSource.Count);
+    }
+}
