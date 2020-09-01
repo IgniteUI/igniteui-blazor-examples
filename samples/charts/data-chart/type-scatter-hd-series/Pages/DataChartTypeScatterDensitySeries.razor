@@ -1,0 +1,64 @@
+@page "/samples/charts/data-chart-overview"
+@page         "/charts/data-chart-overview"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor
+
+<div class="igContainer">
+    <div class="igComponent">
+
+        @if (DataSource != null)
+        {    
+            <DataChart Height="100%" Width="100%"
+                              Subtitle="Stars Distribution in Milky Way Galaxy"
+                              SubtitleTopMargin="10"
+                              IsHorizontalZoomEnabled="true"
+                              IsVerticalZoomEnabled="true">
+                <NumericXAxis Name="xAxis"
+                              AbbreviateLargeNumbers="true"
+                              TitleBottomMargin="10"
+                              Title="Plane of Rotation (in Light Years)">
+                </NumericXAxis>
+                <NumericYAxis Name="yAxis"
+                              AbbreviateLargeNumbers="true"
+                              TitleLeftMargin="10"
+                              Title="Vertical Plane (in Light Years)">
+                </NumericYAxis>
+                <HighDensityScatterSeries XAxisName="xAxis"
+                                          YAxisName="yAxis"
+                                          Title="Distribution"
+                                          DataSource="@DataSource"
+                                          XMemberPath="X"
+                                          YMemberPath="Y"
+                                          ShowDefaultTooltip="true"
+                                          MouseOverEnabled="true"
+                                          ProgressiveLoad="true"
+                                          HeatMinimumColor="Black"
+                                          HeatMaximumColor="Yellow"
+                                          HeatMaximum="1"
+                                          HeatMinimum="5"
+                                          Resolution="3">
+                </HighDensityScatterSeries>
+            </DataChart>
+        }
+    </div>
+</div>
+
+@code {
+    
+    private List<SampleDensityPoint> DataSource; 
+
+    protected override void OnInitialized()
+    {
+        LegendModule.Register(InfragisticsBlazor);
+        DataChartCoreModule.Register(InfragisticsBlazor);
+        DataChartScatterModule.Register(InfragisticsBlazor);
+        DataChartScatterCoreModule.Register(InfragisticsBlazor);
+        DataChartInteractivityModule.Register(InfragisticsBlazor);
+        NumberAbbreviatorModule.Register(InfragisticsBlazor);
+
+        DataSource = SampleDensityData.Create(); 
+
+        //Console.WriteLine("DataSource " + DataSource.Count);
+    }
+}
