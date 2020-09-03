@@ -77,61 +77,31 @@ function cleanSamples() {
 // since they are auto-generated when samples are copied to browsers
 function lintSamples(cb) {
     for (const info of samples) {
-        // log('linting ' + info.SampleFolderPath)
         Transformer.lintSample(info, false)
     }
     cb();
 } exports.lintSamples = lintSamples;
 
+// lints only .razor files in ./samples folder and remove any routing paths (@page)
+// since they are auto-generated when samples are copied to browsers
+function lintRazorFiles(cb) {
+    for (const info of samples) {
+        Transformer.lintRazor(info, false)
+    }
+    cb();
+} exports.lintRazorFiles = lintRazorFiles;
+
 function saveSamples(cb) {
     for (const info of samples) {
-        // log('saving ' + info.SourceRazorFile.Path)
+        if (info.SourceRazorFile &&
+            info.SourceRazorFile.Path &&
+            info.SourceRazorFile.Content) {
+            // log('saving ' + info.SourceRazorFile.Path)
         fs.writeFileSync(info.SourceRazorFile.Path, info.SourceRazorFile.Content);
+        }
     }
     cb();
 } exports.saveSamples = saveSamples;
-
-function lintSamples2(cb) {
-
-    // del.sync("./sample-test-files/**/*.*", {force:true}); LinearGaugeLabels.tsx
-
-    gulp.src([
-        // './samples/tests2/**/**/LinearGaugeLabels.tsx',
-        igConfig.SamplesCopyPath + '/gauges/bullet-graph/**/*.razor',
-        // './templates/**/**/*.tsx',
-        // './templates/**/**/*.ts',
-        // './samples/**/**/**/*.tsx',
-        igConfig.SamplesCopyPath + '/**/App.razor',
-    ]) // , {base: './'}
-    // .pipe(gSort( { asc: false } ))
-    .pipe(es.map(function(file, fileCallback) {
-
-        let fileLocation = Transformer.getRelative(file.dirname) + '/' + file.basename;
-        let fileContent = file.contents.toString();
-        // log('linting ' + fileLocation);
-
-        // let newContent = Transformer.lintRazor(fileLocation, fileContent,
-        //     (err, results) => {
-        //       if (err) {
-        //         fileCallback(err, null);
-        //       }
-        //     //   file.contents = Buffer.from(results);
-        //     //   fileCallback(null, file);
-        //     });
-        // if (newContent !== fileContent) {
-        //     log('changed: ' + fileLocation);
-        //     file.contents = Buffer.from(newContent);
-        //     // fileCallback(null, file);
-        // } else {
-        //     // fileCallback(null, null);
-        // }
-        fileCallback(null, file);
-    }))
-    .pipe(gulp.dest(igConfig.SamplesCopyPath))
-    .on("end", function() {
-        cb();
-    });
-}
 
 function getSamples(cb) {
 

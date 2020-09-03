@@ -35,6 +35,13 @@ exports.lintSamples = lintSamples = gulp.series(
     sb.saveSamples,
 );
 
+exports.lintRazorFiles = lintRazorFiles = gulp.series(
+    // sb.makeSamplesWritable,
+    sb.getSamples,
+    sb.lintRazorFiles,
+    sb.saveSamples,
+);
+
 // exports.updateReadme = updateReadme = gulp.series(
 //     sb.getSamples,
 //     sb.updateReadme,

@@ -794,6 +794,11 @@ class Transformer {
     // lints .razor file in a given sample and generates routing paths (@page) for it
     public static lintRazor(sample: SampleInfo, generateRoutingPath?: boolean) {
 
+        if (sample.SourceRazorFile === undefined ||
+            sample.SourceRazorFile.Content === undefined) {
+            return;
+        }
+
         let invalidLines: string[] = [
             "@page ",
             "@inject IJSRuntime JSRuntime",
