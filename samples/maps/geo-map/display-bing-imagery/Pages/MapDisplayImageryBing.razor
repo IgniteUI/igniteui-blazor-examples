@@ -1,9 +1,6 @@
-﻿@page "/MapDisplayImageryBing"
-
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
-@inject IJSRuntime JSRuntime;
-@inject NavigationManager NavManager;
+@inject IInfragisticsBlazor InfragisticsBlazor
+@inject NavigationManager NavManager
 
 <div class="igContainer-horizontal">
     <GeographicMap Height="100%" Width="100%" Zoomable="true" BackgroundContent="@AerialImagery" @ref="Map1">
@@ -28,7 +25,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         GeographicMapModule.Register(InfragisticsBlazor);
 
         this.AerialImagery = new BingMapsMapImagery();

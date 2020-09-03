@@ -1,8 +1,5 @@
-﻿@page "/MapBindingMultipleSources"
-
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
-@inject IJSRuntime JSRuntime;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
 <div class="igContainer">
     <div class="igComponent">
@@ -20,7 +17,7 @@
 </div>
 
 @code {
-    
+
     private List<WorldCity> Airports;
     private List<FlightInfo> Flights;
     private List<CoordinateLine> Coordinates;
@@ -29,10 +26,9 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         GeographicMapModule.Register(InfragisticsBlazor);
 
-        Airports = WorldConnections.GetAirports();        
+        Airports = WorldConnections.GetAirports();
         Flights = WorldConnections.GetFlights();
         Coordinates = WorldConnections.GetGridlines();
 

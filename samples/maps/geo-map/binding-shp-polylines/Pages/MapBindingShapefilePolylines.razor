@@ -1,8 +1,5 @@
-﻿@page "/MapBindingShapefilePolylines"
-
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
-@inject IJSRuntime JSRuntime;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
 <div class="igContainer">
     <div class="igComponent">
@@ -21,13 +18,12 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         GeographicMapModule.Register(InfragisticsBlazor);
 
         this.DataSource = new ShapeDataSource()
         {
             ShapefileSource = "https://static.infragistics.com/xplatform/shapes/WorldCableRoutes.shp",
             DatabaseSource = "https://static.infragistics.com/xplatform/shapes/WorldCableRoutes.dbf"
-        };        
+        };
     }
 }

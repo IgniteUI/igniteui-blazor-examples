@@ -1,4 +1,3 @@
-
 @using Infragistics.Blazor.Controls
 @inject IInfragisticsBlazor InfragisticsBlazor
 
@@ -11,12 +10,12 @@
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true">
 
-            <CategoryXAxis Name="xAxis" Label="Country" DataSource="@DataSource" />           
+            <CategoryXAxis Name="xAxis" Label="Country" DataSource="@DataSource" />
             <NumericYAxis Name="yAxis" Title="Energy (in Billions Wh)" TitleLeftMargin="10" MinimumValue="0"/>
 
             <StackedSplineSeries XAxisName="xAxis"
                           YAxisName="yAxis"
-                          DataSource="@DataSource" 
+                          DataSource="@DataSource"
                           AreaFillOpacity="1"
                           ShowDefaultTooltip="true" >
                 <StackedFragmentSeries Name="coal" ValueMemberPath="Coal"  />
@@ -40,12 +39,12 @@
     private string Oil = "Oil";
 
     protected override void OnInitialized()
-    { 
+    {
         // TODO fix rendering of StackedSplineSeries
         DataChartCoreModule.Register(InfragisticsBlazor);
         DataChartCategoryCoreModule.Register(InfragisticsBlazor);
         DataChartCategoryModule.Register(InfragisticsBlazor);
-        DataChartInteractivityModule.Register(InfragisticsBlazor);        
+        DataChartInteractivityModule.Register(InfragisticsBlazor);
         DataChartStackedModule.Register(InfragisticsBlazor);
         ColumnFragmentModule.Register(InfragisticsBlazor);
         StackedSplineSeriesModule.Register(InfragisticsBlazor);

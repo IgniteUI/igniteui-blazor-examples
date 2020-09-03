@@ -1,9 +1,6 @@
-﻿@page "/MapBindingDataCSV"
-
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
-@inject IJSRuntime JSRuntime;
-@inject HttpClient Http;
+@inject IInfragisticsBlazor InfragisticsBlazor
+@inject HttpClient Http
 
 <div class="igContainer">
     <div class="igComponent">
@@ -40,7 +37,7 @@
         for (int i = 1; i < csvLines.Length - 1; i++)
         {
             string[] columns = csvLines[i].Split(",");
-            
+
             WorldPlaceCsv location = new WorldPlaceCsv() {
                 Lat=  double.Parse(columns[1]),
                 Lon= double.Parse(columns[2]),

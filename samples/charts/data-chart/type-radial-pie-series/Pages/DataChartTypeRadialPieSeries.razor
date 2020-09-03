@@ -1,4 +1,3 @@
-
 @using Infragistics.Blazor.Controls
 @inject IInfragisticsBlazor InfragisticsBlazor
 
@@ -12,7 +11,7 @@
                    IsVerticalZoomEnabled="true">
             <CategoryAngleAxis Name="angleAxis" DataSource="@DataSource"
                                Label="Department" />
-            <NumericRadiusAxis Name="radiusAxis" 
+            <NumericRadiusAxis Name="radiusAxis"
                                InnerRadiusExtentScale="0.1"
                                MinimumValue="0"/>
 
@@ -48,14 +47,14 @@
     protected override void OnInitialized()
     {
         DataChartCoreModule.Register(InfragisticsBlazor);
-        DataChartRadialModule.Register(InfragisticsBlazor);      
+        DataChartRadialModule.Register(InfragisticsBlazor);
         DataChartRadialCoreModule.Register(InfragisticsBlazor);
-   
+
         DataChartExtendedAxesModule.Register(InfragisticsBlazor);
         DataChartCategoryModule.Register(InfragisticsBlazor);
         DataChartInteractivityModule.Register(InfragisticsBlazor);
 
-        DataSource = SampleRadialData.Create(); 
+        DataSource = SampleRadialData.Create();
     }
-    
+
 }

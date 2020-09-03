@@ -1,8 +1,5 @@
-﻿@page "/MapBindingDataModel"
-
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
-@inject IJSRuntime JSRuntime;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
 <div class="igContainer">
     <div class="igComponent">
@@ -30,7 +27,6 @@
                     Time = geoDistance / 850
                 };
 
-
                 List<FlightInfo> geoRoute = new List<FlightInfo>() { route };
 
                 <GeographicSymbolSeries DataSource="@symbolData" MarkerType="MarkerType.Circle"
@@ -45,7 +41,6 @@
                 </GeographicPolylineSeries>
             }
 
-
         </GeographicMap>
     </div>
 </div>
@@ -56,7 +51,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         GeographicMapModule.Register(InfragisticsBlazor);
 
         WorldCity cityDAL = new WorldCity() { Lat = 32.763, Lon = -96.663, Country = "US", Name = "Dallas" };

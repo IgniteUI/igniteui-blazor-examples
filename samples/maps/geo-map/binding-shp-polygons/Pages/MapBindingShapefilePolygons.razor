@@ -1,8 +1,5 @@
-﻿@page "/MapBindingShapefilePolygons"
-
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
-@inject IJSRuntime JSRuntime;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
 <div class="igContainer">
     <div class="igComponent">
@@ -10,7 +7,7 @@
             <GeographicShapeSeries ShapefileDataSource="@DataSource"
                                    Brush="rgba(146, 146, 146, 0.3)"
                                    Outline="Black"
-                                   Thickness="1"/>                                   
+                                   Thickness="1"/>
         </GeographicMap>
     </div>
 </div>
@@ -21,7 +18,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         GeographicMapModule.Register(InfragisticsBlazor);
 
         DataSource = new ShapeDataSource()

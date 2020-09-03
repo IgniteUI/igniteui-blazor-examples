@@ -1,8 +1,5 @@
-﻿@page "/MapTypeScatterBubbleSeries"
-
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
-@inject IJSRuntime JSRuntime;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
 <div class="igContainer">
     <div class="igComponent">
@@ -15,7 +12,7 @@
                                                 RadiusMemberPath="Pop"
                                                 LatitudeMemberPath="Lat"
                                                 LongitudeMemberPath="Lon"
-                                                MarkerOutline="rgba(0,0,0,0.3)" />                                                
+                                                MarkerOutline="rgba(0,0,0,0.3)" />
         </GeographicMap>
     </div>
 </div>
@@ -28,7 +25,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         GeographicMapModule.Register(InfragisticsBlazor);
 
         this.WorldCities = WorldLocations.GetAll();

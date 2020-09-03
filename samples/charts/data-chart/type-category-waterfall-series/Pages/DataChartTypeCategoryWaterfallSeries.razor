@@ -1,4 +1,3 @@
-
 @using Infragistics.Blazor.Controls
 @inject IInfragisticsBlazor InfragisticsBlazor
 
@@ -13,7 +12,7 @@
 
             <CategoryXAxis Name="xAxis" Label="Category" DataSource="@DataSource"/>
             <NumericYAxis Name="yAxis" Title="Amount (in USD)" TitleLeftMargin="10" AbbreviateLargeNumbers="true"/>
-            
+
             <WaterfallSeries XAxisName="xAxis"
                         YAxisName="yAxis"
                         DataSource="@DataSource"
@@ -39,7 +38,7 @@
         DataChartInteractivityModule.Register(InfragisticsBlazor);
         NumberAbbreviatorModule.Register(InfragisticsBlazor);
 
-        DataSource = GetDataSource(); 
+        DataSource = GetDataSource();
     }
 
     public List<BudgetItem> GetDataSource() {
@@ -52,7 +51,7 @@
         data.Add(new BudgetItem { Value = 400000000, Category = "Fixed Cost" });
         data.Add(new BudgetItem { Value = 200000000, Category = "Variable Cost" });
         data.Add(new BudgetItem { Value = 100000000, Category = "Taxes" });
-        data.Add(new BudgetItem { Value = 400000000, Category = "Total Income" }); 
+        data.Add(new BudgetItem { Value = 400000000, Category = "Total Income" });
         return data;
     }
 

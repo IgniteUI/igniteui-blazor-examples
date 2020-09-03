@@ -1,13 +1,10 @@
-﻿@page "/MapMarkerTypes"
-
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
-@inject IJSRuntime JSRuntime;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
-<div class="igContainer">    
+<div class="igContainer">
     <div class="igComponent">
         <div class="igOptions">
-            <span className="igOptions-label">Marker Type: </span>
+            <span class="igOptions-label">Marker Type: </span>
             <select @bind="SelectedMarkerType">
                 <option>@MarkerType.Automatic</option>
                 <option>@MarkerType.Circle</option>
@@ -40,7 +37,7 @@
                                     MarkerBrush="White"
                                     MarkerOutline="rgb(32, 146, 252)" />
         </GeographicMap>
-    </div>    
+    </div>
 </div>
 
 @code {
@@ -51,7 +48,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         GeographicMapModule.Register(InfragisticsBlazor);
 
         this.Cities = WorldLocations.GetCities();

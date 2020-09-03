@@ -1,9 +1,6 @@
-﻿@page "/MapTypeScatterDensitySeries"
-
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
-@inject IJSRuntime JSRuntime;
-@inject HttpClient Http;
+@inject IInfragisticsBlazor InfragisticsBlazor
+@inject HttpClient Http
 
 <div class="igContainer">
     <div class="igComponent">
@@ -40,12 +37,12 @@
 
         for (int i = 1; i < csvLines.Length - 1; i++)
         {
-            string[] columns = csvLines[i].Split(",");            
+            string[] columns = csvLines[i].Split(",");
             AusPlaceCsv location = new AusPlaceCsv()
             {
                 Lat = double.Parse(columns[2]),
                 Lon = double.Parse(columns[1]),
-                Name = columns[0],                
+                Name = columns[0],
             };
 
             dataItems.Add(location);

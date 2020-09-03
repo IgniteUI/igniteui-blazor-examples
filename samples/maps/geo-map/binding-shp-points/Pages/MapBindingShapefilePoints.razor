@@ -1,8 +1,5 @@
-﻿@page "/MapBindingShapefilePoints"
-
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
-@inject IJSRuntime JSRuntime;
+@inject IInfragisticsBlazor InfragisticsBlazor
 
 <div class="igContainer">
     <div class="igComponent">
@@ -20,17 +17,16 @@
 @code {
 
     //TODO - THIS SAMPLE IN REACT PARSES THE SHAPEDATASOURCE, NOT SURE IF WE ARE GOING THAT ROUTE OR HOW TO DO THIS IN BLAZOR
-  
+
     private ShapeDataSource ShapeData;
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         GeographicMapModule.Register(InfragisticsBlazor);
 
         this.ShapeData = new ShapeDataSource();
         this.ShapeData.ShapefileSource = "https://static.infragistics.com/xplatform/shapes/WorldCities.shp";
-        this.ShapeData.DatabaseSource = "https://static.infragistics.com/xplatform/shapes/WorldCities.dbf";        
-        
+        this.ShapeData.DatabaseSource = "https://static.infragistics.com/xplatform/shapes/WorldCities.dbf";
+
     }
 }

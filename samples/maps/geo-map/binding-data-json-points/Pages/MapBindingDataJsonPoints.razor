@@ -1,9 +1,6 @@
-﻿@page "/MapBindingDataJsonPoints"
-
 @using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
-@inject IJSRuntime JSRuntime;
-@inject HttpClient Http;
+@inject IInfragisticsBlazor InfragisticsBlazor
+@inject HttpClient Http
 
 <div class="igContainer">
     <div class="igComponent">
@@ -21,14 +18,14 @@
 @code {
 
     private WorldPlaceJson[] DataSource;
-   
+
     protected override async Task OnInitializedAsync()
     {
         GeographicMapModule.Register(InfragisticsBlazor);
 
         string url = "https://static.infragistics.com/xplatform/data/WorldCities.json";
         this.DataSource = await Http.GetFromJsonAsync<WorldPlaceJson[]>(url);
-        
+
         await Task.Delay(1);
     }
 

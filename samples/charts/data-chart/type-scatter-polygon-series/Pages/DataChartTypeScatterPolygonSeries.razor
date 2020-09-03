@@ -1,13 +1,10 @@
-@page "/samples/charts/data-chart-overview"
-@page         "/charts/data-chart-overview"
-
 @using Infragistics.Blazor.Controls
 @inject IInfragisticsBlazor InfragisticsBlazor
 
 <div class="igContainer">
     <div class="igComponent">
 
-        @*TODO: fix RuntimeError: memory access out of bounds*@
+        @* TODO: fix RuntimeError: memory access out of bounds *@
         @if (DataSource != null)
         {
             <DataChart Height="100%" Width="100%"
@@ -43,18 +40,18 @@
 
 @code {
 
-    private List<SampleShapeItem> DataSource;  
+    private List<SampleShapeItem> DataSource;
 
     protected override void OnInitialized()
-    { 
+    {
         LegendModule.Register(InfragisticsBlazor);
         DataChartCoreModule.Register(InfragisticsBlazor);
         DataChartScatterCoreModule.Register(InfragisticsBlazor);
         DataChartScatterModule.Register(InfragisticsBlazor);
-        DataChartInteractivityModule.Register(InfragisticsBlazor); 
+        DataChartInteractivityModule.Register(InfragisticsBlazor);
         ScatterPolygonSeriesModule.Register(InfragisticsBlazor);
-          
-        DataSource = SampleShapeData.Create(); 
+
+        DataSource = SampleShapeData.Create();
 
         //Console.WriteLine("DataSource " + DataSource.Count);
     }

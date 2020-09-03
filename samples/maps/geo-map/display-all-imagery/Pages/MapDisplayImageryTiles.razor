@@ -1,13 +1,10 @@
-﻿@page "/MapDisplayImageryTiles"
-
 @using Infragistics.Blazor.Controls
-@using System.Reflection;
-@inject IInfragisticsBlazor InfragisticsBlazor;
-@inject IJSRuntime JSRuntime;
+@using System.Reflection
+@inject IInfragisticsBlazor InfragisticsBlazor
 
 <div class="igContainer">
     <div class="igOptions">
-        <span className="igOptions-label">Imagery Source: </span>
+        <span class="igOptions-label">Imagery Source: </span>
         <select @onchange="OnImagerySourceChanged">
             <option>OpenStreetMaps (Default)</option>
             <option>BingMaps Road</option>
@@ -66,7 +63,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         GeographicMapModule.Register(InfragisticsBlazor);
 
         EsriRef = new EsriStyle();
