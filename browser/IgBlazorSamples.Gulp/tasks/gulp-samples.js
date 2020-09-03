@@ -73,11 +73,12 @@ function cleanSamples() {
 
     del.sync("../../samples/**/css/open-iconic/README.md", {force:true});
 }
-
+// lints all source files in ./samples folder and remove any routing paths (@page)
+// since they are auto-generated when samples are copied to browsers
 function lintSamples(cb) {
     for (const info of samples) {
         // log('linting ' + info.SampleFolderPath)
-        Transformer.lintSample(info)
+        Transformer.lintSample(info, false)
     }
     cb();
 } exports.lintSamples = lintSamples;
@@ -264,6 +265,9 @@ function copySamples(cb, outputPath) {
     log('copying samples to: ' + outputPath + '/Pages/');
     // log('copying sample files... ');
     for (const sample of samples) {
+
+        // lint and force auto-generation of routing paths (@page) in razor files
+        Transformer.lintSample(sample, true);
 
         let sampleFolder = sample.ComponentGroup + '/' + sample.ComponentFolder
         // outputFolder = Strings.toTitleCase(outputClient);

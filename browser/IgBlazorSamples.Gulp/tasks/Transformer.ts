@@ -764,8 +764,8 @@ class Transformer {
         return toc;
     }
 
-
-    public static lintSample(info: SampleInfo) {
+    // lints all source files in a given sample and generates routing paths in .razor file
+    public static lintSample(info: SampleInfo, generateRoutingPath?: boolean) {
 
         for (let i = 0; i < info.SourceFiles.length; i++) {
             let file = info.SourceFiles[i];
@@ -774,7 +774,7 @@ class Transformer {
 
             let orgContent = file.Content;
             if (file.Path.indexOf(".razor") > 0) {
-                this.lintRazor(info);
+                this.lintRazor(info, generateRoutingPath);
                 this.lintFile(file);
             } else {
                 this.lintFile(file);
@@ -791,7 +791,8 @@ class Transformer {
         }
     }
 
-    public static lintRazor(sample: SampleInfo) {
+    // lints .razor file in a given sample and generates routing paths (@page) for it
+    public static lintRazor(sample: SampleInfo, generateRoutingPath?: boolean) {
 
         let invalidLines: string[] = [
             "@page ",
@@ -812,7 +813,7 @@ class Transformer {
         for (const line of fileLines) {
             // if (line.indexOf(" from 'react'") > 0) continue;
 
-            // skipping page routes because they will be auto-generated
+            // skipping lines with invalid/not needed keywords/code
             let isInvalidLine = false;
             for (const invalid of invalidLines) {
                 if (line.indexOf(invalid) >= 0) {
@@ -853,9 +854,11 @@ class Transformer {
         //     console.log("WARNING: lintRazor() found no @using/@inject statements in " + sample.SourceRazorFile.Path);
         // }
 
-        // auto-generating routing paths for a sample with and without SB navigation
-        importLines.splice(0, 0, '@page "/samples' + sample.SampleRoute + '"');
-        importLines.splice(1, 0, '@page         "' + sample.SampleRoute + '"');
+        if (generateRoutingPath) {
+            // generating routing paths (@page) for a sample with and without SB navigation
+            importLines.splice(0, 0, '@page "/samples' + sample.SampleRoute + '"');
+            importLines.splice(1, 0, '@page         "' + sample.SampleRoute + '"');
+        }
 
         let newContent =
             importLines.join('\n') + '\n' +
@@ -868,15 +871,7 @@ class Transformer {
         this.lintFile(sample.SourceRazorFile);
     }
 
-    // public static lintFile(
-    //     sample: SampleInfo,
-    //     fileLocation: string,
-    //     fileContent: string,
-    //     // callback: (err: any, results: string | null) => void
-    //     ): string {
-
     public static lintFile(file: SampleFile) {
-        // sample: SampleInfo,
         let firstLine = true;
         let validLines: string[] = [];
         let fileLines = file.Content.split("\n");
