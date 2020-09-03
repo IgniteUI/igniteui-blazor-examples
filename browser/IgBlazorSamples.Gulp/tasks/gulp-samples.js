@@ -55,6 +55,8 @@ var sampleSource = [
     // excluding project's .razor files
     "!" + igConfig.SamplesCopyPath + '/**/obj/**',
     "!" + igConfig.SamplesCopyPath + '/**/bin/**',
+    "!" + igConfig.SamplesCopyPath + '/**/data-chart/type-scatter-polygon-series/Pages/',
+    "!" + igConfig.SamplesCopyPath + '/**/data-chart/type-scatter-polyline-series/Pages/',
     // "!" + igConfig.SamplesCopyPath + '/**/App.razor',
     // "!" + igConfig.SamplesCopyPath + '/**/_Imports.razor',
     // "!" + igConfig.SamplesCopyPath + '/**/wwwroot/index.html',
@@ -211,12 +213,11 @@ function exclude(fileWithString) {
 }
 
 function cleanupBrowser(outputPath) {
-
     log('cleaning up files in ' + outputPath);
-
     del.sync([
-          outputPath + "/Services/*.*",  // auto-copied files
-          outputPath + "/Pages/**",      // auto-copied samples
+          outputPath + "/Services/*.*",   // auto-copied files
+          outputPath + "/Pages/**/*.*",   // auto-copied samples
+          outputPath + "/Pages/**",       // auto-copied folders
     "!" + outputPath + "/Pages/_*.razor", // e.g. _Home.razor
     "!" + outputPath + "/Pages/_*.cshtml" // e.g. _Host.cshtml
     ], {force:true});
@@ -249,27 +250,7 @@ function copySamples(cb, outputPath) {
             } else {
                 saveFile(outputPath + '/Services/' + file.Name, file.Content);
             }
-
-            // gulp.src([sampleFile.Path])
-            // .pipe(es.map(function(file, fileCallback) {
-            //     let outputFile = outputClientPages + '/' + outputPath + '/' + file.basename;
-            //     if (!copiedFiles.includes(outputFile)) {
-            //          copiedFiles.push(outputFile);
-            //         //  console.log("copied " + outputFile);
-            //          fileCallback(null, file);
-            //     } else {
-            //         // console.log("skip " + outputFile);
-            //         fileCallback(null);
-            //     }
-            // }))
-            // .pipe(gulp.dest(outputRoot + '/Pages/' + outputPath))
-
-            // gulp.src([file.Path])
-            // .pipe(exclude('.razor'))
-            // // .pipe(gulp.dest(outputRoot + sample.SampleRoute))
-            // .pipe(gulp.dest(outputRoot + '/Services/' + outputPath))
         }
-    //     // log(outputPath);
     }
 
     log('copying toc to: ' + outputPath + '/wwwroot/toc.json');
@@ -277,7 +258,6 @@ function copySamples(cb, outputPath) {
     let routingFile = Transformer.getRoutingFile(routingGroups);
 
     saveFile(outputPath + '/wwwroot/toc.json', routingFile);
-    // fs.writeFileSync(outputToc, routingFile);
 
     cb();
 }
