@@ -16,6 +16,8 @@ namespace Infragistics.Samples
     {
         public static async Task Main(string[] args)
         {
+            Console.WriteLine("SB Client Main()");
+
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
 

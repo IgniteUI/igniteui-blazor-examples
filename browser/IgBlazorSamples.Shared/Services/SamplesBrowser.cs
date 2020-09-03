@@ -21,7 +21,8 @@ namespace Infragistics.Samples.Shared.Services
             this.HttpClient = httpClient;
             this.JSRuntime = jsRuntime;
 
-            Console.WriteLine("SB");
+            Console.WriteLine("SB updated");
+            Console.WriteLine("SB URL: \n" + navManager.Uri);
             // NavManager = NavigationManager();
             // NavManager.LocationChanged += this.OnLocationChanged;
             // NavManager.LocationChanged += new EventHandler<LocationChangedEventArgs>(this.OnLocationChanged);

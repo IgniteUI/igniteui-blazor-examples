@@ -17,6 +17,8 @@ namespace Infragistics.Samples
     {
         public static void Main(string[] args)
         {
+            Console.WriteLine("SB Server Main()");
+
             CreateHostBuilder(args).Build().Run();
         }
 
