@@ -26,11 +26,12 @@ namespace Infragistics.Samples
             Host.CreateDefaultBuilder(args)
                 .ConfigureLogging(logging =>
                 {
-                logging.ClearProviders();
-                logging.AddConsole();
-                logging.AddFilter("System", LogLevel.Debug)
-                  .AddFilter<DebugLoggerProvider>("Microsoft", LogLevel.Information)
-                  .AddFilter<ConsoleLoggerProvider>("Microsoft", LogLevel.Trace);
+                    logging.ClearProviders();
+                    logging.AddConsole();
+                    //logging.AddFilter("System", LogLevel.Debug)
+                    //  .AddFilter<DebugLoggerProvider>("Microsoft", LogLevel.Information)
+                    //  .AddFilter<ConsoleLoggerProvider>("Microsoft", LogLevel.Trace);
+                    //
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {

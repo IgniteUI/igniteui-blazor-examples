@@ -51,48 +51,10 @@ namespace Infragistics.Samples
             }
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        //public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        //{
-        //    Console.WriteLine("SB Startup Configure app/env/log");
-
-        //    if (env.IsDevelopment())
-        //    {
-        //        app.UseDeveloperExceptionPage();
-        //    }
-        //    else
-        //    {
-        //        app.UseExceptionHandler("/Error");
-        //        // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-        //        app.UseHsts();
-        //    }
-
-        //    app.UseHttpsRedirection();
-        //    app.UseStaticFiles();
-
-        //    app.UseRouting();
-        //    app.UsePathBase("/blazor-server");
-        //    app.UseEndpoints(endpoints =>
-        //    {
-        //        endpoints.MapBlazorHub();
-        //        endpoints.MapFallbackToPage("/_Host");
-        //    });
-        //}
-
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
-            ILoggerFactory loggerFactory)
+        // This method gets called by the runtime.Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             Console.WriteLine("SB Startup Configure app/env/log");
-            //loggerFactory.AddProvider(new CustomLoggerProvider(new CustomLoggerConfiguration()));
-
-            // Custom registration with a configuration object.
-            // Default registration.
-            loggerFactory.AddProvider(new ColorConsoleLoggerProvider(
-                                      new ColorConsoleLoggerConfiguration
-                                      {
-                                          LogLevel = LogLevel.Information,
-                                          Color = ConsoleColor.DarkGreen
-                                      }));
 
             if (env.IsDevelopment())
             {
@@ -116,6 +78,44 @@ namespace Infragistics.Samples
                 endpoints.MapFallbackToPage("/_Host");
             });
         }
+
+        //public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+        //    ILoggerFactory loggerFactory)
+        //{
+        //    Console.WriteLine("SB Startup Configure app/env/log");
+        //    //loggerFactory.AddProvider(new CustomLoggerProvider(new CustomLoggerConfiguration()));
+
+        //    // Custom registration with a configuration object.
+        //    // Default registration.
+        //    loggerFactory.AddProvider(new ColorConsoleLoggerProvider(
+        //                              new ColorConsoleLoggerConfiguration
+        //                              {
+        //                                  LogLevel = LogLevel.Information,
+        //                                  Color = ConsoleColor.DarkGreen
+        //                              }));
+
+        //    if (env.IsDevelopment())
+        //    {
+        //        app.UseDeveloperExceptionPage();
+        //    }
+        //    else
+        //    {
+        //        app.UseExceptionHandler("/Error");
+        //        // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+        //        app.UseHsts();
+        //    }
+
+        //    app.UseHttpsRedirection();
+        //    app.UseStaticFiles();
+
+        //    app.UseRouting();
+        //    app.UsePathBase("/blazor-server");
+        //    app.UseEndpoints(endpoints =>
+        //    {
+        //        endpoints.MapBlazorHub();
+        //        endpoints.MapFallbackToPage("/_Host");
+        //    });
+        //}
 
     }
 }
