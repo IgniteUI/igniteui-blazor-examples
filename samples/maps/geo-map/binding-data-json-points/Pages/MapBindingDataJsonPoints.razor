@@ -1,3 +1,4 @@
+@using System.Net.Http.Json
 @using Infragistics.Blazor.Controls
 @inject IInfragisticsBlazor InfragisticsBlazor
 @inject HttpClient Http
@@ -23,8 +24,9 @@
     {
         GeographicMapModule.Register(InfragisticsBlazor);
 
-        string url = "https://static.infragistics.com/xplatform/data/WorldCities.json";
-        this.DataSource = await Http.GetFromJsonAsync<WorldPlaceJson[]>(url);
+        var url = "https://static.infragistics.com/xplatform/data/WorldCities.json";
+        var http = new HttpClient();
+        this.DataSource = await http.GetFromJsonAsync<WorldPlaceJson[]>(url);
 
         await Task.Delay(1);
     }
