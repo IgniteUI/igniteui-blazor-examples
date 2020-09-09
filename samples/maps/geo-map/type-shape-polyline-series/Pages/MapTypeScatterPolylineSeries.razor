@@ -3,17 +3,27 @@
 
 <div class="igContainer">
     <div class="igComponent">
-        <GeographicMap Height="100%" Width="100%" Zoomable="true">
+        <GeographicMap Height="100%" Width="100%" Zoomable="true" WindowRect="@MapWindowRect">
+            <GeographicPolylineSeries Outline="Red" ShapefileDataSource="@DataSource" />
         </GeographicMap>
     </div>
 </div>
 
 @code {
 
-    //TODO - THIS SAMPLE IN REACT PARSES THE SHAPEDATASOURCE, NOT SURE IF WE ARE GOING THAT ROUTE OR HOW TO DO THIS IN BLAZOR
+    private ShapeDataSource DataSource;
+    private Rect MapWindowRect;
 
     protected override void OnInitialized()
     {
         GeographicMapModule.Register(InfragisticsBlazor);
+
+        this.DataSource = new ShapeDataSource()
+        {
+            ShapefileSource = "https://static.infragistics.com/xplatform/shapes/AmericanRoads.shp",
+            DatabaseSource = "https://static.infragistics.com/xplatform/shapes/AmericanRoads.dbf"
+        };
+
+        this.MapWindowRect = new Rect(){ Left = 0.2, Top = 0.1, Width = 0.6, Height = 0.6 };
     }
 }
