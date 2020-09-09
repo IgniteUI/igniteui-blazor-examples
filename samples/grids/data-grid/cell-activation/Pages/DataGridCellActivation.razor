@@ -1,0 +1,41 @@
+﻿@page "/DataGridCellActivation"
+@* this namespace is required for Infragistics controls *@
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    
+    <div class="igComponent">
+
+        @if (DataSource != null)
+        {            
+            <DataGrid Height="100%" Width="100%"
+                      DataSource="@DataSource"
+                      AutoGenerateColumns="false"
+                      ActivationMode="GridActivationMode.Cell">
+                <TextColumn Field="Name" />
+                <TextColumn Field="Street" />
+                <TextColumn Field="City" />
+                <NumericColumn Field="Salary" PositivePrefix="$" ShowGroupingSeparator="true" MaxFractionDigits="0" MinFractionDigits="0" />
+               
+            </DataGrid>
+        }
+
+    </div>
+</div>
+
+@code {
+
+    private object DataSource;
+    private Random Rand = new Random();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        
+        DataGridModule.Register(InfragisticsBlazor);
+        this.DataSource = DataGridSharedData.GetEmployees(200);
+    }
+
+}
