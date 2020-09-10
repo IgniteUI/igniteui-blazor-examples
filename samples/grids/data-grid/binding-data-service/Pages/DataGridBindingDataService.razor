@@ -1,0 +1,67 @@
+﻿@page "/DataGridBindingDataService"
+
+@* this namespace is required for Infragistics controls *@
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+@inject HttpClient Http
+
+<div class="igContainer">
+
+    <div class="igComponent">
+
+        @if (DataSource != null)
+        {
+        <DataGrid Height="100%" Width="100%"
+                  DataSource="@DataSource"
+                  AutoGenerateColumns="false"
+                  IsColumnOptionsEnabled="true"
+                  ActivationMode="GridActivationMode.Cell">
+            <TextColumn Width="140" Field="Category" />
+            <TextColumn Width="160" Field="Type" />
+            <TextColumn Width="140" Field="Contract" />
+            <TextColumn Width="150" Field="Settlement" />
+            <TextColumn Width="150" Field="Region" />
+            <TextColumn Width="160" Field="Country" />
+
+            <NumericColumn Width="140" Field="OpenPrice" HeaderText="Open" ShowGroupingSeparator="true" PositivePrefix="$" MinFractionDigits=2 MaxFractionDigits="2" />
+            <NumericColumn Width="140" Field="Price" HeaderText="Close" ShowGroupingSeparator="true" PositivePrefix="$" MinFractionDigits=2 MaxFractionDigits=2 />
+            <NumericColumn Width="130" Field="Change" MinFractionDigits=2 MaxFractionDigits=2 />
+            <NumericColumn Width="150" Field="Change_P" NegativeSuffix="%" PositiveSuffix="%" MinFractionDigits=2 MaxFractionDigits=2 />
+            <NumericColumn Width="110" Field="Buy" ShowGroupingSeparator="true" PositivePrefix="$" MinFractionDigits=2 MaxFractionDigits=2 />
+            <NumericColumn Width="110" Field="Sell" ShowGroupingSeparator="true" PositivePrefix="$" MinFractionDigits=2 MaxFractionDigits=2 />
+            <NumericColumn Width="130" Field="Spread" ShowGroupingSeparator="true" MinFractionDigits=2 MaxFractionDigits=2 />
+            <NumericColumn Width="130" Field="Volume" ShowGroupingSeparator="true" MinFractionDigits=0 MaxFractionDigits=0 />
+            <NumericColumn Width="130" Field="High_D" ShowGroupingSeparator="true" MinFractionDigits=2 MaxFractionDigits=2 PositivePrefix="$" />
+            <NumericColumn Width="130" Field="Low_D" ShowGroupingSeparator="true" MinFractionDigits=2 MaxFractionDigits=2 PositivePrefix="$" />
+            <NumericColumn Width="130" Field="High_Y" ShowGroupingSeparator="true" MinFractionDigits=2 MaxFractionDigits=2 PositivePrefix="$" />
+            <NumericColumn Width="130" Field="Low_Y" ShowGroupingSeparator="true" MinFractionDigits=2 MaxFractionDigits=2 PositivePrefix="$" />
+            <NumericColumn Width="130" Field="Start_Y" ShowGroupingSeparator="true" MinFractionDigits=2 MaxFractionDigits=2 PositivePrefix="$" />
+
+            <DateTimeColumn Width="140" Field="Maturity" HorizontalAlignment="CellContentHorizontalAlignment.Right" />
+            <TextColumn Width="120" Field="Currency" />
+            <TextColumn Width="110" Field="Risk" />
+            <TextColumn Width="130" Field="Sector" />
+            <TextColumn Width="130" Field="Security" />
+            <TextColumn Width="170" Field="Issuer" />
+        </DataGrid>
+
+        }
+
+    </div>
+</div>
+
+@code {
+
+    private List<DefaultItems> DataSource;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        DataGridModule.Register(InfragisticsBlazor);
+    
+        DataSource = LiveFinancialData.GenerateData(200);
+        
+    }
+}
