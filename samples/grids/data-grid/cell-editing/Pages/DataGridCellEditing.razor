@@ -1,0 +1,79 @@
+﻿@page "/DataGridCellEditing"
+
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div className="igOptions">
+        <button @onclick="OnCommitClick" >Commit</button>
+        <button @onclick="OnUndoClick" >Undo</button>
+        <button @onclick="OnRedoClick" >Redo</button>
+        <label>
+            Edit Mode:
+            <select @bind="GridEditMode">
+                <option>@EditModeType.None</option>
+                <option>@EditModeType.Cell</option>
+                <option>@EditModeType.CellBatch</option>
+            </select>
+        </label>
+    </div>
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+            <DataGrid Height="100%" Width="100%" @ref="DataGridRef"
+                      DefaultColumnMinWidth="120"
+                      AutoGenerateColumns="false"
+                      DataSource="@DataSource"
+                      EditMode="@GridEditMode"
+                      ActivationMode="@GridActivationMode.Cell"
+                      SelectionMode="@GridSelectionMode.SingleRow"
+                      SelectionBehavior="@GridSelectionBehavior.ModifierBased"
+                      IsColumnOptionsEnabled="true">
+                <TextColumn Field="Name" Width="150" />
+                <TextColumn Field="Street" HeaderText="Street" Width="160"/>
+                <TextColumn Field="City" HeaderText="City" Width="120"/>
+                <NumericColumn Field="Salary" HeaderText="Salary" PositivePrefix="$" ShowGroupingSeparator="true" Width="120"/>
+                <ImageColumn Field="Photo" HeaderText="Photo" ContentOpacity="1" HorizontalAlignment="@CellContentHorizontalAlignment.Center" Width="110"/>
+                <DateTimeColumn Field="Birthday" HeaderText="Date of Birth" Width="170"/>
+                @*<TemplateColumn PropertyPath="DeleteColumn" />  TODO!! *@
+            </DataGrid>
+        }
+    </div>
+</div>
+
+@code {
+
+    private DataGrid DataGridRef;
+    private EditModeType GridEditMode;
+
+    private bool CanCommit = false;
+    private bool CanUndo = false;
+    private bool CanRedo = false;
+
+    private List<Employee> DataSource;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        DataGridModule.Register(InfragisticsBlazor);
+
+        DataSource = EmployeeData.Create(100, false);
+        this.GridEditMode = EditModeType.Cell;
+    }
+
+    private void OnCommitClick(MouseEventArgs e)
+    {
+        this.DataGridRef.CommitEdits();
+    }
+
+    private void OnUndoClick(MouseEventArgs e)
+    {
+        this.DataGridRef.Undo();
+    }
+
+    private void OnRedoClick(MouseEventArgs e)
+    {
+        this.DataGridRef.Redo();
+    }
+}
