@@ -1,0 +1,42 @@
+﻿@page "/SparklineGrid"
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+            <DataGrid Height="100%" Width="100%"
+                      RowHeight="70"
+                      AutoGenerateColumns="false"
+                      DataSource="@DataSource">            
+                <TextColumn Field="ProductID" HeaderText="ID" Width="90" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
+                <TextColumn Field="ProductName" HeaderText="Product" Width="130" />
+                <NumericColumn Field="ProductPrice" HeaderText="Price" Width="100" PositivePrefix="$" ShowGroupingSeparator="true"
+                               MinFractionDigits="2" />
+                <TemplateColumn Field="OrderHistory" HeaderText="Order History" HorizontalAlignment="CellContentHorizontalAlignment.Center"
+                                Width="150" />
+                <NumericColumn Field="OrderCount" HeaderText="Orders" Width="90" HorizontalAlignment="CellContentHorizontalAlignment.Center" />
+                <TemplateColumn Field="ReturnRate" HeaderText="Return Rate" HorizontalAlignment="CellContentHorizontalAlignment.Center"
+                                Width="140" />
+                <ImageColumn Field="CountryFlag" HeaderText="Country" Width="90" ContentOpacity="1" HorizontalAlignment="CellContentHorizontalAlignment.Center" />
+                <TextColumn Field="Status" HeaderText="Status" Width="110" HorizontalAlignment="CellContentHorizontalAlignment.Center" />                
+            </DataGrid>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<Product> DataSource;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        DataGridModule.Register(InfragisticsBlazor);
+        SparklineModule.Register(InfragisticsBlazor);
+
+        this.DataSource = Products.GetData(20);
+    }
+}
