@@ -1,4 +1,5 @@
-﻿@using Infragistics.Blazor.Controls
+﻿@using Infragistics.Samples.Components
+@using Infragistics.Blazor.Controls
 @inject IInfragisticsBlazor InfragisticsBlazor;
 
 <div class="igContainer">
@@ -96,7 +97,7 @@
     public string valuesDecreasedColor = "#FF134A";
     public string valuesDecreasedBorder = "4px solid #FF134A";
     public string valuesIncreasedBorder = "4px solid #4EB862";
-    
+
     public string liveSomePricesBackground = "#5E28E9";
     public string liveAllPricesBackground = "#EF2B76";
 
@@ -147,7 +148,7 @@
             this.startTicking();
             this.liveAllPricesText = "Stop All Prices";
             this.liveAllPricesDisabled = false;
-            this.liveSomePricesDisabled = true;            
+            this.liveSomePricesDisabled = true;
         }
 
         this.liveSomePricesBackground = liveSomePricesDisabled ? "lightgray" : "#5E28E9";
@@ -206,11 +207,11 @@
     {
         //Console.WriteLine(">>> onTimerTick");
         if (!this.isTimerTicking)
-        { 
+        {
             return;
         }
         if (this.grid == null)
-        { 
+        {
             //Task.Delay(16).ContinueWith((t) => onTimerTick());
             Task.Delay(this.frequency).ContinueWith((t) => onTimerTick());
             return;
@@ -278,8 +279,8 @@
 
             }
             Console.WriteLine(">>> onTimerTick toChangeIndexes " + toChangeCount);
-        } 
-         
+        }
+
         var dataUpdated = false;
 
         for (var i = 0; i < this.data.Count; i++)
