@@ -40,28 +40,13 @@
     private List<RealEstate> DataSource;
     private HeaderClickAction GridHeaderClickAction;
 
-    private DataGrid _grid;
+    private DataGrid grid;
     private DataGrid DataGridRef
     {
-        get { return _grid; }
-        set
-        {
-            _grid = value;
-            if (_grid != null && count == 0)
-            {
-                _grid.SortDescriptions.Add(new ColumnSortDescription()
-                {
-                    Field = "Property",
-                    SortDirection = ListSortDirection.Descending
-                });
-
-                count++;
-                StateHasChanged();
-            }
-        }
+        get { return grid; }
+        set { grid = value; OnGridRefChanged(); StateHasChanged(); }
     }
-
-    int count = 0;
+    
     protected override void OnInitialized()
     {
         base.OnInitialized();
@@ -69,5 +54,17 @@
 
         this.DataSource = RealEstateData.Create(100);
         this.GridHeaderClickAction = HeaderClickAction.SortByMultipleColumnsTriState;
+    }
+
+    private void OnGridRefChanged()
+    {
+        if (this.DataGridRef != null)
+        {
+            this.DataGridRef.SortDescriptions.Add(new ColumnSortDescription()
+            {
+                Field = "Property",
+                SortDirection = ListSortDirection.Descending
+            });
+        }
     }
 }
