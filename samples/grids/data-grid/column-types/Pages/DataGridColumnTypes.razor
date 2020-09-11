@@ -1,0 +1,57 @@
+﻿@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor; 
+
+<div class="igContainer">
+    
+    <div class="igComponent">
+
+        @if (Employees != null)
+        {
+        <DataGrid Height="100%" Width="100%"
+                  DataSource="@Employees"
+                  AutoGenerateColumns="false"
+                  ActivationMode="GridActivationMode.Cell">
+
+            <ImageColumn Width="100" Field="Photo" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
+                         HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
+
+            <TextColumn Width="130" Field="Name" />
+            <NumericColumn Width="110" Field="Age" />
+            <NumericColumn Width="130" Field="Salary" PositivePrefix="$"
+                           ShowGroupingSeparator="true"
+                           MaxFractionDigits="0"
+                           MinFractionDigits="0" />
+
+            <ComboBoxColumn Width="120" Field="City" />
+
+            <ImageColumn Width="110" Field="CountryFlag" HeaderText="Country" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
+                         HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
+            
+            @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
+            <TemplateColumn Width="160" Field="Sales" CellUpdatingScript="onUpdatingSalesColumn" />
+            <TemplateColumn Width="160" Field="Address" CellUpdatingScript="onUpdatingAddressColumn" />
+
+            <DateTimeColumn Width="140" Field="Birthday" />
+
+            <TextColumn Width="120" Field="Income" />
+        </DataGrid>
+        }
+ 
+
+    </div>
+</div>
+
+@code {
+
+    private List<Employee> Employees; 
+    
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        
+        DataGridModule.Register(InfragisticsBlazor);
+
+        this.Employees = EmployeeData.Create(200, false); 
+    }
+
+}
