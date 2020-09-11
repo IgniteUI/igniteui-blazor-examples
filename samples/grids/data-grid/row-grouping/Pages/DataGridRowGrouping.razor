@@ -1,0 +1,63 @@
+﻿@* this namespace is required for Infragistics controls *@
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+
+<div class="igContainer">
+    
+    <div class="igComponent">
+        <div class="igOptions">
+            <span class="igOptions-item">Section Header Display Mode: </span>
+            <select class="igOptions-item" @bind="SectionHeaderClickAction">
+                <option>@DataSourceSectionHeaderDisplayMode.Combined</option>
+                <option>@DataSourceSectionHeaderDisplayMode.Split</option>
+            </select>
+
+    </div>
+
+        @if (DataSource != null)
+        {            
+            <DataGrid Height="100%" Width="100%"
+                      DataSource="@DataSource"
+                      AutoGenerateColumns="false"
+                      IsGroupCollapsable="true"
+                      GroupHeaderDisplayMode="@SectionHeaderClickAction">
+                <TextColumn Field="Name" />
+                <TextColumn Field="Street" />
+                <TextColumn Field="City" />
+                <NumericColumn Field="Salary" PositivePrefix="$" ShowGroupingSeparator="true" MaxFractionDigits="0" MinFractionDigits="0" />
+               
+            </DataGrid>
+        }
+
+    </div>
+</div>
+
+@code {
+
+    private List<Employee> DataSource;
+    private DataGrid grid;
+    private DataSourceSectionHeaderDisplayMode SectionHeaderClickAction;
+
+    public DataGrid Grid
+    {
+        get
+        {
+            return grid;
+        }
+        set
+        {
+            grid = value;
+            StateHasChanged();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        
+        DataGridModule.Register(InfragisticsBlazor);
+        this.DataSource = EmployeeData.Create(200, false);
+        this.SectionHeaderClickAction = DataSourceSectionHeaderDisplayMode.Combined;
+    }
+
+}
