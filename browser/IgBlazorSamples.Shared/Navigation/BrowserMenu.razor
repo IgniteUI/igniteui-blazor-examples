@@ -16,7 +16,7 @@
     
     @if (SB.IsLoading)
     {
-        <p><em>Loading...</em></p>
+        @*<p><em>Loading...</em></p>*@
         @*<img class="sb-progress" src="_content/Infragistics.Samples.Shared/images/progress.gif" />*@
     }
     else
@@ -77,16 +77,22 @@
         //    var jsonString = await response.Content.ReadAsStringAsync();
         //    //toc = JsonConvert.DeserializeObject<TOC>(jsonString);
         //}
+        try
+        {
+            //var toc = await Http.GetFromJsonAsync<TOC>("toc_test.json");
+            var toc = await Http.GetFromJsonAsync<TOC>("toc.json");
+            await SB.Load(toc);
+            //Console.WriteLine("SB.Nav toc");
+            System.Diagnostics.Debug.WriteLine("SB.Nav toc.json found: " + toc.Groups.Length);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine("SB.Nav toc.json - not found");
+        }
+        
+        Console.WriteLine("SB.Nav loaded");
 
-        var toc = await Http.GetFromJsonAsync<TOC>("toc.json");
-        //var toc = await Http.GetFromJsonAsync<TOC>("toc_test.json");
-        await SB.Load(toc);
-
-        //Console.WriteLine("SB.Nav toc");
-        System.Diagnostics.Debug.WriteLine("SB.Nav toc " + toc.Groups.Length);
-        //await SB.LoadTOC();
         SB.SamplesLoaded += OnSamplesLoaded;
-        //StateHasChanged();
         await Task.Delay(1);
     }
 
