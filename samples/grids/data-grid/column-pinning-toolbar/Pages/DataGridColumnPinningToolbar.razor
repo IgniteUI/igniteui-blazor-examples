@@ -1,0 +1,63 @@
+﻿@* this namespace is required for Infragistics controls *@
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+
+<div class="igContainer">
+    
+    <div class="igComponent">
+
+        @if (DataSource != null)
+        {
+            <DataGridToolbar TargetGrid="Grid" ToolbarTitle="Global Sales"
+                             ColumnPinning="true">
+            </DataGridToolbar>
+            <DataGrid @ref="Grid" Height="100%" Width="100%"
+                DataSource="@DataSource"
+                AutoGenerateColumns="false">
+                    <TextColumn Field="ID" Pinned="PinnedPositions.Left" Width="110" />
+                    <TextColumn Field="FirstName" Pinned="PinnedPositions.Left" Width="190" />
+                    <TextColumn Field="LastName" Pinned="PinnedPositions.Left" Width="190" />
+                    <DateTimeColumn Field="Birthday" Width="170" />
+                    <NumericColumn Field="Age" Width="120" />
+                    <ImageColumn Field="CountryFlag" />
+                    <TextColumn Field="Street" Width="160"/>
+                    <TextColumn Field="City" Width="260"/>
+                    <TextColumn Field="Country" Width="170"/>
+                    <NumericColumn Field="Salary" Width="170"/>
+                    <NumericColumn Field="Sales" Width="120"/>
+                    <NumericColumn Field="Salary" Width="120" PositivePrefix="$"
+                        ShowGroupingSeparator="true"
+                        MaxFractionDigits="0"
+                        MinFractionDigits="0" />
+            </DataGrid>
+        }
+
+    </div>
+</div>
+
+@code {
+
+    private List<Employee> DataSource;
+    private DataGrid grid;
+    public DataGrid Grid
+    {
+        get
+        {
+            return grid;
+        }
+        set
+        {
+            grid = value;
+            StateHasChanged();
+        }
+    }
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        DataGridModule.Register(InfragisticsBlazor);
+        DataGridToolbarModule.Register(InfragisticsBlazor);
+        
+        this.DataSource = EmployeeData.Create(200, false);
+    }
+}
