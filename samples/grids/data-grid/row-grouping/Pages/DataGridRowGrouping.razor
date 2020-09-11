@@ -52,7 +52,7 @@
         set
         {
             grid = value;
-            OnGridChange();
+            OnGridCreated();
 
             StateHasChanged();
         }
@@ -66,7 +66,7 @@
         this.DataSource = EmployeeData.Create(200, false);
     }
 
-    private void OnGridChange()
+    private void OnGridCreated()
     {
         var state = new ColumnGroupDescription { Field = "Country", DisplayName = "Location" };
         var city = new ColumnGroupDescription { Field = "City", DisplayName = "" };
