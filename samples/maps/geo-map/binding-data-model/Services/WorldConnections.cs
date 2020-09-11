@@ -14,7 +14,7 @@ namespace Infragistics.Samples
         public static List<WorldCity> Airports { get; set; }
 
         public static Dictionary<string, string> FlightsLookup = new Dictionary<string, string>();
-        public static Dictionary<string, WorldCity> AirportsLookup = new Dictionary<string, WorldCity>();        
+        public static Dictionary<string, WorldCity> AirportsLookup = new Dictionary<string, WorldCity>();
 
         public static List<FlightInfo> GetFlights()
         {
@@ -45,10 +45,13 @@ namespace Infragistics.Samples
         static Random r = new Random();
         public static void Init()
         {
+            Flights = new List<FlightInfo>();
+            Airports = new List<WorldCity>();
+
             List<WorldCity> cities = WorldLocations.GetAll();
             cities.Sort(new Comparison<WorldCity>(ComparePopulation));
 
-            int count = cities.Count;            
+            int count = cities.Count;
             int flightsCount = 0;
             int connectionsCount = 0;
 
@@ -58,7 +61,7 @@ namespace Infragistics.Samples
 
             for (int i=0; i<count; i++)
             {
-                WorldCity origin = cities[i];                
+                WorldCity origin = cities[i];
                 double connectionsMax = Math.Min(20, Math.Round(origin.Pop * 4));
 
                 for(int j=0; j<count; j++)
@@ -71,7 +74,7 @@ namespace Infragistics.Samples
                     if(origin.Name != dest.Name)
                     {
                         string route = origin.Name + "-" + dest.Name;
-                        bool routeIsValid = FlightsLookup.ContainsKey(route);
+                        bool routeIsValid = !FlightsLookup.ContainsKey(route);
 
                         double distance = Math.Round(WorldUtils.CalcDistance(originGeo, destGeo));
                         bool distanceIsValid = distance > minDistance && distance < maxDistance;
@@ -103,7 +106,7 @@ namespace Infragistics.Samples
                 if(flightsCount > flightsLimit)
                 {
                     break;
-                }                
+                }
             }
 
             foreach(FlightInfo flight in Flights)
