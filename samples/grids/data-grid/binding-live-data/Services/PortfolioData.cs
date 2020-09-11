@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic; 
+using System.Collections.Generic;
 
 namespace Infragistics.Samples
 {
@@ -13,7 +13,7 @@ namespace Infragistics.Samples
     public class PortfolioData // LiveFinancialData
     {
         public static Random random = new Random();
-         
+
         public static List<string> DealType = new List<string>() { "Buy", "Sell" };
         public static List<string> Contracts = new List<string>() { "Forwards", "Futures", "Options", "Swap", "CFD" };
         public static List<string> Settlements = new List<string>() { "Credit", "Cash", "Loan" };
@@ -25,12 +25,12 @@ namespace Infragistics.Samples
         public static List<string> RatingTypes = new List<string>() { "AAA", "BBB", "CCC", };
         public static List<PortfolioInfo> DataItems = GetDataItems();
         public static List<Region> Regions = GetRegions();
-         
+
         public static List<PortfolioInfo> Create(int count)
         {
             var dataItems = new List<PortfolioInfo>();
             var defaultItem = GetDefaultData();
-          
+
             for (int i = 0; i < count; i++)
             {
                 var rand = (int)Math.Floor(random.NextDouble() * DataItems.Count);
@@ -61,8 +61,8 @@ namespace Infragistics.Samples
                 item.Spread = defaultItem.Spread;
                 item.KRD_1YR = defaultItem.KRD_1YR;
                 item.KRD_3YR = defaultItem.KRD_3YR;
-                item.KRD_5YR = defaultItem.KRD_5YR;  
-                 
+                item.KRD_5YR = defaultItem.KRD_5YR;
+
                 item.ID = i;
                 RandomizeDataValues(item);
                 dataItems.Add(item);
@@ -104,10 +104,10 @@ namespace Infragistics.Samples
                 },
                 new Region {
                     Name = "Europe",
-                    Countries = new List<string>() { 
+                    Countries = new List<string>() {
                         "Russia", "Germany", "France", "United Kingdom", "Italy", "Spain", "Poland", "Romania", "Netherlands", "Belgium", "Greece",
                         "Portugal", "Czech Republic", "Hungary", "Sweden", "Austria", "Switzerland", "Bulgaria", "Denmark", "Finland", "Slovakia", "Norway",
-                        "Ireland", "Croatia", "Slovenia", "Estonia", "Iceland" 
+                        "Ireland", "Croatia", "Slovenia", "Estonia", "Iceland"
                     }
                 },
 
@@ -118,8 +118,8 @@ namespace Infragistics.Samples
 
                 new Region {
                     Name = "Asia Pacific",
-                    Countries =  new List<string>() { 
-                        "Afghanistan", "Australia", "Azerbaijan", "China", "Hong Kong", "India", "Indonesia", "Japan", 
+                    Countries =  new List<string>() {
+                        "Afghanistan", "Australia", "Azerbaijan", "China", "Hong Kong", "India", "Indonesia", "Japan",
                         "Malaysia", "New Zealand", "Pakistan", "Philippines", "Korea", "Singapore", "Taiwan", "Thailand"}
                 },
 
@@ -1006,7 +1006,7 @@ namespace Infragistics.Samples
             }
             return updateItems;
         }
-         
+
         public static List<PortfolioInfo> UpdateRandomPrices(List<PortfolioInfo> data)
         {
             var updateItems = new List<PortfolioInfo>();
@@ -1026,17 +1026,14 @@ namespace Infragistics.Samples
             }
             return data;
         }
-              
+
         public static void RandomizeDataValues(PortfolioInfo item)
-        { 
+        {
             var priceChange = DataRandomizer.GetPriceChange(item.Price);
             item.Change = priceChange.ByAmount;
             item.Price = priceChange.New;
             item.ChangePercent = priceChange.Percentage;
-            //item.Price = 3333;
-            //item.Change = 2222;
-            //item.ChangePercent = 1111;
-        }         
+        }
     }
 
     public static class DataRandomizer
@@ -1090,7 +1087,7 @@ namespace Infragistics.Samples
         }
     }
 
-    public class PriceChange { 
+    public class PriceChange {
         public double New { get; set; }
         public double Old { get; set; }
         public double ByAmount { get; set; }
@@ -1117,7 +1114,7 @@ namespace Infragistics.Samples
         public double KRD_5YR { get; set; }
         public double KRD_1YR { get; set; }
         public DateTime Maturity { get; set; }
-  
+
         public int ID { get; set; }
         public string Settlement { get; set; }
         public string Category { get; set; }
