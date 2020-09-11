@@ -16,16 +16,21 @@
 
         @if (DataSource != null)
         {            
-            <DataGrid Height="100%" Width="100%"
+            <DataGrid @ref=@DataGridRef Height="100%" Width="100%"
                       DataSource="@DataSource"
                       AutoGenerateColumns="false"
                       IsGroupCollapsable="true"
                       GroupHeaderDisplayMode="@SectionHeaderClickAction">
-                <TextColumn Field="Name" />
+                <TextColumn Field="Name" Width="120" />
+                <NumericColumn Field="Age" Width="110" />
+                <DateTimeColumn Field="Birthday" HorizontalAlignment="CellContentHorizontalAlignment.Center" Width="160"/>
+                <ImageColumn Field="CountryFlag" HeaderText="Country" Width="160"
+                                PaddingTop="5" PaddingBottom="5" ContentOpacity="1" HorizontalAlignment="CellContentHorizontalAlignment.Center"/>
                 <TextColumn Field="Street" />
+                <NumericColumn Field="Salary" HeaderText="Salary" Width="130"
+                                PositivePrefix="$" ShowGroupingSeparator="true"/>
                 <TextColumn Field="City" />
                 <NumericColumn Field="Salary" PositivePrefix="$" ShowGroupingSeparator="true" MaxFractionDigits="0" MinFractionDigits="0" />
-               
             </DataGrid>
         }
 
@@ -36,9 +41,9 @@
 
     private List<Employee> DataSource;
     private DataGrid grid;
-    private DataSourceSectionHeaderDisplayMode SectionHeaderClickAction;
+    private DataSourceSectionHeaderDisplayMode SectionHeaderClickAction { get; set; } = DataSourceSectionHeaderDisplayMode.Combined;
 
-    public DataGrid Grid
+    public DataGrid DataGridRef
     {
         get
         {
@@ -47,6 +52,8 @@
         set
         {
             grid = value;
+            OnGridChange();
+
             StateHasChanged();
         }
     }
@@ -54,10 +61,20 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        
+
         DataGridModule.Register(InfragisticsBlazor);
         this.DataSource = EmployeeData.Create(200, false);
-        this.SectionHeaderClickAction = DataSourceSectionHeaderDisplayMode.Combined;
+    }
+
+    private void OnGridChange()
+    {
+        var state = new ColumnGroupDescription { Field = "Country", DisplayName = "Location" };
+        var city = new ColumnGroupDescription { Field = "City", DisplayName = "" };
+        var income = new ColumnGroupDescription { Field = "Income", DisplayName = "Income" };
+
+        grid.GroupDescriptions.Add(state);
+        grid.GroupDescriptions.Add(city);
+        grid.GroupDescriptions.Add(income);
     }
 
 }
