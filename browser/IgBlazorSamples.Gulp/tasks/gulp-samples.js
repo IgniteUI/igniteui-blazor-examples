@@ -42,12 +42,14 @@ var sampleSource = [
     igConfig.SamplesCopyPath + '/charts/tree-map/**/Pages/',
     igConfig.SamplesCopyPath + '/charts/zoomslider/**/Pages/',
     igConfig.SamplesCopyPath + '/maps/geo-map/**/Pages/',
-    // igConfig.SamplesCopyPath + '/gauges/bullet-graph/animation/Pages/',
     igConfig.SamplesCopyPath + '/gauges/bullet-graph/**/Pages/',
     igConfig.SamplesCopyPath + '/gauges/linear-gauge/**/Pages/',
     igConfig.SamplesCopyPath + '/gauges/radial-gauge/**/Pages/',
     igConfig.SamplesCopyPath + '/grids/**/Pages/',
-    igConfig.SamplesCopyPath + '/layouts/**/Pages/',
+    // igConfig.SamplesCopyPath + '/layouts/**/Pages/',
+
+    // igConfig.SamplesCopyPath + '/gauges/bullet-graph/animation/Pages/',
+    // igConfig.SamplesCopyPath + '/grids/**/binding-live-data/Pages/',
 
     // igConfig.SamplesCopyPath + '/excel/excel-library/**/Pages/',
     // igConfig.SamplesCopyPath + '/excel/spreadsheet/**/Pages/',
@@ -215,7 +217,8 @@ function exclude(fileWithString) {
 function cleanupBrowser(outputPath) {
     log('cleaning up files in ' + outputPath);
     del.sync([
-          outputPath + "/Services/*.*",   // auto-copied files
+          outputPath + "/Services/*.*",   // auto-copied data files
+          outputPath + "/Components/**",  // auto-copied components
           outputPath + "/Pages/**/*.*",   // auto-copied samples
           outputPath + "/Pages/**",       // auto-copied folders
     "!" + outputPath + "/Pages/_*.razor", // e.g. _Home.razor
@@ -233,7 +236,7 @@ function saveFile(filePath, fileContent) {
 function copySamples(cb, outputPath) {
     cleanupBrowser(outputPath);
 
-    log('copying samples to: ' + outputPath + '/Pages/');
+    log('copying samples to: ' + outputPath);
     // log('copying sample files... ');
     for (const sample of samples) {
 
@@ -245,21 +248,26 @@ function copySamples(cb, outputPath) {
 
         for (const file of sample.SourceFiles) {
             // log("copy " + sample.SampleRoute + " " + sample.ComponentFolder + " " + file.Path);
+                // log("copy " + file.Path + '/' + file.Name);
             if (file.isComponent()) {
-                saveFile(outputPath + '/Components/' + sampleFolder + '/' + file.Name, file.Content);
-            } else if (file.isRazor()) {
+                // log("copy " + file.Path);
+                saveFile(outputPath + '/Components/' + file.Name, file.Content);
+                log("copied " + outputPath + '/Components/' + file.Name);
+            } else if (file.isRazorPage()) {
                 saveFile(outputPath + '/Pages/' + sampleFolder + '/' + file.Name, file.Content);
+                log("copied " + outputPath + '/Pages/' + sampleFolder + '/' + file.Name);
             } else {
                 saveFile(outputPath + '/Services/' + file.Name, file.Content);
             }
         }
     }
 
-    log('copying toc to: ' + outputPath + '/wwwroot/toc.json');
+    log('TOC generating with routing paths for samples');
     let routingGroups = Transformer.getRoutingGroups(samples);
     let routingFile = Transformer.getRoutingFile(routingGroups);
 
     saveFile(outputPath + '/wwwroot/toc.json', routingFile);
+    log('TOC copied ' + outputPath + '/wwwroot/toc.json');
 
     cb();
 }

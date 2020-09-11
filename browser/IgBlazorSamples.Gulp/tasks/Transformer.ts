@@ -24,11 +24,14 @@ class SampleFile {
         this.IsChanged = false;
     }
 
-    public isRazor(): boolean {
-        return this.Name.indexOf(".razor") > 0;
+    public isRazorPage(): boolean {
+        return this.Path.indexOf("Pages") > 0 && this.Name.indexOf(".razor") > 0;
     }
     public isComponent(): boolean {
-        return this.Name.indexOf("Components") > 0;
+        return this.Path.indexOf("Components") > 0 && this.Name.indexOf(".razor") > 0;
+    }
+    public isCS(): boolean {
+        return this.Name.indexOf(".cs") > 0;
     }
 }
 
@@ -509,13 +512,14 @@ class Transformer {
             file.Path = filePath;
             file.Name = parts[parts.length - 1];
 
-            if (file.Path.indexOf(".razor") > 0 ||
-                file.Path.indexOf(".cs") > 0) {
+            if (file.isRazorPage() ||
+                file.isComponent() ||
+                file.isCS()) {
                 file.Content = transFS.readFileSync(filePath, "utf8");
                 // console.log("pro file " + file.Path + "   " + file.Name);
             }
 
-            if (file.Name.indexOf(".razor") > 0){
+            if (file.isRazorPage()) {
                 info.SourceFiles.splice(0, 0, file);
             } else if (file.Name.indexOf(".csproj") > 0){
                 info.ProjectFile = file;
@@ -776,10 +780,14 @@ class Transformer {
             // console.log("NOTE: lintSample() " + file.Path);
 
             let orgContent = file.Content;
-            if (file.Path.indexOf(".razor") > 0) {
+            if (file.isRazorPage()) {
+                // console.log("NOTE: lintRazor() " + file.Path);
                 this.lintRazor(info, generateRoutingPath);
                 this.lintFile(file);
-            } else {
+            } else if (file.isComponent()) {
+                // this.lintRazor(info, false);
+                this.lintFile(file);
+            } else{
                 this.lintFile(file);
             }
 
@@ -866,12 +874,18 @@ class Transformer {
             // generating routing paths (@page) for a sample with and without SB navigation
             importLines.splice(0, 0, '@page "/samples' + sample.SampleRoute + '"');
             importLines.splice(1, 0, '@page         "' + sample.SampleRoute + '"');
+            // console.log("NOTE: lintRazor() importLines \n" + importLines.join('\n'));
         }
 
         let newContent =
             importLines.join('\n') + '\n' +
             htmlCodeLines.join('\n') + '\n' +
             csharpCodeLines.join('\n') + '\n';
+
+            // for (const file of sample.SourceFiles) {
+            //    console.log("NOTE: lintRazor() SourceFile " + file.Path);
+            // }
+            // console.log("NOTE: lintRazor() RazorFile " + sample.SourceRazorFile.Path);
 
         sample.SourceFiles[0].Content = newContent;
         sample.SourceRazorFile.Content = newContent;
