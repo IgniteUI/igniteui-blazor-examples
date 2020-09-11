@@ -1,0 +1,38 @@
+﻿ 
+
+ @*<div class="igContainer">*@
+     <label class="switch">
+         @if (this.Checked)
+         {
+             <input type="checkbox" checked @onclick="onClicked">
+         }
+         else
+         {
+             <input type="checkbox" @onclick="onClicked">
+         }
+         <span class="slider round"></span>
+     </label>
+ @*</div>*@
+            
+
+@code {
+
+    private void onClicked()
+    {
+        //Console.WriteLine(">>> onClicked " + this.Checked);
+        this.Checked = !this.Checked;
+        //Console.WriteLine(">>> onClicked " + this.Checked);
+        this.OnToggle.InvokeAsync(this.Checked);
+    }
+
+    [Parameter] public EventCallback<bool> OnToggle { get; set; }
+
+    [Parameter] public bool Checked { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        this.Checked = true;
+    }
+
+}
