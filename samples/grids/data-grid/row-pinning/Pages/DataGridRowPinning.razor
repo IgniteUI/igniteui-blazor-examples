@@ -40,6 +40,8 @@
         set
         {
             grid = value;
+            grid.PinnedItems.Add(this.DataSource[2] as Employee);
+            grid.PinnedItems.Add(this.DataSource[4] as Employee);
             StateHasChanged();
         }
     }
@@ -51,9 +53,6 @@
 
         DataGridModule.Register(InfragisticsBlazor);
         this.DataSource = EmployeeData.Create(200, false);
-
-        this.grid.PinnedItems.Add(this.DataSource[2] as Employee);
-        this.grid.PinnedItems.Add(this.DataSource[4] as Employee);
     }
 
 }
