@@ -1,0 +1,44 @@
+﻿@* this namespace is required for Infragistics controls *@
+@using Infragistics.Blazor.Controls
+@inject IInfragisticsBlazor InfragisticsBlazor;
+
+<div class="igContainer">
+    
+    <div class="igComponent">
+
+        @if (DataSource != null)
+        {            
+        <DataGrid Height="100%" Width="100%"
+                  DataSource="@DataSource"
+                  AutoGenerateColumns="false"
+                  SelectionMode="GridSelectionMode.RangeCell"
+                  ActivationMode="GridActivationMode.Cell">
+            <TextColumn Field="Name" Width="170" />
+            <ImageColumn Field="Photo" Width="120" PaddingTop="5" PaddingBottom="5" ContentOpacity="1" HorizontalAlignment="@CellContentHorizontalAlignment.Center"/>
+            <NumericColumn Field="Age" Width="90" HorizontalAlignment="@CellContentHorizontalAlignment.Center"/>
+            <TextColumn Field="Street" HeaderText="Address" Width="150" />
+            <TextColumn Field="City" Width="130" />
+            <ImageColumn Field="CountryFlag" HeaderText="Country" Width="120" PaddingTop="5" PaddingBottom="5" ContentOpacity="1" />
+            <TextColumn Field="Phone" Width="120" />
+            <DateTimeColumn Field="Birthday" Width="150" HorizontalAlignment="@CellContentHorizontalAlignment.Center"/>
+            <NumericColumn Field="Salary" Width="170" PositivePrefix="$" ShowGroupingSeparator="true" MinFractionDigits="2" />
+            <TextColumn Field="Email" Width="150" />
+        </DataGrid>
+        }
+
+    </div>
+</div>
+
+@code {
+
+    private object DataSource;
+   
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        
+        DataGridModule.Register(InfragisticsBlazor);
+        this.DataSource = EmployeeData.Create(200, false);
+    }
+
+}
