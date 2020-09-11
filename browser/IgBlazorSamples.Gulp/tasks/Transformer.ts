@@ -27,6 +27,9 @@ class SampleFile {
     public isRazor(): boolean {
         return this.Name.indexOf(".razor") > 0;
     }
+    public isComponent(): boolean {
+        return this.Name.indexOf("Components") > 0;
+    }
 }
 
 

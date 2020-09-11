@@ -245,7 +245,9 @@ function copySamples(cb, outputPath) {
 
         for (const file of sample.SourceFiles) {
             // log("copy " + sample.SampleRoute + " " + sample.ComponentFolder + " " + file.Path);
-            if (file.isRazor()) {
+            if (file.isComponent()) {
+                saveFile(outputPath + '/Components/' + sampleFolder + '/' + file.Name, file.Content);
+            } else if (file.isRazor()) {
                 saveFile(outputPath + '/Pages/' + sampleFolder + '/' + file.Name, file.Content);
             } else {
                 saveFile(outputPath + '/Services/' + file.Name, file.Content);
