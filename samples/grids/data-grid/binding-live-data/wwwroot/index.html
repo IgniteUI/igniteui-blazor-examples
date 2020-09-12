@@ -28,6 +28,356 @@
     </div>
     <!-- importing blazor bundle for IG controls: -->
     <script src="_content/Infragistics.Blazor/app.bundle.js"></script>
+
+    <script>
+     function onPriceStyleKey(column, args) {
+        var data = column.i.grid.actualDataSource.dataSource;
+        var row = null;
+        if (column.i.grid) {
+            row = column.i.grid.actualDataSource.getItemAtIndex(args.rowNumber);
+        } else {
+            row = data[args.rowNumber];
+        }
+        if (row.Change >= 0) {
+            args.styleKey = "priceShiftUp";
+        } else {
+            args.styleKey = "priceShiftDown";
+        }
+    }
+
+    function onPriceCellUpdating(grid, args) {
+        let item = args.cellInfo.rowItem;
+        let priceShiftUp = item.Change >= 0;
+        let templ = args.cellInfo;
+
+        if (args.isCanvasBased) {
+            let resized = args.ensureCorrectSize();
+            if (resized || args.cellInfo.isContentDirty) {
+                args.renderStandardBackground();
+
+                let context = args.context;
+
+                let iconText = "trending_up";
+                let iconColor = this.valuesIncreasedColor;
+
+                let scale = window.devicePixelRatio;
+                if (scale !== 1.0) {
+                    context.save();
+                    context.scale(scale, scale);
+                }
+
+                if (priceShiftUp) {
+                    iconText = "trending_up";
+                    iconColor = this.valuesIncreasedColor;
+                } else {
+                    iconText = "trending_down";
+                    iconColor = this.valuesDecreasedColor;
+                }
+
+                // context.fillStyle = "blue";
+                // context.fillRect(0,0,args.cellInfo.width,args.cellInfo.height);
+                let txt = "$" + (+templ.value).toFixed(2);
+                context.font = "13px Verdana";
+                let width = context.measureText(txt).width;
+
+                context.font = "13px 'Material Icons'";
+                let iconWidth = context.measureText(iconText).width;
+
+                let totalWidth = width + iconWidth;
+                context.font = "13px Verdana";
+                context.fillStyle = iconColor;
+                context.textBaseline = "top";
+                context.fillText(txt, templ.width - (totalWidth + 5), (templ.height / 2.0) - 7);
+
+                context.font = "13px 'Material Icons'";
+                context.fillStyle = iconColor;
+                context.textBaseline = "top";
+                context.fillText(iconText, templ.width - (iconWidth + 5), (templ.height / 2.0) - 7);
+
+                if (scale !== 1.0) {
+                    context.restore();
+                }
+            }
+
+            return;
+        }
+
+        var content = args.content;
+        var sp;
+        var icon;
+
+        if (content.childElementCount > 0) {
+            sp = content.children[0];
+            icon = content.children[1];
+        } else {
+            content.style.textAlign = "right";
+            sp = document.createElement("span");
+            icon = document.createElement("span");
+            sp.style.font = "13px Verdana";
+            sp.style.verticalAlign = "center";
+            content.appendChild(sp);
+            content.appendChild(icon);
+            icon.style.fontFamily = "Material Icons";
+            icon.style.fontSize = "13px";
+            icon.style.fontFeatureSettings = "liga";
+            icon.style.verticalAlign = "center";
+        }
+
+        sp.textContent = "$" + (+templ.value).toFixed(2);
+
+        if ((sp).__isUp === undefined ||
+            (sp).__isUp !== priceShiftUp) {
+            (sp ).__isUp = priceShiftUp;
+            if (priceShiftUp) {
+                icon.textContent = "trending_up";
+                icon.style.color = this.valuesIncreasedColor;
+                sp.style.color = this.valuesIncreasedColor;
+            } else {
+                icon.textContent = "trending_down";
+                icon.style.color = this.valuesDecreasedColor;
+                sp.style.color = this.valuesDecreasedColor;
+            }
+        }
+    }
+
+    function onPricePercentStyleKey(grid, args) {
+        if (args.resolvedValue >= 0) {
+            args.styleKey = "pricePercentUp";
+        } else {
+            args.styleKey = "pricePercentDown";
+        }
+    }
+
+    function onPricePercentCellUpdating(grid, args) {
+        let templ = args.cellInfo;
+        let priceShiftUp = templ.value >= 0;
+
+        if (args.isCanvasBased) {
+            let resized = args.ensureCorrectSize();
+            if (resized || args.cellInfo.isContentDirty) {
+                args.renderStandardBackground();
+
+                let context = args.context;
+
+                let iconColor = this.valuesIncreasedColor;
+
+                let scale = window.devicePixelRatio;
+                if (scale !== 1.0) {
+                    context.save();
+                    context.scale(scale, scale);
+                }
+
+                if (priceShiftUp) {
+                    iconColor = this.valuesIncreasedColor;
+                } else {
+                    iconColor = this.valuesDecreasedColor;
+                }
+
+                // context.fillStyle = "blue";
+                // context.fillRect(0,0,args.cellInfo.width,args.cellInfo.height);
+                let txt = (+templ.value).toFixed(2) + "%";
+                context.font = "13px Verdana";
+                let width = context.measureText(txt).width;
+
+                let totalWidth = width + 4;
+
+                context.font = "13px Verdana";
+                context.fillStyle = templ.textColor;
+                context.textBaseline = "top";
+                context.fillText(txt, templ.width - (totalWidth + 10), (templ.height / 2.0) - 7);
+
+                context.font = "13px 'Material Icons'";
+                context.fillStyle = iconColor;
+                context.fillRect(templ.width - (5 + 4), (templ.height / 2.0) - 8, 4, 16);
+
+                 if (scale !== 1.0) {
+                    context.restore();
+                }
+            }
+
+            return;
+        }
+
+        var content = args.content;
+        var sp;
+
+        if (content.childElementCount > 0) {
+            sp = content.children[0];
+        } else {
+            content.style.textAlign = "right";
+            sp = document.createElement("span");
+            sp.style.font = "13px Verdana";
+            sp.style.verticalAlign = "center";
+            content.appendChild(sp);
+        }
+
+        sp.textContent = (+templ.value).toFixed(2) + "%";
+        if ((sp).__isUp === undefined ||
+            (sp).__isUp !== priceShiftUp) {
+            (sp).__isUp = priceShiftUp;
+            if (priceShiftUp) {
+                sp.style.paddingRight = "5px";
+                sp.style.borderRight = this.valuesIncreasedBorder;
+                // sp.style.color = this.valuesIncreasedColor;
+            } else {
+                sp.style.paddingRight = "5px";
+                sp.style.borderRight = this.valuesDecreasedBorder;
+                // sp.style.color = this.valuesDecreasedColor;
+            }
+        }
+    }
+
+    function onPriceAmountStyleKey(grid, args) {
+        if (args.resolvedValue >= 0) {
+            args.styleKey = "priceAmountUp";
+        } else {
+            args.styleKey = "priceAmountDown";
+        }
+    }
+
+    function onPriceAmountCellUpdating(grid, args) {
+        let templ = args.cellInfo;
+        let priceShiftUp = templ.value >= 0;
+
+        if (args.isCanvasBased) {
+            let resized = args.ensureCorrectSize();
+            if (resized || args.cellInfo.isContentDirty) {
+                args.renderStandardBackground();
+
+                let context = args.context;
+                let iconColor = this.valuesIncreasedColor;
+                let scale = window.devicePixelRatio;
+                if (scale !== 1.0) {
+                    context.save();
+                    context.scale(scale, scale);
+                }
+
+                if (priceShiftUp) {
+                    iconColor = this.valuesIncreasedColor;
+                } else {
+                    iconColor = this.valuesDecreasedColor;
+                }
+
+                // context.fillStyle = "blue";
+                // context.fillRect(0,0,args.cellInfo.width,args.cellInfo.height);
+                let txt = (+templ.value).toFixed(2);
+                context.font = "13px Verdana";
+                let width = context.measureText(txt).width;
+
+                let totalWidth = width + 4;
+                context.font = "13px Verdana";
+                context.fillStyle = templ.textColor;
+                context.textBaseline = "top";
+                context.fillText(txt, templ.width - (totalWidth + 10), (templ.height / 2.0) - 7);
+
+                context.font = "13px 'Material Icons'";
+                context.fillStyle = iconColor;
+                context.fillRect(templ.width - (5 + 4), (templ.height / 2.0) - 8, 4, 16);
+
+                 if (scale !== 1.0) {
+                    context.restore();
+                }
+            }
+
+            return;
+        }
+
+        var content = args.content;
+        var sp;
+
+        if (content.childElementCount > 0) {
+            sp = content.children[0];
+        } else {
+            content.style.textAlign = "right";
+            sp = document.createElement("span");
+            sp.style.font = "13px Verdana";
+            sp.style.verticalAlign = "center";
+            content.appendChild(sp);
+        }
+
+        sp.textContent = (+templ.value).toFixed(2);
+
+        if ((sp).__isUp === undefined ||
+            (sp).__isUp !== priceShiftUp) {
+            (sp).__isUp = priceShiftUp;
+            if (priceShiftUp) {
+                sp.style.paddingRight = "5px";
+                sp.style.borderRight = this.valuesIncreasedBorder;
+                // sp.style.color = this.valuesIncreasedColor;
+            } else {
+                sp.style.paddingRight = "5px";
+                sp.style.borderRight = this.valuesDecreasedBorder;
+                // sp.style.color = this.valuesDecreasedColor;
+            }
+        }
+    }
+
+    function onChartStyleKey(grid, args) {
+        args.styleKey = "igComponent";
+    }
+
+    function onChartCellUpdating(grid, args) {
+        if (args.isCanvasBased) {
+            return;
+        }
+        let templ = args.cellInfo;
+
+        let content = args.content;
+        let icon;
+
+        if (content.childElementCount > 0) {
+            icon = content.children[0];
+            icon.onclick = (e) => {
+                // console.log("chart clicked!!")
+                e.stopPropagation();
+            }
+        } else {
+            icon = document.createElement("span");
+            content.appendChild(icon);
+            icon.style.fontFamily = "Material Icons";
+            icon.style.fontSize = "13px";
+            icon.style.fontFeatureSettings = "liga";
+            icon.style.verticalAlign = "center";
+            icon.textContent = "insertchart_outlined";
+        }
+
+    }
+
+    function onGridStyleKey(grid, args) {
+        args.styleKey = "grid";
+    }
+
+    function onGridCellUpdating(grid, args) {
+        if (args.isCanvasBased) {
+            return;
+        }
+
+        var content = args.content;
+        var icon;
+
+        if (content.childElementCount > 0) {
+            icon = content.children[0];
+            icon.onclick = (e) => {
+                // console.log("grid clicked!!")
+                e.stopPropagation();
+            }
+        } else {
+            icon = document.createElement("span");
+            content.appendChild(icon);
+            icon.style.fontFamily = "Material Icons";
+            icon.style.fontSize = "13px";
+            icon.style.fontFeatureSettings = "liga";
+            icon.style.verticalAlign = "center";
+            icon.textContent = "tablechart";
+        }
+    }
+
+    igRegisterScript("onPriceStyleKey", onPriceStyleKey, false);
+    igRegisterScript("onPriceCellUpdating", onPriceCellUpdating, false);
+
+
+    </script>
+
     <script src="_framework/blazor.webassembly.js"></script>
 
 </body>
