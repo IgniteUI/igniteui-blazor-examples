@@ -30,6 +30,12 @@
     <script src="_content/Infragistics.Blazor/app.bundle.js"></script>
 
     <script>
+
+    var valuesIncreasedColor = "#4EB862";
+    var valuesDecreasedColor = "#FF134A";
+    var valuesDecreasedBorder = "4px solid #FF134A";
+    var valuesIncreasedBorder = "4px solid #4EB862";
+
      function onPriceStyleKey(column, args) {
         var data = column.i.grid.actualDataSource.dataSource;
         var row = null;
@@ -58,7 +64,7 @@
                 let context = args.context;
 
                 let iconText = "trending_up";
-                let iconColor = this.valuesIncreasedColor;
+                let iconColor = valuesIncreasedColor;
 
                 let scale = window.devicePixelRatio;
                 if (scale !== 1.0) {
@@ -68,10 +74,10 @@
 
                 if (priceShiftUp) {
                     iconText = "trending_up";
-                    iconColor = this.valuesIncreasedColor;
+                    iconColor = valuesIncreasedColor;
                 } else {
                     iconText = "trending_down";
-                    iconColor = this.valuesDecreasedColor;
+                    iconColor = valuesDecreasedColor;
                 }
 
                 // context.fillStyle = "blue";
@@ -127,15 +133,15 @@
 
         if ((sp).__isUp === undefined ||
             (sp).__isUp !== priceShiftUp) {
-            (sp ).__isUp = priceShiftUp;
+            (sp).__isUp = priceShiftUp;
             if (priceShiftUp) {
                 icon.textContent = "trending_up";
-                icon.style.color = this.valuesIncreasedColor;
-                sp.style.color = this.valuesIncreasedColor;
+                icon.style.color = valuesIncreasedColor;
+                sp.style.color = valuesIncreasedColor;
             } else {
                 icon.textContent = "trending_down";
-                icon.style.color = this.valuesDecreasedColor;
-                sp.style.color = this.valuesDecreasedColor;
+                icon.style.color = valuesDecreasedColor;
+                sp.style.color = valuesDecreasedColor;
             }
         }
     }
@@ -159,7 +165,7 @@
 
                 let context = args.context;
 
-                let iconColor = this.valuesIncreasedColor;
+                let iconColor = valuesIncreasedColor;
 
                 let scale = window.devicePixelRatio;
                 if (scale !== 1.0) {
@@ -168,9 +174,9 @@
                 }
 
                 if (priceShiftUp) {
-                    iconColor = this.valuesIncreasedColor;
+                    iconColor = valuesIncreasedColor;
                 } else {
-                    iconColor = this.valuesDecreasedColor;
+                    iconColor = valuesDecreasedColor;
                 }
 
                 // context.fillStyle = "blue";
@@ -190,7 +196,7 @@
                 context.fillStyle = iconColor;
                 context.fillRect(templ.width - (5 + 4), (templ.height / 2.0) - 8, 4, 16);
 
-                 if (scale !== 1.0) {
+                if (scale !== 1.0) {
                     context.restore();
                 }
             }
@@ -217,12 +223,12 @@
             (sp).__isUp = priceShiftUp;
             if (priceShiftUp) {
                 sp.style.paddingRight = "5px";
-                sp.style.borderRight = this.valuesIncreasedBorder;
-                // sp.style.color = this.valuesIncreasedColor;
+                sp.style.borderRight = valuesIncreasedBorder;
+                // sp.style.color = valuesIncreasedColor;
             } else {
                 sp.style.paddingRight = "5px";
-                sp.style.borderRight = this.valuesDecreasedBorder;
-                // sp.style.color = this.valuesDecreasedColor;
+                sp.style.borderRight = valuesDecreasedBorder;
+                // sp.style.color = valuesDecreasedColor;
             }
         }
     }
@@ -245,7 +251,7 @@
                 args.renderStandardBackground();
 
                 let context = args.context;
-                let iconColor = this.valuesIncreasedColor;
+                let iconColor = valuesIncreasedColor;
                 let scale = window.devicePixelRatio;
                 if (scale !== 1.0) {
                     context.save();
@@ -253,9 +259,9 @@
                 }
 
                 if (priceShiftUp) {
-                    iconColor = this.valuesIncreasedColor;
+                    iconColor = valuesIncreasedColor;
                 } else {
-                    iconColor = this.valuesDecreasedColor;
+                    iconColor = valuesDecreasedColor;
                 }
 
                 // context.fillStyle = "blue";
@@ -274,7 +280,7 @@
                 context.fillStyle = iconColor;
                 context.fillRect(templ.width - (5 + 4), (templ.height / 2.0) - 8, 4, 16);
 
-                 if (scale !== 1.0) {
+                if (scale !== 1.0) {
                     context.restore();
                 }
             }
@@ -302,12 +308,12 @@
             (sp).__isUp = priceShiftUp;
             if (priceShiftUp) {
                 sp.style.paddingRight = "5px";
-                sp.style.borderRight = this.valuesIncreasedBorder;
-                // sp.style.color = this.valuesIncreasedColor;
+                sp.style.borderRight = valuesIncreasedBorder;
+                // sp.style.color = valuesIncreasedColor;
             } else {
                 sp.style.paddingRight = "5px";
-                sp.style.borderRight = this.valuesDecreasedBorder;
-                // sp.style.color = this.valuesDecreasedColor;
+                sp.style.borderRight = valuesDecreasedBorder;
+                // sp.style.color = valuesDecreasedColor;
             }
         }
     }
@@ -320,7 +326,6 @@
         if (args.isCanvasBased) {
             return;
         }
-        let templ = args.cellInfo;
 
         let content = args.content;
         let icon;
@@ -340,7 +345,6 @@
             icon.style.verticalAlign = "center";
             icon.textContent = "insertchart_outlined";
         }
-
     }
 
     function onGridStyleKey(grid, args) {
@@ -372,12 +376,67 @@
         }
     }
 
+    function onPriceDataBound(grid, args) {
+        let item = args.cellInfo.rowItem;
+        if (item === null) { return; }
+
+        if (item.PriceHeat > 0) { // && this.state.heatChecked) {
+            let p = +item.PriceHeat;
+            let minA = 1.0;
+            let maxA = 0.25;
+
+            let maxR = 0.0;
+            let minR = 1.0;
+            let minG = 1.0;
+            let maxG = 1.0;
+            let minB = 1.0;
+            let maxB = 0.0;
+
+            let a = minA + (maxA - minA) * p;
+            let r = minR + (maxR - minR) * p;
+            let g = minG + (maxG - minG) * p;
+            let b = minB + (maxB - minB) * p;
+            r = Math.round(r * 255.0);
+            g = Math.round(g * 255.0);
+            b = Math.round(b * 255.0);
+
+            let colorString = "rgba(" + r + "," + g + "," + b + "," + a + ")";
+            args.cellInfo.background = colorString;
+        }
+        else if (item.PriceHeat < 0) { //  && this.state.heatChecked) {
+            let p = +item.PriceHeat * -1.0;
+            let minA = 1.0;
+            let maxA = 0.25;
+
+            let minR = 1.0;
+            let maxR = 1.0;
+            let minG = 1.0;
+            let maxG = 0.0;
+            let minB = 1.0;
+            let maxB = 0.0;
+
+            let a = minA + (maxA - minA) * p;
+            let r = minR + (maxR - minR) * p;
+            let g = minG + (maxG - minG) * p;
+            let b = minB + (maxB - minB) * p;
+            r = Math.round(r * 255.0);
+            g = Math.round(g * 255.0);
+            b = Math.round(b * 255.0);
+
+            let colorString = "rgba(" + r + "," + g + "," + b + "," + a + ")";
+            args.cellInfo.background = colorString;
+        }
+        else {
+            args.cellInfo.background = "white";
+        }
+    }
+
+    // this code allows calling above functions from a .razor file
     igRegisterScript("onPriceStyleKey", onPriceStyleKey, false);
     igRegisterScript("onPriceCellUpdating", onPriceCellUpdating, false);
-
+    igRegisterScript("onPriceDataBound", onPriceDataBound, false);
 
     </script>
-
     <script src="_framework/blazor.webassembly.js"></script>
 
 </body>

@@ -51,9 +51,10 @@
                 <TemplateColumn Width="120" Field="Price" 
                     CellStyleKeyRequestedScript="onPriceStyleKey"
                     CellUpdatingScript="onPriceCellUpdating"
+                    DataBoundScript="onPriceDataBound"
                     HeaderText="Close" />
-                <NumericColumn Width="120" Field="Change" MinFractionDigits="2" MaxFractionDigits="2" />
-                <NumericColumn Width="180" Field="ChangePercent" NegativeSuffix="%" PositiveSuffix="%" MinFractionDigits="2" MaxFractionDigits="2" />
+                <NumericColumn Width="120" Field="Change" HeaderText="Change ($)" MinFractionDigits="2" MaxFractionDigits="2" />
+                <NumericColumn Width="180" Field="ChangePercent" HeaderText="Change (%)" NegativeSuffix="%" PositiveSuffix="%" MinFractionDigits="2" MaxFractionDigits="2" />
 
                 <TextColumn Width="120" Field="Contract" />
                 <TextColumn Width="130" Field="Settlement" />
@@ -96,15 +97,11 @@
     public List<PortfolioInfo> data;
 
     public DateTime lastUpdateTime = new DateTime();
-    public int frequency = 1000; // 15
+    public int frequency = 20; // 1000; // 15
     public int dataVolume = 500;
     public bool isTimerTicking = false;
     public bool isUpdatingAllPrices = false;
     public bool isUpdatingSomePrices = false;
-    public string valuesIncreasedColor = "#4EB862";
-    public string valuesDecreasedColor = "#FF134A";
-    public string valuesDecreasedBorder = "4px solid #FF134A";
-    public string valuesIncreasedBorder = "4px solid #4EB862";
 
     public string liveSomePricesBackground = "#5E28E9";
     public string liveAllPricesBackground = "#EF2B76";
@@ -115,8 +112,8 @@
     public bool liveAllPricesDisabled = false;
     public bool canvasChecked = false;
     public bool chartOpen = false;
-    public bool IsGroupingRows = true;
-    public bool IsHeatRows = true;
+    public bool UseRowGrouping = true;
+    public bool UseHeatBackground = true;
     public string[] hiddenColumns;
     public string[] allColumns;
 
@@ -234,7 +231,11 @@
         foreach (var item in this.data)
         {
             toChangeIndexes.Add(false);
-            if (item.PriceHeat != 0)
+            if (!this.UseHeatBackground)
+            {
+                item.PriceHeat = 0;
+            }
+            else if (item.PriceHeat != 0)
             {
                 stillAnimating = true;
             }
@@ -269,7 +270,7 @@
         var elapsedInterval = elapsedTime.TotalMilliseconds > this.frequency;
         if (elapsedInterval)
         {
-            Console.WriteLine(">>> onTimerTick elapsedInterval " + elapsedTime);
+            //Console.WriteLine(">>> onTimerTick elapsedInterval " + elapsedTime);
 
             this.lastUpdateTime = DateTime.Now;
             for (var i = 0; i < toChange; i++)
@@ -286,7 +287,7 @@
                 changing = true;
 
             }
-            Console.WriteLine(">>> onTimerTick toChangeIndexes " + toChangeCount);
+            //Console.WriteLine(">>> onTimerTick toChangeIndexes " + toChangeCount);
         }
 
         var dataUpdated = false;
@@ -298,8 +299,7 @@
             {
                 if (sortingByPrice && !useClear)
                 {
-
-                    Console.WriteLine(">>> onTimerTick NotifyInsertItem");
+                    //Console.WriteLine(">>> onTimerTick NotifyInsertItem");
 
                     this.grid.NotifyRemoveItem(this.data, i, item);
                     PortfolioData.RandomizeDataValues(item);
@@ -312,38 +312,44 @@
                 }
                 dataUpdated = true;
 
-                if (item.Change > 0)
-                {
-                    item.PriceHeat = 1;
-                }
-                else
-                {
-                    item.PriceHeat = -1;
+                if (this.UseHeatBackground)
+                {               
+                    if (item.Change > 0)
+                    {
+                        item.PriceHeat = 1;
+                    }
+                    else
+                    {
+                        item.PriceHeat = -1;
+                    }
                 }
             }
             else
             {
-                if (item.PriceHeat > 0)
+                if (this.UseHeatBackground)
                 {
-                    item.PriceHeat -= .06;
-                    if (item.PriceHeat < 0)
-                    {
-                        item.PriceHeat = 0;
-                    }
-                }
-                if (item.PriceHeat < 0)
-                {
-                    item.PriceHeat += .06;
                     if (item.PriceHeat > 0)
                     {
-                        item.PriceHeat = 0;
+                        item.PriceHeat -= .06;
+                        if (item.PriceHeat < 0)
+                        {
+                            item.PriceHeat = 0;
+                        }
+                    }
+                    if (item.PriceHeat < 0)
+                    {
+                        item.PriceHeat += .06;
+                        if (item.PriceHeat > 0)
+                        {
+                            item.PriceHeat = 0;
+                        }
                     }
                 }
             }
         }
 
-        if (dataUpdated)
-            Console.WriteLine(">>> onTimerTick dataUpdated");
+        //if (dataUpdated)
+        //    Console.WriteLine(">>> onTimerTick dataUpdated");
 
         if (sortingByPrice && useClear && elapsedInterval)
         {
@@ -373,15 +379,16 @@
     private void onToggleHeat(bool isCheched)
     {
         Console.WriteLine(">>> onToggleHeat " + isCheched);
-        this.IsHeatRows = isCheched;
+        this.UseHeatBackground = isCheched; 
+        this.grid.Flush(); 
     }
 
     private void onToggleGrouping(bool isCheched)
     {
         Console.WriteLine(">>> onToggleGrouping " + isCheched);
 
-        this.IsGroupingRows = isCheched;
-        if (this.IsGroupingRows)
+        this.UseRowGrouping = isCheched;
+        if (this.UseRowGrouping)
             this.onGridGroupingAdd();
         else
             this.onGridGroupingRemove();
