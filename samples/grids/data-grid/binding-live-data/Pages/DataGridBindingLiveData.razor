@@ -38,6 +38,7 @@
                       IsGroupCollapsable="true"
                       RowHeight="32"
                       HeaderClickAction="@HeaderClickAction.SortByMultipleColumnsTriState"
+                      SortDescriptionsChanged="OnSortDescriptionsChanged"
                       ActivationMode="GridActivationMode.Cell"
                       DefaultColumnMinWidth="100">
 
@@ -47,7 +48,10 @@
                 <TextColumn Width="110" Field="Risk" />
 
                 <NumericColumn Width="120" Field="Open" HeaderText="Open" ShowGroupingSeparator="true" PositivePrefix="$" MinFractionDigits="2" MaxFractionDigits="2" />
-                <NumericColumn Width="120" Field="Price" HeaderText="Close" ShowGroupingSeparator="true" PositivePrefix="$" MinFractionDigits="2" MaxFractionDigits="2" />
+                <TemplateColumn Width="120" Field="Price" 
+                    CellStyleKeyRequestedScript="onPriceStyleKey"
+                    CellUpdatingScript="onPriceCellUpdating"
+                    HeaderText="Close" />
                 <NumericColumn Width="120" Field="Change" MinFractionDigits="2" MaxFractionDigits="2" />
                 <NumericColumn Width="180" Field="ChangePercent" NegativeSuffix="%" PositiveSuffix="%" MinFractionDigits="2" MaxFractionDigits="2" />
 
@@ -84,6 +88,10 @@
 
 @code {
 
+    private void OnSortDescriptionsChanged(GridSortDescriptionsChangedEventArgs args)
+    {
+
+    }
 
     public List<PortfolioInfo> data;
 
@@ -300,6 +308,7 @@
                 else
                 {
                     PortfolioData.RandomizeDataValues(item);
+                    this.grid.NotifyUpdateItem(this.data, i, item, true);
                 }
                 dataUpdated = true;
 
@@ -338,10 +347,13 @@
 
         if (sortingByPrice && useClear && elapsedInterval)
         {
-            this.grid.ActualDataSource.QueueAutoRefresh();
+            this.grid.NotifyClearItems(data);
+        }
+        else if (useClear)
+        {
+            this.grid.NotifyClearItems(data);
         }
 
-        // if (!useClear) {
         if (!sortingByPrice || !elapsedInterval)
         {
             this.grid.InvalidateVisibleRows();
@@ -356,7 +368,6 @@
         }
 
         Task.Delay(this.frequency).ContinueWith((t) => onTimerTick());
-        this.StateHasChanged();
     }
 
     private void onToggleHeat(bool isCheched)
