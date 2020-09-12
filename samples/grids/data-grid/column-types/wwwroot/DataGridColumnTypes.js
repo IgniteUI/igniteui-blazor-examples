@@ -1,10 +1,10 @@
-﻿// NOTE do not use typscript keywords or types, e.g. ":", "as", HTMLDivElement HTMLSpanElement etc
+﻿// NOTE this JavaScript file implements functions for styling/templating columnd of the DataGrid control
+// at end of this file, the igRegisterScript registers functions that are used .razor file
 
-igRegisterScript("onUpdatingSalesColumn", (o, e) => {
-    //console.log("onUpdatingSalesColumn called");
-    const content = e.content;
-    const info = e.cellInfo;
-    const sales = info.rowItem.Sales;
+function onUpdatingSalesColumn(grid, args) {
+    let content = args.content;
+    let info = args.cellInfo;
+    let sales = info.rowItem.Sales;
     let gaugeValue = null;
     let gaugeBar = null;
 
@@ -30,7 +30,7 @@ igRegisterScript("onUpdatingSalesColumn", (o, e) => {
         gauge.style.background = "#dddddd";
         gauge.style.padding = "0px";
         gauge.style.margin = "0px";
-        gauge.style.height = "6px";
+        gauge.style.height = "4px";
         gauge.style.marginTop = "8px";
         gauge.style.width = "100%";
         gauge.appendChild(gaugeBar);
@@ -66,26 +66,22 @@ igRegisterScript("onUpdatingSalesColumn", (o, e) => {
         gaugeValue.style.color = "rgb(21, 190, 6)";
         gaugeBar.style.background = "rgb(21, 190, 6)";
     }
+
     let gaugeWidth = (sales / 990000) * 100;
     gaugeWidth = Math.min(100, gaugeWidth);
     gaugeBar.style.width = gaugeWidth + "%";
 
     gaugeValue.textContent = "$" + sales / 1000 + ",000";
-}, false);
+}
 
-igRegisterScript("onUpdatingAddressColumn", (o, e) => {
-    //console.log("onUpdatingAddressColumn called ");
-    let content = e.content;
+function onUpdatingAddressColumn(grid, args) {
+    let content = args.content;
+    let info = args.cellInfo;
+    let item = info.rowItem;
     let span1 = null;
     let span2 = null;
-    let info = e.cellInfo;
-    let item = info.rowItem;
 
     if (content.childElementCount === 0) {
-
-        span1 = document.createElement("span");
-        span2 = document.createElement("span");
-
         content.style.fontFamily = "Verdana";
         content.style.fontSize = "13px";
         content.style.verticalAlign = "center";
@@ -95,7 +91,10 @@ igRegisterScript("onUpdatingAddressColumn", (o, e) => {
         content.style.justifyContent = "center";
         content.style.height = "100%";
         content.style.width = "100%";
-
+        content.style.color = "rgb(24, 29, 31)";
+        // stacking above elements in the content of grid's cell
+        span1 = document.createElement("span");
+        span2 = document.createElement("span");
         content.appendChild(span1);
         content.appendChild(span2);
     }
@@ -105,7 +104,40 @@ igRegisterScript("onUpdatingAddressColumn", (o, e) => {
     }
 
     if (span1 && span2) {
+        // updating elements in the content of grid's cell
         span1.textContent = item.Street;
         span2.textContent = item.City + ", " + item.Country;
     }
-}, false);
+}
+
+function onUpdatingPhoneColumn(grid, args) {
+    let content = args.content;
+    let info = args.cellInfo;
+    let item = info.rowItem;
+    let link = null;
+
+    if (content.childElementCount === 0) {
+        link = document.createElement("a");
+        content.style.verticalAlign = "center";
+        content.style.justifyContent = "center"; 
+        content.style.lineHeight = "normal";
+        content.style.display = "inline-block";
+        // content.style.display = "inline-grid";
+        content.style.fontFamily = "Verdana";
+        content.style.fontSize = "13px";
+        content.style.color = "#4286f4";
+        content.style.width = "100%";
+
+        content.appendChild(link);
+    } else {
+        link = content.children[0];
+    }
+
+    link.href = "tel:" + item.Phone;
+    link.textContent = item.Phone;
+}
+
+// this code allows calling above functions from a .razor file
+igRegisterScript("onUpdatingSalesColumn", onUpdatingSalesColumn, false);
+igRegisterScript("onUpdatingAddressColumn", onUpdatingAddressColumn, false);
+igRegisterScript("onUpdatingPhoneColumn", onUpdatingPhoneColumn, false);

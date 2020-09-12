@@ -7,7 +7,7 @@
 
         @if (Employees != null)
         {
-        <DataGrid Height="100%" Width="100%"
+        <DataGrid Height="100%" Width="100%" RowHeight="50"
                   DataSource="@Employees"
                   AutoGenerateColumns="false"
                   ActivationMode="GridActivationMode.Cell">
@@ -16,24 +16,29 @@
                          HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
 
             <TextColumn Width="130" Field="Name" />
-            <NumericColumn Width="110" Field="Age" />
+
+            @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
+            <TemplateColumn Width="160" Field="Sales" CellUpdatingScript="onUpdatingSalesColumn" 
+                            HorizontalAlignment="@CellContentHorizontalAlignment.Center"
+                            />
+
             <NumericColumn Width="130" Field="Salary" PositivePrefix="$"
                            ShowGroupingSeparator="true"
                            MaxFractionDigits="0"
                            MinFractionDigits="0" />
 
+            <DateTimeColumn Width="140" Field="Birthday" HeaderText="Date of Birth" />
             <ComboBoxColumn Width="120" Field="City" />
 
             <ImageColumn Width="110" Field="CountryFlag" HeaderText="Country" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
                          HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
-            
-            @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
-            <TemplateColumn Width="160" Field="Sales" CellUpdatingScript="onUpdatingSalesColumn" />
-            <TemplateColumn Width="160" Field="Address" CellUpdatingScript="onUpdatingAddressColumn" />
 
-            <DateTimeColumn Width="140" Field="Birthday" />
+            @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
+            <TemplateColumn Width="170" Field="Address" CellUpdatingScript="onUpdatingAddressColumn" />
+            <TemplateColumn Width="130" Field="Phone" CellUpdatingScript="onUpdatingPhoneColumn" />
 
             <TextColumn Width="120" Field="Income" />
+            <NumericColumn Width="100" Field="Age" HorizontalAlignment="@CellContentHorizontalAlignment.Left"/>
         </DataGrid>
         }
  
