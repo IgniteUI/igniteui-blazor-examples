@@ -24,14 +24,17 @@ class SampleFile {
         this.IsChanged = false;
     }
 
-    public isRazorPage(): boolean {
-        return this.Path.indexOf("Pages") > 0 && this.Name.indexOf(".razor") > 0;
+    public isRazorSample(): boolean {
+        return this.Path.indexOf("Pages") > 0 && this.Name.endsWith(".razor");
     }
-    public isComponent(): boolean {
-        return this.Path.indexOf("Components") > 0 && this.Name.indexOf(".razor") > 0;
+    public isRazorComponent(): boolean {
+        return this.Path.indexOf("Components") > 0 && this.Name.endsWith(".razor");
     }
     public isCS(): boolean {
-        return this.Name.indexOf(".cs") > 0;
+        return this.Name.endsWith(".cs");
+    }
+    public isJS(): boolean {
+        return this.Name.endsWith(".js");
     }
 }
 
@@ -102,6 +105,7 @@ class SampleInfo {
     // public SampleFilePaths: string[];  // relative paths to files in sample folder: /samples/maps/geo-map/binding-csv-points/
     // public SampleFileNames: string[];  // names of files in sample folder: /samples/maps/geo-map/binding-csv-points/
     public SourceFiles: SampleFile[];
+    public JavaScriptFiles: SampleFile[];
     public SourceRazorFile: SampleSourceFile;
     public ProjectFile: SampleFile;
 
@@ -119,6 +123,7 @@ class SampleInfo {
         // this.SampleFilePaths = [];
         // this.SampleFileNames = [];
         this.SourceFiles = [];
+        this.JavaScriptFiles = [];
         this.PackageDependencies = [];
         // this.PackageDependencies.indexOf
     }
@@ -512,19 +517,24 @@ class Transformer {
             file.Path = filePath;
             file.Name = parts[parts.length - 1];
 
-            if (file.isRazorPage() ||
-                file.isComponent() ||
-                file.isCS()) {
+            if (file.isRazorSample() ||
+                file.isRazorComponent() ||
+                file.isCS() ||
+                file.isJS() ) {
                 file.Content = transFS.readFileSync(filePath, "utf8");
                 // console.log("pro file " + file.Path + "   " + file.Name);
             }
 
-            if (file.isRazorPage()) {
+            if (file.isRazorSample()) {
                 info.SourceFiles.splice(0, 0, file);
-            } else if (file.Name.indexOf(".csproj") > 0){
-                info.ProjectFile = file;
-            } else {
+            } else if (file.isCS()) {
                 info.SourceFiles.push(file);
+            } else if (file.isJS()) {
+                // console.log("isJS " + file.Path)
+                info.JavaScriptFiles.splice(0, 0, file);
+            } else if (file.Name.indexOf(".csproj") > 0){
+                // console.log("isProj " + file.Path)
+                info.ProjectFile = file;
             }
             // info.SourceFiles.push(file);
             // info.SampleFileNames.push(parts[parts.length - 1]);
@@ -780,11 +790,11 @@ class Transformer {
             // console.log("NOTE: lintSample() " + file.Path);
 
             let orgContent = file.Content;
-            if (file.isRazorPage()) {
+            if (file.isRazorSample()) {
                 // console.log("NOTE: lintRazor() " + file.Path);
                 this.lintRazor(info, generateRoutingPath);
                 this.lintFile(file);
-            } else if (file.isComponent()) {
+            } else if (file.isRazorComponent()) {
                 // this.lintRazor(info, false);
                 this.lintFile(file);
             } else{
@@ -930,7 +940,7 @@ class Transformer {
                 currentLine = currentLine.replace(new RegExp('(@using\.*.*)(\;)'), '$1');
                 currentLine = currentLine.replace(new RegExp('(@inject\.*.*)(\;)'), '$1');
 
-                currentLine = currentLine.replace(new RegExp("(for\.*.*)([A-Za-z0-9])(\=)"), '$1$2 $3');
+                currentLine = currentLine.replace(new RegExp('(for\.*.*)([A-Za-z0-9])(\=)'), '$1$2 $3');
                 currentLine = currentLine.replace(new RegExp('(for\.*.*)([A-Za-z0-9])(\<)'), '$1$2 $3');
                 currentLine = currentLine.replace(new RegExp('(for\.*.*)([A-Za-z0-9])(\>)'), '$1$2 $3');
 
@@ -938,9 +948,9 @@ class Transformer {
                 currentLine = currentLine.replace(new RegExp('(for\.*.*)(\<)([A-Za-z0-9])'), '$1$2 $3');
                 currentLine = currentLine.replace(new RegExp('(for\.*.*)(\>)([A-Za-z0-9])'), '$1$2 $3');
                 currentLine = currentLine.replace(new RegExp('(for\.*.*)(\;)([A-Za-z0-9])'), '$1$2 $3');
-                currentLine = currentLine.replace(new RegExp("(for\.*.*)(\;)([A-Za-z0-9])"), '$1$2 $3');
+                currentLine = currentLine.replace(new RegExp('(for\.*.*)(\;)([A-Za-z0-9])'), '$1$2 $3');
 
-                currentLine = currentLine.replace(new RegExp("(for)(\\()(\.*.*)"), '$1 $2$3');
+                currentLine = currentLine.replace(new RegExp('(for)(\\()(\.*.*)'), '$1 $2$3');
                 // currentLine = currentLine.replace(new RegExp("(for\.*.*)(\\()(\.*.*)"), '$1$2$3');
 
                 currentLine = Strings.replaceAll(currentLine, ' ++', '++');
