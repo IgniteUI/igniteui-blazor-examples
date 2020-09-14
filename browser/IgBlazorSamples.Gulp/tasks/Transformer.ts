@@ -527,6 +527,8 @@ class Transformer {
 
             if (file.isRazorSample()) {
                 info.SourceFiles.splice(0, 0, file);
+            } else if (file.isRazorComponent()) {
+                info.SourceFiles.push(file);
             } else if (file.isCS()) {
                 info.SourceFiles.push(file);
             } else if (file.isJS()) {
