@@ -6,25 +6,15 @@
 
     <div class="igOptions-horizontal">
         <div class="igOptions-vertical" style="width: auto">
-            <div class="igOptions-button-box" style="width: 150px; background-color: @liveSomePricesBackground">
-                <button class="igOptions-button" @onclick="onLiveSomePricesClicked">@liveSomePricesText</button>
-            </div>
-            <div class="igOptions-button-box" style="width: 150px; background-color: @liveAllPricesBackground">
-                <button class="igOptions-button" @onclick="onLiveAllPricesClicked">@liveAllPricesText</button>
-            </div>
+     
+            <Toggle OnClick="onLiveSomePricesClicked" Width="150px" Background="@liveSomePricesBackground">@liveSomePricesText</Toggle>
+            <Toggle OnClick="onLiveAllPricesClicked"  Width="150px" Background="@liveAllPricesBackground" >@liveAllPricesText</Toggle> 
         </div>
 
         <div class="igOptions-vertical" style="width: auto">
-            <div class="igOptions-horizontal">
-                <Switch OnToggle="onToggleGrouping" />
-                <label>Grouping</label>
-            </div>
-            <div class="igOptions-horizontal">
-                <Switch OnToggle="onToggleHeat" />
-                <label>Heat</label>
-            </div>
+            <Switch OnToggle="onToggleGrouping">Grouping</Switch>
+            <Switch OnToggle="onToggleHeat">Heat</Switch>
         </div>
-
     </div>
 
     <div class="igComponent">
@@ -48,7 +38,7 @@
                 <TextColumn Width="110" Field="Risk" />
 
                 <NumericColumn Width="120" Field="Open" HeaderText="Open" ShowGroupingSeparator="true" PositivePrefix="$" MinFractionDigits="2" MaxFractionDigits="2" />
-                <TemplateColumn Width="120" Field="Price" 
+                <TemplateColumn Width="120" Field="Price"
                     CellStyleKeyRequestedScript="onPriceStyleKey"
                     CellUpdatingScript="onPriceCellUpdating"
                     DataBoundScript="onPriceDataBound"
@@ -77,9 +67,6 @@
                 <TextColumn Width="130" Field="Security" />
                 <TextColumn Width="170" Field="Issuer" />
 
-                @*<TemplateColumn Width="130" name="ChangePer" Field="ChangePercent"
-                    CellStyleKeyRequested="@onPricePercentStyleKey"
-                    CellUpdating="@onPricePercentCellUpdating" />*@
             </DataGrid>
         }
 
@@ -108,8 +95,10 @@
 
     public string liveAllPricesText = "Live All Prices";
     public string liveSomePricesText = "Live Prices";
+
     public bool liveSomePricesDisabled = false;
     public bool liveAllPricesDisabled = false;
+
     public bool canvasChecked = false;
     public bool chartOpen = false;
     public bool UseRowGrouping = true;
@@ -133,7 +122,7 @@
         this.data = PortfolioData.Create(this.dataVolume);
     }
 
-    private void onLiveAllPricesClicked()
+    private void onLiveAllPricesClicked(object sender)
     {
         if (this.liveAllPricesDisabled) return;
 
@@ -156,11 +145,11 @@
             this.liveSomePricesDisabled = true;
         }
 
-        this.liveSomePricesBackground = liveSomePricesDisabled ? "lightgray" : "#5E28E9";
-        this.liveAllPricesBackground = liveAllPricesDisabled ? "lightgray" : "#EF2B76";
+        this.liveSomePricesBackground = liveSomePricesDisabled ? "gray" : "#5E28E9";
+        this.liveAllPricesBackground = liveAllPricesDisabled ? "gray" : "#EF2B76";
     }
 
-    private void onLiveSomePricesClicked()
+    private void onLiveSomePricesClicked(object sender)
     {
         if (this.liveSomePricesDisabled) return;
 
@@ -183,8 +172,8 @@
             this.liveAllPricesDisabled = true;
         }
 
-        this.liveSomePricesBackground = liveSomePricesDisabled ? "lightgray" : "#5E28E9";
-        this.liveAllPricesBackground = liveAllPricesDisabled ? "lightgray" : "#EF2B76";
+        this.liveSomePricesBackground = liveSomePricesDisabled ? "gray" : "#5E28E9";
+        this.liveAllPricesBackground = liveAllPricesDisabled ? "gray" : "#EF2B76";
     }
 
     public void stopTicking()
@@ -313,7 +302,7 @@
                 dataUpdated = true;
 
                 if (this.UseHeatBackground)
-                {               
+                {
                     if (item.Change > 0)
                     {
                         item.PriceHeat = 1;
@@ -379,8 +368,8 @@
     private void onToggleHeat(bool isCheched)
     {
         Console.WriteLine(">>> onToggleHeat " + isCheched);
-        this.UseHeatBackground = isCheched; 
-        this.grid.Flush(); 
+        this.UseHeatBackground = isCheched;
+        this.grid.Flush();
     }
 
     private void onToggleGrouping(bool isCheched)
