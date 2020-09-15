@@ -9,7 +9,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using IgniteUI.Blazor.Controls;
+
+using IgniteUI.Blazor.Controls; // provides IgniteUIBlazor
+
+using Infragistics.Samples.Core;
+using Infragistics.Samples.Shared;
 
 namespace Infragistics.Samples
 {
@@ -44,10 +48,10 @@ namespace Infragistics.Samples
                     return new HttpClient { BaseAddress = new Uri(uriHelper.BaseUri) };
                 });
 
-                services.AddScoped(typeof(Samples.Shared.Services.SampleBrowser));
-                //services.AddSingleton<Samples.Shared.Services.SampleBrowser>();
-                services.AddSingleton<Samples.Shared.Services.SampleTimer>();
+                services.AddScoped(typeof(SampleBrowser));
+                services.AddSingleton<SampleTimer>();
                 services.AddSingleton<WeatherForecastService>();
+                services.AddSingleton<SampleComponents>();
             }
         }
 

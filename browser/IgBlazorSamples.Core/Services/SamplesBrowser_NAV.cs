@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Infragistics.Samples.Shared.Services
+namespace Infragistics.Samples.Core
 {
     public partial class SampleBrowser
     {
@@ -90,7 +90,7 @@ namespace Infragistics.Samples.Shared.Services
         {
             if (this.IsLoading) return;
 
-            Console.WriteLine("SB CheckUI " + url);
+            //Console.WriteLine("SB CheckUI " + url);
 
             var sampleFound = false;
             //this.IsEmbedded = !url.Contains("/samples") && url != this.NavManager.BaseUri;
@@ -103,6 +103,7 @@ namespace Infragistics.Samples.Shared.Services
             }
             else
             {
+                // using TOC to lookup sample name by a route in provided url
                 foreach (var group in TOC.Groups)
                 {
                     foreach (var comp in group.Components)

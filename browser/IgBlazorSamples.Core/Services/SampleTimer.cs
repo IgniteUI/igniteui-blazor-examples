@@ -1,7 +1,7 @@
 ﻿using System; 
 using System.Timers;
 
-namespace Infragistics.Samples.Shared.Services
+namespace Infragistics.Samples.Core
 {
     public class SampleTimer
     {

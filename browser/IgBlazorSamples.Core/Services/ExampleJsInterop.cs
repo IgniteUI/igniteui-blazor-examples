@@ -1,7 +1,7 @@
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace Infragistics.Samples.Shared.Services
+namespace Infragistics.Samples.Core
 {
     public class ExampleJsInterop
     {

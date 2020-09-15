@@ -5,7 +5,7 @@
 
 @inject NavigationManager NavManager
 @*@inject IJSRuntime JSRuntime;*@
-@inject Infragistics.Samples.Shared.Services.SampleBrowser SB
+@inject Infragistics.Samples.Core.SampleBrowser SB
 
 <div class="sb-root">
 
@@ -66,19 +66,31 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Console.WriteLine("SB.NAV BrowserLayout Initialized Async");
+        Console.WriteLine("SB.NAV OnInit Async");
         @* await SB.CheckUIAsync(NavManager.Uri);
             StateHasChanged(); *@
         await Task.Delay(1);
     }
 
+    protected bool IsSampleInFullScreen( ) {
+        if (NavManager.Uri.Contains("/samples")) return true;
+        //if (NavManager.Uri.Contains("localhost")) return true; //&&
+        if (NavManager.Uri + "/" == this.NavManager.BaseUri)  return true;
+         
+        return false;
+
+        // return !NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri + "/";
+    }
+
     protected override void OnInitialized()
     {
-        Console.WriteLine("SB.NAV BrowserLayout Initialized");
-        Console.WriteLine("SB.NAV BrowserLayout " + NavManager.BaseUri);
-        Console.WriteLine("SB.NAV BrowserLayout " + NavManager.Uri);
+        Console.WriteLine("SB.NAV OnInit Initialized");
+        // Console.WriteLine("SB.NAV OnInit " + NavManager.BaseUri);
+        Console.WriteLine("SB.NAV OnInit " + NavManager.Uri);
         
-        this.IsSampleEmbedded = !NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri;
+        this.IsSampleEmbedded = !IsSampleInFullScreen(); // NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri + "/";
+    
+        Console.WriteLine("SB.NAV IsSampleEmbedded " + IsSampleEmbedded);
 
         NavManager.LocationChanged += this.OnLocationChanged;
 
@@ -88,12 +100,14 @@
 
     public void OnSamplesLoaded(object sender, EventArgs arg)
     {
-        Console.WriteLine("SB.NAV Loaded Base " + NavManager.BaseUri);
+        // Console.WriteLine("SB.NAV Loaded Base " + NavManager.BaseUri);
         Console.WriteLine("SB.NAV Loaded Uri  " + NavManager.Uri);
 
-        this.IsSampleEmbedded = !NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri;
-
-        // SB.CheckUI(NavManager.Uri);
+        this.IsSampleEmbedded = !IsSampleInFullScreen(); // !NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri;
+    
+        Console.WriteLine("SB.NAV IsSampleEmbedded " + IsSampleEmbedded);
+    
+        SB.CheckUI(NavManager.Uri);
         StateHasChanged();
     }
 
@@ -102,7 +116,9 @@
         Console.WriteLine("SB.NAV Changed Base " + NavManager.BaseUri);
         Console.WriteLine("SB.NAV Changed Uri  " + NavManager.Uri);
         
-        this.IsSampleEmbedded = !NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri;
+        this.IsSampleEmbedded = !IsSampleInFullScreen(); // !NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri;
+    
+        Console.WriteLine("SB.NAV IsSampleEmbedded " + IsSampleEmbedded);
 
         await Task.Delay(10);
         await SB.CheckUIAsync(arg.Location);

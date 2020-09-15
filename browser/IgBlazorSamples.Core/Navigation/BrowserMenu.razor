@@ -1,14 +1,14 @@
 ﻿@using Microsoft.AspNetCore.Components.Routing
-@using Infragistics.Samples.Shared.Services
+@using Infragistics.Samples.Core
 @using System.Net.Http
 @using System.Net.Http.Json
 
 @inject HttpClient Http
 @inject NavigationManager NavManager
-@inject Infragistics.Samples.Shared.Services.SampleBrowser SB
+@inject Infragistics.Samples.Core.SampleBrowser SB
 
 <div class="sb-sidebar-header">
-    <img src="_content/Infragistics.Samples.Shared/images/ignite.svg" />
+    <img src="_content/Infragistics.Samples.Core/images/ignite.svg" />
     <span>@SB.AppName</span>
 </div>
 
@@ -17,7 +17,7 @@
     @if (SB.IsLoading)
     {
         @*<p><em>Loading...</em></p>*@
-        @*<img class="sb-progress" src="_content/Infragistics.Samples.Shared/images/progress.gif" />*@
+        @*<img class="sb-progress" src="_content/Infragistics.Samples.Core/images/progress.gif" />*@
     }
     else
     {
@@ -79,7 +79,6 @@
         //}
         try
         {
-            //var toc = await Http.GetFromJsonAsync<TOC>("toc_test.json");
             var toc = await Http.GetFromJsonAsync<TOC>("toc.json");
             await SB.Load(toc);
             //Console.WriteLine("SB.Nav toc");

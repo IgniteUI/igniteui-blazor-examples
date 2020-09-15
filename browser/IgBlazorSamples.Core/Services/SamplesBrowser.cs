@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-namespace Infragistics.Samples.Shared.Services
+namespace Infragistics.Samples.Core
 {
     public partial class SampleBrowser : ObservableObject
     {

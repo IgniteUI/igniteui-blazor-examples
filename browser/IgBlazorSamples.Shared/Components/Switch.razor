@@ -1,0 +1,35 @@
+ <div class="switch-box">
+     <label class="switch">
+         @if (this.IsChecked)
+         {
+             <input type="checkbox" checked @onclick="onClicked">
+         }
+         else
+         {
+             <input type="checkbox" @onclick="onClicked">
+         }
+         <span class="slider round"></span>
+     </label>
+     <span class="toggle-span">@ChildContent</span>
+ </div>
+
+@code {
+
+    private void onClicked()
+    {
+        this.IsChecked = !this.IsChecked;
+        this.OnToggle.InvokeAsync(this.IsChecked);
+    }
+
+    [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public EventCallback<bool> OnToggle { get; set; }
+
+    bool _IsChecked = true;
+    [Parameter] public bool IsChecked { get { return _IsChecked; } set { _IsChecked = value; } }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+
+}

@@ -1,0 +1,53 @@
+<div class="toggle-box" style="width: @Width; background: @BackgroundActual">
+    <div class="toggle" @onclick="onClicked">
+        <span class="toggle-span">@ChildContent</span>
+    </div>
+</div>
+
+@code {
+
+    private void onClicked()
+    {
+        //Console.WriteLine(">>> onClicked " + this.Checked);
+        this.IsChecked = !this.IsChecked;
+        this.Update();
+        //Console.WriteLine(">>> onClicked " + this.Checked);
+        this.OnClick.InvokeAsync(this.IsChecked);
+    }
+
+    [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public EventCallback<object> OnClick { get; set; }
+
+    bool _IsChecked = true;
+    bool _IsDisabled = false;
+    [Parameter] public bool IsChecked { get { return _IsChecked; } set { _IsChecked = value; Update(); } }
+    [Parameter] public bool IsDisabled { get { return _IsDisabled; } set { _IsDisabled = value; Update(); } }
+
+    string _Width = "auto";
+    string _Background = "#1780EF";
+    string _BackgroundDisabled = "#BBB9B9";
+    [Parameter] public string Background { get { return _Background; } set { _Background = value; Update(); } }
+    [Parameter] public string BackgroundDisabled { get { return _BackgroundDisabled; } set { _BackgroundDisabled = value; Update(); } }
+    [Parameter] public string Width { get { return _Width; } set { _Width = value; Update(); } }
+
+    public string BackgroundActual { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        this.Update();
+    }
+
+    protected void Update()
+    {
+        if (this.IsDisabled)
+        {
+            BackgroundActual = BackgroundDisabled;
+        }
+        else
+        {
+            BackgroundActual = Background;
+        }
+
+    }
+}
