@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-using Infragistics.Blazor.Controls;
+using IgniteUI.Blazor.Controls;
 
 namespace Infragistics.Samples
 {
@@ -26,7 +26,7 @@ namespace Infragistics.Samples
             builder.Services.AddScoped(typeof(Infragistics.Samples.Shared.Services.SampleTimer));
 
             // registering Infragistics Blazor
-            builder.Services.AddScoped(typeof(IInfragisticsBlazor), typeof(InfragisticsBlazor));
+            builder.Services.AddScoped(typeof(IIgniteUIBlazor), typeof(IgniteUIBlazor));
 
             await builder.Build().RunAsync();
         }

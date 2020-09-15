@@ -1,5 +1,5 @@
-using System; 
-using System.Linq; 
+using System;
+using System.Linq;
 using System.Net.Http;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Infragistics.Blazor.Controls;
+using IgniteUI.Blazor.Controls;
 
 namespace Infragistics.Samples
 {
@@ -29,9 +29,9 @@ namespace Infragistics.Samples
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            
+
             // required for Infragistics Blazor controls:
-            services.AddScoped(typeof(IInfragisticsBlazor), typeof(InfragisticsBlazor));
+            services.AddScoped(typeof(IIgniteUIBlazor), typeof(IgniteUIBlazor));
 
             // Server Side Blazor doesn't register HttpClient by default
             if (!services.Any(x => x.ServiceType == typeof(HttpClient)))
@@ -39,7 +39,7 @@ namespace Infragistics.Samples
                 // Setup HttpClient for server side in a client side compatible fashion
                 services.AddScoped<HttpClient>(s =>
                 {
-                    // Creating the URI helper needs to wait until the JS Runtime is initialized, so defer it.      
+                    // Creating the URI helper needs to wait until the JS Runtime is initialized, so defer it.
                     var uriHelper = s.GetRequiredService<NavigationManager>();
                     return new HttpClient { BaseAddress = new Uri(uriHelper.BaseUri) };
                 });
@@ -66,7 +66,7 @@ namespace Infragistics.Samples
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            
+
             //MT commented out to try to fix hosting issue
             //app.UseHttpsRedirection();
             app.UseStaticFiles();

@@ -1,12 +1,12 @@
 ﻿@page "/DataGridColumnChooserPicker"
-@using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
 
 <div class="igContainer-horizontal">
     <div class="igGridColumnChooserContainer">
-        <ColumnChooser Height="100%" Width="200px" Title="Column Chooser" TargetGrid="@DataGridRef" />        
+        <ColumnChooser Height="100%" Width="200px" Title="Column Chooser" TargetGrid="@DataGridRef" />
     </div>
 
     <div class="igComponent">
@@ -34,7 +34,7 @@
 
 @code {
 
-    private DataGrid _grid;    
+    private DataGrid _grid;
     public DataGrid DataGridRef
     {
         get
@@ -43,7 +43,7 @@
         }
         set
         {
-            _grid = value;            
+            _grid = value;
             StateHasChanged();
         }
     }
@@ -53,9 +53,9 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        DataGridModule.Register(InfragisticsBlazor);
-        ColumnChooserModule.Register(InfragisticsBlazor);
-        GridColumnOptionsModule.Register(InfragisticsBlazor);
+        DataGridModule.Register(IgniteUIBlazor);
+        ColumnChooserModule.Register(IgniteUIBlazor);
+        GridColumnOptionsModule.Register(IgniteUIBlazor);
 
         DataSource = SalesData.Create(100);
     }

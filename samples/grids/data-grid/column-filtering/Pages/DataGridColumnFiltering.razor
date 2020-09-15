@@ -1,7 +1,7 @@
 ﻿@page "/DataGridColumnFiltering"
 
-@using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
 <div class="igContainer">
@@ -57,9 +57,9 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        DataGridModule.Register(InfragisticsBlazor);
-        GridColumnOptionsModule.Register(InfragisticsBlazor);
-        GridColumnFilterOptionsModule.Register(InfragisticsBlazor);
+        DataGridModule.Register(IgniteUIBlazor);
+        GridColumnOptionsModule.Register(IgniteUIBlazor);
+        GridColumnFilterOptionsModule.Register(IgniteUIBlazor);
 
         this.DataSource = EmployeeData.Create(100, false);
     }
@@ -100,17 +100,17 @@
         switch (this.FilterMode)
         {
             case "Contains":
-                {                    
+                {
                     filter = column.Contains(expression);
                     break;
                 }
             case "StartsWith":
-                {                 
+                {
                     filter = column.StartsWith(expression);
                     break;
                 }
             case "EndsWith":
-                {                    
+                {
                     filter = column.EndsWith(expression);
                     break;
                 }

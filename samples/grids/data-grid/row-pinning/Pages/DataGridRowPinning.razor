@@ -1,13 +1,13 @@
 ﻿@* this namespace is required for Infragistics controls *@
-@using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
 
 <div class="igContainer">
-    
+
     <div class="igComponent">
 
         @if (DataSource != null)
-        {            
+        {
             <DataGrid @ref="@DataGridRef" Height="100%" Width="100%"
                       DataSource="@DataSource"
                       AutoGenerateColumns="false"
@@ -51,7 +51,7 @@
     {
         base.OnInitialized();
 
-        DataGridModule.Register(InfragisticsBlazor);
+        DataGridModule.Register(IgniteUIBlazor);
         this.DataSource = EmployeeData.Create(200, false);
     }
 

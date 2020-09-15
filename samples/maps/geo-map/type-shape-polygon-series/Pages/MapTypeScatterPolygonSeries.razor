@@ -1,10 +1,10 @@
-@using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="igContainer">
     <div class="igComponent">
         <GeographicMap Height="100%" Width="100%" Zoomable="true" BackgroundContent="@null">
-            <GeographicShapeSeries ShapefileDataSource="@DataSource"/>                                               
+            <GeographicShapeSeries ShapefileDataSource="@DataSource"/>
         </GeographicMap>
     </div>
 </div>
@@ -15,12 +15,12 @@
 
     protected override void OnInitialized()
     {
-        GeographicMapModule.Register(InfragisticsBlazor);
+        GeographicMapModule.Register(IgniteUIBlazor);
 
         this.DataSource = new ShapeDataSource()
         {
             ShapefileSource = "https://static.infragistics.com/xplatform/shapes/WorldCountries.shp",
             DatabaseSource = "https://static.infragistics.com/xplatform/shapes/WorldCountries.dbf"
-        };        
+        };
     }
 }

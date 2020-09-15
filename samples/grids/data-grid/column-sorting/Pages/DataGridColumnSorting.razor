@@ -1,6 +1,6 @@
 ﻿@page "/DataGridColumnSorting"
-@using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
 <div class="igContainer">
@@ -46,11 +46,11 @@
         get { return grid; }
         set { grid = value; OnGridRefChanged(); StateHasChanged(); }
     }
-    
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        DataGridModule.Register(InfragisticsBlazor);
+        DataGridModule.Register(IgniteUIBlazor);
 
         this.DataSource = RealEstateData.Create(100);
         this.GridHeaderClickAction = HeaderClickAction.SortByMultipleColumnsTriState;

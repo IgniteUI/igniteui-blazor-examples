@@ -1,8 +1,8 @@
-﻿@using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor; 
+﻿@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
 
 <div class="igContainer">
-    
+
     <div class="igComponent">
 
         @if (Employees != null)
@@ -54,16 +54,16 @@
                       ActivationMode="GridActivationMode.Cell">
 
                 <TextColumn Field="ID" />
-                <TextColumn Field="Property" /> 
-                <TextColumn Field="Rooms" /> 
-                <TextColumn Field="Baths" /> 
-                <TextColumn Field="Built" /> 
+                <TextColumn Field="Property" />
+                <TextColumn Field="Rooms" />
+                <TextColumn Field="Baths" />
+                <TextColumn Field="Built" />
                 <NumericColumn Field="Price" PositivePrefix="$"
                                ShowGroupingSeparator="true"
                                MaxFractionDigits="0"
                                MinFractionDigits="0" />
                 <TextColumn Field="City" />
-                <TextColumn Field="Country" />  
+                <TextColumn Field="Country" />
             </DataGrid>
         }
 
@@ -72,15 +72,15 @@
 
 @code {
 
-    private List<Employee> Employees; 
-    private List<Sale> Sales; 
-    private List<RealEstate> RealEstates; 
+    private List<Employee> Employees;
+    private List<Sale> Sales;
+    private List<RealEstate> RealEstates;
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        
-        DataGridModule.Register(InfragisticsBlazor);
+
+        DataGridModule.Register(IgniteUIBlazor);
 
         this.Employees = EmployeeData.Create(200, false);
         this.Sales = SalesData.Create(200);

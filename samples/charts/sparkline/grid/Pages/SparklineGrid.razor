@@ -1,6 +1,6 @@
 ﻿@page "/SparklineGrid"
-@using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
 <div class="igContainer">
@@ -10,7 +10,7 @@
             <DataGrid Height="100%" Width="100%"
                       RowHeight="70"
                       AutoGenerateColumns="false"
-                      DataSource="@DataSource">            
+                      DataSource="@DataSource">
                 <TextColumn Field="ProductID" HeaderText="ID" Width="90" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
                 <TextColumn Field="ProductName" HeaderText="Product" Width="130" />
                 <NumericColumn Field="ProductPrice" HeaderText="Price" Width="100" PositivePrefix="$" ShowGroupingSeparator="true"
@@ -21,7 +21,7 @@
                 <TemplateColumn Field="ReturnRate" HeaderText="Return Rate" HorizontalAlignment="CellContentHorizontalAlignment.Center"
                                 Width="140" />
                 <ImageColumn Field="CountryFlag" HeaderText="Country" Width="90" ContentOpacity="1" HorizontalAlignment="CellContentHorizontalAlignment.Center" />
-                <TextColumn Field="Status" HeaderText="Status" Width="110" HorizontalAlignment="CellContentHorizontalAlignment.Center" />                
+                <TextColumn Field="Status" HeaderText="Status" Width="110" HorizontalAlignment="CellContentHorizontalAlignment.Center" />
             </DataGrid>
         }
     </div>
@@ -34,8 +34,8 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        DataGridModule.Register(InfragisticsBlazor);
-        SparklineModule.Register(InfragisticsBlazor);
+        DataGridModule.Register(IgniteUIBlazor);
+        SparklineModule.Register(IgniteUIBlazor);
 
         this.DataSource = Products.GetData(20);
     }

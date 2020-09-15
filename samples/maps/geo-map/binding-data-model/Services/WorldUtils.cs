@@ -1,4 +1,4 @@
-﻿using Infragistics.Blazor.Controls;
+﻿using IgniteUI.Blazor.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +18,7 @@ namespace Infragistics.Samples
 
             if(distance <= interval)
             {
-                Console.WriteLine("Distance Less Than Equal To Interval!");                        
+                Console.WriteLine("Distance Less Than Equal To Interval!");
                 paths[pathID].Add(new Point() { X = dest.Lon, Y = dest.Lat });
             }
             else
@@ -51,13 +51,13 @@ namespace Infragistics.Samples
                         current = new GeoLocation() { Lon = 180, Lat = current.Lat };
                     }
                 }
-                
+
                 paths[pathID].Add(new Point() { X = dest.Lon, Y = dest.Lat });
-                
+
             }
 
             return paths;
-            
+
         }
 
         public static double CalcBearing(GeoLocation origin, GeoLocation dest)
@@ -126,7 +126,7 @@ namespace Infragistics.Samples
 
         public static double ToDegrees(double radians)
         {
-            return (radians * 180.0 / Math.PI); 
+            return (radians * 180.0 / Math.PI);
         }
 
         public static double ToDegreesNormalized(double radians)
@@ -202,11 +202,11 @@ namespace Infragistics.Samples
                 {
                     minLat = Math.Min(minLat, curLat);
                     maxLat = Math.Min(maxLat, curLat);
-                }               
+                }
             }
 
             Rect geoBounds = new Rect(minLon, minLat, Math.Abs(maxLon - minLon), Math.Abs(maxLat - minLat));
-            return geoBounds;           
+            return geoBounds;
         }
 
         public static List<Point> GetNightShapes()

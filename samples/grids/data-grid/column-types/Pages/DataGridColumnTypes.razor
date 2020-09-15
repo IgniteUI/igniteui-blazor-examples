@@ -1,8 +1,8 @@
-﻿@using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor; 
+﻿@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
 
 <div class="igContainer">
-    
+
     <div class="igComponent">
 
         @if (Employees != null)
@@ -18,7 +18,7 @@
             <TextColumn Width="130" Field="Name" />
 
             @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
-            <TemplateColumn Width="160" Field="Sales" CellUpdatingScript="onUpdatingSalesColumn" 
+            <TemplateColumn Width="160" Field="Sales" CellUpdatingScript="onUpdatingSalesColumn"
                             HorizontalAlignment="@CellContentHorizontalAlignment.Center"
                             />
 
@@ -41,22 +41,22 @@
             <NumericColumn Width="100" Field="Age" HorizontalAlignment="@CellContentHorizontalAlignment.Left"/>
         </DataGrid>
         }
- 
+
 
     </div>
 </div>
 
 @code {
 
-    private List<Employee> Employees; 
-    
+    private List<Employee> Employees;
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        
-        DataGridModule.Register(InfragisticsBlazor);
 
-        this.Employees = EmployeeData.Create(200, false); 
+        DataGridModule.Register(IgniteUIBlazor);
+
+        this.Employees = EmployeeData.Create(200, false);
     }
 
 }

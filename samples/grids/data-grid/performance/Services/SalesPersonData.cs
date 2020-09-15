@@ -1,4 +1,4 @@
-﻿using Infragistics.Blazor.Controls;
+﻿using IgniteUI.Blazor.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -199,7 +199,7 @@ namespace Infragistics.Samples
 
                 items.Add(item);
             }
-            
+
             return items;
         }
 

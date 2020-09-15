@@ -1,7 +1,7 @@
-@using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
 
-    <div class="igContainer"> 
+    <div class="igContainer">
         <div class="igOptions">
             <div class="igOptions-horizontal">
                 <button class="igOptions-button" @onclick="onClickSliceVer" style="width: 150px">Slice Vertically</button>
@@ -30,8 +30,8 @@
                      FillScaleMinimumValue="0"
                      FillScaleMaximumValue="1500000000"
                      FillBrushes="#4e62cf, #8a58d6"
-                     IsFillScaleLogarithmic="true" 
-                     NodePointerEnter="@onNodePointerEnter" 
+                     IsFillScaleLogarithmic="true"
+                     NodePointerEnter="@onNodePointerEnter"
                      RootTitle="Countries">
             </Treemap>
             @**@
@@ -47,13 +47,13 @@
 
     protected override void OnInitialized()
     {
-        TreemapModule.Register(InfragisticsBlazor);
+        TreemapModule.Register(IgniteUIBlazor);
 
         this.Data = CountryTreeData.Create();
 
         Console.WriteLine("CountryTreeData " + this.Data.Count);
     }
-    
+
     // handling NodePointerEnter action
     private void onNodePointerEnter(TreemapNodePointerEventArgs arg)
     {
@@ -68,7 +68,7 @@
         {
             var population = (item.Pop / 1000000).ToString("0M people");
             this.SelectedItemInfo = "" + item.Name + ": " + population;
-        } 
+        }
         this.StateHasChanged();
     }
 

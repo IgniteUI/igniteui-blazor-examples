@@ -1,10 +1,10 @@
 ﻿@page "/DataGridPerformance"
 
-@using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
-<div class="igContainer">    
+<div class="igContainer">
     <div class="igComponent">
         @if (DataSource != null)
         {
@@ -24,7 +24,7 @@
                                PositivePrefix="$" ShowGroupingSeparator="true" />
                 <TemplateColumn Field="AvgSale" HeaderText="Avg. Sale" Width="120" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
                                 CellUpdatingScript="onAvgSaleCellUpdating"  />
-                <TemplateColumn Field="Change" Width="120" HorizontalAlignment="@CellContentHorizontalAlignment.Right" 
+                <TemplateColumn Field="Change" Width="120" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
                                 CellUpdatingScript="onChangeCellUpdating"/>
                 <TemplateColumn Field="PercentChange" Width="140" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
                                 HeaderText="Change (%)" CellUpdatingScript="onPercentChangeCellUpdating"/>
@@ -63,7 +63,7 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        DataGridModule.Register(InfragisticsBlazor);
+        DataGridModule.Register(IgniteUIBlazor);
 
         this.DataSource = SalesPersonData.GenerateSalesPeople(500);
     }
@@ -132,13 +132,13 @@
             if (toChangeIndexes[i] == true)
             {
                 if (sortingByAvgSale && !useClear)
-                {                    
+                {
                     this.DataGridRef.NotifyRemoveItem(this.DataSource, this.DataSource.IndexOf(item), item);
                     this.RandomizeItem(item);
                     this.DataGridRef.NotifyInsertItem(this.DataSource, this.DataSource.IndexOf(item), item);
                 }
                 else
-                {                    
+                {
                     this.RandomizeItem(item);
                 }
 
@@ -154,7 +154,7 @@
                 }
             }
             else
-            {                
+            {
                 if (item.AvgSaleHeat > 0)
                 {
                     item.AvgSaleHeat -= .06;
@@ -180,7 +180,7 @@
         //}
 
         if (!sortingByAvgSale || !intervalElapsed)
-        {            
+        {
             this.DataGridRef.InvalidateVisibleRows();
         }
 

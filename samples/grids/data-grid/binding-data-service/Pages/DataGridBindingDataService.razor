@@ -1,15 +1,15 @@
-﻿@using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor; 
+﻿@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
 
 <div class="igContainer">
-    
+
     <div class="igComponent">
 
         @if (DataSource != null)
         {
         <DataGrid Height="100%" Width="100%"
                   DataSource="@DataSource"
-                  AutoGenerateColumns="false" 
+                  AutoGenerateColumns="false"
                   ActivationMode="GridActivationMode.Cell">
 
             <TextColumn Width="140" Field="Category" />
@@ -39,25 +39,25 @@
             <TextColumn Width="130" Field="Sector" />
             <TextColumn Width="130" Field="Security" />
             <TextColumn Width="170" Field="Issuer" />
-                   
+
         </DataGrid>
         }
 
-         
+
     </div>
 </div>
 
 @code {
 
-    private List<PortfolioInfo> DataSource;  
+    private List<PortfolioInfo> DataSource;
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        
-        DataGridModule.Register(InfragisticsBlazor);
-        
-        this.DataSource = PortfolioData.Create(100); 
+
+        DataGridModule.Register(IgniteUIBlazor);
+
+        this.DataSource = PortfolioData.Create(100);
     }
 
 }

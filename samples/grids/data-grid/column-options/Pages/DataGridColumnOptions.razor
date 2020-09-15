@@ -1,17 +1,17 @@
 ﻿@page "/DataGridColumnOptions"
 
-@using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
-<div class="igContainer">    
+<div class="igContainer">
     <div class="igComponent">
         @if (DataSource != null)
         {
-            <DataGrid Height="100%" Width="100%"                                            
+            <DataGrid Height="100%" Width="100%"
                       DefaultColumnMinWidth="120"
                       DataSource="@DataSource"
-                      AutoGenerateColumns="false"                      
+                      AutoGenerateColumns="false"
                       IsColumnOptionsEnabled="true">
                 <TextColumn Field="ID" HeaderText="ID" Width="90" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
                 <TextColumn Field="ProductName" HeaderText="Product" Width="120" />
@@ -35,7 +35,7 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        DataGridModule.Register(InfragisticsBlazor);
+        DataGridModule.Register(IgniteUIBlazor);
 
         this.DataSource = SalesData.Create(100);
     }

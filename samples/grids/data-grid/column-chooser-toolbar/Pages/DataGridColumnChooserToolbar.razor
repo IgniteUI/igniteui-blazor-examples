@@ -1,9 +1,9 @@
 ﻿@page "/DataGridColumnChooserToolbar"
-@using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor;
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
-<div class="igContainer">   
+<div class="igContainer">
     <div class="igComponent">
         @if (DataSource != null)
         {
@@ -31,7 +31,7 @@
 
 @code {
 
-    private DataGrid _grid;    
+    private DataGrid _grid;
     public DataGrid DataGridRef
     {
         get
@@ -40,7 +40,7 @@
         }
         set
         {
-            _grid = value;            
+            _grid = value;
             StateHasChanged();
         }
     }
@@ -50,10 +50,10 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        DataGridModule.Register(InfragisticsBlazor);
-        DataGridToolbarModule.Register(InfragisticsBlazor);
-        ColumnChooserModule.Register(InfragisticsBlazor);
-        GridColumnOptionsModule.Register(InfragisticsBlazor);
+        DataGridModule.Register(IgniteUIBlazor);
+        DataGridToolbarModule.Register(IgniteUIBlazor);
+        ColumnChooserModule.Register(IgniteUIBlazor);
+        GridColumnOptionsModule.Register(IgniteUIBlazor);
 
         DataSource = SalesData.Create(100);
     }

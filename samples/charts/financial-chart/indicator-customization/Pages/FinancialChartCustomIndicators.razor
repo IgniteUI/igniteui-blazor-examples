@@ -1,6 +1,6 @@
 @* this namespace is required for Infragistics controls *@
-@using Infragistics.Blazor.Controls
-@inject IInfragisticsBlazor InfragisticsBlazor
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="igContainer">
     <div class="igComponent">
@@ -13,7 +13,7 @@
                 Height="100%"
                 ChartType=FinancialChartType.Candle
                 ZoomSliderType="FinancialChartZoomSliderType.None"
-                DataSource="DataSource"                
+                DataSource="DataSource"
                 ApplyCustomIndicatorsScript="onApplyCustomIndicators"/>
         }
     </div>
@@ -25,7 +25,7 @@
 
     protected override void OnInitialized()
     {
-        FinancialChartModule.Register(InfragisticsBlazor);
+        FinancialChartModule.Register(IgniteUIBlazor);
 
         GetStockData();
     }
