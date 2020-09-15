@@ -93,7 +93,7 @@ namespace Infragistics.Samples.Shared.Services
             Console.WriteLine("SB CheckUI " + url);
 
             var sampleFound = false;
-            this.IsEmbedded = !url.Contains("/samples") && url != this.NavManager.BaseUri;
+            //this.IsEmbedded = !url.Contains("/samples") && url != this.NavManager.BaseUri;
             
             if (url.EndsWith("/home") || url.EndsWith("/index") || url.EndsWith("/samples"))
             {

@@ -13,7 +13,7 @@
         <BrowserMenu />
     </div>
 
-    <div class="sb-main">
+    <div class="sb-main" style="@MainStyle">
 
         <div class="sb-toolbar" style="@ToolbarStyle">
             <span class="sb-toolbar-toggle" @onclick="ToggleSidebarMenu">
@@ -43,13 +43,16 @@
 </div>
 
 @code {
+    protected bool IsSampleEmbedded = false;
     protected static bool ToolbarCollapsed = false;
     //protected string ToolbarStyle => ToolbarCollapsed || SB.IsEmbedded ? "display: none" : "display: flex";
-    protected string ToolbarStyle => ToolbarCollapsed || SB.IsEmbedded ? "display: none" : "display: flex";
+    protected string ToolbarStyle => ToolbarCollapsed || IsSampleEmbedded ? "display: none" : "display: flex";
 
     protected static bool SidebarCollapsed = false;
     //protected string SidebarStyle => SidebarCollapsed || SB.IsEmbedded ? "display: none" : "display: flex";
-    protected string SidebarStyle => SidebarCollapsed || SB.IsEmbedded ? "display: none" : "display: flex";
+    protected string SidebarStyle => SidebarCollapsed || IsSampleEmbedded ? "display: none" : "display: flex";
+
+    protected string MainStyle => SidebarCollapsed || IsSampleEmbedded ? "width: 100%" : "width: calc(100% - 250px)";
 
     public static void ToggleSidebarMenu()
     {
@@ -73,6 +76,9 @@
     {
         Console.WriteLine("SB.NAV BrowserLayout Initialized");
         Console.WriteLine("SB.NAV BrowserLayout " + NavManager.BaseUri);
+        Console.WriteLine("SB.NAV BrowserLayout " + NavManager.Uri);
+        
+        this.IsSampleEmbedded = !NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri;
 
         NavManager.LocationChanged += this.OnLocationChanged;
 
@@ -82,8 +88,10 @@
 
     public void OnSamplesLoaded(object sender, EventArgs arg)
     {
-        Console.WriteLine("SB.NAV Base " + NavManager.BaseUri);
-        Console.WriteLine("SB.NAV Uri  " + NavManager.Uri);
+        Console.WriteLine("SB.NAV Loaded Base " + NavManager.BaseUri);
+        Console.WriteLine("SB.NAV Loaded Uri  " + NavManager.Uri);
+
+        this.IsSampleEmbedded = !NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri;
 
         // SB.CheckUI(NavManager.Uri);
         StateHasChanged();
@@ -91,8 +99,10 @@
 
     public async void OnLocationChanged(object sender, LocationChangedEventArgs arg)
     {
-        Console.WriteLine("SB.NAV Base " + NavManager.BaseUri);
-        Console.WriteLine("SB.NAV Uri  " + NavManager.Uri);
+        Console.WriteLine("SB.NAV Changed Base " + NavManager.BaseUri);
+        Console.WriteLine("SB.NAV Changed Uri  " + NavManager.Uri);
+        
+        this.IsSampleEmbedded = !NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri;
 
         await Task.Delay(10);
         await SB.CheckUIAsync(arg.Location);
