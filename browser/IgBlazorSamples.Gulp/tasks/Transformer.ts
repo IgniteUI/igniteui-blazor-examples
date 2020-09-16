@@ -875,7 +875,7 @@ class Transformer {
             } else if (isHtml) {
                 htmlCodeLines.push(line);
             } else if (isImport) {
-                importLines.push(line);
+                importLines.push(line.trim());
             } else {
                 otherLines.push(line);
             }
