@@ -43,100 +43,103 @@
 </div>
 
 @code {
-    protected bool IsSampleEmbedded = false;
-    protected static bool ToolbarCollapsed = false;
-    //protected string ToolbarStyle => ToolbarCollapsed || SB.IsEmbedded ? "display: none" : "display: flex";
-    protected string ToolbarStyle => ToolbarCollapsed || IsSampleEmbedded ? "display: none" : "display: flex";
+protected bool IsSampleEmbedded = false;
+protected static bool ToolbarCollapsed = false;
+//protected string ToolbarStyle => ToolbarCollapsed || SB.IsEmbedded ? "display: none" : "display: flex";
+protected string ToolbarStyle => ToolbarCollapsed || IsSampleEmbedded ? "display: none" : "display: flex";
 
-    protected static bool SidebarCollapsed = false;
-    //protected string SidebarStyle => SidebarCollapsed || SB.IsEmbedded ? "display: none" : "display: flex";
-    protected string SidebarStyle => SidebarCollapsed || IsSampleEmbedded ? "display: none" : "display: flex";
+protected static bool SidebarCollapsed = false;
+//protected string SidebarStyle => SidebarCollapsed || SB.IsEmbedded ? "display: none" : "display: flex";
+protected string SidebarStyle => SidebarCollapsed || IsSampleEmbedded ? "display: none" : "display: flex";
 
-    protected string MainStyle => SidebarCollapsed || IsSampleEmbedded ? "width: 100%" : "width: calc(100% - 250px)";
+protected string MainStyle => SidebarCollapsed || IsSampleEmbedded ? "width: 100%" : "width: calc(100% - 250px)";
 
-    public static void ToggleSidebarMenu()
+public static void ToggleSidebarMenu()
+{
+    SidebarCollapsed = !SidebarCollapsed;
+}
+
+public BrowserLayout()
+{
+    Console.WriteLine("SB.NAV BrowserLayout ");
+}
+
+protected override async Task OnInitializedAsync()
+{
+    Console.WriteLine("SB.NAV OnInit Async");
+    @* await SB.CheckUIAsync(NavManager.Uri);
+        StateHasChanged(); *@
+    await Task.Delay(1);
+}
+
+protected bool IsSampleWithNavigation() {
+    if (NavManager.Uri.Contains("/samples")) return true;
+    if (NavManager.Uri.EndsWith("/blazor-client")) return true;
+    if (NavManager.Uri.EndsWith("/blazor-client/")) return true;
+    if (NavManager.Uri.EndsWith("/blazor-server")) return true;
+    if (NavManager.Uri.EndsWith("/blazor-server/")) return true;
+    //if (NavManager.Uri.Contains("localhost")) return true; //&&
+    //if (NavManager.Uri + "/" == this.NavManager.BaseUri)  return true;
+
+    return false;
+
+    // return !NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri + "/";
+}
+
+protected override void OnInitialized()
+{
+    Console.WriteLine("SB.NAV OnInit " + NavManager.BaseUri);
+    Console.WriteLine("SB.NAV OnInit " + NavManager.Uri);
+
+    this.IsSampleEmbedded = !IsSampleWithNavigation(); // NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri + "/";
+
+    Console.WriteLine("SB.NAV IsSampleEmbedded " + IsSampleEmbedded);
+
+    NavManager.LocationChanged += this.OnLocationChanged;
+
+    //SB.AppBaseUri = NavManager.BaseUri;
+    SB.SamplesLoaded += OnSamplesLoaded;
+}
+
+public void OnSamplesLoaded(object sender, EventArgs arg)
+{
+    Console.WriteLine("SB.NAV Loaded Base " + NavManager.BaseUri);
+    Console.WriteLine("SB.NAV Loaded Uri  " + NavManager.Uri);
+
+    this.IsSampleEmbedded = !IsSampleWithNavigation(); // !NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri;
+
+    Console.WriteLine("SB.NAV IsSampleEmbedded " + IsSampleEmbedded);
+
+    SB.CheckUI(NavManager.Uri);
+    StateHasChanged();
+}
+
+public async void OnLocationChanged(object sender, LocationChangedEventArgs arg)
+{
+    Console.WriteLine("SB.NAV Changed Base " + NavManager.BaseUri);
+    Console.WriteLine("SB.NAV Changed Uri  " + NavManager.Uri);
+
+    this.IsSampleEmbedded = !IsSampleWithNavigation(); // !NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri;
+
+    Console.WriteLine("SB.NAV IsSampleEmbedded " + IsSampleEmbedded);
+
+    await Task.Delay(10);
+    await SB.CheckUIAsync(arg.Location);
+    // SB.CheckUI(arg.Location);
+    StateHasChanged();
+}
+
+public void EnterFullScreen()
+{
+    var url = NavManager.Uri;
+    Console.WriteLine("SB EnterFullScreen1 " + url);
+
+    if (url.Contains("samples/"))
     {
-        SidebarCollapsed = !SidebarCollapsed;
+        url = url.Replace("samples/", "");
+        Console.WriteLine("SB EnterFullScreen2 " + url);
+        NavManager.NavigateTo(url);
     }
-
-    public BrowserLayout()
-    {
-        Console.WriteLine("SB.NAV BrowserLayout ");
-    }
-
-    protected override async Task OnInitializedAsync()
-    {
-        Console.WriteLine("SB.NAV OnInit Async");
-        @* await SB.CheckUIAsync(NavManager.Uri);
-            StateHasChanged(); *@
-        await Task.Delay(1);
-    }
-
-    protected bool IsSampleInFullScreen( ) {
-        if (NavManager.Uri.Contains("/samples")) return true;
-        //if (NavManager.Uri.Contains("localhost")) return true; //&&
-        //if (NavManager.Uri + "/" == this.NavManager.BaseUri)  return true;
-         
-        return false;
-
-        // return !NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri + "/";
-    }
-
-    protected override void OnInitialized()
-    {
-        Console.WriteLine("SB.NAV OnInit Initialized");
-        // Console.WriteLine("SB.NAV OnInit " + NavManager.BaseUri);
-        Console.WriteLine("SB.NAV OnInit " + NavManager.Uri);
-        
-        this.IsSampleEmbedded = !IsSampleInFullScreen(); // NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri + "/";
-    
-        Console.WriteLine("SB.NAV IsSampleEmbedded " + IsSampleEmbedded);
-
-        NavManager.LocationChanged += this.OnLocationChanged;
-
-        //SB.AppBaseUri = NavManager.BaseUri;
-        SB.SamplesLoaded += OnSamplesLoaded;
-    }
-
-    public void OnSamplesLoaded(object sender, EventArgs arg)
-    {
-        // Console.WriteLine("SB.NAV Loaded Base " + NavManager.BaseUri);
-        Console.WriteLine("SB.NAV Loaded Uri  " + NavManager.Uri);
-
-        this.IsSampleEmbedded = !IsSampleInFullScreen(); // !NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri;
-    
-        Console.WriteLine("SB.NAV IsSampleEmbedded " + IsSampleEmbedded);
-    
-        SB.CheckUI(NavManager.Uri);
-        StateHasChanged();
-    }
-
-    public async void OnLocationChanged(object sender, LocationChangedEventArgs arg)
-    {
-        Console.WriteLine("SB.NAV Changed Base " + NavManager.BaseUri);
-        Console.WriteLine("SB.NAV Changed Uri  " + NavManager.Uri);
-        
-        this.IsSampleEmbedded = !IsSampleInFullScreen(); // !NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri;
-    
-        Console.WriteLine("SB.NAV IsSampleEmbedded " + IsSampleEmbedded);
-
-        await Task.Delay(10);
-        await SB.CheckUIAsync(arg.Location);
-        // SB.CheckUI(arg.Location);
-        StateHasChanged();
-    }
-
-    public void EnterFullScreen()
-    {
-        var url = NavManager.Uri;
-        Console.WriteLine("SB EnterFullScreen1 " + url);
-
-        if (url.Contains("samples/"))
-        {
-            url = url.Replace("samples/", "");
-            Console.WriteLine("SB EnterFullScreen2 " + url);
-            NavManager.NavigateTo(url);
-        }
-    }
+}
 
 }
