@@ -19,7 +19,7 @@ namespace Infragistics.Samples
         public string ProductName { get; set; }
         public double ProductPrice { get; set; }
         public double Profit { get; set; }
-        public List<ReturnRateItem> ReturnRate { get; set; }
+        //public List<ReturnRateItem> ReturnRate { get; set; }
         public string Status { get; set; }
     }
 
@@ -35,12 +35,11 @@ namespace Infragistics.Samples
         public int Week { get; set; }
     }
 
-
     public class Products
     {
         public static List<Product> GetData(int? count)
         {
-            if(count == null)
+            if (count == null)
             {
                 count = 20;
             }
@@ -56,17 +55,17 @@ namespace Infragistics.Samples
             string[] countries = { "USA", "UK", "France", "Canada", "Poland", "Japan", "Germany" };
             string[] status = { "Packing", "Shipped", "Delivered" };
 
-            List<Product> products = new List<Product>();
-            for(int i=0; i<count; i++)
+            var products = new List<Product>();
+            for (int i = 0; i < count; i++)
             {
-                string id = DataGenerator.Pad((int)count - i, count.ToString().Length);
-                double price = Math.Round((DataGenerator.GetNumber(10000, 90000) / 100), 2);
-                int orderCount = (int)DataGenerator.GetNumber(4, 30);
-                double orderValue = Math.Round((price * orderCount), 2);
-                int orderShipped = (int)DataGenerator.GetNumber(30, 100);
-                double margin = DataGenerator.GetNumber(5, 10);
-                double profit = Math.Round(orderValue * (margin / 100));
-                string country = DataGenerator.GetItem(countries);
+                var id = DataGenerator.Pad((int)count - i, count.ToString().Length);
+                var price = Math.Round((DataGenerator.GetNumber(10000, 90000) / 100), 2);
+                var orderCount = (int)DataGenerator.GetNumber(4, 30);
+                var orderValue = Math.Round((price * orderCount), 2);
+                var orderShipped = (int)DataGenerator.GetNumber(30, 100);
+                var margin = DataGenerator.GetNumber(5, 10);
+                var profit = Math.Round(orderValue * (margin / 100));
+                var country = DataGenerator.GetItem(countries);
 
                 products.Add(new Product()
                 {
@@ -82,7 +81,7 @@ namespace Infragistics.Samples
                     ProductName = DataGenerator.GetItem(names),
                     ProductPrice = price,
                     Profit = profit, 
-                    ReturnRate = GetReturnRates(52),
+                    //ReturnRate = GetReturnRates(26),
                     Status = DataGenerator.GetItem(status)
                 });
             }
@@ -91,14 +90,9 @@ namespace Infragistics.Samples
         }
 
 
-        public static List<OrderHistoryItem> GetOrderHistory(int? weekCount)
+        public static List<OrderHistoryItem> GetOrderHistory(int weekCount)
         {
-            if(weekCount == null)
-            {
-                weekCount = 52;
-            }
-
-            List<OrderHistoryItem> items = new List<OrderHistoryItem>();
+            var items = new List<OrderHistoryItem>();
             for(int i=0; i<weekCount; i++)
             {
                 double value = DataGenerator.GetNumber(0, 100);
@@ -108,14 +102,9 @@ namespace Infragistics.Samples
             return items;
         }
 
-        public static List<ReturnRateItem> GetReturnRates(int? weekCount)
+        public static List<ReturnRateItem> GetReturnRates(int weekCount)
         {
-            if (weekCount == null)
-            {
-                weekCount = 52;
-            }
-
-            List<ReturnRateItem> items = new List<ReturnRateItem>();
+            var items = new List<ReturnRateItem>();
             for (int i = 0; i < weekCount; i++)
             {
                 double value = DataGenerator.GetNumber(-100, 100);

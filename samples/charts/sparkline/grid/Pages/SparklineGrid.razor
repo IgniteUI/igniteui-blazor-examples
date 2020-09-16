@@ -1,7 +1,7 @@
-﻿@page "/SparklineGrid"
+﻿@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Rendering
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor;
-@inject IJSRuntime JSRuntime;
 
 <div class="igContainer">
     <div class="igComponent">
@@ -10,18 +10,44 @@
             <DataGrid Height="100%" Width="100%"
                       RowHeight="70"
                       AutoGenerateColumns="false"
+                     
                       DataSource="@DataSource">
-                <TextColumn Field="ProductID" HeaderText="ID" Width="90" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
-                <TextColumn Field="ProductName" HeaderText="Product" Width="130" />
-                <NumericColumn Field="ProductPrice" HeaderText="Price" Width="100" PositivePrefix="$" ShowGroupingSeparator="true"
+                <TextColumn Field="ProductID" HeaderText="ID" Width="90" 
+                            HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
+                <TextColumn Field="ProductName" HeaderText="Product" Width="140" />
+                <NumericColumn Field="ProductPrice" HeaderText="Price" Width="100" 
+                               PositivePrefix="$" ShowGroupingSeparator="true"
                                MinFractionDigits="2" />
-                <TemplateColumn Field="OrderHistory" HeaderText="Order History" HorizontalAlignment="CellContentHorizontalAlignment.Center"
-                                Width="150" />
-                <NumericColumn Field="OrderCount" HeaderText="Orders" Width="90" HorizontalAlignment="CellContentHorizontalAlignment.Center" />
-                <TemplateColumn Field="ReturnRate" HeaderText="Return Rate" HorizontalAlignment="CellContentHorizontalAlignment.Center"
-                                Width="140" />
-                <ImageColumn Field="CountryFlag" HeaderText="Country" Width="90" ContentOpacity="1" HorizontalAlignment="CellContentHorizontalAlignment.Center" />
-                <TextColumn Field="Status" HeaderText="Status" Width="110" HorizontalAlignment="CellContentHorizontalAlignment.Center" />
+                
+                @* custom sparkline solumn: *@
+                <TemplateColumn Field="OrderHistory" Width="200"
+                                HeaderText="Order History" 
+                                HorizontalAlignment="CellContentHorizontalAlignment.Center">
+                    <Template>
+                        <RenderFragment>
+                            @*TODO make sparkline fill out gird's cell such that it works when resizing column*@
+                            @*NOTE grid does not render sparkline when its container has 100% dimensions*@
+                             <div style="width: 150px; height: 50px; background: lightgray">
+                                 <Sparkline Height="100%" Width="100%"
+                                            DataSource="@((context.RowItem as Product).OrderHistory)"
+                                            DisplayType="SparklineDisplayType.Line"
+                                            ValueMemberPath="Sold"
+                                            LabelMemberPath="Week"
+                                            Brush="rgb(21, 190, 6)">
+                                 </Sparkline>
+                             </div>
+                        </RenderFragment>
+                    </Template> 
+                </TemplateColumn>
+
+                <NumericColumn Field="OrderCount" HeaderText="Orders" Width="110" 
+                               HorizontalAlignment="CellContentHorizontalAlignment.Center" />
+                <NumericColumn Field="Profit" Width="120" PositivePrefix="$" ShowGroupingSeparator="true" />
+                
+                <ImageColumn Field="CountryFlag" HeaderText="Country" Width="120" 
+                             ContentOpacity="1" HorizontalAlignment="CellContentHorizontalAlignment.Center" />
+                <TextColumn Field="Status" HeaderText="Status" Width="110" 
+                            HorizontalAlignment="CellContentHorizontalAlignment.Center" />
             </DataGrid>
         }
     </div>
