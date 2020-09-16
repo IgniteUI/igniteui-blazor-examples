@@ -1,0 +1,92 @@
+﻿@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Rendering
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.RenderTree
+@using Microsoft.AspNetCore.Components.Web
+
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+
+    <div class="igComponent">
+
+        @if (Employees != null)
+        {
+        <DataGrid Height="100%" Width="100%" RowHeight="50"
+                  DataSource="@Employees"
+                  AutoGenerateColumns="false"
+                  ActivationMode="GridActivationMode.Cell">
+
+            <ImageColumn Width="100" Field="Photo" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
+                         HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
+
+            <TextColumn Width="130" Field="Name" />
+
+            <TemplateColumn Width="200" Field="Productivity" >
+                  <Template>
+                    <RenderFragment>
+                         <div style="width: 150px; height: 40px">
+                             <Sparkline Height="100%" Width="100%"
+                                        DataSource="@((context.RowItem as Employee).Productivity)"
+                                        DisplayType="SparklineDisplayType.Column"
+                                        ValueMemberPath="Value"
+                                        LabelMemberPath="Week"
+                                        Minimum="-1" Maximum="1">
+                             </Sparkline>
+                             </div>
+                    </RenderFragment>
+                </Template> 
+            </TemplateColumn>
+            
+            @*DataSource="@context.Value"
+                                        DataSource="@((context.RowItem as Employee).Productivity)"
+
+            
+            @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
+            <TemplateColumn Width="160" Field="Sales" CellUpdatingScript="onUpdatingSalesColumn"
+                            HorizontalAlignment="@CellContentHorizontalAlignment.Center"/>
+
+            <NumericColumn Width="130" Field="Salary" PositivePrefix="$"
+                           ShowGroupingSeparator="true"
+                           MaxFractionDigits="0"
+                           MinFractionDigits="0" />
+
+            <DateTimeColumn Width="140" Field="Birthday" HeaderText="Date of Birth" />
+            <ComboBoxColumn Width="120" Field="City" />
+
+            <ImageColumn Width="110" Field="CountryFlag" HeaderText="Country" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
+                         HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
+
+            @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
+            <TemplateColumn Width="170" Field="Address" CellUpdatingScript="onUpdatingAddressColumn" />
+            <TemplateColumn Width="130" Field="Phone" CellUpdatingScript="onUpdatingPhoneColumn" />
+
+            <TextColumn Width="120" Field="Income" />
+            <NumericColumn Width="100" Field="Age" HorizontalAlignment="@CellContentHorizontalAlignment.Left"/>
+
+
+        </DataGrid>
+        }
+
+
+    </div>
+</div>
+
+@code {
+
+    private List<Employee> Employees;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        DataGridModule.Register(IgniteUIBlazor);
+        SparklineModule.Register(IgniteUIBlazor); // reqired for sparkline column
+
+        this.Employees = EmployeeData.Create(20, true);
+
+        Console.WriteLine("Data " + this.Employees.Count);
+    }
+
+}
