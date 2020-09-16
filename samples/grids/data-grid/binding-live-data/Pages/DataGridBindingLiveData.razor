@@ -278,9 +278,7 @@
             }
             //Console.WriteLine(">>> onTimerTick toChangeIndexes " + toChangeCount);
         }
-
-        var dataUpdated = false;
-
+        
         for (var i = 0; i < this.data.Count; i++)
         {
             var item = this.data[i];
@@ -299,7 +297,6 @@
                     PortfolioData.RandomizeDataValues(item);
                     this.grid.NotifyUpdateItem(this.data, i, item, true);
                 }
-                dataUpdated = true;
 
                 if (this.UseHeatBackground)
                 {
@@ -336,9 +333,6 @@
                 }
             }
         }
-
-        //if (dataUpdated)
-        //    Console.WriteLine(">>> onTimerTick dataUpdated");
 
         if (sortingByPrice && useClear && elapsedInterval)
         {
