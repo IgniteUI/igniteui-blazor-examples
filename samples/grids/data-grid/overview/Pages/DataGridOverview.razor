@@ -12,7 +12,7 @@
     <div class="igComponent">
 
         @if (Employees != null)
-        {  
+        {
             <DataGridToolbar ToolbarTitle="Sales Team" ColumnChooser="true" ColumnPinning="true" TargetGrid="@DataGridRef"/>
 
             <DataGrid Height="calc(100% - 2.75rem)" Width="100%" RowHeight="50" @ref="@DataGridRef"
@@ -33,34 +33,32 @@
                       ColumnHidingAnimationMode="ColumnHidingAnimationMode.SlideToRightAndFadeOut"
                       SelectionMode="GridSelectionMode.SingleRow">
 
-                <ImageColumn Width="120" Field="Photo" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
-                             HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
+                <ImageColumn IsEditable="false" Width="120" Field="Photo" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
+                             HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" IsEditable="false" />
 
                 <TextColumn Width="130" Field="Name" />
-            
+
                 @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
                 <TemplateColumn Width="160" Field="Sales" CellUpdatingScript="onUpdatingSalesColumn"
-                                HorizontalAlignment="@CellContentHorizontalAlignment.Center"/>
+                                HorizontalAlignment="@CellContentHorizontalAlignment.Center" IsEditable="false"/>
 
                 <NumericColumn Width="130" Field="Salary" PositivePrefix="$"
                                ShowGroupingSeparator="true"
                                MaxFractionDigits="0"
                                MinFractionDigits="0" />
-                
+
                 <NumericColumn Width="100" Field="Age" HorizontalAlignment="@CellContentHorizontalAlignment.Center"/>
                 <DateTimeColumn Width="140" Field="Birthday" HeaderText="Date of Birth" />
 
-                <ImageColumn Width="110" Field="CountryFlag" HeaderText="Country" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
+                <ImageColumn IsEditable="false" Width="110" Field="CountryFlag" HeaderText="Country" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
                              HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
 
                 @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
-                <TemplateColumn Width="170" Field="Address" CellUpdatingScript="onUpdatingAddressColumn" /> 
+                <TemplateColumn Width="170" Field="Address" CellUpdatingScript="onUpdatingAddressColumn" />
                 <TemplateColumn Width="130" Field="Phone" CellUpdatingScript="onUpdatingPhoneColumn" />
 
                 <TextColumn Width="120" Field="Income" />
-                <TextColumn Width="120" Field="Email" />
-                <TextColumn Width="120" Field="Website" />
-
+                <TextColumn Width="120" Field="Email" IsEditable="false" />
 
             </DataGrid>
         }
@@ -111,7 +109,7 @@
         this._grid.SummaryDescriptions.Add(saleSummary);
 
         // TODO fix onSummarziePeopleGender
-        //var nameSummary = new ColumnSummaryDescription() { Field = "Name", Operand = SummaryOperand.Custom, 
+        //var nameSummary = new ColumnSummaryDescription() { Field = "Name", Operand = SummaryOperand.Custom,
         //    ProvideCalculatorScript = "onSummarziePeopleGender" };
         //this._grid.SummaryDescriptions.Add(nameSummary);
     }
@@ -132,5 +130,5 @@
                              </Sparkline>
                              </div>
                     </RenderFragment>
-                </Template> 
+                </Template>
             </TemplateColumn>*@

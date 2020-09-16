@@ -10,18 +10,18 @@
             <DataGrid Height="100%" Width="100%"
                       RowHeight="70"
                       AutoGenerateColumns="false"
-                     
+
                       DataSource="@DataSource">
-                <TextColumn Field="ProductID" HeaderText="ID" Width="90" 
+                <TextColumn Field="ProductID" HeaderText="ID" Width="90"
                             HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
                 <TextColumn Field="ProductName" HeaderText="Product" Width="140" />
-                <NumericColumn Field="ProductPrice" HeaderText="Price" Width="100" 
+                <NumericColumn Field="ProductPrice" HeaderText="Price" Width="100"
                                PositivePrefix="$" ShowGroupingSeparator="true"
                                MinFractionDigits="2" />
-                
+
                 @* custom sparkline solumn: *@
                 <TemplateColumn Field="OrderHistory" Width="200"
-                                HeaderText="Order History" 
+                                HeaderText="Order History"
                                 HorizontalAlignment="CellContentHorizontalAlignment.Center">
                     <Template>
                         <RenderFragment>
@@ -37,16 +37,16 @@
                                  </Sparkline>
                              </div>
                         </RenderFragment>
-                    </Template> 
+                    </Template>
                 </TemplateColumn>
 
-                <NumericColumn Field="OrderCount" HeaderText="Orders" Width="110" 
+                <NumericColumn Field="OrderCount" HeaderText="Orders" Width="110"
                                HorizontalAlignment="CellContentHorizontalAlignment.Center" />
                 <NumericColumn Field="Profit" Width="120" PositivePrefix="$" ShowGroupingSeparator="true" />
-                
-                <ImageColumn Field="CountryFlag" HeaderText="Country" Width="120" 
+
+                <ImageColumn IsEditable="false" Field="CountryFlag" HeaderText="Country" Width="120"
                              ContentOpacity="1" HorizontalAlignment="CellContentHorizontalAlignment.Center" />
-                <TextColumn Field="Status" HeaderText="Status" Width="110" 
+                <TextColumn Field="Status" HeaderText="Status" Width="110"
                             HorizontalAlignment="CellContentHorizontalAlignment.Center" />
             </DataGrid>
         }
