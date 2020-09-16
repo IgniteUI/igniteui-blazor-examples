@@ -21,12 +21,19 @@
             <strong>@@page         "@DocPath"</strong>
         </div>
     </div>
+    <div>
+        <span class="oi oi-timer mr-2" aria-hidden="true"></span>
+        <span>
+            Meanwhile, you can explore all Blazor samples on this <a href="@BrowserPath" target="_blank">website</a>
+        </span>
+    </div>
 </div>
 
 @code {
 
     public string NavPath { get; set; }
     public string DocPath { get; set; }
+    public string BrowserPath { get; set; }
 
     protected override void OnInitialized()
     {
@@ -35,11 +42,18 @@
 
     protected void UpdatePaths()
     {
-         var baseUri = NavManager.BaseUri;
-         var pathUri = NavManager.Uri;
-         this.DocPath = "/" + pathUri.Replace(baseUri, "");
-         this.NavPath = "/samples" + this.DocPath;
-         StateHasChanged();
+        var baseUri = NavManager.BaseUri;
+        var pathUri = NavManager.Uri;
+        var route = "/" + pathUri.Replace(baseUri, "");
+        route = route.Replace("/samples", "");
+        this.DocPath = route;
+        this.NavPath = "/samples" + this.DocPath;
+        this.BrowserPath = baseUri + "samples";
+        Console.WriteLine("NotFound b=" + baseUri);
+        Console.WriteLine("NotFound p=" + pathUri);
+        Console.WriteLine("NotFound n=" + this.NavPath);
+        Console.WriteLine("NotFound d=" + this.DocPath);
+        StateHasChanged();
     }
 
     public void OnLocationChanged(object sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs arg)
