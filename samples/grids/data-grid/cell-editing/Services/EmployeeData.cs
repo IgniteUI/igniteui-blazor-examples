@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Infragistics.Samples
 {
-    public class Employee
+    public class Employee : INotifyPropertyChanged
     {
         public string ID { get; set; }
         public string Address { get; set; }
@@ -13,8 +14,6 @@ namespace Infragistics.Samples
         public string LastName { get; set; }
         public string Name { get; set; }
         public string Street { get; set; }
-        public string Country { get; set; }
-        public string CountryFlag { get; set; }
         public string City { get; set; }
         public string Generation { get; set; }
         public string Email { get; set; }
@@ -27,6 +26,38 @@ namespace Infragistics.Samples
 
         public DateTime Birthday { get; set; }
         public List<Productivity> Productivity { get; set; }
+
+        private string _Country;
+        public string Country
+        {
+            get { return _Country; }
+            set { if (_Country != value) { OnCountryChanged(value); } }
+        }
+        private string _CountryFlag;
+        public string CountryFlag
+        {
+            get { return _CountryFlag; }
+            set { if (_CountryFlag != value) { _CountryFlag = value; } }
+        }
+
+        protected void OnCountryChanged(string countryName)
+        {
+            //Console.WriteLine("OnCountryChanged " + countryName);
+            // syncronizing country name and country flag
+            this._Country = countryName;
+            this._CountryFlag = DataGenerator.GetCountryFlag(countryName);
+            OnPropertyChanged("Country");
+            OnPropertyChanged("CountryFlag");
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
 
     public class Productivity
@@ -63,8 +94,6 @@ namespace Infragistics.Samples
                     Age = age,
                     Birthday = DataGenerator.GetBirthday(),
                     City = DataGenerator.GetCity(country),
-                    Country = DataGenerator.GetCountry(),
-                    CountryFlag = DataGenerator.GetCountryFlag(country),
                     Email = email,
                     Gender = DataGenerator.GetGender(),
                     Generation = generation,
@@ -79,6 +108,8 @@ namespace Infragistics.Samples
                     Sales = DataGenerator.GetNumber(200, 980) * 1000,
                     Website = website,
                 };
+                employee.Country = country;
+
                 employee.Income = DataGenerator.GetIncomeRange(employee.Salary);
                 if (useProductivity.HasValue && useProductivity.Value)
                 {
@@ -107,81 +138,6 @@ namespace Infragistics.Samples
             };
 
             return productivity;
-        }
-
-
-
-
-        public class House
-        {
-            public string ID { get; set; }
-            public string Address { get; set; }
-            public string Street { get; set; }
-            public string Country { get; set; }
-            public string CountryFlag { get; set; }
-            public string City { get; set; }
-            public string Email { get; set; }
-            public string Phone { get; set; }
-
-            public double Age { get; set; }
-            public double Baths { get; set; }
-            public double Built { get; set; }
-            public string Property { get; set; }
-            public double Rooms { get; set; }
-            public string Agent { get; set; }
-            public double Area { get; set; }
-            public double Price { get; set; }
-            public DateTime SaleDate { get; set; }
-        }
-
-        public static List<House> GetHouses(int? count)
-        {
-            if (count == null)
-            {
-                count = 250;
-            }
-
-            string[] property = { "Townhouse", "Single", "Condo", "Villa" };
-            string[] emails = { "estates.com", "remax.com", "zillow.com", "realtor.com", "coldwell.com" };
-            string[] countries = { "USA", "UK", "France", "Canada", "Poland", "Japan", "Germany" };
-            List<House> houses = new List<House>();
-
-            for (var i = 0; i < count; i++)
-            {
-                var year = DataGenerator.GetNumber(1950, 2015);
-                var age = 2020 - year;
-
-                var gender = DataGenerator.GetGender();
-                var firstName = DataGenerator.GetNameFirst(gender);
-                var lastName = DataGenerator.GetNameLast();
-                var initials = firstName.Substring(0, 1).ToLower();
-                var email = initials + firstName.ToLower() + "@" + DataGenerator.GetItem(emails);
-                var street = DataGenerator.GetStreet();
-                var country = DataGenerator.GetItem(countries);
-                var city = DataGenerator.GetCity(country);
-
-                houses.Add(new House
-                {
-                    Address = street,
-                    Age = age,
-                    Agent = firstName + " " + lastName,
-                    Area = DataGenerator.GetNumber(50, 300),
-                    Baths = DataGenerator.GetNumber(1, 3),
-                    Built = year,
-                    City = city,
-                    Country = country,
-                    CountryFlag = DataGenerator.GetCountryFlag(country),
-                    Email = email,
-                    ID = DataGenerator.Pad(i + 1, 5),
-                    Phone = DataGenerator.GetPhone(),
-                    Price = DataGenerator.GetNumber(210, 900) * 1000,
-                    Property = DataGenerator.GetItem(property),
-                    Rooms = DataGenerator.GetNumber(2, 5),
-                    SaleDate = DataGenerator.GetDate(),
-                    Street = street
-                });
-            }
-            return houses;
         }
     }
 }

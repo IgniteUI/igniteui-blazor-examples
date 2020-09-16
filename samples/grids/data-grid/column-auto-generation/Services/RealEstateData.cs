@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic; 
+using System.Collections.Generic;
 
 namespace Infragistics.Samples
-{ 
+{
     public class RealEstate
     {
         public string ID { get; set; }
@@ -26,7 +26,7 @@ namespace Infragistics.Samples
     }
 
     public static class RealEstateData
-    {        
+    {
         public static List<RealEstate> Create(int? count)
         {
             if (count == null) count = 100;
@@ -45,7 +45,7 @@ namespace Infragistics.Samples
                 var firstName = DataGenerator.GetNameFirst(gender);
                 var lastName = DataGenerator.GetNameLast();
                 var initials = firstName.Substring(0, 1).ToLower();
-                var email = initials  + firstName.ToLower() + "@" + DataGenerator.GetItem(emails);
+                var email = initials + firstName.ToLower() + "@" + DataGenerator.GetItem(emails);
                 var street = DataGenerator.GetStreet();
                 var country = DataGenerator.GetItem(countries);
                 var city = DataGenerator.GetCity(country);
@@ -66,7 +66,7 @@ namespace Infragistics.Samples
                     Phone = DataGenerator.GetPhone(),
                     Price = DataGenerator.GetNumber(210, 900) * 1000,
                     Property = DataGenerator.GetItem(property),
-                    Rooms = DataGenerator.GetNumber(2, 5), 
+                    Rooms = DataGenerator.GetNumber(2, 5),
                     SaleDate = DataGenerator.GetDate(),
                     Street = street
                 });
@@ -75,4 +75,3 @@ namespace Infragistics.Samples
         }
     }
 }
-

@@ -57,7 +57,7 @@ namespace Infragistics.Samples
                     Margin = margin,
                     OrderDate = DataGenerator.GetDate(),
                     OrderItems = items,
-                    OrderValue = value, //  Math.round(value / 1000) + "," + Math.round(value % 1000), 
+                    OrderValue = value, //  Math.round(value / 1000) + "," + Math.round(value % 1000),
                     ProductName = DataGenerator.GetItem(names),
                     Profit = profit,
                     City = city,

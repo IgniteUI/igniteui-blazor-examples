@@ -34,7 +34,7 @@ namespace Infragistics.Samples
         {
             return GetItem(emails);
         }
-         
+
         public static double GetNumber(double min, double max)
         {
             return Math.Round(min + (Rand.NextDouble() * (max - min)));
@@ -61,10 +61,10 @@ namespace Infragistics.Samples
 
         public static string GetNameFirst(string gender)
         {
-            if (gender == "male")            
-                return GetItem(maleNames);            
-            else            
-                return GetItem(femaleNames);            
+            if (gender == "male")
+                return GetItem(maleNames);
+            else
+                return GetItem(femaleNames);
         }
 
         public static string GetNameLast()
@@ -124,7 +124,7 @@ namespace Infragistics.Samples
         }
 
         public static DateTime GetBirthday()
-        { 
+        {
             var year = DateTime.Now.Year - GetInteger(30, 50);
             var month = GetNumber(10, 12);
             var day = GetNumber(20, 27);
@@ -202,7 +202,7 @@ namespace Infragistics.Samples
                 return "High";
             }
         }
-           
+
     }
 
 }

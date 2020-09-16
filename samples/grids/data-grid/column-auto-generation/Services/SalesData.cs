@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic; 
+using System.Collections.Generic;
 
 namespace Infragistics.Samples
 {
@@ -7,7 +7,7 @@ namespace Infragistics.Samples
     {
         public DateTime OrderDate { get; set; }
 
-        public string ID { get; set; } 
+        public string ID { get; set; }
         public string ProductName { get; set; }
         public double ProductPrice { get; set; }
         public double BundlePrice { get; set; }
@@ -22,10 +22,10 @@ namespace Infragistics.Samples
     }
 
     public static class SalesData
-    {                  
+    {
         public static List<Sale> Create(int? count)
         {
-            if (count == null) count = 100; 
+            if (count == null) count = 100;
 
             string[] names = {
                 "Intel CPU", "AMD CPU",
@@ -45,10 +45,10 @@ namespace Infragistics.Samples
                 var items = DataGenerator.GetNumber(10, 80);
                 var value = price * items;
                 var margin = DataGenerator.GetNumber(3, 10);
-                var profit = Math.Round((price * margin / 100) * items); 
+                var profit = Math.Round((price * margin / 100) * items);
                 var country = DataGenerator.GetItem(countries);
                 var city = DataGenerator.GetCity(country);
-                 
+
                 sales.Add(new Sale
                 {
                     ID = DataGenerator.Pad(1001 + i, 4),
@@ -57,7 +57,7 @@ namespace Infragistics.Samples
                     Margin = margin,
                     OrderDate = DataGenerator.GetDate(),
                     OrderItems = items,
-                    OrderValue = value, //  Math.round(value / 1000) + "," + Math.round(value % 1000), 
+                    OrderValue = value, //  Math.round(value / 1000) + "," + Math.round(value % 1000),
                     ProductName = DataGenerator.GetItem(names),
                     Profit = profit,
                     City = city,
@@ -70,4 +70,3 @@ namespace Infragistics.Samples
         }
     }
 }
-
