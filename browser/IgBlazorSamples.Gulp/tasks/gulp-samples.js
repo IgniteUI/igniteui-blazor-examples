@@ -133,10 +133,10 @@ function getSamples(cb) {
                 sampleFolder + "/Services/*",
                 sampleFolder + "/*.csproj",
                 sampleFolder + "/wwwroot/*.js",
+                sampleFolder + "/wwwroot/*.css",
              // sampleFolder + "/wwwroot/*",
           '!' + sampleFolder + "/wwwroot/index.html",
           '!' + sampleFolder + "/wwwroot/index.css",
-          '!' + sampleFolder + "/wwwroot/*.css",
           '!' + sampleFolder + "/Pages/_*.razor",
           '!' + sampleFolder + "/Pages/*.g.cs",
           '!' + sampleFolder + "/obj/**",
@@ -282,7 +282,7 @@ function copySampleScripts(cb, outputPath, indexName) {
 
     log('copying scripts to: ' + outputPath + '/wwwroot/');
     for (const sample of samples) {
-        for (const file of sample.JavaScriptFiles) {
+        for (const file of sample.PublicFiles_JS) {
             log("copying  " + outputPath + '/wwwroot/' + file.Name);
             saveFile(outputPath + '/wwwroot/' + file.Name, file.Content);
             insertScriptFiles.push('<script src="' + file.Name + '"></script>');

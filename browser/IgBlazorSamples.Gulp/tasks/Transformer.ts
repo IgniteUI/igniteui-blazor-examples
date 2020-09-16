@@ -31,17 +31,20 @@ class SampleFile {
         return this.Path.indexOf("Components") > 0 && this.Name.endsWith(".razor");
     }
     public isCS(): boolean {
-        return this.Name.endsWith(".cs");
+        return this.Name.endsWith(".cs") && !this.Name.endsWith(".css");
     }
-    public isJS(): boolean {
-        return this.Name.endsWith(".js");
+    public isPublicJS(): boolean {
+        return this.Path.indexOf("wwwroot") > 0 && this.Name.endsWith(".js");
+    }
+    public isPublicCSS(): boolean {
+        return this.Path.indexOf("wwwroot") > 0 && this.Name.endsWith(".css");
     }
 }
 
 
 class SampleSourceFile extends SampleFile {
     // public LocalPath: string;
-    public Blocks: SampleSourceBlock;
+    // public Blocks: SampleSourceBlock;
     // public Content: string;
     // public Name: string;
     // public Path: string;
@@ -62,22 +65,22 @@ class SampleSourceFile extends SampleFile {
     // }
 }
 
-class SampleSourceBlock {
-    public ImportLines: string[];
-    public ImportFiles: string[];
-    public HtmlCodeLines: string[];
-    public CsharpCodeLines: string[];
-    public OtherCodeLines: string[];
+// class SampleSourceBlock {
+//     public ImportLines: string[];
+//     public ImportFiles: string[];
+//     public HtmlCodeLines: string[];
+//     public CsharpCodeLines: string[];
+//     public OtherCodeLines: string[];
 
-    constructor() {
-        this.ImportFiles = [];
-        this.ImportLines = [];
-        this.ImportFiles = [];
-        this.HtmlCodeLines = [];
-        this.CsharpCodeLines = [];
-        this.OtherCodeLines = [];
-    }
-}
+//     constructor() {
+//         this.ImportFiles = [];
+//         this.ImportLines = [];
+//         this.ImportFiles = [];
+//         this.HtmlCodeLines = [];
+//         this.CsharpCodeLines = [];
+//         this.OtherCodeLines = [];
+//     }
+// }
 
 // this class provides information about a sample that is implemented in /samples folder
 class SampleInfo {
@@ -105,8 +108,9 @@ class SampleInfo {
     // public SampleFilePaths: string[];  // relative paths to files in sample folder: /samples/maps/geo-map/binding-csv-points/
     // public SampleFileNames: string[];  // names of files in sample folder: /samples/maps/geo-map/binding-csv-points/
     public SourceFiles: SampleFile[];
-    public JavaScriptFiles: SampleFile[];
     public SourceRazorFile: SampleSourceFile;
+    public PublicFiles_JS: SampleFile[];
+    public PublicFiles_CSS: SampleFile[];
     public ProjectFile: SampleFile;
 
     public DocsUrl: string             // https://infragistics.com/Reactsite/components/geo-map.html
@@ -123,7 +127,8 @@ class SampleInfo {
         // this.SampleFilePaths = [];
         // this.SampleFileNames = [];
         this.SourceFiles = [];
-        this.JavaScriptFiles = [];
+        this.PublicFiles_JS = [];
+        this.PublicFiles_CSS = [];
         this.PackageDependencies = [];
         // this.PackageDependencies.indexOf
     }
@@ -164,65 +169,65 @@ class SampleComponent {
 class Transformer {
 
     // splits source code of a sample into block lines with imports, packages, and other lines
-    public static getSampleBlocks(sampleSourceCode: string): SampleSourceBlock {
-        let sourceBlocks = new SampleSourceBlock();
+    // public static getSampleBlocks(sampleSourceCode: string): SampleSourceBlock {
+    //     let sourceBlocks = new SampleSourceBlock();
 
-        let isImport = true;
-        let isHtml = false;
-        let isCS = false;
+    //     let isImport = true;
+    //     let isHtml = false;
+    //     let isCS = false;
 
-        let sampleCodeLines = sampleSourceCode.split('\n');
-        for (const line of sampleCodeLines) {
-            // if (line.indexOf(" from 'react'") > 0) continue;
+    //     let sampleCodeLines = sampleSourceCode.split('\n');
+    //     for (const line of sampleCodeLines) {
+    //         // if (line.indexOf(" from 'react'") > 0) continue;
 
-            // skipping page routes because they will be auto-generated
-            if (line.indexOf("@page") >= 0) continue;
+    //         // skipping page routes because they will be auto-generated
+    //         if (line.indexOf("@page") >= 0) continue;
 
-            if (line.indexOf("<div") >= 0) {
-                isImport = false; isHtml = true; isCS = false;
-            }
-            if (line.indexOf("@code") >= 0) {
-                isImport = false; isHtml = false; isCS = true;
-            }
+    //         if (line.indexOf("<div") >= 0) {
+    //             isImport = false; isHtml = true; isCS = false;
+    //         }
+    //         if (line.indexOf("@code") >= 0) {
+    //             isImport = false; isHtml = false; isCS = true;
+    //         }
 
-            if (isCS) {
-                sourceBlocks.CsharpCodeLines.push(line);
-            } else if (isHtml) {
-                sourceBlocks.HtmlCodeLines.push(line);
-            } else if (isImport) {
-                sourceBlocks.ImportLines.push(line);
-            } else {
-                sourceBlocks.OtherCodeLines.push(line);
-            }
+    //         if (isCS) {
+    //             sourceBlocks.CsharpCodeLines.push(line);
+    //         } else if (isHtml) {
+    //             sourceBlocks.HtmlCodeLines.push(line);
+    //         } else if (isImport) {
+    //             sourceBlocks.ImportLines.push(line);
+    //         } else {
+    //             sourceBlocks.OtherCodeLines.push(line);
+    //         }
 
-            // if (line.indexOf("import ") >= 0) {
-            //     sample.ImportLines.push(line);
-            //     // if (line.indexOf(" from ") === -1) continue;
+    //         // if (line.indexOf("import ") >= 0) {
+    //         //     sample.ImportLines.push(line);
+    //         //     // if (line.indexOf(" from ") === -1) continue;
 
-            //     if (line.indexOf(" from ") > 0 && line.indexOf("./") === -1) {
+    //         //     if (line.indexOf(" from ") > 0 && line.indexOf("./") === -1) {
 
-            //         let importPackage = line.substring(line.indexOf("'") + 1, line.lastIndexOf("'"));
-            //         if (importPackage === "") {
-            //             importPackage = line.substring(line.indexOf('"') + 1, line.lastIndexOf('"'));
-            //         }
-            //         // console.log("<" + importPackage + ">");
-            //         if (sample.ImportPackages.indexOf(importPackage) === -1) {
-            //             sample.ImportPackages.push(importPackage);
-            //         }
-            //     } else if (line.indexOf(" from ") === -1) {
-            //         sample.ImportCSS.push(line);
+    //         //         let importPackage = line.substring(line.indexOf("'") + 1, line.lastIndexOf("'"));
+    //         //         if (importPackage === "") {
+    //         //             importPackage = line.substring(line.indexOf('"') + 1, line.lastIndexOf('"'));
+    //         //         }
+    //         //         // console.log("<" + importPackage + ">");
+    //         //         if (sample.ImportPackages.indexOf(importPackage) === -1) {
+    //         //             sample.ImportPackages.push(importPackage);
+    //         //         }
+    //         //     } else if (line.indexOf(" from ") === -1) {
+    //         //         sample.ImportCSS.push(line);
 
-            //     } else if (line.indexOf("./") > 0 || line.indexOf("../") > 0) {
-            //         sample.ImportFiles.push(line);
-            //     }
+    //         //     } else if (line.indexOf("./") > 0 || line.indexOf("../") > 0) {
+    //         //         sample.ImportFiles.push(line);
+    //         //     }
 
-            // } else {
-            //     sample.OtherLines.push(line);
-            // }
-        }
+    //         // } else {
+    //         //     sample.OtherLines.push(line);
+    //         // }
+    //     }
 
-        return sourceBlocks;
-    }
+    //     return sourceBlocks;
+    // }
 
     public static getDependencies(sampleInfo: SampleInfo): PackageDependency[] {
         let dependencies: PackageDependency[] = [];
@@ -520,20 +525,27 @@ class Transformer {
             if (file.isRazorSample() ||
                 file.isRazorComponent() ||
                 file.isCS() ||
-                file.isJS() ) {
+                file.isPublicCSS() ||
+                file.isPublicJS() ) {
                 file.Content = transFS.readFileSync(filePath, "utf8");
                 // console.log("pro file " + file.Path + "   " + file.Name);
             }
 
             if (file.isRazorSample()) {
                 info.SourceFiles.splice(0, 0, file);
+
             } else if (file.isRazorComponent()) {
                 info.SourceFiles.push(file);
+
             } else if (file.isCS()) {
                 info.SourceFiles.push(file);
-            } else if (file.isJS()) {
-                // console.log("isJS " + file.Path)
-                info.JavaScriptFiles.splice(0, 0, file);
+
+            } else if (file.isPublicCSS()) {
+                info.PublicFiles_CSS.push(file);
+
+            } else if (file.isPublicJS()) {
+                info.PublicFiles_JS.push(file);
+
             } else if (file.Name.indexOf(".csproj") > 0){
                 // console.log("isProj " + file.Path)
                 info.ProjectFile = file;
