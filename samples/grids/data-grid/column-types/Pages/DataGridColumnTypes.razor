@@ -5,7 +5,7 @@
 
     <div class="igComponent">
 
-        @if (Employees != null)
+        @if (Employees != null && CountryNames != null)
         {
         <DataGrid Height="100%" Width="100%" RowHeight="50"
                   DataSource="@Employees"
@@ -28,9 +28,9 @@
                            MinFractionDigits="0" />
 
             <DateTimeColumn Width="140" Field="Birthday" HeaderText="Date of Birth" />
-            <ComboBoxColumn Width="120" Field="City" />
-
-            <ImageColumn IsEditable="false" Width="110" Field="CountryFlag" HeaderText="Country" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
+            
+            <ComboBoxColumn Width="120" Field="Country" DataSource="@CountryNames" />
+            <ImageColumn IsEditable="false" Width="110" Field="CountryFlag" HeaderText="Flag" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
                          HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
 
             @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
@@ -39,6 +39,7 @@
 
             <TextColumn Width="120" Field="Income" />
             <NumericColumn Width="100" Field="Age" HorizontalAlignment="@CellContentHorizontalAlignment.Left"/>
+
         </DataGrid>
         }
 
@@ -48,7 +49,8 @@
 
 @code {
 
-    private List<Employee> Employees;
+    protected List<Employee> Employees;
+    protected List<Country> CountryNames;
 
     protected override void OnInitialized()
     {
@@ -56,7 +58,20 @@
 
         DataGridModule.Register(IgniteUIBlazor);
 
-        this.Employees = EmployeeData.Create(200, false);
+        this.Employees = EmployeeData.Create(50, false);
+
+        this.CountryNames = new List<Country> {
+            new Country { Name = "Canada" },
+            new Country { Name = "France" },
+            new Country { Name = "Poland" },
+            new Country { Name = "UK" },
+            new Country { Name = "USA" }
+        };
+    }
+
+    public class Country
+    {
+        public string Name { get; set; }
     }
 
 }
