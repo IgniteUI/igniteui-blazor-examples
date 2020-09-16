@@ -141,3 +141,12 @@ function onUpdatingPhoneColumn(grid, args) {
 igRegisterScript("onUpdatingSalesColumn", onUpdatingSalesColumn, false);
 igRegisterScript("onUpdatingAddressColumn", onUpdatingAddressColumn, false);
 igRegisterScript("onUpdatingPhoneColumn", onUpdatingPhoneColumn, false);
+
+function onSummarziePeopleGender(grid, args) {
+
+    //TODO
+    //let info = args.cellInfo;
+    //let gender = info.rowItem.Gender;
+    args.setCalculator(10);
+}
+igRegisterScript("onSummarziePeopleGender", onSummarziePeopleGender, false);

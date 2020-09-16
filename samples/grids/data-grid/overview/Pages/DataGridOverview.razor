@@ -12,18 +12,114 @@
     <div class="igComponent">
 
         @if (Employees != null)
-        {
-        <DataGrid Height="100%" Width="100%" RowHeight="50"
-                  DataSource="@Employees"
-                  AutoGenerateColumns="false"
-                  ActivationMode="GridActivationMode.Cell">
+        {  
+            <DataGridToolbar ToolbarTitle="Sales Team" ColumnChooser="true" ColumnPinning="true" TargetGrid="@DataGridRef"/>
 
-            <ImageColumn Width="100" Field="Photo" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
-                         HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
+            <DataGrid Height="calc(100% - 2.75rem)" Width="100%" RowHeight="50" @ref="@DataGridRef"
+                      DataSource="@Employees"
+                      AutoGenerateColumns="false"
+                      IsColumnOptionsEnabled="true"
+                      IsGroupCollapsable="true"
+                      ActivationMode="GridActivationMode.Cell"
+                      SummaryScope="@DataSourceSummaryScope.Root"
+                      GroupSummaryDisplayMode="@GroupSummaryDisplayMode.RowBottom"
+                      GroupHeaderDisplayMode="@DataSourceSectionHeaderDisplayMode.Combined"
+                      CornerRadiusTopLeft="0"
+                      CornerRadiusTopRight="0"
+                      ColumnMovingSeparatorWidth="2"
+                      ColumnMovingMode="ColumnMovingMode.Deferred"
+                      ColumnMovingAnimationMode="ColumnMovingAnimationMode.SlideOver"
+                      ColumnShowingAnimationMode="ColumnShowingAnimationMode.SlideFromRightAndFadeIn"
+                      ColumnHidingAnimationMode="ColumnHidingAnimationMode.SlideToRightAndFadeOut"
+                      SelectionMode="GridSelectionMode.SingleRow">
 
-            <TextColumn Width="130" Field="Name" />
+                <ImageColumn Width="120" Field="Photo" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
+                             HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
 
-            <TemplateColumn Width="200" Field="Productivity" >
+                <TextColumn Width="130" Field="Name" />
+            
+                @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
+                <TemplateColumn Width="160" Field="Sales" CellUpdatingScript="onUpdatingSalesColumn"
+                                HorizontalAlignment="@CellContentHorizontalAlignment.Center"/>
+
+                <NumericColumn Width="130" Field="Salary" PositivePrefix="$"
+                               ShowGroupingSeparator="true"
+                               MaxFractionDigits="0"
+                               MinFractionDigits="0" />
+                
+                <NumericColumn Width="100" Field="Age" HorizontalAlignment="@CellContentHorizontalAlignment.Center"/>
+                <DateTimeColumn Width="140" Field="Birthday" HeaderText="Date of Birth" />
+
+                <ImageColumn Width="110" Field="CountryFlag" HeaderText="Country" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
+                             HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
+
+                @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
+                <TemplateColumn Width="170" Field="Address" CellUpdatingScript="onUpdatingAddressColumn" /> 
+                <TemplateColumn Width="130" Field="Phone" CellUpdatingScript="onUpdatingPhoneColumn" />
+
+                <TextColumn Width="120" Field="Income" />
+                <TextColumn Width="120" Field="Email" />
+                <TextColumn Width="120" Field="Website" />
+
+
+            </DataGrid>
+        }
+
+
+    </div>
+</div>
+
+@code {
+
+    private List<Employee> Employees;
+
+    private DataGrid _grid;
+    private DataGrid DataGridRef
+    {
+        get { return _grid; }
+        set { _grid = value; this.OnDataGridRef(); StateHasChanged(); }
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        DataGridModule.Register(IgniteUIBlazor);
+        DataGridToolbarModule.Register(IgniteUIBlazor);
+        ColumnChooserModule.Register(IgniteUIBlazor);
+
+        this.Employees = EmployeeData.Create(100, false);
+
+        Console.WriteLine("Data " + this.Employees.Count);
+    }
+
+    private void OnDataGridRef()
+    {
+        var peopleGroup = new ColumnGroupDescription() { Field = "Country", DisplayName = "Country" };
+        var incomeGroup = new ColumnGroupDescription() { Field = "Income", DisplayName = "Income" };
+        this._grid.GroupDescriptions.Add(peopleGroup);
+        this._grid.GroupDescriptions.Add(incomeGroup);
+
+        var ageSummary = new ColumnSummaryDescription() { Field = "Age", Operand = SummaryOperand.Average };
+        var peopleSummary = new ColumnSummaryDescription() { Field = "Photo", Operand = SummaryOperand.Count };
+        var salarySummary = new ColumnSummaryDescription() { Field = "Salary", Operand = SummaryOperand.Sum };
+        var saleSummary = new ColumnSummaryDescription() { Field = "Sales", Operand = SummaryOperand.Max };
+
+        this._grid.SummaryDescriptions.Add(ageSummary);
+        this._grid.SummaryDescriptions.Add(peopleSummary);
+        this._grid.SummaryDescriptions.Add(salarySummary);
+        this._grid.SummaryDescriptions.Add(saleSummary);
+
+        // TODO fix onSummarziePeopleGender
+        //var nameSummary = new ColumnSummaryDescription() { Field = "Name", Operand = SummaryOperand.Custom, 
+        //    ProvideCalculatorScript = "onSummarziePeopleGender" };
+        //this._grid.SummaryDescriptions.Add(nameSummary);
+    }
+
+}
+
+
+            @*<TemplateColumn Width="200" Field="Productivity" >
                   <Template>
                     <RenderFragment>
                          <div style="width: 150px; height: 40px">
@@ -37,56 +133,4 @@
                              </div>
                     </RenderFragment>
                 </Template> 
-            </TemplateColumn>
-            
-            @*DataSource="@context.Value"
-                                        DataSource="@((context.RowItem as Employee).Productivity)"
-
-            
-            @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
-            <TemplateColumn Width="160" Field="Sales" CellUpdatingScript="onUpdatingSalesColumn"
-                            HorizontalAlignment="@CellContentHorizontalAlignment.Center"/>
-
-            <NumericColumn Width="130" Field="Salary" PositivePrefix="$"
-                           ShowGroupingSeparator="true"
-                           MaxFractionDigits="0"
-                           MinFractionDigits="0" />
-
-            <DateTimeColumn Width="140" Field="Birthday" HeaderText="Date of Birth" />
-            <ComboBoxColumn Width="120" Field="City" />
-
-            <ImageColumn Width="110" Field="CountryFlag" HeaderText="Country" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
-                         HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
-
-            @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
-            <TemplateColumn Width="170" Field="Address" CellUpdatingScript="onUpdatingAddressColumn" />
-            <TemplateColumn Width="130" Field="Phone" CellUpdatingScript="onUpdatingPhoneColumn" />
-
-            <TextColumn Width="120" Field="Income" />
-            <NumericColumn Width="100" Field="Age" HorizontalAlignment="@CellContentHorizontalAlignment.Left"/>
-
-
-        </DataGrid>
-        }
-
-
-    </div>
-</div>
-
-@code {
-
-    private List<Employee> Employees;
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        DataGridModule.Register(IgniteUIBlazor);
-        SparklineModule.Register(IgniteUIBlazor); // reqired for sparkline column
-
-        this.Employees = EmployeeData.Create(20, true);
-
-        Console.WriteLine("Data " + this.Employees.Count);
-    }
-
-}
+            </TemplateColumn>*@
