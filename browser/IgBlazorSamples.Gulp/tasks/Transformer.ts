@@ -452,7 +452,7 @@ class Transformer {
 
             for (let pack of igConfig.PackageReferences) {
                 if (Strings.contains(line, pack.Name)) {
-                    //     <PackageReference Include="IgniteUI.Blazor" Version="20.1.112-dev" />
+                    //     <PackageReference Include="IgniteUI.Blazor" Version="20.1.115-dev" />
                     line = '    <PackageReference Include="' + pack.Name + '" Version="' + pack.Version+ '" />'
                     console.log("updating " + projectFile.Path + " with " + pack.Name);
                     break;
