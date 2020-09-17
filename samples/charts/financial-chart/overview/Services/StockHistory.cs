@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Globalization;
 
 namespace Infragistics.Samples
 {
@@ -33,10 +36,21 @@ namespace Infragistics.Samples
             //};
             // console.log("fetchAmazonStock: ", stockData.length);
 
+            //var serializeOptions = new JsonSerializerOptions();
+            //serializeOptions.Converters.Add(new DateTimeConverter());
+
             var http = new HttpClient();
             var data = await http.GetFromJsonAsync<StockPrice[]>(url);
-            //Console.WriteLine("Label" + " " + data.Length);
-            //Console.WriteLine("Date" + " " + data[0].Date);
+            foreach (var item in data)
+            {
+                var dateArray = item.Date.Split("-");
+                var d = int.Parse(dateArray[2]);
+                var m = int.Parse(dateArray[1]) + 1;
+                var y = int.Parse(dateArray[0]);
+
+                item.Time = new DateTime(y, m, d);
+            }
+            
             return data;
 
         }
@@ -53,9 +67,20 @@ namespace Infragistics.Samples
             //};
             // console.log("fetchAmazonStock: ", stockData.length);
 
+            var serializeOptions = new JsonSerializerOptions();
+            serializeOptions.Converters.Add(new DateTimeConverter());
+
             var http = new HttpClient();
             var data = await http.GetFromJsonAsync<StockPrice[]>(url);
+            foreach (var item in data)
+            {
+                var dateArray = item.Date.Split("-");
+                var d = int.Parse(dateArray[2]);
+                var m = int.Parse(dateArray[1]) + 1;
+                var y = int.Parse(dateArray[0]);
 
+                item.Time = new DateTime(y, m, d);
+            }
             return data;
 
         }
@@ -71,10 +96,20 @@ namespace Infragistics.Samples
             //  close: ["SeriesTitle/Amazon"]
             //};
             // console.log("fetchAmazonStock: ", stockData.length);
+            var serializeOptions = new JsonSerializerOptions();
+            serializeOptions.Converters.Add(new DateTimeConverter());
 
             var http = new HttpClient();
             var data = await http.GetFromJsonAsync<StockPrice[]>(url);
+            foreach (var item in data)
+            {
+                var dateArray = item.Date.Split("-");
+                var d = int.Parse(dateArray[2]);
+                var m = int.Parse(dateArray[1]) + 1;
+                var y = int.Parse(dateArray[0]);
 
+                item.Time = new DateTime(y, m, d);
+            }
             return data;
 
         }
@@ -90,18 +125,47 @@ namespace Infragistics.Samples
             //};
             // console.log("fetchAmazonStock: ", stockData.length);
 
+            var serializeOptions = new JsonSerializerOptions();
+            serializeOptions.Converters.Add(new DateTimeConverter());
+
             var http = new HttpClient();
             var data = await http.GetFromJsonAsync<StockPrice[]>(url);
+            foreach (var item in data)
+            {
+                var dateArray = item.Date.Split("-");
+                var d = int.Parse(dateArray[2]);
+                var m = int.Parse(dateArray[1]) + 1;
+                var y = int.Parse(dateArray[0]);
+
+                item.Time = new DateTime(y, m, d);
+            }
 
             return data;
-
         }
+    }
+
+    public class DateTimeConverter : JsonConverter<DateTime>
+    {
+        public override DateTime Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options)
+        {
+            Console.WriteLine(reader.GetString());
+            return DateTime.Now;
+        }
+
+        public override void Write(
+           Utf8JsonWriter writer,
+           DateTime date,
+           JsonSerializerOptions options) =>
+               writer.WriteStringValue(date.ToString());
     }
 
     public class StockPrice
     {
-		//TODO - get date to show up on xAxis
         public string Date { get; set; }
+        public DateTime Time { get; set; }
         public double Open { get; set; }
         public double High { get; set; }
         public double Low { get; set; }
