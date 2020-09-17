@@ -3,64 +3,67 @@
 @inject NavigationManager NavManager
 
 <div class="igContainer-horizontal">
-    <GeographicMap Height="100%" Width="100%" Zoomable="true" BackgroundContent="@AerialImagery" @ref="Map1">
+    <GeographicMap Height="100%" Width="100%" Zoomable="true" BackgroundContent="@AerialImagery">
     </GeographicMap>
-    <GeographicMap Height="100%" Width="100%" Zoomable="true" BackgroundContent="@AerialWithLabelsImagery" @ref="Map2">
+    @*<GeographicMap Height="100%" Width="100%" Zoomable="true" BackgroundContent="@AerialWithLabelsImagery">
     </GeographicMap>
-    <GeographicMap Height="100%" Width="100%" Zoomable="true" BackgroundContent="@RoadImagery" @ref="Map3">
-    </GeographicMap>
+    <GeographicMap Height="100%" Width="100%" Zoomable="true" BackgroundContent="@RoadImagery">
+    </GeographicMap>*@
 </div>
 
 @code {
-
-    //TODO - BingMaps not working currently...
 
     private BingMapsMapImagery AerialImagery;
     private BingMapsMapImagery AerialWithLabelsImagery;
     private BingMapsMapImagery RoadImagery;
 
-    private GeographicMap Map1;
-    private GeographicMap Map2;
-    private GeographicMap Map3;
-
     protected override void OnInitialized()
     {
         GeographicMapModule.Register(IgniteUIBlazor);
 
-        this.AerialImagery = new BingMapsMapImagery();
+        this.AerialImagery = new BingMapsMapImagery()
+        {
+            ApiKey = MapUtils.GetBingKey(),
+            ImageryStyle = BingMapsImageryStyle.Aerial
+        };
 
         bool isHttpSecured = NavManager.Uri.StartsWith("https");
 
-        string httpPrefix = "http";
 
         if (isHttpSecured)
         {
-            httpPrefix = httpPrefix + "s";
+            //TODO FIX THE ActualBingImageryRestUri
+            Console.WriteLine(this.AerialImagery.ActualBingImageryRestUri);
+            AerialImagery.BingImageryRestUri = AerialImagery.ActualBingImageryRestUri.Replace("http:", "https:");
         }
 
-        httpPrefix = httpPrefix + "://dev.virtualearth.net/REST/v1/Imagery/Metadata/";
+        //this.AerialImagery = new BingMapsMapImagery();
 
-        BingMapsMapImagery _aerialImagery = new BingMapsMapImagery();
-        _aerialImagery.ApiKey = MapUtils.GetBingKey();
-        _aerialImagery.ImageryStyle = BingMapsImageryStyle.Aerial;
-        _aerialImagery.BingImageryRestUri = httpPrefix;
+        //string httpPrefix = "http";
 
-        BingMapsMapImagery _aerialWithLabelsImagery = new BingMapsMapImagery();
-        _aerialWithLabelsImagery.ApiKey = MapUtils.GetBingKey();
-        _aerialWithLabelsImagery.ImageryStyle = BingMapsImageryStyle.AerialWithLabels;
-        _aerialWithLabelsImagery.BingImageryRestUri = httpPrefix;
+        //httpPrefix = httpPrefix + "://dev.virtualearth.net/REST/v1/Imagery/Metadata/";
 
-        BingMapsMapImagery _roadImagery = new BingMapsMapImagery();
-        _roadImagery.ApiKey = MapUtils.GetBingKey();
-        _roadImagery.ImageryStyle = BingMapsImageryStyle.Road;
-        _roadImagery.BingImageryRestUri = httpPrefix;
+        //BingMapsMapImagery _aerialImagery = new BingMapsMapImagery();
+        //_aerialImagery.ApiKey = MapUtils.GetBingKey();
+        //_aerialImagery.ImageryStyle = BingMapsImageryStyle.Aerial;
+        //_aerialImagery.BingImageryRestUri = httpPrefix;
 
-        this.AerialImagery = _aerialImagery;
-        this.AerialWithLabelsImagery = _aerialWithLabelsImagery;
-        this.RoadImagery = _roadImagery;
+        //BingMapsMapImagery _aerialWithLabelsImagery = new BingMapsMapImagery();
+        //_aerialWithLabelsImagery.ApiKey = MapUtils.GetBingKey();
+        //_aerialWithLabelsImagery.ImageryStyle = BingMapsImageryStyle.AerialWithLabels;
+        //_aerialWithLabelsImagery.BingImageryRestUri = httpPrefix;
 
-        Map1.BackgroundContent = this.AerialImagery;
-        Map2.BackgroundContent = this.AerialWithLabelsImagery;
-        Map3.BackgroundContent = this.RoadImagery;
+        //BingMapsMapImagery _roadImagery = new BingMapsMapImagery();
+        //_roadImagery.ApiKey = MapUtils.GetBingKey();
+        //_roadImagery.ImageryStyle = BingMapsImageryStyle.Road;
+        //_roadImagery.BingImageryRestUri = httpPrefix;
+
+        //this.AerialImagery = _aerialImagery;
+        //this.AerialWithLabelsImagery = _aerialWithLabelsImagery;
+        //this.RoadImagery = _roadImagery;
+
+        //Map1.BackgroundContent = this.AerialImagery;
+        //Map2.BackgroundContent = this.AerialWithLabelsImagery;
+        //Map3.BackgroundContent = this.RoadImagery;
     }
 }
