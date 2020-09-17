@@ -73,7 +73,8 @@ namespace Infragistics.Samples.Core
                 {
                     if (comp.Name == name) {
                         comp.IsExpanded = !comp.IsExpanded;
-                        Console.WriteLine("SB.TOC toggle " + comp.Name);
+                        var toggleState = comp.IsExpanded ? "on" : "off";
+                        Console.WriteLine("SB.TOC toggle '" + comp.Name + "' " + toggleState);
                         return;
                     }
                 }
