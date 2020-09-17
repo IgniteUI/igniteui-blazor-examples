@@ -48,12 +48,36 @@ namespace Infragistics.Samples
             Flights = new List<FlightInfo>();
             Airports = new List<WorldCity>();
 
-            List<WorldCity> cities = WorldLocations.GetAll();
-            cities.Sort(new Comparison<WorldCity>(ComparePopulation));
+            List<WorldCity> fullCityList = WorldLocations.GetAll();
+            //fullCityList.Sort(new Comparison<WorldCity>(ComparePopulation));
+
+            List<WorldCity> cities = new List<WorldCity>();
+
+            Dictionary<string, int> cityCount = new Dictionary<string, int>();
+
+            for (int i = 0; i < fullCityList.Count; i++)
+            {
+                WorldCity city = fullCityList[i];
+                if (cityCount.ContainsKey(city.Country))
+                {
+                    if (cityCount[city.Country] < 2)
+                    {
+                        cities.Add(city);
+                        cityCount[city.Country]++;
+                    }
+                }
+                else
+                {                    
+                    cities.Add(city);
+                    cityCount.Add(city.Country, 1);
+                }
+            }
+
+            Console.WriteLine("City Count = " + cities.Count);
 
             int count = cities.Count;
             int flightsCount = 0;
-            int connectionsCount = 0;
+            
 
             double minDistance = 200;
             double maxDistance = 9000;
@@ -62,8 +86,10 @@ namespace Infragistics.Samples
             for (int i=0; i<count; i++)
             {
                 WorldCity origin = cities[i];
-                
-                for(int j=0; j<count; j++)
+                int connectionsCount = 0;
+                double connectionsMax = Math.Min(20, Math.Round(origin.Pop * 4));
+
+                for (int j=0; j<count; j++)
                 {
                     WorldCity dest = cities[j];
 
@@ -93,6 +119,12 @@ namespace Infragistics.Samples
                             string id = origin.Name.Substring(0, 3).ToUpper() + "-" + flightsCount;
                             FlightInfo flight = new FlightInfo() { ID = id, Origin = origin, Dest = dest, Time = time, Passengers = pass, Distance = distance, Points = paths };
                             Flights.Add(flight);
+                        }
+
+                        if (connectionsCount > connectionsMax)
+                        {
+                            //Console.WriteLine("Count: " + connectionsCount + ", Origin Name: " + origin.Name);
+                            break;
                         }
                     }
                 }
