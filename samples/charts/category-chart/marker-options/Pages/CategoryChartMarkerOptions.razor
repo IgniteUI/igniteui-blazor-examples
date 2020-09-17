@@ -35,16 +35,14 @@
     <div class="igComponent">
         @if (DataSource != null)
         {
-            <CategoryChart Height="100%" Width="100%"
+            <CategoryChart Height="100%" Width="100%" @ref="CategoryChartRef"
                            DataSource="DataSource"
                            ChartTitle="Olympic Medals By Country"
                            IsSeriesHighlightingEnabled="true"
                            ChartType="@ChartType"
+                           IsTransitionInEnabled="true"
                            YAxisMinimumValue="0">
             </CategoryChart>
-
-            @* TODO - Cannot currently change MarkerType on category chart
-            MarkerTypes="@MarkerTypes"*@
         }
     </div>
 </div>
@@ -53,7 +51,23 @@
 
     private List<OlympicMedals> DataSource;
     private CategoryChartType ChartType;
-    private MarkerType ChartMarkerType = MarkerType.Automatic;
+
+    private MarkerType _chartMarker;
+    private MarkerType ChartMarkerType
+    {
+        get { return _chartMarker; }
+        set
+        {
+            _chartMarker = value;
+            if (this.CategoryChartRef != null)
+            {
+                this.CategoryChartRef.MarkerTypes.Clear();
+                this.CategoryChartRef.MarkerTypes.Add(value);
+            }
+        }
+    }
+
+    private CategoryChart CategoryChartRef;
 
     protected override void OnInitialized()
     {
@@ -70,5 +84,6 @@
         DataSource = olympicMedals;
 
         this.ChartType = CategoryChartType.Auto;
+        this.ChartMarkerType = MarkerType.Automatic;
     }
 }
