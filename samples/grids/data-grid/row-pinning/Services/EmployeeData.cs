@@ -15,14 +15,13 @@ namespace Infragistics.Samples
         public string Name { get; set; }
         public string Street { get; set; }
         public string City { get; set; }
-        public string Generation { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Photo { get; set; }
         public double Salary { get; set; }
         public double Sales { get; set; }
-        public string Website { get; set; }
         public string Income { get; set; }
+        public int Index { get; set; }
 
         public DateTime Birthday { get; set; }
         public List<Productivity> Productivity { get; set; }
@@ -33,21 +32,16 @@ namespace Infragistics.Samples
             get { return _Country; }
             set { if (_Country != value) { OnCountryChanged(value); } }
         }
-        private string _CountryFlag;
-        public string CountryFlag
-        {
-            get { return _CountryFlag; }
-            set { if (_CountryFlag != value) { _CountryFlag = value; } }
-        }
+
+        public string CountryFlag { get; set; }
 
         protected void OnCountryChanged(string countryName)
         {
-            //Console.WriteLine("OnCountryChanged " + countryName);
             // syncronizing country name and country flag
-            this._Country = countryName;
-            this._CountryFlag = DataGenerator.GetCountryFlag(countryName);
+            _Country = countryName;
+            CountryFlag = DataGenerator.GetCountryFlag(countryName);
+            City = DataGenerator.GetCity(countryName);
             OnPropertyChanged("Country");
-            OnPropertyChanged("CountryFlag");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -82,21 +76,18 @@ namespace Infragistics.Samples
                 var street = DataGenerator.GetStreet();
                 var country = DataGenerator.GetCountry();
                 var city = DataGenerator.GetCity(country);
-                var generation = Math.Floor(age / 10) * 10 + "s";
                 var email = firstName.ToLower() + "@" + DataGenerator.GetEmail();
-                var website = firstName.ToLower() + DataGenerator.GetWebsite();
-
                 var photoPath = DataGenerator.GetPhoto(gender);
 
                 var employee = new Employee
                 {
+                    Index = i,
                     Address = street + ", " + city,
                     Age = age,
                     Birthday = DataGenerator.GetBirthday(),
-                    City = DataGenerator.GetCity(country),
+                    City = city,
                     Email = email,
-                    Gender = DataGenerator.GetGender(),
-                    Generation = generation,
+                    Gender = gender,
                     ID = DataGenerator.Pad(1001 + i, 4),
                     FirstName = firstName,
                     LastName = lastName,
@@ -106,11 +97,11 @@ namespace Infragistics.Samples
                     Street = DataGenerator.GetStreet(),
                     Salary = DataGenerator.GetNumber(40, 200) * 1000,
                     Sales = DataGenerator.GetNumber(200, 980) * 1000,
-                    Website = website,
                 };
                 employee.Country = country;
 
                 employee.Income = DataGenerator.GetIncomeRange(employee.Salary);
+
                 if (useProductivity.HasValue && useProductivity.Value)
                 {
                     employee.Productivity = GetProductivity(52);
@@ -133,7 +124,6 @@ namespace Infragistics.Samples
                     Value = value,
                     Week = w
                 };
-                //Console.WriteLine("productivity " + w + " " + value);
                 productivity.Add(prod);
             };
 
