@@ -8,26 +8,24 @@
         @if (DataSource != null)
         {
             <DataGrid Height="100%" Width="100%"
-                      RowHeight="70"
+                      RowHeight="90"
                       AutoGenerateColumns="false"
 
                       DataSource="@DataSource">
-                <TextColumn Field="ProductID" HeaderText="ID" Width="90"
+                <TextColumn Field="ProductID" HeaderText="ID" Width="@("*>110")"
                             HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
-                <TextColumn Field="ProductName" HeaderText="Product" Width="140" />
-                <NumericColumn Field="ProductPrice" HeaderText="Price" Width="100"
+                <TextColumn Field="ProductName" HeaderText="Product" Width="@("*>140")" />
+                <NumericColumn Field="ProductPrice" HeaderText="Price" Width="@("*>110")"
                                PositivePrefix="$" ShowGroupingSeparator="true"
                                MinFractionDigits="2" />
 
                 @* custom sparkline solumn: *@
-                <TemplateColumn Field="OrderHistory" Width="200"
-                                HeaderText="Order History"
+                <TemplateColumn Field="OrderHistory" Width="@("*>180")"
+                                HeaderText="Order History" PaddingTop="10" PaddingBottom="10"
                                 HorizontalAlignment="CellContentHorizontalAlignment.Center">
                     <Template>
                         <RenderFragment>
-                            @*TODO make sparkline fill out gird's cell such that it works when resizing column*@
-                            @*NOTE grid does not render sparkline when its container has 100% dimensions*@
-                             <div style="width: 150px; height: 50px; background: lightgray">
+                             <div style="width: 100%; height: 70px; background: transparent">
                                  <Sparkline Height="100%" Width="100%"
                                             DataSource="@((context.RowItem as Product).OrderHistory)"
                                             DisplayType="SparklineDisplayType.Line"
@@ -40,13 +38,14 @@
                     </Template>
                 </TemplateColumn>
 
-                <NumericColumn Field="OrderCount" HeaderText="Orders" Width="110"
+                <NumericColumn Field="OrderCount" HeaderText="Orders" Width="@("*>110")"
                                HorizontalAlignment="CellContentHorizontalAlignment.Center" />
-                <NumericColumn Field="Profit" Width="120" PositivePrefix="$" ShowGroupingSeparator="true" />
+                <NumericColumn Field="Profit" Width="@("*>120")" PositivePrefix="$" ShowGroupingSeparator="true" />
 
-                <ImageColumn IsEditable="false" Field="CountryFlag" HeaderText="Country" Width="120"
-                             ContentOpacity="1" HorizontalAlignment="CellContentHorizontalAlignment.Center" />
-                <TextColumn Field="Status" HeaderText="Status" Width="110"
+                <ImageColumn IsEditable="false" Field="CountryFlag" HeaderText="Country" Width="@("*>120")"
+                             ContentOpacity="1" HorizontalAlignment="CellContentHorizontalAlignment.Center" 
+                             PaddingTop="10" PaddingBottom="10"/>
+                <TextColumn Field="Status" HeaderText="Status" Width="@("*>120")"
                             HorizontalAlignment="CellContentHorizontalAlignment.Center" />
             </DataGrid>
         }

@@ -17,23 +17,23 @@
                       ColumnShowingAnimationMode="@ColumnShowingAnimationMode.Auto"
                       ColumnHidingAnimationMode="@ColumnHidingAnimationMode.Auto"
                       DataSource="@DataSource">
-                <TextColumn Field="FirstName" HeaderText="First Name" Width="130" />
-                <TextColumn Field="LastName" HeaderText="Last Name" Width="130" />
-                <TextColumn Field="Territory" Width="130" />
-                <NumericColumn Field="YearToDateSales" HeaderText="YTD Sales" Width="130"
+                <TextColumn Field="FirstName" HeaderText="First Name" Width="@("*>130")" />
+                <TextColumn Field="LastName" HeaderText="Last Name" Width="@("*>130")" />
+                <TextColumn Field="Territory" Width="@("*>130")" />
+                <NumericColumn Field="YearToDateSales" HeaderText="YTD Sales" Width="@("*>130")"
                                PositivePrefix="$" ShowGroupingSeparator="true" />
-                <TemplateColumn Field="AvgSale" HeaderText="Avg. Sale" Width="120" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
+                <TemplateColumn Field="AvgSale" HeaderText="Avg. Sale" Width="@("*>120")" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
                                 CellUpdatingScript="onAvgSaleCellUpdating"  />
-                <TemplateColumn Field="Change" Width="120" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
+                <TemplateColumn Field="Change" Width="@("*>120")" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
                                 CellUpdatingScript="onChangeCellUpdating"/>
-                <TemplateColumn Field="PercentChange" Width="140" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
+                <TemplateColumn Field="PercentChange" Width="@("*>140")" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
                                 HeaderText="Change (%)" CellUpdatingScript="onPercentChangeCellUpdating"/>
-                <DateTimeColumn Field="DateValue" HeaderText="Date" Width="120" />
+                <DateTimeColumn Field="DateValue" HeaderText="Date" Width="@("*>120")" />
 
                 @for (int i = 0; i < 8; i++)
                 {
                     string str = "KPI_" + i.ToString();
-                    <NumericColumn Width="150" Field="@str" DataBoundScript="onKPIColumnDataBound"/>
+                    <NumericColumn Width="@("*>150")" Field="@str" DataBoundScript="onKPIColumnDataBound"/>
                 }
             </DataGrid>
         }

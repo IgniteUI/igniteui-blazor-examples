@@ -25,7 +25,7 @@
     <div class="igComponent">
         @if (DataSource != null)
         {
-            <DataGrid Height="500px" Width="100%" @ref="@DataGridRef"
+            <DataGrid Height="calc(100% - 3rem)" Width="100%" @ref="@DataGridRef"
                       SummaryScope="@GridSummaryScope"
                       GroupSummaryDisplayMode="@GridGroupSummaryDisplayMode"
                       AutoGenerateColumns="false"
@@ -33,14 +33,14 @@
                       GroupHeaderDisplayMode="@DataSourceSectionHeaderDisplayMode.Combined"
                       IsColumnOptionsEnabled="true"
                       DataSource="@DataSource">
-                <NumericColumn Field="ID" Width="120" HeaderText="ID" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
-                <TextColumn Field="ProductName" Width="130" HeaderText="Product" />
-                <NumericColumn Field="BundlePrice" PositivePrefix="$" Width="120" ShowGroupingSeparator="true" HeaderText="Price" />
-                <NumericColumn Field="OrderItems" Width="140" HeaderText="Orders" />
-                <NumericColumn Field="OrderValue" Width="160" ShowGroupingSeparator="true" HeaderText="Order Totals" PositivePrefix="$" />
-                <DateTimeColumn Field="OrderDate" Width="150" HeaderText="Order Date" HorizontalAlignment="@CellContentHorizontalAlignment.Right" />
-                <NumericColumn Field="Profit" Width="140" ShowGroupingSeparator="true" HeaderText="Profit" PositivePrefix="$" />
-                <TextColumn Field="Country" Width="170" HeaderText="Ship Country" />
+                <NumericColumn Field="ID" Width="@("*>120")" HeaderText="ID" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
+                <TextColumn Field="ProductName" Width="@("*>130")" HeaderText="Product" />
+                <NumericColumn Field="BundlePrice" PositivePrefix="$" Width="@("*>120")" ShowGroupingSeparator="true" HeaderText="Price" />
+                <NumericColumn Field="OrderItems" Width="@("*>140")" HeaderText="Orders" />
+                <NumericColumn Field="OrderValue" Width="@("*>160")" ShowGroupingSeparator="true" HeaderText="Order Totals" PositivePrefix="$" />
+                <DateTimeColumn Field="OrderDate" Width="@("*>150")" HeaderText="Order Date" HorizontalAlignment="@CellContentHorizontalAlignment.Right" />
+                <NumericColumn Field="Profit" Width="@("*>140")" ShowGroupingSeparator="true" HeaderText="Profit" PositivePrefix="$" />
+                <TextColumn Field="Country" Width="@("*>170")" HeaderText="Ship Country" />
             </DataGrid>
         }
     </div>
