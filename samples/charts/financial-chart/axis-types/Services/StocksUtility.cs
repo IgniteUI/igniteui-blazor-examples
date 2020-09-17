@@ -52,14 +52,12 @@ namespace Infragistics.Samples
             var c = l + (rand.NextDouble() * (h - l));
 
             List<StockItem> stock = new List<StockItem> { };
-            Console.WriteLine(time);
-            Console.WriteLine(dateEnd);
+           
             while (time < dateEnd)
             {
-
                 var stockItem =
                 new StockItem{
-                    Open = o, High = h, Low = l, Close = c, Volume = v
+                    Date = time, Open = o, High = h, Low = l, Close = c, Volume = v
                 };
 
                 stock.Add(stockItem);
