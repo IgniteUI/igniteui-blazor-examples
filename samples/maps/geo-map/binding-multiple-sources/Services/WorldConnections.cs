@@ -62,8 +62,7 @@ namespace Infragistics.Samples
             for (int i=0; i<count; i++)
             {
                 WorldCity origin = cities[i];
-                double connectionsMax = Math.Min(20, Math.Round(origin.Pop * 4));
-
+                
                 for(int j=0; j<count; j++)
                 {
                     WorldCity dest = cities[j];
@@ -95,11 +94,6 @@ namespace Infragistics.Samples
                             FlightInfo flight = new FlightInfo() { ID = id, Origin = origin, Dest = dest, Time = time, Passengers = pass, Distance = distance, Points = paths };
                             Flights.Add(flight);
                         }
-
-                        if(connectionsCount > connectionsMax)
-                        {
-                            break;
-                        }
                     }
                 }
 
@@ -130,37 +124,32 @@ namespace Infragistics.Samples
         {
             List<CoordinateLine> gridlines = new List<CoordinateLine>();
 
-            for(int lon = -180; lon <= 180; lon += 30)
+            List<List<Point>> latLines = new List<List<Point>>();
+            List<List<Point>> lonLines = new List<List<Point>>();
+
+            for (int lon = -180; lon <= 180; lon += 30)
             {
                 List<Point> points = new List<Point>();
                 points.Add(new Point(lon, -90));
                 points.Add(new Point(lon, 90));
 
-                CoordinateLine line = new CoordinateLine()
-                {
-                    Points = points,
-                    Degree = lon,
-                    Direction = lon > 0 ? "E" : "W"
-                };
-
-                gridlines.Add(line);
+                lonLines.Add(points);
             }
 
-            for(int lat= -90; lat<= 90; lat += 30)
+            for (int lat= -90; lat<= 90; lat += 30)
             {
                 List<Point> points = new List<Point>();
                 points.Add(new Point(-180, lat));
                 points.Add(new Point(180, lat));
 
-                CoordinateLine line = new CoordinateLine()
-                {
-                    Points = points,
-                    Degree = lat,
-                    Direction = lat > 0 ? "N" : "S"
-                };
-
-                gridlines.Add(line);
+                latLines.Add(points);
             }
+
+            CoordinateLine lines1 = new CoordinateLine() { Points = lonLines };
+            CoordinateLine lines2 = new CoordinateLine() { Points = latLines };
+
+            gridlines.Add(lines1);
+            gridlines.Add(lines2);
 
             return gridlines;
         }
@@ -180,8 +169,6 @@ namespace Infragistics.Samples
 
     public class CoordinateLine
     {
-        public List<Point> Points { get; set; }
-        public double Degree { get; set; }
-        public string Direction { get; set; }
+        public List<List<Point>> Points { get; set; }        
     }
 }
