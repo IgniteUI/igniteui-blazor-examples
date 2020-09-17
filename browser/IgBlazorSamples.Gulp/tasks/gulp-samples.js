@@ -50,6 +50,7 @@ var sampleSource = [
 
     // igConfig.SamplesCopyPath + '/gauges/bullet-graph/animation/Pages/',
     // igConfig.SamplesCopyPath + '/grids/**/binding-live-data/Pages/',
+    // igConfig.SamplesCopyPath + '/grids/**/overview/Pages/',
     // igConfig.SamplesCopyPath + '/grids/**/column-types/Pages/',
 
     // igConfig.SamplesCopyPath + '/excel/excel-library/**/Pages/',
@@ -241,7 +242,7 @@ function saveFile(filePath, fileContent) {
 
 function copySamplePages(cb, outputPath) {
 
-    log('copying samples to: ' + outputPath);
+    log('copying samples to: ' + outputPath + '/Pages/' );
     // log('copying sample files... ');
     for (const sample of samples) {
 
@@ -254,15 +255,18 @@ function copySamplePages(cb, outputPath) {
         for (const file of sample.SourceFiles) {
             // log("copy " + sample.SampleRoute + " " + sample.ComponentFolder + " " + file.Path);
                 // log("TO copy " + file.Path + '/' + file.Name);
-            if (file.isRazorComponent()) {
-                // log("copy " + file.Path);
-                log("copying " + outputPath + '/Components/' + file.Name);
-                saveFile(outputPath + '/Components/' + file.Name, file.Content);
-            } else if (file.isRazorSample()) {
+            // if (file.isRazorComponent()) {
+            //     // log("copy " + file.Path);
+            //     log("copying " + outputPath + '/Components/' + file.Name);
+            //     saveFile(outputPath + '/Components/' + file.Name, file.Content);
+            // } else
+            if (file.isRazorSample()) {
                 log("copying " + outputPath + '/Pages/' + sampleFolder + '/' + file.Name);
                 saveFile(outputPath + '/Pages/' + sampleFolder + '/' + file.Name, file.Content);
-            } else {
+            } else if (file.isCS())  {
                 saveFile(outputPath + '/Services/' + file.Name, file.Content);
+            } else {
+                log("WARNING unknown source file: " + file.Path);
             }
         }
     }
