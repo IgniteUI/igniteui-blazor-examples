@@ -7,13 +7,12 @@
 
         @if (DataSource != null)
         {
-            //*TODO set customindicator properties
-            //CustomIndicatorNames="Custom Indicator(Price Changes)"
             <FinancialChart Width="100%"
                 Height="100%"
                 ChartType=FinancialChartType.Candle
                 ZoomSliderType="FinancialChartZoomSliderType.None"
                 DataSource="DataSource"
+                CustomIndicatorNames="@(new string[] {"Custom Indicator(Price Changes)"})"
                 ApplyCustomIndicatorsScript="onApplyCustomIndicators"/>
         }
     </div>
@@ -21,12 +20,13 @@
 
 @code {
 
-    List<StockItem> DataSource;
+    public List<StockItem> DataSource;    
 
     protected override void OnInitialized()
     {
         FinancialChartModule.Register(IgniteUIBlazor);
-
+        FinancialChartCoreModule.Register(IgniteUIBlazor);
+        
         GetStockData();
     }
 

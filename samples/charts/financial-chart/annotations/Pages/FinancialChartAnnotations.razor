@@ -34,11 +34,13 @@
         {
             <FinancialChart Width="100%"
                             Height="100%"
+
                             ChartType=FinancialChartType.Line
                             Thickness=2
                             XAxisMode="XAxisMode"
                             YAxisMode="YAxisMode"
                             DataSource="DataSource"
+                            ExcludedProperties=ExcludedProps
                             CalloutsVisible="CalloutsAnnotationVisible"
                             CalloutsXMemberPath="Index"
                             CalloutsYMemberPath="Value"
@@ -61,8 +63,8 @@
     public FinancialChartXAxisMode XAxisMode = FinancialChartXAxisMode.Ordinal;
     public FinancialChartYAxisMode YAxisMode = FinancialChartYAxisMode.Numeric;
     List<StockItem> DataSource;
-    public String Index = "";
-    public String Value = "";
+    
+    public string[] ExcludedProps { get; set; } = new string[] { "Index", "Info" };
     public CrosshairsDisplayMode CrosshairsMode = CrosshairsDisplayMode.Default;
     public Boolean CalloutsAnnotationVisible = true;
     public Boolean CrosshairsVisible = true;
