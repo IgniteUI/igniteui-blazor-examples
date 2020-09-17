@@ -57,7 +57,7 @@ var sampleSource = [
     // igConfig.SamplesCopyPath + '/excel/spreadsheet/**/Pages/',
 
     // excluding project's .razor files
-    "!" + igConfig.SamplesCopyPath + '/grids/**/binding-live-data/Pages/',
+    // "!" + igConfig.SamplesCopyPath + '/grids/**/binding-live-data/Pages/',
     "!" + igConfig.SamplesCopyPath + '/**/App.razor',
     "!" + igConfig.SamplesCopyPath + '/**/Program.cs',
     "!" + igConfig.SamplesCopyPath + '/**/obj/**',
@@ -140,7 +140,7 @@ function getSamples(cb) {
           '!' + sampleFolder + "/wwwroot/index.html",
           '!' + sampleFolder + "/wwwroot/index.css",
           '!' + sampleFolder + "/Pages/_*.razor",
-          '!' + sampleFolder + "/Pages/DataGridBindingLiveData.razor",
+        //   '!' + sampleFolder + "/Pages/DataGridBindingLiveData.razor",
           '!' + sampleFolder + "/Pages/*.g.cs",
           '!' + sampleFolder + "/obj/**",
           '!' + sampleFolder + "/obj/*.*",
