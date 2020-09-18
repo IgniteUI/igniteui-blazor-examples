@@ -4,7 +4,7 @@
 <div class="igContainer">
 
     <div class="igLegend">
-		<ItemLegend @ref="Legend"/>
+		<ItemLegend @ref="@Legend"/>
 	</div>
 
     <div class="igComponent">
@@ -15,8 +15,9 @@
                 <RingSeries DataSource="@DataSource"
                             LabelMemberPath="Summary"
                             ValueMemberPath="MarketShare"
-                            LegendLabelMemberPath="Company"
+                            LegendLabelMemberPath="Company"                           
                             Outlines="white">
+                    <ItemLegend />
                 </RingSeries>
             </DoughnutChart>
         }
@@ -26,13 +27,16 @@
 
 @code {
 
-    public DoughnutChart Chart;
+
     public ItemLegend Legend;
+    public DoughnutChart Chart;
     public List<DataItem> DataSource;
 
     protected override void OnInitialized()
     {
         DoughnutChartModule.Register(IgniteUIBlazor);
+        ItemLegendModule.Register(IgniteUIBlazor);
+
 
         var dataItems = new List<DataItem>();
         dataItems.Add(new DataItem() { MarketShare = 30, Company = "Google", });
@@ -42,8 +46,14 @@
         dataItems.Add(new DataItem() { MarketShare = 10, Company = "Other", });
 
         DataSource = dataItems;
-        //TODO
-        //Chart.Legend = this.Legend;
+
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        Chart.ActualSeries[0].Legend = Legend;
 
     }
 
