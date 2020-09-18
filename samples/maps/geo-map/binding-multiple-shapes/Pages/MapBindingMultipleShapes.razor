@@ -4,8 +4,9 @@
 <div class="igContainer">
     <div class="igComponent">
         <GeographicMap Height="100%" Width="100%" Zoomable="true">
-            <GeographicShapeSeries ShapefileDataSource="@AsiaShape" Outline="Black" Thickness="1" Brush="Red" />
-            <GeographicShapeSeries ShapefileDataSource="@EuropeShape" Outline="Black" Thickness="1" Brush="Purple" />
+            <GeographicShapeSeries ShapefileDataSource="@AsiaShape" Outline="Black" Thickness="1" Brush="#d10700" />
+            <GeographicShapeSeries ShapefileDataSource="@EuropeShape" Outline="Black" Thickness="1" Brush="#04b530" />
+            <GeographicShapeSeries ShapefileDataSource="@AmericanShape" Outline="Black" Thickness="1" Brush="#0073d1" />
         </GeographicMap>
     </div>
 </div>
@@ -14,6 +15,7 @@
 
     private ShapeDataSource AsiaShape;
     private ShapeDataSource EuropeShape;
+    private ShapeDataSource AmericanShape;
 
     protected override void OnInitialized()
     {
@@ -30,6 +32,12 @@
         {
             ShapefileSource = "https://static.infragistics.com/xplatform/shapes/world_region_europe.shp",
             DatabaseSource = "https://static.infragistics.com/xplatform/shapes/world_region_europe.dbf"
+        };
+
+        this.AmericanShape = new ShapeDataSource()
+        {
+            ShapefileSource = "https://static.infragistics.com/xplatform/shapes/world_region_north_america.shp",
+            DatabaseSource = "https://static.infragistics.com/xplatform/shapes/world_region_north_america.dbf"
         };
     }
 }
