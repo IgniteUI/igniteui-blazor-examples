@@ -16,7 +16,7 @@ Run `IgBlazorSamples.Client` as startup project
 
 # Copying Samples to IgBlazorSamples.Server
 
-Run `gulp copySamplesToClient` command to copy samples from:
+Run `gulp copySamplesToServer` command to copy samples from:
 - `../../samples/**/Pages/*.razor` files and
 - `../../samples/**/Services/*.cs` files and
 - `../../samples/**/wwwroot/*.js` files to
