@@ -235,6 +235,14 @@ function cleanupSampleBrowser(outputPath) {
     ], {force:true});
 }
 
+
+function cleanupSampleBrowsers(cb) {
+    cleanupSampleBrowser( "../../browser/IgBlazorSamples.Client");
+    cleanupSampleBrowser( "../../browser/IgBlazorSamples.Server");
+    cb();
+} exports.cleanupSampleBrowsers = cleanupSampleBrowsers;
+
+
 function saveFile(filePath, fileContent) {
     makeDirectoryFor(filePath);
     // if (!fs.existsSync(outputClientRazor)) {

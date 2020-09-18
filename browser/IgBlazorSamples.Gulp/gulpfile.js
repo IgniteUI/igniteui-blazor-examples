@@ -70,6 +70,9 @@ exports.copySamplesToClient = copySamplesToClient = gulp.series(
 );
 // exports.updateBrowser = updateBrowser = copySamples;
 
+exports.cleanupSampleBrowsers = cleanupSampleBrowsers = gulp.series(
+    sb.cleanupSampleBrowsers,
+);
 
 // exports.updateVersion = updateVersion = sb.updateVersion;
 
