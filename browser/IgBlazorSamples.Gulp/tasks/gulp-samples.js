@@ -46,7 +46,8 @@ var sampleSource = [
     igConfig.SamplesCopyPath + '/gauges/linear-gauge/**/Pages/',
     igConfig.SamplesCopyPath + '/gauges/radial-gauge/**/Pages/',
     igConfig.SamplesCopyPath + '/grids/**/Pages/',
-    // igConfig.SamplesCopyPath + '/layouts/**/Pages/',
+    igConfig.SamplesCopyPath + '/editors/**/Pages/',
+    igConfig.SamplesCopyPath + '/layouts/**/Pages/',
 
     // igConfig.SamplesCopyPath + '/gauges/bullet-graph/animation/Pages/',
     // igConfig.SamplesCopyPath + '/grids/**/binding-live-data/Pages/',
