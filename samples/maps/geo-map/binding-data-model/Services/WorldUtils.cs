@@ -12,18 +12,18 @@ namespace Infragistics.Samples
         public static List<List<Point>> CalcPaths(GeoLocation origin, GeoLocation dest)
         {
             int interval = 200;
-            List<List<Point>> paths = new List<List<Point>>() { new List<Point>() };
+            var paths = new List<List<Point>>() { new List<Point>() };
             int pathID = 0;
             double distance = WorldUtils.CalcDistance(origin, dest);
 
-            if(distance <= interval)
+            if (distance <= interval)
             {
-                Console.WriteLine("Distance Less Than Equal To Interval!");
+                // Console.WriteLine("Distance Less Than Equal To Interval!");
                 paths[pathID].Add(new Point() { X = dest.Lon, Y = dest.Lat });
             }
             else
             {
-                Console.WriteLine("Distance Greater Than Interval!");
+                // Console.WriteLine("Distance Greater Than Interval!");
                 GeoLocation current = origin;
                 GeoLocation previous = origin;
 

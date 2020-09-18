@@ -50,7 +50,7 @@ namespace Infragistics.Samples
 
                 item.Time = new DateTime(y, m, d);
             }
-            
+
             return data;
 
         }

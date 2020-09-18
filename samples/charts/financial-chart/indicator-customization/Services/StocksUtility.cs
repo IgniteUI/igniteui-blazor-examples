@@ -51,8 +51,7 @@ namespace Infragistics.Samples
             var l = o - (rand.NextDouble() * priceRange);
             var c = l + (rand.NextDouble() * (h - l));
 
-            List<StockItem> stock = new List<StockItem> { };
-           
+            var stock = new List<StockItem> { };
             while (time < dateEnd)
             {
                 var stockItem =

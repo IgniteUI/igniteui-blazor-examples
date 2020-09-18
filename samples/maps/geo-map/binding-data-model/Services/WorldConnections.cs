@@ -7,24 +7,26 @@ using System.Threading.Tasks;
 
 namespace Infragistics.Samples
 {
-    public class WorldConnections
+    public static class WorldConnections
     {
-
         public static List<FlightInfo> Flights { get; set; }
         public static List<WorldCity> Airports { get; set; }
 
         public static Dictionary<string, string> FlightsLookup = new Dictionary<string, string>();
         public static Dictionary<string, WorldCity> AirportsLookup = new Dictionary<string, WorldCity>();
 
-        public static List<FlightInfo> GetFlights()
+        static WorldConnections()
         {
             Init();
+        }
+
+        public static List<FlightInfo> GetFlights()
+        {;
             return Flights;
         }
 
         public static List<WorldCity> GetAirports()
         {
-            Init();
             return Airports;
         }
 
@@ -42,29 +44,51 @@ namespace Infragistics.Samples
             return 0;
         }
 
-        static Random r = new Random();
+        static Random rand = new Random();
+
         public static void Init()
         {
             Flights = new List<FlightInfo>();
             Airports = new List<WorldCity>();
 
-            List<WorldCity> cities = WorldLocations.GetAll();
-            cities.Sort(new Comparison<WorldCity>(ComparePopulation));
+            var fullCityList = WorldLocations.GetAll();
+            var cities = new List<WorldCity>();
+
+            var countries = new Dictionary<string, int>();
+
+            foreach (var city in fullCityList)
+            {
+                if (countries.ContainsKey(city.Country))
+                {
+                    if (countries[city.Country] < 2)
+                    {
+                        cities.Add(city);
+                        countries[city.Country]++;
+                    }
+                }
+                else
+                {
+                    cities.Add(city);
+                    countries.Add(city.Country, 1);
+                }
+            }
+
+            fullCityList.Sort(new Comparison<WorldCity>(ComparePopulation));
 
             int count = cities.Count;
             int flightsCount = 0;
-            int connectionsCount = 0;
 
             double minDistance = 200;
-            double maxDistance = 9000;
-            double flightsLimit = 1500;
+            double maxDistance = 10000;
+            double flightsLimit = 250;
 
             for (int i=0; i<count; i++)
             {
                 WorldCity origin = cities[i];
+                int connectionsCount = 0;
                 double connectionsMax = Math.Min(20, Math.Round(origin.Pop * 4));
 
-                for(int j=0; j<count; j++)
+                for (int j=0; j<count; j++)
                 {
                     WorldCity dest = cities[j];
 
@@ -79,7 +103,7 @@ namespace Infragistics.Samples
                         double distance = Math.Round(WorldUtils.CalcDistance(originGeo, destGeo));
                         bool distanceIsValid = distance > minDistance && distance < maxDistance;
 
-                        double pass = Math.Round(r.NextDouble() * 200) + 150;
+                        double pass = Math.Round(rand.NextDouble() * 200) + 150;
                         double time = distance / 800;
                         bool trafficIsValid = origin.Pop > 3 && dest.Pop > 1.0;
 
@@ -96,17 +120,18 @@ namespace Infragistics.Samples
                             Flights.Add(flight);
                         }
 
-                        if(connectionsCount > connectionsMax)
+                        if (connectionsCount > connectionsMax)
+                        {
+                            //Console.WriteLine("Count: " + connectionsCount + ", Origin Name: " + origin.Name);
+                            break;
+                        }
+                        if (flightsCount > flightsLimit)
                         {
                             break;
                         }
                     }
                 }
 
-                if(flightsCount > flightsLimit)
-                {
-                    break;
-                }
             }
 
             foreach(FlightInfo flight in Flights)
@@ -116,6 +141,7 @@ namespace Infragistics.Samples
             }
 
             Airports = AirportsLookup.Values.ToList();
+            Console.WriteLine("Cities= " + cities.Count + " Airports=" + Airports.Count + " Flights=" + Flights.Count);
         }
 
         public static void AddAirport(WorldCity city)
@@ -130,37 +156,32 @@ namespace Infragistics.Samples
         {
             List<CoordinateLine> gridlines = new List<CoordinateLine>();
 
-            for(int lon = -180; lon <= 180; lon += 30)
+            List<List<Point>> latLines = new List<List<Point>>();
+            List<List<Point>> lonLines = new List<List<Point>>();
+
+            for (int lon = -180; lon <= 180; lon += 30)
             {
                 List<Point> points = new List<Point>();
                 points.Add(new Point(lon, -90));
                 points.Add(new Point(lon, 90));
 
-                CoordinateLine line = new CoordinateLine()
-                {
-                    Points = points,
-                    Degree = lon,
-                    Direction = lon > 0 ? "E" : "W"
-                };
-
-                gridlines.Add(line);
+                lonLines.Add(points);
             }
 
-            for(int lat= -90; lat<= 90; lat += 30)
+            for (int lat= -90; lat<= 90; lat += 30)
             {
                 List<Point> points = new List<Point>();
                 points.Add(new Point(-180, lat));
                 points.Add(new Point(180, lat));
 
-                CoordinateLine line = new CoordinateLine()
-                {
-                    Points = points,
-                    Degree = lat,
-                    Direction = lat > 0 ? "N" : "S"
-                };
-
-                gridlines.Add(line);
+                latLines.Add(points);
             }
+
+            CoordinateLine lines1 = new CoordinateLine() { Points = lonLines };
+            CoordinateLine lines2 = new CoordinateLine() { Points = latLines };
+
+            gridlines.Add(lines1);
+            gridlines.Add(lines2);
 
             return gridlines;
         }
@@ -180,8 +201,6 @@ namespace Infragistics.Samples
 
     public class CoordinateLine
     {
-        public List<Point> Points { get; set; }
-        public double Degree { get; set; }
-        public string Direction { get; set; }
+        public List<List<Point>> Points { get; set; }
     }
 }
