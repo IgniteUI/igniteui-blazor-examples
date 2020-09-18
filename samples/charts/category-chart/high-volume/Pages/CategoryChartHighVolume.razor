@@ -10,35 +10,41 @@
         <button @onclick="OnDataGenerateClick">Generate Data</button>
     </div>
     <div class="igComponent">
-        @if (DataSource != null)
-        {
-            <CategoryChart Height="100%" Width="100%"
-                           ChartType="CategoryChartType.Line"
-                           DataSource="DataSource"
-                           IsTransitionInEnabled="true">
-            </CategoryChart>
-        }
+        <CategoryChart @ref="chart"
+            Height="100%" Width="100%"
+            ChartType="CategoryChartType.Line"
+            DataSourceScript="getHighVolumeData"
+            IsTransitionInEnabled="true">
+        </CategoryChart>
     </div>
 </div>
 
 @code {
-
+    private CategoryChart chart;
     private int DataPoints = 1000;
     private string DataInfo;
-    private List<CategoryDataItem> DataSource;
 
     protected override void OnInitialized()
     {
         CategoryChartModule.Register(IgniteUIBlazor);
 
-        this.DataInfo = CategoryDataSource.ToShortString(this.DataPoints);
-        this.DataSource = CategoryDataSource.Generate(0, this.DataPoints, true);
+        this.DataInfo = CategoryDataSource.ToShortString(this.DataPoints);   
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await IgniteUIBlazor.JsRuntime.InvokeVoidAsync("setHighVolumeDataCount", this.DataPoints);
+        }
+
+        await base.OnAfterRenderAsync(firstRender);    
     }
 
     private void OnDataPointsChanged(ChangeEventArgs args)
     {
         this.DataPoints = int.Parse(args.Value.ToString());
-        this.DataInfo = CategoryDataSource.ToShortString(this.DataPoints);
+        this.DataInfo = CategoryDataSource.ToShortString(this.DataPoints);        
     }
 
     private void OnDataGenerateClick()
@@ -46,8 +52,8 @@
         this.GenerateData();
     }
 
-    private void GenerateData()
+    private async Task GenerateData()
     {
-        this.DataSource = CategoryDataSource.Generate(0, this.DataPoints, true);
+        await IgniteUIBlazor.JsRuntime.InvokeVoidAsync("setHighVolumeDataCount", this.DataPoints);
     }
 }
