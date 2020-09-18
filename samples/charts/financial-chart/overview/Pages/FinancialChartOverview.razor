@@ -1,6 +1,5 @@
 @* this namespace is required for Infragistics controls *@
 @using IgniteUI.Blazor.Controls
-
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="igContainer">
@@ -11,12 +10,10 @@
     </div>
     <div class="igComponent">
 
-        @if (DataSource != null)
-        {
             <FinancialChart
+                @ref="Chart"
                 Width="100%"
                 Height="100%"
-                Legend="@FinancialLegend"
                 ChartType="FinancialChartType.Bar"
                 Thickness=2
                 ExcludedProperties="@(new string[] { "Date" })"
@@ -26,19 +23,29 @@
                 Subtitle="Between 2013 and 2017"
                 IsToolbarVisible="true"
                 YAxisMode="FinancialChartYAxisMode.PercentChange"/>
-        }
-
+        
     </div>
 </div>
 
 @code {
 
-    protected List<StockPrice[]> DataSource;
-    protected Legend FinancialLegend { get; set; }
+    public List<StockPrice[]> DataSource;
+    public Legend FinancialLegend { get; set; }
+    public FinancialChart Chart;
 
     protected override async Task OnInitializedAsync()
     {
         FinancialChartModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
         this.DataSource = await StocksHistory.GetMultipleStocks();
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        if(Chart != null)
+        Chart.Legend = FinancialLegend;
+
     }
 }
