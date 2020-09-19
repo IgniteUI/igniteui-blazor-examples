@@ -2,7 +2,7 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer-horizontal">
+<div class="igContainer">
 
 	<div class="igLegend">
           <ItemLegend @ref="Legend"/>
@@ -34,6 +34,7 @@
     protected override void OnInitialized()
     {
         PieChartModule.Register(IgniteUIBlazor);
+        ItemLegendModule.Register(IgniteUIBlazor);
 
         var dataItems = new List<DataItem>();
         dataItems.Add(new DataItem() { MarketShare = 30, Company = "Google", });
@@ -43,15 +44,21 @@
         dataItems.Add(new DataItem() { MarketShare = 10, Company = "Other", });
 
         DataSource = dataItems;
-		//TODO
-        //Chart.Legend = this.Legend;
+
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        Chart.Legend = Legend;
+
     }
 
     public class DataItem
     {
         public string Company { get; set; }
         public double MarketShare { get; set; }
-
         public string Summary { get { return Company + " " + MarketShare + "%"; } }
     }
 }
