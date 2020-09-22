@@ -1,75 +1,27 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-    <div class="igContainer">
-         
-        <span > MultiColumnCombobo</span>
+    <div class="igContainer">    
         <div class="igComponent">
-             
-            @*TODO add MultiColumnComboBox control *@
+            @if (CountryNames != null)
+            {
+                <MultiColumnComboBox Height="50px" Width="400px"
+                    DataSource="CountryNames"
+                    TextField="Country" />
+            }    
         </div>
     </div>
 
 @code {
 
-    protected List<CountryInfo> Data;
-    protected TreemapLayoutType TreeLayout = TreemapLayoutType.Squarified;
-    protected TreemapOrientation TreeOrientation = TreemapOrientation.Vertical;
-    protected string SelectedItemInfo = "Select Tree Node";
+
+    protected List<CountryInfo> CountryNames;
 
     protected override void OnInitialized()
     {
         MultiColumnComboBoxModule.Register(IgniteUIBlazor);
 
-        this.Data = CountryTreeData.Create();
-
-        Console.WriteLine("CountryTreeData " + this.Data.Count);
-    }
-
-    // handling NodePointerEnter action
-    private void onNodePointerEnter(TreemapNodePointerEventArgs arg)
-    {
-        var item = arg.Item as CountryInfo;
-        if (item == null) return;
-
-        if (item.Parent == null)
-        {
-            this.SelectedItemInfo = "" + item.Name;
-        }
-        else
-        {
-            var population = (item.Pop / 1000000).ToString("0M people");
-            this.SelectedItemInfo = "" + item.Name + ": " + population;
-        }
-        this.StateHasChanged();
-    }
-
-    private void onClickSquarified()
-    {
-        TreeLayout = TreemapLayoutType.Squarified;
-    }
-
-    private void onClickSliceVer()
-    {
-        TreeLayout = TreemapLayoutType.SliceAndDice;
-        TreeOrientation = TreemapOrientation.Vertical;
-    }
-
-    private void onClickSliceHor()
-    {
-        TreeLayout = TreemapLayoutType.SliceAndDice;
-        TreeOrientation = TreemapOrientation.Horizontal;
-    }
-
-    private void onClickStripVer()
-    {
-        TreeLayout = TreemapLayoutType.Stripped;
-        TreeOrientation = TreemapOrientation.Vertical;
-    }
-
-    private void onClickStripHor()
-    {
-        TreeLayout = TreemapLayoutType.Stripped;
-        TreeOrientation = TreemapOrientation.Horizontal;
+        this.CountryNames = CountryTreeData.Create();
+            
     }
 }
