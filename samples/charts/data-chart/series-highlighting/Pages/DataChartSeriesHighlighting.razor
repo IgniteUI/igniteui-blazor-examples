@@ -45,7 +45,7 @@
 
 @code {
 
-    private List<Energy> DataSource;
+    private List<EnergyProductionData.Energy> DataSource;
     private bool SeriesHighlightEnabled = true;
 
     private CategoryItemHighlightLayer ItemHighlightLayer;
@@ -62,7 +62,7 @@
         CategoryHighlightLayerModule.Register(IgniteUIBlazor);
         CategoryItemHighlightLayerModule.Register(IgniteUIBlazor);
 
-        this.DataSource = DataChartSharedData.GetEnergyProduction();
+        this.DataSource = EnergyProductionData.Generate();
 
         this.ItemHighlightLayer = new CategoryItemHighlightLayer();
         this.CategoryHighlightLayer = new CategoryHighlightLayer();
