@@ -258,7 +258,10 @@ function copySamplePages(cb, outputPath) {
     for (const sample of samples) {
 
         // lint and force auto-generation of routing paths (@page) in razor files
+            
+        if(!(sample.ComponentFolder.includes("dock-manager"))){
         Transformer.lintSample(sample, true);
+        }
 
         let sampleFolder = sample.ComponentGroup + '/' + sample.ComponentFolder
         // outputFolder = Strings.toTitleCase(outputClient);
