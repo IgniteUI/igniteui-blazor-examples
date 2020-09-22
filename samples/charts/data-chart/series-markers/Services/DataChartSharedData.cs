@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Infragistics.Samples
 {
-    public static class DataChartSharedData
+    public class DataChartSharedData
     { 
         public static List<OlympicMedals> GetOlympicMedals()
         {
@@ -16,14 +16,14 @@ namespace Infragistics.Samples
             olympicMedals.Add(new OlympicMedals() { Year = "2016", USA = 146, CHN = 112, RUS = 88 });
 
             return olympicMedals;
-        }
+        }       
+    }
 
-        public class OlympicMedals
-        {
-            public int USA { get; set; }
-            public int CHN { get; set; }
-            public int RUS { get; set; }
-            public string Year { get; set; }
-        }
+    public class OlympicMedals
+    {
+        public int USA { get; set; }
+        public int CHN { get; set; }
+        public int RUS { get; set; }
+        public string Year { get; set; }
     }
 }
