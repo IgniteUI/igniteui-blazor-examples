@@ -5,6 +5,15 @@ namespace Infragistics.Samples
 {
     public static class DataChartSharedData
     {
+        public class Energy {
+            public string Country { get; set; }
+            public double Coal { get; set; }
+            public double Oil { get; set; }
+            public double Gas { get; set; }
+            public double Nuclear { get; set; }
+            public double Hydro { get; set; }
+        }
+
         public static List<Energy> GetEnergyProduction() {
             var dp = new Energy { Country = "", Coal = 400000000};
 
@@ -18,15 +27,5 @@ namespace Infragistics.Samples
             };
             return data;
         }
-    }
-
-    public class Energy
-    {
-        public string Country { get; set; }
-        public double Coal { get; set; }
-        public double Oil { get; set; }
-        public double Gas { get; set; }
-        public double Nuclear { get; set; }
-        public double Hydro { get; set; }
     }
 }
