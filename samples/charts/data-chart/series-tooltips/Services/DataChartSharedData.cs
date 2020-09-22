@@ -5,15 +5,6 @@ namespace Infragistics.Samples
 {
     public static class DataChartSharedData
     {
-        public class Energy {
-            public string Country { get; set; }
-            public double Coal { get; set; }
-            public double Oil { get; set; }
-            public double Gas { get; set; }
-            public double Nuclear { get; set; }
-            public double Hydro { get; set; }
-        }
-
         public static List<Energy> getEnergyProduction() {
             var dp = new Energy { Country = "", Coal = 400000000};
 
@@ -50,59 +41,59 @@ namespace Infragistics.Samples
                 return data;
             }
 
-            public static DataItem getLastItem(List<DataItem> array) {
-                if (array.Count == 0) {
-                    return null;
-                }
-                return array[array.Count - 1];
+        public static DataItem getLastItem(List<DataItem> array) {
+            if (array.Count == 0) {
+                return null;
+            }
+            return array[array.Count - 1];
+        }
+
+        public static DataItem getNewItem(List<DataItem> array, int index) {
+            var random = new Random();
+            var lastItem = DataChartSharedData.getLastItem(array);
+            var newValue = lastItem.Value + random.NextDouble() * 4.0 - 2.0;
+            return new DataItem { Label = index.ToString(), Value = newValue };
+        }
+
+        public class Temperature {
+            public string Label { get; set; }
+            public double Value { get; set; }
+            public double Low { get; set; }
+            public double High { get; set; }
+        }
+
+        public static List<Temperature> getTemperatures(double startValue, double startYear, double endYear) {
+            var data = new List<Temperature>();
+            var value = startValue;
+            var random = new Random();
+            for (var i = startYear; i <= endYear; i++) {
+                value += (random.NextDouble() - 0.5) * 0.5;
+                var high = value + (random.NextDouble() * 2);
+                var low = value - (random.NextDouble() * 2);
+                var v = Math.Abs(Math.Round(value * 10) / 10);
+                var h = Math.Abs(Math.Round(high * 10) / 10);
+                var l = Math.Abs(Math.Round(low * 10) / 10);
+                data.Add(new Temperature { Label = i.ToString(), Value = v, High = h, Low = l, });
+            }
+            return data;
+        }
+
+
+        public static string toShortString(double largeValue) {
+            double roundValue;
+
+            if (largeValue >= 1000000) {
+                roundValue = Math.Round(largeValue / 100000) / 10;
+                return roundValue + "m";
+            }
+            if (largeValue >= 1000) {
+                roundValue = Math.Round(largeValue / 100) / 10;
+                return roundValue + "k";
             }
 
-            public static DataItem getNewItem(List<DataItem> array, int index) {
-                var random = new Random();
-                var lastItem = DataChartSharedData.getLastItem(array);
-                var newValue = lastItem.Value + random.NextDouble() * 4.0 - 2.0;
-                return new DataItem { Label = index.ToString(), Value = newValue };
-            }
-
-            public class Temperature {
-                public string Label { get; set; }
-                public double Value { get; set; }
-                public double Low { get; set; }
-                public double High { get; set; }
-            }
-
-            public static List<Temperature> getTemperatures(double startValue, double startYear, double endYear) {
-                var data = new List<Temperature>();
-                var value = startValue;
-                var random = new Random();
-                for (var i = startYear; i <= endYear; i++) {
-                    value += (random.NextDouble() - 0.5) * 0.5;
-                    var high = value + (random.NextDouble() * 2);
-                    var low = value - (random.NextDouble() * 2);
-                    var v = Math.Abs(Math.Round(value * 10) / 10);
-                    var h = Math.Abs(Math.Round(high * 10) / 10);
-                    var l = Math.Abs(Math.Round(low * 10) / 10);
-                    data.Add(new Temperature { Label = i.ToString(), Value = v, High = h, Low = l, });
-                }
-                return data;
-            }
-
-
-            public static string toShortString(double largeValue) {
-                double roundValue;
-
-                if (largeValue >= 1000000) {
-                    roundValue = Math.Round(largeValue / 100000) / 10;
-                    return roundValue + "m";
-                }
-                if (largeValue >= 1000) {
-                    roundValue = Math.Round(largeValue / 100) / 10;
-                    return roundValue + "k";
-                }
-
-                roundValue = Math.Round(largeValue);
-                return roundValue + "";
-            }
+            roundValue = Math.Round(largeValue);
+            return roundValue + "";
+        }
 
         public static List<OlympicMedals> GetOlympicMedals()
         {
@@ -124,5 +115,14 @@ namespace Infragistics.Samples
             public int RUS { get; set; }
             public string Year { get; set; }
         }
+    }
+
+    public class Energy {
+            public string Country { get; set; }
+            public double Coal { get; set; }
+            public double Oil { get; set; }
+            public double Gas { get; set; }
+            public double Nuclear { get; set; }
+            public double Hydro { get; set; }
     }
 }

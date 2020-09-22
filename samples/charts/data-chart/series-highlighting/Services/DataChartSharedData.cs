@@ -4,15 +4,6 @@ using System.Collections.Generic;
 namespace Infragistics.Samples{
     public static class DataChartSharedData
     {
-        public class Energy {
-            public string Country { get; set; }
-            public double Coal { get; set; }
-            public double Oil { get; set; }
-            public double Gas { get; set; }
-            public double Nuclear { get; set; }
-            public double Hydro { get; set; }
-        }
-
         public static List<Energy> GetEnergyProduction() {
             var dp = new Energy { Country = "", Coal = 400000000};
 
@@ -25,6 +16,16 @@ namespace Infragistics.Samples{
                 new Energy { Country = "France", Coal = 375000000, Oil = 150000000, Gas = 350000000, Nuclear = 275000000, Hydro = 325000000 }
             };
             return data;
-        }
+        } 
+		
     }
+	
+	public class Energy {
+            public string Country { get; set; }
+            public double Coal { get; set; }
+            public double Oil { get; set; }
+            public double Gas { get; set; }
+            public double Nuclear { get; set; }
+            public double Hydro { get; set; }
+	}
 }
