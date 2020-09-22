@@ -31,7 +31,7 @@ namespace Infragistics.Samples
             return data;
         }
 
-        public static CategoryDataItem GetLastItem(List<CategoryDataItem> array)
+        public static CategoryDataItem GetLastItem(IList<CategoryDataItem> array)
         {
             if (array.Count == 0)
             {
@@ -40,7 +40,7 @@ namespace Infragistics.Samples
             return array[array.Count - 1];
         }
 
-        public static CategoryDataItem GetNewItem(List<CategoryDataItem> array, int index)
+        public static CategoryDataItem GetNewItem(IList<CategoryDataItem> array, int index)
         {
             var random = new Random();
             var lastItem = CategoryDataSource.GetLastItem(array);

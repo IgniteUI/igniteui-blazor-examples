@@ -11,7 +11,7 @@
                @onchange="OnRefreshFrequencyChanged" />
         <label class="igOptions-label">Data Points: </label>
         <label class="igOptions-value">@DataInfo</label>
-        <input class="igOptions-slider" type="range" min="10000" max="1000000" step="1000"
+        <input class="igOptions-slider" type="range" min="1000" max="50000" step="100"
                value=@DataPoints @onchange="OnDataPointsChanged" />
         <button @onclick="OnDataGenerateClick">Generate Data</button>
     </div>
@@ -21,8 +21,7 @@
         {
             <CategoryChart Height="100%" Width="100%"
                            DataSource="DataSource"
-                           ChartType="CategoryChartType.Line"
-                           IsTransitionInEnabled="true">
+                           ChartType="CategoryChartType.Line">
             </CategoryChart>
         }
     </div>
@@ -35,7 +34,7 @@
     private int RefreshInterval = 10;
     private int DataIndex = 0;
     private double RefreshMilliseconds = 10;
-    private double DataPoints = 100000;
+    private double DataPoints = 10000;
     private string RefreshInfo;
     private string DataInfo;
 
@@ -45,6 +44,8 @@
 
         this.DataInfo = CategoryDataSource.ToShortString(this.DataPoints);
         this.RefreshInfo = (this.RefreshMilliseconds / 1000).ToString() + "s";
+
+        OnDataGenerateClick();
     }
 
     private void OnDataGenerateClick()
@@ -61,13 +62,13 @@
     {
         double num = double.Parse(args.Value.ToString());
 
-        if(num < 10000)
+        if(num < 1000)
         {
-            num = 10000;
+            num = 1000;
         }
-        if(num > 1000000)
+        if(num > 50000)
         {
-            num = 1000000;
+            num = 50000;
         }
 
         string info = CategoryDataSource.ToShortString(num);
@@ -107,7 +108,7 @@
         this.DataIndex++;
 
         var item = this.DataSource[0];
-        var newItem = CategoryDataSource.GetNewItem(this.DataSource.ToList(), this.DataIndex);
+        var newItem = CategoryDataSource.GetNewItem(this.DataSource, this.DataIndex);
 
         this.DataSource.Add(newItem);
 
