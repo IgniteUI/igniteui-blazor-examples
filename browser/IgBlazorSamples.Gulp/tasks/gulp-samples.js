@@ -303,7 +303,11 @@ function copySampleScripts(cb, outputPath, indexName) {
         for (const file of sample.PublicFiles_JS) {
             log("copying  " + outputPath + '/wwwroot/' + file.Name);
             saveFile(outputPath + '/wwwroot/' + file.Name, file.Content);
-            insertScriptFiles.push('<script src="' + file.Name + '"></script>');
+            if (file.Name == "jsInterop.js") {
+                insertScriptFiles.push('<script type="module" src="' + file.Name + '"></script>');
+            } else {
+                insertScriptFiles.push('<script src="' + file.Name + '"></script>');
+            }
         }
     }
 
