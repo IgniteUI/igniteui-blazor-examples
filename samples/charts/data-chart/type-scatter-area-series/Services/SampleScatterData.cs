@@ -1,5 +1,7 @@
-﻿using System;
+﻿using IgniteUI.Blazor.Controls;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Infragistics.Samples
 {
@@ -30,6 +32,29 @@ namespace Infragistics.Samples
             }
             return data;
         }
+
+        public static List<SampleScatterPoint> CreateWaveData()
+        {
+            var data = new List<SampleScatterPoint>();
+            int index = 0;
+
+            for(int angle=0; angle<=360; angle+=10)
+            {
+                double radians = (angle * Math.PI) / 180;
+                double sin = Math.Sin(radians);
+                double cos = Math.Cos(radians);
+
+                data.Add(new SampleScatterPoint()
+                {
+                    Angle = angle,
+                    SinValue = sin,
+                    CosValue = cos,
+                    Index = index++
+                });
+            }
+
+            return data;
+        }
     }
 
     public class SampleScatterPoint
@@ -38,5 +63,8 @@ namespace Infragistics.Samples
         public double Y { get; set; }
         public double Z { get; set; }
         public double Index { get; set; }
+        public double Angle { get; set; }        
+        public double SinValue { get; set; }
+        public double CosValue { get; set; }
     }
 }
