@@ -39,7 +39,7 @@
 
 @code {
 
-    private List<Energy> DataSource;
+    private List<EnergyProductionData.Energy> DataSource;
     private DataChart DataChartRef;
 
     private CategoryToolTipLayer CategoryTooltip = new CategoryToolTipLayer();
@@ -56,7 +56,7 @@
         ItemToolTipLayerModule.Register(IgniteUIBlazor);
         CategoryToolTipLayerModule.Register(IgniteUIBlazor);
 
-        this.DataSource = DataChartSharedData.GetEnergyProduction();
+        this.DataSource = EnergyProductionData.Generate();
     }
 
     private void OnChartTooltipTypeChanged(ChangeEventArgs e)
