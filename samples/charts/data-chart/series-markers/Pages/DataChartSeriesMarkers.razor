@@ -1,0 +1,57 @@
+﻿@page "/DataChartSeriesMarkers"
+
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igOptions-horizontal">
+        <span class="igOptions-label"> Marker Type: </span>
+        <select @bind="ChartMarkerType">
+            <option>@MarkerType.Automatic</option>
+            <option>@MarkerType.Circle</option>
+            <option>@MarkerType.Triangle</option>
+            <option>@MarkerType.Pyramid</option>
+            <option>@MarkerType.Square</option>
+            <option>@MarkerType.Diamond</option>
+            <option>@MarkerType.Pentagon</option>
+            <option>@MarkerType.Hexagon</option>
+            <option>@MarkerType.Tetragram</option>
+            <option>@MarkerType.Pentagram</option>
+            <option>@MarkerType.Hexagram</option>
+            <option>@MarkerType.None</option>
+        </select>
+    </div>
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+            <DataChart Height="100%" Width="100%"
+                       IsHorizontalZoomEnabled="true"
+                       IsVerticalZoomEnabled="true">
+                <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Year" />
+                <NumericYAxis Name="yAxis" MinimumValue="0" />
+
+                <LineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="USA" MarkerType="ChartMarkerType" />
+                <LineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="CHN" MarkerType="ChartMarkerType" />
+                <LineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="RUS" MarkerType="ChartMarkerType" />
+            </DataChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<DataChartSharedData.OlympicMedals> DataSource;
+    private MarkerType ChartMarkerType = MarkerType.Automatic;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+                
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);        
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        
+        this.DataSource = DataChartSharedData.GetOlympicMedals();        
+    }
+}

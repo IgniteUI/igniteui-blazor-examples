@@ -1,0 +1,123 @@
+﻿@page "/DataChartSeriesAnnotations"
+
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igOptions">
+        <span class="igOptions-item">Annotations: </span>
+        <label class="igOptions-item">
+            <input type="checkbox" checked="true" @onchange="OnCalloutsCheckboxChange"/>Callouts
+        </label>
+        <label class="igOptions-item">
+            <input type="checkbox" checked="true" @onchange="OnFinalValueCheckboxChange"/>Final Value
+        </label>
+        <label class="igOptions-item">
+            <input type="checkbox" checked="true" @onchange="OnCrosshairsCheckboxChange"/>Crosshairs
+        </label>
+        <label class="igOptions-item">
+            <input type="checkbox" checked="true" @onchange="OnValueOverlayCheckboxChange"/>Value Overlay
+        </label>
+    </div>
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+            <DataChart Height="100%" Width="100%" @ref="DataChartRef"
+                       IsHorizontalZoomEnabled="true"
+                       IsVerticalZoomEnabled="true">
+                <CategoryXAxis Name="xAxis" Label="Angle" Interval="2" DataSource="DataSource" />
+                <NumericYAxis Name="yAxis" MinimumValue="-1.25" MaximumValue="1.25" LabelLocation="AxisLabelsLocation.OutsideRight" />
+                <LineSeries XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="SinValue" DataSource="DataSource"
+                            MarkerType="MarkerType.Circle" Brush="#0577E8" MarkerOutline="#0577E8" />
+                <CalloutLayer XMemberPath="Index" YMemberPath="SinValue" LabelMemberPath="Label" Brush="#0577E8"
+                              Outline="White" DataSource="DataSource" @ref="CalloutRef" />
+                <CrosshairLayer IsAxisAnnotationEnabled="true" YAxisAnnotationInterpolatedValuePrecision="2" Brush="#9FB328"
+                                Outline="Black" @ref="CrosshairRef"/>
+                <FinalValueLayer AxisAnnotationInterpolatedValuePrecision="2" AxisAnnotationTextColor="White" AxisAnnotationBackground="#0577E8"
+                                 FinalValueSelectionMode="FinalValueSelectionMode.FinalVisibleInterpolated" @ref="FinalValueRef" />
+                <ValueOverlay AxisName="yAxis" Thickness="3" Value="0.25" Brush="Brown" IsAxisAnnotationEnabled="true" @ref="ValueOverlayRef"/>
+            </DataChart>
+        }
+
+    </div>
+</div>
+
+@code {
+
+    private List<SampleScatterPoint> DataSource;
+
+    private DataChart DataChartRef;
+    private CalloutLayer CalloutRef;
+    private CrosshairLayer CrosshairRef;
+    private FinalValueLayer FinalValueRef;
+    private ValueOverlay ValueOverlayRef;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        DataChartAnnotationModule.Register(IgniteUIBlazor);
+        CalloutLayerModule.Register(IgniteUIBlazor);
+        CrosshairLayerModule.Register(IgniteUIBlazor);
+        FinalValueLayerModule.Register(IgniteUIBlazor);
+        ValueOverlayModule.Register(IgniteUIBlazor);
+
+        this.DataSource = SampleScatterData.CreateWaveData();
+    }
+
+    private void OnCalloutsCheckboxChange(ChangeEventArgs e)
+    {
+        bool val = (bool)e.Value;
+        if (val)
+        {
+            this.DataChartRef.ActualSeries.Add(this.CalloutRef);
+        }
+        else
+        {
+            this.DataChartRef.ActualSeries.Remove(this.CalloutRef);
+        }
+    }
+
+    private void OnFinalValueCheckboxChange(ChangeEventArgs e)
+    {
+        bool val = (bool)e.Value;
+        if (val)
+        {
+            this.DataChartRef.ActualSeries.Add(this.FinalValueRef);
+        }
+        else
+        {
+            this.DataChartRef.ActualSeries.Remove(this.FinalValueRef);
+        }
+    }
+
+    private void OnCrosshairsCheckboxChange(ChangeEventArgs e)
+    {
+        bool val = (bool)e.Value;
+        if (val)
+        {
+            this.DataChartRef.ActualSeries.Add(this.CrosshairRef);
+        }
+        else
+        {
+            this.DataChartRef.ActualSeries.Remove(this.CrosshairRef);
+        }
+    }
+
+    private void OnValueOverlayCheckboxChange(ChangeEventArgs e)
+    {
+        bool val = (bool)e.Value;
+        if (val)
+        {
+            this.DataChartRef.ActualSeries.Add(this.ValueOverlayRef);
+        }
+        else
+        {
+            this.DataChartRef.ActualSeries.Remove(this.ValueOverlayRef);
+        }
+    }
+}

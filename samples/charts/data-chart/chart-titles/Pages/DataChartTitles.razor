@@ -1,0 +1,67 @@
+﻿@page "/DataChartTitles"
+
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igOptions-horizontal">
+        <span class="igLegend-title">Legend: </span>
+        <div class="igLegend">
+            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+            <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true"
+                       IsHorizontalZoomEnabled="true" Legend="LegendRef" ChartTitle="Energy Use Per Country"
+                       Subtitle="Results over a two year period">
+                <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Country" />
+                <NumericYAxis Name="yAxis" MinimumValue="0" AbbreviateLargeNumbers="true" />
+
+                <ColumnSeries Title="Coal" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Coal"
+                              DataSource="DataSource" IsTransitionInEnabled="true" />
+                <ColumnSeries Title="Hydro" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Hydro"
+                              DataSource="DataSource" IsTransitionInEnabled="true" />
+                <ColumnSeries Title="Nuclear" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Nuclear"
+                              DataSource="DataSource" IsTransitionInEnabled="true" />
+                <ColumnSeries Title="Gas" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Gas"
+                              DataSource="DataSource" IsTransitionInEnabled="true" />
+                <ColumnSeries Title="Oil" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Oil"
+                              DataSource="DataSource" IsTransitionInEnabled="true" />
+            </DataChart>
+
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<DataChartSharedData.Energy> DataSource;
+
+    private Legend legend;
+    private Legend LegendRef
+    {
+        get { return legend; }
+        set
+        {
+            legend = value;
+            StateHasChanged();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+
+        this.DataSource = DataChartSharedData.GetEnergyProduction();
+    }
+}
