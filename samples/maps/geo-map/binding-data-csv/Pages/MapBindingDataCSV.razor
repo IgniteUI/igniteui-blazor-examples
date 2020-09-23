@@ -4,16 +4,16 @@
 
 <div class="igContainer">
     <div class="igComponent">
-        <GeographicMap Height="100%" Width="100%" Zoomable="true">
+        <GeographicMap @ref="MapRef" Height="100%" Width="100%" Zoomable="true">
             <GeographicHighDensityScatterSeries DataSource="@DataSource"
-                                                LatitudeMemberPath="Lat"
-                                                LongitudeMemberPath="Lon"
-                                                HeatMaximumColor="Red"
-                                                HeatMinimumColor="Black"
-                                                HeatMinimum="0"
-                                                HeatMaximum="5"
-                                                PointExtent="1"
-                                                MouseOverEnabled="true" />
+                    LatitudeMemberPath="Lat"
+                    LongitudeMemberPath="Lon"
+                    HeatMaximumColor="Red"
+                    HeatMinimumColor="Black"
+                    HeatMinimum="0"
+                    HeatMaximum="5"
+                    PointExtent="1"
+                    MouseOverEnabled="true" />
         </GeographicMap>
     </div>
 </div>
@@ -21,7 +21,8 @@
 @code {
 
     private List<WorldPlaceCsv> DataSource;
-    private Rect GeoBounds;
+    public Rect GeoBounds;
+    public GeographicMap MapRef;
 
     protected override async Task OnInitializedAsync()
     {
@@ -56,8 +57,20 @@
         this.GeoBounds = new Rect(-130, 15, new Size(65, 35));
 
         await Task.Delay(1);
+
+
     }
 
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        if (MapRef != null)
+            MapRef.ZoomToGeographic(this.GeoBounds);
+
+    }
+
+    
     public class WorldPlaceCsv {
 
         public string Name { get; set; }
