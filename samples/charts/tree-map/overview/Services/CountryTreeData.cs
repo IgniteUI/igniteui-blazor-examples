@@ -7,7 +7,6 @@ namespace Infragistics.Samples
     { 
         public double Pop { get; set; }
         public string Name { get; set; }
-        public string Id { get; set; }
         public string Parent { get; set; }
     }
 
