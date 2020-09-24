@@ -258,10 +258,7 @@ function copySamplePages(cb, outputPath) {
     for (const sample of samples) {
 
         // lint and force auto-generation of routing paths (@page) in razor files
-            
-        if(!(sample.ComponentFolder.includes("dock-manager"))){
         Transformer.lintSample(sample, true);
-        }
 
         let sampleFolder = sample.ComponentGroup + '/' + sample.ComponentFolder
         // outputFolder = Strings.toTitleCase(outputClient);
@@ -303,7 +300,7 @@ function copySampleScripts(cb, outputPath, indexName) {
         for (const file of sample.PublicFiles_JS) {
             log("copying  " + outputPath + '/wwwroot/' + file.Name);
             saveFile(outputPath + '/wwwroot/' + file.Name, file.Content);
-            if (file.Name == "jsInterop.js") {
+            if (file.Name.indexOf("DockManager") >= 0) {
                 insertScriptFiles.push('<script type="module" src="' + file.Name + '"></script>');
             } else {
                 insertScriptFiles.push('<script src="' + file.Name + '"></script>');

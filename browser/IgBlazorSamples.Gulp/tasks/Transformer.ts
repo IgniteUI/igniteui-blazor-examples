@@ -835,10 +835,14 @@ class Transformer {
         }
 
         let invalidLines: string[] = [
-            "@page ",
-            "@inject IJSRuntime JSRuntime",
+            "@page ", // always remove page routing because it is auto-generated
             "base.OnInitialized",
         ];
+
+        // removing injection of JSRuntime if a sample is not using JSRuntime
+        if (sample.SourceRazorFile.Content.indexOf('JSRuntime.') === -1){
+            invalidLines.push("@inject IJSRuntime JSRuntime");
+        }
 
         let csharpCodeLines: string[] = [];
         let htmlCodeLines: string[] = [];
@@ -943,12 +947,14 @@ class Transformer {
             if (currentLine.indexOf('"') === -1 &&
                 currentLine.indexOf('//') === -1) {
 
-                for (const symbol of spacedSymbols) {
-                    currentLine = currentLine.replace(new RegExp('([A-Za-z0-9])' + symbol), '$1 $2');
-                    currentLine = currentLine.replace(new RegExp(symbol + '([A-Za-z0-9])'), '$1 $2');
-                    // currentLine = currentLine.replace('/([a-z0-9])(\=)/g', '$1 $2');
-                    // currentLine = currentLine.replace(new RegExp('([a-z0-9])(\=)'), '$1 $2');
-                    // currentLine = currentLine.replace(/([a-z0-9])(\=)/gi, '_');
+                if (currentLine.indexOf('</igc-') === -1) {
+                    for (const symbol of spacedSymbols) {
+                        currentLine = currentLine.replace(new RegExp('([A-Za-z0-9])' + symbol), '$1 $2');
+                        currentLine = currentLine.replace(new RegExp(symbol + '([A-Za-z0-9])'), '$1 $2');
+                        // currentLine = currentLine.replace('/([a-z0-9])(\=)/g', '$1 $2');
+                        // currentLine = currentLine.replace(new RegExp('([a-z0-9])(\=)'), '$1 $2');
+                        // currentLine = currentLine.replace(/([a-z0-9])(\=)/gi, '_');
+                    }
                 }
                 // currentLine = currentLine.replace(new RegExp('(using)([A-Za-z0-9])(;)'), '$1 $2');
                 currentLine = currentLine.replace(new RegExp('(@using\.*.*)(\;)'), '$1');
