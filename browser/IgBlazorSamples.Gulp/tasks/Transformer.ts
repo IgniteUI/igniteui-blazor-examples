@@ -805,9 +805,11 @@ class Transformer {
 
             let orgContent = file.Content;
             if (file.isRazorSample()) {
-                // console.log("NOTE: lintRazor() " + file.Path);
+                // console.log("NOTE: lintRazor() " + file.Path);                
                 this.lintRazor(info, generateRoutingPath);
-                this.lintFile(file);
+                if(!info.ComponentFolder.includes("dock-manager")){
+                    this.lintFile(file);
+                }                
             } else if (file.isRazorComponent()) {
                 // this.lintRazor(info, false);
                 this.lintFile(file);
@@ -833,12 +835,22 @@ class Transformer {
             sample.SourceRazorFile.Content === undefined) {
             return;
         }
+        
+        let invalidLines : string[];
 
-        let invalidLines: string[] = [
-            "@page ",
-            "@inject IJSRuntime JSRuntime",
-            "base.OnInitialized",
-        ];
+        if(sample.ComponentFolder.includes("dock-manager")){
+            invalidLines = [
+                "@page ",                            
+                "base.OnInitialized"
+            ];
+        }
+        else{
+            invalidLines = [
+                "@page ",            
+                "@inject IJSRuntime JSRuntime",
+                "base.OnInitialized"
+            ];
+        } 
 
         let csharpCodeLines: string[] = [];
         let htmlCodeLines: string[] = [];
