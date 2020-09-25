@@ -19,14 +19,14 @@ exports.getSamples = getSamples = gulp.series(
     sb.getSamples,
 );
 
-// exports.updateSamples = updateSamples = gulp.series(
+exports.updateSamples = updateSamples = gulp.series(
     // sb.lintSamples,
-    // sb.getSamples,
-    // sb.updateReadme,
+    sb.getSamples,
+    sb.updateReadme,
     // sb.updatePackages,
     // sb.updateIndex,
     // sb.updateSharedFiles,
-// );
+);
 
 exports.lintSamples = lintSamples = gulp.series(
     // sb.makeSamplesWritable,
