@@ -14,6 +14,7 @@
                       RowHeight="40"
                       SelectionMode="@GridSelectionMode.MultipleRow"
                       DefaultColumnMinWidth="80"
+                      SortDescriptionsChanged="OnSortDescriptionsChanged"
                       ColumnShowingAnimationMode="@ColumnShowingAnimationMode.Auto"
                       ColumnHidingAnimationMode="@ColumnHidingAnimationMode.Auto"
                       DataSource="@DataSource">
@@ -41,6 +42,11 @@
 </div>
 
 @code {
+
+    private void OnSortDescriptionsChanged(GridSortDescriptionsChangedEventArgs args) 
+    {
+
+    }
 
     private List<SalesPerson> DataSource;
 
@@ -133,16 +139,15 @@
             {
                 if (sortingByAvgSale && !useClear)
                 {
-                    this.DataGridRef.NotifyRemoveItem(this.DataSource, this.DataSource.IndexOf(item), item);
+                    this.DataGridRef.NotifyRemoveItem(this.DataSource, i, item);
                     this.RandomizeItem(item);
-                    this.DataGridRef.NotifyInsertItem(this.DataSource, this.DataSource.IndexOf(item), item);
+                    this.DataGridRef.NotifyInsertItem(this.DataSource, i, item);
                 }
                 else
                 {
                     this.RandomizeItem(item);
+                    this.DataGridRef.NotifyUpdateItem(this.DataSource, i, item, true);
                 }
-
-                this.DataGridRef.NotifyUpdateItem(this.DataSource, this.DataSource.IndexOf(item), item);
 
                 if (item.Change > 0)
                 {
@@ -184,7 +189,6 @@
             this.DataGridRef.InvalidateVisibleRows();
         }
 
-        StateHasChanged();
         Task.Delay(1000).ContinueWith((t) => OnTimerTick());
     }
 
