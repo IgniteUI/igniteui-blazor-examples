@@ -361,8 +361,8 @@ function updateReadme(cb) {
     var template = fs.readFileSync("../../templates/sample/ReadMe.md", "utf8");
     for (const sample of samples) {
 
-        if (sample.SourceRazorFile !== undefined &&
-            sample.SourceRazorFile.length > 0) {
+        if (sample.SourceFiles !== undefined &&
+            sample.SourceFiles.length > 0) {
             // let outputPath = sampleOutputFolder + '/' + sample.SampleFolderPath;
             let outputPath = sampleOutputFolder + sample.SampleFolderPath + "/ReadMe.md";
             makeDirectoryFor(outputPath);
