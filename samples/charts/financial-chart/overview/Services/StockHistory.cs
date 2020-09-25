@@ -16,10 +16,10 @@ namespace Infragistics.Samples
         {
             // getting prices of multiples stocks asynchronously
             var dataSources = new List<StockPrice[]> {
-                await GetAmazonStock(),
+                //await GetAmazonStock(),
                 await GetGoogleStock(),
                 await GetMicrosoftStock(),
-                await GetTeslaStock()
+                //await GetTeslaStock()
             };
 
             return dataSources;

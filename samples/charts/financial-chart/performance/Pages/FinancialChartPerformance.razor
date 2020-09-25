@@ -5,40 +5,37 @@
 
 <div class="igContainer">
     <div class="igComponent">
-
-        @if (DataSource != null)
-        {
             <FinancialChart Width="100%"
                 Height="100%"
                 ChartType=FinancialChartType.Line
-                Thickness=2
+                Thickness="2"
                 XAxisMode="FinancialChartXAxisMode.Ordinal"
                 YAxisMode="FinancialChartYAxisMode.Numeric"
-                YAxisExtent=60
-                DataSource="DataSource"
+                YAxisExtent="60"
+                DataSourceScript="getFCHighVolumeData"
                 />
-        }
     </div>
 </div>
 
 @code {
 
-    List<StockItem> DataSource;
 
     protected override void OnInitialized()
     {
         FinancialChartModule.Register(IgniteUIBlazor);
-        InitData();
     }
 
-    public void InitData()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var dateStart = DateTime.Now.AddYears(-10);
-        var dateEnd = DateTime.Now.Date;
+        if (firstRender)
+        {
+            var dateStart = DateTime.Now.AddYears(-20);
+            var dateEnd = DateTime.Now.Date;
 
-        StocksUtility.intervalDays = 0;
-        StocksUtility.intervalHours = 1;
-        StocksUtility.intervalMinutes = 0;
-        this.DataSource = StocksUtility.GetStocksBetween(dateStart, dateEnd);
+            await IgniteUIBlazor.JsRuntime.InvokeVoidAsync("setFCGenerationRange", dateStart, dateEnd);
+        }
+
+        await base.OnAfterRenderAsync(firstRender);    
     }
+
 }
