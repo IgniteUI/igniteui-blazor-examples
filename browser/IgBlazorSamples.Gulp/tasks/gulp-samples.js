@@ -361,13 +361,16 @@ function updateReadme(cb) {
     var template = fs.readFileSync("../../templates/sample/ReadMe.md", "utf8");
     for (const sample of samples) {
 
-        // let outputPath = sampleOutputFolder + '/' + sample.SampleFolderPath;
-        let outputPath = sampleOutputFolder + sample.SampleFolderPath + "/ReadMe.md";
-        makeDirectoryFor(outputPath);
-        log("updating " + outputPath);
-        // let readmeFile = Transformer.updateReadme(sample, template);
-        fs.writeFileSync(outputPath, template);
-        // break;
+        if (sample.SourceRazorFile !== undefined &&
+            sample.SourceRazorFile.length > 0) {
+            // let outputPath = sampleOutputFolder + '/' + sample.SampleFolderPath;
+            let outputPath = sampleOutputFolder + sample.SampleFolderPath + "/ReadMe.md";
+            makeDirectoryFor(outputPath);
+            log("updating " + outputPath);
+            let readmeFile = Transformer.updateReadme(sample, template);
+            fs.writeFileSync(outputPath, readmeFile);
+            // break;
+        }
     }
     cb();
 } exports.updateReadme = updateReadme;
