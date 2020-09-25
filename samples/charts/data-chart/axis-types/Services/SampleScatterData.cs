@@ -49,7 +49,8 @@ namespace Infragistics.Samples
                     Angle = angle,
                     SinValue = sin,
                     CosValue = cos,
-                    Index = index++
+                    Index = index++,
+                    Label = sin.ToString("N2")
                 });
             }
 
@@ -59,6 +60,7 @@ namespace Infragistics.Samples
 
     public class SampleScatterPoint
     {
+        public string Label { get; set; }
         public double X { get; set; }
         public double Y { get; set; }
         public double Z { get; set; }
