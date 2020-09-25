@@ -358,16 +358,19 @@ function copySamplesToClient(cb) {
 function updateReadme(cb) {
 
     // log('updating readme files... ');
-    var template = fs.readFileSync("./templates/sample/ReadMe.md", "utf8");
+    var template = fs.readFileSync("../../templates/sample/ReadMe.md", "utf8");
     for (const sample of samples) {
 
-        // let outputPath = sampleOutputFolder + '/' + sample.SampleFolderPath;
-        let outputPath = sampleOutputFolder + sample.SampleFolderPath + "/ReadMe.md";
-        makeDirectoryFor(outputPath);
-        // log(outputPath);
-        let readmeFile = Transformer.updateReadme(sample, template);
-        fs.writeFileSync(outputPath, readmeFile);
-        // break;
+        if (sample.SourceFiles !== undefined &&
+            sample.SourceFiles.length > 0) {
+            // let outputPath = sampleOutputFolder + '/' + sample.SampleFolderPath;
+            let outputPath = sampleOutputFolder + sample.SampleFolderPath + "/ReadMe.md";
+            makeDirectoryFor(outputPath);
+            log("updating " + outputPath);
+            let readmeFile = Transformer.updateReadme(sample, template);
+            fs.writeFileSync(outputPath, readmeFile);
+            // break;
+        }
     }
     cb();
 } exports.updateReadme = updateReadme;
