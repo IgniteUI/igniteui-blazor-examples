@@ -1,3 +1,15 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <body>
+        <!-- https://static.infragistics.com/xplatform/images/browsers -->
+        <a target="_blank" href="https://infragistics.com/blazor-client/samples/charts/data-chart-type-scatter-area-series" rel="noopener noreferrer">
+            <img height="40px" style="border-radius: 0.25rem" alt="Edit on CodeSandbox" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/master/templates/sample/images/blazor-run-sample.png"/>
+        </a>
+        <!-- <a target="_blank" href="https://infragistics.com/Blazorsite/components/data-chart.html" rel="noopener noreferrer">
+            <img height="40px" style="border-radius: 0.25rem" alt="Edit on CodeSandbox" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/master/templates/sample/images/blazor-view-docs.png"/>
+        </a> -->
+    </body>
+</html>
+
 ## Setup
 
 - instal **.NET SDK** from this website:
