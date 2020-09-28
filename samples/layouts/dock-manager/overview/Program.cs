@@ -8,9 +8,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-// required for registering IgniteUIBlazor
-using IgniteUI.Blazor.Controls;
-
 namespace Infragistics.Samples
 {
     public class Program
@@ -21,9 +18,6 @@ namespace Infragistics.Samples
             builder.RootComponents.Add<App>("app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
-            // registering Infragistics Blazor
-            builder.Services.AddScoped(typeof(IIgniteUIBlazor), typeof(IgniteUIBlazor));
 
             await builder.Build().RunAsync();
         }
