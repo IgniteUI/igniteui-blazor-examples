@@ -11,6 +11,35 @@
     <NoWarn>1701;1702,IDE0028,BL0005,0219</NoWarn>
   </PropertyGroup>
 
+    <!-- NPM Updates for automatic build -->
+    <PropertyGroup>
+        <NpmRoot>npmJS\</NpmRoot>
+        <DefaultItemExcludes>$(DefaultItemExcludes);$(NpmRoot)node_modules\**</DefaultItemExcludes>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Content Remove="$(NpmRoot)**" />
+        <None Remove="$(NpmRoot)**" />
+        <None Include="$(NpmRoot)**" Exclude="$(NpmRoot)node_modules\**" />
+    </ItemGroup>
+
+    <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(NpmRoot)node_modules') ">
+        <Exec Command="node --version" ContinueOnError="true">
+            <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+        </Exec>
+        <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+        <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+        <Exec WorkingDirectory="$(NpmRoot)" Command="npm install" />
+        <Exec WorkingDirectory="$(NpmRoot)" Command="npm run build" />
+    </Target>
+
+    <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+        <Exec WorkingDirectory="$(NpmRoot)" Command="npm install" />
+        <Exec WorkingDirectory="$(NpmRoot)" Command="npm run build" />
+    </Target>
+
+    <!-- End NPM Updates -->
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="3.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Build" Version="3.2.1" PrivateAssets="all" />
