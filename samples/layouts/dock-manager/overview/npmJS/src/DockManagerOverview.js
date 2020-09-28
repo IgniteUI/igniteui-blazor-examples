@@ -1,11 +1,7 @@
-﻿import { defineCustomElements } from 'https://unpkg.com/igniteui-dockmanager@1.0.4-beta.0/loader/index.mjs';
+﻿import { defineCustomElements } from 'igniteui-dockmanager/loader';
 defineCustomElements();
 
-//var jsInterop = window.jsInterop = window.jsInterop || {};
-var DockManagerOverview = window.DockManagerOverview = window.DockManagerOverview || {};
-
-// NOTE this function creates and arranges children of WC Dockmanager
-DockManagerOverview.arrange = function (dockmanager) {
+window.initDockManager = function (dockmanager) {
 
     const pane1 = createContentPane('content1', 'Content Pane 1');
     const pane2 = createContentPane('content2', 'Unpinned Pane 1');
@@ -54,7 +50,7 @@ DockManagerOverview.arrange = function (dockmanager) {
                 orientation: "horizontal",
                 floatingHeight: 150,
                 floatingWidth: 250,
-                floatingLocation: { x: 400, y: 250 },
+                floatingLocation: { x: 800, y: 250 },
                 panes: [pane9]
             }
         ]

@@ -1,10 +1,8 @@
-﻿@using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor;
-@inject IJSRuntime JSRuntime;
+﻿@inject IJSRuntime JSRuntime;
 
 <div class="igContainer">
     <div class="igComponent">
-        <igc-dockmanager @ref="dockManagerRef" id="dockManager" height="100%" width="100%">
+        <igc-dockmanager @ref="dockManager" id="dockManager" height="100%" width="100%">
             @*NOTE: code in DockManagerOverview.js file sets layout of these DIV elements:*@   
             <div slot="content1">Content 1 - pane docked to left side</div>
             <div slot="content2">Content 2 - pane pinned to left side</div>
@@ -21,14 +19,14 @@
 
 @code {
 
-    ElementReference dockManagerRef;
+    ElementReference dockManager;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            // open DockManagerOverview.js file to see how the arrange funciton is implemented
-            await JSRuntime.InvokeVoidAsync("DockManagerOverview.arrange", dockManagerRef);
+            // open index.bundle.js file to see how the arrange funciton is implemented
+            await JSRuntime.InvokeVoidAsync("initDockManager", dockManager);
         }
     }
 }
