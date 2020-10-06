@@ -28,97 +28,32 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Console.WriteLine("OnInitializedAsync");
-
         GeographicMapModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
 
-        //string url = "https://static.infragistics.com/xplatform/data/AusPlaces.csv";
-        //string url = "/aus-places.json";
-        //string url = "/aus-cities.json";
-
-        //var csv = await Http.GetStringAsync(url);
-        //var csvLines = csv.Split(Environment.NewLine);
-
-        //var dataItems = new List<AusPlaceCsv>();
-
-        //for (int i = 1; i < csvLines.Length - 1; i++)
-        //{
-        //    var columns = csvLines[i].Split(",");
-        //    var location = new AusPlaceCsv()
-        //    {
-        //        Lat = double.Parse(columns[2]),
-        //        Lon = double.Parse(columns[1]),
-        //        Name = columns[0],
-        //    };
-
-        //    dataItems.Add(location);
-        //}
-        //this.DataSource = dataItems;
-
         this.DataSource = new GeoPlaceData();
-        Console.WriteLine("OnInitializedAsync DataSource");
+
         this.GeoBound = new Rect(100, -40, new Size(50, 25));
         await Task.Delay(100);
     }
 
     protected override void OnAfterRender(bool firstRender)
     {
-        Console.WriteLine("OnAfterRender " + firstRender + " " + MapRendered + " " + MapZoomed);
-
         base.OnAfterRender(firstRender);
-
-        if (MapRef != null && MapRendered && !MapZoomed)
+      
+        if (MapRef != null && !firstRender)
         {
-            //Console.WriteLine("OnAfterRender ZoomToGeographic ");
-            //MapRef.ZoomToGeographic(this.GeoBound);
-        }
-
-        if (MapRef != null && !MapRendered && !firstRender)
-        {
-            MapRendered = true;
-            //MapZoomed = true;
-            //MapRef.ZoomToGeographic(this.GeoBound);
-
-            Task.Delay(500).ContinueWith((t) => OnTimerTick());
+            Task.Delay(500).ContinueWith((t) => OnMapRender());
         }
     }
 
-    public int TimerTicks = 0;
-	private void OnTimerTick()
+	private void OnMapRender()
     {
-        TimerTicks += 1;
-        Console.WriteLine("OnTimerTick " + TimerTicks);
-
         if (MapRef != null)
         {
             MapRef.ZoomToGeographic(this.GeoBound);
         }
     }
 
-    //protected override async Task OnAfterRenderAsync()
-    //{
-    //     Console.WriteLine("OnAfterRenderAsync ");
-    //    await Task.Delay(10);           
-    //}
-
-    protected override void OnParametersSet()
-    {
-        Console.WriteLine("OnParametersSet " );
-    }
-    protected override async Task OnParametersSetAsync()
-    {
-        Console.WriteLine("OnParametersSetAsync " );
-        await Task.Delay(10);
-    }
-
-    //public class AusPlaceCsv
-    //{
-    //    public string Name { get; set; }
-    //    public double Lat { get; set; }
-    //    public double Lon { get; set; }
-    //    //public double Pop { get; set; }
-    //    //public string Country { get; set; }
-    //    //public bool Cap { get; set; }
-    //}
+    
 }
