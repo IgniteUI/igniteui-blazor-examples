@@ -1,0 +1,135 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+
+    <div class="igOptions-horizontal">
+        <span class="igOptions-label">Type of Shape Series: </span>
+        <select value=@SeriesType
+                @onchange="OnSeriesTypeChanged">
+            <option>Polygon</option>
+            <option>Polyline</option>
+        </select>
+
+        <span class="igLegend-title">Legend: </span>
+        <div class="igLegend">
+            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+        <DataChart Height="100%" Width="100%"
+                   ChartTitle="Annual Temperature Changes"
+                   IsHorizontalZoomEnabled="true"
+                   IsVerticalZoomEnabled="true"
+                   Legend="@LegendRef"
+                   @ref="DataChartRef">
+
+            <NumericXAxis 
+                   Name="xAxis"
+                   TitleBottomMargin="10"
+                   MinimumValue="-1"
+                   MaximumValue="11"
+                   Interval="2"/>
+            <NumericYAxis 
+                   Name="yAxis" 
+                   MinimumValue="-1"
+                   MaximumValue="11"
+                   Interval="1" />
+        </DataChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<SampleShapeItem> DataSource;
+    private DataChart dataChart;
+    private DataChart DataChartRef
+    {
+        get { return dataChart; }
+        set
+        {
+            dataChart = value;
+            this.setSeries("Polyline");
+            SeriesType = "Polyline";
+            StateHasChanged();
+        }
+    }
+
+    private Legend legend;
+    private Legend LegendRef
+    {
+        get { return legend; }
+        set
+        {
+            legend = value;
+            StateHasChanged();
+        }
+    }
+    private string seriesType;
+    private string SeriesType
+    {
+        get { return seriesType; }
+        set
+        {
+            seriesType = value;
+            StateHasChanged();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartScatterCoreModule.Register(IgniteUIBlazor);
+        DataChartScatterModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        ScatterPolygonSeriesModule.Register(IgniteUIBlazor);
+        ScatterPolylineSeriesModule.Register(IgniteUIBlazor);
+
+        LegendModule.Register(IgniteUIBlazor);
+        DataSource = SampleShapeData.Create();
+    }
+
+    public void OnSeriesTypeChanged(ChangeEventArgs e)
+    {
+        var selectedSeries = e.Value.ToString();
+        SeriesType = selectedSeries;
+        this.setSeries(selectedSeries);
+    }
+
+    public void setSeries(string seriesType)
+    {
+        if (seriesType == "Polyline")
+        {
+            var series1 = new ScatterPolylineSeries { Name = "series1" };
+
+            series1.XAxisName = "xAxis";
+            series1.YAxisName = "yAxis";
+            series1.Title = "Rooms";
+            series1.ShapeMemberPath = "Points";
+            series1.DataSource = DataSource;
+            series1.ShowDefaultTooltip = true;
+
+            this.DataChartRef.Series.Clear();
+            this.DataChartRef.Series.Add(series1);
+
+        }
+        else if (seriesType == "Polygon")
+        {
+            var series1 = new ScatterPolygonSeries { Name = "series1" };
+            series1.XAxisName = "xAxis";
+            series1.YAxisName = "yAxis";
+            series1.Title = "Rooms";
+            series1.ShapeMemberPath = "Points";
+            series1.ShowDefaultTooltip = true;
+            series1.DataSource = DataSource;
+
+            this.DataChartRef.Series.Clear();
+            this.DataChartRef.Series.Add(series1);
+
+        }
+    }
+}

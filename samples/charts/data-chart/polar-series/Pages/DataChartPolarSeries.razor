@@ -1,0 +1,244 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+
+    <div class="igOptions-horizontal">
+        <span class="igOptions-label">Type of Polar Series: </span>
+        <select value=@SeriesType
+                @onchange="OnSeriesTypeChanged">
+            <option>Area</option>
+            <option>Spline Area</option>
+            <option>Spline</option>
+            <option>Line</option>
+            <option>Scatter</option>
+        </select>
+
+        <span class="igLegend-title">Legend: </span>
+        <div class="igLegend">
+            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+        <DataChart Height="100%" Width="100%"
+                   ChartTitle="Sailing Chart"
+                   Subtitle="Wind Speed vs. Boat Speed"
+                   TitleTopMargin="10"
+                   IsHorizontalZoomEnabled="true"
+                   IsVerticalZoomEnabled="true"
+                   Legend="@LegendRef"
+                   @ref="DataChartRef">
+
+            <NumericAngleAxis Name="angleAxis"
+                                 StartAngleOffset=-90
+                                 Interval=30
+                                 MinimumValue=0
+                                 MaximumValue=360 />
+            <NumericRadiusAxis Name="radiusAxis"
+                                  InnerRadiusExtentScale=0.1
+                                  RadiusExtentScale=0.9
+                                  MinimumValue=0
+                                  MaximumValue=100
+                                  Interval=25 />
+
+        </DataChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<SamplePolarItem> DataSource;
+    private DataChart dataChart;
+    private DataChart DataChartRef
+    {
+        get { return dataChart; }
+        set
+        {
+            dataChart = value;
+            this.setSeries("Spline");
+            StateHasChanged();
+        }
+    }
+
+    private Legend legend;
+    private Legend LegendRef
+    {
+        get { return legend; }
+        set
+        {
+            legend = value;
+            StateHasChanged();
+        }
+    }
+    private string seriesType;
+    private string SeriesType
+    {
+        get { return seriesType; }
+        set
+        {
+            seriesType = value;
+            this.setSeries("Spline");
+            StateHasChanged();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartPolarCoreModule.Register(IgniteUIBlazor);
+        DataChartPolarModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+
+        LegendModule.Register(IgniteUIBlazor);
+        DataSource = SamplePolarData.Create();
+    }
+
+    public void OnSeriesTypeChanged(ChangeEventArgs e)
+    {
+        var selectedSeries = e.Value.ToString();
+        SeriesType = selectedSeries;
+        this.setSeries(selectedSeries);
+    }
+
+    public void setSeries(string seriesType)
+    {
+        if (seriesType == "Area")
+        {
+            // creating a series with mapping to data columns of wind pattern
+            var series1 = new PolarAreaSeries { Name = "series1" };
+            series1.AngleMemberPath = "Direction";
+            series1.RadiusMemberPath = "BoatSpeed";
+            series1.RadiusAxisName = "radiusAxis";
+            series1.AngleAxisName = "angleAxis";
+            series1.AreaFillOpacity = 1;
+            series1.MarkerType = MarkerType.Circle;
+            series1.Title = "Boat Speed";
+            series1.DataSource = DataSource;
+
+            var series2 = new PolarAreaSeries { Name = "series2" };
+            series2.AngleMemberPath = "Direction";
+            series2.RadiusMemberPath = "WindSpeed";
+            series2.RadiusAxisName = "radiusAxis";
+            series2.AngleAxisName = "angleAxis";
+            series2.DataSource = DataSource;
+            series2.AreaFillOpacity = 1;
+            series2.MarkerType = MarkerType.Circle;
+
+            series2.Title = "Wind Speed";
+            this.DataChartRef.Series.Clear();
+            this.DataChartRef.Series.Add(series2);
+            this.DataChartRef.Series.Add(series1);
+
+        }
+        else if (seriesType == "Spline Area")
+        {
+            // creating a series with mapping to data columns of wind pattern
+            var series1 = new PolarSplineAreaSeries { Name = "series1" };
+            series1.AngleMemberPath = "Direction";
+            series1.RadiusMemberPath = "BoatSpeed";
+            series1.RadiusAxisName = "radiusAxis";
+            series1.AngleAxisName = "angleAxis";
+            series1.DataSource = DataSource;
+
+            var series2 = new PolarSplineAreaSeries { Name = "series2" };
+            series2.AngleMemberPath = "Direction";
+            series2.RadiusMemberPath = "WindSpeed";
+            series2.RadiusAxisName = "radiusAxis";
+            series2.AngleAxisName = "angleAxis";
+            series2.DataSource = DataSource;
+
+            series1.AreaFillOpacity = 0.3;
+            series2.AreaFillOpacity = 0.3;
+            series1.MarkerType = MarkerType.Circle;
+            series2.MarkerType = MarkerType.Circle;
+            series1.Title = "Boat Speed";
+            series2.Title = "Wind Speed";
+            this.DataChartRef.Series.Clear();
+            this.DataChartRef.Series.Add(series2);
+            this.DataChartRef.Series.Add(series1);
+
+        }
+        else if (seriesType == "Spline")
+        {
+            // creating a series with mapping to data columns of wind pattern
+            var series1 = new PolarSplineSeries { Name = "series1" };
+            series1.AngleMemberPath = "Direction";
+            series1.RadiusMemberPath = "BoatSpeed";
+            series1.RadiusAxisName = "radiusAxis";
+            series1.AngleAxisName = "angleAxis";
+            series1.DataSource = DataSource;
+
+            var series2 = new PolarSplineSeries { Name = "series2" };
+            series2.AngleMemberPath = "Direction";
+            series2.RadiusMemberPath = "WindSpeed";
+            series2.RadiusAxisName = "radiusAxis";
+            series2.AngleAxisName = "angleAxis";
+            series2.DataSource = DataSource;
+
+            series1.MarkerType = MarkerType.Circle;
+            series2.MarkerType = MarkerType.Circle;
+            series1.Title = "Boat Speed";
+            series2.Title = "Wind Speed";
+            this.DataChartRef.Series.Clear();
+            this.DataChartRef.Series.Add(series2);
+            this.DataChartRef.Series.Add(series1);
+
+        }
+        else if (seriesType == "Line")
+        {
+            // creating a series with mapping to data columns of wind pattern
+            var series1 = new PolarLineSeries { Name = "series1" };
+            series1.AngleMemberPath = "Direction";
+            series1.RadiusMemberPath = "BoatSpeed";
+            series1.RadiusAxisName = "radiusAxis";
+            series1.AngleAxisName = "angleAxis";
+            series1.DataSource = DataSource;
+
+            var series2 = new PolarLineSeries { Name = "series2" };
+            series2.AngleMemberPath = "Direction";
+            series2.RadiusMemberPath = "WindSpeed";
+            series2.RadiusAxisName = "radiusAxis";
+            series2.AngleAxisName = "angleAxis";
+            series2.DataSource = DataSource;
+
+            series1.MarkerType = MarkerType.Circle;
+            series2.MarkerType = MarkerType.Circle;
+            series1.Title = "Boat Speed";
+            series2.Title = "Wind Speed";
+            this.DataChartRef.Series.Clear();
+            this.DataChartRef.Series.Add(series2);
+            this.DataChartRef.Series.Add(series1);
+
+        }
+        else if (seriesType == "Scatter")
+        {
+            // creating a series with mapping to data columns of wind pattern
+            var series1 = new PolarScatterSeries { Name = "series1" };
+            series1.AngleMemberPath = "Direction";
+            series1.RadiusMemberPath = "BoatSpeed";
+            series1.RadiusAxisName = "radiusAxis";
+            series1.AngleAxisName = "angleAxis";
+            series1.DataSource = DataSource;
+
+            var series2 = new PolarScatterSeries { Name = "series2" };
+            series2.AngleMemberPath = "Direction";
+            series2.RadiusMemberPath = "WindSpeed";
+            series2.RadiusAxisName = "radiusAxis";
+            series2.AngleAxisName = "angleAxis";
+            series2.DataSource = DataSource;
+
+            series1.MarkerType = MarkerType.Circle;
+            series2.MarkerType = MarkerType.Circle;
+            series1.Title = "Boat Speed";
+            series2.Title = "Wind Speed";
+            this.DataChartRef.Series.Clear();
+            this.DataChartRef.Series.Add(series2);
+            this.DataChartRef.Series.Add(series1);
+
+        }
+    }
+}

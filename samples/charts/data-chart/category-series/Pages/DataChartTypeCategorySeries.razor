@@ -1,0 +1,342 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+
+    <div class="igOptions-horizontal">
+        <span class="igOptions-label">Type of Category Series: </span>
+                    <select value=@SeriesType
+                        @onchange="OnSeriesTypeChanged">
+                        <option>Column</option>
+                        <option>Area</option>
+                        <option>Bar</option>
+                        <option>Point</option>
+                        <option>Line</option>
+                        <option>Spline</option>
+                        <option>SplineArea</option>
+                        <option>StepArea</option>
+                        <option>StepLine</option>
+                        <option>Waterfall</option>
+                    </select>
+
+        <span class="igLegend-title">Legend: </span>
+        <div class="igLegend">
+            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+        <DataChart Height="100%" Width="100%"
+                   ChartTitle="Total Olympic Medals"
+                   Subtitle="United States vs China vs Russia"
+                   TitleTopMargin="10"
+                   IsHorizontalZoomEnabled="true"
+                   IsVerticalZoomEnabled="true"
+                   Legend="@LegendRef"
+                   @ref="DataChartRef">
+
+            <CategoryXAxis Name="xAxis" Label="Year" DataSource="@DataSource"
+                           Title="Olympic Years" Gap="0.2" Overlap="-0.05" />
+            <NumericYAxis Name="yAxis" Title="Olympic Medals" TitleLeftMargin="10" />
+
+
+            <NumericXAxis Name="xAxis2" Label="Year" 
+                           Title="Olympic Years" />
+            <CategoryYAxis Name="yAxis2" Title="Olympic Medals" TitleLeftMargin="10" DataSource="@DataSource" Gap="0.2" Overlap="-0.05" />
+
+        </DataChart>
+        }
+        </div>
+</div>
+
+@code {
+
+    private List<SampleCategoryItem> DataSource;
+    private DataChart dataChart;
+    private DataChart DataChartRef
+    {
+        get { return dataChart; }
+        set
+        {
+            dataChart = value;
+            this.setSeries("Column");
+            StateHasChanged();
+        }
+    }
+
+    private Legend legend;
+    private Legend LegendRef
+    {
+        get { return legend; }
+        set
+        {
+            legend = value;
+            StateHasChanged();
+        }
+    }
+    private string seriesType;
+    private string SeriesType
+    {
+        get { return seriesType; }
+        set
+        {
+            seriesType = value;
+            StateHasChanged();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartVerticalCategoryModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+
+        LegendModule.Register(IgniteUIBlazor);
+        DataSource = SampleCategoryData.Create();
+    }
+
+    public void OnSeriesTypeChanged(ChangeEventArgs e)
+    {
+        var selectedSeries = e.Value.ToString();
+        SeriesType = selectedSeries;
+        this.setSeries(selectedSeries);
+    }
+
+    public void setSeries(string seriesType)
+    {
+        if (seriesType == "Column")
+        {
+
+            var series1 = new ColumnSeries{ Name = "series1" };
+            series1.ValueMemberPath = "USA";
+            series1.Title = "USA";
+            series1.XAxisName = "xAxis";
+            series1.YAxisName = "yAxis";
+            series1.DataSource = DataSource;
+
+            var series2 = new ColumnSeries{ Name = "series2" };
+            series2.ValueMemberPath = "RUS";
+            series2.Title = "Russia";
+            series2.XAxisName = "xAxis";
+            series2.YAxisName = "yAxis";
+            series2.DataSource = DataSource;
+
+            this.DataChartRef.Axes.Clear();
+            this.DataChartRef.Series.Clear();
+            this.DataChartRef.Series.Add(series1);
+            this.DataChartRef.Series.Add(series2);
+
+        } else if (seriesType == "Line") {
+
+            var series1 = new LineSeries{ Name = "series1" };
+            series1.MarkerType = MarkerType.Circle;
+            series1.ValueMemberPath = "USA";
+            series1.Title = "USA";
+            series1.XAxisName = "xAxis";
+            series1.YAxisName = "yAxis";
+            series1.Thickness = 2;
+            series1.DataSource = DataSource;
+
+            var series2 = new LineSeries{ Name = "series2" };
+            series2.MarkerType = MarkerType.Circle;
+            series2.ValueMemberPath = "RUS";
+            series2.Title = "Russia";
+            series2.XAxisName = "xAxis";
+            series2.YAxisName = "yAxis";
+            series2.Thickness = 2;
+            series2.DataSource = DataSource;
+
+            this.DataChartRef.Axes.Clear();
+            this.DataChartRef.Series.Clear();
+            this.DataChartRef.Series.Add(series1);
+            this.DataChartRef.Series.Add(series2);
+
+        } else if (seriesType == "Point")
+        {
+
+            var series1 = new PointSeries{ Name = "series1" };
+            series1.MarkerType = MarkerType.Circle;
+            series1.ValueMemberPath = "USA";
+            series1.Title = "USA";
+            series1.XAxisName = "xAxis";
+            series1.YAxisName = "yAxis";
+            series1.Thickness = 2;
+            series1.DataSource = DataSource;
+
+            var series2 = new PointSeries{ Name = "series2" };
+            series2.MarkerType = MarkerType.Circle;
+            series2.ValueMemberPath = "RUS";
+            series2.Title = "Russia";
+            series2.XAxisName = "xAxis";
+            series2.YAxisName = "yAxis";
+            series2.Thickness = 2;
+            series2.DataSource = DataSource;
+
+            this.DataChartRef.Axes.Clear();
+            this.DataChartRef.Series.Clear();
+            this.DataChartRef.Series.Add(series1);
+            this.DataChartRef.Series.Add(series2);
+
+        } else if (seriesType == "Area")
+        {
+
+            var series1 = new AreaSeries{ Name = "series1" };
+            series1.ValueMemberPath = "USA";
+            series1.Title = "USA";
+            series1.XAxisName = "xAxis";
+            series1.YAxisName = "yAxis";
+            series1.DataSource = DataSource;
+
+            var series2 = new AreaSeries{ Name = "series2" };
+            series2.ValueMemberPath = "RUS";
+            series2.Title = "Russia";
+            series2.XAxisName = "xAxis";
+            series2.YAxisName = "yAxis";
+            series2.DataSource = DataSource;
+
+            this.DataChartRef.Axes.Clear();
+            this.DataChartRef.Series.Clear();
+            this.DataChartRef.Series.Add(series1);
+            this.DataChartRef.Series.Add(series2);
+
+        } else if (seriesType == "Spline")
+        {
+
+            var series1 = new SplineSeries{ Name = "series1" };
+            series1.MarkerType = MarkerType.Circle;
+            series1.ValueMemberPath = "USA";
+            series1.Title = "USA";
+            series1.XAxisName = "xAxis";
+            series1.YAxisName = "yAxis";
+            series1.Thickness = 2;
+            series1.DataSource = DataSource;
+
+            var series2 = new SplineSeries{ Name = "series2" };
+            series2.MarkerType = MarkerType.Circle;
+            series2.ValueMemberPath = "RUS";
+            series2.Title = "Russia";
+            series2.XAxisName = "xAxis";
+            series2.YAxisName = "yAxis";
+            series2.Thickness = 2;
+            series2.DataSource = DataSource;
+
+            this.DataChartRef.Axes.Clear();
+            this.DataChartRef.Series.Clear();
+            this.DataChartRef.Series.Add(series1);
+            this.DataChartRef.Series.Add(series2);
+
+        } else if (seriesType == "SplineArea")
+        {
+
+            var series1 = new SplineAreaSeries{ Name = "series1" };
+            series1.ValueMemberPath = "USA";
+            series1.Title = "USA";
+            series1.XAxisName = "xAxis";
+            series1.YAxisName = "yAxis";
+            series1.DataSource = DataSource;
+
+            var series2 = new SplineAreaSeries{ Name = "series2" };
+            series2.ValueMemberPath = "RUS";
+            series2.Title = "Russia";
+            series2.XAxisName = "xAxis";
+            series2.YAxisName = "yAxis";
+            series2.DataSource = DataSource;
+
+            this.DataChartRef.Axes.Clear();
+            this.DataChartRef.Series.Clear();
+            this.DataChartRef.Series.Add(series1);
+            this.DataChartRef.Series.Add(series2);
+
+        } else if (seriesType == "StepArea")
+        {
+
+            var series1 = new StepAreaSeries{ Name = "series1" };
+            series1.ValueMemberPath = "USA";
+            series1.Title = "USA";
+            series1.XAxisName = "xAxis";
+            series1.YAxisName = "yAxis";
+            series1.DataSource = DataSource;
+
+            var series2 = new StepAreaSeries{ Name = "series2" };
+            series2.ValueMemberPath = "RUS";
+            series2.Title = "Russia";
+            series2.XAxisName = "xAxis";
+            series2.YAxisName = "yAxis";
+            series2.DataSource = DataSource;
+
+            this.DataChartRef.Axes.Clear();
+            this.DataChartRef.Series.Clear();
+            this.DataChartRef.Series.Add(series1);
+            this.DataChartRef.Series.Add(series2);
+
+        } else if (seriesType == "StepLine")
+        {
+
+            var series1 = new StepLineSeries{ Name = "series1" };
+            series1.ValueMemberPath = "USA";
+            series1.Title = "USA";
+            series1.XAxisName = "xAxis";
+            series1.YAxisName = "yAxis";
+            series1.DataSource = DataSource;
+
+            var series2 = new StepLineSeries{ Name = "series2" };
+            series2.ValueMemberPath = "RUS";
+            series2.Title = "Russia";
+            series2.XAxisName = "xAxis";
+            series2.YAxisName = "yAxis";
+            series2.DataSource = DataSource;
+
+            this.DataChartRef.Axes.Clear();
+            this.DataChartRef.Series.Clear();
+            this.DataChartRef.Series.Add(series1);
+            this.DataChartRef.Series.Add(series2);
+
+        } else if (seriesType == "Waterfall")
+        {
+
+            var series1 = new WaterfallSeries{ Name = "series1" };
+            series1.ValueMemberPath = "USA";
+            series1.Title = "USA";
+            series1.XAxisName = "xAxis";
+            series1.YAxisName = "yAxis";
+            series1.DataSource = DataSource;
+
+            var series2 = new WaterfallSeries{ Name = "series2" };
+            series2.ValueMemberPath = "RUS";
+            series2.Title = "Russia";
+            series2.XAxisName = "xAxis";
+            series2.YAxisName = "yAxis";
+            series2.DataSource = DataSource;
+
+            this.DataChartRef.Axes.Clear();
+            this.DataChartRef.Series.Clear();
+            this.DataChartRef.Series.Add(series1);
+            this.DataChartRef.Series.Add(series2);
+
+        } else if (seriesType == "Bar")
+        {
+            
+            var series1 = new BarSeries { Name = "series1" };
+            series1.ValueMemberPath = "USA";
+            series1.Title = "USA";
+            series1.XAxisName = "xAxis2";
+            series1.YAxisName = "yAxis2";
+            series1.DataSource = DataSource;
+
+            var series2 = new BarSeries { Name = "series2" };
+            series2.ValueMemberPath = "RUS";
+            series2.Title = "Russia";
+            series2.XAxisName = "xAxis2";
+            series2.YAxisName = "yAxis2";
+            series2.DataSource = DataSource;
+
+            this.DataChartRef.Series.Clear();
+            this.DataChartRef.Series.Add(series1);
+            this.DataChartRef.Series.Add(series2);
+        }
+    }
+}

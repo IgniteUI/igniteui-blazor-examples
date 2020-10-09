@@ -1,0 +1,218 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+
+    <div class="igOptions-horizontal">
+        <span class="igOptions-label">Type of Scatter Series: </span>
+                    <select value=@SeriesType
+                        @onchange="OnSeriesTypeChanged">
+                        <option>Bubble</option>
+                        <option>Point</option>
+                        <option>Line</option>
+                        <option>Spline</option>
+                    </select>
+
+        <span class="igLegend-title">Legend: </span>
+        <div class="igLegend">
+            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+
+    <div class="igComponent">
+        @if (data1 != null && data2 != null)
+        {
+        <DataChart Height="100%" Width="100%"
+                   ChartTitle="GDP vs Population"
+                   IsHorizontalZoomEnabled="true"
+                   IsVerticalZoomEnabled="true"
+                   Legend="@LegendRef"
+                   @ref="DataChartRef">
+
+            <NumericXAxis Name="xAxis" 
+                          IsLogarithmic="true" 
+                          AbbreviateLargeNumbers="true"                        
+                          Title="Population" />
+            <NumericYAxis Name="yAxis" 
+                          Title="Total GDP ($)" 
+                          IsLogarithmic="true"
+                          AbbreviateLargeNumbers="true"/>
+
+        </DataChart>
+        }
+        </div>
+</div>
+
+@code {
+
+    private object data1;
+    private object data2;
+
+    private DataChart dataChart;
+    private DataChart DataChartRef
+    {
+        get { return dataChart; }
+        set
+        {
+            dataChart = value;
+            this.setSeries("Point");
+            SeriesType = "Point";
+            StateHasChanged();
+        }
+    }
+
+    private Legend legend;
+    private Legend LegendRef
+    {
+        get { return legend; }
+        set
+        {
+            legend = value;
+            StateHasChanged();
+        }
+    }
+    private string seriesType;
+    private string SeriesType
+    {
+        get { return seriesType; }
+        set
+        {
+            seriesType = value;
+            StateHasChanged();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        LegendModule.Register(IgniteUIBlazor);
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartScatterCoreModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        DataChartScatterCoreModule.Register(IgniteUIBlazor);
+        DataChartScatterModule.Register(IgniteUIBlazor);
+        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+
+        LegendModule.Register(IgniteUIBlazor);
+        this.data1 = SampleScatterStats.GetCountriesWithHighIncome();
+        this.data2 = SampleScatterStats.GetCountriesWithLowIncome();
+    }
+
+    public void OnSeriesTypeChanged(ChangeEventArgs e)
+    {
+        var selectedSeries = e.Value.ToString();
+        SeriesType = selectedSeries;
+        this.setSeries(selectedSeries);
+    }
+
+    public void setSeries(string seriesType)
+    {
+        if (seriesType == "Point")
+        {
+
+            var series1 = new ScatterSeries{ Name = "series1" };
+            series1.MarkerType = MarkerType.Circle;
+            series1.ShowDefaultTooltip = true;
+            series1.Title = "High Income Countries";
+            series1.XAxisName = "xAxis";
+            series1.YAxisName = "yAxis";
+            series1.XMemberPath = "Population";
+            series1.YMemberPath = "GdpTotal";
+            series1.DataSource = data1;
+
+            var series2 = new ScatterSeries{ Name = "series2" };
+            series2.MarkerType = MarkerType.Circle;
+            series2.ShowDefaultTooltip = true;
+            series2.Title = "Low Income Countries";
+            series2.XAxisName = "xAxis";
+            series2.YAxisName = "yAxis";
+            series2.XMemberPath = "Population";
+            series2.YMemberPath = "GdpTotal";
+            series2.DataSource = data2;
+
+            this.DataChartRef.Series.Clear();
+            this.DataChartRef.Series.Add(series1);
+            this.DataChartRef.Series.Add(series2);
+
+        } else if (seriesType == "Line") {
+
+            var series1 = new ScatterLineSeries { Name = "series1" };
+            series1.MarkerType = MarkerType.Circle;
+            series1.ShowDefaultTooltip = true;
+            series1.Title = "High Income Countries";
+            series1.XAxisName = "xAxis";
+            series1.YAxisName = "yAxis";
+            series1.XMemberPath = "Population";
+            series1.YMemberPath = "GdpTotal";
+            series1.DataSource = data1;
+
+            var series2 = new ScatterLineSeries { Name = "series2" };
+            series2.MarkerType = MarkerType.Circle;
+            series2.ShowDefaultTooltip = true;
+            series2.Title = "Low Income Countries";
+            series2.XAxisName = "xAxis";
+            series2.YAxisName = "yAxis";
+            series2.XMemberPath = "Population";
+            series2.YMemberPath = "GdpTotal";
+            series2.DataSource = data2;
+
+            this.DataChartRef.Series.Clear();
+            this.DataChartRef.Series.Add(series1);
+            this.DataChartRef.Series.Add(series2);
+
+        } else if (seriesType == "Spline")
+        {
+
+            var series1 = new ScatterSplineSeries { Name = "series1" };
+            series1.MarkerType = MarkerType.Circle;
+            series1.ShowDefaultTooltip = true;
+            series1.Title = "High Income Countries";
+            series1.XAxisName = "xAxis";
+            series1.YAxisName = "yAxis";
+            series1.XMemberPath = "Population";
+            series1.YMemberPath = "GdpTotal";
+            series1.DataSource = data1;
+
+            var series2 = new ScatterSplineSeries { Name = "series2" };
+            series2.MarkerType = MarkerType.Circle;
+            series2.ShowDefaultTooltip = true;
+            series2.Title = "Low Income Countries";
+            series2.XAxisName = "xAxis";
+            series2.YAxisName = "yAxis";
+            series2.XMemberPath = "Population";
+            series2.YMemberPath = "GdpTotal";
+            series2.DataSource = data2;
+
+            this.DataChartRef.Series.Clear();
+            this.DataChartRef.Series.Add(series1);
+            this.DataChartRef.Series.Add(series2);
+
+        } else if (seriesType == "Bubble")
+        {
+
+            var series1 = new BubbleSeries { Name = "series1" };
+            series1.MarkerType = MarkerType.Circle;
+            series1.ShowDefaultTooltip = true;
+            series1.Title = "High Income Countries";
+            series1.XAxisName = "xAxis";
+            series1.YAxisName = "yAxis";
+            series1.XMemberPath = "Population";
+            series1.YMemberPath = "GdpTotal";
+            series1.DataSource = data1;
+
+            var series2 = new BubbleSeries { Name = "series2" };
+            series2.MarkerType = MarkerType.Circle;
+            series2.ShowDefaultTooltip = true;
+            series2.Title = "Low Income Countries";
+            series2.XAxisName = "xAxis";
+            series2.YAxisName = "yAxis";
+            series2.XMemberPath = "Population";
+            series2.YMemberPath = "GdpTotal";
+            series2.DataSource = data2;
+
+            this.DataChartRef.Series.Clear();
+            this.DataChartRef.Series.Add(series1);
+            this.DataChartRef.Series.Add(series2);
+
+        }
+    }
+}

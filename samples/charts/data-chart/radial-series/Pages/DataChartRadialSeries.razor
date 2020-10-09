@@ -1,0 +1,193 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+
+    <div class="igOptions-horizontal">
+        <span class="igOptions-label">Type of Polar Series: </span>
+        <select value=@SeriesType
+                @onchange="OnSeriesTypeChanged">
+            <option>Area</option>
+            <option>Column</option>
+            <option>Pie</option>
+            <option>Line</option>
+        </select>
+
+        <span class="igLegend-title">Legend: </span>
+        <div class="igLegend">
+            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+        <DataChart Height="100%" Width="100%"
+                   GridMode="GridMode.BeforeSeries"
+                   ChartTitle="Company Finances by Department"
+                   Subtitle="Wind Speed vs. Boat Speed"
+                   TitleTopMargin="10"
+                   IsHorizontalZoomEnabled="true"
+                   IsVerticalZoomEnabled="true"
+                   Brushes="#9FB328, #7446B9"
+                   Outlines="#9FB328, #7446B9"
+                   Legend="@LegendRef"
+                   @ref="DataChartRef">
+
+            <CategoryAngleAxis 
+                   Name="angleAxis"
+                   Label="Department"
+                   DataSource="@DataSource" />
+            <NumericRadiusAxis 
+                   Name="radiusAxis"
+                   InnerRadiusExtentScale=0.1
+                   MinimumValue=0 />
+        </DataChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<SampleRadialItem> DataSource;
+    private DataChart dataChart;
+    private DataChart DataChartRef
+    {
+        get { return dataChart; }
+        set
+        {
+            dataChart = value;
+            this.setSeries("Pie");
+            SeriesType = "Pie";
+            StateHasChanged();
+        }
+    }
+
+    private Legend legend;
+    private Legend LegendRef
+    {
+        get { return legend; }
+        set
+        {
+            legend = value;
+            StateHasChanged();
+        }
+    }
+    private string seriesType;
+    private string SeriesType
+    {
+        get { return seriesType; }
+        set
+        {
+            seriesType = value;
+            StateHasChanged();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartRadialCoreModule.Register(IgniteUIBlazor);
+        DataChartRadialModule.Register(IgniteUIBlazor);
+        DataChartExtendedAxesModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+
+        LegendModule.Register(IgniteUIBlazor);
+        DataSource = SampleRadialData.Create();
+    }
+
+    public void OnSeriesTypeChanged(ChangeEventArgs e)
+    {
+        var selectedSeries = e.Value.ToString();
+        SeriesType = selectedSeries;
+        this.setSeries(selectedSeries);
+    }
+
+    public void setSeries(string seriesType)
+    {
+        if (seriesType == "Area")
+        {
+            var series1 = new RadialAreaSeries { Name = "series1" };
+            series1.ValueMemberPath = "Budget";
+            series1.ValueAxisName = "radiusAxis";
+            series1.AngleAxisName = "angleAxis";
+            series1.Title = "Budget";
+            series1.DataSource = DataSource;
+
+            var series2 = new RadialAreaSeries { Name = "series2" };
+            series2.ValueMemberPath = "Spending";
+            series2.ValueAxisName = "radiusAxis";
+            series2.AngleAxisName = "angleAxis";
+            series2.Title = "Spending";
+            series2.DataSource = DataSource;
+            this.DataChartRef.Series.Clear();
+            this.DataChartRef.Series.Add(series2);
+            this.DataChartRef.Series.Add(series1);
+
+        }
+        else if (seriesType == "Pie")
+        {
+            var series1 = new RadialPieSeries { Name = "series1" };
+            series1.ValueMemberPath = "Budget";
+            series1.ValueAxisName = "radiusAxis";
+            series1.AngleAxisName = "angleAxis";
+            series1.Title = "Budget";
+            series1.DataSource = DataSource;
+
+            var series2 = new RadialPieSeries { Name = "series2" };
+            series2.ValueMemberPath = "Spending";
+            series2.ValueAxisName = "radiusAxis";
+            series2.AngleAxisName = "angleAxis";
+            series2.Title = "Spending";
+            series2.DataSource = DataSource;
+
+            this.DataChartRef.Series.Clear();
+            this.DataChartRef.Series.Add(series2);
+            this.DataChartRef.Series.Add(series1);
+
+        }
+        else if (seriesType == "Line")
+        {
+            var series1 = new RadialLineSeries { Name = "series1" };
+            series1.ValueMemberPath = "Budget";
+            series1.ValueAxisName = "radiusAxis";
+            series1.AngleAxisName = "angleAxis";
+            series1.Title = "Budget";
+            series1.DataSource = DataSource;
+
+            var series2 = new RadialLineSeries { Name = "series2" };
+            series2.ValueMemberPath = "Spending";
+            series2.ValueAxisName = "radiusAxis";
+            series2.AngleAxisName = "angleAxis";
+            series2.Title = "Spending";
+            series2.DataSource = DataSource;
+
+            this.DataChartRef.Series.Clear();
+            this.DataChartRef.Series.Add(series2);
+            this.DataChartRef.Series.Add(series1);
+
+        }
+        else if (seriesType == "Column")
+        {
+            var series1 = new RadialColumnSeries { Name = "series1" };
+            series1.ValueMemberPath = "Budget";
+            series1.ValueAxisName = "radiusAxis";
+            series1.AngleAxisName = "angleAxis";
+            series1.Title = "Budget";
+            series1.DataSource = DataSource;
+
+            var series2 = new RadialColumnSeries { Name = "series2" };
+            series2.ValueMemberPath = "Spending";
+            series2.ValueAxisName = "radiusAxis";
+            series2.AngleAxisName = "angleAxis";
+            series2.Title = "Spending";
+            series2.DataSource = DataSource;
+
+            this.DataChartRef.Series.Clear();
+            this.DataChartRef.Series.Add(series2);
+            this.DataChartRef.Series.Add(series1);
+
+        }
+    }
+}
