@@ -34,14 +34,60 @@
                    Legend="@LegendRef"
                    @ref="DataChartRef">
 
-            <CategoryAngleAxis 
-                   Name="angleAxis"
-                   Label="Department"
-                   DataSource="@DataSource" />
-            <NumericRadiusAxis 
-                   Name="radiusAxis"
-                   InnerRadiusExtentScale=0.1
-                   MinimumValue=0 />
+            <CategoryAngleAxis Name="angleAxis"
+                               Label="Department"
+                               DataSource="@DataSource" />
+            <NumericRadiusAxis Name="radiusAxis"
+                               InnerRadiusExtentScale=0.1
+                               MinimumValue=0 />
+
+            @if (SeriesType == "Area")
+            {
+                <RadialAreaSeries 
+                    ValueMemberPath = "Budget"
+                    ValueAxisName = "radiusAxis"
+                    AngleAxisName = "angleAxis"
+                    Title = "Budget"
+                    DataSource = "@DataSource">
+
+                </RadialAreaSeries>
+            }
+
+            @if (SeriesType == "Column")
+            {
+                <RadialColumnSeries  
+                    ValueMemberPath = "Budget"
+                    ValueAxisName = "radiusAxis"
+                    AngleAxisName = "angleAxis"
+                    Title = "Budget"
+                    DataSource = "@DataSource">
+
+                </RadialColumnSeries>
+            }
+
+            @if (SeriesType == "Pie")
+            {
+                <RadialPieSeries  
+                    ValueMemberPath = "Budget"
+                    ValueAxisName = "radiusAxis"
+                    AngleAxisName = "angleAxis"
+                    Title = "Budget"
+                    DataSource = "@DataSource">
+
+                </RadialPieSeries>
+            }
+
+            @if (SeriesType == "Line")
+            {
+                <RadialLineSeries  
+                    ValueMemberPath = "Budget"
+                    ValueAxisName = "radiusAxis"
+                    AngleAxisName = "angleAxis"
+                    Title = "Budget"
+                    DataSource = "@DataSource">
+
+                </RadialLineSeries>
+            }
         </DataChart>
         }
     </div>
@@ -57,7 +103,6 @@
         set
         {
             dataChart = value;
-            this.setSeries("Pie");
             SeriesType = "Pie";
             StateHasChanged();
         }
@@ -101,93 +146,5 @@
     {
         var selectedSeries = e.Value.ToString();
         SeriesType = selectedSeries;
-        this.setSeries(selectedSeries);
-    }
-
-    public void setSeries(string seriesType)
-    {
-        if (seriesType == "Area")
-        {
-            var series1 = new RadialAreaSeries { Name = "series1" };
-            series1.ValueMemberPath = "Budget";
-            series1.ValueAxisName = "radiusAxis";
-            series1.AngleAxisName = "angleAxis";
-            series1.Title = "Budget";
-            series1.DataSource = DataSource;
-
-            var series2 = new RadialAreaSeries { Name = "series2" };
-            series2.ValueMemberPath = "Spending";
-            series2.ValueAxisName = "radiusAxis";
-            series2.AngleAxisName = "angleAxis";
-            series2.Title = "Spending";
-            series2.DataSource = DataSource;
-            this.DataChartRef.Series.Clear();
-            this.DataChartRef.Series.Add(series2);
-            this.DataChartRef.Series.Add(series1);
-
-        }
-        else if (seriesType == "Pie")
-        {
-            var series1 = new RadialPieSeries { Name = "series1" };
-            series1.ValueMemberPath = "Budget";
-            series1.ValueAxisName = "radiusAxis";
-            series1.AngleAxisName = "angleAxis";
-            series1.Title = "Budget";
-            series1.DataSource = DataSource;
-
-            var series2 = new RadialPieSeries { Name = "series2" };
-            series2.ValueMemberPath = "Spending";
-            series2.ValueAxisName = "radiusAxis";
-            series2.AngleAxisName = "angleAxis";
-            series2.Title = "Spending";
-            series2.DataSource = DataSource;
-
-            this.DataChartRef.Series.Clear();
-            this.DataChartRef.Series.Add(series2);
-            this.DataChartRef.Series.Add(series1);
-
-        }
-        else if (seriesType == "Line")
-        {
-            var series1 = new RadialLineSeries { Name = "series1" };
-            series1.ValueMemberPath = "Budget";
-            series1.ValueAxisName = "radiusAxis";
-            series1.AngleAxisName = "angleAxis";
-            series1.Title = "Budget";
-            series1.DataSource = DataSource;
-
-            var series2 = new RadialLineSeries { Name = "series2" };
-            series2.ValueMemberPath = "Spending";
-            series2.ValueAxisName = "radiusAxis";
-            series2.AngleAxisName = "angleAxis";
-            series2.Title = "Spending";
-            series2.DataSource = DataSource;
-
-            this.DataChartRef.Series.Clear();
-            this.DataChartRef.Series.Add(series2);
-            this.DataChartRef.Series.Add(series1);
-
-        }
-        else if (seriesType == "Column")
-        {
-            var series1 = new RadialColumnSeries { Name = "series1" };
-            series1.ValueMemberPath = "Budget";
-            series1.ValueAxisName = "radiusAxis";
-            series1.AngleAxisName = "angleAxis";
-            series1.Title = "Budget";
-            series1.DataSource = DataSource;
-
-            var series2 = new RadialColumnSeries { Name = "series2" };
-            series2.ValueMemberPath = "Spending";
-            series2.ValueAxisName = "radiusAxis";
-            series2.AngleAxisName = "angleAxis";
-            series2.Title = "Spending";
-            series2.DataSource = DataSource;
-
-            this.DataChartRef.Series.Clear();
-            this.DataChartRef.Series.Add(series2);
-            this.DataChartRef.Series.Add(series1);
-
-        }
     }
 }

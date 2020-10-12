@@ -27,15 +27,38 @@
                    Legend="@LegendRef"
                    @ref="DataChartRef">
 
-            <CategoryXAxis 
-                   Name="xAxis"
-                   Label="Year"
-                   Gap="0.5"
-                   DataSource="@DataSource" />
-            <NumericYAxis 
-                   Name="yAxis" 
-                   MinimumValue=20
-                   Title="Temperature (°C)" />
+            <CategoryXAxis Name="xAxis"
+                           Label="Year"
+                           Gap="0.5"
+                           DataSource="@DataSource" />
+            <NumericYAxis Name="yAxis"
+                          MinimumValue=20
+                          Title="Temperature (°C)" />
+
+            @if (SeriesType == "Area")
+            {
+                <RangeAreaSeries HighMemberPath="High"
+                                 LowMemberPath="Low"
+                                 XAxisName="xAxis"
+                                 YAxisName="yAxis"
+                                 Thickness="0"
+                                 DataSource="@DataSource"
+                                 Title="Weather Forecast">
+
+                </RangeAreaSeries>
+            }
+            @if (SeriesType == "Column")
+            {
+                <RangeColumnSeries HighMemberPath="High"
+                                 LowMemberPath="Low"
+                                 XAxisName="xAxis"
+                                 YAxisName="yAxis"
+                                 Thickness="0"
+                                 DataSource="@DataSource"
+                                 Title="Weather Forecast">
+
+                </RangeColumnSeries>
+            }
         </DataChart>
         }
     </div>
@@ -51,7 +74,6 @@
         set
         {
             dataChart = value;
-            this.setSeries("Column");
             SeriesType = "Column";
             StateHasChanged();
         }
@@ -92,39 +114,5 @@
     {
         var selectedSeries = e.Value.ToString();
         SeriesType = selectedSeries;
-        this.setSeries(selectedSeries);
-    }
-
-    public void setSeries(string seriesType)
-    {
-        if (seriesType == "Area")
-        {
-            var series1 = new RangeAreaSeries { Name = "series1" };
-            series1.HighMemberPath = "High";
-            series1.LowMemberPath = "Low";
-            series1.XAxisName = "xAxis";
-            series1.YAxisName = "yAxis";
-            series1.Thickness = 0;
-            series1.DataSource = DataSource;
-            series1.Title = "Weather Forecast";
-            this.DataChartRef.Series.Clear();
-            this.DataChartRef.Series.Add(series1);
-
-        }
-        else if (seriesType == "Column")
-        {
-            var series1 = new RangeColumnSeries { Name = "series1" };
-            series1.HighMemberPath = "High";
-            series1.LowMemberPath = "Low";
-            series1.XAxisName = "xAxis";
-            series1.YAxisName = "yAxis";
-            series1.Thickness = 0;
-            series1.Title = "Weather Forecast";
-            series1.DataSource = DataSource;
-
-            this.DataChartRef.Series.Clear();
-            this.DataChartRef.Series.Add(series1);
-
-        }
     }
 }

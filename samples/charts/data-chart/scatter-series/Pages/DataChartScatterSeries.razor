@@ -29,15 +29,110 @@
                    Legend="@LegendRef"
                    @ref="DataChartRef">
 
-            <NumericXAxis Name="xAxis" 
-                          IsLogarithmic="true" 
-                          AbbreviateLargeNumbers="true"                        
-                          Title="Population" />
-            <NumericYAxis Name="yAxis" 
-                          Title="Total GDP ($)" 
+            <NumericXAxis Name="xAxis"
                           IsLogarithmic="true"
-                          AbbreviateLargeNumbers="true"/>
+                          AbbreviateLargeNumbers="true"
+                          Title="Population" />
+            <NumericYAxis Name="yAxis"
+                          Title="Total GDP ($)"
+                          IsLogarithmic="true"
+                          AbbreviateLargeNumbers="true" />
+            @if (SeriesType == "Bubble")
+            {
+                <BubbleSeries MarkerType="MarkerType.Circle"
+                    ShowDefaultTooltip="true"
+                    Title = "High Income Countries"
+                    XAxisName = "xAxis"
+                    YAxisName = "yAxis"
+                    XMemberPath = "Population"
+                    YMemberPath = "GdpTotal"
+                    DataSource = "@data1">
 
+                </BubbleSeries>
+
+                <BubbleSeries MarkerType="MarkerType.Circle"
+                    ShowDefaultTooltip="true"
+                    Title = "Low Income Countries"
+                    XAxisName = "xAxis"
+                    YAxisName = "yAxis"
+                    XMemberPath = "Population"
+                    YMemberPath = "GdpTotal"
+                    DataSource = "@data2">
+
+                </BubbleSeries>
+            }
+            @if (SeriesType == "Point")
+            {
+                <ScatterSeries MarkerType="MarkerType.Circle"
+                    ShowDefaultTooltip="true"
+                    Title = "High Income Countries"
+                    XAxisName = "xAxis"
+                    YAxisName = "yAxis"
+                    XMemberPath = "Population"
+                    YMemberPath = "GdpTotal"
+                    DataSource = "@data1">
+
+                </ScatterSeries>
+
+                <ScatterSeries MarkerType="MarkerType.Circle"
+                    ShowDefaultTooltip="true"
+                    Title = "Low Income Countries"
+                    XAxisName = "xAxis"
+                    YAxisName = "yAxis"
+                    XMemberPath = "Population"
+                    YMemberPath = "GdpTotal"
+                    DataSource = "@data2">
+
+                </ScatterSeries>
+            }
+            @if (SeriesType == "Line")
+            {
+                <ScatterLineSeries MarkerType="MarkerType.Circle"
+                    ShowDefaultTooltip="true"
+                    Title = "High Income Countries"
+                    XAxisName = "xAxis"
+                    YAxisName = "yAxis"
+                    XMemberPath = "Population"
+                    YMemberPath = "GdpTotal"
+                    DataSource = "@data1">
+
+                </ScatterLineSeries>
+
+                <ScatterLineSeries MarkerType="MarkerType.Circle"
+                    ShowDefaultTooltip="true"
+                    Title = "Low Income Countries"
+                    XAxisName = "xAxis"
+                    YAxisName = "yAxis"
+                    XMemberPath = "Population"
+                    YMemberPath = "GdpTotal"
+                    DataSource = "@data2">
+
+                </ScatterLineSeries>
+            }
+            @if (SeriesType == "Spline")
+            {
+                <ScatterSplineSeries MarkerType="MarkerType.Circle"
+                    ShowDefaultTooltip="true"
+                    Title = "High Income Countries"
+                    XAxisName = "xAxis"
+                    YAxisName = "yAxis"
+                    XMemberPath = "Population"
+                    YMemberPath = "GdpTotal"
+                    DataSource = "@data1">
+
+                </ScatterSplineSeries>
+
+                <ScatterSplineSeries MarkerType="MarkerType.Circle"
+                    ShowDefaultTooltip="true"
+                    Title = "Low Income Countries"
+                    XAxisName = "xAxis"
+                    YAxisName = "yAxis"
+                    XMemberPath = "Population"
+                    YMemberPath = "GdpTotal"
+                    DataSource = "@data2">
+
+                </ScatterSplineSeries>
+            }
         </DataChart>
         }
         </div>
@@ -55,7 +150,7 @@
         set
         {
             dataChart = value;
-            this.setSeries("Point");
+            
             SeriesType = "Point";
             StateHasChanged();
         }
@@ -101,118 +196,5 @@
     {
         var selectedSeries = e.Value.ToString();
         SeriesType = selectedSeries;
-        this.setSeries(selectedSeries);
-    }
-
-    public void setSeries(string seriesType)
-    {
-        if (seriesType == "Point")
-        {
-
-            var series1 = new ScatterSeries{ Name = "series1" };
-            series1.MarkerType = MarkerType.Circle;
-            series1.ShowDefaultTooltip = true;
-            series1.Title = "High Income Countries";
-            series1.XAxisName = "xAxis";
-            series1.YAxisName = "yAxis";
-            series1.XMemberPath = "Population";
-            series1.YMemberPath = "GdpTotal";
-            series1.DataSource = data1;
-
-            var series2 = new ScatterSeries{ Name = "series2" };
-            series2.MarkerType = MarkerType.Circle;
-            series2.ShowDefaultTooltip = true;
-            series2.Title = "Low Income Countries";
-            series2.XAxisName = "xAxis";
-            series2.YAxisName = "yAxis";
-            series2.XMemberPath = "Population";
-            series2.YMemberPath = "GdpTotal";
-            series2.DataSource = data2;
-
-            this.DataChartRef.Series.Clear();
-            this.DataChartRef.Series.Add(series1);
-            this.DataChartRef.Series.Add(series2);
-
-        } else if (seriesType == "Line") {
-
-            var series1 = new ScatterLineSeries { Name = "series1" };
-            series1.MarkerType = MarkerType.Circle;
-            series1.ShowDefaultTooltip = true;
-            series1.Title = "High Income Countries";
-            series1.XAxisName = "xAxis";
-            series1.YAxisName = "yAxis";
-            series1.XMemberPath = "Population";
-            series1.YMemberPath = "GdpTotal";
-            series1.DataSource = data1;
-
-            var series2 = new ScatterLineSeries { Name = "series2" };
-            series2.MarkerType = MarkerType.Circle;
-            series2.ShowDefaultTooltip = true;
-            series2.Title = "Low Income Countries";
-            series2.XAxisName = "xAxis";
-            series2.YAxisName = "yAxis";
-            series2.XMemberPath = "Population";
-            series2.YMemberPath = "GdpTotal";
-            series2.DataSource = data2;
-
-            this.DataChartRef.Series.Clear();
-            this.DataChartRef.Series.Add(series1);
-            this.DataChartRef.Series.Add(series2);
-
-        } else if (seriesType == "Spline")
-        {
-
-            var series1 = new ScatterSplineSeries { Name = "series1" };
-            series1.MarkerType = MarkerType.Circle;
-            series1.ShowDefaultTooltip = true;
-            series1.Title = "High Income Countries";
-            series1.XAxisName = "xAxis";
-            series1.YAxisName = "yAxis";
-            series1.XMemberPath = "Population";
-            series1.YMemberPath = "GdpTotal";
-            series1.DataSource = data1;
-
-            var series2 = new ScatterSplineSeries { Name = "series2" };
-            series2.MarkerType = MarkerType.Circle;
-            series2.ShowDefaultTooltip = true;
-            series2.Title = "Low Income Countries";
-            series2.XAxisName = "xAxis";
-            series2.YAxisName = "yAxis";
-            series2.XMemberPath = "Population";
-            series2.YMemberPath = "GdpTotal";
-            series2.DataSource = data2;
-
-            this.DataChartRef.Series.Clear();
-            this.DataChartRef.Series.Add(series1);
-            this.DataChartRef.Series.Add(series2);
-
-        } else if (seriesType == "Bubble")
-        {
-
-            var series1 = new BubbleSeries { Name = "series1" };
-            series1.MarkerType = MarkerType.Circle;
-            series1.ShowDefaultTooltip = true;
-            series1.Title = "High Income Countries";
-            series1.XAxisName = "xAxis";
-            series1.YAxisName = "yAxis";
-            series1.XMemberPath = "Population";
-            series1.YMemberPath = "GdpTotal";
-            series1.DataSource = data1;
-
-            var series2 = new BubbleSeries { Name = "series2" };
-            series2.MarkerType = MarkerType.Circle;
-            series2.ShowDefaultTooltip = true;
-            series2.Title = "Low Income Countries";
-            series2.XAxisName = "xAxis";
-            series2.YAxisName = "yAxis";
-            series2.XMemberPath = "Population";
-            series2.YMemberPath = "GdpTotal";
-            series2.DataSource = data2;
-
-            this.DataChartRef.Series.Clear();
-            this.DataChartRef.Series.Add(series1);
-            this.DataChartRef.Series.Add(series2);
-
-        }
     }
 }

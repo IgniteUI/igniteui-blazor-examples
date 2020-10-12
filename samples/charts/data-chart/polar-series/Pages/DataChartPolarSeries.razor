@@ -33,17 +33,138 @@
                    @ref="DataChartRef">
 
             <NumericAngleAxis Name="angleAxis"
-                                 StartAngleOffset=-90
-                                 Interval=30
-                                 MinimumValue=0
-                                 MaximumValue=360 />
+                              StartAngleOffset=-90
+                              Interval=30
+                              MinimumValue=0
+                              MaximumValue=360 />
             <NumericRadiusAxis Name="radiusAxis"
-                                  InnerRadiusExtentScale=0.1
-                                  RadiusExtentScale=0.9
-                                  MinimumValue=0
-                                  MaximumValue=100
-                                  Interval=25 />
+                               InnerRadiusExtentScale=0.1
+                               RadiusExtentScale=0.9
+                               MinimumValue=0
+                               MaximumValue=100
+                               Interval=25 />
 
+            @if (SeriesType == "Area")
+            {
+                <PolarAreaSeries Name="series1"
+                                 DataSource="@DataSource"
+                                 AngleAxisName="angleAxis"
+                                 AngleMemberPath="Direction"
+                                 RadiusMemberPath="WindSpeed"
+                                 RadiusAxisName="radiusAxis"
+                                 ShowDefaultTooltip="true"
+                                 AreaFillOpacity="1"
+                                 Title="Wind Speed"
+                                 MarkerType="@MarkerType.Circle" />
+                <PolarAreaSeries Name="series2"
+                                 DataSource="@DataSource"
+                                 AngleAxisName="angleAxis"
+                                 AngleMemberPath="Direction"
+                                 RadiusMemberPath="BoatSpeed"
+                                 RadiusAxisName="radiusAxis"
+                                 ShowDefaultTooltip="true"
+                                 AreaFillOpacity="1"
+                                 Title="Boat Speed"
+                                 MarkerType="@MarkerType.Circle" />
+            }
+
+            @if (SeriesType == "Spline Area")
+            {
+                <PolarSplineAreaSeries Name="series1"
+                    
+                    AngleAxisName="angleAxis"
+                    AngleMemberPath="Direction"
+                    RadiusMemberPath="WindSpeed"
+                    RadiusAxisName="radiusAxis"
+                    ShowDefaultTooltip="true"
+                    AreaFillOpacity="1"
+                    Title="Wind Speed"
+                    MarkerType="@MarkerType.Circle"
+                    DataSource="@DataSource" >
+                </PolarSplineAreaSeries>
+
+                <PolarSplineAreaSeries Name="series2"
+                    
+                    AngleAxisName="angleAxis"
+                    AngleMemberPath="Direction"
+                    RadiusMemberPath="BoatSpeed"
+                    RadiusAxisName="radiusAxis"
+                    ShowDefaultTooltip="true"
+                    AreaFillOpacity="1"
+                    Title="Boat Speed"
+                    MarkerType="@MarkerType.Circle"
+                    DataSource="@DataSource">
+                </PolarSplineAreaSeries>
+            }
+
+            @if (SeriesType == "Spline")
+            {
+                <PolarSplineSeries AngleMemberPath="Direction"
+                                   RadiusMemberPath="BoatSpeed"
+                                   RadiusAxisName="radiusAxis"
+                                   AngleAxisName="angleAxis"
+                                   AreaFillOpacity="1"
+                                   MarkerType="MarkerType.Circle"
+                                   Title="Boat Speed"
+                                   DataSource="@DataSource">
+                </PolarSplineSeries>
+
+                <PolarSplineSeries AngleMemberPath="Direction"
+                                   RadiusMemberPath="WindSpeed"
+                                   RadiusAxisName="radiusAxis"
+                                   AngleAxisName="angleAxis"
+                                   AreaFillOpacity="1"
+                                   MarkerType="MarkerType.Circle"
+                                   Title="Wind Speed"
+                                   DataSource="@DataSource">
+                </PolarSplineSeries>
+            }
+
+            @if (SeriesType == "Line")
+            {
+                <PolarLineSeries AngleMemberPath="Direction"
+                                 RadiusMemberPath="BoatSpeed"
+                                 RadiusAxisName="radiusAxis"
+                                 AngleAxisName="angleAxis"
+                                 AreaFillOpacity="1"
+                                 MarkerType="MarkerType.Circle"
+                                 Title="Boat Speed"
+                                 DataSource="@DataSource">
+                </PolarLineSeries>
+
+                <PolarLineSeries AngleMemberPath="Direction"
+                                 RadiusMemberPath="WindSpeed"
+                                 RadiusAxisName="radiusAxis"
+                                 AngleAxisName="angleAxis"
+                                 AreaFillOpacity="1"
+                                 MarkerType="MarkerType.Circle"
+                                 Title="Wind Speed"
+                                 DataSource="@DataSource">
+                </PolarLineSeries>
+            }
+
+            @if (SeriesType == "Scatter")
+            {
+                <PolarScatterSeries AngleMemberPath="Direction"
+                        RadiusMemberPath="BoatSpeed"
+                        RadiusAxisName="radiusAxis"
+                        AngleAxisName="angleAxis"
+                        AreaFillOpacity="1"
+                        MarkerType="MarkerType.Circle"
+                        Title="Boat Speed"
+                        DataSource="@DataSource">
+                </PolarScatterSeries>
+
+                <PolarScatterSeries AngleMemberPath="Direction"
+                        RadiusMemberPath="WindSpeed"
+                        RadiusAxisName="radiusAxis"
+                        AngleAxisName="angleAxis"
+                        AreaFillOpacity="1"
+                        MarkerType="MarkerType.Circle"
+                        Title="Wind Speed"
+                        DataSource="@DataSource">
+                </PolarScatterSeries>
+            }
         </DataChart>
         }
     </div>
@@ -59,7 +180,7 @@
         set
         {
             dataChart = value;
-            this.setSeries("Spline");
+            SeriesType = "Spline Area";
             StateHasChanged();
         }
     }
@@ -81,7 +202,6 @@
         set
         {
             seriesType = value;
-            this.setSeries("Spline");
             StateHasChanged();
         }
     }
@@ -101,144 +221,5 @@
     {
         var selectedSeries = e.Value.ToString();
         SeriesType = selectedSeries;
-        this.setSeries(selectedSeries);
-    }
-
-    public void setSeries(string seriesType)
-    {
-        if (seriesType == "Area")
-        {
-            // creating a series with mapping to data columns of wind pattern
-            var series1 = new PolarAreaSeries { Name = "series1" };
-            series1.AngleMemberPath = "Direction";
-            series1.RadiusMemberPath = "BoatSpeed";
-            series1.RadiusAxisName = "radiusAxis";
-            series1.AngleAxisName = "angleAxis";
-            series1.AreaFillOpacity = 1;
-            series1.MarkerType = MarkerType.Circle;
-            series1.Title = "Boat Speed";
-            series1.DataSource = DataSource;
-
-            var series2 = new PolarAreaSeries { Name = "series2" };
-            series2.AngleMemberPath = "Direction";
-            series2.RadiusMemberPath = "WindSpeed";
-            series2.RadiusAxisName = "radiusAxis";
-            series2.AngleAxisName = "angleAxis";
-            series2.DataSource = DataSource;
-            series2.AreaFillOpacity = 1;
-            series2.MarkerType = MarkerType.Circle;
-
-            series2.Title = "Wind Speed";
-            this.DataChartRef.Series.Clear();
-            this.DataChartRef.Series.Add(series2);
-            this.DataChartRef.Series.Add(series1);
-
-        }
-        else if (seriesType == "Spline Area")
-        {
-            // creating a series with mapping to data columns of wind pattern
-            var series1 = new PolarSplineAreaSeries { Name = "series1" };
-            series1.AngleMemberPath = "Direction";
-            series1.RadiusMemberPath = "BoatSpeed";
-            series1.RadiusAxisName = "radiusAxis";
-            series1.AngleAxisName = "angleAxis";
-            series1.DataSource = DataSource;
-
-            var series2 = new PolarSplineAreaSeries { Name = "series2" };
-            series2.AngleMemberPath = "Direction";
-            series2.RadiusMemberPath = "WindSpeed";
-            series2.RadiusAxisName = "radiusAxis";
-            series2.AngleAxisName = "angleAxis";
-            series2.DataSource = DataSource;
-
-            series1.AreaFillOpacity = 0.3;
-            series2.AreaFillOpacity = 0.3;
-            series1.MarkerType = MarkerType.Circle;
-            series2.MarkerType = MarkerType.Circle;
-            series1.Title = "Boat Speed";
-            series2.Title = "Wind Speed";
-            this.DataChartRef.Series.Clear();
-            this.DataChartRef.Series.Add(series2);
-            this.DataChartRef.Series.Add(series1);
-
-        }
-        else if (seriesType == "Spline")
-        {
-            // creating a series with mapping to data columns of wind pattern
-            var series1 = new PolarSplineSeries { Name = "series1" };
-            series1.AngleMemberPath = "Direction";
-            series1.RadiusMemberPath = "BoatSpeed";
-            series1.RadiusAxisName = "radiusAxis";
-            series1.AngleAxisName = "angleAxis";
-            series1.DataSource = DataSource;
-
-            var series2 = new PolarSplineSeries { Name = "series2" };
-            series2.AngleMemberPath = "Direction";
-            series2.RadiusMemberPath = "WindSpeed";
-            series2.RadiusAxisName = "radiusAxis";
-            series2.AngleAxisName = "angleAxis";
-            series2.DataSource = DataSource;
-
-            series1.MarkerType = MarkerType.Circle;
-            series2.MarkerType = MarkerType.Circle;
-            series1.Title = "Boat Speed";
-            series2.Title = "Wind Speed";
-            this.DataChartRef.Series.Clear();
-            this.DataChartRef.Series.Add(series2);
-            this.DataChartRef.Series.Add(series1);
-
-        }
-        else if (seriesType == "Line")
-        {
-            // creating a series with mapping to data columns of wind pattern
-            var series1 = new PolarLineSeries { Name = "series1" };
-            series1.AngleMemberPath = "Direction";
-            series1.RadiusMemberPath = "BoatSpeed";
-            series1.RadiusAxisName = "radiusAxis";
-            series1.AngleAxisName = "angleAxis";
-            series1.DataSource = DataSource;
-
-            var series2 = new PolarLineSeries { Name = "series2" };
-            series2.AngleMemberPath = "Direction";
-            series2.RadiusMemberPath = "WindSpeed";
-            series2.RadiusAxisName = "radiusAxis";
-            series2.AngleAxisName = "angleAxis";
-            series2.DataSource = DataSource;
-
-            series1.MarkerType = MarkerType.Circle;
-            series2.MarkerType = MarkerType.Circle;
-            series1.Title = "Boat Speed";
-            series2.Title = "Wind Speed";
-            this.DataChartRef.Series.Clear();
-            this.DataChartRef.Series.Add(series2);
-            this.DataChartRef.Series.Add(series1);
-
-        }
-        else if (seriesType == "Scatter")
-        {
-            // creating a series with mapping to data columns of wind pattern
-            var series1 = new PolarScatterSeries { Name = "series1" };
-            series1.AngleMemberPath = "Direction";
-            series1.RadiusMemberPath = "BoatSpeed";
-            series1.RadiusAxisName = "radiusAxis";
-            series1.AngleAxisName = "angleAxis";
-            series1.DataSource = DataSource;
-
-            var series2 = new PolarScatterSeries { Name = "series2" };
-            series2.AngleMemberPath = "Direction";
-            series2.RadiusMemberPath = "WindSpeed";
-            series2.RadiusAxisName = "radiusAxis";
-            series2.AngleAxisName = "angleAxis";
-            series2.DataSource = DataSource;
-
-            series1.MarkerType = MarkerType.Circle;
-            series2.MarkerType = MarkerType.Circle;
-            series1.Title = "Boat Speed";
-            series2.Title = "Wind Speed";
-            this.DataChartRef.Series.Clear();
-            this.DataChartRef.Series.Add(series2);
-            this.DataChartRef.Series.Add(series1);
-
-        }
     }
 }

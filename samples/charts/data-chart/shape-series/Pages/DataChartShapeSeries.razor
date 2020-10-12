@@ -27,17 +27,31 @@
                    Legend="@LegendRef"
                    @ref="DataChartRef">
 
-            <NumericXAxis 
-                   Name="xAxis"
-                   TitleBottomMargin="10"
-                   MinimumValue="-1"
-                   MaximumValue="11"
-                   Interval="2"/>
-            <NumericYAxis 
-                   Name="yAxis" 
-                   MinimumValue="-1"
-                   MaximumValue="11"
-                   Interval="1" />
+            <NumericXAxis Name="xAxis"
+                          TitleBottomMargin="10"
+                          MinimumValue="-1"
+                          MaximumValue="11"
+                          Interval="2" />
+            <NumericYAxis Name="yAxis"
+                          MinimumValue="-1"
+                          MaximumValue="11"
+                          Interval="1" />
+
+            @if (SeriesType == "Polygon")
+            {
+                <ScatterPolygonSeries XAxisName="xAxis" YAxisName="yAxis" Title="Rooms" ShapeMemberPath="Points" DataSource="@DataSource"
+                                      ShowDefaultTooltip="true">
+
+                </ScatterPolygonSeries>
+
+            }
+            @if (SeriesType == "Polyline")
+            {
+                <ScatterPolylineSeries XAxisName="xAxis" YAxisName="yAxis" Title="Rooms" ShapeMemberPath="Points" DataSource="@DataSource"
+                                      ShowDefaultTooltip="true">
+
+                </ScatterPolylineSeries>
+            }
         </DataChart>
         }
     </div>
@@ -53,7 +67,6 @@
         set
         {
             dataChart = value;
-            this.setSeries("Polyline");
             SeriesType = "Polyline";
             StateHasChanged();
         }
@@ -97,39 +110,6 @@
     {
         var selectedSeries = e.Value.ToString();
         SeriesType = selectedSeries;
-        this.setSeries(selectedSeries);
-    }
-
-    public void setSeries(string seriesType)
-    {
-        if (seriesType == "Polyline")
-        {
-            var series1 = new ScatterPolylineSeries { Name = "series1" };
-
-            series1.XAxisName = "xAxis";
-            series1.YAxisName = "yAxis";
-            series1.Title = "Rooms";
-            series1.ShapeMemberPath = "Points";
-            series1.DataSource = DataSource;
-            series1.ShowDefaultTooltip = true;
-
-            this.DataChartRef.Series.Clear();
-            this.DataChartRef.Series.Add(series1);
-
-        }
-        else if (seriesType == "Polygon")
-        {
-            var series1 = new ScatterPolygonSeries { Name = "series1" };
-            series1.XAxisName = "xAxis";
-            series1.YAxisName = "yAxis";
-            series1.Title = "Rooms";
-            series1.ShapeMemberPath = "Points";
-            series1.ShowDefaultTooltip = true;
-            series1.DataSource = DataSource;
-
-            this.DataChartRef.Series.Clear();
-            this.DataChartRef.Series.Add(series1);
-
-        }
+        
     }
 }
