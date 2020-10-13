@@ -1,0 +1,145 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+
+    <div class="igOptions-horizontal">
+
+        <span class="igOptions-label">Type of Financial Series: </span>
+        <select @bind=@SeriesType>
+            <option>@PriceDisplayType.Candlestick</option>
+            <option>@PriceDisplayType.OHLC</option>
+        </select>
+        <span class="igOptions-label">Indicator Display Type: </span>
+        <select @bind=@IndicatorsType>
+            <option>@IndicatorDisplayType.Line</option>
+            <option>@IndicatorDisplayType.Area</option>
+            <option>@IndicatorDisplayType.Column</option>
+        </select>
+        <span class="igLegend-title">Legend: </span>
+        <div class="igLegend">
+            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+            <DataChart Height="100%" Width="100%"
+                       TitleTopMargin="10"
+                       IsHorizontalZoomEnabled="true"
+                       IsVerticalZoomEnabled="true"
+                       Legend="@LegendRef"
+                       @ref="DataChartRef">
+
+                <CategoryXAxis Name="xAxis" Label="Label" DataSource="@DataSource"
+                               LabelAngle="45" />
+                <NumericYAxis Name="yAxis1" LabelLocation="AxisLabelsLocation.OutsideRight" Title="Financial Prices" />
+
+
+                <NumericYAxis Name="yAxis2" LabelLocation="AxisLabelsLocation.OutsideLeft"
+                              Title="Indicator Values" MajorStrokeThickness=0 MaximumValue=800 />
+                <BollingerBandsOverlay Name="series1"
+                                       XAxisName="xAxis"
+                                       YAxisName="yAxis1"
+                                       HighMemberPath="High"
+                                       LowMemberPath="Low"
+                                       CloseMemberPath="Close"
+                                       OpenMemberPath="Open"
+                                       Brush="rgba(171, 82, 235, 0.39)"
+                                       DataSource="@DataSource" />
+
+                <FinancialPriceSeries Name="series2"
+                                      XAxisName="xAxis"
+                                      YAxisName="yAxis1"
+                                      DisplayType=@SeriesType
+                                      HighMemberPath="High"
+                                      LowMemberPath="Low"
+                                      CloseMemberPath="Close"
+                                      OpenMemberPath="Open"
+                                      VolumeMemberPath="Volume"
+                                      DataSource="@DataSource"
+                                      Title="Price" />
+
+                <MedianPriceIndicator Name="series3"
+                                      XAxisName="xAxis"
+                                      YAxisName="yAxis2"
+                                      DisplayType="@IndicatorsType"
+                                      HighMemberPath="High"
+                                      LowMemberPath="Low"
+                                      CloseMemberPath="Close"
+                                      OpenMemberPath="Open"
+                                      VolumeMemberPath="Volume"
+                                      DataSource="@DataSource" />
+            </DataChart>
+        }
+    </div>
+</div>
+@code {
+
+    private List<SampleFinancialItem> DataSource;
+    private DataChart dataChart;
+    private DataChart DataChartRef
+    {
+        get { return dataChart; }
+        set
+        {
+            dataChart = value;
+            StateHasChanged();
+        }
+    }
+
+    private Legend legend;
+    private Legend LegendRef
+    {
+        get { return legend; }
+        set
+        {
+            legend = value;
+            StateHasChanged();
+        }
+    }
+    private PriceDisplayType seriesType;
+    private PriceDisplayType SeriesType
+    {
+        get { return seriesType; }
+        set
+        {
+            seriesType = value;
+
+            StateHasChanged();
+        }
+    }
+
+    private IndicatorDisplayType indicatorsType;
+    private IndicatorDisplayType IndicatorsType
+    {
+        get { return indicatorsType; }
+        set
+        {
+            indicatorsType = value;
+
+            StateHasChanged();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        // registering chart/axis modules
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        // registering financial modules
+        DataChartFinancialCoreModule.Register(IgniteUIBlazor);
+        DataChartFinancialModule.Register(IgniteUIBlazor);
+        DataChartFinancialIndicatorsModule.Register(IgniteUIBlazor);
+        DataChartFinancialOverlaysModule.Register(IgniteUIBlazor);
+        // registering other modules
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+
+        DataSource = SampleFinancialData.Create();
+
+    }
+
+}

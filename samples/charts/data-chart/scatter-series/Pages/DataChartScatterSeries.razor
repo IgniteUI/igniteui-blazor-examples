@@ -1,0 +1,200 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+
+    <div class="igOptions-horizontal">
+        <span class="igOptions-label">Type of Scatter Series: </span>
+                    <select value=@SeriesType
+                        @onchange="OnSeriesTypeChanged">
+                        <option>Bubble</option>
+                        <option>Point</option>
+                        <option>Line</option>
+                        <option>Spline</option>
+                    </select>
+
+        <span class="igLegend-title">Legend: </span>
+        <div class="igLegend">
+            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+
+    <div class="igComponent">
+        @if (data1 != null && data2 != null)
+        {
+        <DataChart Height="100%" Width="100%"
+                   ChartTitle="GDP vs Population"
+                   IsHorizontalZoomEnabled="true"
+                   IsVerticalZoomEnabled="true"
+                   Legend="@LegendRef"
+                   @ref="DataChartRef">
+
+            <NumericXAxis Name="xAxis"
+                          IsLogarithmic="true"
+                          AbbreviateLargeNumbers="true"
+                          Title="Population" />
+            <NumericYAxis Name="yAxis"
+                          Title="Total GDP ($)"
+                          IsLogarithmic="true"
+                          AbbreviateLargeNumbers="true" />
+            @if (SeriesType == "Bubble")
+            {
+                <BubbleSeries MarkerType="MarkerType.Circle"
+                    ShowDefaultTooltip="true"
+                    Title = "High Income Countries"
+                    XAxisName = "xAxis"
+                    YAxisName = "yAxis"
+                    XMemberPath = "Population"
+                    YMemberPath = "GdpTotal"
+                    DataSource = "@data1">
+
+                </BubbleSeries>
+
+                <BubbleSeries MarkerType="MarkerType.Circle"
+                    ShowDefaultTooltip="true"
+                    Title = "Low Income Countries"
+                    XAxisName = "xAxis"
+                    YAxisName = "yAxis"
+                    XMemberPath = "Population"
+                    YMemberPath = "GdpTotal"
+                    DataSource = "@data2">
+
+                </BubbleSeries>
+            }
+            @if (SeriesType == "Point")
+            {
+                <ScatterSeries MarkerType="MarkerType.Circle"
+                    ShowDefaultTooltip="true"
+                    Title = "High Income Countries"
+                    XAxisName = "xAxis"
+                    YAxisName = "yAxis"
+                    XMemberPath = "Population"
+                    YMemberPath = "GdpTotal"
+                    DataSource = "@data1">
+
+                </ScatterSeries>
+
+                <ScatterSeries MarkerType="MarkerType.Circle"
+                    ShowDefaultTooltip="true"
+                    Title = "Low Income Countries"
+                    XAxisName = "xAxis"
+                    YAxisName = "yAxis"
+                    XMemberPath = "Population"
+                    YMemberPath = "GdpTotal"
+                    DataSource = "@data2">
+
+                </ScatterSeries>
+            }
+            @if (SeriesType == "Line")
+            {
+                <ScatterLineSeries MarkerType="MarkerType.Circle"
+                    ShowDefaultTooltip="true"
+                    Title = "High Income Countries"
+                    XAxisName = "xAxis"
+                    YAxisName = "yAxis"
+                    XMemberPath = "Population"
+                    YMemberPath = "GdpTotal"
+                    DataSource = "@data1">
+
+                </ScatterLineSeries>
+
+                <ScatterLineSeries MarkerType="MarkerType.Circle"
+                    ShowDefaultTooltip="true"
+                    Title = "Low Income Countries"
+                    XAxisName = "xAxis"
+                    YAxisName = "yAxis"
+                    XMemberPath = "Population"
+                    YMemberPath = "GdpTotal"
+                    DataSource = "@data2">
+
+                </ScatterLineSeries>
+            }
+            @if (SeriesType == "Spline")
+            {
+                <ScatterSplineSeries MarkerType="MarkerType.Circle"
+                    ShowDefaultTooltip="true"
+                    Title = "High Income Countries"
+                    XAxisName = "xAxis"
+                    YAxisName = "yAxis"
+                    XMemberPath = "Population"
+                    YMemberPath = "GdpTotal"
+                    DataSource = "@data1">
+
+                </ScatterSplineSeries>
+
+                <ScatterSplineSeries MarkerType="MarkerType.Circle"
+                    ShowDefaultTooltip="true"
+                    Title = "Low Income Countries"
+                    XAxisName = "xAxis"
+                    YAxisName = "yAxis"
+                    XMemberPath = "Population"
+                    YMemberPath = "GdpTotal"
+                    DataSource = "@data2">
+
+                </ScatterSplineSeries>
+            }
+        </DataChart>
+        }
+        </div>
+</div>
+
+@code {
+
+    private object data1;
+    private object data2;
+
+    private DataChart dataChart;
+    private DataChart DataChartRef
+    {
+        get { return dataChart; }
+        set
+        {
+            dataChart = value;
+            
+            SeriesType = "Point";
+            StateHasChanged();
+        }
+    }
+
+    private Legend legend;
+    private Legend LegendRef
+    {
+        get { return legend; }
+        set
+        {
+            legend = value;
+            StateHasChanged();
+        }
+    }
+    private string seriesType;
+    private string SeriesType
+    {
+        get { return seriesType; }
+        set
+        {
+            seriesType = value;
+            StateHasChanged();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        LegendModule.Register(IgniteUIBlazor);
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartScatterCoreModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        DataChartScatterCoreModule.Register(IgniteUIBlazor);
+        DataChartScatterModule.Register(IgniteUIBlazor);
+        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+
+        LegendModule.Register(IgniteUIBlazor);
+        this.data1 = SampleScatterStats.GetCountriesWithHighIncome();
+        this.data2 = SampleScatterStats.GetCountriesWithLowIncome();
+    }
+
+    public void OnSeriesTypeChanged(ChangeEventArgs e)
+    {
+        var selectedSeries = e.Value.ToString();
+        SeriesType = selectedSeries;
+    }
+}

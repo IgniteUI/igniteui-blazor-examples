@@ -1,0 +1,118 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+
+    <div class="igOptions-horizontal">
+        <span class="igOptions-label">Type of Polar Series: </span>
+        <select value=@SeriesType
+                @onchange="OnSeriesTypeChanged">
+            <option>Area</option>
+            <option>Column</option>
+        </select>
+
+        <span class="igLegend-title">Legend: </span>
+        <div class="igLegend">
+            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+        <DataChart Height="100%" Width="100%"
+                   ChartTitle="Annual Temperature Changes"
+                   IsHorizontalZoomEnabled="true"
+                   IsVerticalZoomEnabled="true"
+                   Legend="@LegendRef"
+                   @ref="DataChartRef">
+
+            <CategoryXAxis Name="xAxis"
+                           Label="Year"
+                           Gap="0.5"
+                           DataSource="@DataSource" />
+            <NumericYAxis Name="yAxis"
+                          MinimumValue=20
+                          Title="Temperature (°C)" />
+
+            @if (SeriesType == "Area")
+            {
+                <RangeAreaSeries HighMemberPath="High"
+                                 LowMemberPath="Low"
+                                 XAxisName="xAxis"
+                                 YAxisName="yAxis"
+                                 Thickness="0"
+                                 DataSource="@DataSource"
+                                 Title="Weather Forecast">
+
+                </RangeAreaSeries>
+            }
+            @if (SeriesType == "Column")
+            {
+                <RangeColumnSeries HighMemberPath="High"
+                                 LowMemberPath="Low"
+                                 XAxisName="xAxis"
+                                 YAxisName="yAxis"
+                                 Thickness="0"
+                                 DataSource="@DataSource"
+                                 Title="Weather Forecast">
+
+                </RangeColumnSeries>
+            }
+        </DataChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<SampleRangeItem> DataSource;
+    private DataChart dataChart;
+    private DataChart DataChartRef
+    {
+        get { return dataChart; }
+        set
+        {
+            dataChart = value;
+            SeriesType = "Column";
+            StateHasChanged();
+        }
+    }
+
+    private Legend legend;
+    private Legend LegendRef
+    {
+        get { return legend; }
+        set
+        {
+            legend = value;
+            StateHasChanged();
+        }
+    }
+    private string seriesType;
+    private string SeriesType
+    {
+        get { return seriesType; }
+        set
+        {
+            seriesType = value;
+            StateHasChanged();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+
+        LegendModule.Register(IgniteUIBlazor);
+        DataSource = SampleRangeData.Create();
+    }
+
+    public void OnSeriesTypeChanged(ChangeEventArgs e)
+    {
+        var selectedSeries = e.Value.ToString();
+        SeriesType = selectedSeries;
+    }
+}

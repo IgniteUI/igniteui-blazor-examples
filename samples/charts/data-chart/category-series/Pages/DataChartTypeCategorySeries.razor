@@ -1,0 +1,299 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+
+    <div class="igOptions-horizontal">
+        <span class="igOptions-label">Type of Category Series: </span>
+                    <select value=@SeriesType
+                        @onchange="OnSeriesTypeChanged">
+                        <option>Column</option>
+                        <option>Area</option>
+                        <option>Bar</option>
+                        <option>Point</option>
+                        <option>Line</option>
+                        <option>Spline</option>
+                        <option>Spline Area</option>
+                        <option>Step Area</option>
+                        <option>Step Line</option>
+                        <option>Waterfall</option>
+                    </select>
+
+        <span class="igLegend-title">Legend: </span>
+        <div class="igLegend">
+            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+        <DataChart Height="100%" Width="100%"
+                   ChartTitle="Total Olympic Medals"
+                   Subtitle="United States vs China vs Russia"
+                   TitleTopMargin="10"
+                   IsHorizontalZoomEnabled="true"
+                   IsVerticalZoomEnabled="true"
+                   Legend="@LegendRef"
+                   @ref="DataChartRef">
+
+            @if (SeriesType != "Bar")
+            {
+                <CategoryXAxis Name="xAxis" Label="Year" DataSource="@DataSource"
+                               Title="Olympic Years" Gap="0.2" Overlap="-0.05" />
+                <NumericYAxis Name="yAxis" Title="Olympic Medals" TitleLeftMargin="10" />
+            }
+
+            @if (SeriesType == "Bar")
+            {
+                <NumericXAxis Name="xAxis2" Label="Year"
+                              Title="Olympic Years" />
+                <CategoryYAxis Name="yAxis2" Title="Olympic Medals" TitleLeftMargin="10" DataSource="@DataSource" Gap="0.2" Overlap="-0.05" />
+
+                <BarSeries Name="series1"
+                           ValueMemberPath="USA"
+                           Title="USA"
+                           XAxisName="xAxis2"
+                           YAxisName="yAxis2"
+                           DataSource="@DataSource">
+                </BarSeries>
+
+                <BarSeries Name="series2"
+                           ValueMemberPath="RUS"
+                           Title="Russia"
+                           XAxisName="xAxis2"
+                           YAxisName="yAxis2"
+                           DataSource="@DataSource">
+                </BarSeries>
+            }
+
+
+            @if (SeriesType == "Column")
+            {
+                <ColumnSeries Name="series1"
+                              ValueMemberPath="USA"
+                              Title="USA"
+                              XAxisName="xAxis"
+                              YAxisName="yAxis"
+                              DataSource="@DataSource">
+                </ColumnSeries>
+
+                <ColumnSeries Name="series2"
+                              ValueMemberPath="RUS"
+                              Title="Russia"
+                              XAxisName="xAxis"
+                              YAxisName="yAxis"
+                              DataSource="@DataSource">
+                </ColumnSeries>
+            }
+
+            @if (SeriesType == "Area")
+            {
+                <AreaSeries Name="series1"
+                            ValueMemberPath="USA"
+                            Title="USA"
+                            XAxisName="xAxis"
+                            YAxisName="yAxis"
+                            DataSource="@DataSource">
+                </AreaSeries>
+
+                <AreaSeries Name="series2"
+                            ValueMemberPath="RUS"
+                            Title="Russia"
+                            XAxisName="xAxis"
+                            YAxisName="yAxis"
+                            DataSource="@DataSource">
+                </AreaSeries>
+            }
+
+            @if (SeriesType == "Point")
+            {
+                <PointSeries Name="series1"
+                             ValueMemberPath="USA"
+                             Title="USA"
+                             XAxisName="xAxis"
+                             YAxisName="yAxis"
+                             DataSource="@DataSource">
+                </PointSeries>
+
+                <PointSeries Name="series2"
+                             ValueMemberPath="RUS"
+                             Title="Russia"
+                             XAxisName="xAxis"
+                             YAxisName="yAxis"
+                             DataSource="@DataSource">
+                </PointSeries>
+            }
+
+            @if (SeriesType == "Line")
+            {
+                <LineSeries Name="series1"
+                            ValueMemberPath="USA"
+                            Title="USA"
+                            XAxisName="xAxis"
+                            YAxisName="yAxis"
+                            DataSource="@DataSource">
+                </LineSeries>
+
+                <LineSeries Name="series2"
+                            ValueMemberPath="RUS"
+                            Title="Russia"
+                            XAxisName="xAxis"
+                            YAxisName="yAxis"
+                            DataSource="@DataSource">
+                </LineSeries>
+            }
+
+            @if (SeriesType == "Spline")
+            {
+                <SplineSeries Name="series1"
+                              ValueMemberPath="USA"
+                              Title="USA"
+                              XAxisName="xAxis"
+                              YAxisName="yAxis"
+                              DataSource="@DataSource">
+                </SplineSeries>
+
+                <SplineSeries Name="series2"
+                              ValueMemberPath="RUS"
+                              Title="Russia"
+                              XAxisName="xAxis"
+                              YAxisName="yAxis"
+                              DataSource="@DataSource">
+                </SplineSeries>
+            }
+
+            @if (SeriesType == "Spline Area")
+            {
+                <SplineAreaSeries Name="series1"
+                                  ValueMemberPath="USA"
+                                  Title="USA"
+                                  XAxisName="xAxis"
+                                  YAxisName="yAxis"
+                                  DataSource="@DataSource">
+                </SplineAreaSeries>
+
+                <SplineAreaSeries Name="series2"
+                                  ValueMemberPath="RUS"
+                                  Title="Russia"
+                                  XAxisName="xAxis"
+                                  YAxisName="yAxis"
+                                  DataSource="@DataSource">
+                </SplineAreaSeries>
+            }
+
+            @if (SeriesType == "Step Area")
+            {
+                <StepAreaSeries Name="series1"
+                                ValueMemberPath="USA"
+                                Title="USA"
+                                XAxisName="xAxis"
+                                YAxisName="yAxis"
+                                DataSource="@DataSource">
+                </StepAreaSeries>
+
+                <StepAreaSeries Name="series2"
+                                ValueMemberPath="RUS"
+                                Title="Russia"
+                                XAxisName="xAxis"
+                                YAxisName="yAxis"
+                                DataSource="@DataSource">
+                </StepAreaSeries>
+            }
+
+            @if (SeriesType == "Step Line")
+            {
+                <StepLineSeries Name="series1"
+                                ValueMemberPath="USA"
+                                Title="USA"
+                                XAxisName="xAxis"
+                                YAxisName="yAxis"
+                                DataSource="@DataSource">
+                </StepLineSeries>
+
+                <StepLineSeries Name="series2"
+                                ValueMemberPath="RUS"
+                                Title="Russia"
+                                XAxisName="xAxis"
+                                YAxisName="yAxis"
+                                DataSource="@DataSource">
+                </StepLineSeries>
+            }
+
+            @if (SeriesType == "Waterfall")
+            {
+                <WaterfallSeries Name="series1"
+                                 ValueMemberPath="USA"
+                                 Title="USA"
+                                 XAxisName="xAxis"
+                                 YAxisName="yAxis"
+                                 DataSource="@DataSource">
+                </WaterfallSeries>
+
+                <WaterfallSeries Name="series2"
+                                 ValueMemberPath="RUS"
+                                 Title="Russia"
+                                 XAxisName="xAxis"
+                                 YAxisName="yAxis"
+                                 DataSource="@DataSource">
+                </WaterfallSeries>
+            }
+        </DataChart>
+        }
+        </div>
+</div>
+
+@code {
+
+    private List<SampleCategoryItem> DataSource;
+    private DataChart dataChart;
+    private DataChart DataChartRef
+    {
+        get { return dataChart; }
+        set
+        {
+            dataChart = value;
+            SeriesType = "Column";
+            StateHasChanged();
+        }
+    }
+
+    private Legend legend;
+    private Legend LegendRef
+    {
+        get { return legend; }
+        set
+        {
+            legend = value;
+            StateHasChanged();
+        }
+    }
+    private string seriesType;
+    private string SeriesType
+    {
+        get { return seriesType; }
+        set
+        {
+            seriesType = value;
+            StateHasChanged();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartVerticalCategoryModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+
+        LegendModule.Register(IgniteUIBlazor);
+        DataSource = SampleCategoryData.Create();
+    }
+
+    public void OnSeriesTypeChanged(ChangeEventArgs e)
+    {
+        var selectedSeries = e.Value.ToString();
+        SeriesType = selectedSeries;
+    }
+}
