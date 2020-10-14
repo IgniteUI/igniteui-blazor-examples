@@ -1,0 +1,171 @@
+@* this is required for Infragistics controls *@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+@* NOTE use this HTML code to design a sample *@
+
+@*DockManager*@
+@inject IJSRuntime JSRuntime;
+
+@inject HttpClient Http;
+
+<div class="igContainer">
+    <div class="igComponent">
+
+        <igc-dockmanager @ref="dockManager" id="dockManager" height="100%" width="100%">
+            @*NOTE: code in DockManagerOverview.js file sets layout of these DIV elements:*@
+            <div slot="content1" style="height:100%; width: 100%;">
+                <RadialGauge Height="100%" Width="100%"
+                             IsNeedleDraggingEnabled="true"
+                             IsNeedleDraggingConstrained="true"
+                             NeedleShape="RadialGaugeNeedleShape.NeedleWithBulb"
+                             NeedleBrush="DodgerBlue"
+                             NeedleOutline="DodgerBlue"
+                             NeedleEndExtent="0.475"
+                             NeedleStrokeThickness="1"
+                             NeedlePivotShape="RadialGaugePivotShape.CircleOverlay"
+                             NeedlePivotBrush="#9F9FA0"
+                             NeedlePivotOutline="#9F9FA0"
+                             NeedlePivotWidthRatio="0.2"
+                             NeedlePivotStrokeThickness="1"
+                             Value="50"
+                             MinimumValue="0"
+                             MaximumValue="80"
+                             Interval="10">
+                </RadialGauge>
+
+            </div>
+            <div slot="content2" style="height:100%; width: 100%;">
+                
+                    <PieChart Height="100%" Width="100%"
+                              DataSource="DataSource"
+                              LabelMemberPath="Summary"
+                              ValueMemberPath="MarketShare"
+                              Outlines="white"
+                              RadiusFactor="0.9"
+                              StartAngle="0"
+                              AllowSliceExplosion="true"
+                              SliceClick="OnSliceClick"
+                              ExplodedSlices="ExplodedSlices">
+                    </PieChart>
+                
+            </div>
+            <div slot="content3" style="height:100%; width: 100%;">
+                @*<GeographicMap @ref="MapRef" Height="100%" Width="100%" Zoomable="true">
+                    <GeographicHighDensityScatterSeries DataSource="@DataSource2"
+                            LatitudeMemberPath="Lat"
+                            LongitudeMemberPath="Lon"
+                            HeatMaximumColor="Red"
+                            HeatMinimumColor="Black"
+                            HeatMinimum="0"
+                            HeatMaximum="5"
+                            PointExtent="1"
+                            MouseOverEnabled="true" />
+                </GeographicMap>*@
+            </div>
+
+        </igc-dockmanager>
+
+
+    </div>
+</div>
+
+@code {
+
+    ElementReference dockManager;
+    private List<DataItem> DataSource;
+    public int[] ExplodedSlices { get; set; } = new int[0];
+    private List<WorldPlaceCsv> DataSource2;
+    public Rect GeoBounds;
+    public GeographicMap MapRef;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        RadialGaugeModule.Register(IgniteUIBlazor);
+        PieChartModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        //GeographicMapModule.Register(IgniteUIBlazor);
+
+        var dataItems = new List<DataItem>();
+        dataItems.Add(new DataItem() { MarketShare = 30, Company = "Google", });
+        dataItems.Add(new DataItem() { MarketShare = 25, Company = "Apple", });
+        dataItems.Add(new DataItem() { MarketShare = 20, Company = "Microsoft", });
+        dataItems.Add(new DataItem() { MarketShare = 15, Company = "Samsung", });
+        dataItems.Add(new DataItem() { MarketShare = 10, Company = "Other", });
+
+        DataSource = dataItems;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // open index.bundle.js file to see how the arrange funciton is implemented
+            await JSRuntime.InvokeVoidAsync("DockManagerOverview.arrange", dockManager);
+
+
+            //string url = "https://static.infragistics.com/xplatform/data/UsaCitiesPopulation.csv";
+            //string csv = await Http.GetStringAsync(url);
+
+            //string[] csvLines = csv.Split(Environment.NewLine);
+
+            //List<WorldPlaceCsv> dataItems = new List<WorldPlaceCsv>();
+
+            //for (int i = 1; i < csvLines.Length - 1; i++)
+            //{
+            //    string[] columns = csvLines[i].Split(",");
+
+            //    WorldPlaceCsv location = new WorldPlaceCsv()
+            //    {
+            //        Lat = double.Parse(columns[1]),
+            //        Lon = double.Parse(columns[2]),
+            //        Name = columns[0],
+            //        Pop = double.Parse(columns[3])
+            //    };
+
+            //    dataItems.Add(location);
+            //}
+
+            //this.DataSource2 = dataItems;
+
+            //Console.WriteLine(csvLines.Length);
+
+            //this.GeoBounds = new Rect(-130, 15, new Size(65, 35));
+
+            //await Task.Delay(1);
+        }
+    }
+
+    //protected override void OnAfterRender(bool firstRender)
+    //{
+    //    base.OnAfterRender(firstRender);
+
+    //    if (MapRef != null)
+    //        MapRef.ZoomToGeographic(this.GeoBounds);
+
+    //}
+
+    protected void OnSliceClick(SliceClickEventArgs e)
+    {
+        ExplodedSlices = new int[] { e.Index };
+    }
+
+    public class WorldPlaceCsv
+    {
+
+        public string Name { get; set; }
+        public double Lat { get; set; }
+        public double Lon { get; set; }
+        public double Pop { get; set; }
+        public string Country { get; set; }
+        public bool Cap { get; set; }
+    }
+
+    public class DataItem
+    {
+        public string Company { get; set; }
+        public double MarketShare { get; set; }
+        public string Summary { get { return Company + " " + MarketShare + "%"; } }
+    }
+}
