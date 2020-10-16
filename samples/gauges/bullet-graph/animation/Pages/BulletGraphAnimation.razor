@@ -37,21 +37,51 @@
                      BackingBrush=@BackingBrush
                      BackingOutline=@BackingOutline
                      BackingStrokeThickness=@BackingStrokeThickness>
-            @for (int i = 0; i < RangeInfo.Count; i++)
+
+            @if (GaugeRanges.Count > 0)
             {
-                GaugeRangeInfo info = RangeInfo[i];
-                <LinearGraphRange Name=info.Name
-                                  StartValue=info.StartValue
-                                  EndValue=info.EndValue
-                                  InnerStartExtent=info.InnerStartExtent
-                                  InnerEndExtent=info.InnerEndExtent
-                                  OuterStartExtent=info.OuterStartExtent
-                                  OuterEndExtent=info.OuterEndExtent
-                                  Brush="@info.Brush"
-                                  Outline="@info.Outline">
-                </LinearGraphRange>
+                 GaugeRangeInfo info0 = GaugeRanges[0];
+                 <LinearGraphRange Name=info0.Name
+                                  StartValue=info0.StartValue
+                                  EndValue=info0.EndValue
+                                  InnerStartExtent=info0.InnerStartExtent
+                                  InnerEndExtent=info0.InnerEndExtent
+                                  OuterStartExtent=info0.OuterStartExtent
+                                  OuterEndExtent=info0.OuterEndExtent
+                                  Brush="@info0.Brush"
+                                  Outline="@info0.Outline">
+                 </LinearGraphRange>
+            }
+            @if (GaugeRanges.Count > 1)
+            {
+                 GaugeRangeInfo info1 = GaugeRanges[1];
+                 <LinearGraphRange Name=info1.Name
+                                  StartValue=info1.StartValue
+                                  EndValue=info1.EndValue
+                                  InnerStartExtent=info1.InnerStartExtent
+                                  InnerEndExtent=info1.InnerEndExtent
+                                  OuterStartExtent=info1.OuterStartExtent
+                                  OuterEndExtent=info1.OuterEndExtent
+                                  Brush="@info1.Brush"
+                                  Outline="@info1.Outline">
+                 </LinearGraphRange>
+            }
+            @if (GaugeRanges.Count > 2)
+            {
+                 GaugeRangeInfo info2 = GaugeRanges[2];
+                 <LinearGraphRange Name=info2.Name
+                                  StartValue=info2.StartValue
+                                  EndValue=info2.EndValue
+                                  InnerStartExtent=info2.InnerStartExtent
+                                  InnerEndExtent=info2.InnerEndExtent
+                                  OuterStartExtent=info2.OuterStartExtent
+                                  OuterEndExtent=info2.OuterEndExtent
+                                  Brush="@info2.Brush"
+                                  Outline="@info2.Outline">
+                 </LinearGraphRange>
             }
         </BulletGraph>
+
     </div>
 </div>
 
@@ -90,7 +120,7 @@
     private string BackingOutline;
     private double BackingStrokeThickness;
 
-    private ObservableCollection<GaugeRangeInfo> RangeInfo;
+    private List<GaugeRangeInfo> GaugeRanges;
 
     protected override void OnInitialized()
     {
@@ -110,7 +140,7 @@
         this.ScaleBackgroundBrush = "#DBDBDB";
         this.ScaleBackgroundOutline = "Gray";
 
-        this.RangeInfo = new ObservableCollection<GaugeRangeInfo>();
+        this.GaugeRanges = new List<GaugeRangeInfo>();
 
         this.onAnimateToGauge3();
     }
@@ -123,7 +153,7 @@
         this.Interval = 20;
 
         // setting appearance of labels
-        this.LabelInterval = 20;
+        this.LabelInterval = 10;
         this.LabelExtent = 0.02;
 
         // setting custom appearance of performance bar
@@ -157,13 +187,11 @@
         this.BackingOutline = "#d1d1d1";
         this.BackingStrokeThickness = 0;
 
-        this.RangeInfo.Clear();
-
-        List<string> colors = new List<string>() { "#A4BD29", "#F86232" };
-
+        var colors = new List<string>() { "#A4BD29", "#F86232" };
+        var ranges = new List<GaugeRangeInfo>();
         for (int i = 0; i < colors.Count; i++)
         {
-            GaugeRangeInfo info = new GaugeRangeInfo()
+            var info = new GaugeRangeInfo()
             {
                 Name = "range " + i.ToString(),
                 StartValue = i * 40,
@@ -175,9 +203,9 @@
                 OuterStartExtent = 0.95,
                 OuterEndExtent = 0.95
             };
-
-            this.RangeInfo.Add(info);
+            ranges.Add(info);
         }
+        this.GaugeRanges = ranges;
     }
 
     private void onAnimateToGauge2()
@@ -222,15 +250,14 @@
         this.BackingOutline = "#d1d1d1";
         this.BackingStrokeThickness = 0;
 
-        this.RangeInfo.Clear();
+        var colors = new List<string>() { "#0078C8", "#21A7FF", "#4FB9FF" };
+        double[] startValues = { 100, 150, 175 };
+        double[] endValues   = { 150, 175, 200 };
 
-        List<string> colors = new List<string>() { "#0078C8", "#0099FF", "#21A7FF", "#4FB9FF" };
-        double[] startValues = { 100, 125, 150, 175 };
-        double[] endValues = { 125, 150, 175, 200 };
-
+        var ranges = new List<GaugeRangeInfo>();
         for (int i = 0; i < colors.Count; i++)
         {
-            GaugeRangeInfo info = new GaugeRangeInfo()
+            var info = new GaugeRangeInfo()
             {
                 Name = "range " + i.ToString(),
                 StartValue = startValues[i],
@@ -242,9 +269,9 @@
                 OuterStartExtent = 0.95,
                 OuterEndExtent = 0.95
             };
-
-            this.RangeInfo.Add(info);
+            ranges.Add(info);
         }
+        this.GaugeRanges = ranges;
     }
 
     private void onAnimateToGauge3()
@@ -289,13 +316,12 @@
         this.BackingOutline = "#d1d1d1";
         this.BackingStrokeThickness = 0;
 
-        this.RangeInfo.Clear();
-
-        List<string> colors = new List<string>() { "#FF9800", "#F96232", "#C62828" };
+        var colors = new List<string>() { "#FF9800", "#F96232", "#C62828" };
+        var ranges = new List<GaugeRangeInfo>();
 
         for (int i = 0; i < colors.Count; i++)
         {
-            GaugeRangeInfo info = new GaugeRangeInfo()
+            var info = new GaugeRangeInfo()
             {
                 Name = "range " + i.ToString(),
                 StartValue = i * 40,
@@ -307,8 +333,8 @@
                 OuterStartExtent = 0.95,
                 OuterEndExtent = 0.95
             };
-
-            this.RangeInfo.Add(info);
+            ranges.Add(info);
         }
+        this.GaugeRanges = ranges;
     }
 }
