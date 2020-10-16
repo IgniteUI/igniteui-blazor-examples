@@ -6,9 +6,9 @@
 
 <div class="igContainer">
     <div className="igOptions">
-        <button @onclick="OnCommitClick" >Commit</button>
-        <button @onclick="OnUndoClick" >Undo</button>
-        <button @onclick="OnRedoClick" >Redo</button>
+        <button @onclick="OnCommitClick" disabled="@ButtonsDisabled">Commit</button>
+        <button @onclick="OnUndoClick"  disabled="@ButtonsDisabled">Undo</button>
+        <button @onclick="OnRedoClick" disabled="@ButtonsDisabled">Redo</button>
         <label>
             Edit Mode:
             <select @bind="GridEditMode">
@@ -45,11 +45,26 @@
 @code {
 
     private DataGrid DataGridRef;
-    private EditModeType GridEditMode;
 
-    private bool CanCommit = false;
-    private bool CanUndo = false;
-    private bool CanRedo = false;
+    private EditModeType _editMode;
+    public EditModeType GridEditMode
+    {
+        get { return _editMode; }
+        set
+        {
+            _editMode = value;
+            if (_editMode == EditModeType.CellBatch)
+            {
+                ButtonsDisabled = false;
+            }
+            else
+            {
+                ButtonsDisabled = true;
+            }
+        }
+    }
+
+    private bool ButtonsDisabled { get; set; }
 
     private List<Employee> DataSource;
 
