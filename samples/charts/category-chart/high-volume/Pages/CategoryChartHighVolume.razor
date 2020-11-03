@@ -28,7 +28,7 @@
     {
         CategoryChartModule.Register(IgniteUIBlazor);
 
-        this.DataInfo = CategoryDataSource.ToShortString(this.DataPoints);   
+        this.DataInfo = CategoryDataSource.ToShortString(this.DataPoints);
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -38,18 +38,18 @@
             await IgniteUIBlazor.JsRuntime.InvokeVoidAsync("setHighVolumeDataCount", this.DataPoints);
         }
 
-        await base.OnAfterRenderAsync(firstRender);    
+        await base.OnAfterRenderAsync(firstRender);
     }
 
     private void OnDataPointsChanged(ChangeEventArgs args)
     {
         this.DataPoints = int.Parse(args.Value.ToString());
-        this.DataInfo = CategoryDataSource.ToShortString(this.DataPoints);        
+        this.DataInfo = CategoryDataSource.ToShortString(this.DataPoints);
     }
 
     private void OnDataGenerateClick()
     {
-        this.GenerateData();
+        Task.Delay(1).ContinueWith((t) => GenerateData());
     }
 
     private async Task GenerateData()
