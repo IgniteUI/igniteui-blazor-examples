@@ -24,17 +24,15 @@
                                 HeaderText="Order History" PaddingTop="10" PaddingBottom="10"
                                 HorizontalAlignment="CellContentHorizontalAlignment.Center">
                     <Template>
-                        <RenderFragment>
-                             <div style="width: 100%; height: 70px; background: transparent">
-                                 <Sparkline Height="100%" Width="100%"
-                                            DataSource="@((context.RowItem as Product).OrderHistory)"
-                                            DisplayType="SparklineDisplayType.Line"
-                                            ValueMemberPath="Sold"
-                                            LabelMemberPath="Week"
-                                            Brush="rgb(21, 190, 6)">
-                                 </Sparkline>
-                             </div>
-                        </RenderFragment>
+                        <div style="width: 100%; height: 70px; background: transparent">
+                            <Sparkline Height="100%" Width="100%"
+                                       DataSource="@((context.RowItem as Product).OrderHistory)"
+                                       DisplayType="SparklineDisplayType.Line"
+                                       ValueMemberPath="Sold"
+                                       LabelMemberPath="Week"
+                                       Brush="rgb(21, 190, 6)">
+                            </Sparkline>
+                        </div>
                     </Template>
                 </TemplateColumn>
 
@@ -43,7 +41,7 @@
                 <NumericColumn Field="Profit" Width="@("*>120")" PositivePrefix="$" ShowGroupingSeparator="true" />
 
                 <ImageColumn IsEditable="false" Field="CountryFlag" HeaderText="Country" Width="@("*>120")"
-                             ContentOpacity="1" HorizontalAlignment="CellContentHorizontalAlignment.Center" 
+                             ContentOpacity="1" HorizontalAlignment="CellContentHorizontalAlignment.Center"
                              PaddingTop="10" PaddingBottom="10"/>
                 <TextColumn Field="Status" HeaderText="Status" Width="@("*>120")"
                             HorizontalAlignment="CellContentHorizontalAlignment.Center" />

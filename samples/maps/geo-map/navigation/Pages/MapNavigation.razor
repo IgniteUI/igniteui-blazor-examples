@@ -2,6 +2,11 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="igContainer-horizontal">
+    <div class="igComponent">
+        <GeographicMap Height="100%" Width="100%" Zoomable="true" @ref="GeoMap">
+        </GeographicMap>
+    </div>
+
     <div class="igOverlay-bottom-right" >
         <label class="igOverlay-label">Select Map Region</label>
         <select @onchange="OnMapRegionSelectionChanged">
@@ -93,17 +98,12 @@
 
     @*<div class="igOverlay-bottom-right">Imagery Tiles: ESRI/ArcGIS</div>*@
 
-    <div class="igComponent">
-        <GeographicMap Height="100%" Width="100%" Zoomable="true" @ref="GeoMap">
-        </GeographicMap>
-    </div>
 </div>
 
 @code {
 
     private GeographicMap GeoMap;
     private Rect MapRegionRect;
-    private MapRegion Region;
 
     Dictionary<MapRegion, Rect> regions;
 
