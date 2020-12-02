@@ -55,7 +55,7 @@
         set
         {
             _editMode = value;
-            if (_editMode == EditModeType.CellBatch || _editMode == EditModeType.Row)
+            if (_editMode == EditModeType.CellBatch)
             {
                 ButtonsDisabled = false;
             }
@@ -97,7 +97,14 @@
 
     private void OnChanged(GridActiveCellChangedEventArgs e)
     {
-        ButtonsDisabled = false;
+        if (_editMode == EditModeType.CellBatch)
+        {
+            ButtonsDisabled = false;
+        }
+        else
+        {
+            ButtonsDisabled = true;
+        }
         StateHasChanged();
     }
 }
