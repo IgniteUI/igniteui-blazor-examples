@@ -31,7 +31,8 @@
                       SelectionMode="@GridSelectionMode.SingleRow"
                       SelectionBehavior="@GridSelectionBehavior.ModifierBased"
                       IsColumnOptionsEnabled="true"
-                      ActiveCellChanged="OnChanged">
+                      RowEditStarted="OnRowEditStarted"
+                      RowEditEnded="OnRowEditEnded">
                 <TextColumn Field="Name" Width="@("*>150")" />
                 <TextColumn Field="Street" HeaderText="Street" Width="@("*>160")"/>
                 <TextColumn Field="City" HeaderText="City" Width="@("*>120")"/>
@@ -95,7 +96,7 @@
         this.DataGridRef.Redo();
     }
 
-    private void OnChanged(GridActiveCellChangedEventArgs e)
+    private void OnRowEditEnded(GridRowEditEndedEventArgs e)
     {
         if (_editMode == EditModeType.CellBatch)
         {
@@ -104,6 +105,18 @@
         else
         {
             ButtonsDisabled = true;
+        }
+        StateHasChanged();
+    }
+    private void OnRowEditStarted(GridRowEditStartedEventArgs e)
+    {
+        if (_editMode == EditModeType.CellBatch)
+        {
+            ButtonsDisabled = true;
+        }
+        else
+        {
+            ButtonsDisabled = false;
         }
         StateHasChanged();
     }
