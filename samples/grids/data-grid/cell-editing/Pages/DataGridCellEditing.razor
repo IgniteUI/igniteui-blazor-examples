@@ -15,7 +15,6 @@
                 <option>@EditModeType.None</option>
                 <option>@EditModeType.Cell</option>
                 <option>@EditModeType.CellBatch</option>
-				<option>@EditModeType.Row</option>
             </select>
         </label>
     </div>
@@ -30,8 +29,7 @@
                       ActivationMode="@GridActivationMode.Cell"
                       SelectionMode="@GridSelectionMode.SingleRow"
                       SelectionBehavior="@GridSelectionBehavior.ModifierBased"
-                      IsColumnOptionsEnabled="true"
-                      ActiveCellChanged="OnChanged">
+                      IsColumnOptionsEnabled="true">
                 <TextColumn Field="Name" Width="@("*>150")" />
                 <TextColumn Field="Street" HeaderText="Street" Width="@("*>160")"/>
                 <TextColumn Field="City" HeaderText="City" Width="@("*>120")"/>
@@ -55,7 +53,7 @@
         set
         {
             _editMode = value;
-            if (_editMode == EditModeType.CellBatch || _editMode == EditModeType.Row)
+            if (_editMode == EditModeType.CellBatch)
             {
                 ButtonsDisabled = false;
             }
@@ -82,7 +80,6 @@
     private void OnCommitClick(MouseEventArgs e)
     {
         this.DataGridRef.CommitEdits();
-        this.ButtonsDisabled = true;
     }
 
     private void OnUndoClick(MouseEventArgs e)
@@ -93,11 +90,5 @@
     private void OnRedoClick(MouseEventArgs e)
     {
         this.DataGridRef.Redo();
-    }
-
-    private void OnChanged(GridActiveCellChangedEventArgs e)
-    {
-        ButtonsDisabled = false;
-        StateHasChanged();
     }
 }
