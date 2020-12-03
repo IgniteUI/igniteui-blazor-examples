@@ -9,6 +9,8 @@ namespace Infragistics.Samples.Core
 {
     public partial class SampleBrowser
     {
+        public string IgVersion { get; set; }
+
         //public bool IsLoading { get; set; }
         private bool _IsLoading = true;
         public bool IsLoading
