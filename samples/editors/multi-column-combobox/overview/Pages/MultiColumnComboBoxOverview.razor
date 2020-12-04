@@ -7,7 +7,8 @@
             {
                 <MultiColumnComboBox Height="50px" Width="400px"
                     DataSource="CountryNames"
-                    TextField="Name" />
+                    TextField="Country"
+                    Placeholder="Choose a country"/>
             }    
         </div>
     </div>
@@ -21,7 +22,7 @@
     {
         MultiColumnComboBoxModule.Register(IgniteUIBlazor);
 
-        this.CountryNames = CountryTreeData.Create().Where(c => c.Parent != null).ToList();
+        this.CountryNames = SampleComboData.Create().ToList();
             
     }
 }
