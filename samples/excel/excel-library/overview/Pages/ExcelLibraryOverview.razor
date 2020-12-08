@@ -15,8 +15,8 @@
 <div class="igContainer">
 
     <div class="igOptions">
-        <button @onclick="CreateXlsx">Create XLSX</button>
-        <button @onclick="CreateXls">Create XLS</button>
+        <button @onclick="CreateXlsx">Save Workbook to XLSX</button>
+        <button @onclick="CreateXls">Save Workbook to XLS</button>
     </div>
 </div>
 
@@ -40,31 +40,12 @@
 
     private void CreateXls()
     {
-        wb.SetCurrentFormat(WorkbookFormat.Excel97To2003);
-        
-        this.SaveFile(this.wb, "ExcelWorkbook");
+        this.SaveFile(this.wb, "ExcelWorkbook", WorkbookFormat.Excel97To2003);
     }
 
     private void CreateXlsx()
     {
-        wb.SetCurrentFormat(WorkbookFormat.Excel2007);
-        
-        this.SaveFile(this.wb, "ExcelWorkbook");
-    }
-
-    private Workbook CreateWorkbook(WorkbookFormat format)
-    {
-        Workbook.InProcessRuntime = this.Runtime as IJSInProcessRuntime;
-
-        var wb = new Workbook(format);
-        var ws = wb.Worksheets.Add("Sheet1");
-
-        ws.Rows[0].SetCellValue(0, 10);
-
-        ws.MergedCellsRegions.Add(2, 2, 4, 4);
-        ws.Rows[2].SetCellValue(2, 123.75);
-
-        return wb;
+        this.SaveFile(this.wb, "ExcelWorkbook", WorkbookFormat.Excel2007);
     }
 
     public void WorkbookCreate() {
@@ -148,10 +129,10 @@
             }
             incomeCol++;
         }
-        this.workbookParse(wb);
+        this.WorkbookParse(wb);
     }
 
-    public void workbookParse(Workbook wb)
+    public void WorkbookParse(Workbook wb)
     {
         if (wb == null)
         {
@@ -190,11 +171,12 @@
         return array[index];
     }
 
-    private void SaveFile(Workbook workbook, string fileNameWithoutExtension)
+    private void SaveFile(Workbook workbook, string fileNameWithoutExtension, WorkbookFormat format)
     {
         var ms = new System.IO.MemoryStream();
+        workbook.SetCurrentFormat(format);
         workbook.Save(ms);
-
+        
         string extension;
 
         switch (workbook.CurrentFormat)
