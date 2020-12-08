@@ -9,6 +9,7 @@
 @using Microsoft.AspNetCore.Components.Routing
 @using Microsoft.AspNetCore.Components.WebAssembly.Http
 @using Microsoft.JSInterop
+@using Microsoft.JSInterop.WebAssembly
 @using Infragistics.Documents.Excel
 
 <div class="igContainer">
@@ -51,11 +52,11 @@
         this.SaveFile(this.wb, "ExcelWorkbook");
     }
 
-    private Infragistics.Documents.Excel.Workbook CreateWorkbook(Infragistics.Documents.Excel.WorkbookFormat format)
+    private Workbook CreateWorkbook(WorkbookFormat format)
     {
-        Infragistics.Documents.Excel.Workbook.InProcessRuntime = this.Runtime as IJSInProcessRuntime;
+        Workbook.InProcessRuntime = this.Runtime as IJSInProcessRuntime;
 
-        var wb = new Infragistics.Documents.Excel.Workbook(format);
+        var wb = new Workbook(format);
         var ws = wb.Worksheets.Add("Sheet1");
 
         ws.Rows[0].SetCellValue(0, 10);
@@ -67,7 +68,7 @@
     }
 
     public void WorkbookCreate() {
-        Infragistics.Documents.Excel.Workbook.InProcessRuntime = this.Runtime as IJSInProcessRuntime;
+        Workbook.InProcessRuntime = this.Runtime as IJSInProcessRuntime;
 
         var wb = new Workbook(WorkbookFormat.Excel2007);
         var employeeSheet = wb.Worksheets.Add("Employees");
@@ -189,7 +190,7 @@
         return array[index];
     }
 
-    private void SaveFile(Infragistics.Documents.Excel.Workbook workbook, string fileNameWithoutExtension)
+    private void SaveFile(Workbook workbook, string fileNameWithoutExtension)
     {
         var ms = new System.IO.MemoryStream();
         workbook.Save(ms);
@@ -247,7 +248,7 @@
 
     private void SaveFile(byte[] bytes, string fileName, string mime)
     {
-        if (this.Runtime is Microsoft.JSInterop.WebAssembly.WebAssemblyJSRuntime wasmRuntime)
+        if (this.Runtime is WebAssemblyJSRuntime wasmRuntime)
             wasmRuntime.InvokeUnmarshalled<string, string, byte[], bool>("BlazorDownloadFileFast", fileName, mime, bytes);
         else if (this.Runtime is IJSInProcessRuntime inProc)
             inProc.InvokeVoid("BlazorDownloadFile", fileName, mime, bytes);
