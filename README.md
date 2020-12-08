@@ -1,8 +1,10 @@
 <div style="display: flex; flex-flow: row;">
 <img height="70px" style="border-radius: 0.25rem" alt="ignite-ui" src="./browser/IgBlazorSamples.Client/wwwroot/images/logo-ignite-ui.svg"/>
-<div style="font-size: 2.5rem; align-self: start; justify-content: start; margin: 0px; margin-left: 0.5rem; margin-right: 0.5rem">BLAZOR EXAMPLES</div>
+<!-- <div style="font-size: 2.5rem; align-self: start; justify-content: start; margin: 0px; margin-left: 0.5rem; margin-right: 0.5rem">BLAZOR EXAMPLES</div> -->
 <!-- <img height="52px" style="border-radius: 0.25rem" alt="ignite-wc" src="./browser/IgBlazorSamples.Client/wwwroot/images/blazor.png"/> -->
 </div>
+
+# Blazor Examples
 
 This repository contains over 250 examples on how to use [Ignite UI for Blazor](https://infragistics.com/blazorsite/components/general-getting-started.html)
 
