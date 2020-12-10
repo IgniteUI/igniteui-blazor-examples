@@ -1,28 +1,29 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-    <div class="igContainer">    
+    <div class="igContainer">
         <div class="igComponent">
-            @if (CountryNames != null)
+            @if (CountrData != null)
             {
                 <MultiColumnComboBox Height="50px" Width="400px"
-                    DataSource="CountryNames"
+                    DataSource="CountrData"
+                    Fields="DisplayFields"
                     TextField="Country"
                     Placeholder="Choose a country"/>
-            }    
+            }
         </div>
     </div>
 
 @code {
 
-
-    protected List<CountryInfo> CountryNames;
+    protected List<ComboBoxItem> CountrData;
+    protected string[] DisplayFields = new string[] { "Country", "Pop", "Continent" };
 
     protected override void OnInitialized()
     {
         MultiColumnComboBoxModule.Register(IgniteUIBlazor);
 
-        this.CountryNames = SampleComboData.Create().ToList();
-            
+        this.CountrData = SampleComboData.Create();
+
     }
 }
