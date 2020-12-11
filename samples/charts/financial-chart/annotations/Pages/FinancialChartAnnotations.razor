@@ -8,17 +8,17 @@
         <label class="igOptions-label">Annotations: </label>
         <label class="igOptions-item">
             <input type="checkbox"
-                   checked=CrosshairsVisible
+                   checked=@CrosshairsVisible
                    @onchange="OnCrosshairsVisible" /> Crosshair
         </label>
         <label class="igOptions-item">
             <input type="checkbox"
-                   checked=CalloutsAnnotationVisible
+                   checked=@CalloutsAnnotationVisible
                    @onchange="OnCalloutsVisible" /> Callouts
         </label>
         <label class="igOptions-item">
             <input type="checkbox"
-                   checked=FinalValuesVisible
+                   checked=@FinalValuesVisible
                    @onchange="OnFinalValuesVisible" /> Final Values
         </label>
         @*<label class="igOptions-item">
@@ -41,15 +41,15 @@
                             YAxisMode="YAxisMode"
                             DataSource="DataSource"
                             ExcludedProperties=ExcludedProps
-                            CalloutsVisible="CalloutsAnnotationVisible"
+                            CalloutsVisible="@CalloutsAnnotationVisible"
                             CalloutsXMemberPath="Index"
                             CalloutsYMemberPath="Value"
                             CalloutsLabelMemberPath="Info"
                             CalloutsContentMemberPath="Info"
                             CrosshairsSnapToData=false
                             CrosshairsDisplayMode="CrosshairsMode"
-                            CrosshairsAnnotationEnabled="CrosshairsVisible"
-                            FinalValueAnnotationsVisible="FinalValuesVisible"
+                            CrosshairsAnnotationEnabled="@CrosshairsVisible"
+                            FinalValueAnnotationsVisible="@FinalValuesVisible"
                             SeriesAdded="OnSeriesAdded"/>
         }
         @*TODO MarkerType="MarkerType" *@
@@ -63,14 +63,14 @@
     public FinancialChartXAxisMode XAxisMode = FinancialChartXAxisMode.Ordinal;
     public FinancialChartYAxisMode YAxisMode = FinancialChartYAxisMode.Numeric;
     List<StockItem> DataSource;
-    
+
     public string[] ExcludedProps { get; set; } = new string[] { "Index", "Info" };
-    public CrosshairsDisplayMode CrosshairsMode = CrosshairsDisplayMode.Default;
-    public Boolean CalloutsAnnotationVisible = true;
-    public Boolean CrosshairsVisible = true;
-    public Boolean FinalValuesVisible = true;
-    public Boolean MarkersVisible = true;
-    public MarkerType MarkerTypes = MarkerType.Automatic;
+    public CrosshairsDisplayMode CrosshairsMode = CrosshairsDisplayMode.Both;
+    public Boolean CalloutsAnnotationVisible { get; set; } = true;
+    public Boolean CrosshairsVisible { get; set; } = true;
+    public Boolean FinalValuesVisible { get; set; } = true;
+    public Boolean MarkersVisible { get; set; } = true;
+    public MarkerType MarkerTypes { get; set; } = MarkerType.Automatic;
 
     protected override void OnInitialized()
     {
@@ -80,9 +80,7 @@
 
     private void OnCrosshairsVisible(ChangeEventArgs e)
     {
-        var value = (bool)e.Value;
-
-        if (value == true)
+        if ((bool)e.Value == true)
         {
             CrosshairsMode = CrosshairsDisplayMode.Both;
         }
@@ -90,6 +88,7 @@
         {
             CrosshairsMode = CrosshairsDisplayMode.None;
         }
+        CrosshairsVisible = (bool)e.Value;
     }
     private void OnCalloutsVisible(ChangeEventArgs e)
     {
