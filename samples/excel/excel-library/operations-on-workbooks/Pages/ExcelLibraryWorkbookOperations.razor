@@ -22,8 +22,8 @@
         <button @onclick="CreateXls">Save Workbook to XLS</button>
         <span>Select Table to Export:</span>
         <select @onchange="OnTableChange">
-            <option>Employees - Table1</option>
-            <option>Expenses - Table2</option>
+            <option>Sales Employee - Table1</option>
+            <option>Expense - Table2</option>
             <option>Income - Table3</option>
         </select>
     </div>
@@ -52,7 +52,7 @@
     public object DataSource;
     public Workbook wb;
 
-    public List<Employee> employeeData;
+    public List<SalesEmployee> salesEmployeeData;
     public List<Expense> expenseData;
     public List<Income> incomeData;
 
@@ -60,8 +60,10 @@
     public string[] firstNames;
     public string[] lastNames;
     public string[] countries;
+    public string[] cities;
     public string[] titles;
     public string[] employeeColumns;
+    public string[] streets;
     public string selected = "Employees - Table1";
 
     protected override void OnInitialized()
@@ -75,11 +77,14 @@
         this.firstNames = new string[] { "Andrew", "Mike", "Martin", "Ann", "Victoria", "John", "Brian", "Jason", "David" };
         this.lastNames = new string[] { "Smith", "Jordan", "Johnson", "Anderson", "Louis", "Phillips", "Williams" };
         this.countries = new string[] { "UK", "France", "USA", "Germany", "Poland", "Brazil" };
+        this.cities = new string[] { "London", "Paris", "Boston", "Berlin" };
         this.titles = new string[] { "Sales Rep.", "Engineer", "Administrator", "Manager" };
         this.employeeColumns = new string[] { "Name", "Company", "Title", "Age", "Country" };
+        this.streets = new string[] { "Main St", "Madison St", "Broad Way" };
 
-        this.DataSource = this.employeeData;
+
         GenerateData();
+        this.DataSource = this.salesEmployeeData;
     }
 
     public void GenerateData() {
@@ -89,7 +94,7 @@
 
     public void InitData()
     {
-        this.employeeData = new List<Employee>();
+        this.salesEmployeeData = new List<SalesEmployee>();
         this.expenseData = new List<Expense>();
         this.incomeData = new List<Income>();
 
@@ -106,6 +111,12 @@
             string name = firstNames[Rand.Next(0, firstNames.Length)] + " " + firstNames[Rand.Next(0, firstNames.Length)];
             double salary = this.GetRandom(45000, 95000);
             double age = this.GetRandom(20, 65);
+            string city = cities[Rand.Next(0, cities.Length)];
+            string address = this.GetRandom(10, 60).ToString() + " " + streets[Rand.Next(0, streets.Length)];
+            string postalCode = "CID-" + this.GetRandom(500, 900);
+            string phone = this.GetRandom(500, 900) + "-" + this.GetRandom(200, 900) + "-" + this.GetRandom(2000, 9000);
+            string fax = this.GetRandom(500, 900) + "-" + this.GetRandom(200, 900) + "-" + this.GetRandom(2000, 9000);
+
 
             // Expense Data
             double computerExpense = this.GetRandom(50000, 60000);
@@ -121,14 +132,21 @@
             double serviceIncome = this.GetRandom(650000, 750000);
             double royaltyIncome = this.GetRandom(400000, 450000);
 
-            this.employeeData.Add(new Employee()
+            this.salesEmployeeData.Add(new SalesEmployee()
             {
-                Name = name,
-                Company = company,
-                Title = title,
+                ContactName = name,
+                CompanyName = company,
+                ID = this.GetRandom(1000, 8000),
+                ContactTitle = title,
                 Age = (int)age,
                 Country = country,
-                Salary = salary
+                City = city,
+                Salary = salary,
+                Phone = phone,
+                Fax = fax,
+                Address = address,
+                PostalCode = postalCode,
+                Region = GetRandom(0,100).ToString()
             });
 
             this.expenseData.Add(new Expense()
@@ -168,15 +186,15 @@
 
     public void SwitchDataSource(string value)
     {
-        if (value.Contains("Employee"))
+        if (value.Contains("Sales Employee"))
         {
-            this.DataSource = this.employeeData;
+            this.DataSource = this.salesEmployeeData;
         }
         else if (value.Contains("Expense"))
         {
             this.DataSource = this.expenseData;
         }
-        else
+        else if (value.Contains("Income"))
         {
             this.DataSource = this.incomeData;
         }
@@ -188,16 +206,16 @@
     {
         this.wb = new Workbook(format);
         var ws = this.wb.Worksheets.Add("Sheet1");
-
-        if (this.DataSource is List<Employee>)
+        ws.DefaultColumnWidth = 300 * 20;
+        if (this.DataSource is List<SalesEmployee>)
         {
             int worksheetRow = 0;
-            foreach (Employee emp in this.employeeData)
+            foreach (SalesEmployee emp in this.salesEmployeeData)
             {
                 for (int i = 0; i < this.grid.ActualColumns.Count; i++)
                 {
                     Column c = this.grid.ActualColumns[i];
-                    var value = typeof(Employee).GetProperty(c.Field).GetValue(emp);
+                    var value = typeof(SalesEmployee).GetProperty(c.Field).GetValue(emp);
                     ws.Rows[worksheetRow].Cells[i].Value = value;
                 }
 
