@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.RenderTree;
 using Microsoft.AspNetCore.Components.Web;
-
 using System.Net.Http;
 using System.Net.Http.Json;
 using Microsoft.AspNetCore.Components.Routing;
@@ -15,7 +14,7 @@ using System.Collections.Generic;
 
 namespace Infragistics.Samples
 {
-    public class Employee
+    public class SalesEmployee
     {
         public double ID { get; set; }
         public string ContactName { get; set; }
@@ -53,7 +52,7 @@ namespace Infragistics.Samples
         public double RoyaltyIncome { get; set; }
     }
 
-    public class Order : Employee
+    public class Order : SalesEmployee
     {
         public string CustomerName { get; set; }
         public string CustomerID { get; set; }

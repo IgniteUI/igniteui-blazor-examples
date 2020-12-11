@@ -54,7 +54,7 @@ var sampleSource = [
     // igConfig.SamplesCopyPath + '/grids/**/overview/Pages/',
     // igConfig.SamplesCopyPath + '/grids/**/column-types/Pages/',
 
-    // igConfig.SamplesCopyPath + '/excel/excel-library/**/Pages/',
+    igConfig.SamplesCopyPath + '/excel/excel-library/**/Pages/',
     // igConfig.SamplesCopyPath + '/excel/spreadsheet/**/Pages/',
 
     // excluding project's .razor files

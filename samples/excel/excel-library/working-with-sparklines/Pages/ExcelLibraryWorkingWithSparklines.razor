@@ -35,7 +35,7 @@
                 <Template>
                     <div style="width: 100%; height: 70px; background: transparent">
                         <Sparkline Height="100%" Width="100%"
-                                   DataSource="@((context.RowItem as Employee).Order)"
+                                   DataSource="@((context.RowItem as SalesEmployee).Order)"
                                    DisplayType="SparklineDisplayType.Column"
                                    ValueMemberPath="Freight"
                                    LabelMemberPath="OrderDate"
@@ -62,7 +62,7 @@
     public Random Rand = new Random();
 
     public DataGrid grid;
-    public List<Employee> DataSource;
+    public List<SalesEmployee> DataSource;
     public List<Order> companyOrders;
     public Workbook wb;
 
@@ -100,7 +100,7 @@
         this.shippings = new string[] { "Federal Ex", "UPS Air", "UPS Ground" };
 
 
-        var data = new List<Employee>();
+        var data = new List<SalesEmployee>();
         for (var i = 1; i < 10; i++)
         {
             string companyName = companies[Rand.Next(0, companies.Length)];
@@ -147,7 +147,7 @@
                 };
                 companyOrders.Add(order);
             }
-            var dataItem = new Employee()
+            var dataItem = new SalesEmployee()
             {
                 Address = address,
                 City = city,
@@ -177,9 +177,7 @@
     public void ExportGridData (WorkbookFormat format)
     {
         var headers = new string[] { "Orders", "Company Name", "Contact Name", "Contact Title", "Country"};
-        var keys = new string[] { "Orders", "CompanyName", "ContactName", "ContactTitle", "Country" };
-        var orderHeaders = new string[] { "Customer ID", "Order ID", "Freight" };
-
+        
         this.wb = new Workbook(format);
         var exportSheet = this.wb.Worksheets.Add("Sheet1");
         var ordersSheet = this.wb.Worksheets.Add("Orders");
@@ -192,14 +190,14 @@
             exportSheet.Rows[0].Cells[i].Value = headers[i];
         }
 
-        if (this.DataSource is List<Employee>)
+        if (this.DataSource is List<SalesEmployee>)
         {
             int worksheetRow = 1;
-            var data = this.DataSource as List<Employee>;
+            var data = this.DataSource as List<SalesEmployee>;
 
             for (var i = 0; i < data.Count; i++)
             {
-                Employee item = data[i];
+                SalesEmployee item = data[i];
                 var order = item.Order;
 
                 for (var j = 0; j < order.Count; j++)
@@ -208,7 +206,7 @@
                 }
             }
 
-            foreach (Employee emp in data)
+            foreach (SalesEmployee emp in data)
             {
                 for (int i = 0; i < this.grid.ActualColumns.Count; i++)
                 {
@@ -223,7 +221,7 @@
                     else
                     {
                         //Export rest of the grid
-                        var value = typeof(Employee).GetProperty(c.Field).GetValue(emp);
+                        var value = typeof(SalesEmployee).GetProperty(c.Field).GetValue(emp);
                         exportSheet.Rows[worksheetRow].Cells[i].Value = value;
                     }
                 }

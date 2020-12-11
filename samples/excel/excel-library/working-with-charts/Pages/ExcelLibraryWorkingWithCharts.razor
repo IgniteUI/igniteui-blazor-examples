@@ -7,7 +7,7 @@
 
 <div class="igContainer">
     <div class="igOptions">
-        <button class="igOptions-button" @onclick="ExportData">Export</button>
+        <button class="igOptions-button" @onclick="ExportData">Save to Excel</button>
     </div>
     <div class="igComponent">
         <CategoryChart Height="50%" Width="100%"
@@ -187,8 +187,8 @@
         sheet.Rows[0].Height = 5000;
 
         var chart = sheet.Shapes.AddChart(Documents.Excel.Charts.ChartType.ColumnClustered,
-            sheet.Rows[0].Cells[0], new Core.Point(0, 0),
-            sheet.Rows[0].Cells[props.Length - 1], new Core.Point(100, 100));
+            sheet.Rows[0].Cells[0], new Infragistics.Core.Point(0, 0),
+            sheet.Rows[0].Cells[props.Length - 1], new Infragistics.Core.Point(100, 100));
 
         chart.SetSourceData(table.WholeTableRegion.ToString(), true);
         chart.AxisCollection[Infragistics.Documents.Excel.Charts.AxisType.Category].AxisBetweenCategories = true;
@@ -198,7 +198,7 @@
 
         memStream.Position = 0;
         var bytes = memStream.ToArray();
-        this.SaveFile(bytes, "file.xlsx", string.Empty);
+        this.SaveFile(bytes, "ExelWorkbook.xlsx", string.Empty);
     }
 
     private void SaveFile(byte[] bytes, string fileName, string mime)
