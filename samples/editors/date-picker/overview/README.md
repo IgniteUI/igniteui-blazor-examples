@@ -1,10 +1,10 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <body>
         <!-- https://static.infragistics.com/xplatform/images/browsers -->
-        <a target="_blank" href="https://infragistics.com/blazor-client/samples/editors/multi-column-combobox-overview" rel="noopener noreferrer">
+        <a target="_blank" href="https://infragistics.com/blazor-client/samples/editors/date-picker-overview" rel="noopener noreferrer">
             <img height="40px" style="border-radius: 0.5rem; max-width: 100%;" alt="Run Blazor Sample" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/master/templates/sample/images/blazor-run-sample.png"/>
         </a>
-        <!-- <a target="_blank" href="https://infragistics.com/Blazorsite/components/multi-column-combobox.html" rel="noopener noreferrer">
+        <!-- <a target="_blank" href="https://infragistics.com/Blazorsite/components/date-picker.html" rel="noopener noreferrer">
             <img height="40px" style="border-radius: 0.5rem" alt="View Blazor Docs" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/master/templates/sample/images/blazor-view-docs.png"/>
         </a> -->
     </body>
