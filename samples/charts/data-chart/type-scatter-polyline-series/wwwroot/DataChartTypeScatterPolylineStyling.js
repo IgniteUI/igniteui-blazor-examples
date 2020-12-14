@@ -1,5 +1,5 @@
 ﻿
-function onStylingShape(o, e) {
+function onPolylineShapeStyle(o, e) {
 
     e.shapeOpacity = 1.0;
     e.shapeStrokeThickness = 1.0;
@@ -23,18 +23,18 @@ function onStylingShape(o, e) {
         e.shapeStroke = 'Gray';
     }
 }
-igRegisterScript("onStylingShape", onStylingShape, false);
+igRegisterScript("onPolylineShapeStyle", onPolylineShapeStyle, false);
 
-function onSeriesMouseEnter(o, e) {
+function onPolylineSeriesMouseEnter(o, e) {
     if (e.series.title !== "AirplaneSeats") return;
 
     if (e.series.tooltipTemplate === null ||
         e.series.tooltipTemplate === undefined) {
         e.series.tooltipTemplate = createTooltip;
-        console.log("onSeriesMouseEnter createTooltip ");
+        console.log("onPolylineSeriesMouseEnter");
     }
 }
-igRegisterScript("onSeriesMouseEnter", onSeriesMouseEnter, false);
+igRegisterScript("onPolylineSeriesMouseEnter", onPolylineSeriesMouseEnter, false);
 
 function createTooltip(context) {
 

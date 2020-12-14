@@ -1,5 +1,5 @@
 ﻿
-function onStylingShape(o, e) {
+function onPolygonShapeStyle(o, e) {
 
     e.shapeOpacity = 1.0;
     e.shapeStrokeThickness = 0.5;
@@ -23,18 +23,18 @@ function onStylingShape(o, e) {
         e.shapeFill = 'Gray';
     }
 }
-igRegisterScript("onStylingShape", onStylingShape, false);
+igRegisterScript("onPolygonShapeStyle", onPolygonShapeStyle, false);
 
-function onSeriesMouseEnter(o, e) {
+function onPolygonSeriesMouseEnter(o, e) {
     if (e.series.title !== "AirplaneSeats") return;
 
     if (e.series.tooltipTemplate === null ||
         e.series.tooltipTemplate === undefined) {
         e.series.tooltipTemplate = createTooltip;
-        console.log("onSeriesMouseEnter createTooltip ");
+        console.log("onPolygonSeriesMouseEnter ");
     }
 }
-igRegisterScript("onSeriesMouseEnter", onSeriesMouseEnter, false);
+igRegisterScript("onPolygonSeriesMouseEnter", onPolygonSeriesMouseEnter, false);
 
 function createTooltip(context) {
 
@@ -52,16 +52,16 @@ function createTooltip(context) {
     tooltip.appendChild(itemClass);
 
     var itemSeat = document.createElement("div");
-    itemSeat.innerHTML = "Seat: " + dataItem.Seat; 
+    itemSeat.innerHTML = "Seat: " + dataItem.Seat;
     tooltip.appendChild(itemSeat);
 
     var itemPrice = document.createElement("div");
     itemPrice.innerHTML = "Price: $" + dataItem.Price;
     tooltip.appendChild(itemPrice);
-    
+
     var itemStatus = document.createElement("div");
     itemStatus.innerHTML = "Status: " + dataItem.Status;
     tooltip.appendChild(itemStatus);
-     
+
     return tooltip;
 }
