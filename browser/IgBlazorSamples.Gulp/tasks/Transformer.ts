@@ -946,7 +946,9 @@ class Transformer {
             if (currentLine.indexOf('"') === -1 &&
                 currentLine.indexOf('//') === -1) {
 
-                if (currentLine.indexOf('</igc-') === -1) {
+                if (currentLine.indexOf('igc-') === -1 &&
+                    currentLine.indexOf(':') === -1) 
+                {
                     for (const symbol of spacedSymbols) {
                         currentLine = currentLine.replace(new RegExp('([A-Za-z0-9])' + symbol), '$1 $2');
                         currentLine = currentLine.replace(new RegExp(symbol + '([A-Za-z0-9])'), '$1 $2');
