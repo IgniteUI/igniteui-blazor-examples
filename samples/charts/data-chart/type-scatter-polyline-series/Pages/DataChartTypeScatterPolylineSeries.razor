@@ -1,16 +1,13 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-@using System.Net.Http.Json
-@inject HttpClient Http
-
 <div class="igContainer">
     <div class="igComponent">
-
+        
         @if (AirplaneShape != null && AirplaneSeats != null)
         {
             <DataChart Height="100%" Width="100%"
-                       Subtitle="Airplane Seating Chart (Polygons)"
+                       Subtitle="Airplane Seating Chart (Polylines)"
                        SubtitleTopMargin="10"
                        SeriesMouseEnterScript="onSeriesMouseEnter"
                        IsHorizontalZoomEnabled="true"
@@ -18,23 +15,23 @@
 
                 <NumericXAxis Name="xAxis" MinimumValue="-800" MaximumValue="800" Interval="200"></NumericXAxis>
                 <NumericYAxis Name="yAxis" MinimumValue="-600" MaximumValue="600" Interval="200"></NumericYAxis>
-
-                <ScatterPolygonSeries XAxisName="xAxis"
+                
+                <ScatterPolylineSeries XAxisName="xAxis"
                                       YAxisName="yAxis"
                                       DataSource="@AirplaneShape"
                                       ShapeMemberPath="Points"
                                       ShowDefaultTooltip="false"
                                       Thickness="0.5"
                                       Brush="LightGray" Outline="Black">
-                </ScatterPolygonSeries>
+                </ScatterPolylineSeries>
 
-                <ScatterPolygonSeries XAxisName="xAxis"
+                <ScatterPolylineSeries XAxisName="xAxis"
                                       YAxisName="yAxis"
                                       DataSource="@AirplaneSeats"
                                       Title="AirplaneSeats"
                                       ShapeMemberPath="Points"
                                       StyleShapeScript="onStylingShape">
-                </ScatterPolygonSeries>
+                </ScatterPolylineSeries> 
 
             </DataChart>
         }
@@ -43,7 +40,7 @@
 </div>
 
 @code {
-
+    
     private AirplaneSeatInfo[] AirplaneShape;
     private AirplaneSeatInfo[] AirplaneSeats;
 
@@ -53,7 +50,7 @@
         DataChartScatterModule.Register(IgniteUIBlazor);
         DataChartScatterCoreModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
-        ScatterPolygonSeriesModule.Register(IgniteUIBlazor);
+        ScatterPolylineSeriesModule.Register(IgniteUIBlazor);
         
         var http = new HttpClient();
         var shape = "https://static.infragistics.com/xplatform/json/airplane-shape.json";
