@@ -54,7 +54,7 @@ var sampleSource = [
     // igConfig.SamplesCopyPath + '/grids/**/overview/Pages/',
     // igConfig.SamplesCopyPath + '/grids/**/column-types/Pages/',
 
-    // igConfig.SamplesCopyPath + '/excel/excel-library/**/Pages/',
+    igConfig.SamplesCopyPath + '/excel/excel-library/**/Pages/',
     // igConfig.SamplesCopyPath + '/excel/spreadsheet/**/Pages/',
 
     // excluding project's .razor files
@@ -63,8 +63,8 @@ var sampleSource = [
     "!" + igConfig.SamplesCopyPath + '/**/Program.cs',
     "!" + igConfig.SamplesCopyPath + '/**/obj/**',
     "!" + igConfig.SamplesCopyPath + '/**/bin/**',
-    "!" + igConfig.SamplesCopyPath + '/**/data-chart/type-scatter-polygon-series/Pages/',
-    "!" + igConfig.SamplesCopyPath + '/**/data-chart/type-scatter-polyline-series/Pages/',
+    // "!" + igConfig.SamplesCopyPath + '/**/data-chart/type-scatter-polygon-series/Pages/',
+    // "!" + igConfig.SamplesCopyPath + '/**/data-chart/type-scatter-polyline-series/Pages/',
     // "!" + igConfig.SamplesCopyPath + '/**/App.razor',
     // "!" + igConfig.SamplesCopyPath + '/**/_Imports.razor',
     // "!" + igConfig.SamplesCopyPath + '/**/wwwroot/index.html',

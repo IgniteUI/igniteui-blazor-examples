@@ -19,7 +19,9 @@
             <span class="sb-toolbar-toggle" @onclick="ToggleSidebarMenu">
                 <span class="oi oi-menu" aria-hidden="true"></span>
             </span>
-            <span class="sb-toolbar-name no-selection">@SB.CurrentSample</span>
+            <div class="sb-toolbar-name no-selection">@SB.CurrentSample</div>
+            <div class="sb-toolbar-version no-selection">@SB.IgVersion</div>
+
             @* <a href="https://infragistics.com/blazorsite/components/general-getting-started.html" target="_blank" class="ml-md-auto">Help Docs</a> *@
 
             @*fullscreen-enter*@
@@ -51,8 +53,9 @@ protected string ToolbarStyle => ToolbarCollapsed || IsSampleEmbedded ? "display
 protected static bool SidebarCollapsed = false;
 //protected string SidebarStyle => SidebarCollapsed || SB.IsEmbedded ? "display: none" : "display: flex";
 protected string SidebarStyle => SidebarCollapsed || IsSampleEmbedded ? "display: none" : "display: flex";
+protected string SidebarWidth = "16rem";
 
-protected string MainStyle => SidebarCollapsed || IsSampleEmbedded ? "width: 100%" : "width: calc(100% - 250px)";
+protected string MainStyle => SidebarCollapsed || IsSampleEmbedded ? "width: 100%" : "width: calc(100% - " + SidebarWidth + ")";
 
 public static void ToggleSidebarMenu()
 {

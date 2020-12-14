@@ -1,3 +1,4 @@
+@using  IgniteUI.Blazor.Controls
 @using  Infragistics.Samples.Core.Navigation
 @inject Infragistics.Samples.Core.SampleBrowser SB
 
@@ -21,6 +22,12 @@
         SB.AppName = "Blazor Client Samples";
         SB.AppBaseUri = "/blazor-client/samples";
         SB.HomeTitle = "Home"; // "Blazor Samples running on Client-Side";
+        
+        var igType = typeof(IgniteUIBlazor);
+        var igAssembly = igType.Assembly;
+        var igVersion = igAssembly.GetName().Version;
+        SB.IgVersion = "v" + igVersion.Major + "." + igVersion.Minor + "." + igVersion.Build;
+        Console.WriteLine("SB IG " + SB.IgVersion);
 
         await Task.Delay(1);
     }
