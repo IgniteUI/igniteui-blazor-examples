@@ -1,40 +1,41 @@
-﻿
-function onStylingShape(o, e) {
+﻿console.log("loaded DataChartTypeScatterPolylineStyles.js");
+
+function onPolylineShapeStyle(o, e) {
 
     e.shapeOpacity = 1.0;
-    e.shapeStrokeThickness = 0.5;
+    e.shapeStrokeThickness = 1.0;
     e.shapeStroke = 'Black';
 
     var dataItem = e.item;
     if (dataItem.Class === 'First') {
-        e.shapeFill = 'DodgerBlue';
+        e.shapeStroke = 'DodgerBlue';
     }
     if (dataItem.Class === 'Business') {
-        e.shapeFill = 'LimeGreen';
+        e.shapeStroke = 'LimeGreen';
     }
     if (dataItem.Class === 'Premium') {
-        e.shapeFill = 'Orange';
+        e.shapeStroke = 'Orange';
     }
     if (dataItem.Class === 'Economy') {
-        e.shapeFill = 'Red';
+        e.shapeStroke = 'Red';
     }
 
     if (dataItem.Status === 'Sold') {
-        e.shapeFill = 'Gray';
+        e.shapeStroke = 'Gray';
     }
 }
-igRegisterScript("onStylingShape", onStylingShape, false);
+igRegisterScript("onPolylineShapeStyle", onPolylineShapeStyle, false);
 
-function onSeriesMouseEnter(o, e) {
+function onPolylineSeriesMouseEnter(o, e) {
     if (e.series.title !== "AirplaneSeats") return;
 
     if (e.series.tooltipTemplate === null ||
         e.series.tooltipTemplate === undefined) {
         e.series.tooltipTemplate = createTooltip;
-        console.log("onSeriesMouseEnter createTooltip ");
+        console.log("onPolylineSeriesMouseEnter");
     }
 }
-igRegisterScript("onSeriesMouseEnter", onSeriesMouseEnter, false);
+igRegisterScript("onPolylineSeriesMouseEnter", onPolylineSeriesMouseEnter, false);
 
 function createTooltip(context) {
 
@@ -52,16 +53,16 @@ function createTooltip(context) {
     tooltip.appendChild(itemClass);
 
     var itemSeat = document.createElement("div");
-    itemSeat.innerHTML = "Seat: " + dataItem.Seat; 
+    itemSeat.innerHTML = "Seat: " + dataItem.Seat;
     tooltip.appendChild(itemSeat);
 
     var itemPrice = document.createElement("div");
     itemPrice.innerHTML = "Price: $" + dataItem.Price;
     tooltip.appendChild(itemPrice);
-    
+
     var itemStatus = document.createElement("div");
     itemStatus.innerHTML = "Status: " + dataItem.Status;
     tooltip.appendChild(itemStatus);
-     
+
     return tooltip;
 }

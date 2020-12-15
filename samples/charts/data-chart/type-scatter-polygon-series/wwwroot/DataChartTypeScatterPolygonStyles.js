@@ -1,40 +1,41 @@
-﻿
-function onStylingShape(o, e) {
+﻿console.log("loaded DataChartTypeScatterPolygonStyles.js");
+
+function onPolygonShapeStyle(o, e) {
 
     e.shapeOpacity = 1.0;
-    e.shapeStrokeThickness = 1.0;
+    e.shapeStrokeThickness = 0.5;
     e.shapeStroke = 'Black';
 
     var dataItem = e.item;
     if (dataItem.Class === 'First') {
-        e.shapeStroke = 'DodgerBlue';
+        e.shapeFill = 'DodgerBlue';
     }
     if (dataItem.Class === 'Business') {
-        e.shapeStroke = 'LimeGreen';
+        e.shapeFill = 'LimeGreen';
     }
     if (dataItem.Class === 'Premium') {
-        e.shapeStroke = 'Orange';
+        e.shapeFill = 'Orange';
     }
     if (dataItem.Class === 'Economy') {
-        e.shapeStroke = 'Red';
+        e.shapeFill = 'Red';
     }
 
     if (dataItem.Status === 'Sold') {
-        e.shapeStroke = 'Gray';
+        e.shapeFill = 'Gray';
     }
 }
-igRegisterScript("onStylingShape", onStylingShape, false);
+igRegisterScript("onPolygonShapeStyle", onPolygonShapeStyle, false);
 
-function onSeriesMouseEnter(o, e) {
+function onPolygonSeriesMouseEnter(o, e) {
     if (e.series.title !== "AirplaneSeats") return;
 
     if (e.series.tooltipTemplate === null ||
         e.series.tooltipTemplate === undefined) {
         e.series.tooltipTemplate = createTooltip;
-        console.log("onSeriesMouseEnter createTooltip ");
+        console.log("onPolygonSeriesMouseEnter ");
     }
 }
-igRegisterScript("onSeriesMouseEnter", onSeriesMouseEnter, false);
+igRegisterScript("onPolygonSeriesMouseEnter", onPolygonSeriesMouseEnter, false);
 
 function createTooltip(context) {
 
