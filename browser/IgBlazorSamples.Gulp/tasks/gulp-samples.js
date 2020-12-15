@@ -29,7 +29,7 @@ eval(require('typescript')
 function log(msg) {
     console.log('GULP ' + msg);
 }
-log('loaded');
+log('loaded gulp scripts');
 
 // NOTE you can comment out strings in this array to run subset of samples
 var sampleSource = [
@@ -253,7 +253,7 @@ function saveFile(filePath, fileContent) {
 
 function copySamplePages(cb, outputPath) {
 
-    log('copying samples to: ' + outputPath + '/Pages/' );
+    log('copying ' + outputPath + '/Pages/' );
     // log('copying sample files... ');
     for (const sample of samples) {
 
