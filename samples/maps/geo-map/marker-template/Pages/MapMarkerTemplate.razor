@@ -1,20 +1,51 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igComponent">
-        <GeographicMap Height="100%" Width="100%" Zoomable="true">
-        </GeographicMap>
+
+    <div class="igContainer">
+
+        <div className="igOptions">
+            <span> Marker Collision Avoidance </span>
+            <select @bind="SelectedMarkerCollisionAvoidanceType">
+                <option>@CollisionAvoidanceType.Fade</option>
+                <option>@CollisionAvoidanceType.FadeAndShift</option>
+                <option>@CollisionAvoidanceType.Omit</option>
+                <option>@CollisionAvoidanceType.OmitAndShift</option>
+                <option>@CollisionAvoidanceType.None</option>
+
+            </select>
+        </div>
+
+        <div class="igComponent">
+            <GeographicMap Height="100%" Width="100%" Zoomable="true">
+                <GeographicSymbolSeries DataSource="@Capitals"
+                                        MarkerCollisionAvoidance="@SelectedMarkerCollisionAvoidanceType"
+                                        LatitudeMemberPath="Lat"
+                                        LongitudeMemberPath="Lon"
+                                        MarkerBrush="White"
+                                        MarkerOutline="#7D73E6"
+                                        MarkerTemplateScript="onTemplateBubble"/>
+                
+            </GeographicMap>
+        </div>
     </div>
-</div>
 
 @code {
 
     //TODO!!
 
+    
+    private List<WorldCity> Capitals;
+    private CollisionAvoidanceType SelectedMarkerCollisionAvoidanceType;
+
     protected override void OnInitialized()
     {
         GeographicMapModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
+
+        
+        this.Capitals = WorldLocations.GetCapitals();
+
+        this.SelectedMarkerCollisionAvoidanceType = CollisionAvoidanceType.Omit;
     }
 }
