@@ -2,19 +2,114 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="igContainer">
-    <div class="igComponent">
-        <GeographicMap Height="100%" Width="100%" Zoomable="true">
+
+    <div className="igOptions" style="align-self: center;">
+        <span> Marker Collision </span>
+        <select @bind="MarkerCollisionType">
+            <option>@CollisionAvoidanceType.Fade</option>
+            <option>@CollisionAvoidanceType.FadeAndShift</option>
+            <option>@CollisionAvoidanceType.Omit</option>
+            <option>@CollisionAvoidanceType.OmitAndShift</option>
+            <option>@CollisionAvoidanceType.None</option>
+        </select>
+
+        @* TODO uncomment when GeoMap refreshes on setting MarkerType *@
+        @*<span> Marker Type </span>
+        <select @onchange="onMarkerTypeChanged">
+            <option>Custom</option>
+            <option>@MarkerType.Circle</option>
+            <option>@MarkerType.Diamond</option>
+            <option>@MarkerType.Pyramid</option>
+            <option>@MarkerType.Triangle</option>
+            <option>@MarkerType.Square</option>
+            <option>@MarkerType.Pentagon</option>
+            <option>@MarkerType.Hexagon</option>
+            <option>@MarkerType.Tetragram</option>
+            <option>@MarkerType.Pentagram</option>
+            <option>@MarkerType.Hexagram</option>
+            <option>@MarkerType.None</option> 
+        </select>*@
+    </div>
+
+    <div class="igComponent" style="height: calc(100% - 2rem)">
+        <GeographicMap Height="100%" Width="100%" Zoomable="true"  @ref="GeoMap">
+
+            <GeographicSymbolSeries DataSource="@Capitals" @ref="GeoSeries"
+                                    MarkerCollisionAvoidance="@MarkerCollisionType"
+                                    LatitudeMemberPath="Lat"
+                                    LongitudeMemberPath="Lon"
+                                    MarkerBrush="White"
+                                    MarkerOutline="#7D73E6"
+                                    MarkerTemplateScript="@MarkerScript"/>
+            @*note onMapMarkerTemplate implements custom marker in MapMarkerTemplate.js*@
+            
         </GeographicMap>
     </div>
 </div>
 
 @code {
 
-    //TODO!!
+    private List<WorldCity> Capitals;
+    private string MarkerScript;
+    private CollisionAvoidanceType MarkerCollisionType;
+
+    private GeographicMap GeoMap;
+    private GeographicSymbolSeries GeoSeries;
 
     protected override void OnInitialized()
     {
         GeographicMapModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
+
+        this.MarkerScript = "onMapMarkerTemplate";
+        this.MarkerCollisionType = CollisionAvoidanceType.Fade;
+        this.Capitals = WorldLocations.GetCapitals();
+
+    }
+
+    void onMarkerTypeChanged(ChangeEventArgs e)
+    {
+        var markerType = e.Value.ToString();
+
+        if (GeoSeries == null) return;
+
+        //GeoSeries.DataSource = null;
+
+        if (markerType == "Custom")
+        {
+            //GeoSeries.MarkerTemplateScript = "onMapMarkerTemplate";
+            this.MarkerScript = "onMapMarkerTemplate";
+        }
+        else
+        {
+            //GeoSeries.MarkerTemplateScript = "";
+            this.MarkerScript = "";
+
+            if (markerType == "Circle")
+                GeoSeries.MarkerType = MarkerType.Circle;
+            else if (markerType == "Triangle")
+                GeoSeries.MarkerType = MarkerType.Triangle;
+            else if (markerType == "Pyramid")
+                GeoSeries.MarkerType = MarkerType.Pyramid;
+            else if (markerType == "Square")
+                GeoSeries.MarkerType = MarkerType.Square;
+            else if (markerType == "Diamond")
+                GeoSeries.MarkerType = MarkerType.Diamond;
+            else if (markerType == "Pentagon")
+                GeoSeries.MarkerType = MarkerType.Pentagon;
+            else if (markerType == "Hexagon")
+                GeoSeries.MarkerType = MarkerType.Hexagon;
+            else if (markerType == "Tetragram")
+                GeoSeries.MarkerType = MarkerType.Tetragram;
+            else if (markerType == "Pentagram")
+                GeoSeries.MarkerType = MarkerType.Pentagram;
+            else if (markerType == "Hexagram")
+                GeoSeries.MarkerType = MarkerType.Hexagram;
+ 
+            //GeoSeries.DataSource = this.Capitals;
+            //GeoSeries.RenderSeries(false);
+        }
+
+        Console.WriteLine("onMarkerTypeChanged: " + markerType);
     }
 }
