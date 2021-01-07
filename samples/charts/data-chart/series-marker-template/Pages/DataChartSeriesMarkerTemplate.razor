@@ -1,6 +1,4 @@
-﻿@page "/DataChartSeriesMarkerTemplate"
-
-@using IgniteUI.Blazor.Controls
+﻿@using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
@@ -12,6 +10,7 @@
                 <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Label" Interval="1"  />
                 <NumericYAxis Name="yAxis" MinimumValue="20" MaximumValue="120" />
                 
+                <!-- The onDataChartSeriesMarkerTemplate script is implemented in the wwwroot/DataChartSeriesMarkerTemplate.js file-->
                 <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource"
                               ValueMemberPath="Value" MarkerTemplateScript="onDataChartSeriesMarkerTemplate" />
             </DataChart>
@@ -22,8 +21,6 @@
 @code {
 
     private List<MarkerTemplateDataPoint> DataSource;
-
-    int[] values = new int[] { 80, 50, 75, 100, 80, 40, 80, 75, 80, 85, 50, 85, 50, 75, 100, 80, 40, 80, 75, 80, 85, 50, 85, 50, 75, 100 };
 
     protected override void OnInitialized()
     {
@@ -39,8 +36,9 @@
     public void InitData()
     {
         List<MarkerTemplateDataPoint> _data = new List<MarkerTemplateDataPoint>();
+        int[] values = new int[] { 80, 50, 75, 100, 80, 40, 80, 75, 80, 85, 50, 85, 50, 75, 100, 80, 40, 80, 75, 80, 85, 50, 85, 50, 75, 100 };
 
-        for(int i=0; i<values.Length; i++)
+        for (int i=0; i<values.Length; i++)
         {
             _data.Add(new MarkerTemplateDataPoint() { Label = i.ToString(), Value = values[i] });
         }
