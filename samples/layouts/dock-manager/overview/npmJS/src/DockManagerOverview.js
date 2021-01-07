@@ -1,7 +1,6 @@
 ﻿import { defineCustomElements } from 'igniteui-dockmanager/loader';
 defineCustomElements();
 
-//var jsInterop = window.jsInterop = window.jsInterop || {};
 var DockManagerOverview = window.DockManagerOverview = window.DockManagerOverview || {};
 
 // NOTE this function creates and arranges children of WC Dockmanager
