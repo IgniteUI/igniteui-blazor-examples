@@ -1,0 +1,38 @@
+﻿@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igComponent">
+        <igc-dockmanager @ref="dockManager" id="dockManager" height="100%" width="100%">
+            @*NOTE: code in DockManagerEmbedding.js file sets layout of these DIV elements:*@   
+            <div slot="content1" class="igComponent">
+                <iframe src="https://infragistics.com/webcomponents-demos/charts/doughnut-chart-overview"
+                        class="igComponent" seamless frameBorder="0" >
+                </iframe>
+            </div>
+            <div slot="content2" class="igComponent">
+                <iframe src="https://infragistics.com/webcomponents-demos/gauges/radial-gauge-needle"
+                        class="igComponent" seamless frameBorder="0" >
+                </iframe>
+            </div>
+            <div slot="content3" class="igComponent">
+                <iframe src="https://infragistics.com/react-demos/maps/geo-map-binding-data-csv"
+                        class="igComponent" seamless frameBorder="0" >
+                </iframe>
+            </div> 
+        </igc-dockmanager>
+    </div>
+</div>
+
+@code {
+
+    ElementReference dockManager;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // open DockManagerEmbedding.bundle.js file to see how the arrange funciton is implemented
+            await JSRuntime.InvokeVoidAsync("DockManagerEmbedding.arrange", dockManager);
+        }
+    }
+}
