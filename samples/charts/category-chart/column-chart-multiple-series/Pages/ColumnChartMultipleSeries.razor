@@ -1,0 +1,66 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igOptions">
+        <span class="igLegend-title">Highest grossing film franchises and series worldwide as of April 2020</span>
+        <div class="igLegend">
+            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+            <CategoryChart Height="100%" Width="100%"
+                           DataSource="DataSource"
+                           ChartType="CategoryChartType.Column"
+                           Legend="LegendRef">                           
+            </CategoryChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<FilmData> DataSource;
+
+    private Legend legend;
+    private Legend LegendRef
+    {
+        get { return legend; }
+        set
+        {
+            legend = value;
+            StateHasChanged();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        CategoryChartModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+
+        InitData();
+    }
+
+    private void InitData()
+    {
+        List<FilmData> _data = new List<FilmData>();
+        _data.Add(new FilmData() { Film = "Marvel Universe All Films", WorldBoxOffice = 22.55, HighestGrossingMovie = 2.8 });
+        _data.Add(new FilmData() { Film = "Star Wars",                 WorldBoxOffice = 10.32, HighestGrossingMovie = 2.07 });
+        _data.Add(new FilmData() { Film = "Harry Potter",              WorldBoxOffice = 9.19,  HighestGrossingMovie = 1.34 });
+        _data.Add(new FilmData() { Film = "Avengers",                  WorldBoxOffice = 7.76,  HighestGrossingMovie = 2.8 });
+        _data.Add(new FilmData() { Film = "Spider Man",                WorldBoxOffice = 7.22,  HighestGrossingMovie = 1.28 });
+        _data.Add(new FilmData() { Film = "James Bond",                WorldBoxOffice = 7.12,  HighestGrossingMovie = 1.11 });
+
+        this.DataSource = _data;
+    }
+
+    public class FilmData
+    {
+        public string Film { get; set; }
+        public double WorldBoxOffice { get; set; }
+        public double HighestGrossingMovie { get; set; }
+    }
+}
