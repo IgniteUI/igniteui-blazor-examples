@@ -1,4 +1,4 @@
-﻿@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
@@ -30,20 +30,16 @@
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         DataChartCategoryModule.Register(IgniteUIBlazor);
 
-        this.InitData();
-    }
+        // initializing data
+        var data = new List<MarkerTemplateDataPoint>();
+        var values = new int[] { 80, 50, 75, 100, 80, 40, 80, 75, 80, 85, 50, 85, 50, 75, 100, 80, 40, 80, 75, 80, 85, 50, 85, 50, 75, 100 };
 
-    public void InitData()
-    {
-        List<MarkerTemplateDataPoint> _data = new List<MarkerTemplateDataPoint>();
-        int[] values = new int[] { 80, 50, 75, 100, 80, 40, 80, 75, 80, 85, 50, 85, 50, 75, 100, 80, 40, 80, 75, 80, 85, 50, 85, 50, 75, 100 };
-
-        for (int i=0; i<values.Length; i++)
+        for (int i = 0; i < values.Length; i++)
         {
-            _data.Add(new MarkerTemplateDataPoint() { Label = i.ToString(), Value = values[i] });
+            data.Add(new MarkerTemplateDataPoint() { Label = i.ToString(), Value = values[i] });
         }
 
-        this.DataSource = _data;
+        this.DataSource = data;
     }
 
     public class MarkerTemplateDataPoint
