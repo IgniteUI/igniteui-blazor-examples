@@ -2,28 +2,31 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
+    <div class="igContainer">
+        <span class="igLegend-title">Global Electricity Demand by Energy Use</span>
+        <div class="igLegend">
+            <ItemLegend @ref="Legend" />
+        </div>
 
-	<div class="igLegend">
-          <ItemLegend @ref="Legend"/>
+        <div class="igComponent">
+
+            @if (DataSource != null)
+            {
+                <PieChart Height="100%" Width="100%"
+                          @ref="Chart"
+                          DataSource="DataSource"
+                          LabelMemberPath="Summary"
+                          ValueMemberPath="MarketShare"
+                          LegendLabelMemberPath="Summary"
+                          Outlines="white"
+                          LabelsPosition="@LabelsPosition.OutsideEnd"
+                          RadiusFactor="0.7"
+                          LabelExtent="30">
+                </PieChart>
+            }
+
+        </div>
     </div>
-
-    <div class="igComponent">
-
-        @if (DataSource != null)
-        {
-            <PieChart Height="100%" Width="100%"
-                @ref="Chart"
-                DataSource="DataSource"
-                LabelMemberPath="Summary"
-                ValueMemberPath="MarketShare"
-                LegendLabelMemberPath="Company"
-                Outlines="white">
-            </PieChart>
-        }
-
-    </div>
-</div>
 
 @code {
 
@@ -37,11 +40,10 @@
         ItemLegendModule.Register(IgniteUIBlazor);
 
         var dataItems = new List<DataItem>();
-        dataItems.Add(new DataItem() { MarketShare = 30, Company = "Google", });
-        dataItems.Add(new DataItem() { MarketShare = 25, Company = "Apple", });
-        dataItems.Add(new DataItem() { MarketShare = 20, Company = "Microsoft", });
-        dataItems.Add(new DataItem() { MarketShare = 15, Company = "Samsung", });
-        dataItems.Add(new DataItem() { MarketShare = 10, Company = "Other", });
+        dataItems.Add(new DataItem() { MarketShare = 25, Company = "Residential Appliance", });
+        dataItems.Add(new DataItem() { MarketShare = 20, Company = "Heating", });
+        dataItems.Add(new DataItem() { MarketShare = 18, Company = "Lighting", });
+        dataItems.Add(new DataItem() { MarketShare = 37, Company = "Space Cooling", });
 
         DataSource = dataItems;
 

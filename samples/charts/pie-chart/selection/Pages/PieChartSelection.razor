@@ -2,55 +2,56 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
+    <div class="igContainer">
 
-	<div class="igOptions-horizontal">
-		<label>
-			Selected Slices: @SelectedItems
-		</label>
-	</div>
+        <span class="igLegend-title">Global Electricity Demand by Energy Use</span>
+        <div class="igLegend">
+            <ItemLegend @ref="Legend" />
+        </div>
 
-	<div class="igComponent">
+        <div class="igComponent">
 
-		@if (DataSource != null)
-		{
-			<PieChart Height="calc(100% - 2rem)" Width="calc(100% - 2rem)"
-				@ref="pieChart"
-				DataSource="DataSource"
-				LabelMemberPath="Summary"
-				ValueMemberPath="MarketShare"
-				LegendLabelMemberPath="Company"
-				Outlines="white"
-				SelectionMode="SliceSelectionMode.Multiple"
-				SelectedSliceStroke="white"
-				SelectedSliceFill="rgb(143,143,143)"
-				SelectedSliceOpacity="1.0"
-				SelectedSliceStrokeThickness="2"
-				RadiusFactor="0.9"
-				StartAngle="0"
-				SliceClick="OnSliceClick">
-			</PieChart>
-		}
+            @if (DataSource != null)
+            {
+                <PieChart Height="calc(100% - 2rem)" Width="calc(100% - 2rem)"
+                          @ref="pieChart"
+                          DataSource="DataSource"
+                          LabelMemberPath="Summary"
+                          LabelsPosition="@LabelsPosition.OutsideEnd"
+                          LabelExtent="30"
+                          ValueMemberPath="MarketShare"
+                          LegendLabelMemberPath="Summary"
+                          Outlines="white"
+                          SelectionMode="SliceSelectionMode.Multiple"
+                          SelectedSliceStroke="white"
+                          SelectedSliceFill="rgb(143,143,143)"
+                          SelectedSliceOpacity="1.0"
+                          SelectedSliceStrokeThickness="2"
+                          RadiusFactor="0.7"
+                          StartAngle="0">
+                </PieChart>
+            }
 
-	</div>
-</div>
+        </div>
+    </div>
 
 @code {
 
     public PieChart pieChart;
     private List<DataItem> DataSource;
-    public string SelectedItems { get; set; } = "";
+    public ItemLegend Legend;
 
     protected override void OnInitialized()
     {
         PieChartModule.Register(IgniteUIBlazor);
+        ItemLegendModule.Register(IgniteUIBlazor);
 
-		var dataItems = new List<DataItem>();
-        dataItems.Add(new DataItem() { MarketShare = 30, Company = "Google", });
-        dataItems.Add(new DataItem() { MarketShare = 25, Company = "Apple", });
-        dataItems.Add(new DataItem() { MarketShare = 20, Company = "Microsoft", });
-        dataItems.Add(new DataItem() { MarketShare = 15, Company = "Samsung", });
-        dataItems.Add(new DataItem() { MarketShare = 10, Company = "Other", });
+        var dataItems = new List<DataItem>();
+        dataItems.Add(new DataItem() { MarketShare = 25, Company = "Residential Appliance", });
+        dataItems.Add(new DataItem() { MarketShare = 12, Company = "Heating", });
+        dataItems.Add(new DataItem() { MarketShare = 8, Company = "Lighting", });
+        dataItems.Add(new DataItem() { MarketShare = 18, Company = "Other Services", });
+        dataItems.Add(new DataItem() { MarketShare = 37, Company = "Space Cooling", });
 
         DataSource = dataItems;
     }
@@ -63,16 +64,11 @@
         public string Summary { get { return Company + " " + MarketShare + "%"; } }
     }
 
-    protected void OnSliceClick(SliceClickEventArgs e)
+    protected override void OnAfterRender(bool firstRender)
     {
-		//TODO
-        string selectedSlices = "";
-        //var selectedItems = this.pieChart.SelectedItems;
+        base.OnAfterRender(firstRender);
 
-        //foreach (var item in selectedItems) {
-        //    selectedSlices += ((DataItem)item).Company + " ";
-        //}
-
-        SelectedItems = selectedSlices;
+        pieChart.Legend = Legend;
     }
+   
 }
