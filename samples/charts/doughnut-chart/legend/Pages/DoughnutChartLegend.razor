@@ -1,22 +1,27 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
+@* AllowSliceExplosion not working ,LabelsPosition="@LabelsPosition.OutsideEnd" not working, hover effect *@
 
+<div class="igContainer">
+    <span class="igLegend-title">Global Electricity Demand by Energy Use</span>
     <div class="igLegend">
-		<ItemLegend @ref="@Legend"/>
-	</div>
+        <ItemLegend @ref="@Legend" />
+    </div>
 
     <div class="igComponent">
 
         @if (DataSource != null)
         {
-            <DoughnutChart Height="100%" Width="100%" @ref="Chart">
-                <RingSeries DataSource="@DataSource"
-                            LabelMemberPath="Summary"
-                            ValueMemberPath="MarketShare"
-                            LegendLabelMemberPath="Company"                           
-                            Outlines="white">
+            <DoughnutChart Height="100%" Width="100%" @ref="Chart" AllowSliceExplosion="true" >
+                <RingSeries DataSource="@DataSource" 
+                            LabelMemberPath="Summary" 
+                            LabelsPosition="@LabelsPosition.OutsideEnd"
+                            LabelExtent="30"
+                            ValueMemberPath="MarketShare" 
+                            LegendLabelMemberPath="Company"
+                            Outlines="white" 
+                            RadiusFactor="0.6">
                     <ItemLegend />
                 </RingSeries>
             </DoughnutChart>
@@ -39,11 +44,12 @@
 
 
         var dataItems = new List<DataItem>();
-        dataItems.Add(new DataItem() { MarketShare = 30, Company = "Google", });
-        dataItems.Add(new DataItem() { MarketShare = 25, Company = "Apple", });
-        dataItems.Add(new DataItem() { MarketShare = 20, Company = "Microsoft", });
-        dataItems.Add(new DataItem() { MarketShare = 15, Company = "Samsung", });
-        dataItems.Add(new DataItem() { MarketShare = 10, Company = "Other", });
+
+        dataItems.Add(new DataItem() { MarketShare = 25, Company = "Residential Appliance", });
+        dataItems.Add(new DataItem() { MarketShare = 12, Company = "Heating", });
+        dataItems.Add(new DataItem() { MarketShare = 8, Company = "Lighting", });
+        dataItems.Add(new DataItem() { MarketShare = 18, Company = "Other Services", });
+        dataItems.Add(new DataItem() { MarketShare = 37, Company = "Space Cooling", });
 
         DataSource = dataItems;
 
@@ -55,6 +61,10 @@
 
         Chart.ActualSeries[0].Legend = Legend;
 
+    }
+
+    protected void OnSliceClick(SliceClickEventArgs e)
+    {
     }
 
     public class DataItem

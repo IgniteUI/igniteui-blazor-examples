@@ -1,48 +1,57 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-@* todo: ExplodedSlices not working *@
+@* todo: ExplodedSlices not working, labeLocation ,hover *@
 
-<div class="igContainer">
+    <div class="igContainer">
+        <span class="igLegend-title">Global Electricity Demand by Energy Use</span>
+        <div class="igLegend">
+            <ItemLegend @ref="@Legend" />
+        </div>
 
-    <div class="igComponent">
+        <div class="igComponent">
 
-        @if (DataSource != null)
-        {
-            <DoughnutChart Height="100%" Width="100%" AllowSliceExplosion="true" SliceClick="OnSliceClick">
-                <RingSeries DataSource="@DataSource"
-                            LabelMemberPath="Summary"
-                            ValueMemberPath="MarketShare"
-                            LegendLabelMemberPath="Company"
-                            Outlines="white"
-                            SelectedSliceStroke="white"
-                            SelectedSliceFill="rgb(143,143,143)"
-                            SelectedSliceOpacity="1.0"
-                            SelectedSliceStrokeThickness="2"
-                            RadiusFactor="0.9"
-                            StartAngle="0">
-                </RingSeries>
-            </DoughnutChart>
-        }
+            @if (DataSource != null)
+            {
+                <DoughnutChart Height="100%" Width="100%"  @ref="Chart"  AllowSliceExplosion="true" SliceClick="OnSliceClick">
+                    <RingSeries DataSource="@DataSource"
+                                LabelMemberPath="Summary"
+                                LabelsPosition="@LabelsPosition.OutsideEnd"
+                                LabelExtent="30"
+                                ValueMemberPath="MarketShare"
+                                LegendLabelMemberPath="Company"                                
+                                SelectedSliceStroke="white"
+                                SelectedSliceFill="rgb(143,143,143)"
+                                SelectedSliceOpacity="1.0"
+                                SelectedSliceStrokeThickness="2"
+                                RadiusFactor="0.7"
+                                StartAngle="0">
+                    </RingSeries>
+                </DoughnutChart>
+            }
 
+        </div>
     </div>
-</div>
 
 @code {
 
     private List<DataItem> DataSource;
-	public int[] explodedSlices { get; set; } = new int[0];
+    public int[] explodedSlices { get; set; } = new int[0];
+    public ItemLegend Legend;
+    public DoughnutChart Chart;
 
     protected override void OnInitialized()
     {
         DoughnutChartModule.Register(IgniteUIBlazor);
+        ItemLegendModule.Register(IgniteUIBlazor);
+
 
         var dataItems = new List<DataItem>();
-        dataItems.Add(new DataItem() { MarketShare = 30, Company = "Google", });
-        dataItems.Add(new DataItem() { MarketShare = 25, Company = "Apple", });
-        dataItems.Add(new DataItem() { MarketShare = 20, Company = "Microsoft", });
-        dataItems.Add(new DataItem() { MarketShare = 15, Company = "Samsung", });
-        dataItems.Add(new DataItem() { MarketShare = 10, Company = "Other", });
+        dataItems.Add(new DataItem() { MarketShare = 25, Company = "Residential Appliance", });
+        dataItems.Add(new DataItem() { MarketShare = 12, Company = "Heating", });
+        dataItems.Add(new DataItem() { MarketShare = 8, Company = "Lighting", });
+        dataItems.Add(new DataItem() { MarketShare = 18, Company = "Other Services", });
+        dataItems.Add(new DataItem() { MarketShare = 37, Company = "Space Cooling", });
 
         DataSource = dataItems;
 
@@ -55,12 +64,20 @@
         public string Summary { get { return Company + " " + MarketShare + "%"; } }
     }
 
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        Chart.ActualSeries[0].Legend = Legend;
+
+    }
+
     protected void OnSliceClick(SliceClickEventArgs e)
     {
         Console.WriteLine("Sample OnButtonClick");
 
-       // e.IsExploded = !e.IsExploded;
+        // e.IsExploded = !e.IsExploded;
         //e.IsSelected = false;
-		//explodedSlices = new int[] { e.Index };
+        //explodedSlices = new int[] { e.Index };
     }
 }
