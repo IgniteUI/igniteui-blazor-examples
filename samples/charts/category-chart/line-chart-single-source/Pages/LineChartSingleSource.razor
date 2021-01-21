@@ -1,0 +1,52 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+            <CategoryChart Height="100%" Width="100%"
+                           DataSource="DataSource"
+                           ChartType="CategoryChartType.Line"
+                           YAxisTitle="TWh"
+                           YAxisTitleLeftMargin="5">
+            </CategoryChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<EnergyChartData> DataSource;
+
+    protected override void OnInitialized()
+    {
+        CategoryChartModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+        InitData();
+    }
+
+    private void InitData()
+    {
+        List<EnergyChartData> _data = new List<EnergyChartData>();
+        _data.Add(new EnergyChartData() { Year = "2009", Europe = 31 });
+        _data.Add(new EnergyChartData() { Year = "2010", Europe = 43 });
+        _data.Add(new EnergyChartData() { Year = "2011", Europe = 66 });
+        _data.Add(new EnergyChartData() { Year = "2012", Europe = 69 });
+        _data.Add(new EnergyChartData() { Year = "2013", Europe = 58 });
+        _data.Add(new EnergyChartData() { Year = "2014", Europe = 40 });
+        _data.Add(new EnergyChartData() { Year = "2015", Europe = 78 });
+        _data.Add(new EnergyChartData() { Year = "2016", Europe = 13 });
+        _data.Add(new EnergyChartData() { Year = "2017", Europe = 78 });
+        _data.Add(new EnergyChartData() { Year = "2018", Europe = 40 });
+        _data.Add(new EnergyChartData() { Year = "2019", Europe = 80 });
+
+        this.DataSource = _data;
+    }
+
+    public class EnergyChartData
+    {
+        public string Year { get; set; }
+        public int Europe { get; set; }
+    }
+}
