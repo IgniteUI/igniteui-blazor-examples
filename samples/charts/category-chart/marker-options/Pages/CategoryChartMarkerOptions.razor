@@ -49,7 +49,7 @@
 
 @code {
 
-    private List<EnergyChartData> DataSource;
+    private List<EnergyRenewableInfo> DataSource;
     private CategoryChart _categoryChart;
     private CategoryChart CategoryChartRef
     {
@@ -85,13 +85,9 @@
     {
         CategoryChartModule.Register(IgniteUIBlazor);
 
-        InitData();
+        this.DataSource = new EnergyRenewableData();
         this.ChartType = CategoryChartType.Auto;
         this.ChartMarkerType = MarkerType.Automatic;
     }
-
-    private void InitData()
-    {
-        this.DataSource = new EnergyRenewableInfo().Data;
-    }
+ 
 }
