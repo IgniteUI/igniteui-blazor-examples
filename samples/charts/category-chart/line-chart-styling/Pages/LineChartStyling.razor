@@ -14,7 +14,7 @@
         {
             <CategoryChart @ref="ChartRef" Height="100%" Width="100%"                           
                            DataSource="DataSource"
-                           Brushes="#ee5879, #c4c4c4, #9af2e4"
+                                  Brushes="#ee5879, #c4c4c4, #9af2e4"
                            MarkerOutlines="#ee5879, #c4c4c4, #9af2e4"
                            ChartType="CategoryChartType.Line"                           
                            Legend="LegendRef"
@@ -28,38 +28,36 @@
 @code {
 
     private List<EnergyChartData> DataSource;
+    
+    private CategoryChart ChartRef;
 
-    private Legend legend;
+    private Legend _Legend;
     private Legend LegendRef
     {
-        get { return legend; }
+        get { return _Legend; }
         set
         {
-            legend = value;
+            _Legend = value;
             StateHasChanged();
         }
     }
-
-    private CategoryChart _chart;
-    public CategoryChart ChartRef
-    {
-        get { return _chart; }
-        set
-        {
-            _chart = value;
-            if(_chart != null)
-            {
-                _chart.MarkerTypes.Clear();
-                _chart.MarkerTypes.Add(MarkerType.Circle);
-            }            
-        }
-    }
-
+         
     protected override void OnInitialized()
     {
         CategoryChartModule.Register(IgniteUIBlazor);
         LegendModule.Register(IgniteUIBlazor);
         InitData();
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        if (this.ChartRef != null && firstRender)
+        {
+            this.ChartRef.MarkerTypes.Clear();
+            this.ChartRef.MarkerTypes.Add(MarkerType.Circle);
+        }
     }
 
     private void InitData()
