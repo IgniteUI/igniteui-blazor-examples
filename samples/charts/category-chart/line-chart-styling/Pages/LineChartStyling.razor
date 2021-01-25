@@ -4,15 +4,22 @@
 <div class="igContainer">
     <div class="igOptions">
         <span class="igLegend-title">Renewable Electricity Generated</span>
+        <div class="igLegend">
+            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        </div>
     </div>
+
     <div class="igComponent">
         @if (DataSource != null)
         {
-            <CategoryChart Height="100%" Width="100%"
+            <CategoryChart @ref="ChartRef" Height="100%" Width="100%"                           
                            DataSource="DataSource"
-                           ChartType="CategoryChartType.Line"
+                           Brushes="#ee5879, #c4c4c4, #9af2e4"
+                           MarkerOutlines="#ee5879, #c4c4c4, #9af2e4"
+                           ChartType="CategoryChartType.Line"                           
+                           Legend="LegendRef"
                            YAxisTitle="TWh"
-                           YAxisTitleLeftMargin="5">
+                           YAxisTitleLeftMargin="5">                           
             </CategoryChart>
         }
     </div>
@@ -22,12 +29,42 @@
 
     private List<EnergyChartData> DataSource;
 
+    private Legend legend;
+    private Legend LegendRef
+    {
+        get { return legend; }
+        set
+        {
+            legend = value;
+            StateHasChanged();
+        }
+    }
+
+    private CategoryChart _chart;
+    public CategoryChart ChartRef
+    {
+        get { return _chart; }
+        set
+        {
+            _chart = value;
+            if(_chart != null)
+            {
+                _chart.MarkerTypes.Clear();
+                _chart.MarkerTypes.Add(MarkerType.Circle);
+            }            
+        }
+    }
+
     protected override void OnInitialized()
     {
         CategoryChartModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+        InitData();
+    }
 
-        // initalizing data
-        var _data = new List<EnergyChartData>();
+    private void InitData()
+    {
+        List<EnergyChartData> _data = new List<EnergyChartData>();
         _data.Add(new EnergyChartData() { Year = "2009", Europe = 31, China = 21,  USA = 19 });
         _data.Add(new EnergyChartData() { Year = "2010", Europe = 43, China = 26,  USA = 24 });
         _data.Add(new EnergyChartData() { Year = "2011", Europe = 66, China = 29,  USA = 28 });
