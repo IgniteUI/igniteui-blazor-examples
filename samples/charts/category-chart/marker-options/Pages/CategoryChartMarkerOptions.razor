@@ -4,8 +4,7 @@
 <div class="igContainer">
     <div class="igOptions">
         <span class="igOptions-label">Chart Type: </span>
-        <select @bind="@ChartType">
-            <option>@CategoryChartType.Auto</option>
+        <select @bind="@SelectedChart">
             <option>@CategoryChartType.Area</option>
             <option>@CategoryChartType.Column</option>
             <option>@CategoryChartType.Point</option>
@@ -15,11 +14,12 @@
             <option>@CategoryChartType.StepArea</option>
             <option>@CategoryChartType.StepLine</option>
             <option>@CategoryChartType.Waterfall</option>
+            <option>@CategoryChartType.Auto</option>
         </select>
         <span class="igOptions-label"> Marker Type: </span>
-        <select @bind="@ChartMarkerType">
-            <option>@MarkerType.Automatic</option>
+        <select @bind="@SelectedMarker">
             <option>@MarkerType.Circle</option>
+            <option>@MarkerType.Automatic</option> 
             <option>@MarkerType.Triangle</option>
             <option>@MarkerType.Pyramid</option>
             <option>@MarkerType.Square</option>
@@ -35,11 +35,17 @@
     <div class="igComponent">
         @if (DataSource != null)
         {
-            <CategoryChart Height="100%" Width="100%" @ref="CategoryChartRef"
+            // TODO add this code when supported: MarkerTypes="Circle"
+
+            // NOTE the MarkerTypes property is set in code-behind
+            <CategoryChart Height="100%" Width="100%" @ref="Chart"
                            DataSource="DataSource"
                            ChartTitle="Olympic Medals By Country"
                            IsSeriesHighlightingEnabled="true"
-                           ChartType="@ChartType"
+                           ChartType="@SelectedChart"
+                           MarkerBrushes="White"
+                           MarkerOutlines="DodgerBlue LimeGreen Red"
+                                  Brushes="DodgerBlue LimeGreen Red"
                            IsTransitionInEnabled="true"
                            YAxisMinimumValue="0">
             </CategoryChart>
@@ -50,24 +56,20 @@
 @code {
 
     private List<OlympicMedals> DataSource;
-    private CategoryChartType ChartType;
 
-    private MarkerType _chartMarker;
-    private MarkerType ChartMarkerType
+    private CategoryChart Chart;
+    private CategoryChartType SelectedChart = CategoryChartType.Line;
+
+    private MarkerType _SelectedMarker = MarkerType.Circle;
+    private MarkerType SelectedMarker
     {
-        get { return _chartMarker; }
+        get { return _SelectedMarker; }
         set
         {
-            _chartMarker = value;
-            if (this.CategoryChartRef != null)
-            {
-                this.CategoryChartRef.MarkerTypes.Clear();
-                this.CategoryChartRef.MarkerTypes.Add(value);
-            }
+            _SelectedMarker = value;
+            SetChartMarker(value);
         }
     }
-
-    private CategoryChart CategoryChartRef;
 
     protected override void OnInitialized()
     {
@@ -82,8 +84,23 @@
         olympicMedals.Add(new OlympicMedals() { Year = "2016", USA = 146, CHN = 112, RUS = 88 });
 
         DataSource = olympicMedals;
-
-        this.ChartType = CategoryChartType.Auto;
-        this.ChartMarkerType = MarkerType.Automatic;
     }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        if (firstRender)
+            SetChartMarker(MarkerType.Circle); // initalizing to Circle marker
+    }
+
+    protected void SetChartMarker(MarkerType marker)
+    {
+        if (this.Chart != null)
+        {
+            this.Chart.MarkerTypes.Clear();
+            this.Chart.MarkerTypes.Add(marker);
+        }
+    }
+
 }
