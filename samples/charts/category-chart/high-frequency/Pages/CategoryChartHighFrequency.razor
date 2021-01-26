@@ -4,16 +4,17 @@
 
 <div class="igContainer">
     <div class="igOptions">
-        <label class="igOptions-label">Refresh Interval: </label>
+        <label class="igOptions-label">Refresh: </label>
         <label class="igOptions-value">@RefreshInfo</label>
-        <input class="igOptions-slider" type="range" min="10" max="500"
+        <input class="igOptions-slider" type="range" min="10" max="1000" step="10"
                value=@RefreshInterval
                @onchange="OnRefreshFrequencyChanged" />
-        <label class="igOptions-label">Data Points: </label>
+        <label class="igOptions-label">Points: </label>
         <label class="igOptions-value">@DataInfo</label>
         <input class="igOptions-slider" type="range" min="1000" max="50000" step="100"
                value=@DataPoints @onchange="OnDataPointsChanged" />
-        <button @onclick="OnDataGenerateClick">Generate Data</button>
+        <button @onclick="OnDataGenerateClick">Generate</button>
+        <button @onclick="OnDataFeedClick" style="width: 5rem">@DataFeedAction</button>
     </div>
 
     <div class="igComponent">
@@ -31,21 +32,37 @@
 
     private ObservableCollection<CategoryDataItem> DataSource;
 
-    private int RefreshInterval = 10;
     private int DataIndex = 0;
-    private double RefreshMilliseconds = 10;
-    private double DataPoints = 10000;
     private string RefreshInfo;
+    private double RefreshInterval = 10;
+    private double DataPoints = 1000;
     private string DataInfo;
+    private string DataFeedAction = "Stop";
+    private bool DataFeedUpdating = true;
 
     protected override void OnInitialized()
     {
         CategoryChartModule.Register(IgniteUIBlazor);
 
         this.DataInfo = CategoryDataSource.ToShortString(this.DataPoints);
-        this.RefreshInfo = (this.RefreshMilliseconds / 1000).ToString() + "s";
+        this.RefreshInfo = (this.RefreshInterval / 1000).ToString("0.00") + "s";
 
         OnDataGenerateClick();
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        Task.Delay(500).ContinueWith((t) => SetupInterval());
+    }
+
+    private void OnDataFeedClick()
+    {
+        DataFeedUpdating = !DataFeedUpdating;
+        DataFeedAction = DataFeedUpdating ? "Stop" : "Start";
+
+        SetupInterval();
     }
 
     private void OnDataGenerateClick()
@@ -53,8 +70,8 @@
         var dataList = CategoryDataSource.Generate(100, (int)this.DataPoints, false);
 
         this.DataSource = new ObservableCollection<CategoryDataItem>(dataList);
-
         this.DataIndex = this.DataSource.Count;
+
         SetupInterval();
     }
 
@@ -62,14 +79,8 @@
     {
         double num = double.Parse(args.Value.ToString());
 
-        if(num < 1000)
-        {
-            num = 1000;
-        }
-        if(num > 50000)
-        {
-            num = 50000;
-        }
+        if (num < 1000) num = 1000;
+        if (num > 50000) num = 50000;
 
         string info = CategoryDataSource.ToShortString(num);
         this.DataPoints = num;
@@ -80,38 +91,32 @@
     {
         double num = double.Parse(args.Value.ToString());
 
-        if (num < 10)
-        {
-            num = 10;
-        }
-        if (num > 500)
-        {
-            num = 500;
-        }
+        if (num < 10) num = 10;
+        if (num > 1000) num = 1000;
 
-        this.RefreshMilliseconds = num;
-        this.RefreshInfo = (this.RefreshMilliseconds / 1000).ToString() + "s";
+        this.RefreshInterval = num;
+        this.RefreshInfo = (this.RefreshInterval / 1000).ToString("0.00") + "s";
 
-        if (this.DataSource.Count > 0)
-        {
-            SetupInterval();
-        }
+        SetupInterval();
     }
 
     private void SetupInterval()
     {
-        Task.Delay((int)this.RefreshMilliseconds).ContinueWith((t) => OnTick());
+        Task.Delay((int)this.RefreshInterval).ContinueWith((t) => OnTick());
     }
 
     private void OnTick()
     {
+        if (!DataFeedUpdating) return;
+
         this.DataIndex++;
 
         var item = this.DataSource[0];
         var newItem = CategoryDataSource.GetNewItem(this.DataSource, this.DataIndex);
 
+        this.DataSource.RemoveAt(0);
         this.DataSource.Add(newItem);
 
-        Task.Delay((int)this.RefreshMilliseconds).ContinueWith((t) => OnTick());
+        Task.Delay((int)this.RefreshInterval).ContinueWith((t) => OnTick());
     }
 }
