@@ -796,5 +796,31 @@ function copyTemplates(cb) {
 } exports.copyTemplates = copyTemplates;
 
 
+function updateCodeViewer(cb) {
 
+    log('updateCodeViewer ...');
 
+    // note you might need to add/modify functions in Transformer.ts to implement this function.
+    // however, be careful with those functions because you might break scripts for copying samples to browser
+
+    // Comment out all values in the 'sampleSource' array except '/charts/pie-chart/' and those with '!' strings
+    // this way, you can run this function faster on a small subset of samples
+
+    // note the 'samples' is a global variable with info about all samples
+    // note the 'sample' is a local variable with info about ome sample, see SampleInfo class in Transformer.ts
+    for (const sample of samples) {
+        log('updateCodeViewer for ' + sample.SourceFiles[0].Path);
+
+       // - generate .json file with info about source files, e.g.
+       //     \browser\IgBlazorSamples.Client\wwwroot\code-viewer\charts-category-chart-annotations.json
+       // - note that "content" field should contain source code for sample files: .razor/.tsx, .cs/.ts, and .css
+       // - save all .json files in this folder: \browser\IgBlazorSamples.Client\wwwroot\code-viewer\
+       // - save each .json file with sample's component name and sample's folder name: charts-category-chart-annotations.json
+
+    }
+
+    // run 'gulp updateCodeViewer' to execute this function
+
+    cb();
+
+} exports.updateCodeViewer = updateCodeViewer;

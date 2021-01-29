@@ -57,6 +57,12 @@ exports.updateProjects = updateProjects = gulp.series(
 //     sb.updateSharedFiles,
 // );
 
+exports.updateCodeViewer = updateCodeViewer = gulp.series(
+    sb.getSamples,
+    sb.updateCodeViewer,
+);
+
+
 exports.copySamplesToServer = copySamplesToServer = gulp.series(
     // sb.updateVersion,
     sb.getSamples,
