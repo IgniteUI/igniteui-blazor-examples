@@ -18,14 +18,19 @@
         </label>
         <label class="igOptions-item">
             <input type="checkbox"
+                   checked=@ItemTooltipVisible
+                   @onchange="OnItemTooltipVisible" /> Item Tooltip
+        </label>
+        <label class="igOptions-item">
+            <input type="checkbox"
                    checked=@FinalValuesVisible
                    @onchange="OnFinalValuesVisible" /> Final Values
         </label>
-        @*<label class="igOptions-item">
+        <label class="igOptions-item">
             <input type="checkbox"
-                   checked=MarkersVisible
+                   checked=@MarkersVisible
                    @onchange="OnMarkersVisible" /> Markers
-        </label>*@
+        </label>
     </div>
 
     <div class="igComponent">
@@ -33,44 +38,57 @@
         @if (DataSource != null)
         {
             <FinancialChart Width="100%"
-                            Height="100%"
-
-                            ChartType=FinancialChartType.Line
-                            Thickness=2
-                            XAxisMode="XAxisMode"
-                            YAxisMode="YAxisMode"
-                            DataSource="DataSource"
-                            ExcludedProperties=ExcludedProps
-                            CalloutsVisible="@CalloutsAnnotationVisible"
-                            CalloutsXMemberPath="Index"
-                            CalloutsYMemberPath="Value"
-                            CalloutsLabelMemberPath="Info"
-                            CalloutsContentMemberPath="Info"
-                            CrosshairsSnapToData=false
-                            CrosshairsDisplayMode="CrosshairsMode"
-                            CrosshairsAnnotationEnabled="@CrosshairsVisible"
-                            FinalValueAnnotationsVisible="@FinalValuesVisible"
-                            SeriesAdded="OnSeriesAdded"/>
+                Height="100%"
+                @ref="@FinancialChartRef"
+                ChartType=FinancialChartType.Line
+                Thickness=2
+                XAxisMode="XAxisMode"
+                YAxisMode="YAxisMode"
+                DataSource="DataSource"
+                ExcludedProperties=ExcludedProps
+                CalloutsVisible="@CalloutsAnnotationVisible"
+                CalloutsXMemberPath="Index"
+                CalloutsYMemberPath="Value"
+                CalloutsLabelMemberPath="Info"
+                CalloutsContentMemberPath="Info"
+                CrosshairsSnapToData=false
+                ToolTipType="@TooltipType"
+                CrosshairsDisplayMode="CrosshairsMode"
+                CrosshairsAnnotationEnabled="@CrosshairsVisible"
+                FinalValueAnnotationsVisible="@FinalValuesVisible"/>
         }
-        @*TODO MarkerType="MarkerType" *@
-        @* TODO test callouts with a new build when fixed *@
-
     </div>
 </div>
 
 @code {
 
+    public FinancialChart financialChart;
+    public FinancialChart FinancialChartRef
+    {
+        get
+        {
+            return financialChart;
+        }
+        set
+        {
+            financialChart = value;
+            this.FinancialChartRef.MarkerTypes.Clear();
+            this.FinancialChartRef.MarkerTypes.Add(MarkerType.None);
+            StateHasChanged();
+        }
+    }
     public FinancialChartXAxisMode XAxisMode = FinancialChartXAxisMode.Ordinal;
     public FinancialChartYAxisMode YAxisMode = FinancialChartYAxisMode.Numeric;
     List<StockItem> DataSource;
 
     public string[] ExcludedProps { get; set; } = new string[] { "Index", "Info" };
     public CrosshairsDisplayMode CrosshairsMode = CrosshairsDisplayMode.Both;
+    public ToolTipType TooltipType = ToolTipType.Item;
     public Boolean CalloutsAnnotationVisible { get; set; } = true;
     public Boolean CrosshairsVisible { get; set; } = true;
     public Boolean FinalValuesVisible { get; set; } = true;
-    public Boolean MarkersVisible { get; set; } = true;
-    public MarkerType MarkerTypes { get; set; } = MarkerType.Automatic;
+    public Boolean ItemTooltipVisible { get; set; } = true;
+    public Boolean MarkersVisible { get; set; } = false;
 
     protected override void OnInitialized()
     {
@@ -78,6 +96,18 @@
         InitData();
     }
 
+    private void OnItemTooltipVisible(ChangeEventArgs e)
+    {
+        if ((bool)e.Value == true)
+        {
+            TooltipType = ToolTipType.Item;
+        }
+        else
+        {
+            TooltipType = ToolTipType.None;
+        }
+        ItemTooltipVisible = (bool)e.Value;
+    }
     private void OnCrosshairsVisible(ChangeEventArgs e)
     {
         if ((bool)e.Value == true)
@@ -100,16 +130,18 @@
     }
     private void OnMarkersVisible(ChangeEventArgs e)
     {
-        var visible = (bool)e.Value;
-        var markers = visible ? "Circle" : "None";
-        //TODO
-        //MarkerTypes = markers;
-        MarkersVisible = visible;
-    }
 
-    private void OnSeriesAdded(ChartSeriesEventArgs e)
-    {
-        //todo set series title
+        if ((bool)e.Value == true)
+        {
+            this.FinancialChartRef.MarkerTypes.Clear();
+            this.FinancialChartRef.MarkerTypes.Add(MarkerType.Automatic);
+        }
+        else
+        {
+            this.FinancialChartRef.MarkerTypes.Clear();
+            this.FinancialChartRef.MarkerTypes.Add(MarkerType.None);
+        }
+        MarkersVisible = (bool)e.Value;
     }
 
     public void InitData()
@@ -117,7 +149,7 @@
         var today = DateTime.Now;
         var year = today.Year;
         var dateMonth = today.Month;
-        var dateEnd = new DateTime(year, dateMonth, 1);
+        var dateEnd = new DateTime(year + 5, dateMonth, 1);
         var dateStart = new DateTime(year - 1, dateMonth, 1);
 
         var stockData = StocksUtility.GetStocksBetween(dateStart, dateEnd);
