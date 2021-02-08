@@ -4,6 +4,8 @@
 
 <div class="igContainer">
     <div class="igOptions">
+        <button @onclick="OnDataFeedClick" style="width: 5rem">@DataFeedAction</button>
+        <button @onclick="OnDataGenerateClick">Generate</button>        
         <label class="igOptions-label">Refresh: </label>
         <label class="igOptions-value">@RefreshInfo</label>
         <input class="igOptions-slider" type="range" min="10" max="1000" step="10"
@@ -13,8 +15,6 @@
         <label class="igOptions-value">@DataInfo</label>
         <input class="igOptions-slider" type="range" min="1000" max="50000" step="100"
                value=@DataPoints @onchange="OnDataPointsChanged" />
-        <button @onclick="OnDataGenerateClick">Generate</button>
-        <button @onclick="OnDataFeedClick" style="width: 5rem">@DataFeedAction</button>
     </div>
 
     <div class="igComponent">
@@ -37,8 +37,8 @@
     private double RefreshInterval = 10;
     private double DataPoints = 1000;
     private string DataInfo;
-    private string DataFeedAction = "Stop";
-    private bool DataFeedUpdating = true;
+    private string DataFeedAction = "Start";
+    private bool DataFeedUpdating = false;
 
     protected override void OnInitialized()
     {
@@ -48,13 +48,6 @@
         this.RefreshInfo = (this.RefreshInterval / 1000).ToString("0.00") + "s";
 
         OnDataGenerateClick();
-    }
-
-    protected override void OnAfterRender(bool firstRender)
-    {
-        base.OnAfterRender(firstRender);
-
-        Task.Delay(500).ContinueWith((t) => SetupInterval());
     }
 
     private void OnDataFeedClick()
