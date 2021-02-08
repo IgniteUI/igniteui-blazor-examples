@@ -1,0 +1,69 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igComponent">
+        <DataChart Height="100%" Width="100%"
+                   ChartTitle="Where Online Shoppers Start Their Search"                   
+                   TitleHorizontalAlignment="HorizontalAlignment.Left"
+                   TitleLeftMargin="25"
+                   TitleTopMargin="10"
+                   TitleBottomMargin="10"
+                   IsHorizontalZoomEnabled="true"
+                   IsVerticalZoomEnabled="true">
+
+            <CategoryYAxis Name="yAxis" Label="Shop" DataSource="@DataSource" IsInverted="true"  />
+            <NumericXAxis Name="xAxis" Interval="20" />            
+
+            <BarSeries XAxisName="xAxis"
+                       YAxisName="yAxis"
+                       DataSource="@DataSource"                       
+                       ValueMemberPath="Percent"
+                       ShowDefaultTooltip="true"
+                       IsTransitionInEnabled="true"
+                       IsHighlightingEnabled="true">
+            </BarSeries>
+
+            <CalloutLayer DataSource="CalloutDataSource" XMemberPath="X" YMemberPath="Y" LabelMemberPath="Label" ContentMemberPath="Label"
+                          CalloutTextColor="Black" CalloutBackground="Transparent" CalloutLeaderBrush="Transparent"/>
+        </DataChart>
+    </div>
+</div>
+
+@code {
+
+    private List<OnlineShoppingInfo> DataSource = new OnlineShoppingData();
+    private List<CalloutData> CalloutDataSource { get; set; }
+
+    protected override void OnInitialized()
+    {
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        DataChartVerticalCategoryModule.Register(IgniteUIBlazor);
+        DataChartAnnotationModule.Register(IgniteUIBlazor);
+        CalloutLayerModule.Register(IgniteUIBlazor);
+
+        InitCallouts();
+    }
+
+    public void InitCallouts()
+    {
+        List<CalloutData> _callouts = new List<CalloutData>();
+
+        for (int i = 0; i < this.DataSource.Count; i++)
+        {
+            _callouts.Add(new CalloutData() { X = this.DataSource[i].Percent, Y = i, Label = this.DataSource[i].Percent.ToString() + "%" });
+        }
+
+        this.CalloutDataSource = _callouts;
+    }
+
+    public class CalloutData
+    {
+        public double X { get; set; }
+        public int Y { get; set; }
+        public string Label { get; set; }
+    }
+}

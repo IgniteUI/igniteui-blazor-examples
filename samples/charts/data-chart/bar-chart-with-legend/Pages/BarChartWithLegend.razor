@@ -1,0 +1,66 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igOptions">
+        <span class="igLegend-title">Highest Grossing Film Franchises and Series Worldwide as of April 2020</span>
+        <div class="igLegend">
+            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+    <div class="igComponent">
+        <DataChart Height="100%" Width="100%"                   
+                   Legend="LegendRef"
+                   TitleHorizontalAlignment="HorizontalAlignment.Left"
+                   TitleLeftMargin="25"
+                   TitleTopMargin="10"
+                   TitleBottomMargin="10"
+                   IsHorizontalZoomEnabled="true"
+                   IsVerticalZoomEnabled="true">
+
+            <CategoryYAxis Name="yAxis" Label="Franchise" DataSource="@DataSource" IsInverted="true" />
+            <NumericXAxis Name="xAxis" Title="Billions of U.S Dollars" />
+
+            <BarSeries XAxisName="xAxis"
+                       YAxisName="yAxis"
+                       DataSource="@DataSource"
+                       ValueMemberPath="TotalWorldBoxOfficeRevenue"
+                       Title="Total World Box Office Revenue"
+                       ShowDefaultTooltip="true"
+                       IsTransitionInEnabled="true"
+                       IsHighlightingEnabled="true">
+            </BarSeries>
+            <BarSeries XAxisName="xAxis"
+                       YAxisName="yAxis"
+                       DataSource="@DataSource"
+                       ValueMemberPath="HighestGrossingMovieInSeries"
+                       Title="Highest Grossing Movie in Series"
+                       ShowDefaultTooltip="true"
+                       IsTransitionInEnabled="true"
+                       IsHighlightingEnabled="true">
+            </BarSeries>
+        </DataChart>
+    </div>
+</div>
+
+@code {
+
+    private List<FilmFranchiseRevenueInfo> DataSource = new FilmFranchiseRevenueData();
+
+    private Legend _Legend;
+    private Legend LegendRef
+    {
+        get { return _Legend; }
+        set { _Legend = value; StateHasChanged(); }
+    }
+
+    protected override void OnInitialized()
+    {
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        DataChartVerticalCategoryModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+    }
+}
