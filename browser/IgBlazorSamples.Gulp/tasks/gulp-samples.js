@@ -23,8 +23,8 @@ var igConfig = require('./gulp-config.js')
 // var igConfig = require('./gulp-config.js')[platform];
 
 eval(require('typescript')
-.transpile(require('fs')
-.readFileSync("./tasks/Transformer.ts").toString()));
+    .transpile(require('fs')
+        .readFileSync("./tasks/Transformer.ts").toString()));
 
 function log(msg) {
     console.log('GULP ' + msg);
@@ -55,7 +55,7 @@ var sampleSource = [
     // igConfig.SamplesCopyPath + '/grids/**/column-types/Pages/',
 
     igConfig.SamplesCopyPath + '/excel/excel-library/**/Pages/',
-    // igConfig.SamplesCopyPath + '/excel/spreadsheet/**/Pages/',
+    igConfig.SamplesCopyPath + '/excel/spreadsheet/**/Pages/',
 
     // excluding project's .razor files
     // "!" + igConfig.SamplesCopyPath + '/grids/**/binding-live-data/Pages/',
@@ -81,7 +81,7 @@ function cleanSamples() {
     // del.sync("../../samples/**/src/sandbox.config.json", {force:true});
     // del.sync("../../samples/**/manifest.json", {force:true});
 
-    del.sync("../../samples/**/css/open-iconic/README.md", {force:true});
+    del.sync("../../samples/**/css/open-iconic/README.md", { force: true });
 }
 // lints all source files in ./samples folder and remove any routing paths (@page)
 // since they are auto-generated when samples are copied to browsers
@@ -107,7 +107,7 @@ function saveSamples(cb) {
             info.SourceRazorFile.Path &&
             info.SourceRazorFile.Content) {
             // log('saving ' + info.SourceRazorFile.Path)
-        fs.writeFileSync(info.SourceRazorFile.Path, info.SourceRazorFile.Content);
+            fs.writeFileSync(info.SourceRazorFile.Path, info.SourceRazorFile.Content);
         }
     }
     cb();
@@ -122,69 +122,71 @@ function getSamples(cb) {
     // del.sync("./sample-test-files/**/*.*", {force:true});
 
     gulp.src(sampleSource)
-    // .pipe(gSort( { asc: false } ))
-    .pipe(es.map(function(sample, sampleCallback) {
+        // .pipe(gSort( { asc: false } ))
+        .pipe(es.map(function (sample, sampleCallback) {
 
-        let sampleFolder = Transformer.getRelative(sample.dirname);
-        // console.log("get " + sampleFolder + '/' + sample.basename);
-        // console.log("get " + sampleFolder + '/');
+            let sampleFolder = Transformer.getRelative(sample.dirname);
+            // console.log("get " + sampleFolder + '/' + sample.basename);
+            // console.log("get " + sampleFolder + '/');
 
-        let sampleFiles = [];
-        gulp.src([
+            let sampleFiles = [];
+            gulp.src([
                 sampleFolder + "/Pages/*",
                 sampleFolder + "/Components/*",
                 sampleFolder + "/Services/*",
                 sampleFolder + "/*.csproj",
                 sampleFolder + "/wwwroot/*.js",
                 sampleFolder + "/wwwroot/*.css",
-             // sampleFolder + "/wwwroot/*",
-          '!' + sampleFolder + "/wwwroot/index.html",
-          '!' + sampleFolder + "/wwwroot/index.css",
-          '!' + sampleFolder + "/Pages/_*.razor",
-        //   '!' + sampleFolder + "/Pages/DataGridBindingLiveData.razor",
-          '!' + sampleFolder + "/Pages/*.g.cs",
-          '!' + sampleFolder + "/obj/**",
-          '!' + sampleFolder + "/obj/*.*",
-          '!' + sampleFolder + "/bin/**",
-          '!' + sampleFolder + "/bin/*.*",])
-        .pipe(flatten({ "includeParents": -1 }))
-        .pipe(es.map(function(file, fileCallback) {
-            let fileDir = Transformer.getRelative(file.dirname);
-            sampleFiles.push(fileDir + "/" + file.basename);
-            // console.log("get file " + fileDir + "/" + file.basename);
-            fileCallback(null, file);
+                // sampleFolder + "/wwwroot/*",
+                '!' + sampleFolder + "/wwwroot/index.html",
+                //   '!' + sampleFolder + "/wwwroot/index.css",
+                '!' + sampleFolder + "/Pages/_*.razor",
+                //   '!' + sampleFolder + "/Pages/DataGridBindingLiveData.razor",
+                '!' + sampleFolder + "/Pages/*.g.cs",
+                '!' + sampleFolder + "/obj/**",
+                '!' + sampleFolder + "/obj/*.*",
+                '!' + sampleFolder + "/bin/**",
+                '!' + sampleFolder + "/bin/*.*",])
+                .pipe(flatten({ "includeParents": -1 }))
+                .pipe(es.map(function (file, fileCallback) {
+                    let fileDir = Transformer.getRelative(file.dirname);
+
+                    let sampleFilePush = fileDir + "/" + file.basename;                    
+                    sampleFiles.push(fileDir + "/" + file.basename);
+                    // console.log("get file " + fileDir + "/" + file.basename);
+                    fileCallback(null, file);
+                }))
+                .on("end", function () {
+                    // log(sampleFolder);
+
+                    let sampleInfo = Transformer.getSampleInfo(sample, sampleFiles);
+                    if (sampleInfo !== null) {
+                        samples.push(sampleInfo);
+                    }
+                    sampleCallback(null, sample);
+                });
+
+            // sampleCallback(null, sample);
         }))
-        .on("end", function() {
-            // log(sampleFolder);
+        .on("end", function () {
+            Transformer.sort(samples);
+            Transformer.process(samples);
+            Transformer.verify(samples);
 
-            let sampleInfo = Transformer.getSampleInfo(sample, sampleFiles);
-            if (sampleInfo !== null) {
-                samples.push(sampleInfo);
-            }
-            sampleCallback(null, sample);
+            // Transformer.print(samples);
+
+            log('getSamples() found ' + samples.length + " samples");
+            // for (const sample of samples) {
+            //     log(' ' + sample.SampleFolderPath);
+            // }
+            // let last = samples[samples.length - 1];
+            // log('package name ' + last.PackageFileContent.name);
+            // last.PackageDependencies = Transformer.getDependencies(last);
+            // log('packages \n' + last.PackageFileContent.dependencies);
+            // log('dependencies: \n' + last.PackageDependencies);
+
+            cb();
         });
-
-        // sampleCallback(null, sample);
-    }))
-    .on("end", function() {
-        Transformer.sort(samples);
-        Transformer.process(samples);
-        Transformer.verify(samples);
-
-        // Transformer.print(samples);
-
-        log('getSamples() found ' + samples.length + " samples");
-        // for (const sample of samples) {
-        //     log(' ' + sample.SampleFolderPath);
-        // }
-        // let last = samples[samples.length - 1];
-        // log('package name ' + last.PackageFileContent.name);
-        // last.PackageDependencies = Transformer.getDependencies(last);
-        // log('packages \n' + last.PackageFileContent.dependencies);
-        // log('dependencies: \n' + last.PackageDependencies);
-
-        cb();
-    });
 
 
 } exports.getSamples = getSamples;
@@ -194,7 +196,7 @@ function getSamples(cb) {
 function makeDirectoryFor(filePath) {
     var dirname = path.dirname(filePath);
     if (fs.existsSync(dirname)) {
-      return true;
+        return true;
     }
     makeDirectoryFor(dirname);
     fs.mkdirSync(dirname);
@@ -205,13 +207,13 @@ function makeSamplesWritable(cb) {
     gulp.src(sampleSource)
         .pipe(gulpChangeMod(666))
         .pipe(gulp.dest(sampleSource))
-        .on("end", function() {
+        .on("end", function () {
             cb();
         });
 } exports.makeSamplesWritable = makeSamplesWritable;
 
 function exclude(fileWithString) {
-    return es.map(function(file, cb) {
+    return es.map(function (file, cb) {
         if (file.basename.indexOf(fileWithString) >= 0 ||
             file.dirname.indexOf(fileWithString) >= 0) {
             // log('- share data ' + file.basename);
@@ -226,20 +228,20 @@ function exclude(fileWithString) {
 function cleanupSampleBrowser(outputPath) {
     log('cleaning up files in ' + outputPath);
     del.sync([
-          outputPath + "/Services/*.*",   // auto-copied data files
-          outputPath + "/Components/**",  // auto-copied sample's .razor components
-          outputPath + "/wwwroot/*.js",   // auto-copied sample's .js files
-          outputPath + "/Pages/**/*.*",   // auto-copied samples
-          outputPath + "/Pages/**",       // auto-copied folders
-    "!" + outputPath + "/Pages/_*.razor", // e.g. _Home.razor
-    "!" + outputPath + "/Pages/_*.cshtml" // e.g. _Host.cshtml
-    ], {force:true});
+        outputPath + "/Services/*.*",   // auto-copied data files
+        outputPath + "/Components/**",  // auto-copied sample's .razor components
+        outputPath + "/wwwroot/*.js",   // auto-copied sample's .js files
+        outputPath + "/Pages/**/*.*",   // auto-copied samples
+        outputPath + "/Pages/**",       // auto-copied folders
+        "!" + outputPath + "/Pages/_*.razor", // e.g. _Home.razor
+        "!" + outputPath + "/Pages/_*.cshtml" // e.g. _Host.cshtml
+    ], { force: true });
 }
 
 
 function cleanupSampleBrowsers(cb) {
-    cleanupSampleBrowser( "../../browser/IgBlazorSamples.Client");
-    cleanupSampleBrowser( "../../browser/IgBlazorSamples.Server");
+    cleanupSampleBrowser("../../browser/IgBlazorSamples.Client");
+    cleanupSampleBrowser("../../browser/IgBlazorSamples.Server");
     cb();
 } exports.cleanupSampleBrowsers = cleanupSampleBrowsers;
 
@@ -253,7 +255,7 @@ function saveFile(filePath, fileContent) {
 
 function copySamplePages(cb, outputPath) {
 
-    log('copying ' + outputPath + '/Pages/' );
+    log('copying ' + outputPath + '/Pages/');
     // log('copying sample files... ');
     for (const sample of samples) {
 
@@ -265,7 +267,7 @@ function copySamplePages(cb, outputPath) {
 
         for (const file of sample.SourceFiles) {
             // log("copy " + sample.SampleRoute + " " + sample.ComponentFolder + " " + file.Path);
-                // log("TO copy " + file.Path + '/' + file.Name);
+            // log("TO copy " + file.Path + '/' + file.Name);
             // if (file.isRazorComponent()) {
             //     // log("copy " + file.Path);
             //     log("copying " + outputPath + '/Components/' + file.Name);
@@ -274,7 +276,7 @@ function copySamplePages(cb, outputPath) {
             if (file.isRazorSample()) {
                 log("copying " + outputPath + '/Pages/' + sampleFolder + '/' + file.Name);
                 saveFile(outputPath + '/Pages/' + sampleFolder + '/' + file.Name, file.Content);
-            } else if (file.isCS())  {
+            } else if (file.isCS()) {
                 saveFile(outputPath + '/Services/' + file.Name, file.Content);
             } else {
                 log("WARNING unknown source file: " + file.Path);
@@ -326,7 +328,7 @@ function copySampleScripts(cb, outputPath, indexName) {
     }
 
     if (insertStart > 0) {
-        for (let i = insertStart+1; i < insertEnd; i++) {
+        for (let i = insertStart + 1; i < insertEnd; i++) {
             indexLines[i] = "";
         }
         indexLines[insertStart + 1] = insertScriptFiles.join('\n');
@@ -341,18 +343,18 @@ function copySampleScripts(cb, outputPath, indexName) {
 // '../../browser/IgBlazorSamples.Server/Services'
 // '../../browser/IgBlazorSamples.Server/wwwroot'
 function copySamplesToServer(cb) {
-    cleanupSampleBrowser( "../../browser/IgBlazorSamples.Server");
+    cleanupSampleBrowser("../../browser/IgBlazorSamples.Server");
     copySampleScripts(cb, "../../browser/IgBlazorSamples.Server", "/Pages/_Host.cshtml");
-    copySamplePages(cb,   "../../browser/IgBlazorSamples.Server");
+    copySamplePages(cb, "../../browser/IgBlazorSamples.Server");
 } exports.copySamplesToServer = copySamplesToServer;
 
 // '../../browser/IgBlazorSamples.Client/Pages'
 // '../../browser/IgBlazorSamples.Client/Services'
 // '../../browser/IgBlazorSamples.Client/wwwroot'
 function copySamplesToClient(cb) {
-    cleanupSampleBrowser( "../../browser/IgBlazorSamples.Client");
+    cleanupSampleBrowser("../../browser/IgBlazorSamples.Client");
     copySampleScripts(cb, "../../browser/IgBlazorSamples.Client", "/wwwroot/index.html");
-    copySamplePages(cb,   "../../browser/IgBlazorSamples.Client");
+    copySamplePages(cb, "../../browser/IgBlazorSamples.Client");
 } exports.copySamplesToClient = copySamplesToClient;
 
 function updateReadme(cb) {
@@ -390,31 +392,31 @@ function updateProjects(cb) {
     let templateProject = fs.readFileSync("../../templates/sample/BlazorClientApp.csproj");
 
     gulp.src(["../../samples/**/*.csproj"])
-    // .pipe(flatten({ "includeParents": -1 }))
-    .pipe(es.map(function(file, fileCallback) {
-        let fileDir = Transformer.getRelative(file.dirname);
+        // .pipe(flatten({ "includeParents": -1 }))
+        .pipe(es.map(function (file, fileCallback) {
+            let fileDir = Transformer.getRelative(file.dirname);
 
-        if (file.dirname.indexOf("wwwroot") > 0 ||
-            file.dirname.indexOf("Pages") > 0 ||
-            file.dirname.indexOf("Services") > 0) {
-            log("ERROR invalid project location: " + file.dirname)
-        } else {
-            let filePath = fileDir + "/" + file.basename;
-            // let filePath = file.dirname + "/" + file.basename;
-            let oldContent = file.contents.toString();
-            var newContent = templateProject + '';
-            if (newContent !== oldContent) {
-                fs.writeFileSync(filePath, newContent);
-                log('updated project: ' + filePath);
-                // file.contents = new Buffer(newContent);
+            if (file.dirname.indexOf("wwwroot") > 0 ||
+                file.dirname.indexOf("Pages") > 0 ||
+                file.dirname.indexOf("Services") > 0) {
+                log("ERROR invalid project location: " + file.dirname)
+            } else {
+                let filePath = fileDir + "/" + file.basename;
+                // let filePath = file.dirname + "/" + file.basename;
+                let oldContent = file.contents.toString();
+                var newContent = templateProject + '';
+                if (newContent !== oldContent) {
+                    fs.writeFileSync(filePath, newContent);
+                    log('updated project: ' + filePath);
+                    // file.contents = new Buffer(newContent);
+                }
             }
-        }
-        // send the updated file down the pipe
-        fileCallback(null, file);
-    }))
-    .on("end", function() {
-        cb();
-    });
+            // send the updated file down the pipe
+            fileCallback(null, file);
+        }))
+        .on("end", function () {
+            cb();
+        });
 
     // for (const sample of samples) {
     //     if (sample.ProjectFile) {
@@ -468,7 +470,7 @@ function updateVersion(cb) {
     const jsonContent = JSON.stringify(jsonData);
     const jsonPublicFile = './public/meta.json';
 
-    fs.writeFile(jsonPublicFile, jsonContent, 'utf8', function(err) {
+    fs.writeFile(jsonPublicFile, jsonContent, 'utf8', function (err) {
         if (err) {
             console.log('gulp cannot update ' + jsonPublicFile + ' file: \n' + err);
             return console.log(err);
@@ -477,7 +479,7 @@ function updateVersion(cb) {
     });
 
     const jsonSourceFile = './src/CacheApp.json';
-    fs.writeFile(jsonSourceFile, jsonContent, 'utf8', function(err) {
+    fs.writeFile(jsonSourceFile, jsonContent, 'utf8', function (err) {
         if (err) {
             console.log('gulp cannot update ' + jsonSourceFile + ' file: \n' + err);
             return console.log(err);
@@ -520,73 +522,73 @@ function updateSharedFiles(cb) {
         './templates/sample/.gitignore',
         './templates/sample/.eslintrc.js',
     ])
-    .pipe(flatten({ "includeParents": -1 }))
-    .pipe(es.map(function(file, fileCallback) {
-        let sourceContent = file.contents.toString();
-        let sourcePath = Transformer.getRelative(file.dirname);
-        sourcePath = sourcePath.replace('./templates/sample', '');
-        sourcePath = sourcePath.replace('./templates/shared', '');
+        .pipe(flatten({ "includeParents": -1 }))
+        .pipe(es.map(function (file, fileCallback) {
+            let sourceContent = file.contents.toString();
+            let sourcePath = Transformer.getRelative(file.dirname);
+            sourcePath = sourcePath.replace('./templates/sample', '');
+            sourcePath = sourcePath.replace('./templates/shared', '');
 
-        for (const sample of samples) {
-            // if (sample.isUsingFileName(file.basename)) {
+            for (const sample of samples) {
+                // if (sample.isUsingFileName(file.basename)) {
                 let samplePath = sampleOutputFolder + sample.SampleFolderPath;
                 let targetPath = samplePath + sourcePath + '/' + file.basename;
 
                 if (fs.existsSync(targetPath)) {
                     let targetContent = fs.readFileSync(targetPath, "utf8");
                     if (sourceContent !== targetContent) {
-                        fs.writeFileSync(targetPath , sourceContent);
+                        fs.writeFileSync(targetPath, sourceContent);
                         log('updated ' + targetPath);
                     }
                 } else {
                     fs.writeFileSync(targetPath, sourceContent);
                     log('added ' + targetPath);
                 }
-        }
-        fileCallback(null, file);
-        // SourceFiles.push(fileDir + "/" + file.basename);
-    }))
+            }
+            fileCallback(null, file);
+            // SourceFiles.push(fileDir + "/" + file.basename);
+        }))
 
     // update these shared files if a sample is using them
     gulp.src(['./templates/shared/src/*.*'])
-    .pipe(flatten({ "includeParents": -1 }))
-    .pipe(es.map(function(file, fileCallback) {
-        let sourceContent = file.contents.toString();
-        let sourcePath = Transformer.getRelative(file.dirname);
-        sourcePath = sourcePath.replace('./templates/sample', '');
-        sourcePath = sourcePath.replace('./templates/shared', '');
+        .pipe(flatten({ "includeParents": -1 }))
+        .pipe(es.map(function (file, fileCallback) {
+            let sourceContent = file.contents.toString();
+            let sourcePath = Transformer.getRelative(file.dirname);
+            sourcePath = sourcePath.replace('./templates/sample', '');
+            sourcePath = sourcePath.replace('./templates/shared', '');
 
-        for (const sample of samples) {
-            if (sample.isUsingFileName(file.basename)) {
+            for (const sample of samples) {
+                if (sample.isUsingFileName(file.basename)) {
 
-                let samplePath = sampleOutputFolder + sample.SampleFolderPath;
-                let targetPath = samplePath + sourcePath + '/' + file.basename;
+                    let samplePath = sampleOutputFolder + sample.SampleFolderPath;
+                    let targetPath = samplePath + sourcePath + '/' + file.basename;
 
-                if (fs.existsSync(targetPath)) {
-                    let targetContent = fs.readFileSync(targetPath, "utf8");
-                    if (sourceContent !== targetContent) {
-                        fs.writeFileSync(targetPath , sourceContent);
-                        log('updated ' + targetPath);
+                    if (fs.existsSync(targetPath)) {
+                        let targetContent = fs.readFileSync(targetPath, "utf8");
+                        if (sourceContent !== targetContent) {
+                            fs.writeFileSync(targetPath, sourceContent);
+                            log('updated ' + targetPath);
+                        }
+                    } else {
+                        fs.writeFileSync(targetPath, sourceContent);
+                        log('added ' + targetPath);
                     }
-                } else {
-                    fs.writeFileSync(targetPath, sourceContent);
-                    log('added ' + targetPath);
-                }
 
-                // let targetPath = sampleOutputFolder + sample.SampleFolderPath + '/src/' + file.basename;
-                // let targetContent = fs.readFileSync(targetPath, "utf8");
-                // if (sourceContent !== targetContent) {
-                //     fs.writeFileSync(targetPath, sourceContent);
-                //     // log('updated ' + file.basename + ' in ' + sample.SampleFilePath)
-                //     log('updated ' + targetPath);
-                // }
+                    // let targetPath = sampleOutputFolder + sample.SampleFolderPath + '/src/' + file.basename;
+                    // let targetContent = fs.readFileSync(targetPath, "utf8");
+                    // if (sourceContent !== targetContent) {
+                    //     fs.writeFileSync(targetPath, sourceContent);
+                    //     // log('updated ' + file.basename + ' in ' + sample.SampleFilePath)
+                    //     log('updated ' + targetPath);
+                    // }
+                }
             }
-        }
-        fileCallback(null, file);
-    }))
-    .on("end", function() {
-        cb();
-    });
+            fileCallback(null, file);
+        }))
+        .on("end", function () {
+            cb();
+        });
 
 
 } exports.updateSharedFiles = updateSharedFiles;
@@ -618,7 +620,7 @@ function logRoutes(cb) {
 } exports.logRoutes = logRoutes;
 
 function logFile() {
-    return es.map(function(file, cb) {
+    return es.map(function (file, cb) {
         let relative = Transformer.getRelative(file.dirname);
         log(relative + '/' + file.basename);
         // log(path.relative(path.join(file.cwd, file.base), file.path))
@@ -630,37 +632,37 @@ function logPublicFiles(cb) {
     gulp.src([
         './samples/**/public/*.*',
     ])
-    .pipe(logFile())
-    .on("end", function() { cb(); });
+        .pipe(logFile())
+        .on("end", function () { cb(); });
 } exports.logPublicFiles = logPublicFiles;
 
 function logSourceFiles(cb) {
     gulp.src([
         './samples/**/src/*.ts',
-       '!./samples/**/src/index.*',
+        '!./samples/**/src/index.*',
     ])
-    .pipe(logFile())
-    .on("end", function() { cb(); });
+        .pipe(logFile())
+        .on("end", function () { cb(); });
 } exports.logSourceFiles = logSourceFiles;
 
 function logRootFiles(cb) {
     gulp.src([
         './samples/**/*.*',
-       '!./samples/**/src/*.*',
-       '!./samples/**/*.tsx',
-       '!./samples/**/*.ts',
-       '!./samples/**/*.css',
-       '!./samples/**/index.*',
-       '!./samples/**/manifest.json',
-       '!./samples/**/package.json',
-       '!./samples/**/tsconfig.json',
+        '!./samples/**/src/*.*',
+        '!./samples/**/*.tsx',
+        '!./samples/**/*.ts',
+        '!./samples/**/*.css',
+        '!./samples/**/index.*',
+        '!./samples/**/manifest.json',
+        '!./samples/**/package.json',
+        '!./samples/**/tsconfig.json',
     ])
-    .pipe(es.map(function(file, cbFile) {
-        let relative = Transformer.getRelative(file.dirname);
-        log(file.basename + ' ' + relative + '/' + file.basename);
-        cbFile(null, file);
-    }))
-    .on("end", function() { cb(); });
+        .pipe(es.map(function (file, cbFile) {
+            let relative = Transformer.getRelative(file.dirname);
+            log(file.basename + ' ' + relative + '/' + file.basename);
+            cbFile(null, file);
+        }))
+        .on("end", function () { cb(); });
 } exports.logRootFiles = logRootFiles;
 
 function logUniqueFiles(cb) {
@@ -668,21 +670,21 @@ function logUniqueFiles(cb) {
     let fileNames = [];
     gulp.src([
         './samples/**/src/*.ts',
-       '!./samples/**/src/index.*',
+        '!./samples/**/src/index.*',
     ])
-    .pipe(es.map(function(file, cbFile) {
-        if (fileNames.indexOf(file.basename) === -1) {
-            fileNames.push(file.basename);
-        }
-        cbFile(null, file);
-    }))
-    .on("end", function() {
-        fileNames.sort();
-        for (const name of fileNames) {
-            log(name);
-        }
-        cb();
-    });
+        .pipe(es.map(function (file, cbFile) {
+            if (fileNames.indexOf(file.basename) === -1) {
+                fileNames.push(file.basename);
+            }
+            cbFile(null, file);
+        }))
+        .on("end", function () {
+            fileNames.sort();
+            for (const name of fileNames) {
+                log(name);
+            }
+            cb();
+        });
 
 } exports.logUniqueFiles = logUniqueFiles;
 
@@ -726,80 +728,79 @@ function copyTemplates(cb) {
     // del.sync("./sample-test-files/**/*.*", {force:true});
 
     gulp.src(sampleSource)
-    // .pipe(gSort( { asc: false } ))
-    .pipe(es.map(function(sampleFile, sampleCallback) {
+        // .pipe(gSort( { asc: false } ))
+        .pipe(es.map(function (sampleFile, sampleCallback) {
 
-        // let sampleFolder = '../.' + Transformer.getRelative(sampleFile.dirname);
-        let sampleFolder = Transformer.getRelative(sampleFile.dirname);
-        // console.log('copyTemplates ' + sampleFile.dirname + '   ' + sampleFile.basename);
-        // log('copyTemplates ' + sampleFile.dirname + '   ' + sampleFolder);
-        // // log(sampleFolder);
-        sampleLocations.push(sampleFolder);
+            // let sampleFolder = '../.' + Transformer.getRelative(sampleFile.dirname);
+            let sampleFolder = Transformer.getRelative(sampleFile.dirname);
+            // console.log('copyTemplates ' + sampleFile.dirname + '   ' + sampleFile.basename);
+            // log('copyTemplates ' + sampleFile.dirname + '   ' + sampleFolder);
+            // // log(sampleFolder);
+            sampleLocations.push(sampleFolder);
 
-        // let sampleFiles = [];
-        // gulp.src([sampleFolder + "/**"])
-        // .pipe(flatten({ "includeParents": -1 }))
-        // // .pipe(gSort( { asc: false } ))
-        // .pipe(es.map(function(file, fileCallback) {
-        //     console.log('getSamples ' + file.basename);
-        //     // let fileDir = Transformer.getRelative(file.dirname);
-        //     // sampleFiles.push(fileDir + "/" + file.basename);
-        //     fileCallback(null, file);
-        // }))
-        // .on("end", function() {
-        //     // log(sampleFolder);
-
-        //     // let sampleInfo = Transformer.getSampleInfo(samplePackage, sampleFiles);
-        //     // samples.push(sampleInfo);
-
-        //     sampleCallback(null, sampleFile);
-        // });
-
-        sampleCallback(null, sampleFile);
-    }))
-    .on("end", function() {
-        // Transformer.sort(samples);
-        // Transformer.process(samples);
-
-        // console.log('copyTemplates found ' + sampleLocations.length + " samples");
-
-        // .pipe(gulp.dest('../samples/charts/category-chart/annotations'))
-
-        for (const location of sampleLocations) {
-            console.log('copyTemplates to ' + location);
-            gulp.src([
-                // '../../templates/sample/**',
-                '../../templates/sample/**/*',
-                // '../../templates/sample/.gitignore',
-                // '../../templates/sample/.gitignore',
-                // '../../templates/sample/wwwroot/*.*',
-                // '../../templates/sample/Properties/*.*'
-            ]) // , { base: 'sample' }
-            // .pipe(es.map(function(templateFile, templateCallback) {
-            //     let templateFolder = '.' + Transformer.getRelative(templateFile.dirname);
-            //     console.log('updateSamples found ' + templateFolder + "  " + templateFile.basename);
-            //     templateCallback(null, templateFile);
+            // let sampleFiles = [];
+            // gulp.src([sampleFolder + "/**"])
+            // .pipe(flatten({ "includeParents": -1 }))
+            // // .pipe(gSort( { asc: false } ))
+            // .pipe(es.map(function(file, fileCallback) {
+            //     console.log('getSamples ' + file.basename);
+            //     // let fileDir = Transformer.getRelative(file.dirname);
+            //     // sampleFiles.push(fileDir + "/" + file.basename);
+            //     fileCallback(null, file);
             // }))
-            .pipe(gulp.dest(location))
-        }
+            // .on("end", function() {
+            //     // log(sampleFolder);
 
-        console.log('copyTemplates to ' + sampleLocations.length + " samples");
+            //     // let sampleInfo = Transformer.getSampleInfo(samplePackage, sampleFiles);
+            //     // samples.push(sampleInfo);
 
-        // let last = samples[samples.length - 1];
-        // log('package name ' + last.PackageFileContent.name);
-        // last.PackageDependencies = Transformer.getDependencies(last);
-        // log('packages \n' + last.PackageFileContent.dependencies);
-        // log('dependencies: \n' + last.PackageDependencies);
+            //     sampleCallback(null, sampleFile);
+            // });
 
-        cb();
-    });
+            sampleCallback(null, sampleFile);
+        }))
+        .on("end", function () {
+            // Transformer.sort(samples);
+            // Transformer.process(samples);
+
+            // console.log('copyTemplates found ' + sampleLocations.length + " samples");
+
+            // .pipe(gulp.dest('../samples/charts/category-chart/annotations'))
+
+            for (const location of sampleLocations) {
+                console.log('copyTemplates to ' + location);
+                gulp.src([
+                    // '../../templates/sample/**',
+                    '../../templates/sample/**/*',
+                    // '../../templates/sample/.gitignore',
+                    // '../../templates/sample/.gitignore',
+                    // '../../templates/sample/wwwroot/*.*',
+                    // '../../templates/sample/Properties/*.*'
+                ]) // , { base: 'sample' }
+                    // .pipe(es.map(function(templateFile, templateCallback) {
+                    //     let templateFolder = '.' + Transformer.getRelative(templateFile.dirname);
+                    //     console.log('updateSamples found ' + templateFolder + "  " + templateFile.basename);
+                    //     templateCallback(null, templateFile);
+                    // }))
+                    .pipe(gulp.dest(location))
+            }
+
+            console.log('copyTemplates to ' + sampleLocations.length + " samples");
+
+            // let last = samples[samples.length - 1];
+            // log('package name ' + last.PackageFileContent.name);
+            // last.PackageDependencies = Transformer.getDependencies(last);
+            // log('packages \n' + last.PackageFileContent.dependencies);
+            // log('dependencies: \n' + last.PackageDependencies);
+
+            cb();
+        });
 } exports.copyTemplates = copyTemplates;
 
 
 function updateCodeViewer(cb) {
 
-    log('updateCodeViewer ...');
-
+    del.sync("../IgBlazorSamples.Client/wwwroot/code-viewer/**/.json", { force: true });
     // note you might need to add/modify functions in Transformer.ts to implement this function.
     // however, be careful with those functions because you might break scripts for copying samples to browser
 
@@ -809,18 +810,60 @@ function updateCodeViewer(cb) {
     // note the 'samples' is a global variable with info about all samples
     // note the 'sample' is a local variable with info about ome sample, see SampleInfo class in Transformer.ts
     for (const sample of samples) {
-        log('updateCodeViewer for ' + sample.SourceFiles[0].Path);
 
-       // - generate .json file with info about source files, e.g.
-       //     \browser\IgBlazorSamples.Client\wwwroot\code-viewer\charts-category-chart-annotations.json
-       // - note that "content" field should contain source code for sample files: .razor/.tsx, .cs/.ts, and .css
-       // - save all .json files in this folder: \browser\IgBlazorSamples.Client\wwwroot\code-viewer\
-       // - save each .json file with sample's component name and sample's folder name: charts-category-chart-annotations.json
+        var content = "{ \r\n \"sampleFiles\": [ \r\n";
 
+        for (const file of sample.SourceFiles) {
+            if (file.isRazorSample()) {
+                content += constructCodeViewerItem(file.Path, file.Content);
+            }
+            else if (file.isCS()) {                
+                content += constructCodeViewerItem(file.Path, file.Content);
+            }
+        }
+    
+        if (sample.PublicFiles_JS.length > 0) {
+            for(const file of sample.PublicFiles_JS){                
+                content += constructCodeViewerItem(file.Path, file.Content);
+            }
+        }
+    
+        if (sample.PublicFiles_CSS.length > 0) {
+            for(const file of sample.PublicFiles_CSS){                
+                content += constructCodeViewerItem(file.Path, file.Content);
+            }    
+        }
+    
+        content += "] \r\n }";
+    
+        var path = sample.SampleRoute;
+        path = path.substring(1, path.length);
+        path = path.replace("/", "-");
+    
+        var codeViewPath = "../IgBlazorSamples.Client/wwwroot/code-viewer/" + path + ".json";
+    
+        fs.writeFileSync(codeViewPath, content);
+
+        // - generate .json file with info about source files, e.g.
+        //     \browser\IgBlazorSamples.Client\wwwroot\code-viewer\charts-category-chart-annotations.json
+        // - note that "content" field should contain source code for sample files: .razor/.tsx, .cs/.ts, and .css
+        // - save all .json files in this folder: \browser\IgBlazorSamples.Client\wwwroot\code-viewer\
+        // - save each .json file with sample's component name and sample's folder name: charts-category-chart-annotations.json
     }
-
-    // run 'gulp updateCodeViewer' to execute this function
 
     cb();
 
 } exports.updateCodeViewer = updateCodeViewer;
+
+function constructCodeViewerItem(filePath, content) {
+
+    var JSONString = JSON.stringify(content);
+
+    var actualContent = JSONString.replace("\r\n/g", "\\r\\n");
+
+    var relativeAssetsUrls = "{ \r\n \"hasRelativeAssetsUrls\": false, \r\n";
+    var path = "\"path\": \"" + filePath + "\",\r\n";
+    var content = "\"content\": " + actualContent + "\r\n }, \r\n";
+
+    return relativeAssetsUrls + path + content;
+}
