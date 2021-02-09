@@ -813,22 +813,22 @@ function updateCodeViewer(cb) {
 
         for (const file of sample.SourceFiles) {
             if (file.isRazorSample()) {
-                content += constructCodeViewerItem(file.Path, file.Content);
+                content += constructCodeViewerItem(file.Path, file.Content, true, "razor", "razor");
             }
             else if (file.isCS()) {                
-                content += constructCodeViewerItem(file.Path, file.Content);
+                content += constructCodeViewerItem(file.Path, file.Content, false, "cs", "cs");
             }
         }
     
         if (sample.PublicFiles_JS.length > 0) {
             for(const file of sample.PublicFiles_JS){                
-                content += constructCodeViewerItem(file.Path, file.Content);
+                content += constructCodeViewerItem(file.Path, file.Content, true, "js", "js");
             }
         }
     
         if (sample.PublicFiles_CSS.length > 0) {
             for(const file of sample.PublicFiles_CSS){                
-                content += constructCodeViewerItem(file.Path, file.Content);
+                content += constructCodeViewerItem(file.Path, file.Content, true, "css", "css");
             }    
         }
     
@@ -853,15 +853,19 @@ function updateCodeViewer(cb) {
 
 } exports.updateCodeViewer = updateCodeViewer;
 
-function constructCodeViewerItem(filePath, content) {
+function constructCodeViewerItem(filePath, content, isMain, fileExtension, fileHeader) {
 
     var JSONString = JSON.stringify(content);
 
     var actualContent = JSONString.replace("\r\n/g", "\\r\\n");
 
-    var relativeAssetsUrls = "{ \r\n \"hasRelativeAssetsUrls\": false, \r\n";
+    var relativeAssetsUrls = "{ \r\n\"hasRelativeAssetsUrls\": false, \r\n";
     var path = "\"path\": \"" + filePath + "\",\r\n";
-    var content = "\"content\": " + actualContent + "\r\n }, \r\n";
+    var content = "\"content\": " + actualContent + "\r\n";
+    var main = "\"isMain\": " + isMain + ",\r\n";
+    var fileExt = "\"fileExtension\": \"" + fileExtension + "\",\r\n";
+    var header = "\"fileHeader\": \"" + fileHeader + "\",\r\n";
+    var closingBracket = "}, \r\n";
 
-    return relativeAssetsUrls + path + content;
+    return relativeAssetsUrls + path + content + main + fileExt + header + closingBracket;
 }
