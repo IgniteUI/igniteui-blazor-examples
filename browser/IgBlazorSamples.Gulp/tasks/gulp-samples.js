@@ -139,7 +139,7 @@ function getSamples(cb) {
                 sampleFolder + "/wwwroot/*.css",
              // sampleFolder + "/wwwroot/*",
           '!' + sampleFolder + "/wwwroot/index.html",
-          '!' + sampleFolder + "/wwwroot/index.css",
+        //   '!' + sampleFolder + "/wwwroot/index.css",
           '!' + sampleFolder + "/Pages/_*.razor",
         //   '!' + sampleFolder + "/Pages/DataGridBindingLiveData.razor",
           '!' + sampleFolder + "/Pages/*.g.cs",
@@ -798,8 +798,7 @@ function copyTemplates(cb) {
 
 function updateCodeViewer(cb) {
 
-    log('updateCodeViewer ...');
-
+    del.sync("../IgBlazorSamples.Client/wwwroot/code-viewer/**/.json", { force: true });
     // note you might need to add/modify functions in Transformer.ts to implement this function.
     // however, be careful with those functions because you might break scripts for copying samples to browser
 
@@ -809,18 +808,60 @@ function updateCodeViewer(cb) {
     // note the 'samples' is a global variable with info about all samples
     // note the 'sample' is a local variable with info about ome sample, see SampleInfo class in Transformer.ts
     for (const sample of samples) {
-        log('updateCodeViewer for ' + sample.SourceFiles[0].Path);
 
-       // - generate .json file with info about source files, e.g.
-       //     \browser\IgBlazorSamples.Client\wwwroot\code-viewer\charts-category-chart-annotations.json
-       // - note that "content" field should contain source code for sample files: .razor/.tsx, .cs/.ts, and .css
-       // - save all .json files in this folder: \browser\IgBlazorSamples.Client\wwwroot\code-viewer\
-       // - save each .json file with sample's component name and sample's folder name: charts-category-chart-annotations.json
+        var content = "{ \r\n \"sampleFiles\": [ \r\n";
 
+        for (const file of sample.SourceFiles) {
+            if (file.isRazorSample()) {
+                content += constructCodeViewerItem(file.Path, file.Content);
+            }
+            else if (file.isCS()) {                
+                content += constructCodeViewerItem(file.Path, file.Content);
+            }
+        }
+    
+        if (sample.PublicFiles_JS.length > 0) {
+            for(const file of sample.PublicFiles_JS){                
+                content += constructCodeViewerItem(file.Path, file.Content);
+            }
+        }
+    
+        if (sample.PublicFiles_CSS.length > 0) {
+            for(const file of sample.PublicFiles_CSS){                
+                content += constructCodeViewerItem(file.Path, file.Content);
+            }    
+        }
+    
+        content += "] \r\n }";
+    
+        var path = sample.SampleRoute;
+        path = path.substring(1, path.length);
+        path = path.replace("/", "-");
+    
+        var codeViewPath = "../IgBlazorSamples.Client/wwwroot/code-viewer/" + path + ".json";
+    
+        fs.writeFileSync(codeViewPath, content);
+
+        // - generate .json file with info about source files, e.g.
+        //     \browser\IgBlazorSamples.Client\wwwroot\code-viewer\charts-category-chart-annotations.json
+        // - note that "content" field should contain source code for sample files: .razor/.tsx, .cs/.ts, and .css
+        // - save all .json files in this folder: \browser\IgBlazorSamples.Client\wwwroot\code-viewer\
+        // - save each .json file with sample's component name and sample's folder name: charts-category-chart-annotations.json
     }
-
-    // run 'gulp updateCodeViewer' to execute this function
 
     cb();
 
 } exports.updateCodeViewer = updateCodeViewer;
+
+function constructCodeViewerItem(filePath, content) {
+
+    var JSONString = JSON.stringify(content);
+
+    var actualContent = JSONString.replace("\r\n/g", "\\r\\n");
+
+    var relativeAssetsUrls = "{ \r\n \"hasRelativeAssetsUrls\": false, \r\n";
+    var path = "\"path\": \"" + filePath + "\",\r\n";
+    var content = "\"content\": " + actualContent + "\r\n }, \r\n";
+
+    return relativeAssetsUrls + path + content;
+}
