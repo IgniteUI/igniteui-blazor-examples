@@ -947,7 +947,7 @@ class Transformer {
                 currentLine.indexOf('//') === -1) {
 
                 if (currentLine.indexOf('igc-') === -1 &&
-                    currentLine.indexOf(':') === -1) 
+                    currentLine.indexOf(':') === -1)
                 {
                     for (const symbol of spacedSymbols) {
                         currentLine = currentLine.replace(new RegExp('([A-Za-z0-9])' + symbol), '$1 $2');
@@ -1078,5 +1078,28 @@ class PackageDependency {
 
     public toString() : string {
         return '"' + this.name + `": "` + this.version + '"';
+    }
+}
+
+// used in updateCodeViewer script to serialize JSON files
+class CodeViewer {
+    public path: string;
+    public hasRelativeAssetsUrls: Boolean;
+    public content: string;
+    public isMain: Boolean;
+    public fileExtension: string;
+    public fileHeader: string;
+
+    constructor(filePath: string, content: string, fileExtension: string, fileHeader: string, isMain: Boolean) {
+
+        var jsonContent = content;
+        jsonContent = jsonContent.replace(/\/\//g, "/");
+
+        this.hasRelativeAssetsUrls = false;
+        this.path = filePath;
+        this.content = jsonContent;
+        this.isMain = isMain;
+        this.fileExtension = fileExtension;
+        this.fileHeader = fileHeader;
     }
 }

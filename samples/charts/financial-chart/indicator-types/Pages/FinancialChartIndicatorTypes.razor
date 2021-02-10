@@ -10,10 +10,10 @@
             {
                 <FinancialChart Width="100%"
                     Height="100%"
+                    @ref="@FinancialChartRef"
                     ChartType=FinancialChartType.Line
                     Thickness=2
-                    DataSource="DataSource"
-                    IndicatorTypes="MoneyFlowIndex, MassIndex"
+                    DataSource="DataSource"                    
                     IndicatorThickness=2
                     IndicatorNegativeBrushes="Red"
                     IndicatorBrushes="Green, Blue"
@@ -26,6 +26,21 @@
 @code {
 
     List<StockItem> DataSource;
+    public FinancialChart financialChart;
+    public FinancialChart FinancialChartRef
+    {
+        get
+        {
+            return financialChart;
+        }
+        set
+        {
+            financialChart = value;
+            this.FinancialChartRef.IndicatorTypes.Clear();
+            this.FinancialChartRef.IndicatorTypes.Add(FinancialIndicatorType.MovingAverageConvergenceDivergence);
+            this.FinancialChartRef.IndicatorTypes.Add(FinancialIndicatorType.RelativeStrengthIndex);
+        }
+    }
 
     protected override void OnInitialized()
     {

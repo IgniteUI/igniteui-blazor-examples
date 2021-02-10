@@ -3,9 +3,8 @@
 
 <div class="igContainer">
     <div class="igOptions">
-        <span class="igOptions-label">Chart Type: </span>
-        <select @bind="@ChartType">
-            <option>@CategoryChartType.Auto</option>
+        <span class="igOptions-label">Chart Type </span>
+        <select @bind="@SelectedChart">
             <option>@CategoryChartType.Area</option>
             <option>@CategoryChartType.Column</option>
             <option>@CategoryChartType.Point</option>
@@ -15,11 +14,12 @@
             <option>@CategoryChartType.StepArea</option>
             <option>@CategoryChartType.StepLine</option>
             <option>@CategoryChartType.Waterfall</option>
+            <option>@CategoryChartType.Auto</option>
         </select>
-        <span class="igOptions-label"> Marker Type: </span>
-        <select @bind="@ChartMarkerType">
-            <option>@MarkerType.Automatic</option>
+        <span class="igOptions-label"> Marker Type </span>
+        <select @bind="@SelectedMarker">
             <option>@MarkerType.Circle</option>
+            <option>@MarkerType.Automatic</option> 
             <option>@MarkerType.Triangle</option>
             <option>@MarkerType.Pyramid</option>
             <option>@MarkerType.Square</option>
@@ -35,11 +35,18 @@
     <div class="igComponent">
         @if (DataSource != null)
         {
-            <CategoryChart Height="100%" Width="100%" @ref="CategoryChartRef"
+            // TODO add this code when supported: MarkerTypes="Circle"
+
+            // NOTE the MarkerTypes property is set in code-behind
+            <CategoryChart Height="100%" Width="100%" @ref="Chart"
                            DataSource="DataSource"
-                           ChartTitle="Olympic Medals By Country"
+                           ChartTitle="Renewable Electricity Generated"
                            IsSeriesHighlightingEnabled="true"
-                           ChartType="@ChartType"
+                           ChartType="@SelectedChart"
+                           MarkerBrushes="White"
+                           MarkerOutlines="#ee5879, #c4c4c4, #9af2e4"
+                                  Brushes="#ee5879, #c4c4c4, #9af2e4"
+                                 Outlines="#ee5879, #c4c4c4, #9af2e4"
                            IsTransitionInEnabled="true"
                            YAxisMinimumValue="0">
             </CategoryChart>
@@ -48,42 +55,43 @@
 </div>
 
 @code {
+    
+    private List<EnergyRenewableInfo> DataSource = new EnergyRenewableData();
 
-    private List<OlympicMedals> DataSource;
-    private CategoryChartType ChartType;
+    private CategoryChart Chart;
+    private CategoryChartType SelectedChart = CategoryChartType.Line;
 
-    private MarkerType _chartMarker;
-    private MarkerType ChartMarkerType
+    private MarkerType _SelectedMarker = MarkerType.Circle;
+    private MarkerType SelectedMarker
     {
-        get { return _chartMarker; }
+        get { return _SelectedMarker; }
         set
         {
-            _chartMarker = value;
-            if (this.CategoryChartRef != null)
-            {
-                this.CategoryChartRef.MarkerTypes.Clear();
-                this.CategoryChartRef.MarkerTypes.Add(value);
-            }
+            _SelectedMarker = value;
+            SetChartMarker(value);
         }
     }
-
-    private CategoryChart CategoryChartRef;
 
     protected override void OnInitialized()
     {
         CategoryChartModule.Register(IgniteUIBlazor);
-
-        var olympicMedals = new List<OlympicMedals>();
-        olympicMedals.Add(new OlympicMedals() { Year = "1996", USA = 148, CHN = 110, RUS = 95 });
-        olympicMedals.Add(new OlympicMedals() { Year = "2000", USA = 142, CHN = 115, RUS = 91 });
-        olympicMedals.Add(new OlympicMedals() { Year = "2004", USA = 134, CHN = 121, RUS = 86 });
-        olympicMedals.Add(new OlympicMedals() { Year = "2008", USA = 131, CHN = 129, RUS = 65 });
-        olympicMedals.Add(new OlympicMedals() { Year = "2012", USA = 135, CHN = 115, RUS = 77 });
-        olympicMedals.Add(new OlympicMedals() { Year = "2016", USA = 146, CHN = 112, RUS = 88 });
-
-        DataSource = olympicMedals;
-
-        this.ChartType = CategoryChartType.Auto;
-        this.ChartMarkerType = MarkerType.Automatic;
     }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        if (firstRender)
+            SetChartMarker(MarkerType.Circle); // initalizing to Circle marker
+    }
+
+    protected void SetChartMarker(MarkerType marker)
+    {
+        if (this.Chart != null)
+        {
+            this.Chart.MarkerTypes.Clear();
+            this.Chart.MarkerTypes.Add(marker);
+        }
+    }
+
 }
