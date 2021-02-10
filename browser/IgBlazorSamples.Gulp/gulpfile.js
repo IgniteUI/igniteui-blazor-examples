@@ -73,6 +73,7 @@ exports.copySamplesToClient = copySamplesToClient = gulp.series(
     // sb.updateVersion,
     sb.getSamples,
     sb.copySamplesToClient,
+    sb.updateCodeViewer,
 );
 // exports.updateBrowser = updateBrowser = copySamples;
 
