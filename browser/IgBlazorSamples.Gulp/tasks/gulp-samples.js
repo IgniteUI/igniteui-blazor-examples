@@ -809,37 +809,46 @@ function updateCodeViewer(cb) {
     // note the 'sample' is a local variable with info about ome sample, see SampleInfo class in Transformer.ts
     for (const sample of samples) {
 
-        var content = "{ \r\n \"sampleFiles\": [ \r\n";
+        // using actual sample route so store json files in sub-folders
+        // this way we re-use route when creating a link to code-viewer file in topics
+        var path = sample.SampleRoute;
+        // path = path.substring(1, path.length);
+        // path = path.replace("/", "-");
+
+        var codeViewPath = "../IgBlazorSamples.Client/wwwroot/code-viewer" + path + ".json";
+        log("generating " + codeViewPath);
+
+        var content = "{\r\n \"sampleFiles\":\r\n";
+        var contentItems = [];
 
         for (const file of sample.SourceFiles) {
             if (file.isRazorSample()) {
-                content += constructCodeViewerItem(file.Path, file.Content, true, "razor", "razor");
+                var item = new CodeViewer(file.Path, file.Content, "razor", "razor", true);
+                contentItems.push(item);
             }
-            else if (file.isCS()) {                
-                content += constructCodeViewerItem(file.Path, file.Content, false, "cs", "cs");
+            else if (file.isCS()) {
+                var item = new CodeViewer(file.Path, file.Content, "cs", "cs", false);
+                contentItems.push(item);
             }
         }
-    
+
         if (sample.PublicFiles_JS.length > 0) {
-            for(const file of sample.PublicFiles_JS){                
-                content += constructCodeViewerItem(file.Path, file.Content, true, "js", "js");
+            for(const file of sample.PublicFiles_JS){
+                var item = new CodeViewer(file.Path, file.Content, "js", "js", true);
+                contentItems.push(item);
             }
         }
-    
+
         if (sample.PublicFiles_CSS.length > 0) {
-            for(const file of sample.PublicFiles_CSS){                
-                content += constructCodeViewerItem(file.Path, file.Content, true, "css", "css");
-            }    
+            for(const file of sample.PublicFiles_CSS){
+                var item = new CodeViewer(file.Path, file.Content, "css", "css", true);
+                contentItems.push(item);
+            }
         }
-    
-        content += "] \r\n }";
-    
-        var path = sample.SampleRoute;
-        path = path.substring(1, path.length);
-        path = path.replace("/", "-");
-    
-        var codeViewPath = "../IgBlazorSamples.Client/wwwroot/code-viewer/" + path + ".json";
-    
+        content += JSON.stringify(contentItems, null, '  ');
+        content += "\r\n}";
+
+        makeDirectoryFor(codeViewPath);
         fs.writeFileSync(codeViewPath, content);
 
         // - generate .json file with info about source files, e.g.
@@ -852,20 +861,3 @@ function updateCodeViewer(cb) {
     cb();
 
 } exports.updateCodeViewer = updateCodeViewer;
-
-function constructCodeViewerItem(filePath, content, isMain, fileExtension, fileHeader) {
-
-    var JSONString = JSON.stringify(content);
-
-    var actualContent = JSONString.replace("\r\n/g", "\\r\\n");
-
-    var relativeAssetsUrls = "{ \r\n\"hasRelativeAssetsUrls\": false, \r\n";
-    var path = "\"path\": \"" + filePath + "\",\r\n";
-    var content = "\"content\": " + actualContent + "\r\n";
-    var main = "\"isMain\": " + isMain + ",\r\n";
-    var fileExt = "\"fileExtension\": \"" + fileExtension + "\",\r\n";
-    var header = "\"fileHeader\": \"" + fileHeader + "\",\r\n";
-    var closingBracket = "}, \r\n";
-
-    return relativeAssetsUrls + path + content + main + fileExt + header + closingBracket;
-}
