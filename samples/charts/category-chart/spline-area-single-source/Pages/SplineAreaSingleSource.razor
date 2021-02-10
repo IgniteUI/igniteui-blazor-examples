@@ -17,6 +17,7 @@
             <CategoryChart Height="100%" Width="100%" 
                 Legend="@LegendRef" 
                 ChartType="CategoryChartType.SplineArea"
+                IncludedProperties="@(new string[] { "Year", "Europe" })"
                 DataSource="DataSource"
                 YAxisTitle="TWh"
                 ToolTipType="ToolTipType.Category"
@@ -28,7 +29,7 @@
 
 @code {
 
-    private List<EnergyChartData> DataSource;
+    private List<EnergyRenewableInfo> DataSource = new EnergyRenewableData();
     private Legend legend;
     private Legend LegendRef
     {
@@ -45,30 +46,5 @@
         CategoryChartModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         LegendModule.Register(IgniteUIBlazor);
-        InitData();
-    }
-
-    private void InitData()
-    {
-        List<EnergyChartData> _data = new List<EnergyChartData>();
-        _data.Add(new EnergyChartData() { Year = "2009", Europe = 31 });
-        _data.Add(new EnergyChartData() { Year = "2010", Europe = 43 });
-        _data.Add(new EnergyChartData() { Year = "2011", Europe = 66 });
-        _data.Add(new EnergyChartData() { Year = "2012", Europe = 69 });
-        _data.Add(new EnergyChartData() { Year = "2013", Europe = 58 });
-        _data.Add(new EnergyChartData() { Year = "2014", Europe = 40 });
-        _data.Add(new EnergyChartData() { Year = "2015", Europe = 78 });
-        _data.Add(new EnergyChartData() { Year = "2016", Europe = 13 });
-        _data.Add(new EnergyChartData() { Year = "2017", Europe = 78 });
-        _data.Add(new EnergyChartData() { Year = "2018", Europe = 40 });
-        _data.Add(new EnergyChartData() { Year = "2019", Europe = 80 });
-
-        this.DataSource = _data;
-    }
-
-    public class EnergyChartData
-    {
-        public string Year { get; set; }
-        public int Europe { get; set; }
     }
 }
