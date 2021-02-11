@@ -513,7 +513,7 @@ function updateSharedFiles(cb) {
 
     // always override these shared files
     gulp.src([
-        '../../templates/sample/src/index.css',
+        '../../templates/sample/wwwroot/index.css',
         // '../../templates/sample/src/react-app-env.d.ts',
         // '../../templates/sample/sandbox.config.json',
         // '../../templates/sample/tsconfig.json',
@@ -546,6 +546,9 @@ function updateSharedFiles(cb) {
         fileCallback(null, file);
         // SourceFiles.push(fileDir + "/" + file.basename);
     }))
+    .on("end", function() {
+        cb();
+    });
 
     // update these shared files if a sample is using them
     // gulp.src(['../../templates/shared/src/*.*'])

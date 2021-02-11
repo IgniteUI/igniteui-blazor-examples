@@ -25,7 +25,7 @@ exports.updateSamples = updateSamples = gulp.series(
     sb.updateReadme,
     // sb.updatePackages,
     // sb.updateIndex,
-    // sb.updateSharedFiles,
+    sb.updateSharedFiles,
 );
 
 exports.lintSamples = lintSamples = gulp.series(
