@@ -1,7 +1,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <body>
         <!-- https://static.infragistics.com/xplatform/images/browsers -->
-        <a target="_blank" href="https://infragistics.com/blazor-client/samples/charts/category-chart-annotations" rel="noopener noreferrer">
+        <a target="_blank" href="https://infragistics.com/blazor-client/samples/charts/category-chart-column-chart-single-source" rel="noopener noreferrer">
             <img height="40px" style="border-radius: 0.5rem; max-width: 100%;" alt="Run Blazor Sample" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/master/templates/sample/images/blazor-run-sample.png"/>
         </a>
         <!-- <a target="_blank" href="https://infragistics.com/Blazorsite/components/category-chart.html" rel="noopener noreferrer">
