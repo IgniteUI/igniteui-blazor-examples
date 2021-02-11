@@ -1,0 +1,99 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igOptions">
+        <span class="igLegend-title">Facebook Statement of Income 2018-2020</span>        
+        <div class="igLegend">
+            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+    <div class="igComponent">
+        <DataChart Height="100%" Width="100%"
+                   Legend="LegendRef"
+                   IsHorizontalZoomEnabled="true"
+                   IsVerticalZoomEnabled="true">
+
+            <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Date" />
+
+            <NumericYAxis Name="yAxis" AbbreviateLargeNumbers="true" Title="In Millions of U.S. Dollars" />
+
+            <ColumnSeries @ref="@RevenueSeriesRef" XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="Revenue"
+                          Title="Revenue" MarkerType="MarkerType.Hidden" />
+            <ColumnSeries @ref="@CostAndExpenseSeriesRef" XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="TotalCostsAndExpenses"
+                          Title="Total Costs and Expenses" MarkerType="MarkerType.Hidden" />
+            <AreaSeries @ref="@NetIncomeSeriesRef" XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="NetIncome"
+                        Title="Net Income" MarkerType="MarkerType.Hidden" />
+
+            <CalloutLayer IsAutoCalloutBehaviorEnabled="true" TargetSeries="@RevenueSeriesRef" UseValueForAutoCalloutLabels="true"
+                          CalloutBackground="Transparent" CalloutLeaderBrush="Transparent" CalloutTextColor="Black" />
+            <CalloutLayer IsAutoCalloutBehaviorEnabled="true" TargetSeries="@CostAndExpenseSeriesRef" UseValueForAutoCalloutLabels="true"
+                          CalloutBackground="Transparent" CalloutLeaderBrush="Transparent" CalloutTextColor="Black" />
+            <CalloutLayer IsAutoCalloutBehaviorEnabled="true" TargetSeries="@NetIncomeSeriesRef" UseValueForAutoCalloutLabels="true"
+                          CalloutBackground="LightGray" CalloutLeaderBrush="Transparent" CalloutTextColor="Black" />
+
+        </DataChart>
+    </div>
+</div>
+
+@code {
+
+    private Legend _legend;
+    private ColumnSeries _revenueSeries;
+    private ColumnSeries _costExpenseSeries;
+    private AreaSeries _netIncomeSeries;
+
+    private Legend LegendRef
+    {
+        get { return _legend; }
+        set
+        {
+            _legend = value;
+            StateHasChanged();
+        }
+    }
+
+    public ColumnSeries RevenueSeriesRef
+    {
+        get { return _revenueSeries; }
+        set
+        {
+            _revenueSeries = value;
+            StateHasChanged();
+        }
+    }
+
+    public ColumnSeries CostAndExpenseSeriesRef
+    {
+        get { return _costExpenseSeries; }
+        set
+        {
+            _costExpenseSeries = value;
+            StateHasChanged();
+        }
+    }
+
+    public AreaSeries NetIncomeSeriesRef
+    {
+        get { return _netIncomeSeries; }
+        set
+        {
+            _netIncomeSeries = value;
+            StateHasChanged();
+        }
+    }
+
+    private List<FacebookIncomeStatementInfo> DataSource = new FacebookIncomeStatementData();
+
+    protected override void OnInitialized()
+    {
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        DataChartAnnotationModule.Register(IgniteUIBlazor);
+        CalloutLayerModule.Register(IgniteUIBlazor);
+        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+    }
+}
