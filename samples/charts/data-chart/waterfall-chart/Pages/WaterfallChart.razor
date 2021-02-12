@@ -1,0 +1,42 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igComponent">
+
+        <DataChart Height="100%" Width="100%"
+                   ChartTitle="Facebook's Consolidated Statements of Income for 2018"
+                   TitleHorizontalAlignment="HorizontalAlignment.Left"
+                   TitleLeftMargin="25"
+                   TitleTopMargin="10"
+                   TitleBottomMargin="10">
+
+            <CategoryXAxis Name="xAxis" Label="Category" DataSource="@DataSource"/>
+            <NumericYAxis Name="yAxis" Title="Millions of Dollars" TitleLeftMargin="10" MinimumValue="0" MaximumValue="60"/>
+
+            <WaterfallSeries XAxisName="xAxis"
+                        YAxisName="yAxis"
+                        DataSource="@DataSource"
+                        ValueMemberPath="Value"                        
+                        ShowDefaultTooltip="true"
+                        IsTransitionInEnabled="true" >
+            </WaterfallSeries>
+        </DataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private List<FacebookConsolidatedInfo> DataSource = new FacebookConsolidatedData();
+
+    protected override void OnInitialized()
+    {
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+        CalloutLayerModule.Register(IgniteUIBlazor);
+    }
+}
