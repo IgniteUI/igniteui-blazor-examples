@@ -22,8 +22,8 @@
                           Title="Revenue" MarkerType="MarkerType.Hidden" />
             <ColumnSeries @ref="@CostAndExpenseSeriesRef" XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="TotalCostsAndExpenses"
                           Title="Total Costs and Expenses" MarkerType="MarkerType.Hidden" />
-            <AreaSeries @ref="@NetIncomeSeriesRef" XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="NetIncome"
-                        Title="Net Income" MarkerType="MarkerType.Hidden" />
+            <SplineAreaSeries @ref="@NetIncomeSeriesRef" XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="NetIncome"
+                              Title="Net Income" MarkerType="MarkerType.Hidden" />
 
             <CalloutLayer IsAutoCalloutBehaviorEnabled="true" TargetSeries="@RevenueSeriesRef" UseValueForAutoCalloutLabels="true"
                           CalloutBackground="Transparent" CalloutLeaderBrush="Transparent" CalloutTextColor="Black" />
@@ -41,7 +41,7 @@
     private Legend _legend;
     private ColumnSeries _revenueSeries;
     private ColumnSeries _costExpenseSeries;
-    private AreaSeries _netIncomeSeries;
+    private SplineAreaSeries _netIncomeSeries;
 
     private Legend LegendRef
     {
@@ -73,7 +73,7 @@
         }
     }
 
-    public AreaSeries NetIncomeSeriesRef
+    public SplineAreaSeries NetIncomeSeriesRef
     {
         get { return _netIncomeSeries; }
         set
