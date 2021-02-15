@@ -557,12 +557,7 @@ function updateDataFiles(cb) {
     // update these shared files if a sample is using them
     // gulp.src(['../../templates/shared/src/*.*'])
     gulp.src([
-        '../../templates/shared/src/EnergyRenewableData.cs',
-        // '../../templates/sample/src/react-app-env.d.ts',
-        // '../../templates/sample/sandbox.config.json',
-        // '../../templates/sample/tsconfig.json',
-        // '../../templates/sample/.gitignore',
-        // '../../templates/sample/.eslintrc.js',
+        '../../templates/shared/Services/EnergyRenewableData.cs',
     ])
     .pipe(flatten({ "includeParents": -1 }))
     .pipe(es.map(function(file, fileCallback) {
@@ -584,8 +579,8 @@ function updateDataFiles(cb) {
                         log('updated ' + targetPath);
                     }
                 } else {
-                    fs.writeFileSync(targetPath, sourceContent);
-                    log('added ' + targetPath);
+                    // fs.writeFileSync(targetPath, sourceContent);
+                    // log('added ' + targetPath);
                 }
 
                 // let targetPath = sampleOutputFolder + sample.SampleFolderPath + '/src/' + file.basename;
