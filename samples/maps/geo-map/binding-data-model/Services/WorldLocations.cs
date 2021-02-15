@@ -637,6 +637,6 @@ namespace Infragistics.Samples
             };
 
             return cities;
-        }           
+        }
     }
 }
