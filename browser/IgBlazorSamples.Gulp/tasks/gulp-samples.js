@@ -550,49 +550,61 @@ function updateSharedFiles(cb) {
         cb();
     });
 
+} exports.updateSharedFiles = updateSharedFiles;
+
+function updateDataFiles(cb) {
+
     // update these shared files if a sample is using them
     // gulp.src(['../../templates/shared/src/*.*'])
-    // .pipe(flatten({ "includeParents": -1 }))
-    // .pipe(es.map(function(file, fileCallback) {
-    //     let sourceContent = file.contents.toString();
-    //     let sourcePath = Transformer.getRelative(file.dirname);
-    //     sourcePath = sourcePath.replace('../../templates/sample', '');
-    //     sourcePath = sourcePath.replace('../../templates/shared', '');
+    gulp.src([
+        '../../templates/shared/src/EnergyRenewableData.cs',
+        // '../../templates/sample/src/react-app-env.d.ts',
+        // '../../templates/sample/sandbox.config.json',
+        // '../../templates/sample/tsconfig.json',
+        // '../../templates/sample/.gitignore',
+        // '../../templates/sample/.eslintrc.js',
+    ])
+    .pipe(flatten({ "includeParents": -1 }))
+    .pipe(es.map(function(file, fileCallback) {
+        let sourceContent = file.contents.toString();
+        let sourcePath = Transformer.getRelative(file.dirname);
+        sourcePath = sourcePath.replace('../../templates/sample', '');
+        sourcePath = sourcePath.replace('../../templates/shared', '');
 
-    //     for (const sample of samples) {
-    //         if (sample.isUsingFileName(file.basename)) {
+        for (const sample of samples) {
+            if (sample.isUsingFileName(file.basename)) {
 
-    //             let samplePath = sampleOutputFolder + sample.SampleFolderPath;
-    //             let targetPath = samplePath + sourcePath + '/' + file.basename;
+                let samplePath = sampleOutputFolder + sample.SampleFolderPath;
+                let targetPath = samplePath + sourcePath + '/' + file.basename;
 
-    //             if (fs.existsSync(targetPath)) {
-    //                 let targetContent = fs.readFileSync(targetPath, "utf8");
-    //                 if (sourceContent !== targetContent) {
-    //                     fs.writeFileSync(targetPath , sourceContent);
-    //                     log('updated ' + targetPath);
-    //                 }
-    //             } else {
-    //                 fs.writeFileSync(targetPath, sourceContent);
-    //                 log('added ' + targetPath);
-    //             }
+                if (fs.existsSync(targetPath)) {
+                    let targetContent = fs.readFileSync(targetPath, "utf8");
+                    if (sourceContent !== targetContent) {
+                        fs.writeFileSync(targetPath , sourceContent);
+                        log('updated ' + targetPath);
+                    }
+                } else {
+                    fs.writeFileSync(targetPath, sourceContent);
+                    log('added ' + targetPath);
+                }
 
-    //             // let targetPath = sampleOutputFolder + sample.SampleFolderPath + '/src/' + file.basename;
-    //             // let targetContent = fs.readFileSync(targetPath, "utf8");
-    //             // if (sourceContent !== targetContent) {
-    //             //     fs.writeFileSync(targetPath, sourceContent);
-    //             //     // log('updated ' + file.basename + ' in ' + sample.SampleFilePath)
-    //             //     log('updated ' + targetPath);
-    //             // }
-    //         }
-    //     }
-    //     fileCallback(null, file);
-    // }))
-    // .on("end", function() {
-    //     cb();
-    // });
+                // let targetPath = sampleOutputFolder + sample.SampleFolderPath + '/src/' + file.basename;
+                // let targetContent = fs.readFileSync(targetPath, "utf8");
+                // if (sourceContent !== targetContent) {
+                //     fs.writeFileSync(targetPath, sourceContent);
+                //     // log('updated ' + file.basename + ' in ' + sample.SampleFilePath)
+                //     log('updated ' + targetPath);
+                // }
+            }
+        }
+        fileCallback(null, file);
+    }))
+    .on("end", function() {
+        cb();
+    });
 
 
-} exports.updateSharedFiles = updateSharedFiles;
+} exports.updateDataFiles = updateDataFiles;
 
 
 
