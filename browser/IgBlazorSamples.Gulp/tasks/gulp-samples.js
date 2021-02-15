@@ -555,10 +555,11 @@ function updateSharedFiles(cb) {
 function updateDataFiles(cb) {
 
     // update these shared files if a sample is using them
-    // gulp.src(['../../templates/shared/src/*.*'])
-    gulp.src([
-        '../../templates/shared/Services/EnergyRenewableData.cs',
-    ])
+    gulp.src(['../../templates/shared/Services/*.*'])
+    // gulp.src([
+    //     '../../templates/shared/Services/EnergyRenewableData.cs',
+    //     '../../templates/shared/Services/SharedExcelData.cs',
+    // ])
     .pipe(flatten({ "includeParents": -1 }))
     .pipe(es.map(function(file, fileCallback) {
         let sourceContent = file.contents.toString();
