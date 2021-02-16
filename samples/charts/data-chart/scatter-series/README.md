@@ -2,7 +2,10 @@
     <body>
         <!-- https://static.infragistics.com/xplatform/images/browsers -->
         <a target="_blank" href="https://infragistics.com/blazor-client/samples/charts/data-chart-scatter-series" rel="noopener noreferrer">
-            <img height="40px" style="border-radius: 0.5rem; max-width: 100%;" alt="Run Blazor Sample" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/master/templates/sample/images/blazor-run-sample.png"/>
+            <img height="40px" style="border-radius: 0.5rem; max-width: 100%;" alt="Run Sample" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/master/templates/sample/images/blazor-run-code.png"/>
+        </a>        
+        <a target="_blank" href="./App.razor" rel="noopener noreferrer">
+            <img height="40px" style="border-radius: 0.5rem; max-width: 100%;" alt="View Code" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/master/templates/sample/images/blazor-view-code.png"/>
         </a>
         <!-- <a target="_blank" href="https://infragistics.com/Blazorsite/components/data-chart.html" rel="noopener noreferrer">
             <img height="40px" style="border-radius: 0.5rem" alt="View Blazor Docs" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/master/templates/sample/images/blazor-view-docs.png"/>
