@@ -1,1 +1,54 @@
-<Infragistics.Samples.Pages.DataChartAxisSharing />
+﻿@page "/DataChartAxisSharing"
+
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+            <DataChart Height="100%" Width="100%"
+                       Subtitle="Stock Prices and Trade Volume"
+                       SubtitleTopMargin="10"
+                       IsHorizontalZoomEnabled="true"
+                       IsVerticalZoomEnabled="true">
+                <CategoryXAxis Name="xAxisShared" Label="Label" Gap="0.75" DataSource="DataSource" />
+                <NumericYAxis Name="yAxisRight" LabelLocation="AxisLabelsLocation.OutsideRight" MinimumValue="400"
+                              MaximumValue="700" Title="Stock Price" />
+                <NumericYAxis Name="yAxisLeft" LabelLocation="AxisLabelsLocation.OutsideLeft" MinimumValue="5000"
+                              MaximumValue="45000" Title="Trade Volume" MajorStrokeThickness="0" AbbreviateLargeNumbers="true" />
+
+                <ColumnSeries XAxisName="xAxisShared" YAxisName="yAxisLeft" DataSource="DataSource" ValueMemberPath="Volume"
+                              ShowDefaultTooltip="true" Title="Trade Volume" />
+
+                <FinancialPriceSeries XAxisName="xAxisShared" YAxisName="yAxisRight" DisplayType="PriceDisplayType.Candlestick"
+                                      HighMemberPath="High" LowMemberPath="Low" CloseMemberPath="Close" OpenMemberPath="Open"
+                                      VolumeMemberPath="Volume" ShowDefaultTooltip="true" Title="Stock Price" DataSource="DataSource"/>
+            </DataChart>
+        }
+
+    </div>
+</div>
+
+@code {
+
+    private List<SampleFinancialItem> DataSource;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        DataChartFinancialModule.Register(IgniteUIBlazor);
+        DataChartFinancialCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
+
+        this.DataSource = SampleFinancialData.Create();
+
+        Console.WriteLine(this.DataSource.Count);
+    }
+}

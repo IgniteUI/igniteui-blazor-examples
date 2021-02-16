@@ -1,1 +1,60 @@
-<Infragistics.Samples.Pages.DataChartTypeRadialPieSeries />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igComponent">
+
+        <DataChart Height="100%" Width="100%"
+                   Subtitle="Wind Speed vs Boat Speed"
+                   SubtitleTopMargin="10"
+                   IsHorizontalZoomEnabled="true"
+                   IsVerticalZoomEnabled="true">
+            <CategoryAngleAxis Name="angleAxis" DataSource="@DataSource"
+                               Label="Department" />
+            <NumericRadiusAxis Name="radiusAxis"
+                               InnerRadiusExtentScale="0.1"
+                               MinimumValue="0"/>
+
+            <RadialPieSeries Name="series1"
+                              DataSource="@DataSource"
+                              AngleAxisName="angleAxis"
+                              ValueMemberPath="Budget"
+                              ValueAxisName="radiusAxis"
+                              ShowDefaultTooltip="true"
+                              AreaFillOpacity="0.8"
+                              Thickness="1"
+                              Title="Budget"
+                              MarkerType="@MarkerType.Circle" />
+            <RadialPieSeries Name="series2"
+                              DataSource="@DataSource"
+                              AngleAxisName="angleAxis"
+                              ValueMemberPath="Spending"
+                              ValueAxisName="radiusAxis"
+                              ShowDefaultTooltip="true"
+                              AreaFillOpacity="0.8"
+                              Thickness="1"
+                              Title="Spending"
+                              MarkerType="@MarkerType.Circle" />
+        </DataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private List<SampleRadialItem> DataSource;
+
+    protected override void OnInitialized()
+    {
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartRadialModule.Register(IgniteUIBlazor);
+        DataChartRadialCoreModule.Register(IgniteUIBlazor);
+
+        DataChartExtendedAxesModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+
+        DataSource = SampleRadialData.Create();
+    }
+
+}

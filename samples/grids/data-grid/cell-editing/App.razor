@@ -1,3 +1,123 @@
-<Infragistics.Samples.Pages.DataGridCellEditing />
+﻿@page "/DataGridCellEditing"
 
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+@inject IJSRuntime JSRuntime;
 
+<div class="igContainer">
+    <div className="igOptions">
+        <button @onclick="OnCommitClick" disabled="@ButtonsDisabled">Commit</button>
+        <button @onclick="OnUndoClick"  disabled="@ButtonsDisabled">Undo</button>
+        <button @onclick="OnRedoClick" disabled="@ButtonsDisabled">Redo</button>
+        <label>
+            Edit Mode:
+            <select @bind="GridEditMode">
+                <option>@EditModeType.None</option>
+                <option>@EditModeType.Cell</option>
+                <option>@EditModeType.CellBatch</option>
+				<option>@EditModeType.Row</option>
+            </select>
+        </label>
+    </div>
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+            <DataGrid Height="100%" Width="100%" @ref="DataGridRef"
+                      DefaultColumnMinWidth="120"
+                      AutoGenerateColumns="false"
+                      DataSource="@DataSource"
+                      EditMode="@GridEditMode"
+                      ActivationMode="@GridActivationMode.Cell"
+                      SelectionMode="@GridSelectionMode.SingleRow"
+                      SelectionBehavior="@GridSelectionBehavior.ModifierBased"
+                      IsColumnOptionsEnabled="true"
+                      RowEditStarted="OnRowEditStarted"
+                      RowEditEnded="OnRowEditEnded">
+                <TextColumn Field="Name" Width="@("*>150")" />
+                <TextColumn Field="Street" HeaderText="Street" Width="@("*>160")"/>
+                <TextColumn Field="City" HeaderText="City" Width="@("*>120")"/>
+                <NumericColumn Field="Salary" HeaderText="Salary" PositivePrefix="$" ShowGroupingSeparator="true" Width="@("*>120")"/>
+                <ImageColumn IsEditable="false" Field="Photo" HeaderText="Photo" ContentOpacity="1" HorizontalAlignment="@CellContentHorizontalAlignment.Center" Width="@("*>110")"/>
+                <DateTimeColumn Field="Birthday" HeaderText="Date of Birth" Width="@("*>170")"/>
+                @*<TemplateColumn PropertyPath="DeleteColumn" />  TODO!! *@
+            </DataGrid>
+        }
+    </div>
+</div>
+
+@code {
+
+    private DataGrid DataGridRef;
+
+    private EditModeType _editMode;
+    public EditModeType GridEditMode
+    {
+        get { return _editMode; }
+        set
+        {
+            _editMode = value;
+            if (_editMode == EditModeType.CellBatch)
+            {
+                ButtonsDisabled = false;
+            }
+            else
+            {
+                ButtonsDisabled = true;
+            }
+        }
+    }
+
+    private bool ButtonsDisabled { get; set; }
+
+    private List<Employee> DataSource;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        DataGridModule.Register(IgniteUIBlazor);
+
+        DataSource = EmployeeData.Create(100, false);
+        this.GridEditMode = EditModeType.Cell;
+    }
+
+    private void OnCommitClick(MouseEventArgs e)
+    {
+        this.DataGridRef.CommitEdits();
+        this.ButtonsDisabled = true;
+    }
+
+    private void OnUndoClick(MouseEventArgs e)
+    {
+        this.DataGridRef.Undo();
+    }
+
+    private void OnRedoClick(MouseEventArgs e)
+    {
+        this.DataGridRef.Redo();
+    }
+
+    private void OnRowEditEnded(GridRowEditEndedEventArgs e)
+    {
+        if (_editMode == EditModeType.CellBatch)
+        {
+            ButtonsDisabled = false;
+        }
+        else
+        {
+            ButtonsDisabled = true;
+        }
+        StateHasChanged();
+    }
+    private void OnRowEditStarted(GridRowEditStartedEventArgs e)
+    {
+        if (_editMode == EditModeType.CellBatch)
+        {
+            ButtonsDisabled = true;
+        }
+        else
+        {
+            ButtonsDisabled = false;
+        }
+        StateHasChanged();
+    }
+}

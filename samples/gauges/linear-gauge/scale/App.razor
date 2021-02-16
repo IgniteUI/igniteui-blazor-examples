@@ -1,2 +1,27 @@
-<Infragistics.Samples.Pages.LinearGaugeScale />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
 
+<div class="igContainer">
+    <div class="igComponent">
+        <LinearGauge Height="80px" Width="100%"
+                     MinimumValue="0" Value="50"
+                     MaximumValue="100" Interval="10"
+                     IsScaleInverted="false"
+                     ScaleBrush="DodgerBlue"
+                     ScaleOutline="Red"
+                     ScaleStrokeThickness="2"
+                     ScaleInnerExtent="0.05"
+                     ScaleOuterExtent="0.65"
+                     ScaleStartExtent="0.05"
+                     ScaleEndExtent="0.95">
+        </LinearGauge>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        LinearGaugeModule.Register(IgniteUIBlazor);
+    }
+}

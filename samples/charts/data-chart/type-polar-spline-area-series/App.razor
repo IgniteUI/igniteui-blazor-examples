@@ -1,1 +1,64 @@
-<Infragistics.Samples.Pages.DataChartTypePolarSplineAreaSeries />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igComponent">
+
+        <DataChart Height="100%" Width="100%"
+                   Subtitle="Wind Speed vs Boat Speed"
+                   SubtitleTopMargin="10"
+                   IsHorizontalZoomEnabled="true"
+                   IsVerticalZoomEnabled="true">
+            <NumericAngleAxis Name="angleAxis" StartAngleOffset="-90"
+                              Interval="30"
+                              MinimumValue="0"
+                              MaximumValue="360" />
+            <NumericRadiusAxis Name="radiusAxis"
+                               RadiusExtentScale="0.9"
+                               InnerRadiusExtentScale="0.1"
+                               Interval="25"
+                               MinimumValue="0"
+                               MaximumValue="100" />
+
+            <PolarSplineAreaSeries Name="series1"
+                             DataSource="@DataSource"
+                             AngleAxisName="angleAxis"
+                             AngleMemberPath="Direction"
+                             RadiusMemberPath="WindSpeed"
+                             RadiusAxisName="radiusAxis"
+                             ShowDefaultTooltip="true"
+                             AreaFillOpacity="0.8"
+                             Thickness="1"
+                             Title="Wind Speed"
+                             MarkerType="@MarkerType.Circle" />
+            <PolarSplineAreaSeries Name="series2"
+                             DataSource="@DataSource"
+                             AngleAxisName="angleAxis"
+                             AngleMemberPath="Direction"
+                             RadiusMemberPath="BoatSpeed"
+                             RadiusAxisName="radiusAxis"
+                             ShowDefaultTooltip="true"
+                             AreaFillOpacity="0.8"
+                             Thickness="1"
+                             Title="Boat Speed"
+                             MarkerType="@MarkerType.Circle"/>
+        </DataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private List<SamplePolarItem> DataSource;
+
+    protected override void OnInitialized()
+    {
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartPolarModule.Register(IgniteUIBlazor);
+        DataChartPolarCoreModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+
+        DataSource = SamplePolarData.Create();
+    }
+
+}

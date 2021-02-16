@@ -1,1 +1,73 @@
-<Infragistics.Samples.Pages.SparklineUnknownValues />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+    <div class="igContainer">
+
+        <div class="igOptions">
+            <label class="igOptions-item">
+                <input @onchange="onChanged" type="checkbox" checked="checked" />Plot Unknown Values
+            </label>
+        </div>
+
+        <div class="igComponent">
+            @if (DataSource != null)
+            {
+                <Sparkline Height="100%"
+                           Width="100%"
+                           DataSource="DataSource"
+                           ValueMemberPath="Value"
+                           DisplayType="SparklineDisplayType.Area"
+                           UnknownValuePlotting="@unknownValuePlotting">
+                </Sparkline>
+            }
+
+        </div>
+    </div>
+
+@code {
+
+    private List<DataItem> DataSource;
+    private UnknownValuePlotting unknownValuePlotting = UnknownValuePlotting.LinearInterpolate;
+
+    protected override void OnInitialized()
+    {
+        SparklineModule.Register(IgniteUIBlazor);
+
+        var dataItems = new List<DataItem>();
+
+        dataItems.Add(new DataItem() { Label =4,Value =4 });
+        dataItems.Add(new DataItem() { Label = 5, Value = 5 });
+        dataItems.Add(new DataItem() { Label = 2, Value = double.NaN });
+        dataItems.Add(new DataItem() { Label = 7, Value = 7 });
+        dataItems.Add(new DataItem() { Label = - 1, Value = - 1 });
+
+        dataItems.Add(new DataItem() { Label = 3, Value = 3 });
+        dataItems.Add(new DataItem() { Label = - 2, Value = - 2 });
+        dataItems.Add(new DataItem() { Label = 5, Value = double.NaN });
+        dataItems.Add(new DataItem() { Label = 2, Value = 2 });
+        dataItems.Add(new DataItem() { Label = 6, Value = 6 });
+
+        DataSource = dataItems;
+    }
+
+    public void onChanged(ChangeEventArgs e)
+    {
+        bool selection = (bool)e.Value;
+
+        if (selection)
+        {
+            this.unknownValuePlotting = UnknownValuePlotting.LinearInterpolate;
+        }
+        else
+        {
+            this.unknownValuePlotting = UnknownValuePlotting.DontPlot;
+        }
+    }
+
+    public class DataItem
+    {
+        public double Label { get; set; }
+        public double Value { get; set; }
+    }
+
+}

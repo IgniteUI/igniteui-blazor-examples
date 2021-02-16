@@ -1,2 +1,61 @@
-<Infragistics.Samples.Pages.SparklineDisplayTypes />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
 
+<div class="igContainer">
+
+    <div class="igComponent">
+
+        @if (DataSource != null)
+        {
+            <section>Sparkline with Line DisplayType</section>
+            <Sparkline Height="100%"
+                       Width="100%"
+                       DataSource="@DataSource"
+                       DisplayType="SparklineDisplayType.Line"
+                       ValueMemberPath="Value"
+                       LabelMemberPath="Angle">
+            </Sparkline>
+
+            <section>Sparkline with Area DisplayType</section>
+            <Sparkline Height="100%"
+                       Width="100%"
+                       DataSource="@DataSource"
+                       DisplayType="SparklineDisplayType.Area"
+                       ValueMemberPath="Value"
+                       LabelMemberPath="Angle">
+            </Sparkline>
+
+            <section>Sparkline with Column DisplayType</section>
+            <Sparkline Height="100%"
+                       Width="100%"
+                       DataSource="@DataSource"
+                       DisplayType="SparklineDisplayType.Column"
+                       ValueMemberPath="Value"
+                       LabelMemberPath="Angle">
+            </Sparkline>
+
+            <section>Sparkline with WinLoss DisplayType</section>
+            <Sparkline Height="100%"
+                       Width="100%"
+                       DataSource="@DataSource"
+                       DisplayType="SparklineDisplayType.WinLoss"
+                       ValueMemberPath="Value"
+                       LabelMemberPath="Angle">
+            </Sparkline>
+        }
+
+    </div>
+</div>
+
+@code {
+
+    private List<SparklineItem> DataSource;
+
+    protected override void OnInitialized()
+    {
+        SparklineModule.Register(IgniteUIBlazor);
+
+        this.DataSource = SparklineData.Generate();
+    }
+
+}

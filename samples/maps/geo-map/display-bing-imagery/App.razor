@@ -1,1 +1,75 @@
-<Infragistics.Samples.Pages.MapDisplayImageryBing />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject NavigationManager NavManager
+
+<div class="igContainer-horizontal">
+
+    <GeographicMap @ref="BingAerialMap"
+                   Height="100%" Width="100%" Zoomable="true"
+                   BackgroundContent="@AerialImagery">
+    </GeographicMap>
+    <GeographicMap @ref="BingRoadMap"
+                   Height="100%" Width="100%" Zoomable="true"
+                   BackgroundContent="@RoadImagery">
+    </GeographicMap>
+
+</div>
+
+@code {
+
+    private BingMapsMapImagery AerialImagery;
+    private BingMapsMapImagery RoadImagery;
+    private GeographicMap BingAerialMap;
+    private GeographicMap BingRoadMap;
+
+    private string BingKey = MapUtils.GetBingKey();
+
+    protected override void OnInitialized()
+    {
+        GeographicMapModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+
+        Console.WriteLine("BingSample OnInitialized");
+
+        this.RoadImagery = CreateImagery(BingMapsImageryStyle.Road);
+        this.AerialImagery = CreateImagery(BingMapsImageryStyle.AerialWithLabels);
+    }
+
+    BingMapsMapImagery CreateImagery(BingMapsImageryStyle style)
+    {
+        var bingUrl = "http://dev.virtualearth.net/REST/v1/Imagery/Metadata/{STYLE}?key={KEY}&include=ImageryProviders";
+        bingUrl = bingUrl.Replace("{STYLE}", style.ToString());
+        bingUrl = bingUrl.Replace("{KEY}", BingKey);
+
+        var isHttpSecured = NavManager.Uri.StartsWith("https");
+        if (isHttpSecured)
+            bingUrl = bingUrl.Replace("http:", "https:");
+
+        var imagery = new BingMapsMapImagery();
+        imagery.ApiKey = BingKey;
+        imagery.ImageryStyle = style;
+        imagery.ActualBingImageryRestUri = bingUrl;
+
+        return imagery;
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        if (firstRender)
+        {
+            //Task.Delay(300).ContinueWith((t) => OnZoomMap(this.BingAerialMap));
+            //Task.Delay(300).ContinueWith((t) => OnZoomMap(this.BingRoadMap));
+        }
+    }
+
+    private void OnZoomMap(GeographicMap map)
+    {
+        var geoBounds = new Rect(-130, 15, new Size(65, 35));
+        if (map != null)
+            map.ZoomToGeographic(geoBounds);
+    }
+
+
+}

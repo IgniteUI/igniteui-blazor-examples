@@ -1,1 +1,25 @@
-<Infragistics.Samples.Pages.BulletGraphScale />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igComponent">
+        <BulletGraph Height="80px" Width="100%"
+                     MinimumValue="0" Value="70" Interval="10"
+                     MaximumValue="100" TargetValue="90"
+                     IsScaleInverted="false"
+                     ScaleBackgroundBrush="DodgerBlue"
+                     ScaleBackgroundOutline="Red"
+                     ScaleBackgroundThickness="2"
+                     ScaleStartExtent="0.05"
+                     ScaleEndExtent="0.95">
+        </BulletGraph>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        BulletGraphModule.Register(IgniteUIBlazor);
+    }
+}

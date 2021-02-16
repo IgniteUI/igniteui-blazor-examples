@@ -1,1 +1,19 @@
-<Infragistics.Samples.Pages.DatePickerOverview />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igComponent">
+        <DatePicker Height="50px" Width="220px" Value="@SelectedDate" />
+    </div>
+</div>
+
+@code {
+
+    public DateTime SelectedDate { get; set; }
+
+    protected override void OnInitialized()
+    {
+        DatePickerModule.Register(IgniteUIBlazor);
+        this.SelectedDate = DateTime.Today;
+    }
+}

@@ -1,3 +1,98 @@
-<Infragistics.Samples.Pages.DataGridColumnTypes />
+﻿@using System.ComponentModel
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+
+    <div class="igComponent">
+
+        @if (Employees != null && CountryNames != null)
+        {
+        <DataGrid Height="100%" Width="100%" RowHeight="50" @ref="@DataGridRef"
+                  DataSource="@Employees"
+                  AutoGenerateColumns="false"
+                  ActivationMode="GridActivationMode.Cell">
+
+            <ImageColumn IsEditable="false" Width="100" Field="Photo" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
+                         HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
+
+            <TextColumn Width="@("*>130")" Field="Name" />
+
+            @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
+            <TemplateColumn Width="@("*>160")" Field="Sales" CellUpdatingScript="onUpdatingSalesColumn"
+                            HorizontalAlignment="@CellContentHorizontalAlignment.Center"
+                            />
+
+            <NumericColumn Width="@("*>130")" Field="Salary" PositivePrefix="$"
+                           ShowGroupingSeparator="true"
+                           MaxFractionDigits="0"
+                           MinFractionDigits="0" />
+
+            <DateTimeColumn Width="@("*>140")" Field="Birthday" HeaderText="Date of Birth" />
+
+            <ComboBoxColumn Width="@("*>120")" Field="Country" DataSource="@CountryNames" />
+            <ImageColumn IsEditable="false" Width="@("*>110")" Field="CountryFlag" HeaderText="Flag"
+                         PaddingTop="5" PaddingBottom="5" PaddingRight="10"
+                         HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
+
+            @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
+            <TemplateColumn Width="@("*>170")" Field="Address" CellUpdatingScript="onUpdatingAddressColumn" />
+            <TemplateColumn Width="@("*>130")" Field="Phone" CellUpdatingScript="onUpdatingPhoneColumn" />
+
+            <TextColumn Width="@("*>120")" Field="Income" />
+            <NumericColumn Width="100" Field="Age" HorizontalAlignment="@CellContentHorizontalAlignment.Left"/>
+
+        </DataGrid>
+        }
 
 
+    </div>
+</div>
+
+@code {
+
+    protected List<Employee> Employees;
+    protected List<Country> CountryNames;
+
+    private DataGrid _grid;
+    private DataGrid DataGridRef
+    {
+        get { return _grid; }
+        set { _grid = value; }
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        DataGridModule.Register(IgniteUIBlazor);
+
+        this.Employees = EmployeeData.Create(50, false);
+        for (int i = 0; i < this.Employees.Count; i++)
+        {
+            this.Employees[i].PropertyChanged += OnPropertyChanged;
+        }
+
+        this.CountryNames = new List<Country> {
+            new Country { Name = "Canada" },
+            new Country { Name = "France" },
+            new Country { Name = "Poland" },
+            new Country { Name = "UK" },
+            new Country { Name = "USA" }
+        };
+    }
+
+    protected void OnPropertyChanged(object item, PropertyChangedEventArgs args)
+    {
+        var employee = item as Employee;
+
+        if (this._grid != null && employee != null)
+            this._grid.NotifyUpdateItem(this.Employees, employee.Index, employee);
+    }
+
+    public class Country
+    {
+        public string Name { get; set; }
+    }
+
+}

@@ -1,2 +1,66 @@
-<Infragistics.Samples.Pages.DatePickerRange />
+﻿@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
 
+<div class="igContainer">
+    <div class="dateRanges">
+        <span class="caption">From:  </span>
+        <DatePicker Height="50px" Width="220px" Value="@FromDate" ValueChanged="FromDateValueChanged"/>
+        <span class="caption">  To:  </span>
+        <DatePicker Height="50px" Width="220px" Value="@ToDate" ValueChanged="ToDateValueChanged"/>
+    </div>
+</div>
+
+<style>
+    .dateRanges {
+        display: flex;
+    }
+
+    .caption {
+        align-self: center;
+        margin-left: 25px;
+        margin-right: 10px;
+        margin-top: 8px;
+    }
+</style>
+
+@code {
+
+    public DateTime FromDate { get; set; }
+    public DateTime ToDate { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        DatePickerModule.Register(IgniteUIBlazor);
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            this.FromDate = DateTime.Today;
+            this.ToDate = DateTime.Today.AddDays(1);
+            StateHasChanged();
+        }
+    }
+
+    public void FromDateValueChanged(ValueChangedEventArgs e)
+    {        
+        FromDate = e.NewValue;
+        if(this.FromDate > this.ToDate)
+        {
+            this.ToDate = this.FromDate.AddDays(1);
+            StateHasChanged();
+        }
+    }
+
+    public void ToDateValueChanged(ValueChangedEventArgs e)
+    {        
+        this.ToDate = e.NewValue;
+        if (this.ToDate < this.FromDate)
+        {
+            this.FromDate = e.NewValue.AddDays(-1);
+            StateHasChanged();
+        }
+    }
+}

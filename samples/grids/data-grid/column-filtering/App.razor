@@ -1,1 +1,123 @@
-<Infragistics.Samples.Pages.DataGridColumnFiltering />
+﻿@page "/DataGridColumnFiltering"
+
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igOptions">
+        <span class="igOptions-item">Column: </span>
+        <select class="igOptions-item" @onchange="OnFilterColumnChanged">
+            <option>Name</option>
+            <option>Street</option>
+            <option>City</option>
+            <option>Country</option>
+        </select>
+        <select class="igOptions-item" @onchange="OnFilterModeChanged">
+            <option>Contains</option>
+            <option>StartsWith</option>
+            <option>EndsWith</option>
+        </select>
+        <label class="igOptions-item"> Expression: </label>
+        <input class="igOptions-input-text" type="text" name="title" @onchange="OnFilterTextChanged" />
+    </div>
+
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+            <DataGrid Height="100%" Width="100%"
+                      @ref="DataGridRef"
+                      DefaultColumnMinWidth="100"
+                      AutoGenerateColumns="false"
+                      DataSource="@DataSource"
+                      IsColumnOptionsEnabled="true">
+                <TextColumn Field="Name" Width="@("*>170")" />
+                <TextColumn Field="Street" Width="@("*>180")" />
+                <TextColumn Field="City" Width="@("*>120")" />
+                <ImageColumn IsEditable="false" Field="CountryFlag" PaddingTop="5" PaddingBottom="5" HeaderText="Country" ContentOpacity="1"
+                             HorizontalAlignment="@CellContentHorizontalAlignment.Center" Width="@("*>140")" />
+                <NumericColumn Field="Sales" PositivePrefix="$" ShowGroupingSeparator="true" Width="@("*>120")" />
+                <DateTimeColumn Field="Birthday" HeaderText="Birthday" Width="@("*>170")" />
+            </DataGrid>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<Employee> DataSource;
+    private DataGrid DataGridRef;
+
+    private string FilterText = "";
+    private string FilterMode = "Contains";
+    private string FilterColumn = "Name";
+
+    private FilterFactory FilterFactory = new FilterFactory();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        DataGridModule.Register(IgniteUIBlazor);
+        GridColumnOptionsModule.Register(IgniteUIBlazor);
+        GridColumnFilterOptionsModule.Register(IgniteUIBlazor);
+
+        this.DataSource = EmployeeData.Create(100, false);
+    }
+
+    private void OnFilterTextChanged(ChangeEventArgs e)
+    {
+        this.FilterText = e.Value.ToString();
+        this.ApplyFilter();
+    }
+
+    private void OnFilterModeChanged(ChangeEventArgs e)
+    {
+        this.FilterMode = e.Value.ToString();
+        this.ApplyFilter();
+    }
+
+    private void OnFilterColumnChanged(ChangeEventArgs e)
+    {
+        this.FilterColumn = e.Value.ToString();
+        this.ApplyFilter();
+    }
+
+    private void ApplyFilter()
+    {
+        this.DataGridRef.FilterExpressions.Clear();
+
+        if (this.FilterText == "")
+        {
+            return;
+        }
+
+        string expression = this.FilterText.ToUpper();
+
+        FilterExpression column = this.FilterFactory.Property(this.FilterColumn).ToUpper();
+
+        FilterExpression filter = new FilterExpression();
+
+        switch (this.FilterMode)
+        {
+            case "Contains":
+                {
+                    filter = column.Contains(expression);
+                    break;
+                }
+            case "StartsWith":
+                {
+                    filter = column.StartsWith(expression);
+                    break;
+                }
+            case "EndsWith":
+                {
+                    filter = column.EndsWith(expression);
+                    break;
+                }
+        }
+
+        this.DataGridRef.FilterExpressions.Add(filter);
+
+        StateHasChanged();
+    }
+}

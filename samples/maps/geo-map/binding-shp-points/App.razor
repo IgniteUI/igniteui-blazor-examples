@@ -1,1 +1,33 @@
-<Infragistics.Samples.Pages.MapBindingShapefilePoints />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igComponent">
+        <GeographicMap Height="100%" Width="100%" Zoomable="true">
+            @*<GeographicSymbolSeries DataSource="?"
+                                    MarkerType="@MarkerType.Circle"
+                                    LatitudeMemberPath="latitude"
+                                    LongitudeMemberPath="longitude"
+                                    MarkerBrush="LightGray"
+                                    MarkerOutline="Black"/>*@
+        </GeographicMap>
+    </div>
+</div>
+
+@code {
+
+    //TODO - THIS SAMPLE IN REACT PARSES THE SHAPEDATASOURCE, NOT SURE IF WE ARE GOING THAT ROUTE OR HOW TO DO THIS IN BLAZOR
+
+    private ShapeDataSource ShapeData;
+
+    protected override void OnInitialized()
+    {
+        GeographicMapModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+
+        this.ShapeData = new ShapeDataSource();
+        this.ShapeData.ShapefileSource = "https://static.infragistics.com/xplatform/shapes/WorldCities.shp";
+        this.ShapeData.DatabaseSource = "https://static.infragistics.com/xplatform/shapes/WorldCities.dbf";
+
+    }
+}

@@ -1,1 +1,34 @@
-<Infragistics.Samples.Pages.AreaChartMultipleSources />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+            <CategoryChart Height="100%" Width="100%"
+                           DataSource="DataSource" 
+                           ChartType="CategoryChartType.Area"
+                           ChartTitle="Renewable Electricity Generated"
+                           TitleAlignment="HorizontalAlignment.Left"
+                           TitleLeftMargin="25"
+                           TitleTopMargin="10"
+                           TitleBottomMargin="10"
+                           YAxisTitle="TWh"
+                           YAxisTitleLeftMargin="10"
+                           YAxisTitleRightMargin="5"
+                           YAxisLabelLeftMargin="0">
+            </CategoryChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<EnergyRenewableInfo> DataSource = new EnergyRenewableData();
+
+    protected override void OnInitialized()
+    {
+        CategoryChartModule.Register(IgniteUIBlazor);
+    }
+
+}

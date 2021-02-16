@@ -1,1 +1,203 @@
-<Infragistics.Samples.Pages.DataGridPerformance />
+﻿@page "/DataGridPerformance"
+
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+            <DataGrid Height="100%" Width="100%" @ref="DataGridRef"
+                      AutoGenerateColumns="false"
+                      HeaderClickAction="@HeaderClickAction.SortByMultipleColumnsTriState"
+                      RowHeight="40"
+                      SelectionMode="@GridSelectionMode.MultipleRow"
+                      DefaultColumnMinWidth="80"
+                      SortDescriptionsChanged="OnSortDescriptionsChanged"
+                      ColumnShowingAnimationMode="@ColumnShowingAnimationMode.Auto"
+                      ColumnHidingAnimationMode="@ColumnHidingAnimationMode.Auto"
+                      DataSource="@DataSource"
+                      IsRowHoverEnabled="false">
+                <TextColumn Field="FirstName" HeaderText="First Name" Width="@("*>130")" />
+                <TextColumn Field="LastName" HeaderText="Last Name" Width="@("*>130")" />
+                <TextColumn Field="Territory" Width="@("*>130")" />
+                <NumericColumn Field="YearToDateSales" HeaderText="YTD Sales" Width="@("*>130")"
+                               PositivePrefix="$" ShowGroupingSeparator="true" />
+                <TemplateColumn Field="AvgSale" HeaderText="Avg. Sale" Width="@("*>120")" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
+                                CellUpdatingScript="onAvgSaleCellUpdating"  />
+                <TemplateColumn Field="Change" Width="@("*>120")" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
+                                CellUpdatingScript="onChangeCellUpdating"/>
+                <TemplateColumn Field="PercentChange" Width="@("*>140")" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
+                                HeaderText="Change (%)" CellUpdatingScript="onPercentChangeCellUpdating"/>
+                <DateTimeColumn Field="DateValue" HeaderText="Date" Width="@("*>120")" />
+
+                @for (int i = 0; i < 8; i++)
+                {
+                    string str = "KPI_" + i.ToString();
+                    <NumericColumn Width="@("*>150")" Field="@str" DataBoundScript="onKPIColumnDataBound"/>
+                }
+            </DataGrid>
+        }
+    </div>
+</div>
+
+@code {
+
+    private void OnSortDescriptionsChanged(GridSortDescriptionsChangedEventArgs args) 
+    {
+
+    }
+
+    private List<SalesPerson> DataSource;
+
+    private DataGrid _grid;
+    private DataGrid DataGridRef
+    {
+        get { return _grid; }
+        set
+        {
+            _grid = value;
+            this.OnDataGridRef();
+            StateHasChanged();
+        }
+    }
+
+    private DateTime lastDataUpdate = new DateTime();
+    private int interval = 1000;
+    private Random random = new Random();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        DataGridModule.Register(IgniteUIBlazor);
+
+        this.DataSource = SalesPersonData.GenerateSalesPeople(500);
+    }
+
+    private void OnDataGridRef()
+    {
+        var columnGroup = new ColumnGroupDescription();
+        columnGroup.Field = "Territory";
+        this.DataGridRef.GroupDescriptions.Add(columnGroup);
+
+        Task.Delay(1000).ContinueWith((t) => OnTimerTick());
+    }
+
+    private void OnTimerTick()
+    {
+        bool sortedBySales = false;
+
+        int toChange = (int)Math.Round(this.DataSource.Count / 10.0);
+        var toChangeIndexes = new List<bool>();
+        bool stillAnimating = false;
+
+        for (int i = 0; i < this.DataSource.Count; i++)
+        {
+            toChangeIndexes.Add(false);
+            SalesPerson item = this.DataSource[i];
+            if (item.AvgSaleHeat != 0)
+            {
+                stillAnimating = true;
+            }
+        }
+
+        var now = DateTime.Now;
+        bool intervalElapsed = false;
+
+        if ((now - lastDataUpdate).TotalMilliseconds > this.interval)
+        {
+            intervalElapsed = true;
+        }
+
+        bool useClear = false;
+        bool sortingByAvgSale = false;
+
+        for (int i = 0; i < this.DataGridRef.SortDescriptions.Count; i++)
+        {
+            if (this.DataGridRef.SortDescriptions[i].Field == "AvgSale" || this.DataGridRef.SortDescriptions[i].Field.IndexOf("Change") >= 0)
+            {
+                sortingByAvgSale = true;
+            }
+        }
+
+        bool changing = false;
+        if (intervalElapsed)
+        {
+            this.lastDataUpdate = new DateTime();
+            for (int i = 0; i < toChange; i++)
+            {
+                int index = (int)Math.Round(random.NextDouble() * (this.DataSource.Count - 1));
+                toChangeIndexes[index] = true;
+
+            }
+        }
+
+        for (int i = 0; i < toChangeIndexes.Count; i++)
+        {
+            var item = this.DataSource[i];
+            if (toChangeIndexes[i] == true)
+            {
+                if (sortingByAvgSale && !useClear)
+                {
+                    this.DataGridRef.NotifyRemoveItem(this.DataSource, i, item);
+                    this.RandomizeItem(item);
+                    this.DataGridRef.NotifyInsertItem(this.DataSource, i, item);
+                }
+                else
+                {
+                    this.RandomizeItem(item);
+                    this.DataGridRef.NotifyUpdateItem(this.DataSource, i, item, true);
+                }
+
+                if (item.Change > 0)
+                {
+                    item.AvgSaleHeat = 1;
+                }
+                else
+                {
+                    item.AvgSaleHeat = -1;
+                }
+            }
+            else
+            {
+                if (item.AvgSaleHeat > 0)
+                {
+                    item.AvgSaleHeat -= .06;
+                    if (item.AvgSaleHeat < 0)
+                    {
+                        item.AvgSaleHeat = 0;
+                    }
+                }
+                if (item.AvgSaleHeat < 0)
+                {
+                    item.AvgSaleHeat += .06;
+                    if (item.AvgSaleHeat > 0)
+                    {
+                        item.AvgSaleHeat = 0;
+                    }
+                }
+            }
+        }
+
+        //if(sortingByAvgSale && useClear)
+        //{
+        //    this.DataGridRef.ActualDataSource.QueueAutoRefresh();
+        //}
+
+        if (!sortingByAvgSale || !intervalElapsed)
+        {
+            this.DataGridRef.InvalidateVisibleRows();
+        }
+
+        Task.Delay(1000).ContinueWith((t) => OnTimerTick());
+    }
+
+    private void RandomizeItem(SalesPerson item)
+    {
+        item.Change = (random.NextDouble() * 40.0) - 20.0;
+        double prevSale = item.AvgSale;
+        item.AvgSale += item.Change;
+        item.PercentChange = ((item.AvgSale / prevSale) * 100.00);
+    }
+}

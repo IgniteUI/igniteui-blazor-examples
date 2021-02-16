@@ -1,1 +1,62 @@
-<Infragistics.Samples.Pages.DataChartSeriesTrendlines />
+﻿@page "/DataChartSeriesTrendlines"
+
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igOptions-horizontal">
+        <span class="igOptions-item">Trendline Type:</span>
+        <select @bind="ChartTrendlineType">
+            <option>@TrendLineType.None</option>
+            <option>@TrendLineType.CubicFit</option>
+            <option>@TrendLineType.CumulativeAverage</option>
+            <option>@TrendLineType.ExponentialAverage</option>
+            <option>@TrendLineType.ExponentialFit</option>
+            <option>@TrendLineType.LinearFit</option>
+            <option>@TrendLineType.LogarithmicFit</option>
+            <option>@TrendLineType.ModifiedAverage</option>
+            <option>@TrendLineType.PowerLawFit</option>
+            <option>@TrendLineType.QuadraticFit</option>
+            <option>@TrendLineType.QuarticFit</option>
+            <option>@TrendLineType.QuinticFit</option>
+            <option>@TrendLineType.SimpleAverage</option>
+            <option>@TrendLineType.WeightedAverage</option>
+        </select>
+    </div>
+
+    <div class="igComponent">
+        <DataChart Height="100%" Width="100%"                   
+                   IsHorizontalZoomEnabled="true"
+                   IsVerticalZoomEnabled="true">
+            <CategoryXAxis Name="xAxis" Label="Label" DataSource="DataSource" />
+            <NumericYAxis Name="yAxis" />
+
+            <FinancialPriceSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" HighMemberPath="High" LowMemberPath="Low"
+                                  CloseMemberPath="Close" OpenMemberPath="Open" VolumeMemberPath="Volume"
+                                  TrendLineType="ChartTrendlineType" />
+
+        </DataChart>
+    </div>
+</div>
+
+@code {
+    
+    private List<SampleFinancialItem> DataSource;
+    private TrendLineType ChartTrendlineType = TrendLineType.CubicFit;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);        
+        DataChartFinancialModule.Register(IgniteUIBlazor);
+        DataChartFinancialCoreModule.Register(IgniteUIBlazor);               
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        DataChartCategoryTrendLineModule.Register(IgniteUIBlazor);
+
+        this.DataSource = SampleFinancialData.Create();
+    }
+}
+

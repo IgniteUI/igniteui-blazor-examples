@@ -1,1 +1,67 @@
-<Infragistics.Samples.Pages.RadialGaugeTypeQuatre />
+@* this is required for Infragistics controls *@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+@* NOTE use this HTML code to design a sample *@
+<div class="igContainer">
+    <div class="igComponent">
+        <RadialGauge Height="100%" Width="100%"
+                     TransitionDuration="500"
+                     MinimumValue="0"
+                     MaximumValue="10"
+                     Value="7.5"
+                     ScaleStartAngle="180"
+                     ScaleEndAngle="270"
+                     ScaleBrush="transparent"
+                     ScaleSweepDirection="SweepDirection.Clockwise"
+                     BackingOutline="white"
+                     BackingBrush="white"
+                     BackingShape="RadialGaugeBackingShape.Fitted"
+                     NeedleEndExtent="0.8"
+                     NeedleShape="RadialGaugeNeedleShape.Triangle"
+                     NeedlePivotShape="RadialGaugePivotShape.CircleOverlay"
+                     NeedlePivotWidthRatio="0.1"
+                     NeedleBrush="#79797A"
+                     NeedleOutline="#79797A"
+                     NeedlePivotBrush="#79797A"
+                     NeedlePivotOutline="#79797A"
+                     TickBrush="transparent"
+                     MinorTickBrush="transparent"
+                     LabelInterval="5"
+                     LabelExtent="0.935"
+                     Font="15px Verdana,Arial"
+                     RangeBrushes="#A4BD29, #F86232"
+                     RangeOutlines="#A4BD29, #F86232">
+            <RadialGaugeRange StartValue="0"
+                              EndValue="5"
+                              InnerStartExtent="0.3"
+                              InnerEndExtent="0.3"
+                              OuterStartExtent="0.9"
+                              OuterEndExtent="0.9">
+            </RadialGaugeRange>
+            <RadialGaugeRange StartValue="5"
+                              EndValue="10"
+                              InnerStartExtent="0.3"
+                              InnerEndExtent="0.3"
+                              OuterStartExtent="0.9"
+                              OuterEndExtent="0.9">
+            </RadialGaugeRange>
+        </RadialGauge>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        // Console.WriteLine("Sample runtime: " + IgniteUIBlazor.JsRuntime);
+        Console.WriteLine("Sample OnInitialized...");
+        RadialGaugeModule.Register(IgniteUIBlazor);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Sample OnInitializedAsync...");
+
+        await Task.Delay(10);
+    }
+}

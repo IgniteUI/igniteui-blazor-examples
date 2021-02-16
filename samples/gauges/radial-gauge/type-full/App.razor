@@ -1,1 +1,78 @@
-<Infragistics.Samples.Pages.RadialGaugeTypeFull />
+@* this is required for Infragistics controls *@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+@* NOTE use this HTML code to design a sample *@
+<div class="igContainer">
+    <div class="igComponent">
+        <RadialGauge Height="100%" Width="100%"
+                     MinimumValue="0"
+                     MaximumValue="50"
+                     Value="25"
+                     Interval="5"
+                     LabelInterval="5"
+                     LabelExtent="0.71"
+                     Font="15px Verdana,Arial"
+                     IsNeedleDraggingEnabled="true"
+                     NeedleEndExtent="0.5"
+                     NeedleShape="RadialGaugeNeedleShape.Triangle"
+                     NeedleEndWidthRatio="0.03"
+                     NeedleStartWidthRatio="0.05"
+                     NeedlePivotShape="RadialGaugePivotShape.CircleOverlay"
+                     NeedlePivotWidthRatio="0.15"
+                     NeedleBaseFeatureWidthRatio="0.15"
+                     NeedleBrush="#79797A"
+                     NeedleOutline="#79797A"
+                     NeedlePivotBrush="#79797A"
+                     NeedlePivotOutline="#79797A"
+                     MinorTickCount="4"
+                     MinorTickStartExtent="0.6"
+                     MinorTickEndExtent="0.625"
+                     MinorTickStrokeThickness="1"
+                     MinorTickBrush="#79797A"
+                     TickStartExtent="0.6"
+                     TickEndExtent="0.65"
+                     TickStrokeThickness="2"
+                     TickBrush="#79797A"
+                     ScaleStartAngle="120"
+                     ScaleEndAngle="60"
+                     ScaleBrush="#D6D6D6"
+                     ScaleOversweepShape="RadialGaugeScaleOversweepShape.Fitted"
+                     ScaleSweepDirection="SweepDirection.Clockwise"
+                     ScaleEndExtent="0.57"
+                     ScaleStartExtent="0.5"
+                     BackingShape="RadialGaugeBackingShape.Circular"
+                     BackingBrush="#FCFCFC"
+                     BackingOutline="#D6D6D6"
+                     BackingStrokeThickness="5">
+            <RadialGaugeRange StartValue="5" EndValue="15"
+                              InnerStartExtent="0.5" InnerEndExtent="0.5"
+                              OuterStartExtent="0.57" OuterEndExtent="0.57">
+            </RadialGaugeRange>
+            <RadialGaugeRange StartValue="15" EndValue="35"
+                              InnerStartExtent="0.5" InnerEndExtent="0.5"
+                              OuterStartExtent="0.57" OuterEndExtent="0.57">
+            </RadialGaugeRange>
+            <RadialGaugeRange StartValue="35" EndValue="45"
+                              InnerStartExtent="0.5" InnerEndExtent="0.5"
+                              OuterStartExtent="0.57" OuterEndExtent="0.57">
+            </RadialGaugeRange>
+        </RadialGauge>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        // Console.WriteLine("Sample runtime: " + IgniteUIBlazor.JsRuntime);
+        Console.WriteLine("Sample OnInitialized...");
+        RadialGaugeModule.Register(IgniteUIBlazor);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Sample OnInitializedAsync...");
+
+        await Task.Delay(10);
+    }
+}

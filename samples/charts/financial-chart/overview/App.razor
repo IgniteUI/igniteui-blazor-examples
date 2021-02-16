@@ -1,3 +1,51 @@
-<Infragistics.Samples.Pages.FinancialChartOverview />
+@* this namespace is required for Infragistics controls *@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
 
+<div class="igContainer">
+    <div class="igLegend">
+        <Legend @ref="FinancialLegend" Orientation="LegendOrientation.Horizontal" >
 
+        </Legend>
+    </div>
+    <div class="igComponent">
+
+            <FinancialChart
+                @ref="Chart"
+                Width="100%"
+                Height="100%"
+                ChartType="FinancialChartType.Bar"
+                Thickness=2
+                ExcludedProperties="@(new string[] { "Date" })"
+                DataSource="DataSource"
+                ZoomSliderType="FinancialChartZoomSliderType.Bar"
+                ChartTitle="Tesla vs Microsoft"
+                Subtitle="Between 2013 and 2017"
+                IsToolbarVisible="true"
+                YAxisMode="FinancialChartYAxisMode.PercentChange"/>
+        
+    </div>
+</div>
+
+@code {
+
+    public List<StockPrice[]> DataSource;
+    public Legend FinancialLegend { get; set; }
+    public FinancialChart Chart;
+
+    protected override async Task OnInitializedAsync()
+    {
+        FinancialChartModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+        this.DataSource = await StocksHistory.GetMultipleStocks();
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        if(Chart != null)
+        Chart.Legend = FinancialLegend;
+
+    }
+}

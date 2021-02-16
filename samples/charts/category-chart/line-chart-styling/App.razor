@@ -1,1 +1,64 @@
-<Infragistics.Samples.Pages.LineChartStyling />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igOptions">
+        <span class="igLegend-title">Renewable Electricity Generated</span>
+        <div class="igLegend">
+            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+            // note MarkerTypes property is set in code-behind
+            <CategoryChart @ref="ChartRef" Height="100%" Width="100%"                           
+                           DataSource="DataSource"
+                           ChartType="CategoryChartType.Line"
+                           IsHorizontalZoomEnabled="false"
+                           IsVerticalZoomEnabled="false"
+                           Legend="LegendRef"
+                           YAxisTitle="TWh"
+                           YAxisTitleLeftMargin="10"
+                           YAxisLabelLeftMargin="0"
+                           Thickness="2"   
+                           MarkerOutlines="#FFFFFF"   
+                           MarkerBrushes="#ee5879, #c4c4c4, #9af2e4" 
+                           Brushes="#ee5879, #c4c4c4, #9af2e4">                           
+            </CategoryChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<EnergyRenewableInfo> DataSource = new EnergyRenewableData();
+
+    private CategoryChart ChartRef;
+
+    private Legend _Legend;
+    private Legend LegendRef
+    {
+        get { return _Legend; }
+        set { _Legend = value; StateHasChanged(); }
+    }
+
+    protected override void OnInitialized()
+    {
+        CategoryChartModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        if (this.ChartRef != null && firstRender)
+        {
+            this.ChartRef.MarkerTypes.Clear();
+            this.ChartRef.MarkerTypes.Add(MarkerType.Circle);
+        }
+    }
+
+}

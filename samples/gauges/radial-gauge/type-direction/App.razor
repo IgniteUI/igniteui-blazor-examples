@@ -1,1 +1,96 @@
-<Infragistics.Samples.Pages.RadialGaugeTypeDirection />
+@* this is required for Infragistics controls *@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+@* NOTE use this HTML code to design a sample *@
+<div class="igContainer">
+    <div class="igComponent">
+        <RadialGauge Height="50%" Width="100%"
+                     MinimumValue="0"
+                     MaximumValue="360"
+                     Value="30"
+                     Interval="15"
+                     LabelInterval="15"
+                     LabelExtent="0.575"
+                     Font="11px Verdana,Arial"
+                     TransitionDuration="500"
+                     ScaleStartAngle="-90"
+                     ScaleEndAngle="270"
+                     ScaleBrush="#E0DFDF"
+                     ScaleOversweepShape="RadialGaugeScaleOversweepShape.Circular"
+                     ScaleSweepDirection="SweepDirection.Clockwise"
+                     ScaleEndExtent="0.7"
+                     ScaleStartExtent="0.675"
+                     IsNeedleDraggingConstrained="false"
+                     IsNeedleDraggingEnabled="false"
+                     NeedlePivotShape="RadialGaugePivotShape.None"
+                     NeedleShape="RadialGaugeNeedleShape.Triangle"
+                     NeedleBaseFeatureWidthRatio="0.2"
+                     NeedleEndExtent="0.55"
+                     NeedleBrush="Red"
+                     MinorTickStartExtent="0.6625"
+                     MinorTickEndExtent="0.65"
+                     MinorTickCount="2"
+                     MinorTickStrokeThickness="1"
+                     MinorTickBrush="#79797A"
+                     TickStartExtent="0.6625"
+                     TickEndExtent="0.6325"
+                     TickStrokeThickness="1"
+                     TickBrush="#79797A"
+                     BackingBrush="transparent"
+                     BackingOutline="transparent"
+                     BackingShape="RadialGaugeBackingShape.Circular">
+        </RadialGauge>
+
+        <RadialGauge Height="50%" Width="100%"
+                     MinimumValue="0"
+                     MaximumValue="360"
+                     Value="270"
+                     Interval="45"
+                     Font="15px Verdana,Arial"
+                     LabelExtent="0.75"
+                     LabelInterval="45"
+                     TransitionDuration="500"
+                     ScaleStartAngle="-90"
+                     ScaleEndAngle="270"
+                     ScaleBrush="#E0DFDF"
+                     ScaleOversweepShape="RadialGaugeScaleOversweepShape.Circular"
+                     ScaleSweepDirection="SweepDirection.Clockwise"
+                     ScaleEndExtent="0.7"
+                     ScaleStartExtent="0.675"
+                     IsNeedleDraggingConstrained="false"
+                     IsNeedleDraggingEnabled="false"
+                     NeedlePivotShape="RadialGaugePivotShape.None"
+                     NeedleShape="RadialGaugeNeedleShape.Triangle"
+                     NeedleBaseFeatureWidthRatio="0.2"
+                     NeedleEndExtent="0.55"
+                     NeedleBrush="DodgerBlue"
+                     MinorTickCount="2"
+                     MinorTickStrokeThickness="1"
+                     MinorTickBrush="#79797A"
+                     TickStrokeThickness="1"
+                     TickBrush="#79797A"
+                     BackingBrush="transparent"
+                     BackingOutline="transparent"
+                     BackingShape="RadialGaugeBackingShape.Circular">
+        </RadialGauge>
+    </div>
+</div>
+
+@code {
+
+    //NOTE: THIS SAMPLE WILL NEED SOME VALUE CHANGED-RELATED WORK - SEE REACT BROWSER
+    // ALSO NEEDS FORMAT LABEL RELATED CODE
+    protected override void OnInitialized()
+    {
+        // Console.WriteLine("Sample runtime: " + IgniteUIBlazor.JsRuntime);
+        Console.WriteLine("Sample OnInitialized...");
+        RadialGaugeModule.Register(IgniteUIBlazor);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Sample OnInitializedAsync...");
+
+        await Task.Delay(10);
+    }
+}

@@ -1,1 +1,42 @@
-<Infragistics.Samples.Pages.BarChartSingleSource />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igComponent">
+        <DataChart Height="100%" Width="100%"
+                   ChartTitle="Where Online Shoppers Start Their Search"                   
+                   TitleHorizontalAlignment="HorizontalAlignment.Left"
+                   TitleLeftMargin="25"
+                   TitleTopMargin="10"
+                   TitleBottomMargin="10"
+                   IsHorizontalZoomEnabled="true"
+                   IsVerticalZoomEnabled="true">
+
+            <CategoryYAxis Name="yAxis" Label="Shop" DataSource="@DataSource" IsInverted="true" />
+            <NumericXAxis  Name="xAxis" />
+
+            <BarSeries XAxisName="xAxis"
+                       YAxisName="yAxis"
+                       DataSource="@DataSource"
+                       ValueMemberPath="Percent"
+                       ShowDefaultTooltip="true"
+                       IsTransitionInEnabled="true"
+                       IsHighlightingEnabled="true">
+            </BarSeries>
+        </DataChart>
+    </div>
+</div>
+
+@code {
+
+    private List<OnlineShoppingInfo> DataSource = new OnlineShoppingData();
+
+    protected override void OnInitialized()
+    {
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        DataChartVerticalCategoryModule.Register(IgniteUIBlazor);
+    }
+}

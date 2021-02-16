@@ -1,3 +1,60 @@
-<Infragistics.Samples.Pages.FinancialChartIndicatorTypes />
+@* this namespace is required for Infragistics controls *@
+@using IgniteUI.Blazor.Controls
 
+@inject IIgniteUIBlazor IgniteUIBlazor
 
+    <div class="igContainer">
+        <div class="igComponent">
+
+            @if (DataSource != null)
+            {
+                <FinancialChart Width="100%"
+                    Height="100%"
+                    @ref="@FinancialChartRef"
+                    ChartType=FinancialChartType.Line
+                    Thickness=2
+                    DataSource="DataSource"                    
+                    IndicatorThickness=2
+                    IndicatorNegativeBrushes="Red"
+                    IndicatorBrushes="Green, Blue"
+                    ZoomSliderType="FinancialChartZoomSliderType.None" />
+            }
+
+        </div>
+    </div>
+
+@code {
+
+    List<StockItem> DataSource;
+    public FinancialChart financialChart;
+    public FinancialChart FinancialChartRef
+    {
+        get
+        {
+            return financialChart;
+        }
+        set
+        {
+            financialChart = value;
+            this.FinancialChartRef.IndicatorTypes.Clear();
+            this.FinancialChartRef.IndicatorTypes.Add(FinancialIndicatorType.MovingAverageConvergenceDivergence);
+            this.FinancialChartRef.IndicatorTypes.Add(FinancialIndicatorType.RelativeStrengthIndex);
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        FinancialChartModule.Register(IgniteUIBlazor);
+        InitData();
+    }
+
+    public void InitData()
+    {
+        var today = DateTime.Now;
+        var year = today.Year;
+        var month = today.Month;
+        var dateEnd = new DateTime(year, month, 1);
+        var dateStart = new DateTime(year - 1, month, 1);
+        this.DataSource = StocksUtility.GetStocksBetween(dateStart, dateEnd);
+    }
+}

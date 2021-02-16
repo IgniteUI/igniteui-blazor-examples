@@ -1,3 +1,58 @@
-<Infragistics.Samples.Pages.FinancialChartVolumeDisplayTypes />
+@* this namespace is required for Infragistics controls *@
+@using IgniteUI.Blazor.Controls
 
+@inject IIgniteUIBlazor IgniteUIBlazor
 
+<div class="igContainer">
+    <div class="igOptions">
+        <label class="igOptions-label">Volume Type: </label>
+        <label class="igOptions-item">
+            <select @bind="@VolumeType">
+                <option>@FinancialChartVolumeType.Area</option>
+                <option>@FinancialChartVolumeType.Column</option>
+                <option>@FinancialChartVolumeType.Line</option>
+                <option>@FinancialChartVolumeType.None</option>
+            </select>
+        </label>
+    </div>
+
+    <div class="igComponent">
+
+        @if (DataSource != null)
+        {
+            <FinancialChart Width="100%"
+                            Height="100%"
+                            DataSource="DataSource"
+                            YAxisExtent=60
+                            VolumeThickness=2
+                            VolumeType="VolumeType"
+                            VolumeBrushes="rgba(136, 77, 255, 0.75)"
+                            VolumeOutlines="rgba(136, 77, 255, 1)"
+                            ZoomSliderType="FinancialChartZoomSliderType.None"
+                            />
+        }
+
+    </div>
+</div>
+
+@code {
+
+    List<StockItem> DataSource;
+    public FinancialChartVolumeType VolumeType { get; set; } = FinancialChartVolumeType.Area;
+
+    protected override void OnInitialized()
+    {
+        FinancialChartModule.Register(IgniteUIBlazor);
+        InitData();
+    }
+
+    public void InitData()
+    {
+        var today = DateTime.Now;
+        var year = today.Year;
+        var month = today.Month;
+        var dateEnd = new DateTime(year, month, 1);
+        var dateStart = new DateTime(year - 1, month, 1);
+        this.DataSource = StocksUtility.GetStocksBetween(dateStart, dateEnd);
+    }
+}

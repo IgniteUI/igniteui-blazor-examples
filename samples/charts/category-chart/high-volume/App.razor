@@ -1,1 +1,59 @@
-<Infragistics.Samples.Pages.CategoryChartHighVolume />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igOptions">
+        <label class="igOptions-label">Data Points: </label>
+        <label class="igOptions-value">@DataInfo</label>
+        <input class="igOptions-slider" type="range" min="10000" max="1000000" step="1000"
+               value="@DataPoints" @onchange="OnDataPointsChanged" />
+        <button @onclick="OnDataGenerateClick">Generate Data</button>
+    </div>
+    <div class="igComponent">
+        <CategoryChart @ref="chart"
+            Height="100%" Width="100%"
+            ChartType="CategoryChartType.Line"
+            DataSourceScript="getHighVolumeData"
+            IsTransitionInEnabled="true">
+        </CategoryChart>
+    </div>
+</div>
+
+@code {
+    private CategoryChart chart;
+    private int DataPoints = 1000;
+    private string DataInfo;
+
+    protected override void OnInitialized()
+    {
+        CategoryChartModule.Register(IgniteUIBlazor);
+
+        this.DataInfo = CategoryDataSource.ToShortString(this.DataPoints);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await IgniteUIBlazor.JsRuntime.InvokeVoidAsync("setHighVolumeDataCount", this.DataPoints);
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    private void OnDataPointsChanged(ChangeEventArgs args)
+    {
+        this.DataPoints = int.Parse(args.Value.ToString());
+        this.DataInfo = CategoryDataSource.ToShortString(this.DataPoints);
+    }
+
+    private void OnDataGenerateClick()
+    {
+        Task.Delay(1).ContinueWith((t) => GenerateData());
+    }
+
+    private async Task GenerateData()
+    {
+        await IgniteUIBlazor.JsRuntime.InvokeVoidAsync("setHighVolumeDataCount", this.DataPoints);
+    }
+}
