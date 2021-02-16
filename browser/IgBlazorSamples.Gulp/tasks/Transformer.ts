@@ -15,6 +15,7 @@ class SampleFile {
     public Content: string;
     public Name: string;
     public Path: string;
+    public Parent: string;
     public IsChanged: boolean;
 
     constructor() {
@@ -25,7 +26,8 @@ class SampleFile {
     }
 
     public isRazorSample(): boolean {
-        return this.Path.indexOf("Pages") > 0 && this.Name.endsWith(".razor");
+        // return this.Path.indexOf("Pages") > 0 && this.Name.endsWith(".razor");
+        return this.Name.endsWith(".razor");
     }
     public isRazorComponent(): boolean {
         return this.Path.indexOf("Components") > 0 && this.Name.endsWith(".razor");
@@ -305,7 +307,8 @@ class Transformer {
             let razorFiles: SampleFile[] = [];
             // finding .razor files in Pages folder
             for (const file of info.SourceFiles) {
-                if (Strings.includes(file.Path, igConfig.SamplesFolderName) &&
+                if (//Strings.includes(file.Path, igConfig.SamplesFolderName) &&
+                    Strings.includes(file.Path, "App.razor") &&
                     Strings.includes(file.Path, igConfig.SamplesFileExtension) &&
                     Strings.excludes(file.Path, igConfig.SamplesFileExclusions, true)) {
                         razorFiles.push(file);
@@ -363,13 +366,17 @@ class Transformer {
                 // info.SampleImportName = info.SampleFileName.replace('.razor','');
                 // info.SampleImportPath = './' + info.ComponentFolder + '/' + info.SampleFolderName + '/' + info.SampleImportName;
 
-                info.SampleDisplayName = Strings.splitCamel(info.SampleFileName)
-                info.SampleDisplayName = Strings.replaceAll(info.SampleDisplayName, igConfig.SamplesFileExtension, "");
-                info.SampleDisplayName = Strings.replaceAll(info.SampleDisplayName, "Map Type ", "");
-                info.SampleDisplayName = Strings.replaceAll(info.SampleDisplayName, "Map Binding ", "Binding ");
-                info.SampleDisplayName = Strings.replaceAll(info.SampleDisplayName, "Map Display ", "Display ");
-                info.SampleDisplayName = Strings.replaceAll(info.SampleDisplayName, "Data Chart Type ", "");
-                info.SampleDisplayName = Strings.replaceAll(info.SampleDisplayName, info.ComponentName + " ", "");
+                info.SampleDisplayName = info.SampleFolderName;
+                // info.SampleDisplayName = info.ComponentFolder + "" + info.SampleFolderName;
+                info.SampleDisplayName = Strings.replaceAll(info.SampleDisplayName, "-", " ");
+                info.SampleDisplayName = Strings.toTitleCase(info.SampleDisplayName);
+                // info.SampleDisplayName = Strings.splitCamel(info.SampleFileName)
+                // info.SampleDisplayName = Strings.replaceAll(info.SampleDisplayName, igConfig.SamplesFileExtension, "");
+                // info.SampleDisplayName = Strings.replaceAll(info.SampleDisplayName, "Map Type ", "");
+                // info.SampleDisplayName = Strings.replaceAll(info.SampleDisplayName, "Map Binding ", "Binding ");
+                // info.SampleDisplayName = Strings.replaceAll(info.SampleDisplayName, "Map Display ", "Display ");
+                // info.SampleDisplayName = Strings.replaceAll(info.SampleDisplayName, "Data Chart Type ", "");
+                // info.SampleDisplayName = Strings.replaceAll(info.SampleDisplayName, info.ComponentName + " ", "");
                 // console.log("pro SampleDisplayName: " + info.SampleDisplayName + " file=" + info.SampleFileName);
 
                 info.SandboxUrlView = this.getSandboxUrl(info, igConfig.SandboxUrlView);
@@ -520,6 +527,7 @@ class Transformer {
             let file = new SampleFile();
             file.Path = filePath;
             file.Name = parts[parts.length - 1];
+            file.Parent = parts[parts.length - 2];
 
             if (file.isRazorSample() ||
                 file.isRazorComponent() ||

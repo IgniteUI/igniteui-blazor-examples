@@ -82,6 +82,13 @@ exports.cleanupSampleBrowsers = cleanupSampleBrowsers = gulp.series(
     sb.cleanupSampleBrowsers,
 );
 
+exports.listSamples = sb.listSamples;
+
+exports.convert = getSamples = gulp.series(
+    sb.getSamples,
+    sb.convertSamples,
+);
+
 // exports.updateVersion = updateVersion = sb.updateVersion;
 
 // // exports.default = updateBrowser;
