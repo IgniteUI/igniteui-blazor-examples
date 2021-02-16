@@ -851,6 +851,12 @@ function convertSamples(cb) {
 
 } exports.convertSamples = convertSamples;
 
+function removeSamplePages(cb) {
+    del.sync(igConfig.SamplesCopyPath + '/**/Pages', {force:true});
+
+    cb();
+} exports.removeSamplePages = removeSamplePages;
+
 function updateCodeViewer(cb) {
 
     del.sync("../IgBlazorSamples.Client/wwwroot/code-viewer/**/.json", { force: true });
