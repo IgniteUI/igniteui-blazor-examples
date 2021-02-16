@@ -2,10 +2,10 @@
     <body>
         <!-- https://static.infragistics.com/xplatform/images/browsers -->
         <a target="_blank" href="https://infragistics.com/blazor-client/samples/charts/financial-chart-overview" rel="noopener noreferrer">
-            <img height="40px" style="border-radius: 0.5rem; max-width: 100%;" alt="Run Sample" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/master/templates/sample/images/blazor-run-code.png"/>
-        </a>        
+            <img height="40px" style="border-radius: 0.5rem; max-width: 100%;" alt="Run Sample" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/vnext/templates/sample/images/blazor-run-sample.png"/>
+        </a>
         <a target="_blank" href="./App.razor" rel="noopener noreferrer">
-            <img height="40px" style="border-radius: 0.5rem; max-width: 100%;" alt="View Code" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/master/templates/sample/images/blazor-view-code.png"/>
+            <img height="40px" style="border-radius: 0.5rem; max-width: 100%;" alt="View Code" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/vnext/templates/sample/images/blazor-view-code.png"/>
         </a>
         <!-- <a target="_blank" href="https://infragistics.com/Blazorsite/components/financial-chart.html" rel="noopener noreferrer">
             <img height="40px" style="border-radius: 0.5rem" alt="View Blazor Docs" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/master/templates/sample/images/blazor-view-docs.png"/>
@@ -22,19 +22,19 @@ https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install
 
 NOTE: VS 2019 has better code highlighting and error detection than VS Code does.
 
-- open Visual Studio 2019 as an Administrator
+- open **Visual Studio 2019** as an administrator
 
 - open the **BlazorClientApp.sln** solution
 
-- right click solution and select Restore NuGet Packages
+- right click solution and select **Restore NuGet Packages**
 
-- click Debug menu and select Start Debugging or press F5 key
+- click **Debug** menu and select **Start Debugging** or press **F5** key
 
 ## Running App in VS Code
 
-- open VS Code as an Administrator
+- open **VS Code** as an administrator
 
-- open this folder in VS Code
+- open this folder in **VS Code**
 
 - open a terminal window
 - to restore assemblies, run this command:
