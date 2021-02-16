@@ -857,6 +857,34 @@ function removeSamplePages(cb) {
     cb();
 } exports.removeSamplePages = removeSamplePages;
 
+function renameProjects(cb) {
+
+    var sourceFiles = [
+        igConfig.SamplesCopyPath + '/**/BlazorClientApp.csproj',
+        igConfig.SamplesCopyPath + '/**/BlazorClientApp.sln'
+        // igConfig.SamplesCopyPath + '/charts/category-chart/annotations/BlazorClientApp.csproj',
+        // igConfig.SamplesCopyPath + '/charts/category-chart/annotations/BlazorClientApp.sln'
+    ];
+
+    gulp.src(sourceFiles, {allowEmpty: true})
+    .pipe(rename({
+        basename: 'BlazorClient'
+    }))
+    // .pipe(rename(function (file) {
+    //   file.dirname += "/folder";
+    //   file.basename = "BlazorClient";
+    //   file.extname = ".md";
+    // }))
+    .pipe(gulp.dest(function (file) { return file.base; }))
+    .on("end", function() {
+        log("renaming done" )
+
+        del.sync(sourceFiles, {force:true});
+        cb();
+    });
+
+} exports.renameProjects = renameProjects;
+
 function updateCodeViewer(cb) {
 
     del.sync("../IgBlazorSamples.Client/wwwroot/code-viewer/**/.json", { force: true });
