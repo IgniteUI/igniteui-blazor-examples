@@ -26,7 +26,7 @@
                           YMemberPath="AverageHoursWorked"
                           MarkerType="MarkerType.Circle"
                           MarkerOutline="rgb(186,231,114)"
-                          RadiusScale="SizeScale"
+                          RadiusScale="@SizeScales[1]"
                           RadiusMemberPath="TotalPopulation"
                           FillMemberPath="TotalPopulation"
                           FillScale="@FillScales[0]">
@@ -40,7 +40,7 @@
                           YMemberPath="AverageHoursWorked"
                           MarkerType="MarkerType.Circle"
                           MarkerOutline="rgb(248,174,95)"
-                          RadiusScale="SizeScale"
+                          RadiusScale="@SizeScales[1]"
                           RadiusMemberPath="TotalPopulation"
                           FillMemberPath="TotalPopulation"
                           FillScale="@FillScales[1]">
@@ -54,7 +54,7 @@
                           YMemberPath="AverageHoursWorked"
                           MarkerType="MarkerType.Circle"
                           MarkerOutline="rgb(197, 173, 216)"
-                          RadiusScale="SizeScale"
+                          RadiusScale="@SizeScales[3]"
                           RadiusMemberPath="TotalPopulation"
                           FillMemberPath="TotalPopulation"
                           FillScale="@FillScales[2]">
@@ -68,7 +68,7 @@
                           YMemberPath="AverageHoursWorked"
                           MarkerType="MarkerType.Circle"
                           MarkerOutline="rgb(224, 81, 169)"
-                          RadiusScale="SizeScale"
+                          RadiusScale="@SizeScales[2]"
                           RadiusMemberPath="TotalPopulation"
                           FillMemberPath="TotalPopulation"
                           FillScale="@FillScales[3]">
@@ -82,7 +82,7 @@
                           YMemberPath="AverageHoursWorked"
                           MarkerType="MarkerType.Circle"
                           MarkerOutline="rgb(109, 177, 255)"
-                          RadiusScale="SizeScale"
+                          RadiusScale="@SizeScales[0]"
                           RadiusMemberPath="TotalPopulation"
                           FillMemberPath="TotalPopulation"
                           FillScale="@FillScales[4]">
@@ -96,7 +96,7 @@
                           YMemberPath="AverageHoursWorked"
                           MarkerType="MarkerType.Circle"
                           MarkerOutline="rgb(115, 86, 86)"
-                          RadiusScale="SizeScale"
+                          RadiusScale="@SizeScales[1]"
                           RadiusMemberPath="TotalPopulation"
                           FillMemberPath="TotalPopulation"
                           FillScale="@FillScales[5]">
@@ -131,6 +131,24 @@
     private List<GdpVsWorkRateInfo> SouthAmericaDataSource = new GdpVsWorkRateData().Where(d => d.Continent == "South America").ToList();
 
     private SizeScale SizeScale;
+    private List<SizeScale> SizeScales = new List<SizeScale>()
+    {
+        new SizeScale{
+            MinimumValue = 10,
+            MaximumValue = 20},
+
+        new SizeScale{
+            MinimumValue = 10,
+            MaximumValue = 30},
+
+        new SizeScale{
+            MinimumValue = 10,
+            MaximumValue = 40},
+
+        new SizeScale{
+            MinimumValue = 10,
+            MaximumValue = 50}
+    };
     private List<ValueBrushScale> FillScales = new List<ValueBrushScale>()
     {
         new ValueBrushScale { Brushes = "rgba(186,231,114, 0.75)" },
@@ -150,8 +168,6 @@
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         NumberAbbreviatorModule.Register(IgniteUIBlazor);
 
-        SizeScale = new SizeScale();
-        SizeScale.MinimumValue = 10;
-        SizeScale.MaximumValue = 50;
+
     }
 }
