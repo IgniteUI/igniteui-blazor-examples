@@ -1,0 +1,62 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igOptions">
+        <span class="igLegend-title">Renewable energy consumption</span>
+        <div class="igLegend">
+            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+            <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true" IsHorizontalZoomEnabled="true">
+                <CategoryYAxis Name="yAxis" DataSource="DataSource" Label="Location" IsInverted="true" />
+                <NumericXAxis Name="xAxis" MinimumValue="0" />
+
+                <Stacked100BarSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ShowDefaultTooltip="true" AreaFillOpacity="1">
+                    <StackedFragmentSeries ValueMemberPath="Hydro" />
+                    <StackedFragmentSeries ValueMemberPath="Wind" />
+                    <StackedFragmentSeries ValueMemberPath="Solar" />
+                    <StackedFragmentSeries ValueMemberPath="Other" />
+                </Stacked100BarSeries>
+            </DataChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private Legend _legend;
+    public Legend LegendRef
+    {
+        get { return _legend; }
+        set
+        {
+            _legend = value;
+            StateHasChanged();
+        }
+    }
+
+    private List<Infragistics.Samples.SampleStackedItem> DataSource;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        DataChartStackedModule.Register(IgniteUIBlazor);
+        ColumnFragmentModule.Register(IgniteUIBlazor);
+        StackedSplineSeriesModule.Register(IgniteUIBlazor);
+        StackedFragmentSeriesModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+
+        this.DataSource = SampleStackedData.Create();
+
+    }
+}
