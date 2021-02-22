@@ -1,0 +1,76 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igOptions-vertical">
+        <span class="igLegend-title"></span>
+    </div>
+    
+    <div class="igComponent">
+
+        <DataChart Height="100%" Width="100%"
+                   Legend="LegendRef"                   
+                   IsHorizontalZoomEnabled="true"
+                   IsVerticalZoomEnabled="true">
+
+            <NumericXAxis Name="xAxis" Title="GDP" MaximumValue="100000" Interval="50000" AbbreviateLargeNumbers="true"/>
+            <NumericYAxis Name="yAxis" Title="Total Population" AbbreviateLargeNumbers="true" MinimumValue="1400.00" MaximumValue="2400.00" Interval="200" />
+
+            <BubbleSeries XAxisName="xAxis" 
+                           YAxisName="yAxis"
+                           DataSource="@DataSource"
+                           XMemberPath="GDPPerCapita"
+                           YMemberPath="AverageHoursWorked"
+                           MarkerType="MarkerType.Circle"
+                           MarkerOutline="rgb(186,231,114)"
+                           RadiusScale="SizeScale"
+                           RadiusMemberPath="TotalPopulation"
+                           FillMemberPath="TotalPopulation"
+                           FillScale="@FillScales[0]"
+                           >
+            </BubbleSeries>
+
+            
+        </DataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Legend _legend;
+    public Legend LegendRef
+    {
+        get { return _legend; }
+        set
+        {
+            _legend = value;
+            StateHasChanged();
+        }
+    }
+
+    private List<GdpVsWorkRateInfo> DataSource = new GdpVsWorkRateData();
+
+    private SizeScale SizeScale;
+    private List<ValueBrushScale> FillScales = new List<ValueBrushScale>()
+    {
+        new ValueBrushScale { Brushes = "rgba(186,231,114, 0.75)" },
+        new ValueBrushScale { Brushes = "rgba(248,174,95, 0.75)" }
+    };
+
+    protected override void OnInitialized()
+    {
+        LegendModule.Register(IgniteUIBlazor);
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartScatterModule.Register(IgniteUIBlazor);
+        DataChartScatterCoreModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+
+        SizeScale = new SizeScale();
+        SizeScale.MinimumValue = 10;
+        SizeScale.MaximumValue = 50;
+
+
+    }
+}

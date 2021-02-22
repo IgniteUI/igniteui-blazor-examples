@@ -1,0 +1,157 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igOptions-vertical">
+        <span class="igLegend-title">Annual working hours vs. GDP per capita, 2015</span>
+    </div>
+    <div class="igLegend">
+        <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+    </div>
+    <div class="igComponent">
+
+        <DataChart Height="100%" Width="100%"
+                   Legend="LegendRef"
+                   IsHorizontalZoomEnabled="true"
+                   IsVerticalZoomEnabled="true">
+
+            <NumericXAxis Name="xAxis" Title="GDP" MinimumValue="0" MaximumValue="65000" Interval="10000" AbbreviateLargeNumbers="true" />
+            <NumericYAxis Name="yAxis" Title="Total Population" AbbreviateLargeNumbers="true" MinimumValue="1400.00" MaximumValue="2400.00" Interval="200" />
+
+            <BubbleSeries XAxisName="xAxis"
+                          YAxisName="yAxis"
+                          DataSource="@AfricaDataSource"
+                          Title="Africa"
+                          XMemberPath="GDPPerCapita"
+                          YMemberPath="AverageHoursWorked"
+                          MarkerType="MarkerType.Circle"
+                          MarkerOutline="rgb(186,231,114)"
+                          RadiusScale="SizeScale"
+                          RadiusMemberPath="TotalPopulation"
+                          FillMemberPath="TotalPopulation"
+                          FillScale="@FillScales[0]">
+            </BubbleSeries>
+
+            <BubbleSeries XAxisName="xAxis"
+                          YAxisName="yAxis"
+                          DataSource="@EuropeDataSource"
+                          Title="Europe"
+                          XMemberPath="GDPPerCapita"
+                          YMemberPath="AverageHoursWorked"
+                          MarkerType="MarkerType.Circle"
+                          MarkerOutline="rgb(248,174,95)"
+                          RadiusScale="SizeScale"
+                          RadiusMemberPath="TotalPopulation"
+                          FillMemberPath="TotalPopulation"
+                          FillScale="@FillScales[1]">
+            </BubbleSeries>
+
+            <BubbleSeries XAxisName="xAxis"
+                          YAxisName="yAxis"
+                          DataSource="@AsiaDataSource"
+                          Title="Asia"
+                          XMemberPath="GDPPerCapita"
+                          YMemberPath="AverageHoursWorked"
+                          MarkerType="MarkerType.Circle"
+                          MarkerOutline="rgb(197, 173, 216)"
+                          RadiusScale="SizeScale"
+                          RadiusMemberPath="TotalPopulation"
+                          FillMemberPath="TotalPopulation"
+                          FillScale="@FillScales[2]">
+            </BubbleSeries>
+
+            <BubbleSeries XAxisName="xAxis"
+                          YAxisName="yAxis"
+                          DataSource="@NorthAmericaDataSource"
+                          Title="North America"
+                          XMemberPath="GDPPerCapita"
+                          YMemberPath="AverageHoursWorked"
+                          MarkerType="MarkerType.Circle"
+                          MarkerOutline="rgb(224, 81, 169)"
+                          RadiusScale="SizeScale"
+                          RadiusMemberPath="TotalPopulation"
+                          FillMemberPath="TotalPopulation"
+                          FillScale="@FillScales[3]">
+            </BubbleSeries>
+
+            <BubbleSeries XAxisName="xAxis"
+                          YAxisName="yAxis"
+                          DataSource="@OceaniaDataSource"
+                          Title="Oceania"
+                          XMemberPath="GDPPerCapita"
+                          YMemberPath="AverageHoursWorked"
+                          MarkerType="MarkerType.Circle"
+                          MarkerOutline="rgb(109, 177, 255)"
+                          RadiusScale="SizeScale"
+                          RadiusMemberPath="TotalPopulation"
+                          FillMemberPath="TotalPopulation"
+                          FillScale="@FillScales[4]">
+            </BubbleSeries>
+
+            <BubbleSeries XAxisName="xAxis"
+                          YAxisName="yAxis"
+                          DataSource="@SouthAmericaDataSource"
+                          Title="South America"
+                          XMemberPath="GDPPerCapita"
+                          YMemberPath="AverageHoursWorked"
+                          MarkerType="MarkerType.Circle"
+                          MarkerOutline="rgb(115, 86, 86)"
+                          RadiusScale="SizeScale"
+                          RadiusMemberPath="TotalPopulation"
+                          FillMemberPath="TotalPopulation"
+                          FillScale="@FillScales[5]">
+            </BubbleSeries>
+
+
+        </DataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Legend _legend;
+    public Legend LegendRef
+    {
+        get { return _legend; }
+        set
+        {
+            _legend = value;
+            StateHasChanged();
+        }
+    }
+
+    private List<GdpVsWorkRateInfo> AfricaDataSource = new GdpVsWorkRateData().Where(d => d.Continent == "Africa").ToList();
+    private List<GdpVsWorkRateInfo> EuropeDataSource = new GdpVsWorkRateData().Where(d => d.Continent == "Europe").ToList();
+
+    private List<GdpVsWorkRateInfo> AsiaDataSource = new GdpVsWorkRateData().Where(d => d.Continent == "Asia").ToList();
+    private List<GdpVsWorkRateInfo> NorthAmericaDataSource = new GdpVsWorkRateData().Where(d => d.Continent == "North America").ToList();
+
+    private List<GdpVsWorkRateInfo> OceaniaDataSource = new GdpVsWorkRateData().Where(d => d.Continent == "Oceania").ToList();
+    private List<GdpVsWorkRateInfo> SouthAmericaDataSource = new GdpVsWorkRateData().Where(d => d.Continent == "South America").ToList();
+
+    private SizeScale SizeScale;
+    private List<ValueBrushScale> FillScales = new List<ValueBrushScale>()
+    {
+        new ValueBrushScale { Brushes = "rgba(186,231,114, 0.75)" },
+        new ValueBrushScale { Brushes = "rgba(248,174,95, 0.75)" },
+        new ValueBrushScale { Brushes = "rgba(197, 173, 216, 0.75)"},
+        new ValueBrushScale { Brushes = "rgba(224, 81, 169, 0.75)"},
+        new ValueBrushScale { Brushes = "rgba(109, 177, 255, 0.75)"},
+        new ValueBrushScale { Brushes = "rgba(115, 86, 86, 0.75)"}
+    };
+
+    protected override void OnInitialized()
+    {
+        LegendModule.Register(IgniteUIBlazor);
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartScatterModule.Register(IgniteUIBlazor);
+        DataChartScatterCoreModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+
+        SizeScale = new SizeScale();
+        SizeScale.MinimumValue = 10;
+        SizeScale.MaximumValue = 50;
+    }
+}
