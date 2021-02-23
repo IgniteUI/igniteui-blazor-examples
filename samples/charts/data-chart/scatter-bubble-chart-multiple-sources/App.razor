@@ -14,7 +14,7 @@
     <div class="igComponent">
 
         <DataChart Height="100%" Width="100%"
-                   Legend="LegendRef"                   
+                   Legend="@LegendRef"                   
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true">
 
@@ -31,7 +31,7 @@
                            RadiusMemberPath="TotalPopulation"
                            RadiusScale="@SizeScale"
                            FillMemberPath="TotalPopulation"
-                           FillScale="@FillScales[0]"
+                           FillScale="@AfricaFillScale"
                            MarkerOutline="rgb(186,231,114)"
                            >
             </BubbleSeries>
@@ -46,7 +46,7 @@
                            RadiusMemberPath="TotalPopulation"
                            RadiusScale="@SizeScale"
                            FillMemberPath="TotalPopulation"
-                           FillScale="@FillScales[1]"
+                           FillScale="@EuropeFillScale"
                            MarkerOutline="rgb(248,174,95)"
                            >
             </BubbleSeries>
@@ -68,15 +68,20 @@
         }
     }
 
-    private List<BirthAndDeathRateInfo> AfricaDataSource = new BirthAndDeathRateData().Where(d => d.Continent == "Africa").ToList();
-    private List<BirthAndDeathRateInfo> EuropeDataSource = new BirthAndDeathRateData().Where(d => d.Continent == "Europe").ToList();
-    private SizeScale SizeScale;
-    private List<ValueBrushScale> FillScales = new List<ValueBrushScale>() 
-    { 
-        new ValueBrushScale { Brushes = "rgba(186,231,114, 0.75)" }, 
-        new ValueBrushScale { Brushes = "rgba(248,174,95, 0.75)" } 
-    };
- 
+    private List<BirthAndDeathRateInfo> AfricaDataSource;
+    private List<BirthAndDeathRateInfo> EuropeDataSource;
+    private ValueBrushScale AfricaFillScale = new ValueBrushScale { Brushes = "rgba(186, 231, 114, 0.75)" };
+    private ValueBrushScale EuropeFillScale = new ValueBrushScale { Brushes = "rgba(248, 174, 95, 0.75)" };
+    private SizeScale SizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 100 };
+
+    public void InitializeData()
+    {
+        var data = new BirthAndDeathRateData();
+
+        this.AfricaDataSource = data.Where(d => d.Continent == "Africa").ToList();
+        this.EuropeDataSource = data.Where(d => d.Continent == "Europe").ToList();
+    }
+
     protected override void OnInitialized()
     {
         LegendModule.Register(IgniteUIBlazor);
@@ -86,8 +91,6 @@
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         NumberAbbreviatorModule.Register(IgniteUIBlazor);
 
-        this.SizeScale = new SizeScale();
-        this.SizeScale.MinimumValue = 10;
-        this.SizeScale.MaximumValue = 100;
+        InitializeData();
     }
 }

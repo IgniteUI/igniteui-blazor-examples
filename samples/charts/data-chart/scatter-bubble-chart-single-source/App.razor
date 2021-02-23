@@ -8,7 +8,6 @@
     <div class="igComponent">
 
         <DataChart Height="100%" Width="100%"
-                   Legend="LegendRef"
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true">
 
@@ -22,10 +21,10 @@
                           YMemberPath="AverageHoursWorked"
                           MarkerType="MarkerType.Circle"
                           MarkerOutline="rgb(186,231,114)"
-                          RadiusScale="SizeScale"
+                          RadiusScale="@SizeScale"
                           RadiusMemberPath="TotalPopulation"
                           FillMemberPath="TotalPopulation"
-                          FillScale="@FillScales[0]">
+                          FillScale="@FillScale">
             </BubbleSeries>
 
 
@@ -36,39 +35,16 @@
 
 @code {
 
-    private Legend _legend;
-    public Legend LegendRef
-    {
-        get { return _legend; }
-        set
-        {
-            _legend = value;
-            StateHasChanged();
-        }
-    }
-
     private List<GdpVsWorkRateInfo> DataSource = new GdpVsWorkRateData();
-
-    private SizeScale SizeScale;
-    private List<ValueBrushScale> FillScales = new List<ValueBrushScale>()
-    {
-        new ValueBrushScale { Brushes = "rgba(186,231,114, 0.75)" },
-        new ValueBrushScale { Brushes = "rgba(248,174,95, 0.75)" }
-    };
+    private SizeScale SizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 50 };
+    private ValueBrushScale FillScale = new ValueBrushScale { Brushes = "rgba(186,231,114, 0.75)" };
 
     protected override void OnInitialized()
     {
-        LegendModule.Register(IgniteUIBlazor);
         DataChartCoreModule.Register(IgniteUIBlazor);
         DataChartScatterModule.Register(IgniteUIBlazor);
         DataChartScatterCoreModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         NumberAbbreviatorModule.Register(IgniteUIBlazor);
-
-        SizeScale = new SizeScale();
-        SizeScale.MinimumValue = 10;
-        SizeScale.MaximumValue = 50;
-
-
     }
 }
