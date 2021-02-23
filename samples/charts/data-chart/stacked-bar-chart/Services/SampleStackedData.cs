@@ -32,10 +32,5 @@ namespace Infragistics.Samples
         public double Sum { get; set; }
     }
 
-    public class CalloutData
-    {
-        public double X { get; set; }
-        public double Y { get; set; }
-        public string Label { get; set; }
-    }
+   
 }
