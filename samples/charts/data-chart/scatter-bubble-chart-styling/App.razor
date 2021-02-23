@@ -1,0 +1,176 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igOptions-vertical">
+        <span class="igLegend-title">Annual working hours vs. GDP per capita, 2015</span>
+    </div>
+    <div class="igLegend">
+        <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+    </div>
+    <div class="igComponent">
+
+        <DataChart Height="100%" Width="100%"
+                   Legend="LegendRef"
+                   IsHorizontalZoomEnabled="true"
+                   IsVerticalZoomEnabled="true">
+
+            <NumericXAxis Name="xAxis" Title="GDP" MinimumValue="0" MaximumValue="65000" Interval="10000" AbbreviateLargeNumbers="true" />
+            <NumericYAxis Name="yAxis" Title="Total Population" AbbreviateLargeNumbers="true" MinimumValue="1400.00" MaximumValue="2400.00" Interval="200" />
+
+            <BubbleSeries XAxisName="xAxis"
+                          YAxisName="yAxis"
+                          DataSource="@AfricaDataSource"
+                          Title="Africa"
+                          XMemberPath="GDPPerCapita"
+                          YMemberPath="AverageHoursWorked"
+                          MarkerType="MarkerType.Circle"
+                          MarkerOutline="rgb(186,231,114)"
+                          RadiusScale="@AfricaSizeScale"
+                          RadiusMemberPath="TotalPopulation"
+                          FillMemberPath="TotalPopulation"
+                          FillScale="@AfricaFillScale"
+                          ShowDefaultTooltip="true">
+            </BubbleSeries>
+
+            <BubbleSeries XAxisName="xAxis"
+                          YAxisName="yAxis"
+                          DataSource="@EuropeDataSource"
+                          Title="Europe"
+                          XMemberPath="GDPPerCapita"
+                          YMemberPath="AverageHoursWorked"
+                          MarkerType="MarkerType.Circle"
+                          MarkerOutline="rgb(248,174,95)"
+                          RadiusScale="@EuropeSizeScale"
+                          RadiusMemberPath="TotalPopulation"
+                          FillMemberPath="TotalPopulation"
+                          FillScale="@EuropeFillScale"
+                          ShowDefaultTooltip="true">
+            </BubbleSeries>
+
+            <BubbleSeries XAxisName="xAxis"
+                          YAxisName="yAxis"
+                          DataSource="@AsiaDataSource"
+                          Title="Asia"
+                          XMemberPath="GDPPerCapita"
+                          YMemberPath="AverageHoursWorked"
+                          MarkerType="MarkerType.Circle"
+                          MarkerOutline="rgb(197, 173, 216)"
+                          RadiusScale="@AsiaSizeScale"
+                          RadiusMemberPath="TotalPopulation"
+                          FillMemberPath="TotalPopulation"
+                          FillScale="@AsiaFillScale"
+                          ShowDefaultTooltip="true">
+            </BubbleSeries>
+
+            <BubbleSeries XAxisName="xAxis"
+                          YAxisName="yAxis"
+                          DataSource="@NorthAmericaDataSource"
+                          Title="North America"
+                          XMemberPath="GDPPerCapita"
+                          YMemberPath="AverageHoursWorked"
+                          MarkerType="MarkerType.Circle"
+                          MarkerOutline="rgb(224, 81, 169)"
+                          RadiusScale="@NorthAmericaSizeScale"
+                          RadiusMemberPath="TotalPopulation"
+                          FillMemberPath="TotalPopulation"
+                          FillScale="@NorthAmericaFillScale"
+                          ShowDefaultTooltip="true">
+            </BubbleSeries>
+
+            <BubbleSeries XAxisName="xAxis"
+                          YAxisName="yAxis"
+                          DataSource="@OceaniaDataSource"
+                          Title="Oceania"
+                          XMemberPath="GDPPerCapita"
+                          YMemberPath="AverageHoursWorked"
+                          MarkerType="MarkerType.Circle"
+                          MarkerOutline="rgb(109, 177, 255)"
+                          RadiusScale="@OceaniaSizeScale"
+                          RadiusMemberPath="TotalPopulation"
+                          FillMemberPath="TotalPopulation"
+                          FillScale="@OceaniaFillScale"
+                          ShowDefaultTooltip="true">
+            </BubbleSeries>
+
+            <BubbleSeries XAxisName="xAxis"
+                          YAxisName="yAxis"
+                          DataSource="@SouthAmericaDataSource"
+                          Title="South America"
+                          XMemberPath="GDPPerCapita"
+                          YMemberPath="AverageHoursWorked"
+                          MarkerType="MarkerType.Circle"
+                          MarkerOutline="rgb(115, 86, 86)"
+                          RadiusScale="@SouthAmericaSizeScale"
+                          RadiusMemberPath="TotalPopulation"
+                          FillMemberPath="TotalPopulation"
+                          FillScale="@SouthAmericaFillScale"
+                          ShowDefaultTooltip="true">
+            </BubbleSeries>
+
+
+        </DataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Legend _legend;
+    public Legend LegendRef
+    {
+        get { return _legend; }
+        set
+        {
+            _legend = value;
+            StateHasChanged();
+        }
+    }
+
+    private List<GdpVsWorkRateInfo> AfricaDataSource;
+    private List<GdpVsWorkRateInfo> EuropeDataSource;
+    private List<GdpVsWorkRateInfo> AsiaDataSource;
+    private List<GdpVsWorkRateInfo> NorthAmericaDataSource;
+    private List<GdpVsWorkRateInfo> OceaniaDataSource;
+    private List<GdpVsWorkRateInfo> SouthAmericaDataSource;
+
+    private ValueBrushScale AfricaFillScale = new ValueBrushScale { Brushes = "rgba(186, 231, 114, 0.75)" };
+    private ValueBrushScale AsiaFillScale = new ValueBrushScale { Brushes = "rgba(197, 173, 216, 0.75)" };
+    private ValueBrushScale EuropeFillScale = new ValueBrushScale { Brushes = "rgba(248, 174, 95, 0.75)" };
+    private ValueBrushScale NorthAmericaFillScale = new ValueBrushScale { Brushes = "rgba(224, 81, 169, 0.75)" };
+    private ValueBrushScale OceaniaFillScale = new ValueBrushScale { Brushes = "rgba(109, 177, 255, 0.75)" };
+    private ValueBrushScale SouthAmericaFillScale = new ValueBrushScale { Brushes = "rgba(115, 86, 86, 0.75)" };
+
+    private SizeScale AfricaSizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 30 };
+    private SizeScale AsiaSizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 50 };
+    private SizeScale EuropeSizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 30 };
+    private SizeScale NorthAmericaSizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 40 };
+    private SizeScale OceaniaSizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 20 };
+    private SizeScale SouthAmericaSizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 30 };
+
+    public void InitializeData()
+    {
+        var data = new GdpVsWorkRateData();
+
+        this.AfricaDataSource = data.Where(d => d.Continent == "Africa").ToList();
+        this.EuropeDataSource = data.Where(d => d.Continent == "Europe").ToList();
+
+        this.AsiaDataSource = data.Where(d => d.Continent == "Asia").ToList();
+        this.NorthAmericaDataSource = data.Where(d => d.Continent == "North America").ToList();
+
+        this.OceaniaDataSource = data.Where(d => d.Continent == "Oceania").ToList();
+        this.SouthAmericaDataSource = data.Where(d => d.Continent == "South America").ToList();
+    }
+
+    protected override void OnInitialized()
+    {
+        LegendModule.Register(IgniteUIBlazor);
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartScatterModule.Register(IgniteUIBlazor);
+        DataChartScatterCoreModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+
+        InitializeData();
+    }
+}

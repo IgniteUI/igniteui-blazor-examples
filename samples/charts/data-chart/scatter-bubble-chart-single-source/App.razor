@@ -1,0 +1,50 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igOptions-vertical">
+        <span class="igLegend-title">Annual working hours vs. GDP per capita, 2015</span>
+    </div>
+    <div class="igComponent">
+
+        <DataChart Height="100%" Width="100%"
+                   IsHorizontalZoomEnabled="true"
+                   IsVerticalZoomEnabled="true">
+
+            <NumericXAxis Name="xAxis" Title="GDP" MaximumValue="100000" Interval="50000" AbbreviateLargeNumbers="true" />
+            <NumericYAxis Name="yAxis" Title="Total Population" AbbreviateLargeNumbers="true" MinimumValue="1400.00" MaximumValue="2400.00" Interval="200" />
+
+            <BubbleSeries XAxisName="xAxis"
+                          YAxisName="yAxis"
+                          DataSource="@DataSource"
+                          XMemberPath="GDPPerCapita"
+                          YMemberPath="AverageHoursWorked"
+                          MarkerType="MarkerType.Circle"
+                          MarkerOutline="rgb(186,231,114)"
+                          RadiusScale="@SizeScale"
+                          RadiusMemberPath="TotalPopulation"
+                          FillMemberPath="TotalPopulation"
+                          FillScale="@FillScale">
+            </BubbleSeries>
+
+
+        </DataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private List<GdpVsWorkRateInfo> DataSource = new GdpVsWorkRateData();
+    private SizeScale SizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 50 };
+    private ValueBrushScale FillScale = new ValueBrushScale { Brushes = "rgba(186,231,114, 0.75)" };
+
+    protected override void OnInitialized()
+    {
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartScatterModule.Register(IgniteUIBlazor);
+        DataChartScatterCoreModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+    }
+}
