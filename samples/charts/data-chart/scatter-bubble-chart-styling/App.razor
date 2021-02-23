@@ -26,10 +26,11 @@
                           YMemberPath="AverageHoursWorked"
                           MarkerType="MarkerType.Circle"
                           MarkerOutline="rgb(186,231,114)"
-                          RadiusScale="@SizeScales[1]"
+                          RadiusScale="@AfricaSizeScale"
                           RadiusMemberPath="TotalPopulation"
                           FillMemberPath="TotalPopulation"
-                          FillScale="@FillScales[0]">
+                          FillScale="@AfricaFillScale"
+                          ShowDefaultTooltip="true">
             </BubbleSeries>
 
             <BubbleSeries XAxisName="xAxis"
@@ -40,10 +41,11 @@
                           YMemberPath="AverageHoursWorked"
                           MarkerType="MarkerType.Circle"
                           MarkerOutline="rgb(248,174,95)"
-                          RadiusScale="@SizeScales[1]"
+                          RadiusScale="@EuropeSizeScale"
                           RadiusMemberPath="TotalPopulation"
                           FillMemberPath="TotalPopulation"
-                          FillScale="@FillScales[1]">
+                          FillScale="@EuropeFillScale"
+                          ShowDefaultTooltip="true">
             </BubbleSeries>
 
             <BubbleSeries XAxisName="xAxis"
@@ -54,10 +56,11 @@
                           YMemberPath="AverageHoursWorked"
                           MarkerType="MarkerType.Circle"
                           MarkerOutline="rgb(197, 173, 216)"
-                          RadiusScale="@SizeScales[3]"
+                          RadiusScale="@AsiaSizeScale"
                           RadiusMemberPath="TotalPopulation"
                           FillMemberPath="TotalPopulation"
-                          FillScale="@FillScales[2]">
+                          FillScale="@AsiaFillScale"
+                          ShowDefaultTooltip="true">
             </BubbleSeries>
 
             <BubbleSeries XAxisName="xAxis"
@@ -68,10 +71,11 @@
                           YMemberPath="AverageHoursWorked"
                           MarkerType="MarkerType.Circle"
                           MarkerOutline="rgb(224, 81, 169)"
-                          RadiusScale="@SizeScales[2]"
+                          RadiusScale="@NorthAmericaSizeScale"
                           RadiusMemberPath="TotalPopulation"
                           FillMemberPath="TotalPopulation"
-                          FillScale="@FillScales[3]">
+                          FillScale="@NorthAmericaFillScale"
+                          ShowDefaultTooltip="true">
             </BubbleSeries>
 
             <BubbleSeries XAxisName="xAxis"
@@ -82,10 +86,11 @@
                           YMemberPath="AverageHoursWorked"
                           MarkerType="MarkerType.Circle"
                           MarkerOutline="rgb(109, 177, 255)"
-                          RadiusScale="@SizeScales[0]"
+                          RadiusScale="@OceaniaSizeScale"
                           RadiusMemberPath="TotalPopulation"
                           FillMemberPath="TotalPopulation"
-                          FillScale="@FillScales[4]">
+                          FillScale="@OceaniaFillScale"
+                          ShowDefaultTooltip="true">
             </BubbleSeries>
 
             <BubbleSeries XAxisName="xAxis"
@@ -96,10 +101,11 @@
                           YMemberPath="AverageHoursWorked"
                           MarkerType="MarkerType.Circle"
                           MarkerOutline="rgb(115, 86, 86)"
-                          RadiusScale="@SizeScales[1]"
+                          RadiusScale="@SouthAmericaSizeScale"
                           RadiusMemberPath="TotalPopulation"
                           FillMemberPath="TotalPopulation"
-                          FillScale="@FillScales[5]">
+                          FillScale="@SouthAmericaFillScale"
+                          ShowDefaultTooltip="true">
             </BubbleSeries>
 
 
@@ -121,43 +127,40 @@
         }
     }
 
-    private List<GdpVsWorkRateInfo> AfricaDataSource = new GdpVsWorkRateData().Where(d => d.Continent == "Africa").ToList();
-    private List<GdpVsWorkRateInfo> EuropeDataSource = new GdpVsWorkRateData().Where(d => d.Continent == "Europe").ToList();
+    private List<GdpVsWorkRateInfo> AfricaDataSource;
+    private List<GdpVsWorkRateInfo> EuropeDataSource;
+    private List<GdpVsWorkRateInfo> AsiaDataSource;
+    private List<GdpVsWorkRateInfo> NorthAmericaDataSource;
+    private List<GdpVsWorkRateInfo> OceaniaDataSource;
+    private List<GdpVsWorkRateInfo> SouthAmericaDataSource;
 
-    private List<GdpVsWorkRateInfo> AsiaDataSource = new GdpVsWorkRateData().Where(d => d.Continent == "Asia").ToList();
-    private List<GdpVsWorkRateInfo> NorthAmericaDataSource = new GdpVsWorkRateData().Where(d => d.Continent == "North America").ToList();
+    private ValueBrushScale AfricaFillScale = new ValueBrushScale { Brushes = "rgba(186, 231, 114, 0.75)" };
+    private ValueBrushScale AsiaFillScale = new ValueBrushScale { Brushes = "rgba(197, 173, 216, 0.75)" };
+    private ValueBrushScale EuropeFillScale = new ValueBrushScale { Brushes = "rgba(248, 174, 95, 0.75)" };
+    private ValueBrushScale NorthAmericaFillScale = new ValueBrushScale { Brushes = "rgba(224, 81, 169, 0.75)" };
+    private ValueBrushScale OceaniaFillScale = new ValueBrushScale { Brushes = "rgba(109, 177, 255, 0.75)" };
+    private ValueBrushScale SouthAmericaFillScale = new ValueBrushScale { Brushes = "rgba(115, 86, 86, 0.75)" };
 
-    private List<GdpVsWorkRateInfo> OceaniaDataSource = new GdpVsWorkRateData().Where(d => d.Continent == "Oceania").ToList();
-    private List<GdpVsWorkRateInfo> SouthAmericaDataSource = new GdpVsWorkRateData().Where(d => d.Continent == "South America").ToList();
+    private SizeScale AfricaSizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 30 };
+    private SizeScale AsiaSizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 50 };
+    private SizeScale EuropeSizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 30 };
+    private SizeScale NorthAmericaSizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 40 };
+    private SizeScale OceaniaSizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 20 };
+    private SizeScale SouthAmericaSizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 30 };
 
-    private SizeScale SizeScale;
-    private List<SizeScale> SizeScales = new List<SizeScale>()
+    public void InitializeData()
     {
-        new SizeScale{
-            MinimumValue = 10,
-            MaximumValue = 20},
+        var data = new GdpVsWorkRateData();
 
-        new SizeScale{
-            MinimumValue = 10,
-            MaximumValue = 30},
+        this.AfricaDataSource = data.Where(d => d.Continent == "Africa").ToList();
+        this.EuropeDataSource = data.Where(d => d.Continent == "Europe").ToList();
 
-        new SizeScale{
-            MinimumValue = 10,
-            MaximumValue = 40},
+        this.AsiaDataSource = data.Where(d => d.Continent == "Asia").ToList();
+        this.NorthAmericaDataSource = data.Where(d => d.Continent == "North America").ToList();
 
-        new SizeScale{
-            MinimumValue = 10,
-            MaximumValue = 50}
-    };
-    private List<ValueBrushScale> FillScales = new List<ValueBrushScale>()
-    {
-        new ValueBrushScale { Brushes = "rgba(186,231,114, 0.75)" },
-        new ValueBrushScale { Brushes = "rgba(248,174,95, 0.75)" },
-        new ValueBrushScale { Brushes = "rgba(197, 173, 216, 0.75)"},
-        new ValueBrushScale { Brushes = "rgba(224, 81, 169, 0.75)"},
-        new ValueBrushScale { Brushes = "rgba(109, 177, 255, 0.75)"},
-        new ValueBrushScale { Brushes = "rgba(115, 86, 86, 0.75)"}
-    };
+        this.OceaniaDataSource = data.Where(d => d.Continent == "Oceania").ToList();
+        this.SouthAmericaDataSource = data.Where(d => d.Continent == "South America").ToList();
+    }
 
     protected override void OnInitialized()
     {
@@ -168,6 +171,6 @@
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         NumberAbbreviatorModule.Register(IgniteUIBlazor);
 
-
+        InitializeData();
     }
 }
