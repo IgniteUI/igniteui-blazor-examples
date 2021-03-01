@@ -3,23 +3,24 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 @* NOTE use this HTML code to design a sample *@
 <div class="igContainer">
+    <div class="igOptions">
+        <span class="igLegend-title">Renewable Electricity Generated</span>
+        <div class="igLegend">
+            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
     <div class="igComponent">
         @if (DataSource != null)
         {
-            <CategoryChart Height="100%" Width="100%" 
-                Legend="@LegendRef" 
-                ChartType="CategoryChartType.StepArea"
-                ChartTitle="Renewable Electricity Generated"
-                TitleAlignment="HorizontalAlignment.Left"
-                TitleLeftMargin="25"
-                TitleTopMargin="10"
-                TitleBottomMargin="10"
-                DataSource="DataSource"
-                YAxisTitle="TWh"
-                IsCategoryHighlightingEnabled="true"
-                IsSeriesHighlightingEnabled="true"
-                ToolTipType="ToolTipType.Category"
-                IsTransitionInEnabled="true">
+            <CategoryChart Height="100%" Width="100%"
+                           Legend="@LegendRef"
+                           ChartType="CategoryChartType.StepArea"                         
+                           DataSource="DataSource"
+                           YAxisTitle="TWh"
+                           IsCategoryHighlightingEnabled="true"
+                           IsSeriesHighlightingEnabled="true"
+                           ToolTipType="ToolTipType.Category"
+                           IsTransitionInEnabled="true">
             </CategoryChart>
         }
     </div>
@@ -28,6 +29,7 @@
 @code {
 
     private List<EnergyRenewableInfo> DataSource;
+
     private Legend legend;
     private Legend LegendRef
     {
@@ -44,6 +46,7 @@
         CategoryChartModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         LegendModule.Register(IgniteUIBlazor);
+
         this.DataSource = new EnergyRenewableData();
     }
 }

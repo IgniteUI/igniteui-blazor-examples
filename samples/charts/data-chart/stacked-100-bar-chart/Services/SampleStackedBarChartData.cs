@@ -15,7 +15,6 @@ namespace Infragistics.Samples
 
             foreach (SampleStackedBarChartItem info in this)
             {
-
                 info.Sum = info.Hydro + info.Solar + info.Wind + info.Other;
             }
        }
