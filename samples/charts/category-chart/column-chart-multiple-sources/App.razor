@@ -2,17 +2,21 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="igContainer">
+    <div class="igOptions">
+        <span class="igLegend-title">Highest Grossing Film Franchises and Series Worldwide as of April 2020</span>
+        <div class="igLegend">
+            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+
     <div class="igComponent">
         @if (DataSource != null)
         {
             <CategoryChart Height="100%" Width="100%"
-                           DataSource="DataSource" 
+                           Legend="LegendRef"
+                           DataSource="DataSource"
                            ChartType="CategoryChartType.Column"
-                           ChartTitle="Highest Grossing Film Franchises and Series Worldwide as of April 2020"
-                           TitleAlignment="HorizontalAlignment.Left"
-                           TitleLeftMargin="25"
-                           TitleTopMargin="10"
-                           TitleBottomMargin="10"
+                           XAxisInterval="1"
                            YAxisTitle="Billions of U.S. Dollars"
                            YAxisTitleLeftMargin="10"
                            YAxisTitleRightMargin="5"
@@ -24,10 +28,18 @@
 
 @code {
 
+    private Legend _Legend;
+    private Legend LegendRef
+    {
+        get { return _Legend; }
+        set { _Legend = value; StateHasChanged(); }
+    }
+
     private List<FilmFranchiseRevenueInfo> DataSource = new FilmFranchiseRevenueData();
 
     protected override void OnInitialized()
     {
         CategoryChartModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
     }
 }
