@@ -4,23 +4,23 @@
 
 <div class="igContainer">
     <div class="igOptions">
-        <span class="igLegend-title">Annual Number of Births by World Region</span>
+        <span class="igLegend-title">Annual Number of Births by World Region, Relative</span>
     </div>
     <div class="igComponent">
         @if (DataSource != null)
         {
-            <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="false" IsHorizontalZoomEnabled="false">
-                <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Year" Gap="0.75" />
-                <NumericYAxis Name="yAxis" MinimumValue="0" MaximumValue="300" Interval="50" Title="TWh" TitleLeftMargin="10" />
+        <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true" IsHorizontalZoomEnabled="true">
+            <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Year" />
+            <NumericYAxis Name="yAxis" Interval="20" TitleLeftMargin="10" LabelFormat="{0} %" />
 
-            <StackedSplineAreaSeries MarkerType="MarkerType.Circle" XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ShowDefaultTooltip="false">
+            <Stacked100SplineAreaSeries MarkerType="MarkerType.Circle" XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ShowDefaultTooltip="false">
                 <StackedFragmentSeries ValueMemberPath="Asia" />
                 <StackedFragmentSeries ValueMemberPath="Africa" />
                 <StackedFragmentSeries ValueMemberPath="Europe" />
                 <StackedFragmentSeries ValueMemberPath="NorthAmerica" />
                 <StackedFragmentSeries ValueMemberPath="SouthAmerica" />
                 <StackedFragmentSeries ValueMemberPath="Oceania" />
-            </StackedSplineAreaSeries>
+            </Stacked100SplineAreaSeries>
         </DataChart>
         }
     </div>

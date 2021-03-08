@@ -4,7 +4,7 @@
 
 <div class="igContainer">
     <div class="igOptions">
-        <span class="igLegend-title">Renewable Electricity generated combined</span>
+        <span class="igLegend-title">Annual Number of Births by World Region</span>
     </div>
     <div class="igComponent">
         @if (DataSource != null)
@@ -14,9 +14,12 @@
                 <NumericYAxis Name="yAxis" MinimumValue="0" MaximumValue="300" Interval="50" Title="TWh" TitleLeftMargin="10" />
 
                 <StackedAreaSeries MarkerType="MarkerType.Circle" XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ShowDefaultTooltip="false">
-                    <StackedFragmentSeries ValueMemberPath="USA" />
+                    <StackedFragmentSeries ValueMemberPath="Asia" />
+                    <StackedFragmentSeries ValueMemberPath="Africa" />
                     <StackedFragmentSeries ValueMemberPath="Europe" />
-                    <StackedFragmentSeries ValueMemberPath="China" />
+                    <StackedFragmentSeries ValueMemberPath="NorthAmerica" />
+                    <StackedFragmentSeries ValueMemberPath="SouthAmerica" />
+                    <StackedFragmentSeries ValueMemberPath="Oceania" />
                 </StackedAreaSeries>
             </DataChart>
         }
@@ -25,7 +28,7 @@
 
 @code {
 
-    public List<RenewableElectricityStackedInfo> DataSource = new RenewableElectricityStackedData();
+    public List<AnnualBirthRateRegionalInfo> DataSource = new AnnualBirthRateRegionalData();
 
     protected override void OnInitialized()
     {
@@ -37,12 +40,5 @@
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         DataChartStackedModule.Register(IgniteUIBlazor);
         StackedFragmentSeriesModule.Register(IgniteUIBlazor);     
-    }
-
-    public class CalloutData
-    {
-        public int X { get; set; }
-        public double Y { get; set; }
-        public string Label { get; set; }
-    }
+    }  
 }
