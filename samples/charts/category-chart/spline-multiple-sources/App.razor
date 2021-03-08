@@ -3,6 +3,13 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 @* NOTE use this HTML code to design a sample *@
 <div class="igContainer">
+    <div class="igOptions">
+        <span class="igLegend-title">Renewable Electricity Generated</span>
+        <div class="igLegend">
+            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+
     <div class="igComponent">
         @if (DataSource != null)
         {
@@ -25,6 +32,13 @@
 </div>
 
 @code {
+
+    private Legend _Legend;
+    private Legend LegendRef
+    {
+        get { return _Legend; }
+        set { _Legend = value; StateHasChanged(); }
+    }
 
     private List<EnergyRenewableInfo> DataSource;
 
