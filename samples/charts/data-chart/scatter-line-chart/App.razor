@@ -12,38 +12,30 @@
         </div>
     </div>
     <div class="igComponent">
-
         <DataChart Height="100%" Width="100%"
                    Legend="@LegendRef"                   
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true">
 
-            <NumericXAxis Name="xAxis" Title="Death Rate, crude (per 1,000 people)" MinimumValue="2" MaximumValue="16" Interval="1" />
-            <NumericYAxis Name="yAxis" Title="Birth Rate, crude (per 1,000 people)" MinimumValue="0" MaximumValue="60" Interval="20" />
+            <NumericXAxis Name="xAxis" Title="Death Rate, crude (per 1,000 people)"  Interval="1" />
+            <NumericYAxis Name="yAxis" Title="Birth Rate, crude (per 1,000 people)"  Interval="20" />
 
-            <BubbleSeries XAxisName="xAxis" 
+            <ScatterLineSeries XAxisName="xAxis" 
                            YAxisName="yAxis"
                            DataSource="@AfricaDataSource"
                            XMemberPath="DeathRate"
                            YMemberPath="BirthRate"
                            MarkerType="MarkerType.Circle"
-                           Title="Africa"
-                           RadiusMemberPath="TotalPopulation"
-                           RadiusScale="@SizeScale">
-            </BubbleSeries>
+                           Title="Africa" />             
 
-            <BubbleSeries XAxisName="xAxis"
+            <ScatterLineSeries XAxisName="xAxis"
                            YAxisName="yAxis"
                            DataSource="@EuropeDataSource"
                            XMemberPath="DeathRate"
                            YMemberPath="BirthRate"
                            MarkerType="MarkerType.Circle"
-                           Title="Europe"
-                           RadiusMemberPath="TotalPopulation"
-                           RadiusScale="@SizeScale">
-            </BubbleSeries>
+                           Title="Europe"/>
         </DataChart>
-
     </div>
 </div>
 
@@ -62,21 +54,48 @@
 
     private List<BirthAndDeathRateInfo> AfricaDataSource;
     private List<BirthAndDeathRateInfo> EuropeDataSource;
-    private ValueBrushScale AfricaFillScale = new ValueBrushScale { Brushes = "rgba(186, 231, 114, 0.75)" };
-    private ValueBrushScale EuropeFillScale = new ValueBrushScale { Brushes = "rgba(248, 174, 95, 0.75)" };
-    private SizeScale SizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 100 };
 
     public void InitializeData()
     {
         var data = new BirthAndDeathRateData();
 
-        var comparer = new BubbleSeriesSortComparer();
+        var comparer = new BirthAndDeathRateSortComparer();
 
         this.AfricaDataSource = data.Where(d => d.Continent == "Africa").ToList();
         this.AfricaDataSource.Sort(comparer);
 
         this.EuropeDataSource = data.Where(d => d.Continent == "Europe").ToList();
         this.EuropeDataSource.Sort(comparer);
+
+        List<BirthAndDeathRateInfo> itemsToRemove = new List<BirthAndDeathRateInfo>();
+
+        foreach (var item in AfricaDataSource)
+        {
+            if (item.BirthRate == 0 && item.DeathRate == 0)
+            {
+                itemsToRemove.Add(item);
+            }
+        }
+
+        foreach(var item in EuropeDataSource)
+        {
+            if (item.BirthRate == 0 && item.DeathRate == 0)
+            {
+                itemsToRemove.Add(item);
+            }
+        }
+
+        foreach (var item in itemsToRemove)
+        {
+            if (EuropeDataSource.Contains(item))
+            {
+                this.EuropeDataSource.Remove(item);
+            }
+            else
+            {
+                this.AfricaDataSource.Remove(item);
+            }
+        }
     }
 
     protected override void OnInitialized()
@@ -91,11 +110,11 @@
         InitializeData();
     }
 
-    private class BubbleSeriesSortComparer : IComparer<BirthAndDeathRateInfo>
+    public class BirthAndDeathRateSortComparer : IComparer<BirthAndDeathRateInfo>
     {
         public int Compare(BirthAndDeathRateInfo x, BirthAndDeathRateInfo y)
-        {            
-            return y.TotalPopulation.CompareTo(x.TotalPopulation);
+        {
+            return x.DeathRate.CompareTo(y.DeathRate);
         }
     }
 }

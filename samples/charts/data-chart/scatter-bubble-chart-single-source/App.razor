@@ -6,7 +6,6 @@
         <span class="igLegend-title">Annual working hours vs. GDP per capita, 2015</span>
     </div>
     <div class="igComponent">
-
         <DataChart Height="100%" Width="100%"
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true">
@@ -19,25 +18,18 @@
                           DataSource="@DataSource"
                           XMemberPath="GDPPerCapita"
                           YMemberPath="AverageHoursWorked"
-                          MarkerType="MarkerType.Circle"
-                          MarkerOutline="rgb(186,231,114)"
+                          MarkerType="MarkerType.Circle"                          
                           RadiusScale="@SizeScale"
-                          RadiusMemberPath="TotalPopulation"
-                          FillMemberPath="TotalPopulation"
-                          FillScale="@FillScale">
+                          RadiusMemberPath="TotalPopulation">
             </BubbleSeries>
-
-
         </DataChart>
-
     </div>
 </div>
 
 @code {
 
     private List<GdpVsWorkRateInfo> DataSource = new GdpVsWorkRateData();
-    private SizeScale SizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 50 };
-    private ValueBrushScale FillScale = new ValueBrushScale { Brushes = "rgba(186,231,114, 0.75)" };
+    private SizeScale SizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 50 };    
 
     protected override void OnInitialized()
     {
