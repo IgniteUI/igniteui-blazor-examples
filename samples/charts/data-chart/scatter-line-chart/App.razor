@@ -3,7 +3,7 @@
 
 <div class="igContainer">
     <div class="igOptions-vertical">
-        <span class="igLegend-title">Total Population (Gapminder, HYDE & UN): 1k - 181M </span>
+        <span class="igLegend-title">Life Expectancy versus Health Expenditure for European Countries</span>
     </div>
     <div class="igOptions-horizontal">        
         <span class="igLegend-title">Continent: </span>
@@ -13,28 +13,36 @@
     </div>
     <div class="igComponent">
         <DataChart Height="100%" Width="100%"
-                   Legend="@LegendRef"                   
+                   Legend="@LegendRef"
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true">
 
-            <NumericXAxis Name="xAxis" Title="Death Rate, crude (per 1,000 people)"  Interval="1" />
-            <NumericYAxis Name="yAxis" Title="Birth Rate, crude (per 1,000 people)"  Interval="20" />
-
-            <ScatterLineSeries XAxisName="xAxis" 
-                           YAxisName="yAxis"
-                           DataSource="@AfricaDataSource"
-                           XMemberPath="DeathRate"
-                           YMemberPath="BirthRate"
-                           MarkerType="MarkerType.Circle"
-                           Title="Africa" />             
+            <NumericXAxis Name="xAxis" LabelFormat="${0}" Title="Health Expenditure"/>
+            <NumericYAxis Name="yAxis" LabelFormat="{0} years" Title="Life Expectancy"/>
 
             <ScatterLineSeries XAxisName="xAxis"
-                           YAxisName="yAxis"
-                           DataSource="@EuropeDataSource"
-                           XMemberPath="DeathRate"
-                           YMemberPath="BirthRate"
-                           MarkerType="MarkerType.Circle"
-                           Title="Europe"/>
+                               YAxisName="yAxis"
+                               DataSource="@GermanyDataSource"
+                               XMemberPath="HealthExpense"
+                               YMemberPath="LifeExpectancy"
+                               Title="Germany"
+                               MarkerType="@MarkerType.Circle"/>
+
+            <ScatterLineSeries XAxisName="xAxis"
+                               YAxisName="yAxis"
+                               DataSource="@FranceDataSource"
+                               XMemberPath="HealthExpense"
+                               YMemberPath="LifeExpectancy"
+                               Title="France"
+                               MarkerType="@MarkerType.Circle"/>
+
+            <ScatterLineSeries XAxisName="xAxis"
+                               YAxisName="yAxis"
+                               DataSource="@LuxembourgDataSource"
+                               XMemberPath="HealthExpense"
+                               YMemberPath="LifeExpectancy"
+                               Title="Luxembourg"
+                               MarkerType="@MarkerType.Circle"/>
         </DataChart>
     </div>
 </div>
@@ -52,50 +60,16 @@
         }
     }
 
-    private List<BirthAndDeathRateInfo> AfricaDataSource;
-    private List<BirthAndDeathRateInfo> EuropeDataSource;
+    private List<HealthExpenseLifeExpectancyInfo> GermanyDataSource;
+    private List<HealthExpenseLifeExpectancyInfo> FranceDataSource;    
+    private List<HealthExpenseLifeExpectancyInfo> LuxembourgDataSource;    
 
     public void InitializeData()
     {
-        var data = new BirthAndDeathRateData();
-
-        var comparer = new BirthAndDeathRateSortComparer();
-
-        this.AfricaDataSource = data.Where(d => d.Continent == "Africa").ToList();
-        this.AfricaDataSource.Sort(comparer);
-
-        this.EuropeDataSource = data.Where(d => d.Continent == "Europe").ToList();
-        this.EuropeDataSource.Sort(comparer);
-
-        List<BirthAndDeathRateInfo> itemsToRemove = new List<BirthAndDeathRateInfo>();
-
-        foreach (var item in AfricaDataSource)
-        {
-            if (item.BirthRate == 0 && item.DeathRate == 0)
-            {
-                itemsToRemove.Add(item);
-            }
-        }
-
-        foreach(var item in EuropeDataSource)
-        {
-            if (item.BirthRate == 0 && item.DeathRate == 0)
-            {
-                itemsToRemove.Add(item);
-            }
-        }
-
-        foreach (var item in itemsToRemove)
-        {
-            if (EuropeDataSource.Contains(item))
-            {
-                this.EuropeDataSource.Remove(item);
-            }
-            else
-            {
-                this.AfricaDataSource.Remove(item);
-            }
-        }
+        var fullList = new HealthExpenseLifeExpectancyData();
+        this.GermanyDataSource = fullList.Where(c => c.Country == "Germany").ToList();
+        this.FranceDataSource = fullList.Where(c => c.Country == "France").ToList();
+        this.LuxembourgDataSource = fullList.Where(c => c.Country == "Luxembourg").ToList();
     }
 
     protected override void OnInitialized()
@@ -108,13 +82,5 @@
         NumberAbbreviatorModule.Register(IgniteUIBlazor);
 
         InitializeData();
-    }
-
-    public class BirthAndDeathRateSortComparer : IComparer<BirthAndDeathRateInfo>
-    {
-        public int Compare(BirthAndDeathRateInfo x, BirthAndDeathRateInfo y)
-        {
-            return x.DeathRate.CompareTo(y.DeathRate);
-        }
     }
 }
