@@ -3,24 +3,27 @@
 
 @* AllowSliceExplosion not working ,LabelsPosition="@LabelsPosition.OutsideEnd" not working, hover effect *@
 
-<div class="igContainer">
-    <span class="igLegend-title">Global Electricity Demand by Energy Use</span>
-    <div class="igLegend">
-        <ItemLegend @ref="@Legend" />
+<div class="igContainer-horizontal">
+    <div class="igContainer-vertical">
+        <span class="igLegend-title">Global Electricity Demand by Energy Use</span>
+        <div class="igLegend">
+            <ItemLegend @ref="@Legend" />
+        </div>
     </div>
 
     <div class="igComponent">
 
         @if (DataSource != null)
         {
-            <DoughnutChart Height="100%" Width="100%" @ref="Chart" AllowSliceExplosion="true" >
-                <RingSeries DataSource="@DataSource" 
-                            LabelMemberPath="Summary" 
+            <DoughnutChart Height="100%" Width="100%" @ref="Chart"
+            AllowSliceExplosion="true" >
+                <RingSeries DataSource="@DataSource"
+                            LabelMemberPath="Summary"
                             LabelsPosition="@LabelsPosition.OutsideEnd"
                             LabelExtent="30"
-                            ValueMemberPath="MarketShare" 
+                            ValueMemberPath="MarketShare"
                             LegendLabelMemberPath="Company"
-                            Outlines="white" 
+                            Outlines="white"
                             RadiusFactor="0.6"
 							StartAngle="30">
                     <ItemLegend />

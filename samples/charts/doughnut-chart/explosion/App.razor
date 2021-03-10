@@ -3,23 +3,27 @@
 
 @* todo: ExplodedSlices not working, labeLocation ,hover *@
 
-    <div class="igContainer">
+<div class="igContainer-horizontal">
+    <div class="igContainer-vertical">
         <span class="igLegend-title">Global Electricity Demand by Energy Use</span>
         <div class="igLegend">
             <ItemLegend @ref="@Legend" />
         </div>
+    </div>
 
         <div class="igComponent">
 
             @if (DataSource != null)
             {
-                <DoughnutChart Height="100%" Width="100%"  @ref="Chart"  AllowSliceExplosion="true" SliceClick="OnSliceClick">
+                <DoughnutChart Height="100%" Width="100%" @ref="Chart"
+                AllowSliceExplosion="true"
+                SliceClick="OnSliceClick">
                     <RingSeries DataSource="@DataSource"
                                 LabelMemberPath="Summary"
                                 LabelsPosition="@LabelsPosition.OutsideEnd"
                                 LabelExtent="30"
                                 ValueMemberPath="MarketShare"
-                                LegendLabelMemberPath="Company"                                
+                                LegendLabelMemberPath="Company"
                                 SelectedSliceStroke="white"
                                 SelectedSliceFill="rgb(143,143,143)"
                                 SelectedSliceOpacity="1.0"
