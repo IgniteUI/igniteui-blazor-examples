@@ -1,16 +1,15 @@
-@* this namespace is required for Infragistics controls *@
+
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
+<div class="igContainer-horizontal">
+
+    <span class="igLegend-title">Global Electricity Demand by Energy Use</span>
+    <div class="igLegend">
+        <ItemLegend @ref="Legend" />
+    </div>
 
     <div class="igComponent">
-
-        <span class="igLegend-title">Global Electricity Demand by Energy Use</span>
-        <div class="igLegend">
-            <ItemLegend @ref="Legend" />
-        </div>
-
         @if (DataSource != null)
         {
             <PieChart Height="100%" Width="100%"

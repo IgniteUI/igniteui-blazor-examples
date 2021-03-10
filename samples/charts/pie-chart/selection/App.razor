@@ -1,39 +1,35 @@
-@* this namespace is required for Infragistics controls *@
+
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-    <div class="igContainer">
-
-        <span class="igLegend-title">Global Electricity Demand by Energy Use</span>
-        <div class="igLegend">
-            <ItemLegend @ref="Legend" />
-        </div>
-
-        <div class="igComponent">
-
-            @if (DataSource != null)
-            {
-                <PieChart Height="calc(100% - 2rem)" Width="calc(100% - 2rem)"
-                          @ref="pieChart"
-                          DataSource="DataSource"
-                          LabelMemberPath="Summary"
-                          LabelsPosition="@LabelsPosition.OutsideEnd"
-                          LabelExtent="30"
-                          ValueMemberPath="MarketShare"
-                          LegendLabelMemberPath="Summary"
-                          Outlines="white"
-                          SelectionMode="SliceSelectionMode.Multiple"
-                          SelectedSliceStroke="white"
-                          SelectedSliceFill="rgb(143,143,143)"
-                          SelectedSliceOpacity="1.0"
-                          SelectedSliceStrokeThickness="2"
-                          RadiusFactor="0.7"
-                          StartAngle="0">
-                </PieChart>
-            }
-
-        </div>
+<div class="igContainer-horizontal">
+    <span class="igLegend-title">Global Electricity Demand by Energy Use</span>
+    <div class="igLegend">
+        <ItemLegend @ref="Legend" />
     </div>
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+            <PieChart Height="calc(100% - 2rem)" Width="calc(100% - 2rem)"
+                      @ref="pieChart"
+                      DataSource="DataSource"
+                      LabelMemberPath="Summary"
+                      LabelsPosition="@LabelsPosition.OutsideEnd"
+                      LabelExtent="30"
+                      ValueMemberPath="MarketShare"
+                      LegendLabelMemberPath="Summary"
+                      Outlines="white"
+                      SelectionMode="SliceSelectionMode.Multiple"
+                      SelectedSliceStroke="white"
+                      SelectedSliceFill="rgb(143,143,143)"
+                      SelectedSliceOpacity="1.0"
+                      SelectedSliceStrokeThickness="2"
+                      RadiusFactor="0.7"
+                      StartAngle="0">
+            </PieChart>
+        }
+    </div>
+</div>
 
 @code {
 
@@ -70,5 +66,5 @@
 
         pieChart.Legend = Legend;
     }
-   
+
 }

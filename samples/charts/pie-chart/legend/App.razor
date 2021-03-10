@@ -1,32 +1,29 @@
-@* this namespace is required for Infragistics controls *@
+
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-    <div class="igContainer">
-        <span class="igLegend-title">Global Electricity Demand by Energy Use</span>
-        <div class="igLegend">
-            <ItemLegend @ref="Legend" />
-        </div>
-
-        <div class="igComponent">
-
-            @if (DataSource != null)
-            {
-                <PieChart Height="100%" Width="100%"
-                          @ref="Chart"
-                          DataSource="DataSource"
-                          LabelMemberPath="Summary"
-                          ValueMemberPath="MarketShare"
-                          LegendLabelMemberPath="Summary"
-                          Outlines="white"
-                          LabelsPosition="@LabelsPosition.OutsideEnd"
-                          RadiusFactor="0.7"
-                          LabelExtent="30">
-                </PieChart>
-            }
-
-        </div>
+<div class="igContainer-horizontal">
+    <span class="igLegend-title">Global Electricity Demand by Energy Use</span>
+    <div class="igLegend">
+        <ItemLegend @ref="Legend" />
     </div>
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+            <PieChart Height="100%" Width="100%"
+                      @ref="Chart"
+                      DataSource="DataSource"
+                      LabelMemberPath="Summary"
+                      ValueMemberPath="MarketShare"
+                      LegendLabelMemberPath="Summary"
+                      Outlines="white"
+                      LabelsPosition="@LabelsPosition.OutsideEnd"
+                      RadiusFactor="0.7"
+                      LabelExtent="30">
+            </PieChart>
+        }
+    </div>
+</div>
 
 @code {
 
