@@ -300,13 +300,14 @@ function copySampleScripts(cb, outputPath, indexName) {
         for (const file of sample.PublicFiles_JS) {
             if (copiedScriptFiles.indexOf(file.Name) === -1) {
                 copiedScriptFiles.push(file.Name);
-                log("copying  " + outputPath + '/wwwroot/' + file.Name);
+                const scriptPath = outputPath + '/wwwroot/sb/' + file.Name
+                log("copying  " + scriptPath);
 
-                saveFile(outputPath + '/wwwroot/' + file.Name, file.Content);
+                saveFile(scriptPath, file.Content);
                 if (file.Name.indexOf("DockManager") >= 0) {
-                    insertScriptFiles.push('<script type="module" src="' + file.Name + '"></script>');
+                    insertScriptFiles.push('<script type="module" src="sb/' + file.Name + '"></script>');
                 } else {
-                    insertScriptFiles.push('<script src="' + file.Name + '"></script>');
+                    insertScriptFiles.push('<script src="sb/' + file.Name + '"></script>');
                 }
             }
         }
