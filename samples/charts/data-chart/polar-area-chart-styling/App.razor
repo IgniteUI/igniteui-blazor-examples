@@ -2,11 +2,15 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="igContainer">
+    <div class="igOptions">
+        <span class="igLegend-title">Wind Speed</span>
+        <div class="igLegend">
+            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
     <div class="igComponent">
 
-        <DataChart @ref="DataChartRef" Height="100%" Width="100%"
-                   Subtitle="Wind Speed vs Boat Speed"
-                   SubtitleTopMargin="10"
+        <DataChart @ref="DataChartRef" Legend="@LegendRef" Height="100%" Width="100%"
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true">
             <NumericAngleAxis Name="angleAxis" StartAngleOffset="-90"
@@ -14,7 +18,7 @@
                               MinimumValue="0"
                               MaximumValue="360" LabelFontWeight="Bold" />
             <NumericRadiusAxis Name="radiusAxis"
-                               RadiusExtentScale="0.9"
+                               RadiusExtentScale="0.75"
                                InnerRadiusExtentScale="0.1"
                                Interval="25"
                                MinimumValue="0"
@@ -29,7 +33,7 @@
                              ShowDefaultTooltip="true"
                              AreaFillOpacity="0.30"
                              Thickness="3"
-                             Title="Wind Speed"
+                             Title="Wind"
                              MarkerType="@MarkerType.Circle" />
             <PolarAreaSeries Name="series2"
                              DataSource="@DataSource"
@@ -40,8 +44,8 @@
                              ShowDefaultTooltip="true"
                              AreaFillOpacity="0.30"
                              Thickness="3"
-                             Title="Boat Speed"
-                             MarkerType="@MarkerType.Circle"/>
+                             Title="Boat"
+                             MarkerType="@MarkerType.Circle" />
         </DataChart>
 
     </div>
@@ -50,6 +54,14 @@
 @code {
 
     private List<SamplePolarItem> DataSource;
+
+    private Legend _Legend;
+    private Legend LegendRef
+    {
+        get { return _Legend; }
+        set { _Legend = value; StateHasChanged(); }
+    }
+
     private DataChart _dataChart;
     private DataChart DataChartRef
     {
@@ -75,6 +87,7 @@
         DataChartPolarModule.Register(IgniteUIBlazor);
         DataChartPolarCoreModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
 
         DataSource = SamplePolarData.Create();
     }
