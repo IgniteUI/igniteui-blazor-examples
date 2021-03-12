@@ -1,0 +1,89 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igOptions">
+        <span class="igLegend-title">Ronaldo vs. Messi Player Stats</span>
+        <div class="igLegend">
+            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+    <div class="igComponent">
+        <DataChart @ref="DataChartRef" Height="100%" Width="100%"
+                   IsHorizontalZoomEnabled="false"
+                   IsVerticalZoomEnabled="false"
+                   Legend="LegendRef">
+            <CategoryAngleAxis Name="angleAxis" DataSource="@DataSource"
+                               Label="Attribute" LabelFontWeight="Bold" />
+            <NumericRadiusAxis Name="radiusAxis"
+                               RadiusExtentScale="0.6"
+                               InnerRadiusExtentScale="0.1"
+                               MinimumValue="0" MaximumValue="10" Interval="2" />
+
+            <RadialAreaSeries DataSource="@DataSource"
+                              AngleAxisName="angleAxis"
+                              ValueMemberPath="RonaldoValue"
+                              ValueAxisName="radiusAxis"
+                              ShowDefaultTooltip="true"
+                              AreaFillOpacity="0.30"
+                              Thickness="3"
+                              Title="Ronaldo"
+                              MarkerType="MarkerType.Circle" />
+
+            <RadialAreaSeries DataSource="@DataSource"
+                              AngleAxisName="angleAxis"
+                              ValueMemberPath="MessiValue"
+                              ValueAxisName="radiusAxis"
+                              ShowDefaultTooltip="true"
+                              AreaFillOpacity="0.30"
+                              Thickness="3"
+                              Title="Messi"
+                              MarkerType="MarkerType.Circle" />
+        </DataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private List<PlayerStatsInfo> DataSource = new PlayerStatsData();
+
+    private Legend _Legend;
+    private Legend LegendRef
+    {
+        get { return _Legend; }
+        set { _Legend = value; StateHasChanged(); }
+    }
+
+    private DataChart _dataChart;
+    private DataChart DataChartRef
+    {
+        get { return _dataChart; }
+        set
+        {
+            _dataChart = value;
+            if (this.DataChartRef != null)
+            {                
+                this.DataChartRef.MarkerBrushes = "White";
+                this.DataChartRef.MarkerOutlines = "rgb(140, 231, 217) rgb(238, 88, 121)";
+                this.DataChartRef.Brushes = "rgb(140, 231, 217) rgb(238, 88, 121)";
+                this.DataChartRef.Outlines = "rgb(140, 231, 217) rgb(238, 88, 121)";
+
+                StateHasChanged();
+            }
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartRadialModule.Register(IgniteUIBlazor);
+        DataChartRadialCoreModule.Register(IgniteUIBlazor);
+
+        DataChartExtendedAxesModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+    }
+
+}
