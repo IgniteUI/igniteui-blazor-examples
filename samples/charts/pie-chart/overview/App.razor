@@ -2,20 +2,23 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-
+<div class="igContainer-horizontal">
+    <div class="igContainer-vertical">        
+        <div class="igLegend">
+            <ItemLegend @ref="LegendRef" />
+        </div>
+    </div>
     <div class="igComponent">
-
         @if (DataSource != null)
         {
             <PieChart Height="100%" Width="100%"
-				DataSource="DataSource"
-				LabelMemberPath="Company"
-				ValueMemberPath="MarketShare"
-				RadiusFactor="0.7">
+                      DataSource="DataSource"
+                      Legend="LegendRef"
+                      LabelMemberPath="Department"
+                      ValueMemberPath="Spending"
+                      RadiusFactor="0.7">
             </PieChart>
         }
-
     </div>
 </div>
 
@@ -23,27 +26,36 @@
 
     private List<DataItem> DataSource;
 
+    private ItemLegend _legend;
+    public ItemLegend LegendRef
+    {
+        get { return _legend; }
+        set
+        {
+            _legend = value;
+            StateHasChanged();
+        }
+    }
+
     protected override void OnInitialized()
     {
-
-        Console.WriteLine("Sample OnInitialized...");
         PieChartModule.Register(IgniteUIBlazor);
+        ItemLegendModule.Register(IgniteUIBlazor);
 
-		var dataItems = new List<DataItem>();
-        dataItems.Add(new DataItem() { MarketShare = 30, Company = "Google", });
-        dataItems.Add(new DataItem() { MarketShare = 25, Company = "Apple", });
-        dataItems.Add(new DataItem() { MarketShare = 20, Company = "Microsoft", });
-        dataItems.Add(new DataItem() { MarketShare = 15, Company = "Samsung", });
-        dataItems.Add(new DataItem() { MarketShare = 10, Company = "Other", });
+        var dataItems = new List<DataItem>();
+        dataItems.Add(new DataItem() { Spending = 20, Department = "Administration", });
+        dataItems.Add(new DataItem() { Spending = 80, Department = "Sales", });
+        dataItems.Add(new DataItem() { Spending = 30, Department = "IT", });
+        dataItems.Add(new DataItem() { Spending = 80, Department = "Marketing", });
+        dataItems.Add(new DataItem() { Spending = 40, Department = "Development", });
+        dataItems.Add(new DataItem() { Spending = 60, Department = "Customer Support", });
 
         DataSource = dataItems;
     }
 
     public class DataItem
     {
-        public string Company { get; set; }
-        public double MarketShare { get; set; }
-
-        public string Summary { get { return Company + " " + MarketShare + "%"; } }
+        public string Department { get; set; }
+        public double Spending { get; set; }
     }
 }
