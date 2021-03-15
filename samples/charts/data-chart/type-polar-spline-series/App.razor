@@ -7,8 +7,8 @@
         <DataChart Height="100%" Width="100%"
                    Subtitle="Wind Speed vs Boat Speed"
                    SubtitleTopMargin="10"
-                   IsHorizontalZoomEnabled="true"
-                   IsVerticalZoomEnabled="true">
+                   IsHorizontalZoomEnabled="false"
+                   IsVerticalZoomEnabled="false">
             <NumericAngleAxis Name="angleAxis" StartAngleOffset="-90"
                               Interval="30"
                               MinimumValue="0"
@@ -20,7 +20,7 @@
                                MinimumValue="0"
                                MaximumValue="100" />
 
-            <PolarLineSeries Name="series1"
+            <PolarSplineSeries Name="series1"
                              DataSource="@DataSource"
                              AngleAxisName="angleAxis"
                              AngleMemberPath="Direction"
@@ -30,7 +30,7 @@
                              Thickness="1"
                              Title="Wind Speed"
                              MarkerType="@MarkerType.Circle" />
-            <PolarLineSeries Name="series2"
+            <PolarSplineSeries Name="series2"
                              DataSource="@DataSource"
                              AngleAxisName="angleAxis"
                              AngleMemberPath="Direction"
