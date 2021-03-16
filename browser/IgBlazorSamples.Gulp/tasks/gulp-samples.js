@@ -926,7 +926,8 @@ function updateCodeViewer(cb) {
 
         for (const file of sample.SourceFiles) {
             if (file.isRazorSample()) {
-                var item = new CodeViewer(file.Path, file.Content, "razor", "razor", true);
+                var code = file.Content.replace(new RegExp('.*\@page.*\r?\n', 'g'), "");
+                var item = new CodeViewer(file.Path, code, "razor", "razor", true);
                 contentItems.push(item);
             }
             else if (file.isCS()) {
