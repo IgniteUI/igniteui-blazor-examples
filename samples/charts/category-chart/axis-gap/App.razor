@@ -1,0 +1,33 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+            <CategoryChart Height="100%" Width="100%"
+                           DataSource="DataSource"                           
+                           ChartType="CategoryChartType.Column"
+                           ChartTitle="New York Central Park Average Maximum Temperature (Celsius)"
+                           TitleAlignment="HorizontalAlignment.Left"
+                           TitleLeftMargin="25"
+                           TitleTopMargin="10"
+                           TitleBottomMargin="10"                           
+						   IsHorizontalZoomEnabled="false"
+                           IsVerticalZoomEnabled="false"
+                           XAxisInterval="1"
+                           XAxisGap="1">                           
+            </CategoryChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<TemperatureInfo> DataSource = new TemperatureData();
+
+    protected override void OnInitialized()
+    {
+        CategoryChartModule.Register(IgniteUIBlazor);        
+    }
+}
