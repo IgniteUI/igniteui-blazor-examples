@@ -3,25 +3,51 @@
 
 <div class="igContainer">
     <div class="igOptions">
-        <span class="igLegend-title">Renewable Electricity Generated</span>
-        <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
-        </div>
+        <span class="igOptions-label">Transition Type </span>
+        <select @bind="@SelectedTransition">
+            <option>@CategoryTransitionInMode.AccordionFromBottom</option>
+            <option>@CategoryTransitionInMode.AccordionFromCategoryAxisMaximum</option>
+            <option>@CategoryTransitionInMode.AccordionFromCategoryAxisMinimum</option>
+            <option>@CategoryTransitionInMode.AccordionFromLeft</option>
+            <option>@CategoryTransitionInMode.AccordionFromRight</option>
+            <option>@CategoryTransitionInMode.AccordionFromTop</option>
+            <option>@CategoryTransitionInMode.AccordionFromValueAxisMaximum</option>
+            <option>@CategoryTransitionInMode.AccordionFromValueAxisMinimum</option>
+            <option>@CategoryTransitionInMode.Expand</option>
+            <option>@CategoryTransitionInMode.FromZero</option>
+            <option>@CategoryTransitionInMode.SweepFromBottom</option>
+            <option>@CategoryTransitionInMode.SweepFromCategoryAxisMaximum</option>
+            <option>@CategoryTransitionInMode.SweepFromCategoryAxisMinimum</option>
+            <option>@CategoryTransitionInMode.SweepFromCenter</option>
+            <option>@CategoryTransitionInMode.SweepFromLeft</option>
+            <option>@CategoryTransitionInMode.SweepFromRight</option>
+            <option>@CategoryTransitionInMode.SweepFromTop</option>
+            <option>@CategoryTransitionInMode.SweepFromValueAxisMaximum</option>
+            <option>@CategoryTransitionInMode.SweepFromValueAxisMinimum</option>
+            <option>@CategoryTransitionInMode.Auto</option>
+        </select>
+        <label class="igOptions-value">@IntervalLabel</label>
+        <input class="igOptions-slider" type="range" min="1000" max="8000" step="1000"
+               value=@TransitionInInterval @onchange="OnTransitionIntervalChange" />
+        <button class="igOptions-button" @onclick="OnReloadChart">Reload Chart</button>
     </div>
     <div class="igComponent">
         @if (DataSource != null)
         {
             <CategoryChart Height="100%" Width="100%"
-                           Legend="LegendRef"
-                           DataSource="DataSource"
-                           ChartType="CategoryChartType.Line"                          
-                           IsHorizontalZoomEnabled="false"
-                           IsVerticalZoomEnabled="false"
-                           YAxisTitle="TWh"
-                           YAxisTitleLeftMargin="10"
-                           YAxisTitleRightMargin="5"
-                           YAxisLabelLeftMargin="0"
-                           IsTransitionInEnabled="true">
+                @key="ChartKey"
+                @ref="ChartRef"
+                DataSource="DataSource"
+                ChartType="CategoryChartType.Line"  
+                IsTransitionInEnabled="true"
+                TransitionInMode="@SelectedTransition"
+                TransitionInDuration="@TransitionInInterval"
+                IsHorizontalZoomEnabled="false"
+                IsVerticalZoomEnabled="false"
+                YAxisTitle="TWh"
+                YAxisTitleLeftMargin="10"
+                YAxisTitleRightMargin="5"
+                YAxisLabelLeftMargin="0">
             </CategoryChart>
         }
     </div>
@@ -29,18 +55,61 @@
 
 @code {
 
-    private Legend _Legend;
-    private Legend LegendRef
+
+    private int _transitionInterval = 1000; // milliseconds
+    private int TransitionInInterval
     {
-        get { return _Legend; }
-        set { _Legend = value; StateHasChanged(); }
+        get { return _transitionInterval; }
+        set
+        {
+            _transitionInterval = value;
+            ChartKey = new Random().Next().ToString();
+            StateHasChanged();
+        }
     }
-
+    private string IntervalLabel
+    {
+        get
+        {
+            return (_transitionInterval / 1000.0).ToString("0.0") + "s ";
+        }
+    }
+    private CategoryTransitionInMode _selectedTransition;
+    private CategoryTransitionInMode SelectedTransition
+    {
+        get { return _selectedTransition; }
+        set
+        {
+            _selectedTransition = value;
+            ChartKey = new Random().Next().ToString();
+            StateHasChanged();
+        }
+    }
+    private string ChartKey;
+    private CategoryChart _Chart;
+    private CategoryChart ChartRef
+    {
+        get { return _Chart; }
+        set { _Chart = value;
+            StateHasChanged();
+        }
+    }
+    
     private List<EnergyRenewableInfo> DataSource = new EnergyRenewableData();
-
+    
     protected override void OnInitialized()
     {
         CategoryChartModule.Register(IgniteUIBlazor);
         LegendModule.Register(IgniteUIBlazor);
+    }
+    
+    private void OnTransitionIntervalChange(ChangeEventArgs args)
+    {
+        this.TransitionInInterval = int.Parse(args.Value.ToString());
+    }
+    
+    private void OnReloadChart()
+    {
+        this.ChartKey = new Random().Next().ToString();
     }
 }
