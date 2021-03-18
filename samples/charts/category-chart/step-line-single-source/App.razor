@@ -6,20 +6,21 @@
     <div class="igComponent">
         @if (DataSource != null)
         {
-            <CategoryChart Height="100%" Width="100%"                           
+            <CategoryChart Height="100%" Width="100%"
+                           DataSource="DataSource"
                            IncludedProperties="@(new string[] { "Year", "Europe" })"
                            ChartType="CategoryChartType.StepLine"
                            ChartTitle="Renewable Electricity Generated"
                            TitleAlignment="HorizontalAlignment.Left"
                            TitleLeftMargin="25"
                            TitleTopMargin="10"
-                           TitleBottomMargin="10"
-                           DataSource="DataSource"
-                           YAxisTitle="TWh"
+                           TitleBottomMargin="10"                           
                            ToolTipType="ToolTipType.Category"
                            IsTransitionInEnabled="true"
 						   IsHorizontalZoomEnabled="false" 
-						   IsVerticalZoomEnabled="false">
+						   IsVerticalZoomEnabled="false"
+                           YAxisTitle="TWh"
+                           XAxisInterval="1">
             </CategoryChart>
         }
     </div>

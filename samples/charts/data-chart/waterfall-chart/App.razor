@@ -11,15 +11,25 @@
                    TitleTopMargin="10"
                    TitleBottomMargin="10">
 
-            <CategoryXAxis Name="xAxis" Label="Category" DataSource="@DataSource"/>
-            <NumericYAxis Name="yAxis" Title="Millions of Dollars" TitleLeftMargin="10" MinimumValue="0" MaximumValue="60"/>
+            <CategoryXAxis Name="xAxis" Label="Category" DataSource="@DataSource" Overlap="1" />
+            <NumericYAxis Name="yAxis" Title="Millions of Dollars" TitleLeftMargin="10" MinimumValue="0" MaximumValue="60" />
 
             <WaterfallSeries XAxisName="xAxis"
-                        YAxisName="yAxis"
-                        DataSource="@DataSource"
-                        ValueMemberPath="Value"                        
-                        ShowDefaultTooltip="true"
-                        IsTransitionInEnabled="true" >
+                             YAxisName="yAxis"
+                             DataSource="@DataSource"
+                             ValueMemberPath="Value"
+                             ShowDefaultTooltip="true"
+                             IsTransitionInEnabled="true">                             
+            </WaterfallSeries>
+
+            <WaterfallSeries XAxisName="xAxis"
+                             YAxisName="yAxis"
+                             Brush="#7446B9"
+                             Outline="#7446B9"
+                             DataSource="@DataSource"
+                             ValueMemberPath="NetIncomeValue"
+                             ShowDefaultTooltip="true"
+                             IsTransitionInEnabled="true">
             </WaterfallSeries>
         </DataChart>
 
