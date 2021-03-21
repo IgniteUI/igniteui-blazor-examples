@@ -1,30 +1,4 @@
-﻿console.log("loaded DataChartTypeScatterPolygonStyles.js");
-
-function onPolygonShapeStyle(o, e) {
-
-    e.shapeOpacity = 1.0;
-    e.shapeStrokeThickness = 0.5;
-    e.shapeStroke = 'Black';
-
-    var dataItem = e.item;
-    if (dataItem.Class === 'First') {
-        e.shapeFill = 'DodgerBlue';
-    }
-    if (dataItem.Class === 'Business') {
-        e.shapeFill = 'LimeGreen';
-    }
-    if (dataItem.Class === 'Premium') {
-        e.shapeFill = 'Orange';
-    }
-    if (dataItem.Class === 'Economy') {
-        e.shapeFill = 'Red';
-    }
-
-    if (dataItem.Status === 'Sold') {
-        e.shapeFill = 'Gray';
-    }
-}
-igRegisterScript("onPolygonShapeStyle", onPolygonShapeStyle, false);
+﻿console.log("loaded DataChartNetworkGraphScripts.js");
 
 function onNetworkGrahpMouseEnter(o, e) {
 
@@ -37,22 +11,13 @@ function onNetworkGrahpMouseEnter(o, e) {
 
         e.series.tooltipTemplate = createNodeInfoTooltip;
         console.log("createNodeInfoTooltip ");
-
-        //if (e.series.tooltipTemplate === null ||
-        //    e.series.tooltipTemplate === undefined) {
-        //}
     }
 
     if (e.series.title == "Connections") {
 
         e.series.tooltipTemplate = createNodeConnectionTooltip;
         console.log("createNodeConnectionTooltip ");
-
-        //if (e.series.tooltipTemplate === null ||
-        //    e.series.tooltipTemplate === undefined) {
-        //}
     }
-
 }
 igRegisterScript("onNetworkGrahpMouseEnter", onNetworkGrahpMouseEnter, false);
 
