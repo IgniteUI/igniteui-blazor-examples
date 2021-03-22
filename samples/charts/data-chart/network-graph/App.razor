@@ -18,7 +18,7 @@
                        IsHorizontalZoomEnabled="false"
                        IsVerticalZoomEnabled="false">
 
-                <NumericXAxis Name="xAxis" MinimumValue="0" MaximumValue="15" Interval="1" LabelTextColor="Transparent"/>
+                <NumericXAxis Name="xAxis" MinimumValue="0" MaximumValue="14" Interval="1" LabelTextColor="Transparent"/>
                 <NumericYAxis Name="yAxis" MinimumValue="0" MaximumValue="6"  Interval="1" LabelTextColor="Transparent"/>
 
                 <CategoryYAxis Name="labelAxis" Label="Label" DataSource="@NodeInuputLabels" Interval="1" StrokeThickness="1" />
@@ -117,7 +117,7 @@
             var sourceNode = this.InputNodeLayer[i];
             sourceNode.Color = "#9D37F7";
             sourceNode.Layer = "Input Layer";
-            sourceNode.Label = "Node #" + i;
+            sourceNode.Label = "Node #" + (i + 1);
 
             AddNodeConnections(sourceNode, this.AnalyisNodeLayer);
         }
@@ -127,7 +127,7 @@
             var sourceNode = this.AnalyisNodeLayer[i];
             sourceNode.Color = "#46BE3B";
             sourceNode.Layer = "Analyis Layer";
-            sourceNode.Label = "Node #" + i;
+            sourceNode.Label = "Node #" + (i + 1);
             this.
             AddNodeConnections(sourceNode, this.ProcessNodeLayer);
         }
@@ -137,7 +137,7 @@
             var sourceNode = this.ProcessNodeLayer[i];
             sourceNode.Color = "#008DFF";
             sourceNode.Layer = "Process Layer";
-            sourceNode.Label = "Node #" + i;
+            sourceNode.Label = "Node #" + (i + 1);
 
             AddNodeConnections(sourceNode, this.OutputNodeLayer);
         }
