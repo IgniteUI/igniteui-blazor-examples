@@ -26,8 +26,8 @@
             <option>@CategoryTransitionInMode.SweepFromValueAxisMinimum</option>
             <option>@CategoryTransitionInMode.Auto</option>
         </select>
-        <label class="igOptions-value">@IntervalLabel</label>
-        <input class="igOptions-slider" type="range" min="1000" max="8000" step="1000"
+        <label class="igOptions-value" style="width: 75px">@IntervalLabel</label>
+        <input class="igOptions-slider" type="range" min="50" max="2000" step="50"
                value=@TransitionInInterval @onchange="OnTransitionIntervalChange" />
         <button class="igOptions-button" @onclick="OnReloadChart">Reload Chart</button>
     </div>
@@ -71,7 +71,7 @@
     {
         get
         {
-            return (_transitionInterval / 1000.0).ToString("0.0") + "s ";
+            return (_transitionInterval).ToString("0") + "ms";
         }
     }
     private CategoryTransitionInMode _selectedTransition;
