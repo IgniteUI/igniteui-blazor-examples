@@ -3,7 +3,7 @@
 
 <div class="igContainer">
     <div class="igOptions">
-        <span class="igLegend-title">Tasks Distribution per Company Department</span>
+        <span class="igLegend-title">Task Distribution based on Company Departments</span>
         <div class="igLegend">
             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
@@ -11,62 +11,32 @@
 
     <div class="igComponent">
 
-        @if (AllTasks != null)
+        @if (this.TaskDefinitions != null && this.TasksByName != null)
         {
             <DataChart Height="100%" Width="100%" @ref="Chart"   
+                       HighlightingMode="SeriesHighlightingMode.FadeOthers"
                        SeriesMouseEnterScript="onGanttChartMouseEnter"
-                       IsHorizontalZoomEnabled="true"
-                       IsVerticalZoomEnabled="true">
+                       IsHorizontalZoomEnabled="false"
+                       IsVerticalZoomEnabled="false">
 
                 <NumericXAxis Name="xAxis" MinimumValue="0" MaximumValue="200" Title="Work Days" />
                 <NumericYAxis Name="yAxis" MinimumValue="0" MaximumValue="6" Interval="1" IsInverted="true" LabelVisibility="Visibility.Collapsed" />
 
-                <CategoryYAxis Name="labelAxis" Label="Category" DataSource="@CategoriesList" Interval="1" 
-                               Title="Company Departments" TitleRightMargin="5" TitleLeftMargin="10" LabelLeftMargin="0"
+                <CategoryYAxis Name="labelAxis" Label="Category" DataSource="@TaskCategories" Interval="1" 
+                               LabelLeftMargin="0" Title="Departments" TitleRightMargin="5" TitleLeftMargin="10" 
                                LabelLocation="AxisLabelsLocation.OutsideLeft" IsInverted="true"/>
                  
-                <ScatterPolygonSeries XAxisName="xAxis" YAxisName="yAxis" 
-                                      DataSource="@ResearchTasks" 
-                                      Title="@ResearchTasks[0].Name"
-                                      Brush="@ResearchTasks[0].Color" />
-
-                <ScatterPolygonSeries XAxisName="xAxis" YAxisName="yAxis" 
-                                      DataSource="@PlanningTasks" 
-                                      Title="@PlanningTasks[0].Name"
-                                      Brush="@PlanningTasks[0].Color" />
-
-                <ScatterPolygonSeries XAxisName="xAxis" YAxisName="yAxis" 
-                                      DataSource="@CodingTasks" 
-                                      Title="@CodingTasks[0].Name"
-                                      Brush="@CodingTasks[0].Color" />
-
-                <ScatterPolygonSeries XAxisName="xAxis" YAxisName="yAxis" 
-                                      DataSource="@ReportingTasks" 
-                                      Title="@ReportingTasks[0].Name"
-                                      Brush="@ReportingTasks[0].Color" />
-                
-                <ScatterPolygonSeries XAxisName="xAxis" YAxisName="yAxis" 
-                                      DataSource="@FixingTasks" 
-                                      Title="@FixingTasks[0].Name"
-                                      Brush="@FixingTasks[0].Color" />
-
-                <ScatterPolygonSeries XAxisName="xAxis" YAxisName="yAxis" 
-                                      DataSource="@WritingTasks" 
-                                      Title="@WritingTasks[0].Name"
-                                      Brush="@WritingTasks[0].Color" />
-
-                <ScatterPolygonSeries XAxisName="xAxis" YAxisName="yAxis" 
-                                      DataSource="@DesigningTasks" 
-                                      Title="@DesigningTasks[0].Name"
-                                      Brush="@DesigningTasks[0].Color" />
-
-                @*<ScatterSeries XAxisName="xAxis"
-                               YAxisName="yAxis"
-                               DataSource="@AllTasks"
-                               IsHighlightingEnabled="true"
-                               Title="Tasks"
-                               XMemberPath="CenterX"
-                               YMemberPath="CenterY"/>*@
+                @foreach (var taskDataItems in this.TasksByName.Values)
+                {  
+                    <ScatterPolygonSeries XAxisName="xAxis" YAxisName="yAxis" 
+                                          DataSource="@taskDataItems"  
+                                          ShapeMemberPath="Points" 
+                                          Outline="Transparent"
+                                          Title="@taskDataItems[0].Name"  
+                                          Brush="@taskDataItems[0].Color" 
+                                          MarkerTemplateScript="onGanttMarker"/>
+                }               
+               
 
             </DataChart>
         }
@@ -78,17 +48,9 @@
 
     private Legend Legend;
     private DataChart Chart;
-    private List<TaskInfo> AllTasks;
-    private List<TaskInfo> CategoriesList;
-    private Dictionary<string, TaskInfo> CategoriesLookup;
-
-    private List<TaskInfo> ResearchTasks = new List<TaskInfo>();
-    private List<TaskInfo> PlanningTasks = new List<TaskInfo>();
-    private List<TaskInfo> FixingTasks = new List<TaskInfo>();
-    private List<TaskInfo> CodingTasks = new List<TaskInfo>();
-    private List<TaskInfo> ReportingTasks = new List<TaskInfo>();
-    private List<TaskInfo> WritingTasks = new List<TaskInfo>();
-    private List<TaskInfo> DesigningTasks = new List<TaskInfo>();
+    private List<TaskInfo> TaskDefinitions;
+    private List<TaskInfo> TaskCategories;
+    private Dictionary<string, List<TaskInfo>> TasksByName;
 
     protected override async Task OnInitializedAsync()
     {
@@ -96,91 +58,82 @@
         DataChartCategoryCoreModule.Register(IgniteUIBlazor);
         DataChartCategoryModule.Register(IgniteUIBlazor);
         DataChartVerticalCategoryModule.Register(IgniteUIBlazor);
-
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
         DataChartScatterModule.Register(IgniteUIBlazor);
         DataChartScatterCoreModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
         ScatterPolygonSeriesModule.Register(IgniteUIBlazor);
+
         LegendModule.Register(IgniteUIBlazor);
-         
-        AllTasks = new List<TaskInfo>(); 
+
+        // deinfing information about tasks
+        TaskDefinitions = new List<TaskInfo>();
         // tasks for VD department
-        AllTasks.Add(new TaskInfo { Start = 10, Stop = 20, Category = "VD", Name = "Research" });
-        AllTasks.Add(new TaskInfo { Start = 20, Stop = 30, Category = "VD", Name = "Planning" });
-        AllTasks.Add(new TaskInfo { Start = 30, Stop = 60, Category = "VD", Name = "Designing" });
-        AllTasks.Add(new TaskInfo { Start = 60, Stop = 70, Category = "VD", Name = "Fixing" });
+        TaskDefinitions.Add(new TaskInfo { Start = 10, Stop = 20, Category = "VD", Name = "Research" });
+        TaskDefinitions.Add(new TaskInfo { Start = 20, Stop = 30, Category = "VD", Name = "Planning" });
+        TaskDefinitions.Add(new TaskInfo { Start = 30, Stop = 60, Category = "VD", Name = "Designing" });
+        TaskDefinitions.Add(new TaskInfo { Start = 60, Stop = 70, Category = "VD", Name = "Fixing" });
         // tasks for DEV department
-        AllTasks.Add(new TaskInfo { Start = 50,  Stop = 60,  Category = "DEV", Name = "Research" });
-        AllTasks.Add(new TaskInfo { Start = 60,  Stop = 70,  Category = "DEV", Name = "Planning" });
-        AllTasks.Add(new TaskInfo { Start = 70,  Stop = 120, Category = "DEV", Name = "Coding" });
-        AllTasks.Add(new TaskInfo { Start = 120, Stop = 190, Category = "DEV", Name = "Fixing" });
+        TaskDefinitions.Add(new TaskInfo { Start = 50,  Stop = 60,  Category = "DEV", Name = "Research" });
+        TaskDefinitions.Add(new TaskInfo { Start = 60,  Stop = 70,  Category = "DEV", Name = "Planning" });
+        TaskDefinitions.Add(new TaskInfo { Start = 70,  Stop = 120, Category = "DEV", Name = "Coding" });
+        TaskDefinitions.Add(new TaskInfo { Start = 120, Stop = 190, Category = "DEV", Name = "Fixing" });
         // tasks for QE department
-        AllTasks.Add(new TaskInfo { Start = 60,  Stop = 70,  Category = "QE", Name = "Research" });
-        AllTasks.Add(new TaskInfo { Start = 70,  Stop = 80,  Category = "QE", Name = "Planning" });
-        AllTasks.Add(new TaskInfo { Start = 80,  Stop = 110, Category = "QE", Name = "Coding" });
-        AllTasks.Add(new TaskInfo { Start = 110, Stop = 190, Category = "QE", Name = "Reporting" });
+        TaskDefinitions.Add(new TaskInfo { Start = 60,  Stop = 70,  Category = "QE", Name = "Research" });
+        TaskDefinitions.Add(new TaskInfo { Start = 70,  Stop = 80,  Category = "QE", Name = "Planning" });
+        TaskDefinitions.Add(new TaskInfo { Start = 80,  Stop = 110, Category = "QE", Name = "Coding" });
+        TaskDefinitions.Add(new TaskInfo { Start = 110, Stop = 190, Category = "QE", Name = "Reporting" });
         // tasks for DOCS department
-        AllTasks.Add(new TaskInfo { Start = 10,  Stop = 20,  Category = "DOCS", Name = "Research" });
-        AllTasks.Add(new TaskInfo { Start = 20,  Stop = 30,  Category = "DOCS", Name = "Planning" });
-        AllTasks.Add(new TaskInfo { Start = 30,  Stop = 80,  Category = "DOCS", Name = "Writing" });
-        AllTasks.Add(new TaskInfo { Start = 80,  Stop = 110, Category = "DOCS", Name = "Coding" });
-        AllTasks.Add(new TaskInfo { Start = 110, Stop = 130, Category = "DOCS", Name = "Reporting" });
-        AllTasks.Add(new TaskInfo { Start = 130, Stop = 170, Category = "DOCS", Name = "Coding" });
-        AllTasks.Add(new TaskInfo { Start = 170, Stop = 190, Category = "DOCS", Name = "Fixing" });
+        TaskDefinitions.Add(new TaskInfo { Start = 10,  Stop = 20,  Category = "DOCS", Name = "Research" });
+        TaskDefinitions.Add(new TaskInfo { Start = 20,  Stop = 30,  Category = "DOCS", Name = "Planning" });
+        TaskDefinitions.Add(new TaskInfo { Start = 30,  Stop = 80,  Category = "DOCS", Name = "Writing" });
+        TaskDefinitions.Add(new TaskInfo { Start = 80,  Stop = 110, Category = "DOCS", Name = "Coding" });
+        TaskDefinitions.Add(new TaskInfo { Start = 110, Stop = 130, Category = "DOCS", Name = "Reporting" });
+        TaskDefinitions.Add(new TaskInfo { Start = 130, Stop = 170, Category = "DOCS", Name = "Coding" });
+        TaskDefinitions.Add(new TaskInfo { Start = 170, Stop = 190, Category = "DOCS", Name = "Fixing" });
         // tasks for SUPPORT department
-        AllTasks.Add(new TaskInfo { Start = 10,  Stop = 30,  Category = "SUPPORT", Name = "Research" });
-        AllTasks.Add(new TaskInfo { Start = 30,  Stop = 90,  Category = "SUPPORT", Name = "Writing" });
-        AllTasks.Add(new TaskInfo { Start = 90,  Stop = 110, Category = "SUPPORT", Name = "Coding" });
-        AllTasks.Add(new TaskInfo { Start = 110, Stop = 130, Category = "SUPPORT", Name = "Research" });
-        AllTasks.Add(new TaskInfo { Start = 130, Stop = 170, Category = "SUPPORT", Name = "Coding" });
-        AllTasks.Add(new TaskInfo { Start = 170, Stop = 190, Category = "SUPPORT", Name = "Reporting" });
+        TaskDefinitions.Add(new TaskInfo { Start = 10,  Stop = 30,  Category = "SUPPORT", Name = "Research" });
+        TaskDefinitions.Add(new TaskInfo { Start = 30,  Stop = 90,  Category = "SUPPORT", Name = "Writing" });
+        TaskDefinitions.Add(new TaskInfo { Start = 90,  Stop = 110, Category = "SUPPORT", Name = "Coding" });
+        TaskDefinitions.Add(new TaskInfo { Start = 110, Stop = 130, Category = "SUPPORT", Name = "Research" });
+        TaskDefinitions.Add(new TaskInfo { Start = 130, Stop = 170, Category = "SUPPORT", Name = "Coding" });
+        TaskDefinitions.Add(new TaskInfo { Start = 170, Stop = 190, Category = "SUPPORT", Name = "Reporting" });
 
-        CategoriesLookup = new Dictionary<string, TaskInfo>();
+        // defining lookup dictionary for colors of tasks'
+        var taskColors = new Dictionary<string, string>();
+        taskColors.Add("Coding",    "#E49F24");
+        taskColors.Add("Designing", "#ECE432");
+        taskColors.Add("Planning",  "#C054E9");
+        taskColors.Add("Research",  "#24B3E4");
+        taskColors.Add("Writing",   "#2EA0A0");
+        taskColors.Add("Fixing",    "#33C633");
+        taskColors.Add("Reporting", "#EF2E2E");
 
-        var categoryIndex = 0;
+        // groupping tasks by their name and category
+        var tasksByCategory = new Dictionary<string, TaskInfo>();
+        var tasksByName = new Dictionary<string, List<TaskInfo>>();
+        var taskCategoryID = 0;
         var taskHeight = 0.4;
-        for (int i = 0; i < AllTasks.Count; i++)
+        for (int i = 0; i < TaskDefinitions.Count; i++)
         {
-            // styling and filtering tasks
-            var task = AllTasks[i];
-            if (task.Name == "Coding")
-            {
-                task.Color = "#E49F24"; CodingTasks.Add(task);
-            }
-            else if (task.Name == "Designing")
-            {
-                task.Color = "#ECE432"; DesigningTasks.Add(task);
-            }
-            else if (task.Name == "Planning")
-            {
-                task.Color = "#DE4AE1"; PlanningTasks.Add(task);
-            }
-            else if (task.Name == "Research")
-            {
-                task.Color = "#24B3E4"; ResearchTasks.Add(task);
-            }
-            else if (task.Name == "Writing")
-            {
-                task.Color = "#979A9B"; WritingTasks.Add(task);
-            }
-            else if (task.Name == "Reporting")
-            {
-                task.Color = "#EF2E2E"; ReportingTasks.Add(task);
-            }
-            else if (task.Name == "Fixing")
-            {
-                task.Color = "#2EC12B"; FixingTasks.Add(task);
-            }
+            var task = TaskDefinitions[i];
 
-            // grouping tasks by their category
-            if (CategoriesLookup.ContainsKey(task.Category))
+            if (!tasksByName.ContainsKey(task.Name))
+                tasksByName.Add(task.Name, new List<TaskInfo>());
+
+            tasksByName[task.Name].Add(task);
+
+            if (taskColors.ContainsKey(task.Name))
+                task.Color = taskColors[task.Name];
+
+            // grouping tasks by their category index        
+            if (tasksByCategory.ContainsKey(task.Category))
             {
-                task.CategoryID = CategoriesLookup[task.Category].CategoryID;
+                task.CategoryID = tasksByCategory[task.Category].CategoryID;
             }
             else
             {
-                task.CategoryID = categoryIndex++;
-                CategoriesLookup.Add(task.Category, task);
+                task.CategoryID = taskCategoryID++;
+                tasksByCategory.Add(task.Category, task);
             }
 
             task.CenterX = task.Start + (task.Duration / 2.0);
@@ -195,11 +148,12 @@
             task.Points = new List<List<Point>> { points };
         }
 
-        CategoriesList = new List<TaskInfo>();
-        CategoriesList.Add(new TaskInfo());
-        CategoriesList.AddRange(CategoriesLookup.Values.ToList());
-        CategoriesList.Add(new TaskInfo());
-       
+        this.TaskCategories = new List<TaskInfo>();
+        this.TaskCategories.Add(new TaskInfo());
+        this.TaskCategories.AddRange(tasksByCategory.Values.ToList());
+        this.TaskCategories.Add(new TaskInfo());
+        this.TasksByName = tasksByName;
+
         await Task.Delay(1);
     }
 
@@ -209,16 +163,6 @@
 
         if (this.Chart != null && this.Legend != null && firstRender) {
             this.Chart.Legend = this.Legend;
-            foreach (var s in this.Chart.ActualSeries)
-            {
-                var polygon = s as ScatterPolygonSeries;
-                if (polygon != null)
-                {
-                    polygon.Thickness = 1;
-                    polygon.Outline = "Transparent";
-                    polygon.ShapeMemberPath = "Points";
-                }
-            }
         }
     }
 
@@ -237,9 +181,10 @@
         public List<List<Point>> Points { get; set; }
 
         public TaskInfo()
-        { 
+        {
+            Color = "gray";
             Points = new List<List<Point>>();
-        } 
+        }
     }
-     
+
 }
