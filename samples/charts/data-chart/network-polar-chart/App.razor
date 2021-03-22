@@ -1,0 +1,306 @@
+﻿@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igOptions">
+        <span class="igLegend-title">Network Polar Chart</span>        
+        <div class="igLegend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+    <div class="igComponent">
+        
+        @if (TreeMarkers != null && this.TreeMarkersByLevel != null)
+        { 
+        <DataChart Height="100%" Width="100%" @ref="Chart"   
+                   SeriesMouseEnterScript="onNetworkPolarChartMouseEnter"
+                   IsHorizontalZoomEnabled="false"
+                   IsVerticalZoomEnabled="false">
+                        
+            <NumericAngleAxis Name="angleAxis" 
+                              MinimumValue="0" MaximumValue="360" Interval="30" 
+                              StartAngleOffset="270"
+                              LabelExtent="30"/>
+            <NumericRadiusAxis Name="radiusAxis" 
+                               RadiusExtentScale="0.85"
+                               InnerRadiusExtentScale="0"
+                               MinimumValue="0" MaximumValue="3" Interval="1"
+                               CrossingValue="-20"
+                               StrokeThickness="0"
+                               LabelLeftMargin="10"/>
+
+            <PolarLineSeries DataSource="@ConnectionMarkers"
+                             AngleAxisName="angleAxis"
+                             AngleMemberPath="Angle"
+                             RadiusAxisName="radiusAxis"
+                             RadiusMemberPath="Radius"
+                             ShowDefaultTooltip="true"
+                             Thickness="2" 
+                             Brush="#676666"
+                             Title="Connections"
+                             MarkerType="@MarkerType.None" />
+
+            
+                @foreach (var markers in this.TreeMarkersByLevel.Values)
+                {                      
+                    <PolarScatterSeries DataSource="@markers"
+                                        AngleAxisName="angleAxis"
+                                        AngleMemberPath="Angle"
+                                        RadiusAxisName="radiusAxis"
+                                        RadiusMemberPath="Radius"
+                                        Thickness="1" 
+                                        MarkerType="@MarkerType.None"
+                                        MarkerTemplateScript="onNetworkPolarChartMarker"
+                                        Title="@markers[0].Level"
+                                        Brush="@markers[0].Fill"
+                                        Outline="@markers[0].Outline"/>
+                }
+        </DataChart>
+        }
+
+    </div>
+</div>
+
+@code {
+
+    private Legend Legend;
+    private DataChart Chart;
+
+    private List<TreeMarker> ConnectionMarkers = new List<TreeMarker>();
+    private List<TreeMarker> TreeMarkers;
+    private Dictionary<string, List<TreeMarker>> TreeMarkersByLevel;
+    private Dictionary<double, string> ColorMapping;
+
+    protected override void OnInitialized()
+    {
+        LegendModule.Register(IgniteUIBlazor);
+        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartScatterModule.Register(IgniteUIBlazor);
+        DataChartScatterCoreModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        DataChartPolarModule.Register(IgniteUIBlazor);
+        DataChartPolarCoreModule.Register(IgniteUIBlazor);
+        
+        // defining structure of tree nodes
+        var rootNode = new TreeNode { Label = "0", Children =
+            {
+                new TreeNode { Label = "A", Children =
+                {
+                    new TreeNode { Label = "A1" },
+                    new TreeNode { Label = "A2" },
+                    new TreeNode { Label = "A3" },
+                }},
+                new TreeNode { Label = "B", Children =
+                {
+                     new TreeNode { Label = "B1" },
+                     new TreeNode { Label = "B2" },
+                }},
+                new TreeNode { Label = "C", Children =
+                {
+                     new TreeNode { Label = "C1" },
+                     new TreeNode { Label = "C2" },
+                     new TreeNode { Label = "C3" },
+                }},
+                new TreeNode { Label = "D", Children =
+                {
+                     new TreeNode { Label = "D1" },
+                     new TreeNode { Label = "D2" },
+                }},
+                new TreeNode { Label = "E", Children =
+                {
+                     new TreeNode { Label = "E1" },
+                     new TreeNode { Label = "E2" },
+                     new TreeNode { Label = "E3" },
+                }},
+            }
+        };
+
+        // defining extra nodes for all outter nodes
+        var leaf = 1;
+        foreach (var inner in rootNode.Children)
+        {
+            foreach (var outter in inner.Children)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    var node = new TreeNode { Label = "" + leaf++ };
+                    outter.Children.Add(node);
+                }
+            }
+        }
+
+        ColorMapping = new Dictionary<double, string>();
+        ColorMapping.Add(0.0, "#545353");
+        ColorMapping.Add(1.0, "#A532E1");
+        ColorMapping.Add(2.0, "#147DD1");
+        ColorMapping.Add(3.0, "#1DA31D");
+
+        // generating tree markers that will represent all tree nodes
+        this.TreeMarkers = new List<TreeMarker>();
+
+        var rootMarker = new TreeMarker { Label = "X" };
+        rootMarker.Angle = 0;
+        rootMarker.Radius = 0;
+        rootMarker.Fill = ColorMapping[rootMarker.Radius];
+        this.TreeMarkers.Add(rootMarker);
+
+        double interval = 360 / rootNode.Children.Count;
+        double angle = interval - (180 / rootNode.Children.Count);
+
+        for (int i = 0; i < rootNode.Children.Count; i++)
+        {
+            var step = i * interval;
+            var innerNode = rootNode.Children[i];
+            var innerMarker = new TreeMarker { Label = innerNode.Label };
+            innerMarker.Angle = angle + step;
+            innerMarker.Radius = 1;
+            innerMarker.Fill = ColorMapping[innerMarker.Radius];
+            this.TreeMarkers.Add(innerMarker);
+
+           // Console.WriteLine(innerNode.Label + "  ia=" + innerMarker.Angle + " oi=" + interval+ " oa=" + innerMarker.Angle );
+
+            this.ConnectionMarkers.Add(rootMarker.Clone());
+            this.ConnectionMarkers.Add(innerMarker.Clone());
+            this.ConnectionMarkers.Add(new TreeMarker());
+
+            GenerateMarkers(innerNode, innerMarker, 2, 60);
+        }
+
+        // grouping all tree markers by their node level
+        TreeMarkersByLevel = new Dictionary<string, List<TreeMarker>>();
+        foreach (var marker in this.TreeMarkers)
+        { 
+            if (!this.TreeMarkersByLevel.ContainsKey(marker.Level))
+            {
+                this.TreeMarkersByLevel.Add(marker.Level, new List<TreeMarker>());
+            }
+
+            this.TreeMarkersByLevel[marker.Level].Add(marker);
+
+           // Console.WriteLine(marker.Level + " " + this.TreeMarkersByLevel[marker.Level].Count);
+        }
+    }
+
+    public Point GetLocations(double radius, double angle)
+    {
+        var x = radius * Math.Sin(ToRadian(angle));
+        var y = radius * Math.Cos(ToRadian(angle));
+        return new Point(x, y);
+    }
+
+    public double ToRadian(double angle)
+    {
+        return Normalize(angle) * Math.PI / 180;
+    }
+    public double Normalize(double angle)
+    {
+        return angle % 360;
+    }
+
+    void GenerateMarkers(TreeNode innerNode, TreeMarker innerMarker, double radius, double angelSpan)
+    {
+        var outerInterval = 0.0;
+        var outerAngle = 0.0;
+        if (innerNode.Children.Count % 2 == 0)
+        {
+            outerInterval = (angelSpan / (innerNode.Children.Count)) / 2.0;
+            outerAngle = innerMarker.Angle - (outerInterval * innerNode.Children.Count);
+        }
+        else
+        {
+            outerInterval = (angelSpan / (innerNode.Children.Count));
+            outerAngle = innerMarker.Angle - (outerInterval * ((innerNode.Children.Count - 1) / 2.0));
+        }
+
+        for (int o = 0; o < innerNode.Children.Count; o++)
+        {
+            var outerNode = innerNode.Children[o];
+
+            var outerStep =  0.0;
+            if (innerNode.Children.Count % 2 == 0)
+                outerStep = (o * outerInterval * 2) + outerInterval;
+            else
+                outerStep = (o * (outerInterval));
+
+            var outerMarker = new TreeMarker { Label = outerNode.Label };
+            outerMarker.Parent = innerMarker;
+            outerMarker.Angle = outerAngle + outerStep;
+            outerMarker.Radius = radius;
+            outerMarker.Fill = ColorMapping[outerMarker.Radius];
+
+            //Console.WriteLine(outerNode.Label + " ia=" + innerMarker.Angle + " oi=" + outerInterval+ " oa=" + outerMarker.Angle + " c=" + outerNode.Children.Count );
+            this.TreeMarkers.Add(outerMarker);
+
+            this.ConnectionMarkers.Add(innerMarker.Clone());
+            this.ConnectionMarkers.Add(outerMarker.Clone());
+            this.ConnectionMarkers.Add(new TreeMarker());
+
+            if (outerNode.Children.Count > 0)
+                GenerateMarkers(outerNode, outerMarker, radius+1, angelSpan / 3.0);
+
+        }
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        if (this.Chart != null && this.Legend != null && firstRender) {
+            //this.Chart.Legend = this.Legend;
+        }
+    }
+
+    public class TreeNode
+    {
+        public List<TreeNode> Children { get; set; }
+        public TreeNode Parent { get; set; }
+        public string Label { get; set; }
+        public double Value { get; set; }
+
+        public TreeNode()
+        {
+            Children = new List<TreeNode>();
+        }
+    }
+
+
+    public class TreeMarker
+    {
+        public TreeMarker Parent { get; set; }
+
+        public double Angle { get; set; }
+        public double Radius { get; set; }
+
+        public string Level { get { return "Level " + this.Radius; } }
+        public double Size { get; set; }
+        public string Fill { get; set; }
+        public string Outline { get; set; }
+        public int Thickness { get; set; }
+
+        public string Label { get; set; }
+        public string LabelColor { get; set; }
+        public int    LabelSize { get; set; }
+
+        public TreeMarker()
+        {
+            Radius = double.NaN;
+            Angle = double.NaN;
+            LabelColor = "white";
+            LabelSize = 12;
+
+            Size = 12;
+            Fill = "black";
+            Outline = "black";
+        }
+
+        public TreeMarker Clone()
+        {
+            var clone = new TreeMarker();
+            clone.Radius = this.Radius;
+            clone.Angle = this.Angle;
+            return clone;
+        }
+    } 
+
+}
