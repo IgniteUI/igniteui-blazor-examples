@@ -76,12 +76,10 @@
         LegendModule.Register(IgniteUIBlazor);
         NumberAbbreviatorModule.Register(IgniteUIBlazor);
         DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartScatterModule.Register(IgniteUIBlazor);
-        DataChartScatterCoreModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         DataChartPolarModule.Register(IgniteUIBlazor);
         DataChartPolarCoreModule.Register(IgniteUIBlazor);
-        
+
         // defining data structure of tree nodes
         var rootNode = new TreeNode { Label = "0", Children =
             {
@@ -169,7 +167,7 @@
         // grouping all tree markers by their node level
         PolarMarkersByLevel = new Dictionary<double, List<PolarMarker>>();
         foreach (var marker in this.PolarMarkers)
-        { 
+        {
             if (!this.PolarMarkersByLevel.ContainsKey(marker.Level))
             {
                 this.PolarMarkersByLevel.Add(marker.Level, new List<PolarMarker>());
@@ -177,22 +175,6 @@
 
             this.PolarMarkersByLevel[marker.Level].Add(marker);
         }
-    }
-
-    public Point GetLocations(double radius, double angle)
-    {
-        var x = radius * Math.Sin(ToRadian(angle));
-        var y = radius * Math.Cos(ToRadian(angle));
-        return new Point(x, y);
-    }
-
-    public double ToRadian(double angle)
-    {
-        return Normalize(angle) * Math.PI / 180;
-    }
-    public double Normalize(double angle)
-    {
-        return angle % 360;
     }
 
     void GenerateMarkers(TreeNode innerNode, PolarMarker innerMarker, double level, double angelSpan)
@@ -296,6 +278,6 @@
             clone.Angle = this.Angle;
             return clone;
         }
-    } 
+    }
 
 }
