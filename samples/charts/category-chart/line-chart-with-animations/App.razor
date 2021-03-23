@@ -1,0 +1,115 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igOptions">
+        <span class="igOptions-label">Transition Type </span>
+        <select @bind="@SelectedTransition">
+            <option>@CategoryTransitionInMode.AccordionFromBottom</option>
+            <option>@CategoryTransitionInMode.AccordionFromCategoryAxisMaximum</option>
+            <option>@CategoryTransitionInMode.AccordionFromCategoryAxisMinimum</option>
+            <option>@CategoryTransitionInMode.AccordionFromLeft</option>
+            <option>@CategoryTransitionInMode.AccordionFromRight</option>
+            <option>@CategoryTransitionInMode.AccordionFromTop</option>
+            <option>@CategoryTransitionInMode.AccordionFromValueAxisMaximum</option>
+            <option>@CategoryTransitionInMode.AccordionFromValueAxisMinimum</option>
+            <option>@CategoryTransitionInMode.Expand</option>
+            <option>@CategoryTransitionInMode.FromZero</option>
+            <option>@CategoryTransitionInMode.SweepFromBottom</option>
+            <option>@CategoryTransitionInMode.SweepFromCategoryAxisMaximum</option>
+            <option>@CategoryTransitionInMode.SweepFromCategoryAxisMinimum</option>
+            <option>@CategoryTransitionInMode.SweepFromCenter</option>
+            <option>@CategoryTransitionInMode.SweepFromLeft</option>
+            <option>@CategoryTransitionInMode.SweepFromRight</option>
+            <option>@CategoryTransitionInMode.SweepFromTop</option>
+            <option>@CategoryTransitionInMode.SweepFromValueAxisMaximum</option>
+            <option>@CategoryTransitionInMode.SweepFromValueAxisMinimum</option>
+            <option>@CategoryTransitionInMode.Auto</option>
+        </select>
+        <label class="igOptions-value" style="width: 75px">@IntervalLabel</label>
+        <input class="igOptions-slider" type="range" min="50" max="2000" step="50"
+               value=@TransitionInInterval @onchange="OnTransitionIntervalChange" />
+        <button class="igOptions-button" @onclick="OnReloadChart">Reload Chart</button>
+    </div>
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+            <CategoryChart Height="100%" Width="100%"
+                @key="ChartKey"
+                @ref="ChartRef"
+                DataSource="DataSource"
+                ChartType="CategoryChartType.Line"  
+                IsTransitionInEnabled="true"
+                TransitionInMode="@SelectedTransition"
+                TransitionInDuration="@TransitionInInterval"
+                IsHorizontalZoomEnabled="false"
+                IsVerticalZoomEnabled="false"
+                YAxisTitle="TWh"
+                YAxisTitleLeftMargin="10"
+                YAxisTitleRightMargin="5"
+                YAxisLabelLeftMargin="0">
+            </CategoryChart>
+        }
+    </div>
+</div>
+
+@code {
+
+
+    private int _transitionInterval = 1000; // milliseconds
+    private int TransitionInInterval
+    {
+        get { return _transitionInterval; }
+        set
+        {
+            _transitionInterval = value;
+            ChartKey = new Random().Next().ToString();
+            StateHasChanged();
+        }
+    }
+    private string IntervalLabel
+    {
+        get
+        {
+            return (_transitionInterval).ToString("0") + "ms";
+        }
+    }
+    private CategoryTransitionInMode _selectedTransition;
+    private CategoryTransitionInMode SelectedTransition
+    {
+        get { return _selectedTransition; }
+        set
+        {
+            _selectedTransition = value;
+            ChartKey = new Random().Next().ToString();
+            StateHasChanged();
+        }
+    }
+    private string ChartKey;
+    private CategoryChart _Chart;
+    private CategoryChart ChartRef
+    {
+        get { return _Chart; }
+        set { _Chart = value;
+            StateHasChanged();
+        }
+    }
+    
+    private List<EnergyRenewableInfo> DataSource = new EnergyRenewableData();
+    
+    protected override void OnInitialized()
+    {
+        CategoryChartModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+    }
+    
+    private void OnTransitionIntervalChange(ChangeEventArgs args)
+    {
+        this.TransitionInInterval = int.Parse(args.Value.ToString());
+    }
+    
+    private void OnReloadChart()
+    {
+        this.ChartKey = new Random().Next().ToString();
+    }
+}
