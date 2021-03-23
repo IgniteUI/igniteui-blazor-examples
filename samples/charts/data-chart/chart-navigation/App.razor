@@ -49,11 +49,11 @@
             </select>
             <input class="igOptions-item" style="margin: 5px" type="checkbox" @onchange="OnEnableZoomingChange" checked="@IsZoomingEnabled" />
         </div>
-
     </div>
+    
     <div class="igComponent">
 
-        <DataChart @ref="DataChartRef" Height="100%" Width="100%"
+        <DataChart @ref="Chart" Height="100%" Width="100%"
                    Subtitle="Stock Prices Series in Candlestick Display Type"
                    SubtitleTopMargin="10"
                    IsHorizontalZoomEnabled="@IsZoomingEnabled"
@@ -79,8 +79,6 @@
                     VolumeMemberPath="Volume"
                     ShowDefaultTooltip="true"
                     IsTransitionInEnabled="true"
-                    Brush="rgba(2, 199, 74, 1.0)"
-                    Outline="rgba(2, 199, 74, 1.0)"
                     Title="Price" />
         </DataChart>
 
@@ -88,31 +86,29 @@
 </div>
 
 @code {
-
     private List<SampleFinancialItem> DataSource;
-    private DataChart _dataChart;
-    public DataChart DataChartRef
-    {
-        get { return _dataChart; }
-        set { _dataChart = value;
-            this.DataChartRef.ActualWindowScaleHorizontal = 0.60;
-            this.DataChartRef.ActualWindowScaleVertical = 0.60;
-            this.DataChartRef.ActualWindowPositionVertical = 0.20;
-            this.DataChartRef.ActualWindowPositionHorizontal = 0.20;
-            StateHasChanged();
-        }
-    }
     private bool IsZoomingEnabled = true;
     private ModifierKeys PanModifier = ModifierKeys.Alt;
     private ModifierKeys DragModifier = ModifierKeys.Shift;
     private InteractionState DefaultInteraction = InteractionState.DragPan;
+    private DataChart _chart;
+    public DataChart Chart
+    {
+        get { return _chart; }
+        set { _dataChart = value;
+            this.Chart.ActualWindowScaleHorizontal = 0.60;
+            this.Chart.ActualWindowScaleVertical = 0.60;
+            this.Chart.ActualWindowPositionVertical = 0.20;
+            this.Chart.ActualWindowPositionHorizontal = 0.20;
+            StateHasChanged();
+        }
+    }
 
     protected override void OnInitialized()
     {
         DataChartCoreModule.Register(IgniteUIBlazor);
         DataChartCategoryModule.Register(IgniteUIBlazor);
         DataChartCategoryCoreModule.Register(IgniteUIBlazor);
-
         DataChartFinancialModule.Register(IgniteUIBlazor);
         DataChartFinancialCoreModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
@@ -122,64 +118,54 @@
 
     private void OnPanUp()
     {
-        this.DataChartRef.ActualWindowPositionVertical -= 0.05;
+        this.Chart.ActualWindowPositionVertical -= 0.05;
     }
 
     private void OnPanDown()
     {
-        this.DataChartRef.ActualWindowPositionVertical += 0.05;
+        this.Chart.ActualWindowPositionVertical += 0.05;
     }
 
     private void OnPanLeft()
     {
-        this.DataChartRef.ActualWindowPositionHorizontal -= 0.05;
+        this.Chart.ActualWindowPositionHorizontal -= 0.05;
     }
 
     private void OnPanRight()
     {
-        this.DataChartRef.ActualWindowPositionHorizontal += 0.05;
+        this.Chart.ActualWindowPositionHorizontal += 0.05;
     }
 
     private void OnZoomIn()
     {
-        if (this.DataChartRef.ActualWindowPositionHorizontal < 1.0)
-        {
-            this.DataChartRef.ActualWindowPositionHorizontal += 0.025;
-        }
-        if (this.DataChartRef.ActualWindowPositionVertical < 1.0)
-        {
-            this.DataChartRef.ActualWindowPositionVertical += 0.025;
-        }
-
-        if (this.DataChartRef.ActualWindowScaleHorizontal > 0.05)
-        {
-            this.DataChartRef.ActualWindowScaleHorizontal -= 0.05;
-        }
-        if (this.DataChartRef.ActualWindowScaleVertical > 0.05)
-        {
-            this.DataChartRef.ActualWindowScaleVertical -= 0.05;
-        }
+        if (this.Chart.ActualWindowPositionHorizontal < 1.0)        
+            this.Chart.ActualWindowPositionHorizontal += 0.025;
+        
+        if (this.Chart.ActualWindowPositionVertical < 1.0)        
+            this.Chart.ActualWindowPositionVertical += 0.025;
+        
+        if (this.Chart.ActualWindowScaleHorizontal > 0.05)        
+            this.Chart.ActualWindowScaleHorizontal -= 0.05;
+        
+        if (this.Chart.ActualWindowScaleVertical > 0.05)        
+            this.Chart.ActualWindowScaleVertical -= 0.05;
+        
     }
 
     private void OnZoomOut()
     {
-        if (this.DataChartRef.ActualWindowPositionHorizontal > 0.025)
-        {
-            this.DataChartRef.ActualWindowPositionHorizontal -= 0.025;
-        }
-        if (this.DataChartRef.ActualWindowPositionVertical > 0.025)
-        {
-            this.DataChartRef.ActualWindowPositionVertical -= 0.025;
-        }
-
-        if (this.DataChartRef.ActualWindowScaleHorizontal < 1.0)
-        {
-            this.DataChartRef.ActualWindowScaleHorizontal += 0.05;
-        }
-        if (this.DataChartRef.ActualWindowScaleVertical < 1.0)
-        {
-            this.DataChartRef.ActualWindowScaleVertical += 0.05;
-        }
+        if (this.Chart.ActualWindowPositionHorizontal > 0.025)        
+            this.Chart.ActualWindowPositionHorizontal -= 0.025;
+        
+        if (this.Chart.ActualWindowPositionVertical > 0.025)        
+            this.Chart.ActualWindowPositionVertical -= 0.025;
+        
+        if (this.Chart.ActualWindowScaleHorizontal < 1.0)        
+            this.Chart.ActualWindowScaleHorizontal += 0.05;
+        
+        if (this.Chart.ActualWindowScaleVertical < 1.0)        
+            this.Chart.ActualWindowScaleVertical += 0.05;
+        
     }
 
     private void OnEnableZoomingChange(ChangeEventArgs args)
