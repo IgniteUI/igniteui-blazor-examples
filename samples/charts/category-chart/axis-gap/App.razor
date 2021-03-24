@@ -2,6 +2,10 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="igContainer">
+    <div class="igOptions">
+        <span class="igOptions-label" style="margin-left: 25px">X-Axis Gap: @XAxisGapValue</span>
+        <input class="igOptions-slider" type="range" min="0" max="1" step="0.1" value="1" @oninput="OnXAxisGapSliderChange"/>
+    </div>
     <div class="igComponent">
         @if (DataSource != null)
         {
@@ -16,7 +20,7 @@
 						   IsHorizontalZoomEnabled="false"
                            IsVerticalZoomEnabled="false"
                            XAxisInterval="1"
-                           XAxisGap="1">                           
+                           XAxisGap="@XAxisGapValue">                           
             </CategoryChart>
         }
     </div>
@@ -26,8 +30,15 @@
 
     private List<TemperatureInfo> DataSource = new TemperatureData();
 
+    private double XAxisGapValue = 1;
+
     protected override void OnInitialized()
     {
-        CategoryChartModule.Register(IgniteUIBlazor);        
+        CategoryChartModule.Register(IgniteUIBlazor);
+    }
+
+    private void OnXAxisGapSliderChange(ChangeEventArgs args)
+    {
+        this.XAxisGapValue = double.Parse(args.Value.ToString());
     }
 }

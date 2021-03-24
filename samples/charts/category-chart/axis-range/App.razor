@@ -2,6 +2,12 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="igContainer">
+    <div class="igOptions" style="margin-left: 1rem">
+        <span>Y-Axis Minimum Value: @YAxisMinValue</span>
+        <input type="range" min="0" max="100" step="10" value="0" @oninput="OnYAxisMinValueChanged" />
+        <span>Y-Axis Maximum Value: @YAxisMaxValue</span>
+        <input type="range" min="100" max="200" step="10" value="150" @oninput="OnYAxisMaxValueChanged" />
+    </div>
     <div class="igOptions">
         <span class="igLegend-title">Renewable Electricity Generated</span>
         <div class="igLegend">
@@ -17,8 +23,8 @@
                            ChartType="CategoryChartType.Line"
                            IsHorizontalZoomEnabled="false"
                            IsVerticalZoomEnabled="false"
-                           YAxisMinimumValue="10"
-                           YAxisMaximumValue="135">
+                           YAxisMinimumValue="@YAxisMinValue"
+                           YAxisMaximumValue="@YAxisMaxValue">
             </CategoryChart>
         }
     </div>
@@ -35,9 +41,22 @@
 
     private List<EnergyRenewableInfo> DataSource = new EnergyRenewableData();
 
+    private int YAxisMinValue = 0;
+    private int YAxisMaxValue = 150;
+
     protected override void OnInitialized()
     {
         CategoryChartModule.Register(IgniteUIBlazor);
         LegendModule.Register(IgniteUIBlazor);
+    }
+
+    private void OnYAxisMinValueChanged(ChangeEventArgs args)
+    {
+        this.YAxisMinValue = int.Parse(args.Value.ToString());
+    }
+
+    private void OnYAxisMaxValueChanged(ChangeEventArgs args)
+    {
+        this.YAxisMaxValue = int.Parse(args.Value.ToString());
     }
 }

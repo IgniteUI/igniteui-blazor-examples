@@ -2,6 +2,12 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="igContainer">
+    <div class="igOptions" style="margin-left: 1rem">
+        <span>X-Axis Label Angle: @XAxisLabelAngle</span>
+        <input type="range" min="0" max="270" step="10" value="0" @oninput="OnXAxisLabelAngleChange"/>
+        <span>Y-Axis Label Angle: @YAxisLabelAngle</span>
+        <input type="range" min="0" max="270" step="10" value="0" @oninput="OnYAxisLabelAngleChange" />
+    </div>
     <div class="igOptions">
         <span class="igLegend-title">Renewable Electricity Generated</span>
         <div class="igLegend">
@@ -17,9 +23,11 @@
                            ChartType="CategoryChartType.Line"
                            IsHorizontalZoomEnabled="false"
                            IsVerticalZoomEnabled="false"
+                           XAxisLabelAngle="@XAxisLabelAngle"
                            XAxisLabelTextColor="Gray"
                            XAxisLabelTextStyle="10pt Verdana"
                            XAxisLabelTopMargin="5"
+                           YAxisLabelAngle="@YAxisLabelAngle"
                            YAxisLabelTextColor="Gray"
                            YAxisLabelTextStyle="10pt Verdana"
                            YAxisLabelRightMargin="5">
@@ -37,11 +45,24 @@
         set { _Legend = value; StateHasChanged(); }
     }
 
+    private int XAxisLabelAngle = 0;
+    private int YAxisLabelAngle = 0;
+
     private List<EnergyRenewableInfo> DataSource = new EnergyRenewableData();
 
     protected override void OnInitialized()
     {
         CategoryChartModule.Register(IgniteUIBlazor);
         LegendModule.Register(IgniteUIBlazor);
+    }
+
+    private void OnXAxisLabelAngleChange(ChangeEventArgs args)
+    {
+        this.XAxisLabelAngle = int.Parse(args.Value.ToString());
+    }
+
+    private void OnYAxisLabelAngleChange(ChangeEventArgs args)
+    {
+        this.YAxisLabelAngle = int.Parse(args.Value.ToString());
     }
 }
