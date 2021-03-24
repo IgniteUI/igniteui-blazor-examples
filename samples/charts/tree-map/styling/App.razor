@@ -1,0 +1,41 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igComponent">
+
+        <Treemap Height="100%" Width="100%"
+                 DataSource="@Data"
+                 ParentIdMemberPath="Parent"
+                 IdMemberPath="Name"
+                 LabelMemberPath="Name"
+                 ValueMemberPath="Pop"
+                 LayoutType="TreemapLayoutType.Squarified"
+                 LayoutOrientation="TreemapOrientation.Vertical"
+                 FillScaleMode="TreemapFillScaleMode.Value"
+                 FillScaleMinimumValue="0"
+                 FillScaleMaximumValue="1500000000"
+                 FillBrushes="#4e62cf, #8a58d6"
+                 IsFillScaleLogarithmic="true"
+                 RootTitle="Countries"
+                 HeaderDisplayMode="@TreemapHeaderDisplayMode.Overlay"                  
+                 HeaderBackground="#E0F11F"                
+                 HeaderHoverBackground="#28E124"   
+                 Outline="black"                  
+                 StrokeThickness="1" 
+                 NodeStylingScript="onStyleTreeNode">@***refers to StylingTreemap.js***@
+        </Treemap>
+        @**@
+    </div>
+</div>
+
+@code {
+
+    protected List<CountryInfo> Data;
+
+    protected override void OnInitialized()
+    {
+        TreemapModule.Register(IgniteUIBlazor);        
+        this.Data = CountryTreeData.Create();
+    }
+}
