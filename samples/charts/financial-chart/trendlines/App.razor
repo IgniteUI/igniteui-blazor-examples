@@ -32,29 +32,30 @@
         {
             <FinancialChart Width="100%"
                 Height="100%"
-                ChartType=FinancialChartType.Line
+                ChartType=FinancialChartType.Bar
                 Thickness=2
                 DataSource="DataSource"
                 TrendLineType="@TrendLineType"
                 TrendLineThickness=2
                 TrendLinePeriod=10
-                TrendLineBrushes="rgba(5, 138, 0, 1), rgba(0, 101, 209, 1)"
-                Brushes="rgba(5, 138, 0, 1), rgba(0, 101, 209, 1)"
-                ChartTitle="Tesla vs Microsoft Trend"
+                TrendLineBrushes="rgba(0, 101, 209, 1)"                
+                ChartTitle="Microsoft Trend"
                 Subtitle="Between 2013 and 2017"
-                ZoomSliderType="FinancialChartZoomSliderType.None"/>
+                ZoomSliderType="FinancialChartZoomSliderType.None"
+                IsHorizontalZoomEnabled="false"
+                IsVerticalZoomEnabled="false"/>
         }
     </div>
 </div>
 
 @code {
 
-    protected List<StockPrice[]> DataSource;
+    protected StockPrice[] DataSource;
     protected TrendLineType TrendLineType = TrendLineType.QuinticFit;
 
     protected override async Task OnInitializedAsync()
     {
         FinancialChartModule.Register(IgniteUIBlazor);
-        this.DataSource = await StocksHistory.GetMultipleStocks();
+        this.DataSource = await StocksHistory.GetMicrosoftStock();
     }
 }

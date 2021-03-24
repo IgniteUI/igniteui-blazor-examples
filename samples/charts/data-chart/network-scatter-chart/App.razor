@@ -1,0 +1,210 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igOptions">
+        <span class="igLegend-title">Neutral Network Graph</span>
+        <div class="igLegend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+
+    <div class="igComponent">
+
+        @if (NodeConnections != null)
+        {
+            <DataChart Height="100%" Width="100%" @ref="Chart"         
+                       SeriesMouseEnterScript="onNetworkGrahpMouseEnter"
+                       IsHorizontalZoomEnabled="false"
+                       IsVerticalZoomEnabled="false">
+
+                <NumericXAxis Name="xAxis" MinimumValue="0" MaximumValue="14" Interval="1" LabelTextColor="Transparent"/>
+                <NumericYAxis Name="yAxis" MinimumValue="0" MaximumValue="6"  Interval="1" LabelTextColor="Transparent"/>
+
+                <CategoryYAxis Name="labelAxis" Label="Label" DataSource="@NodeInuputLabels" Interval="1" StrokeThickness="1" />
+
+                <ScatterPolylineSeries XAxisName="xAxis"
+                                       YAxisName="yAxis"
+                                       DataSource="@NodeConnections"
+                                       ShapeMemberPath="Points"
+                                       Thickness="2"
+                                       Title="Connections"
+                                       Outline="#8D8D8D" 
+                                       Brush="#8D8D8D">
+                </ScatterPolylineSeries>
+
+                <ScatterSeries XAxisName="xAxis" XMemberPath="X" MarkerOutline="#9D37F7"
+                               YAxisName="yAxis" YMemberPath="Y"
+                               MarkerType="MarkerType.Circle"
+                               DataSource="@InputNodeLayer" 
+                               Title="Input Layer" >
+                </ScatterSeries> 
+                
+                <ScatterSeries XAxisName="xAxis" XMemberPath="X"  MarkerOutline="#46BE3B"
+                               YAxisName="yAxis" YMemberPath="Y"
+                               MarkerType="MarkerType.Circle"
+                               DataSource="@AnalyisNodeLayer"
+                               Title="Analyis Layer">
+                </ScatterSeries>
+
+                <ScatterSeries XAxisName="xAxis" XMemberPath="X"  MarkerOutline="#008DFF"
+                               YAxisName="yAxis" YMemberPath="Y"
+                               MarkerType="MarkerType.Circle"
+                               DataSource="@ProcessNodeLayer" 
+                               Title="Process Layer" >
+                </ScatterSeries>
+
+                <ScatterSeries XAxisName="xAxis" XMemberPath="X"  MarkerOutline="#FF7200"
+                               YAxisName="yAxis" YMemberPath="Y"
+                               MarkerType="MarkerType.Circle"
+                               DataSource="@OutputNodeLayer" 
+                               Title="Output Layer" >
+                </ScatterSeries>
+
+            </DataChart>
+        }
+
+    </div>
+</div>
+
+@code {
+
+    private Legend Legend;
+    private DataChart Chart;
+
+    private List<NodeConnection> NodeConnections;
+    private List<NodeInfo> NodeInuputLabels;
+
+    private List<NodeInfo> InputNodeLayer = new List<NodeInfo>();
+    private List<NodeInfo> AnalyisNodeLayer = new List<NodeInfo>();
+    private List<NodeInfo> ProcessNodeLayer = new List<NodeInfo>();
+    private List<NodeInfo> OutputNodeLayer = new List<NodeInfo>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartVerticalCategoryModule.Register(IgniteUIBlazor);
+        DataChartScatterModule.Register(IgniteUIBlazor);
+        DataChartScatterCoreModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        ScatterPolylineSeriesModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+
+        // generating nodes
+        for (int i = 1; i <= 5; i++)
+        {
+            this.InputNodeLayer.Add(new NodeInfo { X = 1, Y = i});
+        }
+
+        for (int i = 1; i <= 6; i++)
+        {
+            this.AnalyisNodeLayer.Add(new NodeInfo { X = 5, Y = i - 0.5});
+        }
+
+        for (int i = 1; i <= 3; i++)
+        {
+            this.ProcessNodeLayer.Add(new NodeInfo { X = 9, Y = i + 1});
+        }
+
+        this.OutputNodeLayer.Add(new NodeInfo { X = 13, Y = 3, Label = "Node #" + 3, Layer = "Output Layer", Color = "#FF7200" });
+
+        // generating connection between layers
+        this.NodeConnections = new List<NodeConnection>();
+        for (int i = 0; i < this.InputNodeLayer.Count; i++)
+        {
+            var sourceNode = this.InputNodeLayer[i];
+            sourceNode.Color = "#9D37F7";
+            sourceNode.Layer = "Input Layer";
+            sourceNode.Label = "Node #" + (i + 1);
+
+            AddNodeConnections(sourceNode, this.AnalyisNodeLayer);
+        }
+
+        for (int i = 0; i < this.AnalyisNodeLayer.Count; i++)
+        {
+            var sourceNode = this.AnalyisNodeLayer[i];
+            sourceNode.Color = "#46BE3B";
+            sourceNode.Layer = "Analyis Layer";
+            sourceNode.Label = "Node #" + (i + 1);
+            this.
+            AddNodeConnections(sourceNode, this.ProcessNodeLayer);
+        }
+
+        for (int i = 0; i < this.ProcessNodeLayer.Count; i++)
+        {
+            var sourceNode = this.ProcessNodeLayer[i];
+            sourceNode.Color = "#008DFF";
+            sourceNode.Layer = "Process Layer";
+            sourceNode.Label = "Node #" + (i + 1);
+
+            AddNodeConnections(sourceNode, this.OutputNodeLayer);
+        }
+
+        this.NodeInuputLabels = new List<NodeInfo>();
+        this.NodeInuputLabels.Add(new NodeInfo());
+        this.NodeInuputLabels.AddRange(InputNodeLayer);
+        this.NodeInuputLabels.Add(new NodeInfo());
+
+        await Task.Delay(1);
+    }
+
+    protected void AddNodeConnections(NodeInfo sourceNode, List<NodeInfo> targetNodes)
+    {
+        for (int c = 0; c < targetNodes.Count; c++)
+        {
+            var nodeTarget = targetNodes[c];
+            var connection = new NodeConnection(sourceNode, nodeTarget);
+            connection.Label = "Node Connection #" + (c + 1);
+            this.NodeConnections.Add(connection);
+        }
+    }
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        if (this.Chart != null && this.Legend != null && firstRender) {
+            this.Chart.Legend = this.Legend;
+        }
+    }
+
+    public class NodeConnection
+    {
+        public string Label { get; set; }
+        public NodeInfo Source { get; set; }
+        public NodeInfo Target { get; set; }
+        public List<List<Point>> Points { get; set; }
+
+        public NodeConnection(NodeInfo source, NodeInfo target)
+        {
+            this.Source = source;
+            this.Target = target;
+
+            // generating connection points between nodes
+            var points = new List<Point>();
+            points.Add(new Point { X = source.X, Y = source.Y });
+            points.Add(new Point { X = target.X, Y = target.Y });
+            this.Points = new List<List<Point>>();
+            this.Points.Add(points);
+        }
+    }
+
+    public class NodeInfo
+    {
+        public string Layer { get; set; }
+        public string Label { get; set; }
+        public string Color { get; set; }
+
+        public double X { get; set; }
+        public double Y { get; set; }
+
+        public NodeInfo()
+        {
+            this.Layer = "";
+            this.Label = "";
+        }
+    }
+
+
+}

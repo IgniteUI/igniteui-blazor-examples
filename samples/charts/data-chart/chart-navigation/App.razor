@@ -1,0 +1,177 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igOptions-horizontal">
+        <div class="igOptions-vertical" style="width: 100px">
+            <button class="igOptions-button" style="margin: 5px" @onclick="OnPanUp">Pan Up</button>
+            <button class="igOptions-button" style="margin: 5px" @onclick="OnPanDown">Pan Down</button>
+        </div>
+        <div class="igOptions-vertical" style="width: 100px">
+            <button class="igOptions-button" style="margin: 5px" @onclick="OnPanLeft">Pan Left</button>
+            <button class="igOptions-button" style="margin: 5px" @onclick="OnPanRight">Pan Right</button>
+        </div>
+        <div class="igOptions-vertical" style="width: 100px">
+            <button class="igOptions-button" style="margin: 5px" @onclick="OnZoomIn">Zoom In</button>
+            <button class="igOptions-button" style="margin: 5px" @onclick="OnZoomOut">Zoom Out</button>
+        </div>
+        <div class="igOptions-vertical" style="width: 120px">
+            <label class="igOptions-label" style="margin: 5px">Pan Modifier:</label>
+            <label class="igOptions-label" style="margin: 5px">Zoom Modifier:</label>
+        </div>
+        <div class="igOptions-vertical" style="width: 100px">
+            <select @bind="@PanModifier" style="margin: 5px">
+                <option>@ModifierKeys.Alt</option>
+                <option>@ModifierKeys.Control</option>
+                <option>@ModifierKeys.Shift</option>
+                <option>@ModifierKeys.Windows</option>
+                <option>@ModifierKeys.Apple</option>
+                <option>@ModifierKeys.None</option>
+            </select>
+            <select @bind="@DragModifier" style="margin: 5px">
+                <option>@ModifierKeys.Alt</option>
+                <option>@ModifierKeys.Control</option>
+                <option>@ModifierKeys.Shift</option>
+                <option>@ModifierKeys.Windows</option>
+                <option>@ModifierKeys.Apple</option>
+                <option>@ModifierKeys.None</option>
+            </select>
+        </div>
+        <div class="igOptions-vertical" style="width: 150px">
+            <label class="igOptions-label" style="margin: 5px">Default Interaction:</label>
+            <label class="igOptions-label" style="margin: 5px">Enable Zooming:</label>
+        </div>
+        <div class="igOptions-vertical" style="width: 100px">
+            <select @bind="@DefaultInteraction" style="margin: 5px">
+                <option>@InteractionState.DragZoom</option>
+                <option>@InteractionState.DragPan</option>
+                <option>@InteractionState.None</option>
+            </select>
+            <input class="igOptions-item" style="margin: 5px" type="checkbox" @onchange="OnEnableZoomingChange" checked="@IsZoomingEnabled" />
+        </div>
+    </div>
+    
+    <div class="igComponent">
+
+        <DataChart @ref="Chart" Height="100%" Width="100%"
+                   Subtitle="Stock Prices Series in Candlestick Display Type"
+                   SubtitleTopMargin="10"
+                   IsHorizontalZoomEnabled="@IsZoomingEnabled"
+                   IsVerticalZoomEnabled="@IsZoomingEnabled"
+                   PanModifier="@PanModifier"
+                   DragModifier="@DragModifier"
+                   DefaultInteraction="@DefaultInteraction">
+
+            <CategoryXAxis Name="xAxis" Label="Label" DataSource="@DataSource" />
+            <NumericYAxis Name="yAxis" Title="Amount (in USD)" TitleRightMargin="10"
+                    LabelRightMargin="10"
+                    LabelHorizontalAlignment="@HorizontalAlignment.Left"
+                    LabelLocation="@AxisLabelsLocation.OutsideRight" />
+
+            <FinancialPriceSeries XAxisName="xAxis"
+                    YAxisName="yAxis"
+                    DataSource="@DataSource"
+                    DisplayType="@PriceDisplayType.Candlestick"
+                    OpenMemberPath="Open"
+                    CloseMemberPath="Close"
+                    HighMemberPath="High"
+                    LowMemberPath="Low"
+                    VolumeMemberPath="Volume"
+                    ShowDefaultTooltip="true"
+                    IsTransitionInEnabled="true"
+                    Title="Price" />
+        </DataChart>
+
+    </div>
+</div>
+
+@code {
+    private List<SampleFinancialItem> DataSource;
+    private bool IsZoomingEnabled = true;
+    private ModifierKeys PanModifier = ModifierKeys.Alt;
+    private ModifierKeys DragModifier = ModifierKeys.Shift;
+    private InteractionState DefaultInteraction = InteractionState.DragPan;
+    
+    private DataChart _chart;
+    public DataChart Chart
+    {
+        get { return _chart; }
+        set { 
+            _chart = value;
+            this.Chart.ActualWindowScaleHorizontal = 0.60;
+            this.Chart.ActualWindowScaleVertical = 0.60;
+            this.Chart.ActualWindowPositionVertical = 0.20;
+            this.Chart.ActualWindowPositionHorizontal = 0.20;
+            StateHasChanged();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        DataChartFinancialModule.Register(IgniteUIBlazor);
+        DataChartFinancialCoreModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+
+        DataSource = SampleFinancialData.Create();
+    }
+
+    private void OnPanUp()
+    {
+        this.Chart.ActualWindowPositionVertical -= 0.05;
+    }
+
+    private void OnPanDown()
+    {
+        this.Chart.ActualWindowPositionVertical += 0.05;
+    }
+
+    private void OnPanLeft()
+    {
+        this.Chart.ActualWindowPositionHorizontal -= 0.05;
+    }
+
+    private void OnPanRight()
+    {
+        this.Chart.ActualWindowPositionHorizontal += 0.05;
+    }
+
+    private void OnZoomIn()
+    {
+        if (this.Chart.ActualWindowPositionHorizontal < 1.0)        
+            this.Chart.ActualWindowPositionHorizontal += 0.025;
+        
+        if (this.Chart.ActualWindowPositionVertical < 1.0)        
+            this.Chart.ActualWindowPositionVertical += 0.025;
+        
+        if (this.Chart.ActualWindowScaleHorizontal > 0.05)        
+            this.Chart.ActualWindowScaleHorizontal -= 0.05;
+        
+        if (this.Chart.ActualWindowScaleVertical > 0.05)        
+            this.Chart.ActualWindowScaleVertical -= 0.05;
+        
+    }
+
+    private void OnZoomOut()
+    {
+        if (this.Chart.ActualWindowPositionHorizontal > 0.025)        
+            this.Chart.ActualWindowPositionHorizontal -= 0.025;
+        
+        if (this.Chart.ActualWindowPositionVertical > 0.025)        
+            this.Chart.ActualWindowPositionVertical -= 0.025;
+        
+        if (this.Chart.ActualWindowScaleHorizontal < 1.0)        
+            this.Chart.ActualWindowScaleHorizontal += 0.05;
+        
+        if (this.Chart.ActualWindowScaleVertical < 1.0)        
+            this.Chart.ActualWindowScaleVertical += 0.05;
+        
+    }
+
+    private void OnEnableZoomingChange(ChangeEventArgs args)
+    {
+        this.IsZoomingEnabled = (bool)args.Value;
+    }
+}

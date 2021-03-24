@@ -3,87 +3,84 @@
 
 <div class="igContainer">
     <div class="igOptions">
-        <span class="igLegend-title">Facebook Statement of Income 2018-2020</span>        
+        <span class="igLegend-title">Facebook Statement of Income 2019-2020</span>        
         <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="igComponent">
-        <DataChart Height="100%" Width="100%"
-                   Legend="LegendRef"
+        <DataChart Height="100%" Width="100%" Legend="Legend"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
             <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Date" />
+            <NumericYAxis Name="yAxis1" AbbreviateLargeNumbers="true" Title="In Millions of U.S. Dollars" 
+                          MinimumValue="0" MaximumValue="30000" TitleLeftMargin="5" TitleRightMargin="0"/>
+            <NumericYAxis Name="yAxis2" AbbreviateLargeNumbers="true" Title="Percentage" MajorStrokeThickness="0"
+                          MinimumValue="0" MaximumValue="160" LabelLocation="AxisLabelsLocation.OutsideRight"
+                          LabelHorizontalAlignment="HorizontalAlignment.Left"/>
 
-            <NumericYAxis Name="yAxis" AbbreviateLargeNumbers="true" Title="In Millions of U.S. Dollars" />
-
-            <ColumnSeries @ref="@RevenueSeriesRef" XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="Revenue"
+            <ColumnSeries @ref="@RevenueSeries" XAxisName="xAxis" YAxisName="yAxis1" DataSource="DataSource" 
+                          ValueMemberPath="Revenue"
                           Title="Revenue" MarkerType="MarkerType.Hidden" />
-            <ColumnSeries @ref="@CostAndExpenseSeriesRef" XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="TotalCostsAndExpenses"
-                          Title="Total Costs and Expenses" MarkerType="MarkerType.Hidden" />
-            <SplineAreaSeries @ref="@NetIncomeSeriesRef" XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="NetIncome"
-                              Title="Net Income" MarkerType="MarkerType.Hidden" />
+            <ColumnSeries @ref="@ExpenseSeries" XAxisName="xAxis" YAxisName="yAxis1" DataSource="DataSource" 
+                          ValueMemberPath="Expenses"
+                          Title="Expenses" MarkerType="MarkerType.Hidden" />
 
-            <CalloutLayer IsAutoCalloutBehaviorEnabled="true" TargetSeries="@RevenueSeriesRef" UseValueForAutoCalloutLabels="true"
-                          CalloutBackground="Transparent" CalloutLeaderBrush="Transparent" CalloutTextColor="Black" />
-            <CalloutLayer IsAutoCalloutBehaviorEnabled="true" TargetSeries="@CostAndExpenseSeriesRef" UseValueForAutoCalloutLabels="true"
-                          CalloutBackground="Transparent" CalloutLeaderBrush="Transparent" CalloutTextColor="Black" />
-            <CalloutLayer IsAutoCalloutBehaviorEnabled="true" TargetSeries="@NetIncomeSeriesRef" UseValueForAutoCalloutLabels="true"
-                          CalloutBackground="LightGray" CalloutLeaderBrush="Transparent" CalloutTextColor="Black" />
+            <SplineAreaSeries @ref="@IncomeSeries" XAxisName="xAxis" YAxisName="yAxis2" DataSource="DataSource" 
+                              ValueMemberPath="IncomePerRevenue"
+                              Title="Income / Revenue %" MarkerType="MarkerType.Hidden" />
+           
+            <CalloutLayer IsAutoCalloutBehaviorEnabled="true" TargetSeries="@RevenueSeries"
+                          UseValueForAutoCalloutLabels="true" 
+                          CalloutLeaderBrush="Transparent" CalloutTextColor="Black" 
+                          CalloutBackground = "Transparent"/>
+
+            <CalloutLayer IsAutoCalloutBehaviorEnabled="true" TargetSeries="@ExpenseSeries" 
+                          UseValueForAutoCalloutLabels="true" 
+                          CalloutLeaderBrush="Transparent" CalloutTextColor="Black" 
+                          CalloutBackground = "Transparent"/>
+
+            <CalloutLayer IsAutoCalloutBehaviorEnabled="true" TargetSeries="@IncomeSeries" 
+                          UseValueForAutoCalloutLabels="true" ContentMemberPath="IncomePerRevenue"
+                          CalloutLeaderBrush="Transparent" CalloutTextColor="Black" 
+                          CalloutBackground = "LightGray" AutoCalloutLabelPrecision="1"/>
 
         </DataChart>
     </div>
 </div>
 
 @code {
-
-    private Legend _legend;
-    private ColumnSeries _revenueSeries;
-    private ColumnSeries _costExpenseSeries;
-    private SplineAreaSeries _netIncomeSeries;
-
-    private Legend LegendRef
+    
+    private Legend _legend; 
+    private Legend Legend
     {
         get { return _legend; }
-        set
-        {
-            _legend = value;
-            StateHasChanged();
-        }
+        set { _legend = value; StateHasChanged(); }
     }
-
-    public ColumnSeries RevenueSeriesRef
+    
+    private ColumnSeries _RevenueSeries;
+    public ColumnSeries RevenueSeries
     {
-        get { return _revenueSeries; }
-        set
-        {
-            _revenueSeries = value;
-            StateHasChanged();
-        }
+        get { return _RevenueSeries; }
+        set { _RevenueSeries = value; StateHasChanged(); }
     }
-
-    public ColumnSeries CostAndExpenseSeriesRef
+    
+    private ColumnSeries _ExpenseSeries;
+    public ColumnSeries ExpenseSeries
     {
-        get { return _costExpenseSeries; }
-        set
-        {
-            _costExpenseSeries = value;
-            StateHasChanged();
-        }
+        get { return _ExpenseSeries; }
+        set { _ExpenseSeries = value; StateHasChanged(); }
     }
-
-    public SplineAreaSeries NetIncomeSeriesRef
+    
+    private SplineAreaSeries _IncomeSeries;
+    public SplineAreaSeries IncomeSeries
     {
-        get { return _netIncomeSeries; }
-        set
-        {
-            _netIncomeSeries = value;
-            StateHasChanged();
-        }
+        get { return _IncomeSeries; }
+        set { _IncomeSeries = value; StateHasChanged(); }
     }
 
-    private List<FacebookIncomeStatementInfo> DataSource = new FacebookIncomeStatementData();
+    private List<CompanyBudgetInfo> DataSource = new CompanyBudgetData();
 
     protected override void OnInitialized()
     {
@@ -96,4 +93,5 @@
         NumberAbbreviatorModule.Register(IgniteUIBlazor);
         LegendModule.Register(IgniteUIBlazor);
     }
+
 }

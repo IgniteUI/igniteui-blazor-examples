@@ -1,0 +1,112 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igOptions">
+            <label class="igOptions-label">Annotations: </label>
+            <label class="igOptions-item">
+                <input type="checkbox" @onchange="OnCrosshairsVisibleCheckboxChange" checked="@CrosshairsVisible" /> Crosshair
+            </label>
+            <label class="igOptions-item">
+                <input type="checkbox" @onchange="OnCalloutsVisibleCheckboxChange" checked="@CalloutsVisible" /> Callouts
+            </label>
+            <label class="igOptions-item">
+                <input type="checkbox" @onchange="OnFinalValuesCheckboxChange" checked="@FinalValuesVisible" /> Final Values
+            </label>
+            <label class="igOptions-item">
+                <input type="checkbox" @onchange="OnMarkersVisibleCheckBoxChange" checked="@MarkersVisible" /> Markers
+            </label>
+    </div>
+
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+            <CategoryChart Height="100%" Width="100%"
+                           @ref="CategoryChartRef"
+                           DataSource="DataSource"
+                           ChartType="CategoryChartType.Line"
+                           Subtitle="Renewable Electricity Generated"
+                           YAxisTitle="TWh"
+                           Thickness="2"
+                           CrosshairsSnapToData="true"
+                           CrosshairsDisplayMode="@CrosshairMode"
+                           CrosshairsAnnotationEnabled="@CrosshairsVisible"
+                           FinalValueAnnotationsVisible="@FinalValuesVisible"
+                           YAxisLabelLocation="AxisLabelsLocation.OutsideRight"  
+                           CalloutsVisible="@CalloutsVisible"
+                           CalloutsYMemberPath="Value"
+                           CalloutsXMemberPath="Index"
+                           CalloutsLabelMemberPath="Label"
+                           CalloutsDataSource="@CalloutDataSource"
+                           ExcludedProperties="@(new string[] { "China", "Europe" })">
+            </CategoryChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<EnergyRenewableInfo> DataSource = new EnergyRenewableData();
+    private List<CalloutInfo> CalloutDataSource = new CalloutData();
+
+    private CategoryChart _CategoryChart;
+    private CategoryChart CategoryChartRef
+    {
+        get { return _CategoryChart; }
+        set { _CategoryChart = value;
+            CategoryChartRef.MarkerTypes.Add(MarkerType.Circle);
+            StateHasChanged(); }
+    }
+    private bool MarkersVisible = true;
+    private bool FinalValuesVisible = true;
+    private bool CalloutsVisible = true;
+    private bool CrosshairsVisible = true;
+
+    private CrosshairsDisplayMode CrosshairMode = CrosshairsDisplayMode.Both;
+
+    private void OnMarkersVisibleCheckBoxChange(ChangeEventArgs args)
+    {
+        bool value = (bool)args.Value;
+        if (value == true)
+        {
+            CategoryChartRef.MarkerTypes.Add(MarkerType.Automatic);
+        }
+        else {
+            CategoryChartRef.MarkerTypes.Clear();
+        }
+        this.MarkersVisible = value;
+    }
+    private void OnFinalValuesCheckboxChange(ChangeEventArgs args)
+    {
+        this.FinalValuesVisible = (bool)args.Value;
+    }
+    private void OnCalloutsVisibleCheckboxChange(ChangeEventArgs args)
+    {
+        this.CalloutsVisible = (bool)args.Value;
+    }
+    private void OnCrosshairsVisibleCheckboxChange(ChangeEventArgs args)
+    {
+        bool isVisible = (bool)args.Value;
+        this.CrosshairMode = isVisible ? CrosshairsDisplayMode.Both : CrosshairsDisplayMode.None;
+    }
+    protected override void OnInitialized()
+    {
+        CategoryChartModule.Register(IgniteUIBlazor);
+        for (int i = 0; i < DataSource.Count; i++)
+        {
+            CalloutDataSource.Add(
+                new CalloutInfo {
+                    Index = i, Label =
+                    DataSource[i].USA + " " + "TWh",
+                    Value = DataSource[i].USA });
+        }
+    }
+
+    public class CalloutInfo
+    {
+        public int Index { get; set; }
+        public int Value { get; set; }
+        public string Label { get; set; }
+    }
+    public class CalloutData : List<CalloutInfo>{}
+}
