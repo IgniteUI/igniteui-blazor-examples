@@ -1,7 +1,6 @@
-@* this namespace is required for Infragistics controls *@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
-@* NOTE use this HTML code to design a sample *@
+
 <div class="igContainer">
     <div class="igOptions">
         <span class="igLegend-title">Renewable Electricity Generated</span>
@@ -13,14 +12,19 @@
         @if (DataSource != null)
         {
             <CategoryChart Height="100%" Width="100%"
-                ChartType="CategoryChartType.SplineArea"
-                DataSource="DataSource"
-                Legend="LegendRef"
-                YAxisTitle="TWh"
-                ToolTipType="ToolTipType.Category"
-                IsTransitionInEnabled="true"
-				IsHorizontalZoomEnabled="false" 
-                IsVerticalZoomEnabled="false">
+                           Legend="LegendRef"
+                           DataSource="DataSource"
+                           ChartType="CategoryChartType.Line"
+                           IsHorizontalZoomEnabled="false"
+                           IsVerticalZoomEnabled="false" 
+                           XAxisInterval="1"                           
+                           XAxisMajorStroke="Gray"
+                           XAxisMajorStrokeThickness="0.5"
+                           YAxisMajorStroke="Black"
+                           YAxisMajorStrokeThickness="1"
+                           YAxisMinorInterval="5"
+                           YAxisMinorStroke="Gray"
+                           YAxisMinorStrokeThickness="0.5">
             </CategoryChart>
         }
     </div>
@@ -35,14 +39,11 @@
         set { _Legend = value; StateHasChanged(); }
     }
 
-    private List<EnergyRenewableInfo> DataSource;
+    private List<EnergyRenewableInfo> DataSource = new EnergyRenewableData();
 
     protected override void OnInitialized()
     {
         CategoryChartModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
         LegendModule.Register(IgniteUIBlazor);
-
-        this.DataSource = new EnergyRenewableData();
     }
 }
