@@ -4,38 +4,94 @@
 <div class="igContainer">
     <div class="igComponent">
 
-        <Treemap Height="100%" Width="100%"
+        <Treemap @ref="TreeMap" Height="100%" Width="100%"
                  DataSource="@Data"
                  ParentIdMemberPath="Parent"
+                 CustomValueMemberPath="Parent"
                  IdMemberPath="Name"
                  LabelMemberPath="Name"
                  ValueMemberPath="Pop"
-                 LayoutType="TreemapLayoutType.Squarified"
-                 LayoutOrientation="TreemapOrientation.Vertical"
-                 FillScaleMode="TreemapFillScaleMode.Value"
-                 FillScaleMinimumValue="0"
-                 FillScaleMaximumValue="1500000000"
-                 FillBrushes="#4e62cf, #8a58d6"
-                 IsFillScaleLogarithmic="true"
                  RootTitle="Countries"
-                 HeaderDisplayMode="@TreemapHeaderDisplayMode.Overlay"                  
-                 HeaderBackground="#E0F11F"                
-                 HeaderHoverBackground="#28E124"   
-                 Outline="black"                  
-                 StrokeThickness="1" 
-                 NodeStylingScript="onStyleTreeNode">@***refers to StylingTreemap.js***@
-        </Treemap>
+                 HeaderDisplayMode="@TreemapHeaderDisplayMode.Overlay"
+                 HeaderBackground="#E0F11F"
+                 HeaderHoverBackground="#28E124"
+                 Outline="black"
+                 StrokeThickness="1">
+            </Treemap>
         @**@
     </div>
 </div>
 
 @code {
 
-    protected List<CountryInfo> Data;
-
+    private List<CountryInfo> Data;
+    private Treemap _treeMap;
+    private Treemap TreeMap {
+        get { return _treeMap; }
+        set {
+            _treeMap = value;
+            StateHasChanged();
+        }
+    }
     protected override void OnInitialized()
     {
-        TreemapModule.Register(IgniteUIBlazor);        
+        TreemapModule.Register(IgniteUIBlazor);
         this.Data = CountryTreeData.Create();
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            TreeMap.StyleMappings.Add(new TreemapNodeStyleMapping()
+            {
+                Value = "Africa",
+                MappingMode = TreemapValueMappingMode.CustomValue,
+                Fill = "#735656"
+            });
+            TreeMap.StyleMappings.Add(new TreemapNodeStyleMapping()
+            {
+                Value = "Asia",
+                MappingMode = TreemapValueMappingMode.CustomValue,
+                Fill = "#8BDC5C"
+            });
+            TreeMap.StyleMappings.Add(new TreemapNodeStyleMapping()
+            {
+                Value = "Europe",
+                MappingMode = TreemapValueMappingMode.CustomValue,
+                Fill = "#8B5BB1"
+            });
+            TreeMap.StyleMappings.Add(new TreemapNodeStyleMapping()
+            {
+                Value = "North America",
+                MappingMode = TreemapValueMappingMode.CustomValue,
+                Fill = "#8CE7D9"
+            });
+            TreeMap.StyleMappings.Add(new TreemapNodeStyleMapping()
+            {
+                Value = "South America",
+                MappingMode = TreemapValueMappingMode.CustomValue,
+                Fill = "#EE5879"
+            });
+            TreeMap.StyleMappings.Add(new TreemapNodeStyleMapping()
+            {
+                Value = "Middle East",
+                MappingMode = TreemapValueMappingMode.CustomValue,
+                Fill = "#6DB1FF"
+            });
+            TreeMap.StyleMappings.Add(new TreemapNodeStyleMapping()
+            {
+                Value = "Central America",
+                MappingMode = TreemapValueMappingMode.CustomValue,
+                Fill = "#F7D262"
+            });
+            TreeMap.StyleMappings.Add(new TreemapNodeStyleMapping()
+            {
+                Value = "Oceania",
+                MappingMode = TreemapValueMappingMode.CustomValue,
+                Fill = "#A8A8B7"
+            });
+        }
     }
 }
