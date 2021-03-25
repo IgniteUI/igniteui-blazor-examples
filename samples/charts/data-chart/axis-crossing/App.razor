@@ -1,0 +1,61 @@
+﻿@page "/DataChartAxisAnnotations"
+
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igComponent">        
+        @if (SinData != null && CosData != null)
+        {
+        <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true" IsHorizontalZoomEnabled="true">
+            <NumericXAxis Name="xAxis" Interval="20" CrossingAxisName="yAxis" CrossingValue="0" MinimumValue="0" MaximumValue="360" />
+            <NumericYAxis Name="yAxis" LabelLocation="@AxisLabelsLocation.OutsideRight" MinimumValue="-1.25" MaximumValue="1.25" Interval="0.25" />
+
+            <ScatterSplineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="SinData"
+                                 XMemberPath="X" YMemberPath="Y" MarkerType="@MarkerType.Circle" />
+            <ScatterSplineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="CosData"
+                                 XMemberPath="X" YMemberPath="Y" MarkerType="@MarkerType.Circle" />
+        </DataChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<Point> SinData;
+    private List<Point> CosData;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartScatterModule.Register(IgniteUIBlazor);
+        DataChartScatterCoreModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        FinalValueLayerModule.Register(IgniteUIBlazor);
+        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+
+        this.InitData();
+    }
+
+    public void InitData()
+    {
+        List<Point> _sinData = new List<Point>();
+        List<Point> _cosData = new List<Point>();
+
+        for (int i = 0; i <= 360; i+=10)
+        {
+            double radians = (i * Math.PI) / 180;
+            double sin = Math.Sin(radians);
+            double cos = Math.Cos(radians);
+
+            _sinData.Add(new Point() { X = i, Y = sin });
+            _cosData.Add(new Point() { X = i, Y = cos });
+        }
+
+        this.SinData = _sinData;
+        this.CosData = _cosData;
+    }
+}
