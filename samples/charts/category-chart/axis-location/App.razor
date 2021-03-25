@@ -1,0 +1,81 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="igContainer">
+    <div class="igOptions" style="margin-left: 1rem">
+        <span>Y-Axis Label Location: </span>
+        <select @onchange="OnYAxisLabelLocationChange">
+            <option>Outside Left</option>
+            <option>Outside Right</option>
+            <option>Inside Left</option>
+            <option>Inside Right</option>
+        </select>
+    </div>
+    <div class="igOptions">
+        <span class="igLegend-title">Renewable Electricity Generated</span>
+        <div class="igLegend">
+            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+            <CategoryChart Height="100%" Width="100%"
+                           Legend="LegendRef"
+                           DataSource="DataSource"
+                           ChartType="CategoryChartType.Line"                           
+                           IsHorizontalZoomEnabled="false"
+                           IsVerticalZoomEnabled="false"
+                           YAxisLabelLocation="@YAxisLabelLocation">                           
+            </CategoryChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private Legend _Legend;
+    private Legend LegendRef
+    {
+        get { return _Legend; }
+        set { _Legend = value; StateHasChanged(); }
+    }
+
+    private AxisLabelsLocation YAxisLabelLocation = AxisLabelsLocation.OutsideLeft;
+
+    private List<EnergyRenewableInfo> DataSource = new EnergyRenewableData();
+
+    protected override void OnInitialized()
+    {
+        CategoryChartModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+    }
+
+    private void OnYAxisLabelLocationChange(ChangeEventArgs args)
+    {
+        string value = args.Value.ToString();
+
+        if (value.Contains("Inside"))
+        {
+            if (value.Contains("Left"))
+            {
+                this.YAxisLabelLocation = AxisLabelsLocation.InsideLeft;
+            }
+            else
+            {
+                this.YAxisLabelLocation = AxisLabelsLocation.InsideRight;
+            }
+        }
+        else
+        {
+            if (value.Contains("Left"))
+            {
+                this.YAxisLabelLocation = AxisLabelsLocation.OutsideLeft;
+            }
+            else
+            {
+                this.YAxisLabelLocation = AxisLabelsLocation.OutsideRight;
+            }
+        }
+    }
+}
