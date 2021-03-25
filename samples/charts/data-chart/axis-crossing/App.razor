@@ -9,8 +9,10 @@
         @if (SinData != null && CosData != null)
         {
         <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true" IsHorizontalZoomEnabled="true">
-            <NumericXAxis Name="xAxis" Interval="20" CrossingAxisName="yAxis" CrossingValue="0" MinimumValue="0" MaximumValue="360" />
-            <NumericYAxis Name="yAxis" LabelLocation="@AxisLabelsLocation.OutsideRight" MinimumValue="-1.25" MaximumValue="1.25" Interval="0.25" />
+            <NumericXAxis Name="xAxis" Interval="40" MinimumValue="-360" MaximumValue="360"
+                          LabelLocation="@AxisLabelsLocation.InsideBottom" CrossingAxisName="yAxis" CrossingValue="0"/>
+            <NumericYAxis Name="yAxis" MinimumValue="-1.25" MaximumValue="1.25" Interval="0.25"
+                          LabelLocation="@AxisLabelsLocation.InsideLeft" CrossingAxisName="xAxis" CrossingValue="0"/>
 
             <ScatterSplineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="SinData"
                                  XMemberPath="X" YMemberPath="Y" MarkerType="@MarkerType.Circle" />
@@ -33,9 +35,7 @@
         DataChartCoreModule.Register(IgniteUIBlazor);
         DataChartScatterModule.Register(IgniteUIBlazor);
         DataChartScatterCoreModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        FinalValueLayerModule.Register(IgniteUIBlazor);
-        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);        
 
         this.InitData();
     }
@@ -45,7 +45,7 @@
         List<Point> _sinData = new List<Point>();
         List<Point> _cosData = new List<Point>();
 
-        for (int i = 0; i <= 360; i+=10)
+        for (int i = -360; i <= 360; i+=10)
         {
             double radians = (i * Math.PI) / 180;
             double sin = Math.Sin(radians);
