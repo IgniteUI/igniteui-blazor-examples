@@ -1,0 +1,80 @@
+﻿@page "/DataChartAxisAnnotations"
+
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="igContainer">
+    <div class="igOptions">
+        <span>X Axis Crossing Value: @XAxisCrossingValue </span>
+        <input type="range" min="-360" max="360" step="40" value="0" @oninput="OnXAxisCrossingValueChanged" />
+        <span>Y Axis Crossing Value: @YAxisCrossingValue </span>
+        <input type="range" min="-1.25" max="1.25" step="0.25" value="0" @oninput="OnYAxisCrossingValueChanged" />
+    </div>
+    <div class="igComponent">        
+        @if (SinData != null && CosData != null)
+        {
+        <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true" IsHorizontalZoomEnabled="true">
+            <NumericXAxis Name="xAxis" Interval="40" MinimumValue="-360" MaximumValue="360"
+                          LabelLocation="@AxisLabelsLocation.InsideBottom" CrossingAxisName="yAxis" CrossingValue="@YAxisCrossingValue"/>
+            <NumericYAxis Name="yAxis" MinimumValue="-1.25" MaximumValue="1.25" Interval="0.25"
+                          LabelLocation="@AxisLabelsLocation.InsideLeft" CrossingAxisName="xAxis" CrossingValue="@XAxisCrossingValue"/>
+
+            <ScatterSplineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="SinData"
+                                 XMemberPath="X" YMemberPath="Y" MarkerType="@MarkerType.Circle" />
+            <ScatterSplineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="CosData"
+                                 XMemberPath="X" YMemberPath="Y" MarkerType="@MarkerType.Circle" />
+        </DataChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<Point> SinData;
+    private List<Point> CosData;
+
+    private double YAxisCrossingValue = 0;
+    private double XAxisCrossingValue = 0;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartScatterModule.Register(IgniteUIBlazor);
+        DataChartScatterCoreModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+
+        this.InitData();
+    }
+
+    public void InitData()
+    {
+        List<Point> _sinData = new List<Point>();
+        List<Point> _cosData = new List<Point>();
+
+        for (int i = -360; i <= 360; i+=10)
+        {
+            double radians = (i * Math.PI) / 180;
+            double sin = Math.Sin(radians);
+            double cos = Math.Cos(radians);
+
+            _sinData.Add(new Point() { X = i, Y = sin });
+            _cosData.Add(new Point() { X = i, Y = cos });
+        }
+
+        this.SinData = _sinData;
+        this.CosData = _cosData;
+    }
+
+    private void OnXAxisCrossingValueChanged(ChangeEventArgs args)
+    {
+        this.XAxisCrossingValue = double.Parse(args.Value.ToString());
+    }
+
+    private void OnYAxisCrossingValueChanged(ChangeEventArgs args)
+    {
+        this.YAxisCrossingValue = double.Parse(args.Value.ToString());
+    }
+}
