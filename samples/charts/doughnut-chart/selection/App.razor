@@ -2,45 +2,49 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="igContainer-vertical">
-    <div class="igOptions-vertical">
+    <div class="igOptions-horizontal" >
+        <div class="igOptions-vertical">
         <span class="igLegend-title">Global Electricity Demand by Energy Use</span>
-        <div class="igLegend">
-            <ItemLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <div class="igLegend">
+                <ItemLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            </div>
+        </div>
+        <div class="igOptions-vertical" style="width: auto; height: 100%; text-align: right">
+            <label>Selected Slice </label>
+            <label>@SelectedSlice </label>
         </div>
     </div>
 
-        <div class="igComponent">
+    <div class="igComponent">
+        @if (DataSource != null)
+        {
+            <DoughnutChart Height="100%" Width="100%"
+                           @ref="Chart" 
+                           AllowSliceSelection="true"
+                           SliceClick="OnSliceClick"
+                           SelectedSliceStroke="White"
+                           SelectedSliceFill="Gray"
+                           SelectedSliceStrokeThickness="1"
+                           SelectedSliceOpacity="0.75">
+                <RingSeries DataSource="@DataSource"
+                            LabelMemberPath="Summary"
+                            LabelsPosition="@LabelsPosition.OutsideEnd"
+                            LabelExtent="30"
+                            ValueMemberPath="Value"
+                            LegendLabelMemberPath="Category"                             
+                            RadiusFactor="0.6"
+                            StartAngle="30">
+                </RingSeries>
+            </DoughnutChart>
+        }
 
-            @if (DataSource != null)
-            {
-                <DoughnutChart Height="100%" Width="100%"
-                               @ref="Chart"
-                               AllowSliceSelection="true"
-                               SliceClick="OnSliceClick">
-                    <RingSeries DataSource="@DataSource"
-                                LabelMemberPath="Summary"
-                                LabelsPosition="@LabelsPosition.OutsideEnd"
-                                LabelExtent="30"
-                                ValueMemberPath="MarketShare"
-                                LegendLabelMemberPath="Company"
-                                Outlines="white"
-                                SelectedSliceStroke="white"
-                                SelectedSliceFill="rgb(143,143,143)"
-                                SelectedSliceOpacity="1.0"
-                                SelectedSliceStrokeThickness="2"
-                                RadiusFactor="0.7"
-                                StartAngle="30">
-                    </RingSeries>
-                </DoughnutChart>
-            }
-
-        </div>
     </div>
+</div>
 
 @code {
 
-    private List<DataItem> DataSource;
-    private string SelectedSlices = "";
+    public List<DataItem> DataSource;
+    public string SelectedSlice = "None";
     public ItemLegend Legend;
     public DoughnutChart Chart;
 
@@ -49,35 +53,42 @@
         DoughnutChartModule.Register(IgniteUIBlazor);
         ItemLegendModule.Register(IgniteUIBlazor);
 
-
         var dataItems = new List<DataItem>();
-        dataItems.Add(new DataItem() { MarketShare = 25, Company = "Residential Appliance", });
-        dataItems.Add(new DataItem() { MarketShare = 12, Company = "Heating", });
-        dataItems.Add(new DataItem() { MarketShare = 8, Company = "Lighting", });
-        dataItems.Add(new DataItem() { MarketShare = 18, Company = "Other Services", });
-        dataItems.Add(new DataItem() { MarketShare = 37, Company = "Space Cooling", });
+        dataItems.Add(new DataItem { Value = 25, Category = "Residential Appliance", });
+        dataItems.Add(new DataItem { Value = 12, Category = "Heating", });
+        dataItems.Add(new DataItem { Value = 8,  Category = "Lighting", });
+        dataItems.Add(new DataItem { Value = 18, Category = "Other Services", });
+        dataItems.Add(new DataItem { Value = 37, Category = "Space Cooling", });
 
-        DataSource = dataItems;
-
+        this.DataSource = dataItems;
     }
 
     public class DataItem
     {
-        public string Company { get; set; }
-        public double MarketShare { get; set; }
-        public string Summary { get { return Company + " " + MarketShare + "%"; } }
+        public bool IsSelected { get; set; }
+        public string Category { get; set; }
+        public double Value { get; set; }
+        public string Summary { get { return Category + " " + Value + "%"; } }
     }
 
     protected override void OnAfterRender(bool firstRender)
     {
         base.OnAfterRender(firstRender);
 
-        Chart.ActualSeries[0].Legend = Legend;
-
+        this.Chart.ActualSeries[0].Legend = Legend;
     }
 
     protected void OnSliceClick(SliceClickEventArgs e)
     {
-
+        Console.WriteLine("OnSliceClick " + this.DataSource[e.Index].Category);
+                 
+        if (e.IsSelected)
+        {
+            this.SelectedSlice = this.DataSource[e.Index].Category;
+        }
+        else
+        {
+            this.SelectedSlice = "";
+        } 
     }
 }
