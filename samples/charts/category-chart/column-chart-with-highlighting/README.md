@@ -1,13 +1,13 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <body>
         <!-- https://static.infragistics.com/xplatform/images/browsers -->
-        <a target="_blank" href="https://infragistics.com/blazor-client/samples/charts/data-chart-range-column-chart" rel="noopener noreferrer">
+        <a target="_blank" href="https://infragistics.com/blazor-client/samples/charts/category-chart-column-chart-with-highlighting" rel="noopener noreferrer">
             <img height="40px" style="border-radius: 0.5rem; max-width: 100%;" alt="Run Sample" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/vnext/templates/sample/images/blazor-run-sample.png"/>
         </a>
         <a target="_blank" href="./App.razor" rel="noopener noreferrer">
             <img height="40px" style="border-radius: 0.5rem; max-width: 100%;" alt="View Code" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/vnext/templates/sample/images/blazor-view-code.png"/>
         </a>
-        <!-- <a target="_blank" href="https://infragistics.com/Blazorsite/components/data-chart.html" rel="noopener noreferrer">
+        <!-- <a target="_blank" href="https://infragistics.com/Blazorsite/components/category-chart.html" rel="noopener noreferrer">
             <img height="40px" style="border-radius: 0.5rem" alt="View Blazor Docs" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/master/templates/sample/images/blazor-view-docs.png"/>
         </a> -->
     </body>
