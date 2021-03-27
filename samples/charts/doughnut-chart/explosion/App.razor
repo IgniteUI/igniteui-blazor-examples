@@ -7,7 +7,7 @@
     <div class="igOptions-vertical">
         <span class="igLegend-title">Global Electricity Demand by Energy Use</span>
         <div class="igLegend">
-            <ItemLegend @ref="@Legend" Orientation="LegendOrientation.Horizontal" />
+            <ItemLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
 
@@ -49,7 +49,6 @@
         DoughnutChartModule.Register(IgniteUIBlazor);
         ItemLegendModule.Register(IgniteUIBlazor);
 
-
         var dataItems = new List<DataItem>();
 
         dataItems.Add(new DataItem() { MarketShare = 25, Company = "Residential Appliance", });
@@ -59,7 +58,6 @@
         dataItems.Add(new DataItem() { MarketShare = 37, Company = "Space Cooling", });
 
         DataSource = dataItems;
-
     }
 
     public class DataItem
@@ -74,7 +72,6 @@
         base.OnAfterRender(firstRender);
 
         Chart.ActualSeries[0].Legend = Legend;
-
     }
 
     protected void OnSliceClick(SliceClickEventArgs e)

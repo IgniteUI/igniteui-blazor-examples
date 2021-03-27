@@ -5,8 +5,8 @@
     <div class="igOptions">
         <span class="igLegend-title">Highest Grossing Film Franchises Worldwide</span>
         <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
-        </div>    
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+        </div>
         <span class="igOptions-label">Tooltip Type: </span>
         <select @bind="@ChartTooltip">
             <option>@ToolTipType.Default</option>
@@ -19,7 +19,7 @@
         @if (DataSource != null)
         {
             <CategoryChart Height="100%" Width="100%"
-                           Legend="LegendRef"
+                           Legend="Legend"
                            DataSource="DataSource"
                            ChartType="CategoryChartType.Column"
                            ToolTipType="@ChartTooltip"
@@ -40,7 +40,7 @@
     private ToolTipType ChartTooltip = ToolTipType.Default;
 
     private Legend _Legend;
-    private Legend LegendRef
+    private Legend Legend
     {
         get { return _Legend; }
         set { _Legend = value; StateHasChanged(); }

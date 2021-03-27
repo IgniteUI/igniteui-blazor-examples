@@ -6,7 +6,7 @@
     <div class="igOptions">
         <span class="igLegend-title">Distribution of Online Traffic Worldwide in 2019, by Device</span>
         <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="igComponent">
@@ -16,7 +16,7 @@
                 <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Category" Gap="0.75"/>
                 <NumericYAxis Name="yAxis" MinimumValue="0" />
 
-                <Stacked100ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ShowDefaultTooltip="true" AreaFillOpacity="1" Legend="LegendRef">
+                <Stacked100ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ShowDefaultTooltip="true" AreaFillOpacity="1" Legend="Legend">
                     <StackedFragmentSeries ValueMemberPath="Desktop" />
                     <StackedFragmentSeries ValueMemberPath="Mobile" />
                     <StackedFragmentSeries ValueMemberPath="Tablet" />
@@ -36,7 +36,7 @@
 @code {
 
     private Legend _legend;
-    public Legend LegendRef
+    public Legend Legend
     {
         get { return _legend; }
         set

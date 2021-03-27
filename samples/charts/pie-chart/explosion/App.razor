@@ -6,7 +6,7 @@
     <div class="igOptions-vertical">
         <span class="igLegend-title">Global Electricity Demand by Energy Use</span>
         <div class="igLegend">
-            <ItemLegend @ref="@Legend" Orientation="LegendOrientation.Horizontal" />
+            <ItemLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
 
@@ -16,7 +16,7 @@
         {
             <PieChart Height="100%" Width="100%"
                       DataSource="DataSource"
-                      Legend="LegendRef"
+                      Legend="Legend"
                       LabelMemberPath="Company"
                       ValueMemberPath="MarketShare"
                       Outlines="white"
@@ -38,14 +38,10 @@
     private List<DataItem> DataSource;
 
     private ItemLegend _legend;
-    public ItemLegend LegendRef
+    public ItemLegend Legend
     {
         get { return _legend; }
-        set
-        {
-            _legend = value;
-            StateHasChanged();
-        }
+        set { _legend = value; StateHasChanged(); }
     }
 
     public int[] ExplodedSlices { get; set; } = new int[1];

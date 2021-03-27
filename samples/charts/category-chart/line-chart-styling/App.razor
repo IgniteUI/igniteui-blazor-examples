@@ -5,7 +5,7 @@
     <div class="igOptions">
         <span class="igLegend-title">Renewable Electricity Generated</span>
         <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
 
@@ -13,19 +13,19 @@
         @if (DataSource != null)
         {
             // note MarkerTypes property is set in code-behind
-            <CategoryChart @ref="ChartRef" Height="100%" Width="100%"                           
+            <CategoryChart @ref="ChartRef" Height="100%" Width="100%"
                            DataSource="DataSource"
                            ChartType="CategoryChartType.Line"
                            IsHorizontalZoomEnabled="false"
                            IsVerticalZoomEnabled="false"
-                           Legend="LegendRef"
+                           Legend="Legend"
                            YAxisTitle="TWh"
                            YAxisTitleLeftMargin="10"
                            YAxisLabelLeftMargin="0"
-                           Thickness="2"   
-                           MarkerOutlines="#FFFFFF"   
-                           MarkerBrushes="#ee5879, #c4c4c4, #9af2e4" 
-                           Brushes="#ee5879, #c4c4c4, #9af2e4">                           
+                           Thickness="2"
+                           MarkerOutlines="#FFFFFF"
+                           MarkerBrushes="#ee5879, #c4c4c4, #9af2e4"
+                           Brushes="#ee5879, #c4c4c4, #9af2e4">
             </CategoryChart>
         }
     </div>
@@ -38,7 +38,7 @@
     private CategoryChart ChartRef;
 
     private Legend _Legend;
-    private Legend LegendRef
+    private Legend Legend
     {
         get { return _Legend; }
         set { _Legend = value; StateHasChanged(); }

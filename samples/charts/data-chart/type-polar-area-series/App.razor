@@ -5,13 +5,13 @@
 	<div class="igOptions">
         <span class="igLegend-title">Wind Speed</span>
         <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="igComponent">
 
         <DataChart Height="100%" Width="100%"
-                   Legend=@LegendRef
+                   Legend=Legend
 				   SubtitleTopMargin="10"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
@@ -57,12 +57,12 @@
 
     private List<SamplePolarItem> DataSource;
 	private Legend _Legend;
-    private Legend LegendRef
+    private Legend Legend
     {
         get { return _Legend; }
         set { _Legend = value; StateHasChanged(); }
     }
-	
+
     protected override void OnInitialized()
     {
         DataChartCoreModule.Register(IgniteUIBlazor);
@@ -70,7 +70,7 @@
         DataChartPolarCoreModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
 		LegendModule.Register(IgniteUIBlazor);
-		
+
         DataSource = SamplePolarData.Create();
     }
 

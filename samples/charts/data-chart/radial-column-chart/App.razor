@@ -5,14 +5,14 @@
     <div class="igOptions">
         <span class="igLegend-title">Ronaldo vs. Messi Player Stats</span>
         <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="igComponent">
         <DataChart Height="100%" Width="100%"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false"
-                   Legend="LegendRef">
+                   Legend="Legend">
             <CategoryAngleAxis Name="angleAxis" DataSource="@DataSource"
                                Label="Attribute" />
             <NumericRadiusAxis Name="radiusAxis"
@@ -24,16 +24,16 @@
                               ValueMemberPath="RonaldoValue"
                               ValueAxisName="radiusAxis"
                               ShowDefaultTooltip="true"
-                              AreaFillOpacity="0.8"                              
+                              AreaFillOpacity="0.8"
                               Title="Ronaldo" />
-                              
+
             <RadialColumnSeries DataSource="@DataSource"
                               AngleAxisName="angleAxis"
                               ValueMemberPath="MessiValue"
                               ValueAxisName="radiusAxis"
                               ShowDefaultTooltip="true"
-                              AreaFillOpacity="0.8"                             
-                              Title="Messi" />                              
+                              AreaFillOpacity="0.8"
+                              Title="Messi" />
         </DataChart>
 
     </div>
@@ -44,7 +44,7 @@
     private List<PlayerStatsInfo> DataSource = new PlayerStatsData();
 
     private Legend _Legend;
-    private Legend LegendRef
+    private Legend Legend
     {
         get { return _Legend; }
         set { _Legend = value; StateHasChanged(); }

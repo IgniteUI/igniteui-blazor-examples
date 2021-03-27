@@ -6,14 +6,14 @@
     <div class="igOptions-horizontal">
         <span class="igLegend-title">Legend: </span>
         <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
 
     <div class="igComponent">
         @if (DataSource != null)
         {
-        <DataChart Height="100%" Width="100%" Legend="@LegendRef" Subtitle="Energy Source of Biggest Countries"
+        <DataChart Height="100%" Width="100%" Legend="Legend" Subtitle="Energy Source of Biggest Countries"
                    IsHorizontalZoomEnabled="true" IsVerticalZoomEnabled="true">
             <CategoryXAxis Name="xAxis"
                            DataSource="DataSource"
@@ -75,7 +75,7 @@
     private List<EnergyProductionData.Energy> DataSource;
 
     private Legend legend;
-    private Legend LegendRef
+    private Legend Legend
     {
         get { return legend; }
         set

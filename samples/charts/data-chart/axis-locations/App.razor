@@ -6,7 +6,7 @@
     <div class="igOptions-horizontal">
         <span class="igLegend-title">Legend: </span>
         <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal"/>
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal"/>
         </div>
     </div>
 
@@ -14,7 +14,7 @@
         @if (DataSource != null)
         {
             <DataChart Height="100%" Width="100%" ChartTitle="Company Financial Projections" IsVerticalZoomEnabled="true"
-                       IsHorizontalZoomEnabled="true" Legend="@LegendRef">
+                       IsHorizontalZoomEnabled="true" Legend="Legend">
                 <CategoryXAxis Name="xAxisYears" DataSource="DataSource" Interval="12" LabelLocation="AxisLabelsLocation.OutsideBottom"
                                Overlap="1" Gap="0.4" Label="Year" LabelTextColor="Gray" TickLength="0" />
                 <CategoryXAxis Name="xAxisMonths" DataSource="DataSource" Overlap="1" Gap="0.4" Interval="1"
@@ -42,7 +42,7 @@
     private List<FinancialItem> DataSource;
 
     private Legend legend;
-    private Legend LegendRef
+    private Legend Legend
     {
         get { return legend; }
         set

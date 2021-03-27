@@ -6,7 +6,7 @@
     <div class="igOptions-horizontal">
         <span class="igLegend-title">Legend: </span>
         <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
 
@@ -14,7 +14,7 @@
         @if (DataSource != null)
         {
             <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true"
-                       IsHorizontalZoomEnabled="true" Legend="LegendRef" ChartTitle="Energy Use Per Country"
+                       IsHorizontalZoomEnabled="true" Legend="Legend" ChartTitle="Energy Use Per Country"
                        Subtitle="Results over a two year period">
                 <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Country" />
                 <NumericYAxis Name="yAxis" MinimumValue="0" AbbreviateLargeNumbers="true" />
@@ -40,7 +40,7 @@
     private List<EnergyProductionData.Energy> DataSource;
 
     private Legend legend;
-    private Legend LegendRef
+    private Legend Legend
     {
         get { return legend; }
         set

@@ -7,11 +7,9 @@
     </div>
 
     <div class="igComponent">
-
         @if (DataSource != null)
         {
             <DoughnutChart Height="100%" Width="100%">
-
                 <RingSeries DataSource="@DataSource"
                             LabelMemberPath="Summary"
                             ValueMemberPath="MarketShare"
@@ -36,7 +34,6 @@
 
     private void onAnimationToggle()
     {
-
         if (!this.isAnimating)
         {
             this.StartAngle = 0;
@@ -53,7 +50,6 @@
 
     protected override void OnInitialized()
     {
-
         DoughnutChartModule.Register(IgniteUIBlazor);
 
         var dataItems = new List<DataItem>();
@@ -65,7 +61,6 @@
 
         DataSource = dataItems;
         this.onAnimationToggle();
-
     }
 
     private void OnTimerTick()
@@ -87,7 +82,6 @@
             Task.Delay(16).ContinueWith((t) => OnTimerTick());
             this.StateHasChanged();
         }
-
     }
 
     public class DataItem

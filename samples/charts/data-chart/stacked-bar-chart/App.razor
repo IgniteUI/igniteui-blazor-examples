@@ -6,7 +6,7 @@
     <div class="igOptions">
         <span class="igLegend-title">Renewable energy consumption</span>
         <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="igComponent">
@@ -17,7 +17,7 @@
                 <CategoryYAxis Name="yAxis" DataSource="DataSource" Label="Location" Gap="0.75" IsInverted="true" />
                 <NumericXAxis Name="xAxis" MinimumValue="0" Title="TWh" />
 
-                <StackedBarSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ShowDefaultTooltip="true" AreaFillOpacity="1" Legend="LegendRef">
+                <StackedBarSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ShowDefaultTooltip="true" AreaFillOpacity="1" Legend="Legend">
                     <StackedFragmentSeries ValueMemberPath="Hydro" />
                     <StackedFragmentSeries ValueMemberPath="Wind" />
                     <StackedFragmentSeries ValueMemberPath="Solar" />
@@ -32,7 +32,7 @@
 
 @code {
     private Legend _legend;
-    public Legend LegendRef
+    public Legend Legend
     {
         get { return _legend; }
         set

@@ -5,7 +5,7 @@
     <div class="igOptions">
         <span class="igLegend-title">Highest Grossing Film Franchises and Series Worldwide as of April 2020</span>
         <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
 
@@ -13,7 +13,7 @@
         @if (DataSource != null)
         {
             <CategoryChart Height="100%" Width="100%"
-                           Legend="LegendRef"
+                           Legend="Legend"
                            DataSource="DataSource"
                            ChartType="CategoryChartType.Column"
                            XAxisInterval="1"
@@ -21,7 +21,7 @@
                            YAxisTitleLeftMargin="10"
                            YAxisTitleRightMargin="5"
                            YAxisLabelLeftMargin="0"
-						   IsHorizontalZoomEnabled="false" 
+						   IsHorizontalZoomEnabled="false"
                            IsVerticalZoomEnabled="false">
             </CategoryChart>
         }
@@ -31,7 +31,7 @@
 @code {
 
     private Legend _Legend;
-    private Legend LegendRef
+    private Legend Legend
     {
         get { return _Legend; }
         set { _Legend = value; StateHasChanged(); }

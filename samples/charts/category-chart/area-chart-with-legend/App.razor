@@ -5,7 +5,7 @@
     <div class="igOptions">
         <span class="igLegend-title">Renewable Electricity Generated</span>
         <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
 
@@ -14,23 +14,23 @@
         {
             <CategoryChart Height="100%" Width="100%"
                            DataSource="DataSource"
-                           ChartType="CategoryChartType.Area"                           
-                           Legend="LegendRef"
+                           ChartType="CategoryChartType.Area"
+                           Legend="Legend"
                            YAxisTitle="TWh"
                            YAxisTitleLeftMargin="10"
-						   IsHorizontalZoomEnabled="false" 
-                           IsVerticalZoomEnabled="false">						   
+						   IsHorizontalZoomEnabled="false"
+                           IsVerticalZoomEnabled="false">
             </CategoryChart>
         }
     </div>
 </div>
 
 @code {
-    
+
     private List<EnergyRenewableInfo> DataSource = new EnergyRenewableData();
 
     private Legend _Legend;
-    private Legend LegendRef
+    private Legend Legend
     {
         get { return _Legend; }
         set { _Legend = value; StateHasChanged(); }

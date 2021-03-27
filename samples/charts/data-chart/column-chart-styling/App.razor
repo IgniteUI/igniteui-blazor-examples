@@ -10,12 +10,12 @@
             <span class="igLegend-title">Showing the Annual Percentage Change in Energy Generation in 2019 compared to 2018</span>
         </div>
         <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="igComponent">
         <DataChart Height="100%" Width="100%"
-                   Legend="LegendRef"
+                   Legend="Legend"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
@@ -23,7 +23,7 @@
                            CrossingAxisName="yAxis" CrossingValue="0" Gap=".5"/>
             <NumericYAxis Name="yAxis" MinimumValue="-20" MaximumValue="30" Interval="10"/>
 
-            <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="Solar" Title="Solar" 
+            <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="Solar" Title="Solar"
                           MarkerTemplateScript="onColumnChartStylingMarkerTemplate" ShowDefaultTooltip="true"/>
             <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="Coal" Title="Coal"
                           MarkerTemplateScript="onColumnChartStylingMarkerTemplate" ShowDefaultTooltip="true"/>
@@ -45,7 +45,7 @@
 @code {
 
     private Legend _Legend;
-    private Legend LegendRef
+    private Legend Legend
     {
         get { return _Legend; }
         set { _Legend = value; StateHasChanged(); }

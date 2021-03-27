@@ -6,7 +6,7 @@
     <div class="igOptions">
         <span class="igLegend-title">Renewable Electricity Generated</span>
         <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
 
@@ -16,7 +16,7 @@
             <CategoryChart Height="100%" Width="100%"
                 ChartType="CategoryChartType.Spline"
                 DataSource="DataSource"
-                Legend="LegendRef"
+                Legend="Legend"
                 YAxisTitle="TWh"
                 ToolTipType="ToolTipType.Category"
 				IsTransitionInEnabled="true"
@@ -30,7 +30,7 @@
 @code {
 
     private Legend _Legend;
-    private Legend LegendRef
+    private Legend Legend
     {
         get { return _Legend; }
         set { _Legend = value; StateHasChanged(); }
