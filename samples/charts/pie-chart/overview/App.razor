@@ -2,12 +2,14 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer-horizontal">
-    <div class="igContainer-vertical">        
+<div class="igContainer-vertical">
+    <div class="igOptions-vertical">
+        <span class="igLegend-title">Global Electricity Demand by Energy Use</span>
         <div class="igLegend">
-            <ItemLegend @ref="LegendRef" />
+            <ItemLegend @ref="@Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
+
     <div class="igComponent">
         @if (DataSource != null)
         {

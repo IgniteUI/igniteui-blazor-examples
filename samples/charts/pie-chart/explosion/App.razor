@@ -2,11 +2,11 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer-horizontal">
-    <div class="igContainer-vertical">
+<div class="igContainer-vertical">
+    <div class="igOptions-vertical">
         <span class="igLegend-title">Global Electricity Demand by Energy Use</span>
         <div class="igLegend">
-            <ItemLegend @ref="LegendRef"  />
+            <ItemLegend @ref="@Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
 
@@ -14,11 +14,11 @@
 
         @if (DataSource != null)
         {
-            <PieChart Height="100%" Width="100%"                      
+            <PieChart Height="100%" Width="100%"
                       DataSource="DataSource"
                       Legend="LegendRef"
                       LabelMemberPath="Company"
-                      ValueMemberPath="MarketShare"                      
+                      ValueMemberPath="MarketShare"
                       Outlines="white"
                       RadiusFactor="0.7"
                       StartAngle="0"
