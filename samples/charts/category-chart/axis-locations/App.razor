@@ -2,31 +2,33 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="igContainer">
-    <div class="igOptions" style="margin-left: 1rem">
-        <span>Y-Axis Label Location: </span>
-        <select @onchange="OnYAxisLabelLocationChange">
-            <option>Outside Left</option>
-            <option>Outside Right</option>
-            <option>Inside Left</option>
-            <option>Inside Right</option>
-        </select>
-    </div>
-    <div class="igOptions">
-        <span class="igLegend-title">Renewable Electricity Generated</span>
-        <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+    
+    <div class="igOptions-horizontal" >            
+        <div class="igOptions-vertical">
+            <span class="igLegend-title">Renewable Electricity Generated</span>
+            <div class="igLegend">
+                <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+            </div>
+        </div>
+        <div class="igOptions-vertical" style="width: auto; height: 100%;">
+            <label>Y-Axis Location </label>
+            <select @onchange="OnYAxisLabelLocationChange">
+                <option>Outside Left</option>
+                <option>Outside Right</option>
+            </select>
         </div>
     </div>
+
     <div class="igComponent">
         @if (DataSource != null)
         {
             <CategoryChart Height="100%" Width="100%"
                            Legend="LegendRef"
                            DataSource="DataSource"
-                           ChartType="CategoryChartType.Line"                           
+                           ChartType="CategoryChartType.Line"
                            IsHorizontalZoomEnabled="false"
                            IsVerticalZoomEnabled="false"
-                           YAxisLabelLocation="@YAxisLabelLocation">                           
+                           YAxisLabelLocation="@YAxisLabelLocation">
             </CategoryChart>
         }
     </div>
