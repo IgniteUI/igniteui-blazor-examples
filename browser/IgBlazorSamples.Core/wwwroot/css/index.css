@@ -1,13 +1,9 @@
-/* {RepositoryWarning} */
-/* {RepositoryUrl}/tree/master/templates/sample/src/index.css */
-
-/* Note these styles are shared between all samples */
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
- 
+
 #root, html, body, main {
     font-family: 'Titillium Web', Verdana, Tahoma, sans-serif;
-    background: transparent;
+    background: white;
     height: 100%;
     width: 100%;
     padding: 0px;
@@ -21,8 +17,6 @@
     padding: 0rem;
     display: flex;
     flex-direction: column;
-    /* align-items: stretch; */
-    /* align-self: center; */
     display: flex;
     flex-direction: row;
 }
@@ -31,7 +25,6 @@
     height: 100px;
     width: 100px;
     padding: 0rem;
-    /* padding-top: 2rem; */
     display: block;
     margin-top: 2rem;
     margin-left: auto;
@@ -39,7 +32,6 @@
 }
 
 .app-error-ui {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     background: lightyellow;
     bottom: 0;
     box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
@@ -58,65 +50,34 @@
     top: 0.5rem;
 }
 
-.igGridColumnChooserContainer {
-    display: flex;
-    flex-direction: column;
-    margin-left: 5px;
-    margin-top: 2px;
-    margin-right: 20px;
-    margin-bottom: 10px;
-    padding-left: 10px;
-    padding-right: 5px;
-    padding-top: 10px;
-    border: 1px gray;
-    border-radius: 10px;
-    box-shadow: 1px 1px 2px 2px rgba(50, 50, 50, 0.25);
-}
-
 .igContainer,
 .igContainer-horizontal,
-.igContainer-vertical,
-.igContainer-full-size {
-    background: white;
-    /* background:gray; */
+.igContainer-vertical {
     display: flex;
     flex-flow: column;
-    flex-wrap: nowrap; /* nowrap | wrap | wrap-reverse; */
-    /* justify-content: flex-start; */
-    /* justify-items: center; */
+    flex-wrap: nowrap;
     align-items: stretch;
     align-self: stretch;
-    /* position: relative; */
     overflow-y: hidden;
     overflow-x: hidden;
-
     min-width: 200px;
-    /* height: calc(100% - 1rem);
-    width: calc(100% - 1rem);
-    padding: 0.5rem; */
     height: 100%;
     width: 100%;
     padding: 0rem;
     margin: 0px;
-    /* box-sizing: content-box; */
-}
-
-.igContainer-full-size {
-    width: 100%;
-    height: 100%;
-    padding: 0px;
-    margin: 0px;
 }
 
 .igContainer-vertical {
+    display: flex;
     flex-flow: column;
 }
 
 .igContainer-horizontal {
+    display: flex;
     flex-flow: row;
 }
 
-/* Used by gauges */
+/* used to layout a component in center of its parent */
 .igContainer-center {
     background: white;
     height: calc(100% - 1rem);
@@ -129,7 +90,7 @@
     justify-content: center;
 }
 
-/* used to overlay multiple components, e.g. RadialGaugeTypeDirection */
+/* used to overlay multiple components on top of each other */
 .igContainer-relative {
     background: white;
     width: calc(100% - 10px);
@@ -142,17 +103,12 @@
     position: relative
 }
 
-.igContainer-relative-overlay {
+.igContainer-overlay {
     height: 100%;
     width: 100%;
     top: 0;
     left: 0;
     position: absolute;
-}
-
-.igTitle {
-    text-align: center;
-    display: block;
 }
 
 .igComponent {
@@ -162,65 +118,52 @@
     padding: 0px;
     display: flex;
     flex-direction: column;
-    /* background: pink; */
 }
 
 .igOptions,
 .igOptions-horizontal,
 .igOptions-vertical {
-    /* background: rgb(112, 112, 111); */
     margin: 0px;
-    padding-top: 0px;
-    padding-bottom: 5px;
-    padding-right: 0rem;
-    padding-left: 0rem;
-    padding: 0.2rem;
-    width: 100%;
+    padding: 0px;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    width: calc(100% - 1rem);
     font-size: 1rem;
     font-weight: 300;
-    font-family: 'Titillium Web';
-    display: inline-block;
+    font-family: 'Titillium Web', Verdana, Tahoma, sans-serif;
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
     color: #585858;
 }
 
 .igOptions-horizontal {
-    display: flex;
     flex-direction: row;
     align-items: center;
 }
 
 .igOptions-vertical {
-    display: flex;
     flex-direction: column;
-}
-
-
-.igOptions > label,
-.igOptions > div {
-    font-family: 'Titillium Web';
+    align-items: stretch;
 }
 
 .igOptions-item {
     margin-left: 0.5rem;
     margin-right: 0.5rem;
-    /* font-family: Arial, Verdana, Helvetica, "Times New Roman", Times, serif; */
     display: inline-block;
     vertical-align: middle;
 }
 
+.igOptions > label,
 .igOptions-label {
     margin-top: 0px;
     margin-left: 0.5rem;
     margin-right: 1rem;
     margin-bottom: 5px;
-    /* font-size: 11pt; */
-    /* font-family: Arial, Verdana, Helvetica, "Times New Roman", Times, serif; */
-    /* vertical-align: top; */
     vertical-align: middle;
     padding: 0px;
     display: inline-block;
     white-space: nowrap;
-    /* background: orange; */
 }
 
 .igOptions-value {
@@ -228,12 +171,9 @@
     margin-left: 10px;
     margin-bottom: 5px;
     margin-right: 5px;
-    /* font-size: 11pt; */
     display: inline-block;
-    /* vertical-align: top; */
     width: 40px;
     padding: 0px;
-    /* background-color: lime; */
 }
 
 .igOptions > slider,
@@ -248,39 +188,26 @@
     display: inline-block;
 }
 
-
-.igOptions > button,
-.igOptions-button {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    margin-right: 0.5rem;
+.igOptions > button {
+    margin: 0.25rem;
     color: #fff;
-    background: #1780EF;
-    border: 0px solid #1780EF;
+    background: #1a70c7;
+    border: 0px solid #1b6ec2;
     border-radius: .25rem;
     padding: .375rem .75rem;
     vertical-align: middle;
-    outline: none;
-    box-shadow: none;
-    height: auto;
-    width: auto; 
+    cursor: pointer;
 }
-  
-.igOptions > button:hover,
-.igOptions-button:hover {
-    border-color: #3C95F4;
-    border: 0px solid #3C95F4;
-    background: #3C95F4;
+
+.igOptions > button:hover {
+    background: #2a78c7;
 }
- 
-.igOptions > button:active,
-.igOptions > button:focus,
-.igOptions-button:active,
-.igOptions-button:focus {
-    background: #1073DC;
+.igOptions > button:active {
+    background: #4c8fd4;
+}
+.igOptions > button:focus {
     outline: none;
-    box-shadow: none;
-} 
+}
 
 .igOptions > text,
 .igOptions-input-text {
@@ -293,41 +220,31 @@
 .igOptions > select,
 .igOptions-input-select {
     font-size: 11pt;
-    /* font-family: Arial, Verdana, Helvetica, "Times New Roman", Times, serif; */
     margin-top: 0px;
     margin-bottom: 5px;
     margin-left: 5px;
     vertical-align: middle;
     padding: 4px;
     display: inline-block;
-    /* background: green; */
 }
 
 .igLegend {
     --legend-item-overflow: hidden;
     width: calc(100% - 1rem);
     font-size: 0.75rem;
-    /* font-family: Arial, Verdana, Helvetica, "Times New Roman", Times, serif; */
-    margin-top: 0.25rem;
-    /* margin-bottom: 0.25rem; */
-    margin-left: 1rem;
-    padding: 0px;
-    display: inline-block;
-    vertical-align: top;
+    margin-left: -0.5rem;
+    margin-top: -0.5rem;
 }
 
 .igLegend-title {
-    /* margin-top: 0.7rem; */
-    margin-left: 1rem;
-    margin-right: 0.25rem;
-    /* margin-bottom: 0.25rem; */
-    padding-top: 0px;
-    padding-bottom: 0px;
+    width: 100%;
+    margin: 0px;
     padding: 0px;
     vertical-align: middle;
     display: inline-block;
     white-space: nowrap;
-    font-size: 15px;
+    font-size: 1rem;
+    color: #494949;
 }
 
 /* ==================================================================================== */
@@ -341,22 +258,22 @@
 .igOverlay-bottom-left,
 .igOverlay-bottom-center,
 .igOverlay-bottom-right {
-    z-index: 1000;
     display: flex;
     flex-direction: column;
     font-size: 0.8rem;
-    font-family: 'Titillium Web';
+    font-family: 'Titillium Web', Verdana, Tahoma, sans-serif;
     border-radius: 5px;
     border: 1px solid gray;
     padding: 0.5rem;
     color: black;
-    /* background: rgba(228, 227, 227, 0.548); */
     background: rgba(148, 148, 148, 0.5);
     /* background: white; */
     -webkit-touch-callout: none; /* iOS Safari */
       -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
          -moz-user-select: none; /* Firefox */
           -ms-user-select: none; /* Internet Explorer/Edge */
+           -o-user-select: none;
               user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
 }
 
@@ -412,12 +329,7 @@
 
 
 .igOverlay-row {
-    /* background: red; */
-    font-family: 'Titillium Web';
-    /* margin-left: 0px;
-    display: block;
-    white-space: pre; */
-
+    font-family: 'Titillium Web', Verdana, Tahoma, sans-serif;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -425,30 +337,23 @@
 
 .igOverlay-label {
     display: block;
-    font-family: 'Titillium Web';
+    font-family: 'Titillium Web', Verdana, Tahoma, sans-serif;
     font-weight: 600;
 }
 
 .igOverlay-field {
-    /* display: inline-block; */
-    /* font-family: Lato, Helvetica, sans-serif; */
     text-align: left;
     width: 5rem;
 }
 
 .igOverlay-value {
-    /* background: yellowgreen; */
     text-align: end;
-    /* display: inline-block; */
-    /* font-family: Lato, Helvetica, sans-serif; */
-    /* width: 75px; */
-    /* white-space: pre; */
 }
 
 .igOverlay-title {
     color: black;
     display: block;
-    font-family: 'Titillium Web';
+    font-family: 'Titillium Web', Verdana, Tahoma, sans-serif;
     font-weight: 600;
     padding-bottom: 0.5rem;
 }
@@ -461,7 +366,7 @@
     font-size: 0.75rem;
     font-weight: normal;
     color: Black;
-    font-family: 'Titillium Web';
+    font-family: 'Titillium Web', Verdana, Tahoma, sans-serif;
 }
 
 .tooltipTitle {
@@ -469,7 +374,7 @@
     color: Black;
     font-weight: bold;
     font-size: 0.75rem;
-    font-family: 'Titillium Web';
+    font-family: 'Titillium Web', Verdana, Tahoma, sans-serif;
     margin-left: 0px;
 }
 
@@ -500,14 +405,14 @@
     display: table-cell;
     text-align: "right";
     font-weight: bold;
-    font-family: 'Titillium Web';
+    font-family: 'Titillium Web', Verdana, Tahoma, sans-serif;
     padding-left: 5px;
 }
 
 .tooltipLbl {
     display: table-cell;
     text-align: "left";
-    font-family: 'Titillium Web';
+    font-family: 'Titillium Web', Verdana, Tahoma, sans-serif;
 }
 
 .tooltipFlagImage {
@@ -521,10 +426,9 @@
 .tooltipFlagBoarder {
     display: inline-block;
     padding: 0px;
-    border-width: 0.5px;
+    border-width: 0.5;
     border-color: rgb(177, 177, 177);
     border-style: solid;
     height: 50px;
     width: 70px;
 }
-
