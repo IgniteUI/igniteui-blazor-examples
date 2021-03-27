@@ -29,7 +29,7 @@
         <label class="igOptions-value" style="width: 75px">@IntervalLabel</label>
         <input class="igOptions-slider" type="range" min="50" max="2000" step="50"
                value=@TransitionInInterval @onchange="OnTransitionIntervalChange" />
-        <button class="igOptions-button" @onclick="OnReloadChart">Reload Chart</button>
+        <button @onclick="OnReloadChart">Reload Chart</button>
     </div>
     <div class="igComponent">
         @if (DataSource != null)
@@ -38,7 +38,7 @@
                 @key="ChartKey"
                 @ref="ChartRef"
                 DataSource="DataSource"
-                ChartType="CategoryChartType.Line"  
+                ChartType="CategoryChartType.Line"
                 IsTransitionInEnabled="true"
                 TransitionInMode="@SelectedTransition"
                 TransitionInDuration="@TransitionInInterval"
@@ -94,20 +94,20 @@
             StateHasChanged();
         }
     }
-    
+
     private List<EnergyRenewableInfo> DataSource = new EnergyRenewableData();
-    
+
     protected override void OnInitialized()
     {
         CategoryChartModule.Register(IgniteUIBlazor);
         LegendModule.Register(IgniteUIBlazor);
     }
-    
+
     private void OnTransitionIntervalChange(ChangeEventArgs args)
     {
         this.TransitionInInterval = int.Parse(args.Value.ToString());
     }
-    
+
     private void OnReloadChart()
     {
         this.ChartKey = new Random().Next().ToString();

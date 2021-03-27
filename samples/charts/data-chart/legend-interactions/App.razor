@@ -1,6 +1,4 @@
-﻿@page "/DataChartSeriesHighlighting"
-
-@using IgniteUI.Blazor.Controls
+﻿@using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
@@ -25,32 +23,32 @@
         <label style="background: orange" class="igOptions-item" @onclick="@(e => onLegendClick(1))" @onmouseover="@(e => onLegendHover(1))" @onmouseout="@(e => onLegendLeave(1))"> China  </label>
         <label style="background: orange" class="igOptions-item" @onclick="@(e => onLegendClick(2))" @onmouseover="@(e => onLegendHover(2))" @onmouseout="@(e => onLegendLeave(2))"> USA  </label>
     </div>
-    
+
     <div class="igComponent">
-        <DataChart Height="100%" Width="100%" 
+        <DataChart Height="100%" Width="100%"
                    IsVerticalZoomEnabled="true"
                    IsHorizontalZoomEnabled="true" @ref="Chart">
             <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Year" />
             <NumericYAxis  Name="yAxis" MinimumValue="0" Title="TWh" TitleLeftMargin="10" />
 
-            <AreaSeries Title="Europe" XAxisName="xAxis" YAxisName="yAxis" 
+            <AreaSeries Title="Europe" XAxisName="xAxis" YAxisName="yAxis"
                         ValueMemberPath="Europe" MarkerType="@MarkerType.Circle"
                         DataSource="DataSource" Opacity="SeriesOpacity[0]"
                         IsTransitionInEnabled="true" ShowDefaultTooltip="true"
                         IsHighlightingEnabled="SeriesHighlightEnabled"/>
 
-            <AreaSeries Title="China" XAxisName="xAxis" YAxisName="yAxis" 
+            <AreaSeries Title="China" XAxisName="xAxis" YAxisName="yAxis"
                         ValueMemberPath="China" MarkerType="@MarkerType.Circle"
                         DataSource="DataSource" Opacity="SeriesOpacity[1]"
                         IsTransitionInEnabled="true" ShowDefaultTooltip="true"
                         IsHighlightingEnabled="SeriesHighlightEnabled"/>
 
-            <AreaSeries Title="USA" XAxisName="xAxis" YAxisName="yAxis" 
+            <AreaSeries Title="USA" XAxisName="xAxis" YAxisName="yAxis"
                         ValueMemberPath="USA" MarkerType="@MarkerType.Circle"
                         DataSource="DataSource" Opacity="SeriesOpacity[2]"
                         IsTransitionInEnabled="true" ShowDefaultTooltip="true"
                         IsHighlightingEnabled="SeriesHighlightEnabled"/>
-            
+
             @*<ItemToolTipLayer Name="ItemTooltip" Outline="Red" />*@
 
         </DataChart>

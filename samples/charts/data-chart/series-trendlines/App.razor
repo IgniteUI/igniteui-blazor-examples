@@ -1,6 +1,4 @@
-﻿@page "/DataChartSeriesTrendlines"
-
-@using IgniteUI.Blazor.Controls
+﻿@using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
@@ -26,7 +24,7 @@
     </div>
 
     <div class="igComponent">
-        <DataChart Height="100%" Width="100%"                   
+        <DataChart Height="100%" Width="100%"
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true">
             <CategoryXAxis Name="xAxis" Label="Label" DataSource="DataSource" />
@@ -41,7 +39,7 @@
 </div>
 
 @code {
-    
+
     private List<SampleFinancialItem> DataSource;
     private TrendLineType ChartTrendlineType = TrendLineType.CubicFit;
 
@@ -50,9 +48,9 @@
         base.OnInitialized();
 
         DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);        
+        DataChartCategoryModule.Register(IgniteUIBlazor);
         DataChartFinancialModule.Register(IgniteUIBlazor);
-        DataChartFinancialCoreModule.Register(IgniteUIBlazor);               
+        DataChartFinancialCoreModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         DataChartCategoryTrendLineModule.Register(IgniteUIBlazor);
 
