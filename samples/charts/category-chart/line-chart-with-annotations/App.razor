@@ -19,11 +19,11 @@
     </div>
 
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <CategoryChart Height="100%" Width="100%"
                            @ref="Chart"
-                           DataSource="DataSource"
+                           DataSource="Data"
                            ChartType="CategoryChartType.Line"
                            Subtitle="Renewable Electricity Generated"
                            YAxisTitle="TWh"
@@ -37,7 +37,7 @@
                            CalloutsYMemberPath="Value"
                            CalloutsXMemberPath="Index"
                            CalloutsLabelMemberPath="Label"
-                           CalloutsDataSource="@CalloutDataSource"
+                           CalloutsDataSource="CalloutData"
                            ExcludedProperties="@(new string[] { "China", "Europe" })">
             </CategoryChart>
         }
@@ -46,8 +46,8 @@
 
 @code {
 
-    private List<EnergyRenewableInfo> DataSource = new EnergyRenewableData();
-    private List<CalloutInfo> CalloutDataSource = new CalloutData();
+    private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
+    private List<CalloutInfo> CalloutData = new List<CalloutInfo>();
 
     private CategoryChart _Chart;
     private CategoryChart Chart
@@ -92,13 +92,13 @@
     protected override void OnInitialized()
     {
         CategoryChartModule.Register(IgniteUIBlazor);
-        for (int i = 0; i < DataSource.Count; i++)
+        for (int i = 0; i < this.Data.Count; i++)
         {
-            CalloutDataSource.Add(
+            CalloutData.Add(
                 new CalloutInfo {
                     Index = i, Label =
-                    DataSource[i].USA + " " + "TWh",
-                    Value = DataSource[i].USA });
+                    this.Data[i].USA + " " + "TWh",
+                    Value = this.Data[i].USA });
         }
     }
 
@@ -108,5 +108,4 @@
         public int Value { get; set; }
         public string Label { get; set; }
     }
-    public class CalloutData : List<CalloutInfo>{}
 }
