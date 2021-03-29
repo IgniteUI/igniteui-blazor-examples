@@ -25,7 +25,7 @@
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false"
                    Legend="Legend"
-                   @ref="DataChartRef">
+                   @ref="Chart">
 
             <NumericXAxis Name="xAxis"
                           TitleBottomMargin="10"
@@ -62,13 +62,13 @@
 @code {
 
     private List<SampleShapeItem> DataSource;
-    private DataChart dataChart;
-    private DataChart DataChartRef
+    private DataChart _Chart;
+    private DataChart Chart
     {
-        get { return dataChart; }
+        get { return _Chart; }
         set
         {
-            dataChart = value;
+            _Chart = value;
             SeriesType = "Polyline";
             StateHasChanged();
         }

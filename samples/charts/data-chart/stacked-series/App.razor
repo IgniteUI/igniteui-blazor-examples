@@ -31,7 +31,7 @@
         <DataChart Height="100%" Width="100%"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false"
-                   @ref="DataChartRef">
+                   @ref="Chart">
 
             @if (SeriesType != "Stacked Bar")
             {
@@ -161,13 +161,13 @@
 @code {
 
     private List<SampleStackedItem> DataSource;
-    private DataChart dataChart;
-    private DataChart DataChartRef
+    private DataChart _Chart;
+    private DataChart Chart
     {
-        get { return dataChart; }
+        get { return _Chart; }
         set
         {
-            dataChart = value;
+            _Chart = value;
             SeriesType = "Stacked Column";
             StateHasChanged();
         }

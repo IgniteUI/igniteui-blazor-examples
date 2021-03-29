@@ -25,7 +25,7 @@
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false"
                    Legend="Legend"
-                   @ref="DataChartRef">
+                   @ref="Chart">
 
             <CategoryXAxis Name="xAxis"
                            Label="Year"
@@ -67,13 +67,13 @@
 @code {
 
     private List<SampleRangeItem> DataSource;
-    private DataChart dataChart;
-    private DataChart DataChartRef
+    private DataChart _Chart;
+    private DataChart Chart
     {
-        get { return dataChart; }
+        get { return _Chart; }
         set
         {
-            dataChart = value;
+            _Chart = value;
             SeriesType = "Column";
             StateHasChanged();
         }

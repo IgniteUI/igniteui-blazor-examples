@@ -19,7 +19,7 @@
     <div class="igComponent">
         @if (DataSource != null)
         {
-            <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true" IsHorizontalZoomEnabled="true" @ref="DataChartRef">
+            <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true" IsHorizontalZoomEnabled="true" @ref="Chart">
                 <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Label" Interval="1"/>
                 <NumericYAxis Name="yAxis" Interval="20" MinimumValue="70" MaximumValue="110"
                               LabelLocation="AxisLabelsLocation.OutsideRight" />
@@ -38,7 +38,7 @@
 @code {
 
     private List<TemperatureItem> DataSource;
-    private DataChart DataChartRef;
+    private DataChart Chart;
     private CrosshairLayer CrosshairRef;
     private FinalValueLayer FinalValueRef;
     private ValueOverlay ValueOverlayRef;
@@ -84,11 +84,11 @@
         bool val = (bool)e.Value;
         if (val)
         {
-            this.DataChartRef.ActualSeries.Add(this.FinalValueRef);
+            this.Chart.ActualSeries.Add(this.FinalValueRef);
         }
         else
         {
-            this.DataChartRef.ActualSeries.Remove(this.FinalValueRef);
+            this.Chart.ActualSeries.Remove(this.FinalValueRef);
         }
     }
 
@@ -97,11 +97,11 @@
         bool val = (bool)e.Value;
         if (val)
         {
-            this.DataChartRef.ActualSeries.Add(this.CrosshairRef);
+            this.Chart.ActualSeries.Add(this.CrosshairRef);
         }
         else
         {
-            this.DataChartRef.ActualSeries.Remove(this.CrosshairRef);
+            this.Chart.ActualSeries.Remove(this.CrosshairRef);
         }
 
     }
@@ -111,11 +111,11 @@
         bool val = (bool)e.Value;
         if (val)
         {
-            this.DataChartRef.ActualSeries.Add(this.ValueOverlayRef);
+            this.Chart.ActualSeries.Add(this.ValueOverlayRef);
         }
         else
         {
-            this.DataChartRef.ActualSeries.Remove(this.ValueOverlayRef);
+            this.Chart.ActualSeries.Remove(this.ValueOverlayRef);
         }
     }
 

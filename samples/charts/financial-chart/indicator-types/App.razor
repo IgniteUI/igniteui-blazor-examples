@@ -10,7 +10,7 @@
             {
                 <FinancialChart Width="100%"
                     Height="100%"
-                    @ref="@FinancialChartRef"
+                    @ref="@Chart"
                     ChartType=FinancialChartType.Line
                     Thickness=2
                     DataSource="DataSource"
@@ -26,19 +26,19 @@
 @code {
 
     List<StockItem> DataSource;
-    public FinancialChart financialChart;
-    public FinancialChart FinancialChartRef
+    public FinancialChart _Chart;
+    public FinancialChart Chart
     {
         get
         {
-            return financialChart;
+            return _Chart;
         }
         set
         {
-            financialChart = value;
-            this.FinancialChartRef.IndicatorTypes.Clear();
-            this.FinancialChartRef.IndicatorTypes.Add(FinancialIndicatorType.MovingAverageConvergenceDivergence);
-            this.FinancialChartRef.IndicatorTypes.Add(FinancialIndicatorType.RelativeStrengthIndex);
+            _Chart = value;
+            this.Chart.IndicatorTypes.Clear();
+            this.Chart.IndicatorTypes.Add(FinancialIndicatorType.MovingAverageConvergenceDivergence);
+            this.Chart.IndicatorTypes.Add(FinancialIndicatorType.RelativeStrengthIndex);
         }
     }
 

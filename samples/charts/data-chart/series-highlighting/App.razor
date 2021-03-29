@@ -18,7 +18,7 @@
 
     <div class="igComponent">
         <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true"
-                   IsHorizontalZoomEnabled="true" @ref="DataChartRef">
+                   IsHorizontalZoomEnabled="true" @ref="Chart">
             <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Country" />
             <NumericYAxis Name="yAxis" MinimumValue="0" AbbreviateLargeNumbers="true" />
 
@@ -48,7 +48,7 @@
 
     private CategoryItemHighlightLayer ItemHighlightLayer;
     private CategoryHighlightLayer CategoryHighlightLayer;
-    private DataChart DataChartRef;
+    private DataChart Chart;
 
     protected override void OnInitialized()
     {
@@ -71,11 +71,11 @@
         bool val = (bool)e.Value;
         if (val)
         {
-            this.DataChartRef.ActualSeries.Add(this.CategoryHighlightLayer);
+            this.Chart.ActualSeries.Add(this.CategoryHighlightLayer);
         }
         else
         {
-            this.DataChartRef.ActualSeries.Remove(this.CategoryHighlightLayer);
+            this.Chart.ActualSeries.Remove(this.CategoryHighlightLayer);
         }
     }
 
@@ -84,11 +84,11 @@
         bool val = (bool)e.Value;
         if (val)
         {
-            this.DataChartRef.ActualSeries.Add(this.ItemHighlightLayer);
+            this.Chart.ActualSeries.Add(this.ItemHighlightLayer);
         }
         else
         {
-            this.DataChartRef.ActualSeries.Remove(this.ItemHighlightLayer);
+            this.Chart.ActualSeries.Remove(this.ItemHighlightLayer);
         }
     }
 }

@@ -16,7 +16,7 @@
         @if (DataSource != null)
         {
             <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true"
-                       IsHorizontalZoomEnabled="true" @ref="DataChartRef">
+                       IsHorizontalZoomEnabled="true" @ref="Chart">
                 <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Country" />
                 <NumericYAxis Name="yAxis" MinimumValue="0" AbbreviateLargeNumbers="true" />
 
@@ -38,7 +38,7 @@
 @code {
 
     private List<EnergyProductionData.Energy> DataSource;
-    private DataChart DataChartRef;
+    private DataChart Chart;
 
     private CategoryToolTipLayer CategoryTooltip = new CategoryToolTipLayer();
     private ItemToolTipLayer ItemTooltip = new ItemToolTipLayer();
@@ -63,20 +63,20 @@
         {
             case "Default":
                 {
-                    this.DataChartRef.Series.Remove(this.ItemTooltip);
-                    this.DataChartRef.Series.Remove(this.CategoryTooltip);
+                    this.Chart.Series.Remove(this.ItemTooltip);
+                    this.Chart.Series.Remove(this.CategoryTooltip);
                     break;
                 }
             case "Item":
                 {
-                    this.DataChartRef.Series.Add(this.ItemTooltip);
-                    this.DataChartRef.Series.Remove(this.CategoryTooltip);
+                    this.Chart.Series.Add(this.ItemTooltip);
+                    this.Chart.Series.Remove(this.CategoryTooltip);
                     break;
                 }
             case "Category":
                 {
-                    this.DataChartRef.Series.Remove(this.ItemTooltip);
-                    this.DataChartRef.Series.Add(this.CategoryTooltip);
+                    this.Chart.Series.Remove(this.ItemTooltip);
+                    this.Chart.Series.Add(this.CategoryTooltip);
                     break;
                 }
         }

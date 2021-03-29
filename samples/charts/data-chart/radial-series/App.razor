@@ -32,7 +32,7 @@
                    Brushes="#9FB328, #7446B9"
                    Outlines="#9FB328, #7446B9"
                    Legend="Legend"
-                   @ref="DataChartRef">
+                   @ref="Chart">
 
             <CategoryAngleAxis Name="angleAxis"
                                Label="Department"
@@ -92,13 +92,13 @@
 @code {
 
     private List<SampleRadialItem> DataSource;
-    private DataChart dataChart;
-    private DataChart DataChartRef
+    private DataChart _Chart;
+    private DataChart Chart
     {
-        get { return dataChart; }
+        get { return _Chart; }
         set
         {
-            dataChart = value;
+            _Chart = value;
             SeriesType = "Pie";
             StateHasChanged();
         }

@@ -30,7 +30,7 @@
                        IsHorizontalZoomEnabled="true"
                        IsVerticalZoomEnabled="true"
                        Legend="Legend"
-                       @ref="DataChartRef">
+                       @ref="Chart">
 
                 <CategoryXAxis Name="xAxis" Label="Label" DataSource="@DataSource"
                                LabelAngle="45" />
@@ -78,13 +78,13 @@
 @code {
 
     private List<SampleFinancialItem> DataSource;
-    private DataChart dataChart;
-    private DataChart DataChartRef
+    private DataChart _Chart;
+    private DataChart Chart
     {
-        get { return dataChart; }
+        get { return _Chart; }
         set
         {
-            dataChart = value;
+            _Chart = value;
             StateHasChanged();
         }
     }

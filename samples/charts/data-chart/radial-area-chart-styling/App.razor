@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="igComponent">
-        <DataChart @ref="DataChartRef" Height="100%" Width="100%"
+        <DataChart @ref="Chart" Height="100%" Width="100%"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false"
                    Legend="Legend">
@@ -55,19 +55,19 @@
         set { _Legend = value; StateHasChanged(); }
     }
 
-    private DataChart _dataChart;
-    private DataChart DataChartRef
+    private DataChart __Chart;
+    private DataChart Chart
     {
-        get { return _dataChart; }
+        get { return __Chart; }
         set
         {
-            _dataChart = value;
-            if (this.DataChartRef != null)
+            __Chart = value;
+            if (this.Chart != null)
             {
-                this.DataChartRef.MarkerBrushes = "White";
-                this.DataChartRef.MarkerOutlines = "rgb(140, 231, 217) rgb(238, 88, 121)";
-                this.DataChartRef.Brushes = "rgb(140, 231, 217) rgb(238, 88, 121)";
-                this.DataChartRef.Outlines = "rgb(140, 231, 217) rgb(238, 88, 121)";
+                this.Chart.MarkerBrushes = "White";
+                this.Chart.MarkerOutlines = "rgb(140, 231, 217) rgb(238, 88, 121)";
+                this.Chart.Brushes = "rgb(140, 231, 217) rgb(238, 88, 121)";
+                this.Chart.Outlines = "rgb(140, 231, 217) rgb(238, 88, 121)";
 
                 StateHasChanged();
             }

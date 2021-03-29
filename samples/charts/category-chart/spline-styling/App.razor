@@ -15,7 +15,7 @@
         @if (DataSource != null)
         {
             <CategoryChart Height="100%" Width="100%"
-                @ref="@CategoryChartRef"
+                @ref="@Chart"
                 Legend="Legend"
                 ChartType="CategoryChartType.Spline"
                 DataSource="DataSource"
@@ -31,21 +31,21 @@
 
 @code {
 
-    private CategoryChart _categoryChart;
-    private CategoryChart CategoryChartRef
+    private CategoryChart _Chart;
+    private CategoryChart Chart
     {
-        get { return _categoryChart; }
+        get { return _Chart; }
         set
         {
-            _categoryChart = value;
-            if (this.CategoryChartRef != null)
+            _Chart = value;
+            if (this.Chart != null)
             {
-                this.CategoryChartRef.MarkerTypes.Clear();
-                this.CategoryChartRef.MarkerTypes.Add(MarkerType.Triangle);
-                this.CategoryChartRef.MarkerBrushes = "White";
-                this.CategoryChartRef.MarkerOutlines = "rgb(140, 231, 217) rgb(238, 88, 121) rgb(115, 86, 86)";
-                this.CategoryChartRef.Brushes = "rgb(140, 231, 217) rgb(238, 88, 121) rgb(115, 86, 86)";
-				this.CategoryChartRef.Outlines = "rgb(140, 231, 217) rgb(238, 88, 121) rgb(115, 86, 86)";
+                this.Chart.MarkerTypes.Clear();
+                this.Chart.MarkerTypes.Add(MarkerType.Triangle);
+                this.Chart.MarkerBrushes = "White";
+                this.Chart.MarkerOutlines = "rgb(140, 231, 217) rgb(238, 88, 121) rgb(115, 86, 86)";
+                this.Chart.Brushes = "rgb(140, 231, 217) rgb(238, 88, 121) rgb(115, 86, 86)";
+				this.Chart.Outlines = "rgb(140, 231, 217) rgb(238, 88, 121) rgb(115, 86, 86)";
 
                 StateHasChanged();
             }

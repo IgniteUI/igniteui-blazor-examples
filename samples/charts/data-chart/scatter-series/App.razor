@@ -27,7 +27,7 @@
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true"
                    Legend="Legend"
-                   @ref="DataChartRef">
+                   @ref="Chart">
 
             <NumericXAxis Name="xAxis"
                           IsLogarithmic="true"
@@ -143,13 +143,13 @@
     private object data1;
     private object data2;
 
-    private DataChart dataChart;
-    private DataChart DataChartRef
+    private DataChart _Chart;
+    private DataChart Chart
     {
-        get { return dataChart; }
+        get { return _Chart; }
         set
         {
-            dataChart = value;
+            _Chart = value;
 
             SeriesType = "Point";
             StateHasChanged();

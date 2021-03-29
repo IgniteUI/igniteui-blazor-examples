@@ -22,7 +22,7 @@
         @if (DataSource != null)
         {
             <CategoryChart Height="100%" Width="100%"
-                           @ref="CategoryChartRef"
+                           @ref="Chart"
                            DataSource="DataSource"
                            ChartType="CategoryChartType.Line"
                            Subtitle="Renewable Electricity Generated"
@@ -32,7 +32,7 @@
                            CrosshairsDisplayMode="@CrosshairMode"
                            CrosshairsAnnotationEnabled="@CrosshairsVisible"
                            FinalValueAnnotationsVisible="@FinalValuesVisible"
-                           YAxisLabelLocation="AxisLabelsLocation.OutsideRight"  
+                           YAxisLabelLocation="AxisLabelsLocation.OutsideRight"
                            CalloutsVisible="@CalloutsVisible"
                            CalloutsYMemberPath="Value"
                            CalloutsXMemberPath="Index"
@@ -49,12 +49,12 @@
     private List<EnergyRenewableInfo> DataSource = new EnergyRenewableData();
     private List<CalloutInfo> CalloutDataSource = new CalloutData();
 
-    private CategoryChart _CategoryChart;
-    private CategoryChart CategoryChartRef
+    private CategoryChart _Chart;
+    private CategoryChart Chart
     {
-        get { return _CategoryChart; }
-        set { _CategoryChart = value;
-            CategoryChartRef.MarkerTypes.Add(MarkerType.Circle);
+        get { return _Chart; }
+        set { _Chart = value;
+            Chart.MarkerTypes.Add(MarkerType.Circle);
             StateHasChanged(); }
     }
     private bool MarkersVisible = true;
@@ -69,10 +69,10 @@
         bool value = (bool)args.Value;
         if (value == true)
         {
-            CategoryChartRef.MarkerTypes.Add(MarkerType.Automatic);
+            Chart.MarkerTypes.Add(MarkerType.Automatic);
         }
         else {
-            CategoryChartRef.MarkerTypes.Clear();
+            Chart.MarkerTypes.Clear();
         }
         this.MarkersVisible = value;
     }

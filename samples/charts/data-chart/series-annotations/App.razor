@@ -21,7 +21,7 @@
     <div class="igComponent">
         @if (DataSource != null)
         {
-            <DataChart Height="100%" Width="100%" @ref="DataChartRef"
+            <DataChart Height="100%" Width="100%" @ref="Chart"
                        IsHorizontalZoomEnabled="true"
                        IsVerticalZoomEnabled="true">
                 <CategoryXAxis Name="xAxis" Label="Angle" Interval="2" DataSource="DataSource" />
@@ -45,7 +45,7 @@
 
     private List<SampleScatterPoint> DataSource;
 
-    private DataChart DataChartRef;
+    private DataChart Chart;
     private CalloutLayer CalloutRef;
     private CrosshairLayer CrosshairRef;
     private FinalValueLayer FinalValueRef;
@@ -72,11 +72,11 @@
         bool val = (bool)e.Value;
         if (val)
         {
-            this.DataChartRef.ActualSeries.Add(this.CalloutRef);
+            this.Chart.ActualSeries.Add(this.CalloutRef);
         }
         else
         {
-            this.DataChartRef.ActualSeries.Remove(this.CalloutRef);
+            this.Chart.ActualSeries.Remove(this.CalloutRef);
         }
     }
 
@@ -85,11 +85,11 @@
         bool val = (bool)e.Value;
         if (val)
         {
-            this.DataChartRef.ActualSeries.Add(this.FinalValueRef);
+            this.Chart.ActualSeries.Add(this.FinalValueRef);
         }
         else
         {
-            this.DataChartRef.ActualSeries.Remove(this.FinalValueRef);
+            this.Chart.ActualSeries.Remove(this.FinalValueRef);
         }
     }
 
@@ -98,11 +98,11 @@
         bool val = (bool)e.Value;
         if (val)
         {
-            this.DataChartRef.ActualSeries.Add(this.CrosshairRef);
+            this.Chart.ActualSeries.Add(this.CrosshairRef);
         }
         else
         {
-            this.DataChartRef.ActualSeries.Remove(this.CrosshairRef);
+            this.Chart.ActualSeries.Remove(this.CrosshairRef);
         }
     }
 
@@ -111,11 +111,11 @@
         bool val = (bool)e.Value;
         if (val)
         {
-            this.DataChartRef.ActualSeries.Add(this.ValueOverlayRef);
+            this.Chart.ActualSeries.Add(this.ValueOverlayRef);
         }
         else
         {
-            this.DataChartRef.ActualSeries.Remove(this.ValueOverlayRef);
+            this.Chart.ActualSeries.Remove(this.ValueOverlayRef);
         }
     }
 }

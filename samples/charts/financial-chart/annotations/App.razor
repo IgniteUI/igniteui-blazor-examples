@@ -39,7 +39,7 @@
         {
             <FinancialChart Width="100%"
                 Height="100%"
-                @ref="@FinancialChartRef"
+                @ref="@Chart"
                 ChartType=FinancialChartType.Line
                 Thickness=2
                 XAxisMode="XAxisMode"
@@ -62,18 +62,15 @@
 
 @code {
 
-    public FinancialChart financialChart;
-    public FinancialChart FinancialChartRef
+    public FinancialChart _Chart;
+    public FinancialChart Chart
     {
-        get
-        {
-            return financialChart;
-        }
+        get { return _Chart; }
         set
         {
-            financialChart = value;
-            this.FinancialChartRef.MarkerTypes.Clear();
-            this.FinancialChartRef.MarkerTypes.Add(MarkerType.None);
+            _Chart = value;
+            this.Chart.MarkerTypes.Clear();
+            this.Chart.MarkerTypes.Add(MarkerType.None);
             StateHasChanged();
         }
     }
@@ -133,13 +130,13 @@
 
         if ((bool)e.Value == true)
         {
-            this.FinancialChartRef.MarkerTypes.Clear();
-            this.FinancialChartRef.MarkerTypes.Add(MarkerType.Automatic);
+            this.Chart.MarkerTypes.Clear();
+            this.Chart.MarkerTypes.Add(MarkerType.Automatic);
         }
         else
         {
-            this.FinancialChartRef.MarkerTypes.Clear();
-            this.FinancialChartRef.MarkerTypes.Add(MarkerType.None);
+            this.Chart.MarkerTypes.Clear();
+            this.Chart.MarkerTypes.Add(MarkerType.None);
         }
         MarkersVisible = (bool)e.Value;
     }
