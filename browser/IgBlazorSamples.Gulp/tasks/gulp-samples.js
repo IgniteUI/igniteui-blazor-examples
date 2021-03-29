@@ -567,17 +567,17 @@ function updateSharedFiles(cb) {
 function updateDataFiles(cb) {
 
     // update these shared files if a sample is using them
-    gulp.src(['../../templates/shared/Services/*.*'])
+    gulp.src(['../../templates/sample/Services/*.*'])
     // gulp.src([
-    //     '../../templates/shared/Services/EnergyRenewableData.cs',
-    //     '../../templates/shared/Services/SharedExcelData.cs',
+    //     '../../templates/sample/Services/EnergyRenewableData.cs',
+    //     '../../templates/sample/Services/SharedExcelData.cs',
     // ])
     .pipe(flatten({ "includeParents": -1 }))
     .pipe(es.map(function(file, fileCallback) {
         let sourceContent = file.contents.toString();
         let sourcePath = Transformer.getRelative(file.dirname);
         sourcePath = sourcePath.replace('../../templates/sample', '');
-        sourcePath = sourcePath.replace('../../templates/shared', '');
+        // sourcePath = sourcePath.replace('../../templates/shared', '');
 
         for (const sample of samples) {
             if (sample.isUsingFileName(file.basename)) {
