@@ -3,7 +3,7 @@
 
 <div class="igContainer">
     <div class="igComponent">
-        <DataChart Height="100%" Width="100%"                 
+        <DataChart Height="100%" Width="100%"
                    ChartTitle="Where Online Shoppers Start Their Search"
                    TitleHorizontalAlignment="HorizontalAlignment.Left"
                    TitleLeftMargin="25"
@@ -12,11 +12,11 @@
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <CategoryYAxis Name="yAxis" Label="Shop" DataSource="@DataSource" IsInverted="true" Gap="0.75" />
+            <CategoryYAxis Name="yAxis" Label="Shop" DataSource="Data" IsInverted="true" Gap="0.75" />
             <NumericXAxis Name="xAxis" LabelFormat="{0}%" />
             <BarSeries XAxisName="xAxis"
                        YAxisName="yAxis"
-                       DataSource="@DataSource"
+                       DataSource="Data"
                        ValueMemberPath="Percent"
                        ShowDefaultTooltip="true"
                        IsTransitionInEnabled="true"
@@ -28,7 +28,7 @@
 
 @code {
 
-    private List<OnlineShoppingInfo> DataSource = new OnlineShoppingData();
+    private List<OnlineShoppingInfo> Data = new OnlineShoppingData();
 
     protected override void OnInitialized()
     {

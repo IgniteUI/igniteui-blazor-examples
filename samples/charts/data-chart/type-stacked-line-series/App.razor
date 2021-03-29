@@ -4,13 +4,13 @@
 
 <div class="igContainer">
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true" IsHorizontalZoomEnabled="true">
-                <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Country" />
+                <CategoryXAxis Name="xAxis" DataSource="Data" Label="Country" />
                 <NumericYAxis Name="yAxis" MinimumValue="0" />
 
-                <StackedLineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ShowDefaultTooltip="true" AreaFillOpacity="1">
+                <StackedLineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="true" AreaFillOpacity="1">
                     <StackedFragmentSeries ValueMemberPath="Coal" />
                     <StackedFragmentSeries ValueMemberPath="Hydro" />
                     <StackedFragmentSeries ValueMemberPath="Nuclear" />
@@ -24,7 +24,7 @@
 
 @code {
 
-    private List<Infragistics.Samples.SampleStackedItem> DataSource;
+    private List<Infragistics.Samples.SampleStackedItem> Data;
 
     protected override void OnInitialized()
     {
@@ -39,7 +39,7 @@
         StackedSplineSeriesModule.Register(IgniteUIBlazor);
         StackedFragmentSeriesModule.Register(IgniteUIBlazor);
 
-        this.DataSource = SampleStackedData.Create();
+        this.Data = SampleStackedData.Create();
 
     }
 }

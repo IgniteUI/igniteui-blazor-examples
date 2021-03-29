@@ -22,11 +22,11 @@
 
     <div class="igComponent">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
         <DataGrid @ref="@grid" Height="100%" Width="100%"
                   RowHeight="90"
-                  DataSource="@DataSource"
+                  DataSource="Data"
                   AutoGenerateColumns="false">
             @* custom sparkline solumn: *@
             <TemplateColumn Field="Orders"
@@ -62,7 +62,7 @@
     public Random Rand = new Random();
 
     public DataGrid grid;
-    public List<SalesEmployee> DataSource;
+    public List<SalesEmployee> Data;
     public List<Order> companyOrders;
     public Workbook wb;
 
@@ -164,7 +164,7 @@
             };
             data.Add(dataItem);
         }
-        this.DataSource = data;
+        this.Data = data;
 
     }
 
@@ -177,7 +177,7 @@
     public void ExportGridData (WorkbookFormat format)
     {
         var headers = new string[] { "Orders", "Company Name", "Contact Name", "Contact Title", "Country"};
-        
+
         this.wb = new Workbook(format);
         var exportSheet = this.wb.Worksheets.Add("Sheet1");
         var ordersSheet = this.wb.Worksheets.Add("Orders");
@@ -190,10 +190,10 @@
             exportSheet.Rows[0].Cells[i].Value = headers[i];
         }
 
-        if (this.DataSource is List<SalesEmployee>)
+        if (this.Data is List<SalesEmployee>)
         {
             int worksheetRow = 1;
-            var data = this.DataSource as List<SalesEmployee>;
+            var data = this.Data as List<SalesEmployee>;
 
             for (var i = 0; i < data.Count; i++)
             {

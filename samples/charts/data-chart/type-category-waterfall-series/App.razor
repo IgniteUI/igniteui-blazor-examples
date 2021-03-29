@@ -10,12 +10,12 @@
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <CategoryXAxis Name="xAxis" Label="Category" DataSource="@DataSource"/>
+            <CategoryXAxis Name="xAxis" Label="Category" DataSource="Data"/>
             <NumericYAxis Name="yAxis" Title="Amount (in USD)" TitleLeftMargin="10" AbbreviateLargeNumbers="true"/>
 
             <WaterfallSeries XAxisName="xAxis"
                         YAxisName="yAxis"
-                        DataSource="@DataSource"
+                        DataSource="Data"
                         ValueMemberPath="Value" Title="Value"
                         AreaFillOpacity="1"
                         ShowDefaultTooltip="true"
@@ -28,7 +28,7 @@
 
 @code {
 
-    private List<BudgetItem> DataSource;
+    private List<BudgetItem> Data;
 
     protected override void OnInitialized()
     {
@@ -38,7 +38,7 @@
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         NumberAbbreviatorModule.Register(IgniteUIBlazor);
 
-        DataSource = GetDataSource();
+        Data = GetDataSource();
     }
 
     public List<BudgetItem> GetDataSource() {

@@ -20,12 +20,12 @@
     </div>
     <div class="igComponent">
 
-            @if (DataSource != null)
+            @if (Data != null)
             {
                 <DataGrid Height="100%" Width="100%"
                           DefaultColumnMinWidth="100"
                           AutoGenerateColumns="false"
-                          DataSource="@DataSource"
+                          DataSource="Data"
                           IsRowHoverEnabled="@RowHoverEnabled"
                           RowHoverBackground="@HighlightColor"
                           SelectionMode="GridSelectionMode.MultipleRow"
@@ -46,13 +46,13 @@
 
     private bool RowHoverEnabled { get; set; } = true;
     private string HighlightColor { get; set; }
-    private List<Employee> DataSource;
+    private List<Employee> Data;
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
         DataGridModule.Register(IgniteUIBlazor);
-        DataSource = EmployeeData.Create(100, false);
+        Data = EmployeeData.Create(100, false);
     }
 
     private void OnIsRowHoverEnabledChange(ChangeEventArgs args)

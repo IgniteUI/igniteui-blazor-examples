@@ -5,10 +5,10 @@
 <div class="igContainer">
     <div class="igComponent">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DataGrid Height="100%" Width="100%"
-                      DataSource="@DataSource"
+                      DataSource="Data"
                       AutoGenerateColumns="false">
                 <TextColumn Field="ProductID" Width="@("*>110")" HeaderText="ID" HorizontalAlignment="CellContentHorizontalAlignment.Center" />
                 <TextColumn Field="ProductName" HeaderText="Product" Width="@("*>120")" />
@@ -27,7 +27,7 @@
 
 @code {
 
-    private List<SaleInfo> DataSource;
+    private List<SaleInfo> Data;
 
     private Random Rand = new Random();
 
@@ -87,7 +87,7 @@
             sales.Add(item);
         }
 
-        this.DataSource = sales;
+        this.Data = sales;
     }
 
     public double GetRandomNumber(double min, double max)

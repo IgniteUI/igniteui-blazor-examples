@@ -7,13 +7,13 @@
 
     <div class="igComponent">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <FinancialChart Width="100%"
                 Height="100%"
                 ChartType=FinancialChartType.Line
                 Thickness=2
-                DataSource="DataSource"
+                DataSource="Data"
                 ChartTitle="Stock Prices 1900-2020"
                 Subtitle="1.1M data points"
                 />
@@ -24,7 +24,7 @@
 
 @code {
 
-    List<StockItem> DataSource;
+    List<StockItem> Data;
     public string Title { get; set; }
     public string SubTitle { get; set; }
     protected override void OnInitialized()
@@ -41,9 +41,9 @@
         StocksUtility.intervalDays = 0;
         StocksUtility.intervalHours = 1;
         StocksUtility.intervalMinutes = 0;
-        this.DataSource = StocksUtility.GetStocksBetween(dateStart, dateEnd);
+        this.Data = StocksUtility.GetStocksBetween(dateStart, dateEnd);
         Title = "Stock Prices " + dateStart.Year + "-" + dateEnd.Year;
-        Console.WriteLine("DataItems " + this.DataSource.Count);
-        SubTitle = StocksUtility.ToShortString(this.DataSource.Count) + " data points";
+        Console.WriteLine("DataItems " + this.Data.Count);
+        SubTitle = StocksUtility.ToShortString(this.Data.Count) + " data points";
     }
 }

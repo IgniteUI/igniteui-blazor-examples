@@ -11,11 +11,11 @@
     </div>
 
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <CategoryChart Height="100%" Width="100%"
                 ChartType="CategoryChartType.Spline"
-                DataSource="DataSource"
+                DataSource="Data"
                 Legend="Legend"
                 YAxisTitle="TWh"
                 ToolTipType="ToolTipType.Category"
@@ -36,13 +36,13 @@
         set { _Legend = value; StateHasChanged(); }
     }
 
-    private List<EnergyRenewableInfo> DataSource;
+    private List<EnergyRenewableInfo> Data;
 
     protected override void OnInitialized()
     {
         CategoryChartModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         LegendModule.Register(IgniteUIBlazor);
-        this.DataSource = new EnergyRenewableData();
+        this.Data = new EnergyRenewableData();
     }
 }

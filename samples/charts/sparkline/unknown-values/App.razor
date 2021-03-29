@@ -10,11 +10,11 @@
         </div>
 
         <div class="igComponent">
-            @if (DataSource != null)
+            @if (Data != null)
             {
                 <Sparkline Height="100%"
                            Width="100%"
-                           DataSource="DataSource"
+                           DataSource="Data"
                            ValueMemberPath="Value"
                            DisplayType="SparklineDisplayType.Area"
                            UnknownValuePlotting="@unknownValuePlotting">
@@ -26,7 +26,7 @@
 
 @code {
 
-    private List<DataItem> DataSource;
+    private List<DataItem> Data;
     private UnknownValuePlotting unknownValuePlotting = UnknownValuePlotting.LinearInterpolate;
 
     protected override void OnInitialized()
@@ -47,7 +47,7 @@
         dataItems.Add(new DataItem() { Label = 2, Value = 2 });
         dataItems.Add(new DataItem() { Label = 6, Value = 6 });
 
-        DataSource = dataItems;
+        Data = dataItems;
     }
 
     public void onChanged(ChangeEventArgs e)

@@ -13,7 +13,7 @@
 
         @if (this.TaskDefinitions != null && this.TasksByName != null)
         {
-            <DataChart Height="100%" Width="100%" @ref="Chart"   
+            <DataChart Height="100%" Width="100%" @ref="Chart"
                        HighlightingMode="SeriesHighlightingMode.FadeOthers"
                        SeriesMouseEnterScript="onGanttChartMouseEnter"
                        IsHorizontalZoomEnabled="false"
@@ -22,21 +22,21 @@
                 <NumericXAxis Name="xAxis" MinimumValue="0" MaximumValue="200" Title="Work Days" />
                 <NumericYAxis Name="yAxis" MinimumValue="0" MaximumValue="6" Interval="1" IsInverted="true" LabelVisibility="Visibility.Collapsed" />
 
-                <CategoryYAxis Name="labelAxis" Label="Category" DataSource="@TaskCategories" Interval="1" 
-                               LabelLeftMargin="0" Title="Departments" TitleRightMargin="5" TitleLeftMargin="10" 
+                <CategoryYAxis Name="labelAxis" Label="Category" DataSource="TaskCategories" Interval="1"
+                               LabelLeftMargin="0" Title="Departments" TitleRightMargin="5" TitleLeftMargin="10"
                                LabelLocation="AxisLabelsLocation.OutsideLeft" IsInverted="true"/>
-                 
+
                 @foreach (var taskDataItems in this.TasksByName.Values)
-                {  
-                    <ScatterPolygonSeries XAxisName="xAxis" YAxisName="yAxis" 
-                                          DataSource="@taskDataItems"  
-                                          ShapeMemberPath="Points" 
+                {
+                    <ScatterPolygonSeries XAxisName="xAxis" YAxisName="yAxis"
+                                          DataSource="@taskDataItems"
+                                          ShapeMemberPath="Points"
                                           Outline="Transparent"
-                                          Title="@taskDataItems[0].Name"  
-                                          Brush="@taskDataItems[0].Color" 
+                                          Title="@taskDataItems[0].Name"
+                                          Brush="@taskDataItems[0].Color"
                                           MarkerTemplateScript="onGanttMarker"/>
-                }               
-               
+                }
+
 
             </DataChart>
         }
@@ -125,7 +125,7 @@
             if (taskColors.ContainsKey(task.Name))
                 task.Color = taskColors[task.Name];
 
-            // grouping tasks by their category index        
+            // grouping tasks by their category index
             if (tasksByCategory.ContainsKey(task.Category))
             {
                 task.CategoryID = tasksByCategory[task.Category].CategoryID;

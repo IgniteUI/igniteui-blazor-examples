@@ -21,7 +21,7 @@
     </div>
 
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
         <DataChart Height="100%" Width="100%"
                    ChartTitle="Sailing Chart"
@@ -47,7 +47,7 @@
             @if (SeriesType == "Area")
             {
                 <PolarAreaSeries Name="series1"
-                                 DataSource="@DataSource"
+                                 DataSource="Data"
                                  AngleAxisName="angleAxis"
                                  AngleMemberPath="Direction"
                                  RadiusMemberPath="WindSpeed"
@@ -57,7 +57,7 @@
                                  Title="Wind Speed"
                                  MarkerType="MarkerType.Circle" />
                 <PolarAreaSeries Name="series2"
-                                 DataSource="@DataSource"
+                                 DataSource="Data"
                                  AngleAxisName="angleAxis"
                                  AngleMemberPath="Direction"
                                  RadiusMemberPath="BoatSpeed"
@@ -80,7 +80,7 @@
                     AreaFillOpacity="1"
                     Title="Wind Speed"
                     MarkerType="MarkerType.Circle"
-                    DataSource="@DataSource" >
+                    DataSource="Data" >
                 </PolarSplineAreaSeries>
 
                 <PolarSplineAreaSeries Name="series2"
@@ -93,7 +93,7 @@
                     AreaFillOpacity="1"
                     Title="Boat Speed"
                     MarkerType="MarkerType.Circle"
-                    DataSource="@DataSource">
+                    DataSource="Data">
                 </PolarSplineAreaSeries>
             }
 
@@ -106,7 +106,7 @@
                                    AreaFillOpacity="1"
                                    MarkerType="MarkerType.Circle"
                                    Title="Boat Speed"
-                                   DataSource="@DataSource">
+                                   DataSource="Data">
                 </PolarSplineSeries>
 
                 <PolarSplineSeries AngleMemberPath="Direction"
@@ -116,7 +116,7 @@
                                    AreaFillOpacity="1"
                                    MarkerType="MarkerType.Circle"
                                    Title="Wind Speed"
-                                   DataSource="@DataSource">
+                                   DataSource="Data">
                 </PolarSplineSeries>
             }
 
@@ -129,7 +129,7 @@
                                  AreaFillOpacity="1"
                                  MarkerType="MarkerType.Circle"
                                  Title="Boat Speed"
-                                 DataSource="@DataSource">
+                                 DataSource="Data">
                 </PolarLineSeries>
 
                 <PolarLineSeries AngleMemberPath="Direction"
@@ -139,7 +139,7 @@
                                  AreaFillOpacity="1"
                                  MarkerType="MarkerType.Circle"
                                  Title="Wind Speed"
-                                 DataSource="@DataSource">
+                                 DataSource="Data">
                 </PolarLineSeries>
             }
 
@@ -152,7 +152,7 @@
                         AreaFillOpacity="1"
                         MarkerType="MarkerType.Circle"
                         Title="Boat Speed"
-                        DataSource="@DataSource">
+                        DataSource="Data">
                 </PolarScatterSeries>
 
                 <PolarScatterSeries AngleMemberPath="Direction"
@@ -162,7 +162,7 @@
                         AreaFillOpacity="1"
                         MarkerType="MarkerType.Circle"
                         Title="Wind Speed"
-                        DataSource="@DataSource">
+                        DataSource="Data">
                 </PolarScatterSeries>
             }
         </DataChart>
@@ -172,7 +172,7 @@
 
 @code {
 
-    private List<SamplePolarItem> DataSource;
+    private List<SamplePolarItem> Data;
     private DataChart _Chart;
     private DataChart Chart
     {
@@ -214,7 +214,7 @@
         DataChartInteractivityModule.Register(IgniteUIBlazor);
 
         LegendModule.Register(IgniteUIBlazor);
-        DataSource = SamplePolarData.Create();
+        Data = SamplePolarData.Create();
     }
 
     public void OnSeriesTypeChanged(ChangeEventArgs e)

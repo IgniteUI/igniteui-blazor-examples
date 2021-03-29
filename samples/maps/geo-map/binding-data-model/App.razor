@@ -4,9 +4,9 @@
 <div class="igContainer">
     <div class="igComponent">
         <GeographicMap Height="100%" Width="100%" Zoomable="true">
-            @for (int i = 0; i < this.DataSource.Count; i++)
+            @for (int i = 0; i < this.Data.Count; i++)
             {
-                FlightInfo info = this.DataSource[i];
+                FlightInfo info = this.Data[i];
                 List<WorldCity> symbolData = new List<WorldCity>() { info.Origin, info.Dest };
 
                 GeoLocation geoOrigin = new GeoLocation() { Lat = info.Origin.Lat, Lon = info.Origin.Lon };
@@ -29,13 +29,13 @@
 
                 List<FlightInfo> geoRoute = new List<FlightInfo>() { route };
 
-                <GeographicSymbolSeries DataSource="@symbolData" MarkerType="MarkerType.Circle"
+                <GeographicSymbolSeries DataSource="symbolData" MarkerType="MarkerType.Circle"
                                         LatitudeMemberPath="Lat" LongitudeMemberPath="Lon"
                                         MarkerBrush="White" MarkerOutline="@info.Color"
                                         Thickness="1">
                 </GeographicSymbolSeries>
 
-                <GeographicPolylineSeries DataSource="@geoRoute" ShapeMemberPath="Points"
+                <GeographicPolylineSeries DataSource="geoRoute" ShapeMemberPath="Points"
                                           ShapeStrokeThickness="9" ShapeOpacity="0.5"
                                           ShapeStroke="@info.Color">
                 </GeographicPolylineSeries>
@@ -47,7 +47,7 @@
 
 @code {
 
-    private List<FlightInfo> DataSource;
+    private List<FlightInfo> Data;
 
     protected override void OnInitialized()
     {
@@ -69,7 +69,7 @@
         WorldCity cityROM = new WorldCity() { Lat = 41.880, Lon = 12.520, Country = "Italy", Name = "Roma" };
         WorldCity cityLAX = new WorldCity() { Lat = 34.000, Lon = -118.25, Country = "US", Name = "Los Angeles" };
 
-        this.DataSource = new List<FlightInfo>() {
+        this.Data = new List<FlightInfo>() {
             new FlightInfo(){ Origin = cityDAL, Dest = citySNG, Color = "Green" },
             new FlightInfo(){ Origin = cityMOS, Dest = cityNZL, Color = "Red" },
             new FlightInfo(){ Origin = cityCHL, Dest = cityJAP, Color = "Blue" },

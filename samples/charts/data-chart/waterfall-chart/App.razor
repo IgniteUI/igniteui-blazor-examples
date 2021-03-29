@@ -11,22 +11,22 @@
                    TitleTopMargin="10"
                    TitleBottomMargin="10">
 
-            <CategoryXAxis Name="xAxis" Label="Category" DataSource="@DataSource" Overlap="1" />
+            <CategoryXAxis Name="xAxis" Label="Category" DataSource="Data" Overlap="1" />
             <NumericYAxis Name="yAxis" Title="Millions of Dollars" TitleLeftMargin="10" MinimumValue="0" MaximumValue="60" />
 
             <WaterfallSeries XAxisName="xAxis"
                              YAxisName="yAxis"
-                             DataSource="@DataSource"
+                             DataSource="Data"
                              ValueMemberPath="Value"
                              ShowDefaultTooltip="true"
-                             IsTransitionInEnabled="true">                             
+                             IsTransitionInEnabled="true">
             </WaterfallSeries>
 
             <WaterfallSeries XAxisName="xAxis"
                              YAxisName="yAxis"
                              Brush="#7446B9"
                              Outline="#7446B9"
-                             DataSource="@DataSource"
+                             DataSource="Data"
                              ValueMemberPath="NetIncomeValue"
                              ShowDefaultTooltip="true"
                              IsTransitionInEnabled="true">
@@ -38,7 +38,7 @@
 
 @code {
 
-    private List<FacebookConsolidatedInfo> DataSource = new FacebookConsolidatedData();
+    private List<FacebookConsolidatedInfo> Data = new FacebookConsolidatedData();
 
     protected override void OnInitialized()
     {

@@ -15,7 +15,7 @@
     </div>
 
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DoughnutChart Height="100%" Width="100%"
                            @ref="Chart"
@@ -25,7 +25,7 @@
                            SelectedSliceFill="Gray"
                            SelectedSliceStrokeThickness="1"
                            SelectedSliceOpacity="0.75">
-                <RingSeries DataSource="@DataSource"
+                <RingSeries DataSource="Data"
                             LabelMemberPath="Summary"
                             LabelsPosition="LabelsPosition.OutsideEnd"
                             LabelExtent="30"
@@ -42,7 +42,7 @@
 
 @code {
 
-    public List<DataItem> DataSource;
+    public List<DataItem> Data;
     public string SelectedSlice = "None";
     public ItemLegend Legend;
     public DoughnutChart Chart;
@@ -59,7 +59,7 @@
         dataItems.Add(new DataItem { Value = 18, Category = "Other Services", });
         dataItems.Add(new DataItem { Value = 37, Category = "Space Cooling", });
 
-        this.DataSource = dataItems;
+        this.Data = dataItems;
     }
 
     public class DataItem
@@ -79,11 +79,11 @@
 
     protected void OnSliceClick(SliceClickEventArgs e)
     {
-        Console.WriteLine("OnSliceClick " + this.DataSource[e.Index].Category);
+        Console.WriteLine("OnSliceClick " + this.Data[e.Index].Category);
 
         if (e.IsSelected)
         {
-            this.SelectedSlice = this.DataSource[e.Index].Category;
+            this.SelectedSlice = this.Data[e.Index].Category;
         }
         else
         {

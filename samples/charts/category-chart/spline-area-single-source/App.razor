@@ -4,7 +4,7 @@
 
 <div class="igContainer">
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <CategoryChart Height="100%" Width="100%"
                 ChartType="CategoryChartType.SplineArea"
@@ -14,7 +14,7 @@
                 TitleTopMargin="10"
                 TitleBottomMargin="10"
                 IncludedProperties="@(new string[] { "Year", "Europe" })"
-                DataSource="DataSource"
+                DataSource="Data"
                 YAxisTitle="TWh"
                 ToolTipType="ToolTipType.Category"
                 IsTransitionInEnabled="true"
@@ -27,7 +27,7 @@
 
 @code {
 
-    private List<EnergyRenewableInfo> DataSource = new EnergyRenewableData();
+    private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
 
     protected override void OnInitialized()
     {

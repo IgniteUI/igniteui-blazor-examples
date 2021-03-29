@@ -10,7 +10,7 @@
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true">
 
-            <CategoryXAxis Name="xAxis" Label="Label" DataSource="@DataSource" />
+            <CategoryXAxis Name="xAxis" Label="Label" DataSource="Data" />
             <NumericYAxis Name="yAxis" Title="Amount (in USD)" TitleRightMargin="10"
                           LabelRightMargin="10"
                           LabelHorizontalAlignment="HorizontalAlignment.Left"
@@ -18,7 +18,7 @@
 
             <BollingerBandsOverlay XAxisName="xAxis"
                                    YAxisName="yAxis"
-                                   DataSource="@DataSource"
+                                   DataSource="Data"
                                    OpenMemberPath="Open"
                                    CloseMemberPath="Close"
                                    HighMemberPath="High"
@@ -34,7 +34,7 @@
 
             <FinancialPriceSeries XAxisName="xAxis"
                                   YAxisName="yAxis"
-                                  DataSource="@DataSource"
+                                  DataSource="Data"
                                   OpenMemberPath="Open"
                                   CloseMemberPath="Close"
                                   HighMemberPath="High"
@@ -52,7 +52,7 @@
 
 @code {
 
-    private List<SampleFinancialItem> DataSource;
+    private List<SampleFinancialItem> Data;
 
     protected override void OnInitialized()
     {
@@ -66,7 +66,7 @@
 
         DataChartInteractivityModule.Register(IgniteUIBlazor);
 
-        DataSource = SampleFinancialData.Create();
+        Data = SampleFinancialData.Create();
 
 
     }

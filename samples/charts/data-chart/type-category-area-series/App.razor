@@ -11,12 +11,12 @@
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <CategoryXAxis Name="xAxis" Title="Olympic Years" Label="Year" DataSource="@DataSource"/>
+            <CategoryXAxis Name="xAxis" Title="Olympic Years" Label="Year" DataSource="Data"/>
             <NumericYAxis Name="yAxis" Title="Olympic Medals" TitleLeftMargin="10"/>
 
             <AreaSeries XAxisName="xAxis"
                         YAxisName="yAxis"
-                        DataSource="@DataSource"
+                        DataSource="Data"
                         ValueMemberPath="USA" Title="USA"
                         AreaFillOpacity="1"
                         ShowDefaultTooltip="true"
@@ -25,7 +25,7 @@
             </AreaSeries>
             <AreaSeries XAxisName="xAxis"
                         YAxisName="yAxis"
-                        DataSource="@DataSource"
+                        DataSource="Data"
                         ValueMemberPath="CHN" Title="China"
                         AreaFillOpacity="1"
                         ShowDefaultTooltip="true"
@@ -34,7 +34,7 @@
             </AreaSeries>
             <AreaSeries XAxisName="xAxis"
                         YAxisName="yAxis"
-                        DataSource="@DataSource"
+                        DataSource="Data"
                         ValueMemberPath="RUS" Title="Russia"
                         AreaFillOpacity="1"
                         ShowDefaultTooltip="true"
@@ -48,7 +48,7 @@
 
 @code {
 
-    private List<SampleCategoryItem> DataSource;
+    private List<SampleCategoryItem> Data;
 
     protected override void OnInitialized()
     {
@@ -57,7 +57,7 @@
         DataChartCategoryModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
 
-        DataSource = SampleCategoryData.Create();
+        Data = SampleCategoryData.Create();
 
 
     }

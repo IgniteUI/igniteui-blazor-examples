@@ -20,7 +20,7 @@
     </div>
 
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
         <DataChart Height="100%" Width="100%"
                    GridMode="GridMode.BeforeSeries"
@@ -36,7 +36,7 @@
 
             <CategoryAngleAxis Name="angleAxis"
                                Label="Department"
-                               DataSource="@DataSource" />
+                               DataSource="Data" />
             <NumericRadiusAxis Name="radiusAxis"
                                InnerRadiusExtentScale="0.1"
                                MinimumValue="0" />
@@ -48,7 +48,7 @@
                     ValueAxisName="radiusAxis"
                     AngleAxisName="angleAxis"
                     Title="Budget"
-                    DataSource = "@DataSource">
+                    Data = "Data">
                 </RadialAreaSeries>
             }
 
@@ -59,7 +59,7 @@
                     ValueAxisName="radiusAxis"
                     AngleAxisName="angleAxis"
                     Title="Budget"
-                    DataSource = "@DataSource">
+                    Data = "Data">
                 </RadialColumnSeries>
             }
 
@@ -70,7 +70,7 @@
                     ValueAxisName="radiusAxis"
                     AngleAxisName="angleAxis"
                     Title="Budget"
-                    DataSource = "@DataSource">
+                    Data = "Data">
                 </RadialPieSeries>
             }
 
@@ -81,7 +81,7 @@
                     ValueAxisName="radiusAxis"
                     AngleAxisName="angleAxis"
                     Title="Budget"
-                    DataSource = "@DataSource">
+                    Data = "Data">
                 </RadialLineSeries>
             }
         </DataChart>
@@ -91,7 +91,7 @@
 
 @code {
 
-    private List<SampleRadialItem> DataSource;
+    private List<SampleRadialItem> Data;
     private DataChart _Chart;
     private DataChart Chart
     {
@@ -135,7 +135,7 @@
         DataChartInteractivityModule.Register(IgniteUIBlazor);
 
         LegendModule.Register(IgniteUIBlazor);
-        DataSource = SampleRadialData.Create();
+        Data = SampleRadialData.Create();
     }
 
     public void OnSeriesTypeChanged(ChangeEventArgs e)

@@ -11,12 +11,12 @@
         </div>
     </div>
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <CategoryChart Height="100%" Width="100%"
                 Legend="Legend"
                 ChartType="CategoryChartType.StepLine"
-                DataSource="DataSource"
+                DataSource="Data"
                 IsCategoryHighlightingEnabled="true"
                 IsSeriesHighlightingEnabled="true"
                 ToolTipType="ToolTipType.Category"
@@ -32,7 +32,7 @@
 
 @code {
 
-    private List<EnergyRenewableInfo> DataSource;
+    private List<EnergyRenewableInfo> Data;
     private Legend legend;
     private Legend Legend
     {
@@ -49,6 +49,6 @@
         CategoryChartModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         LegendModule.Register(IgniteUIBlazor);
-        this.DataSource = new EnergyRenewableData();
+        this.Data = new EnergyRenewableData();
     }
 }

@@ -5,12 +5,12 @@
 
     <div class="igComponent">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <section>Sparkline with Line DisplayType</section>
             <Sparkline Height="100%"
                        Width="100%"
-                       DataSource="@DataSource"
+                       DataSource="Data"
                        DisplayType="SparklineDisplayType.Line"
                        ValueMemberPath="Value"
                        LabelMemberPath="Angle">
@@ -19,7 +19,7 @@
             <section>Sparkline with Area DisplayType</section>
             <Sparkline Height="100%"
                        Width="100%"
-                       DataSource="@DataSource"
+                       DataSource="Data"
                        DisplayType="SparklineDisplayType.Area"
                        ValueMemberPath="Value"
                        LabelMemberPath="Angle">
@@ -28,7 +28,7 @@
             <section>Sparkline with Column DisplayType</section>
             <Sparkline Height="100%"
                        Width="100%"
-                       DataSource="@DataSource"
+                       DataSource="Data"
                        DisplayType="SparklineDisplayType.Column"
                        ValueMemberPath="Value"
                        LabelMemberPath="Angle">
@@ -37,7 +37,7 @@
             <section>Sparkline with WinLoss DisplayType</section>
             <Sparkline Height="100%"
                        Width="100%"
-                       DataSource="@DataSource"
+                       DataSource="Data"
                        DisplayType="SparklineDisplayType.WinLoss"
                        ValueMemberPath="Value"
                        LabelMemberPath="Angle">
@@ -49,13 +49,13 @@
 
 @code {
 
-    private List<SparklineItem> DataSource;
+    private List<SparklineItem> Data;
 
     protected override void OnInitialized()
     {
         SparklineModule.Register(IgniteUIBlazor);
 
-        this.DataSource = SparklineData.Generate();
+        this.Data = SparklineData.Generate();
     }
 
 }

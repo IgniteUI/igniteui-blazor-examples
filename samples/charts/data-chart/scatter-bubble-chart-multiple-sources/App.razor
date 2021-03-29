@@ -23,7 +23,7 @@
 
             <BubbleSeries XAxisName="xAxis"
                            YAxisName="yAxis"
-                           DataSource="@AfricaDataSource"
+                           DataSource="AfricaData"
                            XMemberPath="DeathRate"
                            YMemberPath="BirthRate"
                            MarkerType="MarkerType.Circle"
@@ -34,7 +34,7 @@
 
             <BubbleSeries XAxisName="xAxis"
                            YAxisName="yAxis"
-                           DataSource="@EuropeDataSource"
+                           DataSource="EuropeData"
                            XMemberPath="DeathRate"
                            YMemberPath="BirthRate"
                            MarkerType="MarkerType.Circle"
@@ -60,8 +60,8 @@
         }
     }
 
-    private List<BirthAndDeathRateInfo> AfricaDataSource;
-    private List<BirthAndDeathRateInfo> EuropeDataSource;
+    private List<BirthAndDeathRateInfo> AfricaData;
+    private List<BirthAndDeathRateInfo> EuropeData;
     private ValueBrushScale AfricaFillScale = new ValueBrushScale { Brushes = "rgba(186, 231, 114, 0.75)" };
     private ValueBrushScale EuropeFillScale = new ValueBrushScale { Brushes = "rgba(248, 174, 95, 0.75)" };
     private SizeScale SizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 100 };
@@ -72,11 +72,11 @@
 
         var comparer = new BubbleSeriesSortComparer();
 
-        this.AfricaDataSource = data.Where(d => d.Continent == "Africa").ToList();
-        this.AfricaDataSource.Sort(comparer);
+        this.AfricaData = data.Where(d => d.Continent == "Africa").ToList();
+        this.AfricaData.Sort(comparer);
 
-        this.EuropeDataSource = data.Where(d => d.Continent == "Europe").ToList();
-        this.EuropeDataSource.Sort(comparer);
+        this.EuropeData = data.Where(d => d.Continent == "Europe").ToList();
+        this.EuropeData.Sort(comparer);
     }
 
     protected override void OnInitialized()

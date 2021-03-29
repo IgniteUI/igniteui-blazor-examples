@@ -10,13 +10,13 @@
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <CategoryXAxis Name="xAxis" Label="Year" DataSource="@DataSource"/>
+            <CategoryXAxis Name="xAxis" Label="Year" DataSource="Data"/>
             <NumericYAxis  Name="yAxis" Title="Temperature (in Celcius)"
                            TitleLeftMargin="10" />
 
             <RangeAreaSeries XAxisName="xAxis" Title="Temperature"
                              YAxisName="yAxis"
-                             DataSource="@DataSource"
+                             DataSource="Data"
                              LowMemberPath="Low"
                              HighMemberPath="High"
                              ShowDefaultTooltip="true"
@@ -32,7 +32,7 @@
 
 @code {
 
-    private List<SampleRangeItem> DataSource;
+    private List<SampleRangeItem> Data;
 
     protected override void OnInitialized()
     {
@@ -41,7 +41,7 @@
         DataChartCategoryCoreModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
 
-        DataSource = SampleRangeData.Create();
+        Data = SampleRangeData.Create();
     }
 
 }

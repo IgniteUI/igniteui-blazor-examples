@@ -5,7 +5,7 @@
 <div class="igContainer">
     <div class="igComponent">
         <GeographicMap @ref="MapRef" Height="100%" Width="100%" Zoomable="true">
-            <GeographicHighDensityScatterSeries DataSource="@DataSource"
+            <GeographicHighDensityScatterSeries DataSource="Data"
                 LongitudeMemberPath="Lon"
                 LatitudeMemberPath="Lat"
                 HeatMaximumColor="Red"
@@ -20,7 +20,7 @@
 
 @code {
 
-    public List<GeoPlace> DataSource;
+    public List<GeoPlace> Data;
     public Rect GeoBound;
     public GeographicMap MapRef;
     public bool MapZoomed = false;
@@ -31,7 +31,7 @@
         GeographicMapModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
 
-        this.DataSource = new GeoPlaceData();
+        this.Data = new GeoPlaceData();
 
         this.GeoBound = new Rect(100, -40, new Size(50, 25));
         await Task.Delay(100);
@@ -40,7 +40,7 @@
     protected override void OnAfterRender(bool firstRender)
     {
         base.OnAfterRender(firstRender);
-      
+
         if (MapRef != null && !firstRender)
         {
             Task.Delay(500).ContinueWith((t) => OnMapRender());
@@ -55,5 +55,5 @@
         }
     }
 
-    
+
 }

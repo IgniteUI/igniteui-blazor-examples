@@ -7,12 +7,12 @@
         <button @onclick="onAnimationToggle">Animate Chart</button>
     </div>
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <PieChart Height="100%" Width="100%"
-                DataSource="DataSource"
+                DataSource="Data"
                 LabelMemberPath="Company"
-                ValueMemberPath="MarketShare"                
+                ValueMemberPath="MarketShare"
                 LabelsPosition="LabelsPosition.InsideEnd"
                 StartAngle="StartAngle"
                 LabelExtent="LabelExtent"
@@ -24,7 +24,7 @@
 
 @code {
 
-    private List<DataItem> DataSource;
+    private List<DataItem> Data;
     public double StartAngle = 0;
     public double RadiusFactor = 0.1;
     public double LabelExtent = 0.7;
@@ -78,14 +78,14 @@
         dataItems.Add(new DataItem() { MarketShare = 18, Company = "Other Services", });
         dataItems.Add(new DataItem() { MarketShare = 37, Company = "Space Cooling", });
 
-        DataSource = dataItems;
-        
+        Data = dataItems;
+
         this.onAnimationToggle();
     }
 
     public class DataItem
     {
         public string Company { get; set; }
-        public double MarketShare { get; set; }        
+        public double MarketShare { get; set; }
     }
 }

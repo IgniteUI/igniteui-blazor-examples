@@ -6,7 +6,7 @@
 <div class="igContainer">
     <div class="igComponent">
         <GeographicMap Height="100%" Width="100%" Zoomable="true">
-            <GeographicSymbolSeries DataSource="@DataSource"
+            <GeographicSymbolSeries DataSource="Data"
                                     MarkerType="MarkerType.Circle"
                                     LatitudeMemberPath="Lat"
                                     LongitudeMemberPath="Lon"
@@ -18,7 +18,7 @@
 
 @code {
 
-    private WorldPlaceJson[] DataSource;
+    private WorldPlaceJson[] Data;
 
     protected override async Task OnInitializedAsync()
     {
@@ -27,7 +27,7 @@
 
         var url = "https://static.infragistics.com/xplatform/data/WorldCities.json";
         var http = new HttpClient();
-        this.DataSource = await http.GetFromJsonAsync<WorldPlaceJson[]>(url);
+        this.Data = await http.GetFromJsonAsync<WorldPlaceJson[]>(url);
 
         await Task.Delay(1);
     }

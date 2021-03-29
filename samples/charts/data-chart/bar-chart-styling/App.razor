@@ -4,7 +4,7 @@
 <div class="igContainer">
     <div class="igComponent">
         <DataChart Height="100%" Width="100%"
-                   ChartTitle="Where Online Shoppers Start Their Search"                   
+                   ChartTitle="Where Online Shoppers Start Their Search"
                    TitleHorizontalAlignment="HorizontalAlignment.Left"
                    TitleLeftMargin="25"
                    TitleTopMargin="10"
@@ -12,19 +12,19 @@
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <CategoryYAxis Name="yAxis" Label="Shop" DataSource="@DataSource" IsInverted="true" Gap="0.75" />
-            <NumericXAxis Name="xAxis" Interval="20" LabelFormat="{0}%" />            
+            <CategoryYAxis Name="yAxis" Label="Shop" DataSource="Data" IsInverted="true" Gap="0.75" />
+            <NumericXAxis Name="xAxis" Interval="20" LabelFormat="{0}%" />
 
             <BarSeries XAxisName="xAxis"
                        YAxisName="yAxis"
-                       DataSource="@DataSource"                       
+                       DataSource="Data"
                        ValueMemberPath="Percent"
                        ShowDefaultTooltip="true"
                        IsTransitionInEnabled="true"
                        IsHighlightingEnabled="true">
             </BarSeries>
 
-            <CalloutLayer DataSource="CalloutDataSource" XMemberPath="X" YMemberPath="Y" LabelMemberPath="Label" ContentMemberPath="Label"
+            <CalloutLayer DataSource="CalloutItems" XMemberPath="X" YMemberPath="Y" LabelMemberPath="Label" ContentMemberPath="Label"
                           CalloutTextColor="Black" CalloutBackground="Transparent" CalloutLeaderBrush="Transparent"/>
         </DataChart>
     </div>
@@ -32,8 +32,8 @@
 
 @code {
 
-    private List<OnlineShoppingInfo> DataSource = new OnlineShoppingData();
-    private List<CalloutData> CalloutDataSource { get; set; }
+    private List<OnlineShoppingInfo> Data = new OnlineShoppingData();
+    private List<CalloutInfo> CalloutItems { get; set; }
 
     protected override void OnInitialized()
     {
@@ -50,17 +50,17 @@
 
     public void InitCallouts()
     {
-        List<CalloutData> _callouts = new List<CalloutData>();
+        var callouts = new List<CalloutInfo>();
 
-        for (int i = 0; i < this.DataSource.Count; i++)
+        for (int i = 0; i < this.Data.Count; i++)
         {
-            _callouts.Add(new CalloutData() { X = this.DataSource[i].Percent, Y = i, Label = this.DataSource[i].Percent.ToString() + "%" });
+            callouts.Add(new CalloutInfo() { X = this.Data[i].Percent, Y = i, Label = this.Data[i].Percent.ToString() + "%" });
         }
 
-        this.CalloutDataSource = _callouts;
+        this.CalloutItems = callouts;
     }
 
-    public class CalloutData
+    public class CalloutInfo
     {
         public double X { get; set; }
         public int Y { get; set; }

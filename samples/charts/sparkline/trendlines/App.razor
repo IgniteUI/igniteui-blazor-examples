@@ -14,11 +14,11 @@
         </div>
 
         <div class="igComponent">
-            @if (DataSource != null)
+            @if (Data != null)
             {
                 <Sparkline Height="100%"
                         Width="100%"
-                        DataSource="DataSource"
+                        DataSource="Data"
                         ValueMemberPath="Value"
                         DisplayType="SparklineDisplayType.Area"
                         TrendLineThickness="3"
@@ -33,7 +33,7 @@
 
 @code {
 
-    private List<DataItem> DataSource;
+    private List<DataItem> Data;
     private TrendLineType SelectedTrendlineType = TrendLineType.ExponentialFit;
 
     protected override void OnInitialized()
@@ -62,7 +62,7 @@
             max = Math.Max(max, v1 + v2);
         }
 
-        DataSource = dataItems;
+        Data = dataItems;
     }
 
     public class DataItem

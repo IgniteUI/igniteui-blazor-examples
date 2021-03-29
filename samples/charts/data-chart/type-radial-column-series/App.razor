@@ -9,14 +9,14 @@
                    SubtitleTopMargin="10"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
-            <CategoryAngleAxis Name="angleAxis" DataSource="@DataSource"
+            <CategoryAngleAxis Name="angleAxis" DataSource="Data"
                                Label="Department" />
             <NumericRadiusAxis Name="radiusAxis"
                                InnerRadiusExtentScale="0.1"
                                MinimumValue="0"/>
 
             <RadialColumnSeries Name="series1"
-                                DataSource="@DataSource"
+                                DataSource="Data"
                                 AngleAxisName="angleAxis"
                                 ValueMemberPath="Budget"
                                 ValueAxisName="radiusAxis"
@@ -26,7 +26,7 @@
                                 Title="Budget"
                                 MarkerType="MarkerType.Circle" />
             <RadialColumnSeries Name="series2"
-                                DataSource="@DataSource"
+                                DataSource="Data"
                                 AngleAxisName="angleAxis"
                                 ValueMemberPath="Spending"
                                 ValueAxisName="radiusAxis"
@@ -42,7 +42,7 @@
 
 @code {
 
-    private List<SampleRadialItem> DataSource;
+    private List<SampleRadialItem> Data;
 
     protected override void OnInitialized()
     {
@@ -54,7 +54,7 @@
         DataChartCategoryModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
 
-        DataSource = SampleRadialData.Create();
+        Data = SampleRadialData.Create();
     }
 
 }

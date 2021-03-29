@@ -35,7 +35,7 @@
 
     <div class="igComponent">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <FinancialChart Width="100%"
                 Height="100%"
@@ -44,7 +44,7 @@
                 Thickness=2
                 XAxisMode="XAxisMode"
                 YAxisMode="YAxisMode"
-                DataSource="DataSource"
+                DataSource="Data"
                 ExcludedProperties=ExcludedProps
                 CalloutsVisible="@CalloutsAnnotationVisible"
                 CalloutsXMemberPath="Index"
@@ -76,7 +76,7 @@
     }
     public FinancialChartXAxisMode XAxisMode = FinancialChartXAxisMode.Ordinal;
     public FinancialChartYAxisMode YAxisMode = FinancialChartYAxisMode.Numeric;
-    List<StockItem> DataSource;
+    List<StockItem> Data;
 
     public string[] ExcludedProps { get; set; } = new string[] { "Index", "Info" };
     public CrosshairsDisplayMode CrosshairsMode = CrosshairsDisplayMode.Both;
@@ -202,6 +202,6 @@
         stockData[minIndex].Info = "MIN";
         stockData[maxIndex].Info = "MAX";
 
-        this.DataSource = stockData;
+        this.Data = stockData;
     }
 }

@@ -21,13 +21,13 @@
     </div>
 
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DataGrid Height="100%" Width="100%"
                       @ref="DataGridRef"
                       DefaultColumnMinWidth="100"
                       AutoGenerateColumns="false"
-                      DataSource="@DataSource"
+                      DataSource="Data"
                       IsColumnOptionsEnabled="true">
                 <TextColumn Field="Name" Width="@("*>170")" />
                 <TextColumn Field="Street" Width="@("*>180")" />
@@ -43,7 +43,7 @@
 
 @code {
 
-    private List<Employee> DataSource;
+    private List<Employee> Data;
     private DataGrid DataGridRef;
 
     private string FilterText = "";
@@ -59,7 +59,7 @@
         GridColumnOptionsModule.Register(IgniteUIBlazor);
         GridColumnFilterOptionsModule.Register(IgniteUIBlazor);
 
-        this.DataSource = EmployeeData.Create(100, false);
+        this.Data = EmployeeData.Create(100, false);
     }
 
     private void OnFilterTextChanged(ChangeEventArgs e)

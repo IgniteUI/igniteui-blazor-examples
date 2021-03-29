@@ -5,7 +5,7 @@
 <div class="igContainer">
     <div class="igOptions">
         <button @onclick="OnDataFeedClick" style="width: 5rem">@DataFeedAction</button>
-        <button @onclick="OnDataGenerateClick">Generate</button>        
+        <button @onclick="OnDataGenerateClick">Generate</button>
         <label class="igOptions-label">Refresh: </label>
         <label class="igOptions-value">@RefreshInfo</label>
         <input class="igOptions-slider" type="range" min="10" max="1000" step="10"
@@ -18,10 +18,10 @@
     </div>
 
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <CategoryChart Height="100%" Width="100%"
-                           DataSource="DataSource"
+                           DataSource="Data"
                            ChartType="CategoryChartType.Line">
             </CategoryChart>
         }
@@ -30,7 +30,7 @@
 
 @code {
 
-    private ObservableCollection<CategoryDataItem> DataSource;
+    private ObservableCollection<CategoryDataItem> Data;
 
     private int DataIndex = 0;
     private string RefreshInfo;
@@ -62,8 +62,8 @@
     {
         var dataList = CategoryDataSource.Generate(100, (int)this.DataPoints, false);
 
-        this.DataSource = new ObservableCollection<CategoryDataItem>(dataList);
-        this.DataIndex = this.DataSource.Count;
+        this.Data = new ObservableCollection<CategoryDataItem>(dataList);
+        this.DataIndex = this.Data.Count;
 
         SetupInterval();
     }
@@ -104,11 +104,11 @@
 
         this.DataIndex++;
 
-        var item = this.DataSource[0];
-        var newItem = CategoryDataSource.GetNewItem(this.DataSource, this.DataIndex);
+        var item = this.Data[0];
+        var newItem = CategoryDataSource.GetNewItem(this.Data, this.DataIndex);
 
-        this.DataSource.RemoveAt(0);
-        this.DataSource.Add(newItem);
+        this.Data.RemoveAt(0);
+        this.Data.Add(newItem);
 
         Task.Delay((int)this.RefreshInterval).ContinueWith((t) => OnTick());
     }

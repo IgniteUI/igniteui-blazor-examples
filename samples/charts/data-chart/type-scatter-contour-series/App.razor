@@ -4,7 +4,7 @@
 <div class="igContainer">
     <div class="igComponent">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DataChart Height="100%" Width="100%"
                        GridMode="@GridMode.BeforeSeries"
@@ -18,7 +18,7 @@
 
                 <ScatterContourSeries XAxisName="xAxis"
                                       YAxisName="yAxis"
-                                      DataSource="@DataSource"
+                                      DataSource="Data"
                                       XMemberPath="X"
                                       YMemberPath="Y"
                                       Thickness="2"
@@ -34,7 +34,7 @@
 
 @code {
 
-    private List<SampleScatterPoint> DataSource;
+    private List<SampleScatterPoint> Data;
     private ValueBrushScale BrushScale;
 
     protected override void OnInitialized()
@@ -51,7 +51,7 @@
         this.BrushScale.MaximumValue = 2;
         this.BrushScale.Brushes = "#8670CB, #4AC4FF, #B5CC2E, #FC8612, #ED4840";
 
-        DataSource = SampleScatterData.Create();
+        Data = SampleScatterData.Create();
 
     }
 }

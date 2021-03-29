@@ -5,12 +5,12 @@
 
     <div class="igComponent">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <section>Revenue Sparkline</section>
             <Sparkline Height="100%"
                        Width="100%"
-                       DataSource="@DataSource"
+                       DataSource="Data"
                        DisplayType="SparklineDisplayType.Line"
                        ValueMemberPath="Value"
                        LabelMemberPath="Angle"
@@ -20,7 +20,7 @@
             <section>Income Sparkline</section>
             <Sparkline Height="100%"
                        Width="100%"
-                       DataSource="@DataSource"
+                       DataSource="Data"
                        DisplayType="SparklineDisplayType.Line "
                        ValueMemberPath="Income"
                        LabelMemberPath="Angle"
@@ -30,7 +30,7 @@
             <section>Expanse Sparkline</section>
             <Sparkline Height="100%"
                        Width="100%"
-                       DataSource="@DataSource"
+                       DataSource="Data"
                        DisplayType="SparklineDisplayType.Line"
                        ValueMemberPath="Expanse"
                        LabelMemberPath="Angle"
@@ -44,13 +44,13 @@
 
 @code {
 
-    private List<SparklineItem> DataSource;
+    private List<SparklineItem> Data;
 
     protected override void OnInitialized()
     {
         SparklineModule.Register(IgniteUIBlazor);
 
-        DataSource = SparklineData.Generate ();
+        Data = SparklineData.Generate ();
     }
 
 }

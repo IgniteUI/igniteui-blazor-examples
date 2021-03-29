@@ -14,12 +14,12 @@
     </div>
 
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DataGrid Height="100%" Width="100%" @ref="DataGridRef"
                       HeaderClickAction="@GridHeaderClickAction"
                       AutoGenerateColumns="false"
-                      DataSource="@DataSource"
+                      DataSource="Data"
                       DefaultColumnMinWidth="100"
                       IsColumnOptionsEnabled="true">
                 <TextColumn Field="ID" Width="@("*>110")" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
@@ -36,7 +36,7 @@
 
 @code {
 
-    private List<RealEstate> DataSource;
+    private List<RealEstate> Data;
     private HeaderClickAction GridHeaderClickAction;
 
     private DataGrid grid;
@@ -51,7 +51,7 @@
         base.OnInitialized();
         DataGridModule.Register(IgniteUIBlazor);
 
-        this.DataSource = RealEstateData.Create(100);
+        this.Data = RealEstateData.Create(100);
         this.GridHeaderClickAction = HeaderClickAction.SortByMultipleColumnsTriState;
     }
 

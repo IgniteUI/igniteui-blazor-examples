@@ -23,7 +23,7 @@
     </div>
 
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DataGrid Height="100%" Width="100%"
                       ColumnMovingMode="@GridColumnMovingMode"
@@ -31,7 +31,7 @@
                       ColumnMovingSeparatorWidth="@GridColumnMovingSeparatorWidth"
                       DefaultColumnMinWidth="100"
                       AutoGenerateColumns="false"
-                      DataSource="@DataSource"
+                      DataSource="Data"
                       IsColumnOptionsEnabled="true">
                 <TextColumn Field="Name" Width="@("*>170")" />
                 <TextColumn Field="Street" HeaderText="Address" Width="@("*>150")"/>
@@ -45,7 +45,7 @@
 
 @code {
 
-    private List<Employee> DataSource;
+    private List<Employee> Data;
 
     private ColumnMovingMode GridColumnMovingMode = ColumnMovingMode.Deferred;
     private ColumnMovingAnimationMode GridColumnMovingAnimationMode = ColumnMovingAnimationMode.SlideOver;
@@ -56,6 +56,6 @@
         base.OnInitialized();
         DataGridModule.Register(IgniteUIBlazor);
 
-        this.DataSource = EmployeeData.Create(100, false);
+        this.Data = EmployeeData.Create(100, false);
     }
 }

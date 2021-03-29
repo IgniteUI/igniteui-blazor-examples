@@ -14,12 +14,12 @@
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <CategoryYAxis Name="yAxis" Label="Franchise" DataSource="@DataSource" IsInverted="true" Gap="0.5" Overlap="-0.1"/>
+            <CategoryYAxis Name="yAxis" Label="Franchise" DataSource="Data" IsInverted="true" Gap="0.5" Overlap="-0.1"/>
             <NumericXAxis Name="xAxis" Title="Billions of U.S Dollars" />
 
             <BarSeries XAxisName="xAxis"
                        YAxisName="yAxis"
-                       DataSource="@DataSource"
+                       DataSource="Data"
                        ValueMemberPath="TotalWorldBoxOfficeRevenue"
                        Title="Total World Box Office Revenue"
                        ShowDefaultTooltip="true"
@@ -28,7 +28,7 @@
             </BarSeries>
             <BarSeries XAxisName="xAxis"
                        YAxisName="yAxis"
-                       DataSource="@DataSource"
+                       DataSource="Data"
                        ValueMemberPath="HighestGrossingMovieInSeries"
                        Title="Highest Grossing Movie in Series"
                        ShowDefaultTooltip="true"
@@ -48,7 +48,7 @@
         set { _Legend = value; StateHasChanged(); }
     }
 
-    private List<FilmFranchiseRevenueInfo> DataSource = new FilmFranchiseRevenueData();
+    private List<FilmFranchiseRevenueInfo> Data = new FilmFranchiseRevenueData();
 
     protected override void OnInitialized()
     {

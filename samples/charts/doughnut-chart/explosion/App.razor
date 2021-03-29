@@ -13,12 +13,12 @@
 
         <div class="igComponent">
 
-            @if (DataSource != null)
+            @if (Data != null)
             {
                 <DoughnutChart Height="100%" Width="100%" @ref="Chart"
                 AllowSliceExplosion="true"
                 SliceClick="OnSliceClick">
-                    <RingSeries DataSource="@DataSource"
+                    <RingSeries DataSource="Data"
                                 LabelMemberPath="Summary"
                                 LabelsPosition="LabelsPosition.OutsideEnd"
                                 LabelExtent="30"
@@ -39,7 +39,7 @@
 
 @code {
 
-    private List<DataItem> DataSource;
+    private List<DataItem> Data;
     public int[] explodedSlices { get; set; } = new int[0];
     public ItemLegend Legend;
     public DoughnutChart Chart;
@@ -57,7 +57,7 @@
         dataItems.Add(new DataItem() { MarketShare = 18, Company = "Other Services", });
         dataItems.Add(new DataItem() { MarketShare = 37, Company = "Space Cooling", });
 
-        DataSource = dataItems;
+        Data = dataItems;
     }
 
     public class DataItem

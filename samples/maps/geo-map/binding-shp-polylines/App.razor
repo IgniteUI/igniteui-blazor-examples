@@ -4,7 +4,7 @@
 <div class="igContainer">
     <div class="igComponent">
         <GeographicMap Height="100%" Width="100%" Zoomable="true">
-            <GeographicPolylineSeries ShapefileDataSource="@DataSource"
+            <GeographicPolylineSeries ShapefileDataSource="Data"
                                       ShapeFilterResolution="0.0"
                                       ShapeStrokeThickness="3"
                                       ShapeStroke="rgb(82, 82, 82, 0.4)"/>
@@ -14,14 +14,14 @@
 
 @code {
 
-    private ShapeDataSource DataSource;
+    private ShapeDataSource Data;
 
     protected override void OnInitialized()
     {
         GeographicMapModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
 
-        this.DataSource = new ShapeDataSource()
+        this.Data = new ShapeDataSource()
         {
             ShapefileSource = "https://static.infragistics.com/xplatform/shapes/WorldCableRoutes.shp",
             DatabaseSource = "https://static.infragistics.com/xplatform/shapes/WorldCableRoutes.dbf"

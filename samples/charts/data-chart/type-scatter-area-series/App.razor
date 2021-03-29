@@ -4,7 +4,7 @@
 <div class="igContainer">
     <div class="igComponent">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
         <DataChart Height="100%" Width="100%"
                    GridMode="@GridMode.BeforeSeries"
@@ -19,7 +19,7 @@
             <ScatterAreaSeries XAxisName="xAxis"
                                YAxisName="yAxis"
                                Title="High Income Countrie"
-                               DataSource="@DataSource"
+                               DataSource="Data"
                                XMemberPath="X"
                                YMemberPath="Y"
                                ColorMemberPath="Z"
@@ -34,7 +34,7 @@
 
 @code {
 
-    private List<SampleScatterPoint> DataSource;
+    private List<SampleScatterPoint> Data;
     private CustomPaletteColorScale ColorScale;
 
     protected override void OnInitialized()
@@ -52,7 +52,7 @@
         this.ColorScale.MaximumValue = 2;
         this.ColorScale.Palette = "#8670CB, #4AC4FF, #B5CC2E, #FC8612, #ED4840";
 
-        DataSource = SampleScatterData.Create();
+        Data = SampleScatterData.Create();
 
     }
 }

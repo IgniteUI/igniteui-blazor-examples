@@ -3,22 +3,22 @@
 
 <div class="igContainer">
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <CategoryChart Height="100%" Width="100%"
-                           DataSource="DataSource"                           
+                           DataSource="Data"
                            ChartType="CategoryChartType.Column"
                            ChartTitle="New York Central Park Average Maximum Temperature (Celsius)"
                            TitleAlignment="HorizontalAlignment.Left"
                            TitleLeftMargin="25"
                            TitleTopMargin="10"
                            TitleBottomMargin="10"
-                           XAxisInterval="1"                           
+                           XAxisInterval="1"
                            YAxisTitle="Temperature in Degrees Celsius"
                            YAxisTitleLeftMargin="10"
                            YAxisTitleRightMargin="5"
                            YAxisLabelLeftMargin="0"
-						   IsHorizontalZoomEnabled="false" 
+						   IsHorizontalZoomEnabled="false"
                            IsVerticalZoomEnabled="false">
             </CategoryChart>
         }
@@ -27,10 +27,10 @@
 
 @code {
 
-    private List<TemperatureInfo> DataSource = new TemperatureData();
+    private List<TemperatureInfo> Data = new TemperatureData();
 
     protected override void OnInitialized()
     {
-        CategoryChartModule.Register(IgniteUIBlazor);        
+        CategoryChartModule.Register(IgniteUIBlazor);
     }
 }

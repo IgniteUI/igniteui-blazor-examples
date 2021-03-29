@@ -20,7 +20,7 @@
 
             <ScatterSeries XAxisName="xAxis"
                            YAxisName="yAxis"
-                           DataSource="@AfricaDataSource"
+                           DataSource="AfricaData"
                            XMemberPath="DeathRate"
                            YMemberPath="BirthRate"
                            MarkerType="MarkerType.Circle"
@@ -29,7 +29,7 @@
 
             <ScatterSeries XAxisName="xAxis"
                            YAxisName="yAxis"
-                           DataSource="@EuropeDataSource"
+                           DataSource="EuropeData"
                            XMemberPath="DeathRate"
                            YMemberPath="BirthRate"
                            MarkerType="MarkerType.Circle"
@@ -53,8 +53,8 @@
         }
     }
 
-    private List<BirthAndDeathRateInfo> AfricaDataSource = new BirthAndDeathRateData().Where(d => d.Continent == "Africa").ToList();
-    private List<BirthAndDeathRateInfo> EuropeDataSource = new BirthAndDeathRateData().Where(d => d.Continent == "Europe").ToList();
+    private List<BirthAndDeathRateInfo> AfricaData = new BirthAndDeathRateData().Where(d => d.Continent == "Africa").ToList();
+    private List<BirthAndDeathRateInfo> EuropeData = new BirthAndDeathRateData().Where(d => d.Continent == "Europe").ToList();
 
     protected override void OnInitialized()
     {

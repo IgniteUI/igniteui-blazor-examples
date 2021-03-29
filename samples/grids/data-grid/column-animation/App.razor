@@ -68,7 +68,7 @@
     </div>
 
     <div class="igComponent" style="height: calc(100% - 125px)">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DataGrid Height="100%" Width="100%" @ref="DataGridRef"
                       DefaultColumnMinWidth="100"
@@ -79,7 +79,7 @@
                       ColumnMovingAnimationMode="@MovingAnimation"
                       ColumnPropertyUpdatingAnimationMode="@UpdatingAnimation"
                       AutoGenerateColumns="false"
-                      DataSource="@DataSource"
+                      DataSource="Data"
                       IsColumnOptionsEnabled="true">
                 <TextColumn Field="Name" Width="@("*>170")" />
                 <TextColumn Field="Street" HeaderText="Address" Width="@("*>150")" />
@@ -97,7 +97,7 @@
 
 @code {
 
-    private List<Employee> DataSource;
+    private List<Employee> Data;
     private DataGrid DataGridRef;
 
     private ColumnShowingAnimationMode ShowingAddingAnimation = ColumnShowingAnimationMode.SlideFromLeft;
@@ -110,7 +110,7 @@
     {
         base.OnInitialized();
         DataGridModule.Register(IgniteUIBlazor);
-        this.DataSource = EmployeeData.Create(100, false);
+        this.Data = EmployeeData.Create(100, false);
     }
 
     private void OnHideClick(MouseEventArgs e)
@@ -130,9 +130,9 @@
         List<Employee> newData = EmployeeData.Create(100, false);
         for (int i = 0; i < newData.Count; i++)
         {
-            Employee oldData = this.DataSource[i];
-            this.DataSource[i].Salary = newData[i].Salary;
-            this.DataGridRef.NotifySetItem(this.DataSource, i, oldData, newData[i]);
+            Employee oldData = this.Data[i];
+            this.Data[i].Salary = newData[i].Salary;
+            this.DataGridRef.NotifySetItem(this.Data, i, oldData, newData[i]);
         }
     }
 

@@ -5,13 +5,13 @@
 
 <div class="igContainer">
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DataGrid Height="100%" Width="100%"
                       RowHeight="90"
                       AutoGenerateColumns="false"
 
-                      DataSource="@DataSource">
+                      DataSource="Data">
                 <TextColumn Field="ProductID" HeaderText="ID" Width="@("*>110")"
                             HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
                 <TextColumn Field="ProductName" HeaderText="Product" Width="@("*>140")" />
@@ -52,7 +52,7 @@
 
 @code {
 
-    private List<Product> DataSource;
+    private List<Product> Data;
 
     protected override void OnInitialized()
     {
@@ -60,7 +60,7 @@
         DataGridModule.Register(IgniteUIBlazor);
         SparklineModule.Register(IgniteUIBlazor);
 
-        this.DataSource = Products.GetData(20);
-        Console.WriteLine("SparklineGrid " + this.DataSource.Count);
+        this.Data = Products.GetData(20);
+        Console.WriteLine("SparklineGrid " + this.Data.Count);
     }
 }

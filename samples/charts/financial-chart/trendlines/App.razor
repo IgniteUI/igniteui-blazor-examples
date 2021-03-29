@@ -28,13 +28,13 @@
 
     <div class="igComponent">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <FinancialChart Width="100%"
                 Height="100%"
                 ChartType=FinancialChartType.Bar
                 Thickness=2
-                DataSource="DataSource"
+                DataSource="Data"
                 TrendLineType="@TrendLineType"
                 TrendLineThickness=2
                 TrendLinePeriod=10
@@ -50,12 +50,12 @@
 
 @code {
 
-    protected StockPrice[] DataSource;
+    protected StockPrice[] Data;
     protected TrendLineType TrendLineType = TrendLineType.QuinticFit;
 
     protected override async Task OnInitializedAsync()
     {
         FinancialChartModule.Register(IgniteUIBlazor);
-        this.DataSource = await StocksHistory.GetMicrosoftStock();
+        this.Data = await StocksHistory.GetMicrosoftStock();
     }
 }

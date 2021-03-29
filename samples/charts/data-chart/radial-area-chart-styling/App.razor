@@ -13,14 +13,14 @@
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false"
                    Legend="Legend">
-            <CategoryAngleAxis Name="angleAxis" DataSource="@DataSource"
+            <CategoryAngleAxis Name="angleAxis" DataSource="Data"
                                Label="Attribute" LabelFontWeight="Bold" />
             <NumericRadiusAxis Name="radiusAxis"
                                RadiusExtentScale="0.6"
                                InnerRadiusExtentScale="0.1"
                                MinimumValue="0" MaximumValue="10" Interval="2" />
 
-            <RadialAreaSeries DataSource="@DataSource"
+            <RadialAreaSeries DataSource="Data"
                               AngleAxisName="angleAxis"
                               ValueMemberPath="RonaldoValue"
                               ValueAxisName="radiusAxis"
@@ -30,7 +30,7 @@
                               Title="Ronaldo"
                               MarkerType="MarkerType.Circle" />
 
-            <RadialAreaSeries DataSource="@DataSource"
+            <RadialAreaSeries DataSource="Data"
                               AngleAxisName="angleAxis"
                               ValueMemberPath="MessiValue"
                               ValueAxisName="radiusAxis"
@@ -46,7 +46,7 @@
 
 @code {
 
-    private List<PlayerStatsInfo> DataSource = new PlayerStatsData();
+    private List<PlayerStatsInfo> Data = new PlayerStatsData();
 
     private Legend _Legend;
     private Legend Legend

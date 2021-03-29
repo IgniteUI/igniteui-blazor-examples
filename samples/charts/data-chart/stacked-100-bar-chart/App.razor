@@ -10,13 +10,13 @@
         </div>
     </div>
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="false" IsHorizontalZoomEnabled="false">
-                <CategoryYAxis Name="yAxis" DataSource="DataSource" Label="Location" IsInverted="true" />
+                <CategoryYAxis Name="yAxis" DataSource="Data" Label="Location" IsInverted="true" />
                 <NumericXAxis Name="xAxis" MinimumValue="0" Title="TWh" />
 
-                <Stacked100BarSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ShowDefaultTooltip="true" AreaFillOpacity="1">
+                <Stacked100BarSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="true" AreaFillOpacity="1">
                     <StackedFragmentSeries ValueMemberPath="Hydro" />
                     <StackedFragmentSeries ValueMemberPath="Wind" />
                     <StackedFragmentSeries ValueMemberPath="Solar" />
@@ -40,7 +40,7 @@
         }
     }
 
-    private List<EnergySource> DataSource = new EnergyData();
+    private List<EnergySource> Data = new EnergyData();
 
     protected override void OnInitialized()
     {

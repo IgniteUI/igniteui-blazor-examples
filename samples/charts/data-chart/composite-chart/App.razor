@@ -3,7 +3,7 @@
 
 <div class="igContainer">
     <div class="igOptions">
-        <span class="igLegend-title">Facebook Statement of Income 2019-2020</span>        
+        <span class="igLegend-title">Facebook Statement of Income 2019-2020</span>
         <div class="igLegend">
             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
@@ -13,37 +13,37 @@
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Date" />
-            <NumericYAxis Name="yAxis1" AbbreviateLargeNumbers="true" Title="In Millions of U.S. Dollars" 
+            <CategoryXAxis Name="xAxis" DataSource="Data" Label="Date" />
+            <NumericYAxis Name="yAxis1" AbbreviateLargeNumbers="true" Title="In Millions of U.S. Dollars"
                           MinimumValue="0" MaximumValue="30000" TitleLeftMargin="5" TitleRightMargin="0"/>
             <NumericYAxis Name="yAxis2" AbbreviateLargeNumbers="true" Title="Percentage" MajorStrokeThickness="0"
                           MinimumValue="0" MaximumValue="160" LabelLocation="AxisLabelsLocation.OutsideRight"
                           LabelHorizontalAlignment="HorizontalAlignment.Left"/>
 
-            <ColumnSeries @ref="@RevenueSeries" XAxisName="xAxis" YAxisName="yAxis1" DataSource="DataSource" 
+            <ColumnSeries @ref="@RevenueSeries" XAxisName="xAxis" YAxisName="yAxis1" DataSource="Data"
                           ValueMemberPath="Revenue"
                           Title="Revenue" MarkerType="MarkerType.Hidden" />
-            <ColumnSeries @ref="@ExpenseSeries" XAxisName="xAxis" YAxisName="yAxis1" DataSource="DataSource" 
+            <ColumnSeries @ref="@ExpenseSeries" XAxisName="xAxis" YAxisName="yAxis1" DataSource="Data"
                           ValueMemberPath="Expenses"
                           Title="Expenses" MarkerType="MarkerType.Hidden" />
 
-            <SplineAreaSeries @ref="@IncomeSeries" XAxisName="xAxis" YAxisName="yAxis2" DataSource="DataSource" 
+            <SplineAreaSeries @ref="@IncomeSeries" XAxisName="xAxis" YAxisName="yAxis2" DataSource="Data"
                               ValueMemberPath="IncomePerRevenue"
                               Title="Income / Revenue %" MarkerType="MarkerType.Hidden" />
-           
+
             <CalloutLayer IsAutoCalloutBehaviorEnabled="true" TargetSeries="@RevenueSeries"
-                          UseValueForAutoCalloutLabels="true" 
-                          CalloutLeaderBrush="Transparent" CalloutTextColor="Black" 
+                          UseValueForAutoCalloutLabels="true"
+                          CalloutLeaderBrush="Transparent" CalloutTextColor="Black"
                           CalloutBackground = "Transparent"/>
 
-            <CalloutLayer IsAutoCalloutBehaviorEnabled="true" TargetSeries="@ExpenseSeries" 
-                          UseValueForAutoCalloutLabels="true" 
-                          CalloutLeaderBrush="Transparent" CalloutTextColor="Black" 
+            <CalloutLayer IsAutoCalloutBehaviorEnabled="true" TargetSeries="@ExpenseSeries"
+                          UseValueForAutoCalloutLabels="true"
+                          CalloutLeaderBrush="Transparent" CalloutTextColor="Black"
                           CalloutBackground = "Transparent"/>
 
-            <CalloutLayer IsAutoCalloutBehaviorEnabled="true" TargetSeries="@IncomeSeries" 
+            <CalloutLayer IsAutoCalloutBehaviorEnabled="true" TargetSeries="@IncomeSeries"
                           UseValueForAutoCalloutLabels="true" ContentMemberPath="IncomePerRevenue"
-                          CalloutLeaderBrush="Transparent" CalloutTextColor="Black" 
+                          CalloutLeaderBrush="Transparent" CalloutTextColor="Black"
                           CalloutBackground = "LightGray" AutoCalloutLabelPrecision="1"/>
 
         </DataChart>
@@ -51,28 +51,28 @@
 </div>
 
 @code {
-    
-    private Legend _legend; 
+
+    private Legend _legend;
     private Legend Legend
     {
         get { return _legend; }
         set { _legend = value; StateHasChanged(); }
     }
-    
+
     private ColumnSeries _RevenueSeries;
     public ColumnSeries RevenueSeries
     {
         get { return _RevenueSeries; }
         set { _RevenueSeries = value; StateHasChanged(); }
     }
-    
+
     private ColumnSeries _ExpenseSeries;
     public ColumnSeries ExpenseSeries
     {
         get { return _ExpenseSeries; }
         set { _ExpenseSeries = value; StateHasChanged(); }
     }
-    
+
     private SplineAreaSeries _IncomeSeries;
     public SplineAreaSeries IncomeSeries
     {
@@ -80,7 +80,7 @@
         set { _IncomeSeries = value; StateHasChanged(); }
     }
 
-    private List<CompanyBudgetInfo> DataSource = new CompanyBudgetData();
+    private List<CompanyBudgetInfo> Data = new CompanyBudgetData();
 
     protected override void OnInitialized()
     {

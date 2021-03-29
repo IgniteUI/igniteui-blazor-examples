@@ -4,13 +4,13 @@
 
 <div class="igContainer">
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
         <DataChart Height="100%" Width="100%" IsHorizontalZoomEnabled="true" IsVerticalZoomEnabled="true">
-            <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Label" />
+            <CategoryXAxis Name="xAxis" DataSource="Data" Label="Label" />
             <NumericYAxis Name="yAxis" MinimumValue="0" MaximumValue="10" />
 
-            <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="Value" />
+            <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="Value" />
 
             <ValueOverlay AxisName="yAxis" Value="2.0" Thickness="5" />
             <ValueOverlay AxisName="yAxis" Value="3.6" Thickness="5" />
@@ -28,7 +28,7 @@
 
 @code {
 
-    private List<OverlayDataItem> DataSource;
+    private List<OverlayDataItem> Data;
 
     protected override void OnInitialized()
     {
@@ -56,7 +56,7 @@
             new OverlayDataItem() { Label = "9", Value = 1.0 }
         };
 
-        this.DataSource = data;
+        this.Data = data;
     }
 
     public class OverlayDataItem {

@@ -23,7 +23,7 @@
     </div>
 
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DataChart Height="100%" Width="100%"
                        TitleTopMargin="10"
@@ -32,7 +32,7 @@
                        Legend="Legend"
                        @ref="Chart">
 
-                <CategoryXAxis Name="xAxis" Label="Label" DataSource="@DataSource"
+                <CategoryXAxis Name="xAxis" Label="Label" DataSource="Data"
                                LabelAngle="45" />
                 <NumericYAxis Name="yAxis1" LabelLocation="AxisLabelsLocation.OutsideRight" Title="Financial Prices" />
 
@@ -46,7 +46,7 @@
                                        CloseMemberPath="Close"
                                        OpenMemberPath="Open"
                                        Brush="rgba(171, 82, 235, 0.39)"
-                                       DataSource="@DataSource" />
+                                       DataSource="Data" />
 
                 <FinancialPriceSeries Name="series2"
                                       XAxisName="xAxis"
@@ -57,7 +57,7 @@
                                       CloseMemberPath="Close"
                                       OpenMemberPath="Open"
                                       VolumeMemberPath="Volume"
-                                      DataSource="@DataSource"
+                                      DataSource="Data"
                                       Title="Price" />
 
                 <MedianPriceIndicator Name="series3"
@@ -69,7 +69,7 @@
                                       CloseMemberPath="Close"
                                       OpenMemberPath="Open"
                                       VolumeMemberPath="Volume"
-                                      DataSource="@DataSource" />
+                                      DataSource="Data" />
             </DataChart>
         }
     </div>
@@ -77,7 +77,7 @@
 
 @code {
 
-    private List<SampleFinancialItem> DataSource;
+    private List<SampleFinancialItem> Data;
     private DataChart _Chart;
     private DataChart Chart
     {
@@ -138,6 +138,6 @@
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         LegendModule.Register(IgniteUIBlazor);
 
-        DataSource = SampleFinancialData.Create();
+        Data = SampleFinancialData.Create();
     }
 }

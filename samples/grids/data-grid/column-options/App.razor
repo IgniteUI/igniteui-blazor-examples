@@ -4,11 +4,11 @@
 
 <div class="igContainer">
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DataGrid Height="100%" Width="100%"
                       DefaultColumnMinWidth="120"
-                      DataSource="@DataSource"
+                      DataSource="Data"
                       AutoGenerateColumns="false"
                       IsColumnOptionsEnabled="true">
                 <TextColumn Field="ID" HeaderText="ID" Width="90" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
@@ -28,13 +28,13 @@
 
 @code {
 
-    private List<Sale> DataSource;
+    private List<Sale> Data;
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
         DataGridModule.Register(IgniteUIBlazor);
 
-        this.DataSource = SalesData.Create(100);
+        this.Data = SalesData.Create(100);
     }
 }

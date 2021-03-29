@@ -4,14 +4,14 @@
 
 <div class="igContainer">
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DataChart Height="100%" Width="100%">
-                <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Label" Interval="1"  />
+                <CategoryXAxis Name="xAxis" DataSource="Data" Label="Label" Interval="1"  />
                 <NumericYAxis Name="yAxis" MinimumValue="20" MaximumValue="120" />
-                
+
                 <!-- The onDataChartSeriesMarkerTemplate script is implemented in the wwwroot/DataChartSeriesMarkerTemplate.js file-->
-                <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource"
+                <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data"
                               ValueMemberPath="Value" MarkerTemplateScript="onDataChartSeriesMarkerTemplate" />
             </DataChart>
         }
@@ -20,7 +20,7 @@
 
 @code {
 
-    private List<MarkerTemplateDataPoint> DataSource;
+    private List<MarkerTemplateDataPoint> Data;
 
     protected override void OnInitialized()
     {
@@ -39,7 +39,7 @@
             data.Add(new MarkerTemplateDataPoint() { Label = i.ToString(), Value = values[i] });
         }
 
-        this.DataSource = data;
+        this.Data = data;
     }
 
     public class MarkerTemplateDataPoint

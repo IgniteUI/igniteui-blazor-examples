@@ -32,12 +32,12 @@
         <button @onclick="OnReloadChart">Reload Chart</button>
     </div>
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <CategoryChart Height="100%" Width="100%"
                 @key="ChartKey"
                 @ref="Chart"
-                DataSource="DataSource"
+                DataSource="Data"
                 ChartType="CategoryChartType.Line"
                 IsTransitionInEnabled="true"
                 TransitionInMode="@SelectedTransition"
@@ -95,7 +95,7 @@
         }
     }
 
-    private List<EnergyRenewableInfo> DataSource = new EnergyRenewableData();
+    private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
 
     protected override void OnInitialized()
     {

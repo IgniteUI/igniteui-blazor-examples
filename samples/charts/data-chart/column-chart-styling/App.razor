@@ -19,19 +19,19 @@
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Location" MajorStrokeThickness="1" MajorStroke="LightGray" Interval="1"
+            <CategoryXAxis Name="xAxis" DataSource="Data" Label="Location" MajorStrokeThickness="1" MajorStroke="LightGray" Interval="1"
                            CrossingAxisName="yAxis" CrossingValue="0" Gap=".5"/>
             <NumericYAxis Name="yAxis" MinimumValue="-20" MaximumValue="30" Interval="10"/>
 
-            <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="Solar" Title="Solar"
+            <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="Solar" Title="Solar"
                           MarkerTemplateScript="onColumnChartStylingMarkerTemplate" ShowDefaultTooltip="true"/>
-            <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="Coal" Title="Coal"
+            <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="Coal" Title="Coal"
                           MarkerTemplateScript="onColumnChartStylingMarkerTemplate" ShowDefaultTooltip="true"/>
-            <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="Hydropower" Title="Hydropower"
+            <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="Hydropower" Title="Hydropower"
                           MarkerTemplateScript="onColumnChartStylingMarkerTemplate" ShowDefaultTooltip="true"/>
-            <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="Wind" Title="Wind"
+            <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="Wind" Title="Wind"
                           MarkerTemplateScript="onColumnChartStylingMarkerTemplate" ShowDefaultTooltip="true"/>
-            <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="Nuclear" Title="Nuclear"
+            <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="Nuclear" Title="Nuclear"
                           MarkerTemplateScript="onColumnChartStylingMarkerTemplate" ShowDefaultTooltip="true"/>
 
             <CategoryHighlightLayer />
@@ -51,7 +51,7 @@
         set { _Legend = value; StateHasChanged(); }
     }
 
-    private List<EnergyChangePercentageInfo> DataSource = new EnergyChangePercentageData();
+    private List<EnergyChangePercentageInfo> Data = new EnergyChangePercentageData();
 
     protected override void OnInitialized()
     {

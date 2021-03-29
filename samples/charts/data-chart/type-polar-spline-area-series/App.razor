@@ -21,7 +21,7 @@
                                MaximumValue="100" />
 
             <PolarSplineAreaSeries Name="series1"
-                             DataSource="@DataSource"
+                             DataSource="Data"
                              AngleAxisName="angleAxis"
                              AngleMemberPath="Direction"
                              RadiusMemberPath="WindSpeed"
@@ -32,7 +32,7 @@
                              Title="Wind Speed"
                              MarkerType="MarkerType.Circle" />
             <PolarSplineAreaSeries Name="series2"
-                             DataSource="@DataSource"
+                             DataSource="Data"
                              AngleAxisName="angleAxis"
                              AngleMemberPath="Direction"
                              RadiusMemberPath="BoatSpeed"
@@ -49,7 +49,7 @@
 
 @code {
 
-    private List<SamplePolarItem> DataSource;
+    private List<SamplePolarItem> Data;
 
     protected override void OnInitialized()
     {
@@ -58,7 +58,7 @@
         DataChartPolarCoreModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
 
-        DataSource = SamplePolarData.Create();
+        Data = SamplePolarData.Create();
     }
 
 }

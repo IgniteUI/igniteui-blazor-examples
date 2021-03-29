@@ -27,10 +27,10 @@
         <DataChart Height="100%" Width="100%"
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true">
-            <CategoryXAxis Name="xAxis" Label="Label" DataSource="DataSource" />
+            <CategoryXAxis Name="xAxis" Label="Label" DataSource="Data" />
             <NumericYAxis Name="yAxis" />
 
-            <FinancialPriceSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" HighMemberPath="High" LowMemberPath="Low"
+            <FinancialPriceSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" HighMemberPath="High" LowMemberPath="Low"
                                   CloseMemberPath="Close" OpenMemberPath="Open" VolumeMemberPath="Volume"
                                   TrendLineType="ChartTrendlineType" />
 
@@ -40,7 +40,7 @@
 
 @code {
 
-    private List<SampleFinancialItem> DataSource;
+    private List<SampleFinancialItem> Data;
     private TrendLineType ChartTrendlineType = TrendLineType.CubicFit;
 
     protected override void OnInitialized()
@@ -54,7 +54,7 @@
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         DataChartCategoryTrendLineModule.Register(IgniteUIBlazor);
 
-        this.DataSource = SampleFinancialData.Create();
+        this.Data = SampleFinancialData.Create();
     }
 }
 

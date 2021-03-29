@@ -25,7 +25,7 @@
                                MaximumValue="100" />
 
             <PolarAreaSeries Name="series1"
-                             DataSource="@DataSource"
+                             DataSource="Data"
                              AngleAxisName="angleAxis"
                              AngleMemberPath="Direction"
                              RadiusMemberPath="WindSpeed"
@@ -36,7 +36,7 @@
                              Title="Wind"
                              MarkerType="MarkerType.Circle" />
             <PolarAreaSeries Name="series2"
-                             DataSource="@DataSource"
+                             DataSource="Data"
                              AngleAxisName="angleAxis"
                              AngleMemberPath="Direction"
                              RadiusMemberPath="BoatSpeed"
@@ -53,7 +53,7 @@
 
 @code {
 
-    private List<SamplePolarItem> DataSource;
+    private List<SamplePolarItem> Data;
 
     private Legend _Legend;
     private Legend Legend
@@ -89,7 +89,7 @@
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         LegendModule.Register(IgniteUIBlazor);
 
-        DataSource = SamplePolarData.Create();
+        Data = SamplePolarData.Create();
     }
 
 }

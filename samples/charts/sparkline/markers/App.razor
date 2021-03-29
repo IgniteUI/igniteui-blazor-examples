@@ -20,11 +20,11 @@
 
         <div class="igComponent">
 
-            @if (DataSource != null)
+            @if (Data != null)
             {
                 <Sparkline Height="100%"
                     Width="100%"
-                    DataSource="@DataSource"
+                    DataSource="Data"
                     DisplayType="SparklineDisplayType.Line"
                     ValueMemberPath="Value"
                     LabelMemberPath="Label"
@@ -49,7 +49,7 @@
 
 @code {
 
-        private List<SparklineMarkerItem> DataSource;
+        private List<SparklineMarkerItem> Data;
 
         private Visibility highMarkerVisibility = Visibility.Collapsed ;
         private Visibility lowMarkerVisibility = Visibility.Collapsed;
@@ -64,7 +64,7 @@
         {
             SparklineModule.Register(IgniteUIBlazor);
 
-            this.DataSource = SparklineMarkerData.Generate();
+            this.Data = SparklineMarkerData.Generate();
 
         }
 

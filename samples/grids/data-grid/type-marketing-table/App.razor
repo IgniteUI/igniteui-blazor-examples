@@ -3,15 +3,15 @@
 
 <div class="igContainer">
     <div class="igComponent">
-        @if (data != null)
+        @if (Data != null)
         {
             <DataGrid Height="100%" Width="100%" @ref="DataGridRef"
-                      DataSource="@data"
+                      DataSource="Data"
                       AutoGenerateColumns="false"
                       SelectionMode="@GridSelectionMode.MultipleRow"
                       IsGroupCollapsable="true"
                       RowHeight="32"
-                      HeaderClickAction="@HeaderClickAction.SortByMultipleColumnsTriState"                      
+                      HeaderClickAction="@HeaderClickAction.SortByMultipleColumnsTriState"
                       ActivationMode="GridActivationMode.Cell"
                       DefaultColumnMinWidth="100">
 
@@ -57,16 +57,16 @@
 
 @code {
 
-    public List<PortfolioInfo> data;
+    public List<PortfolioInfo> Data;
 
     public DateTime lastUpdateTime = new DateTime();
     public int frequency = 1000;
-    public int dataVolume = 500;
+    public int DataVolume = 500;
     public bool isTimerTicking = false;
     public bool isUpdatingAllPrices = false;
     public bool isUpdatingSomePrices = false;
-    
-    public bool UseHeatBackground = true;    
+
+    public bool UseHeatBackground = true;
 
     private DataGrid grid;
     public DataGrid DataGridRef
@@ -81,14 +81,14 @@
 
         DataGridModule.Register(IgniteUIBlazor);
 
-        this.data = PortfolioData.Create(this.dataVolume);        
+        this.Data = PortfolioData.Create(this.DataVolume);
     }
 
     public void startTicking()
-    {        
+    {
         if (!this.isTimerTicking)
         {
-            this.isTimerTicking = true;            
+            this.isTimerTicking = true;
             Task.Delay(this.frequency).ContinueWith((t) => onTimerTick());
         }
     }
@@ -112,7 +112,7 @@
         var updateAll = this.isUpdatingAllPrices;
 
         var toChangeIndexes = new List<bool>();
-        foreach (var item in this.data)
+        foreach (var item in this.Data)
         {
             toChangeIndexes.Add(false);
             if (!this.UseHeatBackground)
@@ -125,16 +125,16 @@
             }
         }
 
-        var toChange = (int)Math.Round(this.dataVolume / 10.0);
+        var toChange = (int)Math.Round(this.DataVolume / 10.0);
         if (updateAll)
         {
-            toChange = this.data.Count;
+            toChange = this.Data.Count;
         }
         else
         {
-            toChange = (int)(random.Next(2, this.data.Count - 1));
+            toChange = (int)(random.Next(2, this.Data.Count - 1));
         }
-        
+
         var sortingByPrice = false;
         for (var i = 0; i < this.grid.SortDescriptions.Count; i++)
         {
@@ -152,33 +152,33 @@
         var elapsedTime = now.Subtract(this.lastUpdateTime);
         var elapsedInterval = elapsedTime.TotalMilliseconds > this.frequency;
         if (elapsedInterval)
-        {            
+        {
             this.lastUpdateTime = DateTime.Now;
             for (var i = 0; i < toChange; i++)
             {
-                var index = (int)(random.Next(0, this.data.Count - 1));
+                var index = (int)(random.Next(0, this.Data.Count - 1));
                 toChangeIndexes[index] = true;
                 toChangeCount++;
                 changing = true;
 
-            }            
+            }
         }
 
-        for (var i = 0; i < this.data.Count; i++)
+        for (var i = 0; i < this.Data.Count; i++)
         {
-            var item = this.data[i];
+            var item = this.Data[i];
             if (toChangeIndexes[i] == true)
             {
                 if (sortingByPrice && !useClear)
                 {
-                    this.grid.NotifyRemoveItem(this.data, i, item);
+                    this.grid.NotifyRemoveItem(this.Data, i, item);
                     PortfolioData.RandomizeDataValues(item);
-                    this.grid.NotifyInsertItem(this.data, i, item);
+                    this.grid.NotifyInsertItem(this.Data, i, item);
                 }
                 else
                 {
                     PortfolioData.RandomizeDataValues(item);
-                    this.grid.NotifyUpdateItem(this.data, i, item, true);
+                    this.grid.NotifyUpdateItem(this.Data, i, item, true);
                 }
 
                 if (this.UseHeatBackground)
@@ -219,11 +219,11 @@
 
         if (sortingByPrice && useClear && elapsedInterval)
         {
-            this.grid.NotifyClearItems(data);
+            this.grid.NotifyClearItems(Data);
         }
         else if (useClear)
         {
-            this.grid.NotifyClearItems(data);
+            this.grid.NotifyClearItems(Data);
         }
 
         if (!sortingByPrice || !elapsedInterval)
@@ -232,7 +232,7 @@
         }
 
         Task.Delay(this.frequency).ContinueWith((t) => onTimerTick());
-    }   
+    }
 
     private void onGridGroupingAdd()
     {

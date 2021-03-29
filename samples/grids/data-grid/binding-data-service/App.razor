@@ -5,10 +5,10 @@
 
     <div class="igComponent">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
         <DataGrid Height="100%" Width="100%"
-                  DataSource="@DataSource"
+                  DataSource="Data"
                   AutoGenerateColumns="false"
                   ActivationMode="GridActivationMode.Cell">
 
@@ -49,7 +49,7 @@
 
 @code {
 
-    private List<PortfolioInfo> DataSource;
+    private List<PortfolioInfo> Data;
 
     protected override void OnInitialized()
     {
@@ -57,7 +57,7 @@
 
         DataGridModule.Register(IgniteUIBlazor);
 
-        this.DataSource = PortfolioData.Create(100);
+        this.Data = PortfolioData.Create(100);
     }
 
 }

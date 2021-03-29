@@ -3,13 +3,13 @@
 
 <div class="igContainer">
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
         <DataChart Height="100%" Width="100%" Subtitle="Renewable Energy Generated">
-            <CategoryXAxis Name="xAxis" DataSource="@DataSource" Label="Year" />
+            <CategoryXAxis Name="xAxis" DataSource="Data" Label="Year" />
             <NumericYAxis Name="yAxis" Title="TWh" LabelLocation="AxisLabelsLocation.OutsideRight" />
 
-            <LineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="@DataSource" ValueMemberPath="USA" />
+            <LineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="USA" />
 
             <FinalValueLayer AxisAnnotationBackground="Orange" AxisAnnotationTextColor="Black" AxisAnnotationOutline="Black"/>
         </DataChart>
@@ -19,7 +19,7 @@
 
 @code {
 
-    private List<EnergyRenewableInfo> DataSource = new EnergyRenewableData();
+    private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
 
     protected override void OnInitialized()
     {

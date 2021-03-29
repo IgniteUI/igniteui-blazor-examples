@@ -7,10 +7,10 @@
     </div>
 
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DoughnutChart Height="100%" Width="100%">
-                <RingSeries DataSource="@DataSource"
+                <RingSeries DataSource="Data"
                             LabelMemberPath="Summary"
                             ValueMemberPath="MarketShare"
                             LegendLabelMemberPath="Company"
@@ -26,7 +26,7 @@
 
 @code {
 
-    private List<DataItem> DataSource;
+    private List<DataItem> Data;
     private double StartAngle = 0;
     private double RadiusFactor = 0.1;
     private double LabelExtent = 0.7;
@@ -59,7 +59,7 @@
         dataItems.Add(new DataItem() { MarketShare = 15, Company = "Samsung", });
         dataItems.Add(new DataItem() { MarketShare = 10, Company = "Other", });
 
-        DataSource = dataItems;
+        Data = dataItems;
         this.onAnimationToggle();
     }
 

@@ -18,12 +18,12 @@
         </label>
     </div>
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DataGrid Height="100%" Width="100%" @ref="DataGridRef"
                       DefaultColumnMinWidth="120"
                       AutoGenerateColumns="false"
-                      DataSource="@DataSource"
+                      DataSource="Data"
                       EditMode="@GridEditMode"
                       ActivationMode="@GridActivationMode.Cell"
                       SelectionMode="@GridSelectionMode.SingleRow"
@@ -67,14 +67,14 @@
 
     private bool ButtonsDisabled { get; set; }
 
-    private List<Employee> DataSource;
+    private List<Employee> Data;
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
         DataGridModule.Register(IgniteUIBlazor);
 
-        DataSource = EmployeeData.Create(100, false);
+        Data = EmployeeData.Create(100, false);
         this.GridEditMode = EditModeType.Cell;
     }
 

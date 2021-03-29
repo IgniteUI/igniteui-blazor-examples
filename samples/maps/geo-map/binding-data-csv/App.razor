@@ -5,7 +5,7 @@
 <div class="igContainer">
     <div class="igComponent">
         <GeographicMap @ref="MapRef" Height="100%" Width="100%" Zoomable="true">
-            <GeographicHighDensityScatterSeries DataSource="@DataSource"
+            <GeographicHighDensityScatterSeries DataSource="Data"
                     LatitudeMemberPath="Lat"
                     LongitudeMemberPath="Lon"
                     HeatMaximumColor="Red"
@@ -20,7 +20,7 @@
 
 @code {
 
-    private List<WorldPlaceCsv> DataSource;
+    private List<WorldPlaceCsv> Data;
     public Rect GeoBounds;
     public GeographicMap MapRef;
 
@@ -50,7 +50,7 @@
             dataItems.Add(location);
         }
 
-        this.DataSource = dataItems;
+        this.Data = dataItems;
 
         Console.WriteLine(csvLines.Length);
 
@@ -70,7 +70,7 @@
 
     }
 
-    
+
     public class WorldPlaceCsv {
 
         public string Name { get; set; }

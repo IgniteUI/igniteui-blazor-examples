@@ -11,11 +11,11 @@
     </div>
 
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <PieChart Height="100%" Width="100%"
                       @ref="Chart"
-                      DataSource="DataSource"
+                      DataSource="Data"
                       LabelMemberPath="Summary"
                       ValueMemberPath="MarketShare"
                       LegendLabelMemberPath="Summary"
@@ -32,7 +32,7 @@
 
     public PieChart Chart;
     public ItemLegend Legend;
-    public List<DataItem> DataSource;
+    public List<DataItem> Data;
 
     protected override void OnInitialized()
     {
@@ -45,7 +45,7 @@
         dataItems.Add(new DataItem() { MarketShare = 18, Company = "Lighting", });
         dataItems.Add(new DataItem() { MarketShare = 37, Company = "Space Cooling", });
 
-        DataSource = dataItems;
+        Data = dataItems;
 
     }
 

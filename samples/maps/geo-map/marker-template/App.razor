@@ -34,13 +34,13 @@
     <div class="igComponent" style="height: calc(100% - 2rem)">
         <GeographicMap Height="100%" Width="100%" Zoomable="true"  @ref="GeoMap">
 
-            <GeographicSymbolSeries DataSource="@Capitals" @ref="GeoSeries"
-                                    MarkerCollisionAvoidance="@MarkerCollisionType"
+            <GeographicSymbolSeries DataSource="Capitals" @ref="GeoSeries"
+                                    MarkerCollisionAvoidance="MarkerCollisionType"
                                     LatitudeMemberPath="Lat"
                                     LongitudeMemberPath="Lon"
                                     MarkerBrush="White"
                                     MarkerOutline="#7D73E6"
-                                    MarkerTemplateScript="@MarkerScript"/>
+                                    MarkerTemplateScript="MarkerScript"/>
             @*note onMapMarkerTemplate implements custom marker in MapMarkerTemplate.js*@
 
         </GeographicMap>
@@ -73,7 +73,7 @@
 
         if (GeoSeries == null) return;
 
-        //GeoSeries.DataSource = null;
+        //GeoSeries.Data = null;
 
         if (markerType == "Custom")
         {
@@ -106,7 +106,7 @@
             else if (markerType == "Hexagram")
                 GeoSeries.MarkerType = MarkerType.Hexagram;
 
-            //GeoSeries.DataSource = this.Capitals;
+            //GeoSeries.Data = this.Capitals;
             //GeoSeries.RenderSeries(false);
         }
 

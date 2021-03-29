@@ -7,13 +7,13 @@
         <span class="igLegend-title">Renewable Electricity generated combined</span>
     </div>
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="false" IsHorizontalZoomEnabled="false">
-                <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Year" Gap="0.75" />
+                <CategoryXAxis Name="xAxis" DataSource="Data" Label="Year" Gap="0.75" />
                 <NumericYAxis Name="yAxis" MinimumValue="0" MaximumValue="300" Interval="50" Title="TWh" TitleLeftMargin="10" />
 
-                <StackedLineSeries MarkerType="MarkerType.Circle" XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ShowDefaultTooltip="false">
+                <StackedLineSeries MarkerType="MarkerType.Circle" XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false">
                     <StackedFragmentSeries ValueMemberPath="USA" />
                     <StackedFragmentSeries ValueMemberPath="Europe" />
                     <StackedFragmentSeries ValueMemberPath="China" />
@@ -25,7 +25,7 @@
 
 @code {
 
-    public List<RenewableElectricityStackedInfo> DataSource = new RenewableElectricityStackedData();
+    public List<RenewableElectricityStackedInfo> Data = new RenewableElectricityStackedData();
 
     protected override void OnInitialized()
     {

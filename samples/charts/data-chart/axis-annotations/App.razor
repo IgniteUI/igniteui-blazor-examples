@@ -17,14 +17,14 @@
     </div>
 
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true" IsHorizontalZoomEnabled="true" @ref="Chart">
-                <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Label" Interval="1"/>
+                <CategoryXAxis Name="xAxis" DataSource="Data" Label="Label" Interval="1"/>
                 <NumericYAxis Name="yAxis" Interval="20" MinimumValue="70" MaximumValue="110"
                               LabelLocation="AxisLabelsLocation.OutsideRight" />
 
-                <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="Temperature"/>
+                <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="Temperature"/>
 
                 <CrosshairLayer IsAxisAnnotationEnabled="true" YAxisAnnotationInterpolatedValuePrecision="0" @ref="CrosshairRef"/>
                 <FinalValueLayer @ref="FinalValueRef"/>
@@ -37,7 +37,7 @@
 
 @code {
 
-    private List<TemperatureItem> DataSource;
+    private List<TemperatureItem> Data;
     private DataChart Chart;
     private CrosshairLayer CrosshairRef;
     private FinalValueLayer FinalValueRef;
@@ -63,7 +63,7 @@
     {
         int year = new DateTime().Year;
 
-        this.DataSource = new List<TemperatureItem>() {
+        this.Data = new List<TemperatureItem>() {
             new TemperatureItem(){Label = "JAN", Temperature= 74, Date= new DateTime(year, 1, 1) },
             new TemperatureItem(){Label = "FEB", Temperature= 74, Date= new DateTime(year, 2, 1) },
             new TemperatureItem(){Label = "MAR", Temperature= 76, Date= new DateTime(year, 3, 1) },

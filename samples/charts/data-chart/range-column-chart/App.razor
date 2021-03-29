@@ -14,18 +14,18 @@
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <CategoryXAxis Name="xAxis" Label="Month" Interval="1" DataSource="@DataSource" />
+            <CategoryXAxis Name="xAxis" Label="Month" Interval="1" DataSource="Data" />
             <NumericYAxis Name="yAxis" Title="Temperature (in Celsius)" TitleLeftMargin="10" />
 
             <RangeColumnSeries XAxisName="xAxis" Title="Los Angeles"
                                YAxisName="yAxis"
-                               DataSource="@DataSource"
+                               DataSource="Data"
                                LowMemberPath="LA_Low"
                                HighMemberPath="LA_High" />
 
             <RangeColumnSeries XAxisName="xAxis" Title="New York City"
                                YAxisName="yAxis"
-                               DataSource="@DataSource"
+                               DataSource="Data"
                                LowMemberPath="NY_Low"
                                HighMemberPath="NY_High" />
         </DataChart>
@@ -42,7 +42,7 @@
         set { _Legend = value; StateHasChanged(); }
     }
 
-    private List<CityTemperatureInfo> DataSource = new CityTemperatureData();
+    private List<CityTemperatureInfo> Data = new CityTemperatureData();
 
     protected override void OnInitialized()
     {

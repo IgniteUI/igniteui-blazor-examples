@@ -11,13 +11,13 @@
     </div>
 
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DataChart Height="100%" Width="100%" ChartTitle="Company Financial Projections" IsVerticalZoomEnabled="true"
                        IsHorizontalZoomEnabled="true" Legend="Legend">
-                <CategoryXAxis Name="xAxisYears" DataSource="DataSource" Interval="12" LabelLocation="AxisLabelsLocation.OutsideBottom"
+                <CategoryXAxis Name="xAxisYears" DataSource="Data" Interval="12" LabelLocation="AxisLabelsLocation.OutsideBottom"
                                Overlap="1" Gap="0.4" Label="Year" LabelTextColor="Gray" TickLength="0" />
-                <CategoryXAxis Name="xAxisMonths" DataSource="DataSource" Overlap="1" Gap="0.4" Interval="1"
+                <CategoryXAxis Name="xAxisMonths" DataSource="Data" Overlap="1" Gap="0.4" Interval="1"
                                LabelLocation="AxisLabelsLocation.OutsideBottom" Label="Month" LabelTextColor="Gray" />
                 <NumericYAxis Name="yAxisLeft" Title="Expense | Revenue" TitleTextColor="Gray" MinimumValue="-900"
                               MaximumValue="900" LabelTextColor="Gray" Interval="300" />
@@ -25,11 +25,11 @@
                               LabelLocation="AxisLabelsLocation.OutsideRight" MajorStrokeThickness="0" LabelTextColor="Gray"
                               LabelHorizontalAlignment="HorizontalAlignment.Left" TitleVerticalAlignment="VerticalAlignment.Center" />
 
-                <ColumnSeries Title="Revenue" DataSource="DataSource" ValueMemberPath="Revenue" Brush="#9B58E2" Outline="#9B58E2"
+                <ColumnSeries Title="Revenue" DataSource="Data" ValueMemberPath="Revenue" Brush="#9B58E2" Outline="#9B58E2"
                               XAxisName="xAxisMonths" YAxisName="yAxisLeft" IsTransitionInEnabled="true" ShowDefaultTooltip="true" />
-                <ColumnSeries Title="Expense" DataSource="DataSource" ValueMemberPath="Expense" Brush="#F23030" Outline="#F23030"
+                <ColumnSeries Title="Expense" DataSource="Data" ValueMemberPath="Expense" Brush="#F23030" Outline="#F23030"
                               XAxisName="xAxisMonths" YAxisName="yAxisLeft" IsTransitionInEnabled="true" ShowDefaultTooltip="true" />
-                <ColumnSeries Title="Profit" DataSource="DataSource" ValueMemberPath="Profit" Brush="#48BA39" Outline="#48BA39"
+                <ColumnSeries Title="Profit" DataSource="Data" ValueMemberPath="Profit" Brush="#48BA39" Outline="#48BA39"
                               XAxisName="xAxisYears" YAxisName="yAxisRight" IsTransitionInEnabled="true" ShowDefaultTooltip="true" />
             </DataChart>
         }
@@ -39,7 +39,7 @@
 
 @code {
 
-    private List<FinancialItem> DataSource;
+    private List<FinancialItem> Data;
 
     private Legend legend;
     private Legend Legend
@@ -102,7 +102,7 @@
             }
         }
 
-        this.DataSource = items;
+        this.Data = items;
     }
 
 

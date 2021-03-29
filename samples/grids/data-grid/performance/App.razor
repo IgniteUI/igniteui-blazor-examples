@@ -4,7 +4,7 @@
 
 <div class="igContainer">
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DataGrid Height="100%" Width="100%" @ref="DataGridRef"
                       AutoGenerateColumns="false"
@@ -15,7 +15,7 @@
                       SortDescriptionsChanged="OnSortDescriptionsChanged"
                       ColumnShowingAnimationMode="@ColumnShowingAnimationMode.Auto"
                       ColumnHidingAnimationMode="@ColumnHidingAnimationMode.Auto"
-                      DataSource="@DataSource"
+                      DataSource="Data"
                       IsRowHoverEnabled="false">
                 <TextColumn Field="FirstName" HeaderText="First Name" Width="@("*>130")" />
                 <TextColumn Field="LastName" HeaderText="Last Name" Width="@("*>130")" />
@@ -47,7 +47,7 @@
 
     }
 
-    private List<SalesPerson> DataSource;
+    private List<SalesPerson> Data;
 
     private DataGrid _grid;
     private DataGrid DataGridRef
@@ -70,7 +70,7 @@
         base.OnInitialized();
         DataGridModule.Register(IgniteUIBlazor);
 
-        this.DataSource = SalesPersonData.GenerateSalesPeople(500);
+        this.Data = SalesPersonData.GenerateSalesPeople(500);
     }
 
     private void OnDataGridRef()
@@ -86,14 +86,14 @@
     {
         bool sortedBySales = false;
 
-        int toChange = (int)Math.Round(this.DataSource.Count / 10.0);
+        int toChange = (int)Math.Round(this.Data.Count / 10.0);
         var toChangeIndexes = new List<bool>();
         bool stillAnimating = false;
 
-        for (int i = 0; i < this.DataSource.Count; i++)
+        for (int i = 0; i < this.Data.Count; i++)
         {
             toChangeIndexes.Add(false);
-            SalesPerson item = this.DataSource[i];
+            SalesPerson item = this.Data[i];
             if (item.AvgSaleHeat != 0)
             {
                 stillAnimating = true;
@@ -125,7 +125,7 @@
             this.lastDataUpdate = new DateTime();
             for (int i = 0; i < toChange; i++)
             {
-                int index = (int)Math.Round(random.NextDouble() * (this.DataSource.Count - 1));
+                int index = (int)Math.Round(random.NextDouble() * (this.Data.Count - 1));
                 toChangeIndexes[index] = true;
 
             }
@@ -133,19 +133,19 @@
 
         for (int i = 0; i < toChangeIndexes.Count; i++)
         {
-            var item = this.DataSource[i];
+            var item = this.Data[i];
             if (toChangeIndexes[i] == true)
             {
                 if (sortingByAvgSale && !useClear)
                 {
-                    this.DataGridRef.NotifyRemoveItem(this.DataSource, i, item);
+                    this.DataGridRef.NotifyRemoveItem(this.Data, i, item);
                     this.RandomizeItem(item);
-                    this.DataGridRef.NotifyInsertItem(this.DataSource, i, item);
+                    this.DataGridRef.NotifyInsertItem(this.Data, i, item);
                 }
                 else
                 {
                     this.RandomizeItem(item);
-                    this.DataGridRef.NotifyUpdateItem(this.DataSource, i, item, true);
+                    this.DataGridRef.NotifyUpdateItem(this.Data, i, item, true);
                 }
 
                 if (item.Change > 0)

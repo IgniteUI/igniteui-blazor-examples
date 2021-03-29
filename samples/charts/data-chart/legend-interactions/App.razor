@@ -28,24 +28,24 @@
         <DataChart Height="100%" Width="100%"
                    IsVerticalZoomEnabled="true"
                    IsHorizontalZoomEnabled="true" @ref="Chart">
-            <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Year" />
+            <CategoryXAxis Name="xAxis" DataSource="Data" Label="Year" />
             <NumericYAxis  Name="yAxis" MinimumValue="0" Title="TWh" TitleLeftMargin="10" />
 
             <AreaSeries Title="Europe" XAxisName="xAxis" YAxisName="yAxis"
                         ValueMemberPath="Europe" MarkerType="MarkerType.Circle"
-                        DataSource="DataSource" Opacity="SeriesOpacity[0]"
+                        DataSource="Data" Opacity="SeriesOpacity[0]"
                         IsTransitionInEnabled="true" ShowDefaultTooltip="true"
                         IsHighlightingEnabled="SeriesHighlightEnabled"/>
 
             <AreaSeries Title="China" XAxisName="xAxis" YAxisName="yAxis"
                         ValueMemberPath="China" MarkerType="MarkerType.Circle"
-                        DataSource="DataSource" Opacity="SeriesOpacity[1]"
+                        DataSource="Data" Opacity="SeriesOpacity[1]"
                         IsTransitionInEnabled="true" ShowDefaultTooltip="true"
                         IsHighlightingEnabled="SeriesHighlightEnabled"/>
 
             <AreaSeries Title="USA" XAxisName="xAxis" YAxisName="yAxis"
                         ValueMemberPath="USA" MarkerType="MarkerType.Circle"
-                        DataSource="DataSource" Opacity="SeriesOpacity[2]"
+                        DataSource="Data" Opacity="SeriesOpacity[2]"
                         IsTransitionInEnabled="true" ShowDefaultTooltip="true"
                         IsHighlightingEnabled="SeriesHighlightEnabled"/>
 
@@ -130,7 +130,7 @@
         this.Chart.NotifyContainerResized();
     }
 
-    private List<EnergyRenewableInfo> DataSource = new EnergyRenewableData();
+    private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
     private bool SeriesHighlightEnabled = true;
 
     private CategoryItemHighlightLayer ItemHighlightLayer;
@@ -150,7 +150,7 @@
         ItemToolTipLayerModule.Register(IgniteUIBlazor);
         CategoryToolTipLayerModule.Register(IgniteUIBlazor);
 
-        //this.DataSource = EnergyProductionData.Generate();
+        //this.Data = EnergyProductionData.Generate();
 
         this.ItemTooltipLayer = new ItemToolTipLayer();
         this.ItemHighlightLayer = new CategoryItemHighlightLayer();

@@ -7,20 +7,20 @@
         <input class="igOptions-slider" type="range" min="0" max="1" step="0.1" value="1" @oninput="OnXAxisGapSliderChange"/>
     </div>
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <CategoryChart Height="100%" Width="100%"
-                           DataSource="DataSource"                           
+                           DataSource="Data"
                            ChartType="CategoryChartType.Column"
                            ChartTitle="New York Central Park Average Maximum Temperature (Celsius)"
                            TitleAlignment="HorizontalAlignment.Left"
                            TitleLeftMargin="25"
                            TitleTopMargin="10"
-                           TitleBottomMargin="10"                           
+                           TitleBottomMargin="10"
 						   IsHorizontalZoomEnabled="false"
                            IsVerticalZoomEnabled="false"
                            XAxisInterval="1"
-                           XAxisGap="@XAxisGapValue">                           
+                           XAxisGap="@XAxisGapValue">
             </CategoryChart>
         }
     </div>
@@ -28,7 +28,7 @@
 
 @code {
 
-    private List<TemperatureInfo> DataSource = new TemperatureData();
+    private List<TemperatureInfo> Data = new TemperatureData();
 
     private double XAxisGapValue = 1;
 

@@ -16,14 +16,14 @@
 
     <div class="igComponent">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <FinancialChart Width="100%"
                 Height="100%"
                 ChartType=FinancialChartType.Line
                 Thickness=2
                 YAxisMode="FinancialChartYAxisMode.PercentChange"
-                DataSource="DataSource"
+                DataSource="Data"
                 ZoomSliderType="FinancialChartZoomSliderType.None"
                 ToolTipType="@TooltipType"/>
         }
@@ -33,12 +33,12 @@
 
 @code {
 
-    protected List<StockPrice[]> DataSource;
+    protected List<StockPrice[]> Data;
     protected ToolTipType TooltipType { get; set; } = ToolTipType.Item;
 
     protected override async Task OnInitializedAsync()
     {
         FinancialChartModule.Register(IgniteUIBlazor);
-        this.DataSource = await StocksHistory.GetMultipleStocks();
+        this.Data = await StocksHistory.GetMultipleStocks();
     }
 }

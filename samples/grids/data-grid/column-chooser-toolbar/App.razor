@@ -4,13 +4,13 @@
 
 <div class="igContainer">
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DataGridToolbar ToolbarTitle="Global Sales" ColumnChooser="true" TargetGrid="@DataGridRef"/>
 
             <DataGrid Height="100%" Width="100%" @ref="DataGridRef"
                       DefaultColumnMinWidth="120"
-                      DataSource="@DataSource"
+                      DataSource="Data"
                       AutoGenerateColumns="false"
                       IsColumnOptionsEnabled="true">
                 <TextColumn Field="ID" HeaderText="ID" IsHidden="true" Width="90" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
@@ -44,7 +44,7 @@
         }
     }
 
-    private List<Sale> DataSource;
+    private List<Sale> Data;
 
     protected override void OnInitialized()
     {
@@ -54,6 +54,6 @@
         ColumnChooserModule.Register(IgniteUIBlazor);
         GridColumnOptionsModule.Register(IgniteUIBlazor);
 
-        DataSource = SalesData.Create(100);
+        Data = SalesData.Create(100);
     }
 }

@@ -13,7 +13,7 @@
 
         @if (NodeConnections != null)
         {
-            <DataChart Height="100%" Width="100%" @ref="Chart"         
+            <DataChart Height="100%" Width="100%" @ref="Chart"
                        SeriesMouseEnterScript="onNetworkGrahpMouseEnter"
                        IsHorizontalZoomEnabled="false"
                        IsVerticalZoomEnabled="false">
@@ -21,43 +21,43 @@
                 <NumericXAxis Name="xAxis" MinimumValue="0" MaximumValue="14" Interval="1" LabelTextColor="Transparent"/>
                 <NumericYAxis Name="yAxis" MinimumValue="0" MaximumValue="6"  Interval="1" LabelTextColor="Transparent"/>
 
-                <CategoryYAxis Name="labelAxis" Label="Label" DataSource="@NodeInuputLabels" Interval="1" StrokeThickness="1" />
+                <CategoryYAxis Name="labelAxis" Label="Label" DataSource="NodeInuputLabels" Interval="1" StrokeThickness="1" />
 
                 <ScatterPolylineSeries XAxisName="xAxis"
                                        YAxisName="yAxis"
-                                       DataSource="@NodeConnections"
+                                       DataSource="NodeConnections"
                                        ShapeMemberPath="Points"
                                        Thickness="2"
                                        Title="Connections"
-                                       Outline="#8D8D8D" 
+                                       Outline="#8D8D8D"
                                        Brush="#8D8D8D">
                 </ScatterPolylineSeries>
 
                 <ScatterSeries XAxisName="xAxis" XMemberPath="X" MarkerOutline="#9D37F7"
                                YAxisName="yAxis" YMemberPath="Y"
                                MarkerType="MarkerType.Circle"
-                               DataSource="@InputNodeLayer" 
+                               DataSource="InputNodeLayer"
                                Title="Input Layer" >
-                </ScatterSeries> 
-                
+                </ScatterSeries>
+
                 <ScatterSeries XAxisName="xAxis" XMemberPath="X"  MarkerOutline="#46BE3B"
                                YAxisName="yAxis" YMemberPath="Y"
                                MarkerType="MarkerType.Circle"
-                               DataSource="@AnalyisNodeLayer"
+                               DataSource="AnalyisNodeLayer"
                                Title="Analyis Layer">
                 </ScatterSeries>
 
                 <ScatterSeries XAxisName="xAxis" XMemberPath="X"  MarkerOutline="#008DFF"
                                YAxisName="yAxis" YMemberPath="Y"
                                MarkerType="MarkerType.Circle"
-                               DataSource="@ProcessNodeLayer" 
+                               DataSource="ProcessNodeLayer"
                                Title="Process Layer" >
                 </ScatterSeries>
 
                 <ScatterSeries XAxisName="xAxis" XMemberPath="X"  MarkerOutline="#FF7200"
                                YAxisName="yAxis" YMemberPath="Y"
                                MarkerType="MarkerType.Circle"
-                               DataSource="@OutputNodeLayer" 
+                               DataSource="OutputNodeLayer"
                                Title="Output Layer" >
                 </ScatterSeries>
 

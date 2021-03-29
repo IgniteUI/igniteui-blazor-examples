@@ -1,6 +1,5 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor;
-@inject IJSRuntime JSRuntime;
+@inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="igContainer">
     <div class="igOptions">
@@ -10,20 +9,20 @@
         </div>
     </div>
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="false" IsHorizontalZoomEnabled="false">
 
-                <CategoryYAxis Name="yAxis" DataSource="DataSource" Label="Location" Gap="0.75" IsInverted="true" />
+                <CategoryYAxis Name="yAxis" DataSource="Data" Label="Location" Gap="0.75" IsInverted="true" />
                 <NumericXAxis Name="xAxis" MinimumValue="0" Title="TWh" />
 
-                <StackedBarSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ShowDefaultTooltip="true" AreaFillOpacity="1" Legend="Legend">
+                <StackedBarSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="true" AreaFillOpacity="1" Legend="Legend">
                     <StackedFragmentSeries ValueMemberPath="Hydro" />
                     <StackedFragmentSeries ValueMemberPath="Wind" />
                     <StackedFragmentSeries ValueMemberPath="Solar" />
                     <StackedFragmentSeries ValueMemberPath="Other" />
                 </StackedBarSeries>
-                <CalloutLayer DataSource="CalloutDataSource" XMemberPath="X" YMemberPath="Y" LabelMemberPath="Label"
+                <CalloutLayer DataSource="CalloutData" XMemberPath="X" YMemberPath="Y" LabelMemberPath="Label"
                               CalloutBackground="Transparent" CalloutLeaderBrush="Transparent" CalloutTextColor="Black" />
             </DataChart>
         }
@@ -42,13 +41,11 @@
         }
     }
 
-
-    public List<EnergySource> DataSource = new EnergyData();
-    public List<CalloutData> CalloutDataSource { get; set; }
+    public List<EnergySource> Data = new EnergyData();
+    public List<CalloutInfo> CalloutData { get; set; }
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
 
         DataChartCoreModule.Register(IgniteUIBlazor);
         DataChartCategoryCoreModule.Register(IgniteUIBlazor);
@@ -61,19 +58,18 @@
         LegendModule.Register(IgniteUIBlazor);
         CalloutLayerModule.Register(IgniteUIBlazor);
 
+        this.CalloutData = new List<CalloutInfo>();
 
-        this.CalloutDataSource = new List<CalloutData>();
-
-        for (int i = 0; i < this.DataSource.Count; i++)
+        for (int i = 0; i < this.Data.Count; i++)
         {
-            var item = this.DataSource[i];
+            var item = this.Data[i];
 
-            this.CalloutDataSource.Add(new CalloutData() { X = item.Sum, Y = i, Label = item.Sum.ToString() });
+            this.CalloutData.Add(new CalloutInfo() { X = item.Sum, Y = i, Label = item.Sum.ToString() });
         }
 
     }
 
-    public class CalloutData
+    public class CalloutInfo
     {
         public double X { get; set; }
         public double Y { get; set; }

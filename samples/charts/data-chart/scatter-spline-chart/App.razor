@@ -22,7 +22,7 @@
 
             <ScatterSplineSeries XAxisName="xAxis"
                                YAxisName="yAxis"
-                               DataSource="@GermanyDataSource"
+                               DataSource="GermanyData"
                                XMemberPath="HealthExpense"
                                YMemberPath="LifeExpectancy"
                                Title="Germany"
@@ -30,7 +30,7 @@
 
             <ScatterSplineSeries XAxisName="xAxis"
                                YAxisName="yAxis"
-                               DataSource="@FranceDataSource"
+                               DataSource="FranceData"
                                XMemberPath="HealthExpense"
                                YMemberPath="LifeExpectancy"
                                Title="France"
@@ -38,7 +38,7 @@
 
             <ScatterSplineSeries XAxisName="xAxis"
                                YAxisName="yAxis"
-                               DataSource="@LuxembourgDataSource"
+                               DataSource="LuxembourgData"
                                XMemberPath="HealthExpense"
                                YMemberPath="LifeExpectancy"
                                Title="Luxembourg"
@@ -60,16 +60,16 @@
         }
     }
 
-    private List<HealthExpenseLifeExpectancyInfo> GermanyDataSource;
-    private List<HealthExpenseLifeExpectancyInfo> FranceDataSource;
-    private List<HealthExpenseLifeExpectancyInfo> LuxembourgDataSource;
+    private List<HealthInfo> GermanyData;
+    private List<HealthInfo> FranceData;
+    private List<HealthInfo> LuxembourgData;
 
     public void InitializeData()
     {
-        var fullList = new HealthExpenseLifeExpectancyData();
-        this.GermanyDataSource = fullList.Where(c => c.Country == "Germany").ToList();
-        this.FranceDataSource = fullList.Where(c => c.Country == "France").ToList();
-        this.LuxembourgDataSource = fullList.Where(c => c.Country == "Luxembourg").ToList();
+        var fullList = new HealthData();
+        this.GermanyData = fullList.Where(c => c.Country == "Germany").ToList();
+        this.FranceData = fullList.Where(c => c.Country == "France").ToList();
+        this.LuxembourgData = fullList.Where(c => c.Country == "Luxembourg").ToList();
     }
 
     protected override void OnInitialized()

@@ -21,11 +21,11 @@
 
     <div class="igComponent">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <FinancialChart Width="100%"
                 Height="100%"
-                DataSource="DataSource"
+                DataSource="Data"
                 ChartType=FinancialChartType.Line
                 Thickness=2
                 XAxisMode="XAxisMode"
@@ -38,7 +38,7 @@
 
     public FinancialChartXAxisMode XAxisMode = FinancialChartXAxisMode.Ordinal;
     public FinancialChartYAxisMode YAxisMode = FinancialChartYAxisMode.Numeric;
-    List<StockItem> DataSource;
+    List<StockItem> Data;
 
     protected override void OnInitialized()
     {
@@ -53,6 +53,6 @@
         var month = today.Month;
         var dateEnd = new DateTime(year, month, 1);
         var dateStart = new DateTime(year - 1, month, 1);
-        this.DataSource = StocksUtility.GetStocksBetween(dateStart, dateEnd);
+        this.Data = StocksUtility.GetStocksBetween(dateStart, dateEnd);
     }
 }

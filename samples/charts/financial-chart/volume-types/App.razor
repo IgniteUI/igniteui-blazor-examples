@@ -18,11 +18,11 @@
 
     <div class="igComponent">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <FinancialChart Width="100%"
                             Height="100%"
-                            DataSource="DataSource"
+                            DataSource="Data"
                             YAxisExtent=60
                             VolumeThickness=2
                             VolumeType="VolumeType"
@@ -37,7 +37,7 @@
 
 @code {
 
-    List<StockItem> DataSource;
+    List<StockItem> Data;
     public FinancialChartVolumeType VolumeType { get; set; } = FinancialChartVolumeType.Area;
 
     protected override void OnInitialized()
@@ -53,6 +53,6 @@
         var month = today.Month;
         var dateEnd = new DateTime(year, month, 1);
         var dateStart = new DateTime(year - 1, month, 1);
-        this.DataSource = StocksUtility.GetStocksBetween(dateStart, dateEnd);
+        this.Data = StocksUtility.GetStocksBetween(dateStart, dateEnd);
     }
 }

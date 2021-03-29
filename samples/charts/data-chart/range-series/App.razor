@@ -18,7 +18,7 @@
     </div>
 
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
         <DataChart Height="100%" Width="100%"
                    ChartTitle="Annual Temperature Changes"
@@ -30,7 +30,7 @@
             <CategoryXAxis Name="xAxis"
                            Label="Year"
                            Gap="0.5"
-                           DataSource="@DataSource" />
+                           DataSource="Data" />
             <NumericYAxis Name="yAxis"
                           MinimumValue="20"
                           Title="Temperature (�C)" />
@@ -42,7 +42,7 @@
                                  XAxisName="xAxis"
                                  YAxisName="yAxis"
                                  Thickness="0"
-                                 DataSource="@DataSource"
+                                 DataSource="Data"
                                  Title="Weather Forecast">
 
                 </RangeAreaSeries>
@@ -54,7 +54,7 @@
                                  XAxisName="xAxis"
                                  YAxisName="yAxis"
                                  Thickness="0"
-                                 DataSource="@DataSource"
+                                 DataSource="Data"
                                  Title="Weather Forecast">
 
                 </RangeColumnSeries>
@@ -66,7 +66,7 @@
 
 @code {
 
-    private List<SampleRangeItem> DataSource;
+    private List<SampleRangeItem> Data;
     private DataChart _Chart;
     private DataChart Chart
     {
@@ -107,7 +107,7 @@
         DataChartInteractivityModule.Register(IgniteUIBlazor);
 
         LegendModule.Register(IgniteUIBlazor);
-        DataSource = SampleRangeData.Create();
+        Data = SampleRangeData.Create();
     }
 
     public void OnSeriesTypeChanged(ChangeEventArgs e)

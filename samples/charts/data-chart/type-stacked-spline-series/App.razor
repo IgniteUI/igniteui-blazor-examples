@@ -10,12 +10,12 @@
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <CategoryXAxis Name="xAxis" Label="Country" DataSource="@DataSource" />
+            <CategoryXAxis Name="xAxis" Label="Country" DataSource="Data" />
             <NumericYAxis Name="yAxis" Title="Energy (in Billions Wh)" TitleLeftMargin="10" MinimumValue="0"/>
 
             <StackedSplineSeries XAxisName="xAxis"
                           YAxisName="yAxis"
-                          DataSource="@DataSource"
+                          DataSource="Data"
                           AreaFillOpacity="1"
                           ShowDefaultTooltip="true" >
                 <StackedFragmentSeries Name="coal" ValueMemberPath="Coal"  />
@@ -31,7 +31,7 @@
 
 @code {
 
-    private List<SampleStackedItem> DataSource;
+    private List<SampleStackedItem> Data;
 
     protected override void OnInitialized()
     {
@@ -45,7 +45,7 @@
         StackedSplineSeriesModule.Register(IgniteUIBlazor);
         StackedFragmentSeriesModule.Register(IgniteUIBlazor);
 
-        DataSource = SampleStackedData.Create();
+        Data = SampleStackedData.Create();
 
 
     }

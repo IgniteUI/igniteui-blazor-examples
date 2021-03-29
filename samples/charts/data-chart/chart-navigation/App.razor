@@ -62,7 +62,7 @@
                    DragModifier="@DragModifier"
                    DefaultInteraction="@DefaultInteraction">
 
-            <CategoryXAxis Name="xAxis" Label="Label" DataSource="@DataSource" />
+            <CategoryXAxis Name="xAxis" Label="Label" DataSource="Data" />
             <NumericYAxis Name="yAxis" Title="Amount (in USD)" TitleRightMargin="10"
                     LabelRightMargin="10"
                     LabelHorizontalAlignment="HorizontalAlignment.Left"
@@ -70,7 +70,7 @@
 
             <FinancialPriceSeries XAxisName="xAxis"
                     YAxisName="yAxis"
-                    DataSource="@DataSource"
+                    DataSource="Data"
                     DisplayType="PriceDisplayType.Candlestick"
                     OpenMemberPath="Open"
                     CloseMemberPath="Close"
@@ -86,7 +86,7 @@
 </div>
 
 @code {
-    private List<SampleFinancialItem> DataSource;
+    private List<SampleFinancialItem> Data;
     private bool IsZoomingEnabled = true;
     private ModifierKeys PanModifier = ModifierKeys.Alt;
     private ModifierKeys DragModifier = ModifierKeys.Shift;
@@ -115,7 +115,7 @@
         DataChartFinancialCoreModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
 
-        DataSource = SampleFinancialData.Create();
+        Data = SampleFinancialData.Create();
     }
 
     private void OnPanUp()

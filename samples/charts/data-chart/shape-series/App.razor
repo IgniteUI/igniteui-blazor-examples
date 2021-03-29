@@ -18,7 +18,7 @@
     </div>
 
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
         <DataChart Height="100%" Width="100%"
                    ChartTitle="Annual Temperature Changes"
@@ -40,7 +40,7 @@
             @if (SeriesType == "Polygon")
             {
                 <ScatterPolygonSeries XAxisName="xAxis" YAxisName="yAxis" Title="Rooms"
-                    ShapeMemberPath="Points" DataSource="@DataSource"
+                    ShapeMemberPath="Points" DataSource="Data"
                     ShowDefaultTooltip="true">
 
                 </ScatterPolygonSeries>
@@ -49,7 +49,7 @@
             @if (SeriesType == "Polyline")
             {
                 <ScatterPolylineSeries XAxisName="xAxis" YAxisName="yAxis" Title="Rooms"
-                    ShapeMemberPath="Points" DataSource="@DataSource"
+                    ShapeMemberPath="Points" DataSource="Data"
                     ShowDefaultTooltip="true">
 
                 </ScatterPolylineSeries>
@@ -61,7 +61,7 @@
 
 @code {
 
-    private List<SampleShapeItem> DataSource;
+    private List<SampleShapeItem> Data;
     private DataChart _Chart;
     private DataChart Chart
     {
@@ -105,7 +105,7 @@
         ScatterPolylineSeriesModule.Register(IgniteUIBlazor);
 
         LegendModule.Register(IgniteUIBlazor);
-        DataSource = SampleShapeData.Create();
+        Data = SampleShapeData.Create();
     }
 
     public void OnSeriesTypeChanged(ChangeEventArgs e)

@@ -19,7 +19,7 @@
         <span class="igOptions-label"> Marker Type </span>
         <select @bind="@SelectedMarker">
             <option>@MarkerType.Circle</option>
-            <option>@MarkerType.Automatic</option> 
+            <option>@MarkerType.Automatic</option>
             <option>@MarkerType.Triangle</option>
             <option>@MarkerType.Pyramid</option>
             <option>@MarkerType.Square</option>
@@ -33,13 +33,13 @@
         </select>
     </div>
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             // TODO add this code when supported: MarkerTypes="Circle"
 
             // NOTE the MarkerTypes property is set in code-behind
             <CategoryChart Height="100%" Width="100%" @ref="Chart"
-                           DataSource="DataSource"
+                           DataSource="Data"
                            ChartTitle="Renewable Electricity Generated"
                            IsSeriesHighlightingEnabled="true"
                            ChartType="@SelectedChart"
@@ -55,8 +55,8 @@
 </div>
 
 @code {
-    
-    private List<EnergyRenewableInfo> DataSource = new EnergyRenewableData();
+
+    private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
 
     private CategoryChart Chart;
     private CategoryChartType SelectedChart = CategoryChartType.Line;

@@ -11,24 +11,24 @@
     </div>
 
     <div class="igComponent">
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true"
                        IsHorizontalZoomEnabled="true" Legend="Legend" ChartTitle="Energy Use Per Country"
                        Subtitle="Results over a two year period">
-                <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Country" />
+                <CategoryXAxis Name="xAxis" DataSource="Data" Label="Country" />
                 <NumericYAxis Name="yAxis" MinimumValue="0" AbbreviateLargeNumbers="true" />
 
                 <ColumnSeries Title="Coal" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Coal"
-                              DataSource="DataSource" IsTransitionInEnabled="true" />
+                              DataSource="Data" IsTransitionInEnabled="true" />
                 <ColumnSeries Title="Hydro" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Hydro"
-                              DataSource="DataSource" IsTransitionInEnabled="true" />
+                              DataSource="Data" IsTransitionInEnabled="true" />
                 <ColumnSeries Title="Nuclear" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Nuclear"
-                              DataSource="DataSource" IsTransitionInEnabled="true" />
+                              DataSource="Data" IsTransitionInEnabled="true" />
                 <ColumnSeries Title="Gas" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Gas"
-                              DataSource="DataSource" IsTransitionInEnabled="true" />
+                              DataSource="Data" IsTransitionInEnabled="true" />
                 <ColumnSeries Title="Oil" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Oil"
-                              DataSource="DataSource" IsTransitionInEnabled="true" />
+                              DataSource="Data" IsTransitionInEnabled="true" />
             </DataChart>
 
         }
@@ -37,7 +37,7 @@
 
 @code {
 
-    private List<EnergyProductionData.Energy> DataSource;
+    private List<EnergyProductionData.Energy> Data;
 
     private Legend legend;
     private Legend Legend
@@ -60,6 +60,6 @@
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         LegendModule.Register(IgniteUIBlazor);
 
-        this.DataSource = EnergyProductionData.Generate();
+        this.Data = EnergyProductionData.Generate();
     }
 }
