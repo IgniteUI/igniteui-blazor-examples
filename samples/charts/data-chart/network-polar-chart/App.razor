@@ -3,25 +3,25 @@
 
 <div class="igContainer">
     <div class="igOptions">
-        <span class="igLegend-title">Network Polar Chart</span>        
+        <span class="igLegend-title">Network Polar Chart</span>
         <div class="igLegend">
             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="igComponent">
-        
+
         @if (PolarMarkers != null && this.PolarMarkersByLevel != null)
-        { 
-        <DataChart Height="100%" Width="100%" @ref="Chart"   
+        {
+        <DataChart Height="100%" Width="100%" @ref="Chart"
                    SeriesMouseEnterScript="onNetworkPolarChartMouseEnter"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
-                        
-            <NumericAngleAxis Name="angleAxis" 
-                              MinimumValue="0" MaximumValue="360" Interval="30" 
+
+            <NumericAngleAxis Name="angleAxis"
+                              MinimumValue="0" MaximumValue="360" Interval="30"
                               StartAngleOffset="270"
                               LabelExtent="30"/>
-            <NumericRadiusAxis Name="radiusAxis" 
+            <NumericRadiusAxis Name="radiusAxis"
                                RadiusExtentScale="0.85"
                                InnerRadiusExtentScale="0"
                                MinimumValue="0" MaximumValue="3" Interval="1"
@@ -35,21 +35,21 @@
                              RadiusAxisName="radiusAxis"
                              RadiusMemberPath="Level"
                              ShowDefaultTooltip="true"
-                             Thickness="2" 
+                             Thickness="2"
                              Brush="#676666"
                              Title="Connections"
-                             MarkerType="@MarkerType.None" />
+                             MarkerType="MarkerType.None" />
 
-            
+
                 @foreach (var markers in this.PolarMarkersByLevel.Values)
-                {                      
+                {
                     <PolarScatterSeries DataSource="@markers"
                                         AngleAxisName="angleAxis"
                                         AngleMemberPath="Angle"
                                         RadiusAxisName="radiusAxis"
                                         RadiusMemberPath="Level"
-                                        Thickness="1" 
-                                        MarkerType="@MarkerType.None"
+                                        Thickness="1"
+                                        MarkerType="MarkerType.None"
                                         MarkerTemplateScript="onNetworkPolarChartMarker"
                                         Title="@("Level " + markers[0].Level)"
                                         Brush="@markers[0].Fill"

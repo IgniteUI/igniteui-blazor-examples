@@ -7,11 +7,11 @@
         {
         <DataChart Height="100%" Width="100%" Subtitle="Renewable Energy Generated">
             <CategoryXAxis Name="xAxis" DataSource="@DataSource" Label="Year" />
-            <NumericYAxis Name="yAxis" Title="TWh" LabelLocation="@AxisLabelsLocation.OutsideRight" />
+            <NumericYAxis Name="yAxis" Title="TWh" LabelLocation="AxisLabelsLocation.OutsideRight" />
 
             <LineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="@DataSource" ValueMemberPath="USA" />
 
-            <FinalValueLayer AxisAnnotationBackground="Orange" AxisAnnotationTextColor="Black" AxisAnnotationOutline="Black"/>            
+            <FinalValueLayer AxisAnnotationBackground="Orange" AxisAnnotationTextColor="Black" AxisAnnotationOutline="Black"/>
         </DataChart>
         }
     </div>
@@ -19,14 +19,14 @@
 
 @code {
 
-    private List<EnergyRenewableInfo> DataSource = new EnergyRenewableData();    
+    private List<EnergyRenewableInfo> DataSource = new EnergyRenewableData();
 
     protected override void OnInitialized()
     {
         DataChartCoreModule.Register(IgniteUIBlazor);
         DataChartCategoryModule.Register(IgniteUIBlazor);
         DataChartAnnotationModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);        
-        FinalValueLayerModule.Register(IgniteUIBlazor);                
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        FinalValueLayerModule.Register(IgniteUIBlazor);
     }
 }

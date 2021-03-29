@@ -7,11 +7,11 @@
         {
         <DataChart Height="100%" Width="100%" Subtitle="Renewable Energy Generated">
             <CategoryXAxis Name="xAxis" DataSource="@DataSource" Label="Year" />
-            <NumericYAxis Name="yAxis" Title="TWh" LabelLocation="@AxisLabelsLocation.OutsideRight" />
+            <NumericYAxis Name="yAxis" Title="TWh" LabelLocation="AxisLabelsLocation.OutsideRight" />
 
             <LineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="@DataSource" ValueMemberPath="USA" />
 
-            <CrosshairLayer HorizontalLineVisibility="@Visibility.Collapsed" Brush="DodgerBlue" />
+            <CrosshairLayer HorizontalLineVisibility="Visibility.Collapsed" Brush="DodgerBlue" />
         </DataChart>
         }
     </div>
@@ -19,7 +19,7 @@
 
 @code {
 
-    private List<EnergyRenewableInfo> DataSource = new EnergyRenewableData();    
+    private List<EnergyRenewableInfo> DataSource = new EnergyRenewableData();
 
     protected override void OnInitialized()
     {
@@ -27,6 +27,6 @@
         DataChartCategoryModule.Register(IgniteUIBlazor);
         DataChartAnnotationModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
-        CrosshairLayerModule.Register(IgniteUIBlazor);           
-    }  
+        CrosshairLayerModule.Register(IgniteUIBlazor);
+    }
 }

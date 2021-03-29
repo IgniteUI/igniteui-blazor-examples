@@ -8,9 +8,9 @@
             <div class="igLegend">
                 <ItemLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
             </div>
-        </div>    
+        </div>
         <label style="width: auto; text-align: right; position: absolute; top: 0rem; right: 1.0rem;">
-               Selected Slice: @SelectedSlice 
+               Selected Slice: @SelectedSlice
         </label>
     </div>
 
@@ -18,7 +18,7 @@
         @if (DataSource != null)
         {
             <DoughnutChart Height="100%" Width="100%"
-                           @ref="Chart" 
+                           @ref="Chart"
                            AllowSliceSelection="true"
                            SliceClick="OnSliceClick"
                            SelectedSliceStroke="White"
@@ -27,10 +27,10 @@
                            SelectedSliceOpacity="0.75">
                 <RingSeries DataSource="@DataSource"
                             LabelMemberPath="Summary"
-                            LabelsPosition="@LabelsPosition.OutsideEnd"
+                            LabelsPosition="LabelsPosition.OutsideEnd"
                             LabelExtent="30"
                             ValueMemberPath="Value"
-                            LegendLabelMemberPath="Category"                             
+                            LegendLabelMemberPath="Category"
                             RadiusFactor="0.6"
                             StartAngle="30">
                 </RingSeries>
@@ -80,7 +80,7 @@
     protected void OnSliceClick(SliceClickEventArgs e)
     {
         Console.WriteLine("OnSliceClick " + this.DataSource[e.Index].Category);
-                 
+
         if (e.IsSelected)
         {
             this.SelectedSlice = this.DataSource[e.Index].Category;
@@ -88,6 +88,6 @@
         else
         {
             this.SelectedSlice = "None";
-        } 
+        }
     }
 }
