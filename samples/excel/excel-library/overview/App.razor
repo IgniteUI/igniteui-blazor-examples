@@ -14,7 +14,7 @@
 
 <div class="igContainer">
 
-    <div class="igOptions">
+    <div class="igOptions-vertical">
         <button @onclick="CreateXlsx">Save Workbook to XLSX</button>
         <button @onclick="CreateXls">Save Workbook to XLS</button>
     </div>
@@ -176,7 +176,7 @@
         var ms = new System.IO.MemoryStream();
         workbook.SetCurrentFormat(format);
         workbook.Save(ms);
-        
+
         string extension;
 
         switch (workbook.CurrentFormat)

@@ -2,13 +2,15 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="igContainer">
-    <div class="igOptions" >
-        <span>Y-Axis Minimum Value: @YAxisMinValue</span>
+    <div class="igOptions-horizontal" >
+        <label>Y-Axis Minimum Value: </label>
+        <label class="igOptions-value" >@YAxisMinValue</label>
         <input type="range" min="0" max="100" step="10" value="0" @oninput="OnYAxisMinValueChanged" />
-        <span>Y-Axis Maximum Value: @YAxisMaxValue</span>
+        <label>Y-Axis Maximum Value: </label>
+        <label class="igOptions-value" >@YAxisMaxValue</label>
         <input type="range" min="100" max="200" step="10" value="150" @oninput="OnYAxisMaxValueChanged" />
     </div>
-    <div class="igOptions">
+    <div class="igOptions-vertical">
         <span class="igLegend-title">Renewable Electricity Generated</span>
         <div class="igLegend">
             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />

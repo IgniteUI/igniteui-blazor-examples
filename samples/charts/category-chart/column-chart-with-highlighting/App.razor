@@ -2,11 +2,7 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="igContainer">
-    <div class="igOptions">
-        <span class="igLegend-title">Temperatures in LA and NYC for 2020 (in Celsius)</span>
-        <div class="igLegend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
-        </div>
+    <div class="igOptions-horizontal">
         <label class="igOptions-label">Enable Highlighting: </label>
         <label class="igOptions-item">
             <input type="checkbox"
@@ -23,6 +19,12 @@
                    checked="@IsCategoryHighlighting"
                    @onchange="OnCategoryHighlightingChanged" />Category
         </label>
+    </div>
+    <div class="igOptions-vertical">
+        <span class="igLegend-title">Temperatures in LA and NYC for 2020 (in Celsius)</span>
+        <div class="igLegend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+        </div>
     </div>
     <div class="igComponent">
         <CategoryChart Height="100%" Width="100%"

@@ -3,14 +3,16 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="igContainer">
-    <div class="igOptions">
+    <div class="igOptions-horizotnal">
         <button @onclick="OnDataFeedClick" style="width: 5rem">@DataFeedAction</button>
-        <button @onclick="OnDataGenerateClick">Generate</button>
         <label class="igOptions-label">Refresh: </label>
         <label class="igOptions-value">@RefreshInfo</label>
         <input class="igOptions-slider" type="range" min="10" max="1000" step="10"
                value=@RefreshInterval
                @onchange="OnRefreshFrequencyChanged" />
+    </div>
+    <div class="igOptions-horizotnal">
+        <button @onclick="OnDataGenerateClick">Generate</button>
         <label class="igOptions-label">Points: </label>
         <label class="igOptions-value">@DataInfo</label>
         <input class="igOptions-slider" type="range" min="1000" max="50000" step="100"
