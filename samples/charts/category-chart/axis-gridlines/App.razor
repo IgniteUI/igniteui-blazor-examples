@@ -7,22 +7,14 @@
         <div class="legend">
             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
-                
         <div class="options vertical overlay-top-right">
-            <label >Axis Appearance</label>
+            <label >Axis Line Appearance</label>
             <div class="options horizontal">
-                <label>Line</label>
-                <input type="color" value="@AxisLineStroke" @onchange="OnAxisLineStrokeChange" />
-            @*</div>
-            <div class="horizontal">*@
-                <label>Major</label>
-                <input type="color" value="@AxisMajorStroke" @onchange="OnAxisMajorStrokeChange"  />
-            @*</div> 
-            <div class="horizontal">*@
-                <label>Minor</label>
-                <input type="color" value="@AxisMinorStroke" @onchange="OnAxisMinorStrokeChange"  />
-            </div> 
-        </div>      
+                <label>Main </label><input type="color" value="@AxisMainStroke"  @onchange="OnAxisMainStrokeChange" />
+                <label>Major</label><input type="color" value="@AxisMajorStroke" @onchange="OnAxisMajorStrokeChange"  />
+                <label>Minor</label><input type="color" value="@AxisMinorStroke" @onchange="OnAxisMinorStrokeChange"  />
+            </div>
+        </div>
     </div>
     <div class="container vertical">
         @if (Data != null)
@@ -33,15 +25,15 @@
                            ChartType="CategoryChartType.Line"
                            IsHorizontalZoomEnabled="false"
                            IsVerticalZoomEnabled="false"
-                           
-                           XAxisStroke="@AxisLineStroke" 
+
+                           XAxisStroke="@AxisMainStroke"
                            XAxisStrokeThickness="2"
 
                            XAxisInterval="1"
                            XAxisMajorStroke="@AxisMajorStroke"
                            XAxisMajorStrokeThickness="0.5"
-                           
-                           YAxisStroke="@AxisLineStroke"
+
+                           YAxisStroke="@AxisMainStroke"
                            YAxisStrokeThickness="2"
 
                            YAxisInterval="20"
@@ -51,7 +43,7 @@
                            YAxisMinorInterval="5"
                            YAxisMinorStroke="@AxisMinorStroke"
                            YAxisMinorStrokeThickness="0.5"
-                           
+
                            Thickness="2">
             </CategoryChart>
         }
@@ -60,22 +52,22 @@
 
 @code {
 
-    private void OnAxisLineStrokeChange(ChangeEventArgs args)
-    { 
-        this.AxisLineStroke = (string)args.Value; 
+    private string AxisMainStroke  = "#919191";
+    private string AxisMajorStroke = "#474747";
+    private string AxisMinorStroke = "#919191";
+
+    private void OnAxisMainStrokeChange(ChangeEventArgs args)
+    {
+        this.AxisMainStroke = (string)args.Value;
     }
     private void OnAxisMajorStrokeChange(ChangeEventArgs args)
-    { 
-        this.AxisMajorStroke = (string)args.Value; 
-    } 
+    {
+        this.AxisMajorStroke = (string)args.Value;
+    }
     private void OnAxisMinorStrokeChange(ChangeEventArgs args)
-    { 
-        this.AxisMinorStroke = (string)args.Value; 
-    } 
-
-    private string AxisLineStroke  = "#2b992f";
-    private string AxisMajorStroke = "#474747"; 
-    private string AxisMinorStroke = "#919191"; 
+    {
+        this.AxisMinorStroke = (string)args.Value;
+    }
 
     private CategoryChart Chart;
     private Legend _Legend;
