@@ -2,15 +2,19 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options horizontal" >
-        <label>X-Axis Overlap:</label>
-        <label class="options-value" >@XAxisOverlapValue</label>
-        <input type="range" min="0" max="1" step="0.1" value="1" @oninput="OnXAxisOverlapChange"/>
-    </div>
+
     <div class="options vertical">
-        <span class="legend-title">Highest Grossing Film Franchises and Series Worldwide as of April 2020</span>
+        <span class="legend-title">Highest Grossing Film Franchises</span>
         <div class="legend">
             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+        </div>
+
+        <div class="options vertical overlay-top-right" >
+            <div class="options horizontal" >
+                <label>X-Axis Overlap:</label>
+                <label class="options-value" >@AxisOverlapValue</label>
+            </div>
+            <input type="range" min="0" max="1" step="0.1" value="1" @oninput="OnXAxisOverlapChange"/>
         </div>
     </div>
     <div class="container vertical">
@@ -23,7 +27,7 @@
 						   IsHorizontalZoomEnabled="false"
                            IsVerticalZoomEnabled="false"
                            XAxisInterval="1"
-                           XAxisOverlap="@XAxisOverlapValue">
+                           XAxisOverlap="AxisOverlapValue">
             </CategoryChart>
         }
     </div>
@@ -38,7 +42,7 @@
         set { _Legend = value; StateHasChanged(); }
     }
 
-    private double XAxisOverlapValue = 1;
+    private double AxisOverlapValue = 1;
 
     private List<FilmFranchiseRevenueInfo> Data = new FilmFranchiseRevenueData();
 
@@ -50,6 +54,6 @@
 
     private void OnXAxisOverlapChange(ChangeEventArgs args)
     {
-        this.XAxisOverlapValue = double.Parse(args.Value.ToString());
+        this.AxisOverlapValue = double.Parse(args.Value.ToString());
     }
 }
