@@ -1,25 +1,25 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igOptions-horizotnal">
-        <label class="igOptions-label">Annotations: </label>
-        <label class="igOptions-item">
+<div class="container vertical">
+    <div class="options horizotnal">
+        <label class="options-label">Annotations: </label>
+        <label class="options-item">
             <input type="checkbox" @onchange="OnCrosshairsVisibleCheckboxChange" checked="@CrosshairsVisible" /> Crosshair
         </label>
-        <label class="igOptions-item">
+        <label class="options-item">
             <input type="checkbox" @onchange="OnCalloutsVisibleCheckboxChange" checked="@CalloutsVisible"/> Callouts
         </label>
-        <label class="igOptions-item">
+        <label class="options-item">
             <input type="checkbox" @onchange="OnFinalValuesCheckboxChange" checked="@FinalValuesVisible"/> Final Values
         </label>
         @* TODO changing markers is not currently possible at this time
-        <label class="igOptions-item">
+        <label class="options-item">
             <input type="checkbox" onChange={this.onMarkersVisible} /> Markers
         </label>*@
     </div>
 
-    <div class="igComponent">
+    <div class="container vertical">
         @if (Data != null)
         {
             <CategoryChart Height="100%" Width="100%"

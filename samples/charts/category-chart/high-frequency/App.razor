@@ -2,24 +2,24 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igOptions-horizotnal">
+<div class="container vertical">
+    <div class="options horizotnal">
         <button @onclick="OnDataFeedClick" style="width: 5rem">@DataFeedAction</button>
-        <label class="igOptions-label">Refresh: </label>
-        <label class="igOptions-value">@RefreshInfo</label>
-        <input class="igOptions-slider" type="range" min="10" max="1000" step="10"
+        <label class="options-label">Refresh: </label>
+        <label class="options-value">@RefreshInfo</label>
+        <input class="options-slider" type="range" min="10" max="1000" step="10"
                value=@RefreshInterval
                @onchange="OnRefreshFrequencyChanged" />
     </div>
-    <div class="igOptions-horizotnal">
+    <div class="options horizotnal">
         <button @onclick="OnDataGenerateClick">Generate</button>
-        <label class="igOptions-label">Points: </label>
-        <label class="igOptions-value">@DataInfo</label>
-        <input class="igOptions-slider" type="range" min="1000" max="50000" step="100"
+        <label class="options-label">Points: </label>
+        <label class="options-value">@DataInfo</label>
+        <input class="options-slider" type="range" min="1000" max="50000" step="100"
                value=@DataPoints @onchange="OnDataPointsChanged" />
     </div>
 
-    <div class="igComponent">
+    <div class="container vertical">
         @if (Data != null)
         {
             <CategoryChart Height="100%" Width="100%"

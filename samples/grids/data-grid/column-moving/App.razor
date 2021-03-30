@@ -2,27 +2,27 @@
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
-<div class="igContainer">
-    <div class="igOptions-horizotnal">
-        <span class="igOptions-item">Column Moving Mode:</span>
-        <select class="igOptions-item" @bind="@GridColumnMovingMode">
+<div class="container vertical">
+    <div class="options horizotnal">
+        <span class="options-item">Column Moving Mode:</span>
+        <select class="options-item" @bind="@GridColumnMovingMode">
             <option>@ColumnMovingMode.Deferred</option>
             <option>@ColumnMovingMode.None</option>
         </select>
-        <span class="igOptions-item">Separator Width: </span>
-        <input class="igOptions-slider" @bind="@GridColumnMovingSeparatorWidth"
+        <span class="options-item">Separator Width: </span>
+        <input class="options-slider" @bind="@GridColumnMovingSeparatorWidth"
                type="range" min=1 max=5 step="1" />
     </div>
-    <div class="igOptions-horizotnal">
-        <span class="igOptions-item" >Column Moving Animation:</span>
-        <select class="igOptions-item" @bind="@GridColumnMovingAnimationMode" >
+    <div class="options horizotnal">
+        <span class="options-item" >Column Moving Animation:</span>
+        <select class="options-item" @bind="@GridColumnMovingAnimationMode" >
             <option>@ColumnMovingAnimationMode.Auto</option>
             <option>@ColumnMovingAnimationMode.SlideOver</option>
             <option>@ColumnMovingAnimationMode.None</option>
         </select>
     </div>
 
-    <div class="igComponent">
+    <div class="container vertical">
         @if (Data != null)
         {
             <DataGrid Height="100%" Width="100%"

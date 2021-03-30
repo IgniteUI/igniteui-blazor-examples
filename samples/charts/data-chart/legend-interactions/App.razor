@@ -2,29 +2,29 @@
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
-<div class="igContainer">
-    <div class="igOptions-horizontal">
-        <label class="igOptions-label">Enable Highlighting: </label>
-        <label class="igOptions-item">
+<div class="container vertical">
+    <div class="options horizontal">
+        <label class="options-label">Enable Highlighting: </label>
+        <label class="options-item">
             <input type="checkbox" @bind="SeriesHighlightEnabled" /> Series
         </label>
-        <label class="igOptions-item">
+        <label class="options-item">
             <input type="checkbox" @onchange="OnItemHighlightCheckboxChanged"/>Item
         </label>
-        <label class="igOptions-item">
+        <label class="options-item">
             <input type="checkbox" @onchange="OnCategoryHighlightCheckboxChanged" />Category
         </label>
-        <label class="igOptions-item">
+        <label class="options-item">
             <input type="checkbox" @onchange="OnItemTooltipCheckboxChanged" />Tooltip
         </label>
     </div>
-    <div class="igOptions-horizontal">
-        <label style="background: orange" class="igOptions-item" @onclick="@(e => onLegendClick(0))" @onmouseover="@(e => onLegendHover(0))" @onmouseout="@(e => onLegendLeave(0))"> Europe  </label>
-        <label style="background: orange" class="igOptions-item" @onclick="@(e => onLegendClick(1))" @onmouseover="@(e => onLegendHover(1))" @onmouseout="@(e => onLegendLeave(1))"> China  </label>
-        <label style="background: orange" class="igOptions-item" @onclick="@(e => onLegendClick(2))" @onmouseover="@(e => onLegendHover(2))" @onmouseout="@(e => onLegendLeave(2))"> USA  </label>
+    <div class="options horizontal">
+        <label style="background: orange" class="options-item" @onclick="@(e => onLegendClick(0))" @onmouseover="@(e => onLegendHover(0))" @onmouseout="@(e => onLegendLeave(0))"> Europe  </label>
+        <label style="background: orange" class="options-item" @onclick="@(e => onLegendClick(1))" @onmouseover="@(e => onLegendHover(1))" @onmouseout="@(e => onLegendLeave(1))"> China  </label>
+        <label style="background: orange" class="options-item" @onclick="@(e => onLegendClick(2))" @onmouseover="@(e => onLegendHover(2))" @onmouseout="@(e => onLegendLeave(2))"> USA  </label>
     </div>
 
-    <div class="igComponent">
+    <div class="container vertical">
         <DataChart Height="100%" Width="100%"
                    IsVerticalZoomEnabled="true"
                    IsHorizontalZoomEnabled="true" @ref="Chart">

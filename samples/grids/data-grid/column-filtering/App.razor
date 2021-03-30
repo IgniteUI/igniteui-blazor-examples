@@ -2,25 +2,25 @@
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
-<div class="igContainer">
-    <div class="igOptions-horizotnal">
-        <span class="igOptions-item">Column: </span>
-        <select class="igOptions-item" @onchange="OnFilterColumnChanged">
+<div class="container vertical">
+    <div class="options horizotnal">
+        <span class="options-item">Column: </span>
+        <select class="options-item" @onchange="OnFilterColumnChanged">
             <option>Name</option>
             <option>Street</option>
             <option>City</option>
             <option>Country</option>
         </select>
-        <select class="igOptions-item" @onchange="OnFilterModeChanged">
+        <select class="options-item" @onchange="OnFilterModeChanged">
             <option>Contains</option>
             <option>StartsWith</option>
             <option>EndsWith</option>
         </select>
-        <label class="igOptions-item"> Expression: </label>
-        <input class="igOptions-input-text" type="text" name="title" @onchange="OnFilterTextChanged" />
+        <label class="options-item"> Expression: </label>
+        <input class="options-text" type="text" name="title" @onchange="OnFilterTextChanged" />
     </div>
 
-    <div class="igComponent">
+    <div class="container vertical">
         @if (Data != null)
         {
             <DataGrid Height="100%" Width="100%"

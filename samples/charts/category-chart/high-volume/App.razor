@@ -1,15 +1,15 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igOptions-horizotnal">
-        <label class="igOptions-label">Data Points: </label>
-        <label class="igOptions-value">@DataInfo</label>
-        <input class="igOptions-slider" type="range" min="10000" max="1000000" step="1000"
+<div class="container vertical">
+    <div class="options horizotnal">
+        <label class="options-label">Data Points: </label>
+        <label class="options-value">@DataInfo</label>
+        <input class="options-slider" type="range" min="10000" max="1000000" step="1000"
                value="@DataPoints" @onchange="OnDataPointsChanged" />
         <button @onclick="OnDataGenerateClick">Generate Data</button>
     </div>
-    <div class="igComponent">
+    <div class="container vertical">
         <CategoryChart @ref="chart"
             Height="100%" Width="100%"
             ChartType="CategoryChartType.Line"

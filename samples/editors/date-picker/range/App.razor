@@ -1,7 +1,7 @@
 ﻿@using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor;
 
-<div class="igContainer">
+<div class="container vertical">
     <div class="dateRanges">
         <span class="caption">From:  </span>
         <DatePicker Height="50px" Width="220px" Value="@FromDate" ValueChanged="FromDateValueChanged"/>
@@ -45,7 +45,7 @@
     }
 
     public void FromDateValueChanged(ValueChangedEventArgs e)
-    {        
+    {
         FromDate = e.NewValue;
         if(this.FromDate > this.ToDate)
         {
@@ -55,7 +55,7 @@
     }
 
     public void ToDateValueChanged(ValueChangedEventArgs e)
-    {        
+    {
         this.ToDate = e.NewValue;
         if (this.ToDate < this.FromDate)
         {

@@ -1,22 +1,22 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igOptions-horizontal" >
+<div class="container vertical">
+    <div class="options horizontal" >
         <label>X-Axis Label Angle: </label>
-        <label class="igOptions-value" >@XAxisLabelAngle</label>
+        <label class="options-value" >@XAxisLabelAngle</label>
         <input type="range" min="0" max="270" step="10" value="0" @oninput="OnXAxisLabelAngleChange"/>
         <label>Y-Axis Label Angle: </label>
-        <label class="igOptions-value" >@YAxisLabelAngle</label>
+        <label class="options-value" >@YAxisLabelAngle</label>
         <input type="range" min="0" max="270" step="10" value="0" @oninput="OnYAxisLabelAngleChange" />
     </div>
-    <div class="igOptions-vertical">
-        <span class="igLegend-title">Renewable Electricity Generated</span>
-        <div class="igLegend">
+    <div class="options vertical">
+        <span class="legend-title">Renewable Electricity Generated</span>
+        <div class="legend">
             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
-    <div class="igComponent">
+    <div class="container vertical">
         @if (Data != null)
         {
             <CategoryChart Height="100%" Width="100%"

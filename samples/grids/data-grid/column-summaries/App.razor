@@ -2,17 +2,17 @@
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
-<div class="igContainer">
-    <div class="igOptions-horizotnal">
-        <span class="igOptions-item">Summary Scope:</span>
-        <select class="igOptions-item" @bind="GridSummaryScope">
+<div class="container vertical">
+    <div class="options horizotnal">
+        <span class="options-item">Summary Scope:</span>
+        <select class="options-item" @bind="GridSummaryScope">
             <option>@DataSourceSummaryScope.Root</option>
             <option>@DataSourceSummaryScope.Groups</option>
             <option>@DataSourceSummaryScope.Both</option>
             <option>@DataSourceSummaryScope.None</option>
         </select>
-        <span class="igOptions-item" >Group Summary Display Mode:</span>
-        <select class="igOptions-item" @bind="GridGroupSummaryDisplayMode">
+        <span class="options-item" >Group Summary Display Mode:</span>
+        <select class="options-item" @bind="GridGroupSummaryDisplayMode">
             <option>@GroupSummaryDisplayMode.List</option>
             <option>@GroupSummaryDisplayMode.Cells</option>
             <option>@GroupSummaryDisplayMode.RowTop</option>
@@ -20,7 +20,7 @@
             <option>@GroupSummaryDisplayMode.None</option>
         </select>
     </div>
-    <div class="igComponent">
+    <div class="container vertical">
         @if (Data != null)
         {
             <DataGrid Height="calc(100% - 3rem)" Width="100%" @ref="@DataGridRef"

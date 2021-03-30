@@ -1,22 +1,29 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igOptions-horizontal" >
-        <label>Y-Axis Minimum Value: </label>
-        <label class="igOptions-value" >@YAxisMinValue</label>
-        <input type="range" min="0" max="100" step="10" value="0" @oninput="OnYAxisMinValueChanged" />
-        <label>Y-Axis Maximum Value: </label>
-        <label class="igOptions-value" >@YAxisMaxValue</label>
-        <input type="range" min="100" max="200" step="10" value="150" @oninput="OnYAxisMaxValueChanged" />
-    </div>
-    <div class="igOptions-vertical">
-        <span class="igLegend-title">Renewable Electricity Generated</span>
-        <div class="igLegend">
+<div class="container vertical">
+    
+    <div class="options vertical">
+        <span class="legend-title">Renewable Electricity Generated</span>
+        <div class="legend">
             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
+        
+        <div class="overlay-top-right" >
+            <div class="options horizontal" >
+                <label class="options-label">Y-Axis Minimum Value </label>
+                <label class="options-value" >@YAxisMinValue</label>
+                <input type="range" min="0" max="100" step="10" value="0" @oninput="OnYAxisMinValueChanged" />
+            </div>
+            <div class="options horizontal" >
+                <label class="options-label">Y-Axis Maximum Value </label>
+                <label class="options-value" >@YAxisMaxValue</label>
+                <input type="range" min="100" max="200" step="10" value="150" @oninput="OnYAxisMaxValueChanged" />
+            </div>
+        </div>       
     </div>
-    <div class="igComponent">
+
+    <div class="container vertical">
         @if (Data != null)
         {
             <CategoryChart Height="100%" Width="100%"
@@ -25,14 +32,15 @@
                            ChartType="CategoryChartType.Line"
                            IsHorizontalZoomEnabled="false"
                            IsVerticalZoomEnabled="false"
-                           YAxisMinimumValue="@YAxisMinValue"
-                           YAxisMaximumValue="@YAxisMaxValue">
+                           YAxisMinimumValue="YAxisMinValue"
+                           YAxisMaximumValue="YAxisMaxValue">
             </CategoryChart>
         }
     </div>
 </div>
 
 @code {
+  
 
     private Legend _Legend;
     private Legend Legend

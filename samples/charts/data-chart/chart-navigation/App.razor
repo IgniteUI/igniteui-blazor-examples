@@ -1,25 +1,25 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igOptions-horizontal">
-        <div class="igOptions-vertical" style="width: 100px">
+<div class="container vertical">
+    <div class="options horizontal">
+        <div class="options vertical" style="width: 100px">
             <button style="margin: 5px" @onclick="OnPanUp">Pan Up</button>
             <button style="margin: 5px" @onclick="OnPanDown">Pan Down</button>
         </div>
-        <div class="igOptions-vertical" style="width: 100px">
+        <div class="options vertical" style="width: 100px">
             <button style="margin: 5px" @onclick="OnPanLeft">Pan Left</button>
             <button style="margin: 5px" @onclick="OnPanRight">Pan Right</button>
         </div>
-        <div class="igOptions-vertical" style="width: 100px">
+        <div class="options vertical" style="width: 100px">
             <button style="margin: 5px" @onclick="OnZoomIn">Zoom In</button>
             <button style="margin: 5px" @onclick="OnZoomOut">Zoom Out</button>
         </div>
-        <div class="igOptions-vertical" style="width: 120px">
-            <label class="igOptions-label" style="margin: 5px">Pan Modifier:</label>
-            <label class="igOptions-label" style="margin: 5px">Zoom Modifier:</label>
+        <div class="options vertical" style="width: 120px">
+            <label class="options-label" style="margin: 5px">Pan Modifier:</label>
+            <label class="options-label" style="margin: 5px">Zoom Modifier:</label>
         </div>
-        <div class="igOptions-vertical" style="width: 100px">
+        <div class="options vertical" style="width: 100px">
             <select @bind="@PanModifier" style="margin: 5px">
                 <option>@ModifierKeys.Alt</option>
                 <option>@ModifierKeys.Control</option>
@@ -37,21 +37,21 @@
                 <option>@ModifierKeys.None</option>
             </select>
         </div>
-        <div class="igOptions-vertical" style="width: 150px">
-            <label class="igOptions-label" style="margin: 5px">Default Interaction:</label>
-            <label class="igOptions-label" style="margin: 5px">Enable Zooming:</label>
+        <div class="options vertical" style="width: 150px">
+            <label class="options-label" style="margin: 5px">Default Interaction:</label>
+            <label class="options-label" style="margin: 5px">Enable Zooming:</label>
         </div>
-        <div class="igOptions-vertical" style="width: 100px">
+        <div class="options vertical" style="width: 100px">
             <select @bind="@DefaultInteraction" style="margin: 5px">
                 <option>@InteractionState.DragZoom</option>
                 <option>@InteractionState.DragPan</option>
                 <option>@InteractionState.None</option>
             </select>
-            <input class="igOptions-item" style="margin: 5px" type="checkbox" @onchange="OnEnableZoomingChange" checked="@IsZoomingEnabled" />
+            <input class="options-item" style="margin: 5px" type="checkbox" @onchange="OnEnableZoomingChange" checked="@IsZoomingEnabled" />
         </div>
     </div>
 
-    <div class="igComponent">
+    <div class="container vertical">
 
         <DataChart @ref="Chart" Height="100%" Width="100%"
                    Subtitle="Stock Prices Series in Candlestick Display Type"

@@ -1,10 +1,10 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
+<div class="container vertical">
 
-    <div class="igOptions-horizontal">
-        <span class="igOptions-label">Type of Polar Series: </span>
+    <div class="options horizontal">
+        <span class="options-label">Type of Polar Series: </span>
         <select value=@SeriesType
                 @onchange="OnSeriesTypeChanged">
             <option>Area</option>
@@ -14,13 +14,13 @@
             <option>Scatter</option>
         </select>
 
-        <span class="igLegend-title">Legend: </span>
-        <div class="igLegend">
+        <span class="legend-title">Legend: </span>
+        <div class="legend">
             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
 
-    <div class="igComponent">
+    <div class="container vertical">
         @if (Data != null)
         {
         <DataChart Height="100%" Width="100%"

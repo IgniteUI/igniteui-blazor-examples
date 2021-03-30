@@ -1,9 +1,9 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igOptions-horizotnal">
-        <span class="igOptions-label">Transition Type </span>
+<div class="container vertical">
+    <div class="options horizotnal">
+        <span class="options-label">Transition Type </span>
         <select @bind="@SelectedTransition">
             <option>@CategoryTransitionInMode.AccordionFromBottom</option>
             <option>@CategoryTransitionInMode.AccordionFromCategoryAxisMaximum</option>
@@ -26,12 +26,12 @@
             <option>@CategoryTransitionInMode.SweepFromValueAxisMinimum</option>
             <option>@CategoryTransitionInMode.Auto</option>
         </select>
-        <label class="igOptions-value" style="width: 75px">@IntervalLabel</label>
-        <input class="igOptions-slider" type="range" min="50" max="2000" step="50"
+        <label class="options-value" style="width: 75px">@IntervalLabel</label>
+        <input class="options-slider" type="range" min="50" max="2000" step="50"
                value=@TransitionInInterval @onchange="OnTransitionIntervalChange" />
         <button @onclick="OnReloadChart">Reload Chart</button>
     </div>
-    <div class="igComponent">
+    <div class="container vertical">
         @if (Data != null)
         {
             <CategoryChart Height="100%" Width="100%"

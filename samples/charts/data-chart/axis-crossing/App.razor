@@ -2,16 +2,16 @@
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
-<div class="igContainer">
-    <div class="igOptions-horizontal">
+<div class="container vertical">
+    <div class="options horizontal">
         <label>X Axis Crossing Value:  </label>
-        <label class="igOptions-value" >@XAxisCrossingValue</label>
+        <label class="options-value" >@XAxisCrossingValue</label>
         <input type="range" min="-360" max="360" step="40" value="0" @oninput="OnXAxisCrossingValueChanged" />
         <label>Y Axis Crossing Value:  </label>
-        <label class="igOptions-value" >@YAxisCrossingValue</label>
+        <label class="options-value" >@YAxisCrossingValue</label>
         <input type="range" min="-1.25" max="1.25" step="0.25" value="0" @oninput="OnYAxisCrossingValueChanged" />
     </div>
-    <div class="igComponent">
+    <div class="container vertical">
         @if (SinData != null && CosData != null)
         {
         <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true" IsHorizontalZoomEnabled="true">

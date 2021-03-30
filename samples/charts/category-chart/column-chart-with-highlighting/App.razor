@@ -1,32 +1,32 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igOptions-horizontal">
-        <label class="igOptions-label">Enable Highlighting: </label>
-        <label class="igOptions-item">
+<div class="container vertical">
+    <div class="options horizontal">
+        <label class="options-label">Enable Highlighting: </label>
+        <label class="options-item">
             <input type="checkbox"
                    checked="@IsSeriesHighlighting"
                    @onchange="OnSeriesHighlightingChanged" /> Series
         </label>
-        <label class="igOptions-item">
+        <label class="options-item">
             <input type="checkbox"
                    checked="@IsItemHighlighting"
                    @onchange="OnItemHighlightingChanged" />Item
         </label>
-        <label class="igOptions-item">
+        <label class="options-item">
             <input type="checkbox"
                    checked="@IsCategoryHighlighting"
                    @onchange="OnCategoryHighlightingChanged" />Category
         </label>
     </div>
-    <div class="igOptions-vertical">
-        <span class="igLegend-title">Temperatures in LA and NYC for 2020 (in Celsius)</span>
-        <div class="igLegend">
+    <div class="options vertical">
+        <span class="legend-title">Temperatures in LA and NYC for 2020 (in Celsius)</span>
+        <div class="legend">
             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
-    <div class="igComponent">
+    <div class="container vertical">
         <CategoryChart Height="100%" Width="100%"
                        ExcludedProperties="@(new string[] { "NY_Low", "LA_Low" })"
                        DataSource="Data"

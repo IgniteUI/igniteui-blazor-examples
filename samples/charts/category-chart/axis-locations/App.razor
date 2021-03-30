@@ -1,25 +1,26 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
+<div class="container vertical">
 
-    <div class="igOptions-horizontal" >
-        <div class="igOptions-vertical">
-            <span class="igLegend-title">Renewable Electricity Generated</span>
-            <div class="igLegend">
-                <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
-            </div>
+    <div class="options vertical">
+        <span class="legend-title">Renewable Electricity Generated</span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
-        <div class="igOptions-vertical" style="width: auto; height: 100%;">
+
+        <div class="options horizontal overlay-top-right" >
             <label>Y-Axis Location </label>
-            <select @onchange="OnYAxisLabelLocationChange">
+            <select @onchange="OnLabelsLocationChange">
                 <option>Outside Left</option>
                 <option>Outside Right</option>
+                <option>Inside Left</option>
+                <option>Inside Right</option>
             </select>
         </div>
     </div>
 
-    <div class="igComponent">
+    <div class="container vertical">
         @if (Data != null)
         {
             <CategoryChart Height="100%" Width="100%"
@@ -28,7 +29,7 @@
                            ChartType="CategoryChartType.Line"
                            IsHorizontalZoomEnabled="false"
                            IsVerticalZoomEnabled="false"
-                           YAxisLabelLocation="@YAxisLabelLocation">
+                           YAxisLabelLocation="LabelsLocation">
             </CategoryChart>
         }
     </div>
@@ -43,7 +44,6 @@
         set { _Legend = value; StateHasChanged(); }
     }
 
-    private AxisLabelsLocation YAxisLabelLocation = AxisLabelsLocation.OutsideLeft;
 
     private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
 
@@ -53,31 +53,24 @@
         LegendModule.Register(IgniteUIBlazor);
     }
 
-    private void OnYAxisLabelLocationChange(ChangeEventArgs args)
+    private AxisLabelsLocation LabelsLocation = AxisLabelsLocation.OutsideLeft;
+    private void OnLabelsLocationChange(ChangeEventArgs args)
     {
         string value = args.Value.ToString();
 
         if (value.Contains("Inside"))
         {
             if (value.Contains("Left"))
-            {
-                this.YAxisLabelLocation = AxisLabelsLocation.InsideLeft;
-            }
+                this.LabelsLocation = AxisLabelsLocation.InsideLeft;
             else
-            {
-                this.YAxisLabelLocation = AxisLabelsLocation.InsideRight;
-            }
+                this.LabelsLocation = AxisLabelsLocation.InsideRight;
         }
         else
         {
             if (value.Contains("Left"))
-            {
-                this.YAxisLabelLocation = AxisLabelsLocation.OutsideLeft;
-            }
+                this.LabelsLocation = AxisLabelsLocation.OutsideLeft;
             else
-            {
-                this.YAxisLabelLocation = AxisLabelsLocation.OutsideRight;
-            }
+                this.LabelsLocation = AxisLabelsLocation.OutsideRight;
         }
     }
 }
