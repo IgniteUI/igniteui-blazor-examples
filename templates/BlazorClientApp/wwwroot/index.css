@@ -6,9 +6,11 @@
     background: white;
     height: 100%;
     width: 100%;
-    padding: 0px;
-    margin: 0px;
+    padding: 0rem;
+    margin: 0rem;
 }
+
+/* ============ app styles  ============ */
 
 .app {
     height: 100%;
@@ -17,8 +19,6 @@
     padding: 0rem;
     display: flex;
     flex-direction: column;
-    display: flex;
-    flex-direction: row;
 }
 
 .app-loading {
@@ -44,15 +44,15 @@
 }
 
 .app-error-dismiss {
-    cursor: pointer;
     position: absolute;
     right: 0.75rem;
     top: 0.5rem;
 }
 
-.igContainer,
-.igContainer-horizontal,
-.igContainer-vertical {
+/* ============ container styles  ============ */
+
+.container
+{
     display: flex;
     flex-flow: column;
     flex-wrap: nowrap;
@@ -64,26 +64,28 @@
     height: 100%;
     width: 100%;
     padding: 0rem;
-    margin: 0px;
+    margin: 0rem;
 }
 
-.igContainer-vertical {
+.vertical {
     display: flex;
     flex-flow: column;
+    /*align-items: stretch;*/
 }
 
-.igContainer-horizontal {
+.horizontal {
     display: flex;
     flex-flow: row;
+   /* align-items: center;*/
 }
 
 /* used to layout a component in center of its parent */
-.igContainer-center {
+.container-center {
     background: white;
     height: calc(100% - 1rem);
     width: calc(100% - 1rem);
     padding: 0.5rem;
-    margin: 0px;
+    margin: 0rem;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -91,19 +93,19 @@
 }
 
 /* used to overlay multiple components on top of each other */
-.igContainer-relative {
+.container-relative {
     background: white;
     width: calc(100% - 10px);
     height: calc(100% - 10px);
-    padding: 5px;
-    margin: 0px;
+    padding: 0.5rem;
+    margin: 0rem;
     overflow: hidden;
     align-items: center;
     justify-content: center;
     position: relative
 }
 
-.igContainer-overlay {
+.container-overlay {
     height: 100%;
     width: 100%;
     top: 0;
@@ -111,244 +113,266 @@
     position: absolute;
 }
 
-.igComponent {
-    height: 100%;
-    width: 100%;
-    margin: 0px;
-    padding: 0px;
+/* ============ option styles ============ */
+
+.options
+{
+    margin: 0rem;
+    padding: 0rem;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    color: #494949;
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+
 }
 
-.igOptions,
-.igOptions-horizontal,
-.igOptions-vertical {
-    margin: 0px;
-    padding: 0px;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-    width: calc(100% - 1rem);
-    font-size: 1rem;
-    font-weight: 300;
-    font-family: 'Titillium Web', Verdana, Tahoma, sans-serif;
-    display: flex;
-    flex-direction: row;
-    white-space: nowrap;
-    color: #585858;
-}
-
-.igOptions-horizontal {
-    flex-direction: row;
-    align-items: center;
-}
-
-.igOptions-vertical {
-    flex-direction: column;
-    align-items: stretch;
-}
-
-.igOptions-item {
+.options-item {
     margin-left: 0.5rem;
     margin-right: 0.5rem;
     display: inline-block;
     vertical-align: middle;
 }
 
-.igOptions > label,
-.igOptions-label {
-    margin-top: 0px;
+.options > label,
+.options-label {
+    font-size: 0.875rem;
+    padding: 0rem;
+    margin-top: 0rem;
     margin-left: 0.5rem;
+    margin-right: 0.25rem;
+    vertical-align: middle;
+    white-space: nowrap;
+    align-self: center;
+}
+
+.options-value {
+    font-size: 0.875rem;
+    padding: 0rem;
+    margin-top: 0rem;
+    margin-left: 0.0rem;
+    margin-right: 0.1rem;
+    vertical-align: middle;
+    width: 3rem;
+    text-align: center;
+    align-self: center;
+}
+
+.options > input[type=range],
+.options > slider,
+.options-slider {
+    margin-left: 0.25rem;
     margin-right: 1rem;
-    margin-bottom: 5px;
-    vertical-align: middle;
-    padding: 0px;
-    display: inline-block;
-    white-space: nowrap;
+    padding: 0rem;
+    min-width: 6rem;
 }
 
-.igOptions-value {
-    margin-top: 0px;
-    margin-left: 10px;
-    margin-bottom: 5px;
-    margin-right: 5px;
-    display: inline-block;
-    width: 40px;
-    padding: 0px;
-}
-
-.igOptions > slider,
-.igOptions-slider {
-    margin-top: 0px;
-    margin-bottom: 10px;
-    margin-left: 5px;
-    margin-right: 20px;
-    vertical-align: bottom;
-    padding-top: 0px;
-    min-width: 60px;
-    display: inline-block;
-}
-
-.igOptions > button {
+.options > input[type=button],
+.options > button,
+.options-button {
     margin: 0.25rem;
+    margin-left: 0.5rem;
     color: #fff;
     background: #1a70c7;
     border: 0px solid #1b6ec2;
-    border-radius: .25rem;
-    padding: .375rem .75rem;
+    border-radius: 0.35rem;
+    padding: 0.25rem 1.2rem;
+    vertical-align: middle;
+    cursor: pointer;
+    font-family: 'Titillium Web', Verdana, Tahoma, sans-serif;
+    font-size: 0.875rem;
+}
+
+.options > input[type=button]:hover,
+.options > button:hover,
+.options-button:hover {
+    background: #2a78c7;
+}
+.options > input[type=button]:active,
+.options > button:active,
+.options-button:active {
+    background: #4c8fd4;
+}
+.options > input[type=button]:focus,
+.options > button:focus,
+.options-button:focus {
+    outline: none;
+}
+
+.options > input {
+    margin-top: 0.35rem;
+    margin-bottom: 0.35rem;
+    margin-left: 0.35rem;
+    font-family: 'Titillium Web', Verdana, Tahoma, sans-serif;
+    padding: 0rem;
+    height: auto;
+    align-items: center;
+    align-self: center;
     vertical-align: middle;
     cursor: pointer;
 }
 
-.igOptions > button:hover {
-    background: #2a78c7;
+.options > input[type=color],
+.options-color {
+    align-self: stretch;
 }
-.igOptions > button:active {
-    background: #4c8fd4;
+
+.options > input[type=text],
+.options > text,
+.options-text {
+    padding-left: 0.5rem;
+    margin-left: 0.5rem;
+    min-width: 4rem;
+    vertical-align: middle;
 }
-.igOptions > button:focus {
+
+.options > select,
+.options-select {
+    font-family: 'Titillium Web', Verdana, Tahoma, sans-serif;
+    font-size: 0.875rem;
+    margin-top: 0rem;
+    margin-bottom: 0.25rem;
+    margin-top: 0.25rem;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+    vertical-align: middle;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    border-radius: 0.2rem;
+    outline: none;
+    cursor: pointer;
+}
+.options > select:focus,
+.options-select {
     outline: none;
 }
 
-.igOptions > text,
-.igOptions-input-text {
-    margin-left: 10px;
-    width: 150px;
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.igOptions > select,
-.igOptions-input-select {
-    font-size: 11pt;
-    margin-top: 0px;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    vertical-align: middle;
-    padding: 4px;
-    display: inline-block;
-}
-
-.igLegend {
+/* ============ legend styles ============ */
+.legend {
     --legend-item-overflow: hidden;
-    width: calc(100% - 1rem);
-    font-size: 0.75rem;
+    width: 100%;
 }
 
-.igLegend-title {
+.legend-title {
     width: 100%;
-    margin: 0px;
-    padding: 0px;
+    margin: 0rem;
+    padding: 0rem;
     vertical-align: middle;
-    display: inline-block;
     white-space: nowrap;
     font-size: 1rem;
-    color: #494949;
+    margin-left: 0.5rem;
 }
 
-/* ==================================================================================== */
-/* igOverlay styles used to overlay elements in front of sample container */
-/* ==================================================================================== */
+.ig-chart-legend-item-badge > canvas {
+    vertical-align: middle;
+    margin-bottom: 0.2rem;
+}
 
-.igOverlay-top-left,
-.igOverlay-top-right,
-.igOverlay-top-center,
-.igOverlay-center,
-.igOverlay-bottom-left,
-.igOverlay-bottom-center,
-.igOverlay-bottom-right {
+/* ============ overlay styles  ============ */
+
+.overlay-border  {
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 0.5rem;
+    background: rgba(148, 148, 148, 0.5);
+}
+
+.overlay-top-left,
+.overlay-top-right,
+.overlay-top-center,
+.overlay-center,
+.overlay-bottom-left,
+.overlay-bottom-center,
+.overlay-bottom-right {
     display: flex;
     flex-direction: column;
     font-size: 0.8rem;
     font-family: 'Titillium Web', Verdana, Tahoma, sans-serif;
-    border-radius: 5px;
-    border: 1px solid gray;
-    padding: 0.5rem;
-    color: black;
-    background: rgba(148, 148, 148, 0.5);
-    /* background: white; */
     -webkit-touch-callout: none; /* iOS Safari */
       -webkit-user-select: none; /* Safari */
-       -khtml-user-select: none; /* Konqueror HTML */
          -moz-user-select: none; /* Firefox */
           -ms-user-select: none; /* Internet Explorer/Edge */
-           -o-user-select: none;
               user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
 }
 
-.igOverlay-top-left {
+.overlay-top-left {
     position: absolute;
     top: 0.5rem;
     left: 0.5rem;
 }
 
-.igOverlay-top-right {
+.overlay-top-right {
     position: absolute;
     top: 0.25rem;
     right: 0.25rem;
 }
 
-.igOverlay-center {
+.overlay-center {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-.igOverlay-center-label {
+.overlay-center-label {
     display: block;
     font-size: 3rem;
 }
 
-.igOverlay-top-center {
+.overlay-top-center {
     position: absolute;
     top: 0.25rem;
     left: 50%;
     transform: translate(-50%, 0%);
 }
 
-.igOverlay-bottom-center {
+.overlay-bottom-center {
     position: absolute;
     bottom: 0.25rem;
     left: 50%;
     transform: translate(-50%, 0%);
 }
 
-.igOverlay-bottom-left {
+.overlay-bottom-left {
     position: absolute;
     bottom: 0.25rem;
     left: 0.25rem;
 }
 
-.igOverlay-bottom-right {
+.overlay-bottom-right {
     position: absolute;
     bottom: 0.25rem;
     right: 0.25rem;
 }
 
-
-.igOverlay-row {
+.overlay-row {
     font-family: 'Titillium Web', Verdana, Tahoma, sans-serif;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.igOverlay-label {
+.overlay-label {
     display: block;
     font-family: 'Titillium Web', Verdana, Tahoma, sans-serif;
     font-weight: 600;
 }
 
-.igOverlay-field {
+.overlay-field {
     text-align: left;
     width: 5rem;
 }
 
-.igOverlay-value {
+.overlay-value {
     text-align: end;
 }
 
-.igOverlay-title {
+.overlay-title {
     color: black;
     display: block;
     font-family: 'Titillium Web', Verdana, Tahoma, sans-serif;
@@ -356,9 +380,7 @@
     padding-bottom: 0.5rem;
 }
 
-/* ==================================================================================== */
-/* tooltip styles used in custom tooltips of charts and maps components */
-/* ==================================================================================== */
+/* ============ tooltip styles  ============ */
 
 .tooltipBox {
     font-size: 0.75rem;
@@ -373,12 +395,12 @@
     font-weight: bold;
     font-size: 0.75rem;
     font-family: 'Titillium Web', Verdana, Tahoma, sans-serif;
-    margin-left: 0px;
+    margin-left: 0rem;
 }
 
 .tooltipTable {
     display: table;
-    margin: 0px;
+    margin: 0rem;
     width: 100%;
     height: 100%;
     border-spacing: 5px;
@@ -423,8 +445,8 @@
 
 .tooltipFlagBoarder {
     display: inline-block;
-    padding: 0px;
-    border-width: 0.5;
+    padding: 0rem;
+    border-width: thin;
     border-color: rgb(177, 177, 177);
     border-style: solid;
     height: 50px;
