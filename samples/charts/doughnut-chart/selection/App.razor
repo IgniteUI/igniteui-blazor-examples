@@ -9,17 +9,14 @@
                 <ItemLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
             </div>
         </div>
-        <label style="width: auto; text-align: right; position: absolute; top: 0rem; right: 1.0rem;">
-               Selected Slice: @SelectedSlice
-        </label>
     </div>
 
-    <div class="container vertical">
-        @if (Data != null)
-        {
-            <DoughnutChart Height="100%" Width="100%"
+    <div class="container relative">
+        <div class="container-overlay">
+            
+            <DoughnutChart Height="100%" Width="100%" 
                            @ref="Chart"
-                           AllowSliceSelection="true"
+                           AllowSliceSelection="true" InnerExtent="0.6"
                            SliceClick="OnSliceClick"
                            SelectedSliceStroke="White"
                            SelectedSliceFill="Gray"
@@ -35,15 +32,20 @@
                             StartAngle="30">
                 </RingSeries>
             </DoughnutChart>
-        }
 
+            <div class="overlay-center" style="line-height: 1.1">
+                <label class="options-label" style="font-size: 1.2rem;"> @SelectedSliceLabel </label>
+                <label class="options-value" style="font-size: 2.2rem;"> @SelectedSliceValue </label>
+            </div>
+        </div>        
     </div>
 </div>
 
 @code {
 
     public List<DataItem> Data;
-    public string SelectedSlice = "None";
+    public string SelectedSliceLabel;
+    public string SelectedSliceValue;
     public ItemLegend Legend;
     public DoughnutChart Chart;
 
@@ -60,6 +62,9 @@
         dataItems.Add(new DataItem { Value = 37, Category = "Space Cooling", });
 
         this.Data = dataItems;
+
+        this.SelectedSliceValue = this.Data[0].Value + "%";
+        this.SelectedSliceLabel = this.Data[0].Category;
     }
 
     public class DataItem
@@ -83,11 +88,13 @@
 
         if (e.IsSelected)
         {
-            this.SelectedSlice = this.Data[e.Index].Category;
+            this.SelectedSliceLabel = this.Data[e.Index].Category;
+            this.SelectedSliceValue = this.Data[e.Index].Value + "%";
         }
         else
         {
-            this.SelectedSlice = "None";
+            this.SelectedSliceLabel = "No Selection";
+            this.SelectedSliceValue = "0%";
         }
     }
 }
