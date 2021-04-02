@@ -5,28 +5,23 @@
 
 <div class="container vertical">
 
-    <div class="container vertical">
+     @if (DataItems != null)
+     {
+         <FinancialChart Width="100%" Height="100%"
+             ChartType="FinancialChartType.Line"
+             DataSource="@DataItems"
+             ChartTitle="@DataTitle"
+             Subtitle="@DataSubtitle"/>
+     }
 
-        @if (Data != null)
-        {
-            <FinancialChart Width="100%"
-                Height="100%"
-                ChartType=FinancialChartType.Line
-                Thickness=2
-                DataSource="Data"
-                ChartTitle="Stock Prices 1900-2020"
-                Subtitle="1.1M data points"
-                />
-        }
-
-    </div>
 </div>
 
 @code {
 
-    List<StockItem> Data;
-    public string Title { get; set; }
-    public string SubTitle { get; set; }
+    List<StockItem> DataItems;
+    public string DataTitle = "";
+    public string DataSubtitle = "";
+
     protected override void OnInitialized()
     {
         FinancialChartModule.Register(IgniteUIBlazor);
@@ -35,15 +30,18 @@
 
     public void InitData()
     {
-        var dateStart = DateTime.Now.AddYears(-5);
-        var dateEnd = DateTime.Now.Date;
-
+        // generating data with 20,000 points every 1 hour
+        var current = DateTime.Now.Date;
+        var dataCount = Math.Ceiling(20000 / 24.0);
+        var dateEnd = new DateTime(current.Year, current.Month, current.Day, 10, 0, 0);
+        var dateStart = dateEnd.AddDays(-dataCount);
         StocksUtility.intervalDays = 0;
         StocksUtility.intervalHours = 1;
         StocksUtility.intervalMinutes = 0;
-        this.Data = StocksUtility.GetStocksBetween(dateStart, dateEnd);
-        Title = "Stock Prices " + dateStart.Year + "-" + dateEnd.Year;
-        Console.WriteLine("DataItems " + this.Data.Count);
-        SubTitle = StocksUtility.ToShortString(this.Data.Count) + " data points";
+        this.DataItems = StocksUtility.GetStocksBetween(dateStart, dateEnd);
+
+        this.DataTitle = "Stock Prices between " + dateStart.Year + " and " + dateEnd.Year;
+        this.DataSubtitle = "Total of " + StocksUtility.ToShortString(this.DataItems.Count) + " Data Points with 1-Hour Interval";
+        Console.WriteLine("DataItems " + this.DataItems.Count);
     }
 }
