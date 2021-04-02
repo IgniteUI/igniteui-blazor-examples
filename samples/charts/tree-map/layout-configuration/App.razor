@@ -2,21 +2,33 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
     <div class="container vertical">
+
         <div class="options vertical">
             <div class="options horizontal">
-                <button @onclick="onClickSliceVer" style="width: 150px">Slice Vertically</button>
-                <button @onclick="onClickStripVer" style="width: 175px">Stripped Vertically</button>
-                <button @onclick="onClickSquarified" style="width: 125px">Squarified</button>
+                <button @onclick="onClickSliceVer" style="width: 9rem">Slice Vertically</button>
+                <button @onclick="onClickStripVer" style="width: 10rem">Stripped Vertically</button>
+                <button @onclick="onClickSquarified" style="width: 8rem">Squarified</button>
+
+                <label class="options-label">Header Display Mode </label>
+                <select  @bind="@TreeHeaderMode">
+                    <option>@TreemapHeaderDisplayMode.Header</option>
+                    <option>@TreemapHeaderDisplayMode.Overlay</option>
+                </select>
             </div>
+
             <div class="options horizontal">
-                <button @onclick="onClickSliceHor" style="width: 150px">Slice Horizontally</button>
-                <button @onclick="onClickStripHor" style="width: 175px">Stripped Horizontally</button>
-                @*this label displays info about currently selected item in Treemap*@
-                <label>@SelectedItemInfo</label>
+                <button @onclick="onClickSliceHor" style="width: 9rem">Slice Horizontally</button>
+                <button @onclick="onClickStripHor" style="width: 10rem">Stripped Horizontally</button>
+                @* this label displays info about currently selected item in Treemap *@
+                <label style="margin-left: 0.5rem">@SelectedItemInfo</label>
             </div>
         </div>
 
-        <div class="container vertical">
+        <div class="options vertical">
+            <span class="legend-title">Comparing Population of Countries</span>
+        </div>
+
+        <div class="container vertical" style="padding: 0.75rem; padding-top: 0.5rem;">
 
             <Treemap Height="100%" Width="100%"
                      DataSource="Data"
@@ -29,7 +41,13 @@
                      FillBrushes="#4e62cf, #8a58d6"
                      IsFillScaleLogarithmic="true"
                      NodePointerEnter="@onNodePointerEnter"
-                     RootTitle="Countries">
+                     RootTitle="Countries"
+
+                     HeaderDisplayMode="@TreeHeaderMode"
+                     ParentNodeBottomPadding="0"
+                     ParentNodeLeftPadding="0"
+                     ParentNodeRightPadding="0"
+                     ParentNodeTopPadding="0">
             </Treemap>
             @**@
         </div>
@@ -40,6 +58,7 @@
     protected List<CountryInfo> Data;
     protected TreemapLayoutType TreeLayout = TreemapLayoutType.Squarified;
     protected TreemapOrientation TreeOrientation = TreemapOrientation.Vertical;
+    protected TreemapHeaderDisplayMode TreeHeaderMode = TreemapHeaderDisplayMode.Overlay;
     protected string SelectedItemInfo = "Select Tree Node";
 
     protected override void OnInitialized()

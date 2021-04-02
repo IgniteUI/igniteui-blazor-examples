@@ -2,23 +2,33 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="container vertical">
+
+    <div class="options vertical">
+        <span class="legend-title">Comparing Population of Countries</span>
+    </div>
+
+    <div class="container vertical" style="padding: 0.75rem; padding-top: 0.5rem;">
 
         <Treemap @ref="TreeMap" Height="100%" Width="100%"
+                 RootTitle="Countries"
                  DataSource="Data"
                  ParentIdMemberPath="Parent"
                  CustomValueMemberPath="Parent"
                  IdMemberPath="Name"
                  LabelMemberPath="Name"
                  ValueMemberPath="Pop"
-                 RootTitle="Countries"
                  HeaderDisplayMode="@TreemapHeaderDisplayMode.Overlay"
-                 HeaderBackground="#E0F11F"
-                 HeaderHoverBackground="#28E124"
+                 OverlayHeaderBackground="#3f403f"
+                 HeaderHoverBackground="#3f403f"
+                 HeaderBackground="#3f403f"
+                 ParentNodeBottomPadding="0"
+                 ParentNodeLeftPadding="0"
+                 ParentNodeRightPadding="0"
+                 ParentNodeTopPadding="0"
                  Outline="black"
                  StrokeThickness="1">
             </Treemap>
-        @**@
+
     </div>
 </div>
 
@@ -26,72 +36,42 @@
 
     private List<CountryInfo> Data;
     private Treemap _treeMap;
-    private Treemap TreeMap {
+    private Treemap TreeMap
+    {
         get { return _treeMap; }
-        set {
-            _treeMap = value;
-            StateHasChanged();
-        }
+        set { _treeMap = value; StateHasChanged(); }
     }
+
     protected override void OnInitialized()
     {
         TreemapModule.Register(IgniteUIBlazor);
         this.Data = CountryTreeData.Create();
     }
 
+    protected void AddStyleMapping(string valueID, string fillColor)
+    {
+        this.TreeMap.StyleMappings.Add(new TreemapNodeStyleMapping()
+        {
+            Value = valueID,
+            Fill = fillColor,
+            MappingMode = TreemapValueMappingMode.CustomValue
+        });
+    }
+
     protected override void OnAfterRender(bool firstRender)
     {
         base.OnAfterRender(firstRender);
+
         if (firstRender)
         {
-            TreeMap.StyleMappings.Add(new TreemapNodeStyleMapping()
-            {
-                Value = "Africa",
-                MappingMode = TreemapValueMappingMode.CustomValue,
-                Fill = "#735656"
-            });
-            TreeMap.StyleMappings.Add(new TreemapNodeStyleMapping()
-            {
-                Value = "Asia",
-                MappingMode = TreemapValueMappingMode.CustomValue,
-                Fill = "#8BDC5C"
-            });
-            TreeMap.StyleMappings.Add(new TreemapNodeStyleMapping()
-            {
-                Value = "Europe",
-                MappingMode = TreemapValueMappingMode.CustomValue,
-                Fill = "#8B5BB1"
-            });
-            TreeMap.StyleMappings.Add(new TreemapNodeStyleMapping()
-            {
-                Value = "North America",
-                MappingMode = TreemapValueMappingMode.CustomValue,
-                Fill = "#8CE7D9"
-            });
-            TreeMap.StyleMappings.Add(new TreemapNodeStyleMapping()
-            {
-                Value = "South America",
-                MappingMode = TreemapValueMappingMode.CustomValue,
-                Fill = "#EE5879"
-            });
-            TreeMap.StyleMappings.Add(new TreemapNodeStyleMapping()
-            {
-                Value = "Middle East",
-                MappingMode = TreemapValueMappingMode.CustomValue,
-                Fill = "#6DB1FF"
-            });
-            TreeMap.StyleMappings.Add(new TreemapNodeStyleMapping()
-            {
-                Value = "Central America",
-                MappingMode = TreemapValueMappingMode.CustomValue,
-                Fill = "#F7D262"
-            });
-            TreeMap.StyleMappings.Add(new TreemapNodeStyleMapping()
-            {
-                Value = "Oceania",
-                MappingMode = TreemapValueMappingMode.CustomValue,
-                Fill = "#A8A8B7"
-            });
+            this.AddStyleMapping("Africa", "#735656");
+            this.AddStyleMapping("Asia", "#61ab37");
+            this.AddStyleMapping("Europe", "#8B5BB1");
+            this.AddStyleMapping("North America", "#5fbaac");
+            this.AddStyleMapping("South America", "#EE5879");
+            this.AddStyleMapping("Middle East", "#6DB1FF");
+            this.AddStyleMapping("Central America", "#F7D262");
+            this.AddStyleMapping("Oceania", "#A8A8B7");
         }
     }
 }
