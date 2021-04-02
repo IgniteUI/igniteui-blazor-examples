@@ -4,18 +4,12 @@
     <div class="container vertical">
 
         <div class="options horizontal">
-            <label class="options-item">
-                <input type="checkbox" @onchange="onHighMarkerCheckboxChanged" />High Markers</label>
-            <label class="options-item">
-                <input type="checkbox" @onchange="onLowMarkerCheckboxChanged" />Low Markers</label>
-            <label class="options-item">
-                <input type="checkbox" @onchange="onFirstMarkerCheckboxChanged" />First Markers</label>
-            <label class="options-item">
-                <input type="checkbox" @onchange="onLastMarkerCheckboxChanged" />Last Markers</label>
-            <label class="options-item">
-                <input type="checkbox" @onchange="onNegativeMarkerCheckboxChanged" />Negative Markers</label>
-            <label class="options-item">
-                <input type="checkbox" @onchange="onAllMarkerCheckboxChanged" />All Markers</label>
+            <label class="options-label"><input type="checkbox" checked @onchange="onToggleFirstMarker" />First Marker</label>
+            <label class="options-label"><input type="checkbox" checked @onchange="onToggleHighMarker" />High Marker</label>
+            <label class="options-label"><input type="checkbox" checked @onchange="onToggleLowMarker" />Low Marker</label>
+            <label class="options-label"><input type="checkbox" checked @onchange="onToggleNegativeMarker" />Negative Marker</label>
+            <label class="options-label"><input type="checkbox" checked @onchange="onToggleLastMarker" />Last Marker</label>
+            <label class="options-label"><input type="checkbox" checked @onchange="onToggleOtherMarker" />Other Marker</label>
         </div>
 
         <div class="container vertical">
@@ -29,12 +23,12 @@
                     ValueMemberPath="Value"
                     LabelMemberPath="Label"
                     Minimum="-3"
-                    MarkerVisibility="@markerVisibility"
-                    HighMarkerVisibility="@highMarkerVisibility"
-                    LowMarkerVisibility="@lowMarkerVisibility"
-                    FirstMarkerVisibility="@firstMarkerVisibility"
-                    LastMarkerVisibility="@lastMarkerVisibility"
-                    NegativeMarkerVisibility="@negativeMarkerVisibility"
+                    MarkerVisibility="@OtherMarkerVisibility"
+                    HighMarkerVisibility="@HighMarkerVisibility"
+                    LowMarkerVisibility="@LowhMarkerVisibility"
+                    FirstMarkerVisibility="@FirstMarkerVisibility"
+                    LastMarkerVisibility="@LastMarkerVisibility"
+                    NegativeMarkerVisibility="@NegativeMarkerVisibility"
                     MarkerSize="10"
                     FirstMarkerSize="10"
                     LastMarkerSize="10"
@@ -50,101 +44,47 @@
 @code {
 
         private List<SparklineMarkerItem> Data;
-
-        private Visibility highMarkerVisibility = Visibility.Collapsed ;
-        private Visibility lowMarkerVisibility = Visibility.Collapsed;
-        private Visibility firstMarkerVisibility = Visibility.Collapsed;
-        private Visibility lastMarkerVisibility = Visibility.Collapsed;
-        private Visibility negativeMarkerVisibility = Visibility.Collapsed;
-        private Visibility markerVisibility = Visibility.Collapsed;
-
-        // private Visibility visibility = Visibility.Visible ;
+        private Visibility HighMarkerVisibility = Visibility.Visible;
+        private Visibility LowhMarkerVisibility = Visibility.Visible;
+        private Visibility FirstMarkerVisibility = Visibility.Visible;
+        private Visibility LastMarkerVisibility = Visibility.Visible;
+        private Visibility NegativeMarkerVisibility = Visibility.Visible;
+        private Visibility OtherMarkerVisibility = Visibility.Visible;
 
         protected override void OnInitialized()
         {
             SparklineModule.Register(IgniteUIBlazor);
 
             this.Data = SparklineMarkerData.Generate();
-
         }
 
-        public void onHighMarkerCheckboxChanged(ChangeEventArgs e)
+        public void onToggleHighMarker(ChangeEventArgs e)
         {
-            bool selection = (bool)e.Value;
-            if (selection)
-            {
-                this.highMarkerVisibility = Visibility.Visible;
-            }
-            else
-            {
-                this.highMarkerVisibility = Visibility.Collapsed;
-            }
+            this.HighMarkerVisibility = (bool)e.Value ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        public void onLowMarkerCheckboxChanged(ChangeEventArgs e)
+        public void onToggleLowMarker(ChangeEventArgs e)
         {
-            bool selection = (bool)e.Value;
-            if (selection)
-            {
-                this.lowMarkerVisibility = Visibility.Visible;
-            }
-            else
-            {
-                this.lowMarkerVisibility = Visibility.Collapsed;
-            }
+            this.LowhMarkerVisibility = (bool)e.Value ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        public void onFirstMarkerCheckboxChanged(ChangeEventArgs e)
+        public void onToggleFirstMarker(ChangeEventArgs e)
         {
-            bool selection = (bool)e.Value;
-            if (selection)
-            {
-                this.firstMarkerVisibility = Visibility.Visible;
-            }
-            else
-            {
-                this.firstMarkerVisibility = Visibility.Collapsed;
-            }
+            this.FirstMarkerVisibility = (bool)e.Value ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        public void onLastMarkerCheckboxChanged(ChangeEventArgs e)
+        public void onToggleLastMarker(ChangeEventArgs e)
         {
-            bool selection = (bool)e.Value;
-            if (selection)
-            {
-                this.lastMarkerVisibility = Visibility.Visible;
-            }
-            else
-            {
-                this.lastMarkerVisibility = Visibility.Collapsed;
-            }
+            this.LastMarkerVisibility = (bool)e.Value ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        public void onNegativeMarkerCheckboxChanged(ChangeEventArgs e)
+        public void onToggleNegativeMarker(ChangeEventArgs e)
         {
-            bool selection = (bool)e.Value;
-            if (selection)
-            {
-                this.negativeMarkerVisibility = Visibility.Visible;
-
-            }
-            else
-            {
-                this.negativeMarkerVisibility = Visibility.Collapsed;
-            }
+            this.NegativeMarkerVisibility = (bool)e.Value ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        public void onAllMarkerCheckboxChanged(ChangeEventArgs e)
+        public void onToggleOtherMarker(ChangeEventArgs e)
         {
-            bool selection = (bool)e.Value;
-            if (selection)
-            {
-                this.markerVisibility = Visibility.Visible;
-
-            }
-            else
-            {
-                this.markerVisibility = Visibility.Collapsed;
-            }
+            this.OtherMarkerVisibility = (bool)e.Value ? Visibility.Visible : Visibility.Collapsed;
         }
 }
