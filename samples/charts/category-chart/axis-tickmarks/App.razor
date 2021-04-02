@@ -7,6 +7,14 @@
         <div class="legend">
             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
+
+        <div class="overlay-right" >
+            <div class="options horizontal" >
+                <label class="options-label" >X-Axis Tick Length</label>
+                <label class="options-value" >@AxisTickLength</label>
+                <input class="options-slider" type="range" min="0" max="20" step="1" value="10" @oninput="OnAxisTickLengthChange"/>
+            </div>
+        </div>
     </div>
     <div class="container vertical">
         @if (Data != null)
@@ -17,10 +25,14 @@
                            ChartType="CategoryChartType.Line"
                            IsHorizontalZoomEnabled="false"
                            IsVerticalZoomEnabled="false"
-                           XAxisTickLength="15"
-                           XAxisTickStrokeThickness="2"
+
+                           XAxisTickLength="@AxisTickLength"
+                           XAxisTickStrokeThickness="1"
                            XAxisTickStroke="Gray"
-                           YAxisTickLength="0">
+
+                           YAxisTickLength="0"
+                           YAxisTickStrokeThickness="0"
+                           YAxisTickStroke="Transparent">
             </CategoryChart>
         }
     </div>
@@ -41,5 +53,12 @@
     {
         CategoryChartModule.Register(IgniteUIBlazor);
         LegendModule.Register(IgniteUIBlazor);
+    }
+
+    private double AxisTickLength = 10;
+
+    private void OnAxisTickLengthChange(ChangeEventArgs args)
+    {
+        this.AxisTickLength = double.Parse(args.Value.ToString());
     }
 }

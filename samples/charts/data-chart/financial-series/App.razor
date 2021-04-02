@@ -3,23 +3,30 @@
 
 <div class="container vertical">
 
-    <div class="options horizontal">
+    <div class="options vertical">
 
-        <span class="options-label">Type of Financial Series: </span>
-        <select @bind=@SeriesType>
-            <option>@PriceDisplayType.Candlestick</option>
-            <option>@PriceDisplayType.OHLC</option>
-        </select>
-        <span class="options-label">Indicator Display Type: </span>
-        <select @bind=@IndicatorsType>
-            <option>@IndicatorDisplayType.Line</option>
-            <option>@IndicatorDisplayType.Area</option>
-            <option>@IndicatorDisplayType.Column</option>
-        </select>
         <span class="legend-title">Legend: </span>
         <div class="legend">
             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
+
+        <div class="overlay-right" >
+            <div class="options horizontal" >
+                <label class="options-label">Financial Series: </label>
+                <select @bind=@SeriesType>
+                    <option>@PriceDisplayType.Candlestick</option>
+                    <option>@PriceDisplayType.OHLC</option>
+                </select>
+                <label class="options-label">Indicator Display: </label>
+                <select @bind=@IndicatorsType>
+                    <option>@IndicatorDisplayType.Line</option>
+                    <option>@IndicatorDisplayType.Area</option>
+                    <option>@IndicatorDisplayType.Column</option>
+                </select>
+            </div>
+        </div>
+
+
     </div>
 
     <div class="container vertical">

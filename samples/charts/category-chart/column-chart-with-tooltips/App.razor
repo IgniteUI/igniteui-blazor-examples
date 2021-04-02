@@ -2,19 +2,23 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options horizontal">
-        <span class="options-label">Tooltip Type: </span>
-        <select @bind="@ChartTooltip">
-            <option>@ToolTipType.Default</option>
-            <option>@ToolTipType.Item</option>
-            <option>@ToolTipType.Category</option>
-        </select>
-    </div>
     <div class="options vertical">
         <span class="legend-title">Highest Grossing Movie Franchises</span>
         <div class="legend">
             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
+
+        <div class="overlay-right" >
+            <div class="options horizontal" >
+                <span class="options-label">Tooltip Type: </span>
+                <select @bind="@ChartTooltip">
+                    <option>@ToolTipType.Default</option>
+                    <option>@ToolTipType.Item</option>
+                    <option>@ToolTipType.Category</option>
+                </select>
+            </div>
+        </div>
+
     </div>
 
     <div class="container vertical">

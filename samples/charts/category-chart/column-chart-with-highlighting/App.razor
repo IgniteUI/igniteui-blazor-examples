@@ -2,30 +2,28 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options horizontal">
-        <label class="options-label">Enable Highlighting: </label>
-        <label class="options-item">
-            <input type="checkbox"
-                   checked="@IsSeriesHighlighting"
-                   @onchange="OnSeriesHighlightingChanged" /> Series
-        </label>
-        <label class="options-item">
-            <input type="checkbox"
-                   checked="@IsItemHighlighting"
-                   @onchange="OnItemHighlightingChanged" />Item
-        </label>
-        <label class="options-item">
-            <input type="checkbox"
-                   checked="@IsCategoryHighlighting"
-                   @onchange="OnCategoryHighlightingChanged" />Category
-        </label>
-    </div>
     <div class="options vertical">
-        <span class="legend-title">Temperatures in LA and NYC for 2020 (in Celsius)</span>
+        <span class="legend-title">Temperatures in LA and NYC</span>
         <div class="legend">
             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
+
+        <div class="overlay-right" >
+            <div class="options horizontal" >
+                <label class="options-label">Enable Highlighting: </label>
+                <label class="options-item">
+                    <input type="checkbox" checked="@IsSeriesHighlighting" @onchange="OnSeriesHighlightingChanged" /> Series
+                </label>
+                <label class="options-item">
+                    <input type="checkbox" checked="@IsItemHighlighting" @onchange="OnItemHighlightingChanged" />Item
+                </label>
+                <label class="options-item">
+                    <input type="checkbox" checked="@IsCategoryHighlighting" @onchange="OnCategoryHighlightingChanged" />Category
+                </label>
+            </div>
+        </div>
     </div>
+
     <div class="container vertical">
         <CategoryChart Height="100%" Width="100%"
                        ExcludedProperties="@(new string[] { "NY_Low", "LA_Low" })"
@@ -34,6 +32,7 @@
                        IsCategoryHighlightingEnabled="@IsCategoryHighlighting"
                        IsItemHighlightingEnabled="@IsItemHighlighting"
                        IsSeriesHighlightingEnabled="@IsSeriesHighlighting"
+                       YAxisTitle="Temperatures in Celsius"
                        YAxisMinimumValue="0"
                        XAxisInterval="1">
         </CategoryChart>

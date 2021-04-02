@@ -4,18 +4,18 @@
 <div class="container vertical">
     <div class="options horizontal">
         <div class="options vertical" style="width: 100px">
-            <button style="margin: 5px" @onclick="OnPanUp">Pan Up</button>
-            <button style="margin: 5px" @onclick="OnPanDown">Pan Down</button>
+            <button @onclick="OnPanUp">Pan Up</button>
+            <button @onclick="OnPanDown">Pan Down</button>
         </div>
         <div class="options vertical" style="width: 100px">
-            <button style="margin: 5px" @onclick="OnPanLeft">Pan Left</button>
-            <button style="margin: 5px" @onclick="OnPanRight">Pan Right</button>
+            <button @onclick="OnPanLeft">Pan Left</button>
+            <button @onclick="OnPanRight">Pan Right</button>
         </div>
         <div class="options vertical" style="width: 100px">
-            <button style="margin: 5px" @onclick="OnZoomIn">Zoom In</button>
-            <button style="margin: 5px" @onclick="OnZoomOut">Zoom Out</button>
+            <button @onclick="OnZoomIn">Zoom In</button>
+            <button @onclick="OnZoomOut">Zoom Out</button>
         </div>
-        <div class="options vertical" style="width: 120px">
+        <div class="options vertical" style="width: 120px; align-self: center">
             <label class="options-label" style="margin: 5px">Pan Modifier:</label>
             <label class="options-label" style="margin: 5px">Zoom Modifier:</label>
         </div>
@@ -37,9 +37,9 @@
                 <option>@ModifierKeys.None</option>
             </select>
         </div>
-        <div class="options vertical" style="width: 150px">
-            <label class="options-label" style="margin: 5px">Default Interaction:</label>
-            <label class="options-label" style="margin: 5px">Enable Zooming:</label>
+        <div class="options vertical" style="width: 150px; align-self: center">
+            <label class="options-label" style="margin: 5px;">Interaction:</label>
+            <label class="options-label" style="margin: 5px;">Zooming:</label>
         </div>
         <div class="options vertical" style="width: 100px">
             <select @bind="@DefaultInteraction" style="margin: 5px">
@@ -47,7 +47,7 @@
                 <option>@InteractionState.DragPan</option>
                 <option>@InteractionState.None</option>
             </select>
-            <input class="options-item" style="margin: 5px" type="checkbox" @onchange="OnEnableZoomingChange" checked="@IsZoomingEnabled" />
+            <input class="options-item" type="checkbox" @onchange="OnEnableZoomingChange" checked="@IsZoomingEnabled" />
         </div>
     </div>
 

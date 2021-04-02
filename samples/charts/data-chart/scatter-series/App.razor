@@ -3,19 +3,23 @@
 
 <div class="container vertical">
 
-    <div class="options horizontal">
-        <span class="options-label">Type of Scatter Series: </span>
-                    <select value=@SeriesType
-                        @onchange="OnSeriesTypeChanged">
-                        <option>Bubble</option>
-                        <option>Point</option>
-                        <option>Line</option>
-                        <option>Spline</option>
-                    </select>
+    <div class="options vertical">
 
         <span class="legend-title">Legend: </span>
         <div class="legend">
             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+        </div>
+
+        <div class="overlay-right" >
+            <div class="options horizontal" >
+                <label class="options-label">Scatter Series: </label>
+                <select value=@SeriesType @onchange="OnSeriesTypeChanged">
+                    <option>Bubble</option>
+                    <option>Point</option>
+                    <option>Line</option>
+                    <option>Spline</option>
+                </select>
+            </div>
         </div>
     </div>
 

@@ -1,24 +1,33 @@
 ﻿@using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor;
-@inject IJSRuntime JSRuntime;
+@inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
     <div class="options horizontal">
-        <label>X Axis Crossing Value:  </label>
+        <label>X-Axis Crossing Value:  </label>
         <label class="options-value" >@XAxisCrossingValue</label>
-        <input type="range" min="-360" max="360" step="40" value="0" @oninput="OnXAxisCrossingValueChanged" />
-        <label>Y Axis Crossing Value:  </label>
+        <input type="range" min="-360" max="360" step="10" value="0" @oninput="OnXAxisCrossingValueChanged" />
+        <label>Y-Axis Crossing Value:  </label>
         <label class="options-value" >@YAxisCrossingValue</label>
-        <input type="range" min="-1.25" max="1.25" step="0.25" value="0" @oninput="OnYAxisCrossingValueChanged" />
+        <input type="range" min="-1.25" max="1.25" step="0.125" value="0" @oninput="OnYAxisCrossingValueChanged" />
     </div>
     <div class="container vertical">
         @if (SinData != null && CosData != null)
         {
-        <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true" IsHorizontalZoomEnabled="true">
+        <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true" IsHorizontalZoomEnabled="true"
+                   PlotAreaMarginTop="60" PlotAreaMarginBottom="60"
+                   PlotAreaMarginLeft="30" PlotAreaMarginRight="30">
             <NumericXAxis Name="xAxis" Interval="40" MinimumValue="-360" MaximumValue="360"
-                          LabelLocation="AxisLabelsLocation.InsideBottom" CrossingAxisName="yAxis" CrossingValue="@YAxisCrossingValue"/>
+                          LabelLocation="AxisLabelsLocation.InsideBottom"
+                          LabelTopMargin="10"
+                          CrossingAxisName="yAxis"
+                          CrossingValue="@YAxisCrossingValue"
+                          StrokeThickness="1" Stroke="black"/>
             <NumericYAxis Name="yAxis" MinimumValue="-1.25" MaximumValue="1.25" Interval="0.25"
-                          LabelLocation="AxisLabelsLocation.InsideLeft" CrossingAxisName="xAxis" CrossingValue="@XAxisCrossingValue"/>
+                          LabelLocation="AxisLabelsLocation.InsideLeft"
+                          LabelRightMargin="10"
+                          CrossingAxisName="xAxis"
+                          CrossingValue="@XAxisCrossingValue"
+                          StrokeThickness="1" Stroke="black"/>
 
             <ScatterSplineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="SinData"
                                  XMemberPath="X" YMemberPath="Y" MarkerType="MarkerType.Circle" />
@@ -39,7 +48,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
 
         DataChartCoreModule.Register(IgniteUIBlazor);
         DataChartScatterModule.Register(IgniteUIBlazor);
@@ -54,7 +62,7 @@
         List<Point> _sinData = new List<Point>();
         List<Point> _cosData = new List<Point>();
 
-        for (int i = -360; i <= 360; i+=10)
+        for (int i = - 360; i <= 360; i += 10)
         {
             double radians = (i * Math.PI) / 180;
             double sin = Math.Sin(radians);

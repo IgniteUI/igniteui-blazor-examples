@@ -3,21 +3,26 @@
 
 <div class="container vertical">
 
-    <div class="options horizontal">
-        <span class="options-label">Type of Polar Series: </span>
-        <select value=@SeriesType
-                @onchange="OnSeriesTypeChanged">
-            <option>Area</option>
-            <option>Spline Area</option>
-            <option>Spline</option>
-            <option>Line</option>
-            <option>Scatter</option>
-        </select>
+    <div class="options vertical">
 
         <span class="legend-title">Legend: </span>
         <div class="legend">
             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
+
+        <div class="overlay-right" >
+            <div class="options horizontal" >
+                <label class="options-label">Polar Series: </label>
+                <select value=@SeriesType @onchange="OnSeriesTypeChanged">
+                    <option>Area</option>
+                    <option>Spline Area</option>
+                    <option>Spline</option>
+                    <option>Line</option>
+                    <option>Scatter</option>
+                </select>
+            </div>
+        </div>
+
     </div>
 
     <div class="container vertical">

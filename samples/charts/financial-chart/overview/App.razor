@@ -3,11 +3,14 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="legend">
-        <Legend @ref="FinancialLegend" Orientation="LegendOrientation.Horizontal" >
 
-        </Legend>
+    <div class="options vertical">
+        <span class="legend-title">Tesla vs Microsoft Stock Prices</span>
+        <div class="legend">
+            <Legend @ref="FinancialLegend" Orientation="LegendOrientation.Horizontal" />
+        </div>
     </div>
+
     <div class="container vertical">
 
             <FinancialChart
@@ -19,8 +22,6 @@
                 ExcludedProperties="@(new string[] { "Date" })"
                 DataSource="Data"
                 ZoomSliderType="FinancialChartZoomSliderType.Bar"
-                ChartTitle="Tesla vs Microsoft"
-                Subtitle="Between 2013 and 2017"
                 IsToolbarVisible="true"
                 YAxisMode="FinancialChartYAxisMode.PercentChange"/>
 

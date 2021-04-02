@@ -3,26 +3,31 @@
 
 <div class="container vertical">
 
-    <div class="options horizontal">
-        <span class="options-label">Type of Category Series: </span>
-                    <select value=@SeriesType
-                        @onchange="OnSeriesTypeChanged">
-                        <option>Column</option>
-                        <option>Area</option>
-                        <option>Bar</option>
-                        <option>Point</option>
-                        <option>Line</option>
-                        <option>Spline</option>
-                        <option>Spline Area</option>
-                        <option>Step Area</option>
-                        <option>Step Line</option>
-                        <option>Waterfall</option>
-                    </select>
+    <div class="options vertical">
 
         <span class="legend-title">Legend: </span>
         <div class="legend">
             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
+
+        <div class="overlay-right" >
+            <div class="options horizontal" >
+                <label class="options-label">Category Type: </label>
+                <select value=@SeriesType @onchange="OnSeriesTypeChanged">
+                    <option>Column</option>
+                    <option>Area</option>
+                    <option>Bar</option>
+                    <option>Point</option>
+                    <option>Line</option>
+                    <option>Spline</option>
+                    <option>Spline Area</option>
+                    <option>Step Area</option>
+                    <option>Step Line</option>
+                    <option>Waterfall</option>
+                </select>
+            </div>
+        </div>
+
     </div>
 
     <div class="container vertical">
