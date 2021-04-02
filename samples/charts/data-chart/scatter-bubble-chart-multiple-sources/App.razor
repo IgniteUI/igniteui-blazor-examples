@@ -2,11 +2,8 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options horizontal">
-        <span class="legend-title">Total Population (Gapminder, HYDE & UN): 1k - 181M </span>
-    </div>
-    <div class="options horizontal">
-        <span class="legend-title">Continent: </span>
+    <div class="options vertical">
+        <span class="legend-title">Total Population for Selected Continents </span>
         <div class="legend">
             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
@@ -18,29 +15,29 @@
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true">
 
-            <NumericXAxis Name="xAxis" Title="Death Rate, crude (per 1,000 people)" MinimumValue="2" MaximumValue="16" Interval="1" />
-            <NumericYAxis Name="yAxis" Title="Birth Rate, crude (per 1,000 people)" MinimumValue="0" MaximumValue="60" Interval="20" />
+            <NumericXAxis Name="xAxis" Title="Death Rate (per 1,000 people)" MinimumValue="4" MaximumValue="16" Interval="1" />
+            <NumericYAxis Name="yAxis" Title="Birth Rate (per 1,000 people)" MinimumValue="0" MaximumValue="60" Interval="10" />
 
             <BubbleSeries XAxisName="xAxis"
-                           YAxisName="yAxis"
-                           DataSource="AfricaData"
-                           XMemberPath="DeathRate"
-                           YMemberPath="BirthRate"
-                           MarkerType="MarkerType.Circle"
-                           Title="Africa"
-                           RadiusMemberPath="TotalPopulation"
-                           RadiusScale="@SizeScale">
+                          YAxisName="yAxis"
+                          Title="Africa"
+                          DataSource="AfricaData"
+                          XMemberPath="DeathRate"
+                          YMemberPath="BirthRate"
+                          RadiusMemberPath="Total"
+                          RadiusScale="@SizeScale"
+                          MarkerType="MarkerType.Circle">
             </BubbleSeries>
 
             <BubbleSeries XAxisName="xAxis"
-                           YAxisName="yAxis"
-                           DataSource="EuropeData"
-                           XMemberPath="DeathRate"
-                           YMemberPath="BirthRate"
-                           MarkerType="MarkerType.Circle"
-                           Title="Europe"
-                           RadiusMemberPath="TotalPopulation"
-                           RadiusScale="@SizeScale">
+                          YAxisName="yAxis"
+                          Title="Europe"
+                          DataSource="EuropeData"
+                          XMemberPath="DeathRate"
+                          YMemberPath="BirthRate"
+                          RadiusMemberPath="Total"
+                          RadiusScale="@SizeScale"
+                          MarkerType="MarkerType.Circle">
             </BubbleSeries>
         </DataChart>
 
@@ -60,15 +57,13 @@
         }
     }
 
-    private List<BirthAndDeathRateInfo> AfricaData;
-    private List<BirthAndDeathRateInfo> EuropeData;
-    private ValueBrushScale AfricaFillScale = new ValueBrushScale { Brushes = "rgba(186, 231, 114, 0.75)" };
-    private ValueBrushScale EuropeFillScale = new ValueBrushScale { Brushes = "rgba(248, 174, 95, 0.75)" };
+    private List<PopulationInfo> AfricaData;
+    private List<PopulationInfo> EuropeData;
     private SizeScale SizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 100 };
 
     public void InitializeData()
     {
-        var data = new BirthAndDeathRateData();
+        var data = new PopulationData();
 
         var comparer = new BubbleSeriesSortComparer();
 
@@ -91,11 +86,11 @@
         InitializeData();
     }
 
-    private class BubbleSeriesSortComparer : IComparer<BirthAndDeathRateInfo>
+    private class BubbleSeriesSortComparer : IComparer<PopulationInfo>
     {
-        public int Compare(BirthAndDeathRateInfo x, BirthAndDeathRateInfo y)
+        public int Compare(PopulationInfo x, PopulationInfo y)
         {
-            return y.TotalPopulation.CompareTo(x.TotalPopulation);
+            return y.Total.CompareTo(x.Total);
         }
     }
 }

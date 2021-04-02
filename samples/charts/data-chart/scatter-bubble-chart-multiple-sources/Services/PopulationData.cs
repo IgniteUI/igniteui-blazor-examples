@@ -1,0 +1,227 @@
+﻿using System.Collections.Generic;
+
+namespace Infragistics.Samples
+{
+    public class PopulationInfo
+    {
+        public string Country { get; set; }
+        public string Year { get; set; }
+        public double Total { get; set; }
+        public string Continent { get; set; }
+        public double BirthRate { get; set; }
+        public double DeathRate { get; set; }
+    }
+
+    public class PopulationData : List<PopulationInfo>
+    {
+        public PopulationData()
+        {
+            // population statistic in 2015 
+            this.Add(new PopulationInfo { Country = "Afghanistan", Total = 34414000, Continent = "Asia", BirthRate = 33.98, DeathRate = 6.92 });
+            this.Add(new PopulationInfo { Country = "Albania", Total = 2891000, Continent = "Europe", BirthRate = 11.88, DeathRate = 7.22 });
+            this.Add(new PopulationInfo { Country = "Algeria", Total = 39728000, Continent = "Africa", BirthRate = 23.90, DeathRate = 4.77 });
+            this.Add(new PopulationInfo { Country = "Angola", Total = 27884000, Continent = "Africa", BirthRate = 42.32, DeathRate = 8.68 });
+            this.Add(new PopulationInfo { Country = "Antigua and Barbuda", Total = 94000, Continent = "North America", BirthRate = 16.37, DeathRate = 5.79 });
+            this.Add(new PopulationInfo { Country = "Argentina", Total = 43075000, Continent = "South America", BirthRate = 17.36, DeathRate = 7.57 });
+            this.Add(new PopulationInfo { Country = "Armenia", Total = 2926000, Continent = "Asia", BirthRate = 13.81, DeathRate = 9.69 });
+            this.Add(new PopulationInfo { Country = "Aruba", Total = 104000, Continent = "North America", BirthRate = 10.96, DeathRate = 8.62 });
+            this.Add(new PopulationInfo { Country = "Australia", Total = 23932000, Continent = "Oceania", BirthRate = 12.80, DeathRate = 6.60 });
+            this.Add(new PopulationInfo { Country = "Austria", Total = 8679000, Continent = "Europe", BirthRate = 9.80, DeathRate = 9.60 });
+            this.Add(new PopulationInfo { Country = "Azerbaijan", Total = 9623000, Continent = "Asia", BirthRate = 17.20, DeathRate = 5.70 });
+            this.Add(new PopulationInfo { Country = "Bahamas", Total = 374000, Continent = "North America", BirthRate = 14.42, DeathRate = 6.26 });
+            this.Add(new PopulationInfo { Country = "Bahrain", Total = 1372000, Continent = "Asia", BirthRate = 15.11, DeathRate = 2.35 });
+            this.Add(new PopulationInfo { Country = "Bangladesh", Total = 156256000, Continent = "Asia", BirthRate = 19.29, DeathRate = 5.31 });
+            this.Add(new PopulationInfo { Country = "Barbados", Total = 285000, Continent = "North America", BirthRate = 12, DeathRate = 10.66 });
+            this.Add(new PopulationInfo { Country = "Belarus", Total = 9439000, Continent = "Europe", BirthRate = 12.50, DeathRate = 12.60 });
+            this.Add(new PopulationInfo { Country = "Belgium", Total = 11288000, Continent = "Europe", BirthRate = 10.80, DeathRate = 9.80 });
+            this.Add(new PopulationInfo { Country = "Belize", Total = 361000, Continent = "North America", BirthRate = 22.74, DeathRate = 5.52 });
+            this.Add(new PopulationInfo { Country = "Benin", Total = 10576000, Continent = "Africa", BirthRate = 37.43, DeathRate = 9.32 });
+            this.Add(new PopulationInfo { Country = "Bermuda", Total = 64000, Continent = "North America", BirthRate = 9.40, DeathRate = 7.40 });
+            this.Add(new PopulationInfo { Country = "Bhutan", Total = 728000, Continent = "Asia", BirthRate = 18.46, DeathRate = 6.04 });
+            this.Add(new PopulationInfo { Country = "Bolivia", Total = 10870000, Continent = "South America", BirthRate = 23.55, DeathRate = 7.35 });
+            this.Add(new PopulationInfo { Country = "Bonaire Sint Eustatius and Saba", Total = 25000, Continent = "North America" });
+            this.Add(new PopulationInfo { Country = "Bosnia and Herzegovina", Total = 3429000, Continent = "Europe", BirthRate = 9.12, DeathRate = 10.89 });
+            this.Add(new PopulationInfo { Country = "Botswana", Total = 2121000, Continent = "Africa", BirthRate = 24.14, DeathRate = 7.02 });
+            this.Add(new PopulationInfo { Country = "Brazil", Total = 204472000, Continent = "South America", BirthRate = 14.41, DeathRate = 6.09 });
+            this.Add(new PopulationInfo { Country = "Brunei", Total = 415000, Continent = "Asia", BirthRate = 16.14, DeathRate = 3.51 });
+            this.Add(new PopulationInfo { Country = "Bulgaria", Total = 7200000, Continent = "Europe", BirthRate = 9.20, DeathRate = 15.30 });
+            this.Add(new PopulationInfo { Country = "Burkina Faso", Total = 18111000, Continent = "Africa", BirthRate = 39.44, DeathRate = 8.82 });
+            this.Add(new PopulationInfo { Country = "Burundi", Total = 10160000, Continent = "Africa", BirthRate = 42.66, DeathRate = 11.03 });
+            this.Add(new PopulationInfo { Country = "Cambodia", Total = 15521000, Continent = "Asia", BirthRate = 23.68, DeathRate = 6.11 });
+            this.Add(new PopulationInfo { Country = "Cameroon", Total = 23298000, Continent = "Africa", BirthRate = 36.84, DeathRate = 10.35 });
+            this.Add(new PopulationInfo { Country = "Canada", Total = 36027000, Continent = "North America", BirthRate = 10.80, DeathRate = 7.50 });
+            this.Add(new PopulationInfo { Country = "Cape Verde", Total = 525000, Continent = "Africa", BirthRate = 21.14, DeathRate = 5.61 });
+            this.Add(new PopulationInfo { Country = "Cayman Islands", Total = 62000, Continent = "North America", BirthRate = 10.70, DeathRate = 2.80 });
+            this.Add(new PopulationInfo { Country = "Central African Republic", Total = 4493000, Continent = "Africa", BirthRate = 36.11, DeathRate = 14.01 });
+            this.Add(new PopulationInfo { Country = "Chad", Total = 14111000, Continent = "Africa", BirthRate = 43.86, DeathRate = 13.22 });
+            this.Add(new PopulationInfo { Country = "Channel Islands", Total = 165000, Continent = "Europe", BirthRate = 9.39, DeathRate = 8.97 });
+            this.Add(new PopulationInfo { Country = "Chile", Total = 17969000, Continent = "South America", BirthRate = 13.44, DeathRate = 6.07 });
+            this.Add(new PopulationInfo { Country = "China", Total = 1406848000, Continent = "Asia", BirthRate = 12.07, DeathRate = 7.11 });
+            this.Add(new PopulationInfo { Country = "Colombia", Total = 47521000, Continent = "South America", BirthRate = 15.48, DeathRate = 5.94 });
+            this.Add(new PopulationInfo { Country = "Comoros", Total = 777000, Continent = "Africa", BirthRate = 33.33, DeathRate = 7.49 });
+            this.Add(new PopulationInfo { Country = "Congo", Total = 4856000, Continent = "Africa", BirthRate = 35.23, DeathRate = 7.56 });
+            this.Add(new PopulationInfo { Country = "Costa Rica", Total = 4848000, Continent = "North America", BirthRate = 14.53, DeathRate = 4.88 });
+            this.Add(new PopulationInfo { Country = "Cote d'Ivoire", Total = 23226000, Continent = "Africa", BirthRate = 37.10, DeathRate = 12.54 });
+            this.Add(new PopulationInfo { Country = "Croatia", Total = 4233000, Continent = "Europe", BirthRate = 8.90, DeathRate = 12.90 });
+            this.Add(new PopulationInfo { Country = "Cuba", Total = 11325000, Continent = "North America", BirthRate = 10.97, DeathRate = 7.90 });
+            this.Add(new PopulationInfo { Country = "Curacao", Total = 160000, Continent = "North America", BirthRate = 11.90, DeathRate = 8.80 });
+            this.Add(new PopulationInfo { Country = "Cyprus", Total = 1161000, Continent = "Europe", BirthRate = 10.98, DeathRate = 6.84 });
+            this.Add(new PopulationInfo { Country = "Czech Republic", Total = 10601000, Continent = "Europe", BirthRate = 10.50, DeathRate = 10.50 });
+            this.Add(new PopulationInfo { Country = "Democratic Republic of Congo", Total = 76245000, Continent = "Africa", BirthRate = 42.81, DeathRate = 10.19 });
+            this.Add(new PopulationInfo { Country = "Denmark", Total = 5689000, Continent = "Europe", BirthRate = 10.20, DeathRate = 9.20 });
+            this.Add(new PopulationInfo { Country = "Djibouti", Total = 914000, Continent = "Africa", BirthRate = 23.35, DeathRate = 8.37 });
+            this.Add(new PopulationInfo { Country = "Dominican Republic", Total = 10282000, Continent = "North America", BirthRate = 20.51, DeathRate = 6.08 });
+            this.Add(new PopulationInfo { Country = "Ecuador", Total = 16212000, Continent = "South America", BirthRate = 20.48, DeathRate = 5.13 });
+            this.Add(new PopulationInfo { Country = "Egypt", Total = 92443000, Continent = "Africa", BirthRate = 27.20, DeathRate = 5.96 });
+            this.Add(new PopulationInfo { Country = "El Salvador", Total = 6325000, Continent = "North America", BirthRate = 18.69, DeathRate = 6.69 });
+            this.Add(new PopulationInfo { Country = "Equatorial Guinea", Total = 1169000, Continent = "Africa", BirthRate = 34.64, DeathRate = 10.34 });
+            this.Add(new PopulationInfo { Country = "Eritrea", Total = 3343000, Continent = "Africa", BirthRate = 32.83, DeathRate = 7.07 });
+            this.Add(new PopulationInfo { Country = "Estonia", Total = 1315000, Continent = "Europe", BirthRate = 10.60, DeathRate = 11.60 });
+            this.Add(new PopulationInfo { Country = "Ethiopia", Total = 100835000, Continent = "Africa", BirthRate = 32.30, DeathRate = 7 });
+            this.Add(new PopulationInfo { Country = "Faeroe Islands", Total = 48000, Continent = "Europe", BirthRate = 12.40, DeathRate = 7.70 });
+            this.Add(new PopulationInfo { Country = "Fiji", Total = 869000, Continent = "Oceania", BirthRate = 19.74, DeathRate = 6.99 });
+            this.Add(new PopulationInfo { Country = "Finland", Total = 5481000, Continent = "Europe", BirthRate = 10.10, DeathRate = 9.60 });
+            this.Add(new PopulationInfo { Country = "France", Total = 64453000, Continent = "Europe", BirthRate = 12, DeathRate = 8.90 });
+            this.Add(new PopulationInfo { Country = "French Polynesia", Total = 273000, Continent = "Oceania", BirthRate = 15.58, DeathRate = 5.37 });
+            this.Add(new PopulationInfo { Country = "Gabon", Total = 1948000, Continent = "Africa", BirthRate = 30.09, DeathRate = 7.82 });
+            this.Add(new PopulationInfo { Country = "Gambia", Total = 2086000, Continent = "Africa", BirthRate = 39.99, DeathRate = 8.20 });
+            this.Add(new PopulationInfo { Country = "Georgia", Total = 4024000, Continent = "Asia", BirthRate = 13.80, DeathRate = 13.25 });
+            this.Add(new PopulationInfo { Country = "Germany", Total = 81787000, Continent = "Europe", BirthRate = 9, DeathRate = 11.30 });
+            this.Add(new PopulationInfo { Country = "Ghana", Total = 27849000, Continent = "Africa", BirthRate = 31.56, DeathRate = 8.31 });
+            this.Add(new PopulationInfo { Country = "Greece", Total = 10660000, Continent = "Europe", BirthRate = 8.50, DeathRate = 11.20 });
+            this.Add(new PopulationInfo { Country = "Greenland", Total = 56000, Continent = "North America", BirthRate = 15.20, DeathRate = 8.50 });
+            this.Add(new PopulationInfo { Country = "Grenada", Total = 110000, Continent = "North America", BirthRate = 18.95, DeathRate = 7.13 });
+            this.Add(new PopulationInfo { Country = "Guam", Total = 162000, Continent = "Oceania", BirthRate = 16.90, DeathRate = 5 });
+            this.Add(new PopulationInfo { Country = "Guatemala", Total = 16252000, Continent = "North America", BirthRate = 25.63, DeathRate = 4.86 });
+            this.Add(new PopulationInfo { Country = "Guinea", Total = 11432000, Continent = "Africa", BirthRate = 36.36, DeathRate = 9.58 });
+            this.Add(new PopulationInfo { Country = "Guinea-Bissau", Total = 1737000, Continent = "Africa", BirthRate = 37.15, DeathRate = 10.78 });
+            this.Add(new PopulationInfo { Country = "Guyana", Total = 767000, Continent = "South America", BirthRate = 20.73, DeathRate = 8.16 });
+            this.Add(new PopulationInfo { Country = "Haiti", Total = 10696000, Continent = "North America", BirthRate = 24.55, DeathRate = 8.66 });
+            this.Add(new PopulationInfo { Country = "Honduras", Total = 9113000, Continent = "North America", BirthRate = 22.04, DeathRate = 4.81 });
+            this.Add(new PopulationInfo { Country = "Hong Kong", Total = 7186000, Continent = "Asia", BirthRate = 8.20, DeathRate = 6.30 });
+            this.Add(new PopulationInfo { Country = "Hungary", Total = 9778000, Continent = "Europe", BirthRate = 9.40, DeathRate = 13.40 });
+            this.Add(new PopulationInfo { Country = "Iceland", Total = 330000, Continent = "Europe", BirthRate = 12.50, DeathRate = 6.60 });
+            this.Add(new PopulationInfo { Country = "India", Total = 1310151936, Continent = "Asia", BirthRate = 19.27, DeathRate = 7.30 });
+            this.Add(new PopulationInfo { Country = "Indonesia", Total = 258383008, Continent = "Asia", BirthRate = 19.35, DeathRate = 7.10 });
+            this.Add(new PopulationInfo { Country = "Iran", Total = 78492000, Continent = "Asia", BirthRate = 17.10, DeathRate = 4.55 });
+            this.Add(new PopulationInfo { Country = "Iraq", Total = 35572000, Continent = "Asia", BirthRate = 33.63, DeathRate = 5.10 });
+            this.Add(new PopulationInfo { Country = "Ireland", Total = 4652000, Continent = "Europe", BirthRate = 14.10, DeathRate = 6.50 });
+            this.Add(new PopulationInfo { Country = "Israel", Total = 7978000, Continent = "Asia", BirthRate = 21.30, DeathRate = 5.30 });
+            this.Add(new PopulationInfo { Country = "Italy", Total = 60578000, Continent = "Europe", BirthRate = 8, DeathRate = 10.70 });
+            this.Add(new PopulationInfo { Country = "Jamaica", Total = 2891000, Continent = "North America", BirthRate = 16.81, DeathRate = 6.93 });
+            this.Add(new PopulationInfo { Country = "Japan", Total = 127985000, Continent = "Asia", BirthRate = 8, DeathRate = 10.30 });
+            this.Add(new PopulationInfo { Country = "Jordan", Total = 9267000, Continent = "Asia", BirthRate = 27.04, DeathRate = 3.83 });
+            this.Add(new PopulationInfo { Country = "Kazakhstan", Total = 17572000, Continent = "Asia", BirthRate = 22.66, DeathRate = 7.48 });
+            this.Add(new PopulationInfo { Country = "Kenya", Total = 47878000, Continent = "Africa", BirthRate = 31.78, DeathRate = 5.84 });
+            this.Add(new PopulationInfo { Country = "Kiribati", Total = 111000, Continent = "Oceania", BirthRate = 28.55, DeathRate = 7.01 });
+            this.Add(new PopulationInfo { Country = "Kosovo", Total = 0, Continent = "Europe", BirthRate = 17.10, DeathRate = 7 });
+            this.Add(new PopulationInfo { Country = "Kuwait", Total = 3836000, Continent = "Asia", BirthRate = 16.87, DeathRate = 2.68 });
+            this.Add(new PopulationInfo { Country = "Kyrgyzstan", Total = 5959000, Continent = "Asia", BirthRate = 27.40, DeathRate = 5.80 });
+            this.Add(new PopulationInfo { Country = "Laos", Total = 6741000, Continent = "Asia", BirthRate = 24.32, DeathRate = 6.75 });
+            this.Add(new PopulationInfo { Country = "Latvia", Total = 1998000, Continent = "Europe", BirthRate = 11.10, DeathRate = 14.40 });
+            this.Add(new PopulationInfo { Country = "Lebanon", Total = 6533000, Continent = "Asia", BirthRate = 15.38, DeathRate = 4.59 });
+            this.Add(new PopulationInfo { Country = "Lesotho", Total = 2059000, Continent = "Africa", BirthRate = 28.16, DeathRate = 12.92 });
+            this.Add(new PopulationInfo { Country = "Liberia", Total = 4472000, Continent = "Africa", BirthRate = 34.72, DeathRate = 8.12 });
+            this.Add(new PopulationInfo { Country = "Libya", Total = 6418000, Continent = "Africa", BirthRate = 20.19, DeathRate = 5.20 });
+            this.Add(new PopulationInfo { Country = "Liechtenstein", Total = 37000, Continent = "Europe", BirthRate = 8.70, DeathRate = 6.70 });
+            this.Add(new PopulationInfo { Country = "Lithuania", Total = 2932000, Continent = "Europe", BirthRate = 10.80, DeathRate = 14.40 });
+            this.Add(new PopulationInfo { Country = "Luxembourg", Total = 567000, Continent = "Europe", BirthRate = 10.70, DeathRate = 7 });
+            this.Add(new PopulationInfo { Country = "Macao", Total = 602000, Continent = "Asia", BirthRate = 11.99, DeathRate = 3.75 });
+            this.Add(new PopulationInfo { Country = "Macedonia", Total = 2079000, Continent = "Europe", BirthRate = 11.30, DeathRate = 9.75 });
+            this.Add(new PopulationInfo { Country = "Madagascar", Total = 24234000, Continent = "Africa", BirthRate = 33.40, DeathRate = 6.48 });
+            this.Add(new PopulationInfo { Country = "Malawi", Total = 16745000, Continent = "Africa", BirthRate = 37.05, DeathRate = 7.50 });
+            this.Add(new PopulationInfo { Country = "Malaysia", Total = 30271000, Continent = "Asia", BirthRate = 17.09, DeathRate = 4.87 });
+            this.Add(new PopulationInfo { Country = "Maldives", Total = 455000, Continent = "Asia", BirthRate = 18.81, DeathRate = 3.38 });
+            this.Add(new PopulationInfo { Country = "Mali", Total = 17439000, Continent = "Africa", BirthRate = 43.22, DeathRate = 10.67 });
+            this.Add(new PopulationInfo { Country = "Malta", Total = 434000, Continent = "Europe", BirthRate = 10, DeathRate = 8 });
+            this.Add(new PopulationInfo { Country = "Mauritania", Total = 4046000, Continent = "Africa", BirthRate = 34.57, DeathRate = 7.96 });
+            this.Add(new PopulationInfo { Country = "Mauritius", Total = 1259000, Continent = "Africa", BirthRate = 10.10, DeathRate = 7.70 });
+            this.Add(new PopulationInfo { Country = "Mexico", Total = 121858000, Continent = "North America", BirthRate = 18.51, DeathRate = 4.82 });
+            this.Add(new PopulationInfo { Country = "Micronesia (country)", Total = 109000, Continent = "Oceania", BirthRate = 23.64, DeathRate = 6.22 });
+            this.Add(new PopulationInfo { Country = "Moldova", Total = 4071000, Continent = "Europe", BirthRate = 10.52, DeathRate = 11.42 });
+            this.Add(new PopulationInfo { Country = "Monaco", Total = 38000, Continent = "Europe", BirthRate = 8.10, DeathRate = 7.60 });
+            this.Add(new PopulationInfo { Country = "Mongolia", Total = 2998000, Continent = "Asia", BirthRate = 24.71, DeathRate = 6.31 });
+            this.Add(new PopulationInfo { Country = "Montenegro", Total = 627000, Continent = "Europe", BirthRate = 11.52, DeathRate = 9.80 });
+            this.Add(new PopulationInfo { Country = "Morocco", Total = 34664000, Continent = "Africa", BirthRate = 20.40, DeathRate = 5.15 });
+            this.Add(new PopulationInfo { Country = "Mozambique", Total = 27042000, Continent = "Africa", BirthRate = 39.36, DeathRate = 10.38 });
+            this.Add(new PopulationInfo { Country = "Myanmar", Total = 52681000, Continent = "Asia", BirthRate = 18, DeathRate = 8.10 });
+            this.Add(new PopulationInfo { Country = "Namibia", Total = 2315000, Continent = "Africa", BirthRate = 29.59, DeathRate = 7.46 });
+            this.Add(new PopulationInfo { Country = "Nepal", Total = 27015000, Continent = "Asia", BirthRate = 19.97, DeathRate = 6.33 });
+            this.Add(new PopulationInfo { Country = "Netherlands", Total = 16938000, Continent = "Europe", BirthRate = 10.10, DeathRate = 8.70 });
+            this.Add(new PopulationInfo { Country = "New Caledonia", Total = 271000, Continent = "Oceania", BirthRate = 15.40, DeathRate = 5.40 });
+            this.Add(new PopulationInfo { Country = "New Zealand", Total = 4615000, Continent = "Oceania", BirthRate = 13.27, DeathRate = 6.87 });
+            this.Add(new PopulationInfo { Country = "Nicaragua", Total = 6223000, Continent = "North America", BirthRate = 19.93, DeathRate = 4.77 });
+            this.Add(new PopulationInfo { Country = "Niger", Total = 20002000, Continent = "Africa", BirthRate = 48.44, DeathRate = 9.94 });
+            this.Add(new PopulationInfo { Country = "Nigeria", Total = 181136992, Continent = "Africa", BirthRate = 39.37, DeathRate = 12.77 });
+            this.Add(new PopulationInfo { Country = "North Korea", Total = 25184000, Continent = "Asia", BirthRate = 13.87, DeathRate = 8.75 });
+            this.Add(new PopulationInfo { Country = "Norway", Total = 5200000, Continent = "Europe", BirthRate = 11.30, DeathRate = 7.80 });
+            this.Add(new PopulationInfo { Country = "Oman", Total = 4267000, Continent = "Asia", BirthRate = 19.59, DeathRate = 2.57 });
+            this.Add(new PopulationInfo { Country = "Pakistan", Total = 199427008, Continent = "Asia", BirthRate = 28.73, DeathRate = 7.34 });
+            this.Add(new PopulationInfo { Country = "Palau", Total = 18000, Continent = "Oceania", BirthRate = 13.70, DeathRate = 7.70 });
+            this.Add(new PopulationInfo { Country = "Palestine", Total = 4529000, Continent = "Asia", BirthRate = 32.13, DeathRate = 3.51 });
+            this.Add(new PopulationInfo { Country = "Panama", Total = 3968000, Continent = "North America", BirthRate = 19.85, DeathRate = 5 });
+            this.Add(new PopulationInfo { Country = "Papua New Guinea", Total = 8108000, Continent = "Oceania", BirthRate = 27.93, DeathRate = 7.13 });
+            this.Add(new PopulationInfo { Country = "Paraguay", Total = 6689000, Continent = "South America", BirthRate = 21.15, DeathRate = 5.69 });
+            this.Add(new PopulationInfo { Country = "Peru", Total = 30471000, Continent = "South America", BirthRate = 19.62, DeathRate = 5.64 });
+            this.Add(new PopulationInfo { Country = "Philippines", Total = 102113000, Continent = "Asia", BirthRate = 23.45, DeathRate = 6.50 });
+            this.Add(new PopulationInfo { Country = "Poland", Total = 38034000, Continent = "Europe", BirthRate = 9.70, DeathRate = 10.40 });
+            this.Add(new PopulationInfo { Country = "Portugal", Total = 10368000, Continent = "Europe", BirthRate = 8.30, DeathRate = 10.50 });
+            this.Add(new PopulationInfo { Country = "Puerto Rico", Total = 3382000, Continent = "North America", BirthRate = 9, DeathRate = 8.08 });
+            this.Add(new PopulationInfo { Country = "Qatar", Total = 2566000, Continent = "Asia", BirthRate = 10.31, DeathRate = 1.51 });
+            this.Add(new PopulationInfo { Country = "Romania", Total = 19925000, Continent = "Europe", BirthRate = 10, DeathRate = 13.20 });
+            this.Add(new PopulationInfo { Country = "Russia", Total = 144984992, Continent = "Europe", BirthRate = 13.30, DeathRate = 13 });
+            this.Add(new PopulationInfo { Country = "Rwanda", Total = 11369000, Continent = "Africa", BirthRate = 31.79, DeathRate = 6.13 });
+            this.Add(new PopulationInfo { Country = "Saint Lucia", Total = 179000, Continent = "North America", BirthRate = 12.24, DeathRate = 7.47 });
+            this.Add(new PopulationInfo { Country = "Saint Martin (French part)", Total = 36000, Continent = "North America", BirthRate = 15.40, DeathRate = 4.20 });
+            this.Add(new PopulationInfo { Country = "Saint Vincent and the Grenadines", Total = 109000, Continent = "North America", BirthRate = 15.77, DeathRate = 7.12 });
+            this.Add(new PopulationInfo { Country = "Samoa", Total = 194000, Continent = "Oceania", BirthRate = 25.12, DeathRate = 4.98 });
+            this.Add(new PopulationInfo { Country = "San Marino", Total = 33000, Continent = "Europe", BirthRate = 8.20, DeathRate = 7.10 });
+            this.Add(new PopulationInfo { Country = "Sao Tome and Principe", Total = 199000, Continent = "Africa", BirthRate = 34.33, DeathRate = 6.81 });
+            this.Add(new PopulationInfo { Country = "Saudi Arabia", Total = 31718000, Continent = "Asia", BirthRate = 19.92, DeathRate = 3.54 });
+            this.Add(new PopulationInfo { Country = "Senegal", Total = 14578000, Continent = "Africa", BirthRate = 36.21, DeathRate = 6.07 });
+            this.Add(new PopulationInfo { Country = "Serbia", Total = 8877000, Continent = "Europe", BirthRate = 9.30, DeathRate = 14.60 });
+            this.Add(new PopulationInfo { Country = "Seychelles", Total = 95000, Continent = "Africa", BirthRate = 17, DeathRate = 7.50 });
+            this.Add(new PopulationInfo { Country = "Sierra Leone", Total = 7172000, Continent = "Africa", BirthRate = 35.61, DeathRate = 13.03 });
+            this.Add(new PopulationInfo { Country = "Singapore", Total = 5592000, Continent = "Asia", BirthRate = 9.70, DeathRate = 4.80 });
+            this.Add(new PopulationInfo { Country = "Sint Maarten (Dutch part)", Total = 40000, Continent = "North America", BirthRate = 0, DeathRate = 4.60 });
+            this.Add(new PopulationInfo { Country = "Slovakia", Total = 5436000, Continent = "Europe", BirthRate = 10.30, DeathRate = 9.90 });
+            this.Add(new PopulationInfo { Country = "Slovenia", Total = 2071000, Continent = "Europe", BirthRate = 10, DeathRate = 9.60 });
+            this.Add(new PopulationInfo { Country = "Solomon Islands", Total = 603000, Continent = "Oceania", BirthRate = 29.27, DeathRate = 4.85 });
+            this.Add(new PopulationInfo { Country = "Somalia", Total = 13797000, Continent = "Africa", BirthRate = 43.66, DeathRate = 11.63 });
+            this.Add(new PopulationInfo { Country = "South Africa", Total = 55386000, Continent = "Africa", BirthRate = 21.30, DeathRate = 10.10 });
+            this.Add(new PopulationInfo { Country = "South Korea", Total = 50823000, Continent = "Asia", BirthRate = 8.60, DeathRate = 5.40 });
+            this.Add(new PopulationInfo { Country = "South Sudan", Total = 10716000, Continent = "Africa", BirthRate = 36.32, DeathRate = 11.24 });
+            this.Add(new PopulationInfo { Country = "Spain", Total = 46672000, Continent = "Europe", BirthRate = 9, DeathRate = 9.10 });
+            this.Add(new PopulationInfo { Country = "Sri Lanka", Total = 20908000, Continent = "Asia", BirthRate = 15.60, DeathRate = 6.81 });
+            this.Add(new PopulationInfo { Country = "Sudan", Total = 38903000, Continent = "Africa", BirthRate = 33.32, DeathRate = 7.52 });
+            this.Add(new PopulationInfo { Country = "Suriname", Total = 559000, Continent = "South America", BirthRate = 18.45, DeathRate = 7.25 });
+            this.Add(new PopulationInfo { Country = "Swaziland", Total = 1104000, Continent = "Africa", BirthRate = 29.27, DeathRate = 9.86 });
+            this.Add(new PopulationInfo { Country = "Sweden", Total = 9765000, Continent = "Europe", BirthRate = 11.70, DeathRate = 9.30 });
+            this.Add(new PopulationInfo { Country = "Switzerland", Total = 8297000, Continent = "Europe", BirthRate = 10.50, DeathRate = 8.20 });
+            this.Add(new PopulationInfo { Country = "Tajikistan", Total = 8454000, Continent = "Asia", BirthRate = 29.34, DeathRate = 5.19 });
+            this.Add(new PopulationInfo { Country = "Tanzania", Total = 51483000, Continent = "Africa", BirthRate = 38.64, DeathRate = 7.02 });
+            this.Add(new PopulationInfo { Country = "Thailand", Total = 68715000, Continent = "Asia", BirthRate = 10.58, DeathRate = 7.75 });
+            this.Add(new PopulationInfo { Country = "Timor", Total = 1196000, Continent = "Asia", BirthRate = 35.50, DeathRate = 5.64 });
+            this.Add(new PopulationInfo { Country = "Togo", Total = 7323000, Continent = "Africa", BirthRate = 34.53, DeathRate = 8.83 });
+            this.Add(new PopulationInfo { Country = "Tonga", Total = 101000, Continent = "Oceania", BirthRate = 24.41, DeathRate = 6.02 });
+            this.Add(new PopulationInfo { Country = "Trinidad and Tobago", Total = 1370000, Continent = "North America", BirthRate = 13.96, DeathRate = 9.49 });
+            this.Add(new PopulationInfo { Country = "Tunisia", Total = 11180000, Continent = "Africa", BirthRate = 18.65, DeathRate = 6.36 });
+            this.Add(new PopulationInfo { Country = "Turkey", Total = 78529000, Continent = "Asia", BirthRate = 16.53, DeathRate = 5.81 });
+            this.Add(new PopulationInfo { Country = "Turkmenistan", Total = 5565000, Continent = "Asia", BirthRate = 26.01, DeathRate = 7.10 });
+            this.Add(new PopulationInfo { Country = "Uganda", Total = 38225000, Continent = "Africa", BirthRate = 42.63, DeathRate = 8.87 });
+            this.Add(new PopulationInfo { Country = "Ukraine", Total = 44922000, Continent = "Europe", BirthRate = 10.70, DeathRate = 14.90 });
+            this.Add(new PopulationInfo { Country = "United Arab Emirates", Total = 9263000, Continent = "Asia", BirthRate = 9.89, DeathRate = 1.56 });
+            this.Add(new PopulationInfo { Country = "United Kingdom", Total = 65860000, Continent = "Europe", BirthRate = 11.90, DeathRate = 9.20 });
+            this.Add(new PopulationInfo { Country = "United States", Total = 320878016, Continent = "North America", BirthRate = 12.40, DeathRate = 8.44 });
+            this.Add(new PopulationInfo { Country = "United States Virgin Islands", Total = 105000, Continent = "North America", BirthRate = 13.20, DeathRate = 7.30 });
+            this.Add(new PopulationInfo { Country = "Uruguay", Total = 3412000, Continent = "South America", BirthRate = 14.14, DeathRate = 9.35 });
+            this.Add(new PopulationInfo { Country = "Uzbekistan", Total = 30930000, Continent = "Asia", BirthRate = 23.50, DeathRate = 4.90 });
+            this.Add(new PopulationInfo { Country = "Vanuatu", Total = 271000, Continent = "Oceania", BirthRate = 26.17, DeathRate = 4.78 });
+            this.Add(new PopulationInfo { Country = "Venezuela", Total = 30082000, Continent = "South America", BirthRate = 19.33, DeathRate = 5.57 });
+            this.Add(new PopulationInfo { Country = "Vietnam", Total = 92677000, Continent = "Asia", BirthRate = 16.92, DeathRate = 5.81 });
+            this.Add(new PopulationInfo { Country = "Yemen", Total = 26498000, Continent = "Asia", BirthRate = 32.22, DeathRate = 6.54 });
+            this.Add(new PopulationInfo { Country = "Zambia", Total = 15879000, Continent = "Africa", BirthRate = 38.44, DeathRate = 8 });
+            this.Add(new PopulationInfo { Country = "Zimbabwe", Total = 13815000, Continent = "Africa", BirthRate = 33.94, DeathRate = 8.40 });
+        }
+    }
+}
