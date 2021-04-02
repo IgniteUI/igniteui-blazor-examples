@@ -8,16 +8,16 @@
             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
 
-        <div class="overlay-top-right" >
+        <div class="overlay-right" >
             <div class="options horizontal" >
-                <label>X-Axis Label Angle </label>
+                <label>X - Axis Label Angle </label>
                 <label class="options-value" >@XAxisLabelAngle</label>
                 <input type="range" min="0" max="270" step="10" value="0" @oninput="OnXAxisLabelAngleChange"/>
           </div>
             <div class="options horizontal" >
-                <label>Y-Axis Label Angle </label>
+                <label>Y - Axis Label Angle </label>
                 <label class="options-value" >@YAxisLabelAngle</label>
-                <input type="range" min="0" max="270" step="10" value="0" @oninput="OnYAxisLabelAngleChange" />
+                <input type="range" min="-90" max="90" step="10" value="0" @oninput="OnYAxisLabelAngleChange" />
             </div>
         </div>
     </div>
@@ -32,12 +32,15 @@
                            IsVerticalZoomEnabled="false"
                            XAxisLabelAngle="@XAxisLabelAngle"
                            XAxisLabelTextColor="Gray"
-                           XAxisLabelTextStyle="10pt Verdana"
+                           XAxisLabelTextStyle="10pt 'Titillium Web'"
                            XAxisLabelTopMargin="5"
                            YAxisLabelAngle="@YAxisLabelAngle"
                            YAxisLabelTextColor="Gray"
-                           YAxisLabelTextStyle="10pt Verdana"
-                           YAxisLabelRightMargin="5">
+                           YAxisLabelTextStyle="10pt 'Titillium Web'"
+                           YAxisLabelRightMargin="5"
+                           YAxisLabelLocation="AxisLabelsLocation.OutsideRight"
+                           TitleTopMargin="10"
+                           ChartTitle="">
             </CategoryChart>
         }
     </div>

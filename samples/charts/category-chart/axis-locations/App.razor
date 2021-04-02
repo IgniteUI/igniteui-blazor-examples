@@ -9,14 +9,16 @@
             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
 
-        <div class="options horizontal overlay-top-right" >
-            <label>Y-Axis Location </label>
-            <select @onchange="OnLabelsLocationChange">
-                <option>Outside Left</option>
-                <option>Outside Right</option>
-                <option>Inside Left</option>
-                <option>Inside Right</option>
-            </select>
+        <div class="overlay-right">
+            <div class="options horizontal">
+                <label class="options-label">Y - Axis Location </label>
+                <select @onchange="OnLabelsLocationChange">
+                    <option>Outside Left</option>
+                    <option>Outside Right</option>
+                    <option>Inside Left</option>
+                    <option>Inside Right</option>
+                </select>
+            </div>
         </div>
     </div>
 
@@ -43,7 +45,6 @@
         get { return _Legend; }
         set { _Legend = value; StateHasChanged(); }
     }
-
 
     private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
 
