@@ -4,23 +4,24 @@
 
 <div class="container vertical">
     <div class="options vertical">
-        <span class="legend-title">Annual Number of Births by World Region</span>
+        <span class="legend-title">Annual Number of Births by World Region, Relative</span>
     </div>
     <div class="container vertical">
         @if (Data != null)
         {
-            <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="false" IsHorizontalZoomEnabled="false">
-                <CategoryXAxis Name="xAxis" DataSource="Data" Label="Year" Gap="0.75" />
-                <NumericYAxis Name="yAxis" MinimumValue="0" MaximumValue="140" Interval="20" Title="Millions of Births" TitleLeftMargin="10" LabelFormat="{0} m" />
+            <DataChart Height="100%" Width="100%" IsHorizontalZoomEnabled="false"
+                IsVerticalZoomEnabled="false">
+                <CategoryXAxis Name="xAxis" DataSource="Data" Label="Year" />
+                <NumericYAxis Name="yAxis" Interval="20" TitleLeftMargin="10" LabelFormat="{0} %"/>
 
-                <StackedLineSeries MarkerType="MarkerType.Circle" XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false">
+                <Stacked100LineSeries MarkerType="MarkerType.Circle" XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false">
                     <StackedFragmentSeries ValueMemberPath="Asia" />
                     <StackedFragmentSeries ValueMemberPath="Africa" />
                     <StackedFragmentSeries ValueMemberPath="Europe" />
                     <StackedFragmentSeries ValueMemberPath="NorthAmerica" />
                     <StackedFragmentSeries ValueMemberPath="SouthAmerica" />
                     <StackedFragmentSeries ValueMemberPath="Oceania" />
-                </StackedLineSeries>
+                </Stacked100LineSeries>
             </DataChart>
         }
     </div>
