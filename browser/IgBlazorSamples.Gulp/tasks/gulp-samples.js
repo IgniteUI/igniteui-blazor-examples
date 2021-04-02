@@ -537,7 +537,6 @@ function updateSharedFiles(cb) {
         let sourceContent = file.contents.toString();
         let sourcePath = Transformer.getRelative(file.dirname);
         sourcePath = sourcePath.replace('../../templates/sample', '');
-        sourcePath = sourcePath.replace('../../templates/shared', '');
 
         for (const sample of samples) {
             // if (sample.isUsingFileName(file.basename)) {
@@ -577,7 +576,6 @@ function updateDataFiles(cb) {
         let sourceContent = file.contents.toString();
         let sourcePath = Transformer.getRelative(file.dirname);
         sourcePath = sourcePath.replace('../../templates/sample', '');
-        // sourcePath = sourcePath.replace('../../templates/shared', '');
 
         for (const sample of samples) {
             if (sample.isUsingFileName(file.basename)) {
