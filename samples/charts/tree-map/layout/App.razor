@@ -5,22 +5,37 @@
 
         <div class="options vertical">
             <div class="options horizontal">
-                <button @onclick="onClickSliceVer" style="width: 9rem">Slice Vertically</button>
-                <button @onclick="onClickStripVer" style="width: 10rem">Stripped Vertically</button>
-                <button @onclick="onClickSquarified" style="width: 8rem">Squarified</button>
-
-                <label class="options-label">Header Display Mode </label>
-                <select  @bind="@TreeHeaderMode">
-                    <option>@TreemapHeaderDisplayMode.Header</option>
-                    <option>@TreemapHeaderDisplayMode.Overlay</option>
+                <label class="options-label">Layout</label>
+                <select  @bind="@TreeLayout">
+                    <option>@TreemapLayoutType.Squarified</option>
+                    <option>@TreemapLayoutType.Stripped</option>
+                    <option>@TreemapLayoutType.SliceAndDice</option>
                 </select>
-            </div>
 
-            <div class="options horizontal">
-                <button @onclick="onClickSliceHor" style="width: 9rem">Slice Horizontally</button>
-                <button @onclick="onClickStripHor" style="width: 10rem">Stripped Horizontally</button>
-                @* this label displays info about currently selected item in Treemap *@
-                <label style="margin-left: 0.5rem">@SelectedItemInfo</label>
+                <label class="options-label">Orientation</label>
+                <select  @bind="@TreeOrientation" title="Works only with Stripped and SliceAndDice layouts">
+                    <option>@TreemapOrientation.Horizontal</option>
+                    <option>@TreemapOrientation.Vertical</option>
+                </select>
+
+                <label class="options-label">Headers</label>
+                <select @onchange="OnHeaderModeChange">
+                    <option>Overlay</option>
+                    <option>Outside</option>
+                </select>
+                
+                <label class="options-label">Labels</label>
+                <select @onchange="OnLabelAlignChange">
+                    <option>Center</option>
+                    <option>Left</option>
+                    <option>Right</option>
+                    <option>Top Center</option>
+                    <option>Top Left</option>
+                    <option>Top Right</option> 
+                    <option>Bottom Center</option>
+                    <option>Bottom Left</option>
+                    <option>Bottom Right</option>
+                </select>
             </div>
         </div>
 
@@ -28,92 +43,75 @@
             <span class="legend-title">Comparing Population of Countries</span>
         </div>
 
-        <div class="container vertical" style="padding: 0.75rem; padding-top: 0.5rem;">
-
+        <div class="container vertical" style="padding: 0.75rem; width: calc(100% - 1.5rem); height: calc(100% - 1.5rem)">
             <Treemap Height="100%" Width="100%"
                      DataSource="Data"
+                     RootTitle="Countries"
                      ParentIdMemberPath="Parent"
                      IdMemberPath="Name"
                      LabelMemberPath="Name"
                      ValueMemberPath="Pop"
-                     LayoutType="@TreeLayout"
-                     LayoutOrientation="@TreeOrientation"
-                     FillBrushes="#4e62cf, #8a58d6"
-                     IsFillScaleLogarithmic="true"
-                     NodePointerEnter="@onNodePointerEnter"
-                     RootTitle="Countries"
 
-                     HeaderDisplayMode="@TreeHeaderMode"
+                     LayoutType="@TreeLayout"
+                     LayoutOrientation="@TreeOrientation"     
+                     HeaderDisplayMode="@HeaderMode"       
+                     LabelHorizontalAlignment="@LabelHorizontalAlign"
+                     LabelVerticalAlignment="@LabelVerticalAlign"  
+                     
+                     FillBrushes="#299e41, #4e62cf, #5e359c"
+                     IsFillScaleLogarithmic="true"
                      ParentNodeBottomPadding="0"
                      ParentNodeLeftPadding="0"
                      ParentNodeRightPadding="0"
                      ParentNodeTopPadding="0">
             </Treemap>
-            @**@
         </div>
     </div>
 
 @code {
 
     protected List<CountryInfo> Data;
-    protected TreemapLayoutType TreeLayout = TreemapLayoutType.Squarified;
+    protected TreemapLayoutType  TreeLayout = TreemapLayoutType.Squarified;
     protected TreemapOrientation TreeOrientation = TreemapOrientation.Vertical;
-    protected TreemapHeaderDisplayMode TreeHeaderMode = TreemapHeaderDisplayMode.Overlay;
-    protected string SelectedItemInfo = "Select Tree Node";
+    protected TreemapHeaderDisplayMode HeaderMode = TreemapHeaderDisplayMode.Overlay;
+    protected HorizontalAlignment LabelHorizontalAlign = HorizontalAlignment.Center;
+    protected VerticalAlignment   LabelVerticalAlign   = VerticalAlignment.Center;
 
     protected override void OnInitialized()
     {
         TreemapModule.Register(IgniteUIBlazor);
 
         this.Data = CountryTreeData.Create();
-
         Console.WriteLine("CountryTreeData " + this.Data.Count);
     }
 
-    // handling NodePointerEnter action
-    private void onNodePointerEnter(TreemapNodePointerEventArgs arg)
+    private void OnHeaderModeChange(ChangeEventArgs args)
     {
-        var item = arg.Item as CountryInfo;
-        if (item == null) return;
-
-        if (item.Parent == null)
-        {
-            this.SelectedItemInfo = "" + item.Name;
-        }
+        var value = args.Value.ToString();
+        Console.WriteLine("OnHeaderModeChange " + value);
+        if (value == "Overlay")
+            HeaderMode = TreemapHeaderDisplayMode.Overlay;
         else
-        {
-            var population = (item.Pop / 1000000).ToString("0M people");
-            this.SelectedItemInfo = "" + item.Name + ": " + population;
-        }
-        this.StateHasChanged();
+            HeaderMode = TreemapHeaderDisplayMode.Header;
     }
 
-    private void onClickSquarified()
+    private void OnLabelAlignChange(ChangeEventArgs args)
     {
-        TreeLayout = TreemapLayoutType.Squarified;
-    }
+        var value = args.Value.ToString();
+        Console.WriteLine("OnLabelAlignChange " + value);
 
-    private void onClickSliceVer()
-    {
-        TreeLayout = TreemapLayoutType.SliceAndDice;
-        TreeOrientation = TreemapOrientation.Vertical;
-    }
+        if (value.Contains("Left"))
+            LabelHorizontalAlign = HorizontalAlignment.Left;
+        else if (value.Contains("Right"))
+            LabelHorizontalAlign = HorizontalAlignment.Right;
+        else
+            LabelHorizontalAlign = HorizontalAlignment.Center;
 
-    private void onClickSliceHor()
-    {
-        TreeLayout = TreemapLayoutType.SliceAndDice;
-        TreeOrientation = TreemapOrientation.Horizontal;
-    }
-
-    private void onClickStripVer()
-    {
-        TreeLayout = TreemapLayoutType.Stripped;
-        TreeOrientation = TreemapOrientation.Vertical;
-    }
-
-    private void onClickStripHor()
-    {
-        TreeLayout = TreemapLayoutType.Stripped;
-        TreeOrientation = TreemapOrientation.Horizontal;
+        if (value.Contains("Top"))
+            LabelVerticalAlign = VerticalAlignment.Top;
+        else if (value.Contains("Bottom"))
+            LabelVerticalAlign = VerticalAlignment.Bottom;
+        else
+            LabelVerticalAlign = VerticalAlignment.Center;
     }
 }
