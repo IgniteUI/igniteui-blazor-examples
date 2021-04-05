@@ -1,0 +1,126 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+    <div class="container vertical">
+
+        <div class="options vertical">
+            <div class="options horizontal">
+                <label style="margin-left: 0.25rem; margin-right: 1.0rem">Treemap Hovered Node's</label>
+                @* this label displays info about currently hovered item in Treemap*@
+                <label style="margin-left: 0.5rem">Parent:</label>
+                <label style="width: 3rem; font-weight: 800">@HoveredNodeParent</label> 
+                <label style="margin-left: 1.5rem">Name:</label>
+                <label style="width: 5rem; font-weight: 800">@HoveredNodeName</label>
+                <label style="margin-left: 1.5rem">Value:</label>
+                <label style="width: 5rem; font-weight: 800">@HoveredNodeValue</label>
+            </div>
+            <div class="options horizontal">
+                <label style="margin-left: 0.25rem; margin-right: 1.0rem">Treemap Selected Node's</label>
+                @* this label displays info about currently selected item in Treemap*@
+                <label style="margin-left: 0.5rem">Parent:</label>
+                <label style="width: 3rem; font-weight: 800">@SelectedNodeParent</label> 
+                <label style="margin-left: 1.5rem">Name:</label>
+                <label style="width: 5rem; font-weight: 800">@SelectedNodeName</label>
+                <label style="margin-left: 1.5rem">Value:</label>
+                <label style="width: 5rem; font-weight: 800">@SelectedNodeValue</label>
+            </div>
+        </div>
+
+        <div class="options vertical">
+            <span class="legend-title">Comparing Population of Countries</span>
+        </div>
+
+        <div class="container vertical" style="padding: 0.75rem; width: calc(100% - 1.5rem); height: calc(100% - 1.5rem)">
+            <Treemap Height="100%" Width="100%" @ref="TreeMap" 
+                     DataSource="Data"
+                     RootTitle="Countries"
+                     ParentIdMemberPath="Parent"
+                     IdMemberPath="Name"
+                     LabelMemberPath="Name"
+                     ValueMemberPath="Pop"  
+                     NodePointerEnter="@onNodePointerEnter"
+                     NodePointerLeave="@onNodePointerLeave" 
+                     NodePointerPressed="@onNodePointerPressed" 
+
+                     HeaderDisplayMode="TreemapHeaderDisplayMode.Overlay"            
+                     FillBrushes="#299e41, #4e62cf, #5e359c"
+                     IsFillScaleLogarithmic="true"
+                     ParentNodeBottomPadding="0"
+                     ParentNodeLeftPadding="0"
+                     ParentNodeRightPadding="0"
+                     ParentNodeTopPadding="0">
+            </Treemap>
+        </div>
+    </div>
+
+@code {
+
+    protected List<CountryInfo> Data;
+    protected Treemap TreeMap;
+
+    protected string SelectedNodeName   = "None";
+    protected string SelectedNodeParent = "None";
+    protected string SelectedNodeValue  = "None";
+
+    protected string HoveredNodeName   = "None";
+    protected string HoveredNodeParent = "None";
+    protected string HoveredNodeValue  = "None";
+
+    protected override void OnInitialized()
+    {
+        TreemapModule.Register(IgniteUIBlazor);
+
+        this.Data = CountryTreeData.Create();
+        Console.WriteLine("CountryTreeData " + this.Data.Count);
+    }
+
+    private void onNodePointerPressed(TreemapNodePointerEventArgs arg)
+    {
+        var item = arg.Item as CountryInfo;
+        if (item == null) return;
+
+        if (item.Parent == null)
+        {
+            this.SelectedNodeName = item.Name;
+            this.SelectedNodeParent = "Countries";
+            this.SelectedNodeValue  = "None";
+        }
+        else
+        {
+            var population = (item.Pop / 1000000).ToString("0 M");
+            this.SelectedNodeValue  = population;
+            this.SelectedNodeName   = item.Name;
+            this.SelectedNodeParent = item.Parent;
+        }
+        this.StateHasChanged();
+    }
+
+    private void onNodePointerEnter(TreemapNodePointerEventArgs arg)
+    {
+        var item = arg.Item as CountryInfo;
+        if (item == null) return;
+
+        if (item.Parent == null)
+        {
+            this.HoveredNodeParent = "Countries";
+            this.HoveredNodeName = item.Name;
+            this.HoveredNodeValue  = "None";
+        }
+        else
+        {
+            var population = (item.Pop / 1000000).ToString("0 M");
+            this.HoveredNodeValue  = population;
+            this.HoveredNodeName   = item.Name;
+            this.HoveredNodeParent = item.Parent;
+        }
+        this.StateHasChanged();
+    }
+
+    private void onNodePointerLeave(TreemapNodePointerEventArgs arg)
+    {
+        this.HoveredNodeParent = "None";
+        this.HoveredNodeName   = "None";
+        this.HoveredNodeValue  = "None";
+    }
+
+}
