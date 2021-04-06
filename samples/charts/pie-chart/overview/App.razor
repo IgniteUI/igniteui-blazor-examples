@@ -16,8 +16,9 @@
             <PieChart Height="100%" Width="100%"
                       DataSource="Data"
                       Legend="Legend"
-                      LabelMemberPath="Department"
-                      ValueMemberPath="Spending"
+                      LabelMemberPath="Company"
+                      LabelsPosition="LabelsPosition.BestFit"
+                      ValueMemberPath="MarketShare"
                       RadiusFactor="0.7">
             </PieChart>
         }
@@ -41,19 +42,18 @@
         ItemLegendModule.Register(IgniteUIBlazor);
 
         var dataItems = new List<DataItem>();
-        dataItems.Add(new DataItem() { Spending = 20, Department = "Administration", });
-        dataItems.Add(new DataItem() { Spending = 80, Department = "Sales", });
-        dataItems.Add(new DataItem() { Spending = 30, Department = "IT", });
-        dataItems.Add(new DataItem() { Spending = 80, Department = "Marketing", });
-        dataItems.Add(new DataItem() { Spending = 40, Department = "Development", });
-        dataItems.Add(new DataItem() { Spending = 60, Department = "Customer Support", });
+        dataItems.Add(new DataItem() { MarketShare = 25, Company = "Residential Appliance", });
+        dataItems.Add(new DataItem() { MarketShare = 12, Company = "Heating", });
+        dataItems.Add(new DataItem() { MarketShare = 8,  Company = "Lighting", });
+        dataItems.Add(new DataItem() { MarketShare = 18, Company = "Other Services", });
+        dataItems.Add(new DataItem() { MarketShare = 37, Company = "Space Cooling", });
 
         Data = dataItems;
     }
 
     public class DataItem
     {
-        public string Department { get; set; }
-        public double Spending { get; set; }
+        public string Company { get; set; }
+        public double MarketShare { get; set; }
     }
 }
