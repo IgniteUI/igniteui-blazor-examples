@@ -5,7 +5,7 @@
     <div class="options horizotnal">
         <label class="options-label">Data Points: </label>
         <label class="options-value">@DataInfo</label>
-        <input class="options-slider" type="range" min="10000" max="1000000" step="1000"
+        <input class="options-slider" type="range" min="10000" max="1000000" step="10000"
                value="@DataPoints" @onchange="OnDataPointsChanged" />
         <button @onclick="OnDataGenerateClick">Generate Data</button>
     </div>
@@ -14,14 +14,18 @@
             Height="100%" Width="100%"
             ChartType="CategoryChartType.Line"
             DataSourceScript="getHighVolumeData"
-            IsTransitionInEnabled="true">
+            IsTransitionInEnabled="true"
+            IsVerticalZoomEnabled="false"
+            YAxisLabelLocation="AxisLabelsLocation.OutsideRight"
+            YAxisTitle="Value of Data Points"
+            XAxisTitle="Index of Data Points">
         </CategoryChart>
     </div>
 </div>
 
 @code {
     private CategoryChart chart;
-    private int DataPoints = 1000;
+    private int DataPoints = 1000000;
     private string DataInfo;
 
     protected override void OnInitialized()
