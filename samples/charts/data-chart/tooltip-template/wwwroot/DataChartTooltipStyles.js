@@ -1,13 +1,13 @@
 ﻿console.log("loaded DataChartTooltipStyles.js");
 
-function onColumnSeriesMouseEnter(o, e) {
+function onSeriesMouseEnter(o, e) {
     if (e.series.tooltipTemplate === null ||
         e.series.tooltipTemplate === undefined) {
         e.series.tooltipTemplate = createTooltip;
-        console.log("onColumnSeriesMouseEnter");
+        console.log("onSeriesMouseEnter");
     }
 }
-igRegisterScript("onColumnSeriesMouseEnter", onColumnSeriesMouseEnter, false);
+igRegisterScript("onSeriesMouseEnter", onSeriesMouseEnter, false);
 
 function createTooltip(context) {
     if (!context) return null;
