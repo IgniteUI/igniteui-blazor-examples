@@ -3,7 +3,6 @@
 @inject IJSRuntime JSRuntime;
 
 <div class="container vertical">
-      <div class="container vertical">
         @if (Data != null)
         {
           <DataChart Height="100%" Width="100%" Subtitle="Energy Source of Biggest Countries"
@@ -11,25 +10,21 @@
                      SeriesMouseEnterScript="onColumnSeriesMouseEnter">
               <CategoryXAxis Name="xAxis" DataSource="Data"
                              Label="Country"></CategoryXAxis>
-              <NumericYAxis Name="yAxis" LabelLocation="AxisLabelsLocation.OutsideLeft"
-                            LabelRightMargin="0"
-                            LabelTextColor="Gray"
-                            LabelHorizontalAlignment="HorizontalAlignment.Right"></NumericYAxis>
+              <NumericYAxis Name="yAxis"></NumericYAxis>
 
               <ColumnSeries Title="Coal" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Coal"
-                            DataSource="Data" IsTransitionInEnabled="true" ShowDefaultTooltip="false"/>
+                            DataSource="Data" ShowDefaultTooltip="false"/>
               <ColumnSeries Title="Hydro" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Hydro"
-                            DataSource="Data" IsTransitionInEnabled="true" ShowDefaultTooltip="false"/>
+                            DataSource="Data" ShowDefaultTooltip="false"/>
               <ColumnSeries Title="Nuclear" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Nuclear"
-                            DataSource="Data" IsTransitionInEnabled="true" ShowDefaultTooltip="false"/>
+                            DataSource="Data" ShowDefaultTooltip="false"/>
               <ColumnSeries Title="Gas" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Gas"
-                            DataSource="Data" IsTransitionInEnabled="true" ShowDefaultTooltip="false"/>
+                            DataSource="Data" ShowDefaultTooltip="false"/>
               <ColumnSeries Title="Oil" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Oil"
-                            DataSource="Data" IsTransitionInEnabled="true" ShowDefaultTooltip="false"/>
+                            DataSource="Data" ShowDefaultTooltip="false"/>
           </DataChart>
 
         }
-    </div>
 </div>
 
 @code {
