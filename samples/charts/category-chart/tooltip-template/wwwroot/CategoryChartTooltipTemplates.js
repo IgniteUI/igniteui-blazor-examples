@@ -29,11 +29,11 @@ function createTooltip(context) {
     tooltipItem1.className = "tooltipTitle";
 
     var tooltipItem2 = document.createElement("div");
-    tooltipItem2.innerHTML = "Total Revenue: " + dataItem.TotalWorldBoxOfficeRevenue;
+    tooltipItem2.innerHTML = "Revenue of All Movies: " + dataItem.TotalRevenue;
     tooltipItem2.className = "tooltipLbl";
 
     var tooltipItem3= document.createElement("div");
-    tooltipItem3.innerHTML = "Highest Grossing Movie: $" + dataItem.HighestGrossingMovieInSeries;
+    tooltipItem3.innerHTML = "Highest Grossing Movie: $" + dataItem.HighestGrossing;
     tooltipItem3.className = "tooltipLbl";
 
     var tooltip = document.createElement("div");
