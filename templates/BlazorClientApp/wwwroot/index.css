@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
 
 #root, html, body, main {
@@ -8,45 +7,6 @@
     width: 100%;
     padding: 0rem;
     margin: 0rem;
-}
-
-/* ============ app styles  ============ */
-
-.app {
-    height: 100%;
-    width: 100%;
-    margin: 0rem;
-    padding: 0rem;
-    display: flex;
-    flex-direction: column;
-}
-
-.app-loading {
-    height: 100px;
-    width: 100px;
-    padding: 0rem;
-    display: block;
-    margin-top: 2rem;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.app-error-ui {
-    background: lightyellow;
-    bottom: 0;
-    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
-    display: none;
-    left: 0;
-    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
-}
-
-.app-error-dismiss {
-    position: absolute;
-    right: 0.75rem;
-    top: 0.5rem;
 }
 
 /* ============ container styles  ============ */
@@ -65,18 +25,11 @@
     width: 100%;
     padding: 0rem;
     margin: 0rem;
-}
-
-.vertical {
-    display: flex;
-    flex-flow: column;
-    /*align-items: stretch;*/
-}
-
-.horizontal {
-    display: flex;
-    flex-flow: row;
-   /* align-items: center;*/
+    position: relative;
+    max-width: none;
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: 'Titillium Web', Verdana, Tahoma, sans-serif;
 }
 
 /* used to layout a component in center of its parent */
@@ -117,6 +70,8 @@
 
 .options
 {
+    font-family: 'Titillium Web', Verdana, Tahoma, sans-serif;
+    position: relative;
     margin: 0rem;
     padding: 0rem;
     margin-left: 0.25rem;
@@ -143,8 +98,9 @@
 .options-label {
     font-size: 0.875rem;
     padding: 0rem;
-    margin-top: 0rem;
-    margin-left: 0.5rem;
+    margin-top: .25rem;
+    margin-bottom: .25rem;
+    /* margin-left: 0.5rem;*/
     margin-right: 0.25rem;
     vertical-align: middle;
     white-space: nowrap;
@@ -156,9 +112,9 @@
     padding: 0rem;
     margin-top: 0rem;
     margin-left: 0.0rem;
-    margin-right: 0.1rem;
+    margin-right: 0.25rem;
     vertical-align: middle;
-    width: 3rem;
+    width: 2rem;
     text-align: center;
     align-self: center;
 }
@@ -166,10 +122,9 @@
 .options > input[type=range],
 .options > slider,
 .options-slider {
-    margin-left: 0.25rem;
-    margin-right: 1rem;
     padding: 0rem;
-    min-width: 6rem;
+    margin-left: 1rem;
+    width: 5rem;
 }
 
 .options > input[type=button],
@@ -181,11 +136,13 @@
     background: #1a70c7;
     border: 0px solid #1b6ec2;
     border-radius: 0.35rem;
-    padding: 0.25rem 1.2rem;
+    padding: 0.25rem 0rem;
     vertical-align: middle;
     cursor: pointer;
     font-family: 'Titillium Web', Verdana, Tahoma, sans-serif;
     font-size: 0.875rem;
+    min-width: 6rem;
+    white-space: nowrap;
 }
 
 .options > input[type=button]:hover,
@@ -204,19 +161,24 @@
     outline: none;
 }
 
+.options-radio,
+.options-checkbox,
+.options > label > input[type=radio],
+.options > label > input[type=checkbox],
 .options > input {
     margin-top: 0.35rem;
     margin-bottom: 0.35rem;
     margin-left: 0.35rem;
+    margin-right: 0.35rem;
     font-family: 'Titillium Web', Verdana, Tahoma, sans-serif;
     padding: 0rem;
-    height: auto;
     align-items: center;
     align-self: center;
     vertical-align: middle;
     cursor: pointer;
 }
 
+.options > label > input[type=color],
 .options > input[type=color],
 .options-color {
     align-self: stretch;
@@ -252,27 +214,6 @@
     outline: none;
 }
 
-/* ============ legend styles ============ */
-.legend {
-    --legend-item-overflow: hidden;
-    width: 100%;
-}
-
-.legend-title {
-    width: 100%;
-    margin: 0rem;
-    padding: 0rem;
-    vertical-align: middle;
-    white-space: nowrap;
-    font-size: 1rem;
-    margin-left: 0.5rem;
-}
-
-.ig-chart-legend-item-badge > canvas {
-    vertical-align: middle;
-    margin-bottom: 0.2rem;
-}
-
 /* ============ overlay styles  ============ */
 
 .overlay-border  {
@@ -282,13 +223,11 @@
     background: rgba(148, 148, 148, 0.5);
 }
 
-.overlay-top-left,
-.overlay-top-right,
-.overlay-top-center,
-.overlay-center,
-.overlay-bottom-left,
-.overlay-bottom-center,
-.overlay-bottom-right {
+.overlay-center, .overlay-left,        .overlay-right,
+.overlay-top,    .overlay-top-left,    .overlay-top-right,     .overlay-top-center,
+.overlay-bottom, .overlay-bottom-left, .overlay-bottom-center, .overlay-bottom-right
+{
+    position: absolute;
     display: flex;
     flex-direction: column;
     font-size: 0.8rem;
@@ -300,55 +239,17 @@
               user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
 }
 
-.overlay-top-left {
-    position: absolute;
-    top: 0.5rem;
-    left: 0.5rem;
-}
-
-.overlay-top-right {
-    position: absolute;
-    top: 0.25rem;
-    right: 0.25rem;
-}
-
-.overlay-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.overlay-center-label {
-    display: block;
-    font-size: 3rem;
-}
-
-.overlay-top-center {
-    position: absolute;
-    top: 0.25rem;
-    left: 50%;
-    transform: translate(-50%, 0%);
-}
-
-.overlay-bottom-center {
-    position: absolute;
-    bottom: 0.25rem;
-    left: 50%;
-    transform: translate(-50%, 0%);
-}
-
-.overlay-bottom-left {
-    position: absolute;
-    bottom: 0.25rem;
-    left: 0.25rem;
-}
-
-.overlay-bottom-right {
-    position: absolute;
-    bottom: 0.25rem;
-    right: 0.25rem;
-}
+.overlay-top-left { top: 0.5rem; left: 0.5rem; align-items: flex-start; }
+.overlay-top-right { top: 0.25rem; right: 0.25rem; align-items: flex-end; }
+.overlay-center { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.overlay-top-center { top: 0.25rem; left: 50%; transform: translate(-50%, 0%); }
+.overlay-bottom-center { bottom: 0.25rem; left: 50%; transform: translate(-50%, 0%); }
+.overlay-bottom-left { bottom: 0.25rem; left: 0.25rem; align-items: flex-start; }
+.overlay-bottom-right { bottom: 0.25rem; right: 0.25rem; align-items: flex-end; }
+.overlay-left { left: 0.5rem; align-items: flex-start; }
+.overlay-right { right: 0.25rem; align-items: flex-end; }
+.overlay-top { top: 0.5rem; }
+.overlay-bottom { bottom: 0.25rem; }
 
 .overlay-row {
     font-family: 'Titillium Web', Verdana, Tahoma, sans-serif;
@@ -379,6 +280,46 @@
     font-weight: 600;
     padding-bottom: 0.5rem;
 }
+
+.vertical {
+    display: flex;
+    flex-flow: column;
+}
+
+.horizontal {
+    display: flex;
+    flex-flow: row;
+}
+
+table {
+    border-collapse: inherit;
+}
+
+/* ============ legend styles ============ */
+.legend {
+    --legend-item-overflow: hidden;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+.legend-title {
+    width: 100%;
+    margin: 0rem;
+    padding: 0rem;
+    vertical-align: middle;
+    white-space: nowrap;
+    margin-left: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    font-family: 'Titillium Web', Verdana, Tahoma, sans-serif;
+    color: black;
+}
+
+.ig-chart-legend-item-badge > canvas {
+    vertical-align: middle;
+    margin-bottom: 0.2rem;
+}
+
 
 /* ============ tooltip styles  ============ */
 
