@@ -9,15 +9,15 @@ function onCategoryChatTooltipSeriesAdded(o, e) {
     console.log("onCategoryChatTooltipSeriesAdded");
 
     if (e.series) {
-        e.series.tooltipTemplate = createTooltip;
+        e.series.tooltipTemplate = createCategoryChatTooltipTooltip;
         //console.log("onCategoryChatTooltipSeriesAdded tooltipTemplate");
     }
 }
 igRegisterScript("onCategoryChatTooltipSeriesAdded", onCategoryChatTooltipSeriesAdded, false);
 
-function createTooltip(context) {
+function createCategoryChatTooltipTooltip(context) {
 
-    //console.log("createTooltip ");
+    //console.log("createCategoryChatTooltipTooltip ");
 
     if (!context) return null;
 
