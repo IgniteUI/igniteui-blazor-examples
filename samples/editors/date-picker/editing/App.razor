@@ -1,0 +1,21 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="container vertical">
+        <DatePicker @ref="DatePicker" Height="50px" Width="220px" 
+                    Value="@SelectedDate"
+                    AllowTextInput="true"/>
+    </div>
+</div>
+
+@code {
+
+    public DateTime SelectedDate { get; set; }
+    public DatePicker DatePicker { get; set; }
+    protected override void OnInitialized()
+    {
+        DatePickerModule.Register(IgniteUIBlazor);
+        this.SelectedDate = DateTime.Today;
+    }
+}
