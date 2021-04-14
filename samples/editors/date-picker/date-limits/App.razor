@@ -1,0 +1,24 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="container vertical">
+        <DatePicker @ref="DatePicker" Height="50px" Width="220px" 
+                    Value="@SelectedDate"
+                    MinDate="@MinDate"
+                    MaxDate="@MaxDate"/>
+    </div>
+</div>
+
+@code {
+
+    public DateTime SelectedDate { get; set; }
+    public DateTime MinDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+    public DateTime MaxDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month));
+    public DatePicker DatePicker { get; set; }
+    protected override void OnInitialized()
+    {
+        DatePickerModule.Register(IgniteUIBlazor);
+        this.SelectedDate = DateTime.Today;
+    }
+}
