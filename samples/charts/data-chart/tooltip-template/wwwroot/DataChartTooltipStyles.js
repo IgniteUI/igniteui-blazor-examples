@@ -3,13 +3,13 @@
 function onSeriesMouseEnter(o, e) {
     if (e.series.tooltipTemplate === null ||
         e.series.tooltipTemplate === undefined) {
-        e.series.tooltipTemplate = createTooltip;
+        e.series.tooltipTemplate = createDataChartTooltip;
         console.log("onSeriesMouseEnter");
     }
 }
 igRegisterScript("onSeriesMouseEnter", onSeriesMouseEnter, false);
 
-function createTooltip(context) {
+function createDataChartTooltip(context) {
     if (!context) return null;
 
     var dataItem = context.item;
@@ -26,11 +26,11 @@ function createTooltip(context) {
     title.className = "tooltipTitle";
     tooltip.appendChild(title);
 
-    var line1 = createTooltipLine(dataSeries, "Coal", dataItem.Coal);
-    var line2 = createTooltipLine(dataSeries, "Hydro", dataItem.Hydro);
-    var line3 = createTooltipLine(dataSeries, "Nuclear", dataItem.Nuclear);
-    var line4 = createTooltipLine(dataSeries, "Gas", dataItem.Gas);
-    var line5 = createTooltipLine(dataSeries, "Oil", dataItem.Oil);
+    var line1 = createDataChartTooltipLine(dataSeries, "Coal", dataItem.Coal);
+    var line2 = createDataChartTooltipLine(dataSeries, "Hydro", dataItem.Hydro);
+    var line3 = createDataChartTooltipLine(dataSeries, "Nuclear", dataItem.Nuclear);
+    var line4 = createDataChartTooltipLine(dataSeries, "Gas", dataItem.Gas);
+    var line5 = createDataChartTooltipLine(dataSeries, "Oil", dataItem.Oil);
 
     tooltip.appendChild(line1);
     tooltip.appendChild(line2);
@@ -41,7 +41,7 @@ function createTooltip(context) {
     return tooltip;
 }
 
-function createTooltipLine(dataSeries, dataName, dataValue) {
+function createDataChartTooltipLine(dataSeries, dataName, dataValue) {
 
     var label = document.createElement("label");
     label.innerHTML = dataName + ":";

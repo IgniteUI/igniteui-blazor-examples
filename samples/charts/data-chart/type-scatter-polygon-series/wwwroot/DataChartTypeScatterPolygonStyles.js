@@ -31,13 +31,13 @@ function onPolygonSeriesMouseEnter(o, e) {
 
     if (e.series.tooltipTemplate === null ||
         e.series.tooltipTemplate === undefined) {
-        e.series.tooltipTemplate = createTooltip;
+        e.series.tooltipTemplate = createPolygonSeriesTooltip;
         console.log("onPolygonSeriesMouseEnter ");
     }
 }
 igRegisterScript("onPolygonSeriesMouseEnter", onPolygonSeriesMouseEnter, false);
 
-function createTooltip(context) {
+function createPolygonSeriesTooltip(context) {
 
     if (!context) return null;
 

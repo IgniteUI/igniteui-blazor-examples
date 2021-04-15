@@ -3,53 +3,81 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options horizotnal">
-        <button @onclick="OnDataFeedClick" style="width: 5rem">@DataFeedAction</button>
-        <label class="options-label">Refresh: </label>
-        <label class="options-value">@RefreshInfo</label>
-        <input class="options-slider" type="range" min="10" max="1000" step="10"
-               value=@RefreshInterval
-               @onchange="OnRefreshFrequencyChanged" />
-    </div>
-    <div class="options horizotnal">
-        <button @onclick="OnDataGenerateClick">Generate</button>
-        <label class="options-label">Points: </label>
-        <label class="options-value">@DataInfo</label>
-        <input class="options-slider" type="range" min="1000" max="50000" step="100"
-               value=@DataPoints @onchange="OnDataPointsChanged" />
+    <div class="options horizotnal" style="padding-bottom: 1rem">
+         <button @onclick="OnDataFeedClick" style="width: 5rem">@DataFeedAction</button>
+         <label class="options-label">Refresh: </label>
+         <label class="options-value">@DataFeedInterval ms</label>
+         <input class="options-slider" type="range" min="5" max="250" step="5" 
+                value=@DataFeedInterval @onchange="OnRefreshFrequencyChanged" />
+      
+         <button @onclick="OnDataGenerateClick">Generate</button>
+         <label class="options-label">Points: </label>
+         <label class="options-value">@DataPoints</label>
+         <input class="options-slider" type="range" min="100" max="2000" step="100"
+                value=@DataPoints @onchange="OnDataPointsChanged" />
     </div>
 
     <div class="container vertical">
-        @if (Data != null)
-        {
-            <CategoryChart Height="100%" Width="100%"
-                           DataSource="Data"
-                           ChartType="CategoryChartType.Line">
-            </CategoryChart>
-        }
+         <CategoryChart Height="100%" Width="100%" @ref="Chart"
+                        ChartType="CategoryChartType.Line"
+                        DataSource="@Data"
+                        YAxisExtent="40" >
+         </CategoryChart>
     </div>
 </div>
 
 @code {
 
+    //private List<CategoryDataItem> Data;
     private ObservableCollection<CategoryDataItem> Data;
 
+    private CategoryChart _Chart;
+    private CategoryChart Chart
+    {
+        get { return _Chart; }
+        set { _Chart = value; StateHasChanged(); }
+    }
+
     private int DataIndex = 0;
-    private string RefreshInfo;
-    private double RefreshInterval = 10;
-    private double DataPoints = 1000;
-    private string DataInfo;
+    private double DataPoints = 500;
+    private double DataFeedInterval = 5;
     private string DataFeedAction = "Start";
     private bool DataFeedUpdating = false;
+    private bool RefreshChanged = false;
+
+    private void OnDataUpdate()
+    {
+        if (!DataFeedUpdating) return;
+        if (RefreshChanged) return;
+
+        this.DataIndex++;
+
+        var oldItem = this.Data[0];
+        var newItem = CategoryDataSource.GetNewItem(this.Data, this.DataIndex);
+
+        this.Data.RemoveAt(0);
+        this.Chart.NotifyRemoveItem(this.Data, 0, oldItem);
+        this.Data.Add(newItem);
+        this.Chart.NotifyInsertItem(this.Data, this.Data.Count - 1, newItem);
+
+        Task.Delay((int)this.DataFeedInterval).ContinueWith((t) => OnDataUpdate());
+    }
 
     protected override void OnInitialized()
     {
         CategoryChartModule.Register(IgniteUIBlazor);
 
-        this.DataInfo = CategoryDataSource.ToShortString(this.DataPoints);
-        this.RefreshInfo = (this.RefreshInterval / 1000).ToString("0.00") + "s";
-
         OnDataGenerateClick();
+    }
+
+    private void OnDataGenerateClick()
+    {
+        var dataList = CategoryDataSource.Generate(0, (int)this.DataPoints, false);
+
+        this.Data = new ObservableCollection<CategoryDataItem>(dataList);
+        //this.Data = new List<CategoryDataItem>(dataList);
+
+        SetupInterval();
     }
 
     private void OnDataFeedClick()
@@ -60,58 +88,33 @@
         SetupInterval();
     }
 
-    private void OnDataGenerateClick()
-    {
-        var dataList = CategoryDataSource.Generate(100, (int)this.DataPoints, false);
-
-        this.Data = new ObservableCollection<CategoryDataItem>(dataList);
-        this.DataIndex = this.Data.Count;
-
-        SetupInterval();
-    }
-
     private void OnDataPointsChanged(ChangeEventArgs args)
     {
         double num = double.Parse(args.Value.ToString());
 
-        if (num < 1000) num = 1000;
-        if (num > 50000) num = 50000;
+        if (num < 100) num = 100;
+        if (num > 10000) num = 10000;
 
-        string info = CategoryDataSource.ToShortString(num);
         this.DataPoints = num;
-        this.DataInfo = info;
     }
 
     private void OnRefreshFrequencyChanged(ChangeEventArgs args)
     {
+        RefreshChanged = true;
         double num = double.Parse(args.Value.ToString());
 
-        if (num < 10) num = 10;
+        if (num < 5) num = 5;
         if (num > 1000) num = 1000;
 
-        this.RefreshInterval = num;
-        this.RefreshInfo = (this.RefreshInterval / 1000).ToString("0.00") + "s";
+        this.DataFeedInterval = num;
 
+        RefreshChanged = false;
         SetupInterval();
     }
 
     private void SetupInterval()
     {
-        Task.Delay((int)this.RefreshInterval).ContinueWith((t) => OnTick());
+        Task.Delay((int)this.DataFeedInterval).ContinueWith((t) => OnDataUpdate());
     }
 
-    private void OnTick()
-    {
-        if (!DataFeedUpdating) return;
-
-        this.DataIndex++;
-
-        var item = this.Data[0];
-        var newItem = CategoryDataSource.GetNewItem(this.Data, this.DataIndex);
-
-        this.Data.RemoveAt(0);
-        this.Data.Add(newItem);
-
-        Task.Delay((int)this.RefreshInterval).ContinueWith((t) => OnTick());
-    }
 }

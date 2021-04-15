@@ -13,20 +13,12 @@ namespace Infragistics.Samples
     {
         public static List<CategoryDataItem> Generate(double startValue, int maxPoints, bool useShortLabels)
         {
-
             var data = new List<CategoryDataItem>();
-            var value = startValue;
-            var random = new Random();
-            for (var i = 0; i <= maxPoints; i++)
+            data.Add(new CategoryDataItem { Label = "0", Value = startValue });
+            for (var i = 1; i <= maxPoints; i++)
             {
-                value += random.NextDouble() * 4.0 - 2.0;
-                var v = Math.Round(value);
-                var l = i.ToString();
-                if (useShortLabels)
-                {
-                    l = CategoryDataSource.ToShortString(i);
-                }
-                data.Add(new CategoryDataItem { Label = l, Value = v });
+                var item = GetNewItem(data, i);
+                data.Add(item);
             }
             return data;
         }
@@ -43,8 +35,10 @@ namespace Infragistics.Samples
         public static CategoryDataItem GetNewItem(IList<CategoryDataItem> array, int index)
         {
             var random = new Random();
-            var lastItem = CategoryDataSource.GetLastItem(array);
+            var lastItem = GetLastItem(array);
             var newValue = lastItem.Value + random.NextDouble() * 4.0 - 2.0;
+            //newValue = Math.Max(newValue, -19);
+            //newValue = Math.Min(newValue,  19);
             return new CategoryDataItem { Label = index.ToString(), Value = newValue };
         }
 
