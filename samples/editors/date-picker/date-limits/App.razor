@@ -2,24 +2,35 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="container vertical">
-        <DatePicker @ref="DatePicker" Height="50px" Width="220px" 
-                    Value="@SelectedDate"
-                    MinDate="@MinDate"
-                    MaxDate="@MaxDate"
-                    AllowTextInput="false"/>
+        <div class="options vertical">
+        <div class="options horizontal">
+            <label class="options-label">Minimum Date: @MinDate"</label>
+        </div>
+        <div class="options horizontal">
+            <label class="options-label">Maximum Date: @MaxDate"</label>
+        </div>
+        </div>
+        <div class="container vertical">
+            <DatePicker @ref="DatePicker" Height="60px" Width="220px"
+                        Value="@SelectedDate"
+                        MinDate="@MinDate"
+                        MaxDate="@MaxDate"
+                        AllowTextInput="false" />
+        </div>
     </div>
-</div>
 
-@code {
+    @code {
 
-    public DateTime SelectedDate { get; set; }
-    public DateTime MinDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
-    public DateTime MaxDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month));
-    public DatePicker DatePicker { get; set; }
-    protected override void OnInitialized()
-    {
-        DatePickerModule.Register(IgniteUIBlazor);
-        this.SelectedDate = DateTime.Today;
+        public DateTime SelectedDate { get; set; }
+        public DateTime MinDate { get; set; }
+        public DateTime MaxDate { get; set; }
+        public DatePicker DatePicker { get; set; }
+        protected override void OnInitialized()
+        {
+            DatePickerModule.Register(IgniteUIBlazor);
+            this.SelectedDate = DateTime.Today;
+            var current = DateTime.Today;
+            this.MinDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+            this.MaxDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month));
+        }
     }
-}

@@ -2,12 +2,20 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
+    <div class="options horizotnal">
+        <label>
+            Date Formats:
+            <select @bind="DateFormat">
+                <option>@DateFormats.DateLong</option>
+                <option>@DateFormats.DateShort</option>
+            </select>
+        </label>
+    </div>
     <div class="container vertical">
-        <DatePicker @ref="DatePicker" Height="50px" Width="220px" 
+        <DatePicker @ref="DatePicker" Height="60px" Width="220px"
                     Value="@SelectedDate"
-                    DateFormat="DateFormats.DateLong"
-                    AllowTextInput="false"
-                    />
+                    DateFormat="@DateFormat"
+                    AllowTextInput="false" />
     </div>
 </div>
 
@@ -15,9 +23,11 @@
 
     public DateTime SelectedDate { get; set; }
     public DatePicker DatePicker { get; set; }
+    public DateFormats DateFormat { get; set; }
     protected override void OnInitialized()
     {
         DatePickerModule.Register(IgniteUIBlazor);
         this.SelectedDate = DateTime.Today;
+        this.DateFormat = DateFormats.DateLong;
     }
 }
