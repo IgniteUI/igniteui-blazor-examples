@@ -54,14 +54,12 @@
         DoughnutChartModule.Register(IgniteUIBlazor);
         ItemLegendModule.Register(IgniteUIBlazor);
 
-        var dataItems = new List<DataItem>();
-        dataItems.Add(new DataItem { Value = 25, Category = "Residential Appliance", });
-        dataItems.Add(new DataItem { Value = 12, Category = "Heating", });
-        dataItems.Add(new DataItem { Value = 8,  Category = "Lighting", });
-        dataItems.Add(new DataItem { Value = 18, Category = "Other Services", });
-        dataItems.Add(new DataItem { Value = 37, Category = "Space Cooling", });
-
-        this.Data = dataItems;
+        this.Data = new List<DataItem>();
+        this.Data.Add(new DataItem { MarketShare = 37, Category = "Cooling", });
+        this.Data.Add(new DataItem { MarketShare = 25, Category = "Residential", });
+        this.Data.Add(new DataItem { MarketShare = 12, Category = "Heating", });
+        this.Data.Add(new DataItem { MarketShare = 11, Category = "Lighting", });
+        this.Data.Add(new DataItem { MarketShare = 15, Category = "Other", });
 
         this.SelectedSliceValue = this.Data[0].Value + "%";
         this.SelectedSliceLabel = this.Data[0].Category;
@@ -69,10 +67,9 @@
 
     public class DataItem
     {
-        public bool IsSelected { get; set; }
         public string Category { get; set; }
-        public double Value { get; set; }
-        public string Summary { get { return Category + " " + Value + "%"; } }
+        public double MarketShare { get; set; }
+        public string Summary { get { return Category + " " + MarketShare + "%"; } }
     }
 
     protected override void OnAfterRender(bool firstRender)

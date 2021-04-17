@@ -39,14 +39,19 @@
         PieChartModule.Register(IgniteUIBlazor);
         ItemLegendModule.Register(IgniteUIBlazor);
 
-        var dataItems = new List<DataItem>();
-        dataItems.Add(new DataItem() { MarketShare = 25, Company = "Residential Appliance", });
-        dataItems.Add(new DataItem() { MarketShare = 20, Company = "Heating", });
-        dataItems.Add(new DataItem() { MarketShare = 18, Company = "Lighting", });
-        dataItems.Add(new DataItem() { MarketShare = 37, Company = "Space Cooling", });
+        this.Data = new List<DataItem>();
+        this.Data.Add(new DataItem { MarketShare = 37, Category = "Cooling", });
+        this.Data.Add(new DataItem { MarketShare = 25, Category = "Residential", });
+        this.Data.Add(new DataItem { MarketShare = 12, Category = "Heating", });
+        this.Data.Add(new DataItem { MarketShare = 11, Category = "Lighting", });
+        this.Data.Add(new DataItem { MarketShare = 15, Category = "Other", });
+    }
 
-        Data = dataItems;
-
+    public class DataItem
+    {
+        public string Category { get; set; }
+        public double MarketShare { get; set; }
+        public string Summary { get { return Category + " " + MarketShare + "%"; } }
     }
 
     protected override void OnAfterRender(bool firstRender)
@@ -57,10 +62,4 @@
 
     }
 
-    public class DataItem
-    {
-        public string Company { get; set; }
-        public double MarketShare { get; set; }
-        public string Summary { get { return Company + " " + MarketShare + "%"; } }
-    }
 }

@@ -10,7 +10,7 @@
         <div class="overlay-right">
             <div class="options horizontal">
                 <label class="options-label">
-                    <input type="checkbox" @onchange="onExplosionModeChanged" 
+                    <input type="checkbox" @onchange="onExplosionModeChanged"
                            checked="@ExplodeMultipleSlices"/>Allow Multi-Slice Explosion
                 </label>
             </div>
@@ -24,7 +24,7 @@
             <PieChart Height="100%" Width="100%"
                       DataSource="Data"
                       Legend="Legend"
-                      LabelMemberPath="Company"
+                      LabelMemberPath="Category"
                       ValueMemberPath="MarketShare"
                       Outlines="white"
                       RadiusFactor="0.7"
@@ -62,57 +62,53 @@
         ItemLegendModule.Register(IgniteUIBlazor);
 
         this.Data = new List<DataItem>();
-        this.Data.Add(new DataItem { MarketShare = 25, Company = "Residential Appliance",  });
-        this.Data.Add(new DataItem { MarketShare = 12, Company = "Heating", });
-        this.Data.Add(new DataItem { MarketShare = 8,  Company = "Lighting", });
-        this.Data.Add(new DataItem { MarketShare = 18, Company = "Other Services", });
-        this.Data.Add(new DataItem { MarketShare = 37, Company = "Space Cooling", });
-        for (int i = 0; i <  this.Data.Count; i++)
-        {
-            this.Data[i].Index = i;
-        }
+        this.Data.Add(new DataItem { MarketShare = 37, Category = "Cooling", });
+        this.Data.Add(new DataItem { MarketShare = 25, Category = "Residential", });
+        this.Data.Add(new DataItem { MarketShare = 12, Category = "Heating", });
+        this.Data.Add(new DataItem { MarketShare = 11, Category = "Lighting", });
+        this.Data.Add(new DataItem { MarketShare = 15, Category = "Other", });
     }
 
     public class DataItem
     {
-        public int Index { get; set; }
-        public string Company { get; set; }
+        public string Category { get; set; }
         public double MarketShare { get; set; }
+        public string Summary { get { return Category + " " + MarketShare + "%"; } }
     }
-    
+
     private void onExplosionModeChanged(ChangeEventArgs args)
     {
         this.ExplodeMultipleSlices = (bool)args.Value;
     }
 
     protected void OnSliceClick(SliceClickEventArgs e)
-    { 
-        var slice = e.Index; 
-               
+    {
+        var slice = e.Index;
+
         if (ExplodedSlices.Contains(slice))
         {
             if (ExplodeMultipleSlices)
             {
-                var list = ExplodedSlices.ToList(); list.Remove(slice); 
+                var list = ExplodedSlices.ToList(); list.Remove(slice);
                 ExplodedSlices = list.ToArray();
             }
-            else                
+            else
                 ExplodedSlices = new int[] { }; // for single selection
-                         
+
             Console.WriteLine("RMV: " + slice + ", selected: " + string.Join(", ", ExplodedSlices));
         }
         else
-        {            
+        {
             if (ExplodeMultipleSlices)
             {
-                var list = ExplodedSlices.ToList(); list.Add(slice);  
+                var list = ExplodedSlices.ToList(); list.Add(slice);
                 ExplodedSlices = list.ToArray();
             }
-            else                
+            else
                 ExplodedSlices = new int[] { e.Index }; // for single selection
-             
+
             Console.WriteLine("ADD: "  + slice + ", selected: " + string.Join(", ", ExplodedSlices));
         }
     }
-     
+
 }
