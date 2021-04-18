@@ -1,37 +1,35 @@
-﻿@page "/DataChartSeriesAnnotations"
-
-@using IgniteUI.Blazor.Controls
+﻿@using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
-<div class="igContainer">
-    <div class="igOptions">
-        <span class="igOptions-item">Annotations: </span>
-        <label class="igOptions-item">
+<div class="container vertical">
+    <div class="options horizontal">
+        <span class="options-item">Annotations: </span>
+        <label class="options-item">
             <input type="checkbox" checked="true" @onchange="OnCalloutsCheckboxChange"/>Callouts
         </label>
-        <label class="igOptions-item">
+        <label class="options-item">
             <input type="checkbox" checked="true" @onchange="OnFinalValueCheckboxChange"/>Final Value
         </label>
-        <label class="igOptions-item">
+        <label class="options-item">
             <input type="checkbox" checked="true" @onchange="OnCrosshairsCheckboxChange"/>Crosshairs
         </label>
-        @*<label class="igOptions-item">
+        @*<label class="options-item">
             <input type="checkbox" checked="true" @onchange="OnValueOverlayCheckboxChange"/>Value Overlay
         </label>*@
     </div>
-    <div class="igComponent">
-        @if (DataSource != null)
+    <div class="container vertical">
+        @if (Data != null)
         {
-            <DataChart Height="100%" Width="100%" @ref="DataChartRef"
+            <DataChart Height="100%" Width="100%" @ref="Chart"
                        IsHorizontalZoomEnabled="true"
                        IsVerticalZoomEnabled="true">
-                <CategoryXAxis Name="xAxis" Label="Angle" Interval="2" DataSource="DataSource" />
+                <CategoryXAxis Name="xAxis" Label="Angle" Interval="2" DataSource="Data" />
                 <NumericYAxis Name="yAxis" MinimumValue="-1.25" MaximumValue="1.25" LabelLocation="AxisLabelsLocation.OutsideRight" />
-                <LineSeries XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="SinValue" DataSource="DataSource"
+                <LineSeries XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="SinValue" DataSource="Data"
                             MarkerType="MarkerType.Circle" Brush="#0577E8" MarkerOutline="#0577E8" />
                 <CalloutLayer XMemberPath="Index" YMemberPath="SinValue" LabelMemberPath="Label" Brush="#0577E8"
-                              Outline="White" DataSource="DataSource" @ref="CalloutRef" />
+                              Outline="White" DataSource="Data" @ref="CalloutRef" />
                 <CrosshairLayer IsAxisAnnotationEnabled="true" YAxisAnnotationInterpolatedValuePrecision="2" Brush="#9FB328"
                                 Outline="Black" @ref="CrosshairRef"/>
                 <FinalValueLayer AxisAnnotationInterpolatedValuePrecision="2" AxisAnnotationTextColor="White" AxisAnnotationBackground="#0577E8"
@@ -45,9 +43,9 @@
 
 @code {
 
-    private List<SampleScatterPoint> DataSource;
+    private List<SampleScatterPoint> Data;
 
-    private DataChart DataChartRef;
+    private DataChart Chart;
     private CalloutLayer CalloutRef;
     private CrosshairLayer CrosshairRef;
     private FinalValueLayer FinalValueRef;
@@ -66,7 +64,7 @@
         FinalValueLayerModule.Register(IgniteUIBlazor);
         ValueOverlayModule.Register(IgniteUIBlazor);
 
-        this.DataSource = SampleScatterData.CreateWaveData();
+        this.Data = SampleScatterData.CreateWaveData();
     }
 
     private void OnCalloutsCheckboxChange(ChangeEventArgs e)
@@ -74,11 +72,11 @@
         bool val = (bool)e.Value;
         if (val)
         {
-            this.DataChartRef.ActualSeries.Add(this.CalloutRef);
+            this.Chart.ActualSeries.Add(this.CalloutRef);
         }
         else
         {
-            this.DataChartRef.ActualSeries.Remove(this.CalloutRef);
+            this.Chart.ActualSeries.Remove(this.CalloutRef);
         }
     }
 
@@ -87,11 +85,11 @@
         bool val = (bool)e.Value;
         if (val)
         {
-            this.DataChartRef.ActualSeries.Add(this.FinalValueRef);
+            this.Chart.ActualSeries.Add(this.FinalValueRef);
         }
         else
         {
-            this.DataChartRef.ActualSeries.Remove(this.FinalValueRef);
+            this.Chart.ActualSeries.Remove(this.FinalValueRef);
         }
     }
 
@@ -100,11 +98,11 @@
         bool val = (bool)e.Value;
         if (val)
         {
-            this.DataChartRef.ActualSeries.Add(this.CrosshairRef);
+            this.Chart.ActualSeries.Add(this.CrosshairRef);
         }
         else
         {
-            this.DataChartRef.ActualSeries.Remove(this.CrosshairRef);
+            this.Chart.ActualSeries.Remove(this.CrosshairRef);
         }
     }
 
@@ -113,11 +111,11 @@
         bool val = (bool)e.Value;
         if (val)
         {
-            this.DataChartRef.ActualSeries.Add(this.ValueOverlayRef);
+            this.Chart.ActualSeries.Add(this.ValueOverlayRef);
         }
         else
         {
-            this.DataChartRef.ActualSeries.Remove(this.ValueOverlayRef);
+            this.Chart.ActualSeries.Remove(this.ValueOverlayRef);
         }
     }
 }

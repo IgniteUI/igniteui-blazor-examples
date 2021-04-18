@@ -1,0 +1,78 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="options vertical">
+        <span class="legend-title">Temperatures in LA and NYC</span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+        </div>
+
+        <div class="overlay-right" >
+            <div class="options horizontal" >
+                <label class="options-label">Enable Highlighting: </label>
+                <label class="options-item">
+                    <input type="checkbox" checked="@IsSeriesHighlighting" @onchange="OnSeriesHighlightingChanged" /> Series
+                </label>
+                <label class="options-item">
+                    <input type="checkbox" checked="@IsItemHighlighting" @onchange="OnItemHighlightingChanged" />Item
+                </label>
+                <label class="options-item">
+                    <input type="checkbox" checked="@IsCategoryHighlighting" @onchange="OnCategoryHighlightingChanged" />Category
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="container vertical">
+        <CategoryChart Height="100%" Width="100%"
+                       ExcludedProperties="@(new string[] { "NY_Low", "LA_Low" })"
+                       DataSource="Data"
+                       ChartType="CategoryChartType.Column"
+                       IsCategoryHighlightingEnabled="@IsCategoryHighlighting"
+                       IsItemHighlightingEnabled="@IsItemHighlighting"
+                       IsSeriesHighlightingEnabled="@IsSeriesHighlighting"
+                       YAxisTitle="Temperatures in Celsius"
+                       YAxisMinimumValue="0"
+                       XAxisInterval="1">
+        </CategoryChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Legend _Legend;
+    private Legend Legend
+    {
+        get { return _Legend; }
+        set { _Legend = value; StateHasChanged(); }
+    }
+
+    private bool IsSeriesHighlighting = false;
+    private bool IsItemHighlighting = true;
+    private bool IsCategoryHighlighting = false;
+
+    private List<CityTemperatureInfo> Data = new CityTemperatureData();
+
+    protected override void OnInitialized()
+    {
+        CategoryChartModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+    }
+
+    private void OnSeriesHighlightingChanged(ChangeEventArgs args)
+    {
+        this.IsSeriesHighlighting = (bool)args.Value;
+    }
+
+    private void OnItemHighlightingChanged(ChangeEventArgs args)
+    {
+        this.IsItemHighlighting = (bool)args.Value;
+    }
+
+    private void OnCategoryHighlightingChanged(ChangeEventArgs args)
+    {
+        this.IsCategoryHighlighting = (bool)args.Value;
+    }
+}

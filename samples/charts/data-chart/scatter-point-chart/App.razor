@@ -1,17 +1,17 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igOptions-horizontal">
-        <span class="igLegend-title">Continent: </span>
-        <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+<div class="container vertical">
+    <div class="options horizontal">
+        <span class="legend-title">Continent: </span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
-    <div class="igComponent">
+    <div class="container vertical">
 
         <DataChart Height="100%" Width="100%"
-                   Legend="LegendRef"                   
+                   Legend="Legend"
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true">
 
@@ -20,7 +20,7 @@
 
             <ScatterSeries XAxisName="xAxis"
                            YAxisName="yAxis"
-                           DataSource="@AfricaDataSource"
+                           DataSource="AfricaData"
                            XMemberPath="DeathRate"
                            YMemberPath="BirthRate"
                            MarkerType="MarkerType.Circle"
@@ -29,7 +29,7 @@
 
             <ScatterSeries XAxisName="xAxis"
                            YAxisName="yAxis"
-                           DataSource="@EuropeDataSource"
+                           DataSource="EuropeData"
                            XMemberPath="DeathRate"
                            YMemberPath="BirthRate"
                            MarkerType="MarkerType.Circle"
@@ -43,7 +43,7 @@
 @code {
 
     private Legend _legend;
-    public Legend LegendRef
+    public Legend Legend
     {
         get { return _legend; }
         set
@@ -53,8 +53,8 @@
         }
     }
 
-    private List<BirthAndDeathRateInfo> AfricaDataSource = new BirthAndDeathRateData().Where(d => d.Continent == "Africa").ToList();
-    private List<BirthAndDeathRateInfo> EuropeDataSource = new BirthAndDeathRateData().Where(d => d.Continent == "Europe").ToList();
+    private List<BirthAndDeathRateInfo> AfricaData = new BirthAndDeathRateData().Where(d => d.Continent == "Africa").ToList();
+    private List<BirthAndDeathRateInfo> EuropeData = new BirthAndDeathRateData().Where(d => d.Continent == "Europe").ToList();
 
     protected override void OnInitialized()
     {

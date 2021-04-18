@@ -2,21 +2,21 @@
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
-<div class="igContainer">
-    <div class="igOptions">
-        <span class="igLegend-title">Renewable energy consumption</span>
-        <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+<div class="container vertical">
+    <div class="options vertical">
+        <span class="legend-title">Renewable energy consumption</span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
-    <div class="igComponent">
-        @if (DataSource != null)
+    <div class="container vertical">
+        @if (Data != null)
         {
-            <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true" IsHorizontalZoomEnabled="true">
-                <CategoryYAxis Name="yAxis" DataSource="DataSource" Label="Location" IsInverted="true" />
-                <NumericXAxis Name="xAxis" MinimumValue="0" />
+            <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="false" IsHorizontalZoomEnabled="false">
+                <CategoryYAxis Name="yAxis" DataSource="Data" Label="Location" IsInverted="true" />
+                <NumericXAxis Name="xAxis" MinimumValue="0" Title="TWh" />
 
-                <Stacked100BarSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ShowDefaultTooltip="true" AreaFillOpacity="1">
+                <Stacked100BarSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="true" AreaFillOpacity="1">
                     <StackedFragmentSeries ValueMemberPath="Hydro" />
                     <StackedFragmentSeries ValueMemberPath="Wind" />
                     <StackedFragmentSeries ValueMemberPath="Solar" />
@@ -30,7 +30,7 @@
 @code {
 
     private Legend _legend;
-    public Legend LegendRef
+    public Legend Legend
     {
         get { return _legend; }
         set
@@ -40,7 +40,7 @@
         }
     }
 
-    private List<SampleStackedBarChartItem> DataSource = new SampleStackedBarChartData();
+    private List<EnergySource> Data = new EnergyData();
 
     protected override void OnInitialized()
     {
@@ -54,6 +54,6 @@
         ColumnFragmentModule.Register(IgniteUIBlazor);
         StackedSplineSeriesModule.Register(IgniteUIBlazor);
         StackedFragmentSeriesModule.Register(IgniteUIBlazor);
-        LegendModule.Register(IgniteUIBlazor);        
+        LegendModule.Register(IgniteUIBlazor);
     }
 }

@@ -1,27 +1,26 @@
-@* this namespace is required for Infragistics controls *@
+
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-
-    <div class="igComponent">
-
-        <span class="igLegend-title">Global Electricity Demand by Energy Use</span>
-        <div class="igLegend">
-            <ItemLegend @ref="Legend" />
+<div class="container vertical">
+    <div class="options vertical">
+        <span class="legend-title">Global Electricity Demand by Energy Use</span>
+        <div class="legend">
+            <ItemLegend @ref="Legend" /> @*Orientation="LegendOrientation.Horizontal" />*@
         </div>
+    </div>
 
-        @if (DataSource != null)
+    <div class="container vertical">
+        @if (Data != null)
         {
             <PieChart Height="100%" Width="100%"
-                      @ref="Chart"
-                      DataSource="DataSource"
-                      LabelMemberPath="Summary"
-                      LabelsPosition="@LabelsPosition.OutsideEnd"
+                      DataSource="Data"
+                      Legend="Legend"
+                      LabelMemberPath="Category"
+                      LabelsPosition="LabelsPosition.OutsideEnd"
                       LabelExtent="30"
                       ValueMemberPath="MarketShare"
-                      LegendLabelMemberPath="Summary"
-                      Outlines="white"
+                      Outlines="#FFFFFF"
                       OthersCategoryThreshold="10"
                       OthersCategoryType="OthersCategoryType.Number"
                       OthersCategoryText="Others"
@@ -35,39 +34,32 @@
 
 @code {
 
-    private List<DataItem> DataSource;
-    public PieChart Chart;
-    public ItemLegend Legend;
+    private List<DataItem> Data;
+
+    private ItemLegend _legend;
+    public ItemLegend Legend
+    {
+        get { return _legend; }
+        set { _legend = value; StateHasChanged(); }
+    }
 
     protected override void OnInitialized()
     {
         PieChartModule.Register(IgniteUIBlazor);
         ItemLegendModule.Register(IgniteUIBlazor);
 
-        var dataItems = new List<DataItem>();
-
-        dataItems.Add(new DataItem() { MarketShare = 25, Company = "Residential Appliance", });
-        dataItems.Add(new DataItem() { MarketShare = 12, Company = "Heating", });
-        dataItems.Add(new DataItem() { MarketShare = 8, Company = "Lighting", });
-        dataItems.Add(new DataItem() { MarketShare = 18, Company = "Other Services", });
-        dataItems.Add(new DataItem() { MarketShare = 37, Company = "Space Cooling", });
-
-        DataSource = dataItems;
-    }
-
-    protected override void OnAfterRender(bool firstRender)
-    {
-        base.OnAfterRender(firstRender);
-
-        Chart.Legend = Legend;
-
+        this.Data = new List<DataItem>();
+        this.Data.Add(new DataItem { MarketShare = 37, Category = "Cooling", });
+        this.Data.Add(new DataItem { MarketShare = 25, Category = "Residential", });
+        this.Data.Add(new DataItem { MarketShare = 12, Category = "Heating", });
+        this.Data.Add(new DataItem { MarketShare = 11, Category = "Lighting", });
+        this.Data.Add(new DataItem { MarketShare = 15, Category = "Other", });
     }
 
     public class DataItem
     {
-        public string Company { get; set; }
+        public string Category { get; set; }
         public double MarketShare { get; set; }
-
-        public string Summary { get { return Company + " " + MarketShare + "%"; } }
+        public string Summary { get { return Category + " " + MarketShare + "%"; } }
     }
 }

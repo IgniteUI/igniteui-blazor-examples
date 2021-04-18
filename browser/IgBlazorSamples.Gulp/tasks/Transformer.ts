@@ -909,6 +909,7 @@ class Transformer {
             // generating routing paths (@page) for a sample with and without SB navigation
             importLines.splice(0, 0, '@page "/samples' + sample.SampleRoute + '"');
             importLines.splice(1, 0, '@page         "' + sample.SampleRoute + '"');
+            importLines.splice(2, 0, '');
             // console.log("NOTE: lintRazor() importLines \n" + importLines.join('\n'));
         }
 
@@ -1101,7 +1102,7 @@ class CodeViewer {
     constructor(filePath: string, content: string, fileExtension: string, fileHeader: string, isMain: Boolean) {
 
         var jsonContent = content;
-        jsonContent = jsonContent.replace(/\/\//g, "/");
+        // jsonContent = jsonContent.replace(/\/\//g, "/");
 
         this.hasRelativeAssetsUrls = false;
         this.path = filePath;

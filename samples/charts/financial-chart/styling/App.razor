@@ -1,22 +1,22 @@
-@* this namespace is required for Infragistics controls *@
+
 @using IgniteUI.Blazor.Controls
 
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igComponent">
+<div class="container vertical">
+    <div class="container vertical">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <FinancialChart Width="100%"
                 Height="100%"
                 ChartType=FinancialChartType.Candle
                 Thickness=2
-                DataSource="DataSource"
+                DataSource="Data"
                 ChartTitle="Tesla vs Amazon vs Microsoft Changes"
                 Subtitle="Between 2013 and 2017"
                 YAxisMode="FinancialChartYAxisMode.PercentChange"
-                YAxisTitle="Percent Changed Since 2013"
+                YAxisTitle="Percent Changed"
                 NegativeOutlines="rgb(213, 94, 0)"
                 NegativeBrushes="Transparent"
                 Brushes="Transparent"
@@ -27,11 +27,11 @@
 
 @code {
 
-    protected List<StockPrice[]> DataSource;
+    protected List<StockPrice[]> Data;
 
     protected override async Task OnInitializedAsync()
     {
         FinancialChartModule.Register(IgniteUIBlazor);
-        this.DataSource = await StocksHistory.GetMultipleStocks();
+        this.Data = await StocksHistory.GetMultipleStocks();
     }
 }

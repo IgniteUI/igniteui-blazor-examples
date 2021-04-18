@@ -1,24 +1,29 @@
-@* this namespace is required for Infragistics controls *@
+
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
-@* NOTE use this HTML code to design a sample *@
-<div class="igContainer">
-    <div class="igComponent">
-        @if (DataSource != null)
+
+<div class="container vertical">
+    <div class="options vertical">
+        <span class="legend-title">Renewable Electricity Generated</span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+    <div class="container vertical">
+        @if (Data != null)
         {
             <CategoryChart Height="100%" Width="100%"
+                Legend="Legend"
                 ChartType="CategoryChartType.StepLine"
-                ChartTitle="Renewable Electricity Generated"
-                TitleAlignment="HorizontalAlignment.Left"
-                TitleLeftMargin="25"
-                TitleTopMargin="10"
-                TitleBottomMargin="10"
-                DataSource="DataSource"
-                YAxisTitle="TWh"
+                DataSource="Data"
                 IsCategoryHighlightingEnabled="true"
                 IsSeriesHighlightingEnabled="true"
                 ToolTipType="ToolTipType.Category"
-                IsTransitionInEnabled="true">
+                IsTransitionInEnabled="true"
+				IsHorizontalZoomEnabled="false"
+                IsVerticalZoomEnabled="false"
+                XAxisInterval="1"
+                YAxisTitle="TWh">
             </CategoryChart>
         }
     </div>
@@ -26,13 +31,21 @@
 
 @code {
 
-    private List<EnergyRenewableInfo> DataSource;
+    private Legend _Legend;
+    private Legend Legend
+    {
+        get { return _Legend; }
+        set { _Legend = value; StateHasChanged(); }
+    }
+
+    private List<EnergyRenewableInfo> Data;
 
     protected override void OnInitialized()
     {
         CategoryChartModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         LegendModule.Register(IgniteUIBlazor);
-        this.DataSource = new EnergyRenewableData();
+
+        this.Data = new EnergyRenewableData();
     }
 }

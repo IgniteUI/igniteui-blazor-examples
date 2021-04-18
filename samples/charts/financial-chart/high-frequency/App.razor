@@ -1,41 +1,41 @@
-@* this namespace is required for Infragistics controls *@
+
 @using IgniteUI.Blazor.Controls
 @using System.Collections.ObjectModel
 
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igOptions">
-        <label class="igOptions-label">Data Update:</label>
-        <label class="igOptions-value">@DataUpdateInfo</label>
-        <input class="igOptions-slider" type="range" min="20" max="1000" step="10"
+<div class="container vertical">
+    <div class="options horizotnal">
+        <label class="options-label" style="width: 5rem;">Data Update:</label>
+        <label class="options-value">@DataUpdateInfo</label>
+        <input class="options-slider" type="range" min="20" max="1000" step="10"
                value=@DataUpdateInterval
                @onchange=OnDataUpdateIntervalChanged />
 
-        <button class="igOptions-button" @onclick="OnDataToggleFeedClick">@DataFeedStatus</button>
-        <label class="igOptions-label">FPS: @FramePerSecond</label>
+        <button @onclick="OnDataToggleFeedClick">@DataFeedStatus</button>
+        <label class="options-label">FPS: @FramePerSecond</label>
     </div>
 
-    <div class="igOptions">
-        <label class="igOptions-label">Data Points:</label>
-        <label class="igOptions-value">@DataPoints</label>
-        <input class="igOptions-slider" type="range" min="10" max="10000" step="1"
+    <div class="options horizotnal">
+        <label class="options-label" style="width: 5rem;">Data Points:</label>
+        <label class="options-value">@DataPoints</label>
+        <input class="options-slider" type="range" min="10" max="10000" step="1"
                value=@DataPoints
                @onchange=OnDataPointsChanged />
 
-        <button class="igOptions-button" @onclick="OnDataGenerateClick">Generate Data</button>
-        <label class="igOptions-label">Optimize Scaling: </label>
+        <button @onclick="OnDataGenerateClick">Generate</button>
+        <label class="options-label">Optimize Scaling: </label>
         <input type="checkbox" @onchange="OnOptimizeScalingChanged" />
     </div>
 
-    <div class="igComponent">
+    <div class="container vertical">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <FinancialChart Width="100%" @ref="Chart" Height="100%"
                             ChartType="FinancialChartType.Line"
                             Thickness=2
-                            DataSource="DataSource"
+                            DataSource="Data"
                             PixelScalingRatio="ScalingRatio"
                             ZoomSliderType="FinancialChartZoomSliderType.None" />
         }
@@ -46,7 +46,7 @@
 
     private FinancialChart Chart;
     private double ScalingRatio { get; set; } = 1;
-    private ObservableCollection<StockItem> DataSource;
+    private ObservableCollection<StockItem> Data;
 
     private string DataInfo { get; set; }
     private int DataPoints { get; set; } = 1000;
@@ -65,7 +65,7 @@
         FinancialChartModule.Register(IgniteUIBlazor);
 
         var dataList = StocksUtility.GetStocksItems(this.DataPoints);
-        this.DataSource = new ObservableCollection<StockItem>(dataList);
+        this.Data = new ObservableCollection<StockItem>(dataList);
 
         this.DataInfo = StocksUtility.ToShortString(this.DataPoints);
         this.FrameUpdateTime = DateTime.Now;
@@ -102,7 +102,7 @@
     {
         var dataList = StocksUtility.GetStocksItems(this.DataPoints);
 
-        this.DataSource = new ObservableCollection<StockItem>(dataList);
+        this.Data = new ObservableCollection<StockItem>(dataList);
         SetupInterval();
     }
 
@@ -116,7 +116,7 @@
         this.DataUpdateInterval = num;
         this.DataUpdateInfo = (this.DataUpdateInterval / 1000.0).ToString("0.0") + "s ";
 
-        if (this.DataSource.Count > 0)
+        if (this.Data.Count > 0)
         {
             this.SetupInterval();
         }
@@ -143,13 +143,13 @@
     {
         if (!DataFeedActive) return;
 
-        var oldItem = this.DataSource[0];
-        var newItem = StocksUtility.GetNewItem(this.DataSource.ToList(), 60);
+        var oldItem = this.Data[0];
+        var newItem = StocksUtility.GetNewItem(this.Data.ToList(), 60);
 
-        this.DataSource.Add(newItem.FirstOrDefault());
-        this.Chart.NotifyInsertItem(this.DataSource, this.DataSource.Count - 1, newItem);
-        this.DataSource.RemoveAt(0);
-        this.Chart.NotifyRemoveItem(this.DataSource, 0, oldItem);
+        this.Data.Add(newItem.FirstOrDefault());
+        this.Chart.NotifyInsertItem(this.Data, this.Data.Count - 1, newItem);
+        this.Data.RemoveAt(0);
+        this.Chart.NotifyRemoveItem(this.Data, 0, oldItem);
 
         this.FrameCount++;
         var currTime = DateTime.Now;

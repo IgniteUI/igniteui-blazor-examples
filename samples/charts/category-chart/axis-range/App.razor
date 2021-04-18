@@ -1,0 +1,72 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+    <div class="options vertical">
+        <span class="legend-title">Renewable Electricity Generated</span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+        </div>
+
+        <div class="overlay-right" >
+            <div class="options horizontal" >
+                <label class="options-label">Y-Axis Minimum Value </label>
+                <label class="options-value" >@YAxisMinValue</label>
+                <input type="range" min="0" max="100" step="10" value="0" @oninput="OnYAxisMinValueChanged" />
+            </div>
+            <div class="options horizontal" >
+                <label class="options-label">Y-Axis Maximum Value </label>
+                <label class="options-value" >@YAxisMaxValue</label>
+                <input type="range" min="100" max="200" step="10" value="150" @oninput="OnYAxisMaxValueChanged" />
+            </div>
+        </div>
+    </div>
+
+    <div class="container vertical">
+        @if (Data != null)
+        {
+            <CategoryChart Height="100%" Width="100%"
+                           Legend="Legend"
+                           DataSource="Data"
+                           ChartType="CategoryChartType.Line"
+                           IsHorizontalZoomEnabled="false"
+                           IsVerticalZoomEnabled="false"
+                           YAxisMinimumValue="YAxisMinValue"
+                           YAxisMaximumValue="YAxisMaxValue">
+            </CategoryChart>
+        }
+    </div>
+</div>
+
+@code {
+
+
+    private Legend _Legend;
+    private Legend Legend
+    {
+        get { return _Legend; }
+        set { _Legend = value; StateHasChanged(); }
+    }
+
+    private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
+
+    private int YAxisMinValue = 0;
+    private int YAxisMaxValue = 150;
+
+    protected override void OnInitialized()
+    {
+        CategoryChartModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+    }
+
+    private void OnYAxisMinValueChanged(ChangeEventArgs args)
+    {
+        this.YAxisMinValue = int.Parse(args.Value.ToString());
+    }
+
+    private void OnYAxisMaxValueChanged(ChangeEventArgs args)
+    {
+        this.YAxisMaxValue = int.Parse(args.Value.ToString());
+    }
+}

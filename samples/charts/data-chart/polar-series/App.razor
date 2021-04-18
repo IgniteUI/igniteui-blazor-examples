@@ -1,36 +1,41 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
+<div class="container vertical">
 
-    <div class="igOptions-horizontal">
-        <span class="igOptions-label">Type of Polar Series: </span>
-        <select value=@SeriesType
-                @onchange="OnSeriesTypeChanged">
-            <option>Area</option>
-            <option>Spline Area</option>
-            <option>Spline</option>
-            <option>Line</option>
-            <option>Scatter</option>
-        </select>
+    <div class="options vertical">
 
-        <span class="igLegend-title">Legend: </span>
-        <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        <span class="legend-title">Legend: </span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
+
+        <div class="overlay-right" >
+            <div class="options horizontal" >
+                <label class="options-label">Polar Series: </label>
+                <select value=@SeriesType @onchange="OnSeriesTypeChanged">
+                    <option>Area</option>
+                    <option>Spline Area</option>
+                    <option>Spline</option>
+                    <option>Line</option>
+                    <option>Scatter</option>
+                </select>
+            </div>
+        </div>
+
     </div>
 
-    <div class="igComponent">
-        @if (DataSource != null)
+    <div class="container vertical">
+        @if (Data != null)
         {
         <DataChart Height="100%" Width="100%"
                    ChartTitle="Sailing Chart"
                    Subtitle="Wind Speed vs. Boat Speed"
                    TitleTopMargin="10"
-                   IsHorizontalZoomEnabled="true"
-                   IsVerticalZoomEnabled="true"
-                   Legend="@LegendRef"
-                   @ref="DataChartRef">
+                   IsHorizontalZoomEnabled="false"
+                   IsVerticalZoomEnabled="false"
+                   Legend="Legend"
+                   @ref="Chart">
 
             <NumericAngleAxis Name="angleAxis"
                               StartAngleOffset="-90"
@@ -47,7 +52,7 @@
             @if (SeriesType == "Area")
             {
                 <PolarAreaSeries Name="series1"
-                                 DataSource="@DataSource"
+                                 DataSource="Data"
                                  AngleAxisName="angleAxis"
                                  AngleMemberPath="Direction"
                                  RadiusMemberPath="WindSpeed"
@@ -55,9 +60,9 @@
                                  ShowDefaultTooltip="true"
                                  AreaFillOpacity="1"
                                  Title="Wind Speed"
-                                 MarkerType="@MarkerType.Circle" />
+                                 MarkerType="MarkerType.Circle" />
                 <PolarAreaSeries Name="series2"
-                                 DataSource="@DataSource"
+                                 DataSource="Data"
                                  AngleAxisName="angleAxis"
                                  AngleMemberPath="Direction"
                                  RadiusMemberPath="BoatSpeed"
@@ -65,7 +70,7 @@
                                  ShowDefaultTooltip="true"
                                  AreaFillOpacity="1"
                                  Title="Boat Speed"
-                                 MarkerType="@MarkerType.Circle" />
+                                 MarkerType="MarkerType.Circle" />
             }
 
             @if (SeriesType == "Spline Area")
@@ -79,8 +84,8 @@
                     ShowDefaultTooltip="true"
                     AreaFillOpacity="1"
                     Title="Wind Speed"
-                    MarkerType="@MarkerType.Circle"
-                    DataSource="@DataSource" >
+                    MarkerType="MarkerType.Circle"
+                    DataSource="Data" >
                 </PolarSplineAreaSeries>
 
                 <PolarSplineAreaSeries Name="series2"
@@ -92,8 +97,8 @@
                     ShowDefaultTooltip="true"
                     AreaFillOpacity="1"
                     Title="Boat Speed"
-                    MarkerType="@MarkerType.Circle"
-                    DataSource="@DataSource">
+                    MarkerType="MarkerType.Circle"
+                    DataSource="Data">
                 </PolarSplineAreaSeries>
             }
 
@@ -106,7 +111,7 @@
                                    AreaFillOpacity="1"
                                    MarkerType="MarkerType.Circle"
                                    Title="Boat Speed"
-                                   DataSource="@DataSource">
+                                   DataSource="Data">
                 </PolarSplineSeries>
 
                 <PolarSplineSeries AngleMemberPath="Direction"
@@ -116,7 +121,7 @@
                                    AreaFillOpacity="1"
                                    MarkerType="MarkerType.Circle"
                                    Title="Wind Speed"
-                                   DataSource="@DataSource">
+                                   DataSource="Data">
                 </PolarSplineSeries>
             }
 
@@ -129,7 +134,7 @@
                                  AreaFillOpacity="1"
                                  MarkerType="MarkerType.Circle"
                                  Title="Boat Speed"
-                                 DataSource="@DataSource">
+                                 DataSource="Data">
                 </PolarLineSeries>
 
                 <PolarLineSeries AngleMemberPath="Direction"
@@ -139,7 +144,7 @@
                                  AreaFillOpacity="1"
                                  MarkerType="MarkerType.Circle"
                                  Title="Wind Speed"
-                                 DataSource="@DataSource">
+                                 DataSource="Data">
                 </PolarLineSeries>
             }
 
@@ -152,7 +157,7 @@
                         AreaFillOpacity="1"
                         MarkerType="MarkerType.Circle"
                         Title="Boat Speed"
-                        DataSource="@DataSource">
+                        DataSource="Data">
                 </PolarScatterSeries>
 
                 <PolarScatterSeries AngleMemberPath="Direction"
@@ -162,7 +167,7 @@
                         AreaFillOpacity="1"
                         MarkerType="MarkerType.Circle"
                         Title="Wind Speed"
-                        DataSource="@DataSource">
+                        DataSource="Data">
                 </PolarScatterSeries>
             }
         </DataChart>
@@ -172,21 +177,21 @@
 
 @code {
 
-    private List<SamplePolarItem> DataSource;
-    private DataChart dataChart;
-    private DataChart DataChartRef
+    private List<SamplePolarItem> Data;
+    private DataChart _Chart;
+    private DataChart Chart
     {
-        get { return dataChart; }
+        get { return _Chart; }
         set
         {
-            dataChart = value;
+            _Chart = value;
             SeriesType = "Spline Area";
             StateHasChanged();
         }
     }
 
     private Legend legend;
-    private Legend LegendRef
+    private Legend Legend
     {
         get { return legend; }
         set
@@ -214,7 +219,7 @@
         DataChartInteractivityModule.Register(IgniteUIBlazor);
 
         LegendModule.Register(IgniteUIBlazor);
-        DataSource = SamplePolarData.Create();
+        Data = SamplePolarData.Create();
     }
 
     public void OnSeriesTypeChanged(ChangeEventArgs e)

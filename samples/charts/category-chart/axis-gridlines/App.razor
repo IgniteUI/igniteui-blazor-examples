@@ -1,0 +1,87 @@
+
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="options vertical">
+        <span class="legend-title">Renewable Electricity Generated</span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+        </div>
+        <div class="overlay-right">
+            <div class="options horizontal">
+                <label>Y-Axis Line </label><input type="color" value="@AxisMainStroke"  @onchange="OnAxisMainStrokeChange" />
+                <label>Major</label><input type="color" value="@AxisMajorStroke" @onchange="OnAxisMajorStrokeChange"  />
+                <label>Minor</label><input type="color" value="@AxisMinorStroke" @onchange="OnAxisMinorStrokeChange"  />
+            </div>
+        </div>
+    </div>
+    <div class="container vertical">
+        @if (Data != null)
+        {
+            <CategoryChart Height="100%" Width="100%" @ref="Chart"
+                           Legend="Legend"
+                           DataSource="Data"
+                           ChartType="CategoryChartType.Line"
+                           IsHorizontalZoomEnabled="false"
+                           IsVerticalZoomEnabled="false"
+
+                           XAxisStroke="#919191"
+                           XAxisStrokeThickness="2"
+
+                           XAxisInterval="1"
+                           XAxisMajorStroke="#474747"
+                           XAxisMajorStrokeThickness="0.5"
+
+                           YAxisStroke="@AxisMainStroke"
+                           YAxisStrokeThickness="2"
+
+                           YAxisInterval="20"
+                           YAxisMajorStroke="@AxisMajorStroke"
+                           YAxisMajorStrokeThickness="1"
+
+                           YAxisMinorInterval="5"
+                           YAxisMinorStroke="@AxisMinorStroke"
+                           YAxisMinorStrokeThickness="0.5"
+
+                           Thickness="2">
+            </CategoryChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private string AxisMainStroke  = "#919191";
+    private string AxisMajorStroke = "#474747";
+    private string AxisMinorStroke = "#919191";
+
+    private void OnAxisMainStrokeChange(ChangeEventArgs args)
+    {
+        this.AxisMainStroke = (string)args.Value;
+    }
+    private void OnAxisMajorStrokeChange(ChangeEventArgs args)
+    {
+        this.AxisMajorStroke = (string)args.Value;
+    }
+    private void OnAxisMinorStrokeChange(ChangeEventArgs args)
+    {
+        this.AxisMinorStroke = (string)args.Value;
+    }
+
+    private CategoryChart Chart;
+    private Legend _Legend;
+    private Legend Legend
+    {
+        get { return _Legend; }
+        set { _Legend = value; StateHasChanged(); }
+    }
+
+    private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
+
+    protected override void OnInitialized()
+    {
+        CategoryChartModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+    }
+}

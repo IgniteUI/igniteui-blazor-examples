@@ -1,38 +1,45 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
+<div class="container vertical">
 
-    <div class="igOptions-horizontal">
+    <div class="options vertical">
 
-        <span class="igOptions-label">Type of Financial Series: </span>
-        <select @bind=@SeriesType>
-            <option>@PriceDisplayType.Candlestick</option>
-            <option>@PriceDisplayType.OHLC</option>
-        </select>
-        <span class="igOptions-label">Indicator Display Type: </span>
-        <select @bind=@IndicatorsType>
-            <option>@IndicatorDisplayType.Line</option>
-            <option>@IndicatorDisplayType.Area</option>
-            <option>@IndicatorDisplayType.Column</option>
-        </select>
-        <span class="igLegend-title">Legend: </span>
-        <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        <span class="legend-title">Legend: </span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
+
+        <div class="overlay-right" >
+            <div class="options horizontal" >
+                <label class="options-label">Financial Series: </label>
+                <select @bind=@SeriesType>
+                    <option>@PriceDisplayType.Candlestick</option>
+                    <option>@PriceDisplayType.OHLC</option>
+                </select>
+                <label class="options-label">Indicator Display: </label>
+                <select @bind=@IndicatorsType>
+                    <option>@IndicatorDisplayType.Line</option>
+                    <option>@IndicatorDisplayType.Area</option>
+                    <option>@IndicatorDisplayType.Column</option>
+                </select>
+            </div>
+        </div>
+
+
     </div>
 
-    <div class="igComponent">
-        @if (DataSource != null)
+    <div class="container vertical">
+        @if (Data != null)
         {
             <DataChart Height="100%" Width="100%"
                        TitleTopMargin="10"
                        IsHorizontalZoomEnabled="true"
                        IsVerticalZoomEnabled="true"
-                       Legend="@LegendRef"
-                       @ref="DataChartRef">
+                       Legend="Legend"
+                       @ref="Chart">
 
-                <CategoryXAxis Name="xAxis" Label="Label" DataSource="@DataSource"
+                <CategoryXAxis Name="xAxis" Label="Label" DataSource="Data"
                                LabelAngle="45" />
                 <NumericYAxis Name="yAxis1" LabelLocation="AxisLabelsLocation.OutsideRight" Title="Financial Prices" />
 
@@ -46,7 +53,7 @@
                                        CloseMemberPath="Close"
                                        OpenMemberPath="Open"
                                        Brush="rgba(171, 82, 235, 0.39)"
-                                       DataSource="@DataSource" />
+                                       DataSource="Data" />
 
                 <FinancialPriceSeries Name="series2"
                                       XAxisName="xAxis"
@@ -57,7 +64,7 @@
                                       CloseMemberPath="Close"
                                       OpenMemberPath="Open"
                                       VolumeMemberPath="Volume"
-                                      DataSource="@DataSource"
+                                      DataSource="Data"
                                       Title="Price" />
 
                 <MedianPriceIndicator Name="series3"
@@ -69,7 +76,7 @@
                                       CloseMemberPath="Close"
                                       OpenMemberPath="Open"
                                       VolumeMemberPath="Volume"
-                                      DataSource="@DataSource" />
+                                      DataSource="Data" />
             </DataChart>
         }
     </div>
@@ -77,20 +84,20 @@
 
 @code {
 
-    private List<SampleFinancialItem> DataSource;
-    private DataChart dataChart;
-    private DataChart DataChartRef
+    private List<SampleFinancialItem> Data;
+    private DataChart _Chart;
+    private DataChart Chart
     {
-        get { return dataChart; }
+        get { return _Chart; }
         set
         {
-            dataChart = value;
+            _Chart = value;
             StateHasChanged();
         }
     }
 
     private Legend legend;
-    private Legend LegendRef
+    private Legend Legend
     {
         get { return legend; }
         set
@@ -138,6 +145,6 @@
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         LegendModule.Register(IgniteUIBlazor);
 
-        DataSource = SampleFinancialData.Create();
+        Data = SampleFinancialData.Create();
     }
 }

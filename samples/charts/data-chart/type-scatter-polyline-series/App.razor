@@ -1,8 +1,8 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igComponent">
+<div class="container vertical">
+    <div class="container vertical">
 
         @if (AirplaneShape != null && AirplaneSeats != null)
         {
@@ -13,12 +13,12 @@
                        IsHorizontalZoomEnabled="true"
                        IsVerticalZoomEnabled="true">
 
-                <NumericXAxis Name="xAxis" MinimumValue="-800" MaximumValue="800" Interval="200"></NumericXAxis>
+                <NumericXAxis Name="xAxis" MinimumValue="-1000" MaximumValue="1000" Interval="200"></NumericXAxis>
                 <NumericYAxis Name="yAxis" MinimumValue="-600" MaximumValue="600" Interval="200"></NumericYAxis>
 
                 <ScatterPolylineSeries XAxisName="xAxis"
                                       YAxisName="yAxis"
-                                      DataSource="@AirplaneShape"
+                                      DataSource="AirplaneShape"
                                       ShapeMemberPath="Points"
                                       ShowDefaultTooltip="false"
                                       Thickness="0.5"
@@ -27,7 +27,7 @@
 
                 <ScatterPolylineSeries XAxisName="xAxis"
                                       YAxisName="yAxis"
-                                      DataSource="@AirplaneSeats"
+                                      DataSource="AirplaneSeats"
                                       Title="AirplaneSeats"
                                       ShapeMemberPath="Points"
                                       StyleShapeScript="onPolylineShapeStyle">

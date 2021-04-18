@@ -1,33 +1,32 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igOptions">
-        <span class="igLegend-title">Annual Percentage Change in Energy Generation in 2019</span>
-        <span class="igLegend-subtitle">Showing the Annual Percentage Change in Energy Generation in 2019 compared to 2018</span>
-        <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+<div class="container vertical">
+    <div class="options vertical">
+        <span class="legend-title">Annual Percentage Change in Energy Generation in 2019</span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
-    <div class="igComponent">
+    <div class="container vertical">
         <DataChart Height="100%" Width="100%"
-                   Legend="LegendRef"
-                   IsHorizontalZoomEnabled="true"
-                   IsVerticalZoomEnabled="true">
+                   Legend="Legend"
+                   IsHorizontalZoomEnabled="false"
+                   IsVerticalZoomEnabled="false">
 
-            <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Location" MajorStrokeThickness="1" MajorStroke="LightGray" Interval="1"
+            <CategoryXAxis Name="xAxis" DataSource="Data" Label="Location" MajorStrokeThickness="1" MajorStroke="LightGray" Interval="1"
                            CrossingAxisName="yAxis" CrossingValue="0" Gap=".5"/>
             <NumericYAxis Name="yAxis" MinimumValue="-20" MaximumValue="30" Interval="10"/>
 
-            <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="Solar" Title="Solar" 
+            <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="Solar" Title="Solar"
                           MarkerTemplateScript="onColumnChartStylingMarkerTemplate" ShowDefaultTooltip="true"/>
-            <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="Coal" Title="Coal"
+            <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="Coal" Title="Coal"
                           MarkerTemplateScript="onColumnChartStylingMarkerTemplate" ShowDefaultTooltip="true"/>
-            <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="Hydropower" Title="Hydropower"
+            <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="Hydro" Title="Hydro"
                           MarkerTemplateScript="onColumnChartStylingMarkerTemplate" ShowDefaultTooltip="true"/>
-            <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="Wind" Title="Wind"
+            <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="Wind" Title="Wind"
                           MarkerTemplateScript="onColumnChartStylingMarkerTemplate" ShowDefaultTooltip="true"/>
-            <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="Nuclear" Title="Nuclear"
+            <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="Nuclear" Title="Nuclear"
                           MarkerTemplateScript="onColumnChartStylingMarkerTemplate" ShowDefaultTooltip="true"/>
 
             <CategoryHighlightLayer />
@@ -41,13 +40,13 @@
 @code {
 
     private Legend _Legend;
-    private Legend LegendRef
+    private Legend Legend
     {
         get { return _Legend; }
         set { _Legend = value; StateHasChanged(); }
     }
 
-    private List<EnergyChangePercentageInfo> DataSource = new EnergyChangePercentageData();
+    private List<EnergyChangeInfo> Data = new EnergyChangeData();
 
     protected override void OnInitialized()
     {

@@ -3,11 +3,11 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 @inject HttpClient Http
 
-<div class="igContainer">
-    <div class="igComponent">
+<div class="container vertical">
+    <div class="container vertical">
         <GeographicMap Height="100%" Width="100%" Zoomable="true">
-            <GeographicSymbolSeries DataSource="@DataSource"
-                                    MarkerType="@MarkerType.Circle"
+            <GeographicSymbolSeries DataSource="Data"
+                                    MarkerType="MarkerType.Circle"
                                     LatitudeMemberPath="Lat"
                                     LongitudeMemberPath="Lon"
                                     MarkerBrush="LightGray"
@@ -18,7 +18,7 @@
 
 @code {
 
-    private WorldPlaceJson[] DataSource;
+    private WorldPlaceJson[] Data;
 
     protected override async Task OnInitializedAsync()
     {
@@ -27,7 +27,7 @@
 
         var url = "https://static.infragistics.com/xplatform/data/WorldCities.json";
         var http = new HttpClient();
-        this.DataSource = await http.GetFromJsonAsync<WorldPlaceJson[]>(url);
+        this.Data = await http.GetFromJsonAsync<WorldPlaceJson[]>(url);
 
         await Task.Delay(1);
     }

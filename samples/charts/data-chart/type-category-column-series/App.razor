@@ -1,49 +1,49 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igComponent">
+<div class="container vertical">
+    <div class="container vertical">
 
         <DataChart Height="100%" Width="100%"
                    ChartTitle="Total Olympic Medals"
                    Subtitle="United States vs China vs Russia"
                    TitleTopMargin="10"
-                   IsHorizontalZoomEnabled="true"
-                   IsVerticalZoomEnabled="true">
+                   IsHorizontalZoomEnabled="false"
+                   IsVerticalZoomEnabled="false">
 
-            <CategoryXAxis Name="xAxis" Label="Year" DataSource="@DataSource"
+            <CategoryXAxis Name="xAxis" Label="Year" DataSource="Data"
                            Title="Olympic Years" Gap="0.2" Overlap="-0.05"/>
             <NumericYAxis Name="yAxis" Title="Olympic Medals" TitleLeftMargin="10" />
 
             <ColumnSeries XAxisName="xAxis"
                           YAxisName="yAxis"
-                          DataSource="@DataSource"
+                          DataSource="Data"
                           ValueMemberPath="USA" Title="USA"
                           AreaFillOpacity="1"
                           ShowDefaultTooltip="true"
                           IsTransitionInEnabled="true"
                           IsHighlightingEnabled="true"
-                          MarkerType=@MarkerType.None>
+                          MarkerType=MarkerType.None>
             </ColumnSeries>
             <ColumnSeries XAxisName="xAxis"
                           YAxisName="yAxis"
-                          DataSource="@DataSource"
+                          DataSource="Data"
                           ValueMemberPath="CHN" Title="China"
                           AreaFillOpacity="1"
                           ShowDefaultTooltip="true"
                           IsTransitionInEnabled="true"
                           IsHighlightingEnabled="true"
-                          MarkerType=@MarkerType.None>
+                          MarkerType=MarkerType.None>
             </ColumnSeries>
             <ColumnSeries XAxisName="xAxis"
                           YAxisName="yAxis"
-                          DataSource="@DataSource"
+                          DataSource="Data"
                           ValueMemberPath="RUS" Title="Russia"
                           AreaFillOpacity="1"
                           ShowDefaultTooltip="true"
                           IsTransitionInEnabled="true"
                           IsHighlightingEnabled="true"
-                          MarkerType=@MarkerType.None>
+                          MarkerType=MarkerType.None>
             </ColumnSeries>
         </DataChart>
 
@@ -52,7 +52,7 @@
 
 @code {
 
-    private List<SampleCategoryItem> DataSource;
+    private List<SampleCategoryItem> Data;
 
     protected override void OnInitialized()
     {
@@ -61,8 +61,8 @@
         DataChartCategoryModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
 
-        DataSource = SampleCategoryData.Create();
+        Data = SampleCategoryData.Create();
 
-        Console.WriteLine("DataSource " + DataSource.Count);
+
     }
 }

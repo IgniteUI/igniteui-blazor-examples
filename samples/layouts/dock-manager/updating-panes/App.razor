@@ -1,11 +1,9 @@
-﻿@page "/samples/layouts/dock-manager-updating-panes"
-@page         "/layouts/dock-manager-updating-panes"
-@using IgniteUI.Blazor.Controls
+﻿@using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JSRuntime
 
-<div class="igContainer">
-    <div class="igComponent" style="overflow: hidden;">
+<div class="container vertical">
+    <div class="container vertical" style="overflow: hidden;">
 
         @*NOTE: code in npmJS\src\DockManagerUpdatingPanes.js file sets layout of these DIV elements:*@
         <igc-dockmanager @ref="dockManager" id="dockManager" height="100%" width="100%">
@@ -41,16 +39,16 @@
                 <GeographicMap @ref="GeoMap" Height="100%" Width="100%" Zoomable="true"
                                BackgroundContent="@GeoImagery">
                       <GeographicSymbolSeries
-                               DataSource="@EmployeeList"
-                               MarkerType="@MarkerType.Circle"
+                               DataSource="EmployeeList"
+                               MarkerType="MarkerType.Circle"
                                LatitudeMemberPath="Latitude"
                                LongitudeMemberPath="Longitude"
                                MarkerBrush="White"
                                MarkerOutline="Red" />
 
                       <GeographicSymbolSeries @ref="GeoSeries"
-                               DataSource="@EmployeeSelected"
-                               MarkerType="@MarkerType.Circle"
+                               DataSource="EmployeeSelected"
+                               MarkerType="MarkerType.Circle"
                                LatitudeMemberPath="Latitude"
                                LongitudeMemberPath="Longitude"
                                MarkerBrush="White"

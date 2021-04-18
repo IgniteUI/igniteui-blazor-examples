@@ -2,30 +2,33 @@
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
-<div class="igContainer">
-    <div class="igOptions">
-        <span class="igLegend-title">Renewable Electricity generated combined</span>
+<div class="container vertical">
+    <div class="options vertical">
+        <span class="legend-title">Annual Number of Births by World Region</span>
     </div>
-    <div class="igComponent">
-        @if (DataSource != null)
+    <div class="container vertical">
+        @if (Data != null)
         {
-            <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true" IsHorizontalZoomEnabled="true">
-                <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Year" Gap="0.75" />
-                <NumericYAxis Name="yAxis" MinimumValue="0" MaximumValue="300" Interval="50" Title="TWh" TitleLeftMargin="10" />
+            <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="false" IsHorizontalZoomEnabled="false">
+                <CategoryXAxis Name="xAxis" DataSource="Data" Label="Year" Gap="0.75" />
+                <NumericYAxis Name="yAxis" MinimumValue="0" MaximumValue="140" Interval="20" Title="Millions of Births" TitleLeftMargin="10" LabelFormat="{0} m" />
 
-                <StackedSplineAreaSeries MarkerType="MarkerType.Circle" XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ShowDefaultTooltip="false">
-                    <StackedFragmentSeries ValueMemberPath="USA" />
-                    <StackedFragmentSeries ValueMemberPath="Europe" />
-                    <StackedFragmentSeries ValueMemberPath="China" />
-                </StackedSplineAreaSeries>
-            </DataChart>
+            <StackedSplineAreaSeries MarkerType="MarkerType.Circle" XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false">
+                <StackedFragmentSeries ValueMemberPath="Asia" />
+                <StackedFragmentSeries ValueMemberPath="Africa" />
+                <StackedFragmentSeries ValueMemberPath="Europe" />
+                <StackedFragmentSeries ValueMemberPath="NorthAmerica" />
+                <StackedFragmentSeries ValueMemberPath="SouthAmerica" />
+                <StackedFragmentSeries ValueMemberPath="Oceania" />
+            </StackedSplineAreaSeries>
+        </DataChart>
         }
     </div>
 </div>
 
 @code {
 
-    public List<RenewableElectricityStackedInfo> DataSource = new RenewableElectricityStackedData();
+    public List<AnnualBirthRateRegionalInfo> Data = new AnnualBirthRateRegionalData();
 
     protected override void OnInitialized()
     {

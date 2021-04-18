@@ -1,25 +1,25 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igOptions">
-        <span class="igLegend-title">Ronaldo vs. Messi Player Stats</span>
-        <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+<div class="container vertical">
+    <div class="options vertical">
+        <span class="legend-title">Ronaldo vs. Messi Player Stats</span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
-    <div class="igComponent">
+    <div class="container vertical">
         <DataChart Height="100%" Width="100%"
-                   IsHorizontalZoomEnabled="true"
-                   IsVerticalZoomEnabled="true"
-                   Legend="LegendRef">
-            <CategoryAngleAxis Name="angleAxis" DataSource="@DataSource"
+                   IsHorizontalZoomEnabled="false"
+                   IsVerticalZoomEnabled="false"
+                   Legend="Legend">
+            <CategoryAngleAxis Name="angleAxis" DataSource="Data"
                                Label="Attribute" />
             <NumericRadiusAxis Name="radiusAxis"
                                InnerRadiusExtentScale="0.1"
                                MinimumValue="0" MaximumValue="10" Interval="2" />
 
-            <RadialLineSeries DataSource="@DataSource"
+            <RadialLineSeries DataSource="Data"
                               AngleAxisName="angleAxis"
                               ValueMemberPath="RonaldoValue"
                               ValueAxisName="radiusAxis"
@@ -29,7 +29,7 @@
                               Title="Ronaldo"
                               MarkerType="MarkerType.Circle" />
 
-            <RadialLineSeries DataSource="@DataSource"
+            <RadialLineSeries DataSource="Data"
                               AngleAxisName="angleAxis"
                               ValueMemberPath="MessiValue"
                               ValueAxisName="radiusAxis"
@@ -45,10 +45,10 @@
 
 @code {
 
-    private List<PlayerStatsInfo> DataSource = new PlayerStatsData();
+    private List<PlayerStatsInfo> Data = new PlayerStatsData();
 
     private Legend _Legend;
-    private Legend LegendRef
+    private Legend Legend
     {
         get { return _Legend; }
         set { _Legend = value; StateHasChanged(); }

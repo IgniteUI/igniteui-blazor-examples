@@ -1,35 +1,30 @@
-@* this namespace is required for Infragistics controls *@
+
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-
-    <div class="igOptions-horizontal">
+<div class="container vertical">
+    <div class="options horizontal">
         <button @onclick="onAnimationToggle">Animate Chart</button>
     </div>
-
-    <div class="igComponent">
-
-        @if (DataSource != null)
+    <div class="container vertical">
+        @if (Data != null)
         {
             <PieChart Height="100%" Width="100%"
-                DataSource="DataSource"
-                LabelMemberPath="Summary"
+                DataSource="Data"
+                LabelMemberPath="Category"
                 ValueMemberPath="MarketShare"
-                LegendLabelMemberPath="Company"
                 LabelsPosition="LabelsPosition.InsideEnd"
                 StartAngle="StartAngle"
                 LabelExtent="LabelExtent"
                 RadiusFactor="RadiusFactor">
             </PieChart>
         }
-
     </div>
 </div>
 
 @code {
 
-    private List<DataItem> DataSource;
+    private List<DataItem> Data;
     public double StartAngle = 0;
     public double RadiusFactor = 0.1;
     public double LabelExtent = 0.7;
@@ -51,7 +46,7 @@
         }
     }
 
-	private void OnTimerTick()
+    private void OnTimerTick()
     {
         if (this.isAnimating)
         {
@@ -68,7 +63,7 @@
             }
 
             Task.Delay(16).ContinueWith((t) => OnTimerTick());
-			this.StateHasChanged();
+            this.StateHasChanged();
         }
     }
 
@@ -76,22 +71,20 @@
     {
         PieChartModule.Register(IgniteUIBlazor);
 
-        var dataItems = new List<DataItem>();
-        dataItems.Add(new DataItem() { MarketShare = 30, Company = "Google", });
-        dataItems.Add(new DataItem() { MarketShare = 25, Company = "Apple", });
-        dataItems.Add(new DataItem() { MarketShare = 20, Company = "Microsoft", });
-        dataItems.Add(new DataItem() { MarketShare = 15, Company = "Samsung", });
-        dataItems.Add(new DataItem() { MarketShare = 10, Company = "Other", });
+        this.Data = new List<DataItem>();
+        this.Data.Add(new DataItem { MarketShare = 37, Category = "Cooling", });
+        this.Data.Add(new DataItem { MarketShare = 25, Category = "Residential", });
+        this.Data.Add(new DataItem { MarketShare = 12, Category = "Heating", });
+        this.Data.Add(new DataItem { MarketShare = 11, Category = "Lighting", });
+        this.Data.Add(new DataItem { MarketShare = 15, Category = "Other", });
 
-        DataSource = dataItems;
         this.onAnimationToggle();
     }
 
     public class DataItem
     {
-        public string Company { get; set; }
+        public string Category { get; set; }
         public double MarketShare { get; set; }
-
-        public string Summary { get { return Company + " " + MarketShare + "%"; } }
+        public string Summary { get { return Category + " " + MarketShare + "%"; } }
     }
 }

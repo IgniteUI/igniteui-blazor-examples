@@ -1,10 +1,10 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
+<div class="container vertical">
 
-    <div className="igOptions" style="align-self: center;">
-        <span> Marker Collision </span>
+    <div class="options horizontal" >
+        <label> Marker Collision </label>
         <select @bind="MarkerCollisionType">
             <option>@CollisionAvoidanceType.Fade</option>
             <option>@CollisionAvoidanceType.FadeAndShift</option>
@@ -27,22 +27,22 @@
             <option>@MarkerType.Tetragram</option>
             <option>@MarkerType.Pentagram</option>
             <option>@MarkerType.Hexagram</option>
-            <option>@MarkerType.None</option> 
+            <option>@MarkerType.None</option>
         </select>*@
     </div>
 
-    <div class="igComponent" style="height: calc(100% - 2rem)">
+    <div class="container vertical" style="height: calc(100% - 2rem)">
         <GeographicMap Height="100%" Width="100%" Zoomable="true"  @ref="GeoMap">
 
-            <GeographicSymbolSeries DataSource="@Capitals" @ref="GeoSeries"
-                                    MarkerCollisionAvoidance="@MarkerCollisionType"
+            <GeographicSymbolSeries DataSource="Capitals" @ref="GeoSeries"
+                                    MarkerCollisionAvoidance="MarkerCollisionType"
                                     LatitudeMemberPath="Lat"
                                     LongitudeMemberPath="Lon"
                                     MarkerBrush="White"
                                     MarkerOutline="#7D73E6"
-                                    MarkerTemplateScript="@MarkerScript"/>
+                                    MarkerTemplateScript="MarkerScript"/>
             @*note onMapMarkerTemplate implements custom marker in MapMarkerTemplate.js*@
-            
+
         </GeographicMap>
     </div>
 </div>
@@ -73,7 +73,7 @@
 
         if (GeoSeries == null) return;
 
-        //GeoSeries.DataSource = null;
+        //GeoSeries.Data = null;
 
         if (markerType == "Custom")
         {
@@ -105,8 +105,8 @@
                 GeoSeries.MarkerType = MarkerType.Pentagram;
             else if (markerType == "Hexagram")
                 GeoSeries.MarkerType = MarkerType.Hexagram;
- 
-            //GeoSeries.DataSource = this.Capitals;
+
+            //GeoSeries.Data = this.Capitals;
             //GeoSeries.RenderSeries(false);
         }
 

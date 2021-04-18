@@ -2,14 +2,14 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
+<div class="container vertical">
 
-    <div class="igComponent">
+    <div class="container vertical">
 
         @if (Employees != null && CountryNames != null)
         {
         <DataGrid Height="100%" Width="100%" RowHeight="50" @ref="@DataGridRef"
-                  DataSource="@Employees"
+                  DataSource="Employees"
                   AutoGenerateColumns="false"
                   ActivationMode="GridActivationMode.Cell">
 
@@ -30,7 +30,7 @@
 
             <DateTimeColumn Width="@("*>140")" Field="Birthday" HeaderText="Date of Birth" />
 
-            <ComboBoxColumn Width="@("*>120")" Field="Country" DataSource="@CountryNames" />
+            <ComboBoxColumn Width="@("*>120")" Field="Country" DataSource="CountryNames" />
             <ImageColumn IsEditable="false" Width="@("*>110")" Field="CountryFlag" HeaderText="Flag"
                          PaddingTop="5" PaddingBottom="5" PaddingRight="10"
                          HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />

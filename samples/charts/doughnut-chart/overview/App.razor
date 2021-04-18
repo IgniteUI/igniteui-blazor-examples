@@ -1,16 +1,16 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igComponent">
+<div class="container vertical">
+    <div class="container vertical">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DoughnutChart Height="100%" Width="100%">
-                <RingSeries DataSource="@DataSource"
+                <RingSeries DataSource="Data"
                             LabelMemberPath="Summary"
                             ValueMemberPath="MarketShare"
-                            LegendLabelMemberPath="Company"
+                            LegendLabelMemberPath="Category"
                             Outlines="white"
                            >
                 </RingSeries>
@@ -22,28 +22,28 @@
 
 @code {
 
-    private List<DataItem> DataSource;
+    private List<DataItem> Data;
 
     protected override void OnInitialized()
     {
         DoughnutChartModule.Register(IgniteUIBlazor);
 
         var dataItems = new List<DataItem>();
-        dataItems.Add(new DataItem() { MarketShare = 30, Company = "Google", });
-        dataItems.Add(new DataItem() { MarketShare = 25, Company = "Apple", });
-        dataItems.Add(new DataItem() { MarketShare = 20, Company = "Microsoft", });
-        dataItems.Add(new DataItem() { MarketShare = 15, Company = "Samsung", });
-        dataItems.Add(new DataItem() { MarketShare = 10, Company = "Other", });
+        dataItems.Add(new DataItem() { MarketShare = 30, Category = "Google", });
+        dataItems.Add(new DataItem() { MarketShare = 25, Category = "Apple", });
+        dataItems.Add(new DataItem() { MarketShare = 20, Category = "Microsoft", });
+        dataItems.Add(new DataItem() { MarketShare = 15, Category = "Samsung", });
+        dataItems.Add(new DataItem() { MarketShare = 10, Category = "Other", });
 
-        DataSource = dataItems;
+        Data = dataItems;
 
     }
 
     public class DataItem
     {
-        public string Company { get; set; }
+        public string Category { get; set; }
         public double MarketShare { get; set; }
-        public string Summary { get { return Company + " " + MarketShare + "%"; } }
+        public string Summary { get { return Category + " " + MarketShare + "%"; } }
     }
 
 }

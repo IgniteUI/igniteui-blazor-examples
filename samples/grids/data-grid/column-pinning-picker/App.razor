@@ -1,21 +1,21 @@
 ﻿@using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor;
 
-<div class="igContainer">
+<div class="container vertical">
 
-    <div class="igOptions">
-        <input type="button" class="igOptions-item" disabled=@IsPinningToLeftDisabled  @onclick="OnPinLeft" value="Pin Left" />
-        <input type="button" class="igOptions-item" disabled=@IsPinningToRightDisabled @onclick="OnPinRight" value="Pin Right" />
-        <input type="button" class="igOptions-item" @onclick="OnUnPin" value="Unpin Columns" />
+    <div class="options horizotnal">
+        <input type="button" class="options-item" disabled=@IsPinningToLeftDisabled  @onclick="OnPinLeft" value="Pin Left" />
+        <input type="button" class="options-item" disabled=@IsPinningToRightDisabled @onclick="OnPinRight" value="Pin Right" />
+        <input type="button" class="options-item" @onclick="OnUnPin" value="Unpin Columns" />
     </div>
 
-    <div class="igComponent">
+    <div class="container vertical">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
         <DataGrid Height="calc(100% - 40px)" Width="100%"
                   DefaultColumnMinWidth="120"
-                  DataSource="@DataSource"
+                  DataSource="Data"
                   AutoGenerateColumns="false"
                   @ref="DataGridRef">
             <TextColumn Field="ID" Pinned="PinnedPositions.Left" Width="@("*>110")" />
@@ -41,7 +41,7 @@
 
 @code {
 
-    private List<Employee> DataSource;
+    private List<Employee> Data;
     public DataGrid grid;
     public DataGrid DataGridRef
     {
@@ -64,7 +64,7 @@
 
         DataGridModule.Register(IgniteUIBlazor);
 
-        this.DataSource = EmployeeData.Create(200, false);
+        this.Data = EmployeeData.Create(200, false);
 
     }
 

@@ -2,7 +2,7 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 @inject NavigationManager NavManager
 
-<div class="igContainer-horizontal">
+<div class="container horizontal">
 
     <GeographicMap @ref="BingAerialMap"
                    Height="100%" Width="100%" Zoomable="true"
@@ -28,8 +28,6 @@
     {
         GeographicMapModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
-
-        Console.WriteLine("BingSample OnInitialized");
 
         this.RoadImagery = CreateImagery(BingMapsImageryStyle.Road);
         this.AerialImagery = CreateImagery(BingMapsImageryStyle.AerialWithLabels);

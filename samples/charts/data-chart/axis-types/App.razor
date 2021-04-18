@@ -1,12 +1,10 @@
-﻿@page "/DataChartAxisTypes"
-
-@using IgniteUI.Blazor.Controls
+﻿@using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
-<div class="igContainer">
-    <div class="igOptions-horizontal">
-        <span class="igOptions-item">Axis Type:</span>
+<div class="container vertical">
+    <div class="options horizontal">
+        <span class="options-item">Axis Type:</span>
         <select @onchange="OnAxisTypeChanged">
             <option>CategoryXAxis with Column Series</option>
             <option>CategoryYAxis with Bar Series</option>
@@ -15,11 +13,11 @@
         </select>
     </div>
 
-    <div class="igComponent">
+    <div class="container vertical">
         <DataChart Height="100%" Width="100%"
-                   @ref="DataChartRef"
-                   IsHorizontalZoomEnabled="true"
-                   IsVerticalZoomEnabled="true" />
+                   @ref="Chart"
+                   IsHorizontalZoomEnabled="false"
+                   IsVerticalZoomEnabled="false" />
     </div>
 </div>
 
@@ -49,13 +47,13 @@
     private FinancialPriceSeries FinancialSeries;
 
     private DataChart _chart;
-    private DataChart DataChartRef
+    private DataChart Chart
     {
         get { return _chart; }
         set
         {
             _chart = value;
-            this.OnDataChartRef();
+            this.OnChart();
 
             value.Axes.Add(this.CategoryXAxis);
             value.Axes.Add(this.NumericYAxis);
@@ -82,7 +80,7 @@
         DataChartInteractivityModule.Register(IgniteUIBlazor);
     }
 
-    private void OnDataChartRef()
+    private void OnChart()
     {
         this.InitData();
         this.InitAxes();
@@ -214,41 +212,41 @@
 
     private void OnAxisTypeChanged(ChangeEventArgs e)
     {
-        this.DataChartRef.Axes.Clear();
-        this.DataChartRef.Series.Clear();
+        this.Chart.Axes.Clear();
+        this.Chart.Series.Clear();
 
         string value = e.Value.ToString();
 
         if (value.Contains("Column"))
         {
-            this.DataChartRef.Axes.Add(this.CategoryXAxis);
-            this.DataChartRef.Axes.Add(this.NumericYAxis);
+            this.Chart.Axes.Add(this.CategoryXAxis);
+            this.Chart.Axes.Add(this.NumericYAxis);
 
-            this.DataChartRef.Series.Add(this.ColumnSeries1);
-            this.DataChartRef.Series.Add(this.ColumnSeries2);
+            this.Chart.Series.Add(this.ColumnSeries1);
+            this.Chart.Series.Add(this.ColumnSeries2);
         }
         else if (value.Contains("Bar"))
         {
-            this.DataChartRef.Axes.Add(this.CategoryYAxis);
-            this.DataChartRef.Axes.Add(this.NumericXAxis);
+            this.Chart.Axes.Add(this.CategoryYAxis);
+            this.Chart.Axes.Add(this.NumericXAxis);
 
-            this.DataChartRef.Series.Add(this.BarSeries1);
-            this.DataChartRef.Series.Add(this.BarSeries2);
+            this.Chart.Series.Add(this.BarSeries1);
+            this.Chart.Series.Add(this.BarSeries2);
         }
         else if (value.Contains("Scatter"))
         {
-            this.DataChartRef.Axes.Add(this.NumericXAxis);
-            this.DataChartRef.Axes.Add(this.NumericYAxis);
+            this.Chart.Axes.Add(this.NumericXAxis);
+            this.Chart.Axes.Add(this.NumericYAxis);
 
-            this.DataChartRef.Series.Add(this.ScatterSeries1);
-            this.DataChartRef.Series.Add(this.ScatterSeries2);
+            this.Chart.Series.Add(this.ScatterSeries1);
+            this.Chart.Series.Add(this.ScatterSeries2);
         }
         else
         {
-            this.DataChartRef.Axes.Add(this.TimeXAxis);
-            this.DataChartRef.Axes.Add(this.NumericYAxis);
+            this.Chart.Axes.Add(this.TimeXAxis);
+            this.Chart.Axes.Add(this.NumericYAxis);
 
-            this.DataChartRef.Series.Add(this.FinancialSeries);
+            this.Chart.Series.Add(this.FinancialSeries);
         }
 
         StateHasChanged();

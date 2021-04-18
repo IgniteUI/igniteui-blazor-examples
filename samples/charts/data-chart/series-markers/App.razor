@@ -1,12 +1,10 @@
-﻿@page "/DataChartSeriesMarkers"
-
-@using IgniteUI.Blazor.Controls
+﻿@using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
-<div class="igContainer">
-    <div class="igOptions-horizontal">
-        <span class="igOptions-label"> Marker Type: </span>
+<div class="container vertical">
+    <div class="options horizontal">
+        <span class="options-label"> Marker Type: </span>
         <select @bind="ChartMarkerType">
             <option>@MarkerType.Automatic</option>
             <option>@MarkerType.Circle</option>
@@ -22,18 +20,18 @@
             <option>@MarkerType.None</option>
         </select>
     </div>
-    <div class="igComponent">
-        @if (DataSource != null)
+    <div class="container vertical">
+        @if (Data != null)
         {
             <DataChart Height="100%" Width="100%"
                        IsHorizontalZoomEnabled="true"
                        IsVerticalZoomEnabled="true">
-                <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Year" />
+                <CategoryXAxis Name="xAxis" DataSource="Data" Label="Year" />
                 <NumericYAxis Name="yAxis" MinimumValue="0" />
 
-                <LineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="USA" MarkerType="ChartMarkerType" />
-                <LineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="CHN" MarkerType="ChartMarkerType" />
-                <LineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="RUS" MarkerType="ChartMarkerType" />
+                <LineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="USA" MarkerType="ChartMarkerType" />
+                <LineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="CHN" MarkerType="ChartMarkerType" />
+                <LineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="RUS" MarkerType="ChartMarkerType" />
             </DataChart>
         }
     </div>
@@ -41,7 +39,7 @@
 
 @code {
 
-    private List<OlympicMedals> DataSource;
+    private List<OlympicMedals> Data;
     private MarkerType ChartMarkerType = MarkerType.Automatic;
 
     protected override void OnInitialized()
@@ -52,7 +50,7 @@
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         DataChartCategoryModule.Register(IgniteUIBlazor);
 
-        this.DataSource = this.GenerateData();
+        this.Data = this.GenerateData();
     }
 
     private List<OlympicMedals> GenerateData() {

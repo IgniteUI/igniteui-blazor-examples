@@ -1,14 +1,17 @@
-@* this namespace is required for Infragistics controls *@
+
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igLegend">
-        <Legend @ref="FinancialLegend" Orientation="LegendOrientation.Horizontal" >
+<div class="container vertical">
 
-        </Legend>
+    <div class="options vertical">
+        <span class="legend-title">Tesla vs Microsoft Stock Prices</span>
+        <div class="legend">
+            <Legend @ref="FinancialLegend" Orientation="LegendOrientation.Horizontal" />
+        </div>
     </div>
-    <div class="igComponent">
+
+    <div class="container vertical">
 
             <FinancialChart
                 @ref="Chart"
@@ -17,19 +20,17 @@
                 ChartType="FinancialChartType.Bar"
                 Thickness=2
                 ExcludedProperties="@(new string[] { "Date" })"
-                DataSource="DataSource"
+                DataSource="Data"
                 ZoomSliderType="FinancialChartZoomSliderType.Bar"
-                ChartTitle="Tesla vs Microsoft"
-                Subtitle="Between 2013 and 2017"
                 IsToolbarVisible="true"
                 YAxisMode="FinancialChartYAxisMode.PercentChange"/>
-        
+
     </div>
 </div>
 
 @code {
 
-    public List<StockPrice[]> DataSource;
+    public List<StockPrice[]> Data;
     public Legend FinancialLegend { get; set; }
     public FinancialChart Chart;
 
@@ -37,7 +38,7 @@
     {
         FinancialChartModule.Register(IgniteUIBlazor);
         LegendModule.Register(IgniteUIBlazor);
-        this.DataSource = await StocksHistory.GetMultipleStocks();
+        this.Data = await StocksHistory.GetMultipleStocks();
     }
 
     protected override void OnAfterRender(bool firstRender)

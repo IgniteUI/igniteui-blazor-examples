@@ -1,10 +1,10 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igComponent">
-        <div class="igOptions">
-            <span class="igOptions-label">Marker Type: </span>
+<div class="container vertical">
+    <div class="container vertical">
+        <div class="options horizontal">
+            <label class="options-label">Marker Type: </label>
             <select @bind="SelectedMarkerType">
                 <option>@MarkerType.Automatic</option>
                 <option>@MarkerType.Circle</option>
@@ -24,14 +24,14 @@
         </div>
 
         <GeographicMap Height="100%" Width="100%" Zoomable="true">
-            <GeographicSymbolSeries DataSource="@Cities"
-                                    MarkerType="@SelectedMarkerType"
+            <GeographicSymbolSeries DataSource="Cities"
+                                    MarkerType="SelectedMarkerType"
                                     LatitudeMemberPath="Lat"
                                     LongitudeMemberPath="Lon"
                                     MarkerBrush="White"
                                     MarkerOutline="Gray" />
-            <GeographicSymbolSeries DataSource="@Capitals"
-                                    MarkerType="@SelectedMarkerType"
+            <GeographicSymbolSeries DataSource="Capitals"
+                                    MarkerType="SelectedMarkerType"
                                     LatitudeMemberPath="Lat"
                                     LongitudeMemberPath="Lon"
                                     MarkerBrush="White"

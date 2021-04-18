@@ -1,12 +1,12 @@
-@* this namespace is required for Infragistics controls *@
+
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
-@* NOTE use this HTML code to design a sample *@
-<div class="igContainer">
-    <div class="igComponent">
-        @if (DataSource != null)
+
+<div class="container vertical">
+    <div class="container vertical">
+        @if (Data != null)
         {
-            <CategoryChart Height="100%" Width="100%"                          
+            <CategoryChart Height="100%" Width="100%"
                            IncludedProperties="@(new string[] { "Year", "Europe" })"
                            ChartType="CategoryChartType.Spline"
                            ChartTitle="Renewable Electricity Generated"
@@ -14,10 +14,12 @@
                            TitleLeftMargin="25"
                            TitleTopMargin="10"
                            TitleBottomMargin="10"
-                           DataSource="DataSource"
+                           DataSource="Data"
                            YAxisTitle="TWh"
                            ToolTipType="ToolTipType.Category"
-						   IsTransitionInEnabled="true">
+						   IsTransitionInEnabled="true"
+						   IsHorizontalZoomEnabled="false"
+						   IsVerticalZoomEnabled="false">
             </CategoryChart>
         }
     </div>
@@ -25,7 +27,7 @@
 
 @code {
 
-    private List<EnergyRenewableInfo> DataSource = new EnergyRenewableData();
+    private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
 
     protected override void OnInitialized()
     {

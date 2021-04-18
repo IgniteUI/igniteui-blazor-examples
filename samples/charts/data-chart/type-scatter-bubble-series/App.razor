@@ -1,8 +1,8 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igComponent">
+<div class="container vertical">
+    <div class="container vertical">
 
         <DataChart Height="100%" Width="100%"
                    Subtitle="Countries GDP vs. Population"
@@ -24,25 +24,25 @@
             <BubbleSeries XAxisName="xAxis"
                           YAxisName="yAxis"
                           Title="Large Countrie"
-                          DataSource="@CountriesWithLargePop"
+                          DataSource="CountriesWithLargePop"
                           XMemberPath="Population"
                           YMemberPath="GdpTotal"
                           RadiusMemberPath="GdpPerCapita"
                           RadiusScale="@SizeScale"
                           ShowDefaultTooltip="true"
-                          MarkerType=@MarkerType.Circle>
+                          MarkerType=MarkerType.Circle>
             </BubbleSeries>
 
             <BubbleSeries XAxisName="xAxis"
                           YAxisName="yAxis"
                           Title="Small Countrie"
-                          DataSource="@CountriesWithSmallPop"
+                          DataSource="CountriesWithSmallPop"
                           XMemberPath="Population"
                           YMemberPath="GdpTotal"
                           RadiusMemberPath="GdpPerCapita"
                           RadiusScale="@SizeScale"
                           ShowDefaultTooltip="true"
-                          MarkerType=@MarkerType.Circle>
+                          MarkerType=MarkerType.Circle>
             </BubbleSeries>
 
         </DataChart>
@@ -72,6 +72,6 @@
         CountriesWithSmallPop = SampleScatterStats.GetCountriesWithSmallPop();
         CountriesWithLargePop = SampleScatterStats.GetCountriesWithLargePop();
 
-        //Console.WriteLine("DataSource " + DataSource.Count);
+
     }
 }

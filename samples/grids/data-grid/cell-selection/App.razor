@@ -1,11 +1,9 @@
-﻿@page "/DataGridCellSelection"
-
-@using IgniteUI.Blazor.Controls
+﻿@using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
-<div class="igContainer">
-    <div class="igOptions">
+<div class="container vertical">
+    <div class="options horizotnal">
         <span>Selection Mode:</span>
         <select @bind="SelectionMode">
             <option>@GridSelectionMode.None</option>
@@ -16,13 +14,13 @@
             <option>@GridSelectionMode.RangeCell</option>
         </select>
     </div>
-    <div class="igComponent">
-        @if (DataSource != null)
+    <div class="container vertical">
+        @if (Data != null)
         {
             <DataGrid Height="100%" Width="100%"
                       DefaultColumnMinWidth="100"
                       AutoGenerateColumns="false"
-                      DataSource="@DataSource"
+                      DataSource="Data"
                       SelectionMode="@SelectionMode"
                       IsColumnOptionsEnabled="true">
                 <TextColumn Field="Name" Width="@("*>150")" />
@@ -39,7 +37,7 @@
 @code {
 
     private GridSelectionMode SelectionMode;
-    private List<Employee> DataSource;
+    private List<Employee> Data;
 
     protected override void OnInitialized()
     {
@@ -48,6 +46,6 @@
 
         this.SelectionMode = GridSelectionMode.MultipleRow;
 
-        DataSource = EmployeeData.Create(100, false);
+        Data = EmployeeData.Create(100, false);
     }
 }

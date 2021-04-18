@@ -14,9 +14,9 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
+<div class="container vertical">
 
-    <div class="igOptions">
+    <div class="options vertical">
         <button @onclick="GenerateData">Generate Data</button>
         <button @onclick="CreateXlsx">Save Workbook to XLSX</button>
         <button @onclick="CreateXls">Save Workbook to XLS</button>
@@ -28,12 +28,12 @@
         </select>
     </div>
 
-    <div class="igComponent">
+    <div class="container vertical">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DataGrid @ref="@grid" Height="100%" Width="100%"
-                      DataSource="DataSource"
+                      DataSource="Data"
                       AutoGenerateColumns="true">
             </DataGrid>
         }
@@ -49,7 +49,7 @@
     public Random Rand = new Random();
 
     public DataGrid grid;
-    public object DataSource;
+    public object Data;
     public Workbook wb;
 
     public List<SalesEmployee> salesEmployeeData;
@@ -84,7 +84,7 @@
 
 
         GenerateData();
-        this.DataSource = this.salesEmployeeData;
+        this.Data = this.salesEmployeeData;
     }
 
     public void GenerateData() {
@@ -188,15 +188,15 @@
     {
         if (value.Contains("Sales Employee"))
         {
-            this.DataSource = this.salesEmployeeData;
+            this.Data = this.salesEmployeeData;
         }
         else if (value.Contains("Expense"))
         {
-            this.DataSource = this.expenseData;
+            this.Data = this.expenseData;
         }
         else if (value.Contains("Income"))
         {
-            this.DataSource = this.incomeData;
+            this.Data = this.incomeData;
         }
 
         StateHasChanged();
@@ -207,7 +207,7 @@
         this.wb = new Workbook(format);
         var ws = this.wb.Worksheets.Add("Sheet1");
         ws.DefaultColumnWidth = 300 * 20;
-        if (this.DataSource is List<SalesEmployee>)
+        if (this.Data is List<SalesEmployee>)
         {
             int worksheetRow = 0;
             foreach (SalesEmployee emp in this.salesEmployeeData)
@@ -222,7 +222,7 @@
                 worksheetRow++;
             }
         }
-        else if (this.DataSource is List<Expense>)
+        else if (this.Data is List<Expense>)
         {
             int worksheetRow = 0;
             foreach (Expense emp in this.expenseData)
@@ -237,7 +237,7 @@
                 worksheetRow++;
             }
         }
-        else if (this.DataSource is List<Income>)
+        else if (this.Data is List<Income>)
         {
             int worksheetRow = 0;
             foreach (Income emp in this.incomeData)

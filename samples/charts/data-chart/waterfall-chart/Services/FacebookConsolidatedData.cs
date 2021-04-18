@@ -9,25 +9,19 @@ namespace Infragistics.Samples
     {
         public string Category { get; set; }
         public double Value { get; set; }
+        public double NetIncomeValue { get; set; }
     }
     public class FacebookConsolidatedData : List<FacebookConsolidatedInfo>
     {
         public FacebookConsolidatedData()
         {
-            this.Add(new FacebookConsolidatedInfo() { Category = "Revenue", Value = 55 });
-            this.Add(new FacebookConsolidatedInfo() { Category = "Cost of Revenue", Value = 45 });
-            this.Add(new FacebookConsolidatedInfo() { Category = "Research and Development", Value = 35 });
-            this.Add(new FacebookConsolidatedInfo() { Category = "Marketing and Sales", Value = 28 });
-            this.Add(new FacebookConsolidatedInfo() { Category = "General and Administrative", Value = 25 });
-            this.Add(new FacebookConsolidatedInfo() { Category = "Total Costs and Expenses", Value = 55 });
-            //this.Add(new FacebookConsolidatedInfo() { Consolidation = "Income from Operations", Value = 55 });
-            //this.Add(new FacebookConsolidatedInfo() { Consolidation = "Interest and Other Income", Value = 55 });
-            //this.Add(new FacebookConsolidatedInfo() { Consolidation = "Income Before Provision for Income Taxes", Value = 55 });
-            //this.Add(new FacebookConsolidatedInfo() { Consolidation = "Income Before Provision for Income Taxes", Value = 55 });
-            //this.Add(new FacebookConsolidatedInfo() { Consolidation = "Income Before Provision for Income Taxes", Value = 55 });
-
-
-
+            this.Add(new FacebookConsolidatedInfo() { Category = "Revenue", Value = 55, NetIncomeValue = double.NaN });
+            this.Add(new FacebookConsolidatedInfo() { Category = "Cost of Revenue", Value = 45, NetIncomeValue = double.NaN });
+            this.Add(new FacebookConsolidatedInfo() { Category = "Research and Development", Value = 35, NetIncomeValue = double.NaN });
+            this.Add(new FacebookConsolidatedInfo() { Category = "Marketing and Sales", Value = 28, NetIncomeValue = double.NaN });
+            this.Add(new FacebookConsolidatedInfo() { Category = "General and Administrative", Value = 25, NetIncomeValue = double.NaN });
+            this.Add(new FacebookConsolidatedInfo() { Category = "Total Costs and Expenses", Value = 55, NetIncomeValue = double.NaN });
+            this.Add(new FacebookConsolidatedInfo() { Category = "Net Income", Value = double.NaN, NetIncomeValue = 25 });
         }
     }
 }

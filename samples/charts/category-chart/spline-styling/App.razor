@@ -1,27 +1,29 @@
-@* this namespace is required for Infragistics controls *@
+
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
-@* NOTE use this HTML code to design a sample *@
-<div class="igContainer">
 
-    <div class="igOptions" style="font-weight: bold;">
-        <span class="igLegend-title" >Renewable Electricity Generated: </span>
-        <div>
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" >
+<div class="container vertical">
+
+    <div class="options vertical">
+        <span class="legend-title">Renewable Electricity Generated</span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" >
             </Legend>
         </div>
     </div>
-    <div class="igComponent">
-        @if (DataSource != null)
+    <div class="container vertical">
+        @if (Data != null)
         {
-            <CategoryChart Height="100%" Width="100%" 
-                @ref="@CategoryChartRef"
-                Legend="@LegendRef" 
+            <CategoryChart Height="100%" Width="100%"
+                @ref="@Chart"
+                Legend="Legend"
                 ChartType="CategoryChartType.Spline"
-                DataSource="DataSource"
+                DataSource="Data"
                 YAxisTitle="TWh"
                 ToolTipType="ToolTipType.Category"
-                IsTransitionInEnabled="true">
+                IsTransitionInEnabled="true"
+				IsHorizontalZoomEnabled="false"
+                IsVerticalZoomEnabled="false">
             </CategoryChart>
         }
     </div>
@@ -29,29 +31,29 @@
 
 @code {
 
-    private CategoryChart _categoryChart;
-    private CategoryChart CategoryChartRef
+    private CategoryChart _Chart;
+    private CategoryChart Chart
     {
-        get { return _categoryChart; }
+        get { return _Chart; }
         set
         {
-            _categoryChart = value;
-            if (this.CategoryChartRef != null)
+            _Chart = value;
+            if (this.Chart != null)
             {
-                this.CategoryChartRef.MarkerTypes.Clear();
-                this.CategoryChartRef.MarkerTypes.Add(MarkerType.Triangle);
-                this.CategoryChartRef.MarkerBrushes = "White";
-                this.CategoryChartRef.MarkerOutlines = "rgb(140, 231, 217) rgb(238, 88, 121) rgb(115, 86, 86)";
-                this.CategoryChartRef.Brushes = "rgb(140, 231, 217) rgb(238, 88, 121) rgb(115, 86, 86)";
-				this.CategoryChartRef.Outlines = "rgb(140, 231, 217) rgb(238, 88, 121) rgb(115, 86, 86)";
+                this.Chart.MarkerTypes.Clear();
+                this.Chart.MarkerTypes.Add(MarkerType.Triangle);
+                this.Chart.MarkerBrushes = "White";
+                this.Chart.MarkerOutlines = "rgb(140, 231, 217) rgb(238, 88, 121) rgb(115, 86, 86)";
+                this.Chart.Brushes = "rgb(140, 231, 217) rgb(238, 88, 121) rgb(115, 86, 86)";
+				this.Chart.Outlines = "rgb(140, 231, 217) rgb(238, 88, 121) rgb(115, 86, 86)";
 
                 StateHasChanged();
             }
         }
     }
-    private List<EnergyRenewableInfo> DataSource;
+    private List<EnergyRenewableInfo> Data;
     private Legend legend;
-    private Legend LegendRef
+    private Legend Legend
     {
         get { return legend; }
         set
@@ -66,6 +68,6 @@
         CategoryChartModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         LegendModule.Register(IgniteUIBlazor);
-        this.DataSource = new EnergyRenewableData();
+        this.Data = new EnergyRenewableData();
     }
 }

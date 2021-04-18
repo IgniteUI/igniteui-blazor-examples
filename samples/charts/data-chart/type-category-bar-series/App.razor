@@ -1,24 +1,24 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igComponent">
+<div class="container vertical">
+    <div class="container vertical">
 
         <DataChart Height="100%" Width="100%"
                    ChartTitle="Total Olympic Medals"
                    Subtitle="United States vs China vs Russia"
                    TitleTopMargin="10"
-                   IsHorizontalZoomEnabled="true"
-                   IsVerticalZoomEnabled="true">
+                   IsHorizontalZoomEnabled="false"
+                   IsVerticalZoomEnabled="false">
 
-            <CategoryYAxis Name="yAxis" Label="Year" DataSource="@DataSource"
+            <CategoryYAxis Name="yAxis" Label="Year" DataSource="Data"
                            Title="Olympic Years" TitleLeftMargin="10" TitleRightMargin="0"
                            Gap="0.2" Overlap="-0.05"/>
             <NumericXAxis  Name="xAxis" Title="Olympic Medals" />
 
             <BarSeries XAxisName="xAxis"
                        YAxisName="yAxis"
-                       DataSource="@DataSource"
+                       DataSource="Data"
                        ValueMemberPath="USA" Title="USA"
                        AreaFillOpacity="1"
                        ShowDefaultTooltip="true"
@@ -27,7 +27,7 @@
             </BarSeries>
             <BarSeries XAxisName="xAxis"
                        YAxisName="yAxis"
-                       DataSource="@DataSource"
+                       DataSource="Data"
                        ValueMemberPath="CHN" Title="China"
                        AreaFillOpacity="1"
                        ShowDefaultTooltip="true"
@@ -36,7 +36,7 @@
             </BarSeries>
             <BarSeries XAxisName="xAxis"
                        YAxisName="yAxis"
-                       DataSource="@DataSource"
+                       DataSource="Data"
                        ValueMemberPath="RUS" Title="Russia"
                        AreaFillOpacity="1"
                        ShowDefaultTooltip="true"
@@ -50,7 +50,7 @@
 
 @code {
 
-    private List<SampleCategoryItem> DataSource;
+    private List<SampleCategoryItem> Data;
 
     protected override void OnInitialized()
     {
@@ -60,8 +60,8 @@
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         DataChartVerticalCategoryModule.Register(IgniteUIBlazor);
 
-        DataSource = SampleCategoryData.Create();
+        Data = SampleCategoryData.Create();
 
-        Console.WriteLine("DataSource " + DataSource.Count);
+
     }
 }

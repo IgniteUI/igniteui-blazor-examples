@@ -1,32 +1,30 @@
-﻿@page "/DataChartAxisAnnotations"
-
-@using IgniteUI.Blazor.Controls
+﻿@using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
-<div class="igContainer">
-    <div class="igOptions">
-        <span class="igOptions-item">Annotations: </span>
-        <label class="igOptions-item">
+<div class="container vertical">
+    <div class="options horizontal">
+        <span class="options-item">Annotations: </span>
+        <label class="options-item">
             <input type="checkbox" checked="true" @onchange="OnFinalValueCheckboxChange"/>Final Value
         </label>
-        <label class="igOptions-item">
+        <label class="options-item">
             <input type="checkbox" checked="true" @onchange="OnCrosshairsCheckboxChange"/>Crosshairs
         </label>
-        @*<label class="igOptions-item">
+        @*<label class="options-item">
             <input type="checkbox" checked="true" @onchange="OnValueOverlayCheckboxChange"/>Value Overlay
         </label>*@
     </div>
 
-    <div class="igComponent">        
-        @if (DataSource != null)
+    <div class="container vertical">
+        @if (Data != null)
         {
-            <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true" IsHorizontalZoomEnabled="true" @ref="DataChartRef">
-                <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Label" Interval="1"/>
+            <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true" IsHorizontalZoomEnabled="true" @ref="Chart">
+                <CategoryXAxis Name="xAxis" DataSource="Data" Label="Label" Interval="1"/>
                 <NumericYAxis Name="yAxis" Interval="20" MinimumValue="70" MaximumValue="110"
                               LabelLocation="AxisLabelsLocation.OutsideRight" />
 
-                <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="Temperature"/>
+                <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="Temperature"/>
 
                 <CrosshairLayer IsAxisAnnotationEnabled="true" YAxisAnnotationInterpolatedValuePrecision="0" @ref="CrosshairRef"/>
                 <FinalValueLayer @ref="FinalValueRef"/>
@@ -39,8 +37,8 @@
 
 @code {
 
-    private List<TemperatureItem> DataSource;
-    private DataChart DataChartRef;
+    private List<TemperatureItem> Data;
+    private DataChart Chart;
     private CrosshairLayer CrosshairRef;
     private FinalValueLayer FinalValueRef;
     private ValueOverlay ValueOverlayRef;
@@ -65,7 +63,7 @@
     {
         int year = new DateTime().Year;
 
-        this.DataSource = new List<TemperatureItem>() {
+        this.Data = new List<TemperatureItem>() {
             new TemperatureItem(){Label = "JAN", Temperature= 74, Date= new DateTime(year, 1, 1) },
             new TemperatureItem(){Label = "FEB", Temperature= 74, Date= new DateTime(year, 2, 1) },
             new TemperatureItem(){Label = "MAR", Temperature= 76, Date= new DateTime(year, 3, 1) },
@@ -86,11 +84,11 @@
         bool val = (bool)e.Value;
         if (val)
         {
-            this.DataChartRef.ActualSeries.Add(this.FinalValueRef);
+            this.Chart.ActualSeries.Add(this.FinalValueRef);
         }
         else
         {
-            this.DataChartRef.ActualSeries.Remove(this.FinalValueRef);
+            this.Chart.ActualSeries.Remove(this.FinalValueRef);
         }
     }
 
@@ -99,11 +97,11 @@
         bool val = (bool)e.Value;
         if (val)
         {
-            this.DataChartRef.ActualSeries.Add(this.CrosshairRef);
+            this.Chart.ActualSeries.Add(this.CrosshairRef);
         }
         else
         {
-            this.DataChartRef.ActualSeries.Remove(this.CrosshairRef);
+            this.Chart.ActualSeries.Remove(this.CrosshairRef);
         }
 
     }
@@ -113,11 +111,11 @@
         bool val = (bool)e.Value;
         if (val)
         {
-            this.DataChartRef.ActualSeries.Add(this.ValueOverlayRef);
+            this.Chart.ActualSeries.Add(this.ValueOverlayRef);
         }
         else
         {
-            this.DataChartRef.ActualSeries.Remove(this.ValueOverlayRef);
+            this.Chart.ActualSeries.Remove(this.ValueOverlayRef);
         }
     }
 

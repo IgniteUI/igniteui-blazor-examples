@@ -1,12 +1,10 @@
-﻿@page "/DataChartSeriesTooltips"
-
-@using IgniteUI.Blazor.Controls
+﻿@using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
-<div class="igContainer">
-    <div className="igOptions-horizontal">
-        <span className="igOptions-label">Tooltip Type: </span>
+<div class="container vertical">
+    <div class="options horizontal">
+        <span class="options-label">Tooltip Type: </span>
         <select @onchange="OnChartTooltipTypeChanged">
             <option>Default</option>
             <option>Item</option>
@@ -14,24 +12,24 @@
         </select>
     </div>
 
-    <div class="igComponent">
-        @if (DataSource != null)
+    <div class="container vertical">
+        @if (Data != null)
         {
             <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true"
-                       IsHorizontalZoomEnabled="true" @ref="DataChartRef">
-                <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Country" />
+                       IsHorizontalZoomEnabled="true" @ref="Chart">
+                <CategoryXAxis Name="xAxis" DataSource="Data" Label="Country" />
                 <NumericYAxis Name="yAxis" MinimumValue="0" AbbreviateLargeNumbers="true" />
 
                 <ColumnSeries Title="Coal" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Coal"
-                              DataSource="DataSource" IsTransitionInEnabled="true" ShowDefaultTooltip="true"/>
+                              DataSource="Data" IsTransitionInEnabled="true" ShowDefaultTooltip="true"/>
                 <ColumnSeries Title="Hydro" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Hydro"
-                              DataSource="DataSource" IsTransitionInEnabled="true" ShowDefaultTooltip="true"/>
+                              DataSource="Data" IsTransitionInEnabled="true" ShowDefaultTooltip="true"/>
                 <ColumnSeries Title="Nuclear" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Nuclear"
-                              DataSource="DataSource" IsTransitionInEnabled="true" ShowDefaultTooltip="true"/>
+                              DataSource="Data" IsTransitionInEnabled="true" ShowDefaultTooltip="true"/>
                 <ColumnSeries Title="Gas" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Gas"
-                              DataSource="DataSource" IsTransitionInEnabled="true" ShowDefaultTooltip="true"/>
+                              DataSource="Data" IsTransitionInEnabled="true" ShowDefaultTooltip="true"/>
                 <ColumnSeries Title="Oil" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Oil"
-                              DataSource="DataSource" IsTransitionInEnabled="true" ShowDefaultTooltip="true"/>
+                              DataSource="Data" IsTransitionInEnabled="true" ShowDefaultTooltip="true"/>
             </DataChart>
         }
     </div>
@@ -39,8 +37,8 @@
 
 @code {
 
-    private List<EnergyProductionData.Energy> DataSource;
-    private DataChart DataChartRef;
+    private List<EnergyProductionData.Energy> Data;
+    private DataChart Chart;
 
     private CategoryToolTipLayer CategoryTooltip = new CategoryToolTipLayer();
     private ItemToolTipLayer ItemTooltip = new ItemToolTipLayer();
@@ -56,7 +54,7 @@
         ItemToolTipLayerModule.Register(IgniteUIBlazor);
         CategoryToolTipLayerModule.Register(IgniteUIBlazor);
 
-        this.DataSource = EnergyProductionData.Generate();
+        this.Data = EnergyProductionData.Generate();
     }
 
     private void OnChartTooltipTypeChanged(ChangeEventArgs e)
@@ -65,20 +63,20 @@
         {
             case "Default":
                 {
-                    this.DataChartRef.Series.Remove(this.ItemTooltip);
-                    this.DataChartRef.Series.Remove(this.CategoryTooltip);
+                    this.Chart.Series.Remove(this.ItemTooltip);
+                    this.Chart.Series.Remove(this.CategoryTooltip);
                     break;
                 }
             case "Item":
                 {
-                    this.DataChartRef.Series.Add(this.ItemTooltip);
-                    this.DataChartRef.Series.Remove(this.CategoryTooltip);
+                    this.Chart.Series.Add(this.ItemTooltip);
+                    this.Chart.Series.Remove(this.CategoryTooltip);
                     break;
                 }
             case "Category":
                 {
-                    this.DataChartRef.Series.Remove(this.ItemTooltip);
-                    this.DataChartRef.Series.Add(this.CategoryTooltip);
+                    this.Chart.Series.Remove(this.ItemTooltip);
+                    this.Chart.Series.Add(this.CategoryTooltip);
                     break;
                 }
         }

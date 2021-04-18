@@ -1,10 +1,10 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igComponent">
+<div class="container vertical">
+    <div class="container vertical">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DataChart Height="100%" Width="100%"
                               Subtitle="Stars Distribution in Milky Way Galaxy"
@@ -24,7 +24,7 @@
                 <HighDensityScatterSeries XAxisName="xAxis"
                                           YAxisName="yAxis"
                                           Title="Distribution"
-                                          DataSource="@DataSource"
+                                          DataSource="Data"
                                           XMemberPath="X"
                                           YMemberPath="Y"
                                           ShowDefaultTooltip="true"
@@ -43,7 +43,7 @@
 
 @code {
 
-    private List<SampleDensityPoint> DataSource;
+    private List<SampleDensityPoint> Data;
 
     protected override void OnInitialized()
     {
@@ -54,8 +54,8 @@
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         NumberAbbreviatorModule.Register(IgniteUIBlazor);
 
-        DataSource = SampleDensityData.Create();
+        Data = SampleDensityData.Create();
 
-        //Console.WriteLine("DataSource " + DataSource.Count);
+
     }
 }

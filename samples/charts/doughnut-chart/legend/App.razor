@@ -1,29 +1,31 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-@* AllowSliceExplosion not working ,LabelsPosition="@LabelsPosition.OutsideEnd" not working, hover effect *@
+@* AllowSliceExplosion not working ,LabelsPosition="LabelsPosition.OutsideEnd" not working, hover effect *@
 
-<div class="igContainer">
-    <span class="igLegend-title">Global Electricity Demand by Energy Use</span>
-    <div class="igLegend">
-        <ItemLegend @ref="@Legend" />
+<div class="container vertical">
+    <div class="options vertical">
+        <span class="legend-title">Global Electricity Demand by Energy Use</span>
+        <div class="legend">
+            <ItemLegend @ref="Legend" /> @*Orientation="LegendOrientation.Horizontal" />*@
+        </div>
     </div>
 
-    <div class="igComponent">
+    <div class="container vertical">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
-            <DoughnutChart Height="100%" Width="100%" @ref="Chart" AllowSliceExplosion="true" >
-                <RingSeries DataSource="@DataSource" 
-                            LabelMemberPath="Summary" 
-                            LabelsPosition="@LabelsPosition.OutsideEnd"
+            <DoughnutChart Height="100%" Width="100%" @ref="Chart"
+            AllowSliceExplosion="true" >
+                <RingSeries DataSource="Data"
+                            LabelMemberPath="Summary"
+                            LabelsPosition="LabelsPosition.OutsideEnd"
                             LabelExtent="30"
-                            ValueMemberPath="MarketShare" 
-                            LegendLabelMemberPath="Company"
-                            Outlines="white" 
+                            ValueMemberPath="MarketShare"
+                            LegendLabelMemberPath="Category"
+                            Outlines="white"
                             RadiusFactor="0.6"
 							StartAngle="30">
-                    <ItemLegend />
                 </RingSeries>
             </DoughnutChart>
         }
@@ -36,24 +38,26 @@
 
     public ItemLegend Legend;
     public DoughnutChart Chart;
-    public List<DataItem> DataSource;
+    public List<DataItem> Data;
 
     protected override void OnInitialized()
     {
         DoughnutChartModule.Register(IgniteUIBlazor);
         ItemLegendModule.Register(IgniteUIBlazor);
 
+        this.Data = new List<DataItem>();
+        this.Data.Add(new DataItem { MarketShare = 37, Category = "Cooling", });
+        this.Data.Add(new DataItem { MarketShare = 25, Category = "Residential", });
+        this.Data.Add(new DataItem { MarketShare = 12, Category = "Heating", });
+        this.Data.Add(new DataItem { MarketShare = 11, Category = "Lighting", });
+        this.Data.Add(new DataItem { MarketShare = 15, Category = "Other", });
+    }
 
-        var dataItems = new List<DataItem>();
-
-        dataItems.Add(new DataItem() { MarketShare = 25, Company = "Residential Appliance", });
-        dataItems.Add(new DataItem() { MarketShare = 12, Company = "Heating", });
-        dataItems.Add(new DataItem() { MarketShare = 8, Company = "Lighting", });
-        dataItems.Add(new DataItem() { MarketShare = 18, Company = "Other Services", });
-        dataItems.Add(new DataItem() { MarketShare = 37, Company = "Space Cooling", });
-
-        DataSource = dataItems;
-
+    public class DataItem
+    {
+        public string Category { get; set; }
+        public double MarketShare { get; set; }
+        public string Summary { get { return Category + " " + MarketShare + "%"; } }
     }
 
     protected override void OnAfterRender(bool firstRender)
@@ -61,18 +65,11 @@
         base.OnAfterRender(firstRender);
 
         Chart.ActualSeries[0].Legend = Legend;
-
     }
 
     protected void OnSliceClick(SliceClickEventArgs e)
     {
     }
 
-    public class DataItem
-    {
-        public string Company { get; set; }
-        public double MarketShare { get; set; }
-        public string Summary { get { return Company + " " + MarketShare + "%"; } }
-    }
 
 }

@@ -1,9 +1,9 @@
-@* this is required for Infragistics controls *@
+
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-    <div class="igContainer">
-        <div class="igComponent">
+    <div class="container vertical">
+        <div class="container vertical">
             <RadialGauge Height="100%" Width="100%"
                          BackingShape="RadialGaugeBackingShape.Fitted"
                          BackingBrush="#FCFCFC"
@@ -30,15 +30,7 @@
 
     protected override void OnInitialized()
     {
-        // Console.WriteLine("Sample runtime: " + IgniteUIBlazor.JsRuntime);
-        Console.WriteLine("Sample OnInitialized...");
         RadialGaugeModule.Register(IgniteUIBlazor);
     }
 
-    protected override async Task OnInitializedAsync()
-    {
-        Console.WriteLine("Sample OnInitializedAsync...");
-
-        await Task.Delay(10);
-    }
 }

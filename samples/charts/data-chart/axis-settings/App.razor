@@ -1,24 +1,22 @@
-﻿@page "/DataChartAxisSettings"
-
-@using IgniteUI.Blazor.Controls
+﻿@using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
-<div class="igContainer">
-    <div class="igOptions-horizontal">
-        <span class="igLegend-title">Legend: </span>
-        <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+<div class="container vertical">
+    <div class="options horizontal">
+        <span class="legend-title">Legend: </span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
 
-    <div class="igComponent">        
-        @if (DataSource != null)
+    <div class="container vertical">
+        @if (Data != null)
         {
-        <DataChart Height="100%" Width="100%" Legend="@LegendRef" Subtitle="Energy Source of Biggest Countries"
+        <DataChart Height="100%" Width="100%" Legend="Legend" Subtitle="Energy Source of Biggest Countries"
                    IsHorizontalZoomEnabled="true" IsVerticalZoomEnabled="true">
             <CategoryXAxis Name="xAxis"
-                           DataSource="DataSource"
+                           DataSource="Data"
                            Label="Country"
                            LabelTopMargin="5"
                            LabelTextColor="Gray"
@@ -57,15 +55,15 @@
                           AbbreviateLargeNumbers="true" />
 
             <ColumnSeries Title="Coal" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Coal"
-                          DataSource="DataSource" IsTransitionInEnabled="true" />
+                          DataSource="Data" IsTransitionInEnabled="true" />
             <ColumnSeries Title="Hydro" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Hydro"
-                          DataSource="DataSource" IsTransitionInEnabled="true" />
+                          DataSource="Data" IsTransitionInEnabled="true" />
             <ColumnSeries Title="Nuclear" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Nuclear"
-                          DataSource="DataSource" IsTransitionInEnabled="true" />
+                          DataSource="Data" IsTransitionInEnabled="true" />
             <ColumnSeries Title="Gas" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Gas"
-                          DataSource="DataSource" IsTransitionInEnabled="true" />
+                          DataSource="Data" IsTransitionInEnabled="true" />
             <ColumnSeries Title="Oil" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Oil"
-                          DataSource="DataSource" IsTransitionInEnabled="true" />
+                          DataSource="Data" IsTransitionInEnabled="true" />
         </DataChart>
 
         }
@@ -74,10 +72,10 @@
 
 @code {
 
-    private List<EnergyProductionData.Energy> DataSource;
+    private List<EnergyProductionData.Energy> Data;
 
     private Legend legend;
-    private Legend LegendRef
+    private Legend Legend
     {
         get { return legend; }
         set
@@ -97,6 +95,6 @@
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         LegendModule.Register(IgniteUIBlazor);
 
-        this.DataSource = EnergyProductionData.Generate();
+        this.Data = EnergyProductionData.Generate();
     }
 }

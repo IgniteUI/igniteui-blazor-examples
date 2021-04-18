@@ -5,11 +5,11 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igOptions">
-        <button class="igOptions-button" @onclick="ExportData">Save to Excel</button>
+<div class="container vertical">
+    <div class="options vertical">
+        <button @onclick="ExportData">Save to Excel</button>
     </div>
-    <div class="igComponent">
+    <div class="container vertical">
         <CategoryChart Height="50%" Width="100%"
                        DataSource="@ChartData"
                        YAxisMinimumValue="0"
@@ -17,8 +17,8 @@
                        ChartType="@CategoryChartType.Column"
                        Brushes="#4f81bd, #c0504d, #9bbb59, #8064a2"
                        Outlines="#4f81bd, #c0504d, #9bbb59, #8064a2"
-                       Thickness="0" />                       
-        <DataGrid Height="50%" Width="100%" DataSource="@GridData">
+                       Thickness="0" />
+        <DataGrid Height="50%" Width="100%" DataSource="GridData">
             <TextColumn Field="Expense" Width="@("*>100")" />
             <NumericColumn Field="Jan" Width="@("*>75")" />
             <NumericColumn Field="Feb" Width="@("*>75")" />

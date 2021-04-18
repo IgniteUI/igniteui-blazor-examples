@@ -1,22 +1,14 @@
-﻿@page "/DoughnutChartSelection"
-
-@* this namespace is required for Infragistics controls *@
+﻿
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
-@* NOTE use this HTML code to design a sample *@
-<div class="igContainer">
-    <div class="igOptions">
-        @* TODO add options (if any) for IG control here otherwise remove DIV with igOptions *@
-    </div>
 
-    <div class="igComponent">
+<div class="container vertical">
 
-        @* NOTE making sure data is loaded before we can render it *@
+
         @if (DataSource != null)
         {
-            @* TODO add SliceClick event handler *@
             <DoughnutChart Height="100%" Width="100%">
                 <RingSeries DataSource="@DataSource"
                             LabelMemberPath="Summary"
@@ -33,10 +25,9 @@
             </DoughnutChart>
         }
 
-    </div>
 </div>
 
-@* NOTE you can change this C# code to affect behaviour of this page: *@
+
 @code {
 
     // NOTE here, you can add properties to store values and data for this component

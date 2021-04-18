@@ -1,32 +1,37 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
+<div class="container vertical">
 
-    <div class="igOptions-horizontal">
-        <span class="igOptions-label">Type of Category Series: </span>
-                    <select value=@SeriesType
-                        @onchange="OnSeriesTypeChanged">
-                        <option>Column</option>
-                        <option>Area</option>
-                        <option>Bar</option>
-                        <option>Point</option>
-                        <option>Line</option>
-                        <option>Spline</option>
-                        <option>Spline Area</option>
-                        <option>Step Area</option>
-                        <option>Step Line</option>
-                        <option>Waterfall</option>
-                    </select>
+    <div class="options vertical">
 
-        <span class="igLegend-title">Legend: </span>
-        <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        <span class="legend-title">Legend: </span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
+
+        <div class="overlay-right" >
+            <div class="options horizontal" >
+                <label class="options-label">Category Type: </label>
+                <select value=@SeriesType @onchange="OnSeriesTypeChanged">
+                    <option>Column</option>
+                    <option>Area</option>
+                    <option>Bar</option>
+                    <option>Point</option>
+                    <option>Line</option>
+                    <option>Spline</option>
+                    <option>Spline Area</option>
+                    <option>Step Area</option>
+                    <option>Step Line</option>
+                    <option>Waterfall</option>
+                </select>
+            </div>
+        </div>
+
     </div>
 
-    <div class="igComponent">
-        @if (DataSource != null)
+    <div class="container vertical">
+        @if (Data != null)
         {
         <DataChart Height="100%" Width="100%"
                    ChartTitle="Total Olympic Medals"
@@ -34,12 +39,12 @@
                    TitleTopMargin="10"
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true"
-                   Legend="@LegendRef"
-                   @ref="DataChartRef">
+                   Legend="Legend"
+                   @ref="Chart">
 
             @if (SeriesType != "Bar")
             {
-                <CategoryXAxis Name="xAxis" Label="Year" DataSource="@DataSource"
+                <CategoryXAxis Name="xAxis" Label="Year" DataSource="Data"
                                Title="Olympic Years" Gap="0.2" Overlap="-0.05" />
                 <NumericYAxis Name="yAxis" Title="Olympic Medals" TitleLeftMargin="10" />
             }
@@ -48,14 +53,14 @@
             {
                 <NumericXAxis Name="xAxis2" Label="Year"
                               Title="Olympic Years" />
-                <CategoryYAxis Name="yAxis2" Title="Olympic Medals" TitleLeftMargin="10" DataSource="@DataSource" Gap="0.2" Overlap="-0.05" />
+                <CategoryYAxis Name="yAxis2" Title="Olympic Medals" TitleLeftMargin="10" DataSource="Data" Gap="0.2" Overlap="-0.05" />
 
                 <BarSeries Name="series1"
                            ValueMemberPath="USA"
                            Title="USA"
                            XAxisName="xAxis2"
                            YAxisName="yAxis2"
-                           DataSource="@DataSource">
+                           DataSource="Data">
                 </BarSeries>
 
                 <BarSeries Name="series2"
@@ -63,7 +68,7 @@
                            Title="Russia"
                            XAxisName="xAxis2"
                            YAxisName="yAxis2"
-                           DataSource="@DataSource">
+                           DataSource="Data">
                 </BarSeries>
             }
 
@@ -75,7 +80,7 @@
                               Title="USA"
                               XAxisName="xAxis"
                               YAxisName="yAxis"
-                              DataSource="@DataSource">
+                              DataSource="Data">
                 </ColumnSeries>
 
                 <ColumnSeries Name="series2"
@@ -83,7 +88,7 @@
                               Title="Russia"
                               XAxisName="xAxis"
                               YAxisName="yAxis"
-                              DataSource="@DataSource">
+                              DataSource="Data">
                 </ColumnSeries>
             }
 
@@ -94,7 +99,7 @@
                             Title="USA"
                             XAxisName="xAxis"
                             YAxisName="yAxis"
-                            DataSource="@DataSource">
+                            DataSource="Data">
                 </AreaSeries>
 
                 <AreaSeries Name="series2"
@@ -102,7 +107,7 @@
                             Title="Russia"
                             XAxisName="xAxis"
                             YAxisName="yAxis"
-                            DataSource="@DataSource">
+                            DataSource="Data">
                 </AreaSeries>
             }
 
@@ -113,7 +118,7 @@
                              Title="USA"
                              XAxisName="xAxis"
                              YAxisName="yAxis"
-                             DataSource="@DataSource">
+                             DataSource="Data">
                 </PointSeries>
 
                 <PointSeries Name="series2"
@@ -121,7 +126,7 @@
                              Title="Russia"
                              XAxisName="xAxis"
                              YAxisName="yAxis"
-                             DataSource="@DataSource">
+                             DataSource="Data">
                 </PointSeries>
             }
 
@@ -132,7 +137,7 @@
                             Title="USA"
                             XAxisName="xAxis"
                             YAxisName="yAxis"
-                            DataSource="@DataSource">
+                            DataSource="Data">
                 </LineSeries>
 
                 <LineSeries Name="series2"
@@ -140,7 +145,7 @@
                             Title="Russia"
                             XAxisName="xAxis"
                             YAxisName="yAxis"
-                            DataSource="@DataSource">
+                            DataSource="Data">
                 </LineSeries>
             }
 
@@ -151,7 +156,7 @@
                               Title="USA"
                               XAxisName="xAxis"
                               YAxisName="yAxis"
-                              DataSource="@DataSource">
+                              DataSource="Data">
                 </SplineSeries>
 
                 <SplineSeries Name="series2"
@@ -159,7 +164,7 @@
                               Title="Russia"
                               XAxisName="xAxis"
                               YAxisName="yAxis"
-                              DataSource="@DataSource">
+                              DataSource="Data">
                 </SplineSeries>
             }
 
@@ -170,7 +175,7 @@
                                   Title="USA"
                                   XAxisName="xAxis"
                                   YAxisName="yAxis"
-                                  DataSource="@DataSource">
+                                  DataSource="Data">
                 </SplineAreaSeries>
 
                 <SplineAreaSeries Name="series2"
@@ -178,7 +183,7 @@
                                   Title="Russia"
                                   XAxisName="xAxis"
                                   YAxisName="yAxis"
-                                  DataSource="@DataSource">
+                                  DataSource="Data">
                 </SplineAreaSeries>
             }
 
@@ -189,7 +194,7 @@
                                 Title="USA"
                                 XAxisName="xAxis"
                                 YAxisName="yAxis"
-                                DataSource="@DataSource">
+                                DataSource="Data">
                 </StepAreaSeries>
 
                 <StepAreaSeries Name="series2"
@@ -197,7 +202,7 @@
                                 Title="Russia"
                                 XAxisName="xAxis"
                                 YAxisName="yAxis"
-                                DataSource="@DataSource">
+                                DataSource="Data">
                 </StepAreaSeries>
             }
 
@@ -208,7 +213,7 @@
                                 Title="USA"
                                 XAxisName="xAxis"
                                 YAxisName="yAxis"
-                                DataSource="@DataSource">
+                                DataSource="Data">
                 </StepLineSeries>
 
                 <StepLineSeries Name="series2"
@@ -216,7 +221,7 @@
                                 Title="Russia"
                                 XAxisName="xAxis"
                                 YAxisName="yAxis"
-                                DataSource="@DataSource">
+                                DataSource="Data">
                 </StepLineSeries>
             }
 
@@ -227,7 +232,7 @@
                                  Title="USA"
                                  XAxisName="xAxis"
                                  YAxisName="yAxis"
-                                 DataSource="@DataSource">
+                                 DataSource="Data">
                 </WaterfallSeries>
 
                 <WaterfallSeries Name="series2"
@@ -235,7 +240,7 @@
                                  Title="Russia"
                                  XAxisName="xAxis"
                                  YAxisName="yAxis"
-                                 DataSource="@DataSource">
+                                 DataSource="Data">
                 </WaterfallSeries>
             }
         </DataChart>
@@ -245,21 +250,21 @@
 
 @code {
 
-    private List<SampleCategoryItem> DataSource;
-    private DataChart dataChart;
-    private DataChart DataChartRef
+    private List<SampleCategoryItem> Data;
+    private DataChart _Chart;
+    private DataChart Chart
     {
-        get { return dataChart; }
+        get { return _Chart; }
         set
         {
-            dataChart = value;
+            _Chart = value;
             SeriesType = "Column";
             StateHasChanged();
         }
     }
 
     private Legend legend;
-    private Legend LegendRef
+    private Legend Legend
     {
         get { return legend; }
         set
@@ -288,7 +293,7 @@
         DataChartInteractivityModule.Register(IgniteUIBlazor);
 
         LegendModule.Register(IgniteUIBlazor);
-        DataSource = SampleCategoryData.Create();
+        Data = SampleCategoryData.Create();
     }
 
     public void OnSeriesTypeChanged(ChangeEventArgs e)

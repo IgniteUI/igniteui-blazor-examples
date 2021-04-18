@@ -1,34 +1,32 @@
-﻿@page "/DataChartTypeStacked100ColumnSeries"
-
-@using IgniteUI.Blazor.Controls
+﻿@using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
-<div class="igContainer">
-    <div class="igOptions">
-        <span class="igLegend-title">Distribution of Online Traffic Worldwide in 2019, by Device</span>        
-        <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+<div class="container vertical">
+    <div class="options vertical">
+        <span class="legend-title">Distribution of Online Traffic Worldwide in 2019, by Device</span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
-    <div class="igComponent">
-        @if (DataSource != null)
+    <div class="container vertical">
+        @if (Data != null)
         {
-            <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true" IsHorizontalZoomEnabled="true">
-                <CategoryXAxis Name="xAxis" DataSource="DataSource" Label="Category" Gap="0.75"/>
+            <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="false" IsHorizontalZoomEnabled="false">
+                <CategoryXAxis Name="xAxis" DataSource="Data" Label="Category" Gap="0.75"/>
                 <NumericYAxis Name="yAxis" MinimumValue="0" />
 
-                <Stacked100ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ShowDefaultTooltip="true" AreaFillOpacity="1" Legend="LegendRef">
+                <Stacked100ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="true" AreaFillOpacity="1" Legend="Legend">
                     <StackedFragmentSeries ValueMemberPath="Desktop" />
                     <StackedFragmentSeries ValueMemberPath="Mobile" />
                     <StackedFragmentSeries ValueMemberPath="Tablet" />
                 </Stacked100ColumnSeries>
 
-                <PointSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="DesktopMarker"
+                <PointSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="DesktopMarker"
                              MarkerTemplateScript="onStacked100ChartMarkerTemplate" Title="THING" />
-                <PointSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="MobileMarker"
+                <PointSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="MobileMarker"
                              MarkerTemplateScript="onStacked100ChartMarkerTemplate" />
-                <PointSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ValueMemberPath="TabletMarker"
+                <PointSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="TabletMarker"
                              MarkerTemplateScript="onStacked100ChartMarkerTemplate" />
             </DataChart>
         }
@@ -38,7 +36,7 @@
 @code {
 
     private Legend _legend;
-    public Legend LegendRef
+    public Legend Legend
     {
         get { return _legend; }
         set
@@ -48,7 +46,7 @@
         }
     }
 
-    private List<StackedOnlineTrafficInfo> DataSource = new StackedOnlineTrafficData();
+    private List<StackedOnlineTrafficInfo> Data = new StackedOnlineTrafficData();
 
     protected override void OnInitialized()
     {

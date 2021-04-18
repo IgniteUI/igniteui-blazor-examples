@@ -1,8 +1,8 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igComponent">
+<div class="container vertical">
+    <div class="container vertical">
 
         <DataChart Height="100%" Width="100%"
                    Subtitle="Stock Prices with Bollinger Bands Overlay"
@@ -10,15 +10,15 @@
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true">
 
-            <CategoryXAxis Name="xAxis" Label="Label" DataSource="@DataSource" />
+            <CategoryXAxis Name="xAxis" Label="Label" DataSource="Data" />
             <NumericYAxis Name="yAxis" Title="Amount (in USD)" TitleRightMargin="10"
                           LabelRightMargin="10"
-                          LabelHorizontalAlignment="@HorizontalAlignment.Left"
-                          LabelLocation="@AxisLabelsLocation.OutsideRight" />
+                          LabelHorizontalAlignment="HorizontalAlignment.Left"
+                          LabelLocation="AxisLabelsLocation.OutsideRight" />
 
             <BollingerBandsOverlay XAxisName="xAxis"
                                    YAxisName="yAxis"
-                                   DataSource="@DataSource"
+                                   DataSource="Data"
                                    OpenMemberPath="Open"
                                    CloseMemberPath="Close"
                                    HighMemberPath="High"
@@ -34,7 +34,7 @@
 
             <FinancialPriceSeries XAxisName="xAxis"
                                   YAxisName="yAxis"
-                                  DataSource="@DataSource"
+                                  DataSource="Data"
                                   OpenMemberPath="Open"
                                   CloseMemberPath="Close"
                                   HighMemberPath="High"
@@ -52,7 +52,7 @@
 
 @code {
 
-    private List<SampleFinancialItem> DataSource;
+    private List<SampleFinancialItem> Data;
 
     protected override void OnInitialized()
     {
@@ -66,8 +66,8 @@
 
         DataChartInteractivityModule.Register(IgniteUIBlazor);
 
-        DataSource = SampleFinancialData.Create();
+        Data = SampleFinancialData.Create();
 
-        Console.WriteLine("DataSource " + DataSource.Count);
+
     }
 }

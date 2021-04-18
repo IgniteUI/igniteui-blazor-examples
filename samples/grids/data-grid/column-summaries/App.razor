@@ -1,20 +1,18 @@
-﻿@page "/DataGridColumnSummaries"
-
-@using IgniteUI.Blazor.Controls
+﻿@using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
-<div class="igContainer">
-    <div class="igOptions">
-        <span class="igOptions-item">Summary Scope:</span>
-        <select class="igOptions-item" @bind="GridSummaryScope">
+<div class="container vertical">
+    <div class="options horizotnal">
+        <span class="options-item">Summary Scope:</span>
+        <select class="options-item" @bind="GridSummaryScope">
             <option>@DataSourceSummaryScope.Root</option>
             <option>@DataSourceSummaryScope.Groups</option>
             <option>@DataSourceSummaryScope.Both</option>
             <option>@DataSourceSummaryScope.None</option>
         </select>
-        <span class="igOptions-item" >Group Summary Display Mode:</span>
-        <select class="igOptions-item" @bind="GridGroupSummaryDisplayMode">
+        <span class="options-item" >Group Summary Display Mode:</span>
+        <select class="options-item" @bind="GridGroupSummaryDisplayMode">
             <option>@GroupSummaryDisplayMode.List</option>
             <option>@GroupSummaryDisplayMode.Cells</option>
             <option>@GroupSummaryDisplayMode.RowTop</option>
@@ -22,8 +20,8 @@
             <option>@GroupSummaryDisplayMode.None</option>
         </select>
     </div>
-    <div class="igComponent">
-        @if (DataSource != null)
+    <div class="container vertical">
+        @if (Data != null)
         {
             <DataGrid Height="calc(100% - 3rem)" Width="100%" @ref="@DataGridRef"
                       SummaryScope="@GridSummaryScope"
@@ -32,7 +30,7 @@
                       IsGroupCollapsable="true"
                       GroupHeaderDisplayMode="@DataSourceSectionHeaderDisplayMode.Combined"
                       IsColumnOptionsEnabled="true"
-                      DataSource="@DataSource">
+                      DataSource="Data">
                 <NumericColumn Field="ID" Width="@("*>120")" HeaderText="ID" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
                 <TextColumn Field="ProductName" Width="@("*>130")" HeaderText="Product" />
                 <NumericColumn Field="BundlePrice" PositivePrefix="$" Width="@("*>120")" ShowGroupingSeparator="true" HeaderText="Price" />
@@ -48,7 +46,7 @@
 
 @code {
 
-    private List<Sale> DataSource;
+    private List<Sale> Data;
     private DataSourceSummaryScope GridSummaryScope;
     private GroupSummaryDisplayMode GridGroupSummaryDisplayMode;
 
@@ -70,7 +68,7 @@
         DataGridModule.Register(IgniteUIBlazor);
         GridColumnOptionsModule.Register(IgniteUIBlazor);
 
-        this.DataSource = SalesData.Create(50);
+        this.Data = SalesData.Create(50);
 
         this.GridSummaryScope = DataSourceSummaryScope.Root;
         this.GridGroupSummaryDisplayMode = GroupSummaryDisplayMode.RowBottom;

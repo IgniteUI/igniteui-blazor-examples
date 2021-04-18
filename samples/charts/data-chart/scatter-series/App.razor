@@ -1,33 +1,37 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
+<div class="container vertical">
 
-    <div class="igOptions-horizontal">
-        <span class="igOptions-label">Type of Scatter Series: </span>
-                    <select value=@SeriesType
-                        @onchange="OnSeriesTypeChanged">
-                        <option>Bubble</option>
-                        <option>Point</option>
-                        <option>Line</option>
-                        <option>Spline</option>
-                    </select>
+    <div class="options vertical">
 
-        <span class="igLegend-title">Legend: </span>
-        <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+        <span class="legend-title">Legend: </span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+        </div>
+
+        <div class="overlay-right" >
+            <div class="options horizontal" >
+                <label class="options-label">Scatter Series: </label>
+                <select value=@SeriesType @onchange="OnSeriesTypeChanged">
+                    <option>Bubble</option>
+                    <option>Point</option>
+                    <option>Line</option>
+                    <option>Spline</option>
+                </select>
+            </div>
         </div>
     </div>
 
-    <div class="igComponent">
+    <div class="container vertical">
         @if (data1 != null && data2 != null)
         {
         <DataChart Height="100%" Width="100%"
                    ChartTitle="GDP vs Population"
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true"
-                   Legend="@LegendRef"
-                   @ref="DataChartRef">
+                   Legend="Legend"
+                   @ref="Chart">
 
             <NumericXAxis Name="xAxis"
                           IsLogarithmic="true"
@@ -143,21 +147,21 @@
     private object data1;
     private object data2;
 
-    private DataChart dataChart;
-    private DataChart DataChartRef
+    private DataChart _Chart;
+    private DataChart Chart
     {
-        get { return dataChart; }
+        get { return _Chart; }
         set
         {
-            dataChart = value;
-            
+            _Chart = value;
+
             SeriesType = "Point";
             StateHasChanged();
         }
     }
 
     private Legend legend;
-    private Legend LegendRef
+    private Legend Legend
     {
         get { return legend; }
         set

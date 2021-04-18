@@ -1,10 +1,10 @@
 ﻿@using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igOptions">
-        <label class="igOptions-item" style="width: 9rem">Adding Animation: </label>
-        <select class="igOptions-item" style="width: 9rem" @bind="ShowingAddingAnimation">
+<div class="container vertical">
+    <div class="options horizotnal">
+        <label class="options-item" style="width: 9rem">Adding Animation: </label>
+        <select class="options-item" style="width: 9rem" @bind="ShowingAddingAnimation">
             <option>@ColumnShowingAnimationMode.Auto</option>
             <option>@ColumnShowingAnimationMode.None</option>
             <option>@ColumnShowingAnimationMode.SlideFromLeft</option>
@@ -17,8 +17,8 @@
             <option>@ColumnShowingAnimationMode.SlideFromTopAndFadeIn</option>
             <option>@ColumnShowingAnimationMode.SlideFromBottomAndFadeIn</option>
         </select>
-        <span class="igOptions-item" style="width: 9rem">Exchange Animation: </span>
-        <select class="igOptions-item" style="width: 9rem" @bind="ExchangeAnimation">
+        <span class="options-item" style="width: 9rem">Exchange Animation: </span>
+        <select class="options-item" style="width: 9rem" @bind="ExchangeAnimation">
             <option>@ColumnExchangingAnimationMode.Auto</option>
             <option>@ColumnExchangingAnimationMode.None</option>
             <option>@ColumnExchangingAnimationMode.SlideToLeft</option>
@@ -32,9 +32,9 @@
             <option>@ColumnExchangingAnimationMode.SlideToBottomAndCrossfade</option>
         </select>
     </div>
-    <div class="igOptions">
-        <span class="igOptions-item" style="width: 9rem">Hiding Animation: </span>
-        <select class="igOptions-item" style="width: 9rem" @bind="HidingAnimation">
+    <div class="options horizotnal">
+        <span class="options-item" style="width: 9rem">Hiding Animation: </span>
+        <select class="options-item" style="width: 9rem" @bind="HidingAnimation">
             <option>@ColumnHidingAnimationMode.Auto</option>
             <option>@ColumnHidingAnimationMode.None</option>
             <option>@ColumnHidingAnimationMode.SlideToLeft</option>
@@ -47,28 +47,28 @@
             <option>@ColumnHidingAnimationMode.SlideToTopAndFadeOut</option>
             <option>@ColumnHidingAnimationMode.SlideToBottomAndFadeOut</option>
         </select>
-        <span class="igOptions-item" style="width: 9rem">Updating Animation: </span>
-        <select class="igOptions-item" style="width: 9rem" @bind="UpdatingAnimation">
+        <span class="options-item" style="width: 9rem">Updating Animation: </span>
+        <select class="options-item" style="width: 9rem" @bind="UpdatingAnimation">
             <option>@ColumnPropertyUpdatingAnimationMode.Auto</option>
             <option>@ColumnPropertyUpdatingAnimationMode.None</option>
             <option>@ColumnPropertyUpdatingAnimationMode.Interpolate</option>
             <option>@ColumnPropertyUpdatingAnimationMode.InterpolateDeep</option>
         </select>
     </div>
-    <div class="igOptions">
-        <span class="igOptions-item" style="width: 9rem">Moving Animation: </span>
-        <select class="igOptions-item" style="width: 9rem" @bind="MovingAnimation">
+    <div class="options horizotnal">
+        <span class="options-item" style="width: 9rem">Moving Animation: </span>
+        <select class="options-item" style="width: 9rem" @bind="MovingAnimation">
             <option>@ColumnMovingAnimationMode.Auto</option>
             <option>@ColumnMovingAnimationMode.None</option>
             <option>@ColumnMovingAnimationMode.SlideOver</option>
         </select>
-        <button class="igOptions-item" @onclick="OnHideClick">Hide Column</button>
-        <button class="igOptions-item" @onclick="OnShowClick">Show Column</button>
-        <button class="igOptions-item" @onclick="OnReloadClick">Reload Grid</button>
+        <button class="options-item" @onclick="OnHideClick">Hide Column</button>
+        <button class="options-item" @onclick="OnShowClick">Show Column</button>
+        <button class="options-item" @onclick="OnReloadClick">Reload Grid</button>
     </div>
 
-    <div class="igComponent" style="height: calc(100% - 125px)">
-        @if (DataSource != null)
+    <div class="container vertical" style="height: calc(100% - 125px)">
+        @if (Data != null)
         {
             <DataGrid Height="100%" Width="100%" @ref="DataGridRef"
                       DefaultColumnMinWidth="100"
@@ -79,7 +79,7 @@
                       ColumnMovingAnimationMode="@MovingAnimation"
                       ColumnPropertyUpdatingAnimationMode="@UpdatingAnimation"
                       AutoGenerateColumns="false"
-                      DataSource="@DataSource"
+                      DataSource="Data"
                       IsColumnOptionsEnabled="true">
                 <TextColumn Field="Name" Width="@("*>170")" />
                 <TextColumn Field="Street" HeaderText="Address" Width="@("*>150")" />
@@ -97,7 +97,7 @@
 
 @code {
 
-    private List<Employee> DataSource;
+    private List<Employee> Data;
     private DataGrid DataGridRef;
 
     private ColumnShowingAnimationMode ShowingAddingAnimation = ColumnShowingAnimationMode.SlideFromLeft;
@@ -110,7 +110,7 @@
     {
         base.OnInitialized();
         DataGridModule.Register(IgniteUIBlazor);
-        this.DataSource = EmployeeData.Create(100, false);
+        this.Data = EmployeeData.Create(100, false);
     }
 
     private void OnHideClick(MouseEventArgs e)
@@ -130,9 +130,9 @@
         List<Employee> newData = EmployeeData.Create(100, false);
         for (int i = 0; i < newData.Count; i++)
         {
-            Employee oldData = this.DataSource[i];
-            this.DataSource[i].Salary = newData[i].Salary;
-            this.DataGridRef.NotifySetItem(this.DataSource, i, oldData, newData[i]);
+            Employee oldData = this.Data[i];
+            this.Data[i].Salary = newData[i].Salary;
+            this.DataGridRef.NotifySetItem(this.Data, i, oldData, newData[i]);
         }
     }
 

@@ -294,14 +294,21 @@ function copySampleScripts(cb, outputPath, indexName) {
     var insertScriptFiles = [];
 
     log('copying scripts to: ' + outputPath + '/wwwroot/');
+
+    var copiedScriptFiles = [];
     for (const sample of samples) {
         for (const file of sample.PublicFiles_JS) {
-            log("copying  " + outputPath + '/wwwroot/' + file.Name);
-            saveFile(outputPath + '/wwwroot/' + file.Name, file.Content);
-            if (file.Name.indexOf("DockManager") >= 0) {
-                insertScriptFiles.push('<script type="module" src="' + file.Name + '"></script>');
-            } else {
-                insertScriptFiles.push('<script src="' + file.Name + '"></script>');
+            if (copiedScriptFiles.indexOf(file.Name) === -1) {
+                copiedScriptFiles.push(file.Name);
+                const scriptPath = outputPath + '/wwwroot/sb/' + file.Name
+                log("copying  " + scriptPath);
+
+                saveFile(scriptPath, file.Content);
+                if (file.Name.indexOf("DockManager") >= 0) {
+                    insertScriptFiles.push('<script type="module" src="sb/' + file.Name + '"></script>');
+                } else {
+                    insertScriptFiles.push('<script src="sb/' + file.Name + '"></script>');
+                }
             }
         }
     }
@@ -324,11 +331,18 @@ function copySampleScripts(cb, outputPath, indexName) {
     }
 
     if (insertStart > 0) {
-        for (let i = insertStart+1; i < insertEnd; i++) {
-            indexLines[i] = "";
+        // for (let i = insertStart+1; i < insertEnd; i++) {
+        //     indexLines[i] = "";
+        // }
+
+        for (let i = insertEnd - 1; i > insertStart+1; i--) {
+            indexLines.splice(i, 1);
         }
+
         indexLines[insertStart + 1] = insertScriptFiles.join('\n');
     }
+
+    // indexLines = indexLines.filter((v, i, a) => a.indexOf(v) === i);
 
     index = indexLines.join('\n');
     fs.writeFileSync(indexPath, index);
@@ -523,7 +537,6 @@ function updateSharedFiles(cb) {
         let sourceContent = file.contents.toString();
         let sourcePath = Transformer.getRelative(file.dirname);
         sourcePath = sourcePath.replace('../../templates/sample', '');
-        sourcePath = sourcePath.replace('../../templates/shared', '');
 
         for (const sample of samples) {
             // if (sample.isUsingFileName(file.basename)) {
@@ -553,17 +566,16 @@ function updateSharedFiles(cb) {
 function updateDataFiles(cb) {
 
     // update these shared files if a sample is using them
-    gulp.src(['../../templates/shared/Services/*.*'])
+    gulp.src(['../../templates/sample/Services/*.*'])
     // gulp.src([
-    //     '../../templates/shared/Services/EnergyRenewableData.cs',
-    //     '../../templates/shared/Services/SharedExcelData.cs',
+    //     '../../templates/sample/Services/EnergyRenewableData.cs',
+    //     '../../templates/sample/Services/SharedExcelData.cs',
     // ])
     .pipe(flatten({ "includeParents": -1 }))
     .pipe(es.map(function(file, fileCallback) {
         let sourceContent = file.contents.toString();
         let sourcePath = Transformer.getRelative(file.dirname);
         sourcePath = sourcePath.replace('../../templates/sample', '');
-        sourcePath = sourcePath.replace('../../templates/shared', '');
 
         for (const sample of samples) {
             if (sample.isUsingFileName(file.basename)) {
@@ -912,7 +924,8 @@ function updateCodeViewer(cb) {
 
         for (const file of sample.SourceFiles) {
             if (file.isRazorSample()) {
-                var item = new CodeViewer(file.Path, file.Content, "razor", "razor", true);
+                var code = file.Content.replace(new RegExp('.*\@page.*\r?\n', 'g'), "");
+                var item = new CodeViewer(file.Path, code, "razor", "razor", true);
                 contentItems.push(item);
             }
             else if (file.isCS()) {

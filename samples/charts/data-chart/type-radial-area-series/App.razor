@@ -1,22 +1,22 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igComponent">
+<div class="container vertical">
+    <div class="container vertical">
 
         <DataChart Height="100%" Width="100%"
                    Subtitle="Wind Speed vs Boat Speed"
                    SubtitleTopMargin="10"
-                   IsHorizontalZoomEnabled="true"
-                   IsVerticalZoomEnabled="true">
-            <CategoryAngleAxis Name="angleAxis" DataSource="@DataSource"
+                   IsHorizontalZoomEnabled="false"
+                   IsVerticalZoomEnabled="false">
+            <CategoryAngleAxis Name="angleAxis" DataSource="Data"
                                Label="Department" />
             <NumericRadiusAxis Name="radiusAxis"
                                InnerRadiusExtentScale="0.1"
                                MinimumValue="0"/>
 
             <RadialAreaSeries Name="series1"
-                              DataSource="@DataSource"
+                              DataSource="Data"
                               AngleAxisName="angleAxis"
                               ValueMemberPath="Budget"
                               ValueAxisName="radiusAxis"
@@ -24,9 +24,9 @@
                               AreaFillOpacity="0.8"
                               Thickness="1"
                               Title="Budget"
-                              MarkerType="@MarkerType.Circle" />
+                              MarkerType="MarkerType.Circle" />
             <RadialAreaSeries Name="series2"
-                              DataSource="@DataSource"
+                              DataSource="Data"
                               AngleAxisName="angleAxis"
                               ValueMemberPath="Spending"
                               ValueAxisName="radiusAxis"
@@ -34,7 +34,7 @@
                               AreaFillOpacity="0.8"
                               Thickness="1"
                               Title="Spending"
-                              MarkerType="@MarkerType.Circle" />
+                              MarkerType="MarkerType.Circle" />
         </DataChart>
 
     </div>
@@ -42,7 +42,7 @@
 
 @code {
 
-    private List<SampleRadialItem> DataSource;
+    private List<SampleRadialItem> Data;
 
     protected override void OnInitialized()
     {
@@ -54,7 +54,7 @@
         DataChartCategoryModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
 
-        DataSource = SampleRadialData.Create();
+        Data = SampleRadialData.Create();
     }
 
 }

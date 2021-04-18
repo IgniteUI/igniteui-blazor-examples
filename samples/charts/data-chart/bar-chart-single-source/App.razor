@@ -1,23 +1,22 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igComponent">
+<div class="container vertical">
+    <div class="container vertical">
         <DataChart Height="100%" Width="100%"
-                   ChartTitle="Where Online Shoppers Start Their Search"                   
+                   ChartTitle="Where Online Shoppers Start Their Search"
                    TitleHorizontalAlignment="HorizontalAlignment.Left"
                    TitleLeftMargin="25"
                    TitleTopMargin="10"
                    TitleBottomMargin="10"
-                   IsHorizontalZoomEnabled="true"
-                   IsVerticalZoomEnabled="true">
+                   IsHorizontalZoomEnabled="false"
+                   IsVerticalZoomEnabled="false">
 
-            <CategoryYAxis Name="yAxis" Label="Shop" DataSource="@DataSource" IsInverted="true" />
-            <NumericXAxis  Name="xAxis" />
-
+            <CategoryYAxis Name="yAxis" Label="Shop" DataSource="Data" IsInverted="true" Gap="0.75" />
+            <NumericXAxis Name="xAxis" LabelFormat="{0}%" />
             <BarSeries XAxisName="xAxis"
                        YAxisName="yAxis"
-                       DataSource="@DataSource"
+                       DataSource="Data"
                        ValueMemberPath="Percent"
                        ShowDefaultTooltip="true"
                        IsTransitionInEnabled="true"
@@ -29,7 +28,7 @@
 
 @code {
 
-    private List<OnlineShoppingInfo> DataSource = new OnlineShoppingData();
+    private List<OnlineShoppingInfo> Data = new OnlineShoppingData();
 
     protected override void OnInitialized()
     {
@@ -38,5 +37,6 @@
         DataChartCategoryModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         DataChartVerticalCategoryModule.Register(IgniteUIBlazor);
+        NumberFormatSpecifierModule.Register(IgniteUIBlazor);
     }
 }

@@ -1,36 +1,36 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igOptions">
-        <label class="igOptions-label">Annotations: </label>
-        <label class="igOptions-item">
+<div class="container vertical">
+    <div class="options horizotnal">
+        <label class="options-label">Annotations: </label>
+        <label class="options-item">
             <input type="checkbox" @onchange="OnCrosshairsVisibleCheckboxChange" checked="@CrosshairsVisible" /> Crosshair
         </label>
-        <label class="igOptions-item">
+        <label class="options-item">
             <input type="checkbox" @onchange="OnCalloutsVisibleCheckboxChange" checked="@CalloutsVisible"/> Callouts
         </label>
-        <label class="igOptions-item">
+        <label class="options-item">
             <input type="checkbox" @onchange="OnFinalValuesCheckboxChange" checked="@FinalValuesVisible"/> Final Values
         </label>
-        @* TODO - Changing markers is not currently possible at this time
-        <label class="igOptions-item">
+        @* TODO changing markers is not currently possible at this time
+        <label class="options-item">
             <input type="checkbox" onChange={this.onMarkersVisible} /> Markers
         </label>*@
     </div>
 
-    <div class="igComponent">
-        @if (DataSource != null)
+    <div class="container vertical">
+        @if (Data != null)
         {
             <CategoryChart Height="100%" Width="100%"
-                           DataSource="DataSource"
+                           DataSource="Data"
                            ChartType="CategoryChartType.Line"
                            ExcludedProperties="@(new string[] { "Date" })"
                            IncludedProperties="@(new string[] {"Month", "Temperature"})"
                            XAxisInterval="1"
                            YAxisMinimumValue="50"
                            YAxisMaximumValue="120"
-                           YAxisLabelLocation="AxisLabelsLocation.OutsideRight"                           
+                           YAxisLabelLocation="AxisLabelsLocation.OutsideRight"
                            IsTransitionInEnabled="true"
                            Thickness="2"
                            CalloutsVisible="@CalloutsVisible"
@@ -48,7 +48,7 @@
 
 @code {
 
-    private List<TemperatureData> DataSource;
+    private List<TemperatureData> Data;
     private string[] IncludedProps = new string[] { "Month", "Temperature" };
 
     // private bool MarkersVisible = true;
@@ -62,7 +62,7 @@
     {
         CategoryChartModule.Register(IgniteUIBlazor);
 
-        this.DataSource = new List<TemperatureData>();
+        this.Data = new List<TemperatureData>();
         InitData();
     }
 
@@ -103,7 +103,7 @@
         // generating data item
         for (int i = 0; i < 12; i++)
         {
-            this.DataSource.Add(new TemperatureData()
+            this.Data.Add(new TemperatureData()
             {
                 Temperature = tempValues[i],
                 Date = new DateTime(year, (i + 1), 1),
@@ -119,7 +119,7 @@
         int idx = 0;
 
         // annotating data items
-        foreach (TemperatureData item in this.DataSource) {
+        foreach (TemperatureData item in this.Data) {
 
             if (minVal > item.Temperature)
             {
@@ -155,8 +155,8 @@
             idx++;
         }
 
-        this.DataSource[minIndex].Info = "MIN";
-        this.DataSource[maxIndex].Info = "MAX";
+        this.Data[minIndex].Info = "MIN";
+        this.Data[maxIndex].Info = "MAX";
     }
 
     public class TemperatureData

@@ -1,8 +1,8 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igComponent">
+<div class="container vertical">
+    <div class="container vertical">
 
         <DataChart Height="60%" Width="100%"
                    Subtitle="Financial Stock Price Series"
@@ -10,15 +10,15 @@
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true">
 
-            <CategoryXAxis Name="xAxis1" Label="Label" DataSource="@DataSource" />
+            <CategoryXAxis Name="xAxis1" Label="Label" DataSource="Data" />
             <NumericYAxis  Name="yAxis1" LabelRightMargin="10" LabelExtent="50"
-                           LabelHorizontalAlignment="@HorizontalAlignment.Left"
-                           LabelLocation="@AxisLabelsLocation.OutsideRight" />
+                           LabelHorizontalAlignment="HorizontalAlignment.Left"
+                           LabelLocation="AxisLabelsLocation.OutsideRight" />
 
             <FinancialPriceSeries XAxisName="xAxis1"
                                   YAxisName="yAxis1"
-                                  DataSource="@DataSource"
-                                  DisplayType="@PriceDisplayType.Candlestick"
+                                  DataSource="Data"
+                                  DisplayType="PriceDisplayType.Candlestick"
                                   OpenMemberPath="Open"
                                   CloseMemberPath="Close"
                                   HighMemberPath="High"
@@ -37,14 +37,14 @@
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true">
 
-            <CategoryXAxis Name="xAxis2" Label="Label" DataSource="@DataSource" />
+            <CategoryXAxis Name="xAxis2" Label="Label" DataSource="Data" />
             <NumericYAxis  Name="yAxis2" LabelRightMargin="10" LabelExtent="50"
-                           LabelHorizontalAlignment="@HorizontalAlignment.Left"
-                           LabelLocation="@AxisLabelsLocation.OutsideRight" />
+                           LabelHorizontalAlignment="HorizontalAlignment.Left"
+                           LabelLocation="AxisLabelsLocation.OutsideRight" />
             <StochRSIIndicator XAxisName="xAxis2"
                                YAxisName="yAxis2"
                                DisplayType="@IndicatorDisplayType.Area"
-                               DataSource="@DataSource"
+                               DataSource="Data"
                                OpenMemberPath="Open"
                                CloseMemberPath="Close"
                                HighMemberPath="High"
@@ -60,7 +60,7 @@
 
 @code {
 
-    private List<SampleFinancialItem> DataSource;
+    private List<SampleFinancialItem> Data;
 
     protected override void OnInitialized()
     {
@@ -75,8 +75,8 @@
         // registering other modules
         DataChartInteractivityModule.Register(IgniteUIBlazor);
 
-        DataSource = SampleFinancialData.Create();
+        Data = SampleFinancialData.Create();
 
-        Console.WriteLine("DataSource " + DataSource.Count);
+
     }
 }

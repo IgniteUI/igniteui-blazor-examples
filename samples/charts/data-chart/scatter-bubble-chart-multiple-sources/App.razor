@@ -1,54 +1,43 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igOptions-vertical">
-        <span class="igLegend-title">Total Population (Gapminder, HYDE & UN): 1k - 181M </span>
-    </div>
-    <div class="igOptions-horizontal">        
-        <span class="igLegend-title">Continent: </span>
-        <div class="igLegend">
-            <Legend @ref="LegendRef" Orientation="LegendOrientation.Horizontal" />
+<div class="container vertical">
+    <div class="options vertical">
+        <span class="legend-title">Total Population for Selected Continents </span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
-    <div class="igComponent">
+    <div class="container vertical">
 
         <DataChart Height="100%" Width="100%"
-                   Legend="@LegendRef"                   
+                   Legend="Legend"
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true">
 
-            <NumericXAxis Name="xAxis" Title="Death Rate, crude (per 1,000 people)" MinimumValue="2" MaximumValue="16" Interval="1" />
-            <NumericYAxis Name="yAxis" Title="Birth Rate, crude (per 1,000 people)" MinimumValue="0" MaximumValue="60" Interval="20" />
+            <NumericXAxis Name="xAxis" Title="Death Rate (per 1,000 people)" MinimumValue="4" MaximumValue="16" Interval="1" />
+            <NumericYAxis Name="yAxis" Title="Birth Rate (per 1,000 people)" MinimumValue="0" MaximumValue="60" Interval="10" />
 
-            <BubbleSeries XAxisName="xAxis" 
-                           YAxisName="yAxis"
-                           DataSource="@AfricaDataSource"
-                           XMemberPath="DeathRate"
-                           YMemberPath="BirthRate"
-                           MarkerType="MarkerType.Circle"
-                           Title="Africa"
-                           RadiusMemberPath="TotalPopulation"
-                           RadiusScale="@SizeScale"
-                           FillMemberPath="TotalPopulation"
-                           FillScale="@AfricaFillScale"
-                           MarkerOutline="rgb(186,231,114)"
-                           >
+            <BubbleSeries XAxisName="xAxis"
+                          YAxisName="yAxis"
+                          Title="Africa"
+                          DataSource="AfricaData"
+                          XMemberPath="DeathRate"
+                          YMemberPath="BirthRate"
+                          RadiusMemberPath="Total"
+                          RadiusScale="@SizeScale"
+                          MarkerType="MarkerType.Circle">
             </BubbleSeries>
 
             <BubbleSeries XAxisName="xAxis"
-                           YAxisName="yAxis"
-                           DataSource="@EuropeDataSource"
-                           XMemberPath="DeathRate"
-                           YMemberPath="BirthRate"
-                           MarkerType="MarkerType.Circle"
-                           Title="Europe"
-                           RadiusMemberPath="TotalPopulation"
-                           RadiusScale="@SizeScale"
-                           FillMemberPath="TotalPopulation"
-                           FillScale="@EuropeFillScale"
-                           MarkerOutline="rgb(248,174,95)"
-                           >
+                          YAxisName="yAxis"
+                          Title="Europe"
+                          DataSource="EuropeData"
+                          XMemberPath="DeathRate"
+                          YMemberPath="BirthRate"
+                          RadiusMemberPath="Total"
+                          RadiusScale="@SizeScale"
+                          MarkerType="MarkerType.Circle">
             </BubbleSeries>
         </DataChart>
 
@@ -58,7 +47,7 @@
 @code {
 
     private Legend _legend;
-    public Legend LegendRef
+    public Legend Legend
     {
         get { return _legend; }
         set
@@ -68,18 +57,21 @@
         }
     }
 
-    private List<BirthAndDeathRateInfo> AfricaDataSource;
-    private List<BirthAndDeathRateInfo> EuropeDataSource;
-    private ValueBrushScale AfricaFillScale = new ValueBrushScale { Brushes = "rgba(186, 231, 114, 0.75)" };
-    private ValueBrushScale EuropeFillScale = new ValueBrushScale { Brushes = "rgba(248, 174, 95, 0.75)" };
+    private List<PopulationInfo> AfricaData;
+    private List<PopulationInfo> EuropeData;
     private SizeScale SizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 100 };
 
     public void InitializeData()
     {
-        var data = new BirthAndDeathRateData();
+        var data = new PopulationData();
 
-        this.AfricaDataSource = data.Where(d => d.Continent == "Africa").ToList();
-        this.EuropeDataSource = data.Where(d => d.Continent == "Europe").ToList();
+        var comparer = new BubbleSeriesSortComparer();
+
+        this.AfricaData = data.Where(d => d.Continent == "Africa").ToList();
+        this.AfricaData.Sort(comparer);
+
+        this.EuropeData = data.Where(d => d.Continent == "Europe").ToList();
+        this.EuropeData.Sort(comparer);
     }
 
     protected override void OnInitialized()
@@ -92,5 +84,13 @@
         NumberAbbreviatorModule.Register(IgniteUIBlazor);
 
         InitializeData();
+    }
+
+    private class BubbleSeriesSortComparer : IComparer<PopulationInfo>
+    {
+        public int Compare(PopulationInfo x, PopulationInfo y)
+        {
+            return y.Total.CompareTo(x.Total);
+        }
     }
 }

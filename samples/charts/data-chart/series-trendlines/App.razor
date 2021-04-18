@@ -1,12 +1,10 @@
-﻿@page "/DataChartSeriesTrendlines"
-
-@using IgniteUI.Blazor.Controls
+﻿@using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
-<div class="igContainer">
-    <div class="igOptions-horizontal">
-        <span class="igOptions-item">Trendline Type:</span>
+<div class="container vertical">
+    <div class="options horizontal">
+        <span class="options-item">Trendline Type:</span>
         <select @bind="ChartTrendlineType">
             <option>@TrendLineType.None</option>
             <option>@TrendLineType.CubicFit</option>
@@ -25,14 +23,14 @@
         </select>
     </div>
 
-    <div class="igComponent">
-        <DataChart Height="100%" Width="100%"                   
+    <div class="container vertical">
+        <DataChart Height="100%" Width="100%"
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true">
-            <CategoryXAxis Name="xAxis" Label="Label" DataSource="DataSource" />
+            <CategoryXAxis Name="xAxis" Label="Label" DataSource="Data" />
             <NumericYAxis Name="yAxis" />
 
-            <FinancialPriceSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" HighMemberPath="High" LowMemberPath="Low"
+            <FinancialPriceSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" HighMemberPath="High" LowMemberPath="Low"
                                   CloseMemberPath="Close" OpenMemberPath="Open" VolumeMemberPath="Volume"
                                   TrendLineType="ChartTrendlineType" />
 
@@ -41,8 +39,8 @@
 </div>
 
 @code {
-    
-    private List<SampleFinancialItem> DataSource;
+
+    private List<SampleFinancialItem> Data;
     private TrendLineType ChartTrendlineType = TrendLineType.CubicFit;
 
     protected override void OnInitialized()
@@ -50,13 +48,13 @@
         base.OnInitialized();
 
         DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);        
+        DataChartCategoryModule.Register(IgniteUIBlazor);
         DataChartFinancialModule.Register(IgniteUIBlazor);
-        DataChartFinancialCoreModule.Register(IgniteUIBlazor);               
+        DataChartFinancialCoreModule.Register(IgniteUIBlazor);
         DataChartInteractivityModule.Register(IgniteUIBlazor);
         DataChartCategoryTrendLineModule.Register(IgniteUIBlazor);
 
-        this.DataSource = SampleFinancialData.Create();
+        this.Data = SampleFinancialData.Create();
     }
 }
 

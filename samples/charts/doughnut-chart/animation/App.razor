@@ -1,23 +1,19 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-@*TODO  : Bug in the component because RingSeries does not update neither with nor without "@" binding and calling StateHasChanged().*@
-
-<div class="igContainer">
-    <div class="igOptions">
+<div class="container vertical">
+    <div class="options horizontal">
         <button @onclick="onAnimationToggle">Animate Chart</button>
     </div>
 
-    <div class="igComponent">
-
-        @if (DataSource != null)
+    <div class="container vertical">
+        @if (Data != null)
         {
             <DoughnutChart Height="100%" Width="100%">
-
-                <RingSeries DataSource="@DataSource"
+                <RingSeries DataSource="Data"
                             LabelMemberPath="Summary"
                             ValueMemberPath="MarketShare"
-                            LegendLabelMemberPath="Company"
+                            LegendLabelMemberPath="Category"
                             LabelsPosition=LabelsPosition.InsideEnd
                             StartAngle="@StartAngle"
                             LabelExtent="@LabelExtent"
@@ -30,7 +26,7 @@
 
 @code {
 
-    private List<DataItem> DataSource;
+    private List<DataItem> Data;
     private double StartAngle = 0;
     private double RadiusFactor = 0.1;
     private double LabelExtent = 0.7;
@@ -38,7 +34,6 @@
 
     private void onAnimationToggle()
     {
-
         if (!this.isAnimating)
         {
             this.StartAngle = 0;
@@ -55,19 +50,17 @@
 
     protected override void OnInitialized()
     {
-
         DoughnutChartModule.Register(IgniteUIBlazor);
 
         var dataItems = new List<DataItem>();
-        dataItems.Add(new DataItem() { MarketShare = 30, Company = "Google", });
-        dataItems.Add(new DataItem() { MarketShare = 25, Company = "Apple", });
-        dataItems.Add(new DataItem() { MarketShare = 20, Company = "Microsoft", });
-        dataItems.Add(new DataItem() { MarketShare = 15, Company = "Samsung", });
-        dataItems.Add(new DataItem() { MarketShare = 10, Company = "Other", });
+        dataItems.Add(new DataItem() { MarketShare = 30, Category = "Google", });
+        dataItems.Add(new DataItem() { MarketShare = 25, Category = "Apple", });
+        dataItems.Add(new DataItem() { MarketShare = 20, Category = "Microsoft", });
+        dataItems.Add(new DataItem() { MarketShare = 15, Category = "Samsung", });
+        dataItems.Add(new DataItem() { MarketShare = 10, Category = "Other", });
 
-        DataSource = dataItems;
+        Data = dataItems;
         this.onAnimationToggle();
-
     }
 
     private void OnTimerTick()
@@ -89,14 +82,13 @@
             Task.Delay(16).ContinueWith((t) => OnTimerTick());
             this.StateHasChanged();
         }
-
     }
 
     public class DataItem
     {
-        public string Company { get; set; }
+        public string Category { get; set; }
         public double MarketShare { get; set; }
-        public string Summary { get { return Company + " " + MarketShare + "%"; } }
+        public string Summary { get { return Category + " " + MarketShare + "%"; } }
     }
 
 }

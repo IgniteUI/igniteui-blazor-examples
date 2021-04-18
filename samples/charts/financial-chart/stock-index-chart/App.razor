@@ -1,15 +1,15 @@
-@* this namespace is required for Infragistics controls *@
+
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igComponent">
+<div class="container vertical">
+    <div class="container vertical">
         <FinancialChart @ref="Chart"
                         Width="100%"
                         Height="100%"
                         IsToolbarVisible="false"
-                        ChartType="FinancialChartType.Candle"                        
-                        DataSource="DataSource"
+                        ChartType="FinancialChartType.Candle"
+                        DataSource="Data"
                         ChartTitle="S&P 500"
                         TitleAlignment="HorizontalAlignment.Left"
                         TitleLeftMargin="25"
@@ -32,11 +32,12 @@
 
 @code {
 
-    public List<StockIndexInfo> DataSource = new StockIndexData();
+    public List<StockIndexInfo> Data = new StockIndexData();
     public FinancialChart Chart;
 
     protected override async Task OnInitializedAsync()
     {
-        FinancialChartModule.Register(IgniteUIBlazor);        
+        FinancialChartModule.Register(IgniteUIBlazor);
+        await Task.Delay(1);
     }
 }

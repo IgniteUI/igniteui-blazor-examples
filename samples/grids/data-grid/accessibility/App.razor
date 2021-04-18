@@ -1,15 +1,15 @@
-﻿@* this namespace is required for Infragistics controls *@
+﻿
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor;
 
-<div class="igContainer">
+<div class="container vertical">
 
-    <div class="igComponent" style="--use-accessibility:true;">
+    <div class="container vertical" style="--use-accessibility:true;">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DataGrid Height="100%" Width="100%"
-                      DataSource="@DataSource"
+                      DataSource="Data"
                       AutoGenerateColumns="false">
                 <TextColumn Field="ProductID" Width="@("*>110")" HeaderText="ID" HorizontalAlignment="CellContentHorizontalAlignment.Center" />
                 <TextColumn Field="ProductName" HeaderText="Product" Width="@("*>120")" />
@@ -29,7 +29,7 @@
 
 @code {
 
-    private List<SaleInfo> DataSource;
+    private List<SaleInfo> Data;
     private Random Rand = new Random();
 
     protected override void OnInitialized()
@@ -86,7 +86,7 @@
             sales.Add(item);
         }
 
-        this.DataSource = sales;
+        this.Data = sales;
     }
 
     public double GetRandomNumber(double min, double max)

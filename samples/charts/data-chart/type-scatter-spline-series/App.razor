@@ -1,8 +1,8 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igComponent">
+<div class="container vertical">
+    <div class="container vertical">
 
         <DataChart Height="100%" Width="100%"
                    Subtitle="Countries GDP vs. Population"
@@ -24,21 +24,21 @@
             <ScatterSplineSeries XAxisName="xAxis"
                                  YAxisName="yAxis"
                                  Title="High Income Countrie"
-                                 DataSource="@CountriesWithHighIncome"
+                                 DataSource="CountriesWithHighIncome"
                                  XMemberPath="Population"
                                  YMemberPath="GdpTotal"
                                  ShowDefaultTooltip="true"
-                                 MarkerType=@MarkerType.Circle>
+                                 MarkerType=MarkerType.Circle>
             </ScatterSplineSeries>
 
             <ScatterSplineSeries XAxisName="xAxis"
                                  YAxisName="yAxis"
                                  Title="Low Income Countrie"
-                                 DataSource="@CountriesWithLowIncome"
+                                 DataSource="CountriesWithLowIncome"
                                  XMemberPath="Population"
                                  YMemberPath="GdpTotal"
                                  ShowDefaultTooltip="true"
-                                 MarkerType=@MarkerType.Circle>
+                                 MarkerType=MarkerType.Circle>
             </ScatterSplineSeries>
 
         </DataChart>
@@ -63,6 +63,6 @@
         CountriesWithHighIncome = SampleScatterStats.GetCountriesWithHighIncome();
         CountriesWithLowIncome = SampleScatterStats.GetCountriesWithLowIncome();
 
-        //Console.WriteLine("DataSource " + DataSource.Count);
+
     }
 }

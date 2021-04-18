@@ -1,38 +1,33 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-    <div class="igContainer">
-        <div class="igOptions">
-            <div class="igOptions-horizontal">
-                <button class="igOptions-button" @onclick="onClickSliceVer" style="width: 150px">Slice Vertically</button>
-                <button class="igOptions-button" @onclick="onClickStripVer" style="width: 175px">Stripped Vertically</button>
-                <button class="igOptions-button" @onclick="onClickSquarified" style="width: 125px">Squarified</button>
-            </div>
-            <div class="igOptions-horizontal">
-                <button class="igOptions-button" @onclick="onClickSliceHor" style="width: 150px">Slice Horizontally</button>
-                <button class="igOptions-button" @onclick="onClickStripHor" style="width: 175px">Stripped Horizontally</button>
-                @*this label displays info about currently selected item in Treemap*@
-                <label>@SelectedItemInfo</label>
-            </div>
+<div class="container vertical">
+
+        <div class="options vertical">
+            <span class="legend-title">Comparing Population of Countries</span>
         </div>
 
-        <div class="igComponent">
+        <div class="container vertical" style="padding: 0.75rem; padding-top: 0.5rem;">
 
             <Treemap Height="100%" Width="100%"
-                     DataSource="@Data"
+                     DataSource="Data"
                      ParentIdMemberPath="Parent"
                      IdMemberPath="Name"
                      LabelMemberPath="Name"
                      ValueMemberPath="Pop"
-                     LayoutType="@TreeLayout"
-                     LayoutOrientation="@TreeOrientation"
                      FillScaleMode="@TreemapFillScaleMode.Value"
                      FillScaleMinimumValue="0"
                      FillScaleMaximumValue="1500000000"
                      FillBrushes="#4e62cf, #8a58d6"
                      IsFillScaleLogarithmic="true"
-                     NodePointerEnter="@onNodePointerEnter"
-                     RootTitle="Countries">
+                     RootTitle="Countries"
+                     HeaderDisplayMode="@TreemapHeaderDisplayMode.Overlay"
+                     ParentNodeBottomPadding="0"
+                     ParentNodeLeftPadding="0"
+                     ParentNodeRightPadding="0"
+                     ParentNodeTopPadding="0"
+                     Outline="black"
+                     StrokeThickness="1">
             </Treemap>
             @**@
         </div>
@@ -41,63 +36,11 @@
 @code {
 
     protected List<CountryInfo> Data;
-    protected TreemapLayoutType TreeLayout = TreemapLayoutType.Squarified;
-    protected TreemapOrientation TreeOrientation = TreemapOrientation.Vertical;
-    protected string SelectedItemInfo = "Select Tree Node";
 
     protected override void OnInitialized()
     {
         TreemapModule.Register(IgniteUIBlazor);
 
         this.Data = CountryTreeData.Create();
-
-        Console.WriteLine("CountryTreeData " + this.Data.Count);
-    }
-
-    // handling NodePointerEnter action
-    private void onNodePointerEnter(TreemapNodePointerEventArgs arg)
-    {
-        var item = arg.Item as CountryInfo;
-        if (item == null) return;
-
-        if (item.Parent == null)
-        {
-            this.SelectedItemInfo = "" + item.Name;
-        }
-        else
-        {
-            var population = (item.Pop / 1000000).ToString("0M people");
-            this.SelectedItemInfo = "" + item.Name + ": " + population;
-        }
-        this.StateHasChanged();
-    }
-
-    private void onClickSquarified()
-    {
-        TreeLayout = TreemapLayoutType.Squarified;
-    }
-
-    private void onClickSliceVer()
-    {
-        TreeLayout = TreemapLayoutType.SliceAndDice;
-        TreeOrientation = TreemapOrientation.Vertical;
-    }
-
-    private void onClickSliceHor()
-    {
-        TreeLayout = TreemapLayoutType.SliceAndDice;
-        TreeOrientation = TreemapOrientation.Horizontal;
-    }
-
-    private void onClickStripVer()
-    {
-        TreeLayout = TreemapLayoutType.Stripped;
-        TreeOrientation = TreemapOrientation.Vertical;
-    }
-
-    private void onClickStripHor()
-    {
-        TreeLayout = TreemapLayoutType.Stripped;
-        TreeOrientation = TreemapOrientation.Horizontal;
     }
 }

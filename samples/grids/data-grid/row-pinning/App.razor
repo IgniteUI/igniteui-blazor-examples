@@ -1,15 +1,15 @@
-﻿@* this namespace is required for Infragistics controls *@
+﻿
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor;
 
-<div class="igContainer">
+<div class="container vertical">
 
-    <div class="igComponent">
+    <div class="container vertical">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DataGrid @ref="@DataGridRef" Height="100%" Width="100%"
-                      DataSource="@DataSource"
+                      DataSource="Data"
                       AutoGenerateColumns="false"
                       ActivationMode="GridActivationMode.Cell">
                 <ImageColumn IsEditable="false" Field="Photo" Width="@("*>140")" ContentOpacity="1" HorizontalAlignment="CellContentHorizontalAlignment.Center"/>
@@ -30,7 +30,7 @@
 
 @code {
 
-    private List<Employee> DataSource;
+    private List<Employee> Data;
     private DataGrid grid;
     public DataGrid DataGridRef
     {
@@ -52,13 +52,13 @@
         base.OnInitialized();
 
         DataGridModule.Register(IgniteUIBlazor);
-        this.DataSource = EmployeeData.Create(200, false);
+        this.Data = EmployeeData.Create(200, false);
     }
 
     private void OnGridChanged()
     {
-        grid.PinnedItems.Add(this.DataSource[2] as Employee);
-        grid.PinnedItems.Add(this.DataSource[4] as Employee);
+        grid.PinnedItems.Add(this.Data[2] as Employee);
+        grid.PinnedItems.Add(this.Data[4] as Employee);
     }
 
 }

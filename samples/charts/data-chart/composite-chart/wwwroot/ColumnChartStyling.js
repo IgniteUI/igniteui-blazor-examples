@@ -1,9 +1,9 @@
 ﻿function onColumnChartStylingMarkerTemplate(o, e) {
-    
+
     let style = { text: "black" };
     let size = 12;
 
-    return {       
+    return {
         measure: function (measureInfo) {
             const data = measureInfo.data;
             const context = measureInfo.context;
@@ -32,8 +32,8 @@
                 case "Coal":
                     value = item.Coal;
                     break;
-                case "Hydropower":
-                    value = item.Hydropower;
+                case "Hydro":
+                    value = item.Hydro;
                     break;
                 case "Wind":
                     value = item.Wind;
@@ -41,11 +41,11 @@
                 case "Nuclear":
                     value = item.Nuclear;
                     break;
-            }                       
+            }
 
             const ctx = renderInfo.context;
             let x = renderInfo.xPosition;
-            let y = renderInfo.yPosition;            
+            let y = renderInfo.yPosition;
 
             if (renderInfo.isHitTestRender) {
                 ctx.fillStyle = renderInfo.data.actualItemBrush.fill;
@@ -56,7 +56,7 @@
                 ctx.fillRect(x - (width / 2), y - (height), renderInfo.availableWidth, renderInfo.availableHeight);
                 return;
             }
-            
+
             let xOffset = 20;
             let yOffset = 10;
 
@@ -69,7 +69,7 @@
             }
             else {
                 ctx.fillText(value + "%", x - (xOffset / 2), y - (yOffset * 2));
-            }            
+            }
         }
     }
 }

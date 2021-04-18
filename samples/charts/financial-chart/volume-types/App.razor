@@ -1,12 +1,12 @@
-@* this namespace is required for Infragistics controls *@
+
 @using IgniteUI.Blazor.Controls
 
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igOptions">
-        <label class="igOptions-label">Volume Type: </label>
-        <label class="igOptions-item">
+<div class="container vertical">
+    <div class="options horizontal">
+        <label class="options-label">Volume Type: </label>
+        <label class="options-item">
             <select @bind="@VolumeType">
                 <option>@FinancialChartVolumeType.Area</option>
                 <option>@FinancialChartVolumeType.Column</option>
@@ -16,13 +16,13 @@
         </label>
     </div>
 
-    <div class="igComponent">
+    <div class="container vertical">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <FinancialChart Width="100%"
                             Height="100%"
-                            DataSource="DataSource"
+                            DataSource="Data"
                             YAxisExtent=60
                             VolumeThickness=2
                             VolumeType="VolumeType"
@@ -37,7 +37,7 @@
 
 @code {
 
-    List<StockItem> DataSource;
+    List<StockItem> Data;
     public FinancialChartVolumeType VolumeType { get; set; } = FinancialChartVolumeType.Area;
 
     protected override void OnInitialized()
@@ -53,6 +53,6 @@
         var month = today.Month;
         var dateEnd = new DateTime(year, month, 1);
         var dateStart = new DateTime(year - 1, month, 1);
-        this.DataSource = StocksUtility.GetStocksBetween(dateStart, dateEnd);
+        this.Data = StocksUtility.GetStocksBetween(dateStart, dateEnd);
     }
 }

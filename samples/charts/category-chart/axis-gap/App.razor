@@ -1,0 +1,49 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+    <div class="options vertical">
+        <span class="legend-title">NYC Average Temperature</span>
+
+        <div class="overlay-right" >
+            <div class="options horizontal" >
+                <label class="options-label" >X-Axis Gap</label>
+                <label class="options-value" >@XAxisGapValue</label>
+                <input class="options-slider" type="range" min="0" max="1" step="0.05" value="1" @oninput="OnXAxisGapSliderChange"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="container vertical">
+        @if (Data != null)
+        {
+            <CategoryChart Height="100%" Width="100%"
+                           DataSource="Data"
+                           ChartType="CategoryChartType.Column"
+                           YAxisTitle="Temperature In Celsius"
+                           IsHorizontalZoomEnabled="false"
+                           IsVerticalZoomEnabled="false"
+                           XAxisInterval="1"
+                           XAxisGap="@XAxisGapValue">
+            </CategoryChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<TemperatureInfo> Data = new TemperatureData();
+
+    private double XAxisGapValue = 1;
+
+    protected override void OnInitialized()
+    {
+        CategoryChartModule.Register(IgniteUIBlazor);
+    }
+
+    private void OnXAxisGapSliderChange(ChangeEventArgs args)
+    {
+        this.XAxisGapValue = double.Parse(args.Value.ToString());
+    }
+}

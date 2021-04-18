@@ -1,19 +1,19 @@
-@* this namespace is required for Infragistics controls *@
+
 @using IgniteUI.Blazor.Controls
 
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-    <div class="igContainer">
-        <div class="igComponent">
+    <div class="container vertical">
+        <div class="container vertical">
 
-            @if (DataSource != null)
+            @if (Data != null)
             {
                 <FinancialChart Width="100%"
                     Height="100%"
-                    @ref="@FinancialChartRef"
+                    @ref="@Chart"
                     ChartType=FinancialChartType.Line
                     Thickness=2
-                    DataSource="DataSource"                    
+                    DataSource="Data"
                     IndicatorThickness=2
                     IndicatorNegativeBrushes="Red"
                     IndicatorBrushes="Green, Blue"
@@ -25,20 +25,20 @@
 
 @code {
 
-    List<StockItem> DataSource;
-    public FinancialChart financialChart;
-    public FinancialChart FinancialChartRef
+    List<StockItem> Data;
+    public FinancialChart _Chart;
+    public FinancialChart Chart
     {
         get
         {
-            return financialChart;
+            return _Chart;
         }
         set
         {
-            financialChart = value;
-            this.FinancialChartRef.IndicatorTypes.Clear();
-            this.FinancialChartRef.IndicatorTypes.Add(FinancialIndicatorType.MovingAverageConvergenceDivergence);
-            this.FinancialChartRef.IndicatorTypes.Add(FinancialIndicatorType.RelativeStrengthIndex);
+            _Chart = value;
+            this.Chart.IndicatorTypes.Clear();
+            this.Chart.IndicatorTypes.Add(FinancialIndicatorType.MovingAverageConvergenceDivergence);
+            this.Chart.IndicatorTypes.Add(FinancialIndicatorType.RelativeStrengthIndex);
         }
     }
 
@@ -55,6 +55,6 @@
         var month = today.Month;
         var dateEnd = new DateTime(year, month, 1);
         var dateStart = new DateTime(year - 1, month, 1);
-        this.DataSource = StocksUtility.GetStocksBetween(dateStart, dateEnd);
+        this.Data = StocksUtility.GetStocksBetween(dateStart, dateEnd);
     }
 }

@@ -1,9 +1,9 @@
-@* this is required for Infragistics controls *@
+
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
-@* NOTE use this HTML code to design a sample *@
-<div class="igContainer">
-    <div class="igComponent">
+
+<div class="container vertical">
+    <div class="container vertical">
         <RadialGauge Height="100%" Width="100%"
                      MinimumValue="0"
                      MaximumValue="220"
@@ -67,8 +67,6 @@
 
     protected override void OnInitialized()
     {
-        // Console.WriteLine("Sample runtime: " + IgniteUIBlazor.JsRuntime);
-        Console.WriteLine("Sample OnInitialized...");
         RadialGaugeModule.Register(IgniteUIBlazor);
 
         RangeColors = "#3ebe2e, #44d12b, #62e133, #8eef46, #c3f961, #fbc624, #f38e1c, #dc5815, #b8250c, #840000";
@@ -116,10 +114,4 @@
         }
     }
 
-    protected override async Task OnInitializedAsync()
-    {
-        Console.WriteLine("Sample OnInitializedAsync...");
-
-        await Task.Delay(10);
-    }
 }

@@ -1,17 +1,17 @@
-@* this namespace is required for Infragistics controls *@
+
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igComponent">
+<div class="container vertical">
+    <div class="container vertical">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <FinancialChart Width="100%"
                 Height="100%"
                 ChartType=FinancialChartType.Candle
                 ZoomSliderType="FinancialChartZoomSliderType.None"
-                DataSource="DataSource"
+                DataSource="Data"
                 CustomIndicatorNames="@(new string[] {"Custom Indicator(Price Changes)"})"
                 ApplyCustomIndicatorsScript="onApplyCustomIndicators"/>
         }
@@ -20,13 +20,13 @@
 
 @code {
 
-    public List<StockItem> DataSource;    
+    public List<StockItem> Data;
 
     protected override void OnInitialized()
     {
         FinancialChartModule.Register(IgniteUIBlazor);
         FinancialChartCoreModule.Register(IgniteUIBlazor);
-        
+
         GetStockData();
     }
 
@@ -37,6 +37,6 @@
         var dateEnd = new DateTime(year, month, 1);
         var dateStart = new DateTime(year - 2, month, 1);
 
-        this.DataSource = StocksUtility.GetStocksBetween(dateStart, dateEnd);
+        this.Data = StocksUtility.GetStocksBetween(dateStart, dateEnd);
     }
 }

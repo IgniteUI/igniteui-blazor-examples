@@ -1,0 +1,86 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="options horizontal">
+        <span class="legend-title">Life Expectancy versus Health Expenditure for European Countries</span>
+    </div>
+    <div class="options horizontal">
+        <span class="legend-title">Continent: </span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+    <div class="container vertical">
+        <DataChart Height="100%" Width="100%"
+                   Legend="Legend"
+                   IsHorizontalZoomEnabled="false"
+                   IsVerticalZoomEnabled="false">
+
+            <NumericXAxis Name="xAxis" LabelFormat="${0}" Title="Health Expenditure"/>
+            <NumericYAxis Name="yAxis" LabelFormat="{0} years" Title="Life Expectancy"/>
+
+            <ScatterLineSeries XAxisName="xAxis"
+                               YAxisName="yAxis"
+                               DataSource="GermanyData"
+                               XMemberPath="HealthExpense"
+                               YMemberPath="LifeExpectancy"
+                               Title="Germany"
+                               MarkerType="MarkerType.Circle"/>
+
+            <ScatterLineSeries XAxisName="xAxis"
+                               YAxisName="yAxis"
+                               DataSource="FranceData"
+                               XMemberPath="HealthExpense"
+                               YMemberPath="LifeExpectancy"
+                               Title="France"
+                               MarkerType="MarkerType.Circle"/>
+
+            <ScatterLineSeries XAxisName="xAxis"
+                               YAxisName="yAxis"
+                               DataSource="LuxembourgData"
+                               XMemberPath="HealthExpense"
+                               YMemberPath="LifeExpectancy"
+                               Title="Luxembourg"
+                               MarkerType="MarkerType.Circle"/>
+        </DataChart>
+    </div>
+</div>
+
+@code {
+
+    private Legend _legend;
+    public Legend Legend
+    {
+        get { return _legend; }
+        set
+        {
+            _legend = value;
+            StateHasChanged();
+        }
+    }
+
+    private List<HealthInfo> GermanyData;
+    private List<HealthInfo> FranceData;
+    private List<HealthInfo> LuxembourgData;
+
+    public void InitializeData()
+    {
+        var fullList = new HealthData();
+        this.GermanyData = fullList.Where(c => c.Country == "Germany").ToList();
+        this.FranceData = fullList.Where(c => c.Country == "France").ToList();
+        this.LuxembourgData = fullList.Where(c => c.Country == "Luxembourg").ToList();
+    }
+
+    protected override void OnInitialized()
+    {
+        LegendModule.Register(IgniteUIBlazor);
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartScatterModule.Register(IgniteUIBlazor);
+        DataChartScatterCoreModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+
+        InitializeData();
+    }
+}

@@ -1,50 +1,50 @@
-@* this namespace is required for Infragistics controls *@
+
 @using IgniteUI.Blazor.Controls
 
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="igContainer">
-    <div class="igOptions">
-        <label class="igOptions-label">Annotations: </label>
-        <label class="igOptions-item">
+<div class="container vertical">
+    <div class="options horizontal">
+        <label class="options-label">Annotations: </label>
+        <label class="options-item">
             <input type="checkbox"
                    checked=@CrosshairsVisible
                    @onchange="OnCrosshairsVisible" /> Crosshair
         </label>
-        <label class="igOptions-item">
+        <label class="options-item">
             <input type="checkbox"
                    checked=@CalloutsAnnotationVisible
                    @onchange="OnCalloutsVisible" /> Callouts
         </label>
-        <label class="igOptions-item">
+        <label class="options-item">
             <input type="checkbox"
                    checked=@ItemTooltipVisible
                    @onchange="OnItemTooltipVisible" /> Item Tooltip
         </label>
-        <label class="igOptions-item">
+        <label class="options-item">
             <input type="checkbox"
                    checked=@FinalValuesVisible
                    @onchange="OnFinalValuesVisible" /> Final Values
         </label>
-        <label class="igOptions-item">
+        <label class="options-item">
             <input type="checkbox"
                    checked=@MarkersVisible
                    @onchange="OnMarkersVisible" /> Markers
         </label>
     </div>
 
-    <div class="igComponent">
+    <div class="container vertical">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <FinancialChart Width="100%"
                 Height="100%"
-                @ref="@FinancialChartRef"
+                @ref="@Chart"
                 ChartType=FinancialChartType.Line
                 Thickness=2
                 XAxisMode="XAxisMode"
                 YAxisMode="YAxisMode"
-                DataSource="DataSource"
+                DataSource="Data"
                 ExcludedProperties=ExcludedProps
                 CalloutsVisible="@CalloutsAnnotationVisible"
                 CalloutsXMemberPath="Index"
@@ -62,24 +62,21 @@
 
 @code {
 
-    public FinancialChart financialChart;
-    public FinancialChart FinancialChartRef
+    public FinancialChart _Chart;
+    public FinancialChart Chart
     {
-        get
-        {
-            return financialChart;
-        }
+        get { return _Chart; }
         set
         {
-            financialChart = value;
-            this.FinancialChartRef.MarkerTypes.Clear();
-            this.FinancialChartRef.MarkerTypes.Add(MarkerType.None);
+            _Chart = value;
+            this.Chart.MarkerTypes.Clear();
+            this.Chart.MarkerTypes.Add(MarkerType.None);
             StateHasChanged();
         }
     }
     public FinancialChartXAxisMode XAxisMode = FinancialChartXAxisMode.Ordinal;
     public FinancialChartYAxisMode YAxisMode = FinancialChartYAxisMode.Numeric;
-    List<StockItem> DataSource;
+    List<StockItem> Data;
 
     public string[] ExcludedProps { get; set; } = new string[] { "Index", "Info" };
     public CrosshairsDisplayMode CrosshairsMode = CrosshairsDisplayMode.Both;
@@ -133,13 +130,13 @@
 
         if ((bool)e.Value == true)
         {
-            this.FinancialChartRef.MarkerTypes.Clear();
-            this.FinancialChartRef.MarkerTypes.Add(MarkerType.Automatic);
+            this.Chart.MarkerTypes.Clear();
+            this.Chart.MarkerTypes.Add(MarkerType.Automatic);
         }
         else
         {
-            this.FinancialChartRef.MarkerTypes.Clear();
-            this.FinancialChartRef.MarkerTypes.Add(MarkerType.None);
+            this.Chart.MarkerTypes.Clear();
+            this.Chart.MarkerTypes.Add(MarkerType.None);
         }
         MarkersVisible = (bool)e.Value;
     }
@@ -205,6 +202,6 @@
         stockData[minIndex].Info = "MIN";
         stockData[maxIndex].Info = "MAX";
 
-        this.DataSource = stockData;
+        this.Data = stockData;
     }
 }

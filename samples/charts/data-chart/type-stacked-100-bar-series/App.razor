@@ -1,18 +1,16 @@
-﻿@page "/DataChartTypeStacked100BarSeries"
-
-@using IgniteUI.Blazor.Controls
+﻿@using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
-<div class="igContainer">    
-    <div class="igComponent">        
-        @if (DataSource != null)
+<div class="container vertical">
+    <div class="container vertical">
+        @if (Data != null)
         {
             <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true" IsHorizontalZoomEnabled="true">
-                <CategoryYAxis Name="yAxis" DataSource="DataSource" Label="Country" />
+                <CategoryYAxis Name="yAxis" DataSource="Data" Label="Country" />
                 <NumericXAxis Name="xAxis" MinimumValue="0" />
 
-                <Stacked100BarSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="DataSource" ShowDefaultTooltip="true" AreaFillOpacity="1">
+                <Stacked100BarSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="true" AreaFillOpacity="1">
                     <StackedFragmentSeries ValueMemberPath="Coal" />
                     <StackedFragmentSeries ValueMemberPath="Hydro" />
                     <StackedFragmentSeries ValueMemberPath="Nuclear" />
@@ -26,7 +24,7 @@
 
 @code {
 
-    private List<Infragistics.Samples.SampleStackedItem> DataSource;
+    private List<Infragistics.Samples.SampleStackedItem> Data;
 
     protected override void OnInitialized()
     {
@@ -41,7 +39,7 @@
         StackedSplineSeriesModule.Register(IgniteUIBlazor);
         StackedFragmentSeriesModule.Register(IgniteUIBlazor);
 
-        this.DataSource = SampleStackedData.Create();
+        this.Data = SampleStackedData.Create();
 
     }
 }

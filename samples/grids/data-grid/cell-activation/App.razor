@@ -1,15 +1,15 @@
-﻿@* this namespace is required for Infragistics controls *@
+﻿
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor;
 
-<div class="igContainer">
+<div class="container vertical">
 
-    <div class="igComponent">
+    <div class="container vertical">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
         <DataGrid Height="100%" Width="100%"
-                  DataSource="@DataSource"
+                  DataSource="Data"
                   AutoGenerateColumns="false"
                   SelectionMode="GridSelectionMode.RangeCell"
                   ActivationMode="GridActivationMode.Cell">
@@ -31,14 +31,14 @@
 
 @code {
 
-    private object DataSource;
+    private object Data;
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
 
         DataGridModule.Register(IgniteUIBlazor);
-        this.DataSource = EmployeeData.Create(200, false);
+        this.Data = EmployeeData.Create(200, false);
     }
 
 }

@@ -1,15 +1,15 @@
 ﻿@using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor;
 
-<div class="igContainer">
+<div class="container vertical">
 
-    <div class="igComponent">
+    <div class="container vertical">
 
-        @if (DataSource != null)
+        @if (Data != null)
         {
             <DataGrid Height="100%" Width="100%"
                       DefaultColumnMinWidth="120"
-                      DataSource="@DataSource"
+                      DataSource="Data"
                       AutoGenerateColumns="false">
                         <TextColumn Field="ID" Width="@("*>110")" />
                         <TextColumn Field="FirstName" Width="@("*>190")" />
@@ -34,7 +34,7 @@
 
 @code {
 
-    private List<Employee> DataSource;
+    private List<Employee> Data;
 
     protected override void OnInitialized()
     {
@@ -42,7 +42,7 @@
 
         DataGridModule.Register(IgniteUIBlazor);
 
-        this.DataSource = EmployeeData.Create(200, false);
+        this.Data = EmployeeData.Create(200, false);
 
     }
 
