@@ -1,1 +1,67 @@
-<Infragistics.Samples.Pages.DataChartValueOverlay />
+﻿@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="container vertical">
+    <div class="container vertical">
+        @if (Data != null)
+        {
+        <DataChart Height="100%" Width="100%" IsHorizontalZoomEnabled="true" IsVerticalZoomEnabled="true">
+            <CategoryXAxis Name="xAxis" DataSource="Data" Label="Label" />
+            <NumericYAxis Name="yAxis" MinimumValue="0" MaximumValue="10" />
+
+            <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="Value" />
+
+            <ValueOverlay AxisName="yAxis" Value="2.0" Thickness="5" />
+            <ValueOverlay AxisName="yAxis" Value="3.6" Thickness="5" />
+            <ValueOverlay AxisName="yAxis" Value="5.8" Thickness="5" />
+            <ValueOverlay AxisName="yAxis" Value="1.0" Thickness="5" />
+            <ValueOverlay AxisName="yAxis" Value="8.0" Thickness="5" />
+            <ValueOverlay AxisName="yAxis" Value="7.0" Thickness="5" />
+            <ValueOverlay AxisName="yAxis" Value="5.0" Thickness="5" />
+
+        </DataChart>
+
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<OverlayDataItem> Data;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        ValueOverlayModule.Register(IgniteUIBlazor);
+
+        this.InitData();
+    }
+
+    private void InitData()
+    {
+        var data = new List<OverlayDataItem>() {
+            new OverlayDataItem() { Label = "1", Value = 1.0 },
+            new OverlayDataItem() { Label = "2", Value = 2.0 },
+            new OverlayDataItem() { Label = "3", Value = 6.0 },
+            new OverlayDataItem() { Label = "4", Value = 8.0 },
+            new OverlayDataItem() { Label = "5", Value = 2.0 },
+            new OverlayDataItem() { Label = "6", Value = 6.0 },
+            new OverlayDataItem() { Label = "7", Value = 4.0 },
+            new OverlayDataItem() { Label = "8", Value = 2.0 },
+            new OverlayDataItem() { Label = "9", Value = 1.0 }
+        };
+
+        this.Data = data;
+    }
+
+    public class OverlayDataItem {
+        public string Label { get; set; }
+        public double Value { get; set; }
+    }
+
+}

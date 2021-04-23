@@ -1,1 +1,114 @@
-<Infragistics.Samples.Pages.PieChartExplosion />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="options vertical">
+        <span class="legend-title">Global Electricity Demand by Energy Use</span>
+        <div class="legend">
+            <ItemLegend @ref="Legend" /> @*Orientation="LegendOrientation.Horizontal" />*@
+        </div>
+        <div class="overlay-right">
+            <div class="options horizontal">
+                <label class="options-label">
+                    <input type="checkbox" @onchange="onExplosionModeChanged"
+                           checked="@ExplodeMultipleSlices"/>Allow Multi-Slice Explosion
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="container vertical">
+
+        @if (Data != null)
+        {
+            <PieChart Height="100%" Width="100%"
+                      DataSource="Data"
+                      Legend="Legend"
+                      LabelMemberPath="Category"
+                      ValueMemberPath="MarketShare"
+                      Outlines="white"
+                      RadiusFactor="0.7"
+                      StartAngle="0"
+                      SliceClick="OnSliceClick"
+                      LabelsPosition="LabelsPosition.OutsideEnd"
+                      LabelExtent="10"
+                      AllowSliceSelection="false"
+                      AllowSliceExplosion="true"
+                      ExplodedSlices="ExplodedSlices"
+                      ExplodedRadius="0.1">
+            </PieChart>
+        }
+
+    </div>
+</div>
+
+@code {
+
+    private List<DataItem> Data;
+
+    private ItemLegend _legend;
+    public ItemLegend Legend
+    {
+        get { return _legend; }
+        set { _legend = value; StateHasChanged(); }
+    }
+
+    public int[] ExplodedSlices { get; set; } = new int[1];
+    public bool ExplodeMultipleSlices = true;
+
+    protected override void OnInitialized()
+    {
+        PieChartModule.Register(IgniteUIBlazor);
+        ItemLegendModule.Register(IgniteUIBlazor);
+
+        this.Data = new List<DataItem>();
+        this.Data.Add(new DataItem { MarketShare = 37, Category = "Cooling", });
+        this.Data.Add(new DataItem { MarketShare = 25, Category = "Residential", });
+        this.Data.Add(new DataItem { MarketShare = 12, Category = "Heating", });
+        this.Data.Add(new DataItem { MarketShare = 11, Category = "Lighting", });
+        this.Data.Add(new DataItem { MarketShare = 15, Category = "Other", });
+    }
+
+    public class DataItem
+    {
+        public string Category { get; set; }
+        public double MarketShare { get; set; }
+        public string Summary { get { return Category + " " + MarketShare + "%"; } }
+    }
+
+    private void onExplosionModeChanged(ChangeEventArgs args)
+    {
+        this.ExplodeMultipleSlices = (bool)args.Value;
+    }
+
+    protected void OnSliceClick(SliceClickEventArgs e)
+    {
+        var slice = e.Index;
+
+        if (ExplodedSlices.Contains(slice))
+        {
+            if (ExplodeMultipleSlices)
+            {
+                var list = ExplodedSlices.ToList(); list.Remove(slice);
+                ExplodedSlices = list.ToArray();
+            }
+            else
+                ExplodedSlices = new int[] { }; // for single selection
+
+            Console.WriteLine("RMV: " + slice + ", selected: " + string.Join(", ", ExplodedSlices));
+        }
+        else
+        {
+            if (ExplodeMultipleSlices)
+            {
+                var list = ExplodedSlices.ToList(); list.Add(slice);
+                ExplodedSlices = list.ToArray();
+            }
+            else
+                ExplodedSlices = new int[] { e.Index }; // for single selection
+
+            Console.WriteLine("ADD: "  + slice + ", selected: " + string.Join(", ", ExplodedSlices));
+        }
+    }
+
+}

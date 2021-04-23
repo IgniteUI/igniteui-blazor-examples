@@ -1,2 +1,32 @@
-<Infragistics.Samples.Pages.RadialGaugeScale />
 
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="container vertical">
+        <RadialGauge Height="100%" Width="100%"
+                     ScaleStartAngle="135"
+                     ScaleEndAngle="45"
+                     ScaleBrush="DodgerBlue"
+                     ScaleSweepDirection="SweepDirection.Clockwise"
+                     ScaleOversweep="1"
+                     ScaleOversweepShape="RadialGaugeScaleOversweepShape.Fitted"
+                     ScaleStartExtent="0.45"
+                     ScaleEndExtent="0.575"
+
+                     MinimumValue="0"
+                     MaximumValue="80"
+                     Value="50"
+                     Interval="10">
+        </RadialGauge>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        RadialGaugeModule.Register(IgniteUIBlazor);
+    }
+
+}

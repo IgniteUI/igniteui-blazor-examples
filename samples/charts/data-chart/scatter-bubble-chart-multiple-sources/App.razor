@@ -1,0 +1,96 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="options vertical">
+        <span class="legend-title">Total Population for Selected Continents </span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+    <div class="container vertical">
+
+        <DataChart Height="100%" Width="100%"
+                   Legend="Legend"
+                   IsHorizontalZoomEnabled="true"
+                   IsVerticalZoomEnabled="true">
+
+            <NumericXAxis Name="xAxis" Title="Death Rate (per 1,000 people)" MinimumValue="4" MaximumValue="16" Interval="1" />
+            <NumericYAxis Name="yAxis" Title="Birth Rate (per 1,000 people)" MinimumValue="0" MaximumValue="60" Interval="10" />
+
+            <BubbleSeries XAxisName="xAxis"
+                          YAxisName="yAxis"
+                          Title="Africa"
+                          DataSource="AfricaData"
+                          XMemberPath="DeathRate"
+                          YMemberPath="BirthRate"
+                          RadiusMemberPath="Total"
+                          RadiusScale="@SizeScale"
+                          MarkerType="MarkerType.Circle">
+            </BubbleSeries>
+
+            <BubbleSeries XAxisName="xAxis"
+                          YAxisName="yAxis"
+                          Title="Europe"
+                          DataSource="EuropeData"
+                          XMemberPath="DeathRate"
+                          YMemberPath="BirthRate"
+                          RadiusMemberPath="Total"
+                          RadiusScale="@SizeScale"
+                          MarkerType="MarkerType.Circle">
+            </BubbleSeries>
+        </DataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Legend _legend;
+    public Legend Legend
+    {
+        get { return _legend; }
+        set
+        {
+            _legend = value;
+            StateHasChanged();
+        }
+    }
+
+    private List<PopulationInfo> AfricaData;
+    private List<PopulationInfo> EuropeData;
+    private SizeScale SizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 100 };
+
+    public void InitializeData()
+    {
+        var data = new PopulationData();
+
+        var comparer = new BubbleSeriesSortComparer();
+
+        this.AfricaData = data.Where(d => d.Continent == "Africa").ToList();
+        this.AfricaData.Sort(comparer);
+
+        this.EuropeData = data.Where(d => d.Continent == "Europe").ToList();
+        this.EuropeData.Sort(comparer);
+    }
+
+    protected override void OnInitialized()
+    {
+        LegendModule.Register(IgniteUIBlazor);
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartScatterModule.Register(IgniteUIBlazor);
+        DataChartScatterCoreModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+
+        InitializeData();
+    }
+
+    private class BubbleSeriesSortComparer : IComparer<PopulationInfo>
+    {
+        public int Compare(PopulationInfo x, PopulationInfo y)
+        {
+            return y.Total.CompareTo(x.Total);
+        }
+    }
+}

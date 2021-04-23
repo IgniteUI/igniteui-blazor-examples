@@ -1,3 +1,61 @@
-<Infragistics.Samples.Pages.FinancialChartTrendlines />
 
+@using IgniteUI.Blazor.Controls
 
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="options horizontal">
+        <label class="options-label">Trendlines: </label>
+        <label class="options-item">
+            <select @bind="@TrendLineType">
+                <option>@TrendLineType.CubicFit</option>
+                <option>@TrendLineType.LinearFit</option>
+                <option>@TrendLineType.QuinticFit</option>
+                <option>@TrendLineType.QuarticFit</option>
+                <option>@TrendLineType.ExponentialFit</option>
+                <option>@TrendLineType.PowerLawFit</option>
+                <option>@TrendLineType.LogarithmicFit</option>
+                <option>@TrendLineType.CumulativeAverage</option>
+                <option>@TrendLineType.ExponentialAverage</option>
+                <option>@TrendLineType.SimpleAverage</option>
+                <option>@TrendLineType.ModifiedAverage</option>
+                <option>@TrendLineType.WeightedAverage</option>
+                <option>@TrendLineType.None</option>
+            </select>
+        </label>
+
+    </div>
+
+    <div class="container vertical">
+
+        @if (Data != null)
+        {
+            <FinancialChart Width="100%"
+                Height="100%"
+                ChartType=FinancialChartType.Bar
+                Thickness=2
+                DataSource="Data"
+                TrendLineType="@TrendLineType"
+                TrendLineThickness=2
+                TrendLinePeriod=10
+                TrendLineBrushes="rgba(0, 101, 209, 1)"
+                ChartTitle="Microsoft Trend"
+                Subtitle="Between 2013 and 2017"
+                ZoomSliderType="FinancialChartZoomSliderType.None"
+                IsHorizontalZoomEnabled="false"
+                IsVerticalZoomEnabled="false"/>
+        }
+    </div>
+</div>
+
+@code {
+
+    protected StockPrice[] Data;
+    protected TrendLineType TrendLineType = TrendLineType.QuinticFit;
+
+    protected override async Task OnInitializedAsync()
+    {
+        FinancialChartModule.Register(IgniteUIBlazor);
+        this.Data = await StocksHistory.GetMicrosoftStock();
+    }
+}

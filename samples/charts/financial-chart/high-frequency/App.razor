@@ -1,3 +1,173 @@
-<Infragistics.Samples.Pages.FinancialChartHighFrequency/>
 
+@using IgniteUI.Blazor.Controls
+@using System.Collections.ObjectModel
 
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="options horizotnal">
+        <label class="options-label" style="width: 5rem;">Data Update:</label>
+        <label class="options-value">@DataUpdateInfo</label>
+        <input class="options-slider" type="range" min="20" max="1000" step="10"
+               value=@DataUpdateInterval
+               @onchange=OnDataUpdateIntervalChanged />
+
+        <button @onclick="OnDataToggleFeedClick">@DataFeedStatus</button>
+        <label class="options-label">FPS: @FramePerSecond</label>
+    </div>
+
+    <div class="options horizotnal">
+        <label class="options-label" style="width: 5rem;">Data Points:</label>
+        <label class="options-value">@DataPoints</label>
+        <input class="options-slider" type="range" min="10" max="10000" step="1"
+               value=@DataPoints
+               @onchange=OnDataPointsChanged />
+
+        <button @onclick="OnDataGenerateClick">Generate</button>
+        <label class="options-label">Optimize Scaling: </label>
+        <input type="checkbox" @onchange="OnOptimizeScalingChanged" />
+    </div>
+
+    <div class="container vertical">
+
+        @if (Data != null)
+        {
+            <FinancialChart Width="100%" @ref="Chart" Height="100%"
+                            ChartType="FinancialChartType.Line"
+                            Thickness=2
+                            DataSource="Data"
+                            PixelScalingRatio="ScalingRatio"
+                            ZoomSliderType="FinancialChartZoomSliderType.None" />
+        }
+    </div>
+</div>
+
+@code {
+
+    private FinancialChart Chart;
+    private double ScalingRatio { get; set; } = 1;
+    private ObservableCollection<StockItem> Data;
+
+    private string DataInfo { get; set; }
+    private int DataPoints { get; set; } = 1000;
+
+    private int DataUpdateInterval { get; set; } = 100; // milliseconds
+    private string DataUpdateInfo { get; set; }
+    private string DataFeedStatus { get; set; } = "Live Data";
+    private bool DataFeedActive { get; set; } = false;
+
+    private int FramePerSecond { get; set; } = 0;
+    private int FrameCount = 0;
+    private DateTime FrameUpdateTime;
+
+    void InitalizeChart()
+    {
+        FinancialChartModule.Register(IgniteUIBlazor);
+
+        var dataList = StocksUtility.GetStocksItems(this.DataPoints);
+        this.Data = new ObservableCollection<StockItem>(dataList);
+
+        this.DataInfo = StocksUtility.ToShortString(this.DataPoints);
+        this.FrameUpdateTime = DateTime.Now;
+        this.DataUpdateInfo = (this.DataUpdateInterval / 1000.0).ToString("0.0") + "s ";
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        InitalizeChart();
+        await Task.Delay(1000);
+        this.OnDataToggleFeedClick();
+    }
+
+    private void OnDataToggleFeedClick()
+    {
+        DataFeedActive = !DataFeedActive;
+        DataFeedStatus = DataFeedActive ? "Stop Data" : "Live Data";
+        SetupInterval();
+    }
+
+    private void OnOptimizeScalingChanged(ChangeEventArgs e)
+    {
+        if ((bool)e.Value == true)
+        {
+            this.ScalingRatio = 1.0;
+        }
+        else
+        {
+            this.ScalingRatio = 0;
+        }
+    }
+
+    private void OnDataGenerateClick()
+    {
+        var dataList = StocksUtility.GetStocksItems(this.DataPoints);
+
+        this.Data = new ObservableCollection<StockItem>(dataList);
+        SetupInterval();
+    }
+
+    private void OnDataUpdateIntervalChanged(ChangeEventArgs e)
+    {
+        int num = int.Parse(e.Value.ToString());
+
+        if (num < 10) num = 10;
+        if (num > 1000) num = 1000;
+
+        this.DataUpdateInterval = num;
+        this.DataUpdateInfo = (this.DataUpdateInterval / 1000.0).ToString("0.0") + "s ";
+
+        if (this.Data.Count > 0)
+        {
+            this.SetupInterval();
+        }
+    }
+
+    private void OnDataPointsChanged(ChangeEventArgs e)
+    {
+        var num = int.Parse(e.Value.ToString());
+
+        if (num < 10) num = 10;
+        if (num > 100000) num = 100000;
+
+        this.DataPoints = num;
+        this.DataInfo = StocksUtility.ToShortString(num);
+    }
+
+    private void SetupInterval()
+    {
+        if (DataFeedActive)
+            Task.Delay(this.DataUpdateInterval).ContinueWith((t) => OnTimerTick());
+    }
+
+    private void OnTimerTick()
+    {
+        if (!DataFeedActive) return;
+
+        var oldItem = this.Data[0];
+        var newItem = StocksUtility.GetNewItem(this.Data.ToList(), 60);
+
+        this.Data.Add(newItem.FirstOrDefault());
+        this.Chart.NotifyInsertItem(this.Data, this.Data.Count - 1, newItem);
+        this.Data.RemoveAt(0);
+        this.Chart.NotifyRemoveItem(this.Data, 0, oldItem);
+
+        this.FrameCount++;
+        var currTime = DateTime.Now;
+        var elapsed = currTime.Subtract(FrameUpdateTime);
+
+        if (elapsed.TotalSeconds > 5)
+        {
+            var fps = this.FrameCount / elapsed.TotalSeconds;
+            this.FrameUpdateTime = currTime;
+            this.FrameCount = 0;
+            this.FramePerSecond = (int)Math.Round(fps);
+            this.StateHasChanged();
+        }
+
+        if (DataFeedActive)
+        {
+            Task.Delay(this.DataUpdateInterval).ContinueWith((t) => OnTimerTick());
+        }
+
+    }
+}

@@ -1,1 +1,32 @@
-<Infragistics.Samples.Pages.MapTypeScatterPolygonSeries />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="container vertical">
+        <GeographicMap Height="100%" Width="100%" Zoomable="true" BackgroundContent="@null">
+            <GeographicShapeSeries ShapefileDataSource="Data"
+                                   Outline="black"
+                                   Thickness="0.5"
+                                   StyleShapeScript="onStylingShape"
+                                   MarkerTemplateScript="onStylingMarker"
+                                   MarkerCollisionAvoidance="@CollisionAvoidanceType.Omit"/>
+        </GeographicMap>
+    </div>
+</div>
+
+@code {
+
+    private ShapeDataSource Data;
+
+    protected override void OnInitialized()
+    {
+        GeographicMapModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+
+        this.Data = new ShapeDataSource()
+        {
+            ShapefileSource = "https://static.infragistics.com/xplatform/shapes/world_countries_all.shp",
+            DatabaseSource  = "https://static.infragistics.com/xplatform/shapes/world_countries_all.dbf"
+        };
+    }
+}

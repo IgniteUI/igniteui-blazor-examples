@@ -1,0 +1,62 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="options vertical">
+        <span class="legend-title">Highest Grossing Movie Franchises</span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+    <div class="container vertical">
+        <DataChart Height="100%" Width="100%"
+                   Legend="Legend"
+                   IsHorizontalZoomEnabled="false"
+                   IsVerticalZoomEnabled="false">
+
+            <CategoryYAxis Name="yAxis" Label="Franchise" DataSource="Data" IsInverted="true" Gap="0.5" Overlap="-0.1"/>
+            <NumericXAxis Name="xAxis" Title="Billions of U.S Dollars" />
+
+            <BarSeries XAxisName="xAxis"
+                       YAxisName="yAxis"
+                       DataSource="Data"
+                       ValueMemberPath="TotalRevenue"
+                       Title="Total Revenue of Franchise"
+                       ShowDefaultTooltip="true"
+                       IsTransitionInEnabled="true"
+                       IsHighlightingEnabled="true">
+            </BarSeries>
+            <BarSeries XAxisName="xAxis"
+                       YAxisName="yAxis"
+                       DataSource="Data"
+                       ValueMemberPath="HighestGrossing"
+                       Title="Highest Grossing Movie in Series"
+                       ShowDefaultTooltip="true"
+                       IsTransitionInEnabled="true"
+                       IsHighlightingEnabled="true">
+            </BarSeries>
+        </DataChart>
+    </div>
+</div>
+
+@code {
+
+    private Legend _Legend;
+    private Legend Legend
+    {
+        get { return _Legend; }
+        set { _Legend = value; StateHasChanged(); }
+    }
+
+    private List<FilmFranchiseInfo> Data = new FilmFranchiseData();
+
+    protected override void OnInitialized()
+    {
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        DataChartVerticalCategoryModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+    }
+}

@@ -1,0 +1,283 @@
+﻿@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="options vertical">
+        <span class="legend-title">Network Polar Chart</span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+    <div class="container vertical">
+
+        @if (PolarMarkers != null && this.PolarMarkersByLevel != null)
+        {
+        <DataChart Height="100%" Width="100%" @ref="Chart"
+                   SeriesMouseEnterScript="onNetworkPolarChartMouseEnter"
+                   IsHorizontalZoomEnabled="false"
+                   IsVerticalZoomEnabled="false">
+
+            <NumericAngleAxis Name="angleAxis"
+                              MinimumValue="0" MaximumValue="360" Interval="30"
+                              StartAngleOffset="270"
+                              LabelExtent="30"/>
+            <NumericRadiusAxis Name="radiusAxis"
+                               RadiusExtentScale="0.85"
+                               InnerRadiusExtentScale="0"
+                               MinimumValue="0" MaximumValue="3" Interval="1"
+                               CrossingValue="-20"
+                               StrokeThickness="0"
+                               LabelLeftMargin="10"/>
+
+            <PolarLineSeries DataSource="PolarConnections"
+                             AngleAxisName="angleAxis"
+                             AngleMemberPath="Angle"
+                             RadiusAxisName="radiusAxis"
+                             RadiusMemberPath="Level"
+                             ShowDefaultTooltip="true"
+                             Thickness="2"
+                             Brush="#676666"
+                             Title="Connections"
+                             MarkerType="MarkerType.None" />
+
+
+                @foreach (var markers in this.PolarMarkersByLevel.Values)
+                {
+                    <PolarScatterSeries DataSource="@markers"
+                                        AngleAxisName="angleAxis"
+                                        AngleMemberPath="Angle"
+                                        RadiusAxisName="radiusAxis"
+                                        RadiusMemberPath="Level"
+                                        Thickness="1"
+                                        MarkerType="MarkerType.None"
+                                        MarkerTemplateScript="onNetworkPolarChartMarker"
+                                        Title="@("Level " + markers[0].Level)"
+                                        Brush="@markers[0].Fill"
+                                        Outline="@markers[0].Outline"/>
+                }
+        </DataChart>
+        }
+
+    </div>
+</div>
+
+@code {
+
+    private Legend Legend;
+    private DataChart Chart;
+
+    private List<PolarMarker> PolarConnections;
+    private List<PolarMarker> PolarMarkers;
+    private Dictionary<double, List<PolarMarker>> PolarMarkersByLevel;
+    private Dictionary<double, string> ColorMapping;
+
+    protected override void OnInitialized()
+    {
+        LegendModule.Register(IgniteUIBlazor);
+        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        DataChartPolarModule.Register(IgniteUIBlazor);
+        DataChartPolarCoreModule.Register(IgniteUIBlazor);
+
+        // defining data structure of tree nodes
+        var rootNode = new TreeNode { Label = "0", Children =
+            {
+                new TreeNode { Label = "A", Children =
+                {
+                    new TreeNode { Label = "A1" },
+                    new TreeNode { Label = "A2" },
+                    new TreeNode { Label = "A3" },
+                }},
+                new TreeNode { Label = "B", Children =
+                {
+                     new TreeNode { Label = "B1" },
+                     new TreeNode { Label = "B2" },
+                }},
+                new TreeNode { Label = "C", Children =
+                {
+                     new TreeNode { Label = "C1" },
+                     new TreeNode { Label = "C2" },
+                     new TreeNode { Label = "C3" },
+                }},
+                new TreeNode { Label = "D", Children =
+                {
+                     new TreeNode { Label = "D1" },
+                     new TreeNode { Label = "D2" },
+                }},
+                new TreeNode { Label = "E", Children =
+                {
+                     new TreeNode { Label = "E1" },
+                     new TreeNode { Label = "E2" },
+                     new TreeNode { Label = "E3" },
+                }},
+            }
+        };
+
+        // defining extra nodes for all outter nodes
+        var leaf = 1;
+        foreach (var inner in rootNode.Children)
+        {
+            foreach (var outter in inner.Children)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    var node = new TreeNode { Label = "" + leaf++ };
+                    outter.Children.Add(node);
+                }
+            }
+        }
+
+        ColorMapping = new Dictionary<double, string>();
+        ColorMapping.Add(0.0, "#545353");
+        ColorMapping.Add(1.0, "#A532E1");
+        ColorMapping.Add(2.0, "#147DD1");
+        ColorMapping.Add(3.0, "#1DA31D");
+
+        // generating polar markers that will represent all tree nodes
+        this.PolarMarkers = new List<PolarMarker>();
+        this.PolarConnections = new List<PolarMarker>();
+
+        var rootMarker = new PolarMarker { Label = "X" };
+        rootMarker.Angle = 0;
+        rootMarker.Level = 0;
+        rootMarker.Fill = ColorMapping[rootMarker.Level];
+        this.PolarMarkers.Add(rootMarker);
+
+        double interval = 360 / rootNode.Children.Count;
+        double angle = interval - (180 / rootNode.Children.Count);
+
+        for (int i = 0; i < rootNode.Children.Count; i++)
+        {
+            var step = i * interval;
+            var innerNode = rootNode.Children[i];
+            var innerMarker = new PolarMarker { Label = innerNode.Label };
+            innerMarker.Angle = angle + step;
+            innerMarker.Level = 1;
+            innerMarker.Fill = ColorMapping[innerMarker.Level];
+            this.PolarMarkers.Add(innerMarker);
+
+            this.PolarConnections.Add(rootMarker.Clone());
+            this.PolarConnections.Add(innerMarker.Clone());
+            this.PolarConnections.Add(new PolarMarker());
+
+            GenerateMarkers(innerNode, innerMarker, 2, 60);
+        }
+
+        // grouping all tree markers by their node level
+        PolarMarkersByLevel = new Dictionary<double, List<PolarMarker>>();
+        foreach (var marker in this.PolarMarkers)
+        {
+            if (!this.PolarMarkersByLevel.ContainsKey(marker.Level))
+            {
+                this.PolarMarkersByLevel.Add(marker.Level, new List<PolarMarker>());
+            }
+
+            this.PolarMarkersByLevel[marker.Level].Add(marker);
+        }
+    }
+
+    void GenerateMarkers(TreeNode innerNode, PolarMarker innerMarker, double level, double angelSpan)
+    {
+        var outerInterval = 0.0;
+        var outerAngle = 0.0;
+        if (innerNode.Children.Count % 2 == 0)
+        {
+            outerInterval = (angelSpan / (innerNode.Children.Count)) / 2.0;
+            outerAngle = innerMarker.Angle - (outerInterval * innerNode.Children.Count);
+        }
+        else
+        {
+            outerInterval = (angelSpan / (innerNode.Children.Count));
+            outerAngle = innerMarker.Angle - (outerInterval * ((innerNode.Children.Count - 1) / 2.0));
+        }
+
+        for (int o = 0; o < innerNode.Children.Count; o++)
+        {
+            var outerNode = innerNode.Children[o];
+
+            var outerStep =  0.0;
+            if (innerNode.Children.Count % 2 == 0)
+                outerStep = (o * outerInterval * 2) + outerInterval;
+            else
+                outerStep = (o * (outerInterval));
+
+            var outerMarker = new PolarMarker { Label = outerNode.Label };
+            outerMarker.Parent = innerMarker;
+            outerMarker.Angle = outerAngle + outerStep;
+            outerMarker.Level = level;
+            outerMarker.Fill = ColorMapping[outerMarker.Level];
+
+            this.PolarMarkers.Add(outerMarker);
+
+            this.PolarConnections.Add(innerMarker.Clone());
+            this.PolarConnections.Add(outerMarker.Clone());
+            this.PolarConnections.Add(new PolarMarker());
+
+            if (outerNode.Children.Count > 0)
+                GenerateMarkers(outerNode, outerMarker, level+1, angelSpan / 3.0);
+
+        }
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        if (this.Chart != null && this.Legend != null && firstRender) {
+            //this.Chart.Legend = this.Legend;
+        }
+    }
+
+    public class TreeNode
+    {
+        public List<TreeNode> Children { get; set; }
+        public TreeNode Parent { get; set; }
+        public string Label { get; set; }
+        public double Value { get; set; }
+
+        public TreeNode()
+        {
+            Children = new List<TreeNode>();
+        }
+    }
+
+
+    public class PolarMarker
+    {
+        public PolarMarker Parent { get; set; }
+
+        public double Angle { get; set; }
+        public double Level { get; set; }
+
+        public double Radius { get; set; }
+        public string Fill { get; set; }
+        public string Outline { get; set; }
+        public int Thickness { get; set; }
+
+        public string Label { get; set; }
+        public string LabelColor { get; set; }
+        public int    LabelSize { get; set; }
+
+        public PolarMarker()
+        {
+            Level = double.NaN;
+            Angle = double.NaN;
+            LabelColor = "white";
+            LabelSize = 12;
+
+            Radius = 12;
+            Fill = "black";
+            Outline = "black";
+        }
+
+        public PolarMarker Clone()
+        {
+            var clone = new PolarMarker();
+            clone.Level = this.Level;
+            clone.Angle = this.Angle;
+            return clone;
+        }
+    }
+
+}

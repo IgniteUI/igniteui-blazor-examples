@@ -1,1 +1,78 @@
-<Infragistics.Samples.Pages.RadialGaugeTypeRing />
+
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="container vertical">
+        <RadialGauge Height="100%" Width="100%"
+                     MinimumValue="0"
+                     MaximumValue="120"
+                     Interval="10"
+                     TransitionDuration="500"
+                     LabelInterval="10"
+                     LabelExtent="0.85"
+                     Font="15px Verdana,Arial"
+                     NeedleShape="RadialGaugeNeedleShape.None"
+                     NeedlePivotShape="RadialGaugePivotShape.None"
+                     ScaleStartAngle="0"
+                     ScaleEndAngle="360"
+                     ScaleBrush="transparent"
+                     ScaleOversweepShape="RadialGaugeScaleOversweepShape.Circular"
+                     ScaleSweepDirection="SweepDirection.Clockwise"
+                     ScaleEndExtent="0.725"
+                     ScaleStartExtent="0.6"
+                     MinorTickCount="4"
+                     MinorTickStartExtent="0.725"
+                     MinorTickEndExtent="0.7375"
+                     MinorTickBrush="transparent"
+                     TickStartExtent="0.725"
+                     TickEndExtent="0.75"
+                     TickStrokeThickness="1"
+                     TickBrush="#79797A"
+                     BackingBrush="transparent"
+                     BackingOutline="transparent"
+                     BackingShape="RadialGaugeBackingShape.Circular">
+            @for (int i = 0; i < RangeColors.Length; i++)
+            {
+                double extent = 0.725 - (0.1 * i);
+                double value = 90;
+
+                if (i == 1)
+                {
+                    value = 80;
+                }
+                else if (i == 2)
+                {
+                    value = 60;
+                }
+                <RadialGaugeRange StartValue="0" EndValue="120"
+                                  Brush="#E0DFDF" Outline="#E0DFDF"
+                                  InnerStartExtent="extent - 0.09"
+                                  InnerEndExtent="extent - 0.09"
+                                  OuterStartExtent="extent"
+                                  OuterEndExtent="extent">
+                </RadialGaugeRange>
+                <RadialGaugeRange StartValue="0" EndValue=value
+                                  Brush=@RangeColors[i] Outline=@RangeColors[i]
+                                  InnerStartExtent="extent - 0.09"
+                                  InnerEndExtent="extent - 0.09"
+                                  OuterStartExtent="extent"
+                                  OuterEndExtent="extent">
+                </RadialGaugeRange>
+            }
+        </RadialGauge>
+    </div>
+</div>
+
+@code {
+
+    private string[] RangeColors;
+
+    protected override void OnInitialized()
+    {
+        RadialGaugeModule.Register(IgniteUIBlazor);
+
+        RangeColors = "#10B401,#FDB417,#FF0000".Split(',');
+    }
+
+}

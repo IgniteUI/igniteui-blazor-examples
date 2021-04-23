@@ -25,7 +25,8 @@ exports.updateSamples = updateSamples = gulp.series(
     sb.updateReadme,
     // sb.updatePackages,
     // sb.updateIndex,
-    // sb.updateSharedFiles,
+    sb.updateSharedFiles,
+    sb.updateDataFiles,
 );
 
 exports.lintSamples = lintSamples = gulp.series(
@@ -57,6 +58,12 @@ exports.updateProjects = updateProjects = gulp.series(
 //     sb.updateSharedFiles,
 // );
 
+exports.updateCodeViewer = updateCodeViewer = gulp.series(
+    sb.getSamples,
+    sb.updateCodeViewer,
+);
+
+
 exports.copySamplesToServer = copySamplesToServer = gulp.series(
     // sb.updateVersion,
     sb.getSamples,
@@ -67,11 +74,21 @@ exports.copySamplesToClient = copySamplesToClient = gulp.series(
     // sb.updateVersion,
     sb.getSamples,
     sb.copySamplesToClient,
+    sb.updateCodeViewer,
 );
 // exports.updateBrowser = updateBrowser = copySamples;
 
 exports.cleanupSampleBrowsers = cleanupSampleBrowsers = gulp.series(
     sb.cleanupSampleBrowsers,
+);
+
+exports.listSamples = sb.listSamples;
+exports.removeSamplePages = sb.removeSamplePages;
+exports.renameProjects = sb.renameProjects;
+
+exports.convert = getSamples = gulp.series(
+    sb.getSamples,
+    sb.convertSamples,
 );
 
 // exports.updateVersion = updateVersion = sb.updateVersion;

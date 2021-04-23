@@ -1,1 +1,95 @@
-<Infragistics.Samples.Pages.DataChartSeriesHighlighting />
+﻿@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="container vertical">
+    <div class="options horizontal">
+        <label class="options-label">Enable Highlighting: </label>
+        <label class="options-item">
+            <input type="checkbox" @bind="SeriesHighlightEnabled" /> Series
+        </label>
+        <label class="options-item">
+            <input type="checkbox" @onchange="OnItemHighlightCheckboxChanged"/>Item
+        </label>
+        <label class="options-item">
+            <input type="checkbox" @onchange="OnCategoryHighlightCheckboxChanged" />Category
+        </label>
+    </div>
+
+    <div class="container vertical">
+        <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true"
+                   IsHorizontalZoomEnabled="true" @ref="Chart">
+            <CategoryXAxis Name="xAxis" DataSource="Data" Label="Country" />
+            <NumericYAxis Name="yAxis" MinimumValue="0" AbbreviateLargeNumbers="true" />
+
+            <ColumnSeries Title="Coal" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Coal"
+                          DataSource="Data" IsTransitionInEnabled="true"
+                          IsHighlightingEnabled="SeriesHighlightEnabled"/>
+            <ColumnSeries Title="Hydro" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Hydro"
+                          DataSource="Data" IsTransitionInEnabled="true"
+                          IsHighlightingEnabled="SeriesHighlightEnabled"/>
+            <ColumnSeries Title="Nuclear" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Nuclear"
+                          DataSource="Data" IsTransitionInEnabled="true"
+                          IsHighlightingEnabled="SeriesHighlightEnabled"/>
+            <ColumnSeries Title="Gas" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Gas"
+                          DataSource="Data" IsTransitionInEnabled="true"
+                          IsHighlightingEnabled="SeriesHighlightEnabled"/>
+            <ColumnSeries Title="Oil" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Oil"
+                          DataSource="Data" IsTransitionInEnabled="true"
+                          IsHighlightingEnabled="SeriesHighlightEnabled"/>
+        </DataChart>
+    </div>
+</div>
+
+@code {
+
+    private List<EnergyProductionData.Energy> Data;
+    private bool SeriesHighlightEnabled = true;
+
+    private CategoryItemHighlightLayer ItemHighlightLayer;
+    private CategoryHighlightLayer CategoryHighlightLayer;
+    private DataChart Chart;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        CategoryHighlightLayerModule.Register(IgniteUIBlazor);
+        CategoryItemHighlightLayerModule.Register(IgniteUIBlazor);
+
+        this.Data = EnergyProductionData.Generate();
+
+        this.ItemHighlightLayer = new CategoryItemHighlightLayer();
+        this.CategoryHighlightLayer = new CategoryHighlightLayer();
+    }
+
+    private void OnCategoryHighlightCheckboxChanged(ChangeEventArgs e)
+    {
+        bool val = (bool)e.Value;
+        if (val)
+        {
+            this.Chart.ActualSeries.Add(this.CategoryHighlightLayer);
+        }
+        else
+        {
+            this.Chart.ActualSeries.Remove(this.CategoryHighlightLayer);
+        }
+    }
+
+    private void OnItemHighlightCheckboxChanged(ChangeEventArgs e)
+    {
+        bool val = (bool)e.Value;
+        if (val)
+        {
+            this.Chart.ActualSeries.Add(this.ItemHighlightLayer);
+        }
+        else
+        {
+            this.Chart.ActualSeries.Remove(this.ItemHighlightLayer);
+        }
+    }
+}
+

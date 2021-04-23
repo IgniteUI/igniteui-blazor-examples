@@ -1,0 +1,78 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="options vertical">
+        <span class="legend-title">Renewable Electricity Generated</span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+        </div>
+
+        <div class="overlay-right" >
+            <div class="options horizontal" >
+                <label>X - Axis Label Angle </label>
+                <label class="options-value" >@XAxisLabelAngle</label>
+                <input type="range" min="0" max="270" step="10" value="0" @oninput="OnXAxisLabelAngleChange"/>
+          </div>
+            <div class="options horizontal" >
+                <label>Y - Axis Label Angle </label>
+                <label class="options-value" >@YAxisLabelAngle</label>
+                <input type="range" min="-90" max="90" step="10" value="0" @oninput="OnYAxisLabelAngleChange" />
+            </div>
+        </div>
+    </div>
+    <div class="container vertical">
+        @if (Data != null)
+        {
+            <CategoryChart Height="100%" Width="100%"
+                           Legend="Legend"
+                           DataSource="Data"
+                           ChartType="CategoryChartType.Line"
+                           IsHorizontalZoomEnabled="false"
+                           IsVerticalZoomEnabled="false"
+                           XAxisLabelAngle="@XAxisLabelAngle"
+                           XAxisLabelTextColor="Gray"
+                           XAxisLabelTextStyle="10pt 'Titillium Web'"
+                           XAxisLabelTopMargin="5"
+                           YAxisLabelAngle="@YAxisLabelAngle"
+                           YAxisLabelTextColor="Gray"
+                           YAxisLabelTextStyle="10pt 'Titillium Web'"
+                           YAxisLabelRightMargin="5"
+                           YAxisLabelLocation="AxisLabelsLocation.OutsideRight"
+                           TitleTopMargin="10"
+                           ChartTitle="">
+            </CategoryChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private Legend _Legend;
+    private Legend Legend
+    {
+        get { return _Legend; }
+        set { _Legend = value; StateHasChanged(); }
+    }
+
+    private int XAxisLabelAngle = 0;
+    private int YAxisLabelAngle = 0;
+
+    private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
+
+    protected override void OnInitialized()
+    {
+        CategoryChartModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+    }
+
+    private void OnXAxisLabelAngleChange(ChangeEventArgs args)
+    {
+        this.XAxisLabelAngle = int.Parse(args.Value.ToString());
+    }
+
+    private void OnYAxisLabelAngleChange(ChangeEventArgs args)
+    {
+        this.YAxisLabelAngle = int.Parse(args.Value.ToString());
+    }
+}

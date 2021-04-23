@@ -1,1 +1,82 @@
-<Infragistics.Samples.Pages.DataChartTypeFinancialIndicatorColumn />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="container vertical">
+
+        <DataChart Height="60%" Width="100%"
+                   Subtitle="Financial Stock Price Series"
+                   SubtitleTopMargin="10"
+                   IsHorizontalZoomEnabled="true"
+                   IsVerticalZoomEnabled="true">
+
+            <CategoryXAxis Name="xAxis1" Label="Label" DataSource="Data" />
+            <NumericYAxis  Name="yAxis1" LabelRightMargin="10" LabelExtent="50"
+                           LabelHorizontalAlignment="HorizontalAlignment.Left"
+                           LabelLocation="AxisLabelsLocation.OutsideRight" />
+
+            <FinancialPriceSeries XAxisName="xAxis1"
+                                  YAxisName="yAxis1"
+                                  DataSource="Data"
+                                  DisplayType="PriceDisplayType.Candlestick"
+                                  OpenMemberPath="Open"
+                                  CloseMemberPath="Close"
+                                  HighMemberPath="High"
+                                  LowMemberPath="Low"
+                                  VolumeMemberPath="Volume"
+                                  ShowDefaultTooltip="true"
+                                  IsTransitionInEnabled="true"
+                                  Brush="rgba(2, 199, 74, 1.0)"
+                                  Outline="rgba(2, 199, 74, 1.0)"
+                                  Title="Price" />
+        </DataChart>
+
+        <DataChart Height="40%" Width="100%"
+                   Subtitle="Financial RSI Indicator (in Column display mode)"
+                   SubtitleTopMargin="10"
+                   IsHorizontalZoomEnabled="true"
+                   IsVerticalZoomEnabled="true">
+
+            <CategoryXAxis Name="xAxis2" Label="Label" DataSource="Data" />
+            <NumericYAxis  Name="yAxis2" LabelRightMargin="10" LabelExtent="50"
+                           LabelHorizontalAlignment="HorizontalAlignment.Left"
+                           LabelLocation="AxisLabelsLocation.OutsideRight" />
+            <StochRSIIndicator XAxisName="xAxis2"
+                               YAxisName="yAxis2"
+                               DisplayType="@IndicatorDisplayType.Column"
+                               DataSource="Data"
+                               OpenMemberPath="Open"
+                               CloseMemberPath="Close"
+                               HighMemberPath="High"
+                               LowMemberPath="Low"
+                               VolumeMemberPath="Volume"
+                               ShowDefaultTooltip="true"
+                               IsTransitionInEnabled="true"
+                               Title="RSI" />
+        </DataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private List<SampleFinancialItem> Data;
+
+    protected override void OnInitialized()
+    {
+        // registering axis modules
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        // registering financial modules
+        DataChartFinancialModule.Register(IgniteUIBlazor);
+        DataChartFinancialCoreModule.Register(IgniteUIBlazor);
+        DataChartFinancialIndicatorsModule.Register(IgniteUIBlazor);
+        // registering other modules
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+
+        Data = SampleFinancialData.Create();
+
+
+    }
+}

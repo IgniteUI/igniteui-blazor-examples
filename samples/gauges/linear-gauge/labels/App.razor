@@ -1,1 +1,25 @@
-<Infragistics.Samples.Pages.LinearGaugeLabels />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="container vertical">
+        <LinearGauge Height="80px" Width="100%"
+                     MinimumValue="0" Value="50"
+                     MaximumValue="100" Interval="10"
+                     LabelInterval="10"
+                     LabelExtent="0.025"
+                     LabelsPreTerminal="0"
+                     LabelsPostInitial="0"
+                     FontBrush="DodgerBlue"
+                     Font="11px Verdana">
+        </LinearGauge>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        LinearGaugeModule.Register(IgniteUIBlazor);
+    }
+}

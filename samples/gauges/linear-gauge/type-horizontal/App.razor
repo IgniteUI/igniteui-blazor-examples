@@ -1,2 +1,137 @@
-<Infragistics.Samples.Pages.LinearGaugeTypeHorizontal />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
 
+<div class="container vertical">
+    <div class="container vertical">
+        <LinearGauge Height="120px" Width="100%"
+                     Orientation="LinearScaleOrientation.Horizontal"
+                     Value="80"
+                     MinimumValue="0"
+                     MaximumValue="100"
+                     Interval="10"
+                     LabelInterval="10"
+                     LabelExtent="0.0"
+                     TransitionDuration="500"
+                     ScaleInnerExtent="0.25"
+                     ScaleOuterExtent="0.8"
+                     ScaleStartExtent="0.05"
+                     ScaleEndExtent="0.95">
+            @for (int i = 0; i < RangeInfo1.Count; i++)
+            {
+                GaugeRangeInfo info1 = RangeInfo1[i];
+                <LinearGraphRange StartValue=info1.StartValue
+                                  EndValue=info1.EndValue
+                                  InnerStartExtent=info1.InnerStartExtent
+                                  InnerEndExtent=info1.InnerEndExtent
+                                  OuterStartExtent=info1.OuterStartExtent
+                                  OuterEndExtent=info1.OuterEndExtent
+                                  Brush="@info1.Brush"
+                                  Outline="@info1.Outline">
+                </LinearGraphRange>
+            }
+        </LinearGauge>
+        <LinearGauge Height="120px" Width="100%"
+                     Orientation="LinearScaleOrientation.Horizontal"
+                     Value="60"
+                     MinimumValue="0"
+                     MaximumValue="100"
+                     Interval="10"
+                     LabelInterval="10"
+                     LabelExtent="0.0"
+                     TransitionDuration="500"
+                     ScaleInnerExtent="0.25"
+                     ScaleOuterExtent="0.8"
+                     ScaleStartExtent="0.05"
+                     ScaleEndExtent="0.95">
+            @for (int i = 0; i < RangeInfo2.Count; i++)
+            {
+                GaugeRangeInfo info2 = RangeInfo2[i];
+                <LinearGraphRange StartValue=info2.StartValue
+                                  EndValue=info2.EndValue
+                                  InnerStartExtent=info2.InnerStartExtent
+                                  InnerEndExtent=info2.InnerEndExtent
+                                  OuterStartExtent=info2.OuterStartExtent
+                                  OuterEndExtent=info2.OuterEndExtent
+                                  Brush="@info2.Brush"
+                                  Outline="@info2.Outline">
+                </LinearGraphRange>
+            }
+        </LinearGauge>
+        <LinearGauge Height="120px" Width="100%"
+                     Orientation="LinearScaleOrientation.Horizontal"
+                     Value="40"
+                     MinimumValue="0"
+                     MaximumValue="100"
+                     Interval="10"
+                     LabelInterval="10"
+                     LabelExtent="0.0"
+                     TransitionDuration="500"
+                     ScaleInnerExtent="0.25"
+                     ScaleOuterExtent="0.8"
+                     ScaleStartExtent="0.05"
+                     ScaleEndExtent="0.95">
+            @for (int i = 0; i < RangeInfo3.Count; i++)
+            {
+                GaugeRangeInfo info3 = RangeInfo3[i];
+                <LinearGraphRange StartValue=info3.StartValue
+                                  EndValue=info3.EndValue
+                                  InnerStartExtent=info3.InnerStartExtent
+                                  InnerEndExtent=info3.InnerEndExtent
+                                  OuterStartExtent=info3.OuterStartExtent
+                                  OuterEndExtent=info3.OuterEndExtent
+                                  Brush="@info3.Brush"
+                                  Outline="@info3.Outline">
+                </LinearGraphRange>
+            }
+        </LinearGauge>
+    </div>
+</div>
+
+@code {
+
+    private List<GaugeRangeInfo> RangeInfo1;
+    private List<GaugeRangeInfo> RangeInfo2;
+    private List<GaugeRangeInfo> RangeInfo3;
+
+    protected override void OnInitialized()
+    {
+        LinearGaugeModule.Register(IgniteUIBlazor);
+
+        RangeInfo1 = new List<GaugeRangeInfo>();
+        RangeInfo2 = new List<GaugeRangeInfo>();
+        RangeInfo3 = new List<GaugeRangeInfo>();
+
+        List<string> colors1 = new List<string>() { "#008000", "#10B401", "#45EC03", "#2EFA2E" };
+        List<string> colors2 = new List<string>() { "#E29B03", "#FDB417", "#FDC957", "#FDD682" };
+        List<string> colors3 = new List<string>() { "#CF0000", "#FF0000", "#FD3939", "#FA6363" };
+
+        CreateGaugeRangeCollection(colors1, RangeInfo1);
+        CreateGaugeRangeCollection(colors2, RangeInfo2);
+        CreateGaugeRangeCollection(colors3, RangeInfo3);
+    }
+
+    private void CreateGaugeRangeCollection(List<string> colors, List<GaugeRangeInfo> collection)
+    {
+        double rangeSpan = 100;
+        double rangeValueInterval = rangeSpan / colors.Count;
+
+        for (int i = 0; i < colors.Count; i++)
+        {
+            string color = colors[i];
+
+            GaugeRangeInfo info = new GaugeRangeInfo()
+            {
+                StartValue = rangeValueInterval * i,
+                EndValue = rangeValueInterval * (i + 1),
+                Brush = color,
+                Outline = color,
+                InnerStartExtent = 0.25,
+                InnerEndExtent = 0.25,
+                OuterStartExtent = 0.8,
+                OuterEndExtent = 0.8
+            };
+
+            collection.Add(info);
+        }
+    }
+}

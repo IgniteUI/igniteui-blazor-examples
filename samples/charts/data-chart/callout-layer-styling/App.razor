@@ -1,0 +1,50 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="container vertical">
+        @if (Data != null)
+        {
+        <DataChart Height="100%" Width="100%" Subtitle="Renewable Energy Generated">
+            <CategoryXAxis Name="xAxis" DataSource="Data" Label="Year" />
+            <NumericYAxis Name="yAxis" Title="TWh" LabelLocation="AxisLabelsLocation.OutsideRight" />
+
+            <LineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="USA" />
+
+            <CalloutLayer DataSource="CalloutData" XMemberPath="Index" YMemberPath="Value" LabelMemberPath="Label"
+                          CalloutLeaderBrush="Black" CalloutOutline="Black" CalloutBackground="Orange" CalloutTextColor="Black" CalloutStrokeThickness="2"/>
+        </DataChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
+    private List<CalloutInfo> CalloutData = new List<CalloutInfo>();
+
+    protected override void OnInitialized()
+    {
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartAnnotationModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        AnnotationLayerProxyModule.Register(IgniteUIBlazor);
+
+        for (int i = 0; i < this.Data.Count; i++)
+        {
+            CalloutData.Add(
+                new CalloutInfo {
+                    Index = i, Label =
+                    this.Data[i].USA + " " + "TWh",
+                    Value = this.Data[i].USA });
+        }
+    }
+
+    public class CalloutInfo
+    {
+        public int Index { get; set; }
+        public int Value { get; set; }
+        public string Label { get; set; }
+    }
+}

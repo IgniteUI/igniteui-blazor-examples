@@ -1,2 +1,59 @@
-<Infragistics.Samples.Pages.DataGridColumnResizing />
+﻿@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+@inject IJSRuntime JSRuntime;
 
+<div class="container vertical">
+    <div class="options horizotnal">
+        <span class="options-item">Resizing Mode:</span>
+        <select class="options-item" @bind="GridResizingMode">
+            <option>@ColumnResizingMode.Deferred</option>
+            <option>@ColumnResizingMode.Immediate</option>
+            <option>@ColumnResizingMode.None</option>
+        </select>
+
+        <span class="options-item">Resizing Animation:</span>
+        <select class="options-item" @bind="GridResizingAnimationMode">
+            <option>@ColumnResizingAnimationMode.Auto</option>
+            <option>@ColumnResizingAnimationMode.Interpolate</option>
+            <option>@ColumnResizingAnimationMode.None</option>
+        </select>
+    </div>
+
+    <div class="container vertical">
+        @if (Data != null)
+        {
+            <DataGrid Height="100%" Width="100%"
+                      ColumnResizingAnimationMode="@GridResizingAnimationMode"
+                      ColumnResizingMode="@GridResizingMode"
+                      ColumnResizingSeparatorWidth="1"
+                      AutoGenerateColumns="false"
+                      DefaultColumnMinWidth="100"
+                      DataSource="Data"
+                      IsColumnOptionsEnabled="true">
+                <TextColumn Field="Name" Width="@("*>170")" />
+                <TextColumn Field="Street" HeaderText="Address" Width="@("*>150")" />
+                <TextColumn Field="City" Width="@("*>120")" />
+                <NumericColumn Field="Salary" PositivePrefix="$" ShowGroupingSeparator="true" Width="@("*>120")" />
+                <DateTimeColumn Field="Birthday" Width="@("*>170")" />
+            </DataGrid>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<Employee> Data;
+
+    private ColumnResizingAnimationMode GridResizingAnimationMode;
+    private ColumnResizingMode GridResizingMode;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        DataGridModule.Register(IgniteUIBlazor);
+
+        this.Data = EmployeeData.Create(100, false);
+        this.GridResizingAnimationMode = ColumnResizingAnimationMode.Interpolate;
+        this.GridResizingMode = ColumnResizingMode.Deferred;
+    }
+}

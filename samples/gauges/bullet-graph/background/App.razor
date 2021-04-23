@@ -1,1 +1,24 @@
-<Infragistics.Samples.Pages.BulletGraphBackground />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="container vertical">
+        <BulletGraph Height="80px" Width="100%"
+                     MinimumValue="0" Value="70" Interval="10"
+                     MaximumValue="100" TargetValue="90"
+                     BackingBrush="#BDDCFC"
+                     BackingOutline="DodgerBlue"
+                     BackingStrokeThickness="4"
+                     BackingInnerExtent="0"
+                     BackingOuterExtent="1">
+        </BulletGraph>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        BulletGraphModule.Register(IgniteUIBlazor);
+    }
+}

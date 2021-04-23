@@ -1,1 +1,45 @@
-<Infragistics.Samples.Pages.DataChartTypeStackedSplineAreaSeries />
+﻿@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="container vertical">
+    <div class="container vertical">
+        @if (Data != null)
+        {
+            <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true" IsHorizontalZoomEnabled="true">
+                <CategoryXAxis Name="xAxis" DataSource="Data" Label="Country" />
+                <NumericYAxis Name="yAxis" MinimumValue="0" />
+
+                <StackedSplineAreaSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="true" AreaFillOpacity="1">
+                    <StackedFragmentSeries ValueMemberPath="Coal" />
+                    <StackedFragmentSeries ValueMemberPath="Hydro" />
+                    <StackedFragmentSeries ValueMemberPath="Nuclear" />
+                    <StackedFragmentSeries ValueMemberPath="Solar" />
+                    <StackedFragmentSeries ValueMemberPath="Oil" />
+                </StackedSplineAreaSeries>
+            </DataChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<Infragistics.Samples.SampleStackedItem> Data;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        DataChartStackedModule.Register(IgniteUIBlazor);
+        ColumnFragmentModule.Register(IgniteUIBlazor);
+        StackedSplineSeriesModule.Register(IgniteUIBlazor);
+        StackedFragmentSeriesModule.Register(IgniteUIBlazor);
+
+        this.Data = SampleStackedData.Create();
+
+    }
+}

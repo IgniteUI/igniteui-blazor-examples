@@ -1,1 +1,58 @@
-<Infragistics.Samples.Pages.DataChartTypeScatterAreaSeries />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="container vertical">
+
+        @if (Data != null)
+        {
+        <DataChart Height="100%" Width="100%"
+                   GridMode="@GridMode.BeforeSeries"
+                   Subtitle="Distribution of Magnetic Field"
+                   SubtitleTopMargin="10"
+                   IsHorizontalZoomEnabled="false"
+                   IsVerticalZoomEnabled="false">
+
+            <NumericXAxis Name="xAxis" TitleBottomMargin="10" Title="Longitude" MinimumValue="-180" MaximumValue="180" />
+            <NumericYAxis Name="yAxis" TitleLeftMargin="10" Title="Latitude" MinimumValue="-90" MaximumValue="90" />
+
+            <ScatterAreaSeries XAxisName="xAxis"
+                               YAxisName="yAxis"
+                               Title="High Income Countrie"
+                               DataSource="Data"
+                               XMemberPath="X"
+                               YMemberPath="Y"
+                               ColorMemberPath="Z"
+                               ColorScale="@ColorScale"
+                               ShowDefaultTooltip="true">
+            </ScatterAreaSeries>
+
+        </DataChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<SampleScatterPoint> Data;
+    private CustomPaletteColorScale ColorScale;
+
+    protected override void OnInitialized()
+    {
+        LegendModule.Register(IgniteUIBlazor);
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartScatterModule.Register(IgniteUIBlazor);
+        DataChartScatterCoreModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        ScatterAreaSeriesModule.Register(IgniteUIBlazor);
+
+        this.ColorScale = new CustomPaletteColorScale();
+        this.ColorScale.InterpolationMode = ColorScaleInterpolationMode.InterpolateHSV;
+        this.ColorScale.MinimumValue = - 2;
+        this.ColorScale.MaximumValue = 2;
+        this.ColorScale.Palette = "#8670CB, #4AC4FF, #B5CC2E, #FC8612, #ED4840";
+
+        Data = SampleScatterData.Create();
+
+    }
+}

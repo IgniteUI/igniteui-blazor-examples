@@ -1,3 +1,42 @@
-<Infragistics.Samples.Pages.FinancialChartCustomIndicators />
 
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
 
+<div class="container vertical">
+    <div class="container vertical">
+
+        @if (Data != null)
+        {
+            <FinancialChart Width="100%"
+                Height="100%"
+                ChartType=FinancialChartType.Candle
+                ZoomSliderType="FinancialChartZoomSliderType.None"
+                DataSource="Data"
+                CustomIndicatorNames="@(new string[] {"Custom Indicator(Price Changes)"})"
+                ApplyCustomIndicatorsScript="onApplyCustomIndicators"/>
+        }
+    </div>
+</div>
+
+@code {
+
+    public List<StockItem> Data;
+
+    protected override void OnInitialized()
+    {
+        FinancialChartModule.Register(IgniteUIBlazor);
+        FinancialChartCoreModule.Register(IgniteUIBlazor);
+
+        GetStockData();
+    }
+
+    public void GetStockData() {
+        var today = DateTime.Now;
+        var year = today.Year;
+        var month = today.Month;
+        var dateEnd = new DateTime(year, month, 1);
+        var dateStart = new DateTime(year - 2, month, 1);
+
+        this.Data = StocksUtility.GetStocksBetween(dateStart, dateEnd);
+    }
+}

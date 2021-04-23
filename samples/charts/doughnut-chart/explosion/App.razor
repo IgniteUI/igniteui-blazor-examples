@@ -1,3 +1,82 @@
-<Infragistics.Samples.Pages.DoughnutChartExplosion />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
 
+@* TODO ExplodedSlices not working, labeLocation ,hover *@
 
+<div class="container vertical">
+    <div class="options vertical">
+        <span class="legend-title">Global Electricity Demand by Energy Use</span>
+        <div class="legend">
+            <ItemLegend @ref="Legend" /> @*Orientation="LegendOrientation.Horizontal" />*@
+        </div>
+    </div>
+
+        <div class="container vertical">
+
+            @if (Data != null)
+            {
+                <DoughnutChart Height="100%" Width="100%" @ref="Chart"
+                AllowSliceExplosion="true"
+                SliceClick="OnSliceClick">
+                    <RingSeries DataSource="Data"
+                                LabelMemberPath="Summary"
+                                LabelsPosition="LabelsPosition.OutsideEnd"
+                                LabelExtent="30"
+                                ValueMemberPath="MarketShare"
+                                LegendLabelMemberPath="Category"
+                                SelectedSliceStroke="white"
+                                SelectedSliceFill="rgb(143,143,143)"
+                                SelectedSliceOpacity="1.0"
+                                SelectedSliceStrokeThickness="2"
+                                RadiusFactor="0.7"
+                                StartAngle="30">
+                    </RingSeries>
+                </DoughnutChart>
+            }
+
+        </div>
+    </div>
+
+@code {
+
+    private List<DataItem> Data;
+    public int[] explodedSlices { get; set; } = new int[0];
+    public ItemLegend Legend;
+    public DoughnutChart Chart;
+
+    protected override void OnInitialized()
+    {
+        DoughnutChartModule.Register(IgniteUIBlazor);
+        ItemLegendModule.Register(IgniteUIBlazor);
+
+        this.Data = new List<DataItem>();
+        this.Data.Add(new DataItem { MarketShare = 37, Category = "Cooling", });
+        this.Data.Add(new DataItem { MarketShare = 25, Category = "Residential", });
+        this.Data.Add(new DataItem { MarketShare = 12, Category = "Heating", });
+        this.Data.Add(new DataItem { MarketShare = 11, Category = "Lighting", });
+        this.Data.Add(new DataItem { MarketShare = 15, Category = "Other", });
+    }
+
+    public class DataItem
+    {
+        public string Category { get; set; }
+        public double MarketShare { get; set; }
+        public string Summary { get { return Category + " " + MarketShare + "%"; } }
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        Chart.ActualSeries[0].Legend = Legend;
+    }
+
+    protected void OnSliceClick(SliceClickEventArgs e)
+    {
+        Console.WriteLine("Sample OnButtonClick");
+
+        // e.IsExploded = !e.IsExploded;
+        //e.IsSelected = false;
+        //explodedSlices = new int[] { e.Index };
+    }
+}

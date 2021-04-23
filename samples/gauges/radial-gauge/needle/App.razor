@@ -1,2 +1,37 @@
-<Infragistics.Samples.Pages.RadialGaugeNeedle />
 
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="container vertical">
+        <RadialGauge Height="100%" Width="100%"
+                     IsNeedleDraggingEnabled="true"
+                     IsNeedleDraggingConstrained="true"
+                     NeedleShape="RadialGaugeNeedleShape.NeedleWithBulb"
+                     NeedleBrush="DodgerBlue"
+                     NeedleOutline="DodgerBlue"
+                     NeedleEndExtent="0.475"
+                     NeedleStrokeThickness="1"
+
+                     NeedlePivotShape="RadialGaugePivotShape.CircleOverlay"
+                     NeedlePivotBrush="#9F9FA0"
+                     NeedlePivotOutline="#9F9FA0"
+                     NeedlePivotWidthRatio="0.2"
+                     NeedlePivotStrokeThickness="1"
+
+                     Value="50"
+                     MinimumValue="0"
+                     MaximumValue="80"
+                     Interval="10">
+        </RadialGauge>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        RadialGaugeModule.Register(IgniteUIBlazor);
+    }
+
+}

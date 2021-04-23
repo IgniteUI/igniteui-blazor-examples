@@ -1,1 +1,118 @@
-<Infragistics.Samples.Pages.DataChartAxisLocations />
+﻿@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="container vertical">
+    <div class="options horizontal">
+        <span class="legend-title">Legend: </span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal"/>
+        </div>
+    </div>
+
+    <div class="container vertical">
+        @if (Data != null)
+        {
+            <DataChart Height="100%" Width="100%" ChartTitle="Company Financial Projections" IsVerticalZoomEnabled="true"
+                       IsHorizontalZoomEnabled="true" Legend="Legend">
+                <CategoryXAxis Name="xAxisYears" DataSource="Data" Interval="12" LabelLocation="AxisLabelsLocation.OutsideBottom"
+                               Overlap="1" Gap="0.4" Label="Year" LabelTextColor="Gray" TickLength="0" />
+                <CategoryXAxis Name="xAxisMonths" DataSource="Data" Overlap="1" Gap="0.4" Interval="1"
+                               LabelLocation="AxisLabelsLocation.OutsideBottom" Label="Month" LabelTextColor="Gray" />
+                <NumericYAxis Name="yAxisLeft" Title="Expense | Revenue" TitleTextColor="Gray" MinimumValue="-900"
+                              MaximumValue="900" LabelTextColor="Gray" Interval="300" />
+                <NumericYAxis Name="yAxisRight" Title="Profit (%)" TitleTextColor="Gray" MinimumValue="0" MaximumValue="100"
+                              LabelLocation="AxisLabelsLocation.OutsideRight" MajorStrokeThickness="0" LabelTextColor="Gray"
+                              LabelHorizontalAlignment="HorizontalAlignment.Left" TitleVerticalAlignment="VerticalAlignment.Center" />
+
+                <ColumnSeries Title="Revenue" DataSource="Data" ValueMemberPath="Revenue" Brush="#9B58E2" Outline="#9B58E2"
+                              XAxisName="xAxisMonths" YAxisName="yAxisLeft" IsTransitionInEnabled="true" ShowDefaultTooltip="true" />
+                <ColumnSeries Title="Expense" DataSource="Data" ValueMemberPath="Expense" Brush="#F23030" Outline="#F23030"
+                              XAxisName="xAxisMonths" YAxisName="yAxisLeft" IsTransitionInEnabled="true" ShowDefaultTooltip="true" />
+                <ColumnSeries Title="Profit" DataSource="Data" ValueMemberPath="Profit" Brush="#48BA39" Outline="#48BA39"
+                              XAxisName="xAxisYears" YAxisName="yAxisRight" IsTransitionInEnabled="true" ShowDefaultTooltip="true" />
+            </DataChart>
+        }
+
+    </div>
+</div>
+
+@code {
+
+    private List<FinancialItem> Data;
+
+    private Legend legend;
+    private Legend Legend
+    {
+        get { return legend; }
+        set
+        {
+            legend = value;
+            StateHasChanged();
+        }
+    }
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+
+        this.InitData();
+    }
+
+    Random r = new Random();
+    private void InitData()
+    {
+        var items = new List<FinancialItem>();
+
+        string[] months = new string[] { "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" };
+
+        double revenue = 200;
+        double profit = 15;
+        double expense = 0;
+
+        int year = 2020;
+        int month = 0;
+
+        for(int i=0; i<25; i++)
+        {
+            revenue += r.NextDouble() * 50 - 20;
+            profit += r.NextDouble() * 4.0 - 2.0;
+            expense = revenue - (revenue * profit / 100);
+
+            items.Add(new FinancialItem()
+            {
+                Expense = Math.Round(-expense),
+                Month = months[month],
+                Profit = Math.Round(profit),
+                Revenue = Math.Round(revenue),
+                Year = year
+            });
+
+            month++;
+            if(month >= 12)
+            {
+                month = 0;
+                year++;
+            }
+        }
+
+        this.Data = items;
+    }
+
+
+
+    private class FinancialItem
+    {
+        public double Expense { get; set; }
+        public string Month { get; set; }
+        public double Profit { get; set; }
+        public double Revenue { get; set; }
+        public int Year { get; set; }
+    }
+}

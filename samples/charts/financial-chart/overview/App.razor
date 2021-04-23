@@ -1,3 +1,52 @@
-<Infragistics.Samples.Pages.FinancialChartOverview />
 
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
 
+<div class="container vertical">
+
+    <div class="options vertical">
+        <span class="legend-title">Tesla vs Microsoft Stock Prices</span>
+        <div class="legend">
+            <Legend @ref="FinancialLegend" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+
+    <div class="container vertical">
+
+            <FinancialChart
+                @ref="Chart"
+                Width="100%"
+                Height="100%"
+                ChartType="FinancialChartType.Bar"
+                Thickness=2
+                ExcludedProperties="@(new string[] { "Date" })"
+                DataSource="Data"
+                ZoomSliderType="FinancialChartZoomSliderType.Bar"
+                IsToolbarVisible="true"
+                YAxisMode="FinancialChartYAxisMode.PercentChange"/>
+
+    </div>
+</div>
+
+@code {
+
+    public List<StockPrice[]> Data;
+    public Legend FinancialLegend { get; set; }
+    public FinancialChart Chart;
+
+    protected override async Task OnInitializedAsync()
+    {
+        FinancialChartModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+        this.Data = await StocksHistory.GetMultipleStocks();
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        if(Chart != null)
+        Chart.Legend = FinancialLegend;
+
+    }
+}

@@ -1,0 +1,37 @@
+
+@using IgniteUI.Blazor.Controls
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="container vertical">
+
+        @if (Data != null)
+        {
+            <FinancialChart Width="100%"
+                Height="100%"
+                ChartType=FinancialChartType.Candle
+                Thickness=2
+                DataSource="Data"
+                ChartTitle="Tesla vs Amazon vs Microsoft Changes"
+                Subtitle="Between 2013 and 2017"
+                YAxisMode="FinancialChartYAxisMode.PercentChange"
+                YAxisTitle="Percent Changed"
+                NegativeOutlines="rgb(213, 94, 0)"
+                NegativeBrushes="Transparent"
+                Brushes="Transparent"
+                ZoomSliderType="FinancialChartZoomSliderType.None"/>
+        }
+    </div>
+</div>
+
+@code {
+
+    protected List<StockPrice[]> Data;
+
+    protected override async Task OnInitializedAsync()
+    {
+        FinancialChartModule.Register(IgniteUIBlazor);
+        this.Data = await StocksHistory.GetMultipleStocks();
+    }
+}

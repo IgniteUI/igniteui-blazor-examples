@@ -1,0 +1,38 @@
+
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="container vertical">
+        @if (Data != null)
+        {
+            <CategoryChart Height="100%" Width="100%"
+                           IncludedProperties="@(new string[] { "Year", "Europe" })"
+                           ChartType="CategoryChartType.Spline"
+                           ChartTitle="Renewable Electricity Generated"
+                           TitleAlignment="HorizontalAlignment.Left"
+                           TitleLeftMargin="25"
+                           TitleTopMargin="10"
+                           TitleBottomMargin="10"
+                           DataSource="Data"
+                           YAxisTitle="TWh"
+                           ToolTipType="ToolTipType.Category"
+						   IsTransitionInEnabled="true"
+						   IsHorizontalZoomEnabled="false"
+						   IsVerticalZoomEnabled="false">
+            </CategoryChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
+
+    protected override void OnInitialized()
+    {
+        CategoryChartModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+    }
+}

@@ -1,1 +1,77 @@
-<Infragistics.Samples.Pages.CategoryChartHighlighting />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="options horizontal">
+        <label class="options-label">Enable Highlighting: </label>
+        <label class="options-item">
+            <input type="checkbox"
+                   checked="@IsSeriesHighlighting"
+                   @onchange="OnSeriesHighlightingChanged" /> Series
+        </label>
+        <label class="options-item">
+            <input type="checkbox"
+                   checked="@IsItemHighlighting"
+                   @onchange="OnItemHighlightingChanged" />Item
+        </label>
+        <label class="options-item">
+            <input type="checkbox"
+                   checked="@IsCategoryHighlighting"
+                   @onchange="OnCategoryHighlightingChanged" />Category
+        </label>
+    </div>
+    <div class="container vertical">
+        @if (Data != null)
+        {
+            <CategoryChart Height="100%" Width="100%"
+                           DataSource="@Data"
+                           IsCategoryHighlightingEnabled="@IsCategoryHighlighting"
+                           IsItemHighlightingEnabled="@IsItemHighlighting"
+                           IsSeriesHighlightingEnabled="@IsSeriesHighlighting"
+                           IsTransitionInEnabled="true"
+                           YAxisMinimumValue="0"
+                           XAxisInterval="1">
+            </CategoryChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private bool IsSeriesHighlighting = false;
+    private bool IsItemHighlighting = true;
+    private bool IsCategoryHighlighting = false;
+
+    private List<OlympicMedals> Data;
+
+    protected override void OnInitialized()
+    {
+        CategoryChartModule.Register(IgniteUIBlazor);
+
+        this.Data = new List<OlympicMedals>();
+        this.Data.Add(new OlympicMedals() { Year = "1996", USA = 148, CHN = 110, RUS = 95 });
+        this.Data.Add(new OlympicMedals() { Year = "2000", USA = 142, CHN = 115, RUS = 91 });
+        this.Data.Add(new OlympicMedals() { Year = "2004", USA = 134, CHN = 121, RUS = 86 });
+        this.Data.Add(new OlympicMedals() { Year = "2008", USA = 131, CHN = 129, RUS = 65 });
+        this.Data.Add(new OlympicMedals() { Year = "2012", USA = 135, CHN = 115, RUS = 77 });
+        this.Data.Add(new OlympicMedals() { Year = "2016", USA = 146, CHN = 112, RUS = 88 });
+    }
+
+    private void OnSeriesHighlightingChanged(ChangeEventArgs args)
+    {
+        bool value = (bool)args.Value;
+        this.IsSeriesHighlighting = value;
+    }
+
+    private void OnItemHighlightingChanged(ChangeEventArgs args)
+    {
+        bool value = (bool)args.Value;
+        this.IsItemHighlighting = value;
+    }
+
+    private void OnCategoryHighlightingChanged(ChangeEventArgs args)
+    {
+        bool value = (bool)args.Value;
+        this.IsCategoryHighlighting = value;
+    }
+}

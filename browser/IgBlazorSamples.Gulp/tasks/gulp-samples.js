@@ -33,38 +33,37 @@ log('loaded gulp scripts');
 
 // NOTE you can comment out strings in this array to run subset of samples
 var sampleSource = [
-    igConfig.SamplesCopyPath + '/charts/category-chart/**/Pages/',
-    igConfig.SamplesCopyPath + '/charts/data-chart/**/Pages/',
-    igConfig.SamplesCopyPath + '/charts/doughnut-chart/**/Pages/',
-    igConfig.SamplesCopyPath + '/charts/financial-chart/**/Pages/',
-    igConfig.SamplesCopyPath + '/charts/pie-chart/**/Pages/',
-    igConfig.SamplesCopyPath + '/charts/sparkline/**/Pages/',
-    igConfig.SamplesCopyPath + '/charts/tree-map/**/Pages/',
-    igConfig.SamplesCopyPath + '/charts/zoomslider/**/Pages/',
-    igConfig.SamplesCopyPath + '/maps/geo-map/**/Pages/',
-    igConfig.SamplesCopyPath + '/gauges/bullet-graph/**/Pages/',
-    igConfig.SamplesCopyPath + '/gauges/linear-gauge/**/Pages/',
-    igConfig.SamplesCopyPath + '/gauges/radial-gauge/**/Pages/',
-    igConfig.SamplesCopyPath + '/grids/**/Pages/',
-    igConfig.SamplesCopyPath + '/editors/**/Pages/',
-    igConfig.SamplesCopyPath + '/layouts/**/Pages/',
+    igConfig.SamplesCopyPath + '/charts/category-chart/**/App.razor',
+    igConfig.SamplesCopyPath + '/charts/data-chart/**/App.razor',
+    igConfig.SamplesCopyPath + '/charts/doughnut-chart/**/App.razor',
+    igConfig.SamplesCopyPath + '/charts/financial-chart/**/App.razor',
+    igConfig.SamplesCopyPath + '/charts/pie-chart/**/App.razor',
+    igConfig.SamplesCopyPath + '/charts/sparkline/**/App.razor',
+    igConfig.SamplesCopyPath + '/charts/tree-map/**/App.razor',
+    igConfig.SamplesCopyPath + '/charts/zoomslider/**/App.razor',
+    igConfig.SamplesCopyPath + '/maps/geo-map/**/App.razor',
+    igConfig.SamplesCopyPath + '/gauges/bullet-graph/**/App.razor',
+    igConfig.SamplesCopyPath + '/gauges/linear-gauge/**/App.razor',
+    igConfig.SamplesCopyPath + '/gauges/radial-gauge/**/App.razor',
+    igConfig.SamplesCopyPath + '/grids/**/App.razor',
+    igConfig.SamplesCopyPath + '/editors/**/App.razor',
+    igConfig.SamplesCopyPath + '/layouts/**/App.razor',
+    igConfig.SamplesCopyPath + '/excel/excel-library/**/App.razor',
 
-    // igConfig.SamplesCopyPath + '/gauges/bullet-graph/animation/Pages/',
-    // igConfig.SamplesCopyPath + '/grids/**/binding-live-data/Pages/',
-    // igConfig.SamplesCopyPath + '/grids/**/overview/Pages/',
-    // igConfig.SamplesCopyPath + '/grids/**/column-types/Pages/',
-
-    igConfig.SamplesCopyPath + '/excel/excel-library/**/Pages/',
-    // igConfig.SamplesCopyPath + '/excel/spreadsheet/**/Pages/',
+    // igConfig.SamplesCopyPath + '/excel/spreadsheet/**/App.razor',
+    // igConfig.SamplesCopyPath + '/gauges/bullet-graph/animation/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/**/binding-live-data/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/**/overview/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/**/column-types/App.razor',
 
     // excluding project's .razor files
-    // "!" + igConfig.SamplesCopyPath + '/grids/**/binding-live-data/Pages/',
-    "!" + igConfig.SamplesCopyPath + '/**/App.razor',
+    // "!" + igConfig.SamplesCopyPath + '/grids/**/binding-live-data/App.razor',
+    // "!" + igConfig.SamplesCopyPath + '/**/App.razor',
     "!" + igConfig.SamplesCopyPath + '/**/Program.cs',
     "!" + igConfig.SamplesCopyPath + '/**/obj/**',
     "!" + igConfig.SamplesCopyPath + '/**/bin/**',
-    // "!" + igConfig.SamplesCopyPath + '/**/data-chart/type-scatter-polygon-series/Pages/',
-    // "!" + igConfig.SamplesCopyPath + '/**/data-chart/type-scatter-polyline-series/Pages/',
+    // "!" + igConfig.SamplesCopyPath + '/**/data-chart/type-scatter-polygon-series/App.razor',
+    // "!" + igConfig.SamplesCopyPath + '/**/data-chart/type-scatter-polyline-series/App.razor',
     // "!" + igConfig.SamplesCopyPath + '/**/App.razor',
     // "!" + igConfig.SamplesCopyPath + '/**/_Imports.razor',
     // "!" + igConfig.SamplesCopyPath + '/**/wwwroot/index.html',
@@ -131,7 +130,8 @@ function getSamples(cb) {
 
         let sampleFiles = [];
         gulp.src([
-                sampleFolder + "/Pages/*",
+                // sampleFolder + "/Pages/*",
+                sampleFolder + "/App.razor",
                 sampleFolder + "/Components/*",
                 sampleFolder + "/Services/*",
                 sampleFolder + "/*.csproj",
@@ -139,10 +139,12 @@ function getSamples(cb) {
                 sampleFolder + "/wwwroot/*.css",
              // sampleFolder + "/wwwroot/*",
           '!' + sampleFolder + "/wwwroot/index.html",
-          '!' + sampleFolder + "/wwwroot/index.css",
-          '!' + sampleFolder + "/Pages/_*.razor",
+        //   '!' + sampleFolder + "/wwwroot/index.css",
+        //   '!' + sampleFolder + "/Pages/_*.razor",
         //   '!' + sampleFolder + "/Pages/DataGridBindingLiveData.razor",
           '!' + sampleFolder + "/Pages/*.g.cs",
+        //   '!' + sampleFolder + "/App.razor",
+          '!' + sampleFolder + "/_Imports.razor",
           '!' + sampleFolder + "/obj/**",
           '!' + sampleFolder + "/obj/*.*",
           '!' + sampleFolder + "/bin/**",
@@ -253,7 +255,7 @@ function saveFile(filePath, fileContent) {
 
 function copySamplePages(cb, outputPath) {
 
-    log('copying ' + outputPath + '/Pages/' );
+    log('copying  ' + outputPath + '/Pages/*.* from /samples/**/app.razor files:');
     // log('copying sample files... ');
     for (const sample of samples) {
 
@@ -264,16 +266,12 @@ function copySamplePages(cb, outputPath) {
         // outputFolder = Strings.toTitleCase(outputClient);
 
         for (const file of sample.SourceFiles) {
-            // log("copy " + sample.SampleRoute + " " + sample.ComponentFolder + " " + file.Path);
-                // log("TO copy " + file.Path + '/' + file.Name);
-            // if (file.isRazorComponent()) {
-            //     // log("copy " + file.Path);
-            //     log("copying " + outputPath + '/Components/' + file.Name);
-            //     saveFile(outputPath + '/Components/' + file.Name, file.Content);
-            // } else
             if (file.isRazorSample()) {
-                log("copying " + outputPath + '/Pages/' + sampleFolder + '/' + file.Name);
-                saveFile(outputPath + '/Pages/' + sampleFolder + '/' + file.Name, file.Content);
+                var copySource = file.Path;
+                var copyTarget = outputPath + '/Pages/' + sampleFolder + '/' + file.Parent + '/' + file.Name;
+                // log("copying " + copyTarget + " from " + copySource);
+                log("copying  " + copyTarget);
+                saveFile(copyTarget, file.Content);
             } else if (file.isCS())  {
                 saveFile(outputPath + '/Services/' + file.Name, file.Content);
             } else {
@@ -296,14 +294,21 @@ function copySampleScripts(cb, outputPath, indexName) {
     var insertScriptFiles = [];
 
     log('copying scripts to: ' + outputPath + '/wwwroot/');
+
+    var copiedScriptFiles = [];
     for (const sample of samples) {
         for (const file of sample.PublicFiles_JS) {
-            log("copying  " + outputPath + '/wwwroot/' + file.Name);
-            saveFile(outputPath + '/wwwroot/' + file.Name, file.Content);
-            if (file.Name.indexOf("DockManager") >= 0) {
-                insertScriptFiles.push('<script type="module" src="' + file.Name + '"></script>');
-            } else {
-                insertScriptFiles.push('<script src="' + file.Name + '"></script>');
+            if (copiedScriptFiles.indexOf(file.Name) === -1) {
+                copiedScriptFiles.push(file.Name);
+                const scriptPath = outputPath + '/wwwroot/sb/' + file.Name
+                log("copying  " + scriptPath);
+
+                saveFile(scriptPath, file.Content);
+                if (file.Name.indexOf("DockManager") >= 0) {
+                    insertScriptFiles.push('<script type="module" src="sb/' + file.Name + '"></script>');
+                } else {
+                    insertScriptFiles.push('<script src="sb/' + file.Name + '"></script>');
+                }
             }
         }
     }
@@ -326,11 +331,18 @@ function copySampleScripts(cb, outputPath, indexName) {
     }
 
     if (insertStart > 0) {
-        for (let i = insertStart+1; i < insertEnd; i++) {
-            indexLines[i] = "";
+        // for (let i = insertStart+1; i < insertEnd; i++) {
+        //     indexLines[i] = "";
+        // }
+
+        for (let i = insertEnd - 1; i > insertStart+1; i--) {
+            indexLines.splice(i, 1);
         }
+
         indexLines[insertStart + 1] = insertScriptFiles.join('\n');
     }
+
+    // indexLines = indexLines.filter((v, i, a) => a.indexOf(v) === i);
 
     index = indexLines.join('\n');
     fs.writeFileSync(indexPath, index);
@@ -490,7 +502,7 @@ function updateVersion(cb) {
 
 function updateIndex(cb) {
 
-    var template = fs.readFileSync("./templates/sample/src/index.tsx", "utf8");
+    var template = fs.readFileSync("../../templates/sample/src/index.tsx", "utf8");
     for (const sample of samples) {
 
         let outputPath = sampleOutputFolder + sample.SampleFolderPath + "/src/index.tsx";
@@ -513,19 +525,18 @@ function updateSharedFiles(cb) {
 
     // always override these shared files
     gulp.src([
-        './templates/sample/src/index.css',
-        './templates/sample/src/react-app-env.d.ts',
-        './templates/sample/sandbox.config.json',
-        './templates/sample/tsconfig.json',
-        './templates/sample/.gitignore',
-        './templates/sample/.eslintrc.js',
+        '../../templates/sample/wwwroot/index.css',
+        // '../../templates/sample/src/react-app-env.d.ts',
+        // '../../templates/sample/sandbox.config.json',
+        // '../../templates/sample/tsconfig.json',
+        // '../../templates/sample/.gitignore',
+        // '../../templates/sample/.eslintrc.js',
     ])
     .pipe(flatten({ "includeParents": -1 }))
     .pipe(es.map(function(file, fileCallback) {
         let sourceContent = file.contents.toString();
         let sourcePath = Transformer.getRelative(file.dirname);
-        sourcePath = sourcePath.replace('./templates/sample', '');
-        sourcePath = sourcePath.replace('./templates/shared', '');
+        sourcePath = sourcePath.replace('../../templates/sample', '');
 
         for (const sample of samples) {
             // if (sample.isUsingFileName(file.basename)) {
@@ -546,15 +557,25 @@ function updateSharedFiles(cb) {
         fileCallback(null, file);
         // SourceFiles.push(fileDir + "/" + file.basename);
     }))
+    .on("end", function() {
+        cb();
+    });
+
+} exports.updateSharedFiles = updateSharedFiles;
+
+function updateDataFiles(cb) {
 
     // update these shared files if a sample is using them
-    gulp.src(['./templates/shared/src/*.*'])
+    gulp.src(['../../templates/sample/Services/*.*'])
+    // gulp.src([
+    //     '../../templates/sample/Services/EnergyRenewableData.cs',
+    //     '../../templates/sample/Services/SharedExcelData.cs',
+    // ])
     .pipe(flatten({ "includeParents": -1 }))
     .pipe(es.map(function(file, fileCallback) {
         let sourceContent = file.contents.toString();
         let sourcePath = Transformer.getRelative(file.dirname);
-        sourcePath = sourcePath.replace('./templates/sample', '');
-        sourcePath = sourcePath.replace('./templates/shared', '');
+        sourcePath = sourcePath.replace('../../templates/sample', '');
 
         for (const sample of samples) {
             if (sample.isUsingFileName(file.basename)) {
@@ -569,8 +590,8 @@ function updateSharedFiles(cb) {
                         log('updated ' + targetPath);
                     }
                 } else {
-                    fs.writeFileSync(targetPath, sourceContent);
-                    log('added ' + targetPath);
+                    // fs.writeFileSync(targetPath, sourceContent);
+                    // log('added ' + targetPath);
                 }
 
                 // let targetPath = sampleOutputFolder + sample.SampleFolderPath + '/src/' + file.basename;
@@ -589,7 +610,7 @@ function updateSharedFiles(cb) {
     });
 
 
-} exports.updateSharedFiles = updateSharedFiles;
+} exports.updateDataFiles = updateDataFiles;
 
 
 
@@ -796,5 +817,149 @@ function copyTemplates(cb) {
 } exports.copyTemplates = copyTemplates;
 
 
+function listSamples(cb) {
 
+    let sampleFiles = [];
+    gulp.src([
+               igConfig.SamplesCopyPath + '/**/Pages/*',
+        '!' +  igConfig.SamplesCopyPath + '/**/Pages/*.g.cs',
+         // sampleFolder + "/wwwroot/*",
+    //   '!' + sampleFolder + "/wwwroot/index.html",
+    //   '!' + sampleFolder + "/Pages/*.g.cs",
+    ])
+    // .pipe(flatten({ "includeParents": -1 }))
+    .pipe(es.map(function(file, fileCallback) {
+        let fileDir = Transformer.getRelative(file.dirname);
+        sampleFiles.push(fileDir + "/" + file.basename);
+        // console.log("get file " + fileDir + "/" + file.basename);
+        fileCallback(null, file);
+    }))
+    .on("end", function() {
+        sampleFiles.sort();
+        for (const fileDir of sampleFiles) {
+            if (fileDir.indexOf(".razor") === -1)
+                console.log("list " + fileDir);
+        }
+        cb();
+    });
 
+} exports.listSamples = listSamples;
+
+function convertSamples(cb) {
+    for (const sample of samples) {
+
+        for (const file of sample.SourceFiles) {
+
+            if (file.isRazorSample()) {
+                // log("converting " + file.Path)
+                var appRazor = file.Path.split("/Pages")[0];
+                appRazor += "/App.razor";
+                log("converting " + appRazor)
+                // fs.writeFileSync(appRazor, file.Content, {encoding:'utf8',flag:'w'});
+            }
+        }
+    }
+    cb();
+
+} exports.convertSamples = convertSamples;
+
+function removeSamplePages(cb) {
+    del.sync(igConfig.SamplesCopyPath + '/**/Pages', {force:true});
+
+    cb();
+} exports.removeSamplePages = removeSamplePages;
+
+function renameProjects(cb) {
+
+    var sourceFiles = [
+        igConfig.SamplesCopyPath + '/**/BlazorClientApp.csproj',
+        igConfig.SamplesCopyPath + '/**/BlazorClientApp.sln'
+        // igConfig.SamplesCopyPath + '/charts/category-chart/annotations/BlazorClientApp.csproj',
+        // igConfig.SamplesCopyPath + '/charts/category-chart/annotations/BlazorClientApp.sln'
+    ];
+
+    gulp.src(sourceFiles, {allowEmpty: true})
+    .pipe(rename({
+        basename: 'BlazorClient'
+    }))
+    // .pipe(rename(function (file) {
+    //   file.dirname += "/folder";
+    //   file.basename = "BlazorClient";
+    //   file.extname = ".md";
+    // }))
+    .pipe(gulp.dest(function (file) { return file.base; }))
+    .on("end", function() {
+        log("renaming done" )
+
+        del.sync(sourceFiles, {force:true});
+        cb();
+    });
+
+} exports.renameProjects = renameProjects;
+
+function updateCodeViewer(cb) {
+
+    del.sync("../IgBlazorSamples.Client/wwwroot/code-viewer/**/.json", { force: true });
+    // note you might need to add/modify functions in Transformer.ts to implement this function.
+    // however, be careful with those functions because you might break scripts for copying samples to browser
+
+    // Comment out all values in the 'sampleSource' array except '/charts/pie-chart/' and those with '!' strings
+    // this way, you can run this function faster on a small subset of samples
+
+    // note the 'samples' is a global variable with info about all samples
+    // note the 'sample' is a local variable with info about ome sample, see SampleInfo class in Transformer.ts
+    for (const sample of samples) {
+
+        // using actual sample route so store json files in sub-folders
+        // this way we re-use route when creating a link to code-viewer file in topics
+        var path = sample.SampleRoute;
+        // path = path.substring(1, path.length);
+        // path = path.replace("/", "-");
+
+        var codeViewPath = "../IgBlazorSamples.Client/wwwroot/code-viewer" + path + ".json";
+        log("generating " + codeViewPath);
+
+        var content = "{\r\n \"sampleFiles\":\r\n";
+        var contentItems = [];
+
+        for (const file of sample.SourceFiles) {
+            if (file.isRazorSample()) {
+                var code = file.Content.replace(new RegExp('.*\@page.*\r?\n', 'g'), "");
+                var item = new CodeViewer(file.Path, code, "razor", "razor", true);
+                contentItems.push(item);
+            }
+            else if (file.isCS()) {
+                var item = new CodeViewer(file.Path, file.Content, "cs", "cs", false);
+                contentItems.push(item);
+            }
+        }
+
+        if (sample.PublicFiles_JS.length > 0) {
+            for(const file of sample.PublicFiles_JS){
+                var item = new CodeViewer(file.Path, file.Content, "js", "js", true);
+                contentItems.push(item);
+            }
+        }
+
+        if (sample.PublicFiles_CSS.length > 0) {
+            for(const file of sample.PublicFiles_CSS){
+                var item = new CodeViewer(file.Path, file.Content, "css", "css", true);
+                contentItems.push(item);
+            }
+        }
+        content += JSON.stringify(contentItems, null, '  ');
+        content += "\r\n}";
+
+        makeDirectoryFor(codeViewPath);
+        fs.writeFileSync(codeViewPath, content);
+
+        // - generate .json file with info about source files, e.g.
+        //     \browser\IgBlazorSamples.Client\wwwroot\code-viewer\charts-category-chart-annotations.json
+        // - note that "content" field should contain source code for sample files: .razor/.tsx, .cs/.ts, and .css
+        // - save all .json files in this folder: \browser\IgBlazorSamples.Client\wwwroot\code-viewer\
+        // - save each .json file with sample's component name and sample's folder name: charts-category-chart-annotations.json
+    }
+
+    cb();
+
+} exports.updateCodeViewer = updateCodeViewer;

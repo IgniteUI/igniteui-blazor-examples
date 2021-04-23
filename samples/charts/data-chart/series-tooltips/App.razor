@@ -1,1 +1,84 @@
-<Infragistics.Samples.Pages.DataChartSeriesTooltips />
+﻿@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="container vertical">
+    <div class="options horizontal">
+        <span class="options-label">Tooltip Type: </span>
+        <select @onchange="OnChartTooltipTypeChanged">
+            <option>Default</option>
+            <option>Item</option>
+            <option>Category</option>
+        </select>
+    </div>
+
+    <div class="container vertical">
+        @if (Data != null)
+        {
+            <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true"
+                       IsHorizontalZoomEnabled="true" @ref="Chart">
+                <CategoryXAxis Name="xAxis" DataSource="Data" Label="Country" />
+                <NumericYAxis Name="yAxis" MinimumValue="0" AbbreviateLargeNumbers="true" />
+
+                <ColumnSeries Title="Coal" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Coal"
+                              DataSource="Data" IsTransitionInEnabled="true" ShowDefaultTooltip="true"/>
+                <ColumnSeries Title="Hydro" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Hydro"
+                              DataSource="Data" IsTransitionInEnabled="true" ShowDefaultTooltip="true"/>
+                <ColumnSeries Title="Nuclear" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Nuclear"
+                              DataSource="Data" IsTransitionInEnabled="true" ShowDefaultTooltip="true"/>
+                <ColumnSeries Title="Gas" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Gas"
+                              DataSource="Data" IsTransitionInEnabled="true" ShowDefaultTooltip="true"/>
+                <ColumnSeries Title="Oil" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Oil"
+                              DataSource="Data" IsTransitionInEnabled="true" ShowDefaultTooltip="true"/>
+            </DataChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<EnergyProductionData.Energy> Data;
+    private DataChart Chart;
+
+    private CategoryToolTipLayer CategoryTooltip = new CategoryToolTipLayer();
+    private ItemToolTipLayer ItemTooltip = new ItemToolTipLayer();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        ItemToolTipLayerModule.Register(IgniteUIBlazor);
+        CategoryToolTipLayerModule.Register(IgniteUIBlazor);
+
+        this.Data = EnergyProductionData.Generate();
+    }
+
+    private void OnChartTooltipTypeChanged(ChangeEventArgs e)
+    {
+        switch (e.Value)
+        {
+            case "Default":
+                {
+                    this.Chart.Series.Remove(this.ItemTooltip);
+                    this.Chart.Series.Remove(this.CategoryTooltip);
+                    break;
+                }
+            case "Item":
+                {
+                    this.Chart.Series.Add(this.ItemTooltip);
+                    this.Chart.Series.Remove(this.CategoryTooltip);
+                    break;
+                }
+            case "Category":
+                {
+                    this.Chart.Series.Remove(this.ItemTooltip);
+                    this.Chart.Series.Add(this.CategoryTooltip);
+                    break;
+                }
+        }
+    }
+}

@@ -1,0 +1,64 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="options vertical">
+        <span class="legend-title">Renewable Electricity Generated</span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+        </div>
+
+        <div class="overlay-right" >
+            <div class="options horizontal" >
+                <label class="options-label" >X-Axis Tick Length</label>
+                <label class="options-value" >@AxisTickLength</label>
+                <input class="options-slider" type="range" min="0" max="20" step="1" value="10" @oninput="OnAxisTickLengthChange"/>
+            </div>
+        </div>
+    </div>
+    <div class="container vertical">
+        @if (Data != null)
+        {
+            <CategoryChart Height="100%" Width="100%"
+                           Legend="Legend"
+                           DataSource="Data"
+                           ChartType="CategoryChartType.Line"
+                           IsHorizontalZoomEnabled="false"
+                           IsVerticalZoomEnabled="false"
+
+                           XAxisTickLength="@AxisTickLength"
+                           XAxisTickStrokeThickness="1"
+                           XAxisTickStroke="Gray"
+
+                           YAxisTickLength="0"
+                           YAxisTickStrokeThickness="0"
+                           YAxisTickStroke="Transparent">
+            </CategoryChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private Legend _Legend;
+    private Legend Legend
+    {
+        get { return _Legend; }
+        set { _Legend = value; StateHasChanged(); }
+    }
+
+    private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
+
+    protected override void OnInitialized()
+    {
+        CategoryChartModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+    }
+
+    private double AxisTickLength = 10;
+
+    private void OnAxisTickLengthChange(ChangeEventArgs args)
+    {
+        this.AxisTickLength = double.Parse(args.Value.ToString());
+    }
+}

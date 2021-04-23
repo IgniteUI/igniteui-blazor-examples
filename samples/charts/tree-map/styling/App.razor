@@ -1,0 +1,77 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+    <div class="options vertical">
+        <span class="legend-title">Comparing Population of Countries</span>
+    </div>
+
+    <div class="container vertical" style="padding: 0.75rem; padding-top: 0.5rem;">
+
+        <Treemap @ref="TreeMap" Height="100%" Width="100%"
+                 RootTitle="Countries"
+                 DataSource="Data"
+                 ParentIdMemberPath="Parent"
+                 CustomValueMemberPath="Parent"
+                 IdMemberPath="Name"
+                 LabelMemberPath="Name"
+                 ValueMemberPath="Pop"
+                 HeaderDisplayMode="@TreemapHeaderDisplayMode.Overlay"
+                 OverlayHeaderBackground="#3f403f"
+                 HeaderHoverBackground="#3f403f"
+                 HeaderBackground="#3f403f"
+                 ParentNodeBottomPadding="0"
+                 ParentNodeLeftPadding="0"
+                 ParentNodeRightPadding="0"
+                 ParentNodeTopPadding="0"
+                 Outline="black"
+                 StrokeThickness="1">
+            </Treemap>
+
+    </div>
+</div>
+
+@code {
+
+    private List<CountryInfo> Data;
+    private Treemap _treeMap;
+    private Treemap TreeMap
+    {
+        get { return _treeMap; }
+        set { _treeMap = value; StateHasChanged(); }
+    }
+
+    protected override void OnInitialized()
+    {
+        TreemapModule.Register(IgniteUIBlazor);
+        this.Data = CountryTreeData.Create();
+    }
+
+    protected void AddStyleMapping(string valueID, string fillColor)
+    {
+        this.TreeMap.StyleMappings.Add(new TreemapNodeStyleMapping()
+        {
+            Value = valueID,
+            Fill = fillColor,
+            MappingMode = TreemapValueMappingMode.CustomValue
+        });
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        if (firstRender)
+        {
+            this.AddStyleMapping("Africa", "#735656");
+            this.AddStyleMapping("Asia", "#61ab37");
+            this.AddStyleMapping("Europe", "#8B5BB1");
+            this.AddStyleMapping("North America", "#5fbaac");
+            this.AddStyleMapping("South America", "#EE5879");
+            this.AddStyleMapping("Middle East", "#6DB1FF");
+            this.AddStyleMapping("Central America", "#F7D262");
+            this.AddStyleMapping("Oceania", "#A8A8B7");
+        }
+    }
+}

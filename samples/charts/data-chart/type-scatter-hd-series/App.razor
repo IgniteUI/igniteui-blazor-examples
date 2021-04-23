@@ -1,1 +1,61 @@
-<Infragistics.Samples.Pages.DataChartTypeScatterDensitySeries />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="container vertical">
+
+        @if (Data != null)
+        {
+            <DataChart Height="100%" Width="100%"
+                              Subtitle="Stars Distribution in Milky Way Galaxy"
+                              SubtitleTopMargin="10"
+                              IsHorizontalZoomEnabled="true"
+                              IsVerticalZoomEnabled="true">
+                <NumericXAxis Name="xAxis"
+                              AbbreviateLargeNumbers="true"
+                              TitleBottomMargin="10"
+                              Title="Plane of Rotation (in Light Years)">
+                </NumericXAxis>
+                <NumericYAxis Name="yAxis"
+                              AbbreviateLargeNumbers="true"
+                              TitleLeftMargin="10"
+                              Title="Vertical Plane (in Light Years)">
+                </NumericYAxis>
+                <HighDensityScatterSeries XAxisName="xAxis"
+                                          YAxisName="yAxis"
+                                          Title="Distribution"
+                                          DataSource="Data"
+                                          XMemberPath="X"
+                                          YMemberPath="Y"
+                                          ShowDefaultTooltip="true"
+                                          MouseOverEnabled="true"
+                                          ProgressiveLoad="true"
+                                          HeatMinimumColor="Black"
+                                          HeatMaximumColor="Yellow"
+                                          HeatMaximum="1"
+                                          HeatMinimum="5"
+                                          Resolution="3">
+                </HighDensityScatterSeries>
+            </DataChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<SampleDensityPoint> Data;
+
+    protected override void OnInitialized()
+    {
+        LegendModule.Register(IgniteUIBlazor);
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartScatterModule.Register(IgniteUIBlazor);
+        DataChartScatterCoreModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+
+        Data = SampleDensityData.Create();
+
+
+    }
+}

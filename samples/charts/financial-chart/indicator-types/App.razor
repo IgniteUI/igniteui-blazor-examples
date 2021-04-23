@@ -1,3 +1,60 @@
-<Infragistics.Samples.Pages.FinancialChartIndicatorTypes />
 
+@using IgniteUI.Blazor.Controls
 
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+    <div class="container vertical">
+        <div class="container vertical">
+
+            @if (Data != null)
+            {
+                <FinancialChart Width="100%"
+                    Height="100%"
+                    @ref="@Chart"
+                    ChartType=FinancialChartType.Line
+                    Thickness=2
+                    DataSource="Data"
+                    IndicatorThickness=2
+                    IndicatorNegativeBrushes="Red"
+                    IndicatorBrushes="Green, Blue"
+                    ZoomSliderType="FinancialChartZoomSliderType.None" />
+            }
+
+        </div>
+    </div>
+
+@code {
+
+    List<StockItem> Data;
+    public FinancialChart _Chart;
+    public FinancialChart Chart
+    {
+        get
+        {
+            return _Chart;
+        }
+        set
+        {
+            _Chart = value;
+            this.Chart.IndicatorTypes.Clear();
+            this.Chart.IndicatorTypes.Add(FinancialIndicatorType.MovingAverageConvergenceDivergence);
+            this.Chart.IndicatorTypes.Add(FinancialIndicatorType.RelativeStrengthIndex);
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        FinancialChartModule.Register(IgniteUIBlazor);
+        InitData();
+    }
+
+    public void InitData()
+    {
+        var today = DateTime.Now;
+        var year = today.Year;
+        var month = today.Month;
+        var dateEnd = new DateTime(year, month, 1);
+        var dateStart = new DateTime(year - 1, month, 1);
+        this.Data = StocksUtility.GetStocksBetween(dateStart, dateEnd);
+    }
+}

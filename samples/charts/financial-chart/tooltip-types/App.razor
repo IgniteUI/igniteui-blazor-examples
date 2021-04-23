@@ -1,3 +1,44 @@
-<Infragistics.Samples.Pages.FinancialChartTooltipTypes />
 
+@using IgniteUI.Blazor.Controls
 
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="options horizontal">
+        <label class="options-label">Tooltip Type: </label>
+        <select @bind="@TooltipType">
+            <option>@ToolTipType.Item</option>
+            <option>@ToolTipType.Category</option>
+            <option>@ToolTipType.Default</option>
+            <option>@ToolTipType.None</option>
+        </select>
+    </div>
+
+    <div class="container vertical">
+
+        @if (Data != null)
+        {
+            <FinancialChart Width="100%"
+                Height="100%"
+                ChartType=FinancialChartType.Line
+                Thickness=2
+                YAxisMode="FinancialChartYAxisMode.PercentChange"
+                DataSource="Data"
+                ZoomSliderType="FinancialChartZoomSliderType.None"
+                ToolTipType="@TooltipType"/>
+        }
+
+    </div>
+</div>
+
+@code {
+
+    protected List<StockPrice[]> Data;
+    protected ToolTipType TooltipType { get; set; } = ToolTipType.Item;
+
+    protected override async Task OnInitializedAsync()
+    {
+        FinancialChartModule.Register(IgniteUIBlazor);
+        this.Data = await StocksHistory.GetMultipleStocks();
+    }
+}

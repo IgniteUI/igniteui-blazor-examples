@@ -1,1 +1,61 @@
-<Infragistics.Samples.Pages.DataGridColumnChooserPicker />
+﻿@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+@inject IJSRuntime JSRuntime;
+
+
+<div class="container horizontal">
+    <div class="container vertical" style="margin-left: 0.5rem; margin-top: 2px; margin-right: 0.5rem; margin-bottom: 0.25rem; padding: 0.5rem; background: rgb(248, 248, 248); border-radius: 10px; box-shadow: 1px 1px 2px 2px rgb(50 50 50 / 25%);">
+        <ColumnChooser Height="100%" Width="200px" Title="Column Chooser" TargetGrid="@DataGridRef" />
+    </div>
+
+    <div class="container vertical">
+        @if (Data != null)
+        {
+            <DataGrid Height="100%" Width="100%" @ref="DataGridRef"
+                      DefaultColumnMinWidth="120"
+                      DataSource="Data"
+                      AutoGenerateColumns="false"
+                      IsColumnOptionsEnabled="true">
+                <TextColumn Field="ID" HeaderText="ID" IsHidden="true" Width="90" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
+                <TextColumn Field="ProductName" HeaderText="Product" IsHidden="true" Width="@("*>120")" />
+                <ImageColumn IsEditable="false" Field="CountryFlag" HeaderText="Country" Width="@("*>120")" PaddingTop="5" PaddingBottom="5" ContentOpacity="1" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
+                <NumericColumn Field="ProductPrice" HeaderText="Price" IsHidden="true" Width="@("*>110")" PositivePrefix="$" ShowGroupingSeparator="true" MinFractionDigits="2" />
+                <NumericColumn Field="OrderItems" HeaderText="Orders" Width="@("*>110")" />
+                <NumericColumn Field="OrderValue" HeaderText="Order Value" Width="@("*>150")" PositivePrefix="$" ShowGroupingSeparator="true" />
+                <DateTimeColumn Field="OrderDate" HeaderText="Order Date" Width="@("*>150")" HorizontalAlignment="@CellContentHorizontalAlignment.Right" DateTimeFormat="@DateTimeFormats.DateShort" />
+                <NumericColumn Field="Margin" HeaderText="Margin" Width="@("*>120")" PositiveSuffix="%" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
+                <NumericColumn Field="Profit" HeaderText="Profit" Width="@("*>120")" PositivePrefix="$" ShowGroupingSeparator="true" />
+                <TextColumn Field="Status" HeaderText="Status" Width="@("*>110")" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
+            </DataGrid>
+        }
+    </div>
+</div>
+
+@code {
+
+    private DataGrid _grid;
+    public DataGrid DataGridRef
+    {
+        get
+        {
+            return _grid;
+        }
+        set
+        {
+            _grid = value;
+            StateHasChanged();
+        }
+    }
+
+    private List<Sale> Data;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        DataGridModule.Register(IgniteUIBlazor);
+        ColumnChooserModule.Register(IgniteUIBlazor);
+        GridColumnOptionsModule.Register(IgniteUIBlazor);
+
+        Data = SalesData.Create(100);
+    }
+}

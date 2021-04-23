@@ -1,0 +1,35 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="options vertical">
+        <span class="legend-title">NYC Average Temperature</span>
+    </div>
+
+    <div class="container vertical">
+        @if (Data != null)
+        {
+            <CategoryChart Height="100%" Width="100%"
+                           DataSource="Data"
+                           ChartType="CategoryChartType.Column"
+                           XAxisInterval="1"
+                           YAxisTitle="Temperature in Degrees Celsius"
+                           YAxisTitleLeftMargin="10"
+                           YAxisTitleRightMargin="5"
+                           YAxisLabelLeftMargin="0"
+						   IsHorizontalZoomEnabled="false"
+                           IsVerticalZoomEnabled="false">
+            </CategoryChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<TemperatureInfo> Data = new TemperatureData();
+
+    protected override void OnInitialized()
+    {
+        CategoryChartModule.Register(IgniteUIBlazor);
+    }
+}

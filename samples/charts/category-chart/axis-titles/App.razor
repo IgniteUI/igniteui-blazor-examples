@@ -1,0 +1,52 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="options vertical">
+        <span class="legend-title">Renewable Electricity Generated</span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+    <div class="container vertical">
+        @if (Data != null)
+        {
+            <CategoryChart Height="100%" Width="100%"
+                           Legend="Legend"
+                           DataSource="Data"
+                           ChartType="CategoryChartType.Line"
+                           IsHorizontalZoomEnabled="false"
+                           IsVerticalZoomEnabled="false"
+
+                           XAxisTitle="Year"
+                           XAxisTitleTextColor="Gray"
+                           XAxisTitleTextStyle="10pt 'Titillium Web'"
+                           XAxisTitleAngle="0"
+
+                           YAxisTitle="Trillions of Watt-hours (Twh)"
+                           YAxisTitleTextColor="Gray"
+                           YAxisTitleTextStyle="10pt 'Titillium Web'"
+                           YAxisTitleAngle="90"
+                           YAxisTitleLeftMargin="5">
+            </CategoryChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private Legend _Legend;
+    private Legend Legend
+    {
+        get { return _Legend; }
+        set { _Legend = value; StateHasChanged(); }
+    }
+
+    private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
+
+    protected override void OnInitialized()
+    {
+        CategoryChartModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+    }
+}

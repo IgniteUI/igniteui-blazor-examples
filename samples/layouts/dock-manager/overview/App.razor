@@ -1,1 +1,32 @@
-<Infragistics.Samples.Pages.DockManagerOverview />
+﻿@inject IJSRuntime JSRuntime;
+
+<div class="container vertical">
+    <div class="container vertical">
+        <igc-dockmanager @ref="dockManager" id="dockManager" height="100%" width="100%">
+            @*NOTE: code in DockManagerOverview.js file sets layout of these DIV elements:*@
+            <div slot="content1">Content 1 - pane docked to left side</div>
+            <div slot="content2">Content 2 - pane pinned to left side</div>
+            <div slot="content3">Content 3 - document pane</div>
+            <div slot="content4">Content 4 - document pane</div>
+            <div slot="content5">Content 5</div>
+            <div slot="content6">Content 6 - tab pane 1</div>
+            <div slot="content7">Content 7 - tab pane 2</div>
+            <div slot="content8">Content 8 - pane docked bottom right</div>
+            <div slot="content9">Content 9 - floating pane</div>
+        </igc-dockmanager>
+    </div>
+</div>
+
+@code {
+
+    ElementReference dockManager;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // open DockManagerOverview.bundle.js file to see how the arrange funciton is implemented
+            await JSRuntime.InvokeVoidAsync("DockManagerOverview.arrange", dockManager);
+        }
+    }
+}

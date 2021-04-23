@@ -1,1 +1,46 @@
-<Infragistics.Samples.Pages.TreeMapOverview />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+        <div class="options vertical">
+            <span class="legend-title">Comparing Population of Countries</span>
+        </div>
+
+        <div class="container vertical" style="padding: 0.75rem; padding-top: 0.5rem;">
+
+            <Treemap Height="100%" Width="100%"
+                     DataSource="Data"
+                     ParentIdMemberPath="Parent"
+                     IdMemberPath="Name"
+                     LabelMemberPath="Name"
+                     ValueMemberPath="Pop"
+                     FillScaleMode="@TreemapFillScaleMode.Value"
+                     FillScaleMinimumValue="0"
+                     FillScaleMaximumValue="1500000000"
+                     FillBrushes="#4e62cf, #8a58d6"
+                     IsFillScaleLogarithmic="true"
+                     RootTitle="Countries"
+                     HeaderDisplayMode="@TreemapHeaderDisplayMode.Overlay"
+                     ParentNodeBottomPadding="0"
+                     ParentNodeLeftPadding="0"
+                     ParentNodeRightPadding="0"
+                     ParentNodeTopPadding="0"
+                     Outline="black"
+                     StrokeThickness="1">
+            </Treemap>
+            @**@
+        </div>
+    </div>
+
+@code {
+
+    protected List<CountryInfo> Data;
+
+    protected override void OnInitialized()
+    {
+        TreemapModule.Register(IgniteUIBlazor);
+
+        this.Data = CountryTreeData.Create();
+    }
+}

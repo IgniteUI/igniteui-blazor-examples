@@ -1,1 +1,73 @@
-<Infragistics.Samples.Pages.DataChartTypeFinancialOverlays />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="container vertical">
+
+        <DataChart Height="100%" Width="100%"
+                   Subtitle="Stock Prices with Bollinger Bands Overlay"
+                   SubtitleTopMargin="10"
+                   IsHorizontalZoomEnabled="true"
+                   IsVerticalZoomEnabled="true">
+
+            <CategoryXAxis Name="xAxis" Label="Label" DataSource="Data" />
+            <NumericYAxis Name="yAxis" Title="Amount (in USD)" TitleRightMargin="10"
+                          LabelRightMargin="10"
+                          LabelHorizontalAlignment="HorizontalAlignment.Left"
+                          LabelLocation="AxisLabelsLocation.OutsideRight" />
+
+            <BollingerBandsOverlay XAxisName="xAxis"
+                                   YAxisName="yAxis"
+                                   DataSource="Data"
+                                   OpenMemberPath="Open"
+                                   CloseMemberPath="Close"
+                                   HighMemberPath="High"
+                                   LowMemberPath="Low"
+                                   VolumeMemberPath="Volume"
+                                   ShowDefaultTooltip="true"
+                                   IsTransitionInEnabled="true"
+                                   AreaFillOpacity="0.2"
+                                   Thickness="1"
+                                   Brush="rgba(75, 75, 75, 0.8)"
+                                   Outline="rgba(75, 75, 75, 0.8)"
+                                   Title="Overlay" />
+
+            <FinancialPriceSeries XAxisName="xAxis"
+                                  YAxisName="yAxis"
+                                  DataSource="Data"
+                                  OpenMemberPath="Open"
+                                  CloseMemberPath="Close"
+                                  HighMemberPath="High"
+                                  LowMemberPath="Low"
+                                  VolumeMemberPath="Volume"
+                                  ShowDefaultTooltip="true"
+                                  IsTransitionInEnabled="true"
+                                  Brush="rgba(2, 199, 74, 1.0)"
+                                  Outline="rgba(2, 199, 74, 1.0)"
+                                  Title="Price" />
+        </DataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private List<SampleFinancialItem> Data;
+
+    protected override void OnInitialized()
+    {
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
+
+        DataChartFinancialModule.Register(IgniteUIBlazor);
+        DataChartFinancialCoreModule.Register(IgniteUIBlazor);
+        DataChartFinancialOverlaysModule.Register(IgniteUIBlazor);
+
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+
+        Data = SampleFinancialData.Create();
+
+
+    }
+}

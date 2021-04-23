@@ -1,1 +1,56 @@
-<Infragistics.Samples.Pages.SparklineDisplayLines />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+    <div class="container vertical">
+
+        @if (Data != null)
+        {
+            <section>Revenue Sparkline</section>
+            <Sparkline Height="100%"
+                       Width="100%"
+                       DataSource="Data"
+                       DisplayType="SparklineDisplayType.Line"
+                       ValueMemberPath="Value"
+                       LabelMemberPath="Angle"
+                       Minimum="-1" Maximum="1">
+            </Sparkline>
+
+            <section>Income Sparkline</section>
+            <Sparkline Height="100%"
+                       Width="100%"
+                       DataSource="Data"
+                       DisplayType="SparklineDisplayType.Line "
+                       ValueMemberPath="Income"
+                       LabelMemberPath="Angle"
+                       Minimum="-1" Maximum="1">
+            </Sparkline>
+
+            <section>Expanse Sparkline</section>
+            <Sparkline Height="100%"
+                       Width="100%"
+                       DataSource="Data"
+                       DisplayType="SparklineDisplayType.Line"
+                       ValueMemberPath="Expanse"
+                       LabelMemberPath="Angle"
+                       Minimum="-1" Maximum="1">
+            </Sparkline>
+
+        }
+
+    </div>
+</div>
+
+@code {
+
+    private List<SparklineItem> Data;
+
+    protected override void OnInitialized()
+    {
+        SparklineModule.Register(IgniteUIBlazor);
+
+        Data = SparklineData.Generate ();
+    }
+
+}

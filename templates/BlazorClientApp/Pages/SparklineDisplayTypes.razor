@@ -1,13 +1,13 @@
 ﻿@page "/SparklineDisplayTypes"
 
-@* this namespace is required for Infragistics controls *@
+
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
-@* NOTE use this HTML code to design a sample *@
-<div class="igContainer">
-    @* <div class="igOptions-horizontal">
+
+<div class="container vertical">
+    @* <div class="options horizontal">
             <label>Select DisplayType: </label>
             <select @bind="SelectedDisplayType">
                 @foreach (var chartType in Enum.GetValues(typeof(SparklineDisplayType)))
@@ -17,9 +17,9 @@
             </select>
         </div> *@
 
-    <div class="igComponent">
+    <div class="container vertical">
 
-        @* NOTE making sure data is loaded before we can render it *@
+
         @if (DataSource != null)
         {
             <section>Sparkline with Line DisplayType</section>
@@ -62,7 +62,7 @@
     </div>
 </div>
 
-@* NOTE you can change this C# code to affect behaviour of this page: *@
+
 @code {
 
     // NOTE here, you can add properties to store values and data for this component

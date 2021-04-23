@@ -1,0 +1,52 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="container vertical">
+
+        <DataChart Height="100%" Width="100%"
+                   ChartTitle="Facebook's Consolidated Statements of Income for 2018"
+                   TitleHorizontalAlignment="HorizontalAlignment.Left"
+                   TitleLeftMargin="25"
+                   TitleTopMargin="10"
+                   TitleBottomMargin="10">
+
+            <CategoryXAxis Name="xAxis" Label="Category" DataSource="Data" Overlap="1" />
+            <NumericYAxis Name="yAxis" Title="Millions of Dollars" TitleLeftMargin="10" MinimumValue="0" MaximumValue="60" />
+
+            <WaterfallSeries XAxisName="xAxis"
+                             YAxisName="yAxis"
+                             DataSource="Data"
+                             ValueMemberPath="Value"
+                             ShowDefaultTooltip="true"
+                             IsTransitionInEnabled="true">
+            </WaterfallSeries>
+
+            <WaterfallSeries XAxisName="xAxis"
+                             YAxisName="yAxis"
+                             Brush="#7446B9"
+                             Outline="#7446B9"
+                             DataSource="Data"
+                             ValueMemberPath="NetIncomeValue"
+                             ShowDefaultTooltip="true"
+                             IsTransitionInEnabled="true">
+            </WaterfallSeries>
+        </DataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private List<FacebookConsolidatedInfo> Data = new FacebookConsolidatedData();
+
+    protected override void OnInitialized()
+    {
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+        CalloutLayerModule.Register(IgniteUIBlazor);
+    }
+}

@@ -1,1 +1,27 @@
-<Infragistics.Samples.Pages.MapDisplayImageryOSM />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+    <div class="container vertical">
+        <GeographicMap Height="100%" Width="100%" Zoomable="true"
+                       BackgroundContent="@OSMImagery"
+                       WindowRect="@GeoBounds">
+        </GeographicMap>
+    </div>
+</div>
+
+@code {
+
+    private OpenStreetMapImagery OSMImagery;
+    private Rect GeoBounds;
+
+    protected override void OnInitialized()
+    {
+        GeographicMapModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+
+        this.OSMImagery = new OpenStreetMapImagery();
+        this.GeoBounds = new Rect() { Left = - 150, Top = -60, Width = 315, Height = 140 };
+    }
+}

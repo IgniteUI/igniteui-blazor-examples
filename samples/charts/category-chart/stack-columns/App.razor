@@ -1,1 +1,103 @@
-<Infragistics.Samples.Pages.CategoryChartStackColumns />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    @*YAxisFormatLabel="this.onFormatYAxisLabel"*@
+
+    <div class="container vertical">
+        @if (Data != null)
+        {
+            <CategoryChart Height="100%" Width="100%"
+                           DataSource="Data"
+                           TitleTopMargin="5"
+                           ChartTitle="Time Spent Online By Activity"
+                           ChartType="CategoryChartType.Column"
+                           IsTransitionInEnabled="true"
+                           XAxisLabelTextStyle="9pt Verdana"
+                           XAxisLabelTopMargin="5"
+                           XAxisLabelTextColor="Gray"
+                           XAxisLabelAngle="90"
+                           YAxisLabelTextStyle="9pt Verdana"
+                           YAxisLabelRightMargin="5"
+                           YAxisLabelTextColor="Gray"
+                           YAxisLabelAngle="0"
+                           XAxisTickLength="0"
+                           XAxisTickStrokeThickness="0.5"
+                           XAxisTickStroke="Gray"
+                           YAxisTickLength="0"
+                           XAxisInterval="1"
+                           XAxisStroke="Gray"
+                           XAxisStrokeThickness="2"
+                           YAxisInterval="1"
+                           YAxisMinimumValue="0"
+                           YAxisMaximumValue="10"
+                           YAxisMajorStroke="Gray"
+                           YAxisMajorStrokeThickness="0.5"
+                           YAxisMinorInterval="0.5"
+                           YAxisMinorStroke="Gray"
+                           YAxisMinorStrokeThickness="0"
+                           XAxisGap="0.45"
+                           XAxisOverlap="1"
+						   IsHorizontalZoomEnabled="false"
+						   IsVerticalZoomEnabled="false">
+            </CategoryChart>
+        }
+
+    </div>
+</div>
+
+@code {
+
+    private List<StatData> Data;
+
+    protected override void OnInitialized()
+    {
+        CategoryChartModule.Register(IgniteUIBlazor);
+
+        this.InitData();
+    }
+
+    private void InitData()
+    {
+        this.Data = new List<StatData>() {
+            new StatData(){ M = 0.1, N= 0.2, T= 1.1, S= 0.9, B= 0.3, Country = "Japan" },
+            new StatData(){ M = 0.2, N= 0.2, T= 1.3, S= 1.2, B= 0.5, Country = "Germany" },
+            new StatData(){ M = 0.2, N= 0.2, T= 1.5, S= 1.1, B= 0.4, Country = "France" },
+            new StatData(){ M = 0.3, N= 0.2, T= 1.5, S= 1.4, B= 0.5, Country = "Ireland" },
+            new StatData(){ M = 0.4, N= 0.3, T= 1.5, S= 1.3, B= 0.6, Country = "Australia" },
+            new StatData(){ M = 0.3, N= 0.3, T= 1.4, S= 1.5, B= 1.3, Country = "Sweden" },
+            new StatData(){ M = 0.4, N= 0.2, T= 1.4, S= 1.4, B= 1.4, Country = "Poland" },
+            new StatData(){ M = 0.5, N= 0.3, T= 1.4, S= 1.4, B= 1.5, Country = "UK" },
+            new StatData(){ M = 0.4, N= 0.3, T= 1.5, S= 1.4, B= 1.3, Country = "Canada" },
+            new StatData(){ M = 0.4, N= 0.4, T= 1.5, S= 1.6, B= 1.5, Country = "Spain" },
+            new StatData(){ M = 0.5, N= 0.3, T= 1.7, S= 1.3, B= 1.5, Country = "Germany" },
+            new StatData(){ M = 0.4, N= 0.4, T= 2.2, S= 1.4, B= 1.6, Country = "Taiwan" },
+            new StatData(){ M = 0.5, N= 0.3, T= 2.3, S= 1.4, B= 1.5, Country = "Russia" },
+            new StatData(){ M = 0.5, N= 0.3, T= 2.4, S= 1.6, B= 1.3, Country = "China" },
+            new StatData(){ M = 0.6, N= 0.4, T= 2.5, S= 1.8, B= 1.4, Country = "USA" },
+            new StatData(){ M = 0.5, N= 0.5, T= 2.4, S= 2.2, B= 1.5, Country = "Italy" },
+            new StatData(){ M = 0.5, N= 0.6, T= 2.5, S= 2.3, B= 1.4, Country = "India" },
+            new StatData(){ M = 0.6, N= 0.5, T= 2.5, S= 2.4, B= 1.3, Country = "Argentina" },
+            new StatData(){ M = 0.6, N= 0.6, T= 2.6, S= 2.5, B= 1.4, Country = "Mexico" },
+            new StatData(){ M = 0.7, N= 0.5, T= 2.6, S= 2.6, B= 1.4, Country = "Turkey" },
+            new StatData(){ M = 0.8, N= 0.7, T= 2.7, S= 2.7, B= 1.5, Country = "Indonesia" },
+            new StatData(){ M = 0.9, N= 0.7, T= 2.7, S= 2.8, B= 1.6, Country = "Thailand" },
+            new StatData(){ M = 0.8, N= 0.8, T= 2.8, S= 2.9, B= 1.7, Country = "Brazil" }
+        };
+
+        foreach (StatData item in this.Data)
+        {
+            item.Blogging = item.T + item.M + item.N + item.S + item.B;
+            item.Social = item.T + item.M + item.N + item.S;
+            item.News = item.T + item.M + item.N;
+            item.Music = item.T + item.M;
+            item.TV = item.T;
+
+            item.Blogging = Math.Round(item.Blogging * 10) / 10;
+            item.Social = Math.Round(item.Social * 10) / 10;
+            item.News = Math.Round(item.News * 10) / 10;
+            item.TV = Math.Round(item.TV * 10) / 10;
+            item.Music = Math.Round(item.Music * 10) / 10;
+        }
+    }
+}

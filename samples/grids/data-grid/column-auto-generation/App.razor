@@ -1,3 +1,90 @@
-<Infragistics.Samples.Pages.DataGridColumnGeneration />
+﻿@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
 
+<div class="container vertical">
 
+    <div class="container vertical">
+
+        @if (Employees != null)
+        {
+            <DataGrid Height="33%" Width="100%"
+                      DataSource="Employees"
+                      AutoGenerateColumns="false"
+                      ActivationMode="GridActivationMode.Cell">
+
+                <TextColumn Field="ID" />
+                <TextColumn Field="Name" />
+                <TextColumn Field="Street" />
+                <TextColumn Field="City" />
+                <ImageColumn IsEditable="false" Field="Photo" />
+                <DateTimeColumn Field="Birthday" />
+                <NumericColumn Field="Salary" PositivePrefix="$"
+                               ShowGroupingSeparator="true"
+                               MaxFractionDigits="0"
+                               MinFractionDigits="0" />
+            </DataGrid>
+        }
+
+        @if (Sales != null)
+        {
+            <DataGrid Height="33%" Width="100%"
+                      DataSource="Sales"
+                      AutoGenerateColumns="false"
+                      ActivationMode="GridActivationMode.Cell">
+
+                <TextColumn Field="ID" />
+                <TextColumn Field="ProductName" />
+                <NumericColumn Field="ProductPrice" />
+                <TextColumn Field="City" />
+                <TextColumn Field="Country" />
+                <ImageColumn IsEditable="false" Field="CountryFlag" />
+                <DateTimeColumn Field="OrderDate" />
+                <NumericColumn Field="Profit" PositivePrefix="$"
+                               ShowGroupingSeparator="true"
+                               MaxFractionDigits="0"
+                               MinFractionDigits="0" />
+            </DataGrid>
+        }
+
+        @if (RealEstates != null)
+        {
+            <DataGrid Height="33%" Width="100%"
+                      DataSource="RealEstates"
+                      AutoGenerateColumns="false"
+                      ActivationMode="GridActivationMode.Cell">
+
+                <TextColumn Field="ID" />
+                <TextColumn Field="Property" />
+                <TextColumn Field="Rooms" />
+                <TextColumn Field="Baths" />
+                <TextColumn Field="Built" />
+                <NumericColumn Field="Price" PositivePrefix="$"
+                               ShowGroupingSeparator="true"
+                               MaxFractionDigits="0"
+                               MinFractionDigits="0" />
+                <TextColumn Field="City" />
+                <TextColumn Field="Country" />
+            </DataGrid>
+        }
+
+    </div>
+</div>
+
+@code {
+
+    private List<Employee> Employees;
+    private List<Sale> Sales;
+    private List<RealEstate> RealEstates;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        DataGridModule.Register(IgniteUIBlazor);
+
+        this.Employees = EmployeeData.Create(200, false);
+        this.Sales = SalesData.Create(200);
+        this.RealEstates = RealEstateData.Create(200);
+    }
+
+}

@@ -1,1 +1,255 @@
-<Infragistics.Samples.Pages.DataChartAxisTypes />
+﻿@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="container vertical">
+    <div class="options horizontal">
+        <span class="options-item">Axis Type:</span>
+        <select @onchange="OnAxisTypeChanged">
+            <option>CategoryXAxis with Column Series</option>
+            <option>CategoryYAxis with Bar Series</option>
+            <option>NumericXAxis with Scatter Series</option>
+            <option>TimeXAxis with Financial Series</option>
+        </select>
+    </div>
+
+    <div class="container vertical">
+        <DataChart Height="100%" Width="100%"
+                   @ref="Chart"
+                   IsHorizontalZoomEnabled="false"
+                   IsVerticalZoomEnabled="false" />
+    </div>
+</div>
+
+@code {
+
+    private List<SampleCategoryItem> CategoryData;
+    private List<SampleFinancialItem> FinancialData;
+    private List<SampleScatterPoint> ScatterData;
+
+    private NumericXAxis NumericXAxis;
+    private NumericYAxis NumericYAxis;
+
+    private CategoryXAxis CategoryXAxis;
+    private CategoryYAxis CategoryYAxis;
+
+    private TimeXAxis TimeXAxis;
+
+    private ColumnSeries ColumnSeries1;
+    private ColumnSeries ColumnSeries2;
+
+    private BarSeries BarSeries1;
+    private BarSeries BarSeries2;
+
+    private ScatterSeries ScatterSeries1;
+    private ScatterSeries ScatterSeries2;
+
+    private FinancialPriceSeries FinancialSeries;
+
+    private DataChart _chart;
+    private DataChart Chart
+    {
+        get { return _chart; }
+        set
+        {
+            _chart = value;
+            this.OnChart();
+
+            value.Axes.Add(this.CategoryXAxis);
+            value.Axes.Add(this.NumericYAxis);
+
+            value.Series.Add(this.ColumnSeries1);
+            value.Series.Add(this.ColumnSeries2);
+
+            StateHasChanged();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartScatterCoreModule.Register(IgniteUIBlazor);
+        DataChartScatterModule.Register(IgniteUIBlazor);
+        DataChartFinancialModule.Register(IgniteUIBlazor);
+        DataChartFinancialCoreModule.Register(IgniteUIBlazor);
+        DataChartVerticalCategoryModule.Register(IgniteUIBlazor);
+        TimeXAxisModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+    }
+
+    private void OnChart()
+    {
+        this.InitData();
+        this.InitAxes();
+        this.InitCategorySeries();
+        this.InitScatterSeries();
+        this.InitFinancialSeries();
+    }
+
+    public void InitCategorySeries()
+    {
+        this.ColumnSeries1 = new ColumnSeries()
+        {
+            DataSource = this.CategoryData,
+            XAxis = this.CategoryXAxis,
+            YAxis = this.NumericYAxis,
+            XAxisName = "CategoryXAxis",
+            YAxisName = "NumericYAxis",
+            ValueMemberPath = "USA"
+        };
+
+        this.ColumnSeries2 = new ColumnSeries()
+        {
+            DataSource = this.CategoryData,
+            XAxis = this.CategoryXAxis,
+            YAxis = this.NumericYAxis,
+            XAxisName = "CategoryXAxis",
+            YAxisName = "NumericYAxis",
+            ValueMemberPath = "RUS"
+        };
+
+        this.BarSeries1 = new BarSeries()
+        {
+            DataSource = this.CategoryData,
+            XAxis = this.NumericXAxis,
+            YAxis = this.CategoryYAxis,
+            XAxisName = "NumericXAxis",
+            YAxisName = "CategoryYAxis",
+            ValueMemberPath = "USA"
+        };
+
+        this.BarSeries2 = new BarSeries()
+        {
+            DataSource = this.CategoryData,
+            XAxis = this.NumericXAxis,
+            YAxis = this.CategoryYAxis,
+            XAxisName = "NumericXAxis",
+            YAxisName = "CategoryYAxis",
+            ValueMemberPath = "RUS"
+        };
+    }
+
+    public void InitAxes()
+    {
+        this.CategoryXAxis = new CategoryXAxis()
+        {
+            Name = "CategoryXAxis",
+            Title = "Category X Axis",
+            DataSource = this.CategoryData,
+            Label = "Year"
+        };
+
+        this.CategoryYAxis = new CategoryYAxis()
+        {
+            Name = "CategoryYAxis",
+            Title = "Category Y Axis",
+            DataSource = this.CategoryData,
+            Label = "Year"
+        };
+
+        this.NumericXAxis = new NumericXAxis() { Name = "NumericXAxis", Title = "Numeric X Axis" };
+        this.NumericYAxis = new NumericYAxis() { Name = "NumericYAxis", Title = "Numeric Y Axis" };
+
+        this.TimeXAxis = new TimeXAxis()
+        {
+            Name = "TimeXAxis",
+            Title = "Time X Axis",
+            DataSource = this.FinancialData,
+            DateTimeMemberPath = "Time",
+            Label = "Date"
+        };
+    }
+
+    public void InitFinancialSeries()
+    {
+        this.FinancialSeries = new FinancialPriceSeries()
+        {  //MAY BE MISSING NAME IF THIS DOESN'T WORK...
+            DataSource = this.FinancialData,
+            XAxis = this.TimeXAxis,
+            YAxis = this.NumericYAxis,
+            XAxisName = "TimeXAxis",
+            YAxisName = "NumericYAxis",
+            HighMemberPath = "High",
+            LowMemberPath = "Low",
+            CloseMemberPath = "Close",
+            OpenMemberPath = "Open",
+            VolumeMemberPath = "Volume"
+        };
+    }
+
+    public void InitScatterSeries()
+    {
+        this.ScatterSeries1 = new ScatterSeries() {
+            DataSource = this.ScatterData,
+            XAxis = this.NumericXAxis,
+            YAxis = this.NumericYAxis,
+            XAxisName = "NumericXAxis",
+            YAxisName = "NumericYAxis",
+            XMemberPath = "Index",
+            YMemberPath = "SinValue"
+        };
+
+        this.ScatterSeries2 = new ScatterSeries() {
+            DataSource = this.ScatterData,
+            XAxis = this.NumericXAxis,
+            YAxis = this.NumericYAxis,
+            XAxisName = "NumericXAxis",
+            YAxisName = "NumericYAxis",
+            XMemberPath = "Index",
+            YMemberPath = "CosValue"
+        };
+    }
+
+    public void InitData()
+    {
+        this.CategoryData = SampleCategoryData.Create();
+        this.ScatterData = SampleScatterData.CreateWaveData();
+        this.FinancialData = SampleFinancialData.Create();
+    }
+
+    private void OnAxisTypeChanged(ChangeEventArgs e)
+    {
+        this.Chart.Axes.Clear();
+        this.Chart.Series.Clear();
+
+        string value = e.Value.ToString();
+
+        if (value.Contains("Column"))
+        {
+            this.Chart.Axes.Add(this.CategoryXAxis);
+            this.Chart.Axes.Add(this.NumericYAxis);
+
+            this.Chart.Series.Add(this.ColumnSeries1);
+            this.Chart.Series.Add(this.ColumnSeries2);
+        }
+        else if (value.Contains("Bar"))
+        {
+            this.Chart.Axes.Add(this.CategoryYAxis);
+            this.Chart.Axes.Add(this.NumericXAxis);
+
+            this.Chart.Series.Add(this.BarSeries1);
+            this.Chart.Series.Add(this.BarSeries2);
+        }
+        else if (value.Contains("Scatter"))
+        {
+            this.Chart.Axes.Add(this.NumericXAxis);
+            this.Chart.Axes.Add(this.NumericYAxis);
+
+            this.Chart.Series.Add(this.ScatterSeries1);
+            this.Chart.Series.Add(this.ScatterSeries2);
+        }
+        else
+        {
+            this.Chart.Axes.Add(this.TimeXAxis);
+            this.Chart.Axes.Add(this.NumericYAxis);
+
+            this.Chart.Series.Add(this.FinancialSeries);
+        }
+
+        StateHasChanged();
+    }
+}
+

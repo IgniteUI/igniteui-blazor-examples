@@ -1,1 +1,67 @@
-<Infragistics.Samples.Pages.DataChartTypeCategoryBarSeries />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="container vertical">
+
+        <DataChart Height="100%" Width="100%"
+                   ChartTitle="Total Olympic Medals"
+                   Subtitle="United States vs China vs Russia"
+                   TitleTopMargin="10"
+                   IsHorizontalZoomEnabled="false"
+                   IsVerticalZoomEnabled="false">
+
+            <CategoryYAxis Name="yAxis" Label="Year" DataSource="Data"
+                           Title="Olympic Years" TitleLeftMargin="10" TitleRightMargin="0"
+                           Gap="0.2" Overlap="-0.05"/>
+            <NumericXAxis  Name="xAxis" Title="Olympic Medals" />
+
+            <BarSeries XAxisName="xAxis"
+                       YAxisName="yAxis"
+                       DataSource="Data"
+                       ValueMemberPath="USA" Title="USA"
+                       AreaFillOpacity="1"
+                       ShowDefaultTooltip="true"
+                       IsTransitionInEnabled="true"
+                       IsHighlightingEnabled="true">
+            </BarSeries>
+            <BarSeries XAxisName="xAxis"
+                       YAxisName="yAxis"
+                       DataSource="Data"
+                       ValueMemberPath="CHN" Title="China"
+                       AreaFillOpacity="1"
+                       ShowDefaultTooltip="true"
+                       IsTransitionInEnabled="true"
+                       IsHighlightingEnabled="true">
+            </BarSeries>
+            <BarSeries XAxisName="xAxis"
+                       YAxisName="yAxis"
+                       DataSource="Data"
+                       ValueMemberPath="RUS" Title="Russia"
+                       AreaFillOpacity="1"
+                       ShowDefaultTooltip="true"
+                       IsTransitionInEnabled="true"
+                       IsHighlightingEnabled="true">
+            </BarSeries>
+        </DataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private List<SampleCategoryItem> Data;
+
+    protected override void OnInitialized()
+    {
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        DataChartVerticalCategoryModule.Register(IgniteUIBlazor);
+
+        Data = SampleCategoryData.Create();
+
+
+    }
+}

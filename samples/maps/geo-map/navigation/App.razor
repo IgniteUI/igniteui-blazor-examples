@@ -1,1 +1,130 @@
-<Infragistics.Samples.Pages.MapNavigation />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container horizontal">
+    <div class="container vertical">
+        <GeographicMap Height="100%" Width="100%" Zoomable="true" @ref="GeoMap">
+        </GeographicMap>
+    </div>
+
+    <div class="overlay-border overlay-bottom-right" >
+        <label class="overlay-label">Select Map Region</label>
+        <select @onchange="OnMapRegionSelectionChanged">
+            <option>Australia</option>
+            <option>Caribbean</option>
+            <option>Egypt</option>
+            <option>European</option>
+            <option>Hawaii</option>
+            <option>Japan</option>
+            <option>Poland</option>
+            <option>SouthAfrica</option>
+            <option>UnitedKingdom</option>
+            <option>UnitedStates</option>
+            <option>Uruguay</option>
+        </select>
+        <label class="overlay-label">Map Geographic Rect</label>
+        <div class="overlay-row">
+            <label class="overlay-field">Top:</label>
+            <label class="overlay-value">@MapUtils.ToLat(MapRegionRect.Top)</label>
+        </div>
+        <div class="overlay-row">
+            <label class="overlay-field">Left:</label>
+            <label class="overlay-value">@MapUtils.ToLng(MapRegionRect.Left)</label>
+        </div>
+        <div class="overlay-row">
+            <label class="overlay-field">Height:</label>
+            <label class="overlay-value">@MapUtils.ToLat(MapRegionRect.Height)</label>
+        </div>
+        <div class="overlay-row">
+            <label class="overlay-field">Width:</label>
+            <label class="overlay-value">@MapUtils.ToLng(MapRegionRect.Width)</label>
+        </div>
+        @* <label class="overlay-label">Map Window Rect</label> *@
+        @*<div class="overlay-row">
+                <label class="overlay-field">Top:</label>
+                <label class="overlay-value">@GeoMap.ActualWindowRect.Top</label>
+            </div>
+            <div class="overlay-row">
+                <label class="overlay-field">Left:</label>
+                <label class="overlay-value">@GeoMap.ActualWindowRect.Left</label>
+            </div>
+            <div class="overlay-row">
+                <label class="overlay-field">Height:</label>
+                <label class="overlay-value">@GeoMap.ActualWindowRect.Height</label>
+            </div>
+            <div class="overlay-row">
+                <label class="overlay-field">Width:</label>
+                <label class="overlay-value">@GeoMap.ActualWindowRect.Width</label>
+            </div>
+            <label class="overlay-label">Map Window Position</label>
+            <div class="overlay-row">
+                <label class="overlay-field">Horizontal:</label>
+                <label class="overlay-value">@GeoMap.WindowPositionHorizontal</label>
+            </div>
+            <div class="overlay-row">
+                <label class="overlay-field">Vertical:</label>
+                <label class="overlay-value">@GeoMap.WindowPositionVertical</label>
+            </div>
+            <div class="overlay-row">
+                <label class="overlay-field">Scale:</label>
+                <label class="overlay-value">@GeoMap.WindowScale</label>
+            </div>*@
+        @* <label class="overlay-label">Map Hover Coordinates</label> *@
+        @*<div class="overlay-row">
+                <label class="overlay-field">Longitude:</label>
+                <label class="overlay-value">@MapUtils.ToLng(this.state.mapHoverGeographicCoordinate.x)</label>
+            </div>
+            <div class="overlay-row">
+                <label class="overlay-field">Latitude:</label>
+                <label class="overlay-value">@MapUtils.ToLat(this.state.mapHoverGeographicCoordinate.y)</label>
+            </div>
+            <div class="overlay-row">
+                <label class="overlay-field">Window X:</label>
+                <label class="overlay-value">{this.state.mapHoverWindowCoordinate.x}</label>
+            </div>
+            <div class="overlay-row">
+                <label class="overlay-field">Window Y:</label>
+                <label class="overlay-value">{this.state.mapHoverWindowCoordinate.y}</label>
+            </div>
+            <div class="overlay-row">
+                <label class="overlay-field">Pixel X:</label>
+                <label class="overlay-value">@MapUtils.ToPixel(this.state.mapHoverRelativeCoordinate.x)</label>
+            </div>
+            <div class="overlay-row">
+                <label class="overlay-field">Pixel Y:</label>
+                <label class="overlay-value">@MapUtils.ToPixel(this.state.mapHoverRelativeCoordinate.y)</label>
+            </div>*@
+    </div>
+
+    @*<div class="overlay-border overlay-bottom-right">Imagery Tiles: ESRI/ArcGIS</div>*@
+
+</div>
+
+@code {
+
+    private GeographicMap GeoMap;
+    private Rect MapRegionRect;
+
+    Dictionary<MapRegion, Rect> regions;
+
+    protected override void OnInitialized()
+    {
+        GeographicMapModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+
+        regions = MapUtils.GetRegions();
+        this.MapRegionRect = regions[MapRegion.Australia];
+    }
+
+    public void OnMapRegionSelectionChanged(ChangeEventArgs args)
+    {
+        MapRegion region = (MapRegion)Enum.Parse(typeof(MapRegion), args.Value.ToString());
+        this.MapRegionRect = regions[region];
+        MapUtils.NavigateTo(this.GeoMap, region);
+    }
+
+    public void OnMapMouseMove(MouseEventArgs args)
+    {
+
+    }
+}

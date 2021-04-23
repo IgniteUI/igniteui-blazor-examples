@@ -1,1 +1,52 @@
-<Infragistics.Samples.Pages.DataChartTypeStackedSplineSeries />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="container vertical">
+
+        <DataChart Height="100%" Width="100%"
+                   ChartTitle="Energy Production by Source"
+                   TitleTopMargin="10"
+                   IsHorizontalZoomEnabled="false"
+                   IsVerticalZoomEnabled="false">
+
+            <CategoryXAxis Name="xAxis" Label="Country" DataSource="Data" />
+            <NumericYAxis Name="yAxis" Title="Energy (in Billions Wh)" TitleLeftMargin="10" MinimumValue="0"/>
+
+            <StackedSplineSeries XAxisName="xAxis"
+                          YAxisName="yAxis"
+                          DataSource="Data"
+                          AreaFillOpacity="1"
+                          ShowDefaultTooltip="true" >
+                <StackedFragmentSeries Name="coal" ValueMemberPath="Coal"  />
+                <StackedFragmentSeries Name="hydro" ValueMemberPath="Hydro"  />
+                <StackedFragmentSeries Name="nuclear" ValueMemberPath="Nuclear"  />
+                <StackedFragmentSeries Name="solar" ValueMemberPath="Solar" />
+                <StackedFragmentSeries Name="oil" ValueMemberPath="Oil"  />
+            </StackedSplineSeries>
+        </DataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private List<SampleStackedItem> Data;
+
+    protected override void OnInitialized()
+    {
+        // TODO fix rendering of StackedSplineSeries
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        DataChartStackedModule.Register(IgniteUIBlazor);
+        ColumnFragmentModule.Register(IgniteUIBlazor);
+        StackedSplineSeriesModule.Register(IgniteUIBlazor);
+        StackedFragmentSeriesModule.Register(IgniteUIBlazor);
+
+        Data = SampleStackedData.Create();
+
+
+    }
+}

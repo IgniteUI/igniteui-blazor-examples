@@ -1,2 +1,117 @@
-<Infragistics.Samples.Pages.RadialGaugeTypeColumn />
 
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="container vertical">
+        <RadialGauge Height="100%" Width="100%"
+                     MinimumValue="0"
+                     MaximumValue="220"
+                     Value="120"
+                     Interval="20"
+                     TransitionDuration="500"
+                     LabelExtent="0.55"
+                     LabelInterval="20"
+                     Font="15px Verdana,Arial"
+                     ScaleStartAngle="135"
+                     ScaleEndAngle="45"
+                     ScaleBrush="transparent"
+                     ScaleOversweepShape="RadialGaugeScaleOversweepShape.Fitted"
+                     ScaleSweepDirection="SweepDirection.Clockwise"
+                     ScaleEndExtent="0.9"
+                     ScaleStartExtent="0.7"
+                     BackingShape="RadialGaugeBackingShape.Circular"
+                     BackingBrush="transparent"
+                     BackingOutline="transparent"
+                     NeedleShape="RadialGaugeNeedleShape.Needle"
+                     NeedlePivotShape="RadialGaugePivotShape.CircleOverlay"
+                     NeedleEndExtent="0.5"
+                     NeedlePointFeatureExtent="0.2"
+                     NeedlePivotWidthRatio="0.1"
+                     NeedleBrush="#9F9FA0"
+                     NeedleOutline="#9F9FA0"
+                     NeedlePivotBrush="#9F9FA0"
+                     NeedlePivotOutline="#9F9FA0"
+                     TickBrush="#494949"
+                     TickStartExtent="0.65"
+                     TickEndExtent="0.7"
+                     TickStrokeThickness="1"
+                     MinorTickBrush="#494949"
+                     MinorTickCount="4"
+                     MinorTickStartExtent="0.675"
+                     MinorTickEndExtent="0.7"
+                     MinorTickStrokeThickness="1"
+                     RangeBrushes=@RangeColors
+                     RangeOutlines=@RangeColors>
+            @for (int i = 0; i < RangeInfo.Length; i++)
+            {
+                GaugeRangeInfo info = RangeInfo[i];
+                <RadialGaugeRange StartValue=@info.StartValue
+                                  EndValue=@info.EndValue
+                                  Brush="@info.Brush"
+                                  Outline="@info.Brush"
+                                  InnerStartExtent=@info.InnerStartExtent
+                                  InnerEndExtent=@info.InnerEndExtent
+                                  OuterStartExtent=@info.OuterStartExtent
+                                  OuterEndExtent=@info.OuterEndExtent>
+                </RadialGaugeRange>
+            }
+        </RadialGauge>
+    </div>
+</div>
+
+@code {
+
+    private string RangeColors;
+    private GaugeRangeInfo[] RangeInfo;
+
+    protected override void OnInitialized()
+    {
+        RadialGaugeModule.Register(IgniteUIBlazor);
+
+        RangeColors = "#3ebe2e, #44d12b, #62e133, #8eef46, #c3f961, #fbc624, #f38e1c, #dc5815, #b8250c, #840000";
+        string[] colors = RangeColors.Split(',');
+
+        double scaleStartExtent = 0.7;
+        double scaleEndExtent = 0.9;
+
+        double extentSpan = scaleEndExtent - scaleStartExtent - 0.025;
+        double extentInterval = extentSpan / colors.Length;
+
+        double valueSpan = 220;
+        double valueInterval = valueSpan / colors.Length;
+
+        RangeInfo = new GaugeRangeInfo[11];
+
+        RangeInfo[0] = new GaugeRangeInfo()
+        {
+            Brush = "#494949",
+            Outline = "#494949",
+            StartValue = 0,
+            EndValue = 220,
+            InnerStartExtent = scaleStartExtent,
+            InnerEndExtent = scaleStartExtent,
+            OuterStartExtent = scaleStartExtent,
+            OuterEndExtent = scaleStartExtent
+        };
+
+        for (int i = 0; i < colors.Length; i++)
+        {
+            string color = colors[i];
+            GaugeRangeInfo info = new GaugeRangeInfo()
+            {
+                Brush = color,
+                Outline = color,
+                StartValue = (valueInterval * i),
+                EndValue = (valueInterval * (i + 1)),
+                InnerStartExtent = scaleStartExtent + 0.005,
+                InnerEndExtent = scaleStartExtent + 0.005,
+                OuterStartExtent = scaleStartExtent + 0.005 + (extentInterval * i),
+                OuterEndExtent = scaleStartExtent + 0.005 + (extentInterval * (i + 1))
+            };
+
+            RangeInfo[i + 1] = info;
+        }
+    }
+
+}

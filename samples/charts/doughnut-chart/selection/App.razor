@@ -1,3 +1,97 @@
-@*NOTE uncomment one of samples:*@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
 
-<Infragistics.Samples.Pages.DoughnutChartSelection />
+<div class="container vertical">
+    <div class="options horizontal" >
+        <div class="options vertical">
+            <span class="legend-title">Global Electricity Demand by Energy Use</span>
+            <div class="legend">
+                <ItemLegend @ref="Legend" /> @*Orientation="LegendOrientation.Horizontal" />*@
+            </div>
+        </div>
+    </div>
+
+    <div class="container relative">
+        <div class="container-overlay">
+
+            <DoughnutChart Height="100%" Width="100%"
+                           @ref="Chart"
+                           AllowSliceSelection="true" InnerExtent="0.6"
+                           SliceClick="OnSliceClick"
+                           SelectedSliceStroke="White"
+                           SelectedSliceFill="Gray"
+                           SelectedSliceStrokeThickness="1"
+                           SelectedSliceOpacity="0.75">
+                <RingSeries DataSource="Data"
+                            LabelMemberPath="Summary"
+                            LabelsPosition="LabelsPosition.OutsideEnd"
+                            LabelExtent="30"
+                            ValueMemberPath="Value"
+                            LegendLabelMemberPath="Category"
+                            RadiusFactor="0.6"
+                            StartAngle="30">
+                </RingSeries>
+            </DoughnutChart>
+
+            <div class="overlay-center" style="line-height: 1.1">
+                <label class="options-label" style="font-size: 1.2rem;"> @SelectedSliceLabel </label>
+                <label class="options-value" style="font-size: 2.2rem;"> @SelectedSliceValue </label>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    public List<DataItem> Data;
+    public string SelectedSliceLabel;
+    public string SelectedSliceValue;
+    public ItemLegend Legend;
+    public DoughnutChart Chart;
+
+    protected override void OnInitialized()
+    {
+        DoughnutChartModule.Register(IgniteUIBlazor);
+        ItemLegendModule.Register(IgniteUIBlazor);
+
+        this.Data = new List<DataItem>();
+        this.Data.Add(new DataItem { MarketShare = 37, Category = "Cooling", });
+        this.Data.Add(new DataItem { MarketShare = 25, Category = "Residential", });
+        this.Data.Add(new DataItem { MarketShare = 12, Category = "Heating", });
+        this.Data.Add(new DataItem { MarketShare = 11, Category = "Lighting", });
+        this.Data.Add(new DataItem { MarketShare = 15, Category = "Other", });
+
+        this.SelectedSliceValue = this.Data[0].Value + "%";
+        this.SelectedSliceLabel = this.Data[0].Category;
+    }
+
+    public class DataItem
+    {
+        public string Category { get; set; }
+        public double MarketShare { get; set; }
+        public string Summary { get { return Category + " " + MarketShare + "%"; } }
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        this.Chart.ActualSeries[0].Legend = Legend;
+    }
+
+    protected void OnSliceClick(SliceClickEventArgs e)
+    {
+        Console.WriteLine("OnSliceClick " + this.Data[e.Index].Category);
+
+        if (e.IsSelected)
+        {
+            this.SelectedSliceLabel = this.Data[e.Index].Category;
+            this.SelectedSliceValue = this.Data[e.Index].Value + "%";
+        }
+        else
+        {
+            this.SelectedSliceLabel = "No Selection";
+            this.SelectedSliceValue = "0%";
+        }
+    }
+}

@@ -1,5 +1,5 @@
 
-var __highVolumeDataCount = 1000;
+var __highVolumeDataCount = 1000000;
 var __highVolumeData = [];
 function setHighVolumeDataCount(dataCount) {
     __highVolumeDataCount = dataCount;
@@ -18,13 +18,18 @@ function generateHighVolumeData() {
     var dataCount = __highVolumeDataCount;
     var curr = 100.0;
     var data = __highVolumeData;
+    var index = "";
     __highVolumeData.length = dataCount;
-    for (var i = 0; i < dataCount; i++) {
+    for (var i = 0; i <= dataCount; i++) {
         curr += Math.random() * 4.0 - 2.0;
-        data[i] = { Label: i.toString(), Value: curr };
+        index = toStringWithCommas(i); 
+        data[i] = { Label: index, Value: curr };
     }
-
     return data;
+}
+
+function toStringWithCommas(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 function getHighVolumeData() {

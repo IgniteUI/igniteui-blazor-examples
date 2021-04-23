@@ -1,3 +1,47 @@
-<Infragistics.Samples.Pages.FinancialChartHighVolume />
 
+@using IgniteUI.Blazor.Controls
 
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+     @if (DataItems != null)
+     {
+         <FinancialChart Width="100%" Height="100%"
+             ChartType="FinancialChartType.Line"
+             DataSource="@DataItems"
+             ChartTitle="@DataTitle"
+             Subtitle="@DataSubtitle"/>
+     }
+
+</div>
+
+@code {
+
+    List<StockItem> DataItems;
+    public string DataTitle = "";
+    public string DataSubtitle = "";
+
+    protected override void OnInitialized()
+    {
+        FinancialChartModule.Register(IgniteUIBlazor);
+        InitData();
+    }
+
+    public void InitData()
+    {
+        // generating data with 20,000 points every 1 hour
+        var current = DateTime.Now.Date;
+        var dataCount = Math.Ceiling(20000 / 24.0);
+        var dateEnd = new DateTime(current.Year, current.Month, current.Day, 10, 0, 0);
+        var dateStart = dateEnd.AddDays(-dataCount);
+        StocksUtility.intervalDays = 0;
+        StocksUtility.intervalHours = 1;
+        StocksUtility.intervalMinutes = 0;
+        this.DataItems = StocksUtility.GetStocksBetween(dateStart, dateEnd);
+
+        this.DataTitle = "Stock Prices between " + dateStart.Year + " and " + dateEnd.Year;
+        this.DataSubtitle = "Total of " + StocksUtility.ToShortString(this.DataItems.Count) + " Data Points with 1-Hour Interval";
+        Console.WriteLine("DataItems " + this.DataItems.Count);
+    }
+}

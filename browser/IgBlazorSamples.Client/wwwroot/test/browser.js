@@ -1,1 +1,1 @@
-﻿console.log("browser.js");
+﻿console.log("browser.js v1.1");

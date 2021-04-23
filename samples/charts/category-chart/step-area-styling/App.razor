@@ -1,0 +1,75 @@
+
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+    <div class="options vertical">
+        <span class="legend-title">Renewable Electricity Generated</span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" >
+            </Legend>
+        </div>
+    </div>
+    <div class="container vertical">
+        @if (Data != null)
+        {
+            <CategoryChart Height="100%" Width="100%"
+                @ref="@Chart"
+                Legend="Legend"
+                ChartType="CategoryChartType.StepArea"
+                DataSource="Data"
+                YAxisTitle="TWh"
+                IsCategoryHighlightingEnabled="true"
+                IsSeriesHighlightingEnabled="true"
+                ToolTipType="ToolTipType.Category"
+                IsTransitionInEnabled="true"
+				IsHorizontalZoomEnabled="false"
+                IsVerticalZoomEnabled="false">
+            </CategoryChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private CategoryChart _Chart;
+    private CategoryChart Chart
+    {
+        get { return _Chart; }
+        set
+        {
+            _Chart = value;
+            if (this.Chart != null)
+            {
+                this.Chart.MarkerTypes.Clear();
+                this.Chart.MarkerTypes.Add(MarkerType.Triangle);
+                this.Chart.MarkerBrushes = "White";
+                this.Chart.MarkerOutlines = "rgb(140, 231, 217) rgb(238, 88, 121) rgb(115, 86, 86)";
+                this.Chart.Brushes = "rgb(140, 231, 217) rgb(238, 88, 121) rgb(115, 86, 86)";
+				this.Chart.Outlines = "rgb(140, 231, 217) rgb(238, 88, 121) rgb(115, 86, 86)";
+
+                StateHasChanged();
+            }
+        }
+    }
+    private List<EnergyRenewableInfo> Data;
+    private Legend legend;
+    private Legend Legend
+    {
+        get { return legend; }
+        set
+        {
+            legend = value;
+            StateHasChanged();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        CategoryChartModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+        this.Data = new EnergyRenewableData();
+    }
+}

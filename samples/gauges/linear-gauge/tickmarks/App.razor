@@ -1,2 +1,32 @@
-<Infragistics.Samples.Pages.LinearGaugeTickmarks />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
 
+<div class="container vertical">
+    <div class="container vertical">
+        <LinearGauge Height="80px" Width="100%"
+                     MinimumValue="0" Value="50"
+                     MaximumValue="100" Interval="10"
+
+                     TickBrush="DodgerBlue"
+                     TicksPreTerminal="0"
+                     TicksPostInitial="0"
+                     TickStrokeThickness="2"
+                     TickStartExtent="0.25"
+                     TickEndExtent="0.05"
+
+                     MinorTickCount="4"
+                     MinorTickBrush="DarkViolet"
+                     MinorTickEndExtent="0.05"
+                     MinorTickStartExtent="0.15"
+                     MinorTickStrokeThickness="1">
+        </LinearGauge>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        LinearGaugeModule.Register(IgniteUIBlazor);
+    }
+}

@@ -1,17 +1,16 @@
-﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.RenderTree;
 using Microsoft.AspNetCore.Components.Web;
-
-using System.Net.Http;
-using System.Net.Http.Json;
 using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Components.WebAssembly.Http;
 using Microsoft.JSInterop;
-using Infragistics.Documents.Excel;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Json;
+using Infragistics.Documents.Excel;
 
 namespace Infragistics.Samples
 {
@@ -71,7 +70,7 @@ namespace Infragistics.Samples
         public string ShippedDate { get; set; }
         public double ShipperID { get; set; }
         public string ShipperName { get; set; }
-        public double TotalItems { get; set; }      
+        public double TotalItems { get; set; }
         public double TotalPrice { get; set; }
     }
 }

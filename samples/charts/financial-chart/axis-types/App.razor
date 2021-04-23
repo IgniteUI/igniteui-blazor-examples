@@ -1,3 +1,58 @@
-<Infragistics.Samples.Pages.FinancialChartAxisTypes />
 
+@using IgniteUI.Blazor.Controls
 
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="options horizontal">
+        <label class="options-label">X-Axis Mode: </label>
+        <label class="options-item">
+            <select @bind="@XAxisMode">
+                <option>@FinancialChartXAxisMode.Ordinal</option>
+                <option>@FinancialChartXAxisMode.Time</option>
+            </select>
+            <label class="options-label">Y-Axis Mode: </label>
+            <select @bind="@YAxisMode">
+                <option>@FinancialChartYAxisMode.Numeric</option>
+                <option>@FinancialChartYAxisMode.PercentChange</option>
+            </select>
+        </label>
+    </div>
+
+    <div class="container vertical">
+
+        @if (Data != null)
+        {
+            <FinancialChart Width="100%"
+                Height="100%"
+                DataSource="Data"
+                ChartType=FinancialChartType.Line
+                Thickness=2
+                XAxisMode="XAxisMode"
+                YAxisMode="YAxisMode"/>
+        }
+    </div>
+</div>
+
+@code {
+
+    public FinancialChartXAxisMode XAxisMode = FinancialChartXAxisMode.Ordinal;
+    public FinancialChartYAxisMode YAxisMode = FinancialChartYAxisMode.Numeric;
+    List<StockItem> Data;
+
+    protected override void OnInitialized()
+    {
+        FinancialChartModule.Register(IgniteUIBlazor);
+        InitData();
+    }
+
+    public void InitData()
+    {
+        var today = DateTime.Now;
+        var year = today.Year;
+        var month = today.Month;
+        var dateEnd = new DateTime(year, month, 1);
+        var dateStart = new DateTime(year - 1, month, 1);
+        this.Data = StocksUtility.GetStocksBetween(dateStart, dateEnd);
+    }
+}

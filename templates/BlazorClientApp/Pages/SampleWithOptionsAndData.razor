@@ -1,27 +1,21 @@
 ﻿@page "/SampleWithOptionsAndData"
 
-@* this namespace is required for Infragistics controls *@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 @inject HttpClient Http
 
-@* NOTE use this HTML code to design a sample *@
-<div class="igContainer">
-    <div class="igOptions">
-        @* TODO add options (if any) for IG control here otherwise remove DIV with igOptions *@
-        <button class="btn btn-primary" @onclick="OnButtonClick">Click me</button>
+<div class="container vertical">
+    <div class="options horizotnal">
+        <button @onclick="OnButtonClick">Click me</button>
     </div>
 
-    <div class="igComponent">
+    <div class="container vertical">
 
-        @* NOTE making sure data is loaded before we can render it *@
         @if (DataSource != null)
         {
-            @* TODO add IG control here *@
-            <p>Current count: @CurrentCount</p>
+            <div>TODO add IG control here</div>
 
-            @* NOTE here is an example of displaying DataSource: *@
             <table class="table">
                 <thead>
                     <tr>
@@ -48,7 +42,7 @@
     </div>
 </div>
 
-@* NOTE you can change this C# code to affect behaviour of this page: *@
+
 @code {
 
     // NOTE here, you can add properties to store values and data for this component

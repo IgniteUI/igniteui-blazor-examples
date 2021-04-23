@@ -1,0 +1,95 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="options vertical">
+        <span class="legend-title">Wind Speed</span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+    <div class="container vertical">
+
+        <DataChart @ref="Chart" Legend="Legend" Height="100%" Width="100%"
+                   IsHorizontalZoomEnabled="false"
+                   IsVerticalZoomEnabled="false">
+            <NumericAngleAxis Name="angleAxis" StartAngleOffset="-90"
+                              Interval="30"
+                              MinimumValue="0"
+                              MaximumValue="360" LabelFontWeight="Bold" />
+            <NumericRadiusAxis Name="radiusAxis"
+                               RadiusExtentScale="0.75"
+                               InnerRadiusExtentScale="0.1"
+                               Interval="25"
+                               MinimumValue="0"
+                               MaximumValue="100" />
+
+            <PolarAreaSeries Name="series1"
+                             DataSource="Data"
+                             AngleAxisName="angleAxis"
+                             AngleMemberPath="Direction"
+                             RadiusMemberPath="WindSpeed"
+                             RadiusAxisName="radiusAxis"
+                             ShowDefaultTooltip="true"
+                             AreaFillOpacity="0.30"
+                             Thickness="3"
+                             Title="Wind"
+                             MarkerType="MarkerType.Circle" />
+            <PolarAreaSeries Name="series2"
+                             DataSource="Data"
+                             AngleAxisName="angleAxis"
+                             AngleMemberPath="Direction"
+                             RadiusMemberPath="BoatSpeed"
+                             RadiusAxisName="radiusAxis"
+                             ShowDefaultTooltip="true"
+                             AreaFillOpacity="0.30"
+                             Thickness="3"
+                             Title="Boat"
+                             MarkerType="MarkerType.Circle" />
+        </DataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private List<SamplePolarItem> Data;
+
+    private Legend _Legend;
+    private Legend Legend
+    {
+        get { return _Legend; }
+        set { _Legend = value; StateHasChanged(); }
+    }
+
+    private DataChart __Chart;
+    private DataChart Chart
+    {
+        get { return __Chart; }
+        set
+        {
+            __Chart = value;
+            if (this.Chart != null)
+            {
+                this.Chart.MarkerBrushes = "White";
+                this.Chart.MarkerOutlines = "rgb(140, 231, 217) rgb(238, 88, 121)";
+                this.Chart.Brushes = "rgb(140, 231, 217) rgb(238, 88, 121)";
+                this.Chart.Outlines = "rgb(140, 231, 217) rgb(238, 88, 121)";
+
+                StateHasChanged();
+            }
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartPolarModule.Register(IgniteUIBlazor);
+        DataChartPolarCoreModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+
+        Data = SamplePolarData.Create();
+    }
+
+}

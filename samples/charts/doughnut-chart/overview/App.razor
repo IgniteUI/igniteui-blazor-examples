@@ -1,3 +1,49 @@
-<Infragistics.Samples.Pages.DoughnutChartOverview />
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
 
+<div class="container vertical">
+    <div class="container vertical">
 
+        @if (Data != null)
+        {
+            <DoughnutChart Height="100%" Width="100%">
+                <RingSeries DataSource="Data"
+                            LabelMemberPath="Summary"
+                            ValueMemberPath="MarketShare"
+                            LegendLabelMemberPath="Category"
+                            Outlines="white"
+                           >
+                </RingSeries>
+            </DoughnutChart>
+        }
+
+    </div>
+</div>
+
+@code {
+
+    private List<DataItem> Data;
+
+    protected override void OnInitialized()
+    {
+        DoughnutChartModule.Register(IgniteUIBlazor);
+
+        var dataItems = new List<DataItem>();
+        dataItems.Add(new DataItem() { MarketShare = 30, Category = "Google", });
+        dataItems.Add(new DataItem() { MarketShare = 25, Category = "Apple", });
+        dataItems.Add(new DataItem() { MarketShare = 20, Category = "Microsoft", });
+        dataItems.Add(new DataItem() { MarketShare = 15, Category = "Samsung", });
+        dataItems.Add(new DataItem() { MarketShare = 10, Category = "Other", });
+
+        Data = dataItems;
+
+    }
+
+    public class DataItem
+    {
+        public string Category { get; set; }
+        public double MarketShare { get; set; }
+        public string Summary { get { return Category + " " + MarketShare + "%"; } }
+    }
+
+}

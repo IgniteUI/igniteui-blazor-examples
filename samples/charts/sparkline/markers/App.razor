@@ -1,1 +1,90 @@
-<Infragistics.Samples.Pages.SparklineMarkers/>
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+    <div class="container vertical">
+
+        <div class="options horizontal">
+            <label class="options-label"><input type="checkbox" checked @onchange="onToggleFirstMarker" />First Marker</label>
+            <label class="options-label"><input type="checkbox" checked @onchange="onToggleHighMarker" />High Marker</label>
+            <label class="options-label"><input type="checkbox" checked @onchange="onToggleLowMarker" />Low Marker</label>
+            <label class="options-label"><input type="checkbox" checked @onchange="onToggleNegativeMarker" />Negative Marker</label>
+            <label class="options-label"><input type="checkbox" checked @onchange="onToggleLastMarker" />Last Marker</label>
+            <label class="options-label"><input type="checkbox" checked @onchange="onToggleOtherMarker" />Other Marker</label>
+        </div>
+
+        <div class="container vertical">
+
+            @if (Data != null)
+            {
+                <Sparkline Height="100%"
+                    Width="100%"
+                    DataSource="Data"
+                    DisplayType="SparklineDisplayType.Line"
+                    ValueMemberPath="Value"
+                    LabelMemberPath="Label"
+                    Minimum="-3"
+                    MarkerVisibility="@OtherMarkerVisibility"
+                    HighMarkerVisibility="@HighMarkerVisibility"
+                    LowMarkerVisibility="@LowhMarkerVisibility"
+                    FirstMarkerVisibility="@FirstMarkerVisibility"
+                    LastMarkerVisibility="@LastMarkerVisibility"
+                    NegativeMarkerVisibility="@NegativeMarkerVisibility"
+                    MarkerSize="10"
+                    FirstMarkerSize="10"
+                    LastMarkerSize="10"
+                    LowMarkerSize="10"
+                    HighMarkerSize="10"
+                    NegativeMarkerSize="10">
+                 </Sparkline>
+            }
+
+        </div>
+    </div>
+
+@code {
+
+        private List<SparklineMarkerItem> Data;
+        private Visibility HighMarkerVisibility = Visibility.Visible;
+        private Visibility LowhMarkerVisibility = Visibility.Visible;
+        private Visibility FirstMarkerVisibility = Visibility.Visible;
+        private Visibility LastMarkerVisibility = Visibility.Visible;
+        private Visibility NegativeMarkerVisibility = Visibility.Visible;
+        private Visibility OtherMarkerVisibility = Visibility.Visible;
+
+        protected override void OnInitialized()
+        {
+            SparklineModule.Register(IgniteUIBlazor);
+
+            this.Data = SparklineMarkerData.Generate();
+        }
+
+        public void onToggleHighMarker(ChangeEventArgs e)
+        {
+            this.HighMarkerVisibility = (bool)e.Value ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public void onToggleLowMarker(ChangeEventArgs e)
+        {
+            this.LowhMarkerVisibility = (bool)e.Value ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public void onToggleFirstMarker(ChangeEventArgs e)
+        {
+            this.FirstMarkerVisibility = (bool)e.Value ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public void onToggleLastMarker(ChangeEventArgs e)
+        {
+            this.LastMarkerVisibility = (bool)e.Value ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public void onToggleNegativeMarker(ChangeEventArgs e)
+        {
+            this.NegativeMarkerVisibility = (bool)e.Value ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public void onToggleOtherMarker(ChangeEventArgs e)
+        {
+            this.OtherMarkerVisibility = (bool)e.Value ? Visibility.Visible : Visibility.Collapsed;
+        }
+}

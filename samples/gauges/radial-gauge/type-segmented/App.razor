@@ -1,1 +1,53 @@
-<Infragistics.Samples.Pages.RadialGaugeTypeSegmented />
+
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="container vertical">
+        <RadialGauge Height="100%" Width="100%"
+                     MinimumValue="0"
+                     MaximumValue="100"
+                     Value="80"
+                     Interval="10"
+                     TransitionDuration="500"
+                     LabelInterval="10"
+                     LabelExtent="0.8"
+                     Font="15px Verdana,Arial"
+                     NeedleShape="RadialGaugeNeedleShape.None"
+                     NeedlePivotShape="RadialGaugePivotShape.None"
+                     ScaleStartAngle="-90"
+                     ScaleEndAngle="270"
+                     ScaleBrush="#E0DFDF"
+                     ScaleOversweepShape="RadialGaugeScaleOversweepShape.Circular"
+                     ScaleSweepDirection="SweepDirection.Clockwise"
+                     ScaleEndExtent="0.7"
+                     ScaleStartExtent="0.6"
+                     MinorTickCount="4"
+                     MinorTickStartExtent="0.6"
+                     MinorTickEndExtent="0.7"
+                     MinorTickStrokeThickness="2"
+                     MinorTickBrush="white"
+                     TickStartExtent="0.6"
+                     TickEndExtent="0.7"
+                     TickStrokeThickness="2"
+                     TickBrush="white"
+                     BackingBrush="transparent"
+                     BackingOutline="transparent"
+                     BackingShape="RadialGaugeBackingShape.Circular">
+            <RadialGaugeRange StartValue="0" EndValue="80"
+                              Brush="#1E90FF" Outline="1E90FF"
+                              InnerStartExtent="0.6" InnerEndExtent="0.6"
+                              OuterStartExtent="0.7" OuterEndExtent="0.7">
+            </RadialGaugeRange>
+        </RadialGauge>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        RadialGaugeModule.Register(IgniteUIBlazor);
+    }
+
+}
