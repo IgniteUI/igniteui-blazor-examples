@@ -1,7 +1,8 @@
-<div style="display: flex; flex-flow: row;">
-<img height="70px" style="border-radius: 0.25rem" alt="ignite-ui" src="./browser/IgBlazorSamples.Client/wwwroot/images/logo-ignite-ui.svg"/>
-<!-- <div style="font-size: 2.5rem; align-self: start; justify-content: start; margin: 0px; margin-left: 0.5rem; margin-right: 0.5rem">BLAZOR EXAMPLES</div> -->
-<!-- <img height="52px" style="border-radius: 0.25rem" alt="ignite-wc" src="./browser/IgBlazorSamples.Client/wwwroot/images/blazor.png"/> -->
+<link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
+<div style="display: flex; flex-flow: row; font-family: 'Titillium Web'">
+    <!-- <div style="font-size: 2.5rem; align-self: start; justify-content: start; margin: 0px; margin-left: 0.5rem; margin-right: 0.5rem; ">Examples</div> -->
+    <img height="70px" style="border-radius: 0.25rem" alt="ignite-ui" src="./browser/IgBlazorSamples.Client/wwwroot/images/logo-ignite-ui.svg"/>
+    <div style="font-size: 2.5rem; margin: 0px; margin-left: 0.5rem; margin-right: 0.5rem; color: white; ">for BLAZOR </div>
 </div>
 
 # Blazor Examples
@@ -9,10 +10,10 @@
 This repository contains over 250 examples on how to use [Ignite UI for Blazor](https://infragistics.com/blazorsite/components/general-getting-started.html)
 
 - [Bullet Graph, Linear Gauge, Radial Gauges](https://infragistics.com/blazorsite/components/radial-gauge.html)
-- [Data Chart, Category Chart, Financial Chart, Pie Chart](https://infragistics.com/blazorsite/components/data-chart.html)
+- [Data Chart, Category Chart, Financial Chart, Pie Chart](https://infragistics.com/blazorsite/components/charts/chart-overview.html)
 - [Data Grid / Data Table](https://infragistics.com/blazorsite/components/data-grid.html)
 - [Geographic Map](https://infragistics.com/blazorsite/components/geo-map.html)
-- [Treemap](https://infragistics.com/blazorsite/components/treemap-overview.html)
+- [Treemap](https://infragistics.com/blazorsite/components/charts/types/treemap-chart.html)
 - [Excel Spreadsheet](https://infragistics.com/blazorsite/components/spreadsheet_overview.html)
 - [Excel Library](https://infragistics.com/blazorsite/components/excel_library_using_workbooks.html)
 - and many more
