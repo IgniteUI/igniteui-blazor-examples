@@ -1,0 +1,57 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="options vertical">
+        <span class="legend-title">Temperatures in LA and NYC</span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+        </div>
+
+        <div class="overlay-right" >
+            <div class="options horizontal">
+                <span class="options-label">Legend Highlighting Modes: </span>
+                <select @bind="@LegendHighlightMode">
+                    <option>@LegendHighlightingMode.Auto</option>
+                    <option>@LegendHighlightingMode.MatchSeries</option>
+                    <option>@LegendHighlightingMode.None</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="container vertical">
+        <CategoryChart Height="100%" Width="100%"
+                       Legend="Legend"
+                       ExcludedProperties="@(new string[] { "NY_Low", "LA_Low" })"
+                       DataSource="Data"
+                       ChartType="CategoryChartType.Column"
+                       LegendHighlightingMode="@LegendHighlightMode"
+                       IsSeriesHighlightingEnabled="true"
+                       YAxisTitle="Temperatures in Celsius"
+                       YAxisMinimumValue="0"
+                       XAxisInterval="1">
+        </CategoryChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Legend _Legend;
+    private Legend Legend
+    {
+        get { return _Legend; }
+        set { _Legend = value; StateHasChanged(); }
+    }
+
+    private LegendHighlightingMode LegendHighlightMode = LegendHighlightingMode.Auto;
+    
+    private List<CityTemperatureInfo> Data = new CityTemperatureData();
+
+    protected override void OnInitialized()
+    {
+        CategoryChartModule.Register(IgniteUIBlazor);
+        LegendModule.Register(IgniteUIBlazor);
+    }
+}

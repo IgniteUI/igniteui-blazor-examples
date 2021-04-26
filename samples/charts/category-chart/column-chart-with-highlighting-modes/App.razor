@@ -1,0 +1,59 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div class="options vertical">
+        <span class="legend-title">Temperatures in LA and NYC</span>
+        <div class="overlay-right" >
+            <div class="options horizontal">
+                <span class="options-label">Highlighting Modes: </span>
+                <select @bind="@HighlightMode">
+                    <option>@SeriesHighlightingMode.Auto</option>
+                    <option>@SeriesHighlightingMode.Brighten</option>
+                    <option>@SeriesHighlightingMode.BrightenSpecific</option>
+                    <option>@SeriesHighlightingMode.FadeOthers</option>
+                    <option>@SeriesHighlightingMode.FadeOthersSpecific</option>
+                    <option>@SeriesHighlightingMode.None</option>
+                </select>
+
+                <span class="options-label">Highlighting Behavior: </span>
+                <select @bind="@HighlightBehavior">
+                    <option>@SeriesHighlightingBehavior.Auto</option>
+                    <option>@SeriesHighlightingBehavior.DirectlyOver</option>
+                    <option>@SeriesHighlightingBehavior.NearestItems</option>
+                    <option>@SeriesHighlightingBehavior.NearestItemsAndSeries</option>
+                    <option>@SeriesHighlightingBehavior.NearestItemsRetainMainShapes</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="container vertical">
+        <CategoryChart Height="100%" Width="100%"
+                       ExcludedProperties="@(new string[] { "NY_Low", "LA_Low" })"
+                       DataSource="Data"
+                       ChartType="CategoryChartType.Column"
+                       HighlightingMode="@HighlightMode"
+                       HighlightingBehavior="@HighlightBehavior"
+                       IsSeriesHighlightingEnabled="true"
+                       YAxisTitle="Temperatures in Celsius"
+                       YAxisMinimumValue="0"
+                       XAxisInterval="1">
+        </CategoryChart>
+
+    </div>
+</div>
+
+@code {
+
+    private SeriesHighlightingMode HighlightMode = SeriesHighlightingMode.Auto;
+    private SeriesHighlightingBehavior HighlightBehavior = SeriesHighlightingBehavior.Auto;
+
+
+    private List<CityTemperatureInfo> Data = new CityTemperatureData();
+
+    protected override void OnInitialized()
+    {
+        CategoryChartModule.Register(IgniteUIBlazor);
+    }
+}
