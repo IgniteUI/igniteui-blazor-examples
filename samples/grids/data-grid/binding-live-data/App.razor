@@ -21,14 +21,13 @@
 
         @if (Data != null)
         {
-            <DataGrid Height="calc(100% - 5rem)" Width="100%" @ref="DataGridRef"
+            <DataGrid Height="calc(100% - 1rem)" Width="100%" @ref="DataGridRef"
                       DataSource="Data"
                       AutoGenerateColumns="false"
                       SelectionMode="@GridSelectionMode.MultipleRow"
                       IsGroupCollapsable="true"
                       RowHeight="32"
                       HeaderClickAction="@HeaderClickAction.SortByMultipleColumnsTriState"
-                      SortDescriptionsChanged="OnSortDescriptionsChanged"
                       ActivationMode="GridActivationMode.Cell"
                       DefaultColumnMinWidth="100"
                       IsRowHoverEnabled="false">
@@ -76,11 +75,6 @@
 </div>
 
 @code {
-
-    private void OnSortDescriptionsChanged(GridSortDescriptionsChangedEventArgs args)
-    {
-
-    }
 
     public List<PortfolioInfo> Data;
 
