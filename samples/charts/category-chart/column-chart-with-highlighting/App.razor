@@ -2,36 +2,61 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options vertical">
+    <div class="options horizontal">
         <span class="legend-title">Temperatures in LA and NYC</span>
         <div class="legend">
             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
-
-        <div class="overlay-right" >
-            <div class="options horizontal" >
-                <label class="options-label">Enable Highlighting: </label>
-                <label class="options-item">
-                    <input type="checkbox" checked="@IsSeriesHighlighting" @onchange="OnSeriesHighlightingChanged" /> Series
-                </label>
-                <label class="options-item">
-                    <input type="checkbox" checked="@IsItemHighlighting" @onchange="OnItemHighlightingChanged" />Item
-                </label>
-                <label class="options-item">
-                    <input type="checkbox" checked="@IsCategoryHighlighting" @onchange="OnCategoryHighlightingChanged" />Category
-                </label>
-            </div>
-        </div>
     </div>
+
+    <div class="options horizontal">
+        <span class="options-label">Highlight Type: </span>
+        <select @onchange="OnHighlightTypeChanged">
+            <option>Series</option>
+            <option>Item</option>
+            <option>Category</option>
+            <option>None</option>
+        </select>
+        <span class="options-label">Highlighting Modes: </span>
+        <select @bind="@HighlightMode">
+            <option>@SeriesHighlightingMode.Auto</option>
+            <option>@SeriesHighlightingMode.Brighten</option>
+            <option>@SeriesHighlightingMode.BrightenSpecific</option>
+            <option>@SeriesHighlightingMode.FadeOthers</option>
+            <option>@SeriesHighlightingMode.FadeOthersSpecific</option>
+            <option>@SeriesHighlightingMode.None</option>
+        </select>
+
+        <span class="options-label">Highlighting Behavior: </span>
+        <select @bind="@HighlightBehavior">
+            <option>@SeriesHighlightingBehavior.Auto</option>
+            <option>@SeriesHighlightingBehavior.DirectlyOver</option>
+            <option>@SeriesHighlightingBehavior.NearestItems</option>
+            <option>@SeriesHighlightingBehavior.NearestItemsAndSeries</option>
+            <option>@SeriesHighlightingBehavior.NearestItemsRetainMainShapes</option>
+        </select>
+
+        <span class="options-label">Highlight Legend: </span>
+        <select @bind="@LegendHighlightMode">
+            <option>@LegendHighlightingMode.Auto</option>
+            <option>@LegendHighlightingMode.MatchSeries</option>
+            <option>@LegendHighlightingMode.None</option>
+        </select>
+    </div>
+
 
     <div class="container vertical">
         <CategoryChart Height="100%" Width="100%"
+                       Legend="@Legend"
                        ExcludedProperties="@(new string[] { "NY_Low", "LA_Low" })"
                        DataSource="Data"
                        ChartType="CategoryChartType.Column"
                        IsCategoryHighlightingEnabled="@IsCategoryHighlighting"
                        IsItemHighlightingEnabled="@IsItemHighlighting"
                        IsSeriesHighlightingEnabled="@IsSeriesHighlighting"
+                       HighlightingMode="@HighlightMode"
+                       HighlightingBehavior="@HighlightBehavior"
+                       LegendHighlightingMode="@LegendHighlightMode"
                        YAxisTitle="Temperatures in Celsius"
                        YAxisMinimumValue="0"
                        XAxisInterval="1">
@@ -49,9 +74,12 @@
         set { _Legend = value; StateHasChanged(); }
     }
 
-    private bool IsSeriesHighlighting = false;
-    private bool IsItemHighlighting = true;
+    private bool IsSeriesHighlighting = true;
+    private bool IsItemHighlighting = false;
     private bool IsCategoryHighlighting = false;
+    private SeriesHighlightingMode HighlightMode = SeriesHighlightingMode.Auto;
+    private SeriesHighlightingBehavior HighlightBehavior = SeriesHighlightingBehavior.Auto;
+    private LegendHighlightingMode LegendHighlightMode = LegendHighlightingMode.Auto;
 
     private List<CityTemperatureInfo> Data = new CityTemperatureData();
 
@@ -61,18 +89,23 @@
         LegendModule.Register(IgniteUIBlazor);
     }
 
-    private void OnSeriesHighlightingChanged(ChangeEventArgs args)
+    private void OnHighlightTypeChanged(ChangeEventArgs args)
     {
-        this.IsSeriesHighlighting = (bool)args.Value;
-    }
+        this.IsSeriesHighlighting = false;
+        this.IsItemHighlighting = false;
+        this.IsCategoryHighlighting = false;
 
-    private void OnItemHighlightingChanged(ChangeEventArgs args)
-    {
-        this.IsItemHighlighting = (bool)args.Value;
-    }
-
-    private void OnCategoryHighlightingChanged(ChangeEventArgs args)
-    {
-        this.IsCategoryHighlighting = (bool)args.Value;
+        if((string)args.Value == "Series")
+        {
+            this.IsSeriesHighlighting = true;
+        }
+        else if((string)args.Value == "Item")
+        {
+            this.IsItemHighlighting = true;
+        }
+        else if ((string)args.Value == "Category")
+        {
+            this.IsCategoryHighlighting = true;
+        }
     }
 }
