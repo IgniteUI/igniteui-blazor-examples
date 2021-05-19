@@ -5,11 +5,35 @@
 <div class="container vertical">
 
     <div class="container vertical">
-
+        <div class="options horizontal">
+            <label>
+                Enter Key Mode:
+                <select @bind="EnterKeyMode">
+                    <option>@EnterKeyBehaviors.Edit</option>
+                    <option>@EnterKeyBehaviors.MoveDown</option>
+                    <option>@EnterKeyBehaviors.MoveLeft</option>
+                    <option>@EnterKeyBehaviors.MoveRight</option>
+                    <option>@EnterKeyBehaviors.MoveUp</option>
+                    <option>@EnterKeyBehaviors.None</option>
+                </select>
+            </label>
+            <label>
+                Enter Key After Edit Mode:
+                <select @bind="EnterKeyAfterEditMode" disabled="@EditDisabled">
+                    <option>@EnterKeyBehaviorAfterEdit.MoveDown</option>
+                    <option>@EnterKeyBehaviorAfterEdit.MoveLeft</option>
+                    <option>@EnterKeyBehaviorAfterEdit.MoveRight</option>
+                    <option>@EnterKeyBehaviorAfterEdit.MoveUp</option>
+                    <option>@EnterKeyBehaviorAfterEdit.None</option>
+                </select>
+            </label>
+        </div>
         @if (Data != null)
         {
         <DataGrid Height="100%" Width="100%"
                   DataSource="Data"
+                  EnterBehavior="@EnterKeyMode"
+                  EnterBehaviorAfterEdit="@EnterKeyAfterEditMode"
                   AutoGenerateColumns="false"
                   SelectionMode="GridSelectionMode.RangeCell"
                   ActivationMode="GridActivationMode.Cell">
@@ -32,6 +56,35 @@
 @code {
 
     private object Data;
+    private bool EditDisabled { get; set; }
+
+    private EnterKeyBehaviors _enterKeyMode;
+    public EnterKeyBehaviors EnterKeyMode
+    {
+        get { return _enterKeyMode; }
+        set
+        {
+            _enterKeyMode = value;
+            if (_enterKeyMode == EnterKeyBehaviors.Edit)
+            {
+                EditDisabled = false;
+            }
+            else
+            {
+                EditDisabled = true;
+            }
+        }
+    }
+
+    private EnterKeyBehaviorAfterEdit _enterKeyAfterEditMode;
+    public EnterKeyBehaviorAfterEdit EnterKeyAfterEditMode
+    {
+        get { return _enterKeyAfterEditMode; }
+        set
+        {
+            _enterKeyAfterEditMode = value;           
+        }
+    }
 
     protected override void OnInitialized()
     {
@@ -39,6 +92,8 @@
 
         DataGridModule.Register(IgniteUIBlazor);
         this.Data = EmployeeData.Create(200, false);
+        this.EnterKeyMode = EnterKeyBehaviors.Edit;
+        this.EnterKeyAfterEditMode = EnterKeyBehaviorAfterEdit.MoveDown;
     }
 
 }
