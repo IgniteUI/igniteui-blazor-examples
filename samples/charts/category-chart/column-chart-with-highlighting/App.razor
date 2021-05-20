@@ -1,24 +1,19 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="container vertical">
-    <div class="options horizontal">
-        <span class="legend-title">Temperatures in LA and NYC</span>
-        <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
-        </div>
-    </div>
+<div class="container vertical sample">
 
     <div class="options horizontal">
-        <span class="options-label">Highlight Type: </span>
-        <select @onchange="OnHighlightTypeChanged">
+        <label class="options-label" style="margin-left: 0.25rem;">Highlight Target:</label>
+        <select @onchange="OnHighlightingTargetChanged" style="width: 7rem; margin-right: 1rem;">
             <option>Series</option>
             <option>Item</option>
             <option>Category</option>
             <option>None</option>
         </select>
-        <span class="options-label">Highlighting Modes: </span>
-        <select @bind="@HighlightMode">
+
+        <label class="options-label">Mode:</label>
+        <select @bind="@HighlightingMode" style="width: 7rem; margin-right: 1rem;">
             <option>@SeriesHighlightingMode.Auto</option>
             <option>@SeriesHighlightingMode.Brighten</option>
             <option>@SeriesHighlightingMode.BrightenSpecific</option>
@@ -27,8 +22,8 @@
             <option>@SeriesHighlightingMode.None</option>
         </select>
 
-        <span class="options-label">Highlighting Behavior: </span>
-        <select @bind="@HighlightBehavior">
+        <label class="options-label">Behavior:</label>
+        <select @bind="@HighlightingBehavior" style="width: 7rem; margin-right: 1rem;" >
             <option>@SeriesHighlightingBehavior.Auto</option>
             <option>@SeriesHighlightingBehavior.DirectlyOver</option>
             <option>@SeriesHighlightingBehavior.NearestItems</option>
@@ -36,27 +31,33 @@
             <option>@SeriesHighlightingBehavior.NearestItemsRetainMainShapes</option>
         </select>
 
-        <span class="options-label">Highlight Legend: </span>
-        <select @bind="@LegendHighlightMode">
+        <label class="options-label">Legend:</label>
+        <select @bind="@HighlightingLegend" style="width: 7rem; margin-right: 1rem;"
+                title="Chart will highlight series when you hover over legend items">
             <option>@LegendHighlightingMode.Auto</option>
             <option>@LegendHighlightingMode.MatchSeries</option>
             <option>@LegendHighlightingMode.None</option>
         </select>
     </div>
 
+    <div class="options vertical">
+        <label class="legend-title">Average Temperatures in the U.S. Cities</label>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
 
     <div class="container vertical">
         <CategoryChart Height="100%" Width="100%"
                        Legend="@Legend"
-                       ExcludedProperties="@(new string[] { "NY_Low", "LA_Low" })"
                        DataSource="Data"
                        ChartType="CategoryChartType.Column"
                        IsCategoryHighlightingEnabled="@IsCategoryHighlighting"
                        IsItemHighlightingEnabled="@IsItemHighlighting"
                        IsSeriesHighlightingEnabled="@IsSeriesHighlighting"
-                       HighlightingMode="@HighlightMode"
-                       HighlightingBehavior="@HighlightBehavior"
-                       LegendHighlightingMode="@LegendHighlightMode"
+                       HighlightingMode="@HighlightingMode"
+                       HighlightingBehavior="@HighlightingBehavior"
+                       LegendHighlightingMode="@HighlightingLegend"
                        YAxisTitle="Temperatures in Celsius"
                        YAxisMinimumValue="0"
                        XAxisInterval="1">
@@ -77,11 +78,11 @@
     private bool IsSeriesHighlighting = true;
     private bool IsItemHighlighting = false;
     private bool IsCategoryHighlighting = false;
-    private SeriesHighlightingMode HighlightMode = SeriesHighlightingMode.Auto;
-    private SeriesHighlightingBehavior HighlightBehavior = SeriesHighlightingBehavior.Auto;
-    private LegendHighlightingMode LegendHighlightMode = LegendHighlightingMode.Auto;
+    private LegendHighlightingMode HighlightingLegend = LegendHighlightingMode.Auto;
+    private SeriesHighlightingMode HighlightingMode = SeriesHighlightingMode.Auto;
+    private SeriesHighlightingBehavior HighlightingBehavior = SeriesHighlightingBehavior.Auto;
 
-    private List<CityTemperatureInfo> Data = new CityTemperatureData();
+    private List<AverageTemperature> Data = new AverageTemperatureData();
 
     protected override void OnInitialized()
     {
@@ -89,23 +90,58 @@
         LegendModule.Register(IgniteUIBlazor);
     }
 
-    private void OnHighlightTypeChanged(ChangeEventArgs args)
+    private void OnHighlightingTargetChanged(ChangeEventArgs args)
     {
-        this.IsSeriesHighlighting = false;
-        this.IsItemHighlighting = false;
-        this.IsCategoryHighlighting = false;
-
-        if((string)args.Value == "Series")
+        var highlighingTarget = (string)args.Value;
+        if (highlighingTarget == "Series")
         {
+            this.IsItemHighlighting = false;
             this.IsSeriesHighlighting = true;
+            this.IsCategoryHighlighting = false;
         }
-        else if((string)args.Value == "Item")
+        else if(highlighingTarget == "Item")
         {
             this.IsItemHighlighting = true;
+            this.IsSeriesHighlighting = false;
+            this.IsCategoryHighlighting = false;
         }
-        else if ((string)args.Value == "Category")
+        else if (highlighingTarget == "Category")
         {
+            this.IsItemHighlighting = false;
+            this.IsSeriesHighlighting = false;
             this.IsCategoryHighlighting = true;
+        } 
+        else
+        {
+            this.IsItemHighlighting = false;
+            this.IsSeriesHighlighting = false;
+            this.IsCategoryHighlighting = false;
+        }
+    }
+
+    public class AverageTemperature
+    {
+        public string Month { get; set; }
+        public double NewYork { get; set; }
+        public double LosAngeles { get; set; }
+    }
+
+    public class AverageTemperatureData : List<AverageTemperature>
+    {
+        public AverageTemperatureData()
+        {
+            this.Add(new AverageTemperature { NewYork = 10.6, LosAngeles = 28.3, Month = "JAN" });
+            this.Add(new AverageTemperature { NewYork = 7.8,  LosAngeles = 31.1, Month = "FEB" });
+            this.Add(new AverageTemperature { NewYork = 12.2, LosAngeles = 27.8, Month = "MAR" });
+            this.Add(new AverageTemperature { NewYork = 11.7, LosAngeles = 33.9, Month = "APR" });
+            this.Add(new AverageTemperature { NewYork = 19.4, LosAngeles = 35.0, Month = "MAY" });
+            this.Add(new AverageTemperature { NewYork = 23.3, LosAngeles = 36.7, Month = "JUN" });
+            this.Add(new AverageTemperature { NewYork = 27.2, LosAngeles = 33.3, Month = "JUL" });
+            this.Add(new AverageTemperature { NewYork = 25.6, LosAngeles = 36.7, Month = "AUG" });
+            this.Add(new AverageTemperature { NewYork = 22.8, LosAngeles = 43.9, Month = "SEP" });
+            this.Add(new AverageTemperature { NewYork = 17.8, LosAngeles = 38.3, Month = "OCT" });
+            this.Add(new AverageTemperature { NewYork = 17.8, LosAngeles = 32.8, Month = "NOV" });
+            this.Add(new AverageTemperature { NewYork = 8.3,  LosAngeles = 28.9, Month = "DEC" });
         }
     }
 }
