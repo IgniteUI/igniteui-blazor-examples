@@ -11,10 +11,9 @@
     </div>
 
     <div class="overlay-right" style="margin-right: 1rem">
-         <label class="options-label">Type of Polar Chart: </label>
+         <label class="options-label">Type of Polar Chart </label>
          <select value=@SeriesType @onchange="OnSeriesTypeChanged">
              <option>Polar Area Chart</option>
-             <option>Polar Spline Area Chart</option>
              <option>Polar Spline Chart</option>
              <option>Polar Line Chart</option>
              <option>Polar Scatter Chart</option>
@@ -63,32 +62,13 @@
                                  MarkerType="MarkerType.Circle" />
             }
 
-            @if (SeriesType == "Polar Spline Area Chart")
-            {
-                <PolarSplineAreaSeries 
-                    AngleAxisName="angleAxis"
-                    AngleMemberPath="Direction"
-                    RadiusMemberPath="WindSpeed"
-                    RadiusAxisName="radiusAxis"
-                    Title="Wind Speed"
-                    DataSource="Data" >
-                </PolarSplineAreaSeries>
-                <PolarSplineAreaSeries 
-                    AngleAxisName="angleAxis"
-                    AngleMemberPath="Direction"
-                    RadiusMemberPath="BoatSpeed"
-                    RadiusAxisName="radiusAxis"
-                    Title="Boat Speed"
-                    DataSource="Data">
-                </PolarSplineAreaSeries>
-            }
-
             @if (SeriesType == "Polar Spline Chart")
             {
                 <PolarSplineSeries AngleMemberPath="Direction"
                                    RadiusMemberPath="BoatSpeed"
                                    RadiusAxisName="radiusAxis"
                                    AngleAxisName="angleAxis"
+                                   MarkerType="MarkerType.Circle"
                                    Title="Boat Speed"
                                    DataSource="Data">
                 </PolarSplineSeries>
@@ -96,6 +76,7 @@
                                    RadiusMemberPath="WindSpeed"
                                    RadiusAxisName="radiusAxis"
                                    AngleAxisName="angleAxis"
+                                   MarkerType="MarkerType.Circle"
                                    Title="Wind Speed"
                                    DataSource="Data">
                 </PolarSplineSeries>
