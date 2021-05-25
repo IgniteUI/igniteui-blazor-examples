@@ -1,22 +1,23 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="container vertical">
-
-    <div class="options horizontal">
-        <span class="options-label">Type of Polar Series: </span>
-        <select value=@SeriesType
-                @onchange="OnSeriesTypeChanged">
-            <option>Area</option>
-            <option>Column</option>
-            <option>Pie</option>
-            <option>Line</option>
-        </select>
-
-        <span class="legend-title">Legend: </span>
+<div class="container sample">
+    
+    <div class="options vertical">
+        <span class="legend-title">Company Finances by Department: </span>
         <div class="legend">
             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
+    </div>
+
+    <div class="overlay-right" style="margin-right: 1rem">
+        <span class="options-label">Type of Radial Chart: </span>
+        <select value=@SeriesType @onchange="OnSeriesTypeChanged">
+            <option>Radial Area Chart</option>
+            <option>Radial Column Chart</option>
+            <option>Radial Pie Chart</option>
+            <option>Radial Line Chart</option>
+        </select>
     </div>
 
     <div class="container vertical">
@@ -24,64 +25,83 @@
         {
         <DataChart Height="100%" Width="100%"
                    GridMode="GridMode.BeforeSeries"
-                   ChartTitle="Company Finances by Department"
-                   Subtitle="Wind Speed vs. Boat Speed"
-                   TitleTopMargin="10"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false"
-                   Brushes="#9FB328, #7446B9"
-                   Outlines="#9FB328, #7446B9"
                    Legend="Legend"
                    @ref="Chart">
 
-            <CategoryAngleAxis Name="angleAxis"
-                               Label="Department"
-                               DataSource="Data" />
-            <NumericRadiusAxis Name="radiusAxis"
-                               InnerRadiusExtentScale="0.1"
-                               MinimumValue="0" />
+            <CategoryAngleAxis Name="angleAxis" Label="Department" DataSource="Data" />
+            <NumericRadiusAxis Name="radiusAxis" InnerRadiusExtentScale="0.1" MinimumValue="0" />
 
-            @if (SeriesType == "Area")
+            @if (SeriesType == "Radial Area Chart")
             {
                 <RadialAreaSeries
+                    Title="Budget"
                     ValueMemberPath="Budget"
                     ValueAxisName="radiusAxis"
                     AngleAxisName="angleAxis"
-                    Title="Budget"
-                    DataSource = "Data">
+                    DataSource="Data">
+                </RadialAreaSeries>
+                <RadialAreaSeries
+                    Title="Spending"
+                    ValueMemberPath="Spending"
+                    ValueAxisName="radiusAxis"
+                    AngleAxisName="angleAxis"
+                    DataSource="Data">
                 </RadialAreaSeries>
             }
 
-            @if (SeriesType == "Column")
+            @if (SeriesType == "Radial Column Chart")
             {
                 <RadialColumnSeries
+                    Title="Budget"
                     ValueMemberPath="Budget"
                     ValueAxisName="radiusAxis"
                     AngleAxisName="angleAxis"
-                    Title="Budget"
-                    DataSource = "Data">
+                    DataSource="Data">
+                </RadialColumnSeries>
+                <RadialColumnSeries
+                    Title="Spending"
+                    ValueMemberPath="Spending"
+                    ValueAxisName="radiusAxis"
+                    AngleAxisName="angleAxis"
+                    DataSource="Data">
                 </RadialColumnSeries>
             }
 
-            @if (SeriesType == "Pie")
+            @if (SeriesType == "Radial Pie Chart")
             {
                 <RadialPieSeries
+                    Title="Budget"
                     ValueMemberPath="Budget"
                     ValueAxisName="radiusAxis"
                     AngleAxisName="angleAxis"
-                    Title="Budget"
-                    DataSource = "Data">
+                    DataSource="Data">
+                </RadialPieSeries>
+                <RadialPieSeries
+                    Title="Spending"
+                    ValueMemberPath="Spending"
+                    ValueAxisName="radiusAxis"
+                    AngleAxisName="angleAxis"
+                    DataSource="Data">
                 </RadialPieSeries>
             }
 
-            @if (SeriesType == "Line")
+            @if (SeriesType == "Radial Line Chart")
             {
                 <RadialLineSeries
+                    Title="Budget"
                     ValueMemberPath="Budget"
                     ValueAxisName="radiusAxis"
                     AngleAxisName="angleAxis"
-                    Title="Budget"
-                    DataSource = "Data">
+                    DataSource="Data">
+                </RadialLineSeries>
+                <RadialLineSeries
+                    Title="Spending"
+                    ValueMemberPath="Spending"
+                    ValueAxisName="radiusAxis"
+                    AngleAxisName="angleAxis"
+                    DataSource="Data">
                 </RadialLineSeries>
             }
         </DataChart>
@@ -96,33 +116,21 @@
     private DataChart Chart
     {
         get { return _Chart; }
-        set
-        {
-            _Chart = value;
-            SeriesType = "Pie";
-            StateHasChanged();
-        }
+        set { _Chart = value; StateHasChanged(); }
     }
 
-    private Legend legend;
+    private Legend _Legend;
     private Legend Legend
     {
-        get { return legend; }
-        set
-        {
-            legend = value;
-            StateHasChanged();
-        }
+        get { return _Legend; }
+        set { _Legend = value; StateHasChanged(); }
     }
-    private string seriesType;
+
+    private string _SeriesType = "Radial Pie Chart";
     private string SeriesType
     {
-        get { return seriesType; }
-        set
-        {
-            seriesType = value;
-            StateHasChanged();
-        }
+        get { return _SeriesType; }
+        set { _SeriesType = value; StateHasChanged(); }
     }
 
     protected override void OnInitialized()
