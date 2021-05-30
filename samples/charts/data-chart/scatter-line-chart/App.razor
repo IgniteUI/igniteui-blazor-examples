@@ -3,10 +3,9 @@
 
 <div class="container vertical">
     <div class="options horizontal">
-        <span class="legend-title">Life Expectancy versus Health Expenditure for European Countries</span>
+        <span class="legend-title">Life Expectancy vs Health Expenditure per Capita</span>
     </div>
     <div class="options horizontal">
-        <span class="legend-title">Continent: </span>
         <div class="legend">
             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
@@ -17,32 +16,37 @@
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <NumericXAxis Name="xAxis" LabelFormat="${0}" Title="Health Expenditure"/>
-            <NumericYAxis Name="yAxis" LabelFormat="{0} years" Title="Life Expectancy"/>
+            <NumericYAxis Name="yAxis" Title="Health Expenditure per Capita" 
+                          MinimumValue="1000" MaximumValue="7000" Interval="1000" AbbreviateLargeNumbers="true"/>
+            <NumericXAxis Name="xAxis" LabelFormat="{0}" Title="Life Expectancy (in years)" 
+                          MinimumValue="72" MaximumValue="84" Interval="2"/>
 
             <ScatterLineSeries XAxisName="xAxis"
                                YAxisName="yAxis"
-                               DataSource="GermanyData"
-                               XMemberPath="HealthExpense"
-                               YMemberPath="LifeExpectancy"
+                               DataSource="DataForGermany"
+                               YMemberPath="HealthExpense"
+                               XMemberPath="LifeExpectancy"
                                Title="Germany"
-                               MarkerType="MarkerType.Circle"/>
-
+                               MarkerType="MarkerType.Circle"
+                               ShowDefaultTooltip="true"/>
+             
             <ScatterLineSeries XAxisName="xAxis"
                                YAxisName="yAxis"
-                               DataSource="FranceData"
-                               XMemberPath="HealthExpense"
-                               YMemberPath="LifeExpectancy"
+                               DataSource="DataForFrance"
+                               YMemberPath="HealthExpense"
+                               XMemberPath="LifeExpectancy"
                                Title="France"
-                               MarkerType="MarkerType.Circle"/>
+                               MarkerType="MarkerType.Circle"
+                               ShowDefaultTooltip="true"/>
 
             <ScatterLineSeries XAxisName="xAxis"
                                YAxisName="yAxis"
-                               DataSource="LuxembourgData"
-                               XMemberPath="HealthExpense"
-                               YMemberPath="LifeExpectancy"
-                               Title="Luxembourg"
-                               MarkerType="MarkerType.Circle"/>
+                               DataSource="DataForNorway"
+                               YMemberPath="HealthExpense"
+                               XMemberPath="LifeExpectancy"
+                               Title="Norway"
+                               MarkerType="MarkerType.Circle"
+                               ShowDefaultTooltip="true"/>
         </DataChart>
     </div>
 </div>
@@ -60,16 +64,16 @@
         }
     }
 
-    private List<HealthInfo> GermanyData;
-    private List<HealthInfo> FranceData;
-    private List<HealthInfo> LuxembourgData;
+    private List<HealthInfo> DataForGermany;
+    private List<HealthInfo> DataForFrance;
+    private List<HealthInfo> DataForNorway;
 
     public void InitializeData()
     {
-        var fullList = new HealthData();
-        this.GermanyData = fullList.Where(c => c.Country == "Germany").ToList();
-        this.FranceData = fullList.Where(c => c.Country == "France").ToList();
-        this.LuxembourgData = fullList.Where(c => c.Country == "Luxembourg").ToList();
+        var data = new HealthData();
+        this.DataForGermany = data.Where(c => c.Country == "Germany").ToList();
+        this.DataForFrance = data.Where(c => c.Country == "France").ToList();
+        this.DataForNorway = data.Where(c => c.Country == "Norway").ToList();
     }
 
     protected override void OnInitialized()
