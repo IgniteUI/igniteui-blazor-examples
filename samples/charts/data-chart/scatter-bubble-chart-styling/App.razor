@@ -3,7 +3,7 @@
 
 <div class="container vertical">
     <div class="options vertical">
-        <span class="legend-title">Annual working hours vs. GDP per capita, 2015</span>
+        <span class="legend-title">Total Population of Selected Countries</span>
         <div class="legend">
             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
@@ -15,99 +15,40 @@
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true">
 
-            <NumericXAxis Name="xAxis" Title="GDP Per Capita" MinimumValue="0" MaximumValue="65000" Interval="10000" AbbreviateLargeNumbers="true" />
-            <NumericYAxis Name="yAxis" Title="Average Hours Worked" AbbreviateLargeNumbers="true" MinimumValue="1400.00" MaximumValue="2400.00" Interval="200" />
+            <NumericYAxis Name="yAxis" Title="GDP per Capita" AbbreviateLargeNumbers="true" IsLogarithmic="true"  />
+            <NumericXAxis Name="xAxis" Title="Hours Worked per Week"   />
 
             <BubbleSeries XAxisName="xAxis"
                           YAxisName="yAxis"
                           DataSource="AfricaData"
-                          Title="Africa"
-                          XMemberPath="GDPPerCapita"
-                          YMemberPath="AverageHoursWorked"
+                          Title="African Countries"
+                          YMemberPath="GDP"
+                          XMemberPath="WorkedHours"
                           MarkerType="MarkerType.Circle"
                           MarkerOutline="rgb(186,231,114)"
-                          RadiusScale="@AfricaSizeScale"
-                          RadiusMemberPath="TotalPopulation"
-                          FillMemberPath="TotalPopulation"
-                          FillScale="@AfricaFillScale"
+                          MarkerBrush="rgb(186,231,114)"
+                          MarkerFillOpacity="0.5"
+                          MarkerThickness="2"
+                          RadiusScale="@MarkerSizeScale"
+                          RadiusMemberPath="Population"
                           ShowDefaultTooltip="true">
             </BubbleSeries>
 
             <BubbleSeries XAxisName="xAxis"
                           YAxisName="yAxis"
                           DataSource="EuropeData"
-                          Title="Europe"
-                          XMemberPath="GDPPerCapita"
-                          YMemberPath="AverageHoursWorked"
+                          Title="European Countries"
+                          YMemberPath="GDP"
+                          XMemberPath="WorkedHours"
                           MarkerType="MarkerType.Circle"
                           MarkerOutline="rgb(248,174,95)"
-                          RadiusScale="@EuropeSizeScale"
-                          RadiusMemberPath="TotalPopulation"
-                          FillMemberPath="TotalPopulation"
-                          FillScale="@EuropeFillScale"
+                          MarkerBrush="rgb(248,174,95)"
+                          MarkerFillOpacity="0.5"
+                          MarkerThickness="2"
+                          RadiusScale="@MarkerSizeScale"
+                          RadiusMemberPath="Population"
                           ShowDefaultTooltip="true">
             </BubbleSeries>
-
-            <BubbleSeries XAxisName="xAxis"
-                          YAxisName="yAxis"
-                          DataSource="AsiaData"
-                          Title="Asia"
-                          XMemberPath="GDPPerCapita"
-                          YMemberPath="AverageHoursWorked"
-                          MarkerType="MarkerType.Circle"
-                          MarkerOutline="rgb(197, 173, 216)"
-                          RadiusScale="@AsiaSizeScale"
-                          RadiusMemberPath="TotalPopulation"
-                          FillMemberPath="TotalPopulation"
-                          FillScale="@AsiaFillScale"
-                          ShowDefaultTooltip="true">
-            </BubbleSeries>
-
-            <BubbleSeries XAxisName="xAxis"
-                          YAxisName="yAxis"
-                          DataSource="NorthAmericaData"
-                          Title="North America"
-                          XMemberPath="GDPPerCapita"
-                          YMemberPath="AverageHoursWorked"
-                          MarkerType="MarkerType.Circle"
-                          MarkerOutline="rgb(224, 81, 169)"
-                          RadiusScale="@NorthAmericaSizeScale"
-                          RadiusMemberPath="TotalPopulation"
-                          FillMemberPath="TotalPopulation"
-                          FillScale="@NorthAmericaFillScale"
-                          ShowDefaultTooltip="true">
-            </BubbleSeries>
-
-            <BubbleSeries XAxisName="xAxis"
-                          YAxisName="yAxis"
-                          DataSource="OceaniaData"
-                          Title="Oceania"
-                          XMemberPath="GDPPerCapita"
-                          YMemberPath="AverageHoursWorked"
-                          MarkerType="MarkerType.Circle"
-                          MarkerOutline="rgb(109, 177, 255)"
-                          RadiusScale="@OceaniaSizeScale"
-                          RadiusMemberPath="TotalPopulation"
-                          FillMemberPath="TotalPopulation"
-                          FillScale="@OceaniaFillScale"
-                          ShowDefaultTooltip="true">
-            </BubbleSeries>
-
-            <BubbleSeries XAxisName="xAxis"
-                          YAxisName="yAxis"
-                          DataSource="SouthAmericaData"
-                          Title="South America"
-                          XMemberPath="GDPPerCapita"
-                          YMemberPath="AverageHoursWorked"
-                          MarkerType="MarkerType.Circle"
-                          MarkerOutline="rgb(115, 86, 86)"
-                          RadiusScale="@SouthAmericaSizeScale"
-                          RadiusMemberPath="TotalPopulation"
-                          FillMemberPath="TotalPopulation"
-                          FillScale="@SouthAmericaFillScale"
-                          ShowDefaultTooltip="true">
-            </BubbleSeries>
-
 
         </DataChart>
 
@@ -120,46 +61,20 @@
     public Legend Legend
     {
         get { return _legend; }
-        set
-        {
-            _legend = value;
-            StateHasChanged();
-        }
+        set { _legend = value; StateHasChanged(); }
     }
 
-    private List<GdpVsWorkRateInfo> AfricaData;
-    private List<GdpVsWorkRateInfo> EuropeData;
-    private List<GdpVsWorkRateInfo> AsiaData;
-    private List<GdpVsWorkRateInfo> NorthAmericaData;
-    private List<GdpVsWorkRateInfo> OceaniaData;
-    private List<GdpVsWorkRateInfo> SouthAmericaData;
+    private List<CountryInfo> AfricaData;
+    private List<CountryInfo> EuropeData;
 
-    private ValueBrushScale AfricaFillScale = new ValueBrushScale { Brushes = "rgba(186, 231, 114, 0.75)" };
-    private ValueBrushScale AsiaFillScale = new ValueBrushScale { Brushes = "rgba(197, 173, 216, 0.75)" };
-    private ValueBrushScale EuropeFillScale = new ValueBrushScale { Brushes = "rgba(248, 174, 95, 0.75)" };
-    private ValueBrushScale NorthAmericaFillScale = new ValueBrushScale { Brushes = "rgba(224, 81, 169, 0.75)" };
-    private ValueBrushScale OceaniaFillScale = new ValueBrushScale { Brushes = "rgba(109, 177, 255, 0.75)" };
-    private ValueBrushScale SouthAmericaFillScale = new ValueBrushScale { Brushes = "rgba(115, 86, 86, 0.75)" };
-
-    private SizeScale AfricaSizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 30 };
-    private SizeScale AsiaSizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 50 };
-    private SizeScale EuropeSizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 30 };
-    private SizeScale NorthAmericaSizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 40 };
-    private SizeScale OceaniaSizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 20 };
-    private SizeScale SouthAmericaSizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 30 };
+    private SizeScale MarkerSizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 50 };
 
     public void InitializeData()
     {
-        var data = new GdpVsWorkRateData();
+        var data = new CountryStats();
 
         this.AfricaData = data.Where(d => d.Continent == "Africa").ToList();
         this.EuropeData = data.Where(d => d.Continent == "Europe").ToList();
-
-        this.AsiaData = data.Where(d => d.Continent == "Asia").ToList();
-        this.NorthAmericaData = data.Where(d => d.Continent == "North America").ToList();
-
-        this.OceaniaData = data.Where(d => d.Continent == "Oceania").ToList();
-        this.SouthAmericaData = data.Where(d => d.Continent == "South America").ToList();
     }
 
     protected override void OnInitialized()

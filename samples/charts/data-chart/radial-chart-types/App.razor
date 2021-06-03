@@ -1,0 +1,154 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container sample">
+    
+    <div class="options vertical">
+        <span class="legend-title">Company Finances by Department </span>
+        <div class="legend">
+            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+        </div>
+    </div>
+
+    <div class="overlay-right" style="margin-right: 1rem">
+        <span class="options-label">Type of Radial Chart </span>
+        <select value=@SeriesType @onchange="OnSeriesTypeChanged">
+            <option>Radial Pie Chart</option>
+            <option>Radial Area Chart</option>
+            <option>Radial Column Chart</option>
+            <option>Radial Line Chart</option>
+        </select>
+    </div>
+
+    <div class="container vertical">
+        @if (Data != null)
+        {
+        <DataChart Height="100%" Width="100%"
+                   GridMode="GridMode.BeforeSeries"
+                   IsHorizontalZoomEnabled="false"
+                   IsVerticalZoomEnabled="false"
+                   Legend="Legend"
+                   @ref="Chart">
+
+            <CategoryAngleAxis Name="angleAxis" Label="Department" DataSource="Data" />
+            <NumericRadiusAxis Name="radiusAxis" InnerRadiusExtentScale="0.1" MinimumValue="0" />
+
+            @if (SeriesType == "Radial Area Chart")
+            {
+                <RadialAreaSeries
+                    Title="Budget"
+                    ValueMemberPath="Budget"
+                    ValueAxisName="radiusAxis"
+                    AngleAxisName="angleAxis"
+                    DataSource="Data">
+                </RadialAreaSeries>
+                <RadialAreaSeries
+                    Title="Spending"
+                    ValueMemberPath="Spending"
+                    ValueAxisName="radiusAxis"
+                    AngleAxisName="angleAxis"
+                    DataSource="Data">
+                </RadialAreaSeries>
+            }
+
+            @if (SeriesType == "Radial Column Chart")
+            {
+                <RadialColumnSeries
+                    Title="Budget"
+                    ValueMemberPath="Budget"
+                    ValueAxisName="radiusAxis"
+                    AngleAxisName="angleAxis"
+                    DataSource="Data">
+                </RadialColumnSeries>
+                <RadialColumnSeries
+                    Title="Spending"
+                    ValueMemberPath="Spending"
+                    ValueAxisName="radiusAxis"
+                    AngleAxisName="angleAxis"
+                    DataSource="Data">
+                </RadialColumnSeries>
+            }
+
+            @if (SeriesType == "Radial Pie Chart")
+            {
+                <RadialPieSeries
+                    Title="Budget"
+                    ValueMemberPath="Budget"
+                    ValueAxisName="radiusAxis"
+                    AngleAxisName="angleAxis"
+                    DataSource="Data">
+                </RadialPieSeries>
+                <RadialPieSeries
+                    Title="Spending"
+                    ValueMemberPath="Spending"
+                    ValueAxisName="radiusAxis"
+                    AngleAxisName="angleAxis"
+                    DataSource="Data">
+                </RadialPieSeries>
+            }
+
+            @if (SeriesType == "Radial Line Chart")
+            {
+                <RadialLineSeries
+                    Title="Budget"
+                    ValueMemberPath="Budget"
+                    ValueAxisName="radiusAxis"
+                    AngleAxisName="angleAxis"
+                    DataSource="Data">
+                </RadialLineSeries>
+                <RadialLineSeries
+                    Title="Spending"
+                    ValueMemberPath="Spending"
+                    ValueAxisName="radiusAxis"
+                    AngleAxisName="angleAxis"
+                    DataSource="Data">
+                </RadialLineSeries>
+            }
+        </DataChart>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<SampleRadialItem> Data;
+    private DataChart _Chart;
+    private DataChart Chart
+    {
+        get { return _Chart; }
+        set { _Chart = value; StateHasChanged(); }
+    }
+
+    private Legend _Legend;
+    private Legend Legend
+    {
+        get { return _Legend; }
+        set { _Legend = value; StateHasChanged(); }
+    }
+
+    private string _SeriesType = "Radial Pie Chart";
+    private string SeriesType
+    {
+        get { return _SeriesType; }
+        set { _SeriesType = value; StateHasChanged(); }
+    }
+
+    protected override void OnInitialized()
+    {
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartRadialCoreModule.Register(IgniteUIBlazor);
+        DataChartRadialModule.Register(IgniteUIBlazor);
+        DataChartExtendedAxesModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+
+        LegendModule.Register(IgniteUIBlazor);
+        Data = SampleRadialData.Create();
+    }
+
+    public void OnSeriesTypeChanged(ChangeEventArgs e)
+    {
+        var selectedSeries = e.Value.ToString();
+        SeriesType = selectedSeries;
+    }
+}

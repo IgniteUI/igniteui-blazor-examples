@@ -1,0 +1,237 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container sample">
+ 
+     <div class="options vertical" >
+          <span class="legend-title">Energy Production By Source </span>
+          <div class="legend">
+             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+         </div>
+     </div>
+    
+     <div class="overlay-right" style="margin-right: 1rem">
+         <label class="options-label">Type of Stacked Series </label>
+         <select value=@SeriesType @onchange="OnSeriesTypeChanged">
+             <option>Stacked Column</option>
+             <option>Stacked 100 Column</option>
+             <option>Stacked Area</option>
+             <option>Stacked 100 Area</option>
+             <option>Stacked Line</option>
+             <option>Stacked 100 Line</option>
+             <option>Stacked Spline</option>
+             <option>Stacked 100 Spline</option>
+             <option>Stacked Bar</option>
+             <option>Stacked 100 Bar</option>
+         </select>
+     </div>
+
+    <div class="container vertical">
+        @if (Data != null)
+        {
+        <DataChart Height="100%" Width="100%"
+                   IsHorizontalZoomEnabled="false"
+                   IsVerticalZoomEnabled="false"
+                   PlotAreaMarginRight="20"
+                   Legend="Legend"
+                   @ref="Chart">
+            
+            @if (SeriesType == "Stacked Bar" || SeriesType == "Stacked 100 Bar")
+            {
+                <NumericXAxis  Name="xAxis2" MinimumValue="0" />
+                <CategoryYAxis Name="yAxis2" Label="Country" DataSource="Data" Title="Countries"/>
+            }
+            else
+            {
+                <CategoryXAxis Name="xAxis" Label="Country" DataSource="Data" Title="Countries" />
+                <NumericYAxis  Name="yAxis" MinimumValue="0" />
+            }
+
+            @if (SeriesType == "Stacked Bar")
+            {
+                <StackedBarSeries XAxisName="xAxis2" YAxisName="yAxis2" DataSource="Data" ShowDefaultTooltip="false" >
+                    <StackedFragmentSeries ValueMemberPath="Coal" />
+                    <StackedFragmentSeries ValueMemberPath="Hydro" />
+                    <StackedFragmentSeries ValueMemberPath="Nuclear" />
+                    <StackedFragmentSeries ValueMemberPath="Solar" />
+                    <StackedFragmentSeries ValueMemberPath="Oil" />
+                </StackedBarSeries>
+            }
+
+            @if (SeriesType == "Stacked 100 Bar")
+            {               
+                <Stacked100BarSeries XAxisName="xAxis2" YAxisName="yAxis2" DataSource="Data" ShowDefaultTooltip="false" >
+                    <StackedFragmentSeries ValueMemberPath="Coal" />
+                    <StackedFragmentSeries ValueMemberPath="Hydro" />
+                    <StackedFragmentSeries ValueMemberPath="Nuclear" />
+                    <StackedFragmentSeries ValueMemberPath="Solar" />
+                    <StackedFragmentSeries ValueMemberPath="Oil" />
+                </Stacked100BarSeries>
+            }
+            
+            @if (SeriesType == "Stacked Column")
+            {
+                <StackedColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false" >
+                    <StackedFragmentSeries ValueMemberPath="Coal" />
+                    <StackedFragmentSeries ValueMemberPath="Hydro" />
+                    <StackedFragmentSeries ValueMemberPath="Nuclear" />
+                    <StackedFragmentSeries ValueMemberPath="Solar" />
+                    <StackedFragmentSeries ValueMemberPath="Oil" />
+                </StackedColumnSeries>
+            }
+
+            @if (SeriesType == "Stacked 100 Column")
+            {
+                <Stacked100ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false" >
+                    <StackedFragmentSeries ValueMemberPath="Coal" />
+                    <StackedFragmentSeries ValueMemberPath="Hydro" />
+                    <StackedFragmentSeries ValueMemberPath="Nuclear" />
+                    <StackedFragmentSeries ValueMemberPath="Solar" />
+                    <StackedFragmentSeries ValueMemberPath="Oil" />
+                </Stacked100ColumnSeries>
+            }
+
+            @if (SeriesType == "Stacked Area")
+            {
+                <StackedAreaSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false" >
+                    <StackedFragmentSeries ValueMemberPath="Coal" />
+                    <StackedFragmentSeries ValueMemberPath="Hydro" />
+                    <StackedFragmentSeries ValueMemberPath="Nuclear" />
+                    <StackedFragmentSeries ValueMemberPath="Solar" />
+                    <StackedFragmentSeries ValueMemberPath="Oil" />
+                </StackedAreaSeries>
+            }
+
+            @if (SeriesType == "Stacked 100 Area")
+            {
+                <Stacked100AreaSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false" >
+                    <StackedFragmentSeries ValueMemberPath="Coal" />
+                    <StackedFragmentSeries ValueMemberPath="Hydro" />
+                    <StackedFragmentSeries ValueMemberPath="Nuclear" />
+                    <StackedFragmentSeries ValueMemberPath="Solar" />
+                    <StackedFragmentSeries ValueMemberPath="Oil" />
+                </Stacked100AreaSeries>
+            }
+
+            @if (SeriesType == "Stacked Line")
+            {
+                <StackedLineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false" >
+                    <StackedFragmentSeries ValueMemberPath="Coal" />
+                    <StackedFragmentSeries ValueMemberPath="Hydro" />
+                    <StackedFragmentSeries ValueMemberPath="Nuclear" />
+                    <StackedFragmentSeries ValueMemberPath="Solar" />
+                    <StackedFragmentSeries ValueMemberPath="Oil" />
+                </StackedLineSeries>
+            }
+
+            @if (SeriesType == "Stacked 100 Line")
+            {
+                <Stacked100LineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false" >
+                    <StackedFragmentSeries ValueMemberPath="Coal" />
+                    <StackedFragmentSeries ValueMemberPath="Hydro" />
+                    <StackedFragmentSeries ValueMemberPath="Nuclear" />
+                    <StackedFragmentSeries ValueMemberPath="Solar" />
+                    <StackedFragmentSeries ValueMemberPath="Oil" />
+                </Stacked100LineSeries>
+            }
+
+            @if (SeriesType == "Stacked Spline")
+            {
+                <StackedSplineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false" >
+                    <StackedFragmentSeries ValueMemberPath="Coal"  />
+                    <StackedFragmentSeries ValueMemberPath="Hydro" />
+                    <StackedFragmentSeries ValueMemberPath="Nuclear" />
+                    <StackedFragmentSeries ValueMemberPath="Solar" />
+                    <StackedFragmentSeries ValueMemberPath="Oil" />
+                </StackedSplineSeries>
+            }
+
+            @if (SeriesType == "Stacked 100 Spline")
+            {
+                <Stacked100SplineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false" >
+                    <StackedFragmentSeries ValueMemberPath="Coal" />
+                    <StackedFragmentSeries ValueMemberPath="Hydro" />
+                    <StackedFragmentSeries ValueMemberPath="Nuclear" />
+                    <StackedFragmentSeries ValueMemberPath="Solar" />
+                    <StackedFragmentSeries ValueMemberPath="Oil" />
+                </Stacked100SplineSeries>
+            }
+        </DataChart>
+        }
+        </div>
+</div>
+
+@code {
+
+    private List<SampleStackedItem> Data;
+    private DataChart _chart;
+    private DataChart Chart
+    {
+        get { return _chart; }
+        set { _chart = value; StateHasChanged(); }
+    }
+
+    private Legend _legend;
+    private Legend Legend
+    {
+        get { return _legend; }
+        set { _legend = value; StateHasChanged(); }
+    }
+
+    private string _seriesType = "Stacked Column";
+    private string SeriesType
+    {
+        get { return _seriesType; }
+        set { _seriesType = value; StateHasChanged(); }
+    }
+
+    protected override void OnInitialized()
+    {
+        DataChartCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        DataChartCategoryModule.Register(IgniteUIBlazor);
+        DataChartInteractivityModule.Register(IgniteUIBlazor);
+
+        DataChartStackedModule.Register(IgniteUIBlazor);
+        StackedColumnSeriesModule.Register(IgniteUIBlazor);
+        Stacked100ColumnSeriesModule.Register(IgniteUIBlazor);
+        StackedAreaSeriesModule.Register(IgniteUIBlazor);
+        Stacked100AreaSeriesModule.Register(IgniteUIBlazor);
+
+        ColumnFragmentModule.Register(IgniteUIBlazor);
+        StackedFragmentSeriesModule.Register(IgniteUIBlazor);
+
+        StackedSplineSeriesModule.Register(IgniteUIBlazor);
+
+        LegendModule.Register(IgniteUIBlazor);
+        Data = SampleStackedData.Create();
+    }
+
+    protected string[] SeriesTitle = new string[] { "Coal", "Hydro", "Nuclear", "Solar", "Oil"};
+    public void OnSeriesTypeChanged(ChangeEventArgs e)
+    {
+        var selectedSeries = e.Value.ToString();
+        SeriesType = selectedSeries;
+
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        if (this.Chart != null)
+        {
+            System.Console.WriteLine("OnAfterRender " );
+
+            //var stackedSeries = this.Chart.Series[0] as StackedSeriesBase;
+            //for (int i = 0; i < stackedSeries.Series.Count; i++)
+            //{
+            //    var fragmentSeries = stackedSeries.Series[i];
+            //    fragmentSeries.Title = SeriesTitle[i];
+            //    System.Console.WriteLine("Title " + fragmentSeries.Title);
+            //}
+
+
+        }
+    }
+}
