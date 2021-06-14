@@ -15,8 +15,8 @@ This repository contains over 250 examples on how to use [Ignite UI for Blazor](
 - [Geographic Map](https://infragistics.com/blazorsite/components/geo-map.html)
 - [Treemap](https://infragistics.com/blazorsite/components/charts/types/treemap-chart.html)
 - [Excel Library](https://infragistics.com/blazorsite/components/excel_library_using_workbooks.html)
-<!-- - [Excel Spreadsheet](https://infragistics.com/blazorsite/components/spreadsheet_overview.html) -->
 - and many more
+<!-- - [Excel Spreadsheet](https://infragistics.com/blazorsite/components/spreadsheet_overview.html) -->
 
 You can run each sample project individually from the [./samples](./samples) folder or you can browse all samples in one website from the [./browser](./browser) folder. In addition, you can run each sample on Code Sandbox website by clicking on the `Edit on CodeSandbox` button in a readme file of sample project, e.g.
 
