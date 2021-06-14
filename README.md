@@ -5,17 +5,60 @@
     <!-- <div style="font-size: 2.5rem; margin: 0px; margin-left: 0.5rem; margin-right: 0.5rem; color: white; ">for BLAZOR </div> -->
 </div>
 
-# Ignite UI for Blazor Examples
+# Examples of Ignite UI for Blazor Components
 
-This repository contains over 250 examples on how to use [Ignite UI for Blazor](https://infragistics.com/blazorsite/components/general-getting-started.html)
+This repository contains over 250 examples on how to use [Ignite UI for Blazor](https://infragistics.com/blazorsite/components/general-getting-started.html) components:
 
 - [Bullet Graph, Linear Gauge, Radial Gauges](https://infragistics.com/blazorsite/components/radial-gauge.html)
 - [Data Chart, Category Chart, Financial Chart, Pie Chart](https://infragistics.com/blazorsite/components/charts/chart-overview.html)
 - [Data Grid / Data Table](https://infragistics.com/blazorsite/components/data-grid.html)
 - [Geographic Map](https://infragistics.com/blazorsite/components/geo-map.html)
 - [Treemap](https://infragistics.com/blazorsite/components/charts/types/treemap-chart.html)
-- [Excel Spreadsheet](https://infragistics.com/blazorsite/components/spreadsheet_overview.html)
 - [Excel Library](https://infragistics.com/blazorsite/components/excel_library_using_workbooks.html)
 - and many more
+<!-- - [Excel Spreadsheet](https://infragistics.com/blazorsite/components/spreadsheet_overview.html) -->
 
-You can run each sample project individually from the [./samples](./samples) folder or you can browse all samples in one website from the [./browser](./browser) folder. Also, you can run each sample on Code Sandbox website by clicking on the `Edit on CodeSandbox` button in a readme file of sample project, .e.g. [./samples/charts/category-chart/overview/README.md](./samples/charts/category-chart/overview/README.md)
+You can run each sample project individually from the [./samples](./samples) folder or you can browse all samples in one website from the [./browser](./browser) folder.
+<!-- In addition, you can run each sample on Code Sandbox website by clicking on the `Edit on CodeSandbox` button in a readme file of sample project, e.g.
+
+[./samples/charts/category-chart/overview/README.md](./samples/charts/category-chart/overview/README.md) -->
+
+
+## Running Individual Sample
+
+- in VS 2019, open a solution file from the [./samples](./samples) folder, e.g.
+
+[./samples/charts/category-chart/overview/BlazorClientApp.csproj](./samples/charts/category-chart/overview/BlazorClientApp.csproj)
+
+- restore NuGet packages
+
+- press F5 key or click the Start button
+
+- Wait until the build is completed and then open [http://localhost:4200](http://localhost:4200) in your browser
+
+At this point, you should see a website with a single example of [Ignite UI for Blazor](https://infragistics.com/blazorsite/components/general-getting-started.html) component.
+
+
+## Running All Samples
+
+- open VS Code as Administrator
+
+- open the [./browser/IgBlazorSamples.Gulp](./browser/IgBlazorSamples.Gulp) folder
+
+- select **View** - **Terminal** menu item
+
+- type `npm install` command
+
+- type `gulp copySamplesToClient` command
+
+- wait until all samples are copied to the browser client app
+
+- in VS 2019, open [./browser/IgBlazorSamplesBrowser.sln](./browser/IgBlazorSamplesBrowser.sln)
+
+- restore NuGet packages
+
+- press F5 key or click the Start button
+
+- Wait until the build is completed and then open [http://localhost:4200](http://localhost:4200) in your browser
+
+At this point, you should see a website hosted all examples of [Ignite UI for Blazor](https://infragistics.com/blazorsite/components/general-getting-started.html) components.
