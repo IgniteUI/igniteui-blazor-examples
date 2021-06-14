@@ -5,7 +5,7 @@
     <!-- <div style="font-size: 2.5rem; margin: 0px; margin-left: 0.5rem; margin-right: 0.5rem; color: white; ">for BLAZOR </div> -->
 </div>
 
-# Ignite UI for Blazor Examples
+# Examples of Ignite UI for Blazor Components
 
 This repository contains over 250 examples on how to use [Ignite UI for Blazor](https://infragistics.com/blazorsite/components/general-getting-started.html)
 
