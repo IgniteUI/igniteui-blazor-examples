@@ -8,15 +8,15 @@
             <img height="40px" style="border-radius: 0.5rem; max-width: 100%;" alt="View Code" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/vnext/templates/sample/images/blazor-view-code.png"/>
         </a>
         <!-- <a target="_blank" href="https://infragistics.com/Blazorsite/components/linear-gauge.html" rel="noopener noreferrer">
-            <img height="40px" style="border-radius: 0.5rem" alt="View Blazor Docs" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/master/templates/sample/images/blazor-view-docs.png"/>
+            <img height="40px" style="border-radius: 0.5rem" alt="View Blazor Docs" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/vnext/templates/sample/images/blazor-view-docs.png"/>
         </a> -->
     </body>
 </html>
 
 ## Setup
 
-- instal **.NET SDK** from this website:
-https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install
+- instal **.NET SDK** from the [https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install](MS website):
+
 
 ## Running App in Visual Studio 2019
 
@@ -26,9 +26,10 @@ NOTE: VS 2019 has better code highlighting and error detection than VS Code does
 
 - open the **BlazorClientApp.sln** solution
 
-- right click solution and select **Restore NuGet Packages**
+- right click solution and select **Restore NuGet Packages** menu item
 
 - click **Debug** menu and select **Start Debugging** or press **F5** key
+
 
 ## Running App in VS Code
 
@@ -37,6 +38,7 @@ NOTE: VS 2019 has better code highlighting and error detection than VS Code does
 - open this folder in **VS Code**
 
 - open a terminal window
+
 - to restore assemblies, run this command:
 ```dotnet restore```
 
