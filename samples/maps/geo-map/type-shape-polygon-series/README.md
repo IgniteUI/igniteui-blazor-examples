@@ -1,21 +1,27 @@
+This folder contains implementation of Blazor application with example of Type Shape Polygon Series using [Geographic Map](https://www.infragistics.com/products/ignite-ui-blazor/blazor/components/general-getting-started.html) component.
+
+
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <body>
         <!-- https://static.infragistics.com/xplatform/images/browsers -->
-        <a target="_blank" href="https://infragistics.com/blazor-client/samples/maps/geo-map-type-shape-polygon-series" rel="noopener noreferrer">
-            <img height="40px" style="border-radius: 0.5rem; max-width: 100%;" alt="Run Sample" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/vnext/templates/sample/images/blazor-run-sample.png"/>
+        <a target="_blank" href="https://www.infragistics.com/products/ignite-ui-blazor/blazor/components/general-getting-started.html" rel="noopener noreferrer">
+            <img height="40px" style="border-radius: 0rem" alt="View Docs" src="https://github.com/IgniteUI/igniteui-blazor-examples/raw/vnext/templates/sample/images/button-docs.png"/>
         </a>
         <a target="_blank" href="./App.razor" rel="noopener noreferrer">
-            <img height="40px" style="border-radius: 0.5rem; max-width: 100%;" alt="View Code" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/vnext/templates/sample/images/blazor-view-code.png"/>
+            <img height="40px" style="border-radius: 0rem; max-width: 100%;" alt="View Code" src="https://github.com/IgniteUI/igniteui-blazor-examples/raw/vnext/templates/sample/images/button-code.png"/>
         </a>
-        <!-- <a target="_blank" href="https://infragistics.com/Blazorsite/components/geo-map.html" rel="noopener noreferrer">
-            <img height="40px" style="border-radius: 0.5rem" alt="View Blazor Docs" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/vnext/templates/sample/images/blazor-view-docs.png"/>
+        <a target="_blank" href="https://infragistics.com/blazor-client/samples/maps/geo-map-type-shape-polygon-series" rel="noopener noreferrer">
+            <img height="40px" style="border-radius: 0rem; max-width: 100%;" alt="Run Sample" src="https://github.com/IgniteUI/igniteui-blazor-examples/raw/vnext/templates/sample/images/button-run.png"/>
+        </a>
+        <!-- <a target="_blank" href="https://codesandbox.io/s/github/IgniteUI/igniteui-blazor-examples/tree/master/samples/maps/geo-map/type-shape-polygon-series?fontsize=14&hidenavigation=1&theme=dark&view=preview&file=/src/App.razor" rel="noopener noreferrer">
+            <img height="40px" style="border-radius: 0rem; max-width: 100%;" alt="Run Sample" src="https://github.com/IgniteUI/igniteui-blazor-examples/raw/vnext/templates/sample/images/button-sandbox.png"/>
         </a> -->
     </body>
 </html>
 
 ## Setup
 
-- instal **.NET SDK** from the [https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install](MS website):
+- instal **.NET SDK** from this [website](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install)
 
 
 ## Running App in Visual Studio 2019
