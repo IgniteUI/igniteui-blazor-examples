@@ -30,9 +30,9 @@ You can run each sample project individually from the [./samples](./samples) fol
 
 [./samples/charts/category-chart/overview/BlazorClientApp.csproj](./samples/charts/category-chart/overview/BlazorClientApp.csproj)
 
-- restore NuGet packages
+- right click solution and select **Restore NuGet Packages** menu item
 
-- press F5 key or click the Start button
+- click **Debug** menu and select **Start Debugging** or press **F5** key
 
 - Wait until the build is completed and then open [http://localhost:4200](http://localhost:4200) in your browser
 
@@ -55,9 +55,9 @@ At this point, you should see a website with a single example of [Ignite UI for 
 
 - in VS 2019, open [./browser/IgBlazorSamplesBrowser.sln](./browser/IgBlazorSamplesBrowser.sln)
 
-- restore NuGet packages
+- right click solution and select **Restore NuGet Packages** menu item
 
-- press F5 key or click the Start button
+- click **Debug** menu and select **Start Debugging** or press **F5** key
 
 - Wait until the build is completed and then open [http://localhost:4200](http://localhost:4200) in your browser
 
