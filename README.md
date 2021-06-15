@@ -7,7 +7,7 @@
 
 # Examples of Ignite UI for Blazor Components
 
-This repository contains over 250 examples on how to use [Ignite UI for Blazor](https://infragistics.com/blazorsite/components/general-getting-started.html) components:
+This repository contains over 250 examples on how to use [Ignite UI for Blazor](https://www.infragistics.com/products/ignite-ui-blazor/blazor/components/general-getting-started.html) components:
 
 - [Bullet Graph, Linear Gauge, Radial Gauges](https://infragistics.com/blazorsite/components/radial-gauge.html)
 - [Data Chart, Category Chart, Financial Chart, Pie Chart](https://infragistics.com/blazorsite/components/charts/chart-overview.html)
@@ -22,6 +22,13 @@ You can run each sample project individually from the [./samples](./samples) fol
 <!-- In addition, you can run each sample on Code Sandbox website by clicking on the `Edit on CodeSandbox` button in a readme file of sample project, e.g.
 
 [./samples/charts/category-chart/overview/README.md](./samples/charts/category-chart/overview/README.md) -->
+
+
+## Preview
+
+You can preview and browse all samples in this repository by opening our [Blazor Samples Browser](https://infragistics.com/blazor-client/). Alternatively, you you can view these samples with detailed information in our [Blazor Help Documentation](https://www.infragistics.com/products/ignite-ui-blazor/blazor/components/general-getting-started.html).
+
+![Samples Browser Preview](./browser/IgBlazorSamples.Client/wwwroot/images/preview.PNG)
 
 
 ## Running Individual Sample
@@ -62,3 +69,12 @@ At this point, you should see a website with a single example of [Ignite UI for 
 - Wait until the build is completed and then open [http://localhost:4200](http://localhost:4200) in your browser
 
 At this point, you should see a website hosted all examples of [Ignite UI for Blazor](https://infragistics.com/blazorsite/components/general-getting-started.html) components.
+
+![Samples Browser Preview](./browser/IgBlazorSamples.Client/wwwroot/images/preview.PNG)
+
+
+## Resources
+
+- [Razor Component Models](https://www.codemag.com/article/1911052)
+- [Razor Syntax](https://docs.microsoft.com/en-us/aspnet/core/blazor/components/?view=aspnetcore-3.1#razor-syntax)
+- [Getting reference to components](https://docs.microsoft.com/en-us/aspnet/core/blazor/components/?view=aspnetcore-3.1#capture-references-to-components)
