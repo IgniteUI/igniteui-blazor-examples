@@ -64,14 +64,14 @@
         set { _legend = value; StateHasChanged(); }
     }
 
-    private List<CountryInfo> AfricaData;
-    private List<CountryInfo> EuropeData;
+    private List<CountryStats> AfricaData;
+    private List<CountryStats> EuropeData;
 
     private SizeScale MarkerSizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 50 };
 
     public void InitializeData()
     {
-        var data = new CountryStats();
+        var data = new CountryDataStats();
 
         this.AfricaData = data.Where(d => d.Continent == "Africa").ToList();
         this.EuropeData = data.Where(d => d.Continent == "Europe").ToList();
