@@ -81,7 +81,7 @@ exports.copySamplesToClient = copySamplesToClient = gulp.series(
     sb.copySamplesToClient,
     sb.updateCodeViewer,
 );
-// exports.updateBrowser = updateBrowser = copySamples;
+exports.updateBrowser = updateBrowser = copySamplesToClient;
 
 exports.cleanupSampleBrowsers = cleanupSampleBrowsers = gulp.series(
     sb.cleanupSampleBrowsers,
