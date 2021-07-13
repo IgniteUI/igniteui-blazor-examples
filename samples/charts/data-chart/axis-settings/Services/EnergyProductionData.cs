@@ -27,6 +27,5 @@ namespace Infragistics.Samples
             };
             return data;
         }
-
     }
 }
