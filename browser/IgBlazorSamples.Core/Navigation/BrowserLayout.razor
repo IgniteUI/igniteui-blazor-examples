@@ -69,7 +69,7 @@ public BrowserLayout()
 
 protected override async Task OnInitializedAsync()
 {
-    Console.WriteLine("SB.NAV OnInit Async");
+    //Console.WriteLine("SB.NAV OnInit Async");
     @* await SB.CheckUIAsync(NavManager.Uri);
         StateHasChanged(); *@
     await Task.Delay(1);
@@ -96,7 +96,7 @@ protected override void OnInitialized()
 
     this.IsSampleEmbedded = !IsSampleWithNavigation(); // NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri + "/";
 
-    Console.WriteLine("SB.NAV IsSampleEmbedded " + IsSampleEmbedded);
+    //Console.WriteLine("SB.NAV IsSampleEmbedded " + IsSampleEmbedded);
 
     NavManager.LocationChanged += this.OnLocationChanged;
 
@@ -111,7 +111,7 @@ public void OnSamplesLoaded(object sender, EventArgs arg)
 
     this.IsSampleEmbedded = !IsSampleWithNavigation(); // !NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri;
 
-    Console.WriteLine("SB.NAV IsSampleEmbedded " + IsSampleEmbedded);
+    //Console.WriteLine("SB.NAV IsSampleEmbedded " + IsSampleEmbedded);
 
     SB.CheckUI(NavManager.Uri);
     StateHasChanged();
@@ -124,7 +124,7 @@ public async void OnLocationChanged(object sender, LocationChangedEventArgs arg)
 
     this.IsSampleEmbedded = !IsSampleWithNavigation(); // !NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri;
 
-    Console.WriteLine("SB.NAV IsSampleEmbedded " + IsSampleEmbedded);
+    //Console.WriteLine("SB.NAV IsSampleEmbedded " + IsSampleEmbedded);
 
     await Task.Delay(10);
     await SB.CheckUIAsync(arg.Location);
@@ -135,12 +135,12 @@ public async void OnLocationChanged(object sender, LocationChangedEventArgs arg)
 public void EnterFullScreen()
 {
     var url = NavManager.Uri;
-    Console.WriteLine("SB EnterFullScreen1 " + url);
+    //Console.WriteLine("SB EnterFullScreen1 " + url);
 
     if (url.Contains("samples/"))
     {
         url = url.Replace("samples/", "");
-        Console.WriteLine("SB EnterFullScreen2 " + url);
+        //Console.WriteLine("SB EnterFullScreen2 " + url);
         NavManager.NavigateTo(url);
     }
 }
