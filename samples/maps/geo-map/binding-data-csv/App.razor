@@ -21,7 +21,6 @@
 @code {
 
     private List<WorldPlaceCsv> Data;
-    public Rect GeoBounds;
     public GeographicMap MapRef;
 
     protected override async Task OnInitializedAsync()
@@ -31,20 +30,17 @@
 
         string url = "https://static.infragistics.com/xplatform/data/UsaCitiesPopulation.csv";
         string csv = await Http.GetStringAsync(url);
-
-        string[] csvLines = csv.Split(Environment.NewLine);
-
-        List<WorldPlaceCsv> dataItems = new List<WorldPlaceCsv>();
+        var csvLines = csv.Split(Environment.NewLine);
+        var dataItems = new List<WorldPlaceCsv>();
 
         for (int i = 1; i < csvLines.Length - 1; i++)
         {
-            string[] columns = csvLines[i].Split(",");
-
-            WorldPlaceCsv location = new WorldPlaceCsv() {
-                Lat=  double.Parse(columns[1]),
-                Lon= double.Parse(columns[2]),
-                Name= columns[0],
-                Pop= double.Parse(columns[3])
+            var columns = csvLines[i].Split(",");
+            var location = new WorldPlaceCsv() {
+                Lat =  double.Parse(columns[1]),
+                Lon = double.Parse(columns[2]),
+                Name = columns[0],
+                Pop = double.Parse(columns[3])
             };
 
             dataItems.Add(location);
@@ -52,35 +48,26 @@
 
         this.Data = dataItems;
 
-        Console.WriteLine(csvLines.Length);
-
-        this.GeoBounds = new Rect(-130, 15, new Size(65, 35));
-
+        Console.WriteLine("loaded data points: " + csvLines.Length);
         await Task.Delay(1);
-
-
     }
 
     protected override void OnAfterRender(bool firstRender)
     {
         base.OnAfterRender(firstRender);
 
-        if (MapRef != null)
-            MapRef.ZoomToGeographic(this.GeoBounds);
-
+        if (MapRef != null && !firstRender)
+        {
+            var geoRegion = new Rect(-130, 15, new Size(65, 35));
+            MapRef.ZoomToGeographic(geoRegion);
+        }
     }
 
-
     public class WorldPlaceCsv {
-
         public string Name { get; set; }
-
         public double Lat { get; set; }
-
         public double Lon { get; set; }
-
         public double Pop { get; set; }
-
         public string Country { get; set; }
         public bool Cap { get; set; }
     }
