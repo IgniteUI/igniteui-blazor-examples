@@ -68,7 +68,8 @@
     {
         base.OnAfterRender(firstRender);
 
-        Chart.ActualSeries[0].Legend = Legend;
+        if (Chart != null && Legend != null && !firstRender)
+            this.Chart.ActualSeries[0].Legend = Legend;
     }
 
     protected void OnSliceClick(SliceClickEventArgs e)

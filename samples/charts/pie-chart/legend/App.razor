@@ -47,6 +47,15 @@
         this.Data.Add(new DataItem { MarketShare = 15, Category = "Other", });
     }
 
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        if (Chart != null && Legend != null && !firstRender)
+        {
+            Chart.Legend = Legend;
+        }
+    }
     public class DataItem
     {
         public string Category { get; set; }
@@ -54,12 +63,5 @@
         public string Summary { get { return Category + " " + MarketShare + "%"; } }
     }
 
-    protected override void OnAfterRender(bool firstRender)
-    {
-        base.OnAfterRender(firstRender);
-
-        Chart.Legend = Legend;
-
-    }
 
 }
