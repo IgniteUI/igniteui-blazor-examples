@@ -2,14 +2,14 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container sample">
- 
+
      <div class="options vertical" >
           <span class="legend-title">Energy Production By Source </span>
           <div class="legend">
              <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
          </div>
      </div>
-    
+
      <div class="overlay-right" style="margin-right: 1rem">
          <label class="options-label">Type of Stacked Series </label>
          <select value=@SeriesType @onchange="OnSeriesTypeChanged">
@@ -35,7 +35,7 @@
                    PlotAreaMarginRight="20"
                    Legend="Legend"
                    @ref="Chart">
-            
+
             @if (SeriesType == "Stacked Bar" || SeriesType == "Stacked 100 Bar")
             {
                 <NumericXAxis  Name="xAxis2" MinimumValue="0" />
@@ -50,110 +50,100 @@
             @if (SeriesType == "Stacked Bar")
             {
                 <StackedBarSeries XAxisName="xAxis2" YAxisName="yAxis2" DataSource="Data" ShowDefaultTooltip="false" >
-                    <StackedFragmentSeries ValueMemberPath="Coal" />
-                    <StackedFragmentSeries ValueMemberPath="Hydro" />
-                    <StackedFragmentSeries ValueMemberPath="Nuclear" />
-                    <StackedFragmentSeries ValueMemberPath="Solar" />
-                    <StackedFragmentSeries ValueMemberPath="Oil" />
+                    @foreach (var column in this.DataColumns)
+                    {    
+                        <StackedFragmentSeries ValueMemberPath="@column" Title="@column" />
+                    }
                 </StackedBarSeries>
             }
 
             @if (SeriesType == "Stacked 100 Bar")
-            {               
+            {
                 <Stacked100BarSeries XAxisName="xAxis2" YAxisName="yAxis2" DataSource="Data" ShowDefaultTooltip="false" >
-                    <StackedFragmentSeries ValueMemberPath="Coal" />
-                    <StackedFragmentSeries ValueMemberPath="Hydro" />
-                    <StackedFragmentSeries ValueMemberPath="Nuclear" />
-                    <StackedFragmentSeries ValueMemberPath="Solar" />
-                    <StackedFragmentSeries ValueMemberPath="Oil" />
+                    @foreach (var column in this.DataColumns)
+                    {    
+                        <StackedFragmentSeries ValueMemberPath="@column" Title="@column" />
+                    }
                 </Stacked100BarSeries>
             }
-            
+
             @if (SeriesType == "Stacked Column")
             {
                 <StackedColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false" >
-                    <StackedFragmentSeries ValueMemberPath="Coal" />
-                    <StackedFragmentSeries ValueMemberPath="Hydro" />
-                    <StackedFragmentSeries ValueMemberPath="Nuclear" />
-                    <StackedFragmentSeries ValueMemberPath="Solar" />
-                    <StackedFragmentSeries ValueMemberPath="Oil" />
+                    @foreach (var column in this.DataColumns)
+                    {    
+                        <StackedFragmentSeries ValueMemberPath="@column" Title="@column" />
+                    }
                 </StackedColumnSeries>
             }
 
             @if (SeriesType == "Stacked 100 Column")
             {
                 <Stacked100ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false" >
-                    <StackedFragmentSeries ValueMemberPath="Coal" />
-                    <StackedFragmentSeries ValueMemberPath="Hydro" />
-                    <StackedFragmentSeries ValueMemberPath="Nuclear" />
-                    <StackedFragmentSeries ValueMemberPath="Solar" />
-                    <StackedFragmentSeries ValueMemberPath="Oil" />
+                    @foreach (var column in this.DataColumns)
+                    {    
+                        <StackedFragmentSeries ValueMemberPath="@column" Title="@column" />
+                    }
                 </Stacked100ColumnSeries>
             }
 
             @if (SeriesType == "Stacked Area")
             {
                 <StackedAreaSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false" >
-                    <StackedFragmentSeries ValueMemberPath="Coal" />
-                    <StackedFragmentSeries ValueMemberPath="Hydro" />
-                    <StackedFragmentSeries ValueMemberPath="Nuclear" />
-                    <StackedFragmentSeries ValueMemberPath="Solar" />
-                    <StackedFragmentSeries ValueMemberPath="Oil" />
+                    @foreach (var column in this.DataColumns)
+                    {    
+                        <StackedFragmentSeries ValueMemberPath="@column" Title="@column" />
+                    }
                 </StackedAreaSeries>
             }
 
             @if (SeriesType == "Stacked 100 Area")
             {
                 <Stacked100AreaSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false" >
-                    <StackedFragmentSeries ValueMemberPath="Coal" />
-                    <StackedFragmentSeries ValueMemberPath="Hydro" />
-                    <StackedFragmentSeries ValueMemberPath="Nuclear" />
-                    <StackedFragmentSeries ValueMemberPath="Solar" />
-                    <StackedFragmentSeries ValueMemberPath="Oil" />
+                    @foreach (var column in this.DataColumns)
+                    {    
+                        <StackedFragmentSeries ValueMemberPath="@column" Title="@column" />
+                    }
                 </Stacked100AreaSeries>
             }
 
             @if (SeriesType == "Stacked Line")
             {
                 <StackedLineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false" >
-                    <StackedFragmentSeries ValueMemberPath="Coal" />
-                    <StackedFragmentSeries ValueMemberPath="Hydro" />
-                    <StackedFragmentSeries ValueMemberPath="Nuclear" />
-                    <StackedFragmentSeries ValueMemberPath="Solar" />
-                    <StackedFragmentSeries ValueMemberPath="Oil" />
+                    @foreach (var column in this.DataColumns)
+                    {    
+                        <StackedFragmentSeries ValueMemberPath="@column" Title="@column" />
+                    }
                 </StackedLineSeries>
             }
 
             @if (SeriesType == "Stacked 100 Line")
             {
                 <Stacked100LineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false" >
-                    <StackedFragmentSeries ValueMemberPath="Coal" />
-                    <StackedFragmentSeries ValueMemberPath="Hydro" />
-                    <StackedFragmentSeries ValueMemberPath="Nuclear" />
-                    <StackedFragmentSeries ValueMemberPath="Solar" />
-                    <StackedFragmentSeries ValueMemberPath="Oil" />
+                    @foreach (var column in this.DataColumns)
+                    {    
+                        <StackedFragmentSeries ValueMemberPath="@column" Title="@column" />
+                    }
                 </Stacked100LineSeries>
             }
 
             @if (SeriesType == "Stacked Spline")
             {
                 <StackedSplineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false" >
-                    <StackedFragmentSeries ValueMemberPath="Coal"  />
-                    <StackedFragmentSeries ValueMemberPath="Hydro" />
-                    <StackedFragmentSeries ValueMemberPath="Nuclear" />
-                    <StackedFragmentSeries ValueMemberPath="Solar" />
-                    <StackedFragmentSeries ValueMemberPath="Oil" />
+                    @foreach (var column in this.DataColumns)
+                    {    
+                        <StackedFragmentSeries ValueMemberPath="@column" Title="@column" />
+                    }
                 </StackedSplineSeries>
             }
 
             @if (SeriesType == "Stacked 100 Spline")
             {
                 <Stacked100SplineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false" >
-                    <StackedFragmentSeries ValueMemberPath="Coal" />
-                    <StackedFragmentSeries ValueMemberPath="Hydro" />
-                    <StackedFragmentSeries ValueMemberPath="Nuclear" />
-                    <StackedFragmentSeries ValueMemberPath="Solar" />
-                    <StackedFragmentSeries ValueMemberPath="Oil" />
+                    @foreach (var column in this.DataColumns)
+                    {    
+                        <StackedFragmentSeries ValueMemberPath="@column" Title="@column" />
+                    }
                 </Stacked100SplineSeries>
             }
         </DataChart>
@@ -164,6 +154,7 @@
 @code {
 
     private List<SampleStackedItem> Data;
+    private string[] DataColumns = new string[] { "Coal", "Hydro", "Nuclear", "Solar", "Oil"};
     private DataChart _chart;
     private DataChart Chart
     {
@@ -207,31 +198,27 @@
         Data = SampleStackedData.Create();
     }
 
-    protected string[] SeriesTitle = new string[] { "Coal", "Hydro", "Nuclear", "Solar", "Oil"};
     public void OnSeriesTypeChanged(ChangeEventArgs e)
     {
         var selectedSeries = e.Value.ToString();
         SeriesType = selectedSeries;
-
     }
 
     protected override void OnAfterRender(bool firstRender)
     {
         base.OnAfterRender(firstRender);
 
-        if (this.Chart != null)
+        if (this.Chart != null && !firstRender)
         {
-            System.Console.WriteLine("OnAfterRender " );
-
-            //var stackedSeries = this.Chart.Series[0] as StackedSeriesBase;
-            //for (int i = 0; i < stackedSeries.Series.Count; i++)
-            //{
-            //    var fragmentSeries = stackedSeries.Series[i];
-            //    fragmentSeries.Title = SeriesTitle[i];
-            //    System.Console.WriteLine("Title " + fragmentSeries.Title);
-            //}
-
-
+            ////  System.Console.WriteLine("OnAfterRender " + this.Chart.ActualSeries.Count);
+            //  var stackedSeries = this.Chart.ActualSeries[0] as StackedSeriesBase;
+            //  var stackedFragments = stackedSeries.ActualSeries;
+            ////  System.Console.WriteLine("OnAfterRender " + stackedFragments.Count);
+            //  for (int i = 0; i < stackedFragments.Count; i++)
+            //  {
+            //    //  System.Console.WriteLine("Title " + i + " " + DataColumns[i]);
+            //      stackedFragments[i].Title = DataColumns[i];
+            //  }
         }
     }
 }
