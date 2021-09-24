@@ -10,7 +10,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="container relative">
         <div class="container-overlay">
 
@@ -76,7 +76,9 @@
     {
         base.OnAfterRender(firstRender);
 
-        this.Chart.ActualSeries[0].Legend = Legend;
+        if (Chart != null && Legend != null && !firstRender)
+            this.Chart.ActualSeries[0].Legend = Legend;
+
     }
 
     protected void OnSliceClick(SliceClickEventArgs e)
