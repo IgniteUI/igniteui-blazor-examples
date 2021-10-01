@@ -17,15 +17,12 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <DataGrid @ref="@DataGridRef" Height="100%" Width="100%"
-                      PrimaryKey="ID"
+            <DataGrid Height="100%" Width="100%"                      
                       DefaultColumnMinWidth="100"
                       AutoGenerateColumns="false"
                       DataSource="Data"
                       SelectionMode="@SelectionMode"
-                      IsColumnOptionsEnabled="true"
-                      SelectedCellsChanged="@OnSelectedCellsChanged"
-                      SelectedItemsChanged="@OnSelectedRowsChanged">
+                      IsColumnOptionsEnabled="true"                      >
                 <TextColumn Field="Name" Width="@("*>150")" />
                 <TextColumn Field="Street" HeaderText="Street" Width="@("*>160")"/>
                 <TextColumn Field="City" HeaderText="City" Width="@("*>120")"/>
@@ -40,21 +37,7 @@
 @code {
 
     private GridSelectionMode SelectionMode;
-    private List<Employee> Data;
-    private DataGrid grid;
-    public DataGrid DataGridRef
-    {
-        get
-        {
-            return grid;
-        }
-        set
-        {
-            grid = value;
-
-            StateHasChanged();
-        }
-    }
+    private List<Employee> Data;       
 
     protected override void OnInitialized()
     {
@@ -64,19 +47,5 @@
         this.SelectionMode = GridSelectionMode.MultipleRow;
 
         Data = EmployeeData.Create(100, false);
-    }
-
-    private void OnSelectedCellsChanged(GridSelectedCellsChangedEventArgs e)
-    {
-        Console.WriteLine(e.CurrentCells);
-    }
-
-    private void OnSelectedRowsChanged(GridSelectedItemsChangedEventArgs e)
-    {
-        for (int i = 0; i < e.CurrentItems.Count; i++)
-        {
-            Console.WriteLine(((Employee)e.CurrentItems[i]).ID.ToString());
-            
-        }
     }
 }
