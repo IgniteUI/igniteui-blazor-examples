@@ -54,7 +54,7 @@
         LegendModule.Register(IgniteUIBlazor);
     }
 
-    private AxisLabelsLocation LabelsLocation = AxisLabelsLocation.OutsideLeft;
+    private AxisLabelsLocation LabelsLocation = YAxisLabelLocation.OutsideLeft;
     private void OnLabelsLocationChange(ChangeEventArgs args)
     {
         string value = args.Value.ToString();
@@ -62,16 +62,16 @@
         if (value.Contains("Inside"))
         {
             if (value.Contains("Left"))
-                this.LabelsLocation = AxisLabelsLocation.InsideLeft;
+                this.LabelsLocation = YAxisLabelLocation.InsideLeft;
             else
-                this.LabelsLocation = AxisLabelsLocation.InsideRight;
+                this.LabelsLocation = YAxisLabelLocation.InsideRight;
         }
         else
         {
             if (value.Contains("Left"))
-                this.LabelsLocation = AxisLabelsLocation.OutsideLeft;
+                this.LabelsLocation = YAxisLabelLocation.OutsideLeft;
             else
-                this.LabelsLocation = AxisLabelsLocation.OutsideRight;
+                this.LabelsLocation = YAxisLabelLocation.OutsideRight;
         }
     }
 }
