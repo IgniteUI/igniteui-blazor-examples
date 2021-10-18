@@ -89,17 +89,22 @@
     private void OnCommitClick(MouseEventArgs e)
     {
         this.DataGridRef.CommitEdits();
-        this.ButtonsDisabled = true;
+        StateHasChanged();
+
     }
 
     private void OnUndoClick(MouseEventArgs e)
     {
         this.DataGridRef.Undo();
+        StateHasChanged();
+
     }
 
     private void OnRedoClick(MouseEventArgs e)
     {
         this.DataGridRef.Redo();
+        StateHasChanged();
+
     }
 
     private void OnRowEditEnded(GridRowEditEndedEventArgs e)
