@@ -16,6 +16,8 @@
 
         @if (Data != null)
         {
+            <ColumnGrouping Title="GroupBy Area - Drag a column here to group by that column" TargetGrid="@DataGridRef"/>
+
             <DataGrid @ref=@DataGridRef Height="100%" Width="100%"
                       DataSource="Data"
                       AutoGenerateColumns="false"
@@ -63,6 +65,7 @@
         base.OnInitialized();
 
         DataGridModule.Register(IgniteUIBlazor);
+        ColumnGroupingModule.Register(IgniteUIBlazor);
         this.Data = EmployeeData.Create(200, false);
     }
 
