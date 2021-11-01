@@ -3,21 +3,21 @@
 
 <div class="container vertical">
     <div class="container vertical">
-        <GeographicMap Height="100%" Width="100%" Zoomable="true">
+        <IgbGeographicMap Height="100%" Width="100%" Zoomable="true">
             <GeographicScatterAreaSeries LongitudeMemberPath="Lon"
                                          LatitudeMemberPath="Lat"
                                          ColorMemberPath="Value"
                                          ColorScale="@ColorScale"
                                          DataSource="Data">
             </GeographicScatterAreaSeries>
-        </GeographicMap>
+        </IgbGeographicMap>
     </div>
 </div>
 
 @code {
 
     private List<WorldLocation> Data;
-    private CustomPaletteColorScale ColorScale;
+    private IgbCustomPaletteColorScale ColorScale;
 
     protected override void OnInitialized()
     {
@@ -30,7 +30,7 @@
         brushes += "rgba(252, 120, 32, 0.5) "; // semi-transparent orange
         brushes += "rgba(252, 32, 32, 0.5) ";  // semi-transparent red
 
-        this.ColorScale = new CustomPaletteColorScale();
+        this.ColorScale = new IgbCustomPaletteColorScale();
         this.ColorScale.Palette = brushes;
         this.ColorScale.MinimumValue = 0;
         this.ColorScale.MaximumValue = 30;

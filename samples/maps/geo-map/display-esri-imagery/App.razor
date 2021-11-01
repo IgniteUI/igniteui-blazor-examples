@@ -2,36 +2,36 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container horizontal">
-    <GeographicMap Height="100%" Width="100%" Zoomable="true" BackgroundContent="@StreetMapImagery">
-    </GeographicMap>
-    <GeographicMap Height="100%" Width="100%" Zoomable="true" BackgroundContent="@OceansImagery">
-    </GeographicMap>
-    <GeographicMap Height="100%" Width="100%" Zoomable="true" BackgroundContent="@TopographicImagery">
-    </GeographicMap>
+    <IgbGeographicMap Height="100%" Width="100%" Zoomable="true" BackgroundContent="@StreetMapImagery">
+    </IgbGeographicMap>
+    <IgbGeographicMap Height="100%" Width="100%" Zoomable="true" BackgroundContent="@OceansImagery">
+    </IgbGeographicMap>
+    <IgbGeographicMap Height="100%" Width="100%" Zoomable="true" BackgroundContent="@TopographicImagery">
+    </IgbGeographicMap>
 </div>
 
 @code {
 
-    private ArcGISOnlineMapImagery StreetMapImagery;
-    private ArcGISOnlineMapImagery OceansImagery;
-    private ArcGISOnlineMapImagery TopographicImagery;
+    private IgbArcGISOnlineMapImagery StreetMapImagery;
+    private IgbArcGISOnlineMapImagery OceansImagery;
+    private IgbArcGISOnlineMapImagery TopographicImagery;
 
     protected override void OnInitialized()
     {
         IgbGeographicMapModule.Register(IgniteUIBlazor);
         IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
 
-        ArcGISOnlineMapImagery image1 = new ArcGISOnlineMapImagery()
+        IgbArcGISOnlineMapImagery image1 = new IgbArcGISOnlineMapImagery()
         {
             MapServerUri = EsriStyle.WorldStreetMap
         };
 
-        ArcGISOnlineMapImagery image2 = new ArcGISOnlineMapImagery()
+        IgbArcGISOnlineMapImagery image2 = new IgbArcGISOnlineMapImagery()
         {
             MapServerUri = EsriStyle.WorldOceansMap
         };
 
-        ArcGISOnlineMapImagery image3 = new ArcGISOnlineMapImagery()
+        IgbArcGISOnlineMapImagery image3 = new IgbArcGISOnlineMapImagery()
         {
             MapServerUri = EsriStyle.WorldTopographicMap
         };

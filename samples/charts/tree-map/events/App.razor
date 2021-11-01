@@ -31,7 +31,7 @@
         </div>
 
         <div class="container vertical" style="padding: 0.75rem; width: calc(100% - 1.5rem); height: calc(100% - 1.5rem)">
-            <Treemap Height="100%" Width="100%" @ref="TreeMap" 
+            <IgbTreemap Height="100%" Width="100%" @ref="TreeMap" 
                      DataSource="Data"
                      RootTitle="Countries"
                      ParentIdMemberPath="Parent"
@@ -49,14 +49,14 @@
                      ParentNodeLeftPadding="0"
                      ParentNodeRightPadding="0"
                      ParentNodeTopPadding="0">
-            </Treemap>
+            </IgbTreemap>
         </div>
     </div>
 
 @code {
 
     protected List<CountryInfo> Data;
-    protected Treemap TreeMap;
+    protected IgbTreemap TreeMap;
 
     protected string SelectedNodeName   = "None";
     protected string SelectedNodeParent = "None";
@@ -74,7 +74,7 @@
         Console.WriteLine("CountryTreeData " + this.Data.Count);
     }
 
-    private void onNodePointerPressed(TreemapNodePointerEventArgs arg)
+    private void onNodePointerPressed(IgbTreemapNodePointerEventArgs arg)
     {
         var item = arg.Item as CountryInfo;
         if (item == null) return;
@@ -95,7 +95,7 @@
         this.StateHasChanged();
     }
 
-    private void onNodePointerEnter(TreemapNodePointerEventArgs arg)
+    private void onNodePointerEnter(IgbTreemapNodePointerEventArgs arg)
     {
         var item = arg.Item as CountryInfo;
         if (item == null) return;
@@ -116,7 +116,7 @@
         this.StateHasChanged();
     }
 
-    private void onNodePointerLeave(TreemapNodePointerEventArgs arg)
+    private void onNodePointerLeave(IgbTreemapNodePointerEventArgs arg)
     {
         this.HoveredNodeParent = "None";
         this.HoveredNodeName   = "None";

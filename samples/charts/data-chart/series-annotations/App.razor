@@ -26,7 +26,7 @@
                        IsVerticalZoomEnabled="true">
                 <IgbCategoryXAxis Name="xAxis" Label="Angle" Interval="2" DataSource="Data" />
                 <IgbNumericYAxis Name="yAxis" MinimumValue="-1.25" MaximumValue="1.25" LabelLocation="AxisLabelsLocation.OutsideRight" />
-                <LineSeries XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="SinValue" DataSource="Data"
+                <IgbLineSeries XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="SinValue" DataSource="Data"
                             MarkerType="MarkerType.Circle" Brush="#0577E8" MarkerOutline="#0577E8" />
                 <CalloutLayer XMemberPath="Index" YMemberPath="SinValue" LabelMemberPath="Label" Brush="#0577E8"
                               Outline="White" DataSource="Data" @ref="CalloutRef" />
@@ -46,10 +46,10 @@
     private List<SampleScatterPoint> Data;
 
     private IgbDataChart Chart;
-    private CalloutLayer CalloutRef;
+    private IgbCalloutLayer CalloutRef;
     private IgbCrosshairLayer CrosshairRef;
     private IgbFinalValueLayer FinalValueRef;
-    private IgbValueOverlay IgbValueOverlayRef;
+    private IgbValueOverlay ValueOverlayRef;
 
     protected override void OnInitialized()
     {

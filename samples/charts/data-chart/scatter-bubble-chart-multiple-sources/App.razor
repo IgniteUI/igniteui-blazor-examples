@@ -15,10 +15,10 @@
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true">
 
-            <IgbNumericXAxis Name="xAxis" Title="Death Rate (per 1,000 people)" MinimumValue="4" MaximumValue="16" Interval="1" />
+            <IgbNumericXAxis() Name="xAxis" Title="Death Rate (per 1,000 people)" MinimumValue="4" MaximumValue="16" Interval="1" />
             <IgbNumericYAxis Name="yAxis" Title="Birth Rate (per 1,000 people)" MinimumValue="0" MaximumValue="60" Interval="10" />
 
-            <BubbleSeries XAxisName="xAxis"
+            <IgbBubbleSeries XAxisName="xAxis"
                           YAxisName="yAxis"
                           Title="Africa"
                           DataSource="AfricaData"
@@ -27,9 +27,9 @@
                           RadiusMemberPath="Total"
                           RadiusScale="@SizeScale"
                           MarkerType="MarkerType.Circle">
-            </BubbleSeries>
+            </IgbBubbleSeries>
 
-            <BubbleSeries XAxisName="xAxis"
+            <IgbBubbleSeries XAxisName="xAxis"
                           YAxisName="yAxis"
                           Title="Europe"
                           DataSource="EuropeData"
@@ -38,7 +38,7 @@
                           RadiusMemberPath="Total"
                           RadiusScale="@SizeScale"
                           MarkerType="MarkerType.Circle">
-            </BubbleSeries>
+            </IgbBubbleSeries>
         </IgbDataChart>
 
     </div>
@@ -59,7 +59,7 @@
 
     private List<PopulationInfo> AfricaData;
     private List<PopulationInfo> EuropeData;
-    private SizeScale SizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 100 };
+    private IgbSizeScale SizeScale = new IgbSizeScale { MinimumValue = 10, MaximumValue = 100 };
 
     public void InitializeData()
     {

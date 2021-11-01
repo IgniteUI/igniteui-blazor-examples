@@ -16,11 +16,11 @@
                        IsVerticalZoomEnabled="true">
 
                 @* primary axes required for scatter-contour-series *@
-                <IgbNumericXAxis Name="xAxis1" LabelLocation="AxisLabelsLocation.OutsideBottom"  Title="Longitude" MinimumValue="-180" MaximumValue="180" />
+                <IgbNumericXAxis() Name="xAxis1" LabelLocation="AxisLabelsLocation.OutsideBottom"  Title="Longitude" MinimumValue="-180" MaximumValue="180" />
                 <IgbNumericYAxis Name="yAxis1" LabelLocation="AxisLabelsLocation.OutsideLeft" Title="Latitude"  MinimumValue="-90" MaximumValue="90"/>
 
                 @* optional axes that provide more context for displayed data *@
-                <IgbNumericXAxis Name="xAxis2" LabelLocation="AxisLabelsLocation.OutsideTop"  Title="Longitude" MinimumValue="-180" MaximumValue="180" />
+                <IgbNumericXAxis() Name="xAxis2" LabelLocation="AxisLabelsLocation.OutsideTop"  Title="Longitude" MinimumValue="-180" MaximumValue="180" />
                 <IgbNumericYAxis Name="yAxis2" LabelLocation="AxisLabelsLocation.OutsideRight" Title="Latitude"  MinimumValue="-90" MaximumValue="90"/>
 
                 <ScatterContourSeries XAxisName="xAxis1"
@@ -42,7 +42,7 @@
 @code {
 
     private List<SampleScatterPoint> Data;
-    private ValueBrushScale BrushScale;
+    private IgbValueBrushScale BrushScale;
 
     protected override void OnInitialized()
     {
@@ -53,7 +53,7 @@
         IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
         IgbScatterContourSeriesModule.Register(IgniteUIBlazor);
 
-        this.BrushScale = new ValueBrushScale();
+        this.BrushScale = new IgbValueBrushScale();
         this.BrushScale.MinimumValue = - 2;
         this.BrushScale.MaximumValue = 2;
         this.BrushScale.Brushes = "#8670CB, #4AC4FF, #B5CC2E, #FC8612, #ED4840";

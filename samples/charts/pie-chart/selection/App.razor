@@ -6,14 +6,14 @@
     <div class="options vertical">
         <span class="legend-title">Global Electricity Demand by Energy Use</span>
         <div class="legend">
-            <ItemLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbItemLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
 
     <div class="container vertical">
         @if (Data != null)
         {
-            <PieChart Height="calc(100% - 2rem)" Width="calc(100% - 2rem)"
+            <IgbPieChart Height="calc(100% - 2rem)" Width="calc(100% - 2rem)"
                       Legend="Legend"
                       DataSource="Data"
                       LabelMemberPath="Category"
@@ -28,7 +28,7 @@
                       SelectedSliceStrokeThickness="2"
                       RadiusFactor="0.7"
                       StartAngle="0">
-            </PieChart>
+            </IgbPieChart>
         }
     </div>
 </div>
@@ -37,8 +37,8 @@
 
     private List<DataItem> Data;
 
-    private ItemLegend _legend;
-    public ItemLegend Legend
+    private IgbItemLegend _legend;
+    public IgbItemLegend Legend
     {
         get { return _legend; }
         set { _legend = value; StateHasChanged(); }

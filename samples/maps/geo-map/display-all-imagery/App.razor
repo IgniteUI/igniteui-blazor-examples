@@ -49,8 +49,8 @@
     </div>
 
     <div class="container vertical">
-        <GeographicMap Height="100%" Width="100%" Zoomable="true" BackgroundContent="@MapContent">
-        </GeographicMap>
+        <IgbGeographicMap Height="100%" Width="100%" Zoomable="true" BackgroundContent="@MapContent">
+        </IgbGeographicMap>
     </div>
 </div>
 
@@ -58,7 +58,7 @@
 
     //TODO - BingMapsImagery doesn't appear to be working. Also warnings...
 
-    private GeographicMapImagery MapContent;
+    private IgbGeographicMapImagery MapContent;
     private EsriStyle EsriRef;
 
     protected override void OnInitialized()
@@ -67,7 +67,7 @@
         IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
 
         EsriRef = new EsriStyle();
-        this.MapContent = new OpenStreetMapImagery();
+        this.MapContent = new IgbOpenStreetMapImagery();
     }
 
     private void OnImagerySourceChanged(ChangeEventArgs args)
@@ -85,7 +85,7 @@
                 EsriStyle obj = new EsriStyle();
                 string uri = fieldInfo.GetValue(obj).ToString();
 
-                ArcGISOnlineMapImagery mapImage = new ArcGISOnlineMapImagery()
+                IgbArcGISOnlineMapImagery mapImage = new IgbArcGISOnlineMapImagery()
                 {
                     MapServerUri = uri
                 };
@@ -95,7 +95,7 @@
         }
         else if (str.Contains("Bing")) //TODO - BingMapsMapImagery seems to be broken? No default tile source or URI.
         {
-            BingMapsMapImagery mapImage = new BingMapsMapImagery()
+            IgbBingMapsMapImagery mapImage = new IgbBingMapsMapImagery()
             {
                 ApiKey = MapUtils.GetBingKey()
             };
@@ -117,7 +117,7 @@
         }
         else
         {
-            this.MapContent = new OpenStreetMapImagery();
+            this.MapContent = new IgbOpenStreetMapImagery();
         }
     }
 }

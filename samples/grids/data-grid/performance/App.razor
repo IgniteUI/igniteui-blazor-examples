@@ -6,7 +6,7 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <DataGrid Height="100%" Width="100%" @ref="DataGridRef"
+            <IgbDataGrid Height="100%" Width="100%" @ref="DataGridRef"
                       AutoGenerateColumns="false"
                       HeaderClickAction="@HeaderClickAction.SortByMultipleColumnsTriState"
                       RowHeight="40"
@@ -17,40 +17,40 @@
                       ColumnHidingAnimationMode="@ColumnHidingAnimationMode.Auto"
                       DataSource="Data"
                       IsRowHoverEnabled="false">
-                <TextColumn Field="FirstName" HeaderText="First Name" Width="@("*>130")" />
-                <TextColumn Field="LastName" HeaderText="Last Name" Width="@("*>130")" />
-                <TextColumn Field="Territory" Width="@("*>130")" />
-                <NumericColumn Field="YearToDateSales" HeaderText="YTD Sales" Width="@("*>130")"
+                <IgbTextColumn Field="FirstName" HeaderText="First Name" Width="@("*>130")" />
+                <IgbTextColumn Field="LastName" HeaderText="Last Name" Width="@("*>130")" />
+                <IgbTextColumn Field="Territory" Width="@("*>130")" />
+                <IgbNumericColumn Field="YearToDateSales" HeaderText="YTD Sales" Width="@("*>130")"
                                PositivePrefix="$" ShowGroupingSeparator="true" />
-                <TemplateColumn Field="AvgSale" HeaderText="Avg. Sale" Width="@("*>120")" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
+                <IgbTemplateColumn Field="AvgSale" HeaderText="Avg. Sale" Width="@("*>120")" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
                                 CellUpdatingScript="onAvgSaleCellUpdating"  />
-                <TemplateColumn Field="Change" Width="@("*>120")" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
+                <IgbTemplateColumn Field="Change" Width="@("*>120")" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
                                 CellUpdatingScript="onChangeCellUpdating"/>
-                <TemplateColumn Field="PercentChange" Width="@("*>140")" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
+                <IgbTemplateColumn Field="PercentChange" Width="@("*>140")" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
                                 HeaderText="Change (%)" CellUpdatingScript="onPercentChangeCellUpdating"/>
-                <DateTimeColumn Field="DateValue" HeaderText="Date" Width="@("*>120")" />
+                <IgbDateTimeColumn Field="DateValue" HeaderText="Date" Width="@("*>120")" />
 
                 @for (int i = 0; i < 8; i++)
                 {
                     string str = "KPI_" + i.ToString();
-                    <NumericColumn Width="@("*>150")" Field="@str" DataBoundScript="onKPIColumnDataBound"/>
+                    <IgbNumericColumn Width="@("*>150")" Field="@str" DataBoundScript="onKPIColumnDataBound"/>
                 }
-            </DataGrid>
+            </IgbDataGrid>
         }
     </div>
 </div>
 
 @code {
 
-    private void OnSortDescriptionsChanged(GridSortDescriptionsChangedEventArgs args)
+    private void OnSortDescriptionsChanged(IgbGridSortDescriptionsChangedEventArgs args)
     {
 
     }
 
     private List<SalesPerson> Data;
 
-    private DataGrid _grid;
-    private DataGrid DataGridRef
+    private IgbDataGrid _grid;
+    private IgbDataGrid DataGridRef
     {
         get { return _grid; }
         set
@@ -75,7 +75,7 @@
 
     private void OnDataGridRef()
     {
-        var columnGroup = new ColumnGroupDescription();
+        var columnGroup = new IgbColumnGroupDescription();
         columnGroup.Field = "Territory";
         this.DataGridRef.GroupDescriptions.Add(columnGroup);
 

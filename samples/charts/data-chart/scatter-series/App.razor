@@ -31,7 +31,7 @@
                    Legend="Legend"
                    @ref="Chart">
 
-            <IgbNumericXAxis Name="xAxis"
+            <IgbNumericXAxis() Name="xAxis"
                           IsLogarithmic="true"
                           AbbreviateLargeNumbers="true"
                           Title="Population" />
@@ -41,7 +41,7 @@
                           AbbreviateLargeNumbers="true" />
             @if (SeriesType == "Bubble")
             {
-                <BubbleSeries MarkerType="MarkerType.Circle"
+                <IgbBubbleSeries MarkerType="MarkerType.Circle"
                     ShowDefaultTooltip="true"
                     Title = "High Income Countries"
                     XAxisName = "xAxis"
@@ -50,9 +50,9 @@
                     YMemberPath = "GdpTotal"
                     DataSource = "@data1">
 
-                </BubbleSeries>
+                </IgbBubbleSeries>
 
-                <BubbleSeries MarkerType="MarkerType.Circle"
+                <IgbBubbleSeries MarkerType="MarkerType.Circle"
                     ShowDefaultTooltip="true"
                     Title = "Low Income Countries"
                     XAxisName = "xAxis"
@@ -61,7 +61,7 @@
                     YMemberPath = "GdpTotal"
                     DataSource = "@data2">
 
-                </BubbleSeries>
+                </IgbBubbleSeries>
             }
             @if (SeriesType == "Point")
             {
