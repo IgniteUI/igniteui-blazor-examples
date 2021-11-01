@@ -5,7 +5,7 @@
     <div class="options vertical">
         <span class="legend-title">Task Distribution based on Company Departments</span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
 
@@ -13,16 +13,16 @@
 
         @if (this.TaskDefinitions != null && this.TasksByName != null)
         {
-            <DataChart Height="100%" Width="100%" @ref="Chart"
+            <IgbDataChart Height="100%" Width="100%" @ref="Chart"
                        HighlightingMode="SeriesHighlightingMode.FadeOthers"
                        SeriesMouseEnterScript="onGanttChartMouseEnter"
                        IsHorizontalZoomEnabled="false"
                        IsVerticalZoomEnabled="false">
 
-                <NumericXAxis Name="xAxis" MinimumValue="0" MaximumValue="200" Title="Work Days" />
-                <NumericYAxis Name="yAxis" MinimumValue="0" MaximumValue="6" Interval="1" IsInverted="true" LabelVisibility="Visibility.Collapsed" />
+                <IgbNumericXAxis Name="xAxis" MinimumValue="0" MaximumValue="200" Title="Work Days" />
+                <IgbNumericYAxis Name="yAxis" MinimumValue="0" MaximumValue="6" Interval="1" IsInverted="true" LabelVisibility="Visibility.Collapsed" />
 
-                <CategoryYAxis Name="labelAxis" Label="Category" DataSource="TaskCategories" Interval="1"
+                <IgbCategoryYAxis Name="labelAxis" Label="Category" DataSource="TaskCategories" Interval="1"
                                LabelLeftMargin="0" Title="Departments" TitleRightMargin="5" TitleLeftMargin="10"
                                LabelLocation="AxisLabelsLocation.OutsideLeft" IsInverted="true"/>
 
@@ -38,7 +38,7 @@
                 }
 
 
-            </DataChart>
+            </IgbDataChart>
         }
 
     </div>
@@ -46,8 +46,8 @@
 
 @code {
 
-    private Legend Legend;
-    private DataChart Chart;
+    private IgbLegend Legend;
+    private IgbDataChart Chart;
     private List<TaskInfo> TaskDefinitions;
     private List<TaskInfo> TaskCategories;
     private Dictionary<string, List<TaskInfo>> TasksByName;

@@ -19,18 +19,18 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true" IsHorizontalZoomEnabled="true" @ref="Chart">
-                <CategoryXAxis Name="xAxis" DataSource="Data" Label="Label" Interval="1"/>
-                <NumericYAxis Name="yAxis" Interval="20" MinimumValue="70" MaximumValue="110"
+            <IgbDataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true" IsHorizontalZoomEnabled="true" @ref="Chart">
+                <IgbCategoryXAxis Name="xAxis" DataSource="Data" Label="Label" Interval="1"/>
+                <IgbNumericYAxis Name="yAxis" Interval="20" MinimumValue="70" MaximumValue="110"
                               LabelLocation="AxisLabelsLocation.OutsideRight" />
 
-                <ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="Temperature"/>
+                <IgbColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="Temperature"/>
 
-                <CrosshairLayer IsAxisAnnotationEnabled="true" YAxisAnnotationInterpolatedValuePrecision="0" @ref="CrosshairRef"/>
-                <FinalValueLayer @ref="FinalValueRef"/>
-                <ValueOverlay AxisName="yAxis" Thickness="3" Brush="Orange" IsAxisAnnotationEnabled="true" Value="85" @ref="ValueOverlayRef"/>
+                <IgbCrosshairLayer IsAxisAnnotationEnabled="true" YAxisAnnotationInterpolatedValuePrecision="0" @ref="CrosshairRef"/>
+                <IgbFinalValueLayer @ref="FinalValueRef"/>
+                <IgbValueOverlay AxisName="yAxis" Thickness="3" Brush="Orange" IsAxisAnnotationEnabled="true" Value="85" @ref="ValueOverlayRef"/>
 
-            </DataChart>
+            </IgbDataChart>
         }
     </div>
 </div>
@@ -38,10 +38,10 @@
 @code {
 
     private List<TemperatureItem> Data;
-    private DataChart Chart;
-    private CrosshairLayer CrosshairRef;
-    private FinalValueLayer FinalValueRef;
-    private ValueOverlay ValueOverlayRef;
+    private IgbDataChart Chart;
+    private IgbCrosshairLayer CrosshairRef;
+    private IgbFinalValueLayer FinalValueRef;
+    private IgbValueOverlay ValueOverlayRef;
 
     protected override void OnInitialized()
     {

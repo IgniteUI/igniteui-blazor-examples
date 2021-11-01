@@ -5,11 +5,11 @@
     <div class="options vertical">
         <span class="legend-title">Ronaldo vs. Messi Player Stats</span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="container vertical">
-        <DataChart @ref="Chart" Height="100%" Width="100%"
+        <IgbDataChart @ref="Chart" Height="100%" Width="100%"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false"
                    Legend="Legend">
@@ -39,7 +39,7 @@
                               Thickness="3"
                               Title="Messi"
                               MarkerType="MarkerType.Circle" />
-        </DataChart>
+        </IgbDataChart>
 
     </div>
 </div>
@@ -48,15 +48,15 @@
 
     private List<PlayerStatsInfo> Data = new PlayerStatsData();
 
-    private Legend _Legend;
-    private Legend Legend
+    private IgbLegend _Legend;
+    private IgbLegend Legend
     {
         get { return _Legend; }
         set { _Legend = value; StateHasChanged(); }
     }
 
-    private DataChart __Chart;
-    private DataChart Chart
+    private IgbDataChart __Chart;
+    private IgbDataChart Chart
     {
         get { return __Chart; }
         set

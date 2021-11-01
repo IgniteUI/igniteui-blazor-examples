@@ -5,25 +5,25 @@
     <div class="options vertical">
         <span class="legend-title">Facebook Statement of Income 2019-2020</span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="container vertical">
-        <DataChart Height="100%" Width="100%" Legend="Legend"
+        <IgbDataChart Height="100%" Width="100%" Legend="Legend"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <CategoryXAxis Name="xAxis" DataSource="Data" Label="Date" />
-            <NumericYAxis Name="yAxis1" AbbreviateLargeNumbers="true" Title="In Millions of U.S. Dollars"
+            <IgbCategoryXAxis Name="xAxis" DataSource="Data" Label="Date" />
+            <IgbNumericYAxis Name="yAxis1" AbbreviateLargeNumbers="true" Title="In Millions of U.S. Dollars"
                           MinimumValue="0" MaximumValue="30000" TitleLeftMargin="5" TitleRightMargin="0"/>
-            <NumericYAxis Name="yAxis2" AbbreviateLargeNumbers="true" Title="Percentage" MajorStrokeThickness="0"
+            <IgbNumericYAxis Name="yAxis2" AbbreviateLargeNumbers="true" Title="Percentage" MajorStrokeThickness="0"
                           MinimumValue="0" MaximumValue="160" LabelLocation="AxisLabelsLocation.OutsideRight"
                           LabelHorizontalAlignment="HorizontalAlignment.Left"/>
 
-            <ColumnSeries @ref="@RevenueSeries" XAxisName="xAxis" YAxisName="yAxis1" DataSource="Data"
+            <IgbColumnSeries @ref="@RevenueSeries" XAxisName="xAxis" YAxisName="yAxis1" DataSource="Data"
                           ValueMemberPath="Revenue"
                           Title="Revenue" MarkerType="MarkerType.Hidden" />
-            <ColumnSeries @ref="@ExpenseSeries" XAxisName="xAxis" YAxisName="yAxis1" DataSource="Data"
+            <IgbColumnSeries @ref="@ExpenseSeries" XAxisName="xAxis" YAxisName="yAxis1" DataSource="Data"
                           ValueMemberPath="Expenses"
                           Title="Expenses" MarkerType="MarkerType.Hidden" />
 
@@ -46,14 +46,14 @@
                           CalloutLeaderBrush="Transparent" CalloutTextColor="Black"
                           CalloutBackground = "LightGray" AutoCalloutLabelPrecision="1"/>
 
-        </DataChart>
+        </IgbDataChart>
     </div>
 </div>
 
 @code {
 
-    private Legend _legend;
-    private Legend Legend
+    private IgbLegend _legend;
+    private IgbLegend Legend
     {
         get { return _legend; }
         set { _legend = value; StateHasChanged(); }

@@ -5,15 +5,15 @@
     <div class="options vertical">
         <span class="legend-title">Electricity Production from Renewables</span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="container vertical">
         @if (Data != null)
         {
-            <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="false" IsHorizontalZoomEnabled="false">
-                <CategoryXAxis Name="xAxis" DataSource="Data" Label="Year" Gap="0.75" />
-                <NumericYAxis Name="yAxis" MinimumValue="0" MaximumValue="300" Interval="50" Title="TWh" TitleLeftMargin="10" />
+            <IgbDataChart Height="100%" Width="100%" IsVerticalZoomEnabled="false" IsHorizontalZoomEnabled="false">
+                <IgbCategoryXAxis Name="xAxis" DataSource="Data" Label="Year" Gap="0.75" />
+                <IgbNumericYAxis Name="yAxis" MinimumValue="0" MaximumValue="300" Interval="50" Title="TWh" TitleLeftMargin="10" />
 
                 <StackedColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="true" Legend="Legend">
                     <StackedFragmentSeries ValueMemberPath="USA" />
@@ -31,15 +31,15 @@
                 <CalloutLayer DataSource="CalloutData" XMemberPath="X" YMemberPath="Y" LabelMemberPath="Label"
                               CalloutBackground="Transparent" CalloutLeaderBrush="Transparent" CalloutTextColor="Black" />
 
-            </DataChart>
+            </IgbDataChart>
         }
     </div>
 </div>
 
 @code {
 
-    private Legend _legend;
-    public Legend Legend
+    private IgbLegend _legend;
+    public IgbLegend Legend
     {
         get { return _legend; }
         set

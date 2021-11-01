@@ -35,11 +35,11 @@
     </div>
     
     <div class="legend">
-         <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+         <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
     </div>
 
     <div class="container vertical">
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    IsVerticalZoomEnabled="true"  
                    IsHorizontalZoomEnabled="true" @ref="Chart" 
                    HighlightingBehavior="@HighlightingBehavior"
@@ -47,8 +47,8 @@
                    LegendHighlightingMode="@HighlightingLegend"
                    Legend="@Legend">
 
-            <CategoryXAxis Name="xAxis" DataSource="Data" Label="Year" />
-            <NumericYAxis  Name="yAxis" MinimumValue="0" Title="TWh" TitleLeftMargin="10" />
+            <IgbCategoryXAxis Name="xAxis" DataSource="Data" Label="Year" />
+            <IgbNumericYAxis  Name="yAxis" MinimumValue="0" Title="TWh" TitleLeftMargin="10" />
 
             <AreaSeries Title="Europe" XAxisName="xAxis" YAxisName="yAxis"
                         ValueMemberPath="Europe" 
@@ -70,20 +70,20 @@
                         ShowDefaultTooltip="true"
                         IsTransitionInEnabled="true"  
                         IsHighlightingEnabled="true"/>
-        </DataChart>
+        </IgbDataChart>
     </div>
 </div>
 
 @code {
 
     private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
-    private LegendHighlightingMode HighlightingLegend = LegendHighlightingMode.MatchSeries;
+    private IgbLegendHighlightingMode HighlightingLegend = LegendHighlightingMode.MatchSeries;
     private SeriesHighlightingMode HighlightingMode = SeriesHighlightingMode.FadeOthers;
     private SeriesHighlightingBehavior HighlightingBehavior = SeriesHighlightingBehavior.DirectlyOver;
-    private DataChart Chart;
+    private IgbDataChart Chart;
 
-    private Legend _Legend;
-    private Legend Legend
+    private IgbLegend _Legend;
+    private IgbLegend Legend
     {
         get { return _Legend; }
         set { _Legend = value; StateHasChanged(); }

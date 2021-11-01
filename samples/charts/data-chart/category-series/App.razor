@@ -7,7 +7,7 @@
 
         <span class="legend-title">Legend: </span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
 
         <div class="overlay-right" >
@@ -33,7 +33,7 @@
     <div class="container vertical">
         @if (Data != null)
         {
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    ChartTitle="Total Olympic Medals"
                    Subtitle="United States vs China vs Russia"
                    TitleTopMargin="10"
@@ -44,38 +44,38 @@
 
             @if (SeriesType != "Bar")
             {
-                <CategoryXAxis Name="xAxis" Label="Year" DataSource="Data"
+                <IgbCategoryXAxis Name="xAxis" Label="Year" DataSource="Data"
                                Title="Olympic Years" Gap="0.2" Overlap="-0.05" />
-                <NumericYAxis Name="yAxis" Title="Olympic Medals" TitleLeftMargin="10" />
+                <IgbNumericYAxis Name="yAxis" Title="Olympic Medals" TitleLeftMargin="10" />
             }
 
             @if (SeriesType == "Bar")
             {
-                <NumericXAxis Name="xAxis2" Label="Year"
+                <IgbNumericXAxis Name="xAxis2" Label="Year"
                               Title="Olympic Years" />
-                <CategoryYAxis Name="yAxis2" Title="Olympic Medals" TitleLeftMargin="10" DataSource="Data" Gap="0.2" Overlap="-0.05" />
+                <IgbCategoryYAxis Name="yAxis2" Title="Olympic Medals" TitleLeftMargin="10" DataSource="Data" Gap="0.2" Overlap="-0.05" />
 
-                <BarSeries Name="series1"
+                <IgbBarSeries Name="series1"
                            ValueMemberPath="USA"
                            Title="USA"
                            XAxisName="xAxis2"
                            YAxisName="yAxis2"
                            DataSource="Data">
-                </BarSeries>
+                </IgbBarSeries>
 
-                <BarSeries Name="series2"
+                <IgbBarSeries Name="series2"
                            ValueMemberPath="RUS"
                            Title="Russia"
                            XAxisName="xAxis2"
                            YAxisName="yAxis2"
                            DataSource="Data">
-                </BarSeries>
+                </IgbBarSeries>
             }
 
 
             @if (SeriesType == "Column")
             {
-                <ColumnSeries Name="series1"
+                <IgbColumnSeries Name="series1"
                               ValueMemberPath="USA"
                               Title="USA"
                               XAxisName="xAxis"
@@ -83,7 +83,7 @@
                               DataSource="Data">
                 </ColumnSeries>
 
-                <ColumnSeries Name="series2"
+                <IgbColumnSeries Name="series2"
                               ValueMemberPath="RUS"
                               Title="Russia"
                               XAxisName="xAxis"
@@ -243,7 +243,7 @@
                                  DataSource="Data">
                 </WaterfallSeries>
             }
-        </DataChart>
+        </IgbDataChart>
         }
         </div>
 </div>
@@ -251,8 +251,8 @@
 @code {
 
     private List<SampleCategoryItem> Data;
-    private DataChart _Chart;
-    private DataChart Chart
+    private IgbDataChart _Chart;
+    private IgbDataChart Chart
     {
         get { return _Chart; }
         set
@@ -263,8 +263,8 @@
         }
     }
 
-    private Legend legend;
-    private Legend Legend
+    private IgbLegend legend;
+    private IgbLegend Legend
     {
         get { return legend; }
         set

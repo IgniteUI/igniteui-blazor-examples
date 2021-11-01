@@ -5,18 +5,18 @@
     <div class="options vertical">
         <span class="legend-title">Population Demographic for Selected Continents </span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="container vertical">
 
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    Legend="Legend"
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true">
 
-            <NumericXAxis Name="xAxis" Title="Death Rate (per 1,000 people)" MinimumValue="5" MaximumValue="16" Interval="1" />
-            <NumericYAxis Name="yAxis" Title="Birth Rate (per 1,000 people)" MinimumValue="5" MaximumValue="45" Interval="5" />
+            <IgbNumericXAxis Name="xAxis" Title="Death Rate (per 1,000 people)" MinimumValue="5" MaximumValue="16" Interval="1" />
+            <IgbNumericYAxis Name="yAxis" Title="Birth Rate (per 1,000 people)" MinimumValue="5" MaximumValue="45" Interval="5" />
 
             <ScatterSeries XAxisName="xAxis"
                            YAxisName="yAxis"
@@ -35,15 +35,15 @@
                            MarkerType="MarkerType.Circle"
                            Title="Europe">
             </ScatterSeries>
-        </DataChart>
+        </IgbDataChart>
 
     </div>
 </div>
 
 @code {
 
-    private Legend _legend;
-    public Legend Legend
+    private IgbLegend _legend;
+    public IgbLegend Legend
     {
         get { return _legend; }
         set

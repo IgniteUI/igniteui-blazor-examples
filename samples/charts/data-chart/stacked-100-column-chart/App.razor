@@ -6,15 +6,15 @@
     <div class="options vertical">
         <span class="legend-title">Distribution of Online Traffic Worldwide in 2019, by Device</span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="container vertical">
         @if (Data != null)
         {
-            <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="false" IsHorizontalZoomEnabled="false">
-                <CategoryXAxis Name="xAxis" DataSource="Data" Label="Category" Gap="0.75"/>
-                <NumericYAxis Name="yAxis" MinimumValue="0" />
+            <IgbDataChart Height="100%" Width="100%" IsVerticalZoomEnabled="false" IsHorizontalZoomEnabled="false">
+                <IgbCategoryXAxis Name="xAxis" DataSource="Data" Label="Category" Gap="0.75"/>
+                <IgbNumericYAxis Name="yAxis" MinimumValue="0" />
 
                 <Stacked100ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="true" AreaFillOpacity="1" Legend="Legend">
                     <StackedFragmentSeries ValueMemberPath="Desktop" />
@@ -28,15 +28,15 @@
                              MarkerTemplateScript="onStacked100ChartMarkerTemplate" />
                 <PointSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="TabletMarker"
                              MarkerTemplateScript="onStacked100ChartMarkerTemplate" />
-            </DataChart>
+            </IgbDataChart>
         }
     </div>
 </div>
 
 @code {
 
-    private Legend _legend;
-    public Legend Legend
+    private IgbLegend _legend;
+    public IgbLegend Legend
     {
         get { return _legend; }
         set

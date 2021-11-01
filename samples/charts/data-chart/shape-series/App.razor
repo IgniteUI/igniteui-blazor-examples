@@ -7,7 +7,7 @@
 
         <span class="legend-title">Legend: </span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
 
         <div class="overlay-right" >
@@ -24,19 +24,19 @@
     <div class="container vertical">
         @if (Data != null)
         {
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    ChartTitle="Annual Temperature Changes"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false"
                    Legend="Legend"
                    @ref="Chart">
 
-            <NumericXAxis Name="xAxis"
+            <IgbNumericXAxis Name="xAxis"
                           TitleBottomMargin="10"
                           MinimumValue="-1"
                           MaximumValue="11"
                           Interval="2" />
-            <NumericYAxis Name="yAxis"
+            <IgbNumericYAxis Name="yAxis"
                           MinimumValue="-1"
                           MaximumValue="11"
                           Interval="1" />
@@ -58,7 +58,7 @@
 
                 </ScatterPolylineSeries>
             }
-        </DataChart>
+        </IgbDataChart>
         }
     </div>
 </div>
@@ -66,8 +66,8 @@
 @code {
 
     private List<SampleShapeItem> Data;
-    private DataChart _Chart;
-    private DataChart Chart
+    private IgbDataChart _Chart;
+    private IgbDataChart Chart
     {
         get { return _Chart; }
         set
@@ -78,8 +78,8 @@
         }
     }
 
-    private Legend legend;
-    private Legend Legend
+    private IgbLegend legend;
+    private IgbLegend Legend
     {
         get { return legend; }
         set

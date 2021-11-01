@@ -5,14 +5,14 @@
     <div class="options vertical">
         <span class="legend-title">Network Polar Chart</span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="container vertical">
 
         @if (PolarMarkers != null && this.PolarMarkersByLevel != null)
         {
-        <DataChart Height="100%" Width="100%" @ref="Chart"
+        <IgbDataChart Height="100%" Width="100%" @ref="Chart"
                    SeriesMouseEnterScript="onNetworkPolarChartMouseEnter"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
@@ -55,7 +55,7 @@
                                         Brush="@markers[0].Fill"
                                         Outline="@markers[0].Outline"/>
                 }
-        </DataChart>
+        </IgbDataChart>
         }
 
     </div>
@@ -63,8 +63,8 @@
 
 @code {
 
-    private Legend Legend;
-    private DataChart Chart;
+    private IgbLegend Legend;
+    private IgbDataChart Chart;
 
     private List<PolarMarker> PolarConnections;
     private List<PolarMarker> PolarMarkers;

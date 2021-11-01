@@ -6,24 +6,24 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <DataChart Height="100%" Width="100%"
+            <IgbDataChart Height="100%" Width="100%"
                        Subtitle="Stock Prices and Trade Volume"
                        SubtitleTopMargin="10"
                        IsHorizontalZoomEnabled="true"
                        IsVerticalZoomEnabled="true">
-                <CategoryXAxis Name="xAxisShared" Label="Label" Gap="0.75" DataSource="Data" />
-                <NumericYAxis Name="yAxisRight" LabelLocation="AxisLabelsLocation.OutsideRight" MinimumValue="400"
+                <IgbCategoryXAxis Name="xAxisShared" Label="Label" Gap="0.75" DataSource="Data" />
+                <IgbNumericYAxis Name="yAxisRight" LabelLocation="AxisLabelsLocation.OutsideRight" MinimumValue="400"
                               MaximumValue="700" Title="Stock Price" />
-                <NumericYAxis Name="yAxisLeft" LabelLocation="AxisLabelsLocation.OutsideLeft" MinimumValue="5000"
+                <IgbNumericYAxis Name="yAxisLeft" LabelLocation="AxisLabelsLocation.OutsideLeft" MinimumValue="5000"
                               MaximumValue="45000" Title="Trade Volume" MajorStrokeThickness="0" AbbreviateLargeNumbers="true" />
 
-                <ColumnSeries XAxisName="xAxisShared" YAxisName="yAxisLeft" DataSource="Data" ValueMemberPath="Volume"
+                <IgbColumnSeries XAxisName="xAxisShared" YAxisName="yAxisLeft" DataSource="Data" ValueMemberPath="Volume"
                               ShowDefaultTooltip="true" Title="Trade Volume" />
 
                 <FinancialPriceSeries XAxisName="xAxisShared" YAxisName="yAxisRight" DisplayType="PriceDisplayType.Candlestick"
                                       HighMemberPath="High" LowMemberPath="Low" CloseMemberPath="Close" OpenMemberPath="Open"
                                       VolumeMemberPath="Volume" ShowDefaultTooltip="true" Title="Stock Price" DataSource="Data"/>
-            </DataChart>
+            </IgbDataChart>
         }
 
     </div>

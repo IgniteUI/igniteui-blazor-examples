@@ -5,12 +5,12 @@
     <div class="options vertical">
         <span class="legend-title">Wind Speed</span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="container vertical">
 
-        <DataChart @ref="Chart" Legend="Legend" Height="100%" Width="100%"
+        <IgbDataChart @ref="Chart" Legend="Legend" Height="100%" Width="100%"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
             <NumericAngleAxis Name="angleAxis" StartAngleOffset="-90"
@@ -46,7 +46,7 @@
                              Thickness="3"
                              Title="Boat"
                              MarkerType="MarkerType.Circle" />
-        </DataChart>
+        </IgbDataChart>
 
     </div>
 </div>
@@ -55,15 +55,15 @@
 
     private List<SamplePolarItem> Data;
 
-    private Legend _Legend;
-    private Legend Legend
+    private IgbLegend _Legend;
+    private IgbLegend Legend
     {
         get { return _Legend; }
         set { _Legend = value; StateHasChanged(); }
     }
 
-    private DataChart __Chart;
-    private DataChart Chart
+    private IgbDataChart __Chart;
+    private IgbDataChart Chart
     {
         get { return __Chart; }
         set

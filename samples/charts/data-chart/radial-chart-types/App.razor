@@ -6,7 +6,7 @@
     <div class="options vertical">
         <span class="legend-title">Company Finances by Department </span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
 
@@ -23,7 +23,7 @@
     <div class="container vertical">
         @if (Data != null)
         {
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    GridMode="GridMode.BeforeSeries"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false"
@@ -104,7 +104,7 @@
                     DataSource="Data">
                 </RadialLineSeries>
             }
-        </DataChart>
+        </IgbDataChart>
         }
     </div>
 </div>
@@ -112,15 +112,15 @@
 @code {
 
     private List<SampleRadialItem> Data;
-    private DataChart _Chart;
-    private DataChart Chart
+    private IgbDataChart _Chart;
+    private IgbDataChart Chart
     {
         get { return _Chart; }
         set { _Chart = value; StateHasChanged(); }
     }
 
-    private Legend _Legend;
-    private Legend Legend
+    private IgbLegend _Legend;
+    private IgbLegend Legend
     {
         get { return _Legend; }
         set { _Legend = value; StateHasChanged(); }

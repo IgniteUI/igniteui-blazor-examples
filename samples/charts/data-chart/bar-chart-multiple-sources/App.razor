@@ -5,19 +5,19 @@
     <div class="options vertical">
         <span class="legend-title">Highest Grossing Movie Franchises</span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="container vertical">
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    Legend="Legend"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <CategoryYAxis Name="yAxis" Label="Franchise" DataSource="Data" IsInverted="true" Gap="0.5" Overlap="-0.1"/>
-            <NumericXAxis Name="xAxis" Title="Billions of U.S Dollars" />
+            <IgbCategoryYAxis Name="yAxis" Label="Franchise" DataSource="Data" IsInverted="true" Gap="0.5" Overlap="-0.1"/>
+            <IgbNumericXAxis Name="xAxis" Title="Billions of U.S Dollars" />
 
-            <BarSeries XAxisName="xAxis"
+            <IgbBarSeries XAxisName="xAxis"
                        YAxisName="yAxis"
                        DataSource="Data"
                        ValueMemberPath="TotalRevenue"
@@ -25,8 +25,8 @@
                        ShowDefaultTooltip="true"
                        IsTransitionInEnabled="true"
                        IsHighlightingEnabled="true">
-            </BarSeries>
-            <BarSeries XAxisName="xAxis"
+            </IgbBarSeries>
+            <IgbBarSeries XAxisName="xAxis"
                        YAxisName="yAxis"
                        DataSource="Data"
                        ValueMemberPath="HighestGrossing"
@@ -34,15 +34,15 @@
                        ShowDefaultTooltip="true"
                        IsTransitionInEnabled="true"
                        IsHighlightingEnabled="true">
-            </BarSeries>
-        </DataChart>
+            </IgbBarSeries>
+        </IgbDataChart>
     </div>
 </div>
 
 @code {
 
-    private Legend _Legend;
-    private Legend Legend
+    private IgbLegend _Legend;
+    private IgbLegend Legend
     {
         get { return _Legend; }
         set { _Legend = value; StateHasChanged(); }

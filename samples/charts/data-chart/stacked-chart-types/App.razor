@@ -6,7 +6,7 @@
      <div class="options vertical" >
           <span class="legend-title">Energy Production By Source </span>
           <div class="legend">
-             <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+             <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
          </div>
      </div>
 
@@ -29,7 +29,7 @@
     <div class="container vertical">
         @if (Data != null)
         {
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false"
                    PlotAreaMarginRight="20"
@@ -38,13 +38,13 @@
 
             @if (SeriesType == "Stacked Bar" || SeriesType == "Stacked 100 Bar")
             {
-                <NumericXAxis  Name="xAxis2" MinimumValue="0" />
-                <CategoryYAxis Name="yAxis2" Label="Country" DataSource="Data" Title="Countries"/>
+                <IgbNumericXAxis  Name="xAxis2" MinimumValue="0" />
+                <IgbCategoryYAxis Name="yAxis2" Label="Country" DataSource="Data" Title="Countries"/>
             }
             else
             {
-                <CategoryXAxis Name="xAxis" Label="Country" DataSource="Data" Title="Countries" />
-                <NumericYAxis  Name="yAxis" MinimumValue="0" />
+                <IgbCategoryXAxis Name="xAxis" Label="Country" DataSource="Data" Title="Countries" />
+                <IgbNumericYAxis  Name="yAxis" MinimumValue="0" />
             }
 
             @if (SeriesType == "Stacked Bar")
@@ -146,7 +146,7 @@
                     }
                 </Stacked100SplineSeries>
             }
-        </DataChart>
+        </IgbDataChart>
         }
         </div>
 </div>
@@ -155,15 +155,15 @@
 
     private List<SampleStackedItem> Data;
     private string[] DataColumns = new string[] { "Coal", "Hydro", "Nuclear", "Solar", "Oil"};
-    private DataChart _chart;
-    private DataChart Chart
+    private IgbDataChart _chart;
+    private IgbDataChart Chart
     {
         get { return _chart; }
         set { _chart = value; StateHasChanged(); }
     }
 
-    private Legend _legend;
-    private Legend Legend
+    private IgbLegend _legend;
+    private IgbLegend Legend
     {
         get { return _legend; }
         set { _legend = value; StateHasChanged(); }

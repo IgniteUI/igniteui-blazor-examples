@@ -22,13 +22,13 @@
 
         @if (AirplaneShape != null && AirplaneSeats != null)
         {
-            <DataChart Height="100%" Width="100%"
+            <IgbDataChart Height="100%" Width="100%"
                        SeriesMouseEnterScript="onPolygonSeriesMouseEnter"
                        IsHorizontalZoomEnabled="true"
                        IsVerticalZoomEnabled="true">
 
-                <NumericXAxis Name="xAxis" MinimumValue="-1000" MaximumValue="1000" Interval="200"></NumericXAxis>
-                <NumericYAxis Name="yAxis" MinimumValue="-600" MaximumValue="600" Interval="200"></NumericYAxis>
+                <IgbNumericXAxis Name="xAxis" MinimumValue="-1000" MaximumValue="1000" Interval="200"></NumericXAxis>
+                <IgbNumericYAxis Name="yAxis" MinimumValue="-600" MaximumValue="600" Interval="200"></NumericYAxis>
 
                 <ScatterPolygonSeries XAxisName="xAxis"
                                       YAxisName="yAxis"
@@ -47,7 +47,7 @@
                                       StyleShapeScript="onPolygonShapeStyle">
                 </ScatterPolygonSeries>
 
-            </DataChart>
+            </IgbDataChart>
         }
 
     </div>
@@ -73,7 +73,7 @@
         var seats = "https://static.infragistics.com/xplatform/json/airplane-seats.json";
         this.AirplaneSeats = await http.GetFromJsonAsync<AirplaneSeatInfo[]>(seats);
 
-        Console.WriteLine("OnInitializedAsync DataChartTypeScatterPolygonSeries");
+        Console.WriteLine("OnInitializedAsync IgbDataChartTypeScatterPolygonSeries");
 
         await Task.Delay(1);
     }
