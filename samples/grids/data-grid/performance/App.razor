@@ -6,36 +6,38 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <DataGrid Height="100%" Width="100%" @ref="DataGridRef"
-                      AutoGenerateColumns="false"
-                      HeaderClickAction="@HeaderClickAction.SortByMultipleColumnsTriState"
-                      RowHeight="40"
-                      SelectionMode="@GridSelectionMode.MultipleRow"
-                      DefaultColumnMinWidth="80"
-                      SortDescriptionsChanged="OnSortDescriptionsChanged"
-                      ColumnShowingAnimationMode="@ColumnShowingAnimationMode.Auto"
-                      ColumnHidingAnimationMode="@ColumnHidingAnimationMode.Auto"
-                      DataSource="Data"
-                      IsRowHoverEnabled="false">
-                <TextColumn Field="FirstName" HeaderText="First Name" Width="@("*>130")" />
-                <TextColumn Field="LastName" HeaderText="Last Name" Width="@("*>130")" />
-                <TextColumn Field="Territory" Width="@("*>130")" />
-                <NumericColumn Field="YearToDateSales" HeaderText="YTD Sales" Width="@("*>130")"
-                               PositivePrefix="$" ShowGroupingSeparator="true" />
-                <TemplateColumn Field="AvgSale" HeaderText="Avg. Sale" Width="@("*>120")" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
-                                CellUpdatingScript="onAvgSaleCellUpdating"  />
-                <TemplateColumn Field="Change" Width="@("*>120")" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
-                                CellUpdatingScript="onChangeCellUpdating"/>
-                <TemplateColumn Field="PercentChange" Width="@("*>140")" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
-                                HeaderText="Change (%)" CellUpdatingScript="onPercentChangeCellUpdating"/>
-                <DateTimeColumn Field="DateValue" HeaderText="Date" Width="@("*>120")" />
+            <div style="overflow: hidden">
+                <DataGrid Height="100%" Width="100%" @ref="DataGridRef"
+                        AutoGenerateColumns="false"
+                        HeaderClickAction="@HeaderClickAction.SortByMultipleColumnsTriState"
+                        RowHeight="40"
+                        SelectionMode="@GridSelectionMode.MultipleRow"
+                        DefaultColumnMinWidth="80"
+                        SortDescriptionsChanged="OnSortDescriptionsChanged"
+                        ColumnShowingAnimationMode="@ColumnShowingAnimationMode.Auto"
+                        ColumnHidingAnimationMode="@ColumnHidingAnimationMode.Auto"
+                        DataSource="Data"
+                        IsRowHoverEnabled="false">
+                    <TextColumn Field="FirstName" HeaderText="First Name" Width="@("*>130")" />
+                    <TextColumn Field="LastName" HeaderText="Last Name" Width="@("*>130")" />
+                    <TextColumn Field="Territory" Width="@("*>130")" />
+                    <NumericColumn Field="YearToDateSales" HeaderText="YTD Sales" Width="@("*>130")"
+                                PositivePrefix="$" ShowGroupingSeparator="true" />
+                    <TemplateColumn Field="AvgSale" HeaderText="Avg. Sale" Width="@("*>120")" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
+                                    CellUpdatingScript="onAvgSaleCellUpdating"  />
+                    <TemplateColumn Field="Change" Width="@("*>120")" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
+                                    CellUpdatingScript="onChangeCellUpdating"/>
+                    <TemplateColumn Field="PercentChange" Width="@("*>140")" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
+                                    HeaderText="Change (%)" CellUpdatingScript="onPercentChangeCellUpdating"/>
+                    <DateTimeColumn Field="DateValue" HeaderText="Date" Width="@("*>120")" />
 
-                @for (int i = 0; i < 8; i++)
-                {
-                    string str = "KPI_" + i.ToString();
-                    <NumericColumn Width="@("*>150")" Field="@str" DataBoundScript="onKPIColumnDataBound"/>
-                }
-            </DataGrid>
+                    @for (int i = 0; i < 8; i++)
+                    {
+                        string str = "KPI_" + i.ToString();
+                        <NumericColumn Width="@("*>150")" Field="@str" DataBoundScript="onKPIColumnDataBound"/>
+                    }
+                </DataGrid>
+            </div>
         }
     </div>
 </div>

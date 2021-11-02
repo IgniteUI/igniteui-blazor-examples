@@ -17,19 +17,21 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <DataGrid Height="100%" Width="100%"                      
-                      DefaultColumnMinWidth="100"
-                      AutoGenerateColumns="false"
-                      DataSource="Data"
-                      SelectionMode="@SelectionMode"
-                      IsColumnOptionsEnabled="true"                      >
-                <TextColumn Field="Name" Width="@("*>150")" />
-                <TextColumn Field="Street" HeaderText="Street" Width="@("*>160")"/>
-                <TextColumn Field="City" HeaderText="City" Width="@("*>120")"/>
-                <NumericColumn Field="Salary" HeaderText="Salary" PositivePrefix="$" ShowGroupingSeparator="true" Width="@("*>120")"/>
-                <ImageColumn IsEditable="false" Field="Photo" HeaderText="Photo" ContentOpacity="1" HorizontalAlignment="@CellContentHorizontalAlignment.Center" Width="@("*>110")"/>
-                <DateTimeColumn Field="Birthday" HeaderText="Date of Birth" Width="@("*>170")"/>
-            </DataGrid>
+            <div style="overflow: hidden">
+                <DataGrid Height="100%" Width="100%"                      
+                        DefaultColumnMinWidth="100"
+                        AutoGenerateColumns="false"
+                        DataSource="Data"
+                        SelectionMode="@SelectionMode"
+                        IsColumnOptionsEnabled="true"                      >
+                    <TextColumn Field="Name" Width="@("*>150")" />
+                    <TextColumn Field="Street" HeaderText="Street" Width="@("*>160")"/>
+                    <TextColumn Field="City" HeaderText="City" Width="@("*>120")"/>
+                    <NumericColumn Field="Salary" HeaderText="Salary" PositivePrefix="$" ShowGroupingSeparator="true" Width="@("*>120")"/>
+                    <ImageColumn IsEditable="false" Field="Photo" HeaderText="Photo" ContentOpacity="1" HorizontalAlignment="@CellContentHorizontalAlignment.Center" Width="@("*>110")"/>
+                    <DateTimeColumn Field="Birthday" HeaderText="Date of Birth" Width="@("*>170")"/>
+                </DataGrid>
+            </div>
         }
     </div>
 </div>

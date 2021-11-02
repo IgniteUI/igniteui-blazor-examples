@@ -70,27 +70,29 @@
     <div class="container vertical" style="height: calc(100% - 125px)">
         @if (Data != null)
         {
-            <DataGrid Height="100%" Width="100%" @ref="DataGridRef"
-                      DefaultColumnMinWidth="100"
-                      ColumnAddingAnimationMode="@ShowingAddingAnimation"
-                      ColumnShowingAnimationMode="@ShowingAddingAnimation"
-                      ColumnExchangingAnimationMode="@ExchangeAnimation"
-                      ColumnHidingAnimationMode="@HidingAnimation"
-                      ColumnMovingAnimationMode="@MovingAnimation"
-                      ColumnPropertyUpdatingAnimationMode="@UpdatingAnimation"
-                      AutoGenerateColumns="false"
-                      DataSource="Data"
-                      IsColumnOptionsEnabled="true">
-                <TextColumn Field="Name" Width="@("*>170")" />
-                <TextColumn Field="Street" HeaderText="Address" Width="@("*>150")" />
-                <TextColumn Field="City" Width="@("*>120")" />
-                <NumericColumn Field="Salary" Width="@("*>120")" PositivePrefix="$" ShowGroupingSeparator="true" />
-                <DateTimeColumn Field="Birthday" Width="@("*>170")" />
-                <TextColumn Field="Country" Width="@("*>120")" />
-                <NumericColumn Field="Sales" Width="@("*>120")" PositivePrefix="$" ShowGroupingSeparator="true" />
-                <NumericColumn Field="Age" Width="@("*>120")" />
-                <TextColumn Field="Email" Width="@("*>120")" />
-            </DataGrid>
+            <div style="overflow: hidden">
+                <DataGrid Height="100%" Width="100%" @ref="DataGridRef"
+                        DefaultColumnMinWidth="100"
+                        ColumnAddingAnimationMode="@ShowingAddingAnimation"
+                        ColumnShowingAnimationMode="@ShowingAddingAnimation"
+                        ColumnExchangingAnimationMode="@ExchangeAnimation"
+                        ColumnHidingAnimationMode="@HidingAnimation"
+                        ColumnMovingAnimationMode="@MovingAnimation"
+                        ColumnPropertyUpdatingAnimationMode="@UpdatingAnimation"
+                        AutoGenerateColumns="false"
+                        DataSource="Data"
+                        IsColumnOptionsEnabled="true">
+                    <TextColumn Field="Name" Width="@("*>170")" />
+                    <TextColumn Field="Street" HeaderText="Address" Width="@("*>150")" />
+                    <TextColumn Field="City" Width="@("*>120")" />
+                    <NumericColumn Field="Salary" Width="@("*>120")" PositivePrefix="$" ShowGroupingSeparator="true" />
+                    <DateTimeColumn Field="Birthday" Width="@("*>170")" />
+                    <TextColumn Field="Country" Width="@("*>120")" />
+                    <NumericColumn Field="Sales" Width="@("*>120")" PositivePrefix="$" ShowGroupingSeparator="true" />
+                    <NumericColumn Field="Age" Width="@("*>120")" />
+                    <TextColumn Field="Email" Width="@("*>120")" />
+                </DataGrid>
+            </div>
         }
     </div>
 </div>

@@ -23,23 +23,25 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <DataGrid Height="calc(100% - 3rem)" Width="100%" @ref="@DataGridRef"
-                      SummaryScope="@GridSummaryScope"
-                      GroupSummaryDisplayMode="@GridGroupSummaryDisplayMode"
-                      AutoGenerateColumns="false"
-                      IsGroupCollapsable="true"
-                      GroupHeaderDisplayMode="@DataSourceSectionHeaderDisplayMode.Combined"
-                      IsColumnOptionsEnabled="true"
-                      DataSource="Data">
-                <NumericColumn Field="ID" Width="@("*>120")" HeaderText="ID" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
-                <TextColumn Field="ProductName" Width="@("*>130")" HeaderText="Product" />
-                <NumericColumn Field="BundlePrice" PositivePrefix="$" Width="@("*>120")" ShowGroupingSeparator="true" HeaderText="Price" />
-                <NumericColumn Field="OrderItems" Width="@("*>140")" HeaderText="Orders" />
-                <NumericColumn Field="OrderValue" Width="@("*>160")" ShowGroupingSeparator="true" HeaderText="Order Totals" PositivePrefix="$" />
-                <DateTimeColumn Field="OrderDate" Width="@("*>150")" HeaderText="Order Date" HorizontalAlignment="@CellContentHorizontalAlignment.Right" />
-                <NumericColumn Field="Profit" Width="@("*>140")" ShowGroupingSeparator="true" HeaderText="Profit" PositivePrefix="$" />
-                <TextColumn Field="Country" Width="@("*>170")" HeaderText="Ship Country" />
-            </DataGrid>
+            <div style="overflow: hidden">
+                <DataGrid Height="100%" Width="100%" @ref="@DataGridRef"
+                        SummaryScope="@GridSummaryScope"
+                        GroupSummaryDisplayMode="@GridGroupSummaryDisplayMode"
+                        AutoGenerateColumns="false"
+                        IsGroupCollapsable="true"
+                        GroupHeaderDisplayMode="@DataSourceSectionHeaderDisplayMode.Combined"
+                        IsColumnOptionsEnabled="true"
+                        DataSource="Data">
+                    <NumericColumn Field="ID" Width="@("*>120")" HeaderText="ID" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
+                    <TextColumn Field="ProductName" Width="@("*>130")" HeaderText="Product" />
+                    <NumericColumn Field="BundlePrice" PositivePrefix="$" Width="@("*>120")" ShowGroupingSeparator="true" HeaderText="Price" />
+                    <NumericColumn Field="OrderItems" Width="@("*>140")" HeaderText="Orders" />
+                    <NumericColumn Field="OrderValue" Width="@("*>160")" ShowGroupingSeparator="true" HeaderText="Order Totals" PositivePrefix="$" />
+                    <DateTimeColumn Field="OrderDate" Width="@("*>150")" HeaderText="Order Date" HorizontalAlignment="@CellContentHorizontalAlignment.Right" />
+                    <NumericColumn Field="Profit" Width="@("*>140")" ShowGroupingSeparator="true" HeaderText="Profit" PositivePrefix="$" />
+                    <TextColumn Field="Country" Width="@("*>170")" HeaderText="Ship Country" />
+                </DataGrid>
+            </div>
         }
     </div>
 </div>

@@ -23,21 +23,23 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <DataGrid Height="100%" Width="100%"
-                      @ref="DataGridRef"
-                      DefaultColumnMinWidth="100"
-                      AutoGenerateColumns="false"
-                      DataSource="Data"
-                      IsColumnOptionsEnabled="true"
-                      FilterUIType="FilterUIType.FilterRow">
-                <TextColumn Field="Name" Width="@("*>170")" />
-                <TextColumn Field="Street" Width="@("*>180")" />
-                <TextColumn Field="City" Width="@("*>120")" />
-                <ImageColumn IsEditable="false" Field="CountryFlag" PaddingTop="5" PaddingBottom="5" HeaderText="Country" ContentOpacity="1"
-                             HorizontalAlignment="@CellContentHorizontalAlignment.Center" Width="@("*>140")" />
-                <NumericColumn Field="Sales" PositivePrefix="$" ShowGroupingSeparator="true" Width="@("*>120")" />
-                <DateTimeColumn Field="Birthday" HeaderText="Birthday" Width="@("*>170")" />
-            </DataGrid>
+            <div style="overflow: hidden">
+                <DataGrid Height="100%" Width="100%"
+                        @ref="DataGridRef"
+                        DefaultColumnMinWidth="100"
+                        AutoGenerateColumns="false"
+                        DataSource="Data"
+                        IsColumnOptionsEnabled="true"
+                        FilterUIType="FilterUIType.FilterRow">
+                    <TextColumn Field="Name" Width="@("*>170")" />
+                    <TextColumn Field="Street" Width="@("*>180")" />
+                    <TextColumn Field="City" Width="@("*>120")" />
+                    <ImageColumn IsEditable="false" Field="CountryFlag" PaddingTop="5" PaddingBottom="5" HeaderText="Country" ContentOpacity="1"
+                                HorizontalAlignment="@CellContentHorizontalAlignment.Center" Width="@("*>140")" />
+                    <NumericColumn Field="Sales" PositivePrefix="$" ShowGroupingSeparator="true" Width="@("*>120")" />
+                    <DateTimeColumn Field="Birthday" HeaderText="Birthday" Width="@("*>170")" />
+                </DataGrid>
+            </div>
         }
     </div>
 </div>

@@ -16,20 +16,22 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <DataGrid Height="100%" Width="100%" @ref="DataGridRef"
-                      HeaderClickAction="@GridHeaderClickAction"
-                      AutoGenerateColumns="false"
-                      DataSource="Data"
-                      DefaultColumnMinWidth="100"
-                      IsColumnOptionsEnabled="true">
-                <TextColumn Field="ID" Width="@("*>110")" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
-                <TextColumn Field="Property" Width="@("*>150")" HeaderText="Property" />
-                <ImageColumn IsEditable="false" Field="CountryFlag" HeaderText="Country" Width="@("*>160")" ContentOpacity="1"
-                             HorizontalAlignment="@CellContentHorizontalAlignment.Center" PaddingTop="5" PaddingBottom="5" />
-                <TextColumn Field="City" Width="@("*>150")" />
-                <NumericColumn Field="Price" Width="@("*>130")" PositivePrefix="$" ShowGroupingSeparator="true" />
-                <NumericColumn Field="Rooms" Width="@("*>110")" />
-            </DataGrid>
+            <div style="overflow: hidden">
+                <DataGrid Height="100%" Width="100%" @ref="DataGridRef"
+                        HeaderClickAction="@GridHeaderClickAction"
+                        AutoGenerateColumns="false"
+                        DataSource="Data"
+                        DefaultColumnMinWidth="100"
+                        IsColumnOptionsEnabled="true">
+                    <TextColumn Field="ID" Width="@("*>110")" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
+                    <TextColumn Field="Property" Width="@("*>150")" HeaderText="Property" />
+                    <ImageColumn IsEditable="false" Field="CountryFlag" HeaderText="Country" Width="@("*>160")" ContentOpacity="1"
+                                HorizontalAlignment="@CellContentHorizontalAlignment.Center" PaddingTop="5" PaddingBottom="5" />
+                    <TextColumn Field="City" Width="@("*>150")" />
+                    <NumericColumn Field="Price" Width="@("*>130")" PositivePrefix="$" ShowGroupingSeparator="true" />
+                    <NumericColumn Field="Rooms" Width="@("*>110")" />
+                </DataGrid>
+            </div>
         }
     </div>
 </div>

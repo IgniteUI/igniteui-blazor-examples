@@ -25,20 +25,22 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <DataGrid Height="100%" Width="100%"
-                      ColumnMovingMode="@GridColumnMovingMode"
-                      ColumnMovingAnimationMode="@GridColumnMovingAnimationMode"
-                      ColumnMovingSeparatorWidth="@GridColumnMovingSeparatorWidth"
-                      DefaultColumnMinWidth="100"
-                      AutoGenerateColumns="false"
-                      DataSource="Data"
-                      IsColumnOptionsEnabled="true">
-                <TextColumn Field="Name" Width="@("*>170")" />
-                <TextColumn Field="Street" HeaderText="Address" Width="@("*>150")"/>
-                <TextColumn Field="City" Width="@("*>120")"/>
-                <NumericColumn Field="Salary" PositivePrefix="$" ShowGroupingSeparator="true" Width="@("*>120")"/>
-                <DateTimeColumn Field="Birthday" Width="@("*>170")"/>
-            </DataGrid>
+            <div style="overflow: hidden">
+                <DataGrid Height="100%" Width="100%"
+                        ColumnMovingMode="@GridColumnMovingMode"
+                        ColumnMovingAnimationMode="@GridColumnMovingAnimationMode"
+                        ColumnMovingSeparatorWidth="@GridColumnMovingSeparatorWidth"
+                        DefaultColumnMinWidth="100"
+                        AutoGenerateColumns="false"
+                        DataSource="Data"
+                        IsColumnOptionsEnabled="true">
+                    <TextColumn Field="Name" Width="@("*>170")" />
+                    <TextColumn Field="Street" HeaderText="Address" Width="@("*>150")"/>
+                    <TextColumn Field="City" Width="@("*>120")"/>
+                    <NumericColumn Field="Salary" PositivePrefix="$" ShowGroupingSeparator="true" Width="@("*>120")"/>
+                    <DateTimeColumn Field="Birthday" Width="@("*>170")"/>
+                </DataGrid>
+            </div>
         }
     </div>
 </div>
