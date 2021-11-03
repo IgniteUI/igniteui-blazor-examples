@@ -24,31 +24,31 @@
 
         @if (Data != null)
         {
-        <DataGrid @ref="@grid" Height="100%" Width="100%"
+        <IgbDataGrid @ref="@grid" Height="100%" Width="100%"
                   RowHeight="90"
                   DataSource="Data"
                   AutoGenerateColumns="false">
             @* custom sparkline solumn: *@
-            <TemplateColumn Field="Orders"
+            <IgbTemplateColumn Field="Orders"
                             HeaderText="Orders" PaddingTop="10" PaddingBottom="10"
                             HorizontalAlignment="CellContentHorizontalAlignment.Center">
                 <Template>
                     <div style="width: 100%; height: 70px; background: transparent">
-                        <Sparkline Height="100%" Width="100%"
+                        <IgbSparkline Height="100%" Width="100%"
                                    DataSource="@((context.RowItem as SalesEmployee).Order)"
                                    DisplayType="SparklineDisplayType.Column"
                                    ValueMemberPath="Freight"
                                    LabelMemberPath="OrderDate"
                                    Brush="rgb(0, 64, 128)">
-                        </Sparkline>
+                        </IgbSparkline>
                     </div>
                 </Template>
-            </TemplateColumn>
-            <TextColumn Field="CompanyName"></TextColumn>
-            <TextColumn Field="ContactName"></TextColumn>
-            <TextColumn Field="ContactTitle"></TextColumn>
-            <TextColumn Field="Country"></TextColumn>
-        </DataGrid>
+            </IgbTemplateColumn>
+            <IgbTextColumn Field="CompanyName"></IgbTextColumn>
+            <IgbTextColumn Field="ContactName"></IgbTextColumn>
+            <IgbTextColumn Field="ContactTitle"></IgbTextColumn>
+            <IgbTextColumn Field="Country"></IgbTextColumn>
+        </IgbDataGrid>
         }
 
     </div>
@@ -61,7 +61,7 @@
     public bool canSave = false;
     public Random Rand = new Random();
 
-    public DataGrid grid;
+    public IgbDataGrid grid;
     public List<SalesEmployee> Data;
     public List<Order> companyOrders;
     public Workbook wb;
@@ -81,8 +81,8 @@
     {
 
         base.OnInitialized();
-        DataGridModule.Register(IgniteUIBlazor);
-        SparklineModule.Register(IgniteUIBlazor);
+        IgbDataGridModule.Register(IgniteUIBlazor);
+        IgbSparklineModule.Register(IgniteUIBlazor);
         Workbook.InProcessRuntime = this.Runtime as IJSInProcessRuntime;
 
         InitData();
@@ -210,7 +210,7 @@
             {
                 for (int i = 0; i < this.grid.ActualColumns.Count; i++)
                 {
-                    Column c = this.grid.ActualColumns[i];
+                    IgbColumn c = this.grid.ActualColumns[i];
 
                     if (i == 0)
                     {

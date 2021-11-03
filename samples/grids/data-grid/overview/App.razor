@@ -13,9 +13,9 @@
 
         @if (Employees != null)
         {
-            <DataGridToolbar ToolbarTitle="Sales Team" ColumnChooser="true" ColumnPinning="true" TargetGrid="@DataGridRef"/>
+            <IgbDataGridToolbar ToolbarTitle="Sales Team" ColumnChooser="true" ColumnPinning="true" TargetGrid="@DataGridRef"/>
 
-            <DataGrid Height="calc(100% - 2.75rem)" Width="100%" RowHeight="50" @ref="@DataGridRef"
+            <IgbDataGrid Height="calc(100% - 2.75rem)" Width="100%" RowHeight="50" @ref="@DataGridRef"
                       DataSource="Employees"
                       AutoGenerateColumns="false"
                       IsColumnOptionsEnabled="true"
@@ -33,34 +33,34 @@
                       ColumnHidingAnimationMode="ColumnHidingAnimationMode.SlideToRightAndFadeOut"
                       SelectionMode="GridSelectionMode.SingleRow">
 
-                <ImageColumn IsEditable="false" Width="@("*>120")" Field="Photo" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
+                <IgbImageColumn IsEditable="false" Width="@("*>120")" Field="Photo" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
                              HorizontalAlignment="@CellContentHorizontalAlignment.Stretch"  />
 
-                <TextColumn Width="@("*>130")" Field="Name" />
+                <IgbTextColumn Width="@("*>130")" Field="Name" />
 
                 @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
-                <TemplateColumn Width="@("*>160")" Field="Sales" CellUpdatingScript="onUpdatingSalesColumn"
+                <IgbTemplateColumn Width="@("*>160")" Field="Sales" CellUpdatingScript="onUpdatingSalesColumn"
                                 HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
 
-                <NumericColumn Width="@("*>130")" Field="Salary" PositivePrefix="$"
+                <IgbNumericColumn Width="@("*>130")" Field="Salary" PositivePrefix="$"
                                ShowGroupingSeparator="true"
                                MaxFractionDigits="0"
                                MinFractionDigits="0" />
 
-                <NumericColumn Width="100" Field="Age" HorizontalAlignment="@CellContentHorizontalAlignment.Center"/>
-                <DateTimeColumn Width="@("*>140")" Field="Birthday" HeaderText="Date of Birth" />
+                <IgbNumericColumn Width="100" Field="Age" HorizontalAlignment="@CellContentHorizontalAlignment.Center"/>
+                <IgbDateTimeColumn Width="@("*>140")" Field="Birthday" HeaderText="Date of Birth" />
 
-                <ImageColumn IsEditable="false" Width="@("*>110")" Field="CountryFlag" HeaderText="Country" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
+                <IgbImageColumn IsEditable="false" Width="@("*>110")" Field="CountryFlag" HeaderText="Country" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
                              HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
 
                 @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
-                <TemplateColumn Width="@("*>170")" Field="Address" CellUpdatingScript="onUpdatingAddressColumn" />
-                <TemplateColumn Width="@("*>130")" Field="Phone" CellUpdatingScript="onUpdatingPhoneColumn" />
+                <IgbTemplateColumn Width="@("*>170")" Field="Address" CellUpdatingScript="onUpdatingAddressColumn" />
+                <IgbTemplateColumn Width="@("*>130")" Field="Phone" CellUpdatingScript="onUpdatingPhoneColumn" />
 
-                <TextColumn Width="@("*>120")" Field="Income" />
-                <TextColumn Width="@("*>120")" Field="Email" IsEditable="false" />
+                <IgbTextColumn Width="@("*>120")" Field="Income" />
+                <IgbTextColumn Width="@("*>120")" Field="Email" IsEditable="false" />
 
-            </DataGrid>
+            </IgbDataGrid>
         }
 
 
@@ -71,8 +71,8 @@
 
     private List<Employee> Employees;
 
-    private DataGrid _grid;
-    private DataGrid DataGridRef
+    private IgbDataGrid _grid;
+    private IgbDataGrid DataGridRef
     {
         get { return _grid; }
         set { _grid = value; this.OnDataGridRef(); StateHasChanged(); }
@@ -82,9 +82,9 @@
     {
         base.OnInitialized();
 
-        DataGridModule.Register(IgniteUIBlazor);
-        DataGridToolbarModule.Register(IgniteUIBlazor);
-        ColumnChooserModule.Register(IgniteUIBlazor);
+        IgbDataGridModule.Register(IgniteUIBlazor);
+        IgbDataGridToolbarModule.Register(IgniteUIBlazor);
+        IgbColumnChooserModule.Register(IgniteUIBlazor);
 
         this.Employees = EmployeeData.Create(100, false);
 
@@ -93,15 +93,15 @@
 
     private void OnDataGridRef()
     {
-        var peopleGroup = new ColumnGroupDescription() { Field = "Country", DisplayName = "Country" };
-        var incomeGroup = new ColumnGroupDescription() { Field = "Income", DisplayName = "Income" };
+        var peopleGroup = new IgbColumnGroupDescription() { Field = "Country", DisplayName = "Country" };
+        var incomeGroup = new IgbColumnGroupDescription() { Field = "Income", DisplayName = "Income" };
         this._grid.GroupDescriptions.Add(peopleGroup);
         this._grid.GroupDescriptions.Add(incomeGroup);
 
-        var ageSummary = new ColumnSummaryDescription() { Field = "Age", Operand = SummaryOperand.Average };
-        var peopleSummary = new ColumnSummaryDescription() { Field = "Photo", Operand = SummaryOperand.Count };
-        var salarySummary = new ColumnSummaryDescription() { Field = "Salary", Operand = SummaryOperand.Sum };
-        var saleSummary = new ColumnSummaryDescription() { Field = "Sales", Operand = SummaryOperand.Max };
+        var ageSummary = new IgbColumnSummaryDescription() { Field = "Age", Operand = SummaryOperand.Average };
+        var peopleSummary = new IgbColumnSummaryDescription() { Field = "Photo", Operand = SummaryOperand.Count };
+        var salarySummary = new IgbColumnSummaryDescription() { Field = "Salary", Operand = SummaryOperand.Sum };
+        var saleSummary = new IgbColumnSummaryDescription() { Field = "Sales", Operand = SummaryOperand.Max };
 
         this._grid.SummaryDescriptions.Add(ageSummary);
         this._grid.SummaryDescriptions.Add(peopleSummary);
@@ -109,7 +109,7 @@
         this._grid.SummaryDescriptions.Add(saleSummary);
 
         // TODO fix onSummarziePeopleGender
-        //var nameSummary = new ColumnSummaryDescription() { Field = "Name", Operand = SummaryOperand.Custom,
+        //var nameSummary = new IgbColumnSummaryDescription() { Field = "Name", Operand = SummaryOperand.Custom,
         //    ProvideCalculatorScript = "onSummarziePeopleGender" };
         //this._grid.SummaryDescriptions.Add(nameSummary);
     }

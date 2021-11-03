@@ -7,14 +7,14 @@
     <div class="options vertical">
         <span class="legend-title">Renewable Electricity Generated</span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" >
-            </Legend>
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" >
+            </IgbLegend>
         </div>
     </div>
     <div class="container vertical">
         @if (Data != null)
         {
-            <CategoryChart Height="100%" Width="100%"
+            <IgbCategoryChart Height="100%" Width="100%"
                 @ref="@Chart"
                 Legend="Legend"
                 ChartType="CategoryChartType.StepLine"
@@ -27,15 +27,15 @@
                 IsVerticalZoomEnabled="false"
                 XAxisInterval="1"
                 YAxisTitle="TWh">
-            </CategoryChart>
+            </IgbCategoryChart>
         }
     </div>
 </div>
 
 @code {
 
-    private CategoryChart _Chart;
-    private CategoryChart Chart
+    private IgbCategoryChart _Chart;
+    private IgbCategoryChart Chart
     {
         get { return _Chart; }
         set
@@ -55,8 +55,8 @@
         }
     }
     private List<EnergyRenewableInfo> Data;
-    private Legend legend;
-    private Legend Legend
+    private IgbLegend legend;
+    private IgbLegend Legend
     {
         get { return legend; }
         set
@@ -68,9 +68,9 @@
 
     protected override void OnInitialized()
     {
-        CategoryChartModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        LegendModule.Register(IgniteUIBlazor);
+        IgbCategoryChartModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbLegendModule.Register(IgniteUIBlazor);
         this.Data = new EnergyRenewableData();
     }
 }

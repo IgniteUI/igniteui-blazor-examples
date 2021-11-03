@@ -18,22 +18,22 @@
         {
             <ColumnGrouping Title="GroupBy Area - Drag a column here to group by that column" TargetGrid="@DataGridRef"/>
 
-            <DataGrid @ref=@DataGridRef Height="100%" Width="100%"
+            <IgbDataGrid @ref=@DataGridRef Height="100%" Width="100%"
                       DataSource="Data"
                       AutoGenerateColumns="false"
                       IsGroupCollapsable="true"
                       GroupHeaderDisplayMode="@SectionHeaderClickAction">
-                <TextColumn Field="Name" Width="@("*>120")" />
-                <NumericColumn Field="Age" Width="@("*>110")" />
-                <DateTimeColumn Field="Birthday" HorizontalAlignment="CellContentHorizontalAlignment.Center" Width="@("*>160")"/>
-                <ImageColumn IsEditable="false" Field="CountryFlag" HeaderText="Country" Width="@("*>160")"
+                <IgbTextColumn Field="Name" Width="@("*>120")" />
+                <IgbNumericColumn Field="Age" Width="@("*>110")" />
+                <IgbDateTimeColumn Field="Birthday" HorizontalAlignment="CellContentHorizontalAlignment.Center" Width="@("*>160")"/>
+                <IgbImageColumn IsEditable="false" Field="CountryFlag" HeaderText="Country" Width="@("*>160")"
                                 PaddingTop="5" PaddingBottom="5" ContentOpacity="1" HorizontalAlignment="CellContentHorizontalAlignment.Center"/>
-                <TextColumn Field="Street" />
-                <NumericColumn Field="Salary" HeaderText="Salary" Width="@("*>130")"
+                <IgbTextColumn Field="Street" />
+                <IgbNumericColumn Field="Salary" HeaderText="Salary" Width="@("*>130")"
                                 PositivePrefix="$" ShowGroupingSeparator="true"/>
-                <TextColumn Field="City" />
-                <NumericColumn Field="Salary" PositivePrefix="$" ShowGroupingSeparator="true" MaxFractionDigits="0" MinFractionDigits="0" />
-            </DataGrid>
+                <IgbTextColumn Field="City" />
+                <IgbNumericColumn Field="Salary" PositivePrefix="$" ShowGroupingSeparator="true" MaxFractionDigits="0" MinFractionDigits="0" />
+            </IgbDataGrid>
         }
 
     </div>
@@ -42,10 +42,10 @@
 @code {
 
     private List<Employee> Data;
-    private DataGrid grid;
+    private IgbDataGrid grid;
     private DataSourceSectionHeaderDisplayMode SectionHeaderClickAction { get; set; } = DataSourceSectionHeaderDisplayMode.Combined;
 
-    public DataGrid DataGridRef
+    public IgbDataGrid DataGridRef
     {
         get
         {
@@ -64,16 +64,16 @@
     {
         base.OnInitialized();
 
-        DataGridModule.Register(IgniteUIBlazor);
-        ColumnGroupingModule.Register(IgniteUIBlazor);
+        IgbDataGridModule.Register(IgniteUIBlazor);
+        IgbColumnGroupingModule.Register(IgniteUIBlazor);
         this.Data = EmployeeData.Create(200, false);
     }
 
     private void OnGridCreated()
     {
-        var state = new ColumnGroupDescription { Field = "Country", DisplayName = "Location" };
-        var city = new ColumnGroupDescription { Field = "City", DisplayName = "" };
-        var income = new ColumnGroupDescription { Field = "Income", DisplayName = "Income" };
+        var state = new IgbColumnGroupDescription() { Field = "Country", DisplayName = "Location" };
+        var city = new IgbColumnGroupDescription() { Field = "City", DisplayName = "" };
+        var income = new IgbColumnGroupDescription() { Field = "Income", DisplayName = "Income" };
 
         grid.GroupDescriptions.Add(state);
         grid.GroupDescriptions.Add(city);

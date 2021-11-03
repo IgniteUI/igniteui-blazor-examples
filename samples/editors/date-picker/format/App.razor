@@ -12,7 +12,7 @@
         </label>
     </div>
     <div class="container vertical">
-        <DatePicker @ref="DatePicker" Height="60px" Width="220px"
+        <IgbDatePicker @ref="DatePicker" Height="60px" Width="220px"
                     Value="@SelectedDate"
                     DateFormat="@DateFormat"
                     AllowTextInput="false" />
@@ -22,11 +22,11 @@
 @code {
 
     public DateTime SelectedDate { get; set; }
-    public DatePicker DatePicker { get; set; }
+    public IgbDatePicker DatePicker { get; set; }
     public DateFormats DateFormat { get; set; }
     protected override void OnInitialized()
     {
-        DatePickerModule.Register(IgniteUIBlazor);
+        IgbDatePickerModule.Register(IgniteUIBlazor);
         this.SelectedDate = DateTime.Today;
         this.DateFormat = DateFormats.DateLong;
     }

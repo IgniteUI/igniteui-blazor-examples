@@ -5,7 +5,7 @@
     <div class="options vertical">
         <span class="legend-title">Renewable Electricity Generated</span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
 
@@ -13,7 +13,7 @@
         @if (Data != null)
         {
             // note MarkerTypes property is set in code-behind
-            <CategoryChart @ref="Chart" Height="100%" Width="100%"
+            <IgbCategoryChart @ref="Chart" Height="100%" Width="100%"
                            DataSource="Data"
                            ChartType="CategoryChartType.Line"
                            IsHorizontalZoomEnabled="false"
@@ -26,7 +26,7 @@
                            MarkerOutlines="#FFFFFF"
                            MarkerBrushes="#ee5879, #c4c4c4, #9af2e4"
                            Brushes="#ee5879, #c4c4c4, #9af2e4">
-            </CategoryChart>
+            </IgbCategoryChart>
         }
     </div>
 </div>
@@ -35,10 +35,10 @@
 
     private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
 
-    private CategoryChart Chart;
+    private IgbCategoryChart Chart;
 
-    private Legend _Legend;
-    private Legend Legend
+    private IgbLegend _Legend;
+    private IgbLegend Legend
     {
         get { return _Legend; }
         set { _Legend = value; StateHasChanged(); }
@@ -46,8 +46,8 @@
 
     protected override void OnInitialized()
     {
-        CategoryChartModule.Register(IgniteUIBlazor);
-        LegendModule.Register(IgniteUIBlazor);
+        IgbCategoryChartModule.Register(IgniteUIBlazor);
+        IgbLegendModule.Register(IgniteUIBlazor);
     }
 
     protected override void OnAfterRender(bool firstRender)

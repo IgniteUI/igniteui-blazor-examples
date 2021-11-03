@@ -5,17 +5,17 @@
     <div class="options vertical">
         <span class="legend-title">Monthly Temperature Range in LA and NYC for 2020 (in Celsius)</span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="container vertical">
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    Legend="Legend"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <CategoryXAxis Name="xAxis" Label="Month" Interval="1" DataSource="Data" />
-            <NumericYAxis Name="yAxis" Title="Temperature (in Celsius)" TitleLeftMargin="10" />
+            <IgbCategoryXAxis Name="xAxis" Label="Month" Interval="1" DataSource="Data" />
+            <IgbNumericYAxis Name="yAxis" Title="Temperature (in Celsius)" TitleLeftMargin="10" />
 
             <RangeColumnSeries XAxisName="xAxis" Title="Los Angeles"
                                YAxisName="yAxis"
@@ -28,15 +28,15 @@
                                DataSource="Data"
                                LowMemberPath="NY_Low"
                                HighMemberPath="NY_High" />
-        </DataChart>
+        </IgbDataChart>
 
     </div>
 </div>
 
 @code {
 
-    private Legend _Legend;
-    private Legend Legend
+    private IgbLegend _Legend;
+    private IgbLegend Legend
     {
         get { return _Legend; }
         set { _Legend = value; StateHasChanged(); }
@@ -46,11 +46,11 @@
 
     protected override void OnInitialized()
     {
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        LegendModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbLegendModule.Register(IgniteUIBlazor);
     }
 
 }

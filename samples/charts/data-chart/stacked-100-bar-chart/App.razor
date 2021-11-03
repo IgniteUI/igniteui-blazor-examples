@@ -6,15 +6,15 @@
     <div class="options vertical">
         <span class="legend-title">Renewable energy consumption</span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="container vertical">
         @if (Data != null)
         {
-            <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="false" IsHorizontalZoomEnabled="false">
-                <CategoryYAxis Name="yAxis" DataSource="Data" Label="Location" IsInverted="true" />
-                <NumericXAxis Name="xAxis" MinimumValue="0" Title="TWh" />
+            <IgbDataChart Height="100%" Width="100%" IsVerticalZoomEnabled="false" IsHorizontalZoomEnabled="false">
+                <IgbCategoryYAxis Name="yAxis" DataSource="Data" Label="Location" IsInverted="true" />
+                <IgbNumericXAxis() Name="xAxis" MinimumValue="0" Title="TWh" />
 
                 <Stacked100BarSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="true" AreaFillOpacity="1">
                     <StackedFragmentSeries ValueMemberPath="Hydro" />
@@ -22,15 +22,15 @@
                     <StackedFragmentSeries ValueMemberPath="Solar" />
                     <StackedFragmentSeries ValueMemberPath="Other" />
                 </Stacked100BarSeries>
-            </DataChart>
+            </IgbDataChart>
         }
     </div>
 </div>
 
 @code {
 
-    private Legend _legend;
-    public Legend Legend
+    private IgbLegend _legend;
+    public IgbLegend Legend
     {
         get { return _legend; }
         set
@@ -46,14 +46,14 @@
     {
         base.OnInitialized();
 
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        DataChartStackedModule.Register(IgniteUIBlazor);
-        ColumnFragmentModule.Register(IgniteUIBlazor);
-        StackedSplineSeriesModule.Register(IgniteUIBlazor);
-        StackedFragmentSeriesModule.Register(IgniteUIBlazor);
-        LegendModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbDataChartStackedModule.Register(IgniteUIBlazor);
+        IgbColumnFragmentModule.Register(IgniteUIBlazor);
+        IgbStackedSplineSeriesModule.Register(IgniteUIBlazor);
+        IgbStackedFragmentSeriesModule.Register(IgniteUIBlazor);
+        IgbLegendModule.Register(IgniteUIBlazor);
     }
 }

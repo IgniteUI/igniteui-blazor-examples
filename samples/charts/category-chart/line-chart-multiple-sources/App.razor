@@ -5,13 +5,13 @@
     <div class="options vertical">
         <span class="legend-title">Renewable Electricity Generated</span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="container vertical">
         @if (Data != null)
         {
-            <CategoryChart Height="100%" Width="100%"
+            <IgbCategoryChart Height="100%" Width="100%"
                            Legend="Legend"
                            DataSource="Data"
                            ChartType="CategoryChartType.Line"
@@ -21,15 +21,15 @@
                            YAxisTitleLeftMargin="10"
                            YAxisTitleRightMargin="5"
                            YAxisLabelLeftMargin="0">
-            </CategoryChart>
+            </IgbCategoryChart>
         }
     </div>
 </div>
 
 @code {
 
-    private Legend _Legend;
-    private Legend Legend
+    private IgbLegend _Legend;
+    private IgbLegend Legend
     {
         get { return _Legend; }
         set { _Legend = value; StateHasChanged(); }
@@ -39,7 +39,7 @@
 
     protected override void OnInitialized()
     {
-        CategoryChartModule.Register(IgniteUIBlazor);
-        LegendModule.Register(IgniteUIBlazor);
+        IgbCategoryChartModule.Register(IgniteUIBlazor);
+        IgbLegendModule.Register(IgniteUIBlazor);
     }
 }

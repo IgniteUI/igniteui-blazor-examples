@@ -21,7 +21,7 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <CategoryChart Height="100%" Width="100%"
+            <IgbCategoryChart Height="100%" Width="100%"
                            @ref="Chart"
                            DataSource="Data"
                            ChartType="CategoryChartType.Line"
@@ -39,7 +39,7 @@
                            CalloutsLabelMemberPath="Label"
                            CalloutsDataSource="CalloutData"
                            ExcludedProperties="@(new string[] { "China", "Europe" })">
-            </CategoryChart>
+            </IgbCategoryChart>
         }
     </div>
 </div>
@@ -49,8 +49,8 @@
     private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
     private List<CalloutInfo> CalloutData = new List<CalloutInfo>();
 
-    private CategoryChart _Chart;
-    private CategoryChart Chart
+    private IgbCategoryChart _Chart;
+    private IgbCategoryChart Chart
     {
         get { return _Chart; }
         set { _Chart = value;
@@ -91,7 +91,7 @@
     }
     protected override void OnInitialized()
     {
-        CategoryChartModule.Register(IgniteUIBlazor);
+        IgbCategoryChartModule.Register(IgniteUIBlazor);
         for (int i = 0; i < this.Data.Count; i++)
         {
             CalloutData.Add(

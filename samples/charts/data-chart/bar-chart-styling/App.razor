@@ -3,7 +3,7 @@
 
 <div class="container vertical">
     <div class="container vertical">
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    ChartTitle="Where Online Shoppers Start Their Search"
                    TitleHorizontalAlignment="HorizontalAlignment.Left"
                    TitleLeftMargin="25"
@@ -12,21 +12,21 @@
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <CategoryYAxis Name="yAxis" Label="Shop" DataSource="Data" IsInverted="true" Gap="0.75" />
-            <NumericXAxis Name="xAxis" Interval="20" LabelFormat="{0}%" />
+            <IgbCategoryYAxis Name="yAxis" Label="Shop" DataSource="Data" IsInverted="true" Gap="0.75" />
+            <IgbNumericXAxis() Name="xAxis" Interval="20" LabelFormat="{0}%" />
 
-            <BarSeries XAxisName="xAxis"
+            <IgbBarSeries XAxisName="xAxis"
                        YAxisName="yAxis"
                        DataSource="Data"
                        ValueMemberPath="Percent"
                        ShowDefaultTooltip="true"
                        IsTransitionInEnabled="true"
                        IsHighlightingEnabled="true">
-            </BarSeries>
+            </IgbBarSeries>
 
-            <CalloutLayer DataSource="CalloutItems" XMemberPath="X" YMemberPath="Y" LabelMemberPath="Label" ContentMemberPath="Label"
+            <IgbCalloutLayer DataSource="CalloutItems" XMemberPath="X" YMemberPath="Y" LabelMemberPath="Label" ContentMemberPath="Label"
                           CalloutTextColor="Black" CalloutBackground="Transparent" CalloutLeaderBrush="Transparent"/>
-        </DataChart>
+        </IgbDataChart>
     </div>
 </div>
 
@@ -37,13 +37,13 @@
 
     protected override void OnInitialized()
     {
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        DataChartVerticalCategoryModule.Register(IgniteUIBlazor);
-        DataChartAnnotationModule.Register(IgniteUIBlazor);
-        CalloutLayerModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbDataChartVerticalCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartAnnotationModule.Register(IgniteUIBlazor);
+        IgbCalloutLayerModule.Register(IgniteUIBlazor);
 
         InitCallouts();
     }

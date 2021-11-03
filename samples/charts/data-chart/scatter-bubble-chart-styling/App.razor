@@ -5,20 +5,20 @@
     <div class="options vertical">
         <span class="legend-title">Total Population of Selected Countries</span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="container vertical">
 
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    Legend="Legend"
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true">
 
-            <NumericYAxis Name="yAxis" Title="GDP per Capita" AbbreviateLargeNumbers="true" IsLogarithmic="true"  />
-            <NumericXAxis Name="xAxis" Title="Hours Worked per Week"   />
+            <IgbNumericYAxis Name="yAxis" Title="GDP per Capita" AbbreviateLargeNumbers="true" IsLogarithmic="true"  />
+            <IgbNumericXAxis() Name="xAxis" Title="Hours Worked per Week"   />
 
-            <BubbleSeries XAxisName="xAxis"
+            <IgbBubbleSeries XAxisName="xAxis"
                           YAxisName="yAxis"
                           DataSource="AfricaData"
                           Title="African Countries"
@@ -32,9 +32,9 @@
                           RadiusScale="@MarkerSizeScale"
                           RadiusMemberPath="Population"
                           ShowDefaultTooltip="true">
-            </BubbleSeries>
+            </IgbBubbleSeries>
 
-            <BubbleSeries XAxisName="xAxis"
+            <IgbBubbleSeries XAxisName="xAxis"
                           YAxisName="yAxis"
                           DataSource="EuropeData"
                           Title="European Countries"
@@ -48,17 +48,17 @@
                           RadiusScale="@MarkerSizeScale"
                           RadiusMemberPath="Population"
                           ShowDefaultTooltip="true">
-            </BubbleSeries>
+            </IgbBubbleSeries>
 
-        </DataChart>
+        </IgbDataChart>
 
     </div>
 </div>
 
 @code {
 
-    private Legend _legend;
-    public Legend Legend
+    private IgbLegend _legend;
+    public IgbLegend Legend
     {
         get { return _legend; }
         set { _legend = value; StateHasChanged(); }
@@ -67,7 +67,7 @@
     private List<CountryStats> AfricaData;
     private List<CountryStats> EuropeData;
 
-    private SizeScale MarkerSizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 50 };
+    private IgbSizeScale MarkerSizeScale = new IgbSizeScale { MinimumValue = 10, MaximumValue = 50 };
 
     public void InitializeData()
     {
@@ -79,12 +79,12 @@
 
     protected override void OnInitialized()
     {
-        LegendModule.Register(IgniteUIBlazor);
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartScatterModule.Register(IgniteUIBlazor);
-        DataChartScatterCoreModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+        IgbLegendModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartScatterModule.Register(IgniteUIBlazor);
+        IgbDataChartScatterCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbNumberAbbreviatorModule.Register(IgniteUIBlazor);
 
         InitializeData();
     }

@@ -23,21 +23,21 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <DataGrid Height="100%" Width="100%"
+            <IgbDataGrid Height="100%" Width="100%"
                       @ref="DataGridRef"
                       DefaultColumnMinWidth="100"
                       AutoGenerateColumns="false"
                       DataSource="Data"
                       IsColumnOptionsEnabled="true"
                       FilterUIType="FilterUIType.FilterRow">
-                <TextColumn Field="Name" Width="@("*>170")" />
-                <TextColumn Field="Street" Width="@("*>180")" />
-                <TextColumn Field="City" Width="@("*>120")" />
-                <ImageColumn IsEditable="false" Field="CountryFlag" PaddingTop="5" PaddingBottom="5" HeaderText="Country" ContentOpacity="1"
+                <IgbTextColumn Field="Name" Width="@("*>170")" />
+                <IgbTextColumn Field="Street" Width="@("*>180")" />
+                <IgbTextColumn Field="City" Width="@("*>120")" />
+                <IgbImageColumn IsEditable="false" Field="CountryFlag" PaddingTop="5" PaddingBottom="5" HeaderText="Country" ContentOpacity="1"
                              HorizontalAlignment="@CellContentHorizontalAlignment.Center" Width="@("*>140")" />
-                <NumericColumn Field="Sales" PositivePrefix="$" ShowGroupingSeparator="true" Width="@("*>120")" />
-                <DateTimeColumn Field="Birthday" HeaderText="Birthday" Width="@("*>170")" />
-            </DataGrid>
+                <IgbNumericColumn Field="Sales" PositivePrefix="$" ShowGroupingSeparator="true" Width="@("*>120")" />
+                <IgbDateTimeColumn Field="Birthday" HeaderText="Birthday" Width="@("*>170")" />
+            </IgbDataGrid>
         }
     </div>
 </div>
@@ -45,7 +45,7 @@
 @code {
 
     private List<Employee> Data;
-    private DataGrid DataGridRef;
+    private IgbDataGrid DataGridRef;
 
     private string FilterText = "";
     private string FilterMode = "Contains";
@@ -56,9 +56,9 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        DataGridModule.Register(IgniteUIBlazor);
-        GridColumnOptionsModule.Register(IgniteUIBlazor);
-        GridColumnFilterOptionsModule.Register(IgniteUIBlazor);
+        IgbDataGridModule.Register(IgniteUIBlazor);
+        IgbGridColumnOptionsModule.Register(IgniteUIBlazor);
+        IgbGridColumnFilterOptionsModule.Register(IgniteUIBlazor);
 
         this.Data = EmployeeData.Create(100, false);
     }
@@ -92,9 +92,9 @@
 
         string expression = this.FilterText.ToUpper();
 
-        FilterExpression column = this.FilterFactory.Property(this.FilterColumn).ToUpper();
+        IgbFilterExpression column = this.FilterFactory.Property(this.FilterColumn).ToUpper();
 
-        FilterExpression filter = new FilterExpression();
+        IgbFilterExpression filter = new IgbFilterExpression();
 
         switch (this.FilterMode)
         {

@@ -19,13 +19,13 @@
 
         @if (AirplaneShape != null && AirplaneSeats != null)
         {
-            <DataChart Height="100%" Width="100%"
+            <IgbDataChart Height="100%" Width="100%"
                        SeriesMouseEnterScript="onPolylineSeriesMouseEnter"
                        IsHorizontalZoomEnabled="true"
                        IsVerticalZoomEnabled="true">
 
-                <NumericXAxis Name="xAxis" MinimumValue="-1000" MaximumValue="1000" Interval="200"></NumericXAxis>
-                <NumericYAxis Name="yAxis" MinimumValue="-600" MaximumValue="600" Interval="200"></NumericYAxis>
+                <IgbNumericXAxis() Name="xAxis" MinimumValue="-1000" MaximumValue="1000" Interval="200"></IgbNumericXAxis()>
+                <IgbNumericYAxis Name="yAxis" MinimumValue="-600" MaximumValue="600" Interval="200"></IgbNumericYAxis>
 
                 <ScatterPolylineSeries XAxisName="xAxis"
                                       YAxisName="yAxis"
@@ -44,7 +44,7 @@
                                       StyleShapeScript="onPolylineShapeStyle">
                 </ScatterPolylineSeries>
 
-            </DataChart>
+            </IgbDataChart>
         }
 
     </div>
@@ -57,11 +57,11 @@
 
     protected override async Task OnInitializedAsync()
     {
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartScatterModule.Register(IgniteUIBlazor);
-        DataChartScatterCoreModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        ScatterPolylineSeriesModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartScatterModule.Register(IgniteUIBlazor);
+        IgbDataChartScatterCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbScatterPolylineSeriesModule.Register(IgniteUIBlazor);
 
         var http = new HttpClient();
         var shape = "https://static.infragistics.com/xplatform/json/airplane-shape.json";
@@ -70,7 +70,7 @@
         var seats = "https://static.infragistics.com/xplatform/json/airplane-seats.json";
         this.AirplaneSeats = await http.GetFromJsonAsync<AirplaneSeatInfo[]>(seats);
 
-        Console.WriteLine("OnInitializedAsync DataChartTypeScatterPolylineSeries");
+        Console.WriteLine("OnInitializedAsync IgbDataChartTypeScatterPolylineSeries");
 
         await Task.Delay(1);
     }

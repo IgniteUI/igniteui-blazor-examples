@@ -26,7 +26,7 @@ namespace Infragistics.Samples
     {
         public static Dictionary<MapRegion, Rect> Regions;
 
-        public static void NavigateTo(GeographicMap map, MapRegion region)
+        public static void NavigateTo(IgbGeographicMap map, MapRegion region)
         {
             Rect rect = Regions[region];
             map.ZoomToGeographic(rect);

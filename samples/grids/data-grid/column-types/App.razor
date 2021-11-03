@@ -8,41 +8,41 @@
 
         @if (Employees != null && CountryNames != null)
         {
-        <DataGrid Height="100%" Width="100%" RowHeight="50" @ref="@DataGridRef"
+        <IgbDataGrid Height="100%" Width="100%" RowHeight="50" @ref="@DataGridRef"
                   DataSource="Employees"
                   AutoGenerateColumns="false"
                   ActivationMode="GridActivationMode.Cell">
 
-            <ImageColumn IsEditable="false" Width="100" Field="Photo" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
+            <IgbImageColumn IsEditable="false" Width="100" Field="Photo" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
                          HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
 
-            <TextColumn Width="@("*>130")" Field="Name" />
+            <IgbTextColumn Width="@("*>130")" Field="Name" />
 
             @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
-            <TemplateColumn Width="@("*>160")" Field="Sales" CellUpdatingScript="onUpdatingSalesColumn"
+            <IgbTemplateColumn Width="@("*>160")" Field="Sales" CellUpdatingScript="onUpdatingSalesColumn"
                             HorizontalAlignment="@CellContentHorizontalAlignment.Center"
                             />
 
-            <NumericColumn Width="@("*>130")" Field="Salary" PositivePrefix="$"
+            <IgbNumericColumn Width="@("*>130")" Field="Salary" PositivePrefix="$"
                            ShowGroupingSeparator="true"
                            MaxFractionDigits="0"
                            MinFractionDigits="0" />
 
-            <DateTimeColumn Width="@("*>140")" Field="Birthday" HeaderText="Date of Birth" />
+            <IgbDateTimeColumn Width="@("*>140")" Field="Birthday" HeaderText="Date of Birth" />
 
             <ComboBoxColumn Width="@("*>120")" Field="Country" DataSource="CountryNames" />
-            <ImageColumn IsEditable="false" Width="@("*>110")" Field="CountryFlag" HeaderText="Flag"
+            <IgbImageColumn IsEditable="false" Width="@("*>110")" Field="CountryFlag" HeaderText="Flag"
                          PaddingTop="5" PaddingBottom="5" PaddingRight="10"
                          HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
 
             @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
-            <TemplateColumn Width="@("*>170")" Field="Address" CellUpdatingScript="onUpdatingAddressColumn" />
-            <TemplateColumn Width="@("*>130")" Field="Phone" CellUpdatingScript="onUpdatingPhoneColumn" />
+            <IgbTemplateColumn Width="@("*>170")" Field="Address" CellUpdatingScript="onUpdatingAddressColumn" />
+            <IgbTemplateColumn Width="@("*>130")" Field="Phone" CellUpdatingScript="onUpdatingPhoneColumn" />
 
-            <TextColumn Width="@("*>120")" Field="Income" />
-            <NumericColumn Width="100" Field="Age" HorizontalAlignment="@CellContentHorizontalAlignment.Left"/>
+            <IgbTextColumn Width="@("*>120")" Field="Income" />
+            <IgbNumericColumn Width="100" Field="Age" HorizontalAlignment="@CellContentHorizontalAlignment.Left"/>
 
-        </DataGrid>
+        </IgbDataGrid>
         }
 
 
@@ -54,8 +54,8 @@
     protected List<Employee> Employees;
     protected List<Country> CountryNames;
 
-    private DataGrid _grid;
-    private DataGrid DataGridRef
+    private IgbDataGrid _grid;
+    private IgbDataGrid DataGridRef
     {
         get { return _grid; }
         set { _grid = value; }
@@ -65,7 +65,7 @@
     {
         base.OnInitialized();
 
-        DataGridModule.Register(IgniteUIBlazor);
+        IgbDataGridModule.Register(IgniteUIBlazor);
 
         this.Employees = EmployeeData.Create(50, false);
         for (int i = 0; i < this.Employees.Count; i++)

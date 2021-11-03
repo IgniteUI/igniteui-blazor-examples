@@ -6,14 +6,14 @@
     <div class="options vertical">
         <span class="legend-title">Global Electricity Demand by Energy Use</span>
         <div class="legend">
-            <ItemLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbItemLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
 
     <div class="container vertical">
         @if (Data != null)
         {
-            <PieChart Height="100%" Width="100%"
+            <IgbPieChart Height="100%" Width="100%"
                       @ref="Chart"
                       DataSource="Data"
                       LabelMemberPath="Summary"
@@ -23,21 +23,21 @@
                       LabelsPosition="LabelsPosition.OutsideEnd"
                       RadiusFactor="0.7"
                       LabelExtent="30">
-            </PieChart>
+            </IgbPieChart>
         }
     </div>
 </div>
 
 @code {
 
-    public PieChart Chart;
-    public ItemLegend Legend;
+    public IgbPieChart Chart;
+    public IgbItemLegend Legend;
     public List<DataItem> Data;
 
     protected override void OnInitialized()
     {
-        PieChartModule.Register(IgniteUIBlazor);
-        ItemLegendModule.Register(IgniteUIBlazor);
+        IgbPieChartModule.Register(IgniteUIBlazor);
+        IgbItemLegendModule.Register(IgniteUIBlazor);
 
         this.Data = new List<DataItem>();
         this.Data.Add(new DataItem { MarketShare = 37, Category = "Cooling", });

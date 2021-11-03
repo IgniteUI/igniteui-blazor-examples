@@ -6,7 +6,7 @@
     <div class="options vertical">
         <span class="legend-title">Points of Sail Chart </span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
 
@@ -23,7 +23,7 @@
     <div class="container vertical">
         @if (Data != null)
         {
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    TitleTopMargin="10"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false"
@@ -121,7 +121,7 @@
                         DataSource="Data">
                 </PolarScatterSeries>
             }
-        </DataChart>
+        </IgbDataChart>
         }
     </div>
 </div>
@@ -129,15 +129,15 @@
 @code {
 
     private List<SamplePolarItem> Data;
-    private DataChart _chart;
-    private DataChart Chart
+    private IgbDataChart _chart;
+    private IgbDataChart Chart
     {
         get { return _chart; }
         set { _chart = value; StateHasChanged(); }
     }
 
-    private Legend _legend;
-    private Legend Legend
+    private IgbLegend _legend;
+    private IgbLegend Legend
     {
         get { return _legend; }
         set { _legend = value; StateHasChanged(); }
@@ -152,12 +152,12 @@
 
     protected override void OnInitialized()
     {
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartPolarCoreModule.Register(IgniteUIBlazor);
-        DataChartPolarModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartPolarCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartPolarModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
 
-        LegendModule.Register(IgniteUIBlazor);
+        IgbLegendModule.Register(IgniteUIBlazor);
         Data = SamplePolarData.Create();
     }
 

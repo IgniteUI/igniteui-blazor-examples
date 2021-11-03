@@ -70,7 +70,7 @@
     <div class="container vertical" style="height: calc(100% - 125px)">
         @if (Data != null)
         {
-            <DataGrid Height="100%" Width="100%" @ref="DataGridRef"
+            <IgbDataGrid Height="100%" Width="100%" @ref="DataGridRef"
                       DefaultColumnMinWidth="100"
                       ColumnAddingAnimationMode="@ShowingAddingAnimation"
                       ColumnShowingAnimationMode="@ShowingAddingAnimation"
@@ -81,16 +81,16 @@
                       AutoGenerateColumns="false"
                       DataSource="Data"
                       IsColumnOptionsEnabled="true">
-                <TextColumn Field="Name" Width="@("*>170")" />
-                <TextColumn Field="Street" HeaderText="Address" Width="@("*>150")" />
-                <TextColumn Field="City" Width="@("*>120")" />
-                <NumericColumn Field="Salary" Width="@("*>120")" PositivePrefix="$" ShowGroupingSeparator="true" />
-                <DateTimeColumn Field="Birthday" Width="@("*>170")" />
-                <TextColumn Field="Country" Width="@("*>120")" />
-                <NumericColumn Field="Sales" Width="@("*>120")" PositivePrefix="$" ShowGroupingSeparator="true" />
-                <NumericColumn Field="Age" Width="@("*>120")" />
-                <TextColumn Field="Email" Width="@("*>120")" />
-            </DataGrid>
+                <IgbTextColumn Field="Name" Width="@("*>170")" />
+                <IgbTextColumn Field="Street" HeaderText="Address" Width="@("*>150")" />
+                <IgbTextColumn Field="City" Width="@("*>120")" />
+                <IgbNumericColumn Field="Salary" Width="@("*>120")" PositivePrefix="$" ShowGroupingSeparator="true" />
+                <IgbDateTimeColumn Field="Birthday" Width="@("*>170")" />
+                <IgbTextColumn Field="Country" Width="@("*>120")" />
+                <IgbNumericColumn Field="Sales" Width="@("*>120")" PositivePrefix="$" ShowGroupingSeparator="true" />
+                <IgbNumericColumn Field="Age" Width="@("*>120")" />
+                <IgbTextColumn Field="Email" Width="@("*>120")" />
+            </IgbDataGrid>
         }
     </div>
 </div>
@@ -98,7 +98,7 @@
 @code {
 
     private List<Employee> Data;
-    private DataGrid DataGridRef;
+    private IgbDataGrid DataGridRef;
 
     private ColumnShowingAnimationMode ShowingAddingAnimation = ColumnShowingAnimationMode.SlideFromLeft;
     private ColumnExchangingAnimationMode ExchangeAnimation = ColumnExchangingAnimationMode.Crossfade;
@@ -109,13 +109,13 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        DataGridModule.Register(IgniteUIBlazor);
+        IgbDataGridModule.Register(IgniteUIBlazor);
         this.Data = EmployeeData.Create(100, false);
     }
 
     private void OnHideClick(MouseEventArgs e)
     {
-        foreach (Column col in this.DataGridRef.ActualColumns)
+        foreach (IgbColumn col in this.DataGridRef.ActualColumns)
         {
             if (!col.IsHidden)
             {
@@ -138,9 +138,9 @@
 
     private void OnShowClick(MouseEventArgs e)
     {
-        IEnumerable<Column> revColumns = this.DataGridRef.ActualColumns.Reverse();
+        IEnumerable<IgbColumn> revColumns = this.DataGridRef.ActualColumns.Reverse();
 
-        foreach (Column col in revColumns)
+        foreach (IgbColumn col in revColumns)
         {
             if (col.IsHidden)
             {

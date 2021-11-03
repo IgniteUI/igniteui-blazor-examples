@@ -22,7 +22,7 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <DataGrid Height="100%" Width="100%"
+            <IgbDataGrid Height="100%" Width="100%"
                       ColumnResizingAnimationMode="@GridResizingAnimationMode"
                       ColumnResizingMode="@GridResizingMode"
                       ColumnResizingSeparatorWidth="1"
@@ -30,12 +30,12 @@
                       DefaultColumnMinWidth="100"
                       DataSource="Data"
                       IsColumnOptionsEnabled="true">
-                <TextColumn Field="Name" Width="@("*>170")" />
-                <TextColumn Field="Street" HeaderText="Address" Width="@("*>150")" />
-                <TextColumn Field="City" Width="@("*>120")" />
-                <NumericColumn Field="Salary" PositivePrefix="$" ShowGroupingSeparator="true" Width="@("*>120")" />
-                <DateTimeColumn Field="Birthday" Width="@("*>170")" />
-            </DataGrid>
+                <IgbTextColumn Field="Name" Width="@("*>170")" />
+                <IgbTextColumn Field="Street" HeaderText="Address" Width="@("*>150")" />
+                <IgbTextColumn Field="City" Width="@("*>120")" />
+                <IgbNumericColumn Field="Salary" PositivePrefix="$" ShowGroupingSeparator="true" Width="@("*>120")" />
+                <IgbDateTimeColumn Field="Birthday" Width="@("*>170")" />
+            </IgbDataGrid>
         }
     </div>
 </div>
@@ -50,7 +50,7 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        DataGridModule.Register(IgniteUIBlazor);
+        IgbDataGridModule.Register(IgniteUIBlazor);
 
         this.Data = EmployeeData.Create(100, false);
         this.GridResizingAnimationMode = ColumnResizingAnimationMode.Interpolate;

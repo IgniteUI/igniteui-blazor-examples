@@ -4,25 +4,25 @@
 <div class="container vertical">
     <div class="container vertical">
 
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    ChartTitle="Facebook's Consolidated Statements of Income for 2018"
                    TitleHorizontalAlignment="HorizontalAlignment.Left"
                    TitleLeftMargin="25"
                    TitleTopMargin="10"
                    TitleBottomMargin="10">
 
-            <CategoryXAxis Name="xAxis" Label="Category" DataSource="Data" Overlap="1" />
-            <NumericYAxis Name="yAxis" Title="Millions of Dollars" TitleLeftMargin="10" MinimumValue="0" MaximumValue="60" />
+            <IgbCategoryXAxis Name="xAxis" Label="Category" DataSource="Data" Overlap="1" />
+            <IgbNumericYAxis Name="yAxis" Title="Millions of Dollars" TitleLeftMargin="10" MinimumValue="0" MaximumValue="60" />
 
-            <WaterfallSeries XAxisName="xAxis"
+            <IgbWaterfallSeries XAxisName="xAxis"
                              YAxisName="yAxis"
                              DataSource="Data"
                              ValueMemberPath="Value"
                              ShowDefaultTooltip="true"
                              IsTransitionInEnabled="true">
-            </WaterfallSeries>
+            </IgbWaterfallSeries>
 
-            <WaterfallSeries XAxisName="xAxis"
+            <IgbWaterfallSeries XAxisName="xAxis"
                              YAxisName="yAxis"
                              Brush="#7446B9"
                              Outline="#7446B9"
@@ -30,8 +30,8 @@
                              ValueMemberPath="NetIncomeValue"
                              ShowDefaultTooltip="true"
                              IsTransitionInEnabled="true">
-            </WaterfallSeries>
-        </DataChart>
+            </IgbWaterfallSeries>
+        </IgbDataChart>
 
     </div>
 </div>
@@ -42,11 +42,11 @@
 
     protected override void OnInitialized()
     {
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        NumberAbbreviatorModule.Register(IgniteUIBlazor);
-        CalloutLayerModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbNumberAbbreviatorModule.Register(IgniteUIBlazor);
+        IgbCalloutLayerModule.Register(IgniteUIBlazor);
     }
 }

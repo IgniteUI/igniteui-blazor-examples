@@ -23,7 +23,7 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <DataGrid Height="calc(100% - 3rem)" Width="100%" @ref="@DataGridRef"
+            <IgbDataGrid Height="calc(100% - 3rem)" Width="100%" @ref="@DataGridRef"
                       SummaryScope="@GridSummaryScope"
                       GroupSummaryDisplayMode="@GridGroupSummaryDisplayMode"
                       AutoGenerateColumns="false"
@@ -31,15 +31,15 @@
                       GroupHeaderDisplayMode="@DataSourceSectionHeaderDisplayMode.Combined"
                       IsColumnOptionsEnabled="true"
                       DataSource="Data">
-                <NumericColumn Field="ID" Width="@("*>120")" HeaderText="ID" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
-                <TextColumn Field="ProductName" Width="@("*>130")" HeaderText="Product" />
-                <NumericColumn Field="BundlePrice" PositivePrefix="$" Width="@("*>120")" ShowGroupingSeparator="true" HeaderText="Price" />
-                <NumericColumn Field="OrderItems" Width="@("*>140")" HeaderText="Orders" />
-                <NumericColumn Field="OrderValue" Width="@("*>160")" ShowGroupingSeparator="true" HeaderText="Order Totals" PositivePrefix="$" />
-                <DateTimeColumn Field="OrderDate" Width="@("*>150")" HeaderText="Order Date" HorizontalAlignment="@CellContentHorizontalAlignment.Right" />
-                <NumericColumn Field="Profit" Width="@("*>140")" ShowGroupingSeparator="true" HeaderText="Profit" PositivePrefix="$" />
-                <TextColumn Field="Country" Width="@("*>170")" HeaderText="Ship Country" />
-            </DataGrid>
+                <IgbNumericColumn Field="ID" Width="@("*>120")" HeaderText="ID" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
+                <IgbTextColumn Field="ProductName" Width="@("*>130")" HeaderText="Product" />
+                <IgbNumericColumn Field="BundlePrice" PositivePrefix="$" Width="@("*>120")" ShowGroupingSeparator="true" HeaderText="Price" />
+                <IgbNumericColumn Field="OrderItems" Width="@("*>140")" HeaderText="Orders" />
+                <IgbNumericColumn Field="OrderValue" Width="@("*>160")" ShowGroupingSeparator="true" HeaderText="Order Totals" PositivePrefix="$" />
+                <IgbDateTimeColumn Field="OrderDate" Width="@("*>150")" HeaderText="Order Date" HorizontalAlignment="@CellContentHorizontalAlignment.Right" />
+                <IgbNumericColumn Field="Profit" Width="@("*>140")" ShowGroupingSeparator="true" HeaderText="Profit" PositivePrefix="$" />
+                <IgbTextColumn Field="Country" Width="@("*>170")" HeaderText="Ship Country" />
+            </IgbDataGrid>
         }
     </div>
 </div>
@@ -50,8 +50,8 @@
     private DataSourceSummaryScope GridSummaryScope;
     private GroupSummaryDisplayMode GridGroupSummaryDisplayMode;
 
-    private DataGrid _grid;
-    private DataGrid DataGridRef
+    private IgbDataGrid _grid;
+    private IgbDataGrid DataGridRef
     {
         get { return _grid; }
         set
@@ -65,8 +65,8 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        DataGridModule.Register(IgniteUIBlazor);
-        GridColumnOptionsModule.Register(IgniteUIBlazor);
+        IgbDataGridModule.Register(IgniteUIBlazor);
+        IgbGridColumnOptionsModule.Register(IgniteUIBlazor);
 
         this.Data = SalesData.Create(50);
 
@@ -76,75 +76,75 @@
 
     private void OnDataGridRef()
     {
-        var productGroup = new ColumnGroupDescription()
+        var productGroup = new IgbColumnGroupDescription()
         {
             Field = "ProductName",
             DisplayName = "ProductName"
         };
 
-        var productCount = new ColumnSummaryDescription()
+        var productCount = new IgbColumnSummaryDescription()
         {
             Field = "ProductName",
             Operand = SummaryOperand.Count
         };
 
-        var priceMin = new ColumnSummaryDescription()
+        var priceMin = new IgbColumnSummaryDescription()
         {
             Field = "BundlePrice",
             Operand = SummaryOperand.Min
         };
 
-        var priceMax = new ColumnSummaryDescription()
+        var priceMax = new IgbColumnSummaryDescription()
         {
             Field = "BundlePrice",
             Operand = SummaryOperand.Max
         };
 
-        var orderSum = new ColumnSummaryDescription()
+        var orderSum = new IgbColumnSummaryDescription()
         {
             Field = "OrderItems",
             Operand = SummaryOperand.Sum
         };
 
-        var orderValueSum = new ColumnSummaryDescription()
+        var orderValueSum = new IgbColumnSummaryDescription()
         {
             Field = "OrderValue",
             Operand = SummaryOperand.Sum
         };
 
-        var orderValueAvg = new ColumnSummaryDescription()
+        var orderValueAvg = new IgbColumnSummaryDescription()
         {
             Field = "OrderValue",
             Operand = SummaryOperand.Average
         };
 
-        var orderDateMin = new ColumnSummaryDescription()
+        var orderDateMin = new IgbColumnSummaryDescription()
         {
             Field = "OrderDate",
             Operand = SummaryOperand.Min,
             CalculatorDisplayName = "First"
         };
 
-        var orderDateMax = new ColumnSummaryDescription()
+        var orderDateMax = new IgbColumnSummaryDescription()
         {
             Field = "OrderDate",
             Operand = SummaryOperand.Max,
             CalculatorDisplayName = "Last"
         };
 
-        var sum1 = new ColumnSummaryDescription()
+        var sum1 = new IgbColumnSummaryDescription()
         {
             Field = "Profit",
             Operand = SummaryOperand.Sum
         };
 
-        var avg2 = new ColumnSummaryDescription()
+        var avg2 = new IgbColumnSummaryDescription()
         {
             Field = "Profit",
             Operand = SummaryOperand.Average
         };
 
-        //var countryCustomSummary = new ColumnSummaryDescription()
+        //var countryCustomSummary = new IgbColumnSummaryDescription()
         //{
         //    Field = "Country",
         //    Operand = SummaryOperand.Custom,

@@ -18,11 +18,11 @@
     </div>
 
     <div class="container vertical">
-         <CategoryChart Height="100%" Width="100%" @ref="Chart"
+         <IgbCategoryChart Height="100%" Width="100%" @ref="Chart"
                         ChartType="CategoryChartType.Line"
                         DataSource="@Data"
                         YAxisExtent="40" >
-         </CategoryChart>
+         </IgbCategoryChart>
     </div>
 </div>
 
@@ -31,8 +31,8 @@
     //private List<CategoryDataItem> Data;
     private ObservableCollection<CategoryDataItem> Data;
 
-    private CategoryChart _Chart;
-    private CategoryChart Chart
+    private IgbCategoryChart _Chart;
+    private IgbCategoryChart Chart
     {
         get { return _Chart; }
         set { _Chart = value; StateHasChanged(); }
@@ -65,7 +65,7 @@
 
     protected override void OnInitialized()
     {
-        CategoryChartModule.Register(IgniteUIBlazor);
+        IgbCategoryChartModule.Register(IgniteUIBlazor);
 
         OnDataGenerateClick();
     }

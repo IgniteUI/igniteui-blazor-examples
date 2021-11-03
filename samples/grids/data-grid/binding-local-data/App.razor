@@ -7,20 +7,20 @@
 
         @if (Data != null)
         {
-            <DataGrid Height="100%" Width="100%"
+            <IgbDataGrid Height="100%" Width="100%"
                       DataSource="Data"
                       AutoGenerateColumns="false">
-                <TextColumn Field="ProductID" Width="@("*>110")" HeaderText="ID" HorizontalAlignment="CellContentHorizontalAlignment.Center" />
-                <TextColumn Field="ProductName" HeaderText="Product" Width="@("*>120")" />
-                <ImageColumn IsEditable="false" Field="CountryFlag" HeaderText="Country" Width="@("*>130")" />
-                <NumericColumn Field="ProductPrice" HeaderText="Price" Width="@("*>110")" PositivePrefix="$" ShowGroupingSeparator="true" MaxFractionDigits="0" MinFractionDigits="0" />
-                <NumericColumn Field="OrderItems" HeaderText="Orders" Width="@("*>140")" PositivePrefix="" ShowGroupingSeparator="true" MaxFractionDigits="0" MinFractionDigits="0" />
-                <NumericColumn Field="OrderValue" HeaderText="Order Value" Width="@("*>160")" PositivePrefix="$" ShowGroupingSeparator="true" MaxFractionDigits="0" MinFractionDigits="0" />
-                <DateTimeColumn Field="OrderDate" HeaderText="Order Date" Width="@("*>150")" DateTimeFormat="DateTimeFormats.DateShort" />
-                <NumericColumn Field="Margin" Width="@("*>140")" PositivePrefix="$" />
-                <NumericColumn Field="Profit" Width="@("*>140")" PositivePrefix="$" ShowGroupingSeparator="true" MaxFractionDigits="0" MinFractionDigits="0" />
-                <TextColumn Field="Status" Width="@("*>140")" />
-            </DataGrid>
+                <IgbTextColumn Field="ProductID" Width="@("*>110")" HeaderText="ID" HorizontalAlignment="CellContentHorizontalAlignment.Center" />
+                <IgbTextColumn Field="ProductName" HeaderText="Product" Width="@("*>120")" />
+                <IgbImageColumn IsEditable="false" Field="CountryFlag" HeaderText="Country" Width="@("*>130")" />
+                <IgbNumericColumn Field="ProductPrice" HeaderText="Price" Width="@("*>110")" PositivePrefix="$" ShowGroupingSeparator="true" MaxFractionDigits="0" MinFractionDigits="0" />
+                <IgbNumericColumn Field="OrderItems" HeaderText="Orders" Width="@("*>140")" PositivePrefix="" ShowGroupingSeparator="true" MaxFractionDigits="0" MinFractionDigits="0" />
+                <IgbNumericColumn Field="OrderValue" HeaderText="Order Value" Width="@("*>160")" PositivePrefix="$" ShowGroupingSeparator="true" MaxFractionDigits="0" MinFractionDigits="0" />
+                <IgbDateTimeColumn Field="OrderDate" HeaderText="Order Date" Width="@("*>150")" DateTimeFormat="DateTimeFormats.DateShort" />
+                <IgbNumericColumn Field="Margin" Width="@("*>140")" PositivePrefix="$" />
+                <IgbNumericColumn Field="Profit" Width="@("*>140")" PositivePrefix="$" ShowGroupingSeparator="true" MaxFractionDigits="0" MinFractionDigits="0" />
+                <IgbTextColumn Field="Status" Width="@("*>140")" />
+            </IgbDataGrid>
         }
     </div>
 </div>
@@ -31,13 +31,13 @@
 
     private Random Rand = new Random();
 
-    public DataGrid GridRef { get; set; }
+    public IgbDataGrid GridRef { get; set; }
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
 
-        DataGridModule.Register(IgniteUIBlazor);
+        IgbDataGridModule.Register(IgniteUIBlazor);
         GenerateData();
     }
 

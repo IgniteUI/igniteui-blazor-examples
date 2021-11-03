@@ -7,7 +7,7 @@
     <div class="options vertical">
         <span class="legend-title">Global Electricity Demand by Energy Use</span>
         <div class="legend">
-            <ItemLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbItemLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
 
@@ -15,7 +15,7 @@
 
         @if (Data != null)
         {
-            <DoughnutChart Height="100%" Width="100%" @ref="Chart"
+            <IgbDoughnutChart Height="100%" Width="100%" @ref="Chart"
             AllowSliceExplosion="true" >
                 <RingSeries DataSource="Data"
                             LabelMemberPath="Summary"
@@ -27,7 +27,7 @@
                             RadiusFactor="0.6"
 							StartAngle="30">
                 </RingSeries>
-            </DoughnutChart>
+            </IgbDoughnutChart>
         }
 
     </div>
@@ -36,14 +36,14 @@
 @code {
 
 
-    public ItemLegend Legend;
-    public DoughnutChart Chart;
+    public IgbItemLegend Legend;
+    public IgbDoughnutChart Chart;
     public List<DataItem> Data;
 
     protected override void OnInitialized()
     {
-        DoughnutChartModule.Register(IgniteUIBlazor);
-        ItemLegendModule.Register(IgniteUIBlazor);
+        IgbDoughnutChartModule.Register(IgniteUIBlazor);
+        IgbItemLegendModule.Register(IgniteUIBlazor);
 
         this.Data = new List<DataItem>();
         this.Data.Add(new DataItem { MarketShare = 37, Category = "Cooling", });
@@ -68,7 +68,7 @@
             this.Chart.ActualSeries[0].Legend = Legend;
     }
 
-    protected void OnSliceClick(SliceClickEventArgs e)
+    protected void OnSliceClick(IgbSliceClickEventArgs e)
     {
     }
 

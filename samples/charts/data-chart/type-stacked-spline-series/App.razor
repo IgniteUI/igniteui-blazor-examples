@@ -4,14 +4,14 @@
 <div class="container vertical">
     <div class="container vertical">
 
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    ChartTitle="Energy Production by Source"
                    TitleTopMargin="10"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <CategoryXAxis Name="xAxis" Label="Country" DataSource="Data" />
-            <NumericYAxis Name="yAxis" Title="Energy (in Billions Wh)" TitleLeftMargin="10" MinimumValue="0"/>
+            <IgbCategoryXAxis Name="xAxis" Label="Country" DataSource="Data" />
+            <IgbNumericYAxis Name="yAxis" Title="Energy (in Billions Wh)" TitleLeftMargin="10" MinimumValue="0"/>
 
             <StackedSplineSeries XAxisName="xAxis"
                           YAxisName="yAxis"
@@ -24,7 +24,7 @@
                 <StackedFragmentSeries Name="solar" ValueMemberPath="Solar" />
                 <StackedFragmentSeries Name="oil" ValueMemberPath="Oil"  />
             </StackedSplineSeries>
-        </DataChart>
+        </IgbDataChart>
 
     </div>
 </div>
@@ -36,14 +36,14 @@
     protected override void OnInitialized()
     {
         // TODO fix rendering of StackedSplineSeries
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        DataChartStackedModule.Register(IgniteUIBlazor);
-        ColumnFragmentModule.Register(IgniteUIBlazor);
-        StackedSplineSeriesModule.Register(IgniteUIBlazor);
-        StackedFragmentSeriesModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbDataChartStackedModule.Register(IgniteUIBlazor);
+        IgbColumnFragmentModule.Register(IgniteUIBlazor);
+        IgbStackedSplineSeriesModule.Register(IgniteUIBlazor);
+        IgbStackedFragmentSeriesModule.Register(IgniteUIBlazor);
 
         Data = SampleStackedData.Create();
 
