@@ -6,23 +6,22 @@
 
     <div class="container vertical">
         <div class="options horizotnal">
-            <span class="options-item">Section Header Display Mode: </span>
-            <select class="options-item" @bind="SectionHeaderClickAction">
-                <option>@DataSourceSectionHeaderDisplayMode.Combined</option>
-                <option>@DataSourceSectionHeaderDisplayMode.Split</option>
+            <span class="options-item">Group Header Display Mode: </span>
+            <select class="options-item" @bind="GroupHeaderClickAction">
+                <option>@GroupHeaderDisplayMode.Combined</option>
+                <option>@GroupHeaderDisplayMode.Split</option>
             </select>
 
     </div>
 
         @if (Data != null)
         {
-            <ColumnGrouping Title="GroupBy Area - Drag a column here to group by that column" TargetGrid="@DataGridRef"/>
-
             <IgbDataGrid @ref=@DataGridRef Height="100%" Width="100%"
                       DataSource="Data"
                       AutoGenerateColumns="false"
                       IsGroupCollapsable="true"
-                      GroupHeaderDisplayMode="@SectionHeaderClickAction">
+                      GroupHeaderDisplayMode="@GroupHeaderClickAction"
+                      IsColumnGroupingEnabled="true">
                 <IgbTextColumn Field="Name" Width="@("*>120")" />
                 <IgbNumericColumn Field="Age" Width="@("*>110")" />
                 <IgbDateTimeColumn Field="Birthday" HorizontalAlignment="CellContentHorizontalAlignment.Center" Width="@("*>160")"/>
@@ -43,7 +42,7 @@
 
     private List<Employee> Data;
     private IgbDataGrid grid;
-    private DataSourceSectionHeaderDisplayMode SectionHeaderClickAction { get; set; } = DataSourceSectionHeaderDisplayMode.Combined;
+    private GroupHeaderDisplayMode GroupHeaderClickAction { get; set; } = GroupHeaderDisplayMode.Combined;
 
     public IgbDataGrid DataGridRef
     {
