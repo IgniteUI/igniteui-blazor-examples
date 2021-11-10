@@ -47,6 +47,7 @@ var sampleSource = [
     igConfig.SamplesCopyPath + '/gauges/radial-gauge/**/App.razor',
     igConfig.SamplesCopyPath + '/grids/**/App.razor',
     igConfig.SamplesCopyPath + '/editors/**/App.razor',
+    igConfig.SamplesCopyPath + '/inputs/**/App.razor',
     igConfig.SamplesCopyPath + '/layouts/**/App.razor',
     igConfig.SamplesCopyPath + '/excel/excel-library/**/App.razor',
 
