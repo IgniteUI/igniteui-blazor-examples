@@ -49,6 +49,8 @@ var sampleSource = [
     igConfig.SamplesCopyPath + '/editors/**/App.razor',
     igConfig.SamplesCopyPath + '/inputs/**/App.razor',
     igConfig.SamplesCopyPath + '/layouts/**/App.razor',
+    igConfig.SamplesCopyPath + '/menus/**/App.razor',
+    igConfig.SamplesCopyPath + '/scheduling/**/App.razor',
     igConfig.SamplesCopyPath + '/excel/excel-library/**/App.razor',
 
     // igConfig.SamplesCopyPath + '/excel/spreadsheet/**/App.razor',
