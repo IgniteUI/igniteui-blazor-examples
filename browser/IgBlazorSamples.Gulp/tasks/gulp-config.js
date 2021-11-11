@@ -39,7 +39,7 @@ let config = {
     SandboxUrlShort: "https://codesandbox.io/embed/{RepositoryPath}",
 
     PackageReferences: [
-        { Name: "Infragistics.Blazor", Version: "21.2.734-dev"},
+        { Name: "Infragistics.Blazor", Version: "21.2.743-dev"},
     ],
 }
 
