@@ -16,23 +16,26 @@
 
         @if (Data != null)
         {
-            <IgbDataGrid @ref=@DataGridRef Height="100%" Width="100%"
+            <div style="overflow: hidden">
+                <IgbDataGrid Height="100%" Width="100%"
+                      @ref="@DataGridRef"
                       DataSource="Data"
                       AutoGenerateColumns="false"
                       IsGroupCollapsable="true"
                       GroupHeaderDisplayMode="@GroupHeaderClickAction"
                       IsGroupByAreaEnabled="true">
-                <IgbTextColumn Field="Name" Width="@("*>120")" />
-                <IgbNumericColumn Field="Age" Width="@("*>110")" />
-                <IgbDateTimeColumn Field="Birthday" HorizontalAlignment="CellContentHorizontalAlignment.Center" Width="@("*>160")"/>
-                <IgbImageColumn IsEditable="false" Field="CountryFlag" HeaderText="Country" Width="@("*>160")"
-                                PaddingTop="5" PaddingBottom="5" ContentOpacity="1" HorizontalAlignment="CellContentHorizontalAlignment.Center"/>
-                <IgbTextColumn Field="Street" />
-                <IgbNumericColumn Field="Salary" HeaderText="Salary" Width="@("*>130")"
-                                PositivePrefix="$" ShowGroupingSeparator="true"/>
-                <IgbTextColumn Field="City" />
-                <IgbNumericColumn Field="Salary" PositivePrefix="$" ShowGroupingSeparator="true" MaxFractionDigits="0" MinFractionDigits="0" />
-            </IgbDataGrid>
+                    <IgbTextColumn Field="Name" Width="@("*>120")" />
+                    <IgbNumericColumn Field="Age" Width="@("*>110")" />
+                    <IgbDateTimeColumn Field="Birthday" HorizontalAlignment="CellContentHorizontalAlignment.Center" Width="@("*>160")"/>
+                    <IgbImageColumn IsEditable="false" Field="CountryFlag" HeaderText="Country" Width="@("*>160")"
+                                    PaddingTop="5" PaddingBottom="5" ContentOpacity="1" HorizontalAlignment="CellContentHorizontalAlignment.Center"/>
+                    <IgbTextColumn Field="Street" />
+                    <IgbNumericColumn Field="Salary" HeaderText="Salary" Width="@("*>130")"
+                                    PositivePrefix="$" ShowGroupingSeparator="true"/>
+                    <IgbTextColumn Field="City" />
+                    <IgbNumericColumn Field="Salary" PositivePrefix="$" ShowGroupingSeparator="true" MaxFractionDigits="0" MinFractionDigits="0" />
+                </IgbDataGrid>
+            </div>
         }
 
     </div>
