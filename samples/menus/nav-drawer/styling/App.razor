@@ -3,13 +3,43 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <label>TODO!!</label>
+    <div id="root" style="display: flex;">
+        <IgbNavDrawer id="navDrawer" open="true" style="position: relative">
+            <IgbNavDrawerHeaderItem>
+                Sample Drawer
+            </IgbNavDrawerHeaderItem>
+
+            <IgbNavDrawerItem>
+                <IgbIcon slot="icon" IconName="home"></IgbIcon>
+                <span slot="content">Home</span>
+            </IgbNavDrawerItem>
+
+            <IgbNavDrawerItem>
+                <IgbIcon slot="icon" IconName="search"></IgbIcon>
+                <span slot="content">Search</span>
+            </IgbNavDrawerItem>
+        </IgbNavDrawer>
+    </div>
 </div>
 
 @code {
-    
+
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
+        IgbNavDrawerModule.Register(IgniteUIBlazor);
+        IgbNavDrawerItemModule.Register(IgniteUIBlazor);
+        IgbNavDrawerHeaderItemModule.Register(IgniteUIBlazor);
+        IgbIconModule.Register(IgniteUIBlazor);
+
+        //    TODO
+
+        //      'search',
+        //  'https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_search_24px.svg'
+        //);
+
+        //    registerIcon(
+        //      'home',
+        //      'https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg'
+        //    );
     }
 }

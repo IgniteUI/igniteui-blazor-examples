@@ -3,13 +3,85 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <label>TODO!!</label>
-</div>
+    <div id="root" style="display: flex;">
+        <IgbNavDrawer id="navDrawer" style="position: relative">
+            <IgbNavDrawerHeaderItem>
+                Sample Drawer
+            </IgbNavDrawerHeaderItem>
+
+            <IgbNavDrawerItem>
+                <IgbIcon slot="icon" IconName="home"></IgbIcon>
+                <span slot="content">Home</span>
+            </IgbNavDrawerItem>
+
+            <IgbNavDrawerItem>
+                <IgbIcon slot="icon" IconName="search"></IgbIcon>
+                <span slot="content">Search</span>
+            </IgbNavDrawerItem>
+        </IgbNavDrawer>
+
+        <div id="content" style="width: 100%">
+            <IgbRadioGroup id="radio-group" Alignment="RadioGroupAlignment.Horizontal">
+                <IgbRadio Value="start" LabelPosition="RadioLabelPosition.After" Checked="true">Start</IgbRadio>
+                <IgbRadio Value="end" LabelPosition="RadioLabelPosition.After">End</IgbRadio>
+                <IgbRadio Value="top" LabelPosition="RadioLabelPosition.After">Top</IgbRadio>
+                <IgbRadio Value="bottom" LabelPosition="RadioLabelPosition.After">Bottom</IgbRadio>
+            </IgbRadioGroup>
+
+            <IgbNavbar>
+                <IgbIcon slot="start" name="menu" id="menu"></IgbIcon>
+                <h2>Home</h2>
+            </IgbNavbar>
+        </div>
+    </div></div>
 
 @code {
-    
+
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
+        IgbNavbarModule.Register(IgniteUIBlazor);
+        IgbNavDrawerModule.Register(IgniteUIBlazor);
+        IgbNavDrawerHeaderItemModule.Register(IgniteUIBlazor);
+        IgbNavDrawerItemModule.Register(IgniteUIBlazor);
+        IgbIconModule.Register(IgniteUIBlazor);
+        IgbRadioGroupModule.Register(IgniteUIBlazor);
+        IgbRadioModule.Register(IgniteUIBlazor);
+
+        //  const menu = document.getElementById('menu');
+        //  const navDrawer = document.querySelector('igc-nav-drawer') as IgcNavDrawerComponent;
+
+        //  menu!.addEventListener('click', () =>
+        //  {
+        //      navDrawer.show();
+        //  })
+
+        //document.getElementById('root')!.onclick = (e) =>
+        //{
+        //    if (e.target === document.getElementById('content'))
+        //    {
+        //        navDrawer.hide();
+        //    }
+        //}
+
+        //const radioGroup = document.getElementById('radio-group') as IgcRadioGroupComponent;
+
+        //  radioGroup.addEventListener('click', (radio: any) => {
+        //      navDrawer.position = radio.target.value;
+        //  });
+
+        //  registerIcon(
+        //    'search',
+        //    'https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_search_24px.svg'
+        //  );
+
+        //  registerIcon(
+        //    'home',
+        //    'https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg'
+        //  );
+
+        //  registerIcon(
+        //    'menu',
+        //    'https://unpkg.com/material-design-icons@3.0.1/navigation/svg/production/ic_menu_24px.svg'
+        //  );
     }
 }
