@@ -10,20 +10,22 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <IgbDataGrid Height="100%" Width="100%"
+            <div style="overflow: hidden">
+                <IgbDataGrid Height="100%" Width="100%"
                       @ref="DataGridRef"
                       DefaultColumnMinWidth="100"
                       AutoGenerateColumns="false"
                       DataSource="Data"
                       SelectionMode="GridSelectionMode.MultipleRow"
                       IsColumnOptionsEnabled="true">
-                <IgbTextColumn Field="Name" Width="@("*>150")" />
-                <IgbTextColumn Field="Street" HeaderText="Street" Width="@("*>160")"/>
-                <IgbTextColumn Field="City" HeaderText="City" Width="@("*>120")"/>
-                <IgbNumericColumn Field="Salary" HeaderText="Salary" PositivePrefix="$" ShowGroupingSeparator="true" Width="@("*>120")"/>
-                <IgbImageColumn IsEditable="false" Field="Photo" HeaderText="Photo" ContentOpacity="1" HorizontalAlignment="@CellContentHorizontalAlignment.Center" Width="@("*>110")"/>
-                <IgbDateTimeColumn Field="Birthday" HeaderText="Date of Birth" Width="@("*>170")"/>
-            </IgbDataGrid>
+                    <IgbTextColumn Field="Name" Width="@("*>150")" />
+                    <IgbTextColumn Field="Street" HeaderText="Street" Width="@("*>160")"/>
+                    <IgbTextColumn Field="City" HeaderText="City" Width="@("*>120")"/>
+                    <IgbNumericColumn Field="Salary" HeaderText="Salary" PositivePrefix="$" ShowGroupingSeparator="true" Width="@("*>120")"/>
+                    <IgbImageColumn IsEditable="false" Field="Photo" HeaderText="Photo" ContentOpacity="1" HorizontalAlignment="@CellContentHorizontalAlignment.Center" Width="@("*>110")"/>
+                    <IgbDateTimeColumn Field="Birthday" HeaderText="Date of Birth" Width="@("*>170")"/>
+                </IgbDataGrid>
+            </div>
         }
     </div>
 </div>

@@ -11,7 +11,9 @@
             <IgbDataGridToolbar TargetGrid="Grid" ToolbarTitle="Global Sales"
                              ColumnPinning="true">
             </IgbDataGridToolbar>
-            <IgbDataGrid @ref="Grid" Height="calc(100% - 40px)" Width="100%"
+            <div style="overflow: hidden">
+                <IgbDataGrid Height="100%" Width="100%"
+                @ref="Grid"
                 DataSource="Data"
                 AutoGenerateColumns="false">
                     <IgbTextColumn Field="ID" Pinned="PinnedPositions.Left" Width="@("*>110")" />
@@ -29,7 +31,8 @@
                         ShowGroupingSeparator="true"
                         MaxFractionDigits="0"
                         MinFractionDigits="0" />
-            </IgbDataGrid>
+                </IgbDataGrid>
+            </div>
         }
 
     </div>
