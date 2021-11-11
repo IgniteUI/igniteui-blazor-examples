@@ -6,7 +6,9 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <IgbDataGrid Height="100%" Width="100%" @ref="DataGridRef"
+            <div style="overflow: hidden">
+                <IgbDataGrid Height="100%" Width="100%"
+                      @ref="DataGridRef"
                       AutoGenerateColumns="false"
                       HeaderClickAction="@HeaderClickAction.SortByMultipleColumnsTriState"
                       RowHeight="40"
@@ -17,25 +19,26 @@
                       ColumnHidingAnimationMode="@ColumnHidingAnimationMode.Auto"
                       DataSource="Data"
                       IsRowHoverEnabled="false">
-                <IgbTextColumn Field="FirstName" HeaderText="First Name" Width="@("*>130")" />
-                <IgbTextColumn Field="LastName" HeaderText="Last Name" Width="@("*>130")" />
-                <IgbTextColumn Field="Territory" Width="@("*>130")" />
-                <IgbNumericColumn Field="YearToDateSales" HeaderText="YTD Sales" Width="@("*>130")"
-                               PositivePrefix="$" ShowGroupingSeparator="true" />
-                <IgbTemplateColumn Field="AvgSale" HeaderText="Avg. Sale" Width="@("*>120")" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
-                                CellUpdatingScript="onAvgSaleCellUpdating"  />
-                <IgbTemplateColumn Field="Change" Width="@("*>120")" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
-                                CellUpdatingScript="onChangeCellUpdating"/>
-                <IgbTemplateColumn Field="PercentChange" Width="@("*>140")" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
-                                HeaderText="Change (%)" CellUpdatingScript="onPercentChangeCellUpdating"/>
-                <IgbDateTimeColumn Field="DateValue" HeaderText="Date" Width="@("*>120")" />
+                    <IgbTextColumn Field="FirstName" HeaderText="First Name" Width="@("*>130")" />
+                    <IgbTextColumn Field="LastName" HeaderText="Last Name" Width="@("*>130")" />
+                    <IgbTextColumn Field="Territory" Width="@("*>130")" />
+                    <IgbNumericColumn Field="YearToDateSales" HeaderText="YTD Sales" Width="@("*>130")"
+                                PositivePrefix="$" ShowGroupingSeparator="true" />
+                    <IgbTemplateColumn Field="AvgSale" HeaderText="Avg. Sale" Width="@("*>120")" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
+                                    CellUpdatingScript="onAvgSaleCellUpdating"  />
+                    <IgbTemplateColumn Field="Change" Width="@("*>120")" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
+                                    CellUpdatingScript="onChangeCellUpdating"/>
+                    <IgbTemplateColumn Field="PercentChange" Width="@("*>140")" HorizontalAlignment="@CellContentHorizontalAlignment.Right"
+                                    HeaderText="Change (%)" CellUpdatingScript="onPercentChangeCellUpdating"/>
+                    <IgbDateTimeColumn Field="DateValue" HeaderText="Date" Width="@("*>120")" />
 
-                @for (int i = 0; i < 8; i++)
-                {
-                    string str = "KPI_" + i.ToString();
-                    <IgbNumericColumn Width="@("*>150")" Field="@str" DataBoundScript="onKPIColumnDataBound"/>
-                }
-            </IgbDataGrid>
+                    @for (int i = 0; i < 8; i++)
+                    {
+                        string str = "KPI_" + i.ToString();
+                        <IgbNumericColumn Width="@("*>150")" Field="@str" DataBoundScript="onKPIColumnDataBound"/>
+                    }
+                </IgbDataGrid>
+            </div>
         }
     </div>
 </div>

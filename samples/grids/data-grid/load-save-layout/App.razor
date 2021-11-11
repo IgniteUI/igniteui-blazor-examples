@@ -21,7 +21,10 @@
 
                 <IgbDataGridToolbar ToolbarTitle="Sales Team" ColumnChooser="true" ColumnPinning="true" TargetGrid="@DataGridRef" />
 
-                <IgbDataGrid Height="calc(100% - 2.75rem)" Width="100%" RowHeight="50" @ref="@DataGridRef"
+                <div style="overflow: hidden">
+                    <IgbDataGrid Height="100%" Width="100%"
+                          @ref="@DataGridRef"
+                          RowHeight="50" 
                           DataSource="Employees"
                           AutoGenerateColumns="false"
                           IsColumnOptionsEnabled="true"
@@ -39,34 +42,35 @@
                           ColumnHidingAnimationMode="ColumnHidingAnimationMode.SlideToRightAndFadeOut"
                           SelectionMode="GridSelectionMode.SingleRow">
 
-                    <IgbImageColumn IsEditable="false" Width="@("*>120")" Field="Photo" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
-                                 HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
+                        <IgbImageColumn IsEditable="false" Width="@("*>120")" Field="Photo" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
+                                    HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
 
-                    <IgbTextColumn Width="@("*>130")" Field="Name" />
+                        <IgbTextColumn Width="@("*>130")" Field="Name" />
 
-                    @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
-                    <IgbTemplateColumn Width="@("*>160")" Field="Sales" CellUpdatingScript="onUpdatingSalesColumn"
-                                    HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
+                        @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
+                        <IgbTemplateColumn Width="@("*>160")" Field="Sales" CellUpdatingScript="onUpdatingSalesColumn"
+                                        HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
 
-                    <IgbNumericColumn Width="@("*>130")" Field="Salary" PositivePrefix="$"
-                                   ShowGroupingSeparator="true"
-                                   MaxFractionDigits="0"
-                                   MinFractionDigits="0" />
+                        <IgbNumericColumn Width="@("*>130")" Field="Salary" PositivePrefix="$"
+                                    ShowGroupingSeparator="true"
+                                    MaxFractionDigits="0"
+                                    MinFractionDigits="0" />
 
-                    <IgbNumericColumn Width="100" Field="Age" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
-                    <IgbDateTimeColumn Width="@("*>140")" Field="Birthday" HeaderText="Date of Birth" />
+                        <IgbNumericColumn Width="100" Field="Age" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
+                        <IgbDateTimeColumn Width="@("*>140")" Field="Birthday" HeaderText="Date of Birth" />
 
-                    <IgbImageColumn IsEditable="false" Width="@("*>110")" Field="CountryFlag" HeaderText="Country" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
-                                 HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
+                        <IgbImageColumn IsEditable="false" Width="@("*>110")" Field="CountryFlag" HeaderText="Country" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
+                                    HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
 
-                    @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
-                    <IgbTemplateColumn Width="@("*>170")" Field="Address" CellUpdatingScript="onUpdatingAddressColumn" />
-                    <IgbTemplateColumn Width="@("*>130")" Field="Phone" CellUpdatingScript="onUpdatingPhoneColumn" />
+                        @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
+                        <IgbTemplateColumn Width="@("*>170")" Field="Address" CellUpdatingScript="onUpdatingAddressColumn" />
+                        <IgbTemplateColumn Width="@("*>130")" Field="Phone" CellUpdatingScript="onUpdatingPhoneColumn" />
 
-                    <IgbTextColumn Width="@("*>120")" Field="Income" />
-                    <IgbTextColumn Width="@("*>120")" Field="Email" IsEditable="false" />
+                        <IgbTextColumn Width="@("*>120")" Field="Income" />
+                        <IgbTextColumn Width="@("*>120")" Field="Email" IsEditable="false" />
 
-                </IgbDataGrid>
+                    </IgbDataGrid>
+                </div>
             }
 
 
