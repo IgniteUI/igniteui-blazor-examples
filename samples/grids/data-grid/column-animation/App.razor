@@ -70,7 +70,8 @@
     <div class="container vertical" style="height: calc(100% - 125px)">
         @if (Data != null)
         {
-            <IgbDataGrid Height="100%" Width="100%" @ref="DataGridRef"
+            <div style="overflow: hidden">
+                <IgbDataGrid Height="100%" Width="100%" @ref="DataGridRef"
                       DefaultColumnMinWidth="100"
                       ColumnAddingAnimationMode="@ShowingAddingAnimation"
                       ColumnShowingAnimationMode="@ShowingAddingAnimation"
@@ -81,16 +82,17 @@
                       AutoGenerateColumns="false"
                       DataSource="Data"
                       IsColumnOptionsEnabled="true">
-                <IgbTextColumn Field="Name" Width="@("*>170")" />
-                <IgbTextColumn Field="Street" HeaderText="Address" Width="@("*>150")" />
-                <IgbTextColumn Field="City" Width="@("*>120")" />
-                <IgbNumericColumn Field="Salary" Width="@("*>120")" PositivePrefix="$" ShowGroupingSeparator="true" />
-                <IgbDateTimeColumn Field="Birthday" Width="@("*>170")" />
-                <IgbTextColumn Field="Country" Width="@("*>120")" />
-                <IgbNumericColumn Field="Sales" Width="@("*>120")" PositivePrefix="$" ShowGroupingSeparator="true" />
-                <IgbNumericColumn Field="Age" Width="@("*>120")" />
-                <IgbTextColumn Field="Email" Width="@("*>120")" />
-            </IgbDataGrid>
+                    <IgbTextColumn Field="Name" Width="@("*>170")" />
+                    <IgbTextColumn Field="Street" HeaderText="Address" Width="@("*>150")" />
+                    <IgbTextColumn Field="City" Width="@("*>120")" />
+                    <IgbNumericColumn Field="Salary" Width="@("*>120")" PositivePrefix="$" ShowGroupingSeparator="true" />
+                    <IgbDateTimeColumn Field="Birthday" Width="@("*>170")" />
+                    <IgbTextColumn Field="Country" Width="@("*>120")" />
+                    <IgbNumericColumn Field="Sales" Width="@("*>120")" PositivePrefix="$" ShowGroupingSeparator="true" />
+                    <IgbNumericColumn Field="Age" Width="@("*>120")" />
+                    <IgbTextColumn Field="Email" Width="@("*>120")" />
+                </IgbDataGrid>
+            </div>
         }
     </div>
 </div>

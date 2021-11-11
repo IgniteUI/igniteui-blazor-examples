@@ -23,7 +23,9 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <IgbDataGrid Height="calc(100% - 3rem)" Width="100%" @ref="@DataGridRef"
+            <div style="overflow: hidden">
+                <IgbDataGrid Height="100%" Width="100%"
+                      @ref="@DataGridRef"
                       SummaryScope="@GridSummaryScope"
                       GroupSummaryDisplayMode="@GridGroupSummaryDisplayMode"
                       AutoGenerateColumns="false"
@@ -31,15 +33,16 @@
                       GroupHeaderDisplayMode="@DataSourceSectionHeaderDisplayMode.Combined"
                       IsColumnOptionsEnabled="true"
                       DataSource="Data">
-                <IgbNumericColumn Field="ID" Width="@("*>120")" HeaderText="ID" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
-                <IgbTextColumn Field="ProductName" Width="@("*>130")" HeaderText="Product" />
-                <IgbNumericColumn Field="BundlePrice" PositivePrefix="$" Width="@("*>120")" ShowGroupingSeparator="true" HeaderText="Price" />
-                <IgbNumericColumn Field="OrderItems" Width="@("*>140")" HeaderText="Orders" />
-                <IgbNumericColumn Field="OrderValue" Width="@("*>160")" ShowGroupingSeparator="true" HeaderText="Order Totals" PositivePrefix="$" />
-                <IgbDateTimeColumn Field="OrderDate" Width="@("*>150")" HeaderText="Order Date" HorizontalAlignment="@CellContentHorizontalAlignment.Right" />
-                <IgbNumericColumn Field="Profit" Width="@("*>140")" ShowGroupingSeparator="true" HeaderText="Profit" PositivePrefix="$" />
-                <IgbTextColumn Field="Country" Width="@("*>170")" HeaderText="Ship Country" />
-            </IgbDataGrid>
+                    <IgbNumericColumn Field="ID" Width="@("*>120")" HeaderText="ID" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
+                    <IgbTextColumn Field="ProductName" Width="@("*>130")" HeaderText="Product" />
+                    <IgbNumericColumn Field="BundlePrice" PositivePrefix="$" Width="@("*>120")" ShowGroupingSeparator="true" HeaderText="Price" />
+                    <IgbNumericColumn Field="OrderItems" Width="@("*>140")" HeaderText="Orders" />
+                    <IgbNumericColumn Field="OrderValue" Width="@("*>160")" ShowGroupingSeparator="true" HeaderText="Order Totals" PositivePrefix="$" />
+                    <IgbDateTimeColumn Field="OrderDate" Width="@("*>150")" HeaderText="Order Date" HorizontalAlignment="@CellContentHorizontalAlignment.Right" />
+                    <IgbNumericColumn Field="Profit" Width="@("*>140")" ShowGroupingSeparator="true" HeaderText="Profit" PositivePrefix="$" />
+                    <IgbTextColumn Field="Country" Width="@("*>170")" HeaderText="Ship Country" />
+                </IgbDataGrid>
+            </div>
         }
     </div>
 </div>
