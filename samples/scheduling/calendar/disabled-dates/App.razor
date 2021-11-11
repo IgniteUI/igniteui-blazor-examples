@@ -3,13 +3,24 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <label>TODO!!</label>
+    <div style="border: 1px solid gainsboro;">
+        <IgbCalendar @ref="CalendarRef">
+        </IgbCalendar>
+    </div>
 </div>
 
 @code {
-    
+    public IgbCalendar CalendarRef { get; set; }
+
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
+        IgbCalendarModule.Register(IgniteUIBlazor);
+        //TODO
+        //var today = new DateTime();
+        //var range = [
+        //    new DateTime(today.Year, today.Month, 3),
+        //    new DateTime(today.Year, today.Month, 8)
+        //];
+        //this.CalendarRef.DisabledDates = [{ type: DateRangeType.Between, dateRange: range }];
     }
 }
