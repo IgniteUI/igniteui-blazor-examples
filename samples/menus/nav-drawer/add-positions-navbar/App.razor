@@ -10,12 +10,12 @@
             </IgbNavDrawerHeaderItem>
 
             <IgbNavDrawerItem>
-                <IgbIcon slot="icon" IconName="home"></IgbIcon>
+                <IgbIcon @ref="@HomeIcon" IconName="home" Collection="material">@*slot="icon"*@ </IgbIcon>
                 <span slot="content">Home</span>
             </IgbNavDrawerItem>
 
             <IgbNavDrawerItem>
-                <IgbIcon slot="icon" IconName="search"></IgbIcon>
+                <IgbIcon @ref="SearchIcon" IconName="search" Collection="material">@*slot="icon"*@ </IgbIcon>
                 <span slot="content">Search</span>
             </IgbNavDrawerItem>
         </IgbNavDrawer>
@@ -29,13 +29,17 @@
             </IgbRadioGroup>
 
             <IgbNavbar>
-                <IgbIcon slot="start" name="menu" id="menu"></IgbIcon>
+                <IgbIcon @ref="MenuIcon" IconName="menu" Collection="material">@*slot="start"*@</IgbIcon>
                 <h2>Home</h2>
             </IgbNavbar>
         </div>
     </div></div>
 
 @code {
+
+    public IgbIcon HomeIcon { get; set; }
+    public IgbIcon SearchIcon { get; set; }
+    public IgbIcon MenuIcon { get; set; }
 
     protected override void OnInitialized()
     {
@@ -68,20 +72,40 @@
         //  radioGroup.addEventListener('click', (radio: any) => {
         //      navDrawer.position = radio.target.value;
         //  });
+    }
 
-        //  registerIcon(
-        //    'search',
-        //    'https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_search_24px.svg'
-        //  );
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
 
-        //  registerIcon(
-        //    'home',
-        //    'https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg'
-        //  );
+        if (this.HomeIcon != null && firstRender)
+        {
+            this.HomeIcon.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.HomeIcon.RegisterIcon("home",
+                    "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg",
+                    "material");
+            }));
+        }
 
-        //  registerIcon(
-        //    'menu',
-        //    'https://unpkg.com/material-design-icons@3.0.1/navigation/svg/production/ic_menu_24px.svg'
-        //  );
+        if (this.SearchIcon != null && firstRender)
+        {
+            this.SearchIcon.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.SearchIcon.RegisterIcon("search",
+                    "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_search_24px.svg",
+                    "material");
+            }));
+        }
+
+        if (this.MenuIcon != null && firstRender)
+        {
+            this.MenuIcon.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.MenuIcon.RegisterIcon("menu",
+                    "https://unpkg.com/material-design-icons@3.0.1/navigation/svg/production/ic_menu_24px.svg",
+                    "material");
+            }));
+        }
     }
 }

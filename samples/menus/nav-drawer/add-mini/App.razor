@@ -4,28 +4,28 @@
 
 <div class="container vertical">
     <div id="root" style="display: flex;">
-        <IgbNavDrawer id="navDrawer">
+        <IgbNavDrawer id="navDrawer" Open="true" style="position: relative">
             <IgbNavDrawerHeaderItem>
                 Sample Drawer
             </IgbNavDrawerHeaderItem>
 
-            <IgbNavDrawer>
-                <IgbIcon slot="icon" IconName="home"></IgbIcon>
+            <IgbNavDrawerItem>
+                <IgbIcon @ref="@HomeIcon" Collection="material" IconName="home">@*slot="icon"*@ </IgbIcon>
                 <span slot="content">Home</span>
-            </IgbNavDrawer>
+            </IgbNavDrawerItem>
 
-            <IgbNavDrawer>
-                <IgbIcon slot="icon" IconName="search"></IgbIcon>
+            <IgbNavDrawerItem>
+                <IgbIcon @ref="@SearchIcon" Collection="material" IconName="search">@*slot="icon"*@ </IgbIcon>
                 <span slot="content">Search</span>
-            </IgbNavDrawer>
+            </IgbNavDrawerItem>
 
             <div slot="mini">
-                <IgbNavDrawer>
-                    <IgbIcon slot="icon" IconName="home"></IgbIcon>
-                </IgbNavDrawer>
+                <IgbNavDrawerItem>
+                    <IgbIcon @ref="@HomeIcon2" Collection="material" IconName="home">@*slot="icon"*@</IgbIcon>
+                </IgbNavDrawerItem>
 
                 <IgbNavDrawerItem>
-                    <IgbIcon slot="icon" IconName="search"></IgbIcon>
+                    <IgbIcon @ref="@SearchIcon2" Collection="material" IconName="search">@*slot="icon"*@</IgbIcon>
                 </IgbNavDrawerItem>
             </div>
         </IgbNavDrawer>
@@ -38,6 +38,11 @@
 
 @code {
 
+    public IgbIcon HomeIcon { get; set; }
+    public IgbIcon SearchIcon { get; set; }
+    public IgbIcon HomeIcon2 { get; set; }
+    public IgbIcon SearchIcon2 { get; set; }
+
     protected override void OnInitialized()
     {
         IgbNavDrawerModule.Register(IgniteUIBlazor);
@@ -45,34 +50,50 @@
         IgbNavDrawerItemModule.Register(IgniteUIBlazor);
         IgbIconModule.Register(IgniteUIBlazor);
         IgbButtonModule.Register(IgniteUIBlazor);
+    }
 
-        //todo
-        //    const btn = document.getElementById('toggleBtn');
-        //    const navDrawer = document.querySelector('igc-nav-drawer') as IgcNavDrawerComponent;
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
 
-        //    btn!.addEventListener('click', () =>
-        //    {
-        //        navDrawer.toggle();
-        //    })
+        if (this.HomeIcon != null && firstRender)
+        {
+            this.HomeIcon.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.HomeIcon.RegisterIcon("home",
+                    "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg",
+                    "material");
+            }));
+        }
 
-        //  document.getElementById('root')!.onclick = (e) =>
-        //  {
-        //      if (e.target === document.getElementById('content'))
-        //      {
-        //          navDrawer.hide();
-        //      }
-        //  }
+        if (this.SearchIcon != null && firstRender)
+        {
+            this.SearchIcon.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.SearchIcon.RegisterIcon("search",
+                    "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_search_24px.svg",
+                    "material");
+            }));
+        }
 
-        //  registerIcon(
-        //    'search',
-        //    'https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_search_24px.svg'
-        //  );
+        if (this.HomeIcon2 != null && firstRender)
+        {
+            this.HomeIcon2.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.HomeIcon2.RegisterIcon("home",
+                    "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg",
+                    "material");
+            }));
+        }
 
-        //    registerIcon(
-        //      'home',
-        //      'https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg'
-        //    );
-        //}
-
+        if (this.SearchIcon2 != null && firstRender)
+        {
+            this.SearchIcon2.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.SearchIcon2.RegisterIcon("search",
+                    "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_search_24px.svg",
+                    "material");
+            }));
+        }
     }
 }

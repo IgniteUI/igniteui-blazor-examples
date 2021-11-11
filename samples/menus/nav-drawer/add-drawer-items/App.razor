@@ -3,42 +3,57 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <IgbNavDrawer open="true">
+    <IgbNavDrawer Open="true">
         <IgbNavDrawerHeaderItem>
             Sample Drawer
         </IgbNavDrawerHeaderItem>
 
-        <IgbNavDrawerHeaderItem>
-            <IgbIcon slot="icon" IconName="home"></IgbIcon>
+        <IgbNavDrawerItem>
+            <IgbIcon @ref="@HomeIcon" slot="icon" IconName="home" Collection="material"></IgbIcon>
             <span slot="content">Home</span>
-        </IgbNavDrawerHeaderItem>
+        </IgbNavDrawerItem>
 
-        <IgbNavDrawerHeaderItem>
-            <IgbIcon slot="icon" IconName="search"></IgbIcon>
+        <IgbNavDrawerItem>
+            <IgbIcon @ref="@SearchIcon" slot="icon" IconName="search" Collection="material"></IgbIcon>
             <span slot="content">Search</span>
-        </IgbNavDrawerHeaderItem>
+        </IgbNavDrawerItem>
     </IgbNavDrawer>
 </div>
 
 @code {
+
+    public IgbIcon HomeIcon { get; set; }
+    public IgbIcon SearchIcon { get; set; }
 
     protected override void OnInitialized()
     {
         IgbNavDrawerModule.Register(IgniteUIBlazor);
         IgbNavDrawerHeaderItemModule.Register(IgniteUIBlazor);
         IgbIconModule.Register(IgniteUIBlazor);
+    }
 
-        //  TODO
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
 
+        if (this.HomeIcon != null && firstRender)
+        {
+            this.HomeIcon.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.HomeIcon.RegisterIcon("home",
+                    "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_search_24px.svg",
+                    "material");
+            }));
+        }
 
-        //       registerIcon(
-        //  'search',
-        //  'https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_search_24px.svg'
-        //);
-
-        //  registerIcon(
-        //    'home',
-        //    'https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg'
-        //  );
+        if (this.SearchIcon != null && firstRender)
+        {
+            this.SearchIcon.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.SearchIcon.RegisterIcon("search",
+                    "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg",
+                    "material");
+            }));
+        }
     }
 }
