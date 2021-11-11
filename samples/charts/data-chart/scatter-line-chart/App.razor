@@ -7,18 +7,18 @@
     </div>
     <div class="options horizontal">
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="container vertical">
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    Legend="Legend"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <NumericYAxis Name="yAxis" Title="Health Expenditure per Capita" 
+            <IgbNumericYAxis Name="yAxis" Title="Health Expenditure per Capita" 
                           MinimumValue="1000" MaximumValue="7000" Interval="1000" AbbreviateLargeNumbers="true"/>
-            <NumericXAxis Name="xAxis" LabelFormat="{0}" Title="Life Expectancy (in years)" 
+            <IgbNumericXAxis() Name="xAxis" LabelFormat="{0}" Title="Life Expectancy (in years)" 
                           MinimumValue="72" MaximumValue="84" Interval="2"/>
 
             <ScatterLineSeries XAxisName="xAxis"
@@ -47,14 +47,14 @@
                                Title="Norway"
                                MarkerType="MarkerType.Circle"
                                ShowDefaultTooltip="true"/>
-        </DataChart>
+        </IgbDataChart>
     </div>
 </div>
 
 @code {
 
-    private Legend _legend;
-    public Legend Legend
+    private IgbLegend _legend;
+    public IgbLegend Legend
     {
         get { return _legend; }
         set
@@ -78,12 +78,12 @@
 
     protected override void OnInitialized()
     {
-        LegendModule.Register(IgniteUIBlazor);
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartScatterModule.Register(IgniteUIBlazor);
-        DataChartScatterCoreModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+        IgbLegendModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartScatterModule.Register(IgniteUIBlazor);
+        IgbDataChartScatterCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbNumberAbbreviatorModule.Register(IgniteUIBlazor);
 
         InitializeData();
     }

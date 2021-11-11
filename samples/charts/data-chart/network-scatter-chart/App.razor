@@ -5,7 +5,7 @@
     <div class="options vertical">
         <span class="legend-title">Neutral Network Graph</span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
 
@@ -13,15 +13,15 @@
 
         @if (NodeConnections != null)
         {
-            <DataChart Height="100%" Width="100%" @ref="Chart"
+            <IgbDataChart Height="100%" Width="100%" @ref="Chart"
                        SeriesMouseEnterScript="onNetworkGrahpMouseEnter"
                        IsHorizontalZoomEnabled="false"
                        IsVerticalZoomEnabled="false">
 
-                <NumericXAxis Name="xAxis" MinimumValue="0" MaximumValue="14" Interval="1" LabelTextColor="Transparent"/>
-                <NumericYAxis Name="yAxis" MinimumValue="0" MaximumValue="6"  Interval="1" LabelTextColor="Transparent"/>
+                <IgbNumericXAxis() Name="xAxis" MinimumValue="0" MaximumValue="14" Interval="1" LabelTextColor="Transparent"/>
+                <IgbNumericYAxis Name="yAxis" MinimumValue="0" MaximumValue="6"  Interval="1" LabelTextColor="Transparent"/>
 
-                <CategoryYAxis Name="labelAxis" Label="Label" DataSource="NodeInuputLabels" Interval="1" StrokeThickness="1" />
+                <IgbCategoryYAxis Name="labelAxis" Label="Label" DataSource="NodeInuputLabels" Interval="1" StrokeThickness="1" />
 
                 <ScatterPolylineSeries XAxisName="xAxis"
                                        YAxisName="yAxis"
@@ -61,7 +61,7 @@
                                Title="Output Layer" >
                 </ScatterSeries>
 
-            </DataChart>
+            </IgbDataChart>
         }
 
     </div>
@@ -69,8 +69,8 @@
 
 @code {
 
-    private Legend Legend;
-    private DataChart Chart;
+    private IgbLegend Legend;
+    private IgbDataChart Chart;
 
     private List<NodeConnection> NodeConnections;
     private List<NodeInfo> NodeInuputLabels;
@@ -82,15 +82,15 @@
 
     protected override async Task OnInitializedAsync()
     {
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        DataChartVerticalCategoryModule.Register(IgniteUIBlazor);
-        DataChartScatterModule.Register(IgniteUIBlazor);
-        DataChartScatterCoreModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        ScatterPolylineSeriesModule.Register(IgniteUIBlazor);
-        LegendModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartVerticalCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartScatterModule.Register(IgniteUIBlazor);
+        IgbDataChartScatterCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbScatterPolylineSeriesModule.Register(IgniteUIBlazor);
+        IgbLegendModule.Register(IgniteUIBlazor);
 
         // generating nodes
         for (int i = 1; i <= 5; i++)

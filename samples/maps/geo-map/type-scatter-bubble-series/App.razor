@@ -3,7 +3,7 @@
 
 <div class="container vertical">
     <div class="container vertical">
-        <GeographicMap Height="100%" Width="100%" Zoomable="true">
+        <IgbGeographicMap Height="100%" Width="100%" Zoomable="true">
             <GeographicProportionalSymbolSeries DataSource="WorldCities"
                                                 MarkerType="MarkerType.Circle"
                                                 RadiusScale="SeriesSizeScale"
@@ -13,30 +13,30 @@
                                                 LatitudeMemberPath="Lat"
                                                 LongitudeMemberPath="Lon"
                                                 MarkerOutline="rgba(0,0,0,0.3)" />
-        </GeographicMap>
+        </IgbGeographicMap>
     </div>
 </div>
 
 @code {
 
     private List<WorldCity> WorldCities;
-    private SizeScale SeriesSizeScale;
-    private ValueBrushScale ColorScale;
+    private IgbSizeScale SeriesSizeScale;
+    private IgbValueBrushScale ColorScale;
 
     protected override void OnInitialized()
     {
-        GeographicMapModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbGeographicMapModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
 
         this.WorldCities = WorldLocations.GetAll();
 
-        this.SeriesSizeScale = new SizeScale()
+        this.SeriesSizeScale = new IgbSizeScale()
         {
             MinimumValue = 4,
             MaximumValue = 60
         };
 
-        this.ColorScale = new ValueBrushScale()
+        this.ColorScale = new IgbValueBrushScale()
         {
             Brushes = "rgba(14, 194, 14, 0.4), rgba(252, 170, 32, 0.4), rgba(252, 32, 32, 0.4)",
             MinimumValue = 0,

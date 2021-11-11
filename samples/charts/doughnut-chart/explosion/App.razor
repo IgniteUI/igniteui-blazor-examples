@@ -7,7 +7,7 @@
     <div class="options vertical">
         <span class="legend-title">Global Electricity Demand by Energy Use</span>
         <div class="legend">
-            <ItemLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbItemLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
 
@@ -15,7 +15,7 @@
 
             @if (Data != null)
             {
-                <DoughnutChart Height="100%" Width="100%" @ref="Chart"
+                <IgbDoughnutChart Height="100%" Width="100%" @ref="Chart"
                 AllowSliceExplosion="true"
                 SliceClick="OnSliceClick">
                     <RingSeries DataSource="Data"
@@ -31,7 +31,7 @@
                                 RadiusFactor="0.7"
                                 StartAngle="30">
                     </RingSeries>
-                </DoughnutChart>
+                </IgbDoughnutChart>
             }
 
         </div>
@@ -41,13 +41,13 @@
 
     private List<DataItem> Data;
     public int[] explodedSlices { get; set; } = new int[0];
-    public ItemLegend Legend;
-    public DoughnutChart Chart;
+    public IgbItemLegend Legend;
+    public IgbDoughnutChart Chart;
 
     protected override void OnInitialized()
     {
-        DoughnutChartModule.Register(IgniteUIBlazor);
-        ItemLegendModule.Register(IgniteUIBlazor);
+        IgbDoughnutChartModule.Register(IgniteUIBlazor);
+        IgbItemLegendModule.Register(IgniteUIBlazor);
 
         this.Data = new List<DataItem>();
         this.Data.Add(new DataItem { MarketShare = 37, Category = "Cooling", });
@@ -72,7 +72,7 @@
             this.Chart.ActualSeries[0].Legend = Legend;
     }
 
-    protected void OnSliceClick(SliceClickEventArgs e)
+    protected void OnSliceClick(IgbSliceClickEventArgs e)
     {
         Console.WriteLine("Sample OnButtonClick");
 

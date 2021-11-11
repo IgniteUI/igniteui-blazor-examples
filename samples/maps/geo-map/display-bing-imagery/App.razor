@@ -4,36 +4,36 @@
 
 <div class="container horizontal">
 
-    <GeographicMap @ref="BingAerialMap"
+    <IgbGeographicMap @ref="BingAerialMap"
                    Height="100%" Width="100%" Zoomable="true"
                    BackgroundContent="@AerialImagery">
-    </GeographicMap>
-    <GeographicMap @ref="BingRoadMap"
+    </IgbGeographicMap>
+    <IgbGeographicMap @ref="BingRoadMap"
                    Height="100%" Width="100%" Zoomable="true"
                    BackgroundContent="@RoadImagery">
-    </GeographicMap>
+    </IgbGeographicMap>
 
 </div>
 
 @code {
 
-    private BingMapsMapImagery AerialImagery;
-    private BingMapsMapImagery RoadImagery;
-    private GeographicMap BingAerialMap;
-    private GeographicMap BingRoadMap;
+    private IgbBingMapsMapImagery AerialImagery;
+    private IgbBingMapsMapImagery RoadImagery;
+    private IgbGeographicMap BingAerialMap;
+    private IgbGeographicMap BingRoadMap;
 
     private string BingKey = MapUtils.GetBingKey();
 
     protected override void OnInitialized()
     {
-        GeographicMapModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbGeographicMapModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
 
         this.RoadImagery = CreateImagery(BingMapsImageryStyle.Road);
         this.AerialImagery = CreateImagery(BingMapsImageryStyle.AerialWithLabels);
     }
 
-    BingMapsMapImagery CreateImagery(BingMapsImageryStyle style)
+    public IgbBingMapsMapImagery CreateImagery(BingMapsImageryStyle style)
     {
         var bingUrl = "http://dev.virtualearth.net/REST/v1/Imagery/Metadata/{STYLE}?key={KEY}&include=ImageryProviders";
         bingUrl = bingUrl.Replace("{STYLE}", style.ToString());
@@ -43,7 +43,7 @@
         if (isHttpSecured)
             bingUrl = bingUrl.Replace("http:", "https:");
 
-        var imagery = new BingMapsMapImagery();
+        var imagery = new IgbBingMapsMapImagery();
         imagery.ApiKey = BingKey;
         imagery.ImageryStyle = style;
         imagery.ActualBingImageryRestUri = bingUrl;
@@ -62,7 +62,7 @@
         }
     }
 
-    private void OnZoomMap(GeographicMap map)
+    private void OnZoomMap(IgbGeographicMap map)
     {
         var geoBounds = new Rect(-130, 15, new Size(65, 35));
         if (map != null)

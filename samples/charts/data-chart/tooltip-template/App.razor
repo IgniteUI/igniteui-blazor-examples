@@ -5,25 +5,25 @@
 <div class="container vertical">
         @if (Data != null)
         {
-          <DataChart Height="100%" Width="100%" Subtitle="Energy Source of Biggest Countries"
+          <IgbDataChart Height="100%" Width="100%" Subtitle="Energy Source of Biggest Countries"
                      IsHorizontalZoomEnabled="false" IsVerticalZoomEnabled="false"
                      SeriesMouseEnterScript="onSeriesMouseEnter">
               @*note the onSeriesMouseEnter" function is implemented .JS file in wwwroot folder*@
 
-              <CategoryXAxis Name="xAxis" DataSource="Data" Label="Country"></CategoryXAxis>
-              <NumericYAxis  Name="yAxis"></NumericYAxis>
+              <IgbCategoryXAxis Name="xAxis" DataSource="Data" Label="Country"></IgbCategoryXAxis>
+              <IgbNumericYAxis  Name="yAxis"></IgbNumericYAxis>
 
-              <ColumnSeries Title="Coal" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Coal"
+              <IgbColumnSeries Title="Coal" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Coal"
                             DataSource="Data" ShowDefaultTooltip="false"/>
-              <ColumnSeries Title="Hydro" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Hydro"
+              <IgbColumnSeries Title="Hydro" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Hydro"
                             DataSource="Data" ShowDefaultTooltip="false"/>
-              <ColumnSeries Title="Nuclear" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Nuclear"
+              <IgbColumnSeries Title="Nuclear" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Nuclear"
                             DataSource="Data" ShowDefaultTooltip="false"/>
-              <ColumnSeries Title="Gas" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Gas"
+              <IgbColumnSeries Title="Gas" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Gas"
                             DataSource="Data" ShowDefaultTooltip="false"/>
-              <ColumnSeries Title="Oil" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Oil"
+              <IgbColumnSeries Title="Oil" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Oil"
                             DataSource="Data" ShowDefaultTooltip="false"/>
-          </DataChart>
+          </IgbDataChart>
 
         }
 </div>
@@ -36,10 +36,10 @@
     {
         base.OnInitialized();
 
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        NumberAbbreviatorModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbNumberAbbreviatorModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
 
         this.Data = EnergyProductionData.Generate();
     }

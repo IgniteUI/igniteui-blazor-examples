@@ -6,7 +6,7 @@
     <div class="options vertical">
         <span class="legend-title">Company Finances by Department </span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
 
@@ -23,7 +23,7 @@
     <div class="container vertical">
         @if (Data != null)
         {
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    GridMode="GridMode.BeforeSeries"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false"
@@ -35,76 +35,76 @@
 
             @if (SeriesType == "Radial Area Chart")
             {
-                <RadialAreaSeries
+                <IgbRadialAreaSeries
                     Title="Budget"
                     ValueMemberPath="Budget"
                     ValueAxisName="radiusAxis"
                     AngleAxisName="angleAxis"
                     DataSource="Data">
-                </RadialAreaSeries>
-                <RadialAreaSeries
+                </IgbRadialAreaSeries>
+                <IgbRadialAreaSeries
                     Title="Spending"
                     ValueMemberPath="Spending"
                     ValueAxisName="radiusAxis"
                     AngleAxisName="angleAxis"
                     DataSource="Data">
-                </RadialAreaSeries>
+                </IgbRadialAreaSeries>
             }
 
             @if (SeriesType == "Radial Column Chart")
             {
-                <RadialColumnSeries
+                <IgbRadialColumnSeries
                     Title="Budget"
                     ValueMemberPath="Budget"
                     ValueAxisName="radiusAxis"
                     AngleAxisName="angleAxis"
                     DataSource="Data">
-                </RadialColumnSeries>
-                <RadialColumnSeries
+                </IgbRadialColumnSeries>
+                <IgbRadialColumnSeries
                     Title="Spending"
                     ValueMemberPath="Spending"
                     ValueAxisName="radiusAxis"
                     AngleAxisName="angleAxis"
                     DataSource="Data">
-                </RadialColumnSeries>
+                </IgbRadialColumnSeries>
             }
 
             @if (SeriesType == "Radial Pie Chart")
             {
-                <RadialPieSeries
+                <IgbRadialPieSeries
                     Title="Budget"
                     ValueMemberPath="Budget"
                     ValueAxisName="radiusAxis"
                     AngleAxisName="angleAxis"
                     DataSource="Data">
-                </RadialPieSeries>
-                <RadialPieSeries
+                </IgbRadialPieSeries>
+                <IgbRadialPieSeries
                     Title="Spending"
                     ValueMemberPath="Spending"
                     ValueAxisName="radiusAxis"
                     AngleAxisName="angleAxis"
                     DataSource="Data">
-                </RadialPieSeries>
+                </IgbRadialPieSeries>
             }
 
             @if (SeriesType == "Radial Line Chart")
             {
-                <RadialLineSeries
+                <IgbRadialLineSeries
                     Title="Budget"
                     ValueMemberPath="Budget"
                     ValueAxisName="radiusAxis"
                     AngleAxisName="angleAxis"
                     DataSource="Data">
-                </RadialLineSeries>
-                <RadialLineSeries
+                </IgbRadialLineSeries>
+                <IgbRadialLineSeries
                     Title="Spending"
                     ValueMemberPath="Spending"
                     ValueAxisName="radiusAxis"
                     AngleAxisName="angleAxis"
                     DataSource="Data">
-                </RadialLineSeries>
+                </IgbRadialLineSeries>
             }
-        </DataChart>
+        </IgbDataChart>
         }
     </div>
 </div>
@@ -112,15 +112,15 @@
 @code {
 
     private List<SampleRadialItem> Data;
-    private DataChart _Chart;
-    private DataChart Chart
+    private IgbDataChart _Chart;
+    private IgbDataChart Chart
     {
         get { return _Chart; }
         set { _Chart = value; StateHasChanged(); }
     }
 
-    private Legend _Legend;
-    private Legend Legend
+    private IgbLegend _Legend;
+    private IgbLegend Legend
     {
         get { return _Legend; }
         set { _Legend = value; StateHasChanged(); }
@@ -135,14 +135,14 @@
 
     protected override void OnInitialized()
     {
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartRadialCoreModule.Register(IgniteUIBlazor);
-        DataChartRadialModule.Register(IgniteUIBlazor);
-        DataChartExtendedAxesModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartRadialCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartRadialModule.Register(IgniteUIBlazor);
+        IgbDataChartExtendedAxesModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
 
-        LegendModule.Register(IgniteUIBlazor);
+        IgbLegendModule.Register(IgniteUIBlazor);
         Data = SampleRadialData.Create();
     }
 

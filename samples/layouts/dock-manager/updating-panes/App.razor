@@ -22,7 +22,7 @@
             </div>
 
             <div slot="content2" style="height: 100%; width: 100%; overflow: hidden;">
-                <CategoryChart @ref="ProductivityChart" Height="100%" Width="100%"
+                <IgbCategoryChart @ref="ProductivityChart" Height="100%" Width="100%"
                                ChartTitle="@EmployeeSelectedInfo"
                                TitleTopMargin="10"
                                ChartType="CategoryChartType.Column"
@@ -36,9 +36,9 @@
             </div>
 
             <div slot="content3" style="height: 100%; width: 100%; overflow: hidden;">
-                <GeographicMap @ref="GeoMap" Height="100%" Width="100%" Zoomable="true"
+                <IgbGeographicMap @ref="GeoMap" Height="100%" Width="100%" Zoomable="true"
                                BackgroundContent="@GeoImagery">
-                      <GeographicSymbolSeries
+                      <IgbGeographicSymbolSeries
                                DataSource="EmployeeList"
                                MarkerType="MarkerType.Circle"
                                LatitudeMemberPath="Latitude"
@@ -46,14 +46,14 @@
                                MarkerBrush="White"
                                MarkerOutline="Red" />
 
-                      <GeographicSymbolSeries @ref="GeoSeries"
+                      <IgbGeographicSymbolSeries @ref="GeoSeries"
                                DataSource="EmployeeSelected"
                                MarkerType="MarkerType.Circle"
                                LatitudeMemberPath="Latitude"
                                LongitudeMemberPath="Longitude"
                                MarkerBrush="White"
                                MarkerOutline="DarkViolet" />
-                </GeographicMap>
+                </IgbGeographicMap>
             </div>
 
         </igc-dockmanager>
@@ -65,25 +65,25 @@
     ElementReference dockManager;
     protected List<PersonInfo> EmployeeList;
     protected List<PersonInfo> EmployeeSelected;
-    protected ArcGISOnlineMapImagery GeoImagery;
-    protected GeographicSymbolSeries GeoSeries;
-    protected GeographicMap GeoMap;
+    protected IgbArcGISOnlineMapImagery GeoImagery;
+    protected IgbGeographicSymbolSeries GeoSeries;
+    protected IgbGeographicMap GeoMap;
     protected Rect GeoBounds;
-    protected CategoryChart ProductivityChart;
+    protected IgbCategoryChart ProductivityChart;
     protected string EmployeeSelectedInfo;
 
     protected override void OnInitialized()
     {
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        GeographicMapModule.Register(IgniteUIBlazor);
-        CategoryChartModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbGeographicMapModule.Register(IgniteUIBlazor);
+        IgbCategoryChartModule.Register(IgniteUIBlazor);
     }
 
     protected override async Task OnInitializedAsync()
     {
         this.GeoBounds = new Rect() { Left = - 150, Top = - 60, Width = 315, Height = 140 };
 
-        this.GeoImagery = new ArcGISOnlineMapImagery();
+        this.GeoImagery = new IgbArcGISOnlineMapImagery();
         this.GeoImagery.MapServerUri = "https://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer";
 
         this.EmployeeList = PersonDataSource.Create(200);

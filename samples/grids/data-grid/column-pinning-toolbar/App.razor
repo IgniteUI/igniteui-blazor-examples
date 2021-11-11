@@ -8,30 +8,28 @@
 
         @if (Data != null)
         {
-            <DataGridToolbar TargetGrid="Grid" ToolbarTitle="Global Sales"
+            <IgbDataGridToolbar TargetGrid="Grid" ToolbarTitle="Global Sales"
                              ColumnPinning="true">
-            </DataGridToolbar>
-            <div style="overflow: hidden">
-                <DataGrid @ref="Grid" Height="100%" Width="100%"
-                    DataSource="Data"
-                    AutoGenerateColumns="false">
-                        <TextColumn Field="ID" Pinned="PinnedPositions.Left" Width="@("*>110")" />
-                        <TextColumn Field="FirstName" Pinned="PinnedPositions.Left" Width="@("*>190")" />
-                        <TextColumn Field="LastName" Pinned="PinnedPositions.Left" Width="@("*>190")" />
-                        <DateTimeColumn Field="Birthday" Width="@("*>170")" />
-                        <NumericColumn Field="Age" Width="@("*>120")" />
-                        <ImageColumn IsEditable="false" Field="CountryFlag" />
-                        <TextColumn Field="Street" Width="@("*>160")"/>
-                        <TextColumn Field="City" Width="260"/>
-                        <TextColumn Field="Country" Width="@("*>170")"/>
-                        <NumericColumn Field="Salary" Width="@("*>170")"/>
-                        <NumericColumn Field="Sales" Width="@("*>120")"/>
-                        <NumericColumn Field="Salary" Width="@("*>120")" PositivePrefix="$"
-                            ShowGroupingSeparator="true"
-                            MaxFractionDigits="0"
-                            MinFractionDigits="0" />
-                </DataGrid>
-            </div>
+            </IgbDataGridToolbar>
+            <IgbDataGrid @ref="Grid" Height="calc(100% - 40px)" Width="100%"
+                DataSource="Data"
+                AutoGenerateColumns="false">
+                    <IgbTextColumn Field="ID" Pinned="PinnedPositions.Left" Width="@("*>110")" />
+                    <IgbTextColumn Field="FirstName" Pinned="PinnedPositions.Left" Width="@("*>190")" />
+                    <IgbTextColumn Field="LastName" Pinned="PinnedPositions.Left" Width="@("*>190")" />
+                    <IgbDateTimeColumn Field="Birthday" Width="@("*>170")" />
+                    <IgbNumericColumn Field="Age" Width="@("*>120")" />
+                    <IgbImageColumn IsEditable="false" Field="CountryFlag" />
+                    <IgbTextColumn Field="Street" Width="@("*>160")"/>
+                    <IgbTextColumn Field="City" Width="260"/>
+                    <IgbTextColumn Field="Country" Width="@("*>170")"/>
+                    <IgbNumericColumn Field="Salary" Width="@("*>170")"/>
+                    <IgbNumericColumn Field="Sales" Width="@("*>120")"/>
+                    <IgbNumericColumn Field="Salary" Width="@("*>120")" PositivePrefix="$"
+                        ShowGroupingSeparator="true"
+                        MaxFractionDigits="0"
+                        MinFractionDigits="0" />
+            </IgbDataGrid>
         }
 
     </div>
@@ -40,8 +38,8 @@
 @code {
 
     private List<Employee> Data;
-    private DataGrid grid;
-    public DataGrid Grid
+    private IgbDataGrid grid;
+    public IgbDataGrid Grid
     {
         get
         {
@@ -57,8 +55,8 @@
     {
         base.OnInitialized();
 
-        DataGridModule.Register(IgniteUIBlazor);
-        DataGridToolbarModule.Register(IgniteUIBlazor);
+        IgbDataGridModule.Register(IgniteUIBlazor);
+        IgbDataGridToolbarModule.Register(IgniteUIBlazor);
 
         this.Data = EmployeeData.Create(200, false);
     }

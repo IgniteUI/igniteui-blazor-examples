@@ -32,10 +32,10 @@
 
         @if (Data != null)
         {
-            <DataGrid @ref="@grid" Height="100%" Width="100%"
+            <IgbDataGrid @ref="@grid" Height="100%" Width="100%"
                       DataSource="Data"
                       AutoGenerateColumns="true">
-            </DataGrid>
+            </IgbDataGrid>
         }
 
     </div>
@@ -48,7 +48,7 @@
     public bool canSave = false;
     public Random Rand = new Random();
 
-    public DataGrid grid;
+    public IgbDataGrid grid;
     public object Data;
     public Workbook wb;
 
@@ -70,7 +70,7 @@
     {
 
         base.OnInitialized();
-        DataGridModule.Register(IgniteUIBlazor);
+        IgbDataGridModule.Register(IgniteUIBlazor);
         Workbook.InProcessRuntime = this.Runtime as IJSInProcessRuntime;
 
         this.companies = new string[] { "Amazon", "Ford", "Jaguar", "Tesla", "IBM", "Microsoft" };
@@ -214,7 +214,7 @@
             {
                 for (int i = 0; i < this.grid.ActualColumns.Count; i++)
                 {
-                    Column c = this.grid.ActualColumns[i];
+                    IgbColumn c = this.grid.ActualColumns[i];
                     var value = typeof(SalesEmployee).GetProperty(c.Field).GetValue(emp);
                     ws.Rows[worksheetRow].Cells[i].Value = value;
                 }
@@ -229,7 +229,7 @@
             {
                 for (int i = 0; i < this.grid.ActualColumns.Count; i++)
                 {
-                    Column c = this.grid.ActualColumns[i];
+                    IgbColumn c = this.grid.ActualColumns[i];
                     var value = typeof(Expense).GetProperty(c.Field).GetValue(emp);
                     ws.Rows[worksheetRow].Cells[i].Value = value;
                 }
@@ -244,7 +244,7 @@
             {
                 for (int i = 0; i < this.grid.ActualColumns.Count; i++)
                 {
-                    Column c = this.grid.ActualColumns[i];
+                    IgbColumn c = this.grid.ActualColumns[i];
                     var value = typeof(Income).GetProperty(c.Field).GetValue(emp);
                     ws.Rows[worksheetRow].Cells[i].Value = value;
                 }

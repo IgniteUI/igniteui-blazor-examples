@@ -35,11 +35,11 @@
     </div>
     
     <div class="legend">
-         <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+         <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
     </div>
 
     <div class="container vertical">
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    IsVerticalZoomEnabled="true"  
                    IsHorizontalZoomEnabled="true" @ref="Chart" 
                    HighlightingBehavior="@HighlightingBehavior"
@@ -47,30 +47,30 @@
                    LegendHighlightingMode="@HighlightingLegend"
                    Legend="@Legend">
 
-            <CategoryXAxis Name="xAxis" DataSource="Data" Label="Year" />
-            <NumericYAxis  Name="yAxis" MinimumValue="0" Title="TWh" TitleLeftMargin="10" />
+            <IgbCategoryXAxis Name="xAxis" DataSource="Data" Label="Year" />
+            <IgbNumericYAxis  Name="yAxis" MinimumValue="0" Title="TWh" TitleLeftMargin="10" />
 
-            <AreaSeries Title="Europe" XAxisName="xAxis" YAxisName="yAxis"
+            <IgbAreaSeries Title="Europe" XAxisName="xAxis" YAxisName="yAxis"
                         ValueMemberPath="Europe" 
                         DataSource="Data" 
                         ShowDefaultTooltip="true"
                         IsTransitionInEnabled="true" 
                         IsHighlightingEnabled="true"/>
 
-            <AreaSeries Title="China" XAxisName="xAxis" YAxisName="yAxis"
+            <IgbAreaSeries Title="China" XAxisName="xAxis" YAxisName="yAxis"
                         ValueMemberPath="China" 
                         DataSource="Data" 
                         ShowDefaultTooltip="true"
                         IsTransitionInEnabled="true"  
                         IsHighlightingEnabled="true"/>
 
-            <AreaSeries Title="USA" XAxisName="xAxis" YAxisName="yAxis"
+            <IgbAreaSeries Title="USA" XAxisName="xAxis" YAxisName="yAxis"
                         ValueMemberPath="USA" 
                         DataSource="Data" 
                         ShowDefaultTooltip="true"
                         IsTransitionInEnabled="true"  
                         IsHighlightingEnabled="true"/>
-        </DataChart>
+        </IgbDataChart>
     </div>
 </div>
 
@@ -80,10 +80,10 @@
     private LegendHighlightingMode HighlightingLegend = LegendHighlightingMode.MatchSeries;
     private SeriesHighlightingMode HighlightingMode = SeriesHighlightingMode.FadeOthers;
     private SeriesHighlightingBehavior HighlightingBehavior = SeriesHighlightingBehavior.DirectlyOver;
-    private DataChart Chart;
+    private IgbDataChart Chart;
 
-    private Legend _Legend;
-    private Legend Legend
+    private IgbLegend _Legend;
+    private IgbLegend Legend
     {
         get { return _Legend; }
         set { _Legend = value; StateHasChanged(); }
@@ -93,12 +93,12 @@
     {
         base.OnInitialized();
 
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        CategoryHighlightLayerModule.Register(IgniteUIBlazor); 
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbCategoryHighlightLayerModule.Register(IgniteUIBlazor); 
 
-        LegendModule.Register(IgniteUIBlazor); 
+        IgbLegendModule.Register(IgniteUIBlazor); 
     } 
 
 }

@@ -6,24 +6,22 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <div style="overflow: hidden">
-                <DataGrid Height="100%" Width="100%"
-                        DefaultColumnMinWidth="120"
-                        DataSource="Data"
-                        AutoGenerateColumns="false"
-                        IsColumnOptionsEnabled="true">
-                    <TextColumn Field="ID" HeaderText="ID" Width="90" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
-                    <TextColumn Field="ProductName" HeaderText="Product" Width="@("*>120")" />
-                    <ImageColumn IsEditable="false" Field="CountryFlag" HeaderText="Country" Width="@("*>120")" PaddingTop="5" PaddingBottom="5" ContentOpacity="1" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
-                    <NumericColumn Field="ProductPrice" HeaderText="Price" Width="@("*>110")" PositivePrefix="$" ShowGroupingSeparator="true" MinFractionDigits="2"/>
-                    <NumericColumn Field="OrderItems" HeaderText="Orders" Width="@("*>110")" />
-                    <NumericColumn Field="OrderValue" HeaderText="Order Value" Width="@("*>150")" PositivePrefix="$" ShowGroupingSeparator="true" />
-                    <DateTimeColumn Field="OrderDate" HeaderText="Order Date" Width="@("*>150")" HorizontalAlignment="@CellContentHorizontalAlignment.Right" DateTimeFormat="@DateTimeFormats.DateShort" />
-                    <NumericColumn Field="Margin" HeaderText="Margin" Width="@("*>120")" PositiveSuffix="%" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
-                    <NumericColumn Field="Profit" HeaderText="Profit" Width="@("*>120")" PositivePrefix="$" ShowGroupingSeparator="true" />
-                    <TextColumn Field="Status" HeaderText="Status" Width="@("*>110")" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
-                </DataGrid>
-            </div>
+            <IgbDataGrid Height="100%" Width="100%"
+                      DefaultColumnMinWidth="120"
+                      DataSource="Data"
+                      AutoGenerateColumns="false"
+                      IsColumnOptionsEnabled="true">
+                <IgbTextColumn Field="ID" HeaderText="ID" Width="90" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
+                <IgbTextColumn Field="ProductName" HeaderText="Product" Width="@("*>120")" />
+                <IgbImageColumn IsEditable="false" Field="CountryFlag" HeaderText="Country" Width="@("*>120")" PaddingTop="5" PaddingBottom="5" ContentOpacity="1" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
+                <IgbNumericColumn Field="ProductPrice" HeaderText="Price" Width="@("*>110")" PositivePrefix="$" ShowGroupingSeparator="true" MinFractionDigits="2"/>
+                <IgbNumericColumn Field="OrderItems" HeaderText="Orders" Width="@("*>110")" />
+                <IgbNumericColumn Field="OrderValue" HeaderText="Order Value" Width="@("*>150")" PositivePrefix="$" ShowGroupingSeparator="true" />
+                <IgbDateTimeColumn Field="OrderDate" HeaderText="Order Date" Width="@("*>150")" HorizontalAlignment="@CellContentHorizontalAlignment.Right" DateTimeFormat="@DateTimeFormats.DateShort" />
+                <IgbNumericColumn Field="Margin" HeaderText="Margin" Width="@("*>120")" PositiveSuffix="%" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
+                <IgbNumericColumn Field="Profit" HeaderText="Profit" Width="@("*>120")" PositivePrefix="$" ShowGroupingSeparator="true" />
+                <IgbTextColumn Field="Status" HeaderText="Status" Width="@("*>110")" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
+            </IgbDataGrid>
         }
     </div>
 </div>
@@ -35,7 +33,7 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        DataGridModule.Register(IgniteUIBlazor);
+        IgbDataGridModule.Register(IgniteUIBlazor);
 
         this.Data = SalesData.Create(100);
     }

@@ -16,22 +16,20 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <div style="overflow: hidden">
-                <DataGrid Height="100%" Width="100%" @ref="DataGridRef"
-                        HeaderClickAction="@GridHeaderClickAction"
-                        AutoGenerateColumns="false"
-                        DataSource="Data"
-                        DefaultColumnMinWidth="100"
-                        IsColumnOptionsEnabled="true">
-                    <TextColumn Field="ID" Width="@("*>110")" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
-                    <TextColumn Field="Property" Width="@("*>150")" HeaderText="Property" />
-                    <ImageColumn IsEditable="false" Field="CountryFlag" HeaderText="Country" Width="@("*>160")" ContentOpacity="1"
-                                HorizontalAlignment="@CellContentHorizontalAlignment.Center" PaddingTop="5" PaddingBottom="5" />
-                    <TextColumn Field="City" Width="@("*>150")" />
-                    <NumericColumn Field="Price" Width="@("*>130")" PositivePrefix="$" ShowGroupingSeparator="true" />
-                    <NumericColumn Field="Rooms" Width="@("*>110")" />
-                </DataGrid>
-            </div>
+            <IgbDataGrid Height="100%" Width="100%" @ref="DataGridRef"
+                      HeaderClickAction="@GridHeaderClickAction"
+                      AutoGenerateColumns="false"
+                      DataSource="Data"
+                      DefaultColumnMinWidth="100"
+                      IsColumnOptionsEnabled="true">
+                <IgbTextColumn Field="ID" Width="@("*>110")" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
+                <IgbTextColumn Field="Property" Width="@("*>150")" HeaderText="Property" />
+                <IgbImageColumn IsEditable="false" Field="CountryFlag" HeaderText="Country" Width="@("*>160")" ContentOpacity="1"
+                             HorizontalAlignment="@CellContentHorizontalAlignment.Center" PaddingTop="5" PaddingBottom="5" />
+                <IgbTextColumn Field="City" Width="@("*>150")" />
+                <IgbNumericColumn Field="Price" Width="@("*>130")" PositivePrefix="$" ShowGroupingSeparator="true" />
+                <IgbNumericColumn Field="Rooms" Width="@("*>110")" />
+            </IgbDataGrid>
         }
     </div>
 </div>
@@ -41,8 +39,8 @@
     private List<RealEstate> Data;
     private HeaderClickAction GridHeaderClickAction;
 
-    private DataGrid grid;
-    private DataGrid DataGridRef
+    private IgbDataGrid grid;
+    private IgbDataGrid DataGridRef
     {
         get { return grid; }
         set { grid = value; OnGridRefChanged(); StateHasChanged(); }
@@ -51,7 +49,7 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        DataGridModule.Register(IgniteUIBlazor);
+        IgbDataGridModule.Register(IgniteUIBlazor);
 
         this.Data = RealEstateData.Create(100);
         this.GridHeaderClickAction = HeaderClickAction.SortByMultipleColumnsTriState;
@@ -61,7 +59,7 @@
     {
         if (this.DataGridRef != null)
         {
-            this.DataGridRef.SortDescriptions.Add(new ColumnSortDescription()
+            this.DataGridRef.SortDescriptions.Add(new IgbColumnSortDescription()
             {
                 Field = "Property",
                 SortDirection = ListSortDirection.Descending

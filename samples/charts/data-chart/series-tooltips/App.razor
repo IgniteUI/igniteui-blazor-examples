@@ -15,22 +15,22 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <DataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true"
+            <IgbDataChart Height="100%" Width="100%" IsVerticalZoomEnabled="true"
                        IsHorizontalZoomEnabled="true" @ref="Chart">
-                <CategoryXAxis Name="xAxis" DataSource="Data" Label="Country" />
-                <NumericYAxis Name="yAxis" MinimumValue="0" AbbreviateLargeNumbers="true" />
+                <IgbCategoryXAxis Name="xAxis" DataSource="Data" Label="Country" />
+                <IgbNumericYAxis Name="yAxis" MinimumValue="0" AbbreviateLargeNumbers="true" />
 
-                <ColumnSeries Title="Coal" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Coal"
+                <IgbColumnSeries Title="Coal" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Coal"
                               DataSource="Data" IsTransitionInEnabled="true" ShowDefaultTooltip="true"/>
-                <ColumnSeries Title="Hydro" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Hydro"
+                <IgbColumnSeries Title="Hydro" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Hydro"
                               DataSource="Data" IsTransitionInEnabled="true" ShowDefaultTooltip="true"/>
-                <ColumnSeries Title="Nuclear" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Nuclear"
+                <IgbColumnSeries Title="Nuclear" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Nuclear"
                               DataSource="Data" IsTransitionInEnabled="true" ShowDefaultTooltip="true"/>
-                <ColumnSeries Title="Gas" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Gas"
+                <IgbColumnSeries Title="Gas" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Gas"
                               DataSource="Data" IsTransitionInEnabled="true" ShowDefaultTooltip="true"/>
-                <ColumnSeries Title="Oil" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Oil"
+                <IgbColumnSeries Title="Oil" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Oil"
                               DataSource="Data" IsTransitionInEnabled="true" ShowDefaultTooltip="true"/>
-            </DataChart>
+            </IgbDataChart>
         }
     </div>
 </div>
@@ -38,21 +38,21 @@
 @code {
 
     private List<EnergyProductionData.Energy> Data;
-    private DataChart Chart;
+    private IgbDataChart Chart;
 
-    private CategoryToolTipLayer CategoryTooltip = new CategoryToolTipLayer();
-    private ItemToolTipLayer ItemTooltip = new ItemToolTipLayer();
+    private IgbCategoryToolTipLayer CategoryTooltip = new IgbCategoryToolTipLayer();
+    private IgbItemToolTipLayer ItemTooltip = new IgbItemToolTipLayer();
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
 
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        NumberAbbreviatorModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        ItemToolTipLayerModule.Register(IgniteUIBlazor);
-        CategoryToolTipLayerModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbNumberAbbreviatorModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbItemToolTipLayerModule.Register(IgniteUIBlazor);
+        IgbCategoryToolTipLayerModule.Register(IgniteUIBlazor);
 
         this.Data = EnergyProductionData.Generate();
     }

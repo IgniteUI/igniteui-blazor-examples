@@ -14,7 +14,7 @@
     </div>
 
     <div class="container vertical">
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    @ref="Chart"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false" />
@@ -27,27 +27,27 @@
     private List<SampleFinancialItem> FinancialData;
     private List<SampleScatterPoint> ScatterData;
 
-    private NumericXAxis NumericXAxis;
-    private NumericYAxis NumericYAxis;
+    private IgbNumericXAxis NumericXAxis;
+    private IgbNumericYAxis NumericYAxis;
 
-    private CategoryXAxis CategoryXAxis;
-    private CategoryYAxis CategoryYAxis;
+    private IgbCategoryXAxis CategoryXAxis;
+    private IgbCategoryYAxis CategoryYAxis;
 
-    private TimeXAxis TimeXAxis;
+    private IgbTimeXAxis TimeXAxis;
 
-    private ColumnSeries ColumnSeries1;
-    private ColumnSeries ColumnSeries2;
+    private IgbColumnSeries ColumnSeries1;
+    private IgbColumnSeries ColumnSeries2;
 
-    private BarSeries BarSeries1;
-    private BarSeries BarSeries2;
+    private IgbBarSeries BarSeries1;
+    private IgbBarSeries BarSeries2;
 
-    private ScatterSeries ScatterSeries1;
-    private ScatterSeries ScatterSeries2;
+    private IgbScatterSeries ScatterSeries1;
+    private IgbScatterSeries ScatterSeries2;
 
-    private FinancialPriceSeries FinancialSeries;
+    private IgbFinancialPriceSeries FinancialSeries;
 
-    private DataChart _chart;
-    private DataChart Chart
+    private IgbDataChart _chart;
+    private IgbDataChart Chart
     {
         get { return _chart; }
         set
@@ -69,15 +69,15 @@
     {
         base.OnInitialized();
 
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        DataChartScatterCoreModule.Register(IgniteUIBlazor);
-        DataChartScatterModule.Register(IgniteUIBlazor);
-        DataChartFinancialModule.Register(IgniteUIBlazor);
-        DataChartFinancialCoreModule.Register(IgniteUIBlazor);
-        DataChartVerticalCategoryModule.Register(IgniteUIBlazor);
-        TimeXAxisModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartScatterCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartScatterModule.Register(IgniteUIBlazor);
+        IgbDataChartFinancialModule.Register(IgniteUIBlazor);
+        IgbDataChartFinancialCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartVerticalCategoryModule.Register(IgniteUIBlazor);
+        IgbTimeXAxisModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
     }
 
     private void OnChart()
@@ -91,7 +91,7 @@
 
     public void InitCategorySeries()
     {
-        this.ColumnSeries1 = new ColumnSeries()
+        this.ColumnSeries1 = new IgbColumnSeries()
         {
             DataSource = this.CategoryData,
             XAxis = this.CategoryXAxis,
@@ -101,7 +101,7 @@
             ValueMemberPath = "USA"
         };
 
-        this.ColumnSeries2 = new ColumnSeries()
+        this.ColumnSeries2 = new IgbColumnSeries()
         {
             DataSource = this.CategoryData,
             XAxis = this.CategoryXAxis,
@@ -111,7 +111,7 @@
             ValueMemberPath = "RUS"
         };
 
-        this.BarSeries1 = new BarSeries()
+        this.BarSeries1 = new IgbBarSeries()
         {
             DataSource = this.CategoryData,
             XAxis = this.NumericXAxis,
@@ -121,7 +121,7 @@
             ValueMemberPath = "USA"
         };
 
-        this.BarSeries2 = new BarSeries()
+        this.BarSeries2 = new IgbBarSeries()
         {
             DataSource = this.CategoryData,
             XAxis = this.NumericXAxis,
@@ -134,7 +134,7 @@
 
     public void InitAxes()
     {
-        this.CategoryXAxis = new CategoryXAxis()
+        this.CategoryXAxis = new IgbCategoryXAxis()
         {
             Name = "CategoryXAxis",
             Title = "Category X Axis",
@@ -142,7 +142,7 @@
             Label = "Year"
         };
 
-        this.CategoryYAxis = new CategoryYAxis()
+        this.CategoryYAxis = new IgbCategoryYAxis()
         {
             Name = "CategoryYAxis",
             Title = "Category Y Axis",
@@ -150,10 +150,10 @@
             Label = "Year"
         };
 
-        this.NumericXAxis = new NumericXAxis() { Name = "NumericXAxis", Title = "Numeric X Axis" };
-        this.NumericYAxis = new NumericYAxis() { Name = "NumericYAxis", Title = "Numeric Y Axis" };
+        this.NumericXAxis = new IgbNumericXAxis() { Name = "NumericXAxis", Title = "Numeric X Axis" };
+        this.NumericYAxis = new IgbNumericYAxis() { Name = "NumericYAxis", Title = "Numeric Y Axis" };
 
-        this.TimeXAxis = new TimeXAxis()
+        this.TimeXAxis = new IgbTimeXAxis()
         {
             Name = "TimeXAxis",
             Title = "Time X Axis",
@@ -165,7 +165,7 @@
 
     public void InitFinancialSeries()
     {
-        this.FinancialSeries = new FinancialPriceSeries()
+        this.FinancialSeries = new IgbFinancialPriceSeries()
         {  //MAY BE MISSING NAME IF THIS DOESN'T WORK...
             DataSource = this.FinancialData,
             XAxis = this.TimeXAxis,
@@ -182,7 +182,7 @@
 
     public void InitScatterSeries()
     {
-        this.ScatterSeries1 = new ScatterSeries() {
+        this.ScatterSeries1 = new IgbScatterSeries() {
             DataSource = this.ScatterData,
             XAxis = this.NumericXAxis,
             YAxis = this.NumericYAxis,
@@ -192,7 +192,7 @@
             YMemberPath = "SinValue"
         };
 
-        this.ScatterSeries2 = new ScatterSeries() {
+        this.ScatterSeries2 = new IgbScatterSeries() {
             DataSource = this.ScatterData,
             XAxis = this.NumericXAxis,
             YAxis = this.NumericYAxis,

@@ -5,63 +5,63 @@
     <div class="options vertical">
         <span class="legend-title">Population Demographic of Africa by Age</span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
 
     <div class="container horizontal" >
-         <DataChart Height="100%" Width="100%"  @ref="Chart1"
+         <IgbDataChart Height="100%" Width="100%"  @ref="Chart1"
                     IsHorizontalZoomEnabled="false" GridMode="GridMode.BeforeSeries"
                     IsVerticalZoomEnabled="false">
-             <NumericXAxis  Name="xAxis" Title="Males (Millions)" IsInverted="true" />
-             <CategoryYAxis Name="yAxis" Label="Age" DataSource="Data" Gap="0.4" Interval="1"
+             <IgbNumericXAxis()  Name="xAxis" Title="Males (Millions)" IsInverted="true" />
+             <IgbCategoryYAxis Name="yAxis" Label="Age" DataSource="Data" Gap="0.4" Interval="1"
                             LabelLocation="AxisLabelsLocation.OutsideRight"
                             LabelTextColor="Transparent" LabelExtent="10" />
-             <BarSeries XAxisName="xAxis"
+             <IgbBarSeries XAxisName="xAxis"
                         YAxisName="yAxis" Brush="#1885F7" Outline="#1885F7"
                         DataSource="Data"
                         ValueMemberPath="Male" Title="Males"
                         ShowDefaultTooltip="true"
                         IsTransitionInEnabled="true"
                         IsHighlightingEnabled="true">
-             </BarSeries>
-         </DataChart>
-         <DataChart Height="100%" Width="100%" @ref="Chart2"
+             </IgbBarSeries>
+         </IgbDataChart>
+         <IgbDataChart Height="100%" Width="100%" @ref="Chart2"
                     IsHorizontalZoomEnabled="false" GridMode="GridMode.BeforeSeries"
                     IsVerticalZoomEnabled="false">
-             <NumericXAxis  Name="xAxis" Title="Female (Millions)" IsInverted="false"   />
-             <CategoryYAxis Name="yAxis" Label="Age" DataSource="Data" Gap="0.4" Interval="1"
+             <IgbNumericXAxis()  Name="xAxis" Title="Female (Millions)" IsInverted="false"   />
+             <IgbCategoryYAxis Name="yAxis" Label="Age" DataSource="Data" Gap="0.4" Interval="1"
                             LabelLocation="AxisLabelsLocation.OutsideLeft"
                             LabelHorizontalAlignment="HorizontalAlignment.Center"
                             LabelRightMargin="5" LabelLeftMargin="0"/>
-             <BarSeries XAxisName="xAxis"
+             <IgbBarSeries XAxisName="xAxis"
                         YAxisName="yAxis" Brush="#D93EF4" Outline="#D93EF4"
                         DataSource="Data"
                         ValueMemberPath="Female" Title="Females"
                         ShowDefaultTooltip="true"
                         IsTransitionInEnabled="true"
                         IsHighlightingEnabled="true">
-             </BarSeries>
-         </DataChart>
+             </IgbBarSeries>
+         </IgbDataChart>
     </div>
 </div>
 
 @code {
 
-    private DataChart Chart1;
-    private DataChart Chart2;
-    private Legend Legend;
+    private IgbDataChart Chart1;
+    private IgbDataChart Chart2;
+    private IgbLegend Legend;
 
     private List<Population> Data = new List<Population>();
 
     protected override void OnInitialized()
     {
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        DataChartVerticalCategoryModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        LegendModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartVerticalCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbLegendModule.Register(IgniteUIBlazor);
 
         var rand = new Random();
         for (int i = 0; i <= 80; i+=5)

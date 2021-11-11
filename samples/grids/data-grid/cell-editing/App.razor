@@ -27,35 +27,33 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <div style="overflow: hidden">
-                <DataGrid Height="100%" Width="100%" @ref="DataGridRef"
-                        EditModeClickAction="@GridEditModeClickAction"
-                        DefaultColumnMinWidth="120"
-                        AutoGenerateColumns="false"
-                        DataSource="Data"
-                        EditMode="@GridEditMode"
-                        ActivationMode="@GridActivationMode.Cell"
-                        SelectionMode="@GridSelectionMode.SingleRow"
-                        SelectionBehavior="@GridSelectionBehavior.ModifierBased"
-                        IsColumnOptionsEnabled="true"
-                        RowEditStarted="OnRowEditStarted"
-                        RowEditEnded="OnRowEditEnded">
-                    <TextColumn Field="Name" Width="@("*>150")" />
-                    <TextColumn Field="Street" HeaderText="Street" Width="@("*>160")" />
-                    <TextColumn Field="City" HeaderText="City" Width="@("*>120")" />
-                    <NumericColumn Field="Salary" HeaderText="Salary" PositivePrefix="$" ShowGroupingSeparator="true" Width="@("*>120")" />
-                    <ImageColumn IsEditable="false" Field="Photo" HeaderText="Photo" ContentOpacity="1" HorizontalAlignment="@CellContentHorizontalAlignment.Center" Width="@("*>110")" />
-                    <DateTimeColumn Field="Birthday" HeaderText="Date of Birth" Width="@("*>170")" />
-                    @*<TemplateColumn PropertyPath="DeleteColumn" />  TODO!! *@
-                </DataGrid>
-            </div>
+            <IgbDataGrid Height="100%" Width="100%" @ref="DataGridRef"
+                      EditModeClickAction="@GridEditModeClickAction"
+                      DefaultColumnMinWidth="120"
+                      AutoGenerateColumns="false"
+                      DataSource="Data"
+                      EditMode="@GridEditMode"
+                      ActivationMode="@GridActivationMode.Cell"
+                      SelectionMode="@GridSelectionMode.SingleRow"
+                      SelectionBehavior="@GridSelectionBehavior.ModifierBased"
+                      IsColumnOptionsEnabled="true"
+                      RowEditStarted="OnRowEditStarted"
+                      RowEditEnded="OnRowEditEnded">
+                <IgbTextColumn Field="Name" Width="@("*>150")" />
+                <IgbTextColumn Field="Street" HeaderText="Street" Width="@("*>160")" />
+                <IgbTextColumn Field="City" HeaderText="City" Width="@("*>120")" />
+                <IgbNumericColumn Field="Salary" HeaderText="Salary" PositivePrefix="$" ShowGroupingSeparator="true" Width="@("*>120")" />
+                <IgbImageColumn IsEditable="false" Field="Photo" HeaderText="Photo" ContentOpacity="1" HorizontalAlignment="@CellContentHorizontalAlignment.Center" Width="@("*>110")" />
+                <IgbDateTimeColumn Field="Birthday" HeaderText="Date of Birth" Width="@("*>170")" />
+                @*<IgbTemplateColumn PropertyPath="DeleteColumn" />  TODO!! *@
+            </IgbDataGrid>
         }
     </div>
 </div>
 
 @code {
 
-    private DataGrid DataGridRef;
+    private IgbDataGrid DataGridRef;
     private EditModeClickAction GridEditModeClickAction = EditModeClickAction.SingleClick;
     private EditModeType _editMode;
     public EditModeType GridEditMode
@@ -82,7 +80,7 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        DataGridModule.Register(IgniteUIBlazor);
+        IgbDataGridModule.Register(IgniteUIBlazor);
 
         Data = EmployeeData.Create(100, false);
         this.GridEditMode = EditModeType.Cell;
@@ -109,7 +107,7 @@
 
     }
 
-    private void OnRowEditEnded(GridRowEditEndedEventArgs e)
+    private void OnRowEditEnded(IgbGridRowEditEndedEventArgs e)
     {
         if (_editMode == EditModeType.CellBatch)
         {
@@ -121,7 +119,7 @@
         }
         StateHasChanged();
     }
-    private void OnRowEditStarted(GridRowEditStartedEventArgs e)
+    private void OnRowEditStarted(IgbGridRowEditStartedEventArgs e)
     {
         if (_editMode == EditModeType.CellBatch)
         {

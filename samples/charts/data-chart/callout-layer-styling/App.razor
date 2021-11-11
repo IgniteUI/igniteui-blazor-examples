@@ -5,15 +5,15 @@
     <div class="container vertical">
         @if (Data != null)
         {
-        <DataChart Height="100%" Width="100%" Subtitle="Renewable Energy Generated">
-            <CategoryXAxis Name="xAxis" DataSource="Data" Label="Year" />
-            <NumericYAxis Name="yAxis" Title="TWh" LabelLocation="AxisLabelsLocation.OutsideRight" />
+        <IgbDataChart Height="100%" Width="100%" Subtitle="Renewable Energy Generated">
+            <IgbCategoryXAxis Name="xAxis" DataSource="Data" Label="Year" />
+            <IgbNumericYAxis Name="yAxis" Title="TWh" LabelLocation="AxisLabelsLocation.OutsideRight" />
 
-            <LineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="USA" />
+            <IgbLineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="USA" />
 
-            <CalloutLayer DataSource="CalloutData" XMemberPath="Index" YMemberPath="Value" LabelMemberPath="Label"
+            <IgbCalloutLayer DataSource="CalloutData" XMemberPath="Index" YMemberPath="Value" LabelMemberPath="Label"
                           CalloutLeaderBrush="Black" CalloutOutline="Black" CalloutBackground="Orange" CalloutTextColor="Black" CalloutStrokeThickness="2"/>
-        </DataChart>
+        </IgbDataChart>
         }
     </div>
 </div>
@@ -25,11 +25,11 @@
 
     protected override void OnInitialized()
     {
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        DataChartAnnotationModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        AnnotationLayerProxyModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartAnnotationModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbAnnotationLayerProxyModule.Register(IgniteUIBlazor);
 
         for (int i = 0; i < this.Data.Count; i++)
         {

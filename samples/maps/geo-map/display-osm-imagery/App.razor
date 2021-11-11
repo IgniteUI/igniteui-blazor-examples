@@ -4,24 +4,24 @@
 <div class="container vertical">
 
     <div class="container vertical">
-        <GeographicMap Height="100%" Width="100%" Zoomable="true"
+        <IgbGeographicMap Height="100%" Width="100%" Zoomable="true"
                        BackgroundContent="@OSMImagery"
                        WindowRect="@GeoBounds">
-        </GeographicMap>
+        </IgbGeographicMap>
     </div>
 </div>
 
 @code {
 
-    private OpenStreetMapImagery OSMImagery;
+    private IgbOpenStreetMapImagery OSMImagery;
     private Rect GeoBounds;
 
     protected override void OnInitialized()
     {
-        GeographicMapModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbGeographicMapModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
 
-        this.OSMImagery = new OpenStreetMapImagery();
+        this.OSMImagery = new IgbOpenStreetMapImagery();
         this.GeoBounds = new Rect() { Left = - 150, Top = -60, Width = 315, Height = 140 };
     }
 }

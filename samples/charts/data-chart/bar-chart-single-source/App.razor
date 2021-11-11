@@ -3,7 +3,7 @@
 
 <div class="container vertical">
     <div class="container vertical">
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    ChartTitle="Where Online Shoppers Start Their Search"
                    TitleHorizontalAlignment="HorizontalAlignment.Left"
                    TitleLeftMargin="25"
@@ -12,17 +12,17 @@
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <CategoryYAxis Name="yAxis" Label="Shop" DataSource="Data" IsInverted="true" Gap="0.75" />
-            <NumericXAxis Name="xAxis" LabelFormat="{0}%" />
-            <BarSeries XAxisName="xAxis"
+            <IgbCategoryYAxis Name="yAxis" Label="Shop" DataSource="Data" IsInverted="true" Gap="0.75" />
+            <IgbNumericXAxis() Name="xAxis" LabelFormat="{0}%" />
+            <IgbBarSeries XAxisName="xAxis"
                        YAxisName="yAxis"
                        DataSource="Data"
                        ValueMemberPath="Percent"
                        ShowDefaultTooltip="true"
                        IsTransitionInEnabled="true"
                        IsHighlightingEnabled="true">
-            </BarSeries>
-        </DataChart>
+            </IgbBarSeries>
+        </IgbDataChart>
     </div>
 </div>
 
@@ -32,11 +32,11 @@
 
     protected override void OnInitialized()
     {
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        DataChartVerticalCategoryModule.Register(IgniteUIBlazor);
-        NumberFormatSpecifierModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbDataChartVerticalCategoryModule.Register(IgniteUIBlazor);
+        IgbNumberFormatSpecifierModule.Register(IgniteUIBlazor);
     }
 }
