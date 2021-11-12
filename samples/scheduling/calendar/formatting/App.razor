@@ -3,13 +3,26 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <label>TODO!!</label>
+    <IgbRadioGroup Alignment="RadioGroupAlignment.Horizontal">
+        <IgbRadio Value="en" Checked="true">EN</IgbRadio>
+        <IgbRadio Value="de">DE</IgbRadio>
+        <IgbRadio Value="fr">FR</IgbRadio>
+        <IgbRadio Value="ar">AR</IgbRadio>
+        <IgbRadio Value="ja">JA</IgbRadio>
+    </IgbRadioGroup>
+
+    <div style="width: 400px; border: 1px solid gainsboro;">
+        <IgbCalendar FirstDayOfWeek="IgniteUI.Blazor.Controls.DayOfWeek.Monday">
+        </IgbCalendar>
+    </div>
 </div>
 
 @code {
     
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
+        IgbCalendarModule.Register(IgniteUIBlazor);
+        IgbRadioGroupModule.Register(IgniteUIBlazor);
+        IgbRadioModule.Register(IgniteUIBlazor);
     }
 }
