@@ -3,13 +3,97 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <label>TODO!!</label>
+    <div id="root" style="display: flex;">
+        <IgbNavDrawer id="navDrawer" Open="true" style="position: relative">
+            <IgbNavDrawerHeaderItem>
+                Sample Drawer
+            </IgbNavDrawerHeaderItem>
+
+            <IgbNavDrawerItem>
+                <IgbIcon @ref="@HomeIcon" Collection="material" IconName="home">@*slot="icon"*@ </IgbIcon>
+                <span slot="content">Home</span>
+            </IgbNavDrawerItem>
+
+            <IgbNavDrawerItem>
+                <IgbIcon @ref="@SearchIcon" Collection="material" IconName="search">@*slot="icon"*@ </IgbIcon>
+                <span slot="content">Search</span>
+            </IgbNavDrawerItem>
+
+            <div slot="mini">
+                <IgbNavDrawerItem>
+                    <IgbIcon @ref="@HomeIcon2" Collection="material" IconName="home2">@*slot="icon"*@</IgbIcon>
+                </IgbNavDrawerItem>
+
+                <IgbNavDrawerItem>
+                    <IgbIcon @ref="@SearchIcon2" Collection="material" IconName="search2">@*slot="icon"*@</IgbIcon>
+                </IgbNavDrawerItem>
+            </div>
+        </IgbNavDrawer>
+
+        <div id="content" style="width: 100%">
+            <IgbButton id="toggleBtn" style="margin-left: 50px;">Toggle</IgbButton>
+        </div>
+    </div>
 </div>
 
 @code {
-    
+
+    public IgbIcon HomeIcon { get; set; }
+    public IgbIcon SearchIcon { get; set; }
+    public IgbIcon HomeIcon2 { get; set; }
+    public IgbIcon SearchIcon2 { get; set; }
+
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
+        IgbNavDrawerModule.Register(IgniteUIBlazor);
+        IgbNavDrawerHeaderItemModule.Register(IgniteUIBlazor);
+        IgbNavDrawerItemModule.Register(IgniteUIBlazor);
+        IgbIconModule.Register(IgniteUIBlazor);
+        IgbButtonModule.Register(IgniteUIBlazor);
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        if (this.HomeIcon != null && firstRender)
+        {
+            this.HomeIcon.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.HomeIcon.RegisterIcon("home",
+                    "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg",
+                    "material");
+            }));
+        }
+
+        if (this.SearchIcon != null && firstRender)
+        {
+            this.SearchIcon.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.SearchIcon.RegisterIcon("search",
+                    "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_search_24px.svg",
+                    "material");
+            }));
+        }
+
+        if (this.HomeIcon2 != null && firstRender)
+        {
+            this.HomeIcon2.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.HomeIcon2.RegisterIcon("home2",
+                    "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg",
+                    "material");
+            }));
+        }
+
+        if (this.SearchIcon2 != null && firstRender)
+        {
+            this.SearchIcon2.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.SearchIcon2.RegisterIcon("search2",
+                    "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_search_24px.svg",
+                    "material");
+            }));
+        }
     }
 }

@@ -1,0 +1,28 @@
+
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <IgbRadioGroup id="radio-group" Alignment="RadioGroupAlignment.Horizontal">
+        <IgbRadio Value="small" LabelPosition="RadioLabelPosition.After">Small</IgbRadio>
+        <IgbRadio Value="medium" LabelPosition="RadioLabelPosition.After">Medium</IgbRadio>
+        <IgbRadio Value="large" LabelPosition="RadioLabelPosition.After" Checked="true">Large</IgbRadio>
+    </IgbRadioGroup>
+
+    <div class="button-container">
+        <IgbButton style="margin:5px" id="flat-btn" Variant="ButtonVariant.Flat">Flat</IgbButton>
+        <IgbButton style="margin:5px" id="contained-btn" Variant="ButtonVariant.Contained">Contained</IgbButton>
+        <IgbButton style="margin:5px" id="outlined-btn" Variant="ButtonVariant.Outlined">Outlined</IgbButton>
+        <IgbButton style="margin:5px" id="fab-btn" Variant="ButtonVariant.Fab">Like</IgbButton>
+    </div>
+</div>
+
+@code {
+    
+    protected override void OnInitialized()
+    {
+        IgbButtonModule.Register(IgniteUIBlazor);
+        IgbRadioModule.Register(IgniteUIBlazor);
+        IgbRadioGroupModule.Register(IgniteUIBlazor);
+    }
+}

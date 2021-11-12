@@ -3,13 +3,57 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <label>TODO!!</label>
+    <IgbNavDrawer Open="true">
+        <IgbNavDrawerHeaderItem>
+            Sample Drawer
+        </IgbNavDrawerHeaderItem>
+
+        <IgbNavDrawerItem>
+            <IgbIcon @ref="@HomeIcon" slot="icon" IconName="home" Collection="material"></IgbIcon>
+            <span slot="content">Home</span>
+        </IgbNavDrawerItem>
+
+        <IgbNavDrawerItem>
+            <IgbIcon @ref="@SearchIcon" slot="icon" IconName="search" Collection="material"></IgbIcon>
+            <span slot="content">Search</span>
+        </IgbNavDrawerItem>
+    </IgbNavDrawer>
 </div>
 
 @code {
-    
+
+    public IgbIcon HomeIcon { get; set; }
+    public IgbIcon SearchIcon { get; set; }
+
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
+        IgbNavDrawerModule.Register(IgniteUIBlazor);
+        IgbNavDrawerHeaderItemModule.Register(IgniteUIBlazor);
+        IgbIconModule.Register(IgniteUIBlazor);
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        if (this.HomeIcon != null && firstRender)
+        {
+            this.HomeIcon.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.HomeIcon.RegisterIcon("home",
+                    "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_search_24px.svg",
+                    "material");
+            }));
+        }
+
+        if (this.SearchIcon != null && firstRender)
+        {
+            this.SearchIcon.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.SearchIcon.RegisterIcon("search",
+                    "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg",
+                    "material");
+            }));
+        }
     }
 }
