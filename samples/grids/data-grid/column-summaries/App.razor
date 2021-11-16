@@ -6,10 +6,10 @@
     <div class="options horizotnal">
         <span class="options-item">Summary Scope:</span>
         <select class="options-item" @bind="GridSummaryScope">
-            <option>@DataSourceSummaryScope.Root</option>
-            <option>@DataSourceSummaryScope.Groups</option>
-            <option>@DataSourceSummaryScope.Both</option>
-            <option>@DataSourceSummaryScope.None</option>
+            <option>@SummaryScope.Root</option>
+            <option>@SummaryScope.Groups</option>
+            <option>@SummaryScope.Both</option>
+            <option>@SummaryScope.None</option>
         </select>
         <span class="options-item" >Group Summary Display Mode:</span>
         <select class="options-item" @bind="GridGroupSummaryDisplayMode">
@@ -30,7 +30,7 @@
                       GroupSummaryDisplayMode="@GridGroupSummaryDisplayMode"
                       AutoGenerateColumns="false"
                       IsGroupCollapsable="true"
-                      GroupHeaderDisplayMode="@DataSourceSectionHeaderDisplayMode.Combined"
+                      GroupHeaderDisplayMode="@GroupHeaderDisplayMode.Combined"
                       IsColumnOptionsEnabled="true"
                       DataSource="Data">
                     <IgbNumericColumn Field="ID" Width="@("*>120")" HeaderText="ID" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
@@ -50,7 +50,7 @@
 @code {
 
     private List<Sale> Data;
-    private DataSourceSummaryScope GridSummaryScope;
+    private SummaryScope GridSummaryScope;
     private GroupSummaryDisplayMode GridGroupSummaryDisplayMode;
 
     private IgbDataGrid _grid;
@@ -73,7 +73,7 @@
 
         this.Data = SalesData.Create(50);
 
-        this.GridSummaryScope = DataSourceSummaryScope.Root;
+        this.GridSummaryScope = SummaryScope.Root;
         this.GridGroupSummaryDisplayMode = GroupSummaryDisplayMode.RowBottom;
     }
 
