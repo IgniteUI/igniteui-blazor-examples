@@ -17,11 +17,11 @@
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <NumericAngleAxis Name="angleAxis"
+            <IgbNumericAngleAxis Name="angleAxis"
                               MinimumValue="0" MaximumValue="360" Interval="30"
                               StartAngleOffset="270"
                               LabelExtent="30"/>
-            <NumericRadiusAxis Name="radiusAxis"
+            <IgbNumericRadiusAxis Name="radiusAxis"
                                RadiusExtentScale="0.85"
                                InnerRadiusExtentScale="0"
                                MinimumValue="0" MaximumValue="3" Interval="1"
@@ -29,7 +29,7 @@
                                StrokeThickness="0"
                                LabelLeftMargin="10"/>
 
-            <PolarLineSeries DataSource="PolarConnections"
+            <IgbPolarLineSeries DataSource="PolarConnections"
                              AngleAxisName="angleAxis"
                              AngleMemberPath="Angle"
                              RadiusAxisName="radiusAxis"
@@ -43,7 +43,7 @@
 
                 @foreach (var markers in this.PolarMarkersByLevel.Values)
                 {
-                    <PolarScatterSeries DataSource="@markers"
+                    <IgbPolarScatterSeries DataSource="@markers"
                                         AngleAxisName="angleAxis"
                                         AngleMemberPath="Angle"
                                         RadiusAxisName="radiusAxis"

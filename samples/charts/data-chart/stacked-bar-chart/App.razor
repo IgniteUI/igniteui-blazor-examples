@@ -14,14 +14,14 @@
             <IgbDataChart Height="100%" Width="100%" IsVerticalZoomEnabled="false" IsHorizontalZoomEnabled="false">
 
                 <IgbCategoryYAxis Name="yAxis" DataSource="Data" Label="Location" Gap="0.75" IsInverted="true" />
-                <IgbNumericXAxis() Name="xAxis" MinimumValue="0" Title="TWh" />
+                <IgbNumericXAxis Name="xAxis" MinimumValue="0" Title="TWh" />
 
-                <StackedBarSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="true" AreaFillOpacity="1" Legend="Legend">
-                    <StackedFragmentSeries ValueMemberPath="Hydro" />
-                    <StackedFragmentSeries ValueMemberPath="Wind" />
-                    <StackedFragmentSeries ValueMemberPath="Solar" />
-                    <StackedFragmentSeries ValueMemberPath="Other" />
-                </StackedBarSeries>
+                <IgbStackedBarSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="true" AreaFillOpacity="1" Legend="Legend">
+                    <IgbStackedFragmentSeries ValueMemberPath="Hydro" />
+                    <IgbStackedFragmentSeries ValueMemberPath="Wind" />
+                    <IgbStackedFragmentSeries ValueMemberPath="Solar" />
+                    <IgbStackedFragmentSeries ValueMemberPath="Other" />
+                </IgbStackedBarSeries>
                 <IgbCalloutLayer DataSource="CalloutData" XMemberPath="X" YMemberPath="Y" LabelMemberPath="Label"
                               CalloutBackground="Transparent" CalloutLeaderBrush="Transparent" CalloutTextColor="Black" />
             </IgbDataChart>
