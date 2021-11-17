@@ -30,12 +30,12 @@
                    Legend="Legend"
                    @ref="Chart">
 
-            <NumericAngleAxis Name="angleAxis"
+            <IgbNumericAngleAxis Name="angleAxis"
                               StartAngleOffset="-90"
                               Interval="30"
                               MinimumValue="0"
                               MaximumValue="360" />
-            <NumericRadiusAxis Name="radiusAxis"
+            <IgbNumericRadiusAxis Name="radiusAxis"
                                InnerRadiusExtentScale="0.1"
                                RadiusExtentScale="0.9"
                                MinimumValue="0"
@@ -44,7 +44,7 @@
 
             @if (SeriesType == "Polar Area Chart")
             {
-                <PolarAreaSeries DataSource="Data"
+                <IgbPolarAreaSeries DataSource="Data"
                                  AngleAxisName="angleAxis"
                                  AngleMemberPath="Direction"
                                  RadiusMemberPath="WindSpeed"
@@ -52,7 +52,7 @@
                                  ShowDefaultTooltip="true"
                                  Title="Wind Speed"
                                  MarkerType="MarkerType.Circle" />
-                <PolarAreaSeries DataSource="Data"
+                <IgbPolarAreaSeries DataSource="Data"
                                  AngleAxisName="angleAxis"
                                  AngleMemberPath="Direction"
                                  RadiusMemberPath="BoatSpeed"
@@ -64,62 +64,62 @@
 
             @if (SeriesType == "Polar Spline Chart")
             {
-                <PolarSplineSeries AngleMemberPath="Direction"
+                <IgbPolarSplineSeries AngleMemberPath="Direction"
                                    RadiusMemberPath="BoatSpeed"
                                    RadiusAxisName="radiusAxis"
                                    AngleAxisName="angleAxis"
                                    MarkerType="MarkerType.Circle"
                                    Title="Boat Speed"
                                    DataSource="Data">
-                </PolarSplineSeries>
-                <PolarSplineSeries AngleMemberPath="Direction"
+                </IgbPolarSplineSeries>
+                <IgbPolarSplineSeries AngleMemberPath="Direction"
                                    RadiusMemberPath="WindSpeed"
                                    RadiusAxisName="radiusAxis"
                                    AngleAxisName="angleAxis"
                                    MarkerType="MarkerType.Circle"
                                    Title="Wind Speed"
                                    DataSource="Data">
-                </PolarSplineSeries>
+                </IgbPolarSplineSeries>
             }
 
             @if (SeriesType == "Polar Line Chart")
             {
-                <PolarLineSeries AngleMemberPath="Direction"
+                <IgbPolarLineSeries AngleMemberPath="Direction"
                                  RadiusMemberPath="BoatSpeed"
                                  RadiusAxisName="radiusAxis"
                                  AngleAxisName="angleAxis"
                                  MarkerType="MarkerType.Circle"
                                  Title="Boat Speed"
                                  DataSource="Data">
-                </PolarLineSeries>
-                <PolarLineSeries AngleMemberPath="Direction"
+                </IgbPolarLineSeries>
+                <IgbPolarLineSeries AngleMemberPath="Direction"
                                  RadiusMemberPath="WindSpeed"
                                  RadiusAxisName="radiusAxis"
                                  AngleAxisName="angleAxis"
                                  MarkerType="MarkerType.Circle"
                                  Title="Wind Speed"
                                  DataSource="Data">
-                </PolarLineSeries>
+                </IgbPolarLineSeries>
             }
 
             @if (SeriesType == "Polar Scatter Chart")
             {
-                <PolarScatterSeries AngleMemberPath="Direction"
+                <IgbPolarScatterSeries AngleMemberPath="Direction"
                         RadiusMemberPath="BoatSpeed"
                         RadiusAxisName="radiusAxis"
                         AngleAxisName="angleAxis"
                         MarkerType="MarkerType.Circle"
                         Title="Boat Speed"
                         DataSource="Data">
-                </PolarScatterSeries>
-                <PolarScatterSeries AngleMemberPath="Direction"
+                </IgbPolarScatterSeries>
+                <IgbPolarScatterSeries AngleMemberPath="Direction"
                         RadiusMemberPath="WindSpeed"
                         RadiusAxisName="radiusAxis"
                         AngleAxisName="angleAxis"
                         MarkerType="MarkerType.Circle"
                         Title="Wind Speed"
                         DataSource="Data">
-                </PolarScatterSeries>
+                </IgbPolarScatterSeries>
             }
         </IgbDataChart>
         }
