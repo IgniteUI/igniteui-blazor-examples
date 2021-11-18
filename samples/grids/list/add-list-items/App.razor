@@ -1,15 +1,25 @@
-
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <label>TODO!!</label>
+    <IgbList>
+        <IgbListHeader>Header</IgbListHeader>
+        <IgbListItem>
+            <h2 slot="title">Item 1</h2>
+        </IgbListItem>
+        <IgbListItem>
+            <h2 slot="title">Item 2</h2>
+        </IgbListItem>
+        <IgbListItem>
+            <h2 slot="title">Item 3</h2>
+        </IgbListItem>
+    </IgbList>
 </div>
 
 @code {
     
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
+        IgbListModule.Register(IgniteUIBlazor);
     }
 }

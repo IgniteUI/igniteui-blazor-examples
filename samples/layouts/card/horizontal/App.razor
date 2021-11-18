@@ -1,15 +1,65 @@
-
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="container vertical">
-    <label>TODO!!</label>
+<div class="container vertical" style="align-items: center">
+
+    <style>
+        .card-wrapper {
+            max-width: 400px;
+            min-width: 250px;
+        }
+
+        .card-horizontal {
+            display: flex;
+            flex-direction: row;
+            flex: 1 1 0%;
+        }
+
+        .card-horizontal img {
+            width: 64px;
+            height: 64px;
+        }
+
+        .card-horizontal igc-card-actions {
+            justify-content: center;
+        }
+
+        .divider {
+            border-right: 1px solid darkgray;
+        }
+    </style>
+
+    <div class="card-wrapper">
+        <IgbCard>
+            <div class="card-horizontal">
+                <div>
+                    <IgbCardHeader>
+                        <img slot="thumbnail"/>
+                        <h5 slot="title">Rozes</h5>
+                        <h5 slot="subtitle">Under the Grave (2016)</h5>
+                    </IgbCardHeader>
+                    <IgbCardContent>
+                        <p>
+                            As I have always said: I write what's real and what's true,
+                            even if it means throwing myself under the bus.
+                        </p>
+                    </IgbCardContent>
+                </div>
+                <div class="divider"></div>
+                <IgbCardActions>
+                    <span class="material-icons">skip_previous</span>
+                    <span class="material-icons">play_arrow</span>
+                    <span class="material-icons">skip_next</span>
+                </IgbCardActions>
+            </div>
+        </IgbCard>
+    </div>
 </div>
 
 @code {
     
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
+        IgbCardModule.Register(IgniteUIBlazor);
     }
 }

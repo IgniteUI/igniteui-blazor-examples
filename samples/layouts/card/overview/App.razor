@@ -1,15 +1,58 @@
-
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="container vertical">
-    <label>TODO!!</label>
+<div class="container vertical" style="align-items: center">
+
+    <style>
+        .card-wrapper {
+            max-width: 320px;
+            min-width: 220px;
+        }       
+    </style>
+
+    <div class="card-wrapper">
+        <IgbCard>
+            <IgbCardMedia>
+                <img src="https://images.unsplash.com/photo-1518235506717-e1ed3306a89b?ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=50">
+            </IgbCardMedia>
+            <IgbCardHeader>
+                <h3 slot="title">New York City</h3>
+                <h5 slot="subtitle">City in New York</h5>
+            </IgbCardHeader>
+            
+            <IgbCardContent>
+               <p>New York City comprises 5 boroughs sitting where the
+                   Hudson River meets the Atlantic Ocean. At its core is Manhattan,
+                   a densely populated borough that's among the world's major commercial,
+                   financial and cultural centers.</p>
+            </IgbCardContent>
+
+            <IgbCardActions>
+                <IgbButton slot="start">
+                    <IgbRipple />
+                    Read more
+                </IgbButton>
+                <div slot="end">
+                    <IgbIconButton name="twitter" Href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.shutterstock.com%2Fsearch%2Ffacebook%2Blogo&psig=AOvVaw3AXisoVU3CbkgoC8ltGNfV&ust=1637347009201000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCOiO9ojHovQCFQAAAAAdAAAAABAD">
+                        <IgbRipple />
+                    </IgbIconButton>
+                    <IgbIconButton name="facebook" >
+                        <IgbRipple />
+                    </IgbIconButton>
+                </div>
+            </IgbCardActions>
+        </IgbCard>
+    </div>
 </div>
 
 @code {
-    
+
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
+        IgbButtonModule.Register(IgniteUIBlazor);
+        IgbCardModule.Register(IgniteUIBlazor);
+        IgbIconModule.Register(IgniteUIBlazor);
+        IgbIconButtonModule.Register(IgniteUIBlazor);
+        IgbRippleModule.Register(IgniteUIBlazor);
     }
 }
