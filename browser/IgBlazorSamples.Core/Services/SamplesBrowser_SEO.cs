@@ -24,7 +24,7 @@ namespace Infragistics.Samples.Core
             if (sample == null) {
                 this.SetTitle("Blazor Samples | Infragistics");
                 this.SetKeywords(defaultKeys);
-                this.SetDescription("Explore samples demostrating features of IgniteUI components for Blazor");
+                this.SetDescription("Explore samples demonstrating features of IgniteUI components for Blazor");
             } else {
                 var sampleTitle = sample.Name + " | Blazor Samples | Infragistics";
                 var sampleDescr = "This sample demostrate how to use " + sample.Component + " with " + sample.Name;
