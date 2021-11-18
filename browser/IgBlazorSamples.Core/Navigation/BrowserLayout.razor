@@ -21,6 +21,8 @@
             </span>
             <div class="sb-toolbar-name no-selection">@SB.CurrentSample</div>
             <div class="sb-toolbar-version no-selection">@SB.IgVersion</div>
+            <div class="sb-toolbar-next no-selection" @onclick="ShowNextSample">Sample-Next</div>
+            <div class="sb-toolbar-next no-selection" @onclick="ShowNextSample">Sample-Back</div>
 
             @* <a href="https://infragistics.com/blazorsite/components/general-getting-started.html" target="_blank" class="ml-md-auto">Help Docs</a> *@
 
@@ -58,6 +60,11 @@ protected string SidebarWidth = "16rem";
 protected string MainStyle => SidebarCollapsed || IsSampleEmbedded ? "width: 100%" : "width: calc(100% - " + SidebarWidth + ")";
 
 public static void ToggleSidebarMenu()
+{
+    SidebarCollapsed = !SidebarCollapsed;
+}
+    
+public void ShowNextSample()
 {
     SidebarCollapsed = !SidebarCollapsed;
 }

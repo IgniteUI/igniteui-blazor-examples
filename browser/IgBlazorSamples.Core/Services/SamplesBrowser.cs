@@ -21,7 +21,7 @@ namespace Infragistics.Samples.Core
             this.HttpClient = httpClient;
             this.JSRuntime = jsRuntime;
 
-            Console.WriteLine("SB Const()");
+            // Console.WriteLine("SB Const()");
             Console.WriteLine("SB URL: " + navManager.Uri);
             // NavManager = NavigationManager();
             // NavManager.LocationChanged += this.OnLocationChanged;
@@ -36,5 +36,5 @@ namespace Infragistics.Samples.Core
     }
 
 
-    
+
 }
