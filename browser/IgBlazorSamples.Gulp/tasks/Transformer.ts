@@ -298,6 +298,7 @@ class Transformer {
 
             info.ComponentName = Strings.toTitleCase(info.ComponentFolder, '-');
             info.ComponentName = info.ComponentName.replace("Geo Map", "Geographic Map");
+            info.ComponentName = info.ComponentName.replace("Combobox", "ComboBox");
 
             // info.SampleFolderPath = relativePath;
             info.SampleRoute = "/" +  info.ComponentGroup + "/" + info.ComponentFolder + "-" + info.SampleFolderName;
