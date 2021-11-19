@@ -231,16 +231,16 @@ function exclude(fileWithString) {
 function cleanupSampleBrowser(outputPath) {
     log('cleaning up files in ' + outputPath);
     del.sync([
-          outputPath + "/Services/*.*",   // auto-copied data files
-          outputPath + "/Components/**",  // auto-copied sample's .razor components
-          outputPath + "/wwwroot/*.js",   // auto-copied sample's .js files
-          outputPath + "/Pages/**/*.*",   // auto-copied samples
-          outputPath + "/Pages/**",       // auto-copied folders
-    "!" + outputPath + "/Pages/_*.razor", // e.g. _Home.razor
-    "!" + outputPath + "/Pages/_*.cshtml" // e.g. _Host.cshtml
-    ], {force:true});
+        outputPath + "/wwwroot/code-viewer/**/*.json", // auto-generated code-viewer .json files
+        outputPath + "/wwwroot/*.js", // auto-copied sample's .js files
+        outputPath + "/Services/*.*", // auto-copied data files
+        outputPath + "/Components/**", // auto-copied sample's .razor components
+        outputPath + "/Pages/**/*.*", // auto-copied samples
+        outputPath + "/Pages/**", // auto-copied folders
+        "!" + outputPath + "/Pages/_*.razor", // e.g. _Home.razor
+        "!" + outputPath + "/Pages/_*.cshtml" // e.g. _Host.cshtml
+    ], { force: true });
 }
-
 
 function cleanupSampleBrowsers(cb) {
     cleanupSampleBrowser( "../../browser/IgBlazorSamples.Client");
