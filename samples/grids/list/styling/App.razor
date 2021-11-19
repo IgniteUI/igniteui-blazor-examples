@@ -1,15 +1,41 @@
-
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <label>TODO!!</label>
+    <IgbList>
+        <IgbListHeader>
+            <h1>Contacts</h1>
+        </IgbListHeader>
+        <IgbListItem>
+            <IgbAvatar slot="start" src="https://static.infragistics.com/xplatform/images/avatars/8.jpg" Shape="@AvatarShape.Circle" />
+            <h2 slot="title">Terrance Orta</h2>
+            <span slot="subtitle">770-504-2217</span>
+            <IgbButton slot="end" Variant="@ButtonVariant.Contained">Text</IgbButton>
+            <IgbButton slot="end" Variant="@ButtonVariant.Contained">Call</IgbButton>
+        </IgbListItem>
+        <IgbListItem>
+            <IgbAvatar slot="start" src="https://static.infragistics.com/xplatform/images/avatars/17.jpg" Shape="@AvatarShape.Circle"/>
+            <h2 slot="title">Richard Mahoney</h2>
+            <span slot="subtitle">423-676-2869</span>
+            <IgbButton slot="end" Variant="@ButtonVariant.Contained">Text</IgbButton>
+            <IgbButton slot="end" Variant="@ButtonVariant.Contained">Call</IgbButton>
+        </IgbListItem>
+        <IgbListItem>
+            <IgbAvatar slot="start" src="https://static.infragistics.com/xplatform/images/avatars/9.jpg" Shape="@AvatarShape.Circle"/>
+            <h2 slot="title">Donna Price</h2>
+            <span slot="subtitle">859-496-2817</span>
+            <IgbButton slot="end" Variant="@ButtonVariant.Contained">Text</IgbButton>
+            <IgbButton slot="end" Variant="@ButtonVariant.Contained">Call</IgbButton>
+        </IgbListItem>
+    </IgbList>
 </div>
 
 @code {
-    
+
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
+        IgbAvatarModule.Register(IgniteUIBlazor);
+        IgbButtonModule.Register(IgniteUIBlazor);
+        IgbListModule.Register(IgniteUIBlazor);
     }
 }

@@ -1,15 +1,63 @@
-
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="container vertical">
-    <label>TODO!!</label>
+<div class="container vertical" style="align-items: center">
+
+    <style>
+        .card-wrapper {
+            max-width: 400px;
+            min-width: 250px;
+        }
+
+        .semi-horizontal {
+            display: flex;
+            flex-direction: row;
+            flex-grow: 1;
+        }
+
+        .card-media {
+            width: 96px;
+            min-width: 96px;
+        }
+
+        .divider {
+            border-right: 1px solid darkgray;
+        }
+
+    </style>
+
+    <div class="card-wrapper">
+        <IgbCard>
+            <div class="semi-horizontal">
+                <div>
+                    <IgbCardHeader>
+                        <IgbAvatar slot="thumbnail"/>
+                        <h5 slot="title">HERE</h5>
+                        <h5 slot="subtitle">by Mellow D</h5>
+                    </IgbCardHeader>
+                    <IgbCardContent>
+                      <p>Far far away, behind the word mountains,
+                      far from the countries Vokalia and Consonantia,
+                      there live the blind texts.</p>
+                    </IgbCardContent>
+                    <IgbCardActions>
+                        <IgbButton>Play Album</IgbButton>
+                    </IgbCardActions>
+                </div>
+                <IgbCardMedia class="card-media">
+                    <img />
+                </IgbCardMedia>
+            </div>
+        </IgbCard>
+    </div>
 </div>
 
 @code {
-    
+
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
+        IgbAvatarModule.Register(IgniteUIBlazor);
+        IgbButtonModule.Register(IgniteUIBlazor);
+        IgbCardModule.Register(IgniteUIBlazor);
     }
 }
