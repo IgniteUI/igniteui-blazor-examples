@@ -17,7 +17,7 @@ namespace Infragistics.Samples.Core
             set { _AppName = value; NotifyPropertyChanged(); }
         }
 
-        public string CurrentPath { get; set; }
+        public string CurrentSamplePath { get; set; }
 
         private readonly string DefaultHelpTopic = "general-getting-started.html";
         private string CurrentHelpTopic = "";
@@ -35,11 +35,11 @@ namespace Infragistics.Samples.Core
             set { _HomeTitle = value; NotifyPropertyChanged(); }
         }
 
-        private string _CurrentSample = "";
-        public string CurrentSample
+        private string _CurrentSampleTitle = "";
+        public string CurrentSampleTitle
         {
-            get { return _CurrentSample; }
-            set { _CurrentSample = value; NotifyPropertyChanged(); }
+            get { return _CurrentSampleTitle; }
+            set { _CurrentSampleTitle = value; NotifyPropertyChanged(); }
         }
 
         private string _CurrentComponent = "";
@@ -62,7 +62,7 @@ namespace Infragistics.Samples.Core
             get { return _IsHostingOnStaging; }
             set { _IsHostingOnStaging = value; NotifyPropertyChanged(); }
         }
-        
+
         public void ToggleComponent(string name)
         {
             if (this.IsLoading) return;
@@ -95,11 +95,11 @@ namespace Infragistics.Samples.Core
 
             var sampleFound = false;
             //this.IsEmbedded = !url.Contains("/samples") && url != this.NavManager.BaseUri;
-            
+
             if (url.EndsWith("/home") || url.EndsWith("/index") || url.EndsWith("/samples"))
             {
-                this.CurrentPath = url;
-                this.CurrentSample = this.HomeTitle;
+                this.CurrentSamplePath = url;
+                this.CurrentSampleTitle = this.HomeTitle;
                 this.CurrentHelpTopic = "";
             }
             else
@@ -114,11 +114,11 @@ namespace Infragistics.Samples.Core
                             if (url.Contains(sample.Route))
                             {
                                 sampleFound = true;
-                                this.CurrentPath = url;
-                                this.CurrentSample = sample.Component + " - " + sample.Name;
+                                this.CurrentSamplePath = url;
+                                this.CurrentSampleTitle = sample.Component + " - " + sample.Name;
                                 //  this.CurrentHelpTopic = comp.Topic;
                                 if (!this.IsEmbedded)
-                                    this.SetMetadata(sample);
+                                     this.SetMetadata(sample);
                                 break;
                             }
                         }
@@ -128,8 +128,8 @@ namespace Infragistics.Samples.Core
                 if (!sampleFound)
                 {
                     // Console.WriteLine("SB.NAV not found " + url);
-                    this.CurrentPath = url;
-                    this.CurrentSample = "";
+                    this.CurrentSamplePath = url;
+                    this.CurrentSampleTitle = "";
                     this.CurrentHelpTopic = "";
                     if (!this.IsEmbedded)
                         this.SetMetadata(null);
@@ -146,6 +146,42 @@ namespace Infragistics.Samples.Core
 
             }
 
+        }
+
+        public int GetCurrentSampleID() {
+            var currentSampleID = 0;
+            for (int i = 0; i < this.SampleRoutes.Count; i++)
+            {
+                var sampleRoute = this.SampleRoutes[i];
+                if (CurrentSamplePath.Contains(sampleRoute)) {
+                    currentSampleID = i;
+                    break;
+                }
+            }
+            return currentSampleID;
+        }
+
+        public void NavigateToNextSample() {
+            var currentSampleID = GetCurrentSampleID();
+
+            var nextSampleID = currentSampleID + 1;
+            if (nextSampleID >= this.SampleRoutes.Count)
+                nextSampleID = 0;
+
+            // var nextSamplePath = NavManager.BaseUri + "samples" + this.SampleRoutes[nextSampleID];
+            var nextSamplePath = this.SampleRoutes[nextSampleID];
+            NavManager.NavigateTo(nextSamplePath);
+        }
+
+        public void NavigateToBackSample() {
+            var currentSampleID = GetCurrentSampleID();
+
+            var nextSampleID = currentSampleID - 1;
+            if (nextSampleID < 0)
+                nextSampleID = this.SampleRoutes.Count - 1;
+
+            var nextSamplePath = this.SampleRoutes[nextSampleID];
+            NavManager.NavigateTo(nextSamplePath);
         }
 
         // public void Init(NavigationManager navigationManager)

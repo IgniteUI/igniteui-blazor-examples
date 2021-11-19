@@ -16,13 +16,18 @@
     <div class="sb-main" style="@MainStyle">
 
         <div class="sb-toolbar" style="@ToolbarStyle">
+            @* icons preview https://useiconic.com/open *@
             <span class="sb-toolbar-toggle" @onclick="ToggleSidebarMenu">
                 <span class="oi oi-menu" aria-hidden="true"></span>
             </span>
-            <div class="sb-toolbar-name no-selection">@SB.CurrentSample</div>
+            <div class="sb-toolbar-name no-selection">@SB.CurrentSampleTitle</div>
             <div class="sb-toolbar-version no-selection">@SB.IgVersion</div>
-            <div class="sb-toolbar-next no-selection" @onclick="ShowNextSample">Sample-Next</div>
-            <div class="sb-toolbar-next no-selection" @onclick="ShowNextSample">Sample-Back</div>
+            <span class="sb-toolbar-toggle" @onclick=SB.NavigateToBackSample>
+                <span class="oi oi-chevron-left" aria-hidden="true"></span>
+            </span>
+            <span class="sb-toolbar-toggle" @onclick=SB.NavigateToNextSample>
+                <span class="oi oi-chevron-right" aria-hidden="true"></span>
+            </span>
 
             @* <a href="https://infragistics.com/blazorsite/components/general-getting-started.html" target="_blank" class="ml-md-auto">Help Docs</a> *@
 
@@ -63,11 +68,6 @@ public static void ToggleSidebarMenu()
 {
     SidebarCollapsed = !SidebarCollapsed;
 }
-    
-public void ShowNextSample()
-{
-    SidebarCollapsed = !SidebarCollapsed;
-}
 
 public BrowserLayout()
 {
@@ -98,8 +98,8 @@ protected bool IsSampleWithNavigation() {
 
 protected override void OnInitialized()
 {
-    Console.WriteLine("SB.NAV OnInit " + NavManager.BaseUri);
-    Console.WriteLine("SB.NAV OnInit " + NavManager.Uri);
+    //Console.WriteLine("SB.NAV OnInit " + NavManager.BaseUri);
+    //Console.WriteLine("SB.NAV OnInit " + NavManager.Uri);
 
     this.IsSampleEmbedded = !IsSampleWithNavigation(); // NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri + "/";
 
@@ -113,7 +113,7 @@ protected override void OnInitialized()
 
 public void OnSamplesLoaded(object sender, EventArgs arg)
 {
-    Console.WriteLine("SB.NAV Loaded Base " + NavManager.BaseUri);
+    // Console.WriteLine("SB.NAV Loaded Base " + NavManager.BaseUri);
     Console.WriteLine("SB.NAV Loaded Uri  " + NavManager.Uri);
 
     this.IsSampleEmbedded = !IsSampleWithNavigation(); // !NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri;
@@ -126,8 +126,8 @@ public void OnSamplesLoaded(object sender, EventArgs arg)
 
 public async void OnLocationChanged(object sender, LocationChangedEventArgs arg)
 {
-    Console.WriteLine("SB.NAV Changed Base " + NavManager.BaseUri);
-    Console.WriteLine("SB.NAV Changed Uri  " + NavManager.Uri);
+    //Console.WriteLine("SB.NAV Changed Base " + NavManager.BaseUri);
+    Console.WriteLine("SB.NAV Changed " + NavManager.Uri);
 
     this.IsSampleEmbedded = !IsSampleWithNavigation(); // !NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri;
 

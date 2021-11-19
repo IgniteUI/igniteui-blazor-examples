@@ -106,7 +106,7 @@ namespace Infragistics.Samples.Core
         public event EventHandler<EventArgs> SamplesLoaded;
         public void OnLoaded()
         {
-            Console.WriteLine("SB.TOC loading... done");
+            Console.WriteLine("SB.TOC parsing... done");
 
             this.SamplesLoaded?.Invoke(this, EventArgs.Empty);
         }
