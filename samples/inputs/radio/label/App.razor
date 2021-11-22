@@ -3,13 +3,22 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <label>TODO!!</label>
+    <IgbRadioGroup>
+        <IgbRadio LabelPosition="RadioLabelPosition.Before" Value="apple">Apple</IgbRadio>
+        <div style="display: flex; align-items: center">
+            <span id="radio-label">Label</span>
+            <IgbRadio LabelPosition="RadioLabelPosition.Before"
+                       AriaLabelledby="radio-label"
+                       Value="orange"></IgbRadio>
+        </div>
+    </IgbRadioGroup>
 </div>
 
 @code {
-    
+
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
+        IgbRadioGroupModule.Register(IgniteUIBlazor);
+        IgbRadioModule.Register(IgniteUIBlazor);
     }
 }
