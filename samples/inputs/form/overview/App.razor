@@ -3,13 +3,24 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <label>TODO!!</label>
+    <IgbForm id="form">
+        <div>Subscribe</div>
+        <IgbInput Required="true" DisplayType=InputType.Text Label="Your Name"></IgbInput>
+        <IgbInput Required="true" DisplayType=InputType.Email Label="Your E-mail"></IgbInput>
+        <IgbCheckbox>I accept the license agreement</IgbCheckbox>
+        <br />
+        <IgbButton DisplayType="ButtonBaseType.Reset">Reset</IgbButton>
+        <IgbButton DisplayType="ButtonBaseType.Submit">Submit</IgbButton>
+    </IgbForm>
 </div>
 
 @code {
     
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
+        IgbFormModule.Register(IgniteUIBlazor);
+        IgbInputModule.Register(IgniteUIBlazor);
+        IgbCheckboxModule.Register(IgniteUIBlazor);
+        IgbButtonModule.Register(IgniteUIBlazor);
     }
 }
