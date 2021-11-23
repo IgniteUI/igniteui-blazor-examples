@@ -12,17 +12,30 @@
                        IsHorizontalZoomEnabled="true"
                        IsVerticalZoomEnabled="true">
                 <IgbCategoryXAxis Name="xAxisShared" Label="Label" Gap="0.75" DataSource="Data" />
-                <IgbNumericYAxis Name="yAxisRight" LabelLocation="AxisLabelsLocation.OutsideRight" MinimumValue="400"
-                              MaximumValue="700" Title="Stock Price" />
-                <IgbNumericYAxis Name="yAxisLeft" LabelLocation="AxisLabelsLocation.OutsideLeft" MinimumValue="5000"
-                              MaximumValue="45000" Title="Trade Volume" MajorStrokeThickness="0" AbbreviateLargeNumbers="true" />
+                <IgbNumericYAxis Name="yAxisRight" LabelLocation="AxisLabelsLocation.OutsideRight" 
+                                 MinimumValue="400"
+                                 MaximumValue="700" Title="Stock Price" />
+                <IgbNumericYAxis Name="yAxisLeft" LabelLocation="AxisLabelsLocation.OutsideLeft" 
+                                 MinimumValue="5000"
+                                 MaximumValue="45000" Title="Trade Volume" 
+                                 MajorStrokeThickness="0" 
+                                 AbbreviateLargeNumbers="true" />
 
-                <IgbColumnSeries XAxisName="xAxisShared" YAxisName="yAxisLeft" DataSource="Data" ValueMemberPath="Volume"
-                              ShowDefaultTooltip="true" Title="Trade Volume" />
+                <IgbColumnSeries XAxisName="xAxisShared" 
+                                 YAxisName="yAxisLeft" 
+                                 DataSource="Data" 
+                                 ValueMemberPath="Volume"
+                                 ShowDefaultTooltip="true" 
+                                 Title="Trade Volume" />
 
-                <IgbFinancialPriceSeries XAxisName="xAxisShared" YAxisName="yAxisRight" DisplayType="PriceDisplayType.Candlestick"
-                                      HighMemberPath="High" LowMemberPath="Low" CloseMemberPath="Close" OpenMemberPath="Open"
-                                      VolumeMemberPath="Volume" ShowDefaultTooltip="true" Title="Stock Price" DataSource="Data"/>
+                <IgbFinancialPriceSeries XAxisName="xAxisShared" 
+                                         YAxisName="yAxisRight" 
+                                         DisplayType="PriceDisplayType.Candlestick"
+                                         DataSource="Data"
+                                         HighMemberPath="High" LowMemberPath="Low" CloseMemberPath="Close" OpenMemberPath="Open"
+                                         VolumeMemberPath="Volume" 
+                                         ShowDefaultTooltip="true" 
+                                         Title="Stock Price" />
             </IgbDataChart>
         }
 
@@ -31,7 +44,7 @@
 
 @code {
 
-    private List<SampleFinancialItem> Data;
+    private List<SharedAxisFinancialItem> Data;
 
     protected override void OnInitialized()
     {
@@ -45,7 +58,7 @@
         IgbDataChartCategoryModule.Register(IgniteUIBlazor);
         IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
 
-        this.Data = SampleFinancialData.Create();
+        this.Data = SharedAxisFinancialData.Create();
 
         Console.WriteLine(this.Data.Count);
     }
