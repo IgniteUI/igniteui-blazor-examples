@@ -6,7 +6,7 @@ namespace Infragistics.Samples
     public class SharedAxisFinancialData
     {
         public static Random random = new Random();
-        public static List<SharedAxisFinancialItem> Create(int itemsCount = 365)
+        public static List<SharedAxisFinancialItem> Create(int itemsCount = 400)
         {
             var data = new List<SharedAxisFinancialItem>();
            
@@ -39,11 +39,11 @@ namespace Infragistics.Samples
                 
                 // generating new values
                 var mod = random.NextDouble() - 0.49;
-                o = Math.Round(o + (mod * 5 * 4));
+                o = Math.Round(o + (mod * 20));
                 o = Math.Max(o, 500);
                 o = Math.Min(o, 675);
 
-                v = Math.Round(v + (mod * 5 * 100));
+                v = Math.Round(v + (mod * 500));
                 h = Math.Round(o + (random.NextDouble() * 15));
                 l = Math.Round(o - (random.NextDouble() * 15));
                 c = Math.Round(l + (random.NextDouble() * (h - l)));
