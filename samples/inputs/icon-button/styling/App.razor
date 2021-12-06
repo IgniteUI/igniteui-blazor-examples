@@ -3,13 +3,25 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <label>TODO!!</label>
+    <style>
+        igc-icon-button[variant=contained]:not([disabled])::part(base) {
+            padding: 0.75rem;
+            color: olive;
+            background-color: lightgray;
+        }
+
+        igc-icon-button::part(icon) {
+            --size: 2rem;
+        }
+    </style>
+
+    <IgbIconButton Collection="material" Variant="@IconButtonVariant.Contained"/>
 </div>
 
 @code {
-    
+
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
+        IgbIconButtonModule.Register(IgniteUIBlazor);
     }
 }

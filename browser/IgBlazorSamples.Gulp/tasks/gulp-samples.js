@@ -50,7 +50,7 @@ var sampleSource = [
     igConfig.SamplesCopyPath + '/inputs/**/App.razor',
     igConfig.SamplesCopyPath + '/layouts/**/App.razor',
     igConfig.SamplesCopyPath + '/menus/**/App.razor',
-    igConfig.SamplesCopyPath + '/scheduling/**/App.razor',
+    //igConfig.SamplesCopyPath + '/scheduling/**/App.razor',
     igConfig.SamplesCopyPath + '/excel/excel-library/**/App.razor',
 
     // igConfig.SamplesCopyPath + '/excel/spreadsheet/**/App.razor',
@@ -932,7 +932,12 @@ function updateCodeViewer(cb) {
                 contentItems.push(item);
             }
             else if (file.isCS()) {
-                var item = new CodeViewer(file.Path, file.Content, "cs", "cs", false);
+                var name = file.Name.toLowerCase();
+                var isDataFile = name.indexOf("data") >= 0 || name.indexOf("locations") >= 0 || name.indexOf("temperature") >= 0 || name.indexOf("connections") >= 0 || name.indexOf("products") >= 0 || name.indexOf("stocksutility") >= 0 || name.indexOf("medals") >= 0 || name.indexOf("places") >= 0 || name.indexOf("history") >= 0 || name.indexOf("stats") >= 0;
+                var header = isDataFile ? "DATA" : "CS";
+                var item = new CodeViewer(file.Path, file.Content, "cs", header, true);
+                // if (header === "CS")
+                //     log("generating DATA " + file.Path + "   " + header);
                 contentItems.push(item);
             }
         }
