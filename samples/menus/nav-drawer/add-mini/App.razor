@@ -3,35 +3,35 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div id="root" style="display: flex;">
-        <IgbNavDrawer id="navDrawer" Open="true" style="position: relative">
+    <div id="nav-drawer-container" style="display: flex;">
+        <IgbNavDrawer @ref="@NavDrawerRef" Open="true" style="position: relative">
             <IgbNavDrawerHeaderItem>
                 Sample Drawer
             </IgbNavDrawerHeaderItem>
 
             <IgbNavDrawerItem>
-                <IgbIcon @ref="@HomeIcon" Collection="material" IconName="home">@*slot="icon"*@ </IgbIcon>
+                <IgbIcon @ref="@HomeIcon" slot="icon" Collection="material" IconName="home" />
                 <span slot="content">Home</span>
             </IgbNavDrawerItem>
 
             <IgbNavDrawerItem>
-                <IgbIcon @ref="@SearchIcon" Collection="material" IconName="search">@*slot="icon"*@ </IgbIcon>
+                <IgbIcon @ref="@SearchIcon" slot="icon" Collection="material" IconName="search" />
                 <span slot="content">Search</span>
             </IgbNavDrawerItem>
 
             <div slot="mini">
                 <IgbNavDrawerItem>
-                    <IgbIcon @ref="@HomeIcon2" Collection="material" IconName="home2">@*slot="icon"*@</IgbIcon>
+                    <IgbIcon slot="icon" Collection="material" IconName="home" />
                 </IgbNavDrawerItem>
 
                 <IgbNavDrawerItem>
-                    <IgbIcon @ref="@SearchIcon2" Collection="material" IconName="search2">@*slot="icon"*@</IgbIcon>
+                    <IgbIcon slot="icon" Collection="material" IconName="search" />
                 </IgbNavDrawerItem>
             </div>
         </IgbNavDrawer>
 
         <div id="content" style="width: 100%">
-            <IgbButton id="toggleBtn" style="margin-left: 50px;">Toggle</IgbButton>
+            <IgbButton id="toggleBtn" style="margin-left: 50px;" @onclick="OnButtonClick">Toggle</IgbButton>
         </div>
     </div>
 </div>
@@ -39,9 +39,9 @@
 @code {
 
     public IgbIcon HomeIcon { get; set; }
-    public IgbIcon SearchIcon { get; set; }
-    public IgbIcon HomeIcon2 { get; set; }
-    public IgbIcon SearchIcon2 { get; set; }
+    public IgbIcon SearchIcon { get; set; }    
+
+    public IgbNavDrawer NavDrawerRef { get; set; }
 
     protected override void OnInitialized()
     {
@@ -55,6 +55,14 @@
     protected override void OnAfterRender(bool firstRender)
     {
         base.OnAfterRender(firstRender);
+
+        if (this.NavDrawerRef != null && firstRender)
+        {
+            this.NavDrawerRef.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.NavDrawerRef.Toggle();
+            }));            
+        }
 
         if (this.HomeIcon != null && firstRender)
         {
@@ -75,25 +83,10 @@
                     "material");
             }));
         }
+    }
 
-        if (this.HomeIcon2 != null && firstRender)
-        {
-            this.HomeIcon2.EnsureReady().ContinueWith(new Action<Task>((e) =>
-            {
-                this.HomeIcon2.RegisterIcon("home2",
-                    "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg",
-                    "material");
-            }));
-        }
-
-        if (this.SearchIcon2 != null && firstRender)
-        {
-            this.SearchIcon2.EnsureReady().ContinueWith(new Action<Task>((e) =>
-            {
-                this.SearchIcon2.RegisterIcon("search2",
-                    "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_search_24px.svg",
-                    "material");
-            }));
-        }
+    public void OnButtonClick()
+    {
+        this.NavDrawerRef.Toggle();
     }
 }
