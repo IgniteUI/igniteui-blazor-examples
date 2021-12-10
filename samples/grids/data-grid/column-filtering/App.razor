@@ -3,39 +3,23 @@
 @inject IJSRuntime JSRuntime;
 
 <div class="container vertical">
-    <div class="options horizontal">
-        <span class="options-item">Column: </span>
-        <select class="options-item" @onchange="OnFilterColumnChanged">
-            <option>Name</option>
-            <option>Street</option>
-            <option>City</option>
-            <option>Country</option>
-        </select>
-        <select class="options-item" @onchange="OnFilterModeChanged">
-            <option>Contains</option>
-            <option>StartsWith</option>
-            <option>EndsWith</option>
-        </select>
-        <label class="options-item"> Expression: </label>
-        <input class="options-text" type="text" name="title" @onchange="OnFilterTextChanged" />
-    </div>
-
     <div class="container vertical">
         @if (Data != null)
         {
             <div style="overflow: hidden">
                 <IgbDataGrid Height="100%" Width="100%"
-                      @ref="DataGridRef"
-                      DefaultColumnMinWidth="100"
-                      AutoGenerateColumns="false"
-                      DataSource="Data"
-                      IsColumnOptionsEnabled="true"
-                      FilterUIType="FilterUIType.FilterRow">
+                             @ref="DataGridRef"
+                             DefaultColumnMinWidth="100"
+                             AutoGenerateColumns="false"
+                             DataSource="Data"
+                             IsColumnOptionsEnabled="true"
+                             FilterUIType="FilterUIType.FilterRow">
                     <IgbTextColumn Field="Name" Width="@("*>170")" />
+                    <IgbNumericColumn Field="Age" Width="@("*>170")" />
                     <IgbTextColumn Field="Street" Width="@("*>180")" />
                     <IgbTextColumn Field="City" Width="@("*>120")" />
                     <IgbImageColumn IsEditable="false" Field="CountryFlag" PaddingTop="5" PaddingBottom="5" HeaderText="Country" ContentOpacity="1"
-                                HorizontalAlignment="@CellContentHorizontalAlignment.Center" Width="@("*>140")" />
+                                    HorizontalAlignment="@CellContentHorizontalAlignment.Center" Width="@("*>140")" />
                     <IgbNumericColumn Field="Sales" PositivePrefix="$" ShowGroupingSeparator="true" Width="@("*>120")" />
                     <IgbDateTimeColumn Field="Birthday" HeaderText="Birthday" Width="@("*>170")" />
                 </IgbDataGrid>
@@ -47,14 +31,7 @@
 @code {
 
     private List<Employee> Data;
-    private IgbDataGrid DataGridRef;
-
-    private string FilterText = "";
-    private string FilterMode = "Contains";
-    private string FilterColumn = "Name";
-
-    private FilterFactory FilterFactory = new FilterFactory();
-
+   
     protected override void OnInitialized()
     {
         base.OnInitialized();
@@ -63,62 +40,5 @@
         IgbGridColumnFilterOptionsModule.Register(IgniteUIBlazor);
 
         this.Data = EmployeeData.Create(100, false);
-    }
-
-    private void OnFilterTextChanged(ChangeEventArgs e)
-    {
-        this.FilterText = e.Value.ToString();
-        this.ApplyFilter();
-    }
-
-    private void OnFilterModeChanged(ChangeEventArgs e)
-    {
-        this.FilterMode = e.Value.ToString();
-        this.ApplyFilter();
-    }
-
-    private void OnFilterColumnChanged(ChangeEventArgs e)
-    {
-        this.FilterColumn = e.Value.ToString();
-        this.ApplyFilter();
-    }
-
-    private void ApplyFilter()
-    {
-        this.DataGridRef.FilterExpressions.Clear();
-
-        if (this.FilterText == "")
-        {
-            return;
-        }
-
-        string expression = this.FilterText.ToUpper();
-
-        IgbFilterExpression column = this.FilterFactory.Property(this.FilterColumn).ToUpper();
-
-        IgbFilterExpression filter = new IgbFilterExpression();
-
-        switch (this.FilterMode)
-        {
-            case "Contains":
-                {
-                    filter = column.Contains(expression);
-                    break;
-                }
-            case "StartsWith":
-                {
-                    filter = column.StartsWith(expression);
-                    break;
-                }
-            case "EndsWith":
-                {
-                    filter = column.EndsWith(expression);
-                    break;
-                }
-        }
-
-        this.DataGridRef.FilterExpressions.Add(filter);
-
-        StateHasChanged();
     }
 }
