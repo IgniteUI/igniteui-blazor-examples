@@ -1,45 +1,42 @@
-
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="container vertical">
-    <div id="root" style="display: flex;">
-        <IgbNavDrawer id="navDrawer" style="position: relative">
-            <IgbNavDrawerHeaderItem>
-                Sample Drawer
-            </IgbNavDrawerHeaderItem>
+<div class="container vertical" @onclick="OnContainerClick">
+    <IgbNavDrawer @ref="@NavDrawerRef" style="position: relative">
+        <IgbNavDrawerHeaderItem>
+            Sample Drawer
+        </IgbNavDrawerHeaderItem>
 
-            <IgbNavDrawerItem>
-                <IgbIcon @ref="@HomeIcon" IconName="home" Collection="material">@*slot="icon"*@ </IgbIcon>
-                <span slot="content">Home</span>
-            </IgbNavDrawerItem>
+        <IgbNavDrawerItem>
+            <IgbIcon @ref="@HomeIcon" slot="icon" IconName="home" Collection="material" />
+            <span slot="content">Home</span>
+        </IgbNavDrawerItem>
 
-            <IgbNavDrawerItem>
-                <IgbIcon @ref="SearchIcon" IconName="search" Collection="material">@*slot="icon"*@ </IgbIcon>
-                <span slot="content">Search</span>
-            </IgbNavDrawerItem>
-        </IgbNavDrawer>
+        <IgbNavDrawerItem>
+            <IgbIcon slot="icon" IconName="search" Collection="material" />
+            <span slot="content">Search</span>
+        </IgbNavDrawerItem>
+    </IgbNavDrawer>
 
-        <div id="content" style="width: 100%">
-            <IgbRadioGroup id="radio-group" Alignment="RadioGroupAlignment.Horizontal">
-                <IgbRadio Value="start" LabelPosition="RadioLabelPosition.After" Checked="true">Start</IgbRadio>
-                <IgbRadio Value="end" LabelPosition="RadioLabelPosition.After">End</IgbRadio>
-                <IgbRadio Value="top" LabelPosition="RadioLabelPosition.After">Top</IgbRadio>
-                <IgbRadio Value="bottom" LabelPosition="RadioLabelPosition.After">Bottom</IgbRadio>
-            </IgbRadioGroup>
+    <div id="content" style="width: 100%">
+        <IgbRadioGroup id="radio-group" Alignment="RadioGroupAlignment.Horizontal">
+            <IgbRadio Value="Start" LabelPosition="RadioLabelPosition.After" Checked="true" Change="OnRadioOptionClick">Start</IgbRadio>
+            <IgbRadio Value="End" LabelPosition="RadioLabelPosition.After" Change="OnRadioOptionClick">End</IgbRadio>
+            <IgbRadio Value="Top" LabelPosition="RadioLabelPosition.After" Change="OnRadioOptionClick">Top</IgbRadio>
+            <IgbRadio Value="Bottom" LabelPosition="RadioLabelPosition.After" Change="OnRadioOptionClick">Bottom</IgbRadio>
+        </IgbRadioGroup>
 
-            <IgbNavbar>
-                <IgbIcon @ref="MenuIcon" IconName="menu" Collection="material">@*slot="start"*@</IgbIcon>
-                <h2>Home</h2>
-            </IgbNavbar>
-        </div>
-    </div></div>
+        <IgbNavbar>
+            <IgbIcon slot="start" IconName="menu" Collection="material" @onclick="OnMenuIconClick" />
+            <h2>Home</h2>
+        </IgbNavbar>
+    </div>
+</div>
 
 @code {
 
     public IgbIcon HomeIcon { get; set; }
-    public IgbIcon SearchIcon { get; set; }
-    public IgbIcon MenuIcon { get; set; }
+    public IgbNavDrawer NavDrawerRef { get; set; }
 
     protected override void OnInitialized()
     {
@@ -50,62 +47,73 @@
         IgbIconModule.Register(IgniteUIBlazor);
         IgbRadioGroupModule.Register(IgniteUIBlazor);
         IgbRadioModule.Register(IgniteUIBlazor);
-
-        //  const menu = document.getElementById('menu');
-        //  const navDrawer = document.querySelector('igc-nav-drawer') as IgcNavDrawerComponent;
-
-        //  menu!.addEventListener('click', () =>
-        //  {
-        //      navDrawer.show();
-        //  })
-
-        //document.getElementById('root')!.onclick = (e) =>
-        //{
-        //    if (e.target === document.getElementById('content'))
-        //    {
-        //        navDrawer.hide();
-        //    }
-        //}
-
-        //const radioGroup = document.getElementById('radio-group') as IgcRadioGroupComponent;
-
-        //  radioGroup.addEventListener('click', (radio: any) => {
-        //      navDrawer.position = radio.target.value;
-        //  });
     }
 
-    protected override void OnAfterRender(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        base.OnAfterRender(firstRender);
+        await base.OnAfterRenderAsync(firstRender);
 
-        if (this.HomeIcon != null && firstRender)
+        if(firstRender && this.HomeIcon != null)
         {
-            this.HomeIcon.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            await this.HomeIcon.EnsureReady();
+            await this.HomeIcon.RegisterIconAsync("home", "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg", "material");
+            await this.HomeIcon.RegisterIconAsync("search", "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_search_24px.svg", "material");
+            await this.HomeIcon.RegisterIconAsync("menu", "https://unpkg.com/material-design-icons@3.0.1/navigation/svg/production/ic_menu_24px.svg", "material");
+        }
+    }
+
+    public void OnRadioOptionClick(IgbComponentBoolValueChangedEventArgs args)
+    {
+        IgbRadio radio = args.Parent as IgbRadio;
+
+        if (this.NavDrawerRef != null)
+        {
+            switch (radio.Value)
             {
-                this.HomeIcon.RegisterIcon("home",
-                    "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg",
-                    "material");
-            }));
+                case "Start":
+                    {
+                        this.NavDrawerRef.Position = NavDrawerPosition.Start;
+                        break;
+                    }
+                case "End":
+                    {
+                        this.NavDrawerRef.Position = NavDrawerPosition.End;
+                        break;
+                    }
+                case "Top":
+                    {
+                        this.NavDrawerRef.Position = NavDrawerPosition.Top;
+                        break;
+                    }
+                case "Bottom":
+                    {
+                        this.NavDrawerRef.Position = NavDrawerPosition.Bottom;
+                        break;
+                    }
+            }
+        }
+    }
+
+    bool isNavDrawerOpen = false;
+    bool hitMenuIconFirst = false;
+    public void OnMenuIconClick()
+    {
+        if(this.NavDrawerRef != null)
+        {
+            this.NavDrawerRef.Show();
+            hitMenuIconFirst = true;
+            isNavDrawerOpen = true;
+        }
+    }
+
+    public void OnContainerClick(MouseEventArgs args)
+    {
+        if (isNavDrawerOpen && !hitMenuIconFirst)
+        {
+            this.NavDrawerRef.Hide();
+            isNavDrawerOpen = false;
         }
 
-        if (this.SearchIcon != null && firstRender)
-        {
-            this.SearchIcon.EnsureReady().ContinueWith(new Action<Task>((e) =>
-            {
-                this.SearchIcon.RegisterIcon("search",
-                    "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_search_24px.svg",
-                    "material");
-            }));
-        }
-
-        if (this.MenuIcon != null && firstRender)
-        {
-            this.MenuIcon.EnsureReady().ContinueWith(new Action<Task>((e) =>
-            {
-                this.MenuIcon.RegisterIcon("menu",
-                    "https://unpkg.com/material-design-icons@3.0.1/navigation/svg/production/ic_menu_24px.svg",
-                    "material");
-            }));
-        }
+        hitMenuIconFirst = false;
     }
 }
