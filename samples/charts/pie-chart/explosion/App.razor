@@ -5,7 +5,7 @@
     <div class="options vertical">
         <span class="legend-title">Global Electricity Demand by Energy Use</span>
         <div class="legend">
-            <ItemLegend @ref="Legend" /> @*Orientation="LegendOrientation.Horizontal" />*@
+            <IgbItemLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
         <div class="overlay-right">
             <div class="options horizontal">
@@ -21,7 +21,7 @@
 
         @if (Data != null)
         {
-            <PieChart Height="100%" Width="100%"
+            <IgbPieChart Height="100%" Width="100%"
                       DataSource="Data"
                       Legend="Legend"
                       LabelMemberPath="Category"
@@ -36,7 +36,7 @@
                       AllowSliceExplosion="true"
                       ExplodedSlices="ExplodedSlices"
                       ExplodedRadius="0.1">
-            </PieChart>
+            </IgbPieChart>
         }
 
     </div>
@@ -46,8 +46,8 @@
 
     private List<DataItem> Data;
 
-    private ItemLegend _legend;
-    public ItemLegend Legend
+    private IgbItemLegend _legend;
+    public IgbItemLegend Legend
     {
         get { return _legend; }
         set { _legend = value; StateHasChanged(); }
@@ -58,8 +58,8 @@
 
     protected override void OnInitialized()
     {
-        PieChartModule.Register(IgniteUIBlazor);
-        ItemLegendModule.Register(IgniteUIBlazor);
+        IgbPieChartModule.Register(IgniteUIBlazor);
+        IgbItemLegendModule.Register(IgniteUIBlazor);
 
         this.Data = new List<DataItem>();
         this.Data.Add(new DataItem { MarketShare = 37, Category = "Cooling", });
@@ -81,7 +81,7 @@
         this.ExplodeMultipleSlices = (bool)args.Value;
     }
 
-    protected void OnSliceClick(SliceClickEventArgs e)
+    protected void OnSliceClick(IgbSliceClickEventArgs e)
     {
         var slice = e.Index;
 

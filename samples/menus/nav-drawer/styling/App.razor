@@ -1,0 +1,70 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div id="root" style="display: flex;">
+        <style>
+            igc-nav-drawer::part(base) {
+                background: #2d313a;
+            }
+            
+            igc-nav-drawer-item::part(base) {
+                color: #fff;
+            }
+            
+            igc-nav-drawer-item::part(base):hover {
+                background-color: #3D4149;
+            }
+            
+            igc-nav-drawer-item[active]::part(base) {
+                background: #f3c03e;
+                color: #2c2c2c
+            }
+            
+            igc-nav-drawer-header-item {
+                color: #f3c03e
+            }
+        </style>
+
+        <IgbNavDrawer id="navDrawer" Open="true" style="position: relative">
+            <IgbNavDrawerHeaderItem>
+                Sample Drawer
+            </IgbNavDrawerHeaderItem>
+
+            <IgbNavDrawerItem>
+                <IgbIcon @ref="@HomeIcon" slot="icon" Collection="material" IconName="home" />
+                <span slot="content">Home</span>
+            </IgbNavDrawerItem>
+
+            <IgbNavDrawerItem>
+                <IgbIcon slot="icon" Collection="material" IconName="search" />
+                <span slot="content">Search</span>
+            </IgbNavDrawerItem>
+        </IgbNavDrawer>
+    </div>
+</div>
+
+@code {
+
+    public IgbIcon HomeIcon { get; set; }    
+
+    protected override void OnInitialized()
+    {
+        IgbNavDrawerModule.Register(IgniteUIBlazor);
+        IgbNavDrawerItemModule.Register(IgniteUIBlazor);
+        IgbNavDrawerHeaderItemModule.Register(IgniteUIBlazor);
+        IgbIconModule.Register(IgniteUIBlazor);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender && this.HomeIcon != null)
+        {
+            await this.HomeIcon.EnsureReady();
+            await this.HomeIcon.RegisterIconAsync("home", "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg", "material");
+            await this.HomeIcon.RegisterIconAsync("search", "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_search_24px.svg", "material");
+        }
+    }
+}

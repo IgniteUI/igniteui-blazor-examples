@@ -4,9 +4,9 @@
 <div class="container vertical">
     <div class="dateRanges">
         <span class="caption">From:  </span>
-        <DatePicker Height="50px" Width="220px" Value="@FromDate" ValueChanged="FromDateValueChanged"/>
+        <IgbDatePicker Height="50px" Width="220px" Value="@FromDate" ValueChanged="FromDateValueChanged"/>
         <span class="caption">  To:  </span>
-        <DatePicker Height="50px" Width="220px" Value="@ToDate" ValueChanged="ToDateValueChanged"/>
+        <IgbDatePicker Height="50px" Width="220px" Value="@ToDate" ValueChanged="ToDateValueChanged"/>
     </div>
 </div>
 
@@ -31,11 +31,12 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        DatePickerModule.Register(IgniteUIBlazor);
+        IgbDatePickerModule.Register(IgniteUIBlazor);
     }
 
     protected override void OnAfterRender(bool firstRender)
     {
+        base.OnAfterRender(firstRender);
         if (firstRender)
         {
             this.FromDate = DateTime.Today;
@@ -44,7 +45,7 @@
         }
     }
 
-    public void FromDateValueChanged(ValueChangedEventArgs e)
+    public void FromDateValueChanged(IgbValueChangedEventArgs e)
     {
         FromDate = e.NewValue;
         if(this.FromDate > this.ToDate)
@@ -54,7 +55,7 @@
         }
     }
 
-    public void ToDateValueChanged(ValueChangedEventArgs e)
+    public void ToDateValueChanged(IgbValueChangedEventArgs e)
     {
         this.ToDate = e.NewValue;
         if (this.ToDate < this.FromDate)

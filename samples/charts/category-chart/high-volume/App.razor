@@ -2,7 +2,7 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options horizotnal">
+    <div class="options horizontal">
         <label class="options-label">Data Points: </label>
         <label class="options-value">@DataInfo</label>
         <input class="options-slider" type="range" min="10000" max="1000000" step="10000"
@@ -10,27 +10,27 @@
         <button @onclick="OnDataGenerateClick">Generate Data</button>
     </div>
     <div class="container vertical">
-        <CategoryChart @ref="chart"
+        <IgbCategoryChart @ref="chart"
             Height="100%" Width="100%"
             ChartType="CategoryChartType.Line"
             DataSourceScript="getHighVolumeData"
             IsTransitionInEnabled="true"
             IsVerticalZoomEnabled="false"
-            YAxisLabelLocation="AxisLabelsLocation.OutsideRight"
+            YAxisLabelLocation="YAxisLabelLocation.OutsideRight"
             YAxisTitle="Value of Data Points"
             XAxisTitle="Index of Data Points">
-        </CategoryChart>
+        </IgbCategoryChart>
     </div>
 </div>
 
 @code {
-    private CategoryChart chart;
+    private IgbCategoryChart chart;
     private int DataPoints = 1000000;
     private string DataInfo;
 
     protected override void OnInitialized()
     {
-        CategoryChartModule.Register(IgniteUIBlazor);
+        IgbCategoryChartModule.Register(IgniteUIBlazor);
 
         this.DataInfo = ToShortString(this.DataPoints);
     }

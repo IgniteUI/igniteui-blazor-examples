@@ -1,0 +1,119 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical" @onclick="OnContainerClick">
+    <IgbNavDrawer @ref="@NavDrawerRef" style="position: relative">
+        <IgbNavDrawerHeaderItem>
+            Sample Drawer
+        </IgbNavDrawerHeaderItem>
+
+        <IgbNavDrawerItem>
+            <IgbIcon @ref="@HomeIcon" slot="icon" IconName="home" Collection="material" />
+            <span slot="content">Home</span>
+        </IgbNavDrawerItem>
+
+        <IgbNavDrawerItem>
+            <IgbIcon slot="icon" IconName="search" Collection="material" />
+            <span slot="content">Search</span>
+        </IgbNavDrawerItem>
+    </IgbNavDrawer>
+
+    <div id="content" style="width: 100%">
+        <IgbRadioGroup id="radio-group" Alignment="RadioGroupAlignment.Horizontal">
+            <IgbRadio Value="Start" LabelPosition="RadioLabelPosition.After" Checked="true" Change="OnRadioOptionClick">Start</IgbRadio>
+            <IgbRadio Value="End" LabelPosition="RadioLabelPosition.After" Change="OnRadioOptionClick">End</IgbRadio>
+            <IgbRadio Value="Top" LabelPosition="RadioLabelPosition.After" Change="OnRadioOptionClick">Top</IgbRadio>
+            <IgbRadio Value="Bottom" LabelPosition="RadioLabelPosition.After" Change="OnRadioOptionClick">Bottom</IgbRadio>
+        </IgbRadioGroup>
+
+        <IgbNavbar>
+            <IgbIcon slot="start" IconName="menu" Collection="material" @onclick="OnMenuIconClick" />
+            <h2>Home</h2>
+        </IgbNavbar>
+    </div>
+</div>
+
+@code {
+
+    public IgbIcon HomeIcon { get; set; }
+    public IgbNavDrawer NavDrawerRef { get; set; }
+
+    protected override void OnInitialized()
+    {
+        IgbNavbarModule.Register(IgniteUIBlazor);
+        IgbNavDrawerModule.Register(IgniteUIBlazor);
+        IgbNavDrawerHeaderItemModule.Register(IgniteUIBlazor);
+        IgbNavDrawerItemModule.Register(IgniteUIBlazor);
+        IgbIconModule.Register(IgniteUIBlazor);
+        IgbRadioGroupModule.Register(IgniteUIBlazor);
+        IgbRadioModule.Register(IgniteUIBlazor);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if(firstRender && this.HomeIcon != null)
+        {
+            await this.HomeIcon.EnsureReady();
+            await this.HomeIcon.RegisterIconAsync("home", "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg", "material");
+            await this.HomeIcon.RegisterIconAsync("search", "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_search_24px.svg", "material");
+            await this.HomeIcon.RegisterIconAsync("menu", "https://unpkg.com/material-design-icons@3.0.1/navigation/svg/production/ic_menu_24px.svg", "material");
+        }
+    }
+
+    public void OnRadioOptionClick(IgbComponentBoolValueChangedEventArgs args)
+    {
+        IgbRadio radio = args.Parent as IgbRadio;
+
+        if (this.NavDrawerRef != null)
+        {
+            switch (radio.Value)
+            {
+                case "Start":
+                    {
+                        this.NavDrawerRef.Position = NavDrawerPosition.Start;
+                        break;
+                    }
+                case "End":
+                    {
+                        this.NavDrawerRef.Position = NavDrawerPosition.End;
+                        break;
+                    }
+                case "Top":
+                    {
+                        this.NavDrawerRef.Position = NavDrawerPosition.Top;
+                        break;
+                    }
+                case "Bottom":
+                    {
+                        this.NavDrawerRef.Position = NavDrawerPosition.Bottom;
+                        break;
+                    }
+            }
+        }
+    }
+
+    bool isNavDrawerOpen = false;
+    bool hitMenuIconFirst = false;
+    public void OnMenuIconClick()
+    {
+        if(this.NavDrawerRef != null)
+        {
+            this.NavDrawerRef.Show();
+            hitMenuIconFirst = true;
+            isNavDrawerOpen = true;
+        }
+    }
+
+    public void OnContainerClick(MouseEventArgs args)
+    {
+        if (isNavDrawerOpen && !hitMenuIconFirst)
+        {
+            this.NavDrawerRef.Hide();
+            isNavDrawerOpen = false;
+        }
+
+        hitMenuIconFirst = false;
+    }
+}

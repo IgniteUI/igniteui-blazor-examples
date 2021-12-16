@@ -3,25 +3,25 @@
 
 <div class="container vertical">
     <div class="container vertical">
-        <GeographicMap Height="100%" Width="100%" Zoomable="true">
-            <GeographicPolylineSeries ShapefileDataSource="Data"
+        <IgbGeographicMap Height="100%" Width="100%" Zoomable="true">
+            <IgbGeographicPolylineSeries ShapefileDataSource="Data"
                                       ShapeFilterResolution="0.0"
                                       ShapeStrokeThickness="3"
                                       ShapeStroke="rgb(82, 82, 82, 0.4)"/>
-        </GeographicMap>
+        </IgbGeographicMap>
     </div>
 </div>
 
 @code {
 
-    private ShapeDataSource Data;
+    private IgbShapeDataSource Data;
 
     protected override void OnInitialized()
     {
-        GeographicMapModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbGeographicMapModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
 
-        this.Data = new ShapeDataSource()
+        this.Data = new IgbShapeDataSource()
         {
             ShapefileSource = "https://static.infragistics.com/xplatform/shapes/WorldCableRoutes.shp",
             DatabaseSource = "https://static.infragistics.com/xplatform/shapes/WorldCableRoutes.dbf"

@@ -3,7 +3,7 @@
 @inject IJSRuntime JSRuntime;
 
 <div class="container vertical">
-    <div class="options horizotnal">
+    <div class="options horizontal">
         <span class="options-item">Resizing Mode:</span>
         <select class="options-item" @bind="GridResizingMode">
             <option>@ColumnResizingMode.Deferred</option>
@@ -22,7 +22,8 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <DataGrid Height="100%" Width="100%"
+            <div style="overflow: hidden">
+                <IgbDataGrid Height="100%" Width="100%"
                       ColumnResizingAnimationMode="@GridResizingAnimationMode"
                       ColumnResizingMode="@GridResizingMode"
                       ColumnResizingSeparatorWidth="1"
@@ -30,12 +31,13 @@
                       DefaultColumnMinWidth="100"
                       DataSource="Data"
                       IsColumnOptionsEnabled="true">
-                <TextColumn Field="Name" Width="@("*>170")" />
-                <TextColumn Field="Street" HeaderText="Address" Width="@("*>150")" />
-                <TextColumn Field="City" Width="@("*>120")" />
-                <NumericColumn Field="Salary" PositivePrefix="$" ShowGroupingSeparator="true" Width="@("*>120")" />
-                <DateTimeColumn Field="Birthday" Width="@("*>170")" />
-            </DataGrid>
+                    <IgbTextColumn Field="Name" Width="@("*>170")" />
+                    <IgbTextColumn Field="Street" HeaderText="Address" Width="@("*>150")" />
+                    <IgbTextColumn Field="City" Width="@("*>120")" />
+                    <IgbNumericColumn Field="Salary" PositivePrefix="$" ShowGroupingSeparator="true" Width="@("*>120")" />
+                    <IgbDateTimeColumn Field="Birthday" Width="@("*>170")" />
+                </IgbDataGrid>
+            </div>
         }
     </div>
 </div>
@@ -50,7 +52,7 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        DataGridModule.Register(IgniteUIBlazor);
+        IgbDataGridModule.Register(IgniteUIBlazor);
 
         this.Data = EmployeeData.Create(100, false);
         this.GridResizingAnimationMode = ColumnResizingAnimationMode.Interpolate;

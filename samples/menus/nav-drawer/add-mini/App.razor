@@ -1,0 +1,92 @@
+
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div id="nav-drawer-container" style="display: flex;">
+        <IgbNavDrawer @ref="@NavDrawerRef" Open="true" style="position: relative">
+            <IgbNavDrawerHeaderItem>
+                Sample Drawer
+            </IgbNavDrawerHeaderItem>
+
+            <IgbNavDrawerItem>
+                <IgbIcon @ref="@HomeIcon" slot="icon" Collection="material" IconName="home" />
+                <span slot="content">Home</span>
+            </IgbNavDrawerItem>
+
+            <IgbNavDrawerItem>
+                <IgbIcon @ref="@SearchIcon" slot="icon" Collection="material" IconName="search" />
+                <span slot="content">Search</span>
+            </IgbNavDrawerItem>
+
+            <div slot="mini">
+                <IgbNavDrawerItem>
+                    <IgbIcon slot="icon" Collection="material" IconName="home" />
+                </IgbNavDrawerItem>
+
+                <IgbNavDrawerItem>
+                    <IgbIcon slot="icon" Collection="material" IconName="search" />
+                </IgbNavDrawerItem>
+            </div>
+        </IgbNavDrawer>
+
+        <div id="content" style="width: 100%">
+            <IgbButton id="toggleBtn" style="margin-left: 50px;" @onclick="OnButtonClick">Toggle</IgbButton>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    public IgbIcon HomeIcon { get; set; }
+    public IgbIcon SearchIcon { get; set; }    
+
+    public IgbNavDrawer NavDrawerRef { get; set; }
+
+    protected override void OnInitialized()
+    {
+        IgbNavDrawerModule.Register(IgniteUIBlazor);
+        IgbNavDrawerHeaderItemModule.Register(IgniteUIBlazor);
+        IgbNavDrawerItemModule.Register(IgniteUIBlazor);
+        IgbIconModule.Register(IgniteUIBlazor);
+        IgbButtonModule.Register(IgniteUIBlazor);
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        if (this.NavDrawerRef != null && firstRender)
+        {
+            this.NavDrawerRef.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.NavDrawerRef.Toggle();
+            }));            
+        }
+
+        if (this.HomeIcon != null && firstRender)
+        {
+            this.HomeIcon.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.HomeIcon.RegisterIcon("home",
+                    "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg",
+                    "material");
+            }));
+        }
+
+        if (this.SearchIcon != null && firstRender)
+        {
+            this.SearchIcon.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.SearchIcon.RegisterIcon("search",
+                    "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_search_24px.svg",
+                    "material");
+            }));
+        }
+    }
+
+    public void OnButtonClick()
+    {
+        this.NavDrawerRef.Toggle();
+    }
+}

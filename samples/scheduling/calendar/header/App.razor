@@ -1,0 +1,18 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div style="width: 31.25rem; border: 1px solid gainsboro;">
+        <IgbCalendar Selection="@CalendarBaseSelection.Range" HeaderOrientation="@CalendarHeaderOrientation.Vertical" HasHeader="true">            
+            <span slot="title">Trip dates</span>
+        </IgbCalendar>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        IgbCalendarModule.Register(IgniteUIBlazor);
+    }
+}

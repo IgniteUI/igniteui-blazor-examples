@@ -21,7 +21,7 @@ namespace Infragistics.Samples.Core
 
         public TocGroup[] SampleGroups { get { return Groups.Values.ToArray(); } }
         protected Dictionary<string, TocGroup> Groups = new Dictionary<string, TocGroup>();
-        
+
         protected List<string> ComponentNames = new List<string>();
         private int _ComponentsCount = 0;
         public int ComponentsCount
@@ -43,8 +43,8 @@ namespace Infragistics.Samples.Core
         public async Task Load(TOC toc)
         {
             this.IsLoading = true;
-            Console.WriteLine("SB.TOC parsing ");
-            Console.WriteLine("SB.TOC " + this.AppBaseUri);
+            Console.WriteLine("SB.TOC parsing ...");
+            //Console.WriteLine("SB.TOC " + this.AppBaseUri);
 
             this.AppHomeUri = this.AppBaseUri + "/home";
             //this.AppHomeUri = this.AppBaseUri + "samples/home";
@@ -106,7 +106,7 @@ namespace Infragistics.Samples.Core
         public event EventHandler<EventArgs> SamplesLoaded;
         public void OnLoaded()
         {
-            Console.WriteLine("SB.TOC loading... done");
+            Console.WriteLine("SB.TOC parsing... done");
 
             this.SamplesLoaded?.Invoke(this, EventArgs.Empty);
         }

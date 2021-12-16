@@ -13,7 +13,7 @@
 </div>
 
 <div class="sb-sidebar-list">
-    
+
     @if (SB.IsLoading)
     {
         @*<p><em>Loading...</em></p>*@
@@ -65,8 +65,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Console.WriteLine("SB.Nav Menu");
-        Console.WriteLine("SB.NAV Menu " + NavManager.BaseUri);
+        //Console.WriteLine("SB.NAV Menu");
+        //Console.WriteLine("SB.NAV Menu " + NavManager.BaseUri);
         //var toc = await Http.GetAsync<TOC>("toc.json");
         //var client = new HttpClient();
         //var response = await client.GetAsync("toc.json");
@@ -81,15 +81,15 @@
         {
             var toc = await Http.GetFromJsonAsync<TOC>("toc.json");
             await SB.Load(toc);
-            //Console.WriteLine("SB.Nav toc");
-            System.Diagnostics.Debug.WriteLine("SB.Nav toc.json found: " + toc.Groups.Length + " groups");
+            //Console.WriteLine("SB.NAV toc");
+            //System.Diagnostics.Debug.WriteLine("SB.NAV toc.json found: " + toc.Groups.Length + " groups");
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine("SB.Nav toc.json - error: \n" + ex.ToString());
+            Console.WriteLine("SB.NAV toc.json - error: \n" + ex.ToString());
         }
-        
-        Console.WriteLine("SB.Nav loaded");
+
+        // Console.WriteLine("SB.NAV loaded");
 
         SB.SamplesLoaded += OnSamplesLoaded;
         await Task.Delay(1);
@@ -104,7 +104,7 @@
     {
         if (firstRender)
         {
-            //Console.WriteLine("SB.Nav Menu OnAfter");
+            //Console.WriteLine("SB.NAV Menu OnAfter");
             StateHasChanged();
         }
     }

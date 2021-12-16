@@ -6,7 +6,7 @@
     <div class="options vertical">
         <span class="legend-title">GDP vs Population </span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
 
         <div class="overlay-right" >
@@ -25,23 +25,23 @@
     <div class="container vertical">
         @if (data1 != null && data2 != null)
         {
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true"
                    Legend="Legend"
                    @ref="Chart">
 
-            <NumericXAxis Name="xAxis"
+            <IgbNumericXAxis Name="xAxis"
                           IsLogarithmic="true"
                           AbbreviateLargeNumbers="true"
                           Title="Population" />
-            <NumericYAxis Name="yAxis"
+            <IgbNumericYAxis Name="yAxis"
                           Title="Total GDP ($)"
                           IsLogarithmic="true"
                           AbbreviateLargeNumbers="true" />
             @if (SeriesType == "Bubble")
             {
-                <BubbleSeries MarkerType="MarkerType.Circle"
+                <IgbBubbleSeries MarkerType="MarkerType.Circle"
                     ShowDefaultTooltip="true"
                     Title = "High Income Countries"
                     XAxisName = "xAxis"
@@ -50,9 +50,9 @@
                     YMemberPath = "GdpTotal"
                     DataSource = "@data1">
 
-                </BubbleSeries>
+                </IgbBubbleSeries>
 
-                <BubbleSeries MarkerType="MarkerType.Circle"
+                <IgbBubbleSeries MarkerType="MarkerType.Circle"
                     ShowDefaultTooltip="true"
                     Title = "Low Income Countries"
                     XAxisName = "xAxis"
@@ -61,11 +61,11 @@
                     YMemberPath = "GdpTotal"
                     DataSource = "@data2">
 
-                </BubbleSeries>
+                </IgbBubbleSeries>
             }
             @if (SeriesType == "Point")
             {
-                <ScatterSeries MarkerType="MarkerType.Circle"
+                <IgbScatterSeries MarkerType="MarkerType.Circle"
                     ShowDefaultTooltip="true"
                     Title = "High Income Countries"
                     XAxisName = "xAxis"
@@ -74,9 +74,9 @@
                     YMemberPath = "GdpTotal"
                     DataSource = "@data1">
 
-                </ScatterSeries>
+                </IgbScatterSeries>
 
-                <ScatterSeries MarkerType="MarkerType.Circle"
+                <IgbScatterSeries MarkerType="MarkerType.Circle"
                     ShowDefaultTooltip="true"
                     Title = "Low Income Countries"
                     XAxisName = "xAxis"
@@ -85,11 +85,11 @@
                     YMemberPath = "GdpTotal"
                     DataSource = "@data2">
 
-                </ScatterSeries>
+                </IgbScatterSeries>
             }
             @if (SeriesType == "Line")
             {
-                <ScatterLineSeries MarkerType="MarkerType.Circle"
+                <IgbScatterLineSeries MarkerType="MarkerType.Circle"
                     ShowDefaultTooltip="true"
                     Title = "High Income Countries"
                     XAxisName = "xAxis"
@@ -98,9 +98,9 @@
                     YMemberPath = "GdpTotal"
                     DataSource = "@data1">
 
-                </ScatterLineSeries>
+                </IgbScatterLineSeries>
 
-                <ScatterLineSeries MarkerType="MarkerType.Circle"
+                <IgbScatterLineSeries MarkerType="MarkerType.Circle"
                     ShowDefaultTooltip="true"
                     Title = "Low Income Countries"
                     XAxisName = "xAxis"
@@ -109,11 +109,11 @@
                     YMemberPath = "GdpTotal"
                     DataSource = "@data2">
 
-                </ScatterLineSeries>
+                </IgbScatterLineSeries>
             }
             @if (SeriesType == "Spline")
             {
-                <ScatterSplineSeries MarkerType="MarkerType.Circle"
+                <IgbScatterSplineSeries MarkerType="MarkerType.Circle"
                     ShowDefaultTooltip="true"
                     Title = "High Income Countries"
                     XAxisName = "xAxis"
@@ -122,9 +122,9 @@
                     YMemberPath = "GdpTotal"
                     DataSource = "@data1">
 
-                </ScatterSplineSeries>
+                </IgbScatterSplineSeries>
 
-                <ScatterSplineSeries MarkerType="MarkerType.Circle"
+                <IgbScatterSplineSeries MarkerType="MarkerType.Circle"
                     ShowDefaultTooltip="true"
                     Title = "Low Income Countries"
                     XAxisName = "xAxis"
@@ -133,9 +133,9 @@
                     YMemberPath = "GdpTotal"
                     DataSource = "@data2">
 
-                </ScatterSplineSeries>
+                </IgbScatterSplineSeries>
             }
-        </DataChart>
+        </IgbDataChart>
         }
         </div>
 </div>
@@ -145,8 +145,8 @@
     private object data1;
     private object data2;
 
-    private DataChart _Chart;
-    private DataChart Chart
+    private IgbDataChart _Chart;
+    private IgbDataChart Chart
     {
         get { return _Chart; }
         set
@@ -158,8 +158,8 @@
         }
     }
 
-    private Legend legend;
-    private Legend Legend
+    private IgbLegend legend;
+    private IgbLegend Legend
     {
         get { return legend; }
         set
@@ -181,15 +181,15 @@
 
     protected override void OnInitialized()
     {
-        LegendModule.Register(IgniteUIBlazor);
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartScatterCoreModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        DataChartScatterCoreModule.Register(IgniteUIBlazor);
-        DataChartScatterModule.Register(IgniteUIBlazor);
-        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+        IgbLegendModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartScatterCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbDataChartScatterCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartScatterModule.Register(IgniteUIBlazor);
+        IgbNumberAbbreviatorModule.Register(IgniteUIBlazor);
 
-        LegendModule.Register(IgniteUIBlazor);
+        IgbLegendModule.Register(IgniteUIBlazor);
         this.data1 = SampleScatterStats.GetCountriesWithHighIncome();
         this.data2 = SampleScatterStats.GetCountriesWithLowIncome();
     }

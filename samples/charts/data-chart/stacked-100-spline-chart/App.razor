@@ -9,20 +9,20 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <DataChart Height="100%" Width="100%" IsHorizontalZoomEnabled="false"
+            <IgbDataChart Height="100%" Width="100%" IsHorizontalZoomEnabled="false"
                 IsVerticalZoomEnabled="false">
-                <CategoryXAxis Name="xAxis" DataSource="Data" Label="Year" />
-                <NumericYAxis Name="yAxis" Interval="20" TitleLeftMargin="10" LabelFormat="{0} %"/>
+                <IgbCategoryXAxis Name="xAxis" DataSource="Data" Label="Year" />
+                <IgbNumericYAxis Name="yAxis" Interval="20" TitleLeftMargin="10" LabelFormat="{0} %"/>
 
-                <Stacked100SplineSeries MarkerType="MarkerType.Circle" XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false">
-                    <StackedFragmentSeries ValueMemberPath="Asia" />
-                    <StackedFragmentSeries ValueMemberPath="Africa" />
-                    <StackedFragmentSeries ValueMemberPath="Europe" />
-                    <StackedFragmentSeries ValueMemberPath="NorthAmerica" />
-                    <StackedFragmentSeries ValueMemberPath="SouthAmerica" />
-                    <StackedFragmentSeries ValueMemberPath="Oceania" />
-                </Stacked100SplineSeries>
-            </DataChart>
+                <IgbStacked100SplineSeries MarkerType="MarkerType.Circle" XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false">
+                    <IgbStackedFragmentSeries ValueMemberPath="Asia" />
+                    <IgbStackedFragmentSeries ValueMemberPath="Africa" />
+                    <IgbStackedFragmentSeries ValueMemberPath="Europe" />
+                    <IgbStackedFragmentSeries ValueMemberPath="NorthAmerica" />
+                    <IgbStackedFragmentSeries ValueMemberPath="SouthAmerica" />
+                    <IgbStackedFragmentSeries ValueMemberPath="Oceania" />
+                </IgbStacked100SplineSeries>
+            </IgbDataChart>
         }
     </div>
 </div>
@@ -35,11 +35,11 @@
     {
         base.OnInitialized();
 
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        DataChartStackedModule.Register(IgniteUIBlazor);
-        StackedFragmentSeriesModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbDataChartStackedModule.Register(IgniteUIBlazor);
+        IgbStackedFragmentSeriesModule.Register(IgniteUIBlazor);
     }
 }

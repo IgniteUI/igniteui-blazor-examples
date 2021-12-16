@@ -1,0 +1,75 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <IgbRadioGroup Alignment="@RadioGroupAlignment.Horizontal">
+        <IgbRadio Value="Small" label-position="after" Change="OnRadioOptionClick">Small</IgbRadio>
+        <IgbRadio Value="Medium" label-position="after" Change="OnRadioOptionClick">Medium</IgbRadio>
+        <IgbRadio Value="Large" label-position="after" Checked="true" Change="OnRadioOptionClick">Large</IgbRadio>
+    </IgbRadioGroup>
+
+    <IgbList style="margin-top: 10px;" Size="@ListSize">
+        <IgbListHeader>Contacts</IgbListHeader>
+        <IgbListItem>
+            <IgbAvatar slot="start" src="https://static.infragistics.com/xplatform/images/avatars/8.jpg" Shape="@AvatarShape.Circle"/>
+            <span slot="title">Terrance Orta</span>
+            <span slot="subtitle">770-504-2217</span>
+            <IgbButton slot="end" Variant="@ButtonVariant.Outlined">Text</IgbButton>
+            <IgbButton slot="end" Variant="@ButtonVariant.Outlined">Call</IgbButton>
+        </IgbListItem> 
+        <IgbListItem>
+            <IgbAvatar slot="start" src="https://static.infragistics.com/xplatform/images/avatars/17.jpg" Shape="@AvatarShape.Circle"/>
+            <span slot="title">Richard Mahoney</span>
+            <span slot="subtitle">423-676-2869</span>
+            <IgbButton slot="end" Variant="@ButtonVariant.Outlined">Text</IgbButton>
+            <IgbButton slot="end" Variant="@ButtonVariant.Outlined">Call</IgbButton>
+        </IgbListItem> 
+        <IgbListItem>
+            <IgbAvatar slot="start" src="https://static.infragistics.com/xplatform/images/avatars/9.jpg" Shape="@AvatarShape.Circle"/>
+            <span slot="title">Donna Price</span>
+            <span slot="subtitle">859-496-2817</span>
+            <IgbButton slot="end" Variant="@ButtonVariant.Outlined">Text</IgbButton>
+            <IgbButton slot="end" Variant="@ButtonVariant.Outlined">Call</IgbButton>
+        </IgbListItem> 
+    </IgbList>
+</div>
+
+@code {
+
+    public SizableComponentSize ListSize { get; set; }
+
+    protected override void OnInitialized()
+    {
+        IgbAvatarModule.Register(IgniteUIBlazor);
+        IgbButtonModule.Register(IgniteUIBlazor);
+        IgbListModule.Register(IgniteUIBlazor);
+        IgbRadioModule.Register(IgniteUIBlazor);
+        IgbRadioGroupModule.Register(IgniteUIBlazor);
+
+        this.ListSize = SizableComponentSize.Large;
+    }
+
+    public void OnRadioOptionClick(IgbComponentBoolValueChangedEventArgs e)
+    {
+        IgbRadio radio = e.Parent as IgbRadio;
+
+        switch (radio.Value)
+        {
+            case "Small":
+                {
+                    this.ListSize = SizableComponentSize.Small;
+                    break;
+                }
+            case "Medium":
+                {
+                    this.ListSize = SizableComponentSize.Medium;
+                    break;
+                }
+            case "Large":
+                {
+                    this.ListSize = SizableComponentSize.Large;
+                    break;
+                }
+        }
+    }
+}

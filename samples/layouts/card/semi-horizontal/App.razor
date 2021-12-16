@@ -1,0 +1,39 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical" style="align-items: center">
+    <div class="card-wrapper" style="max-width: 25rem; min-width: 15.625rem;"> 
+        <IgbCard>
+            <div class="semi-horizontal" style="display: flex; flex-direction: row; flex-grow: 1;">
+                <div>
+                    <IgbCardHeader>
+                        <IgbAvatar Src="https://static.infragistics.com/xplatform/images/music/singer_with_mic.jpg" slot="thumbnail"/>
+                        <h5 slot="title">HERE</h5>
+                        <h5 slot="subtitle">by Mellow D</h5>
+                    </IgbCardHeader>
+                    <IgbCardContent>
+                      <p>Far far away, behind the word mountains,
+                      far from the countries Vokalia and Consonantia,
+                      there live the blind texts.</p>
+                    </IgbCardContent>
+                    <IgbCardActions>
+                        <IgbButton>Play Album</IgbButton>
+                    </IgbCardActions>
+                </div>
+                <IgbCardMedia class="card-media" style="width: 6rem; min-width: 6rem;">
+                    <img src="https://static.infragistics.com/xplatform/images/music/singer_female.jpg" />
+                </IgbCardMedia>
+            </div>
+        </IgbCard>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        IgbAvatarModule.Register(IgniteUIBlazor);
+        IgbButtonModule.Register(IgniteUIBlazor);
+        IgbCardModule.Register(IgniteUIBlazor);
+    }
+}

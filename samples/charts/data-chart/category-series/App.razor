@@ -7,7 +7,7 @@
 
         <span class="legend-title">Legend: </span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
 
         <div class="overlay-right" >
@@ -33,7 +33,7 @@
     <div class="container vertical">
         @if (Data != null)
         {
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    ChartTitle="Total Olympic Medals"
                    Subtitle="United States vs China vs Russia"
                    TitleTopMargin="10"
@@ -44,206 +44,206 @@
 
             @if (SeriesType != "Bar")
             {
-                <CategoryXAxis Name="xAxis" Label="Year" DataSource="Data"
+                <IgbCategoryXAxis Name="xAxis" Label="Year" DataSource="Data"
                                Title="Olympic Years" Gap="0.2" Overlap="-0.05" />
-                <NumericYAxis Name="yAxis" Title="Olympic Medals" TitleLeftMargin="10" />
+                <IgbNumericYAxis Name="yAxis" Title="Olympic Medals" TitleLeftMargin="10" />
             }
 
             @if (SeriesType == "Bar")
             {
-                <NumericXAxis Name="xAxis2" Label="Year"
+                <IgbNumericXAxis Name="xAxis2" Label="Year"
                               Title="Olympic Years" />
-                <CategoryYAxis Name="yAxis2" Title="Olympic Medals" TitleLeftMargin="10" DataSource="Data" Gap="0.2" Overlap="-0.05" />
+                <IgbCategoryYAxis Name="yAxis2" Title="Olympic Medals" TitleLeftMargin="10" DataSource="Data" Gap="0.2" Overlap="-0.05" />
 
-                <BarSeries Name="series1"
+                <IgbBarSeries Name="series1"
                            ValueMemberPath="USA"
                            Title="USA"
                            XAxisName="xAxis2"
                            YAxisName="yAxis2"
                            DataSource="Data">
-                </BarSeries>
+                </IgbBarSeries>
 
-                <BarSeries Name="series2"
+                <IgbBarSeries Name="series2"
                            ValueMemberPath="RUS"
                            Title="Russia"
                            XAxisName="xAxis2"
                            YAxisName="yAxis2"
                            DataSource="Data">
-                </BarSeries>
+                </IgbBarSeries>
             }
 
 
             @if (SeriesType == "Column")
             {
-                <ColumnSeries Name="series1"
+                <IgbColumnSeries Name="series1"
                               ValueMemberPath="USA"
                               Title="USA"
                               XAxisName="xAxis"
                               YAxisName="yAxis"
                               DataSource="Data">
-                </ColumnSeries>
+                </IgbColumnSeries>
 
-                <ColumnSeries Name="series2"
+                <IgbColumnSeries Name="series2"
                               ValueMemberPath="RUS"
                               Title="Russia"
                               XAxisName="xAxis"
                               YAxisName="yAxis"
                               DataSource="Data">
-                </ColumnSeries>
+                </IgbColumnSeries>
             }
 
             @if (SeriesType == "Area")
             {
-                <AreaSeries Name="series1"
+                <IgbAreaSeries Name="series1"
                             ValueMemberPath="USA"
                             Title="USA"
                             XAxisName="xAxis"
                             YAxisName="yAxis"
                             DataSource="Data">
-                </AreaSeries>
+                </IgbAreaSeries>
 
-                <AreaSeries Name="series2"
+                <IgbAreaSeries Name="series2"
                             ValueMemberPath="RUS"
                             Title="Russia"
                             XAxisName="xAxis"
                             YAxisName="yAxis"
                             DataSource="Data">
-                </AreaSeries>
+                </IgbAreaSeries>
             }
 
             @if (SeriesType == "Point")
             {
-                <PointSeries Name="series1"
+                <IgbPointSeries Name="series1"
                              ValueMemberPath="USA"
                              Title="USA"
                              XAxisName="xAxis"
                              YAxisName="yAxis"
                              DataSource="Data">
-                </PointSeries>
+                </IgbPointSeries>
 
-                <PointSeries Name="series2"
+                <IgbPointSeries Name="series2"
                              ValueMemberPath="RUS"
                              Title="Russia"
                              XAxisName="xAxis"
                              YAxisName="yAxis"
                              DataSource="Data">
-                </PointSeries>
+                </IgbPointSeries>
             }
 
             @if (SeriesType == "Line")
             {
-                <LineSeries Name="series1"
+                <IgbLineSeries Name="series1"
                             ValueMemberPath="USA"
                             Title="USA"
                             XAxisName="xAxis"
                             YAxisName="yAxis"
                             DataSource="Data">
-                </LineSeries>
+                </IgbLineSeries>
 
-                <LineSeries Name="series2"
+                <IgbLineSeries Name="series2"
                             ValueMemberPath="RUS"
                             Title="Russia"
                             XAxisName="xAxis"
                             YAxisName="yAxis"
                             DataSource="Data">
-                </LineSeries>
+                </IgbLineSeries>
             }
 
             @if (SeriesType == "Spline")
             {
-                <SplineSeries Name="series1"
+                <IgbSplineSeries Name="series1"
                               ValueMemberPath="USA"
                               Title="USA"
                               XAxisName="xAxis"
                               YAxisName="yAxis"
                               DataSource="Data">
-                </SplineSeries>
+                </IgbSplineSeries>
 
-                <SplineSeries Name="series2"
+                <IgbSplineSeries Name="series2"
                               ValueMemberPath="RUS"
                               Title="Russia"
                               XAxisName="xAxis"
                               YAxisName="yAxis"
                               DataSource="Data">
-                </SplineSeries>
+                </IgbSplineSeries>
             }
 
             @if (SeriesType == "Spline Area")
             {
-                <SplineAreaSeries Name="series1"
+                <IgbSplineAreaSeries Name="series1"
                                   ValueMemberPath="USA"
                                   Title="USA"
                                   XAxisName="xAxis"
                                   YAxisName="yAxis"
                                   DataSource="Data">
-                </SplineAreaSeries>
+                </IgbSplineAreaSeries>
 
-                <SplineAreaSeries Name="series2"
+                <IgbSplineAreaSeries Name="series2"
                                   ValueMemberPath="RUS"
                                   Title="Russia"
                                   XAxisName="xAxis"
                                   YAxisName="yAxis"
                                   DataSource="Data">
-                </SplineAreaSeries>
+                </IgbSplineAreaSeries>
             }
 
             @if (SeriesType == "Step Area")
             {
-                <StepAreaSeries Name="series1"
+                <IgbStepAreaSeries Name="series1"
                                 ValueMemberPath="USA"
                                 Title="USA"
                                 XAxisName="xAxis"
                                 YAxisName="yAxis"
                                 DataSource="Data">
-                </StepAreaSeries>
+                </IgbStepAreaSeries>
 
-                <StepAreaSeries Name="series2"
+                <IgbStepAreaSeries Name="series2"
                                 ValueMemberPath="RUS"
                                 Title="Russia"
                                 XAxisName="xAxis"
                                 YAxisName="yAxis"
                                 DataSource="Data">
-                </StepAreaSeries>
+                </IgbStepAreaSeries>
             }
 
             @if (SeriesType == "Step Line")
             {
-                <StepLineSeries Name="series1"
+                <IgbStepLineSeries Name="series1"
                                 ValueMemberPath="USA"
                                 Title="USA"
                                 XAxisName="xAxis"
                                 YAxisName="yAxis"
                                 DataSource="Data">
-                </StepLineSeries>
+                </IgbStepLineSeries>
 
-                <StepLineSeries Name="series2"
+                <IgbStepLineSeries Name="series2"
                                 ValueMemberPath="RUS"
                                 Title="Russia"
                                 XAxisName="xAxis"
                                 YAxisName="yAxis"
                                 DataSource="Data">
-                </StepLineSeries>
+                </IgbStepLineSeries>
             }
 
             @if (SeriesType == "Waterfall")
             {
-                <WaterfallSeries Name="series1"
+                <IgbWaterfallSeries Name="series1"
                                  ValueMemberPath="USA"
                                  Title="USA"
                                  XAxisName="xAxis"
                                  YAxisName="yAxis"
                                  DataSource="Data">
-                </WaterfallSeries>
+                </IgbWaterfallSeries>
 
-                <WaterfallSeries Name="series2"
+                <IgbWaterfallSeries Name="series2"
                                  ValueMemberPath="RUS"
                                  Title="Russia"
                                  XAxisName="xAxis"
                                  YAxisName="yAxis"
                                  DataSource="Data">
-                </WaterfallSeries>
+                </IgbWaterfallSeries>
             }
-        </DataChart>
+        </IgbDataChart>
         }
         </div>
 </div>
@@ -251,8 +251,8 @@
 @code {
 
     private List<SampleCategoryItem> Data;
-    private DataChart _Chart;
-    private DataChart Chart
+    private IgbDataChart _Chart;
+    private IgbDataChart Chart
     {
         get { return _Chart; }
         set
@@ -263,8 +263,8 @@
         }
     }
 
-    private Legend legend;
-    private Legend Legend
+    private IgbLegend legend;
+    private IgbLegend Legend
     {
         get { return legend; }
         set
@@ -286,13 +286,13 @@
 
     protected override void OnInitialized()
     {
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        DataChartVerticalCategoryModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartVerticalCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
 
-        LegendModule.Register(IgniteUIBlazor);
+        IgbLegendModule.Register(IgniteUIBlazor);
         Data = SampleCategoryData.Create();
     }
 

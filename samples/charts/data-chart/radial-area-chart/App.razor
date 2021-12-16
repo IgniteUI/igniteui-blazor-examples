@@ -5,21 +5,21 @@
     <div class="options vertical">
         <span class="legend-title">Ronaldo vs. Messi Player Stats</span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="container vertical">
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false"
                    Legend="Legend">
-            <CategoryAngleAxis Name="angleAxis" DataSource="Data"
+            <IgbCategoryAngleAxis Name="angleAxis" DataSource="Data"
                                Label="Attribute" />
-            <NumericRadiusAxis Name="radiusAxis"
+            <IgbNumericRadiusAxis Name="radiusAxis"
                                InnerRadiusExtentScale="0.1"
                                MinimumValue="0" MaximumValue="10" Interval="2" />
 
-            <RadialAreaSeries DataSource="Data"
+            <IgbRadialAreaSeries DataSource="Data"
                               AngleAxisName="angleAxis"
                               ValueMemberPath="RonaldoValue"
                               ValueAxisName="radiusAxis"
@@ -29,7 +29,7 @@
                               Title="Ronaldo"
                               MarkerType="MarkerType.Circle" />
 
-            <RadialAreaSeries DataSource="Data"
+            <IgbRadialAreaSeries DataSource="Data"
                               AngleAxisName="angleAxis"
                               ValueMemberPath="MessiValue"
                               ValueAxisName="radiusAxis"
@@ -38,7 +38,7 @@
                               Thickness="3"
                               Title="Messi"
                               MarkerType="MarkerType.Circle" />
-        </DataChart>
+        </IgbDataChart>
 
     </div>
 </div>
@@ -47,8 +47,8 @@
 
     private List<PlayerStatsInfo> Data = new PlayerStatsData();
 
-    private Legend _Legend;
-    private Legend Legend
+    private IgbLegend _Legend;
+    private IgbLegend Legend
     {
         get { return _Legend; }
         set { _Legend = value; StateHasChanged(); }
@@ -56,14 +56,14 @@
 
     protected override void OnInitialized()
     {
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartRadialModule.Register(IgniteUIBlazor);
-        DataChartRadialCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartRadialModule.Register(IgniteUIBlazor);
+        IgbDataChartRadialCoreModule.Register(IgniteUIBlazor);
 
-        DataChartExtendedAxesModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        LegendModule.Register(IgniteUIBlazor);
+        IgbDataChartExtendedAxesModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbLegendModule.Register(IgniteUIBlazor);
     }
 
 }

@@ -5,76 +5,76 @@
     <div class="options vertical">
         <span class="legend-title">Facebook Statement of Income 2019-2020</span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="container vertical">
-        <DataChart Height="100%" Width="100%" Legend="Legend"
+        <IgbDataChart Height="100%" Width="100%" Legend="Legend"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <CategoryXAxis Name="xAxis" DataSource="Data" Label="Date" />
-            <NumericYAxis Name="yAxis1" AbbreviateLargeNumbers="true" Title="In Millions of U.S. Dollars"
+            <IgbCategoryXAxis Name="xAxis" DataSource="Data" Label="Date" />
+            <IgbNumericYAxis Name="yAxis1" AbbreviateLargeNumbers="true" Title="In Millions of U.S. Dollars"
                           MinimumValue="0" MaximumValue="30000" TitleLeftMargin="5" TitleRightMargin="0"/>
-            <NumericYAxis Name="yAxis2" AbbreviateLargeNumbers="true" Title="Percentage" MajorStrokeThickness="0"
+            <IgbNumericYAxis Name="yAxis2" AbbreviateLargeNumbers="true" Title="Percentage" MajorStrokeThickness="0"
                           MinimumValue="0" MaximumValue="160" LabelLocation="AxisLabelsLocation.OutsideRight"
                           LabelHorizontalAlignment="HorizontalAlignment.Left"/>
 
-            <ColumnSeries @ref="@RevenueSeries" XAxisName="xAxis" YAxisName="yAxis1" DataSource="Data"
+            <IgbColumnSeries @ref="@RevenueSeries" XAxisName="xAxis" YAxisName="yAxis1" DataSource="Data"
                           ValueMemberPath="Revenue"
                           Title="Revenue" MarkerType="MarkerType.Hidden" />
-            <ColumnSeries @ref="@ExpenseSeries" XAxisName="xAxis" YAxisName="yAxis1" DataSource="Data"
+            <IgbColumnSeries @ref="@ExpenseSeries" XAxisName="xAxis" YAxisName="yAxis1" DataSource="Data"
                           ValueMemberPath="Expenses"
                           Title="Expenses" MarkerType="MarkerType.Hidden" />
 
-            <SplineAreaSeries @ref="@IncomeSeries" XAxisName="xAxis" YAxisName="yAxis2" DataSource="Data"
+            <IgbSplineAreaSeries @ref="@IncomeSeries" XAxisName="xAxis" YAxisName="yAxis2" DataSource="Data"
                               ValueMemberPath="IncomePerRevenue"
                               Title="Income / Revenue %" MarkerType="MarkerType.Hidden" />
 
-            <CalloutLayer IsAutoCalloutBehaviorEnabled="true" TargetSeries="@RevenueSeries"
+            <IgbCalloutLayer IsAutoCalloutBehaviorEnabled="true" TargetSeries="@RevenueSeries"
                           UseValueForAutoCalloutLabels="true"
                           CalloutLeaderBrush="Transparent" CalloutTextColor="Black"
                           CalloutBackground = "Transparent"/>
 
-            <CalloutLayer IsAutoCalloutBehaviorEnabled="true" TargetSeries="@ExpenseSeries"
+            <IgbCalloutLayer IsAutoCalloutBehaviorEnabled="true" TargetSeries="@ExpenseSeries"
                           UseValueForAutoCalloutLabels="true"
                           CalloutLeaderBrush="Transparent" CalloutTextColor="Black"
                           CalloutBackground = "Transparent"/>
 
-            <CalloutLayer IsAutoCalloutBehaviorEnabled="true" TargetSeries="@IncomeSeries"
+            <IgbCalloutLayer IsAutoCalloutBehaviorEnabled="true" TargetSeries="@IncomeSeries"
                           UseValueForAutoCalloutLabels="true" ContentMemberPath="IncomePerRevenue"
                           CalloutLeaderBrush="Transparent" CalloutTextColor="Black"
                           CalloutBackground = "LightGray" AutoCalloutLabelPrecision="1"/>
 
-        </DataChart>
+        </IgbDataChart>
     </div>
 </div>
 
 @code {
 
-    private Legend _legend;
-    private Legend Legend
+    private IgbLegend _legend;
+    private IgbLegend Legend
     {
         get { return _legend; }
         set { _legend = value; StateHasChanged(); }
     }
 
-    private ColumnSeries _RevenueSeries;
-    public ColumnSeries RevenueSeries
+    private IgbColumnSeries _RevenueSeries;
+    public IgbColumnSeries RevenueSeries
     {
         get { return _RevenueSeries; }
         set { _RevenueSeries = value; StateHasChanged(); }
     }
 
-    private ColumnSeries _ExpenseSeries;
-    public ColumnSeries ExpenseSeries
+    private IgbColumnSeries _ExpenseSeries;
+    public IgbColumnSeries ExpenseSeries
     {
         get { return _ExpenseSeries; }
         set { _ExpenseSeries = value; StateHasChanged(); }
     }
 
-    private SplineAreaSeries _IncomeSeries;
-    public SplineAreaSeries IncomeSeries
+    private IgbSplineAreaSeries _IncomeSeries;
+    public IgbSplineAreaSeries IncomeSeries
     {
         get { return _IncomeSeries; }
         set { _IncomeSeries = value; StateHasChanged(); }
@@ -84,14 +84,14 @@
 
     protected override void OnInitialized()
     {
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        DataChartAnnotationModule.Register(IgniteUIBlazor);
-        CalloutLayerModule.Register(IgniteUIBlazor);
-        NumberAbbreviatorModule.Register(IgniteUIBlazor);
-        LegendModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbDataChartAnnotationModule.Register(IgniteUIBlazor);
+        IgbCalloutLayerModule.Register(IgniteUIBlazor);
+        IgbNumberAbbreviatorModule.Register(IgniteUIBlazor);
+        IgbLegendModule.Register(IgniteUIBlazor);
     }
 
 }

@@ -4,24 +4,32 @@
 <div class="container vertical">
 
     <div class="container vertical">
-        <GeographicMap Height="100%" Width="100%" Zoomable="true"
-                       BackgroundContent="@OSMImagery"
-                       WindowRect="@GeoBounds">
-        </GeographicMap>
+        <IgbGeographicMap Height="100%" Width="100%" Zoomable="true" BackgroundContent="@OSMImagery"/>
     </div>
 </div>
 
 @code {
 
-    private OpenStreetMapImagery OSMImagery;
-    private Rect GeoBounds;
+    private IgbOpenStreetMapImagery OSMImagery;    
+    private IgbGeographicMap MapRef { get; set; }
 
     protected override void OnInitialized()
     {
-        GeographicMapModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbGeographicMapModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
 
-        this.OSMImagery = new OpenStreetMapImagery();
-        this.GeoBounds = new Rect() { Left = - 150, Top = -60, Width = 315, Height = 140 };
+        this.OSMImagery = new IgbOpenStreetMapImagery();        
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender && this.MapRef != null)
+        {
+            Rect zoomRect = new Rect() { Left = -150, Top = -60, Width = 315, Height = 140 };
+            await this.MapRef.EnsureReady();
+            await this.MapRef.UpdateWorldRectAsync(zoomRect);            
+        }
     }
 }

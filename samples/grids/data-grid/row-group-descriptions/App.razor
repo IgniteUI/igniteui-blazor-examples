@@ -1,0 +1,84 @@
+﻿
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+
+<div class="container vertical">
+
+    <div class="container vertical">
+        <div class="options horizontal">
+            <span class="options-item">Group Header Display Mode: </span>
+            <select class="options-item" @bind="GroupHeaderClickAction">
+                <option>@GroupHeaderDisplayMode.Combined</option>
+                <option>@GroupHeaderDisplayMode.Split</option>
+            </select>
+
+    </div>
+
+        @if (Data != null)
+        {
+            <div style="overflow: hidden">
+                <IgbDataGrid Height="100%" Width="100%"
+                      @ref="@DataGridRef"
+                      DataSource="Data"
+                      AutoGenerateColumns="false"
+                      IsGroupCollapsable="true"
+                      GroupHeaderDisplayMode="@GroupHeaderClickAction">
+                    <IgbTextColumn Field="Name" Width="@("*>120")" />
+                    <IgbNumericColumn Field="Age" Width="@("*>110")" />
+                    <IgbDateTimeColumn Field="Birthday" HorizontalAlignment="CellContentHorizontalAlignment.Center" Width="@("*>160")"/>
+                    <IgbTextColumn IsEditable="false" Field="Country" HeaderText="Country" Width="@("*>160")"
+                                    PaddingTop="5" PaddingBottom="5" ContentOpacity="1" HorizontalAlignment="CellContentHorizontalAlignment.Center"/>
+                    <IgbTextColumn Field="Street" />
+                    <IgbNumericColumn Field="Salary" HeaderText="Salary" Width="@("*>130")"
+                                    PositivePrefix="$" ShowGroupingSeparator="true"/>
+                    <IgbTextColumn Field="City" />
+                    <IgbNumericColumn Field="Salary" PositivePrefix="$" ShowGroupingSeparator="true" MaxFractionDigits="0" MinFractionDigits="0" />
+                </IgbDataGrid>
+            </div>
+        }
+
+    </div>
+</div>
+
+@code {
+
+    private List<Employee> Data;
+    private IgbDataGrid grid;
+    private GroupHeaderDisplayMode GroupHeaderClickAction { get; set; } = GroupHeaderDisplayMode.Combined;
+
+    public IgbDataGrid DataGridRef
+    {
+        get
+        {
+            return grid;
+        }
+        set
+        {
+            grid = value;
+            OnGridCreated();
+
+            StateHasChanged();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        IgbDataGridModule.Register(IgniteUIBlazor);
+        IgbColumnGroupingModule.Register(IgniteUIBlazor);
+        this.Data = EmployeeData.Create(200, false);
+    }
+
+    private void OnGridCreated()
+    {
+        var country = new IgbColumnGroupDescription() { Field = "Country", DisplayName = "Location" };
+        var city = new IgbColumnGroupDescription() { Field = "City", DisplayName = "" };
+        var income = new IgbColumnGroupDescription() { Field = "Income", DisplayName = "Income" };
+
+        grid.GroupDescriptions.Add(country);
+        grid.GroupDescriptions.Add(city);
+        grid.GroupDescriptions.Add(income);
+    }
+
+}

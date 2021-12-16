@@ -9,7 +9,7 @@
 
     <div class="container vertical" style="padding: 0.75rem; padding-top: 0.5rem;">
 
-        <Treemap @ref="TreeMap" Height="100%" Width="100%"
+        <IgbTreemap @ref="TreeMap" Height="100%" Width="100%"
                  RootTitle="Countries"
                  DataSource="Data"
                  ParentIdMemberPath="Parent"
@@ -27,7 +27,7 @@
                  ParentNodeTopPadding="0"
                  Outline="black"
                  StrokeThickness="1">
-            </Treemap>
+            </IgbTreemap>
 
     </div>
 </div>
@@ -35,8 +35,8 @@
 @code {
 
     private List<CountryInfo> Data;
-    private Treemap _treeMap;
-    private Treemap TreeMap
+    private IgbTreemap _treeMap;
+    private IgbTreemap TreeMap
     {
         get { return _treeMap; }
         set { _treeMap = value; StateHasChanged(); }
@@ -44,13 +44,13 @@
 
     protected override void OnInitialized()
     {
-        TreemapModule.Register(IgniteUIBlazor);
+        IgbTreemapModule.Register(IgniteUIBlazor);
         this.Data = CountryTreeData.Create();
     }
 
     protected void AddStyleMapping(string valueID, string fillColor)
     {
-        this.TreeMap.StyleMappings.Add(new TreemapNodeStyleMapping()
+        this.TreeMap.StyleMappings.Add(new IgbTreemapNodeStyleMapping()
         {
             Value = valueID,
             Fill = fillColor,
@@ -62,7 +62,7 @@
     {
         base.OnAfterRender(firstRender);
 
-        if (firstRender)
+        if (!firstRender)
         {
             this.AddStyleMapping("Africa", "#735656");
             this.AddStyleMapping("Asia", "#61ab37");

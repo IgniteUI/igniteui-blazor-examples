@@ -5,28 +5,28 @@
 	<div class="options vertical">
         <span class="legend-title">Wind Speed</span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="container vertical">
 
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    Legend=Legend
 				   SubtitleTopMargin="10"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
-            <NumericAngleAxis Name="angleAxis" StartAngleOffset="-90"
+            <IgbNumericAngleAxis Name="angleAxis" StartAngleOffset="-90"
                               Interval="30"
                               MinimumValue="0"
                               MaximumValue="360" />
-            <NumericRadiusAxis Name="radiusAxis"
+            <IgbNumericRadiusAxis Name="radiusAxis"
                                RadiusExtentScale="0.9"
                                InnerRadiusExtentScale="0.1"
                                Interval="25"
                                MinimumValue="0"
                                MaximumValue="100" />
 
-            <PolarAreaSeries Name="series1"
+            <IgbPolarAreaSeries Name="series1"
                              DataSource="Data"
                              AngleAxisName="angleAxis"
                              AngleMemberPath="Direction"
@@ -37,7 +37,7 @@
                              Thickness="1"
                              Title="Wind Speed"
                              MarkerType="MarkerType.Circle" />
-            <PolarAreaSeries Name="series2"
+            <IgbPolarAreaSeries Name="series2"
                              DataSource="Data"
                              AngleAxisName="angleAxis"
                              AngleMemberPath="Direction"
@@ -48,7 +48,7 @@
                              Thickness="1"
                              Title="Boat Speed"
                              MarkerType="MarkerType.Circle"/>
-        </DataChart>
+        </IgbDataChart>
 
     </div>
 </div>
@@ -56,8 +56,8 @@
 @code {
 
     private List<SamplePolarItem> Data;
-	private Legend _Legend;
-    private Legend Legend
+	private IgbLegend _Legend;
+    private IgbLegend Legend
     {
         get { return _Legend; }
         set { _Legend = value; StateHasChanged(); }
@@ -65,11 +65,11 @@
 
     protected override void OnInitialized()
     {
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartPolarModule.Register(IgniteUIBlazor);
-        DataChartPolarCoreModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-		LegendModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartPolarModule.Register(IgniteUIBlazor);
+        IgbDataChartPolarCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+		IgbLegendModule.Register(IgniteUIBlazor);
 
         Data = SamplePolarData.Create();
     }

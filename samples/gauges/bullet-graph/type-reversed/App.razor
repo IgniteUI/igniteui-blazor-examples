@@ -3,7 +3,7 @@
 
 <div class="container vertical">
     <div class="container vertical">
-        <BulletGraph Height="120px" Width="100%"
+        <IgbBulletGraph Height="120px" Width="100%"
                      Orientation="LinearScaleOrientation.Horizontal"
                      BackingBrush="transparent"
                      BackingOutline="transparent"
@@ -18,7 +18,7 @@
             @for (int i = 0; i < RangeInfo1.Count; i++)
             {
                 GaugeRangeInfo info1 = RangeInfo1[i];
-                <LinearGraphRange StartValue=info1.StartValue
+                <IgbLinearGraphRange StartValue=info1.StartValue
                                   EndValue=info1.EndValue
                                   InnerStartExtent=info1.InnerStartExtent
                                   InnerEndExtent=info1.InnerEndExtent
@@ -26,10 +26,10 @@
                                   OuterEndExtent=info1.OuterEndExtent
                                   Brush="@info1.Brush"
                                   Outline="@info1.Outline">
-                </LinearGraphRange>
+                </IgbLinearGraphRange>
             }
-        </BulletGraph>
-        <BulletGraph Height="120px" Width="100%"
+        </IgbBulletGraph>
+        <IgbBulletGraph Height="120px" Width="100%"
                      Orientation="LinearScaleOrientation.Horizontal"
                      BackingBrush="transparent"
                      BackingOutline="transparent"
@@ -44,7 +44,7 @@
             @for (int i = 0; i < RangeInfo2.Count; i++)
             {
                 GaugeRangeInfo info2 = RangeInfo2[i];
-                <LinearGraphRange StartValue=info2.StartValue
+                <IgbLinearGraphRange StartValue=info2.StartValue
                                   EndValue=info2.EndValue
                                   InnerStartExtent=info2.InnerStartExtent
                                   InnerEndExtent=info2.InnerEndExtent
@@ -52,9 +52,9 @@
                                   OuterEndExtent=info2.OuterEndExtent
                                   Brush="@info2.Brush"
                                   Outline="@info2.Outline">
-                </LinearGraphRange>
+                </IgbLinearGraphRange>
             }
-        </BulletGraph>
+        </IgbBulletGraph>
     </div>
 </div>
 
@@ -65,7 +65,7 @@
 
     protected override void OnInitialized()
     {
-        BulletGraphModule.Register(IgniteUIBlazor);
+        IgbBulletGraphModule.Register(IgniteUIBlazor);
 
         RangeInfo1 = new List<GaugeRangeInfo>();
         RangeInfo2 = new List<GaugeRangeInfo>();

@@ -31,6 +31,15 @@
             <option>@MarkerType.Hexagram</option>
             <option>@MarkerType.None</option>
         </select>
+        <span class="options-label"> Marker Fill </span>
+        <select @bind="@SelectedMarkerFillMode">
+            <option>@MarkerFillMode.Normal</option>
+            <option>@MarkerFillMode.MatchMarkerOutline</option>
+        </select>
+        @*<label class="options-label">Use Plot Area Margin: </label>*@
+        <label class="options-item">
+            <input type="checkbox" @onchange="OnUsePlotAreaMargin" checked="@PlotAreaMarginActive" /> Use Plot Area Margin
+        </label>
     </div>
     <div class="container vertical">
         @if (Data != null)
@@ -38,18 +47,22 @@
             // TODO add this code when supported: MarkerTypes="Circle"
 
             // NOTE the MarkerTypes property is set in code-behind
-            <CategoryChart Height="100%" Width="100%" @ref="Chart"
+            <IgbCategoryChart Height="100%" Width="100%" @ref="Chart"
                            DataSource="Data"
-                           ChartTitle="Renewable Electricity Generated"
+                           ChartTitle="Renewable Electricity Generated" TitleTopMargin="10"
+                           PlotAreaMarginLeft="@PlotAreaMarginSize" 
+                           PlotAreaMarginRight="@PlotAreaMarginSize"
                            IsSeriesHighlightingEnabled="true"
                            ChartType="@SelectedChart"
+                           MarkerFillMode="@SelectedMarkerFillMode"
+                           MarkerThickness="1" MarkerFillOpacity="1.0" 
                            MarkerBrushes="White"
                            MarkerOutlines="#ee5879, #c4c4c4, #9af2e4"
                                   Brushes="#ee5879, #c4c4c4, #9af2e4"
                                  Outlines="#ee5879, #c4c4c4, #9af2e4"
                            IsTransitionInEnabled="true"
                            YAxisMinimumValue="0">
-            </CategoryChart>
+            </IgbCategoryChart>
         }
     </div>
 </div>
@@ -58,8 +71,11 @@
 
     private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
 
-    private CategoryChart Chart;
+    private IgbCategoryChart Chart;
     private CategoryChartType SelectedChart = CategoryChartType.Line;
+    private MarkerFillMode SelectedMarkerFillMode = MarkerFillMode.Normal;
+    private bool PlotAreaMarginActive = true;
+    private double PlotAreaMarginSize = 10.0;
 
     private MarkerType _SelectedMarker = MarkerType.Circle;
     private MarkerType SelectedMarker
@@ -68,13 +84,13 @@
         set
         {
             _SelectedMarker = value;
-            SetChartMarker(value);
+            SetChartMarker(_SelectedMarker);
         }
     }
 
     protected override void OnInitialized()
     {
-        CategoryChartModule.Register(IgniteUIBlazor);
+        IgbCategoryChartModule.Register(IgniteUIBlazor);
     }
 
     protected override void OnAfterRender(bool firstRender)
@@ -82,7 +98,7 @@
         base.OnAfterRender(firstRender);
 
         if (firstRender)
-            SetChartMarker(MarkerType.Circle); // initalizing to Circle marker
+            SetChartMarker(SelectedMarker); // initalizing to Circle marker
     }
 
     protected void SetChartMarker(MarkerType marker)
@@ -92,6 +108,12 @@
             this.Chart.MarkerTypes.Clear();
             this.Chart.MarkerTypes.Add(marker);
         }
+    }
+
+    private void OnUsePlotAreaMargin(ChangeEventArgs args)
+    {
+        this.PlotAreaMarginActive = (bool)args.Value;
+        this.PlotAreaMarginSize = PlotAreaMarginActive ? 10 : 0;
     }
 
 }

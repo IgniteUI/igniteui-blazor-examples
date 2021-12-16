@@ -1,4 +1,7 @@
-This folder contains implementation of Blazor application with example of Display All Imagery using [Geographic Map](https://www.infragistics.com/products/ignite-ui-blazor/blazor/components/general-getting-started.html) component.
+<!-- NOTE: do not change this file because it's auto re-generated from template: -->
+<!-- https://github.com/IgniteUI/igniteui-blazor-examples/tree/vnext/templates/sample/ReadMe.md -->
+
+This folder contains implementation of Blazor application with example of Display All Imagery feature using [Geographic Map](https://www.infragistics.com/products/ignite-ui-blazor/blazor/components/general-getting-started.html) component.
 
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">

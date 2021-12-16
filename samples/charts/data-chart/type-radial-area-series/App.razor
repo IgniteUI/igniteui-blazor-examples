@@ -4,18 +4,18 @@
 <div class="container vertical">
     <div class="container vertical">
 
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    Subtitle="Wind Speed vs Boat Speed"
                    SubtitleTopMargin="10"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
-            <CategoryAngleAxis Name="angleAxis" DataSource="Data"
+            <IgbCategoryAngleAxis Name="angleAxis" DataSource="Data"
                                Label="Department" />
-            <NumericRadiusAxis Name="radiusAxis"
+            <IgbNumericRadiusAxis Name="radiusAxis"
                                InnerRadiusExtentScale="0.1"
                                MinimumValue="0"/>
 
-            <RadialAreaSeries Name="series1"
+            <IgbRadialAreaSeries Name="series1"
                               DataSource="Data"
                               AngleAxisName="angleAxis"
                               ValueMemberPath="Budget"
@@ -25,7 +25,7 @@
                               Thickness="1"
                               Title="Budget"
                               MarkerType="MarkerType.Circle" />
-            <RadialAreaSeries Name="series2"
+            <IgbRadialAreaSeries Name="series2"
                               DataSource="Data"
                               AngleAxisName="angleAxis"
                               ValueMemberPath="Spending"
@@ -35,7 +35,7 @@
                               Thickness="1"
                               Title="Spending"
                               MarkerType="MarkerType.Circle" />
-        </DataChart>
+        </IgbDataChart>
 
     </div>
 </div>
@@ -46,13 +46,13 @@
 
     protected override void OnInitialized()
     {
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartRadialModule.Register(IgniteUIBlazor);
-        DataChartRadialCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartRadialModule.Register(IgniteUIBlazor);
+        IgbDataChartRadialCoreModule.Register(IgniteUIBlazor);
 
-        DataChartExtendedAxesModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbDataChartExtendedAxesModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
 
         Data = SampleRadialData.Create();
     }

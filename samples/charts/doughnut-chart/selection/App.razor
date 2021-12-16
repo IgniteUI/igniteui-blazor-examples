@@ -6,7 +6,7 @@
         <div class="options vertical">
             <span class="legend-title">Global Electricity Demand by Energy Use</span>
             <div class="legend">
-                <ItemLegend @ref="Legend" /> @*Orientation="LegendOrientation.Horizontal" />*@
+                <IgbItemLegend @ref="Legend" Orientation="LegendOrientation.Horizontal"/>
             </div>
         </div>
     </div>
@@ -14,7 +14,7 @@
     <div class="container relative">
         <div class="container-overlay">
 
-            <DoughnutChart Height="100%" Width="100%"
+            <IgbDoughnutChart Height="100%" Width="100%"
                            @ref="Chart"
                            AllowSliceSelection="true" InnerExtent="0.6"
                            SliceClick="OnSliceClick"
@@ -22,16 +22,16 @@
                            SelectedSliceFill="Gray"
                            SelectedSliceStrokeThickness="1"
                            SelectedSliceOpacity="0.75">
-                <RingSeries DataSource="Data"
+                <IgbRingSeries DataSource="Data"
                             LabelMemberPath="Summary"
                             LabelsPosition="LabelsPosition.OutsideEnd"
                             LabelExtent="30"
-                            ValueMemberPath="Value"
+                            ValueMemberPath="MarketShare"
                             LegendLabelMemberPath="Category"
                             RadiusFactor="0.6"
                             StartAngle="30">
-                </RingSeries>
-            </DoughnutChart>
+                </IgbRingSeries>
+            </IgbDoughnutChart>
 
             <div class="overlay-center" style="line-height: 1.1">
                 <label class="options-label" style="font-size: 1.2rem;"> @SelectedSliceLabel </label>
@@ -46,13 +46,13 @@
     public List<DataItem> Data;
     public string SelectedSliceLabel;
     public string SelectedSliceValue;
-    public ItemLegend Legend;
-    public DoughnutChart Chart;
+    public IgbItemLegend Legend;
+    public IgbDoughnutChart Chart;
 
     protected override void OnInitialized()
     {
-        DoughnutChartModule.Register(IgniteUIBlazor);
-        ItemLegendModule.Register(IgniteUIBlazor);
+        IgbDoughnutChartModule.Register(IgniteUIBlazor);
+        IgbItemLegendModule.Register(IgniteUIBlazor);
 
         this.Data = new List<DataItem>();
         this.Data.Add(new DataItem { MarketShare = 37, Category = "Cooling", });
@@ -76,10 +76,12 @@
     {
         base.OnAfterRender(firstRender);
 
-        this.Chart.ActualSeries[0].Legend = Legend;
+        if (Chart != null && Legend != null && !firstRender)
+            this.Chart.ActualSeries[0].Legend = Legend;
+
     }
 
-    protected void OnSliceClick(SliceClickEventArgs e)
+    protected void OnSliceClick(IgbSliceClickEventArgs e)
     {
         Console.WriteLine("OnSliceClick " + this.Data[e.Index].Category);
 

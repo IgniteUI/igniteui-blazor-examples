@@ -3,16 +3,16 @@
 
 <div class="container vertical">
     <div class="container vertical">
-        <GeographicMap Height="100%" Width="100%" Zoomable="true">
-            <GeographicPolylineSeries DataSource="Flights" ShapeMemberPath="Points"
+        <IgbGeographicMap Height="100%" Width="100%" Zoomable="true">
+            <IgbGeographicPolylineSeries DataSource="Flights" ShapeMemberPath="Points"
                                       ShapeStroke="rgba(196, 14, 14, 0.2)" ShapeStrokeThickness="4" />
-            <GeographicPolylineSeries DataSource="Coordinates" ShapeMemberPath="Points"
+            <IgbGeographicPolylineSeries DataSource="Coordinates" ShapeMemberPath="Points"
                                       ShapeStroke="Gray" ShapeStrokeThickness="1">
-            </GeographicPolylineSeries>
-            <GeographicSymbolSeries DataSource="Airports" LatitudeMemberPath="Lat"
+            </IgbGeographicPolylineSeries>
+            <IgbGeographicSymbolSeries DataSource="Airports" LatitudeMemberPath="Lat"
                                     LongitudeMemberPath="Lon" MarkerType="MarkerType.Circle"
                                     MarkerBrush="#AAD3DF" MarkerOutline="Black" Thickness="1" />
-        </GeographicMap>
+        </IgbGeographicMap>
     </div>
 </div>
 
@@ -24,8 +24,8 @@
 
     protected override void OnInitialized()
     {
-        GeographicMapModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbGeographicMapModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
 
         Airports = WorldConnections.GetAirports();
         Flights = WorldConnections.GetFlights();

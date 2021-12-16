@@ -6,16 +6,16 @@
     <div class="options horizontal">
         <span class="legend-title">Legend: </span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
 
     <div class="container vertical">
         @if (Data != null)
         {
-        <DataChart Height="100%" Width="100%" Legend="Legend" Subtitle="Energy Source of Biggest Countries"
+        <IgbDataChart Height="100%" Width="100%" Legend="Legend" Subtitle="Energy Source of Biggest Countries"
                    IsHorizontalZoomEnabled="true" IsVerticalZoomEnabled="true">
-            <CategoryXAxis Name="xAxis"
+            <IgbCategoryXAxis Name="xAxis"
                            DataSource="Data"
                            Label="Country"
                            LabelTopMargin="5"
@@ -32,7 +32,7 @@
                            Gap="0.125"
                            Overlap="0" />
 
-            <NumericYAxis Name="yAxis"
+            <IgbNumericYAxis Name="yAxis"
                           LabelLocation="AxisLabelsLocation.OutsideRight"
                           LabelRightMargin="0"
                           LabelTextColor="Gray"
@@ -54,17 +54,17 @@
                           MinorStrokeThickness="0.5"
                           AbbreviateLargeNumbers="true" />
 
-            <ColumnSeries Title="Coal" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Coal"
+            <IgbColumnSeries Title="Coal" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Coal"
                           DataSource="Data" IsTransitionInEnabled="true" />
-            <ColumnSeries Title="Hydro" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Hydro"
+            <IgbColumnSeries Title="Hydro" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Hydro"
                           DataSource="Data" IsTransitionInEnabled="true" />
-            <ColumnSeries Title="Nuclear" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Nuclear"
+            <IgbColumnSeries Title="Nuclear" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Nuclear"
                           DataSource="Data" IsTransitionInEnabled="true" />
-            <ColumnSeries Title="Gas" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Gas"
+            <IgbColumnSeries Title="Gas" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Gas"
                           DataSource="Data" IsTransitionInEnabled="true" />
-            <ColumnSeries Title="Oil" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Oil"
+            <IgbColumnSeries Title="Oil" XAxisName="xAxis" YAxisName="yAxis" ValueMemberPath="Oil"
                           DataSource="Data" IsTransitionInEnabled="true" />
-        </DataChart>
+        </IgbDataChart>
 
         }
     </div>
@@ -74,8 +74,8 @@
 
     private List<EnergyProductionData.Energy> Data;
 
-    private Legend legend;
-    private Legend Legend
+    private IgbLegend legend;
+    private IgbLegend Legend
     {
         get { return legend; }
         set
@@ -89,11 +89,11 @@
     {
         base.OnInitialized();
 
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        NumberAbbreviatorModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        LegendModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbNumberAbbreviatorModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbLegendModule.Register(IgniteUIBlazor);
 
         this.Data = EnergyProductionData.Generate();
     }

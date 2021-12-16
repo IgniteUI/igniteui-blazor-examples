@@ -3,7 +3,7 @@
 @inject IJSRuntime JSRuntime;
 
 <div class="container vertical">
-    <div class="options horizotnal">
+    <div class="options horizontal">
         <span class="options-item">Column Moving Mode:</span>
         <select class="options-item" @bind="@GridColumnMovingMode">
             <option>@ColumnMovingMode.Deferred</option>
@@ -13,7 +13,7 @@
         <input class="options-slider" @bind="@GridColumnMovingSeparatorWidth"
                type="range" min=1 max=5 step="1" />
     </div>
-    <div class="options horizotnal">
+    <div class="options horizontal">
         <span class="options-item" >Column Moving Animation:</span>
         <select class="options-item" @bind="@GridColumnMovingAnimationMode" >
             <option>@ColumnMovingAnimationMode.Auto</option>
@@ -25,7 +25,8 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <DataGrid Height="100%" Width="100%"
+            <div style="overflow: hidden">
+                <IgbDataGrid Height="100%" Width="100%"
                       ColumnMovingMode="@GridColumnMovingMode"
                       ColumnMovingAnimationMode="@GridColumnMovingAnimationMode"
                       ColumnMovingSeparatorWidth="@GridColumnMovingSeparatorWidth"
@@ -33,12 +34,13 @@
                       AutoGenerateColumns="false"
                       DataSource="Data"
                       IsColumnOptionsEnabled="true">
-                <TextColumn Field="Name" Width="@("*>170")" />
-                <TextColumn Field="Street" HeaderText="Address" Width="@("*>150")"/>
-                <TextColumn Field="City" Width="@("*>120")"/>
-                <NumericColumn Field="Salary" PositivePrefix="$" ShowGroupingSeparator="true" Width="@("*>120")"/>
-                <DateTimeColumn Field="Birthday" Width="@("*>170")"/>
-            </DataGrid>
+                    <IgbTextColumn Field="Name" Width="@("*>170")" />
+                    <IgbTextColumn Field="Street" HeaderText="Address" Width="@("*>150")"/>
+                    <IgbTextColumn Field="City" Width="@("*>120")"/>
+                    <IgbNumericColumn Field="Salary" PositivePrefix="$" ShowGroupingSeparator="true" Width="@("*>120")"/>
+                    <IgbDateTimeColumn Field="Birthday" Width="@("*>170")"/>
+                </IgbDataGrid>
+            </div>
         }
     </div>
 </div>
@@ -54,7 +56,7 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        DataGridModule.Register(IgniteUIBlazor);
+        IgbDataGridModule.Register(IgniteUIBlazor);
 
         this.Data = EmployeeData.Create(100, false);
     }

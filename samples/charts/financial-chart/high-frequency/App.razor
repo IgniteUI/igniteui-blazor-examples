@@ -5,7 +5,7 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options horizotnal">
+    <div class="options horizontal">
         <label class="options-label" style="width: 5rem;">Data Update:</label>
         <label class="options-value">@DataUpdateInfo</label>
         <input class="options-slider" type="range" min="20" max="1000" step="10"
@@ -16,7 +16,7 @@
         <label class="options-label">FPS: @FramePerSecond</label>
     </div>
 
-    <div class="options horizotnal">
+    <div class="options horizontal">
         <label class="options-label" style="width: 5rem;">Data Points:</label>
         <label class="options-value">@DataPoints</label>
         <input class="options-slider" type="range" min="10" max="10000" step="1"
@@ -32,7 +32,7 @@
 
         @if (Data != null)
         {
-            <FinancialChart Width="100%" @ref="Chart" Height="100%"
+            <IgbFinancialChart Width="100%" @ref="Chart" Height="100%"
                             ChartType="FinancialChartType.Line"
                             Thickness=2
                             DataSource="Data"
@@ -44,7 +44,7 @@
 
 @code {
 
-    private FinancialChart Chart;
+    private IgbFinancialChart Chart;
     private double ScalingRatio { get; set; } = 1;
     private ObservableCollection<StockItem> Data;
 
@@ -62,7 +62,7 @@
 
     void InitalizeChart()
     {
-        FinancialChartModule.Register(IgniteUIBlazor);
+        IgbFinancialChartModule.Register(IgniteUIBlazor);
 
         var dataList = StocksUtility.GetStocksItems(this.DataPoints);
         this.Data = new ObservableCollection<StockItem>(dataList);

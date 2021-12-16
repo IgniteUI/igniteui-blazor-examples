@@ -6,7 +6,6 @@
 
     <div class="options horizontal">
         <div class="options vertical" style="width: auto">
-
             <Toggle OnClick="onLiveSomePricesClicked" Width="150px" Background="@liveSomePricesBackground">@liveSomePricesText</Toggle>
             <Toggle OnClick="onLiveAllPricesClicked"  Width="150px" Background="@liveAllPricesBackground" >@liveAllPricesText</Toggle>
         </div>
@@ -21,7 +20,8 @@
 
         @if (Data != null)
         {
-            <DataGrid Height="calc(100% - 1rem)" Width="100%" @ref="DataGridRef"
+            <div style="overflow: hidden">
+                <IgbDataGrid Height="100%" Width="100%" @ref="DataGridRef"
                       DataSource="Data"
                       AutoGenerateColumns="false"
                       SelectionMode="@GridSelectionMode.MultipleRow"
@@ -32,42 +32,43 @@
                       DefaultColumnMinWidth="100"
                       IsRowHoverEnabled="false">
 
-                <TextColumn Width="@("*>140")" Field="ID" IsHidden="true" />
-                <TextColumn Width="@("*>120")" Field="Category" />
-                <TextColumn Width="@("*>110")" Field="Type" />
-                <TextColumn Width="@("*>110")" Field="Risk" />
+                        <IgbTextColumn Width="@("*>140")" Field="ID" IsHidden="true" />
+                        <IgbTextColumn Width="@("*>120")" Field="Category" />
+                        <IgbTextColumn Width="@("*>110")" Field="Type" />
+                        <IgbTextColumn Width="@("*>110")" Field="Risk" />
 
-                <NumericColumn Width="@("*>120")" Field="Open" HeaderText="Open" ShowGroupingSeparator="true" PositivePrefix="$" MinFractionDigits="2" MaxFractionDigits="2" />
-                <TemplateColumn Width="@("*>120")" Field="Price"
-                    CellStyleKeyRequestedScript="onPriceStyleKey"
-                    CellUpdatingScript="onPriceCellUpdating"
-                    DataBoundScript="onPriceDataBound"
-                    HeaderText="Close" />
-                <NumericColumn Width="@("*>120")" Field="Change" HeaderText="Change ($)" MinFractionDigits="2" MaxFractionDigits="2" />
-                <NumericColumn Width="@("*>180")" Field="ChangePercent" HeaderText="Change (%)" NegativeSuffix="%" PositiveSuffix="%" MinFractionDigits="2" MaxFractionDigits="2" />
+                        <IgbNumericColumn Width="@("*>120")" Field="Open" HeaderText="Open" ShowGroupingSeparator="true" PositivePrefix="$" MinFractionDigits="2" MaxFractionDigits="2" />
+                        <IgbTemplateColumn Width="@("*>120")" Field="Price"
+                            CellStyleKeyRequestedScript="onPriceStyleKey"
+                            CellUpdatingScript="onPriceCellUpdating"
+                            DataBoundScript="onPriceDataBound"
+                            HeaderText="Close" />
+                        <IgbNumericColumn Width="@("*>120")" Field="Change" HeaderText="Change ($)" MinFractionDigits="2" MaxFractionDigits="2" />
+                        <IgbNumericColumn Width="@("*>180")" Field="ChangePercent" HeaderText="Change (%)" NegativeSuffix="%" PositiveSuffix="%" MinFractionDigits="2" MaxFractionDigits="2" />
 
-                <TextColumn Width="@("*>120")" Field="Contract" />
-                <TextColumn Width="@("*>130")" Field="Settlement" />
-                <TextColumn Width="@("*>130")" Field="Region" />
-                <TextColumn Width="@("*>120")" Field="Country" />
+                        <IgbTextColumn Width="@("*>120")" Field="Contract" />
+                        <IgbTextColumn Width="@("*>130")" Field="Settlement" />
+                        <IgbTextColumn Width="@("*>130")" Field="Region" />
+                        <IgbTextColumn Width="@("*>120")" Field="Country" />
 
-                <NumericColumn Width="@("*>110")" Field="Buy" ShowGroupingSeparator="true" PositivePrefix="$" MinFractionDigits="2" MaxFractionDigits="2" />
-                <NumericColumn Width="@("*>110")" Field="Sell" ShowGroupingSeparator="true" PositivePrefix="$" MinFractionDigits="2" MaxFractionDigits="2" />
-                <NumericColumn Width="@("*>130")" Field="Spread" ShowGroupingSeparator="true" MinFractionDigits="2" MaxFractionDigits="2" />
-                <NumericColumn Width="@("*>130")" Field="Volume" ShowGroupingSeparator="true" MinFractionDigits="0" MaxFractionDigits="0" />
-                <NumericColumn Width="@("*>130")" Field="DailyHigh" ShowGroupingSeparator="true" MinFractionDigits="2" MaxFractionDigits="2" PositivePrefix="$" />
-                <NumericColumn Width="@("*>130")" Field="DailyLow" ShowGroupingSeparator="true" MinFractionDigits="2" MaxFractionDigits="2" PositivePrefix="$" />
-                <NumericColumn Width="@("*>130")" Field="YearlyHigh" ShowGroupingSeparator="true" MinFractionDigits="2" MaxFractionDigits="2" PositivePrefix="$" />
-                <NumericColumn Width="@("*>130")" Field="YearlyLow" ShowGroupingSeparator="true" MinFractionDigits="2" MaxFractionDigits="2" PositivePrefix="$" />
-                <NumericColumn Width="@("*>130")" Field="YearlyStart" ShowGroupingSeparator="true" MinFractionDigits="2" MaxFractionDigits="2" PositivePrefix="$" />
+                        <IgbNumericColumn Width="@("*>110")" Field="Buy" ShowGroupingSeparator="true" PositivePrefix="$" MinFractionDigits="2" MaxFractionDigits="2" />
+                        <IgbNumericColumn Width="@("*>110")" Field="Sell" ShowGroupingSeparator="true" PositivePrefix="$" MinFractionDigits="2" MaxFractionDigits="2" />
+                        <IgbNumericColumn Width="@("*>130")" Field="Spread" ShowGroupingSeparator="true" MinFractionDigits="2" MaxFractionDigits="2" />
+                        <IgbNumericColumn Width="@("*>130")" Field="Volume" ShowGroupingSeparator="true" MinFractionDigits="0" MaxFractionDigits="0" />
+                        <IgbNumericColumn Width="@("*>130")" Field="DailyHigh" ShowGroupingSeparator="true" MinFractionDigits="2" MaxFractionDigits="2" PositivePrefix="$" />
+                        <IgbNumericColumn Width="@("*>130")" Field="DailyLow" ShowGroupingSeparator="true" MinFractionDigits="2" MaxFractionDigits="2" PositivePrefix="$" />
+                        <IgbNumericColumn Width="@("*>130")" Field="YearlyHigh" ShowGroupingSeparator="true" MinFractionDigits="2" MaxFractionDigits="2" PositivePrefix="$" />
+                        <IgbNumericColumn Width="@("*>130")" Field="YearlyLow" ShowGroupingSeparator="true" MinFractionDigits="2" MaxFractionDigits="2" PositivePrefix="$" />
+                        <IgbNumericColumn Width="@("*>130")" Field="YearlyStart" ShowGroupingSeparator="true" MinFractionDigits="2" MaxFractionDigits="2" PositivePrefix="$" />
 
-                <DateTimeColumn Width="@("*>140")" Field="Maturity" HorizontalAlignment="@CellContentHorizontalAlignment.Right" />
-                <TextColumn Width="@("*>120")" Field="Currency" />
-                <TextColumn Width="@("*>130")" Field="Sector" />
-                <TextColumn Width="@("*>130")" Field="Security" />
-                <TextColumn Width="@("*>170")" Field="Issuer" />
+                        <IgbDateTimeColumn Width="@("*>140")" Field="Maturity" HorizontalAlignment="@CellContentHorizontalAlignment.Right" />
+                        <IgbTextColumn Width="@("*>120")" Field="Currency" />
+                        <IgbTextColumn Width="@("*>130")" Field="Sector" />
+                        <IgbTextColumn Width="@("*>130")" Field="Security" />
+                        <IgbTextColumn Width="@("*>170")" Field="Issuer" />
 
-            </DataGrid>
+                </IgbDataGrid>
+            </div>
         }
 
 
@@ -101,8 +102,8 @@
     public string[] hiddenColumns;
     public string[] allColumns;
 
-    private DataGrid grid;
-    public DataGrid DataGridRef
+    private IgbDataGrid grid;
+    public IgbDataGrid DataGridRef
     {
         get { return grid; }
         set { grid = value; StateHasChanged(); this.onGridGroupingAdd(); }
@@ -112,7 +113,7 @@
     {
         base.OnInitialized();
 
-        DataGridModule.Register(IgniteUIBlazor);
+        IgbDataGridModule.Register(IgniteUIBlazor);
 
         this.Data = PortfolioData.Create(this.DataVolume);
     }
@@ -380,17 +381,17 @@
 
     private void onGridGroupingAdd()
     {
-        var g = new ColumnGroupDescription();
+        var g = new IgbColumnGroupDescription();
         g.Field = "Category";
         g.SortDirection = ListSortDirection.Descending;
         this.grid.GroupDescriptions.Add(g);
 
-        g = new ColumnGroupDescription();
+        g = new IgbColumnGroupDescription();
         g.Field = "Type";
         g.SortDirection = ListSortDirection.Descending;
         this.grid.GroupDescriptions.Add(g);
 
-        g = new ColumnGroupDescription();
+        g = new IgbColumnGroupDescription();
         g.Field = "Contract";
         g.SortDirection = ListSortDirection.Descending;
         this.grid.GroupDescriptions.Add(g);

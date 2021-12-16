@@ -1,0 +1,25 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <IgbList>
+        <IgbListHeader>Header</IgbListHeader>
+        <IgbListItem>
+            <span slot="title">Item 1</span>
+        </IgbListItem>
+        <IgbListItem>
+            <span slot="title">Item 2</span>
+        </IgbListItem>
+        <IgbListItem>
+            <span slot="title">Item 3</span>
+        </IgbListItem>
+    </IgbList>
+</div>
+
+@code {
+    
+    protected override void OnInitialized()
+    {
+        IgbListModule.Register(IgniteUIBlazor);
+    }
+}

@@ -4,19 +4,19 @@
 <div class="container vertical">
     <div class="container vertical">
 
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    Subtitle="Stock Prices Series in Candlestick Display Type"
                    SubtitleTopMargin="10"
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true">
 
-            <CategoryXAxis Name="xAxis" Label="Label" DataSource="Data" />
-            <NumericYAxis  Name="yAxis" Title="Amount (in USD)" TitleRightMargin="10"
+            <IgbCategoryXAxis Name="xAxis" Label="Label" DataSource="Data" />
+            <IgbNumericYAxis  Name="yAxis" Title="Amount (in USD)" TitleRightMargin="10"
                            LabelRightMargin="10"
                            LabelHorizontalAlignment="HorizontalAlignment.Left"
                            LabelLocation="AxisLabelsLocation.OutsideRight" />
 
-            <FinancialPriceSeries XAxisName="xAxis"
+            <IgbFinancialPriceSeries XAxisName="xAxis"
                                   YAxisName="yAxis"
                                   DataSource="Data"
                                   DisplayType="PriceDisplayType.Candlestick"
@@ -31,7 +31,7 @@
                                   Outline="rgba(2, 199, 74, 1.0)"
                                   Title="Price" />
 
-        </DataChart>
+        </IgbDataChart>
 
     </div>
 </div>
@@ -42,13 +42,13 @@
 
     protected override void OnInitialized()
     {
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
 
-        DataChartFinancialModule.Register(IgniteUIBlazor);
-        DataChartFinancialCoreModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbDataChartFinancialModule.Register(IgniteUIBlazor);
+        IgbDataChartFinancialCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
 
         Data = SampleFinancialData.Create();
 

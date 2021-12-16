@@ -82,8 +82,7 @@ NOTE: Do not add/change any files in the `wwwroot` folder
 
 - remove not used `.cs` file in `Services` folder
 
-- make sure there are only 2 files in wwwroot folder:
-    - index.css
+- make sure there are only 1 files in wwwroot folder:
     - index.html
 
 - create one pull request for up to 3 samples

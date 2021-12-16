@@ -3,38 +3,38 @@
 
 <div class="container vertical">
     <div class="container vertical">
-        <GeographicMap Height="100%" Width="100%" Zoomable="true">
-            <GeographicShapeSeries ShapefileDataSource="AsiaShape" Outline="Black" Thickness="1" Brush="#d10700" />
-            <GeographicShapeSeries ShapefileDataSource="EuropeShape" Outline="Black" Thickness="1" Brush="#04b530" />
-            <GeographicShapeSeries ShapefileDataSource="AmericanShape" Outline="Black" Thickness="1" Brush="#0073d1" />
-        </GeographicMap>
+        <IgbGeographicMap Height="100%" Width="100%" Zoomable="true">
+            <IgbGeographicShapeSeries ShapefileDataSource="AsiaShape" Outline="Black" Thickness="1" Brush="#d10700" />
+            <IgbGeographicShapeSeries ShapefileDataSource="EuropeShape" Outline="Black" Thickness="1" Brush="#04b530" />
+            <IgbGeographicShapeSeries ShapefileDataSource="AmericanShape" Outline="Black" Thickness="1" Brush="#0073d1" />
+        </IgbGeographicMap>
     </div>
 </div>
 
 @code {
 
-    private ShapeDataSource AsiaShape;
-    private ShapeDataSource EuropeShape;
-    private ShapeDataSource AmericanShape;
+    private IgbShapeDataSource AsiaShape;
+    private IgbShapeDataSource EuropeShape;
+    private IgbShapeDataSource AmericanShape;
 
     protected override void OnInitialized()
     {
-        GeographicMapModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbGeographicMapModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
 
-        this.AsiaShape = new ShapeDataSource()
+        this.AsiaShape = new IgbShapeDataSource()
         {
             ShapefileSource = "https://static.infragistics.com/xplatform/shapes/world_region_asia.shp",
             DatabaseSource = "https://static.infragistics.com/xplatform/shapes/world_region_asia.dbf"
         };
 
-        this.EuropeShape = new ShapeDataSource()
+        this.EuropeShape = new IgbShapeDataSource()
         {
             ShapefileSource = "https://static.infragistics.com/xplatform/shapes/world_region_europe.shp",
             DatabaseSource = "https://static.infragistics.com/xplatform/shapes/world_region_europe.dbf"
         };
 
-        this.AmericanShape = new ShapeDataSource()
+        this.AmericanShape = new IgbShapeDataSource()
         {
             ShapefileSource = "https://static.infragistics.com/xplatform/shapes/world_region_north_america.shp",
             DatabaseSource = "https://static.infragistics.com/xplatform/shapes/world_region_north_america.dbf"

@@ -1,0 +1,28 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <div style="width: 25rem; border: 1px solid gainsboro;">
+        <IgbCalendar SpecialDates="@CalendarSpecialDates"/>         
+    </div>
+</div>
+
+@code {
+
+    private IgbDateRangeDescriptor CalendarSpecialDates { get; set; }
+
+    protected override void OnInitialized()
+    {
+        IgbCalendarModule.Register(IgniteUIBlazor);
+
+        DateTime today = DateTime.Today;
+
+        IgbDateRangeDescriptor specialDates = new IgbDateRangeDescriptor()
+        {
+            DateRange = new[] { new DateTime(today.Year, today.Month, 3), new DateTime(today.Year, today.Month, 8) },
+            RangeType = DateRangeType.Between
+        };
+
+        this.CalendarSpecialDates = specialDates;
+    }
+}

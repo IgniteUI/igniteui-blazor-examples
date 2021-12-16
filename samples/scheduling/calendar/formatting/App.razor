@@ -1,0 +1,44 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <IgbRadioGroup Alignment="RadioGroupAlignment.Horizontal">
+        <IgbRadio Value="en" Checked="true" Change="OnRadioOptionClick">EN</IgbRadio>
+        <IgbRadio Value="de" Change="OnRadioOptionClick">DE</IgbRadio>
+        <IgbRadio Value="fr" Change="OnRadioOptionClick">FR</IgbRadio>
+        <IgbRadio Value="ar" Change="OnRadioOptionClick">AR</IgbRadio>
+        <IgbRadio Value="ja" Change="OnRadioOptionClick">JA</IgbRadio>
+    </IgbRadioGroup>
+
+    <div style="width: 25rem; border: 1px solid gainsboro;">
+        <IgbCalendar FormatOptions="@CalendarFormat" Locale=@CalendarLocale WeekStart="@CalendarBaseWeekStart.Monday" />
+    </div>
+</div>
+
+@code {
+
+    private string CalendarLocale { get; set; }
+    private IgbCalendarFormatOptions CalendarFormat { get; set; }
+
+    protected override void OnInitialized()
+    {
+        IgbCalendarModule.Register(IgniteUIBlazor);
+        IgbRadioGroupModule.Register(IgniteUIBlazor);
+        IgbRadioModule.Register(IgniteUIBlazor);
+
+        this.CalendarLocale = "en";
+        this.CalendarFormat = new IgbCalendarFormatOptions() { Month = "short", Weekday = "short" };
+
+        Console.WriteLine("GOT HERE 1");
+    }
+
+    public void OnRadioOptionClick(IgbComponentBoolValueChangedEventArgs e)
+    {
+        IgbRadio radio = e.Parent as IgbRadio;
+        this.CalendarLocale = radio.Value.ToString();
+
+        Console.WriteLine("GOT HERE 2: " + this.CalendarLocale);
+
+        StateHasChanged();
+    }
+}

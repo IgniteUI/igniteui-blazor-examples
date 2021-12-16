@@ -4,19 +4,19 @@
 <div class="container vertical">
     <div class="container vertical">
 
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    ChartTitle="Total Olympic Medals"
                    Subtitle="United States vs China vs Russia"
                    TitleTopMargin="10"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <CategoryYAxis Name="yAxis" Label="Year" DataSource="Data"
+            <IgbCategoryYAxis Name="yAxis" Label="Year" DataSource="Data"
                            Title="Olympic Years" TitleLeftMargin="10" TitleRightMargin="0"
                            Gap="0.2" Overlap="-0.05"/>
-            <NumericXAxis  Name="xAxis" Title="Olympic Medals" />
+            <IgbNumericXAxis  Name="xAxis" Title="Olympic Medals" />
 
-            <BarSeries XAxisName="xAxis"
+            <IgbBarSeries XAxisName="xAxis"
                        YAxisName="yAxis"
                        DataSource="Data"
                        ValueMemberPath="USA" Title="USA"
@@ -24,8 +24,8 @@
                        ShowDefaultTooltip="true"
                        IsTransitionInEnabled="true"
                        IsHighlightingEnabled="true">
-            </BarSeries>
-            <BarSeries XAxisName="xAxis"
+            </IgbBarSeries>
+            <IgbBarSeries XAxisName="xAxis"
                        YAxisName="yAxis"
                        DataSource="Data"
                        ValueMemberPath="CHN" Title="China"
@@ -33,8 +33,8 @@
                        ShowDefaultTooltip="true"
                        IsTransitionInEnabled="true"
                        IsHighlightingEnabled="true">
-            </BarSeries>
-            <BarSeries XAxisName="xAxis"
+            </IgbBarSeries>
+            <IgbBarSeries XAxisName="xAxis"
                        YAxisName="yAxis"
                        DataSource="Data"
                        ValueMemberPath="RUS" Title="Russia"
@@ -42,8 +42,8 @@
                        ShowDefaultTooltip="true"
                        IsTransitionInEnabled="true"
                        IsHighlightingEnabled="true">
-            </BarSeries>
-        </DataChart>
+            </IgbBarSeries>
+        </IgbDataChart>
 
     </div>
 </div>
@@ -54,11 +54,11 @@
 
     protected override void OnInitialized()
     {
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        DataChartVerticalCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbDataChartVerticalCategoryModule.Register(IgniteUIBlazor);
 
         Data = SampleCategoryData.Create();
 

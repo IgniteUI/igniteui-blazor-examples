@@ -22,32 +22,32 @@
 
         @if (AirplaneShape != null && AirplaneSeats != null)
         {
-            <DataChart Height="100%" Width="100%"
+            <IgbDataChart Height="100%" Width="100%"
                        SeriesMouseEnterScript="onPolygonSeriesMouseEnter"
                        IsHorizontalZoomEnabled="true"
                        IsVerticalZoomEnabled="true">
 
-                <NumericXAxis Name="xAxis" MinimumValue="-1000" MaximumValue="1000" Interval="200"></NumericXAxis>
-                <NumericYAxis Name="yAxis" MinimumValue="-600" MaximumValue="600" Interval="200"></NumericYAxis>
+                <IgbNumericXAxis Name="xAxis" MinimumValue="-1000" MaximumValue="1000" Interval="200"></IgbNumericXAxis>
+                <IgbNumericYAxis Name="yAxis" MinimumValue="-600" MaximumValue="600" Interval="200"></IgbNumericYAxis>
 
-                <ScatterPolygonSeries XAxisName="xAxis"
+                <IgbScatterPolygonSeries XAxisName="xAxis"
                                       YAxisName="yAxis"
                                       DataSource="AirplaneShape"
                                       ShapeMemberPath="Points"
                                       ShowDefaultTooltip="false"
                                       Thickness="0.5"
                                       Brush="LightGray" Outline="Black">
-                </ScatterPolygonSeries>
+                </IgbScatterPolygonSeries>
 
-                <ScatterPolygonSeries XAxisName="xAxis"
+                <IgbScatterPolygonSeries XAxisName="xAxis"
                                       YAxisName="yAxis"
                                       DataSource="AirplaneSeats"
                                       Title="AirplaneSeats"
                                       ShapeMemberPath="Points"
                                       StyleShapeScript="onPolygonShapeStyle">
-                </ScatterPolygonSeries>
+                </IgbScatterPolygonSeries>
 
-            </DataChart>
+            </IgbDataChart>
         }
 
     </div>
@@ -60,11 +60,11 @@
 
     protected override async Task OnInitializedAsync()
     {
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartScatterModule.Register(IgniteUIBlazor);
-        DataChartScatterCoreModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        ScatterPolygonSeriesModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartScatterModule.Register(IgniteUIBlazor);
+        IgbDataChartScatterCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbScatterPolygonSeriesModule.Register(IgniteUIBlazor);
 
         var http = new HttpClient();
         var shape = "https://static.infragistics.com/xplatform/json/airplane-shape.json";
@@ -73,7 +73,7 @@
         var seats = "https://static.infragistics.com/xplatform/json/airplane-seats.json";
         this.AirplaneSeats = await http.GetFromJsonAsync<AirplaneSeatInfo[]>(seats);
 
-        Console.WriteLine("OnInitializedAsync DataChartTypeScatterPolygonSeries");
+        Console.WriteLine("OnInitializedAsync IgbDataChartTypeScatterPolygonSeries");
 
         await Task.Delay(1);
     }

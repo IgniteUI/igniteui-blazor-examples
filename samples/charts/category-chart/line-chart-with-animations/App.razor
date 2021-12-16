@@ -2,7 +2,7 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options horizotnal">
+    <div class="options horizontal">
         <span class="options-label">Transition Type </span>
         <select @bind="@SelectedTransition">
             <option>@CategoryTransitionInMode.AccordionFromBottom</option>
@@ -34,7 +34,7 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <CategoryChart Height="100%" Width="100%"
+            <IgbCategoryChart Height="100%" Width="100%"
                 @key="ChartKey"
                 @ref="Chart"
                 DataSource="Data"
@@ -48,7 +48,7 @@
                 YAxisTitleLeftMargin="10"
                 YAxisTitleRightMargin="5"
                 YAxisLabelLeftMargin="0">
-            </CategoryChart>
+            </IgbCategoryChart>
         }
     </div>
 </div>
@@ -86,8 +86,8 @@
         }
     }
     private string ChartKey;
-    private CategoryChart _Chart;
-    private CategoryChart Chart
+    private IgbCategoryChart _Chart;
+    private IgbCategoryChart Chart
     {
         get { return _Chart; }
         set { _Chart = value;
@@ -99,8 +99,8 @@
 
     protected override void OnInitialized()
     {
-        CategoryChartModule.Register(IgniteUIBlazor);
-        LegendModule.Register(IgniteUIBlazor);
+        IgbCategoryChartModule.Register(IgniteUIBlazor);
+        IgbLegendModule.Register(IgniteUIBlazor);
     }
 
     private void OnTransitionIntervalChange(ChangeEventArgs args)

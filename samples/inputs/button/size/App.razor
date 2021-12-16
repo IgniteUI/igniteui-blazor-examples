@@ -1,0 +1,58 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<style>
+    .buttonContainer {
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: 20px;
+    }
+
+    #radioGroup {
+        display: flex;
+        margin: 0 auto;
+        width: 15%;
+    }
+</style>
+
+<div class="container vertical">
+    <IgbRadioGroup id="radioGroup" Alignment="RadioGroupAlignment.Horizontal" >
+        <IgbRadio Value="small" LabelPosition="RadioLabelPosition.After" @onclick="OnSmallClick">Small</IgbRadio>
+        <IgbRadio Value="medium" LabelPosition="RadioLabelPosition.After" @onclick="OnMediumClick">Medium</IgbRadio>
+        <IgbRadio Value="large" LabelPosition="RadioLabelPosition.After" Checked="true" @onclick="OnLargeClick">Large</IgbRadio>
+    </IgbRadioGroup>
+
+    <div class="buttonContainer">
+        <IgbButton Size="@SizableComponentSize" Variant="ButtonVariant.Flat">Flat</IgbButton>
+        <IgbButton Size="@SizableComponentSize" Variant="ButtonVariant.Contained">Contained</IgbButton>
+        <IgbButton Size="@SizableComponentSize" Variant="ButtonVariant.Outlined">Outlined</IgbButton>
+        <IgbButton Size="@SizableComponentSize" Variant="ButtonVariant.Fab">Like</IgbButton>
+    </div>
+</div>
+
+@code {
+
+    private SizableComponentSize SizableComponentSize = SizableComponentSize.Large;
+
+    protected override void OnInitialized()
+    {
+        IgbButtonModule.Register(IgniteUIBlazor);
+        IgbRadioModule.Register(IgniteUIBlazor);
+        IgbRadioGroupModule.Register(IgniteUIBlazor);
+    }
+
+    public void OnSmallClick(EventArgs e)
+    {
+        SizableComponentSize = SizableComponentSize.Small;
+    }
+
+    public void OnMediumClick(EventArgs e)
+    {
+        SizableComponentSize = SizableComponentSize.Medium;
+    }
+
+    public void OnLargeClick(EventArgs e)
+    {
+        SizableComponentSize = SizableComponentSize.Large;
+    }
+}

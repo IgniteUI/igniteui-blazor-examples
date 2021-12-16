@@ -47,7 +47,10 @@ var sampleSource = [
     igConfig.SamplesCopyPath + '/gauges/radial-gauge/**/App.razor',
     igConfig.SamplesCopyPath + '/grids/**/App.razor',
     igConfig.SamplesCopyPath + '/editors/**/App.razor',
+    igConfig.SamplesCopyPath + '/inputs/**/App.razor',
     igConfig.SamplesCopyPath + '/layouts/**/App.razor',
+    igConfig.SamplesCopyPath + '/menus/**/App.razor',
+    igConfig.SamplesCopyPath + '/scheduling/**/App.razor',
     igConfig.SamplesCopyPath + '/excel/excel-library/**/App.razor',
 
     // igConfig.SamplesCopyPath + '/excel/spreadsheet/**/App.razor',
@@ -228,16 +231,16 @@ function exclude(fileWithString) {
 function cleanupSampleBrowser(outputPath) {
     log('cleaning up files in ' + outputPath);
     del.sync([
-          outputPath + "/Services/*.*",   // auto-copied data files
-          outputPath + "/Components/**",  // auto-copied sample's .razor components
-          outputPath + "/wwwroot/*.js",   // auto-copied sample's .js files
-          outputPath + "/Pages/**/*.*",   // auto-copied samples
-          outputPath + "/Pages/**",       // auto-copied folders
-    "!" + outputPath + "/Pages/_*.razor", // e.g. _Home.razor
-    "!" + outputPath + "/Pages/_*.cshtml" // e.g. _Host.cshtml
-    ], {force:true});
+        outputPath + "/wwwroot/code-viewer/**/*.json", // auto-generated code-viewer .json files
+        outputPath + "/wwwroot/*.js", // auto-copied sample's .js files
+        outputPath + "/Services/*.*", // auto-copied data files
+        outputPath + "/Components/**", // auto-copied sample's .razor components
+        outputPath + "/Pages/**/*.*", // auto-copied samples
+        outputPath + "/Pages/**", // auto-copied folders
+        "!" + outputPath + "/Pages/_*.razor", // e.g. _Home.razor
+        "!" + outputPath + "/Pages/_*.cshtml" // e.g. _Host.cshtml
+    ], { force: true });
 }
-
 
 function cleanupSampleBrowsers(cb) {
     cleanupSampleBrowser( "../../browser/IgBlazorSamples.Client");
@@ -929,7 +932,12 @@ function updateCodeViewer(cb) {
                 contentItems.push(item);
             }
             else if (file.isCS()) {
-                var item = new CodeViewer(file.Path, file.Content, "cs", "cs", false);
+                var name = file.Name.toLowerCase();
+                var isDataFile = name.indexOf("data") >= 0 || name.indexOf("locations") >= 0 || name.indexOf("temperature") >= 0 || name.indexOf("connections") >= 0 || name.indexOf("products") >= 0 || name.indexOf("stocksutility") >= 0 || name.indexOf("medals") >= 0 || name.indexOf("places") >= 0 || name.indexOf("history") >= 0 || name.indexOf("stats") >= 0;
+                var header = isDataFile ? "DATA" : "CS";
+                var item = new CodeViewer(file.Path, file.Content, "cs", header, true);
+                // if (header === "CS")
+                //     log("generating DATA " + file.Path + "   " + header);
                 contentItems.push(item);
             }
         }

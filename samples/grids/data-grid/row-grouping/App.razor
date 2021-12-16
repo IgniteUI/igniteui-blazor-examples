@@ -5,76 +5,42 @@
 <div class="container vertical">
 
     <div class="container vertical">
-        <div class="options horizotnal">
-            <span class="options-item">Section Header Display Mode: </span>
-            <select class="options-item" @bind="SectionHeaderClickAction">
-                <option>@DataSourceSectionHeaderDisplayMode.Combined</option>
-                <option>@DataSourceSectionHeaderDisplayMode.Split</option>
-            </select>
-
-    </div>
-
+        
         @if (Data != null)
         {
-            <DataGrid @ref=@DataGridRef Height="100%" Width="100%"
+            <div style="overflow: hidden">
+                <IgbDataGrid Height="100%" Width="100%"
                       DataSource="Data"
                       AutoGenerateColumns="false"
                       IsGroupCollapsable="true"
-                      GroupHeaderDisplayMode="@SectionHeaderClickAction">
-                <TextColumn Field="Name" Width="@("*>120")" />
-                <NumericColumn Field="Age" Width="@("*>110")" />
-                <DateTimeColumn Field="Birthday" HorizontalAlignment="CellContentHorizontalAlignment.Center" Width="@("*>160")"/>
-                <ImageColumn IsEditable="false" Field="CountryFlag" HeaderText="Country" Width="@("*>160")"
-                                PaddingTop="5" PaddingBottom="5" ContentOpacity="1" HorizontalAlignment="CellContentHorizontalAlignment.Center"/>
-                <TextColumn Field="Street" />
-                <NumericColumn Field="Salary" HeaderText="Salary" Width="@("*>130")"
-                                PositivePrefix="$" ShowGroupingSeparator="true"/>
-                <TextColumn Field="City" />
-                <NumericColumn Field="Salary" PositivePrefix="$" ShowGroupingSeparator="true" MaxFractionDigits="0" MinFractionDigits="0" />
-            </DataGrid>
+                      IsGroupByAreaVisible="true">
+                    <IgbTextColumn Field="Name" Width="@("*>120")" />
+                    <IgbNumericColumn Field="Age" Width="@("*>110")" />
+                    <IgbDateTimeColumn Field="Birthday" HorizontalAlignment="CellContentHorizontalAlignment.Center" Width="@("*>160")"/>
+                    <IgbTextColumn IsEditable="false" Field="Country" HeaderText="Country" Width="@("*>160")"
+                                    PaddingTop="5" PaddingBottom="5" ContentOpacity="1" HorizontalAlignment="CellContentHorizontalAlignment.Center"/>
+                    <IgbTextColumn Field="Street" />
+                    <IgbNumericColumn Field="Salary" HeaderText="Salary" Width="@("*>130")"
+                                    PositivePrefix="$" ShowGroupingSeparator="true"/>
+                    <IgbTextColumn Field="City" />
+                    <IgbNumericColumn Field="Salary" PositivePrefix="$" ShowGroupingSeparator="true" MaxFractionDigits="0" MinFractionDigits="0" />
+                </IgbDataGrid>
+            </div>
         }
-
     </div>
 </div>
 
 @code {
 
     private List<Employee> Data;
-    private DataGrid grid;
-    private DataSourceSectionHeaderDisplayMode SectionHeaderClickAction { get; set; } = DataSourceSectionHeaderDisplayMode.Combined;
-
-    public DataGrid DataGridRef
-    {
-        get
-        {
-            return grid;
-        }
-        set
-        {
-            grid = value;
-            OnGridCreated();
-
-            StateHasChanged();
-        }
-    }
-
+    
     protected override void OnInitialized()
     {
         base.OnInitialized();
 
-        DataGridModule.Register(IgniteUIBlazor);
+        IgbDataGridModule.Register(IgniteUIBlazor);
+        IgbColumnGroupingModule.Register(IgniteUIBlazor);
         this.Data = EmployeeData.Create(200, false);
-    }
-
-    private void OnGridCreated()
-    {
-        var state = new ColumnGroupDescription { Field = "Country", DisplayName = "Location" };
-        var city = new ColumnGroupDescription { Field = "City", DisplayName = "" };
-        var income = new ColumnGroupDescription { Field = "Income", DisplayName = "Income" };
-
-        grid.GroupDescriptions.Add(state);
-        grid.GroupDescriptions.Add(city);
-        grid.GroupDescriptions.Add(income);
     }
 
 }

@@ -5,19 +5,19 @@
     <div class="options vertical">
         <span class="legend-title">Life Expectancy vs Health Expenditure</span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="container vertical">
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    Legend="Legend"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <NumericXAxis Name="xAxis" LabelFormat="${0}" Title="Health Expenditure"/>
-            <NumericYAxis Name="yAxis" LabelFormat="{0} years" Title="Life Expectancy"/>
+            <IgbNumericXAxis Name="xAxis" LabelFormat="${0}" Title="Health Expenditure"/>
+            <IgbNumericYAxis Name="yAxis" LabelFormat="{0} years" Title="Life Expectancy"/>
 
-            <ScatterSplineSeries XAxisName="xAxis"
+            <IgbScatterSplineSeries XAxisName="xAxis"
                                YAxisName="yAxis"
                                DataSource="GermanyData"
                                XMemberPath="HealthExpense"
@@ -25,7 +25,7 @@
                                Title="Germany"
                                MarkerType="MarkerType.Circle"/>
 
-            <ScatterSplineSeries XAxisName="xAxis"
+            <IgbScatterSplineSeries XAxisName="xAxis"
                                YAxisName="yAxis"
                                DataSource="FranceData"
                                XMemberPath="HealthExpense"
@@ -33,21 +33,21 @@
                                Title="France"
                                MarkerType="MarkerType.Circle"/>
 
-            <ScatterSplineSeries XAxisName="xAxis"
+            <IgbScatterSplineSeries XAxisName="xAxis"
                                YAxisName="yAxis"
                                DataSource="LuxembourgData"
                                XMemberPath="HealthExpense"
                                YMemberPath="LifeExpectancy"
                                Title="Luxembourg"
                                MarkerType="MarkerType.Circle"/>
-        </DataChart>
+        </IgbDataChart>
     </div>
 </div>
 
 @code {
 
-    private Legend _legend;
-    public Legend Legend
+    private IgbLegend _legend;
+    public IgbLegend Legend
     {
         get { return _legend; }
         set
@@ -71,12 +71,12 @@
 
     protected override void OnInitialized()
     {
-        LegendModule.Register(IgniteUIBlazor);
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartScatterModule.Register(IgniteUIBlazor);
-        DataChartScatterCoreModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+        IgbLegendModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartScatterModule.Register(IgniteUIBlazor);
+        IgbDataChartScatterCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbNumberAbbreviatorModule.Register(IgniteUIBlazor);
 
         InitializeData();
     }

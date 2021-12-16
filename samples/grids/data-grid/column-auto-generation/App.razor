@@ -7,64 +7,64 @@
 
         @if (Employees != null)
         {
-            <DataGrid Height="33%" Width="100%"
+            <IgbDataGrid Height="33%" Width="100%"
                       DataSource="Employees"
                       AutoGenerateColumns="false"
                       ActivationMode="GridActivationMode.Cell">
 
-                <TextColumn Field="ID" />
-                <TextColumn Field="Name" />
-                <TextColumn Field="Street" />
-                <TextColumn Field="City" />
-                <ImageColumn IsEditable="false" Field="Photo" />
-                <DateTimeColumn Field="Birthday" />
-                <NumericColumn Field="Salary" PositivePrefix="$"
+                <IgbTextColumn Field="ID" />
+                <IgbTextColumn Field="Name" />
+                <IgbTextColumn Field="Street" />
+                <IgbTextColumn Field="City" />
+                <IgbImageColumn IsEditable="false" Field="Photo" />
+                <IgbDateTimeColumn Field="Birthday" />
+                <IgbNumericColumn Field="Salary" PositivePrefix="$"
                                ShowGroupingSeparator="true"
                                MaxFractionDigits="0"
                                MinFractionDigits="0" />
-            </DataGrid>
+            </IgbDataGrid>
         }
 
         @if (Sales != null)
         {
-            <DataGrid Height="33%" Width="100%"
+            <IgbDataGrid Height="33%" Width="100%"
                       DataSource="Sales"
                       AutoGenerateColumns="false"
                       ActivationMode="GridActivationMode.Cell">
 
-                <TextColumn Field="ID" />
-                <TextColumn Field="ProductName" />
-                <NumericColumn Field="ProductPrice" />
-                <TextColumn Field="City" />
-                <TextColumn Field="Country" />
-                <ImageColumn IsEditable="false" Field="CountryFlag" />
-                <DateTimeColumn Field="OrderDate" />
-                <NumericColumn Field="Profit" PositivePrefix="$"
+                <IgbTextColumn Field="ID" />
+                <IgbTextColumn Field="ProductName" />
+                <IgbNumericColumn Field="ProductPrice" />
+                <IgbTextColumn Field="City" />
+                <IgbTextColumn Field="Country" />
+                <IgbImageColumn IsEditable="false" Field="CountryFlag" />
+                <IgbDateTimeColumn Field="OrderDate" />
+                <IgbNumericColumn Field="Profit" PositivePrefix="$"
                                ShowGroupingSeparator="true"
                                MaxFractionDigits="0"
                                MinFractionDigits="0" />
-            </DataGrid>
+            </IgbDataGrid>
         }
 
         @if (RealEstates != null)
         {
-            <DataGrid Height="33%" Width="100%"
+            <IgbDataGrid Height="33%" Width="100%"
                       DataSource="RealEstates"
                       AutoGenerateColumns="false"
                       ActivationMode="GridActivationMode.Cell">
 
-                <TextColumn Field="ID" />
-                <TextColumn Field="Property" />
-                <TextColumn Field="Rooms" />
-                <TextColumn Field="Baths" />
-                <TextColumn Field="Built" />
-                <NumericColumn Field="Price" PositivePrefix="$"
+                <IgbTextColumn Field="ID" />
+                <IgbTextColumn Field="Property" />
+                <IgbTextColumn Field="Rooms" />
+                <IgbTextColumn Field="Baths" />
+                <IgbTextColumn Field="Built" />
+                <IgbNumericColumn Field="Price" PositivePrefix="$"
                                ShowGroupingSeparator="true"
                                MaxFractionDigits="0"
                                MinFractionDigits="0" />
-                <TextColumn Field="City" />
-                <TextColumn Field="Country" />
-            </DataGrid>
+                <IgbTextColumn Field="City" />
+                <IgbTextColumn Field="Country" />
+            </IgbDataGrid>
         }
 
     </div>
@@ -80,7 +80,7 @@
     {
         base.OnInitialized();
 
-        DataGridModule.Register(IgniteUIBlazor);
+        IgbDataGridModule.Register(IgniteUIBlazor);
 
         this.Employees = EmployeeData.Create(200, false);
         this.Sales = SalesData.Create(200);

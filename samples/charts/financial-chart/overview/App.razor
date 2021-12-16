@@ -7,13 +7,13 @@
     <div class="options vertical">
         <span class="legend-title">Google vs Microsoft Stock Prices</span>
         <div class="legend">
-            <Legend @ref="FinancialLegend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="FinancialLegend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
 
     <div class="container vertical">
 
-            <FinancialChart
+            <IgbFinancialChart
                 @ref="Chart"
                 Width="100%"
                 Height="100%"
@@ -31,13 +31,13 @@
 @code {
 
     public List<StockPrice[]> Data;
-    public Legend FinancialLegend { get; set; }
-    public FinancialChart Chart;
+    public IgbLegend FinancialLegend { get; set; }
+    public IgbFinancialChart Chart;
 
     protected override async Task OnInitializedAsync()
     {
-        FinancialChartModule.Register(IgniteUIBlazor);
-        LegendModule.Register(IgniteUIBlazor);
+        IgbFinancialChartModule.Register(IgniteUIBlazor);
+        IgbLegendModule.Register(IgniteUIBlazor);
         this.Data = await StocksHistory.GetMultipleStocks();
     }
 
@@ -45,8 +45,8 @@
     {
         base.OnAfterRender(firstRender);
 
-        if(Chart != null)
-        Chart.Legend = FinancialLegend;
+        if (Chart != null && FinancialLegend != null && !firstRender)
+            Chart.Legend = FinancialLegend;
 
     }
 }

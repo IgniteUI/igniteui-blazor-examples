@@ -4,213 +4,102 @@
 
 <div class="container vertical">
     <div class="options horizontal">
-        <label class="options-label">Enable Highlighting: </label>
-        <label class="options-item">
-            <input type="checkbox" @bind="SeriesHighlightEnabled" /> Series
-        </label>
-        <label class="options-item">
-            <input type="checkbox" @onchange="OnItemHighlightCheckboxChanged"/>Item
-        </label>
-        <label class="options-item">
-            <input type="checkbox" @onchange="OnCategoryHighlightCheckboxChanged" />Category
-        </label>
-        <label class="options-item">
-            <input type="checkbox" @onchange="OnItemTooltipCheckboxChanged" />Tooltip
-        </label>
+        <label class="options-label">Highlight Mode:</label>
+        <select @bind="@HighlightingMode" style="width: 7rem; margin-right: 1rem;"
+                title="Chart will brighten or fade series depending on this setting" >
+            <option>@SeriesHighlightingMode.Auto</option>
+            <option>@SeriesHighlightingMode.Brighten</option>
+            <option>@SeriesHighlightingMode.BrightenSpecific</option>
+            <option>@SeriesHighlightingMode.FadeOthers</option>
+            <option>@SeriesHighlightingMode.FadeOthersSpecific</option>
+            <option>@SeriesHighlightingMode.None</option>
+        </select>
+
+        <label class="options-label">Highlight Behavior:</label>
+        <select @bind="@HighlightingBehavior" style="width: 7rem; margin-right: 1rem;"
+                title="Chart will highlight series when you hover over data points" >
+            <option>@SeriesHighlightingBehavior.Auto</option>
+            <option>@SeriesHighlightingBehavior.DirectlyOver</option>
+            <option>@SeriesHighlightingBehavior.NearestItems</option>
+            <option>@SeriesHighlightingBehavior.NearestItemsAndSeries</option>
+            <option>@SeriesHighlightingBehavior.NearestItemsRetainMainShapes</option>
+        </select>
+
+        <label class="options-label">Legend Highlight:</label>
+        <select @bind="@HighlightingLegend" style="width: 7rem; margin-right: 1rem;"
+                title="Chart will highlight series when you hover over legend items">
+            <option>@LegendHighlightingMode.Auto</option>
+            <option>@LegendHighlightingMode.MatchSeries</option>
+            <option>@LegendHighlightingMode.None</option>
+        </select>
     </div>
-    <div class="options horizontal">
-        <label style="background: orange" class="options-item" @onclick="@(e => onLegendClick(0))" @onmouseover="@(e => onLegendHover(0))" @onmouseout="@(e => onLegendLeave(0))"> Europe  </label>
-        <label style="background: orange" class="options-item" @onclick="@(e => onLegendClick(1))" @onmouseover="@(e => onLegendHover(1))" @onmouseout="@(e => onLegendLeave(1))"> China  </label>
-        <label style="background: orange" class="options-item" @onclick="@(e => onLegendClick(2))" @onmouseover="@(e => onLegendHover(2))" @onmouseout="@(e => onLegendLeave(2))"> USA  </label>
+    
+    <div class="legend">
+         <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
     </div>
 
     <div class="container vertical">
-        <DataChart Height="100%" Width="100%"
-                   IsVerticalZoomEnabled="true"
-                   IsHorizontalZoomEnabled="true" @ref="Chart">
-            <CategoryXAxis Name="xAxis" DataSource="Data" Label="Year" />
-            <NumericYAxis  Name="yAxis" MinimumValue="0" Title="TWh" TitleLeftMargin="10" />
+        <IgbDataChart Height="100%" Width="100%"
+                   IsVerticalZoomEnabled="true"  
+                   IsHorizontalZoomEnabled="true" @ref="Chart" 
+                   HighlightingBehavior="@HighlightingBehavior"
+                   HighlightingMode="@HighlightingMode"
+                   LegendHighlightingMode="@HighlightingLegend"
+                   Legend="@Legend">
 
-            <AreaSeries Title="Europe" XAxisName="xAxis" YAxisName="yAxis"
-                        ValueMemberPath="Europe" MarkerType="MarkerType.Circle"
-                        DataSource="Data" Opacity="SeriesOpacity[0]"
-                        IsTransitionInEnabled="true" ShowDefaultTooltip="true"
-                        IsHighlightingEnabled="SeriesHighlightEnabled"/>
+            <IgbCategoryXAxis Name="xAxis" DataSource="Data" Label="Year" />
+            <IgbNumericYAxis  Name="yAxis" MinimumValue="0" Title="TWh" TitleLeftMargin="10" />
 
-            <AreaSeries Title="China" XAxisName="xAxis" YAxisName="yAxis"
-                        ValueMemberPath="China" MarkerType="MarkerType.Circle"
-                        DataSource="Data" Opacity="SeriesOpacity[1]"
-                        IsTransitionInEnabled="true" ShowDefaultTooltip="true"
-                        IsHighlightingEnabled="SeriesHighlightEnabled"/>
+            <IgbAreaSeries Title="Europe" XAxisName="xAxis" YAxisName="yAxis"
+                        ValueMemberPath="Europe" 
+                        DataSource="Data" 
+                        ShowDefaultTooltip="true"
+                        IsTransitionInEnabled="true" 
+                        IsHighlightingEnabled="true"/>
 
-            <AreaSeries Title="USA" XAxisName="xAxis" YAxisName="yAxis"
-                        ValueMemberPath="USA" MarkerType="MarkerType.Circle"
-                        DataSource="Data" Opacity="SeriesOpacity[2]"
-                        IsTransitionInEnabled="true" ShowDefaultTooltip="true"
-                        IsHighlightingEnabled="SeriesHighlightEnabled"/>
+            <IgbAreaSeries Title="China" XAxisName="xAxis" YAxisName="yAxis"
+                        ValueMemberPath="China" 
+                        DataSource="Data" 
+                        ShowDefaultTooltip="true"
+                        IsTransitionInEnabled="true"  
+                        IsHighlightingEnabled="true"/>
 
-            @*<ItemToolTipLayer Name="ItemTooltip" Outline="Red" />*@
-
-        </DataChart>
+            <IgbAreaSeries Title="USA" XAxisName="xAxis" YAxisName="yAxis"
+                        ValueMemberPath="USA" 
+                        DataSource="Data" 
+                        ShowDefaultTooltip="true"
+                        IsTransitionInEnabled="true"  
+                        IsHighlightingEnabled="true"/>
+        </IgbDataChart>
     </div>
 </div>
 
 @code {
 
-    public class SeriesInfo
-    {
-
-        public string Brush = "#8F000000";
-        public string Outline = "Black";
-        public double Opacity = 1.0;
-        public int Index = 0;
-    }
-
-    private bool[] IsSeriesVisible = new[] { true, true, true };
-    private bool[] IsSeriesHighlighted = new[] { false, false, false };
-
-    private double[] SeriesOpacity = new[] { 1.0, 1.0, 1.0 };
-
-    private void onLegendClick(int index)
-    {
-        //IsSeriesVisible[index] = !IsSeriesVisible[index];
-
-        //if (IsSeriesVisible[index]) {
-        //    this.Chart.ActualSeries[index].Opacity = 1.0;
-        //    SeriesOpacity[index] = 1.0;
-        //}
-        //else
-        //{
-        //    this.Chart.ActualSeries[index].Opacity = 0.5;
-        //    SeriesOpacity[index] = 0.0;
-        //}
-
-        Console.WriteLine("onLegendClick " + index + " " + IsSeriesVisible[index]);
-        //this.StateHasChanged();
-        this.Chart.NotifyContainerResized();
-        //this.Chart.ActualSeries[2].Opacity = 0.5;
-        //this.Chart.ActualSeries[index].Opacity = 1.0;
-    }
-
-    private void onLegendLeave(int index)
-    {
-        for (int i = 0; i < SeriesOpacity.Length; i++)
-        {
-            SeriesOpacity[i] = i == index ? 1.0 : 0.25;
-        }
-        //SeriesOpacity[0] = 1.0;
-        //SeriesOpacity[1] = 1.0;
-        //SeriesOpacity[2] = 1.0;
-
-        //IsSeriesHighlighted[index] = true;
-
-        //SeriesOpacity[0] = 0.25;
-        //SeriesOpacity[1] = 0.25;
-        //SeriesOpacity[2] = 0.25;
-        //SeriesOpacity[index] = 1.0;
-
-        Console.WriteLine("onLegendLeave " + index + " " + IsSeriesHighlighted[index] + " " + SeriesOpacity[index] + " " + SeriesOpacity[0] );
-        this.Chart.NotifyContainerResized();
-    }
-
-    private void onLegendHover(int index)
-    {
-        for (int i = 0; i < SeriesOpacity.Length; i++)
-        {
-            SeriesOpacity[i] = 1.0;
-        }
-
-        //IsSeriesHighlighted[index] = false;
-
-        //SeriesOpacity[0] = 1.0;
-        //SeriesOpacity[1] = 1.0;
-        //SeriesOpacity[2] = 1.0;
-        Console.WriteLine("onLegendHover " + index + " " + IsSeriesHighlighted[index] + " " +SeriesOpacity[index] + " " + SeriesOpacity[0] );
-
-        this.Chart.NotifyContainerResized();
-    }
-
     private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
-    private bool SeriesHighlightEnabled = true;
+    private LegendHighlightingMode HighlightingLegend = LegendHighlightingMode.MatchSeries;
+    private SeriesHighlightingMode HighlightingMode = SeriesHighlightingMode.FadeOthers;
+    private SeriesHighlightingBehavior HighlightingBehavior = SeriesHighlightingBehavior.DirectlyOver;
+    private IgbDataChart Chart;
 
-    private CategoryItemHighlightLayer ItemHighlightLayer;
-    private CategoryHighlightLayer CategoryHighlightLayer;
-    private DataChart Chart;
-    private ItemToolTipLayer ItemTooltipLayer;
+    private IgbLegend _Legend;
+    private IgbLegend Legend
+    {
+        get { return _Legend; }
+        set { _Legend = value; StateHasChanged(); }
+    }
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
 
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        CategoryHighlightLayerModule.Register(IgniteUIBlazor);
-        CategoryItemHighlightLayerModule.Register(IgniteUIBlazor);
-        ItemToolTipLayerModule.Register(IgniteUIBlazor);
-        CategoryToolTipLayerModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbCategoryHighlightLayerModule.Register(IgniteUIBlazor); 
 
-        //this.Data = EnergyProductionData.Generate();
+        IgbLegendModule.Register(IgniteUIBlazor); 
+    } 
 
-        this.ItemTooltipLayer = new ItemToolTipLayer();
-        this.ItemHighlightLayer = new CategoryItemHighlightLayer();
-        this.CategoryHighlightLayer = new CategoryHighlightLayer();
-    }
-
-
-
-    protected override void OnAfterRender(bool firstRender)
-    {
-        base.OnAfterRender(firstRender);
-
-
-        if (this.Chart != null)
-        {
-            //this.Chart.Series.Add(this.ItemTooltip);
-            //this.Chart.Legend = Legend;
-        }
-
-    }
-
-    private void OnItemTooltipCheckboxChanged(ChangeEventArgs e)
-    {
-        bool val = (bool)e.Value;
-        if (val)
-        {
-            this.Chart.ActualSeries.Add(this.ItemTooltipLayer);
-            this.Chart.ActualSeries[0].Outline = "Lime";
-        }
-        else
-        {
-            this.Chart.ActualSeries.Remove(this.ItemTooltipLayer);
-            this.Chart.ActualSeries[0].Outline = "Red";
-        }
-    }
-
-    private void OnCategoryHighlightCheckboxChanged(ChangeEventArgs e)
-    {
-        bool val = (bool)e.Value;
-        if (val)
-        {
-            this.Chart.ActualSeries.Add(this.CategoryHighlightLayer);
-        }
-        else
-        {
-            this.Chart.ActualSeries.Remove(this.CategoryHighlightLayer);
-        }
-    }
-
-    private void OnItemHighlightCheckboxChanged(ChangeEventArgs e)
-    {
-        bool val = (bool)e.Value;
-        if (val)
-        {
-            this.Chart.ActualSeries.Add(this.ItemHighlightLayer);
-        }
-        else
-        {
-            this.Chart.ActualSeries.Remove(this.ItemHighlightLayer);
-        }
-    }
 }
 

@@ -32,9 +32,9 @@
     </div>
 
     <div class="container vertical" style="height: calc(100% - 2rem)">
-        <GeographicMap Height="100%" Width="100%" Zoomable="true"  @ref="GeoMap">
+        <IgbGeographicMap Height="100%" Width="100%" Zoomable="true"  @ref="GeoMap">
 
-            <GeographicSymbolSeries DataSource="Capitals" @ref="GeoSeries"
+            <IgbGeographicSymbolSeries DataSource="Capitals" @ref="GeoSeries"
                                     MarkerCollisionAvoidance="@MarkerCollisionType"
                                     LatitudeMemberPath="Lat"
                                     LongitudeMemberPath="Lon"
@@ -43,7 +43,7 @@
                                     MarkerTemplateScript="@MarkerScript"/>
             @*note onMapMarkerTemplate implements custom marker in MapMarkerTemplate.js*@
 
-        </GeographicMap>
+        </IgbGeographicMap>
     </div>
 </div>
 
@@ -53,13 +53,13 @@
     private string MarkerScript;
     private CollisionAvoidanceType MarkerCollisionType;
 
-    private GeographicMap GeoMap;
-    private GeographicSymbolSeries GeoSeries;
+    private IgbGeographicMap GeoMap;
+    private IgbGeographicSymbolSeries GeoSeries;
 
     protected override void OnInitialized()
     {
-        GeographicMapModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbGeographicMapModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
 
         this.MarkerScript = "onMapMarkerTemplate";
         this.MarkerCollisionType = CollisionAvoidanceType.Fade;

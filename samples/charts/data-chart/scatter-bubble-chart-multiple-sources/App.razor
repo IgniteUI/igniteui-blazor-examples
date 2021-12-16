@@ -5,20 +5,20 @@
     <div class="options vertical">
         <span class="legend-title">Total Population for Selected Continents </span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="container vertical">
 
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    Legend="Legend"
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true">
 
-            <NumericXAxis Name="xAxis" Title="Death Rate (per 1,000 people)" MinimumValue="4" MaximumValue="16" Interval="1" />
-            <NumericYAxis Name="yAxis" Title="Birth Rate (per 1,000 people)" MinimumValue="0" MaximumValue="60" Interval="10" />
+            <IgbNumericXAxis Name="xAxis" Title="Death Rate (per 1,000 people)" MinimumValue="4" MaximumValue="16" Interval="1" />
+            <IgbNumericYAxis Name="yAxis" Title="Birth Rate (per 1,000 people)" MinimumValue="0" MaximumValue="60" Interval="10" />
 
-            <BubbleSeries XAxisName="xAxis"
+            <IgbBubbleSeries XAxisName="xAxis"
                           YAxisName="yAxis"
                           Title="Africa"
                           DataSource="AfricaData"
@@ -27,9 +27,9 @@
                           RadiusMemberPath="Total"
                           RadiusScale="@SizeScale"
                           MarkerType="MarkerType.Circle">
-            </BubbleSeries>
+            </IgbBubbleSeries>
 
-            <BubbleSeries XAxisName="xAxis"
+            <IgbBubbleSeries XAxisName="xAxis"
                           YAxisName="yAxis"
                           Title="Europe"
                           DataSource="EuropeData"
@@ -38,16 +38,16 @@
                           RadiusMemberPath="Total"
                           RadiusScale="@SizeScale"
                           MarkerType="MarkerType.Circle">
-            </BubbleSeries>
-        </DataChart>
+            </IgbBubbleSeries>
+        </IgbDataChart>
 
     </div>
 </div>
 
 @code {
 
-    private Legend _legend;
-    public Legend Legend
+    private IgbLegend _legend;
+    public IgbLegend Legend
     {
         get { return _legend; }
         set
@@ -59,7 +59,7 @@
 
     private List<PopulationInfo> AfricaData;
     private List<PopulationInfo> EuropeData;
-    private SizeScale SizeScale = new SizeScale { MinimumValue = 10, MaximumValue = 100 };
+    private IgbSizeScale SizeScale = new IgbSizeScale { MinimumValue = 10, MaximumValue = 100 };
 
     public void InitializeData()
     {
@@ -76,12 +76,12 @@
 
     protected override void OnInitialized()
     {
-        LegendModule.Register(IgniteUIBlazor);
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartScatterModule.Register(IgniteUIBlazor);
-        DataChartScatterCoreModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+        IgbLegendModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartScatterModule.Register(IgniteUIBlazor);
+        IgbDataChartScatterCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbNumberAbbreviatorModule.Register(IgniteUIBlazor);
 
         InitializeData();
     }

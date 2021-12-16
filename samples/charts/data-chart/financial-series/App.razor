@@ -7,7 +7,7 @@
 
         <span class="legend-title">Legend: </span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
 
         <div class="overlay-right" >
@@ -32,20 +32,20 @@
     <div class="container vertical">
         @if (Data != null)
         {
-            <DataChart Height="100%" Width="100%"
+            <IgbDataChart Height="100%" Width="100%"
                        TitleTopMargin="10"
                        IsHorizontalZoomEnabled="true"
                        IsVerticalZoomEnabled="true"
                        Legend="Legend"
                        @ref="Chart">
 
-                <CategoryXAxis Name="xAxis" Label="Label" DataSource="Data"
+                <IgbCategoryXAxis Name="xAxis" Label="Label" DataSource="Data"
                                LabelAngle="45" />
-                <NumericYAxis Name="yAxis1" LabelLocation="AxisLabelsLocation.OutsideRight" Title="Financial Prices" />
+                <IgbNumericYAxis Name="yAxis1" LabelLocation="AxisLabelsLocation.OutsideRight" Title="Financial Prices" />
 
-                <NumericYAxis Name="yAxis2" LabelLocation="AxisLabelsLocation.OutsideLeft"
+                <IgbNumericYAxis Name="yAxis2" LabelLocation="AxisLabelsLocation.OutsideLeft"
                               Title="Indicator Values" MajorStrokeThickness="0" MaximumValue="800" />
-                <BollingerBandsOverlay Name="series1"
+                <IgbBollingerBandsOverlay Name="series1"
                                        XAxisName="xAxis"
                                        YAxisName="yAxis1"
                                        HighMemberPath="High"
@@ -55,7 +55,7 @@
                                        Brush="rgba(171, 82, 235, 0.39)"
                                        DataSource="Data" />
 
-                <FinancialPriceSeries Name="series2"
+                <IgbFinancialPriceSeries Name="series2"
                                       XAxisName="xAxis"
                                       YAxisName="yAxis1"
                                       DisplayType=@SeriesType
@@ -67,7 +67,7 @@
                                       DataSource="Data"
                                       Title="Price" />
 
-                <MedianPriceIndicator Name="series3"
+                <IgbMedianPriceIndicator Name="series3"
                                       XAxisName="xAxis"
                                       YAxisName="yAxis2"
                                       DisplayType="@IndicatorsType"
@@ -77,7 +77,7 @@
                                       OpenMemberPath="Open"
                                       VolumeMemberPath="Volume"
                                       DataSource="Data" />
-            </DataChart>
+            </IgbDataChart>
         }
     </div>
 </div>
@@ -85,8 +85,8 @@
 @code {
 
     private List<SampleFinancialItem> Data;
-    private DataChart _Chart;
-    private DataChart Chart
+    private IgbDataChart _Chart;
+    private IgbDataChart Chart
     {
         get { return _Chart; }
         set
@@ -96,8 +96,8 @@
         }
     }
 
-    private Legend legend;
-    private Legend Legend
+    private IgbLegend legend;
+    private IgbLegend Legend
     {
         get { return legend; }
         set
@@ -133,17 +133,17 @@
     protected override void OnInitialized()
     {
         // registering chart/axis modules
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
         // registering financial modules
-        DataChartFinancialCoreModule.Register(IgniteUIBlazor);
-        DataChartFinancialModule.Register(IgniteUIBlazor);
-        DataChartFinancialIndicatorsModule.Register(IgniteUIBlazor);
-        DataChartFinancialOverlaysModule.Register(IgniteUIBlazor);
+        IgbDataChartFinancialCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartFinancialModule.Register(IgniteUIBlazor);
+        IgbDataChartFinancialIndicatorsModule.Register(IgniteUIBlazor);
+        IgbDataChartFinancialOverlaysModule.Register(IgniteUIBlazor);
         // registering other modules
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        LegendModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbLegendModule.Register(IgniteUIBlazor);
 
         Data = SampleFinancialData.Create();
     }

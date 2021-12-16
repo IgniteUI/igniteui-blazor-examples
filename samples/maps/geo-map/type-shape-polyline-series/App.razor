@@ -1,34 +1,42 @@
 @using IgniteUI.Blazor.Controls
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="container vertical">
+<div class="container vertical">    
     <div class="container vertical">
-        <GeographicMap Height="100%" Width="100%"
-        Zoomable="true"
-        WindowRect="@MapWindowRect">
-            <GeographicPolylineSeries
+        <IgbGeographicMap @ref="@MapRef" Height="100%" Width="100%" Zoomable="true">        
+            <IgbGeographicPolylineSeries
             Outline="Red"
             ShapefileDataSource="Data" />
-        </GeographicMap>
+        </IgbGeographicMap>
     </div>
 </div>
 
 @code {
 
-    private ShapeDataSource Data;
-    private Rect MapWindowRect;
+    private IgbShapeDataSource Data;    
+    private IgbGeographicMap MapRef { get; set; }
 
     protected override void OnInitialized()
     {
-        GeographicMapModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbGeographicMapModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
 
-        this.Data = new ShapeDataSource()
+        this.Data = new IgbShapeDataSource()
         {
             ShapefileSource = "https://static.infragistics.com/xplatform/shapes/AmericanRoads.shp",
             DatabaseSource  = "https://static.infragistics.com/xplatform/shapes/AmericanRoads.dbf"
         };
+    }
 
-        this.MapWindowRect = new Rect(){ Left = 0.2, Top = 0.1, Width = 0.6, Height = 0.6 };
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender && this.MapRef != null)
+        {
+            Rect zoomRect = new Rect() { Left = 0.2, Top = 0.1, Width = 0.6, Height = 0.6 };
+            await this.MapRef.EnsureReady();
+            await this.MapRef.UpdateZoomWindowAsync(zoomRect);            
+        }
     }
 }

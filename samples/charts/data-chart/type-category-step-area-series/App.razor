@@ -4,17 +4,17 @@
 <div class="container vertical">
     <div class="container vertical">
 
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    ChartTitle="Total Olympic Medals"
                    Subtitle="United States vs China vs Russia"
                    TitleTopMargin="10"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <CategoryXAxis Name="xAxis" Title="Olympic Years" Label="Year" DataSource="Data" />
-            <NumericYAxis Name="yAxis" Title="Olympic Medals" TitleLeftMargin="10" />
+            <IgbCategoryXAxis Name="xAxis" Title="Olympic Years" Label="Year" DataSource="Data" />
+            <IgbNumericYAxis Name="yAxis" Title="Olympic Medals" TitleLeftMargin="10" />
 
-            <StepAreaSeries XAxisName="xAxis"
+            <IgbStepAreaSeries XAxisName="xAxis"
                             YAxisName="yAxis"
                             DataSource="Data"
                             ValueMemberPath="USA" Title="USA"
@@ -22,8 +22,8 @@
                             ShowDefaultTooltip="true"
                             IsTransitionInEnabled="true"
                             MarkerType=MarkerType.Circle>
-            </StepAreaSeries>
-            <StepAreaSeries XAxisName="xAxis"
+            </IgbStepAreaSeries>
+            <IgbStepAreaSeries XAxisName="xAxis"
                             YAxisName="yAxis"
                             DataSource="Data"
                             ValueMemberPath="CHN" Title="China"
@@ -31,8 +31,8 @@
                             ShowDefaultTooltip="true"
                             IsTransitionInEnabled="true"
                             MarkerType=MarkerType.Circle>
-            </StepAreaSeries>
-            <StepAreaSeries XAxisName="xAxis"
+            </IgbStepAreaSeries>
+            <IgbStepAreaSeries XAxisName="xAxis"
                             YAxisName="yAxis"
                             DataSource="Data"
                             ValueMemberPath="RUS" Title="Russia"
@@ -40,9 +40,9 @@
                             ShowDefaultTooltip="true"
                             IsTransitionInEnabled="true"
                             MarkerType=MarkerType.Circle>
-            </StepAreaSeries>
+            </IgbStepAreaSeries>
 
-        </DataChart>
+        </IgbDataChart>
 
     </div>
 </div>
@@ -53,10 +53,10 @@
 
     protected override void OnInitialized()
     {
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
 
         Data = SampleCategoryData.Create();
 

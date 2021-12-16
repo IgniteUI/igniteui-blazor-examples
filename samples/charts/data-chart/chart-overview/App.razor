@@ -6,24 +6,24 @@
         @*@if (Data != null)
         {*@
 
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    Subtitle="Countries GDP vs. Population"
                    SubtitleTopMargin="10"
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true">
 
-            <NumericXAxis Name="xAxis" IsLogarithmic="true"
+            <IgbNumericXAxis Name="xAxis" IsLogarithmic="true"
                           AbbreviateLargeNumbers="true"
                           TitleBottomMargin="10"
                           Title="Population">
-            </NumericXAxis>
-            <NumericYAxis Name="yAxis" IsLogarithmic="true"
+            </IgbNumericXAxis>
+            <IgbNumericYAxis Name="yAxis" IsLogarithmic="true"
                           AbbreviateLargeNumbers="true"
                           TitleLeftMargin="10"
                           Title="GDP per Capita">
-            </NumericYAxis>
+            </IgbNumericYAxis>
 
-            <BubbleSeries XAxisName="xAxis"
+            <IgbBubbleSeries XAxisName="xAxis"
                           YAxisName="yAxis"
                           Title="Large Countrie"
                           DataSource="CountriesWithLargePop"
@@ -33,9 +33,9 @@
                           RadiusScale="@SizeScale"
                           ShowDefaultTooltip="true"
                           MarkerType=MarkerType.Circle>
-            </BubbleSeries>
+            </IgbBubbleSeries>
 
-            <BubbleSeries XAxisName="xAxis"
+            <IgbBubbleSeries XAxisName="xAxis"
                           YAxisName="yAxis"
                           Title="Small Countrie"
                           DataSource="CountriesWithSmallPop"
@@ -45,9 +45,9 @@
                           RadiusScale="@SizeScale"
                           ShowDefaultTooltip="true"
                           MarkerType=MarkerType.Circle>
-            </BubbleSeries>
+            </IgbBubbleSeries>
 
-        </DataChart>
+        </IgbDataChart>
              @* } *@
     </div>
 </div>
@@ -56,18 +56,18 @@
 
     private List<Country> CountriesWithSmallPop;
     private List<Country> CountriesWithLargePop;
-    private SizeScale SizeScale;
+    private IgbSizeScale SizeScale;
 
     protected override void OnInitialized()
     {
-        LegendModule.Register(IgniteUIBlazor);
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartScatterCoreModule.Register(IgniteUIBlazor);
-        DataChartScatterModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+        IgbLegendModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartScatterCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartScatterModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbNumberAbbreviatorModule.Register(IgniteUIBlazor);
 
-        this.SizeScale = new SizeScale();
+        this.SizeScale = new IgbSizeScale();
         this.SizeScale.MinimumValue = 10;
         this.SizeScale.MaximumValue = 50;
 

@@ -1,0 +1,80 @@
+﻿@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="container vertical">
+    
+    <div class="container vertical">
+        @if (Data != null)
+        {
+            <div style="overflow: hidden">
+                <IgbDataGrid Height="100%" Width="100%"
+                             @ref="DataGridRef"
+                             DefaultColumnMinWidth="100"
+                             AutoGenerateColumns="false"
+                             DataSource="Data"
+                             IsColumnOptionsEnabled="true"
+                             FilterUIType="FilterUIType.FilterRow">
+                    @*In code Filter Operand*@
+                    <IgbTextColumn Field="Country" HeaderText="Code-behind Filter*" Width="@("*>170")">
+                        @*Scroll down to see OnAfterRender, OnFilter*@
+                    </IgbTextColumn>
+
+                    @*In class Filter Operand*@
+                    <IgbNumericColumn Field="Age" HeaderText="Custom Class Filter**">
+                        <CustomFilter />
+                    </IgbNumericColumn>
+
+                    @*In-line Filter Operand*@
+                    <IgbNumericColumn Field="Sales" HeaderText="In-line Filter***" PositivePrefix="$" ShowGroupingSeparator="true" Width="@("*>120")">
+                        <IgbFilterOperand EditorType="EditorType.Numeric" IsInputRequired="false" DisplayName="(Custom) In-Line Filter"
+                                          FilterRequested="@(args => args.FilterFactory.Property("Sales").IsLessThanOrEqualTo(300000))">
+
+                        </IgbFilterOperand>
+                    </IgbNumericColumn>
+                </IgbDataGrid>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<Employee> Data;
+    private IgbDataGrid DataGridRef;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        IgbDataGridModule.Register(IgniteUIBlazor);
+        IgbGridColumnOptionsModule.Register(IgniteUIBlazor);
+        IgbGridColumnFilterOptionsModule.Register(IgniteUIBlazor);
+
+        this.Data = EmployeeData.Create(100, false);
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (this.DataGridRef != null && firstRender)
+        {
+            this.DataGridRef.EnsureReady().ContinueWith(new Action<Task>
+            ((e) =>
+            {
+                this.DataGridRef.ActualColumns[0].FilterOperands.Add(
+                    new IgbFilterOperand {
+                        EditorType = EditorType.Text,
+                        DisplayName = "(Custom) In Code Filter",
+                        FilterRequested = OnFilter,
+                    });
+            }));
+        }
+    }
+
+    private IgbFilterExpression OnFilter(IgbGridCustomFilterRequestedEventArgs args)
+    {
+        var prop = args.FilterFactory.Property(args.Column.Field);
+        //Filter-in only records with France
+        return prop.IsEqualTo("France");
+    }
+}

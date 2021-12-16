@@ -5,23 +5,23 @@
     <div class="options vertical">
         <span class="legend-title">Network Polar Chart</span>
         <div class="legend">
-            <Legend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
+            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
         </div>
     </div>
     <div class="container vertical">
 
         @if (PolarMarkers != null && this.PolarMarkersByLevel != null)
         {
-        <DataChart Height="100%" Width="100%" @ref="Chart"
+        <IgbDataChart Height="100%" Width="100%" @ref="Chart"
                    SeriesMouseEnterScript="onNetworkPolarChartMouseEnter"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <NumericAngleAxis Name="angleAxis"
+            <IgbNumericAngleAxis Name="angleAxis"
                               MinimumValue="0" MaximumValue="360" Interval="30"
                               StartAngleOffset="270"
                               LabelExtent="30"/>
-            <NumericRadiusAxis Name="radiusAxis"
+            <IgbNumericRadiusAxis Name="radiusAxis"
                                RadiusExtentScale="0.85"
                                InnerRadiusExtentScale="0"
                                MinimumValue="0" MaximumValue="3" Interval="1"
@@ -29,7 +29,7 @@
                                StrokeThickness="0"
                                LabelLeftMargin="10"/>
 
-            <PolarLineSeries DataSource="PolarConnections"
+            <IgbPolarLineSeries DataSource="PolarConnections"
                              AngleAxisName="angleAxis"
                              AngleMemberPath="Angle"
                              RadiusAxisName="radiusAxis"
@@ -43,7 +43,7 @@
 
                 @foreach (var markers in this.PolarMarkersByLevel.Values)
                 {
-                    <PolarScatterSeries DataSource="@markers"
+                    <IgbPolarScatterSeries DataSource="@markers"
                                         AngleAxisName="angleAxis"
                                         AngleMemberPath="Angle"
                                         RadiusAxisName="radiusAxis"
@@ -55,7 +55,7 @@
                                         Brush="@markers[0].Fill"
                                         Outline="@markers[0].Outline"/>
                 }
-        </DataChart>
+        </IgbDataChart>
         }
 
     </div>
@@ -63,8 +63,8 @@
 
 @code {
 
-    private Legend Legend;
-    private DataChart Chart;
+    private IgbLegend Legend;
+    private IgbDataChart Chart;
 
     private List<PolarMarker> PolarConnections;
     private List<PolarMarker> PolarMarkers;
@@ -73,12 +73,12 @@
 
     protected override void OnInitialized()
     {
-        LegendModule.Register(IgniteUIBlazor);
-        NumberAbbreviatorModule.Register(IgniteUIBlazor);
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        DataChartPolarModule.Register(IgniteUIBlazor);
-        DataChartPolarCoreModule.Register(IgniteUIBlazor);
+        IgbLegendModule.Register(IgniteUIBlazor);
+        IgbNumberAbbreviatorModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbDataChartPolarModule.Register(IgniteUIBlazor);
+        IgbDataChartPolarCoreModule.Register(IgniteUIBlazor);
 
         // defining data structure of tree nodes
         var rootNode = new TreeNode { Label = "0", Children =
@@ -224,8 +224,8 @@
     {
         base.OnAfterRender(firstRender);
 
-        if (this.Chart != null && this.Legend != null && firstRender) {
-            //this.Chart.Legend = this.Legend;
+        if (this.Chart != null && this.Legend != null && !firstRender) {
+            this.Chart.Legend = this.Legend;
         }
     }
 

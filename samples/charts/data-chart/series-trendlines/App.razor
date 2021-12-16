@@ -24,17 +24,17 @@
     </div>
 
     <div class="container vertical">
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    IsHorizontalZoomEnabled="true"
                    IsVerticalZoomEnabled="true">
-            <CategoryXAxis Name="xAxis" Label="Label" DataSource="Data" />
-            <NumericYAxis Name="yAxis" />
+            <IgbCategoryXAxis Name="xAxis" Label="Label" DataSource="Data" />
+            <IgbNumericYAxis Name="yAxis" />
 
-            <FinancialPriceSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" HighMemberPath="High" LowMemberPath="Low"
+            <IgbFinancialPriceSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" HighMemberPath="High" LowMemberPath="Low"
                                   CloseMemberPath="Close" OpenMemberPath="Open" VolumeMemberPath="Volume"
                                   TrendLineType="ChartTrendlineType" />
 
-        </DataChart>
+        </IgbDataChart>
     </div>
 </div>
 
@@ -47,12 +47,12 @@
     {
         base.OnInitialized();
 
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        DataChartFinancialModule.Register(IgniteUIBlazor);
-        DataChartFinancialCoreModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        DataChartCategoryTrendLineModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartFinancialModule.Register(IgniteUIBlazor);
+        IgbDataChartFinancialCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryTrendLineModule.Register(IgniteUIBlazor);
 
         this.Data = SampleFinancialData.Create();
     }

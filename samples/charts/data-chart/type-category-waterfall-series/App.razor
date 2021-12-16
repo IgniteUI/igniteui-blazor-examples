@@ -4,24 +4,24 @@
 <div class="container vertical">
     <div class="container vertical">
 
-        <DataChart Height="100%" Width="100%"
+        <IgbDataChart Height="100%" Width="100%"
                    Subtitle="Company Budget per Category"
                    SubtitleTopMargin="10"
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <CategoryXAxis Name="xAxis" Label="Category" DataSource="Data"/>
-            <NumericYAxis Name="yAxis" Title="Amount (in USD)" TitleLeftMargin="10" AbbreviateLargeNumbers="true"/>
+            <IgbCategoryXAxis Name="xAxis" Label="Category" DataSource="Data"/>
+            <IgbNumericYAxis Name="yAxis" Title="Amount (in USD)" TitleLeftMargin="10" AbbreviateLargeNumbers="true"/>
 
-            <WaterfallSeries XAxisName="xAxis"
+            <IgbWaterfallSeries XAxisName="xAxis"
                         YAxisName="yAxis"
                         DataSource="Data"
                         ValueMemberPath="Value" Title="Value"
                         AreaFillOpacity="1"
                         ShowDefaultTooltip="true"
                         IsTransitionInEnabled="true" >
-            </WaterfallSeries>
-        </DataChart>
+            </IgbWaterfallSeries>
+        </IgbDataChart>
 
     </div>
 </div>
@@ -32,11 +32,11 @@
 
     protected override void OnInitialized()
     {
-        DataChartCoreModule.Register(IgniteUIBlazor);
-        DataChartCategoryModule.Register(IgniteUIBlazor);
-        DataChartCategoryCoreModule.Register(IgniteUIBlazor);
-        DataChartInteractivityModule.Register(IgniteUIBlazor);
-        NumberAbbreviatorModule.Register(IgniteUIBlazor);
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbNumberAbbreviatorModule.Register(IgniteUIBlazor);
 
         Data = GetDataSource();
     }

@@ -6,15 +6,15 @@
 
         @if (Data != null)
         {
-            <DoughnutChart Height="100%" Width="100%">
-                <RingSeries DataSource="Data"
+            <IgbDoughnutChart Height="100%" Width="100%">
+                <IgbRingSeries DataSource="Data"
                             LabelMemberPath="Summary"
                             ValueMemberPath="MarketShare"
                             LegendLabelMemberPath="Category"
                             Outlines="white"
                            >
-                </RingSeries>
-            </DoughnutChart>
+                </IgbRingSeries>
+            </IgbDoughnutChart>
         }
 
     </div>
@@ -26,7 +26,7 @@
 
     protected override void OnInitialized()
     {
-        DoughnutChartModule.Register(IgniteUIBlazor);
+        IgbDoughnutChartModule.Register(IgniteUIBlazor);
 
         var dataItems = new List<DataItem>();
         dataItems.Add(new DataItem() { MarketShare = 30, Category = "Google", });

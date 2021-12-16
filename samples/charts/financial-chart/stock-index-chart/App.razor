@@ -4,7 +4,7 @@
 
 <div class="container vertical">
     <div class="container vertical">
-        <FinancialChart @ref="Chart"
+        <IgbFinancialChart @ref="Chart"
                         Width="100%"
                         Height="100%"
                         IsToolbarVisible="false"
@@ -20,7 +20,7 @@
                         SubtitleLeftMargin="25"
                         SubtitleTopMargin="5"
                         SubtitleBottomMargin="10"
-                        YAxisLabelLocation="AxisLabelsLocation.OutsideLeft"
+                        YAxisLabelLocation="YAxisLabelLocation.OutsideLeft"
                         YAxisMode="FinancialChartYAxisMode.Numeric"
                         YAxisTitle="Financial Prices"
                         YAxisTitleLeftMargin="10"
@@ -33,11 +33,11 @@
 @code {
 
     public List<StockIndexInfo> Data = new StockIndexData();
-    public FinancialChart Chart;
+    public IgbFinancialChart Chart;
 
     protected override async Task OnInitializedAsync()
     {
-        FinancialChartModule.Register(IgniteUIBlazor);
+        IgbFinancialChartModule.Register(IgniteUIBlazor);
         await Task.Delay(1);
     }
 }

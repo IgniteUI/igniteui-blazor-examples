@@ -1,0 +1,138 @@
+﻿@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Rendering
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.RenderTree
+@using Microsoft.AspNetCore.Components.Web
+
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+    <div class="container vertical">
+        <div class="options horizontal">
+            <button @onclick="OnLoadLayoutClick">Load</button>
+            <button @onclick="OnSaveLayoutClick">Save</button>
+            
+        </div>
+
+            @if (Employees != null)
+            {
+
+                <IgbDataGridToolbar ToolbarTitle="Sales Team" ColumnChooser="true" ColumnPinning="true" TargetGrid="@DataGridRef" />
+
+                <div style="overflow: hidden">
+                    <IgbDataGrid Height="100%" Width="100%"
+                          @ref="@DataGridRef"
+                          RowHeight="50" 
+                          DataSource="Employees"
+                          AutoGenerateColumns="false"
+                          IsColumnOptionsEnabled="true"
+                          IsGroupCollapsable="true"
+                          ActivationMode="GridActivationMode.Cell"
+                          SummaryScope="@SummaryScope.Root"
+                          GroupSummaryDisplayMode="@GroupSummaryDisplayMode.RowBottom"
+                          GroupHeaderDisplayMode="@GroupHeaderDisplayMode.Combined"
+                          CornerRadiusTopLeft="0"
+                          CornerRadiusTopRight="0"
+                          ColumnMovingSeparatorWidth="2"
+                          ColumnMovingMode="ColumnMovingMode.Deferred"
+                          ColumnMovingAnimationMode="ColumnMovingAnimationMode.SlideOver"
+                          ColumnShowingAnimationMode="ColumnShowingAnimationMode.SlideFromRightAndFadeIn"
+                          ColumnHidingAnimationMode="ColumnHidingAnimationMode.SlideToRightAndFadeOut"
+                          SelectionMode="GridSelectionMode.SingleRow">
+
+                        <IgbImageColumn IsEditable="false" Width="@("*>120")" Field="Photo" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
+                                    HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
+
+                        <IgbTextColumn Width="@("*>130")" Field="Name" />
+
+                        @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
+                        <IgbTemplateColumn Width="@("*>160")" Field="Sales" CellUpdatingScript="onUpdatingSalesColumn"
+                                        HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
+
+                        <IgbNumericColumn Width="@("*>130")" Field="Salary" PositivePrefix="$"
+                                    ShowGroupingSeparator="true"
+                                    MaxFractionDigits="0"
+                                    MinFractionDigits="0" />
+
+                        <IgbNumericColumn Width="100" Field="Age" HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
+                        <IgbDateTimeColumn Width="@("*>140")" Field="Birthday" HeaderText="Date of Birth" />
+
+                        <IgbImageColumn IsEditable="false" Width="@("*>110")" Field="CountryFlag" HeaderText="Country" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
+                                    HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
+
+                        @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
+                        <IgbTemplateColumn Width="@("*>170")" Field="Address" CellUpdatingScript="onUpdatingAddressColumn" />
+                        <IgbTemplateColumn Width="@("*>130")" Field="Phone" CellUpdatingScript="onUpdatingPhoneColumn" />
+
+                        <IgbTextColumn Width="@("*>120")" Field="Income" />
+                        <IgbTextColumn Width="@("*>120")" Field="Email" IsEditable="false" />
+
+                    </IgbDataGrid>
+                </div>
+            }
+
+
+        </div>
+    </div>
+
+@code {
+
+    private List<Employee> Employees;
+    public string savedLayout;
+    private IgbDataGrid _grid;
+    private IgbDataGrid DataGridRef
+    {
+        get { return _grid; }
+        set { _grid = value; this.OnDataGridRef(); StateHasChanged(); }
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        IgbDataGridModule.Register(IgniteUIBlazor);
+        IgbDataGridToolbarModule.Register(IgniteUIBlazor);
+        IgbColumnChooserModule.Register(IgniteUIBlazor);
+
+        this.Employees = EmployeeData.Create(100, false);
+
+        Console.WriteLine("Data " + this.Employees.Count);
+    }
+
+    private void OnDataGridRef()
+    {
+        var peopleGroup = new IgbColumnGroupDescription() { Field = "Country", DisplayName = "Country" };
+        var incomeGroup = new IgbColumnGroupDescription() { Field = "Income", DisplayName = "Income" };
+        this._grid.GroupDescriptions.Add(peopleGroup);
+        this._grid.GroupDescriptions.Add(incomeGroup);
+
+        var ageSummary = new IgbColumnSummaryDescription() { Field = "Age", Operand = SummaryOperand.Average };
+        var peopleSummary = new IgbColumnSummaryDescription() { Field = "Photo", Operand = SummaryOperand.Count };
+        var salarySummary = new IgbColumnSummaryDescription() { Field = "Salary", Operand = SummaryOperand.Sum };
+        var saleSummary = new IgbColumnSummaryDescription() { Field = "Sales", Operand = SummaryOperand.Max };
+
+        this._grid.SummaryDescriptions.Add(ageSummary);
+        this._grid.SummaryDescriptions.Add(peopleSummary);
+        this._grid.SummaryDescriptions.Add(salarySummary);
+        this._grid.SummaryDescriptions.Add(saleSummary);
+
+        // TODO fix onSummarziePeopleGender
+        //var nameSummary = new IgbColumnSummaryDescription() { Field = "Name", Operand = SummaryOperand.Custom,
+        //    ProvideCalculatorScript = "onSummarziePeopleGender" };
+        //this._grid.SummaryDescriptions.Add(nameSummary);
+    }
+
+
+    private void OnLoadLayoutClick(MouseEventArgs e)
+    {
+        this.DataGridRef.LoadLayout(this.savedLayout);
+    }
+
+    private void OnSaveLayoutClick(MouseEventArgs e)
+    {
+        this.DataGridRef.SaveLayout();
+        this.savedLayout = this.DataGridRef.SaveLayout();
+    }
+}
