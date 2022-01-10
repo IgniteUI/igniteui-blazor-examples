@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace Infragistics.Samples
@@ -24,7 +25,7 @@ namespace Infragistics.Samples
         public int Index { get; set; }
 
         public DateTime Birthday { get; set; }
-        public List<Productivity> Productivity { get; set; }
+        public ObservableCollection<Productivity> Productivity { get; set; }
 
         private string _Country;
         public string Country
@@ -62,11 +63,11 @@ namespace Infragistics.Samples
 
     public static class EmployeeData
     {
-        public static List<Employee> Create(int? count, bool? useProductivity)
+        public static ObservableCollection<Employee> Create(int? count, bool? useProductivity)
         {
             if (count == null) count = 100;
 
-            var employees = new List<Employee>();
+            var employees = new ObservableCollection<Employee>();
             for (int i = 0; i < count; i++)
             {
                 var age = Math.Round(DataGenerator.GetNumber(20, 40));
@@ -112,9 +113,9 @@ namespace Infragistics.Samples
             return employees;
         }
 
-        public static List<Productivity> GetProductivity(int weekCount)
+        public static ObservableCollection<Productivity> GetProductivity(int weekCount)
         {
-            var productivity = new List<Productivity>();
+            var productivity = new ObservableCollection<Productivity>();
 
             for (var w = 1; w <= weekCount; w++)
             {

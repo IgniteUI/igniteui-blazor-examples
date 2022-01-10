@@ -29,24 +29,24 @@
         {
             <div style="overflow: hidden">
                 <IgbDataGrid Height="100%" Width="100%" @ref="DataGridRef"
-                      EditModeClickAction="@GridEditModeClickAction"
-                      DefaultColumnMinWidth="120"
-                      AutoGenerateColumns="false"
-                      DataSource="Data"
-                      EditMode="@GridEditMode"
-                      ActivationMode="@GridActivationMode.Cell"
-                      SelectionMode="@GridSelectionMode.SingleRow"
-                      SelectionBehavior="@GridSelectionBehavior.ModifierBased"
-                      IsColumnOptionsEnabled="true"
-                      RowEditStarted="OnRowEditStarted"
-                      RowEditEnded="OnRowEditEnded">
+                             EditModeClickAction="@GridEditModeClickAction"
+                             DefaultColumnMinWidth="120"
+                             AutoGenerateColumns="false"
+                             DataSource="Data"
+                             EditMode="@GridEditMode"
+                             ActivationMode="@GridActivationMode.Cell"
+                             SelectionMode="@GridSelectionMode.SingleRow"
+                             SelectionBehavior="@GridSelectionBehavior.ModifierBased"
+                             IsColumnOptionsEnabled="true"
+                             RowEditStarted="OnRowEditStarted"
+                             RowEditEnded="OnRowEditEnded">
                     <IgbTextColumn Field="Name" Width="@("*>150")" />
                     <IgbTextColumn Field="Street" HeaderText="Street" Width="@("*>160")" />
                     <IgbTextColumn Field="City" HeaderText="City" Width="@("*>120")" />
                     <IgbNumericColumn Field="Salary" HeaderText="Salary" PositivePrefix="$" ShowGroupingSeparator="true" Width="@("*>120")" />
                     <IgbImageColumn IsEditable="false" Field="Photo" HeaderText="Photo" ContentOpacity="1" HorizontalAlignment="@CellContentHorizontalAlignment.Center" Width="@("*>110")" />
                     <IgbDateTimeColumn Field="Birthday" HeaderText="Date of Birth" Width="@("*>170")" />
-                    @*<IgbTemplateColumn PropertyPath="DeleteColumn" />  TODO!! *@
+                    <IgbTemplateColumn Field="ButtonColumn" HeaderText="Button Column" CellUpdatingScript="onUpdatingTemplateColumn" />
                 </IgbDataGrid>
             </div>
         }
@@ -77,7 +77,7 @@
 
     private bool ButtonsDisabled { get; set; }
 
-    private List<Employee> Data;
+    public static System.Collections.ObjectModel.ObservableCollection<Employee> Data { get; set; }
 
     protected override void OnInitialized()
     {
@@ -132,5 +132,12 @@
             ButtonsDisabled = false;
         }
         StateHasChanged();
+    }
+
+    [JSInvokable]
+    public static void ButtonClickActionAtBlazorLevel(object parameter)
+    {
+        int param = int.Parse(parameter.ToString());
+        Data.RemoveAt(param);
     }
 }
