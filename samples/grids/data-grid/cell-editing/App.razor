@@ -78,14 +78,14 @@
 
     private bool ButtonsDisabled { get; set; }
 
-    public static System.Collections.ObjectModel.ObservableCollection<ObsEmployeeInfo> Data { get; set; }
+    public static ObservableCollection<ObsEmployeeInfo> Data { get; set; }
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
         IgbDataGridModule.Register(IgniteUIBlazor);
 
-        Data = ObsEmployeeInfo.Create(100, false);
+        Data = ObsEmployeeData.Create(100, false);
         this.GridEditMode = EditModeType.Cell;
     }
 
