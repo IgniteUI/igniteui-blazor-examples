@@ -60,13 +60,13 @@ namespace Infragistics.Samples
         public int Week { get; set; }
     }
 
-    public static class ObsEmployeeInfo
+    public static class ObsEmployeeData
     {
-        public static ObservableCollection<Employee2> Create(int? count, bool? useProductivity)
+        public static ObservableCollection<ObsEmployeeInfo> Create(int? count, bool? useProductivity)
         {
             if (count == null) count = 100;
 
-            var employees = new ObservableCollection<Employee2>();
+            var employees = new ObservableCollection<ObsEmployeeInfo>();
             for (int i = 0; i < count; i++)
             {
                 var age = Math.Round(DataGenerator.GetNumber(20, 40));
@@ -79,7 +79,7 @@ namespace Infragistics.Samples
                 var email = firstName.ToLower() + "@" + DataGenerator.GetEmail();
                 var photoPath = DataGenerator.GetPhoto(gender);
 
-                var employee = new Employee2
+                var employee = new ObsEmployeeInfo
                 {
                     Index = i,
                     Address = street + ", " + city,
@@ -99,7 +99,6 @@ namespace Infragistics.Samples
                     Sales = DataGenerator.GetNumber(200, 980) * 1000,
                 };
                 employee.Country = country;
-
                 employee.Income = DataGenerator.GetIncomeRange(employee.Salary);
 
                 if (useProductivity.HasValue && useProductivity.Value)
