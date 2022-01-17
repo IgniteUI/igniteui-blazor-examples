@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace Infragistics.Samples
 {
-    public class Employee : INotifyPropertyChanged
+    public class ObsEmployeeInfo : INotifyPropertyChanged
     {
         public string ID { get; set; }
         public string Address { get; set; }
@@ -24,7 +25,7 @@ namespace Infragistics.Samples
         public int Index { get; set; }
 
         public DateTime Birthday { get; set; }
-        public List<Productivity> Productivity { get; set; }
+        public ObservableCollection<ObsEmployeeProductivity> Productivity { get; set; }
 
         private string _Country;
         public string Country
@@ -54,19 +55,19 @@ namespace Infragistics.Samples
         }
     }
 
-    public class Productivity
+    public class ObsEmployeeProductivity
     {
         public double Value { get; set; }
         public int Week { get; set; }
     }
 
-    public static class EmployeeData
+    public static class ObsEmployeeData
     {
-        public static List<Employee> Create(int? count, bool? useProductivity)
+        public static ObservableCollection<ObsEmployeeInfo> Create(int? count, bool? useProductivity)
         {
             if (count == null) count = 100;
 
-            var employees = new List<Employee>();
+            var employees = new ObservableCollection<ObsEmployeeInfo>();
             for (int i = 0; i < count; i++)
             {
                 var age = Math.Round(DataGenerator.GetNumber(20, 40));
@@ -79,7 +80,7 @@ namespace Infragistics.Samples
                 var email = firstName.ToLower() + "@" + DataGenerator.GetEmail();
                 var photoPath = DataGenerator.GetPhoto(gender);
 
-                var employee = new Employee
+                var employee = new ObsEmployeeInfo
                 {
                     Index = i,
                     Address = street + ", " + city,
@@ -99,7 +100,6 @@ namespace Infragistics.Samples
                     Sales = DataGenerator.GetNumber(200, 980) * 1000,
                 };
                 employee.Country = country;
-
                 employee.Income = DataGenerator.GetIncomeRange(employee.Salary);
 
                 if (useProductivity.HasValue && useProductivity.Value)
@@ -112,14 +112,14 @@ namespace Infragistics.Samples
             return employees;
         }
 
-        public static List<Productivity> GetProductivity(int weekCount)
+        public static ObservableCollection<ObsEmployeeProductivity> GetProductivity(int weekCount)
         {
-            var productivity = new List<Productivity>();
+            var productivity = new ObservableCollection<ObsEmployeeProductivity>();
 
             for (var w = 1; w <= weekCount; w++)
             {
                 var value = DataGenerator.GetNumber(-50, 50);
-                var prod = new Productivity
+                var prod = new ObsEmployeeProductivity
                 {
                     Value = value,
                     Week = w
