@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace Infragistics.Samples
 {
-    public class Employee2 : INotifyPropertyChanged
+    public class ObsEmployeeInfo : INotifyPropertyChanged
     {
         public string ID { get; set; }
         public string Address { get; set; }
@@ -25,7 +24,7 @@ namespace Infragistics.Samples
         public int Index { get; set; }
 
         public DateTime Birthday { get; set; }
-        public ObservableCollection<Productivity2> Productivity { get; set; }
+        public ObservableCollection<ObsEmployeeProductivity> Productivity { get; set; }
 
         private string _Country;
         public string Country
@@ -55,13 +54,13 @@ namespace Infragistics.Samples
         }
     }
 
-    public class Productivity2
+    public class ObsEmployeeProductivity
     {
         public double Value { get; set; }
         public int Week { get; set; }
     }
 
-    public static class EmployeeData2
+    public static class ObsEmployeeInfo
     {
         public static ObservableCollection<Employee2> Create(int? count, bool? useProductivity)
         {
@@ -113,14 +112,14 @@ namespace Infragistics.Samples
             return employees;
         }
 
-        public static ObservableCollection<Productivity2> GetProductivity(int weekCount)
+        public static ObservableCollection<ObsEmployeeProductivity> GetProductivity(int weekCount)
         {
-            var productivity = new ObservableCollection<Productivity2>();
+            var productivity = new ObservableCollection<ObsEmployeeProductivity>();
 
             for (var w = 1; w <= weekCount; w++)
             {
                 var value = DataGenerator.GetNumber(-50, 50);
-                var prod = new Productivity2
+                var prod = new ObsEmployeeProductivity
                 {
                     Value = value,
                     Week = w
