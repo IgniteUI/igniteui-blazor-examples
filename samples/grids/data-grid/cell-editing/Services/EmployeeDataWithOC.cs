@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 namespace Infragistics.Samples
 {
-    public class Employee : INotifyPropertyChanged
+    public class Employee2 : INotifyPropertyChanged
     {
         public string ID { get; set; }
         public string Address { get; set; }
@@ -25,7 +25,7 @@ namespace Infragistics.Samples
         public int Index { get; set; }
 
         public DateTime Birthday { get; set; }
-        public ObservableCollection<Productivity> Productivity { get; set; }
+        public ObservableCollection<Productivity2> Productivity { get; set; }
 
         private string _Country;
         public string Country
@@ -55,19 +55,19 @@ namespace Infragistics.Samples
         }
     }
 
-    public class Productivity
+    public class Productivity2
     {
         public double Value { get; set; }
         public int Week { get; set; }
     }
 
-    public static class EmployeeData
+    public static class EmployeeData2
     {
-        public static ObservableCollection<Employee> Create(int? count, bool? useProductivity)
+        public static ObservableCollection<Employee2> Create(int? count, bool? useProductivity)
         {
             if (count == null) count = 100;
 
-            var employees = new ObservableCollection<Employee>();
+            var employees = new ObservableCollection<Employee2>();
             for (int i = 0; i < count; i++)
             {
                 var age = Math.Round(DataGenerator.GetNumber(20, 40));
@@ -80,7 +80,7 @@ namespace Infragistics.Samples
                 var email = firstName.ToLower() + "@" + DataGenerator.GetEmail();
                 var photoPath = DataGenerator.GetPhoto(gender);
 
-                var employee = new Employee
+                var employee = new Employee2
                 {
                     Index = i,
                     Address = street + ", " + city,
@@ -113,14 +113,14 @@ namespace Infragistics.Samples
             return employees;
         }
 
-        public static ObservableCollection<Productivity> GetProductivity(int weekCount)
+        public static ObservableCollection<Productivity2> GetProductivity(int weekCount)
         {
-            var productivity = new ObservableCollection<Productivity>();
+            var productivity = new ObservableCollection<Productivity2>();
 
             for (var w = 1; w <= weekCount; w++)
             {
                 var value = DataGenerator.GetNumber(-50, 50);
-                var prod = new Productivity
+                var prod = new Productivity2
                 {
                     Value = value,
                     Week = w
