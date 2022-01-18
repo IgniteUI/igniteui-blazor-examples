@@ -296,7 +296,10 @@ function copySamplePages(cb, outputPath) {
 function copySampleScripts(cb, outputPath, indexName) {
     var insertScriptFiles = [];
 
-    log('copying scripts to: ' + outputPath + '/wwwroot/');
+    log('deleting scripts in: ' + outputPath + '/wwwroot/sb/*.js');
+    del.sync('../IgBlazorSamples.Client/wwwroot/sb/' + "*.js", {force:true});
+
+    log('copying scripts to:  ' + outputPath + '/wwwroot/sb/');
 
     var copiedScriptFiles = [];
     for (const sample of samples) {
