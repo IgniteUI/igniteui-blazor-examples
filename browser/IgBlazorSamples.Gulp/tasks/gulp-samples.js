@@ -301,22 +301,24 @@ function copySampleScripts(cb, outputPath, indexName) {
     var copiedScriptFiles = [];
     for (const sample of samples) {
         for (const file of sample.PublicFiles_JS) {
-            var fileRequiresLoading = true;
-            if (file.Name.indexOf("bundle") >= 0) {
-                // skipping non-entry point bundle files for DockManager
-                if (file.Name.indexOf("1") >= 0) fileRequiresLoading = false;
-                if (file.Name.indexOf("2") >= 0) fileRequiresLoading = false;
-                if (file.Name.indexOf("3") >= 0) fileRequiresLoading = false;
-            }
 
-            if (copiedScriptFiles.indexOf(file.Name) === -1 && fileRequiresLoading) {
+            if (copiedScriptFiles.indexOf(file.Name) === -1) {
                 copiedScriptFiles.push(file.Name);
                 const scriptPath = outputPath + '/wwwroot/sb/' + file.Name
                 log("copying  " + scriptPath);
-
                 saveFile(scriptPath, file.Content);
+
                 if (file.Name.indexOf("DockManager") >= 0) {
-                    insertScriptFiles.push('<script type="module" src="sb/' + file.Name + '"></script>');
+                    var fileRequiresLoading = true;
+                    if (file.Name.indexOf("bundle") >= 0) {
+                        // skipping non-entry point bundle files for DockManager
+                        if (file.Name.indexOf("1") >= 0) fileRequiresLoading = false;
+                        if (file.Name.indexOf("2") >= 0) fileRequiresLoading = false;
+                        if (file.Name.indexOf("3") >= 0) fileRequiresLoading = false;
+                    }
+                    if (fileRequiresLoading) {
+                        insertScriptFiles.push('<script type="module" src="sb/' + file.Name + '"></script>');
+                    }
                 } else {
                     insertScriptFiles.push('<script src="sb/' + file.Name + '"></script>');
                 }
