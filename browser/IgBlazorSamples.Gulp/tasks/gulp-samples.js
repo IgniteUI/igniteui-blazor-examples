@@ -301,7 +301,15 @@ function copySampleScripts(cb, outputPath, indexName) {
     var copiedScriptFiles = [];
     for (const sample of samples) {
         for (const file of sample.PublicFiles_JS) {
-            if (copiedScriptFiles.indexOf(file.Name) === -1) {
+            var fileRequiresLoading = true;
+            if (file.Name.indexOf("bundle") >= 0) {
+                // skipping non-entry point bundle files for DockManager
+                if (file.Name.indexOf("1") >= 0) fileRequiresLoading = false;
+                if (file.Name.indexOf("2") >= 0) fileRequiresLoading = false;
+                if (file.Name.indexOf("3") >= 0) fileRequiresLoading = false;
+            }
+
+            if (copiedScriptFiles.indexOf(file.Name) === -1 && fileRequiresLoading) {
                 copiedScriptFiles.push(file.Name);
                 const scriptPath = outputPath + '/wwwroot/sb/' + file.Name
                 log("copying  " + scriptPath);
@@ -315,6 +323,8 @@ function copySampleScripts(cb, outputPath, indexName) {
             }
         }
     }
+    // sorting inserts
+    //insertScriptFiles.sort((a, b) => a > b ? 1 : -1)
 
     // updating index.html with JavaScripts for samples
     let indexPath = outputPath + indexName;
@@ -333,21 +343,32 @@ function copySampleScripts(cb, outputPath, indexName) {
         }
     }
 
-    if (insertStart > 0) {
-        // for (let i = insertStart+1; i < insertEnd; i++) {
-        //     indexLines[i] = "";
-        // }
+    if (insertStart < 0 ) {
+        throw new Exception("File " + indexPath + "\n is missing: '<!--AutoInsertJavaScriptsForSamples Start-->'");
+    }
+    else if (insertEnd < 0 ) {
+        throw new Exception("File " + indexPath + "\n is missing: '<!--AutoInsertJavaScriptsForSamples End-->'");
+    }
+    else if (insertStart > 0 && insertEnd > 0) {
 
-        for (let i = insertEnd - 1; i > insertStart+1; i--) {
-            indexLines.splice(i, 1);
+        for (let i = insertStart+1; i < insertEnd; i++) {
+            indexLines[i] = ""; // clearing previously auto-generated inserts for JS files
         }
 
+        // for (let i = insertEnd - 1; i > insertStart+1; i--) {
+        //     indexLines.splice(i, 1);
+        // }
+
+        // adding latest auto-generated inserts for JS files
         indexLines[insertStart + 1] = insertScriptFiles.join('\n');
     }
 
     // indexLines = indexLines.filter((v, i, a) => a.indexOf(v) === i);
 
     index = indexLines.join('\n');
+    while (index.indexOf('\n\n') >= 0) {
+        index = index.split('\n\n').join('\n');
+    }
     fs.writeFileSync(indexPath, index);
     // cb();
 }
