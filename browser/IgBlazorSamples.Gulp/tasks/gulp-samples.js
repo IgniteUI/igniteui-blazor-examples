@@ -296,25 +296,40 @@ function copySamplePages(cb, outputPath) {
 function copySampleScripts(cb, outputPath, indexName) {
     var insertScriptFiles = [];
 
-    log('copying scripts to: ' + outputPath + '/wwwroot/');
+    log('deleting scripts in: ' + outputPath + '/wwwroot/sb/*.js');
+    del.sync('../IgBlazorSamples.Client/wwwroot/sb/' + "*.js", {force:true});
+
+    log('copying scripts to:  ' + outputPath + '/wwwroot/sb/');
 
     var copiedScriptFiles = [];
     for (const sample of samples) {
         for (const file of sample.PublicFiles_JS) {
+
             if (copiedScriptFiles.indexOf(file.Name) === -1) {
                 copiedScriptFiles.push(file.Name);
                 const scriptPath = outputPath + '/wwwroot/sb/' + file.Name
                 log("copying  " + scriptPath);
-
                 saveFile(scriptPath, file.Content);
+
                 if (file.Name.indexOf("DockManager") >= 0) {
-                    insertScriptFiles.push('<script type="module" src="sb/' + file.Name + '"></script>');
+                    var fileRequiresLoading = true;
+                    if (file.Name.indexOf("bundle") >= 0) {
+                        // skipping non-entry point bundle files for DockManager
+                        if (file.Name.indexOf("1") >= 0) fileRequiresLoading = false;
+                        if (file.Name.indexOf("2") >= 0) fileRequiresLoading = false;
+                        if (file.Name.indexOf("3") >= 0) fileRequiresLoading = false;
+                    }
+                    if (fileRequiresLoading) {
+                        insertScriptFiles.push('<script type="module" src="sb/' + file.Name + '"></script>');
+                    }
                 } else {
                     insertScriptFiles.push('<script src="sb/' + file.Name + '"></script>');
                 }
             }
         }
     }
+    // sorting inserts
+    //insertScriptFiles.sort((a, b) => a > b ? 1 : -1)
 
     // updating index.html with JavaScripts for samples
     let indexPath = outputPath + indexName;
@@ -333,21 +348,32 @@ function copySampleScripts(cb, outputPath, indexName) {
         }
     }
 
-    if (insertStart > 0) {
-        // for (let i = insertStart+1; i < insertEnd; i++) {
-        //     indexLines[i] = "";
-        // }
+    if (insertStart < 0 ) {
+        throw new Exception("File " + indexPath + "\n is missing: '<!--AutoInsertJavaScriptsForSamples Start-->'");
+    }
+    else if (insertEnd < 0 ) {
+        throw new Exception("File " + indexPath + "\n is missing: '<!--AutoInsertJavaScriptsForSamples End-->'");
+    }
+    else if (insertStart > 0 && insertEnd > 0) {
 
-        for (let i = insertEnd - 1; i > insertStart+1; i--) {
-            indexLines.splice(i, 1);
+        for (let i = insertStart+1; i < insertEnd; i++) {
+            indexLines[i] = ""; // clearing previously auto-generated inserts for JS files
         }
 
+        // for (let i = insertEnd - 1; i > insertStart+1; i--) {
+        //     indexLines.splice(i, 1);
+        // }
+
+        // adding latest auto-generated inserts for JS files
         indexLines[insertStart + 1] = insertScriptFiles.join('\n');
     }
 
     // indexLines = indexLines.filter((v, i, a) => a.indexOf(v) === i);
 
     index = indexLines.join('\n');
+    while (index.indexOf('\n\n') >= 0) {
+        index = index.split('\n\n').join('\n');
+    }
     fs.writeFileSync(indexPath, index);
     // cb();
 }
