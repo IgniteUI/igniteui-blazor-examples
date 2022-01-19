@@ -16,6 +16,10 @@
                 <option>@FinancialChartYAxisMode.Numeric</option>
                 <option>@FinancialChartYAxisMode.PercentChange</option>
             </select>
+			<label class="options-label">Y-Axis IsLogarithmic:</label>
+            <label class="options-item">
+                <input type="checkbox" @onchange="OnChanged" />
+            </label>
         </label>
     </div>
 
@@ -26,10 +30,11 @@
             <IgbFinancialChart Width="100%"
                 Height="100%"
                 DataSource="Data"
-                ChartType=FinancialChartType.Line
+                ChartType=FinancialChartType.Candle
                 Thickness=2
                 XAxisMode="XAxisMode"
-                YAxisMode="YAxisMode"/>
+                YAxisMode="YAxisMode"
+				YAxisIsLogarithmic=YAxisIsLogarithmic/>
         }
     </div>
 </div>
@@ -38,6 +43,8 @@
 
     public FinancialChartXAxisMode XAxisMode = FinancialChartXAxisMode.Ordinal;
     public FinancialChartYAxisMode YAxisMode = FinancialChartYAxisMode.Numeric;
+    public bool YAxisIsLogarithmic = false;
+
     List<StockItem> Data;
 
     protected override void OnInitialized()
@@ -54,5 +61,18 @@
         var dateEnd = new DateTime(year, month, 1);
         var dateStart = new DateTime(year - 1, month, 1);
         this.Data = StocksUtility.GetStocksBetween(dateStart, dateEnd);
+    }
+	
+	public void OnChanged(ChangeEventArgs args)
+    {
+        bool value = (bool)args.Value;
+        if(value == true)
+        {
+            YAxisIsLogarithmic = true;
+        }
+        else
+        {
+            YAxisIsLogarithmic = false;
+        }
     }
 }
