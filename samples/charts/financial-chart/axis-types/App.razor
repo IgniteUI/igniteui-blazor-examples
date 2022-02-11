@@ -63,16 +63,8 @@
         this.Data = StocksUtility.GetStocksBetween(dateStart, dateEnd);
     }
 	
-	public void OnChanged(ChangeEventArgs args)
+    public void OnChanged(ChangeEventArgs args)
     {
-        bool value = (bool)args.Value;
-        if(value == true)
-        {
-            YAxisIsLogarithmic = true;
-        }
-        else
-        {
-            YAxisIsLogarithmic = false;
-        }
+        YAxisIsLogarithmic = (bool)args.Value;
     }
 }
