@@ -10,7 +10,7 @@
 @code {
     public IgbCalendar CalendarRef { get; set; }
 
-    public IgbDateRangeDescriptor DisabledDateDescriptor { get; set; }
+    public IgbDateRangeDescriptor[] DisabledDateDescriptor { get; set; }
 
     protected override void OnInitialized()
     {
@@ -22,9 +22,8 @@
 
         IgbDateRangeDescriptor dateDescriptor = new IgbDateRangeDescriptor() { DateRange = range, RangeType = DateRangeType.Specific };
 
-        this.DisabledDateDescriptor = dateDescriptor;
+        this.DisabledDateDescriptor.Concat(new IgbDateRangeDescriptor[] { dateDescriptor } );
 
-        //this.CalendarRef.DisabledDates = dateDescriptor;
     }
 
     //protected override void OnAfterRender(bool firstRender)
