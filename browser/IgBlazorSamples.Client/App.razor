@@ -21,13 +21,15 @@
     {
         // Console.WriteLine("SB App");
         SB.AppName = "Blazor Client Samples";
-        SB.AppBaseUri = "/blazor-client/samples";
+        //SB.AppBaseUri = "/blazor-client/samples";
+        SB.AppBaseUri = "/samples";
         SB.HomeTitle = "Home"; // "Blazor Samples running on Client-Side";
 
         var igType = typeof(IgniteUIBlazor);
         var igAssembly = igType.Assembly;
         var igVersion = igAssembly.GetName().Version;
-        SB.IgVersion = igVersion.Major + "." + igVersion.Minor + "." + igVersion.Build;
+        if (igVersion != null)
+            SB.IgVersion = igVersion.Major + "." + igVersion.Minor + "." + igVersion.Build;
         Console.WriteLine("SB uses IG version: " + SB.IgVersion);
 
         await Task.Delay(1);
