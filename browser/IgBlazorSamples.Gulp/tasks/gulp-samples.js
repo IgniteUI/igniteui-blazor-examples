@@ -349,10 +349,10 @@ function copySampleScripts(cb, outputPath, indexName) {
     }
 
     if (insertStart < 0 ) {
-        throw new Exception("File " + indexPath + "\n is missing: '<!--AutoInsertJavaScriptsForSamples Start-->'");
+        throw new Error("File '" + indexPath + "' is missing: '<!--AutoInsertJavaScriptsForSamples Start-->'");
     }
     else if (insertEnd < 0 ) {
-        throw new Exception("File " + indexPath + "\n is missing: '<!--AutoInsertJavaScriptsForSamples End-->'");
+        throw new Error("File '" + indexPath + "' is missing: '<!--AutoInsertJavaScriptsForSamples End-->'");
     }
     else if (insertStart > 0 && insertEnd > 0) {
 
@@ -928,12 +928,10 @@ function renameProjects(cb) {
 
 function updateCodeViewer(cb) {
 
+    log("code-viewer cleanup in /wwwroot/code-viewer/**/.json");
     del.sync("../IgBlazorSamples.Client/wwwroot/code-viewer/**/.json", { force: true });
-    // note you might need to add/modify functions in Transformer.ts to implement this function.
-    // however, be careful with those functions because you might break scripts for copying samples to browser
 
-    // Comment out all values in the 'sampleSource' array except '/charts/pie-chart/' and those with '!' strings
-    // this way, you can run this function faster on a small subset of samples
+    log("code-viewer generating in /wwwroot/code-viewer/**/.json");
 
     // note the 'samples' is a global variable with info about all samples
     // note the 'sample' is a local variable with info about ome sample, see SampleInfo class in Transformer.ts
@@ -946,7 +944,7 @@ function updateCodeViewer(cb) {
         // path = path.replace("/", "-");
 
         var codeViewPath = "../IgBlazorSamples.Client/wwwroot/code-viewer" + path + ".json";
-        log("generating " + codeViewPath);
+        // log("generating " + codeViewPath);
 
         var content = "{\r\n \"sampleFiles\":\r\n";
         var contentItems = [];
