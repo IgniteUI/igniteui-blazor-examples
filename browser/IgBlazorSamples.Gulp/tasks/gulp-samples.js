@@ -14,13 +14,8 @@ let path = require('path');
 let flatten = require('gulp-flatten');
 let del = require('del');
 let es = require('event-stream');
-let shell = require('gulp-shell');
-let replace = require('gulp-replace');
-let contains = require('gulp-contains');
 
 var igConfig = require('./gulp-config.js')
-// var platform = "React";
-// var igConfig = require('./gulp-config.js')[platform];
 
 eval(require('typescript')
 .transpile(require('fs')
@@ -116,21 +111,13 @@ function saveSamples(cb) {
 } exports.saveSamples = saveSamples;
 
 function getSamples(cb) {
-
-    // deleteSamples();
-    // cleanSamples();
-
     samples = [];
-    // del.sync("./sample-test-files/**/*.*", {force:true});
 
     gulp.src(sampleSource)
     // .pipe(gSort( { asc: false } ))
     .pipe(es.map(function(sample, sampleCallback) {
-
         let sampleFolder = Transformer.getRelative(sample.dirname);
         // console.log("get " + sampleFolder + '/' + sample.basename);
-        // console.log("get " + sampleFolder + '/');
-
         let sampleFiles = [];
         gulp.src([
                 // sampleFolder + "/Pages/*",
@@ -161,15 +148,12 @@ function getSamples(cb) {
         }))
         .on("end", function() {
             // log(sampleFolder);
-
             let sampleInfo = Transformer.getSampleInfo(sample, sampleFiles);
             if (sampleInfo !== null) {
                 samples.push(sampleInfo);
             }
             sampleCallback(null, sample);
         });
-
-        // sampleCallback(null, sample);
     }))
     .on("end", function() {
         Transformer.sort(samples);
@@ -187,19 +171,14 @@ function getSamples(cb) {
         // last.PackageDependencies = Transformer.getDependencies(last);
         // log('packages \n' + last.PackageFileContent.dependencies);
         // log('dependencies: \n' + last.PackageDependencies);
-
         cb();
     });
-
-
 } exports.getSamples = getSamples;
-
-
 
 function makeDirectoryFor(filePath) {
     var dirname = path.dirname(filePath);
     if (fs.existsSync(dirname)) {
-      return true;
+        return true;
     }
     makeDirectoryFor(dirname);
     fs.mkdirSync(dirname);
@@ -248,7 +227,6 @@ function cleanupSampleBrowsers(cb) {
     cb();
 } exports.cleanupSampleBrowsers = cleanupSampleBrowsers;
 
-
 function saveFile(filePath, fileContent) {
     makeDirectoryFor(filePath);
     // if (!fs.existsSync(outputClientRazor)) {
@@ -258,8 +236,7 @@ function saveFile(filePath, fileContent) {
 
 function copySamplePages(cb, outputPath) {
 
-    log('copying  ' + outputPath + '/Pages/*.* from /samples/**/app.razor files:');
-    // log('copying sample files... ');
+    log('copying sample to ' + outputPath + '/Pages/*.* from /samples/**/app.razor files:');
     for (const sample of samples) {
 
         // lint and force auto-generation of routing paths (@page) in razor files
@@ -270,10 +247,8 @@ function copySamplePages(cb, outputPath) {
 
         for (const file of sample.SourceFiles) {
             if (file.isRazorSample()) {
-                var copySource = file.Path;
                 var copyTarget = outputPath + '/Pages/' + sampleFolder + '/' + file.Parent + '/' + file.Name;
-                // log("copying " + copyTarget + " from " + copySource);
-                log("copying  " + copyTarget);
+                log("copying sample to " + copyTarget);
                 saveFile(copyTarget, file.Content);
             } else if (file.isCS())  {
                 saveFile(outputPath + '/Services/' + file.Name, file.Content);
@@ -299,7 +274,7 @@ function copySampleScripts(cb, outputPath, indexName) {
     log('deleting scripts in: ' + outputPath + '/wwwroot/sb/*.js');
     del.sync('../IgBlazorSamples.Client/wwwroot/sb/' + "*.js", {force:true});
 
-    log('copying scripts to:  ' + outputPath + '/wwwroot/sb/');
+    log('copying scripts to:  ' + outputPath + '/wwwroot/sb/*.js');
 
     var copiedScriptFiles = [];
     for (const sample of samples) {
@@ -308,7 +283,7 @@ function copySampleScripts(cb, outputPath, indexName) {
             if (copiedScriptFiles.indexOf(file.Name) === -1) {
                 copiedScriptFiles.push(file.Name);
                 const scriptPath = outputPath + '/wwwroot/sb/' + file.Name
-                log("copying  " + scriptPath);
+                log("copying scripts to:  " + scriptPath);
                 saveFile(scriptPath, file.Content);
 
                 if (file.Name.indexOf("DockManager") >= 0) {
@@ -515,7 +490,6 @@ function updateProjects(cb) {
 
 } exports.updateProjects = updateProjects;
 
-
 // updates ./public/meta.json with version in ./package.json file
 function updateVersion(cb) {
 
@@ -657,9 +631,7 @@ function updateDataFiles(cb) {
 
 } exports.updateDataFiles = updateDataFiles;
 
-
-
-// testing
+// testing functions
 
 function logRoutes(cb) {
     // getSamples();
@@ -752,7 +724,6 @@ function logUniqueFiles(cb) {
 
 } exports.logUniqueFiles = logUniqueFiles;
 
-
 function logSandboxUrls(cb) {
 
     for (const sample of samples) {
@@ -760,8 +731,6 @@ function logSandboxUrls(cb) {
     }
     cb();
 } exports.logSandboxUrls = logSandboxUrls;
-
-
 
 function copyTemplates(cb) {
 
@@ -860,7 +829,6 @@ function copyTemplates(cb) {
         cb();
     });
 } exports.copyTemplates = copyTemplates;
-
 
 function listSamples(cb) {
 
