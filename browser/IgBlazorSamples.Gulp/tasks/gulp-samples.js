@@ -357,7 +357,8 @@ function copySampleScripts(cb, outputPath, indexName) {
     else if (insertStart > 0 && insertEnd > 0) {
 
         for (let i = insertStart+1; i < insertEnd; i++) {
-            indexLines[i] = ""; // clearing previously auto-generated inserts for JS files
+            if (indexLines[i].indexOf("AutoInsertJavaScriptsForSamples") < 0)
+                indexLines[i] = ""; // clearing previously auto-generated inserts for JS files
         }
 
         // for (let i = insertEnd - 1; i > insertStart+1; i--) {
@@ -365,10 +366,25 @@ function copySampleScripts(cb, outputPath, indexName) {
         // }
 
         // adding latest auto-generated inserts for JS files
-        indexLines[insertStart + 1] = insertScriptFiles.join('\n');
+        indexLines[insertStart] += '\n' + insertScriptFiles.join('\n');
     }
 
     // indexLines = indexLines.filter((v, i, a) => a.indexOf(v) === i);
+
+    var isLocalBuild = __dirname.indexOf('BuildAgent') < 0;
+    for (let i = 0; i < indexLines.length; i++) {
+        if (indexLines[i].indexOf('<base href') > 0) {
+            if (isLocalBuild) {
+                log('updating <base href="/" /> ');
+                indexLines[i] = '    <base href="/" />';
+            } else {
+                log('updating <base href="/blazor-client/" /> ');
+                indexLines[i] = '    <base href="/blazor-client/" />';
+            }
+            break;
+        }
+    }
+    log('is local build = ' + isLocalBuild + ' ' + __dirname);
 
     index = indexLines.join('\n');
     while (index.indexOf('\n\n') >= 0) {
