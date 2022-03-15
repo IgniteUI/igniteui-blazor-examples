@@ -13,8 +13,8 @@
         deleteButton.appendChild(deleteSpan);
 
         deleteButton.onclick = function () {
-            var thing = deleteButton;
-            DotNet.invokeMethodAsync('Infragistics.Samples', 'ButtonClickActionAtBlazorLevel', thing.id);
+            var button = deleteButton;
+            DotNet.invokeMethodAsync('Infragistics.Samples', 'ButtonClickActionAtBlazorLevel', button.id);
         }
 
         content.appendChild(deleteButton);
