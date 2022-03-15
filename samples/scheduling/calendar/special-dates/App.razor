@@ -9,20 +9,19 @@
 
 @code {
 
-    private IgbDateRangeDescriptor CalendarSpecialDates { get; set; }
+    private IgbDateRangeDescriptor[] CalendarSpecialDates { get; set; }
 
     protected override void OnInitialized()
     {
         IgbCalendarModule.Register(IgniteUIBlazor);
 
         DateTime today = DateTime.Today;
-
         IgbDateRangeDescriptor specialDates = new IgbDateRangeDescriptor()
         {
             DateRange = new[] { new DateTime(today.Year, today.Month, 3), new DateTime(today.Year, today.Month, 8) },
             RangeType = DateRangeType.Between
         };
 
-        this.CalendarSpecialDates = specialDates;
+        this.CalendarSpecialDates = new IgbDateRangeDescriptor[] { specialDates };
     }
 }

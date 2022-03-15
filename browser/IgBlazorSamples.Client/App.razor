@@ -1,8 +1,11 @@
 @using  IgniteUI.Blazor.Controls
+@using  Microsoft.AspNetCore.Components;
+@using  Infragistics.Samples
 @using  Infragistics.Samples.Core.Navigation
 @inject Infragistics.Samples.Core.SampleBrowser SB
+@inject NavigationManager NavManager
 
-<Router AppAssembly="@typeof(Program).Assembly">
+<Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(BrowserLayout)" />
     </Found>
@@ -18,16 +21,22 @@
 
     protected override async Task OnInitializedAsync()
     {
-        // Console.WriteLine("SB App");
         SB.AppName = "Blazor Client Samples";
-        SB.AppBaseUri = "/blazor-client/samples";
+        
+        if (NavManager.BaseUri.Contains("/blazor-client/"))
+            SB.AppBaseUri = "/blazor-client/samples";
+        else
+            SB.AppBaseUri = "/samples";
+            
+        Console.WriteLine("SB App Base " + SB.AppBaseUri);
         SB.HomeTitle = "Home"; // "Blazor Samples running on Client-Side";
 
         var igType = typeof(IgniteUIBlazor);
         var igAssembly = igType.Assembly;
         var igVersion = igAssembly.GetName().Version;
-        SB.IgVersion = igVersion.Major + "." + igVersion.Minor + "." + igVersion.Build;
-        Console.WriteLine("SB uses IG version: " + SB.IgVersion);
+        if (igVersion != null)
+            SB.IgVersion = igVersion.Major + "." + igVersion.Minor + "." + igVersion.Build;
+        Console.WriteLine("SB App uses IG version: " + SB.IgVersion);
 
         await Task.Delay(1);
     }

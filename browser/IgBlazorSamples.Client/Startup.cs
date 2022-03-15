@@ -30,7 +30,8 @@ namespace Infragistics.Samples
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy", builder =>
-                    builder.WithOrigins(new[] { "http://localhost" })
+                    //builder.WithOrigins(new[] { "http://localhost/blazor-client/" })
+                    builder.WithOrigins(new[] { "http://localhost/" })
                     .AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowCredentials());

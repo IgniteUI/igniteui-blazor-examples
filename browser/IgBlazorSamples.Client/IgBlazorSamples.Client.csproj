@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+
+    <!-- note copied Nullable/ImplicitUsings from a new Blazor project that targets .NET 6 -->
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    
     <RazorLangVersion>3.0</RazorLangVersion>
     <AssemblyName>Infragistics.Samples</AssemblyName>
     <RootNamespace>Infragistics.Samples</RootNamespace>
@@ -10,7 +15,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <NoWarn>1701;1702,IDE0028,BL0005,0219</NoWarn>
+    <NoWarn>1701;1702,IDE0028,BL0005,0219l,RSG002,CS8618</NoWarn>
     <OutputPath>output</OutputPath>
   </PropertyGroup>
 
@@ -20,7 +25,7 @@
         <DefaultItemExcludes>$(DefaultItemExcludes);$(NpmRoot)node_modules\**</DefaultItemExcludes>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-      <NoWarn>1701;1702,IDE0028,BL0005,0219</NoWarn>
+      <NoWarn>1701;1702,IDE0028,BL0005,0219l,RSG002,CS8618</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
@@ -52,14 +57,14 @@
     <!-- End NPM Updates -->
 
   <ItemGroup>
-    <PackageReference Include="IgniteUI.Blazor" Version="21.2.22" />
-    <PackageReference Include="IgniteUI.Blazor.Documents.Core" Version="21.2.22" />
-    <PackageReference Include="IgniteUI.Blazor.Documents.Excel" Version="21.2.22" />
+    <PackageReference Include="IgniteUI.Blazor" Version="21.2.47" />
+    <PackageReference Include="IgniteUI.Blazor.Documents.Core" Version="21.2.47" />
+    <PackageReference Include="IgniteUI.Blazor.Documents.Excel" Version="21.2.47" />
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0" />    
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" PrivateAssets="all" />
-	<PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
-	<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
   </ItemGroup>
 

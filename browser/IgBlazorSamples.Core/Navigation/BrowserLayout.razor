@@ -84,6 +84,7 @@ protected override async Task OnInitializedAsync()
 
 protected bool IsSampleWithNavigation() {
     if (NavManager.Uri.Contains("/samples")) return true;
+    if (NavManager.Uri.EndsWith("/")) return true;
     if (NavManager.Uri.EndsWith("/blazor-client")) return true;
     if (NavManager.Uri.EndsWith("/blazor-client/")) return true;
     if (NavManager.Uri.EndsWith("/blazor-server")) return true;
