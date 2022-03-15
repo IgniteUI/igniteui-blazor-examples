@@ -4,20 +4,20 @@
     var row = args.cellInfo.dataRow;
 
     if (content.childElementCount === 0) {
-        var gaugeButton = document.createElement("button");
-        gaugeButton.id = row;
+        var deleteButton = document.createElement("button");
+        deleteButton.id = row;
 
-        var gaugeSpan = document.createElement("span");
-        gaugeSpan.textContent = "DELETE";
+        var deleteSpan = document.createElement("span");
+        deleteSpan.textContent = "DELETE";
 
-        gaugeButton.appendChild(gaugeSpan);
+        deleteButton.appendChild(deleteSpan);
 
-        gaugeButton.onclick = function () {            
-            var thing = gaugeButton;            
-            DotNet.invokeMethodAsync('Infragistics.Samples', 'ButtonClickActionAtBlazorLevel', thing.id);
+        deleteButton.onclick = function () {
+            var button = deleteButton;
+            DotNet.invokeMethodAsync('Infragistics.Samples', 'ButtonClickActionAtBlazorLevel', button.id);
         }
 
-        content.appendChild(gaugeButton);
+        content.appendChild(deleteButton);
     }
 }
 

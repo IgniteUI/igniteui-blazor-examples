@@ -47,7 +47,7 @@
                     <IgbNumericColumn Field="Salary" HeaderText="Salary" PositivePrefix="$" ShowGroupingSeparator="true" Width="@("*>120")" />
                     <IgbImageColumn IsEditable="false" Field="Photo" HeaderText="Photo" ContentOpacity="1" HorizontalAlignment="@CellContentHorizontalAlignment.Center" Width="@("*>110")" />
                     <IgbDateTimeColumn Field="Birthday" HeaderText="Date of Birth" Width="@("*>170")" />
-                    <IgbTemplateColumn Field="ButtonColumn" HeaderText="Button Column" CellUpdatingScript="onUpdatingTemplateColumn" />
+                    <IgbTemplateColumn Field="ButtonColumn" HeaderText="Delete Row" CellUpdatingScript="onUpdatingTemplateColumn" />
                 </IgbDataGrid>
             </div>
         }
@@ -56,7 +56,7 @@
 
 @code {
 
-    private IgbDataGrid DataGridRef;
+    public static IgbDataGrid DataGridRef;
     private EditModeClickAction GridEditModeClickAction = EditModeClickAction.SingleClick;
     private EditModeType _editMode;
     public EditModeType GridEditMode
@@ -91,21 +91,21 @@
 
     private void OnCommitClick(MouseEventArgs e)
     {
-        this.DataGridRef.CommitEdits();
+        DataGridRef.CommitEdits();
         StateHasChanged();
 
     }
 
     private void OnUndoClick(MouseEventArgs e)
     {
-        this.DataGridRef.Undo();
+        DataGridRef.Undo();
         StateHasChanged();
 
     }
 
     private void OnRedoClick(MouseEventArgs e)
     {
-        this.DataGridRef.Redo();
+        DataGridRef.Redo();
         StateHasChanged();
 
     }
@@ -139,6 +139,7 @@
     public static void ButtonClickActionAtBlazorLevel(object parameter)
     {
         int param = int.Parse(parameter.ToString());
-        Data.RemoveAt(param);
+        var rowItem = DataGridRef.ActualDataSource.GetItemAtIndex(param);
+        DataGridRef.RemoveItem(rowItem);
     }
 }
