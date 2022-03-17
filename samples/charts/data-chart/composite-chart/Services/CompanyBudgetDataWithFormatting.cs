@@ -19,12 +19,11 @@ namespace Infragistics.Samples
 
     public class CompanyBudgetDataWithFormatting : List<CompanyBudgetInfoWithFormatting>
     {
-        public string OnFormatNumber(double num)
+        public string FormatNumber(double num)
         {
             var ret = num;
             if (num >= 1000000) return (num / 1000000.0) + "M";
             if (num >= 1000) return (num / 1000.0) + "K";
-
             return ret.ToString().Replace(@"/\B(?=(\d{3})+(?!\d))/g", ",");
         }
 
@@ -46,19 +45,15 @@ namespace Infragistics.Samples
                 item.Revenue = item.Revenue * 1000;
                 item.Expenses = item.Expenses * 1000;
                 item.Income = item.Revenue - item.Expenses;
-
                 item.IncomePerRevenue = (item.Income / item.Revenue * 100);
-
                 // calculating x-offset for callouts
                 item.RevenueX = i;
                 item.ExpensesX = i;
-
                 // formatting values for callouts
-                item.FormattedRevenue = "$" + OnFormatNumber(item.Revenue);
-                item.FormattedIncome = "$" + OnFormatNumber(item.Income);
-                item.FormattedExpenses = "$" + OnFormatNumber(item.Expenses);
+                item.FormattedRevenue = "$" + FormatNumber(item.Revenue);
+                item.FormattedIncome = "$" + FormatNumber(item.Income);
+                item.FormattedExpenses = "$" + FormatNumber(item.Expenses);
                 item.FormattedProfit = item.IncomePerRevenue + "%";
-
                 i++;
             }
         }
