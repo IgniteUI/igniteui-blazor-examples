@@ -35,7 +35,6 @@
         @if (Data != null)
         {
             <IgbCategoryChart Height="100%" Width="100%"
-                @key="ChartKey"
                 @ref="Chart"
                 DataSource="Data"
                 ChartType="CategoryChartType.Line"
@@ -63,7 +62,6 @@
         set
         {
             _transitionInterval = value;
-            ChartKey = new Random().Next().ToString();
             StateHasChanged();
         }
     }
@@ -81,11 +79,9 @@
         set
         {
             _selectedTransition = value;
-            ChartKey = new Random().Next().ToString();
             StateHasChanged();
         }
     }
-    private string ChartKey;
     private IgbCategoryChart _Chart;
     private IgbCategoryChart Chart
     {
@@ -110,6 +106,6 @@
 
     private void OnReloadChart()
     {
-        this.ChartKey = new Random().Next().ToString();
+        this.Chart.ReplayTransitionIn();
     }
 }
