@@ -1,0 +1,122 @@
+﻿@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+@inject IJSRuntime JSRuntime;
+
+
+<div class="container vertical">
+    <IgbDataChart Height="100%" Width="100%"
+        @ref="Chart"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        ChartTitle="Major U.S. Holidays for 2022"
+        TitleTopMargin=50>
+    </IgbDataChart>
+</div>
+
+
+@code {
+
+    private List<SampleCategoryItem> CategoryData;
+    private IgbNumericYAxis NumericYAxis;
+    private IgbTimeXAxis TimeXAxis;
+    private IgbCalloutLayer CalloutLayer;
+    private IgbLineSeries LineSeries1;
+
+    private IgbDataChart _chart;
+    private IgbDataChart Chart
+    {
+        get { return _chart; }
+        set
+        {
+            _chart = value;
+            this.OnChart();
+
+            value.Axes.Add(this.TimeXAxis);
+            value.Axes.Add(this.NumericYAxis);
+            value.Series.Add(this.LineSeries1);
+            value.Series.Add(this.CalloutLayer);
+            StateHasChanged();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartVerticalCategoryModule.Register(IgniteUIBlazor);
+        IgbTimeXAxisModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbDataChartExtendedAxesModule.Register(IgniteUIBlazor);
+        IgbDataChartAnnotationModule.Register(IgniteUIBlazor);
+        IgbAnnotationLayerProxyModule.Register(IgniteUIBlazor);
+        IgbCalloutLayerModule.Register(IgniteUIBlazor);
+    }
+
+    private void OnChart()
+    {
+        this.CategoryData = SampleCategoryData.Create();
+        this.InitAxes();
+        this.InitCategorySeries();
+    }
+
+    public void InitCategorySeries()
+    {
+        this.LineSeries1 = new IgbLineSeries()
+            {
+                Brush = "Navy",
+                DataSource = this.CategoryData,
+                XAxisName = "TimeXAxis",
+                YAxisName = "NumericYAxis",
+                ValueMemberPath = "Y",
+                Thickness = 15,
+                MarkerThickness = 15,
+                MarkerBrush = "#EC0D00",
+                MarkerOutline = "#EC0D00",
+                MarkerFillMode = MarkerFillMode.MatchMarkerOutline,
+            };
+
+        this.CalloutLayer = new IgbCalloutLayer()
+            {
+                TargetSeries = this.LineSeries1,
+                DataSource = this.CategoryData,
+                XMemberPath = "Year",
+                YMemberPath = "Y",
+                LabelMemberPath = "Details",
+                IsAutoCalloutBehaviorEnabled = false,
+                UseValueForAutoCalloutLabels = false,
+                CalloutLeaderBrush = "#EC0D00",
+                IsCalloutOffsettingEnabled = false,
+                CalloutPositionPadding=25,
+                TextStyle = "font-size: 25px",
+                CalloutCollisionMode = CalloutCollisionMode.Auto,
+        };
+    }
+
+    public void InitAxes()
+    {
+        this.NumericYAxis = new IgbNumericYAxis() { Name = "NumericYAxis", Title = "Numeric Y Axis", MinimumValue=0, MaximumValue=10, LabelVisibility = Visibility.Collapsed };
+
+        this.TimeXAxis = new IgbTimeXAxis() { Name = "TimeXAxis", Title = "Time X Axis", DataSource = this.CategoryData, DateTimeMemberPath = "Year", LabelVisibility = Visibility.Collapsed };
+
+        var axisBreak1 = new IgbTimeAxisBreak()
+            {
+                Start = new DateTime(2021, 1, 1),
+                End = new DateTime(2021, 10, 1)
+            };
+
+        var axisBreak2 = new IgbTimeAxisBreak()
+            {
+                Start = new DateTime(2024, 1, 1),
+                End = new DateTime(2024, 12, 31)
+            };
+        //First axis break
+        this.TimeXAxis.Breaks.Add(axisBreak1);
+        this.TimeXAxis.Breaks.Add(axisBreak2);
+
+    }
+
+}
+
