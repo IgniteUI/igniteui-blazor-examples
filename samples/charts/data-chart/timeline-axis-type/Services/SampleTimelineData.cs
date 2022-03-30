@@ -14,7 +14,9 @@ namespace Infragistics.Samples
                 new SampleTimelineItem {Year = "19 Marhc, 2018", Date = new DateTime(2018, 3, 19), Y = 5,  Details = "The EU and the UK agree on a transition phase"},
                 new SampleTimelineItem {Year = "25 November, 2018", Date = new DateTime(2018, 12, 25),  Y = 5, Details = "Draft withdrawl deal agreed"},
                 new SampleTimelineItem {Year = "29 October, 2019", Date = new DateTime(2019, 10, 29),Y = 5,  Details = "EU heads of state and government approve postponing the Brexit date"},
+                new SampleTimelineItem {Year = "31 December, 2020", Date = new DateTime(2020, 12, 31), Y = 5, Details = "Transition period ends"},
 
+            };
             return data;
         }
     }
