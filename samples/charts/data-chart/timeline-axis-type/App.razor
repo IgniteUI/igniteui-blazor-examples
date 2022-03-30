@@ -6,17 +6,21 @@
 <div class="container vertical">
     <IgbDataChart Height="100%" Width="100%"
         @ref="Chart"
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
-        ChartTitle="Major U.S. Holidays for 2022"
-        TitleTopMargin=50>
+        IsHorizontalZoomEnabled="false" IsVerticalZoomEnabled="false"
+        ChartTitle="Brexit Timeline"
+        Subtitle="Brexit: Key events in the process of the UK's exit from the EU"
+        TitleTopMargin=50
+        PlotAreaMarginLeft=100
+        PlotAreaMarginRight=100
+        SeriesMouseEnterScript="onSeriesMouseEnter">
+              @*note the onSeriesMouseEnter" function is implemented .JS file in wwwroot folder*@
     </IgbDataChart>
 </div>
 
 
 @code {
 
-    private List<SampleCategoryItem> CategoryData;
+    private List<SampleTimelineItem> CategoryData;
     private IgbNumericYAxis NumericYAxis;
     private IgbTimeXAxis TimeXAxis;
     private IgbCalloutLayer CalloutLayer;
@@ -57,7 +61,7 @@
 
     private void OnChart()
     {
-        this.CategoryData = SampleCategoryData.Create();
+        this.CategoryData = SampleTimelineData.Create();
         this.InitAxes();
         this.InitCategorySeries();
     }
@@ -76,45 +80,57 @@
                 MarkerBrush = "#EC0D00",
                 MarkerOutline = "#EC0D00",
                 MarkerFillMode = MarkerFillMode.MatchMarkerOutline,
+                ShowDefaultTooltip=false,
             };
 
         this.CalloutLayer = new IgbCalloutLayer()
             {
                 TargetSeries = this.LineSeries1,
                 DataSource = this.CategoryData,
-                XMemberPath = "Year",
+                XMemberPath = "Date",
                 YMemberPath = "Y",
-                LabelMemberPath = "Details",
+                LabelMemberPath = "Year",
                 IsAutoCalloutBehaviorEnabled = false,
                 UseValueForAutoCalloutLabels = false,
                 CalloutLeaderBrush = "#EC0D00",
+                CalloutTextColor = "Navy",
+                CalloutOutline = "#EC0D00",
+                CalloutBackground = "Transparent",
                 IsCalloutOffsettingEnabled = false,
-                CalloutPositionPadding=25,
                 TextStyle = "font-size: 25px",
-                CalloutCollisionMode = CalloutCollisionMode.Auto,
+                CalloutPositionPadding = 50,
+                CalloutCollisionMode = CalloutCollisionMode.Greedy,
+                ShowDefaultTooltip=false,
         };
+
+        this.CalloutLayer.AllowedPositions.Add(CalloutPlacementPositions.Top);
+        this.CalloutLayer.AllowedPositions.Add(CalloutPlacementPositions.TopLeft);
+        this.CalloutLayer.AllowedPositions.Add(CalloutPlacementPositions.TopRight);
+        this.CalloutLayer.AllowedPositions.Add(CalloutPlacementPositions.Bottom);
+        this.CalloutLayer.AllowedPositions.Add(CalloutPlacementPositions.BottomLeft);
+        this.CalloutLayer.AllowedPositions.Add(CalloutPlacementPositions.BottomRight);
     }
 
     public void InitAxes()
     {
-        this.NumericYAxis = new IgbNumericYAxis() { Name = "NumericYAxis", Title = "Numeric Y Axis", MinimumValue=0, MaximumValue=10, LabelVisibility = Visibility.Collapsed };
+        this.NumericYAxis = new IgbNumericYAxis() { Name = "NumericYAxis", Title = "Numeric Y Axis", MinimumValue=0, MaximumValue=10, LabelVisibility = Visibility.Collapsed, MajorStrokeThickness=0.0 };
 
-        this.TimeXAxis = new IgbTimeXAxis() { Name = "TimeXAxis", Title = "Time X Axis", DataSource = this.CategoryData, DateTimeMemberPath = "Year", LabelVisibility = Visibility.Collapsed };
+        this.TimeXAxis = new IgbTimeXAxis() { Name = "TimeXAxis", Title = "Time X Axis", DataSource = this.CategoryData, DateTimeMemberPath = "Date", LabelVisibility = Visibility.Collapsed };
 
-        var axisBreak1 = new IgbTimeAxisBreak()
-            {
-                Start = new DateTime(2021, 1, 1),
-                End = new DateTime(2021, 10, 1)
-            };
+        //var axisBreak1 = new IgbTimeAxisBreak()
+        //    {
+        //        Start = new DateTime(2021, 1, 1),
+        //        End = new DateTime(2021, 10, 1)
+        //    };
 
-        var axisBreak2 = new IgbTimeAxisBreak()
-            {
-                Start = new DateTime(2024, 1, 1),
-                End = new DateTime(2024, 12, 31)
-            };
-        //First axis break
-        this.TimeXAxis.Breaks.Add(axisBreak1);
-        this.TimeXAxis.Breaks.Add(axisBreak2);
+        //var axisBreak2 = new IgbTimeAxisBreak()
+        //    {
+        //        Start = new DateTime(2024, 1, 1),
+        //        End = new DateTime(2024, 12, 31)
+        //    };
+        ////First axis break
+        //this.TimeXAxis.Breaks.Add(axisBreak1);
+        //this.TimeXAxis.Breaks.Add(axisBreak2);
 
     }
 
