@@ -2,7 +2,6 @@
 @inject IIgniteUIBlazor IgniteUIBlazor;
 @inject IJSRuntime JSRuntime;
 
-
 <div class="container vertical">
     <IgbDataChart Height="100%" Width="100%"
         @ref="Chart"
@@ -13,13 +12,11 @@
         PlotAreaMarginLeft=100
         PlotAreaMarginRight=100
         SeriesMouseEnterScript="onSeriesMouseEnter">
-              @*note the onSeriesMouseEnter" function is implemented .JS file in wwwroot folder*@
+        @* NOTE: the onSeriesMouseEnter" function is implemented .JS file in wwwroot folder *@
     </IgbDataChart>
 </div>
 
-
 @code {
-
     private List<SampleTimelineItem> CategoryData;
     private IgbNumericYAxis NumericYAxis;
     private IgbTimeXAxis TimeXAxis;
@@ -51,10 +48,10 @@
         IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
         IgbDataChartCategoryModule.Register(IgniteUIBlazor);
         IgbDataChartVerticalCategoryModule.Register(IgniteUIBlazor);
-        IgbTimeXAxisModule.Register(IgniteUIBlazor);
         IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
         IgbDataChartExtendedAxesModule.Register(IgniteUIBlazor);
         IgbDataChartAnnotationModule.Register(IgniteUIBlazor);
+        IgbTimeXAxisModule.Register(IgniteUIBlazor);
         IgbAnnotationLayerProxyModule.Register(IgniteUIBlazor);
         IgbCalloutLayerModule.Register(IgniteUIBlazor);
     }
@@ -80,7 +77,7 @@
                 MarkerBrush = "#EC0D00",
                 MarkerOutline = "#EC0D00",
                 MarkerFillMode = MarkerFillMode.MatchMarkerOutline,
-                ShowDefaultTooltip=false,
+                ShowDefaultTooltip = false,
             };
 
         this.CalloutLayer = new IgbCalloutLayer()
@@ -100,7 +97,7 @@
                 TextStyle = "font-size: 25px",
                 CalloutPositionPadding = 50,
                 CalloutCollisionMode = CalloutCollisionMode.Greedy,
-                ShowDefaultTooltip=false,
+                ShowDefaultTooltip = false,
         };
 
         this.CalloutLayer.AllowedPositions.Add(CalloutPlacementPositions.Top);
@@ -114,7 +111,6 @@
     public void InitAxes()
     {
         this.NumericYAxis = new IgbNumericYAxis() { Name = "NumericYAxis", Title = "Numeric Y Axis", MinimumValue=0, MaximumValue=10, LabelVisibility = Visibility.Collapsed, MajorStrokeThickness=0.0 };
-
         this.TimeXAxis = new IgbTimeXAxis() { Name = "TimeXAxis", Title = "Time X Axis", DataSource = this.CategoryData, DateTimeMemberPath = "Date", LabelVisibility = Visibility.Collapsed };
     }
 
