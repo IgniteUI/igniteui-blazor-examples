@@ -1,0 +1,56 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <style>
+        .buttonContainer {
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 20px;
+        }
+    </style>
+
+    <div class="buttonContainer">
+        <IgbButton @onclick=@OnToggleToastButtonClick Variant="ButtonVariant.Contained">Toggle Toast</IgbButton>
+        <IgbButton @onclick=@OnToggleKeepOpenButtonClick Variant="ButtonVariant.Contained">Toggle KeepOpen Property</IgbButton>
+        <IgbButton @onclick=@OnDisplayTimeButtonClick Variant="ButtonVariant.Contained">Set DisplayTime to 8000</IgbButton>
+    </div>
+
+    <IgbToast @ref=ToastRef>Toast Message</IgbToast>
+
+</div>
+
+@code {
+
+    public IgbToast ToastRef{  get;  set; } 
+
+    protected override void OnInitialized()
+    {        
+        IgbButtonModule.Register(IgniteUIBlazor);
+        IgbToastModule.Register(IgniteUIBlazor);
+    }
+
+    public void OnToggleToastButtonClick(MouseEventArgs args)
+    {
+        if(this.ToastRef != null)
+        {
+            this.ToastRef.Toggle();
+        }
+    }
+
+    public void OnToggleKeepOpenButtonClick(MouseEventArgs args)
+    {
+        if(this.ToastRef != null)
+        {
+            this.ToastRef.KeepOpen = !this.ToastRef.KeepOpen;
+        }
+    }
+
+    public void OnDisplayTimeButtonClick(MouseEventArgs args)
+    {
+        if(this.ToastRef != null)
+        {
+            this.ToastRef.DisplayTime = 8000;
+        }
+    }
+}
