@@ -1,0 +1,23 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<style>
+    igc-snackbar::part(base) {
+    background: #0d6efd;
+    border-color: #0d6efd;
+    color: white;
+}
+</style>
+<div class="container vertical">
+    <IgbButton onclick="snackbar.show()">Show Snackbar</IgbButton>
+    <IgbSnackbar id="snackbar"> Snackbar Message </IgbSnackbar>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        IgbButtonModule.Register(IgniteUIBlazor);
+        IgbSnackbarModule.Register(IgniteUIBlazor);
+    }
+}

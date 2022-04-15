@@ -1,0 +1,36 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container sample vertical">
+    <div class="button-container">
+        <IgbButton onclick="snackbar1.show()">Show Snackbar</IgbButton> 
+        <IgbButton onclick="snackbar1.hide()">Hide Snackbar</IgbButton> 
+
+        <IgbSnackbar @ref="ToggleSnackbarRef" id="snackbar1" KeepOpen="true" ActionText="Close" Action=OnActionClick> @SnackbarDisplayText </IgbSnackbar>
+    </div>
+</div>
+
+@code {
+    public string SnackbarDisplayText { get; set; } = "Hello there!";
+
+    private IgbSnackbar snackbar1;
+    public IgbSnackbar ToggleSnackbarRef
+    {
+        get { return snackbar1; }
+        set { 
+            snackbar1 = value; StateHasChanged();
+        }
+    }
+
+    protected override void OnInitialized()
+    {   
+        IgbCheckboxModule.Register(IgniteUIBlazor);
+        IgbButtonModule.Register(IgniteUIBlazor);
+        IgbSnackbarModule.Register(IgniteUIBlazor);
+    }
+
+    private void OnActionClick(IgbVoidEventArgs e)
+    {
+        this.snackbar1.Hide();
+    }
+}
