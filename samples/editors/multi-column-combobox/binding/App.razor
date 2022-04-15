@@ -1,0 +1,71 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+         <div class="container sample center">
+                <style>
+                igc-input::part(input) {
+                    background-color: rgb(169, 214, 229);
+                    border-color: rgb(42, 111, 151);
+                }
+
+                igc-input::part(label) {
+                    color: rgb(1, 42, 74);
+                }
+
+                igc-input::part(prefix),
+                igc-input::part(suffix) {
+                    color: white;
+                    border-color: rgb(42, 111, 151);
+                    background-color: rgb(70, 143, 175);
+                }
+            </style>
+
+            <div style="width: 400px;">
+                <IgbInput Required="true" @bind-value="ComboValue" Label="2-way Binding" Placeholder="Value is bound to the ComboBox eg. Ethiopia">
+                </IgbInput>
+            </div>
+               
+
+            @if (CountryData != null)
+            {
+             
+                <div style="padding-left: 6px">
+                <IgbMultiColumnComboBox Height="50px" Width="400px"
+                    @ref=ComboRef
+                    DataSource="CountryData"
+                    TextField="Country"
+                    Placeholder="Click here and choose a country"
+                    DefaultColumnWidth="200"
+                    ValueField=@(new string[]{ "Country"})
+                    SelectedValueChanged=OnSelectedValueChanged
+                    Value=@ComboValue/>
+                </div>
+            }
+       </div>
+
+@code {
+
+    protected List<ComboBoxItem> CountryData;
+    private IgbMultiColumnComboBox ComboRef { get; set; } 
+    private string ComboValue { get; set; }
+
+    protected override void OnInitialized()
+    {
+        IgbMultiColumnComboBoxModule.Register(IgniteUIBlazor);
+        IgbInputModule.Register(IgniteUIBlazor);
+
+        this.CountryData = SampleComboData.Create();
+    }
+
+    private void OnSelectedValueChanged(IgbMultiColumnComboBoxValueChangedEventArgs e)
+    {
+        if (e.NewValue != null)
+        {
+            this.ComboValue = e.NewValue.ToString();
+        }
+        else
+        {
+            this.ComboValue = string.Empty;
+        }
+    }
+}
