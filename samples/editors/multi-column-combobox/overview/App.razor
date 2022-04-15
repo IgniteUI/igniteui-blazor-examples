@@ -3,10 +3,10 @@
 
     <div class="container vertical">
         <div class="container vertical">
-            @if (CountrData != null)
+            @if (CountryData != null)
             {
                 <IgbMultiColumnComboBox Height="50px" Width="400px"
-                    DataSource="CountrData"
+                    DataSource="CountryData"
                     Fields="DisplayFields"
                     TextField="Country"
                     Placeholder="Choose a country"
@@ -17,13 +17,14 @@
 
 @code {
 
-    protected List<ComboBoxItem> CountrData;
+    protected List<ComboBoxItem> CountryData;
+    protected string[] DisplayFields = new string[] { "Country", "Pop", "Continent" };
 
     protected override void OnInitialized()
     {
         IgbMultiColumnComboBoxModule.Register(IgniteUIBlazor);
 
-        this.CountrData = SampleComboData.Create();
+        this.CountryData = SampleComboData.Create();
 
     }
 }
