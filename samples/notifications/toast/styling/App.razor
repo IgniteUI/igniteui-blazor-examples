@@ -1,0 +1,35 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+    <style>
+        igc-toast {
+            background: #011627;
+            color: #ECAA53;
+            outline-color: #ECAA53;
+        }
+    </style>
+
+    <IgbButton @onclick=@OnToastButtonClick Variant="ButtonVariant.Contained">Show Styled Toast</IgbButton>
+    <IgbToast @ref=ToastRef>Styled Toast</IgbToast>
+</div>
+
+@code {
+
+    public IgbToast ToastRef { get; set; }
+
+    protected override void OnInitialized()
+    {
+        IgbButtonModule.Register(IgniteUIBlazor);
+        IgbToastModule.Register(IgniteUIBlazor);
+    }
+
+    public void OnToastButtonClick(MouseEventArgs args)
+    {
+        if(this.ToastRef != null)
+        {
+            this.ToastRef.Show();
+        }
+    }
+}
