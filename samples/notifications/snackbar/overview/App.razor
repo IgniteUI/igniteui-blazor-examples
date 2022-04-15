@@ -1,0 +1,16 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <IgbButton onclick="snackbar.show()">Show Snackbar</IgbButton>
+    <IgbSnackbar id="snackbar"> Snackbar Message </IgbSnackbar>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        IgbSnackbarModule.Register(IgniteUIBlazor);
+        IgbButtonModule.Register(IgniteUIBlazor);
+    }
+}
