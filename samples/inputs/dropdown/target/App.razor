@@ -1,0 +1,34 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container sample center">
+    <div class="options horizontal">
+       <IgbButton style="margin-right: 20px;" @onclick=OnClick>Toggle Dropdown</IgbButton>
+
+       <IgbDropdown @ref="DropDownRef" KeepOpenOnOutsideClick="true" PositionStrategy="DropdownPositionStrategy.Fixed">
+           <IgbButton @ref="ButtonRef" slot="target" style="margin-right: 20px;">Dropdown</IgbButton>
+
+           <IgbDropdownItem>Option 1</IgbDropdownItem>
+           <IgbDropdownItem>Option 2</IgbDropdownItem>
+           <IgbDropdownItem>Option 3</IgbDropdownItem>        
+       </IgbDropdown>
+    </div>
+</div>
+
+@code {
+
+    IgbDropdown DropDownRef { get; set; }
+    IgbButton ButtonRef { get; set; }
+
+    protected override void OnInitialized()
+    {
+        IgbDropdownModule.Register(IgniteUIBlazor);
+        IgbDropdownItemModule.Register(IgniteUIBlazor);
+        IgbButtonModule.Register(IgniteUIBlazor);
+    }
+
+    private void OnClick(MouseEventArgs e)
+    {
+        this.DropDownRef.Toggle();
+    }
+}
