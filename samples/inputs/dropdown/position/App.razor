@@ -1,0 +1,59 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<style>
+    igc-dropdown::part(list) {
+        height: 200px;
+    }
+
+    .center {
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+<div class="container sample center">
+    <IgbDropdown @ref="DropDownRef" Distance="5" Change=OnChange Placement=@placement>
+        <IgbButton slot="target">Option</IgbButton>
+        <IgbDropdownItem Value="top">top</IgbDropdownItem>
+        <IgbDropdownItem Value="bottom">bottom</IgbDropdownItem>
+
+        @*<IgbDropdownItem>@DropdownPlacement.Top</IgbDropdownItem>
+        <IgbDropdownItem>@DropdownPlacement.TopStart</IgbDropdownItem>
+        <IgbDropdownItem>@DropdownPlacement.TopEnd</IgbDropdownItem>
+        <IgbDropdownItem>@DropdownPlacement.Bottom</IgbDropdownItem>
+        <IgbDropdownItem>@DropdownPlacement.BottomStart</IgbDropdownItem>
+        <IgbDropdownItem>@DropdownPlacement.BottomEnd</IgbDropdownItem>
+        <IgbDropdownItem>@DropdownPlacement.Left</IgbDropdownItem>
+        <IgbDropdownItem>@DropdownPlacement.LeftStart</IgbDropdownItem>
+        <IgbDropdownItem>@DropdownPlacement.LeftEnd</IgbDropdownItem>
+        <IgbDropdownItem>@DropdownPlacement.Right</IgbDropdownItem>
+        <IgbDropdownItem>@DropdownPlacement.RightStart</IgbDropdownItem>
+        <IgbDropdownItem>@DropdownPlacement.RightEnd</IgbDropdownItem>*@
+    </IgbDropdown>
+</div>
+
+@code {
+
+    IgbDropdown DropDownRef { get; set; }
+    DropdownPlacement placement { get; set; }
+
+    protected override void OnInitialized()
+    {
+        IgbDropdownModule.Register(IgniteUIBlazor);
+        IgbDropdownItemModule.Register(IgniteUIBlazor);
+        IgbButtonModule.Register(IgniteUIBlazor);
+    }
+
+    private void OnChange(IgbDropdownItemComponentEventArgs e)
+    {
+        Console.WriteLine(e.Detail.Value);
+
+        //this.placement = e.Detail.Value;
+        if(e.Detail.Value == "top")
+        {
+        }
+        
+
+    }
+}
