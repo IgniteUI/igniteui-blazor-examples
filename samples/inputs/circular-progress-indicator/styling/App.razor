@@ -1,0 +1,30 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="root">
+
+    <style>
+        igc-circular-progress {
+            margin: 20px;
+        }
+
+        igc-circular-progress::part(gradient_end),
+        igc-circular-progress::part(gradient_start) {
+            stop-color: #72da67;
+        }
+
+        igc-circular-progress::part(track) {
+            stroke: rgb(216, 211, 211);
+        }
+    </style>
+
+    <IgbCircularProgress Indeterminate=true/>
+</div>
+
+@code {
+    
+    protected override void OnInitialized()
+    {
+        IgbCircularProgressModule.Register(IgniteUIBlazor);
+    }
+}

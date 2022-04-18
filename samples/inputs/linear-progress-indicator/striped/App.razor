@@ -1,0 +1,31 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <style>
+        .progress-container {
+            margin-bottom: 15px;
+        }
+    </style>
+
+    <IgbLinearProgress class="progress-container" Value=100 Variant=@ProgressBaseVariant.Primary/>
+
+    <IgbLinearProgress class="progress-container" Value=100 Variant=@ProgressBaseVariant.Success
+                       Indeterminate=true Striped=true/>
+
+    <IgbLinearProgress Value=100 Variant=@ProgressBaseVariant.Danger LabelFormat="Custom Text"
+                       LabelAlign=@LinearProgressLabelAlign.BottomEnd />
+
+    <IgbLinearProgress class="progress-container" Value=100 Variant=@ProgressBaseVariant.Info Striped=true HideLabel=true />
+
+    <IgbLinearProgress class="progress-container" Value=100 Variant=@ProgressBaseVariant.Warning
+                       LabelAlign="@LinearProgressLabelAlign.BottomStart" />
+</div>
+
+@code {
+    
+    protected override void OnInitialized()
+    {
+        IgbLinearProgressModule.Register(IgniteUIBlazor);
+    }
+}
