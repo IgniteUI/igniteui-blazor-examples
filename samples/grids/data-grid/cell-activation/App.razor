@@ -35,6 +35,7 @@
                   DataSource="Data"
                   EnterBehavior="@EnterKeyMode"
                   EnterBehaviorAfterEdit="@EnterKeyAfterEditMode"
+                  EditMode="@CanEdit"
                   AutoGenerateColumns="false"
                   SelectionMode="GridSelectionMode.RangeCell"
                   ActivationMode="GridActivationMode.Cell">
@@ -60,6 +61,16 @@
     private object Data;
     private bool EditDisabled { get; set; }
 
+    private EditModeType _canEdit;
+    public EditModeType CanEdit
+    {
+        get { return _canEdit; }
+        set
+        {
+            _canEdit = value;           
+        }
+    }
+
     private EnterKeyBehaviors _enterKeyMode;
     public EnterKeyBehaviors EnterKeyMode
     {
@@ -70,10 +81,12 @@
             if (_enterKeyMode == EnterKeyBehaviors.Edit)
             {
                 EditDisabled = false;
+                CanEdit = EditModeType.Cell;
             }
             else
             {
                 EditDisabled = true;
+                CanEdit = EditModeType.None;
             }
         }
     }
