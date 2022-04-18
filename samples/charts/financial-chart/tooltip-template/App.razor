@@ -1,0 +1,123 @@
+
+@using IgniteUI.Blazor.Controls
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+    <div class="container vertical">
+
+        @if (Data != null)
+        {
+            <IgbFinancialChart Width="100%"
+                Height="100%"
+                @ref="@Chart"
+                ChartType=FinancialChartType.Column
+                Thickness=2
+                XAxisMode="XAxisMode"
+                YAxisMode="YAxisMode"
+                DataSource="Data"
+                ExcludedProperties=ExcludedProps
+                CrosshairsSnapToData=false
+                ToolTipType="ToolTipType.None"
+                IsToolbarVisible="false"
+                >
+                <TooltipTemplate>
+                        <div style="width: 100%; height: 50px; background: transparent">
+                            @((context.Item as StockItem).Value)                            
+                        </div>
+                </TooltipTemplate>
+            </IgbFinancialChart>
+        }
+    </div>
+
+@code {
+
+    public IgbFinancialChart _Chart;
+    public IgbFinancialChart Chart
+    {
+        get { return _Chart; }
+        set
+        {
+            _Chart = value;
+            this.Chart.MarkerTypes.Clear();
+            this.Chart.MarkerTypes.Add(MarkerType.None);
+            StateHasChanged();
+        }
+    }
+    public FinancialChartXAxisMode XAxisMode = FinancialChartXAxisMode.Ordinal;
+    public FinancialChartYAxisMode YAxisMode = FinancialChartYAxisMode.Numeric;
+    List<StockItem> Data;
+
+    public string[] ExcludedProps { get; set; } = new string[] { "Index", "Info" };
+    public CrosshairsDisplayMode CrosshairsMode = CrosshairsDisplayMode.Both;
+   
+    protected override void OnInitialized()
+    {
+        IgbFinancialChartModule.Register(IgniteUIBlazor);
+        InitData();
+    }
+
+    
+    public void InitData()
+    {
+        var today = DateTime.Now;
+        var year = today.Year;
+        var dateMonth = today.Month;
+        var dateEnd = new DateTime(year + 5, dateMonth, 1);
+        var dateStart = new DateTime(year - 1, dateMonth, 1);
+
+        var stockData = StocksUtility.GetStocksBetween(dateStart, dateEnd);
+
+        var minVal = int.MaxValue;
+        var maxVal = int.MinValue;
+        var minIndex = 0;
+        var maxIndex = 0;
+        var idx = 0;
+        var currentYear = 0;
+        var currentQuarter = 0;
+
+        // adding annotation data for some data item
+        foreach (var item in stockData) {
+
+            if (minVal > item.Close)
+            {
+                minVal = (int)item.Close;
+                minIndex = idx;
+            }
+            if (maxVal < item.Close)
+            {
+                maxVal = (int)item.Close;
+                maxIndex = idx;
+            }
+            var itemYear = StocksUtility.GetYear(item.Date);
+            if (currentYear != itemYear.Year)
+            {
+                currentYear = itemYear.Year;
+                item.Info = itemYear.Year.ToString();
+            }
+
+            var itemQuarter = StocksUtility.GetQuarter(item.Date);
+            if (currentQuarter != itemQuarter)
+            {
+                currentQuarter = (int)itemQuarter;
+                item.Info = "Q" + itemQuarter;
+            }
+
+            item.Index = idx;
+            item.Value = (int)item.Close;
+            idx++;
+        }
+
+        stockData[100].Info = "SPLIT";
+        stockData[200].Info = "SPLIT";
+        stockData[250].Info = "SPLIT";
+
+        stockData[130].Info = "DIV";
+        stockData[270].Info = "DIV";
+        stockData[320].Info = "DIV";
+
+        stockData[minIndex].Info = "MIN";
+        stockData[maxIndex].Info = "MAX";
+
+        this.Data = stockData;
+    }
+}
