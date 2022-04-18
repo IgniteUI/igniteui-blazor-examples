@@ -1,0 +1,55 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">   
+    <IgbLinearProgress Max=100 LabelAlign=@LinearProgressLabelAlign.BottomStart Value=@ProgressValue/>
+    <div class="buttonContainer">
+        <IgbIconButton @ref="RemoveIconRef" @onclick="OnRemoveIconClick" IconName="remove" Collection="material" />
+        <IgbIconButton @ref="AddIconRef" @onclick="OnAddIconClick" IconName="add" Collection="material" />        
+    </div>
+</div>
+
+@code {
+    
+    private double ProgressValue { get; set; }
+    private IgbIconButton AddIconRef { get; set; }
+    private IgbIconButton RemoveIconRef { get; set; }        
+
+    protected override void OnInitialized()
+    {
+        IgbLinearProgressModule.Register(IgniteUIBlazor);
+        IgbIconButtonModule.Register(IgniteUIBlazor);
+
+        this.ProgressValue = 0;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if(firstRender && this.AddIconRef != null && this.RemoveIconRef != null)
+        {
+            await this.AddIconRef.EnsureReady();
+            await this.RemoveIconRef.EnsureReady();
+
+            string addIcon = "<svg xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 0 24 24' width='24'><path d='M0 0h24v24H0z' fill='none'/><path d='M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z'/></svg>";
+            string removeIcon = "<svg xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 0 24 24' width='24'><path d='M0 0h24v24H0z' fill='none'/><path d='M19 13H5v-2h14v2z'/></svg>";
+
+            await this.AddIconRef.RegisterIconFromTextAsync("add", addIcon, "material");
+            await this.RemoveIconRef.RegisterIconFromTextAsync("remove", removeIcon, "material");            
+        }
+    }
+
+    private void OnAddIconClick(MouseEventArgs args)
+    {
+        this.ProgressValue = this.ProgressValue + 10;
+    }
+
+    private void OnRemoveIconClick(MouseEventArgs args)
+    {
+        if(this.ProgressValue > 0)
+        {
+            this.ProgressValue = this.ProgressValue - 10;
+        }
+    }
+}

@@ -1,0 +1,22 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <IgbLinearProgress Value=100 Variant=@ProgressBaseVariant.Primary/>
+
+    <IgbLinearProgress Value=100 Variant=@ProgressBaseVariant.Success Striped=true/>
+
+    <IgbLinearProgress Value=100 Variant=@ProgressBaseVariant.Danger />
+
+    <IgbLinearProgress Value=100 Variant=@ProgressBaseVariant.Info Striped=true />
+
+    <IgbLinearProgress Value=100 Variant=@ProgressBaseVariant.Warning />
+</div>
+
+@code {
+    
+    protected override void OnInitialized()
+    {
+        IgbLinearProgressModule.Register(IgniteUIBlazor);
+    }
+}
