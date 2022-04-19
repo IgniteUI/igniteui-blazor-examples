@@ -1,0 +1,28 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<style>
+    igc-slider
+    {
+        padding: 30px 30px  0px 30px;
+        flex-grow: 1;
+    }
+</style>
+
+<div class="container sample center">
+    <IgbSlider 
+        PrimaryTicks="6"
+        SecondaryTicks="1"
+        TickOrientation="SliderBaseTickOrientation.Mirror"
+        HideSecondaryLabels="true">
+    </IgbSlider>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        IgbSliderModule.Register(IgniteUIBlazor);
+    }
+
+}

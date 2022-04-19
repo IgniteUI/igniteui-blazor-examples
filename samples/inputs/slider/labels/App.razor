@@ -1,0 +1,30 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<style>
+	igc-slider
+	{
+        padding: 30px 30px  0px 30px;
+        flex-grow: 1;
+    }
+</style>
+
+<div class="container sample center">    
+    <IgbSlider 
+        Value="1" 
+        PrimaryTicks="3">
+            <IgbSliderLabel>Low</IgbSliderLabel>
+            <IgbSliderLabel>Medium</IgbSliderLabel>
+            <IgbSliderLabel>High</IgbSliderLabel>
+    </IgbSlider>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        IgbSliderModule.Register(IgniteUIBlazor);
+        IgbSliderLabelModule.Register(IgniteUIBlazor);
+    }
+
+}

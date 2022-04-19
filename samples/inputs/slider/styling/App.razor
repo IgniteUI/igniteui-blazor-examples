@@ -1,0 +1,67 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<style>
+    igc-slider {
+        padding: 30px 30px  0px 30px;
+    }
+
+    igc-range-slider {
+        padding: 30px 30px  0px 30px;
+    }
+
+    igc-slider::part(thumb) {
+    background: #28a745;
+    }
+
+    igc-slider::part(thumb):focus {
+        background: #28a745;
+        box-shadow: 0 0 0 2px #28a74694;
+    }
+
+    igc-slider::part(fill) {
+        display: block;
+        background: #28a745;
+    }
+
+    igc-range-slider::part(thumb) {
+        background: orange;
+    }
+
+    igc-range-slider::part(thumb):focus {
+        background: navy;
+        box-shadow: 0 0 0 2px orange;
+    }
+
+    igc-range-slider::part(track) {
+        display: block;
+        background: navy;
+    }
+
+    igc-range-slider::part(thumb-label-inner) {
+        background: navy;
+    }
+</style>
+
+<div class="container sample center">
+    <div class="slider-container">
+        <span class="slider-label">Slider</span>
+        <IgbSlider Value="40">
+        </IgbSlider>
+    </div>
+    <div class="slider-container">
+        <span class="slider-label"> Range Slider</span>
+        <IgbRangeSlider Lower="20" Upper="70">
+        </IgbRangeSlider>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        IgbSliderModule.Register(IgniteUIBlazor);
+        IgbRangeSliderModule.Register(IgniteUIBlazor);
+    }
+
+}

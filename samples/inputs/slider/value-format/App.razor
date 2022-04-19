@@ -1,0 +1,65 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<style>
+    igc-slider {
+        padding: 30px 50px;
+    }
+</style>
+
+<div class="container sample center">
+    <IgbSlider @ref="SliderRef"
+        PrimaryTicks="3"
+        SecondaryTicks="4">
+    </IgbSlider>
+    <IgbSlider @ref="SliderRef2"
+        ValueFormat="Storage: {0} GB">
+    </IgbSlider>
+</div>
+
+@code {
+    public IgbNumberFormatSpecifier formatSpecifier;
+    public IgbNumberFormatSpecifier formatSpecifier2;
+
+    private IgbSlider _slider;
+    public IgbSlider SliderRef
+    {
+        get
+        {
+            return _slider;
+        }
+        set
+        {
+            _slider = value;
+            formatSpecifier = new IgbNumberFormatSpecifier();
+            formatSpecifier.Style = "currency";
+            formatSpecifier.Currency = "USD";
+            _slider.ValueFormatOptions = formatSpecifier;
+            StateHasChanged();
+        }
+    }
+
+    private IgbSlider _slider2;
+    public IgbSlider SliderRef2
+    {
+        get
+        {
+            return _slider2;
+        }
+        set
+        {
+            _slider2 = value;
+            formatSpecifier2 = new IgbNumberFormatSpecifier();
+            formatSpecifier2.MinimumFractionDigits = 1;
+            _slider2.ValueFormatOptions = formatSpecifier2;
+            StateHasChanged();
+        }
+    }
+
+    protected override void OnInitialized()
+    {       
+        IgbSliderModule.Register(IgniteUIBlazor);
+        IgbNumberFormatSpecifierModule.Register(IgniteUIBlazor);
+    }
+
+}
