@@ -1,0 +1,63 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+        <IgbDataChart @ref="Chart" Height="100%" Width="100%"
+                   Subtitle="Stock Prices Series in Candlestick Display Type"
+                   SubtitleTopMargin="10"
+                   IsHorizontalZoomEnabled="true"
+                   IsVerticalZoomEnabled="true"
+                   DefaultInteraction="InteractionState.DragZoom"
+                   HorizontalViewScrollbarMode=SeriesViewerScrollbarMode.Persistent
+                   VerticalViewScrollbarMode=SeriesViewerScrollbarMode.Persistent>
+
+            <IgbCategoryXAxis Name="xAxis" Label="Label" DataSource="Data" />
+            <IgbNumericYAxis Name="yAxis" Title="Amount (in USD)" TitleRightMargin="10"
+                    LabelRightMargin="10"
+                    LabelHorizontalAlignment="HorizontalAlignment.Left"
+                    LabelLocation="AxisLabelsLocation.OutsideRight" />
+
+            <IgbFinancialPriceSeries XAxisName="xAxis"
+                    YAxisName="yAxis"
+                    DataSource="Data"
+                    DisplayType="PriceDisplayType.Candlestick"
+                    OpenMemberPath="Open"
+                    CloseMemberPath="Close"
+                    HighMemberPath="High"
+                    LowMemberPath="Low"
+                    VolumeMemberPath="Volume"
+                    ShowDefaultTooltip="true"
+                    IsTransitionInEnabled="true"
+                    Title="Price" />
+        </IgbDataChart>
+</div>
+
+@code {
+    private List<SampleFinancialItem> Data;
+
+    private IgbDataChart _chart;
+    public IgbDataChart Chart
+    {
+        get { return _chart; }
+        set {
+            _chart = value;
+            this.Chart.ActualWindowScaleHorizontal = 0.60;
+            this.Chart.ActualWindowScaleVertical = 0.60;
+            this.Chart.ActualWindowPositionVertical = 0.20;
+            this.Chart.ActualWindowPositionHorizontal = 0.20;
+            StateHasChanged();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartFinancialModule.Register(IgniteUIBlazor);
+        IgbDataChartFinancialCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+
+        Data = SampleFinancialData.Create();
+    }
+}
