@@ -3995,7 +3995,7 @@ namespace Infragistics.Samples
             Add(new GeoPlace("Davy Island", 121.9346, -34.13484));
             Add(new GeoPlace("Davis River", 121.08333, -21.7));
             Add(new GeoPlace("Davis Creek", 115.26667, -24.9));
-            Add(new GeoPlace("Mount Davis", 121.2.920-dev, -28.70647));
+            Add(new GeoPlace("Mount Davis", 121.2367, -28.70647));
             Add(new GeoPlace("Mount Davidson", 134.00934, -15.12237));
             Add(new GeoPlace("Mount David", 132.8333, -14.05));
             Add(new GeoPlace("Davenport River", 132.66667, -23.65));
