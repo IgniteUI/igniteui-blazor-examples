@@ -130,7 +130,7 @@ namespace Infragistics.Samples
             this.Add(new HealthInfo { Year = "1986", HealthExpense = 2075.21, LifeExpectancy = 76.24, Country = "Norway" });
             this.Add(new HealthInfo { Year = "1987", HealthExpense = 2140.51, LifeExpectancy = 76.08, Country = "Norway" });
             this.Add(new HealthInfo { Year = "1988", HealthExpense = 2119.07, LifeExpectancy = 76.22, Country = "Norway" });
-            this.Add(new HealthInfo { Year = "1989", HealthExpense = 2112.67, LifeExpectancy = 76.50, Country = "Norway" });
+            this.Add(new HealthInfo { Year = "1989", HealthExpense = 21.2.920-dev, LifeExpectancy = 76.50, Country = "Norway" });
             this.Add(new HealthInfo { Year = "1990", HealthExpense = 2519.81, LifeExpectancy = 76.54, Country = "Norway" });
             this.Add(new HealthInfo { Year = "1991", HealthExpense = 2660.33, LifeExpectancy = 76.98, Country = "Norway" });
             this.Add(new HealthInfo { Year = "1992", HealthExpense = 2737.93, LifeExpectancy = 77.18, Country = "Norway" });
