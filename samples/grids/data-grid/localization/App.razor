@@ -13,7 +13,6 @@
     <div class="options horizontal">
     <select @onchange="@((args) => OnLanguageChanged(args.Value.ToString()))">
         <option value="en">English</option>
-        <option value="fr">French</option>
         <option value="ja">Japanese</option>
     </select>
     </div>
@@ -96,8 +95,6 @@
         IgbColumnChooserModule.Register(IgniteUIBlazor);
 
         this.Employees = EmployeeData.Create(100, false);
-
-        Console.WriteLine("Data " + this.Employees.Count);
     }
 
     private void OnDataGridRef()
@@ -122,14 +119,13 @@
     {
         if (language != null)
         {
-      
-            var strings = await Http.GetStringAsync("resources/data-grid." + language + ".json");
+
+            var strings = await Http.GetStringAsync("data-grid." + language + ".json");
             await DataGridRef.SetCustomizedStringAsync("en", strings);
 
             // Strings for the summary text within a cell come from the datasource resource set so we will replace those values with the desired ones
             // directly on the datasource.
-            var dataSourceStrings = await Http.GetStringAsync("resources/data-source." + language + ".json");
-            await DataGridRef.ActualDataSource.SetCustomizedStringAsync("en", dataSourceStrings);
+            await DataGridRef.ActualDataSource.SetCustomizedStringAsync("en", strings);
 
             // This helps redraw the grid cells which will update any visible summary cells so their text updates to show the new language.
             await DataGridRef.InvalidateVisibleRowsAsync();
@@ -138,7 +134,7 @@
             // language because it will replace specific values within the resource set and if the resource set has not been loaded then it can't replace it. With this method
             // you can target a specific string by key, in this case the "Apply" key, and replace it with whatever text you like. For IgbDataGrid this method is not useful for anything
             // besides English since we do not provide any other languages yet however it is useful for charts since we do provide multiple languages.
-            
+
             //await DataGridRef.SetCustomizedStringAsync("en", "Apply", "Hello World");
         }
     }
