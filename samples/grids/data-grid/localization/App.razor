@@ -9,82 +9,70 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
+    @if (Employees != null)
+    {
+        <div style="overflow: hidden">
+            <IgbDataGrid Height="100%" Width="100%"
+                    @ref="@DataGridRef"
+                    RowHeight="50" 
+                    DataSource="Employees"
+                    AutoGenerateColumns="false"
+                    IsColumnOptionsEnabled="true"
+                    IsGroupCollapsable="true"
+                    ActivationMode="GridActivationMode.Cell"
+                    SummaryScope="@SummaryScope.Root"
+                    GroupSummaryDisplayMode="@GroupSummaryDisplayMode.RowBottom"
+                    GroupHeaderDisplayMode="@GroupHeaderDisplayMode.Combined"
+                    CornerRadiusTopLeft="0"
+                    CornerRadiusTopRight="0"
+                    ColumnMovingSeparatorWidth="2"
+                    ColumnMovingMode="ColumnMovingMode.Deferred"
+                    ColumnMovingAnimationMode="ColumnMovingAnimationMode.SlideOver"
+                    ColumnShowingAnimationMode="ColumnShowingAnimationMode.SlideFromRightAndFadeIn"
+                    ColumnHidingAnimationMode="ColumnHidingAnimationMode.SlideToRightAndFadeOut"
+                    SelectionMode="GridSelectionMode.SingleRow">
 
-    <div class="options horizontal">
-    <select @onchange="@((args) => OnLanguageChanged(args.Value.ToString()))">
-        <option value="en">English</option>
-        <option value="ja">Japanese</option>
-    </select>
-    </div>
-    <div class="container vertical">
-        
-        @if (Employees != null)
-        {
-            <div style="overflow: hidden">
-                <IgbDataGrid Height="100%" Width="100%"
-                      @ref="@DataGridRef"
-                      RowHeight="50" 
-                      DataSource="Employees"
-                      AutoGenerateColumns="false"
-                      IsColumnOptionsEnabled="true"
-                      IsGroupCollapsable="true"
-                      ActivationMode="GridActivationMode.Cell"
-                      SummaryScope="@SummaryScope.Root"
-                      GroupSummaryDisplayMode="@GroupSummaryDisplayMode.RowBottom"
-                      GroupHeaderDisplayMode="@GroupHeaderDisplayMode.Combined"
-                      CornerRadiusTopLeft="0"
-                      CornerRadiusTopRight="0"
-                      ColumnMovingSeparatorWidth="2"
-                      ColumnMovingMode="ColumnMovingMode.Deferred"
-                      ColumnMovingAnimationMode="ColumnMovingAnimationMode.SlideOver"
-                      ColumnShowingAnimationMode="ColumnShowingAnimationMode.SlideFromRightAndFadeIn"
-                      ColumnHidingAnimationMode="ColumnHidingAnimationMode.SlideToRightAndFadeOut"
-                      SelectionMode="GridSelectionMode.SingleRow">
+                <IgbImageColumn IsEditable="false" Width="@("*>120")" Field="Photo" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
+                            HorizontalAlignment="@CellContentHorizontalAlignment.Stretch"  />
 
-                    <IgbImageColumn IsEditable="false" Width="@("*>120")" Field="Photo" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
-                                HorizontalAlignment="@CellContentHorizontalAlignment.Stretch"  />
+                <IgbTextColumn Width="@("*>130")" Field="Name" />
 
-                    <IgbTextColumn Width="@("*>130")" Field="Name" />
+                @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
+                <IgbTemplateColumn Width="@("*>160")" Field="Sales" CellUpdatingScript="onUpdatingSalesColumn"
+                                HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
 
-                    @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
-                    <IgbTemplateColumn Width="@("*>160")" Field="Sales" CellUpdatingScript="onUpdatingSalesColumn"
-                                    HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
+                <IgbNumericColumn Width="@("*>130")" Field="Salary" PositivePrefix="$"
+                            ShowGroupingSeparator="true"
+                            MaxFractionDigits="0"
+                            MinFractionDigits="0" />
 
-                    <IgbNumericColumn Width="@("*>130")" Field="Salary" PositivePrefix="$"
-                                ShowGroupingSeparator="true"
-                                MaxFractionDigits="0"
-                                MinFractionDigits="0" />
+                <IgbNumericColumn Width="100" Field="Age" HorizontalAlignment="@CellContentHorizontalAlignment.Center"/>
+                <IgbDateTimeColumn Width="@("*>140")" Field="Birthday" HeaderText="Date of Birth" />
 
-                    <IgbNumericColumn Width="100" Field="Age" HorizontalAlignment="@CellContentHorizontalAlignment.Center"/>
-                    <IgbDateTimeColumn Width="@("*>140")" Field="Birthday" HeaderText="Date of Birth" />
+                <IgbImageColumn IsEditable="false" Width="@("*>110")" Field="CountryFlag" HeaderText="Country" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
+                            HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
 
-                    <IgbImageColumn IsEditable="false" Width="@("*>110")" Field="CountryFlag" HeaderText="Country" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
-                                HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
+                @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
+                <IgbTemplateColumn Width="@("*>170")" Field="Address" CellUpdatingScript="onUpdatingAddressColumn" />
+                <IgbTemplateColumn Width="@("*>130")" Field="Phone" CellUpdatingScript="onUpdatingPhoneColumn" />
 
-                    @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
-                    <IgbTemplateColumn Width="@("*>170")" Field="Address" CellUpdatingScript="onUpdatingAddressColumn" />
-                    <IgbTemplateColumn Width="@("*>130")" Field="Phone" CellUpdatingScript="onUpdatingPhoneColumn" />
+                <IgbTextColumn Width="@("*>120")" Field="Income" />
+                <IgbTextColumn Width="@("*>120")" Field="Email" IsEditable="false" />
 
-                    <IgbTextColumn Width="@("*>120")" Field="Income" />
-                    <IgbTextColumn Width="@("*>120")" Field="Email" IsEditable="false" />
-
-                </IgbDataGrid>
-            </div>
-        }
-
-
-    </div>
+            </IgbDataGrid>
+        </div>
+    }
 </div>
 
 @code {
 
     private List<Employee> Employees;
-
+    private String GridStrings;
     private IgbDataGrid _grid;
     private IgbDataGrid DataGridRef
     {
         get { return _grid; }
-        set { _grid = value; this.OnDataGridRef(); StateHasChanged(); }
+        set { _grid = value; Task.Delay(1).ContinueWith((t) => this.OnDataGridRef()); StateHasChanged(); }
     }
 
     protected override void OnInitialized()
@@ -97,7 +85,7 @@
         this.Employees = EmployeeData.Create(100, false);
     }
 
-    private void OnDataGridRef()
+    private async Task OnDataGridRef()
     {
         var peopleGroup = new IgbColumnGroupDescription() { Field = "Country", DisplayName = "Country" };
         var incomeGroup = new IgbColumnGroupDescription() { Field = "Income", DisplayName = "Income" };
@@ -113,30 +101,79 @@
         this._grid.SummaryDescriptions.Add(peopleSummary);
         this._grid.SummaryDescriptions.Add(salarySummary);
         this._grid.SummaryDescriptions.Add(saleSummary);
+
+        //Specific resource strings for Column-Options
+        await DataGridRef.SetCustomizedStringAsync("en", DataGridResourceStrings());
+        //Specific resource strings for Summaries
+        await DataGridRef.ActualDataSource.SetCustomizedStringAsync("en", DataGridResourceStrings());
+        await DataGridRef.InvalidateVisibleRowsAsync();
     }
 
-    private async void OnLanguageChanged(string language)
+    public string DataGridResourceStrings()
     {
-        if (language != null)
-        {
-
-            var strings = await Http.GetStringAsync("data-grid." + language + ".json");
-            await DataGridRef.SetCustomizedStringAsync("en", strings);
-
-            // Strings for the summary text within a cell come from the datasource resource set so we will replace those values with the desired ones
-            // directly on the datasource.
-            await DataGridRef.ActualDataSource.SetCustomizedStringAsync("en", strings);
-
-            // This helps redraw the grid cells which will update any visible summary cells so their text updates to show the new language.
-            await DataGridRef.InvalidateVisibleRowsAsync();
-
-            // There is another way to update text if all you desire is updating one or two specific strings. This option requires that you load the locale module for the desired
-            // language because it will replace specific values within the resource set and if the resource set has not been loaded then it can't replace it. With this method
-            // you can target a specific string by key, in this case the "Apply" key, and replace it with whatever text you like. For IgbDataGrid this method is not useful for anything
-            // besides English since we do not provide any other languages yet however it is useful for charts since we do provide multiple languages.
-
-            //await DataGridRef.SetCustomizedStringAsync("en", "Apply", "Hello World");
-        }
+        GridStrings =
+            "{\"Apply\":\"[JP]Apply\"," +
+            "\"Cancel\":\"[JP]Cancel\"," +
+            "\"Clear_Column_Filter\":\"[JP] clear column filters\"," +
+            "\"Column_Move\":\"[JP]Move\"," +
+            "\"Column_Move_Left\":\"[JP]Left\"," +
+            "\"Column_Move_Right\":\"[JP]Right\"," +
+            "\"Column_Options_Summaries\":\"[JP]Summaries\"," +
+            "\"Column_Options_Summary_Average\":\"[JP]Average\"," +
+            "\"Column_Options_Summary_Count\":\"[JP]Count\"," +
+            "\"Column_Options_Summary_Maximum\":\"[JP]Maximum\"," +
+            "\"Column_Options_Summary_Minimum\":\"[JP]Minimum\"," +
+            "\"Column_Options_Summary_Sum\":\"[JP]Sum\"," +
+            "\"Column_Pin\":\"[JP]Pin\"," +
+            "\"Column_Pin_Left\":\"[JP]Left\"," +
+            "\"Column_Pin_Right\":\"[JP]Right\"," +
+            "\"Column_Sort\":\"[JP]Sort\"," +
+            "\"Column_Sort_Ascending\":\"[JP]Asc\"," +
+            "\"Column_Sort_Descending\":\"[JP]Desc\"," +
+            "\"ComparisonOperator_Bottom\":\"[JP]Bottom\"," +
+            "\"ComparisonOperator_BottomPercentile\":\"[JP]Bottom percentile\"," +
+            "\"ComparisonOperator_Contains\":\"[JP]Contains\"," +
+            "\"ComparisonOperator_DoesNotContain\":\"[JP]Does not contain\"," +
+            "\"ComparisonOperator_DoesNotEndWith\":\"[JP]Does not end with\"," +
+            "\"ComparisonOperator_DoesNotMatch\":\"[JP]Does not match\"," +
+            "\"ComparisonOperator_DoesNotStartWith\":\"[JP]Does not start with\"," +
+            "\"ComparisonOperator_Empty\":\"[JP]Empty\"," +
+            "\"ComparisonOperator_EndsWith\":\"[JP]Ends with\"," +
+            "\"ComparisonOperator_Equals\":\"[JP]Equals\"," +
+            "\"ComparisonOperator_False\":\"[JP]False\"," +
+            "\"ComparisonOperator_GreaterThan\":\"[JP]Greater than\"," +
+            "\"ComparisonOperator_GreaterThanOrEqualTo\":\"[JP]Greater than or equal to\"," +
+            "\"ComparisonOperator_LastMonth\":\"[JP]Last Month\"," +
+            "\"ComparisonOperator_LastQuater\":\"[JP]Last Quarter\"," +
+            "\"ComparisonOperator_LastWeek\":\"[JP]Last Week\"," +
+            "\"ComparisonOperator_LastYear\":\"[JP]Last Year\"," +
+            "\"ComparisonOperator_LessThan\":\"[JP]Less than\"," +
+            "\"ComparisonOperator_LessThanOrEqualTo\":\"[JP]Less than or equal to\"," +
+            "\"ComparisonOperator_NextMonth\":\"[JP]Next Month\"," +
+            "\"ComparisonOperator_NextQuater\":\"[JP]Next Quarter\"," +
+            "\"ComparisonOperator_NextWeek\":\"[JP]Next Week\"," +
+            "\"ComparisonOperator_NextYear\":\"[JP]Next Year\"," +
+            "\"ComparisonOperator_NotEmpty\":\"[JP]Not empty\"," +
+            "\"ComparisonOperator_NotEquals\":\"[JP]Not equals\"," +
+            "\"ComparisonOperator_StartsWith\":\"[JP]Starts with\"," +
+            "\"ComparisonOperator_ThisMonth\":\"[JP]This Month\"," +
+            "\"ComparisonOperator_ThisQuarter\":\"[JP]This Quarter\"," +
+            "\"ComparisonOperator_ThisWeek\":\"[JP]This Week\"," +
+            "\"ComparisonOperator_ThisYear\":\"[JP]This Year\"," +
+            "\"ComparisonOperator_Today\":\"[JP]Today\"," +
+            "\"ComparisonOperator_Tomorrow\":\"[JP]Tomorrow\"," +
+            "\"ComparisonOperator_Top\":\"[JP]Top\"," +
+            "\"ComparisonOperator_TopPercentile\":\"[JP]Top percentile\"," +
+            "\"ComparisonOperator_True\":\"[JP]True\"," +
+            "\"ComparisonOperator_Yesterday\":\"[JP]Yesterday\"," +
+            "\"Filter_Columns_List\":\"[JP]Filter columns list ...\"," +
+            "\"Search\":\"[JP]Search\"," +
+            "\"Select_All\":\"[JP](Select All)\"," +
+            "\"DataSource_Summary_Avg\":\"[JP]Avg\"," +
+            "\"DataSource_Summary_Count\":\"[JP]Count\"," +
+            "\"DataSource_Summary_Max\":\"[JP]Max\"," +
+            "\"DataSource_Summary_Min\":\"[JP]Min\"," +
+            "\"DataSource_Summary_Sum\":\"[JP]Sum\"}";
+        return GridStrings;
     }
-
 }
