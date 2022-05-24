@@ -10,7 +10,7 @@
             <div class="options horizontal" >
                 <label class="options-label" >X-Axis Gap</label>
                 <label class="options-value" >@XAxisGapValue</label>
-                <input class="options-slider" type="range" min="0" max="1" step="0.05" value="1" @oninput="OnXAxisGapSliderChange"/>
+                <input class="options-slider" type="range" min="@XAxisMinimumGap" max="@XAxisMaximumGap" step="0.05" value="1" @oninput="OnXAxisGapSliderChange"/>
             </div>
         </div>
     </div>
@@ -25,7 +25,9 @@
                            IsHorizontalZoomEnabled="false"
                            IsVerticalZoomEnabled="false"
                            XAxisInterval="1"
-                           XAxisGap="@XAxisGapValue">
+                           XAxisGap="@XAxisGapValue"
+                           XAxisMaximumGap=@XAxisMaximumGap
+                           XAxisMinimumGapSize=@XAxisMinimumGap>
             </IgbCategoryChart>
         }
     </div>
@@ -36,7 +38,8 @@
     private List<TemperatureInfo> Data = new TemperatureData();
 
     private double XAxisGapValue = 1;
-
+    private double XAxisMaximumGap = 1.8;
+    private double XAxisMinimumGap = 0.5;
     protected override void OnInitialized()
     {
         IgbCategoryChartModule.Register(IgniteUIBlazor);
