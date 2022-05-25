@@ -28,8 +28,7 @@
 
                 <IgbTextColumn Width="@("*>130")" Field="Name" />
 
-                @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
-                <IgbTemplateColumn Width="@("*>160")" Field="Sales" CellUpdatingScript="onUpdatingSalesColumn"
+                <IgbNumericColumn Width="@("*>130")" Field="Sales" 
                                 HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
 
                 <IgbNumericColumn Width="@("*>130")" Field="Salary" PositivePrefix="$"
@@ -43,9 +42,8 @@
                 <IgbImageColumn IsEditable="false" Width="@("*>110")" Field="CountryFlag" HeaderText="Country" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
                             HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
 
-                @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
-                <IgbTemplateColumn Width="@("*>170")" Field="Address" CellUpdatingScript="onUpdatingAddressColumn" />
-                <IgbTemplateColumn Width="@("*>130")" Field="Phone" CellUpdatingScript="onUpdatingPhoneColumn" />
+                <IgbTextColumn Width="@("*>170")" Field="Address" />
+                <IgbTextColumn Width="@("*>130")" Field="Phone" />
 
                 <IgbTextColumn Width="@("*>120")" Field="Income" />
                 <IgbTextColumn Width="@("*>120")" Field="Email" IsEditable="false" />
@@ -73,7 +71,7 @@
         IgbDataGridModule.Register(IgniteUIBlazor);
         IgbColumnChooserModule.Register(IgniteUIBlazor);
 
-        this.Employees = EmployeeData.Create(100, false);
+        this.Employees = EmployeeDataJA.Create(100, false);
     }
 
     private async Task OnDataGridRef()
