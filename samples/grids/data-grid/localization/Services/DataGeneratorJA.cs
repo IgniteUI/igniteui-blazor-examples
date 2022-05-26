@@ -8,12 +8,10 @@ namespace Infragistics.Samples
     {
         readonly static string[] websites = { ".com", ".gov", ".edu", ".org" };
         readonly static string[] emails = { "gmail.com", "yahoo.com", "twitter.com" };
-        //readonly static string[] gendersEn = { "male", "female" };
         readonly static string[] genders = { "男", "女" };
         readonly static string[] maleNames = { "カイル", "オスカー", "ラルフ", "マイク", "ビル", "フランク", "ハワード", "ジャック", "ラリー", "ピート", "スティーブ", "ヴィンス", "マーク", "アレックス", "マックス", "ブライアン", "クリス", "アンドリュー", "マーティン", "マイク", "スティーブ", "グレン", "ブルース" };
         readonly static string[] femaleNames = { "ジーナ", "アイリーン", "ケイティー", "ブレンダ", "ケイシー", "フィオーナ", "ホリー", "ケイト", "リズ", "パメラ", "ネリー", "マルサ", "モニカ", "アンナ", "ジェシカ", "ソフィア", "イザベラ", "マーゴ", "ジェーン", "オードリー", "サリー", "メラニー", "グレタ", "オーロラ", "サリー" };
         readonly static string[] lastNames = { "アダムス", "クローリー", "エリス", "マルチネス", "アーバイン", "マクスウェル", "クラーク", "オーエンス", "ルーニー", "リンカーン", "トーマス", "スペーシー", "モーガン", "キング", "ニュートン", "フィッツジェラルド", "ホームズ", "ジェファーソン", "ランドリー", "ベリー", "ペレス", "スペンサー", "スター", "カーター", "エドワーズ", "スターク", "ジョンソン", "フィッツ", "チーフ", "ブランク", "ペリー", "ストーン", "ウィリアムズ", "レーン", "ジョブズ", "アダムス", "パワー", "テスラ" };
-        //readonly static string[] countriesEn = { "USA", "UK", "France", "Canada", "Poland" };
         readonly static string[] countries = { "アメリカ合衆国", "イギリス", "フランス", "カナダ", "ポーランド" };
         readonly static string[] citiesUS = { "ニューヨーク", "ロサンゼルス", "マイアミ", "サンフランシスコ", "サンディエゴ", "ラスベガス" };
         readonly static string[] citiesUK = { "ロンドン", "リバプール", "マンチェスター" };
@@ -112,7 +110,7 @@ namespace Infragistics.Samples
                 return GetItem(citiesGR);
             }
             else
-            { // if (country === "United Kingdom") {
+            {
                 return GetItem(citiesUK);
             }
         }
