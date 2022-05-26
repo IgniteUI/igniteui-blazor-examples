@@ -233,15 +233,15 @@ namespace Infragistics.Samples
         {
             if (salary < 50000)
             {
-                return "Low";
+                return "低い";
             }
             else if (salary < 100000)
             {
-                return "Average";
+                return "平均";
             }
             else
             {
-                return "High";
+                return "高い";
             }
         }
 
