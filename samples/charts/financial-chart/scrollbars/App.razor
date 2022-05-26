@@ -16,7 +16,8 @@
         IsVerticalZoomEnabled="true"
         IsHorizontalZoomEnabled="true"
         HorizontalViewScrollbarMode=SeriesViewerScrollbarMode.Persistent
-        VerticalViewScrollbarMode=SeriesViewerScrollbarMode.Persistent/>
+        VerticalViewScrollbarMode=SeriesViewerScrollbarMode.Persistent
+        WindowRect="@(new Rect(1,1,0.90,0.90))"/>
 </div>
 
 @code {
@@ -28,16 +29,5 @@
     {
         IgbFinancialChartModule.Register(IgniteUIBlazor);
         IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-    }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        await base.OnAfterRenderAsync(firstRender);
-        if(firstRender && this.Chart != null)
-        {
-            await this.Chart.EnsureReady();
-            //change window rect
-            Chart.WindowRect = new Rect(1,1,.90,.90);
-        }
     }
 }
