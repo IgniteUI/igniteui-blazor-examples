@@ -1,0 +1,33 @@
+
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+    <IgbFinancialChart
+        @ref="Chart"
+        Width="100%"
+        Height="100%"
+        ChartTitle="S&P 500"
+        YAxisTitle="Financial Prices"
+        ChartType="FinancialChartType.Candle"
+        DataSource="Data"
+        ZoomSliderType="FinancialChartZoomSliderType.None"
+        IsToolbarVisible="false"
+        IsVerticalZoomEnabled="true"
+        IsHorizontalZoomEnabled="true"
+        HorizontalViewScrollbarMode=SeriesViewerScrollbarMode.Persistent
+        VerticalViewScrollbarMode=SeriesViewerScrollbarMode.Persistent
+        WindowRect="@(new Rect(1,1,0.90,0.90))"/>
+</div>
+
+@code {
+
+    public List<StockIndexInfo> Data = new StockIndexData();
+    public IgbFinancialChart Chart;
+
+    protected override async Task OnInitializedAsync()
+    {
+        IgbFinancialChartModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+    }
+}
