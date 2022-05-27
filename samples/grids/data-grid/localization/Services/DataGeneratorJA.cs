@@ -20,7 +20,7 @@ namespace Infragistics.Samples
         readonly static string[] citiesPL = { "クラクフ", "ワルシャワ", "ヴロツワフ", "グダニスク" };
         readonly static string[] citiesJP = { "東京", "大阪", "京都", "横浜" };
         readonly static string[] citiesGR = { "ベルリン", "ボン", "ケルン", "ミュンヘン", "ハンブルク" };
-        readonly static string[] roadSuffixes = { "通り", "筋", "小路" };
+        readonly static string[] roadSuffixes = { "通り", "通り", "通り" };
         readonly static string[] roadNames = { "メイン", "ガーデン", "ブロード", "オーク", "シダー", "パーン", "パイン", "エルム", "マーケット", "ヒル" };
 
         public static Random Rand = new Random();
