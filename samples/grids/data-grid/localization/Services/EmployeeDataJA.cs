@@ -60,7 +60,7 @@ namespace Infragistics.Samples
         public int Week { get; set; }
     }
 
-    public static class EmployeeData
+    public static class EmployeeDataJA
     {
         public static List<Employee> Create(int? count, bool? useProductivity)
         {
