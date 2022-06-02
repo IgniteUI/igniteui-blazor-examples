@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace Infragistics.Samples
 {
-    public class Employee : INotifyPropertyChanged
+    public class EmployeeJA : INotifyPropertyChanged
     {
         public string ID { get; set; }
         public string Address { get; set; }
@@ -24,7 +24,7 @@ namespace Infragistics.Samples
         public int Index { get; set; }
 
         public DateTime Birthday { get; set; }
-        public List<Productivity> Productivity { get; set; }
+        public List<ProductivityJA> Productivity { get; set; }
 
         private string _Country;
         public string Country
@@ -39,8 +39,8 @@ namespace Infragistics.Samples
         {
             // syncronizing country name and country flag
             _Country = countryName;
-            CountryFlag = DataGenerator.GetCountryFlag(countryName);
-            City = DataGenerator.GetCity(countryName);
+            CountryFlag = DataGeneratorJA.GetCountryFlag(countryName);
+            City = DataGeneratorJA.GetCity(countryName);
             OnPropertyChanged("Country");
         }
 
@@ -54,53 +54,53 @@ namespace Infragistics.Samples
         }
     }
 
-    public class Productivity
+    public class ProductivityJA
     {
         public double Value { get; set; }
         public int Week { get; set; }
     }
 
-    public static class EmployeeData
+    public static class EmployeeDataJA
     {
-        public static List<Employee> Create(int? count, bool? useProductivity)
+        public static List<EmployeeJA> Create(int? count, bool? useProductivity)
         {
             if (count == null) count = 100;
 
-            var employees = new List<Employee>();
+            var employees = new List<EmployeeJA>();
             for (int i = 0; i < count; i++)
             {
-                var age = Math.Round(DataGenerator.GetNumber(20, 40));
-                var gender = DataGenerator.GetGender();
-                var firstName = DataGenerator.GetNameFirst(gender);
-                var lastName = DataGenerator.GetNameLast();
-                var street = DataGenerator.GetStreet();
-                var country = DataGenerator.GetCountry();
-                var city = DataGenerator.GetCity(country);
-                var email = firstName.ToLower() + "@" + DataGenerator.GetEmail();
-                var photoPath = DataGenerator.GetPhoto(gender);
+                var age = Math.Round(DataGeneratorJA.GetNumber(20, 40));
+                var gender = DataGeneratorJA.GetGender();
+                var firstName = DataGeneratorJA.GetNameFirst(gender);
+                var lastName = DataGeneratorJA.GetNameLast();
+                var street = DataGeneratorJA.GetStreet();
+                var country = DataGeneratorJA.GetCountry();
+                var city = DataGeneratorJA.GetCity(country);
+                var email = firstName.ToLower() + "@" + DataGeneratorJA.GetEmail();
+                var photoPath = DataGeneratorJA.GetPhoto(gender);
 
-                var employee = new Employee
+                var employee = new EmployeeJA
                 {
                     Index = i,
                     Address = street + ", " + city,
                     Age = age,
-                    Birthday = DataGenerator.GetBirthday(),
+                    Birthday = DataGeneratorJA.GetBirthday(),
                     City = city,
                     Email = email,
                     Gender = gender,
-                    ID = DataGenerator.Pad(1001 + i, 4),
+                    ID = DataGeneratorJA.Pad(1001 + i, 4),
                     FirstName = firstName,
                     LastName = lastName,
                     Name = firstName + " " + lastName,
                     Photo = photoPath,
-                    Phone = DataGenerator.GetPhone(),
-                    Street = DataGenerator.GetStreet(),
-                    Salary = DataGenerator.GetNumber(40, 200) * 1000,
-                    Sales = DataGenerator.GetNumber(200, 980) * 1000,
+                    Phone = DataGeneratorJA.GetPhone(),
+                    Street = DataGeneratorJA.GetStreet(),
+                    Salary = DataGeneratorJA.GetNumber(40, 200) * 1000,
+                    Sales = DataGeneratorJA.GetNumber(200, 980) * 1000,
                 };
                 employee.Country = country;
 
-                employee.Income = DataGenerator.GetIncomeRange(employee.Salary);
+                employee.Income = DataGeneratorJA.GetIncomeRange(employee.Salary);
 
                 if (useProductivity.HasValue && useProductivity.Value)
                 {
@@ -112,14 +112,14 @@ namespace Infragistics.Samples
             return employees;
         }
 
-        public static List<Productivity> GetProductivity(int weekCount)
+        public static List<ProductivityJA> GetProductivity(int weekCount)
         {
-            var productivity = new List<Productivity>();
+            var productivity = new List<ProductivityJA>();
 
             for (var w = 1; w <= weekCount; w++)
             {
-                var value = DataGenerator.GetNumber(-50, 50);
-                var prod = new Productivity
+                var value = DataGeneratorJA.GetNumber(-50, 50);
+                var prod = new ProductivityJA
                 {
                     Value = value,
                     Week = w

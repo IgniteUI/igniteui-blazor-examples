@@ -23,32 +23,30 @@
                     SummaryScope="@SummaryScope.Root"
                     SelectionMode="GridSelectionMode.SingleRow">
 
-                <IgbImageColumn IsEditable="false" Width="@("*>120")" Field="Photo" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
+                <IgbImageColumn IsEditable="false" Width="@("*>120")" Field="Photo" HeaderText="写真" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
                             HorizontalAlignment="@CellContentHorizontalAlignment.Stretch"  />
 
-                <IgbTextColumn Width="@("*>130")" Field="Name" />
+                <IgbTextColumn Width="@("*>130")" Field="Name" HeaderText="名前" />
 
-                @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
-                <IgbTemplateColumn Width="@("*>160")" Field="Sales" CellUpdatingScript="onUpdatingSalesColumn"
-                                HorizontalAlignment="@CellContentHorizontalAlignment.Center" />
+                <IgbNumericColumn Width="@("*>130")" Field="Sales" 
+                                HorizontalAlignment="@CellContentHorizontalAlignment.Center" HeaderText="売上高" />
 
                 <IgbNumericColumn Width="@("*>130")" Field="Salary" PositivePrefix="$"
                             ShowGroupingSeparator="true"
                             MaxFractionDigits="0"
-                            MinFractionDigits="0" />
+                            MinFractionDigits="0"
+                            HeaderText="給料"/>
 
-                <IgbNumericColumn Width="100" Field="Age" HorizontalAlignment="@CellContentHorizontalAlignment.Center"/>
-                <IgbDateTimeColumn Width="@("*>140")" Field="Birthday" HeaderText="Date of Birth" />
+                <IgbNumericColumn Width="100" Field="Age" HorizontalAlignment="@CellContentHorizontalAlignment.Center" HeaderText="年齢"/>
+                <IgbDateTimeColumn Width="@("*>140")" Field="Birthday" HeaderText="生年月日" />
 
-                <IgbImageColumn IsEditable="false" Width="@("*>110")" Field="CountryFlag" HeaderText="Country" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
+                <IgbImageColumn IsEditable="false" Width="@("*>110")" Field="CountryFlag" HeaderText="国旗" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
                             HorizontalAlignment="@CellContentHorizontalAlignment.Stretch" />
 
-                @*NOTE: CellUpdatingScript is implemented in wwwroot/*.js file *@
-                <IgbTemplateColumn Width="@("*>170")" Field="Address" CellUpdatingScript="onUpdatingAddressColumn" />
-                <IgbTemplateColumn Width="@("*>130")" Field="Phone" CellUpdatingScript="onUpdatingPhoneColumn" />
+                <IgbTextColumn Width="@("*>170")" Field="Address" HeaderText="住所"/>
+                <IgbTextColumn Width="@("*>130")" Field="Phone" HeaderText="電話"/>
 
-                <IgbTextColumn Width="@("*>120")" Field="Income" />
-                <IgbTextColumn Width="@("*>120")" Field="Email" IsEditable="false" />
+                <IgbTextColumn Width="@("*>120")" Field="Income" HeaderText="所得"/>
 
             </IgbDataGrid>
         </div>
@@ -57,7 +55,7 @@
 
 @code {
 
-    private List<Employee> Employees;
+    private List<EmployeeJA> Employees;
     private String GridStrings;
     private IgbDataGrid _grid;
     private IgbDataGrid DataGridRef
@@ -73,23 +71,23 @@
         IgbDataGridModule.Register(IgniteUIBlazor);
         IgbColumnChooserModule.Register(IgniteUIBlazor);
 
-        this.Employees = EmployeeData.Create(100, false);
+        this.Employees = EmployeeDataJA.Create(100, false);
     }
 
     private async Task OnDataGridRef()
     {
-        var peopleGroup = new IgbColumnGroupDescription() { Field = "Country", DisplayName = "Country" };
-        var incomeGroup = new IgbColumnGroupDescription() { Field = "Income", DisplayName = "Income" };
-        this._grid.GroupDescriptions.Add(peopleGroup);
+        var countryGroup = new IgbColumnGroupDescription() { Field = "Country", DisplayName = "国" };
+        var incomeGroup = new IgbColumnGroupDescription() { Field = "Income", DisplayName = "所得" };
+        this._grid.GroupDescriptions.Add(countryGroup);
         this._grid.GroupDescriptions.Add(incomeGroup);
 
         var ageSummary = new IgbColumnSummaryDescription() { Field = "Age", Operand = SummaryOperand.Average };
-        var peopleSummary = new IgbColumnSummaryDescription() { Field = "Photo", Operand = SummaryOperand.Count };
+        var photoSummary = new IgbColumnSummaryDescription() { Field = "Photo", Operand = SummaryOperand.Count };
         var salarySummary = new IgbColumnSummaryDescription() { Field = "Salary", Operand = SummaryOperand.Sum };
         var saleSummary = new IgbColumnSummaryDescription() { Field = "Sales", Operand = SummaryOperand.Max };
 
         this._grid.SummaryDescriptions.Add(ageSummary);
-        this._grid.SummaryDescriptions.Add(peopleSummary);
+        this._grid.SummaryDescriptions.Add(photoSummary);
         this._grid.SummaryDescriptions.Add(salarySummary);
         this._grid.SummaryDescriptions.Add(saleSummary);
 
@@ -103,68 +101,68 @@
     public string DataGridResourceStrings()
     {
         GridStrings =
-            "{\"Apply\":\"[JP]Apply\"," +
-            "\"Cancel\":\"[JP]Cancel\"," +
-            "\"Clear_Column_Filter\":\"[JP] clear column filters\"," +
-            "\"Column_Move\":\"[JP]Move\"," +
-            "\"Column_Move_Left\":\"[JP]Left\"," +
-            "\"Column_Move_Right\":\"[JP]Right\"," +
-            "\"Column_Options_Summaries\":\"[JP]Summaries\"," +
-            "\"Column_Options_Summary_Average\":\"[JP]Average\"," +
-            "\"Column_Options_Summary_Count\":\"[JP]Count\"," +
-            "\"Column_Options_Summary_Maximum\":\"[JP]Maximum\"," +
-            "\"Column_Options_Summary_Minimum\":\"[JP]Minimum\"," +
-            "\"Column_Options_Summary_Sum\":\"[JP]Sum\"," +
-            "\"Column_Pin\":\"[JP]Pin\"," +
-            "\"Column_Pin_Left\":\"[JP]Left\"," +
-            "\"Column_Pin_Right\":\"[JP]Right\"," +
-            "\"Column_Sort\":\"[JP]Sort\"," +
-            "\"Column_Sort_Ascending\":\"[JP]Asc\"," +
-            "\"Column_Sort_Descending\":\"[JP]Desc\"," +
-            "\"ComparisonOperator_Bottom\":\"[JP]Bottom\"," +
-            "\"ComparisonOperator_BottomPercentile\":\"[JP]Bottom percentile\"," +
-            "\"ComparisonOperator_Contains\":\"[JP]Contains\"," +
-            "\"ComparisonOperator_DoesNotContain\":\"[JP]Does not contain\"," +
-            "\"ComparisonOperator_DoesNotEndWith\":\"[JP]Does not end with\"," +
-            "\"ComparisonOperator_DoesNotMatch\":\"[JP]Does not match\"," +
-            "\"ComparisonOperator_DoesNotStartWith\":\"[JP]Does not start with\"," +
-            "\"ComparisonOperator_Empty\":\"[JP]Empty\"," +
-            "\"ComparisonOperator_EndsWith\":\"[JP]Ends with\"," +
-            "\"ComparisonOperator_Equals\":\"[JP]Equals\"," +
-            "\"ComparisonOperator_False\":\"[JP]False\"," +
-            "\"ComparisonOperator_GreaterThan\":\"[JP]Greater than\"," +
-            "\"ComparisonOperator_GreaterThanOrEqualTo\":\"[JP]Greater than or equal to\"," +
-            "\"ComparisonOperator_LastMonth\":\"[JP]Last Month\"," +
-            "\"ComparisonOperator_LastQuater\":\"[JP]Last Quarter\"," +
-            "\"ComparisonOperator_LastWeek\":\"[JP]Last Week\"," +
-            "\"ComparisonOperator_LastYear\":\"[JP]Last Year\"," +
-            "\"ComparisonOperator_LessThan\":\"[JP]Less than\"," +
-            "\"ComparisonOperator_LessThanOrEqualTo\":\"[JP]Less than or equal to\"," +
-            "\"ComparisonOperator_NextMonth\":\"[JP]Next Month\"," +
-            "\"ComparisonOperator_NextQuater\":\"[JP]Next Quarter\"," +
-            "\"ComparisonOperator_NextWeek\":\"[JP]Next Week\"," +
-            "\"ComparisonOperator_NextYear\":\"[JP]Next Year\"," +
-            "\"ComparisonOperator_NotEmpty\":\"[JP]Not empty\"," +
-            "\"ComparisonOperator_NotEquals\":\"[JP]Not equals\"," +
-            "\"ComparisonOperator_StartsWith\":\"[JP]Starts with\"," +
-            "\"ComparisonOperator_ThisMonth\":\"[JP]This Month\"," +
-            "\"ComparisonOperator_ThisQuarter\":\"[JP]This Quarter\"," +
-            "\"ComparisonOperator_ThisWeek\":\"[JP]This Week\"," +
-            "\"ComparisonOperator_ThisYear\":\"[JP]This Year\"," +
-            "\"ComparisonOperator_Today\":\"[JP]Today\"," +
-            "\"ComparisonOperator_Tomorrow\":\"[JP]Tomorrow\"," +
-            "\"ComparisonOperator_Top\":\"[JP]Top\"," +
-            "\"ComparisonOperator_TopPercentile\":\"[JP]Top percentile\"," +
-            "\"ComparisonOperator_True\":\"[JP]True\"," +
-            "\"ComparisonOperator_Yesterday\":\"[JP]Yesterday\"," +
-            "\"Filter_Columns_List\":\"[JP]Filter columns list ...\"," +
-            "\"Search\":\"[JP]Search\"," +
-            "\"Select_All\":\"[JP](Select All)\"," +
-            "\"DataSource_Summary_Avg\":\"[JP]Avg\"," +
-            "\"DataSource_Summary_Count\":\"[JP]Count\"," +
-            "\"DataSource_Summary_Max\":\"[JP]Max\"," +
-            "\"DataSource_Summary_Min\":\"[JP]Min\"," +
-            "\"DataSource_Summary_Sum\":\"[JP]Sum\"}";
+            "{\"Apply\":\"適用\"," +
+            "\"Cancel\":\"キャンセル\"," +
+            "\"Clear_Column_Filter\":\"列フィルターをクリア\"," +
+            "\"Column_Move\":\"移動\"," +
+            "\"Column_Move_Left\":\"左\"," +
+            "\"Column_Move_Right\":\"右\"," +
+            "\"Column_Options_Summaries\":\"集計\"," +
+            "\"Column_Options_Summary_Average\":\"平均\"," +
+            "\"Column_Options_Summary_Count\":\"カウント\"," +
+            "\"Column_Options_Summary_Maximum\":\"最大値\"," +
+            "\"Column_Options_Summary_Minimum\":\"最小値\"," +
+            "\"Column_Options_Summary_Sum\":\"合計値\"," +
+            "\"Column_Pin\":\"ピン固定\"," +
+            "\"Column_Pin_Left\":\"左\"," +
+            "\"Column_Pin_Right\":\"右\"," +
+            "\"Column_Sort\":\"ソート\"," +
+            "\"Column_Sort_Ascending\":\"昇順\"," +
+            "\"Column_Sort_Descending\":\"降順\"," +
+            "\"ComparisonOperator_Bottom\":\"下\"," +
+            "\"ComparisonOperator_BottomPercentile\":\"下位の百分位数\"," +
+            "\"ComparisonOperator_Contains\":\"～を含む\"," +
+            "\"ComparisonOperator_DoesNotContain\":\"～を含まない\"," +
+            "\"ComparisonOperator_DoesNotEndWith\":\"～で終わらない\"," +
+            "\"ComparisonOperator_DoesNotMatch\":\"～と一致しない\"," +
+            "\"ComparisonOperator_DoesNotStartWith\":\"～で始まらない\"," +
+            "\"ComparisonOperator_Empty\":\"空\"," +
+            "\"ComparisonOperator_EndsWith\":\"次の値で終わる\"," +
+            "\"ComparisonOperator_Equals\":\"等しい\"," +
+            "\"ComparisonOperator_False\":\"False\"," +
+            "\"ComparisonOperator_GreaterThan\":\"次の値より大きい\"," +
+            "\"ComparisonOperator_GreaterThanOrEqualTo\":\"次の値より大きいまたは等しい\"," +
+            "\"ComparisonOperator_LastMonth\":\"先月\"," +
+            "\"ComparisonOperator_LastQuater\":\"前四半期\"," +
+            "\"ComparisonOperator_LastWeek\":\"先週\"," +
+            "\"ComparisonOperator_LastYear\":\"昨年\"," +
+            "\"ComparisonOperator_LessThan\":\"次の値より小さい\"," +
+            "\"ComparisonOperator_LessThanOrEqualTo\":\"次の値より小さいまたは等しい\"," +
+            "\"ComparisonOperator_NextMonth\":\"翌月\"," +
+            "\"ComparisonOperator_NextQuater\":\"翌四半期\"," +
+            "\"ComparisonOperator_NextWeek\":\"来週\"," +
+            "\"ComparisonOperator_NextYear\":\"翌年\"," +
+            "\"ComparisonOperator_NotEmpty\":\"空ではない\"," +
+            "\"ComparisonOperator_NotEquals\":\"次の値に等しくない\"," +
+            "\"ComparisonOperator_StartsWith\":\"～で始まる\"," +
+            "\"ComparisonOperator_ThisMonth\":\"今月\"," +
+            "\"ComparisonOperator_ThisQuarter\":\"本四半期\"," +
+            "\"ComparisonOperator_ThisWeek\":\"今週\"," +
+            "\"ComparisonOperator_ThisYear\":\"今年\"," +
+            "\"ComparisonOperator_Today\":\"今日\"," +
+            "\"ComparisonOperator_Tomorrow\":\"明日\"," +
+            "\"ComparisonOperator_Top\":\"上\"," +
+            "\"ComparisonOperator_TopPercentile\":\"上位の百分位数\"," +
+            "\"ComparisonOperator_True\":\"True\"," +
+            "\"ComparisonOperator_Yesterday\":\"昨日\"," +
+            "\"Filter_Columns_List\":\"列リストのフィルター...\"," +
+            "\"Search\":\"検索\"," +
+            "\"Select_All\":\"(すべて選択)\"," +
+            "\"DataSource_Summary_Avg\":\"平均\"," +
+            "\"DataSource_Summary_Count\":\"カウント\"," +
+            "\"DataSource_Summary_Max\":\"最大値\"," +
+            "\"DataSource_Summary_Min\":\"最小値\"," +
+            "\"DataSource_Summary_Sum\":\"合計値\"}";
         return GridStrings;
     }
 }
