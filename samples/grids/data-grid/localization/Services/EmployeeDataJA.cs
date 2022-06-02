@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace Infragistics.Samples
 {
-    public class Employee : INotifyPropertyChanged
+    public class EmployeeJA : INotifyPropertyChanged
     {
         public string ID { get; set; }
         public string Address { get; set; }
@@ -24,7 +24,7 @@ namespace Infragistics.Samples
         public int Index { get; set; }
 
         public DateTime Birthday { get; set; }
-        public List<Productivity> Productivity { get; set; }
+        public List<ProductivityJA> Productivity { get; set; }
 
         private string _Country;
         public string Country
@@ -54,7 +54,7 @@ namespace Infragistics.Samples
         }
     }
 
-    public class Productivity
+    public class ProductivityJA
     {
         public double Value { get; set; }
         public int Week { get; set; }
@@ -62,11 +62,11 @@ namespace Infragistics.Samples
 
     public static class EmployeeDataJA
     {
-        public static List<Employee> Create(int? count, bool? useProductivity)
+        public static List<EmployeeJA> Create(int? count, bool? useProductivity)
         {
             if (count == null) count = 100;
 
-            var employees = new List<Employee>();
+            var employees = new List<EmployeeJA>();
             for (int i = 0; i < count; i++)
             {
                 var age = Math.Round(DataGeneratorJA.GetNumber(20, 40));
@@ -79,7 +79,7 @@ namespace Infragistics.Samples
                 var email = firstName.ToLower() + "@" + DataGeneratorJA.GetEmail();
                 var photoPath = DataGeneratorJA.GetPhoto(gender);
 
-                var employee = new Employee
+                var employee = new EmployeeJA
                 {
                     Index = i,
                     Address = street + ", " + city,
@@ -112,14 +112,14 @@ namespace Infragistics.Samples
             return employees;
         }
 
-        public static List<Productivity> GetProductivity(int weekCount)
+        public static List<ProductivityJA> GetProductivity(int weekCount)
         {
-            var productivity = new List<Productivity>();
+            var productivity = new List<ProductivityJA>();
 
             for (var w = 1; w <= weekCount; w++)
             {
                 var value = DataGeneratorJA.GetNumber(-50, 50);
-                var prod = new Productivity
+                var prod = new ProductivityJA
                 {
                     Value = value,
                     Week = w
