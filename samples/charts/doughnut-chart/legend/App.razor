@@ -1,76 +1,76 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-@* AllowSliceExplosion not working ,LabelsPosition="LabelsPosition.OutsideEnd" not working, hover effect *@
-
 <div class="container vertical">
-    <div class="options vertical">
-        <span class="legend-title">Global Electricity Demand by Energy Use</span>
-        <div class="legend">
-            <IgbItemLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
-        </div>
+	
+	<div class="legend-title">
+        Global Electricity Demand by Energy Use
     </div>
-
+	<div class="legend">
+        <IgbItemLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="legend"
+        @ref="legend">
+        </IgbItemLegend>
+    </div>
     <div class="container vertical">
-
-        @if (Data != null)
-        {
-            <IgbDoughnutChart Height="100%" Width="100%" @ref="Chart"
-            AllowSliceExplosion="true" >
-                <IgbRingSeries DataSource="Data"
-                            LabelMemberPath="Summary"
-                            LabelsPosition="LabelsPosition.OutsideEnd"
-                            LabelExtent="30"
-                            ValueMemberPath="MarketShare"
-                            LegendLabelMemberPath="Category"
-                            Outlines="white"
-                            RadiusFactor="0.6"
-							StartAngle="30">
-                </IgbRingSeries>
-            </IgbDoughnutChart>
-        }
-
+        <IgbDoughnutChart
+        AllowSliceExplosion="true"
+        Name="chart"
+        @ref="chart">
+            <IgbRingSeries
+            DataSource="EnergyGlobalDemand"
+            ValueMemberPath="Value"
+            LabelMemberPath="Summary"
+            LegendLabelMemberPath="Category"
+            LabelsPosition="LabelsPosition.OutsideEnd"
+            LabelExtent="30"
+            StartAngle="30"
+            Outlines="white"
+            RadiusFactor="0.6"
+            Name="series"
+            @ref="series">
+            </IgbRingSeries>
+        </IgbDoughnutChart>
     </div>
 </div>
 
 @code {
-
-
-    public IgbItemLegend Legend;
-    public IgbDoughnutChart Chart;
-    public List<DataItem> Data;
-
     protected override void OnInitialized()
     {
-        IgbDoughnutChartModule.Register(IgniteUIBlazor);
-        IgbItemLegendModule.Register(IgniteUIBlazor);
-
-        this.Data = new List<DataItem>();
-        this.Data.Add(new DataItem { MarketShare = 37, Category = "Cooling", });
-        this.Data.Add(new DataItem { MarketShare = 25, Category = "Residential", });
-        this.Data.Add(new DataItem { MarketShare = 12, Category = "Heating", });
-        this.Data.Add(new DataItem { MarketShare = 11, Category = "Lighting", });
-        this.Data.Add(new DataItem { MarketShare = 15, Category = "Other", });
     }
 
-    public class DataItem
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var chart = this.chart;
+		var series = this.series;
+
+        this.BindElements = () => {
+            series.Legend = this.legend;
+        };
+        this.BindElements();
+	}
+
+	private IgbItemLegend legend;
+	private IgbDoughnutChart chart;
+	private IgbRingSeries series;
+
+
+    private EnergyGlobalDemand _energyGlobalDemand = null;
+    public EnergyGlobalDemand EnergyGlobalDemand
     {
-        public string Category { get; set; }
-        public double MarketShare { get; set; }
-        public string Summary { get { return Category + " " + MarketShare + "%"; } }
+        get
+        {
+            if (_energyGlobalDemand == null)
+            {
+                _energyGlobalDemand = new EnergyGlobalDemand(); 
+            }
+            return _energyGlobalDemand;
+        }
     }
-
-    protected override void OnAfterRender(bool firstRender)
-    {
-        base.OnAfterRender(firstRender);
-
-        if (Chart != null && Legend != null && !firstRender)
-            this.Chart.ActualSeries[0].Legend = Legend;
-    }
-
-    protected void OnSliceClick(IgbSliceClickEventArgs e)
-    {
-    }
-
-
+    
 }
