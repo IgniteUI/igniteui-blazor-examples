@@ -1,0 +1,63 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+	
+	
+	
+    <div class="container vertical fill">
+        <IgbFinancialChart
+        IsHorizontalZoomEnabled="true"
+        ZoomSliderType="FinancialChartZoomSliderType.None"
+        IsVerticalZoomEnabled="true"
+        YAxisTitle="Thousands of Dollars ($)"
+        DataToolTipIncludedColumns="@(new string[] { "Open", "Close", "High", "Low", "Change" })"
+        DataToolTipValueFormatMode="DataLegendValueMode.Currency"
+        DataToolTipValueTextColor="#00ad03"
+        DataToolTipValueTextFontWeight="Bold"
+        DataToolTipUnitsText="K"
+        DataToolTipUnitsTextColor="#00ad03"
+        DataToolTipUnitsTextFontWeight="Bold"
+        DataToolTipLabelTextColor="#4a4a4a"
+        DataSource="StockGoogle"
+        ToolTipType="ToolTipType.Data"
+        Name="chart"
+        @ref="chart">
+        </IgbFinancialChart>
+    </div>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var chart = this.chart;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+	}
+
+	private IgbFinancialChart chart;
+
+
+    private StockGoogle _stockGoogle = null;
+    public StockGoogle StockGoogle
+    {
+        get
+        {
+            if (_stockGoogle == null)
+            {
+                _stockGoogle = new StockGoogle(); 
+            }
+            return _stockGoogle;
+        }
+    }
+    
+}

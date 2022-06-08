@@ -1,44 +1,133 @@
-﻿@using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor;
-@inject IJSRuntime JSRuntime;
+@using IgniteUI.Blazor.Controls
+
+@inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options vertical">
-        <span class="legend-title">Annual Number of Births by World Region, Relative</span>
+	
+	<div class="legend-title">
+        Annual Birth Rates by World Region
     </div>
-    <div class="container vertical">
-        @if (Data != null)
-        {
-            <IgbDataChart Height="100%" Width="100%" IsVerticalZoomEnabled="false" IsHorizontalZoomEnabled="false">
-                <IgbCategoryXAxis Name="xAxis" DataSource="Data" Label="Year" />
-                <IgbNumericYAxis Name="yAxis" Interval="20" Title="Millions of Births" TitleLeftMargin="10" LabelFormat="{0} %" />
-
-                <IgbStacked100AreaSeries MarkerType="MarkerType.Circle" XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false">
-                    <IgbStackedFragmentSeries ValueMemberPath="Asia" />
-                    <IgbStackedFragmentSeries ValueMemberPath="Africa" />
-                    <IgbStackedFragmentSeries ValueMemberPath="Europe" />
-                    <IgbStackedFragmentSeries ValueMemberPath="NorthAmerica" />
-                    <IgbStackedFragmentSeries ValueMemberPath="SouthAmerica" />
-                    <IgbStackedFragmentSeries ValueMemberPath="Oceania" />
-                </IgbStacked100AreaSeries>
-            </IgbDataChart>
-        }
+	<div class="legend">
+        <IgbLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="Legend"
+        @ref="legend">
+        </IgbLegend>
+    </div>
+    <div class="container vertical fill">
+        <IgbDataChart
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        Name="chart"
+        @ref="chart">
+            <IgbCategoryXAxis
+            DataSource="ContinentsBirthRate"
+            Label="Year"
+            Name="xAxis"
+            @ref="xAxis">
+            </IgbCategoryXAxis>
+            <IgbNumericYAxis
+            Interval="20"
+            Title="Millions of Births"
+            TitleLeftMargin="10"
+            LabelFormat="{0} %"
+            Name="yAxis"
+            @ref="yAxis">
+            </IgbNumericYAxis>
+            <IgbStacked100AreaSeries
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            MarkerType="MarkerType.Circle"
+            DataSource="ContinentsBirthRate"
+            ShowDefaultTooltip="false"
+            Name="Stacked100AreaSeries"
+            @ref="stacked100AreaSeries">
+                <IgbStackedFragmentSeries
+                Name="s1"
+                @ref="s1"
+                ValueMemberPath="Asia">
+                </IgbStackedFragmentSeries>
+                <IgbStackedFragmentSeries
+                Name="s2"
+                @ref="s2"
+                ValueMemberPath="Africa">
+                </IgbStackedFragmentSeries>
+                <IgbStackedFragmentSeries
+                Name="s3"
+                @ref="s3"
+                ValueMemberPath="Europe">
+                </IgbStackedFragmentSeries>
+                <IgbStackedFragmentSeries
+                Name="s4"
+                @ref="s4"
+                ValueMemberPath="NorthAmerica">
+                </IgbStackedFragmentSeries>
+                <IgbStackedFragmentSeries
+                Name="s5"
+                @ref="s5"
+                ValueMemberPath="SouthAmerica">
+                </IgbStackedFragmentSeries>
+                <IgbStackedFragmentSeries
+                Name="s6"
+                @ref="s6"
+                ValueMemberPath="Oceania">
+                </IgbStackedFragmentSeries>
+            </IgbStacked100AreaSeries>
+        </IgbDataChart>
     </div>
 </div>
 
 @code {
-
-    public List<AnnualBirthRateRegionalInfo> Data = new AnnualBirthRateRegionalData();
-
     protected override void OnInitialized()
     {
-        base.OnInitialized();
-
-        IgbDataChartCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-        IgbDataChartStackedModule.Register(IgniteUIBlazor);
-        IgbStackedFragmentSeriesModule.Register(IgniteUIBlazor);
     }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var chart = this.chart;
+		var xAxis = this.xAxis;
+		var yAxis = this.yAxis;
+		var stacked100AreaSeries = this.stacked100AreaSeries;
+		var s1 = this.s1;
+		var s2 = this.s2;
+		var s3 = this.s3;
+		var s4 = this.s4;
+		var s5 = this.s5;
+		var s6 = this.s6;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+	}
+
+	private IgbLegend legend;
+	private IgbDataChart chart;
+	private IgbCategoryXAxis xAxis;
+	private IgbNumericYAxis yAxis;
+	private IgbStacked100AreaSeries stacked100AreaSeries;
+	private IgbStackedFragmentSeries s1;
+	private IgbStackedFragmentSeries s2;
+	private IgbStackedFragmentSeries s3;
+	private IgbStackedFragmentSeries s4;
+	private IgbStackedFragmentSeries s5;
+	private IgbStackedFragmentSeries s6;
+
+
+    private ContinentsBirthRate _continentsBirthRate = null;
+    public ContinentsBirthRate ContinentsBirthRate
+    {
+        get
+        {
+            if (_continentsBirthRate == null)
+            {
+                _continentsBirthRate = new ContinentsBirthRate(); 
+            }
+            return _continentsBirthRate;
+        }
+    }
+    
 }

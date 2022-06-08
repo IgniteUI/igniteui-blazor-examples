@@ -1,78 +1,116 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options vertical">
-        <span class="legend-title">Renewable Electricity Generated</span>
-        <div class="legend">
-            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
-        </div>
-
-        <div class="overlay-right" >
-            <div class="options horizontal" >
-                <label>X - Axis Label Angle </label>
-                <label class="options-value" >@XAxisLabelAngle</label>
-                <input type="range" min="0" max="270" step="10" value="0" @oninput="OnXAxisLabelAngleChange"/>
-          </div>
-            <div class="options horizontal" >
-                <label>Y - Axis Label Angle </label>
-                <label class="options-value" >@YAxisLabelAngle</label>
-                <input type="range" min="-90" max="90" step="10" value="0" @oninput="OnYAxisLabelAngleChange" />
-            </div>
-        </div>
+	<div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="CategoryChart"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="XAxisLabelAngle"
+            Label="X Axis Label Angle"
+            ValueType="PropertyEditorValueType.EnumValue"
+            ShouldOverrideDefaultEditor="true"
+            DropDownNames="@(new string[] { "0", "45", "90", "135", "180", "225", "270" })"
+            DropDownValues="@(new string[] { "0", "45", "90", "135", "180", "225", "270" })"
+            PrimitiveValue="0">
+            </IgbPropertyEditorPropertyDescription>
+            <IgbPropertyEditorPropertyDescription
+            DropDownValues="@(new string[] { "-90", "-45", "0", "45", "90" })"
+            PrimitiveValue="0"
+            PropertyPath="YAxisLabelAngle"
+            Label="Y Axis Label Angle"
+            ValueType="PropertyEditorValueType.EnumValue"
+            ShouldOverrideDefaultEditor="true"
+            DropDownNames="@(new string[] { "-90", "-45", "0", "45", "90" })">
+            </IgbPropertyEditorPropertyDescription>
+            <IgbPropertyEditorPropertyDescription
+            DropDownValues="@(new string[] { "red", "green" })"
+            PrimitiveValue="@("red")"
+            PropertyPath="XAxisLabelTextColor"
+            Label="Y Axis Label Color"
+            ValueType="PropertyEditorValueType.EnumValue"
+            ShouldOverrideDefaultEditor="true"
+            DropDownNames="@(new string[] { "red", "green" })">
+            </IgbPropertyEditorPropertyDescription>
+        </IgbPropertyEditorPanel>
     </div>
-    <div class="container vertical">
-        @if (Data != null)
-        {
-            <IgbCategoryChart Height="100%" Width="100%"
-                           Legend="Legend"
-                           DataSource="Data"
-                           ChartType="CategoryChartType.Line"
-                           IsHorizontalZoomEnabled="false"
-                           IsVerticalZoomEnabled="false"
-                           XAxisLabelAngle="@XAxisLabelAngle"
-                           XAxisLabelTextColor="Gray"
-                           XAxisLabelTextStyle="10pt 'Titillium Web'"
-                           XAxisLabelTopMargin="5"
-                           YAxisLabelAngle="@YAxisLabelAngle"
-                           YAxisLabelTextColor="Gray"
-                           YAxisLabelTextStyle="10pt 'Titillium Web'"
-                           YAxisLabelRightMargin="5"
-                           YAxisLabelLocation="YAxisLabelLocation.OutsideRight"
-                           TitleTopMargin="10"
-                           ChartTitle="">
-            </IgbCategoryChart>
-        }
+	<div class="legend-title">
+        Renewable Electricity Generated
+    </div>
+	<div class="legend">
+        <IgbLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="Legend"
+        @ref="legend">
+        </IgbLegend>
+    </div>
+    <div class="container vertical fill">
+        <IgbCategoryChart
+        ChartType="CategoryChartType.Line"
+        XAxisLabelTopMargin="5"
+        YAxisLabelRightMargin="5"
+        XAxisLabelTextColor="gray"
+        YAxisLabelTextColor="gray"
+        XAxisLabelTextStyle="10pt 'Titillium Web'"
+        YAxisLabelTextStyle="10pt 'Titillium Web'"
+        XAxisLabelAngle="0"
+        YAxisLabelAngle="0"
+        YAxisLabelLocation="YAxisLabelLocation.OutsideRight"
+        TitleTopMargin="10"
+        TopMargin="20"
+        DataSource="CountryRenewableElectricity"
+        IncludedProperties="@(new string[] { "Year", "Europe", "China", "USA" })"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+        Name="chart"
+        @ref="chart">
+        </IgbCategoryChart>
     </div>
 </div>
 
 @code {
-
-    private IgbLegend _Legend;
-    private IgbLegend Legend
-    {
-        get { return _Legend; }
-        set { _Legend = value; StateHasChanged(); }
-    }
-
-    private int XAxisLabelAngle = 0;
-    private int YAxisLabelAngle = 0;
-
-    private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
-
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
-        IgbLegendModule.Register(IgniteUIBlazor);
     }
 
-    private void OnXAxisLabelAngleChange(ChangeEventArgs args)
-    {
-        this.XAxisLabelAngle = int.Parse(args.Value.ToString());
-    }
+	private Action BindElements { get; set; }
 
-    private void OnYAxisLabelAngleChange(ChangeEventArgs args)
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var propertyEditorPanel1 = this.propertyEditorPanel1;
+		var chart = this.chart;
+
+        this.BindElements = () => {
+            propertyEditorPanel1.Target = this.chart;
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+	}
+
+	private IgbLegend legend;
+	private IgbPropertyEditorPanel propertyEditorPanel1;
+	private IgbCategoryChart chart;
+
+
+    private CountryRenewableElectricity _countryRenewableElectricity = null;
+    public CountryRenewableElectricity CountryRenewableElectricity
     {
-        this.YAxisLabelAngle = int.Parse(args.Value.ToString());
+        get
+        {
+            if (_countryRenewableElectricity == null)
+            {
+                _countryRenewableElectricity = new CountryRenewableElectricity(); 
+            }
+            return _countryRenewableElectricity;
+        }
     }
+    
 }

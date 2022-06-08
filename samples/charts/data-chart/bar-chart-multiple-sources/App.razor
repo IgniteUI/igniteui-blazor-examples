@@ -1,62 +1,121 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options vertical">
-        <span class="legend-title">Highest Grossing Movie Franchises</span>
-        <div class="legend">
-            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
-        </div>
+	
+	<div class="legend-title">
+        Highest Grossing Movie Franchises
     </div>
-    <div class="container vertical">
-        <IgbDataChart Height="100%" Width="100%"
-                   Legend="Legend"
-                   IsHorizontalZoomEnabled="false"
-                   IsVerticalZoomEnabled="false">
-
-            <IgbCategoryYAxis Name="yAxis" Label="Franchise" DataSource="Data" IsInverted="true" Gap="0.5" Overlap="-0.1"/>
-            <IgbNumericXAxis Name="xAxis" Title="Billions of U.S Dollars" />
-
-            <IgbBarSeries XAxisName="xAxis"
-                       YAxisName="yAxis"
-                       DataSource="Data"
-                       ValueMemberPath="TotalRevenue"
-                       Title="Total Revenue of Franchise"
-                       ShowDefaultTooltip="true"
-                       IsTransitionInEnabled="true"
-                       IsHighlightingEnabled="true">
+	<div class="legend">
+        <IgbLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="Legend"
+        @ref="legend">
+        </IgbLegend>
+    </div>
+    <div class="container vertical fill">
+        <IgbDataChart
+        
+        Name="Chart"
+        @ref="chart">
+            <IgbCategoryYAxis
+            DataSource="HighestGrossingMovies"
+            Gap="0.5"
+            Overlap="-0.1"
+            IsInverted="true"
+            UseEnhancedIntervalManagement="true"
+            EnhancedIntervalPreferMoreCategoryLabels="true"
+            Label="Franchise"
+            Name="yAxis"
+            @ref="yAxis">
+            </IgbCategoryYAxis>
+            <IgbNumericXAxis
+            Title="Billions of U.S. Dollars"
+            Name="xAxis"
+            @ref="xAxis">
+            </IgbNumericXAxis>
+            <IgbCategoryHighlightLayer
+            Name="CategoryHighlightLayer"
+            @ref="categoryHighlightLayer">
+            </IgbCategoryHighlightLayer>
+            <IgbBarSeries
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            ValueMemberPath="TotalRevenue"
+            IsTransitionInEnabled="true"
+            DataSource="HighestGrossingMovies"
+            IsHighlightingEnabled="true"
+            ShowDefaultTooltip="true"
+            Title="Total Revenue of Franchise"
+            Name="BarSeries1"
+            @ref="barSeries1">
             </IgbBarSeries>
-            <IgbBarSeries XAxisName="xAxis"
-                       YAxisName="yAxis"
-                       DataSource="Data"
-                       ValueMemberPath="HighestGrossing"
-                       Title="Highest Grossing Movie in Series"
-                       ShowDefaultTooltip="true"
-                       IsTransitionInEnabled="true"
-                       IsHighlightingEnabled="true">
+            <IgbBarSeries
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            Title="Highest Grossing Movie in Series"
+            ValueMemberPath="HighestGrossing"
+            DataSource="HighestGrossingMovies"
+            ShowDefaultTooltip="true"
+            IsTransitionInEnabled="true"
+            IsHighlightingEnabled="true"
+            Name="BarSeries2"
+            @ref="barSeries2">
             </IgbBarSeries>
+            <IgbDataToolTipLayer
+            Name="Tooltips"
+            @ref="tooltips">
+            </IgbDataToolTipLayer>
         </IgbDataChart>
     </div>
 </div>
 
 @code {
-
-    private IgbLegend _Legend;
-    private IgbLegend Legend
-    {
-        get { return _Legend; }
-        set { _Legend = value; StateHasChanged(); }
-    }
-
-    private List<FilmFranchiseInfo> Data = new FilmFranchiseData();
-
     protected override void OnInitialized()
     {
-        IgbDataChartCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-        IgbDataChartVerticalCategoryModule.Register(IgniteUIBlazor);
-        IgbLegendModule.Register(IgniteUIBlazor);
     }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var chart = this.chart;
+		var yAxis = this.yAxis;
+		var xAxis = this.xAxis;
+		var categoryHighlightLayer = this.categoryHighlightLayer;
+		var barSeries1 = this.barSeries1;
+		var barSeries2 = this.barSeries2;
+		var tooltips = this.tooltips;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+	}
+
+	private IgbLegend legend;
+	private IgbDataChart chart;
+	private IgbCategoryYAxis yAxis;
+	private IgbNumericXAxis xAxis;
+	private IgbCategoryHighlightLayer categoryHighlightLayer;
+	private IgbBarSeries barSeries1;
+	private IgbBarSeries barSeries2;
+	private IgbDataToolTipLayer tooltips;
+
+
+    private HighestGrossingMovies _highestGrossingMovies = null;
+    public HighestGrossingMovies HighestGrossingMovies
+    {
+        get
+        {
+            if (_highestGrossingMovies == null)
+            {
+                _highestGrossingMovies = new HighestGrossingMovies(); 
+            }
+            return _highestGrossingMovies;
+        }
+    }
+    
 }

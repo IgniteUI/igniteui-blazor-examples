@@ -1,60 +1,102 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="container vertical">
-
-        <IgbDataChart Height="100%" Width="100%"
-                   Subtitle="Wind Speed vs Boat Speed"
-                   SubtitleTopMargin="10"
-                   IsHorizontalZoomEnabled="false"
-                   IsVerticalZoomEnabled="false">
-            <IgbNumericAngleAxis Name="angleAxis" StartAngleOffset="-90"
-                              Interval="30"
-                              MinimumValue="0"
-                              MaximumValue="360" />
-            <IgbNumericRadiusAxis Name="radiusAxis"
-                               RadiusExtentScale="0.9"
-                               InnerRadiusExtentScale="0.1"
-                               Interval="25"
-                               MinimumValue="0"
-                               MaximumValue="100" />
-
-            <IgbPolarLineSeries Name="series1"
-                             DataSource="Data"
-                             AngleAxisName="angleAxis"
-                             AngleMemberPath="Direction"
-                             RadiusMemberPath="WindSpeed"
-                             RadiusAxisName="radiusAxis"
-                             ShowDefaultTooltip="true"
-                             Title="Wind Speed"
-                             MarkerType="MarkerType.Circle" />
-            <IgbPolarLineSeries Name="series2"
-                             DataSource="Data"
-                             AngleAxisName="angleAxis"
-                             AngleMemberPath="Direction"
-                             RadiusMemberPath="BoatSpeed"
-                             RadiusAxisName="radiusAxis"
-                             ShowDefaultTooltip="true"
-                             Title="Boat Speed"
-                             MarkerType="MarkerType.Circle"/>
+	
+	<div class="legend-title">
+        Wind Speed vs Boat Speed
+    </div>
+	
+    <div class="container vertical fill">
+        <IgbDataChart
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        Name="chart"
+        @ref="chart">
+            <IgbNumericAngleAxis
+            StartAngleOffset="-90"
+            MinimumValue="0"
+            MaximumValue="360"
+            Interval="30"
+            Name="angleAxis"
+            @ref="angleAxis">
+            </IgbNumericAngleAxis>
+            <IgbNumericRadiusAxis
+            RadiusExtentScale="0.9"
+            InnerRadiusExtentScale="0.1"
+            MinimumValue="0"
+            MaximumValue="100"
+            Interval="25"
+            Name="radiusAxis"
+            @ref="radiusAxis">
+            </IgbNumericRadiusAxis>
+            <IgbPolarScatterSeries
+            AngleMemberPath="Direction"
+            RadiusMemberPath="WindSpeed"
+            AngleAxisName="angleAxis"
+            RadiusAxisName="radiusAxis"
+            MarkerType="MarkerType.Circle"
+            DataSource="BoatSailingData"
+            ShowDefaultTooltip="true"
+            Title="Wind Speed"
+            Name="PolarScatterSeries1"
+            @ref="polarScatterSeries1">
+            </IgbPolarScatterSeries>
+            <IgbPolarScatterSeries
+            DataSource="BoatSailingData"
+            AngleAxisName="angleAxis"
+            RadiusAxisName="radiusAxis"
+            AngleMemberPath="Direction"
+            RadiusMemberPath="BoatSpeed"
+            ShowDefaultTooltip="true"
+            Title="Boat Speed"
+            MarkerType="MarkerType.Circle"
+            Name="PolarScatterSeries2"
+            @ref="polarScatterSeries2">
+            </IgbPolarScatterSeries>
         </IgbDataChart>
-
     </div>
 </div>
 
 @code {
-
-    private List<SamplePolarItem> Data;
-
     protected override void OnInitialized()
     {
-        IgbDataChartCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartPolarModule.Register(IgniteUIBlazor);
-        IgbDataChartPolarCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-
-        Data = SamplePolarData.Create();
     }
 
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var chart = this.chart;
+		var angleAxis = this.angleAxis;
+		var radiusAxis = this.radiusAxis;
+		var polarScatterSeries1 = this.polarScatterSeries1;
+		var polarScatterSeries2 = this.polarScatterSeries2;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+	}
+
+	private IgbDataChart chart;
+	private IgbNumericAngleAxis angleAxis;
+	private IgbNumericRadiusAxis radiusAxis;
+	private IgbPolarScatterSeries polarScatterSeries1;
+	private IgbPolarScatterSeries polarScatterSeries2;
+
+
+    private BoatSailingData _boatSailingData = null;
+    public BoatSailingData BoatSailingData
+    {
+        get
+        {
+            if (_boatSailingData == null)
+            {
+                _boatSailingData = new BoatSailingData(); 
+            }
+            return _boatSailingData;
+        }
+    }
+    
 }

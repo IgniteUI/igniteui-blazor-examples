@@ -1,79 +1,90 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="container vertical">
-        @if (Data != null)
-        {
-            <IgbCategoryChart Height="100%" Width="100%"
-                           DataSource="Data"
-                           ChartType="CategoryChartType.Line"
-                           ChartTitle="Olympic Medals By Country"
-                           Thickness="3"
-
-                           XAxisLabelTextStyle="9pt Verdana"
-                           XAxisLabelTopMargin="5"
-                           XAxisLabelTextColor="Gray"
-                           YAxisLabelLocation="YAxisLabelLocation.OutsideRight"
-                           YAxisLabelTextStyle="9pt Verdana"
-                           YAxisLabelRightMargin="0"
-                           YAxisLabelTextColor="Gray"
-
-                           XAxisTitle="Olympic Games"
-                           XAxisTitleTextColor="Gray"
-                           XAxisTitleTextStyle="10pt Verdana"
-                           XAxisTitleAngle="0"
-                           YAxisTitle="Total Medals"
-                           YAxisTitleTextStyle="10pt Verdana"
-                           YAxisTitleTextColor="Gray"
-                           YAxisTitleAngle="90"
-                           YAxisTitleLeftMargin="5"
-
-                           XAxisTickLength="10"
-                           XAxisTickStrokeThickness="0.5"
-                           XAxisTickStroke="Black"
-                           YAxisTickLength="10"
-                           YAxisTickStrokeThickness="0.5"
-                           YAxisTickStroke="Black"
-
-                           YAxisMinimumValue="50"
-                           YAxisMaximumValue="150"
-
-                           XAxisInterval="1"
-                           XAxisMajorStroke="Gray"
-                           XAxisMajorStrokeThickness="0.5"
-
-                           YAxisInterval="25"
-                           YAxisMajorStroke="Black"
-                           YAxisMajorStrokeThickness="1"
-                           YAxisMinorInterval="5"
-                           YAxisMinorStroke="Gray"
-                           YAxisMinorStrokeThickness="0.5"
-
-                           XAxisGap="0.125"
-                           XAxisOverlap="0"
-                           >
-            </IgbCategoryChart>
-        }
+	
+	<div class="legend-title">
+        Olympic Medals By Country
+    </div>
+	
+    <div class="container vertical fill">
+        <IgbCategoryChart
+        ChartType="CategoryChartType.Line"
+        XAxisInterval="1"
+        XAxisGap="0.125"
+        XAxisOverlap="0"
+        YAxisInterval="25"
+        YAxisMinimumValue="50"
+        YAxisMaximumValue="150"
+        YAxisMinorInterval="5"
+        XAxisLabelTopMargin="5"
+        YAxisLabelRightMargin="0"
+        XAxisLabelTextColor="gray"
+        YAxisLabelTextColor="gray"
+        YAxisTitleLeftMargin="5"
+        XAxisTitleTextColor="gray"
+        YAxisTitleTextColor="gray"
+        XAxisLabelTextStyle="9pt Verdana"
+        YAxisLabelTextStyle="9pt Verdana"
+        XAxisTitleTextStyle="10pt Verdana"
+        YAxisTitleTextStyle="10pt Verdana"
+        XAxisMajorStroke="gray"
+        YAxisMajorStroke="black"
+        XAxisMajorStrokeThickness="0.5"
+        YAxisMajorStrokeThickness="1"
+        YAxisMinorStrokeThickness="0.5"
+        XAxisTickLength="10"
+        YAxisTickLength="10"
+        XAxisTickStroke="black"
+        YAxisTickStroke="black"
+        XAxisTickStrokeThickness="0.5"
+        YAxisTickStrokeThickness="0.5"
+        XAxisTitle="Olympic Games"
+        YAxisTitle="Total Medals"
+        YAxisMinorStroke="gray"
+        XAxisTitleAngle="0"
+        YAxisTitleAngle="90"
+        YAxisLabelLocation="YAxisLabelLocation.OutsideRight"
+        DataSource="OlympicMedalsTopCountries"
+        Thickness="3"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+        Name="chart"
+        @ref="chart">
+        </IgbCategoryChart>
     </div>
 </div>
 
 @code {
-
-    private List<OlympicMedals> Data;
-
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
-
-        var olympicMedals = new List<OlympicMedals>();
-        olympicMedals.Add(new OlympicMedals() { Year = "1996", USA = 148, CHN = 110, RUS = 95 });
-        olympicMedals.Add(new OlympicMedals() { Year = "2000", USA = 142, CHN = 115, RUS = 91 });
-        olympicMedals.Add(new OlympicMedals() { Year = "2004", USA = 134, CHN = 121, RUS = 86 });
-        olympicMedals.Add(new OlympicMedals() { Year = "2008", USA = 131, CHN = 129, RUS = 65 });
-        olympicMedals.Add(new OlympicMedals() { Year = "2012", USA = 135, CHN = 115, RUS = 77 });
-        olympicMedals.Add(new OlympicMedals() { Year = "2016", USA = 146, CHN = 112, RUS = 88 });
-
-        Data = olympicMedals;
     }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var chart = this.chart;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+	}
+
+	private IgbCategoryChart chart;
+
+
+    private OlympicMedalsTopCountries _olympicMedalsTopCountries = null;
+    public OlympicMedalsTopCountries OlympicMedalsTopCountries
+    {
+        get
+        {
+            if (_olympicMedalsTopCountries == null)
+            {
+                _olympicMedalsTopCountries = new OlympicMedalsTopCountries(); 
+            }
+            return _olympicMedalsTopCountries;
+        }
+    }
+    
 }

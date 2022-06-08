@@ -1,0 +1,85 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+	
+	
+	
+    <div class="container vertical fill">
+        <IgbDataChart
+        IsHorizontalZoomEnabled="true"
+        IsVerticalZoomEnabled="true"
+        Name="chart"
+        @ref="chart">
+            <IgbCategoryXAxis
+            Interval="1"
+            DataSource="Stock2Years"
+            LabelLocation="AxisLabelsLocation.OutsideBottom"
+            LabelExtent="30"
+            Label="Month"
+            Name="xAxis"
+            @ref="xAxis">
+            </IgbCategoryXAxis>
+            <IgbNumericYAxis
+            LabelLocation="AxisLabelsLocation.OutsideBottom"
+            Name="yAxis"
+            @ref="yAxis">
+            </IgbNumericYAxis>
+            <IgbFinancialPriceSeries
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            OpenMemberPath="Open"
+            HighMemberPath="High"
+            LowMemberPath="Low"
+            CloseMemberPath="Close"
+            VolumeMemberPath="Volume"
+            DataSource="Stock2Years"
+            ShowDefaultTooltip="true"
+            Title="Stock Price"
+            Name="Series1"
+            @ref="series1">
+            </IgbFinancialPriceSeries>
+        </IgbDataChart>
+    </div>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var chart = this.chart;
+		var xAxis = this.xAxis;
+		var yAxis = this.yAxis;
+		var series1 = this.series1;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+	}
+
+	private IgbDataChart chart;
+	private IgbCategoryXAxis xAxis;
+	private IgbNumericYAxis yAxis;
+	private IgbFinancialPriceSeries series1;
+
+
+    private Stock2Years _stock2Years = null;
+    public Stock2Years Stock2Years
+    {
+        get
+        {
+            if (_stock2Years == null)
+            {
+                _stock2Years = new Stock2Years(); 
+            }
+            return _stock2Years;
+        }
+    }
+    
+}

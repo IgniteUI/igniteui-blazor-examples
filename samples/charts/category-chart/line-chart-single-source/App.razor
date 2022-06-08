@@ -1,42 +1,61 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="container vertical">
-        @if (Data != null)
-        {
-            // note you can use IncludedProperties and/or ExcludedProperties
-            // to sepcify which data column to plot in the chart:
-            // - "Year" string column for X-Axis
-            // - "Europe" int  column for Y-Axis
-            <IgbCategoryChart Height="100%" Width="100%"
-                           DataSource="Data"
-                           IsHorizontalZoomEnabled="false"
-                           IsVerticalZoomEnabled="false"
-                           IncludedProperties="@(new string[] { "Year", "Europe" })"
-                           ChartType="CategoryChartType.Line"
-                           ChartTitle="Renewable Electricity Generated"
-                           TitleAlignment="HorizontalAlignment.Left"
-                           TitleLeftMargin="25"
-                           TitleTopMargin="10"
-                           TitleBottomMargin="10"
-                           YAxisTitle="TWh"
-                           YAxisTitleLeftMargin="10"
-                           YAxisTitleRightMargin="5"
-                           YAxisLabelLeftMargin="0"
-                           ComputedPlotAreaMarginMode=ComputedPlotAreaMarginMode.Series>
-            </IgbCategoryChart>
-        }
+	
+	<div class="legend-title">
+        Renewable Electricity Generated
+    </div>
+	
+    <div class="container vertical fill">
+        <IgbCategoryChart
+        ChartType="CategoryChartType.Line"
+        YAxisLabelLeftMargin="0"
+        YAxisTitleLeftMargin="10"
+        YAxisTitleRightMargin="5"
+        YAxisTitle="TWh"
+        DataSource="CountryRenewableElectricity"
+        IncludedProperties="@(new string[] { "Year", "Europe" })"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+        Name="chart"
+        @ref="chart">
+        </IgbCategoryChart>
     </div>
 </div>
 
 @code {
-
-    private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
-
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
-        IgbLegendModule.Register(IgniteUIBlazor);
     }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var chart = this.chart;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+	}
+
+	private IgbCategoryChart chart;
+
+
+    private CountryRenewableElectricity _countryRenewableElectricity = null;
+    public CountryRenewableElectricity CountryRenewableElectricity
+    {
+        get
+        {
+            if (_countryRenewableElectricity == null)
+            {
+                _countryRenewableElectricity = new CountryRenewableElectricity(); 
+            }
+            return _countryRenewableElectricity;
+        }
+    }
+    
 }

@@ -1,47 +1,76 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options vertical">
-        <span class="legend-title">Percentage Change in Energy Generation in 2019</span>
-        <div class="legend">
-            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
-        </div>
+	
+	<div class="legend-title">
+        Percentage Change in Energy Generation
     </div>
-
-    <div class="container vertical">
-             <IgbCategoryChart Height="100%" Width="100%"
-                           Legend="Legend"
-                           DataSource="Data"  
-                           ChartType="CategoryChartType.Column"
-                           Brushes  ="#9de772 #8b5bb1 #6db1ff #ee5879 #f8a15f"
-                           Outlines ="white" 
-                           Thickness="2"
-                           IsHorizontalZoomEnabled="false"
-                           IsVerticalZoomEnabled="false"
-                           IsSeriesHighlightingEnabled="true"
-                           YAxisMinimumValue="-20" YAxisMaximumValue="30" YAxisInterval="10"
-                           XAxisMajorStroke="LightGray" XAxisGap=".5" 
-                           SeriesAddedScript="onCategoryChatColumnStylingSeries">
-                @*note onCategoryChatColumnStylingSeries function is implemented in CategoryChartColumnStyling.js*@
-            </IgbCategoryChart>
+	<div class="legend">
+        <IgbLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="Legend"
+        @ref="legend">
+        </IgbLegend>
+    </div>
+    <div class="container vertical fill">
+        <IgbCategoryChart
+        ChartType="CategoryChartType.Column"
+        XAxisGap="0.5"
+        YAxisInterval="10"
+        YAxisMinimumValue="-20"
+        YAxisMaximumValue="30"
+        IsCategoryHighlightingEnabled="true"
+        XAxisMajorStroke="lightgray"
+        DataSource="EnergyRenewableConsumption"
+        Brushes="#9de772 #8b5bb1 #6db1ff #ee5879 #f8a15f"
+        Outlines="white"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        IsSeriesHighlightingEnabled="true"
+        HighlightingMode="SeriesHighlightingMode.FadeOthersSpecific"
+        HighlightingBehavior="SeriesHighlightingBehavior.NearestItemsAndSeries"
+        CrosshairsDisplayMode="CrosshairsDisplayMode.None"
+        Name="chart"
+        @ref="chart">
+        </IgbCategoryChart>
     </div>
 </div>
 
 @code {
-     
-    private IgbLegend _Legend;
-    private IgbLegend Legend
-    {
-        get { return _Legend; }
-        set { _Legend = value; StateHasChanged(); }
-    }
-
-    private List<EnergyChangeInfo> Data = new EnergyChangeData();
-
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
-        IgbLegendModule.Register(IgniteUIBlazor);
     }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var chart = this.chart;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+	}
+
+	private IgbLegend legend;
+	private IgbCategoryChart chart;
+
+
+    private EnergyRenewableConsumption _energyRenewableConsumption = null;
+    public EnergyRenewableConsumption EnergyRenewableConsumption
+    {
+        get
+        {
+            if (_energyRenewableConsumption == null)
+            {
+                _energyRenewableConsumption = new EnergyRenewableConsumption(); 
+            }
+            return _energyRenewableConsumption;
+        }
+    }
+    
 }

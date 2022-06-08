@@ -1,58 +1,65 @@
-
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options vertical">
-        <span class="legend-title">Global Electricity Demand by Energy Use</span>
-        <div class="legend">
-            <IgbItemLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
-        </div>
+	
+	<div class="legend-title">
+        Global Electricity Demand by Energy Use
     </div>
-
-    <div class="container vertical">
-        @if (Data != null)
-        {
-            <IgbPieChart Height="100%" Width="100%"
-                      DataSource="Data"
-                      Legend="Legend"
-                      LabelMemberPath="Category"
-                      LabelsPosition="LabelsPosition.BestFit"
-                      ValueMemberPath="MarketShare"
-                      RadiusFactor="0.7">
-            </IgbPieChart>
-        }
+	<div class="legend">
+        <IgbItemLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="Legend"
+        @ref="legend">
+        </IgbItemLegend>
+    </div>
+    <div class="container vertical fill">
+        <IgbPieChart
+        DataSource="EnergyGlobalDemand"
+        ValueMemberPath="Value"
+        LabelMemberPath="Category"
+        LabelsPosition="LabelsPosition.BestFit"
+        RadiusFactor="0.7"
+        Name="chart"
+        @ref="chart">
+        </IgbPieChart>
     </div>
 </div>
 
 @code {
-
-    private List<DataItem> Data;
-
-    private IgbItemLegend _legend;
-    public IgbItemLegend Legend
-    {
-        get { return _legend; }
-        set { _legend = value; StateHasChanged(); }
-    }
-
     protected override void OnInitialized()
     {
-        IgbPieChartModule.Register(IgniteUIBlazor);
-        IgbItemLegendModule.Register(IgniteUIBlazor);
-
-        this.Data = new List<DataItem>();
-        this.Data.Add(new DataItem { MarketShare = 37, Category = "Cooling", });
-        this.Data.Add(new DataItem { MarketShare = 25, Category = "Residential", });
-        this.Data.Add(new DataItem { MarketShare = 12, Category = "Heating", });
-        this.Data.Add(new DataItem { MarketShare = 11, Category = "Lighting", });
-        this.Data.Add(new DataItem { MarketShare = 15, Category = "Other", });
     }
 
-    public class DataItem
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var chart = this.chart;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+	}
+
+	private IgbItemLegend legend;
+	private IgbPieChart chart;
+
+
+    private EnergyGlobalDemand _energyGlobalDemand = null;
+    public EnergyGlobalDemand EnergyGlobalDemand
     {
-        public string Category { get; set; }
-        public double MarketShare { get; set; }
-        public string Summary { get { return Category + " " + MarketShare + "%"; } }
+        get
+        {
+            if (_energyGlobalDemand == null)
+            {
+                _energyGlobalDemand = new EnergyGlobalDemand(); 
+            }
+            return _energyGlobalDemand;
+        }
     }
+    
 }

@@ -5,8 +5,8 @@ This project allows copying of Blazor samples (.razor, .cs, .js) to Blazor brows
 # Copying Samples to IgBlazorSamples.Client
 
 Run `gulp copySamplesToClient` command to copy samples from:
-- `../../samples/**/Pages/*.razor` files and
-- `../../samples/**/Services/*.cs` files and
+- `../../samples/**/App.razor` files and
+- `../../samples/**/*Data.cs` files and
 - `../../samples/**/wwwroot/*.js` files to
 - `../../browser/IgBlazorSamples.Client/` folder
 
@@ -17,8 +17,8 @@ Run `IgBlazorSamples.Client` as startup project
 # Copying Samples to IgBlazorSamples.Server
 
 Run `gulp copySamplesToServer` command to copy samples from:
-- `../../samples/**/Pages/*.razor` files and
-- `../../samples/**/Services/*.cs` files and
+- `../../samples/**/App.razor` files and
+- `../../samples/**/*Data.cs` files and
 - `../../samples/**/wwwroot/*.js` files to
 - `../../browser/IgBlazorSamples.Server/` folder
 

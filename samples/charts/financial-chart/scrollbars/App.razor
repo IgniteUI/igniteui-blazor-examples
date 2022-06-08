@@ -1,33 +1,58 @@
-
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <IgbFinancialChart
-        @ref="Chart"
-        Width="100%"
-        Height="100%"
-        ChartTitle="S&P 500"
-        YAxisTitle="Financial Prices"
-        ChartType="FinancialChartType.Candle"
-        DataSource="Data"
-        ZoomSliderType="FinancialChartZoomSliderType.None"
-        IsToolbarVisible="false"
-        IsVerticalZoomEnabled="true"
+	
+	
+	
+    <div class="container vertical fill">
+        <IgbFinancialChart
         IsHorizontalZoomEnabled="true"
-        HorizontalViewScrollbarMode=SeriesViewerScrollbarMode.Persistent
-        VerticalViewScrollbarMode=SeriesViewerScrollbarMode.Persistent
-        WindowRect="@(new Rect(1,1,0.90,0.90))"/>
+        IsToolbarVisible="false"
+        IsWindowSyncedToVisibleRange="true"
+        ZoomSliderType="FinancialChartZoomSliderType.None"
+        IsVerticalZoomEnabled="true"
+        DataSource="MultipleStocks"
+        WindowRect="@(new Rect(0, 0, 0.5, 1))"
+        HorizontalViewScrollbarMode="SeriesViewerScrollbarMode.Persistent"
+        VerticalViewScrollbarMode="SeriesViewerScrollbarMode.Persistent"
+        Name="chart"
+        @ref="chart">
+        </IgbFinancialChart>
+    </div>
 </div>
 
 @code {
-
-    public List<StockIndexInfo> Data = new StockIndexData();
-    public IgbFinancialChart Chart;
-
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        IgbFinancialChartModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
     }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var chart = this.chart;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+	}
+
+	private IgbFinancialChart chart;
+
+
+    private MultipleStocks _multipleStocks = null;
+    public MultipleStocks MultipleStocks
+    {
+        get
+        {
+            if (_multipleStocks == null)
+            {
+                MultipleStocks.Fetch().ContinueWith((t) => {_multipleStocks = t.Result;  StateHasChanged(); });
+            }
+            return _multipleStocks;
+        }
+    }
+    
 }

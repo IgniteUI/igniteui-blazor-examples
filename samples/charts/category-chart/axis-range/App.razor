@@ -1,72 +1,98 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-
-    <div class="options vertical">
-        <span class="legend-title">Renewable Electricity Generated</span>
-        <div class="legend">
-            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
-        </div>
-
-        <div class="overlay-right" >
-            <div class="options horizontal" >
-                <label class="options-label">Y-Axis Minimum Value </label>
-                <label class="options-value" >@YAxisMinValue</label>
-                <input type="range" min="0" max="100" step="10" value="0" @oninput="OnYAxisMinValueChanged" />
-            </div>
-            <div class="options horizontal" >
-                <label class="options-label">Y-Axis Maximum Value </label>
-                <label class="options-value" >@YAxisMaxValue</label>
-                <input type="range" min="100" max="200" step="10" value="150" @oninput="OnYAxisMaxValueChanged" />
-            </div>
-        </div>
+	<div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="CategoryChart"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="YAxisMinimumValue"
+            Label="Y Axis Minimum Value"
+            ValueType="PropertyEditorValueType.EnumValue"
+            ShouldOverrideDefaultEditor="true"
+            DropDownNames="@(new string[] { "0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100" })"
+            DropDownValues="@(new string[] { "0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100" })"
+            PrimitiveValue="0">
+            </IgbPropertyEditorPropertyDescription>
+            <IgbPropertyEditorPropertyDescription
+            DropDownValues="@(new string[] { "100", "110", "120", "130", "140", "150", "160", "170", "180", "190", "200" })"
+            PrimitiveValue="150"
+            PropertyPath="YAxisMaximumValue"
+            Label="Y Axis Maximum Value"
+            ValueType="PropertyEditorValueType.EnumValue"
+            ShouldOverrideDefaultEditor="true"
+            DropDownNames="@(new string[] { "100", "110", "120", "130", "140", "150", "160", "170", "180", "190", "200" })">
+            </IgbPropertyEditorPropertyDescription>
+        </IgbPropertyEditorPanel>
     </div>
-
-    <div class="container vertical">
-        @if (Data != null)
-        {
-            <IgbCategoryChart Height="100%" Width="100%"
-                           Legend="Legend"
-                           DataSource="Data"
-                           ChartType="CategoryChartType.Line"
-                           IsHorizontalZoomEnabled="false"
-                           IsVerticalZoomEnabled="false"
-                           YAxisMinimumValue="YAxisMinValue"
-                           YAxisMaximumValue="YAxisMaxValue">
-            </IgbCategoryChart>
-        }
+	<div class="legend-title">
+        Highest Grossing Movie Franchises
+    </div>
+	<div class="legend">
+        <IgbLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="Legend"
+        @ref="legend">
+        </IgbLegend>
+    </div>
+    <div class="container vertical fill">
+        <IgbCategoryChart
+        ChartType="CategoryChartType.Line"
+        YAxisMinimumValue="0"
+        YAxisMaximumValue="150"
+        DataSource="CountryRenewableElectricity"
+        IncludedProperties="@(new string[] { "Year", "Europe", "China", "USA" })"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+        Name="chart"
+        @ref="chart">
+        </IgbCategoryChart>
     </div>
 </div>
 
 @code {
-
-
-    private IgbLegend _Legend;
-    private IgbLegend Legend
-    {
-        get { return _Legend; }
-        set { _Legend = value; StateHasChanged(); }
-    }
-
-    private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
-
-    private int YAxisMinValue = 0;
-    private int YAxisMaxValue = 150;
-
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
-        IgbLegendModule.Register(IgniteUIBlazor);
     }
 
-    private void OnYAxisMinValueChanged(ChangeEventArgs args)
-    {
-        this.YAxisMinValue = int.Parse(args.Value.ToString());
-    }
+	private Action BindElements { get; set; }
 
-    private void OnYAxisMaxValueChanged(ChangeEventArgs args)
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var propertyEditorPanel1 = this.propertyEditorPanel1;
+		var chart = this.chart;
+
+        this.BindElements = () => {
+            propertyEditorPanel1.Target = this.chart;
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+	}
+
+	private IgbLegend legend;
+	private IgbPropertyEditorPanel propertyEditorPanel1;
+	private IgbCategoryChart chart;
+
+
+    private CountryRenewableElectricity _countryRenewableElectricity = null;
+    public CountryRenewableElectricity CountryRenewableElectricity
     {
-        this.YAxisMaxValue = int.Parse(args.Value.ToString());
+        get
+        {
+            if (_countryRenewableElectricity == null)
+            {
+                _countryRenewableElectricity = new CountryRenewableElectricity(); 
+            }
+            return _countryRenewableElectricity;
+        }
     }
+    
 }

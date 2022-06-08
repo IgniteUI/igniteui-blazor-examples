@@ -1,46 +1,69 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-
-        <div class="options vertical">
-            <span class="legend-title">Comparing Population of Countries</span>
-        </div>
-
-        <div class="container vertical" style="padding: 0.75rem; padding-top: 0.5rem;">
-
-            <IgbTreemap Height="100%" Width="100%"
-                     DataSource="Data"
-                     ParentIdMemberPath="Parent"
-                     IdMemberPath="Name"
-                     LabelMemberPath="Name"
-                     ValueMemberPath="Pop"
-                     FillScaleMode="@TreemapFillScaleMode.Value"
-                     FillScaleMinimumValue="0"
-                     FillScaleMaximumValue="1500000000"
-                     FillBrushes="#4e62cf, #8a58d6"
-                     IsFillScaleLogarithmic="true"
-                     RootTitle="Countries"
-                     HeaderDisplayMode="@TreemapHeaderDisplayMode.Overlay"
-                     ParentNodeBottomPadding="0"
-                     ParentNodeLeftPadding="0"
-                     ParentNodeRightPadding="0"
-                     ParentNodeTopPadding="0"
-                     Outline="black"
-                     StrokeThickness="1">
-            </IgbTreemap>
-            @**@
-        </div>
+	
+	<div class="legend-title">
+        Comparing Population of Countries
     </div>
+	
+    <div class="container vertical fill">
+        <IgbTreemap
+        ValueMemberPath="Population"
+        RootTitle="Countries"
+        ParentIdMemberPath="Parent"
+        LabelMemberPath="Name"
+        IdMemberPath="Name"
+        DataSource="CountyHierarchicalData"
+        FillBrushes="#4e62cf #8a58d6"
+        FillScaleMode="TreemapFillScaleMode.Value"
+        IsFillScaleLogarithmic="true"
+        FillScaleMinimumValue="0"
+        FillScaleMaximumValue="1500000000"
+        HeaderDisplayMode="TreemapHeaderDisplayMode.Overlay"
+        ParentNodeLeftPadding="0"
+        ParentNodeTopPadding="0"
+        ParentNodeRightPadding="0"
+        ParentNodeBottomPadding="0"
+        Outline="black"
+        StrokeThickness="1"
+        Name="treemap"
+        @ref="treemap">
+        </IgbTreemap>
+    </div>
+</div>
 
 @code {
-
-    protected List<CountryInfo> Data;
-
     protected override void OnInitialized()
     {
-        IgbTreemapModule.Register(IgniteUIBlazor);
-
-        this.Data = CountryTreeData.Create();
     }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var treemap = this.treemap;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+	}
+
+	private IgbTreemap treemap;
+
+
+    private CountyHierarchicalData _countyHierarchicalData = null;
+    public CountyHierarchicalData CountyHierarchicalData
+    {
+        get
+        {
+            if (_countyHierarchicalData == null)
+            {
+                _countyHierarchicalData = new CountyHierarchicalData(); 
+            }
+            return _countyHierarchicalData;
+        }
+    }
+    
 }

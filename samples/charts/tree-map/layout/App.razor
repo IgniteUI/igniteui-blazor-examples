@@ -1,117 +1,96 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-    <div class="container vertical">
-
-        <div class="options vertical">
-            <div class="options horizontal">
-                <label class="options-label">Layout</label>
-                <select  @bind="@TreeLayout">
-                    <option>@TreemapLayoutType.Squarified</option>
-                    <option>@TreemapLayoutType.Stripped</option>
-                    <option>@TreemapLayoutType.SliceAndDice</option>
-                </select>
-
-                <label class="options-label">Orientation</label>
-                <select  @bind="@TreeOrientation" title="Works only with Stripped and SliceAndDice layouts">
-                    <option>@TreemapOrientation.Horizontal</option>
-                    <option>@TreemapOrientation.Vertical</option>
-                </select>
-
-                <label class="options-label">Headers</label>
-                <select @onchange="OnHeaderModeChange">
-                    <option>Overlay</option>
-                    <option>Outside</option>
-                </select>
-                
-                <label class="options-label">Labels</label>
-                <select @onchange="OnLabelAlignChange">
-                    <option>Center</option>
-                    <option>Left</option>
-                    <option>Right</option>
-                    <option>Top Center</option>
-                    <option>Top Left</option>
-                    <option>Top Right</option> 
-                    <option>Bottom Center</option>
-                    <option>Bottom Left</option>
-                    <option>Bottom Right</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="options vertical">
-            <span class="legend-title">Comparing Population of Countries</span>
-        </div>
-
-        <div class="container vertical" style="padding: 0.75rem; width: calc(100% - 1.5rem); height: calc(100% - 1.5rem)">
-            <IgbTreemap Height="100%" Width="100%"
-                     DataSource="Data"
-                     RootTitle="Countries"
-                     ParentIdMemberPath="Parent"
-                     IdMemberPath="Name"
-                     LabelMemberPath="Name"
-                     ValueMemberPath="Pop"
-
-                     LayoutType="@TreeLayout"
-                     LayoutOrientation="@TreeOrientation"     
-                     HeaderDisplayMode="@HeaderMode"       
-                     LabelHorizontalAlignment="@LabelHorizontalAlign"
-                     LabelVerticalAlignment="@LabelVerticalAlign"  
-                     
-                     FillBrushes="#299e41, #4e62cf, #5e359c"
-                     IsFillScaleLogarithmic="true"
-                     ParentNodeBottomPadding="0"
-                     ParentNodeLeftPadding="0"
-                     ParentNodeRightPadding="0"
-                     ParentNodeTopPadding="0">
-            </IgbTreemap>
-        </div>
+<div class="container vertical">
+	<div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="Treemap"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="LayoutType"
+            Label="Layout"
+            PrimitiveValue="@("Squarified")">
+            </IgbPropertyEditorPropertyDescription>
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="LayoutOrientation"
+            PrimitiveValue="@("Vertical")"
+            Label="Orientation">
+            </IgbPropertyEditorPropertyDescription>
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="HeaderDisplayMode"
+            PrimitiveValue="@("Overlay")"
+            Label="Headers">
+            </IgbPropertyEditorPropertyDescription>
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="LabelVerticalAlignment"
+            PrimitiveValue="@("Center")"
+            Label="Labels">
+            </IgbPropertyEditorPropertyDescription>
+        </IgbPropertyEditorPanel>
     </div>
+	<div class="legend-title">
+        Comparing Population of Countries
+    </div>
+	
+    <div class="container vertical fill">
+        <IgbTreemap
+        ValueMemberPath="Population"
+        RootTitle="Countries"
+        ParentIdMemberPath="Parent"
+        LabelMemberPath="Name"
+        IdMemberPath="Name"
+        DataSource="CountyHierarchicalData"
+        FillBrushes="#299e41 #4e62cf #5e359c"
+        IsFillScaleLogarithmic="true"
+        HeaderDisplayMode="TreemapHeaderDisplayMode.Overlay"
+        ParentNodeLeftPadding="0"
+        ParentNodeTopPadding="0"
+        ParentNodeRightPadding="0"
+        ParentNodeBottomPadding="0"
+        Name="treemap"
+        @ref="treemap">
+        </IgbTreemap>
+    </div>
+</div>
 
 @code {
-
-    protected List<CountryInfo> Data;
-    protected TreemapLayoutType  TreeLayout = TreemapLayoutType.Squarified;
-    protected TreemapOrientation TreeOrientation = TreemapOrientation.Vertical;
-    protected TreemapHeaderDisplayMode HeaderMode = TreemapHeaderDisplayMode.Overlay;
-    protected HorizontalAlignment LabelHorizontalAlign = HorizontalAlignment.Center;
-    protected VerticalAlignment   LabelVerticalAlign   = VerticalAlignment.Center;
-
     protected override void OnInitialized()
     {
-        IgbTreemapModule.Register(IgniteUIBlazor);
-
-        this.Data = CountryTreeData.Create();
-        Console.WriteLine("CountryTreeData " + this.Data.Count);
     }
 
-    private void OnHeaderModeChange(ChangeEventArgs args)
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var propertyEditorPanel1 = this.propertyEditorPanel1;
+		var treemap = this.treemap;
+
+        this.BindElements = () => {
+            propertyEditorPanel1.Target = this.treemap;
+        };
+        this.BindElements();
+	}
+
+	private IgbPropertyEditorPanel propertyEditorPanel1;
+	private IgbTreemap treemap;
+
+
+    private CountyHierarchicalData _countyHierarchicalData = null;
+    public CountyHierarchicalData CountyHierarchicalData
     {
-        var value = args.Value.ToString();
-        Console.WriteLine("OnHeaderModeChange " + value);
-        if (value == "Overlay")
-            HeaderMode = TreemapHeaderDisplayMode.Overlay;
-        else
-            HeaderMode = TreemapHeaderDisplayMode.Header;
+        get
+        {
+            if (_countyHierarchicalData == null)
+            {
+                _countyHierarchicalData = new CountyHierarchicalData(); 
+            }
+            return _countyHierarchicalData;
+        }
     }
-
-    private void OnLabelAlignChange(ChangeEventArgs args)
-    {
-        var value = args.Value.ToString();
-        Console.WriteLine("OnLabelAlignChange " + value);
-
-        if (value.Contains("Left"))
-            LabelHorizontalAlign = HorizontalAlignment.Left;
-        else if (value.Contains("Right"))
-            LabelHorizontalAlign = HorizontalAlignment.Right;
-        else
-            LabelHorizontalAlign = HorizontalAlignment.Center;
-
-        if (value.Contains("Top"))
-            LabelVerticalAlign = VerticalAlignment.Top;
-        else if (value.Contains("Bottom"))
-            LabelVerticalAlign = VerticalAlignment.Bottom;
-        else
-            LabelVerticalAlign = VerticalAlignment.Center;
-    }
+    
 }

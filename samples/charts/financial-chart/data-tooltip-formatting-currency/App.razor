@@ -1,0 +1,58 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+	
+	
+	
+    <div class="container vertical fill">
+        <IgbFinancialChart
+        ChartType="FinancialChartType.Line"
+        ZoomSliderType="FinancialChartZoomSliderType.None"
+        DataToolTipIncludedColumns="@(new string[] { "Close", "Change" })"
+        DataToolTipExcludedColumns="@(new string[] { "High", "Low", "Open", "Volume" })"
+        DataToolTipValueFormatMode="DataLegendValueMode.Currency"
+        DataToolTipValueFormatCulture="en-GB"
+        DataToolTipLabelDisplayMode="DataLegendLabelMode.Hidden"
+        DataSource="MultipleStocks"
+        ToolTipType="ToolTipType.Data"
+        Name="chart"
+        @ref="chart">
+        </IgbFinancialChart>
+    </div>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var chart = this.chart;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+	}
+
+	private IgbFinancialChart chart;
+
+
+    private MultipleStocks _multipleStocks = null;
+    public MultipleStocks MultipleStocks
+    {
+        get
+        {
+            if (_multipleStocks == null)
+            {
+                MultipleStocks.Fetch().ContinueWith((t) => {_multipleStocks = t.Result;  StateHasChanged(); });
+            }
+            return _multipleStocks;
+        }
+    }
+    
+}

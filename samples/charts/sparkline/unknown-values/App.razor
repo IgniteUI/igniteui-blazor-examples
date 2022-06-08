@@ -1,73 +1,75 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-    <div class="container vertical">
-
-        <div class="options vertical">
-            <label class="options-item">
-                <input @onchange="onChanged" type="checkbox" checked="checked" />Plot Unknown Values
-            </label>
-        </div>
-
-        <div class="container vertical">
-            @if (Data != null)
-            {
-                <IgbSparkline Height="100%"
-                           Width="100%"
-                           DataSource="Data"
-                           ValueMemberPath="Value"
-                           DisplayType="SparklineDisplayType.Area"
-                           UnknownValuePlotting="@unknownValuePlotting">
-                </IgbSparkline>
-            }
-
-        </div>
+<div class="container vertical">
+	<div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="Sparkline"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="UnknownValuePlotting"
+            Label="Unknown Value Plotting"
+            ValueType="PropertyEditorValueType.EnumValue"
+            ShouldOverrideDefaultEditor="true"
+            DropDownNames="@(new string[] { "LinearInterpolate", "DontPlot" })"
+            DropDownValues="@(new string[] { "LinearInterpolate", "DontPlot" })"
+            PrimitiveValue="@("LinearInterpolate")">
+            </IgbPropertyEditorPropertyDescription>
+        </IgbPropertyEditorPanel>
     </div>
+	
+	
+    <div class="container vertical fill">
+        <IgbSparkline
+        DataSource="SparklineUnknownData"
+        ValueMemberPath="Value"
+        LabelMemberPath="Label"
+        DisplayType="SparklineDisplayType.Area"
+        UnknownValuePlotting="UnknownValuePlotting.LinearInterpolate"
+        Name="chart"
+        @ref="chart">
+        </IgbSparkline>
+    </div>
+</div>
 
 @code {
-
-    private List<DataItem> Data;
-    private UnknownValuePlotting unknownValuePlotting = UnknownValuePlotting.LinearInterpolate;
-
     protected override void OnInitialized()
     {
-        IgbSparklineModule.Register(IgniteUIBlazor);
-
-        var dataItems = new List<DataItem>();
-
-        dataItems.Add(new DataItem() { Label =4,Value =4 });
-        dataItems.Add(new DataItem() { Label = 5, Value = 5 });
-        dataItems.Add(new DataItem() { Label = 2, Value = double.NaN });
-        dataItems.Add(new DataItem() { Label = 7, Value = 7 });
-        dataItems.Add(new DataItem() { Label = - 1, Value = - 1 });
-
-        dataItems.Add(new DataItem() { Label = 3, Value = 3 });
-        dataItems.Add(new DataItem() { Label = - 2, Value = - 2 });
-        dataItems.Add(new DataItem() { Label = 5, Value = double.NaN });
-        dataItems.Add(new DataItem() { Label = 2, Value = 2 });
-        dataItems.Add(new DataItem() { Label = 6, Value = 6 });
-
-        Data = dataItems;
     }
 
-    public void onChanged(ChangeEventArgs e)
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var propertyEditorPanel1 = this.propertyEditorPanel1;
+		var chart = this.chart;
+
+        this.BindElements = () => {
+            propertyEditorPanel1.Target = this.chart;
+        };
+        this.BindElements();
+	}
+
+	private IgbPropertyEditorPanel propertyEditorPanel1;
+	private IgbSparkline chart;
+
+
+    private SparklineUnknownData _sparklineUnknownData = null;
+    public SparklineUnknownData SparklineUnknownData
     {
-        bool selection = (bool)e.Value;
-
-        if (selection)
+        get
         {
-            this.unknownValuePlotting = UnknownValuePlotting.LinearInterpolate;
-        }
-        else
-        {
-            this.unknownValuePlotting = UnknownValuePlotting.DontPlot;
+            if (_sparklineUnknownData == null)
+            {
+                _sparklineUnknownData = new SparklineUnknownData(); 
+            }
+            return _sparklineUnknownData;
         }
     }
-
-    public class DataItem
-    {
-        public double Label { get; set; }
-        public double Value { get; set; }
-    }
-
+    
 }

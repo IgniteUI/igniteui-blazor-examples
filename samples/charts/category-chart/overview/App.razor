@@ -1,54 +1,64 @@
-
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options horizontal">
-        <span class="options-label">Chart Type: </span>
-        <select @bind="@ChartType">
-            <option>@CategoryChartType.Auto</option>
-            <option>@CategoryChartType.Area</option>
-            <option>@CategoryChartType.Column</option>
-            <option>@CategoryChartType.Point</option>
-            <option>@CategoryChartType.Line</option>
-            <option>@CategoryChartType.Spline</option>
-            <option>@CategoryChartType.SplineArea</option>
-            <option>@CategoryChartType.StepArea</option>
-            <option>@CategoryChartType.StepLine</option>
-            <option>@CategoryChartType.Waterfall</option>
-        </select>
+	
+	<div class="legend-title">
+        Olympic Medals By Country
     </div>
-    <div class="container vertical">
-        @if (Data != null)
-        {
-            <IgbCategoryChart Height="100%" Width="100%" ChartType="@ChartType"
-                           DataSource="Data"
-                           ChartTitle="Olympic Medals By Country"
-                           IsSeriesHighlightingEnabled="true"
-                           IsTransitionInEnabled="true"
-                           YAxisMinimumValue="0">
-            </IgbCategoryChart>
-        }
+	<div class="legend">
+        <IgbLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="Legend"
+        @ref="legend">
+        </IgbLegend>
+    </div>
+    <div class="container vertical fill">
+        <IgbCategoryChart
+        ChartType="CategoryChartType.Line"
+        YAxisTitle="TWh"
+        DataSource="CountryRenewableElectricity"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+        Name="Chart"
+        @ref="chart">
+        </IgbCategoryChart>
     </div>
 </div>
 
 @code {
-
-    private List<OlympicMedals> Data;
-    private CategoryChartType ChartType = CategoryChartType.Auto;
-
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
-
-        var olympicMedals = new List<OlympicMedals>();
-        olympicMedals.Add(new OlympicMedals() { Year = "1996", USA = 148, CHN = 110, RUS = 95 });
-        olympicMedals.Add(new OlympicMedals() { Year = "2000", USA = 142, CHN = 115, RUS = 91 });
-        olympicMedals.Add(new OlympicMedals() { Year = "2004", USA = 134, CHN = 121, RUS = 86 });
-        olympicMedals.Add(new OlympicMedals() { Year = "2008", USA = 131, CHN = 129, RUS = 65 });
-        olympicMedals.Add(new OlympicMedals() { Year = "2012", USA = 135, CHN = 115, RUS = 77 });
-        olympicMedals.Add(new OlympicMedals() { Year = "2016", USA = 146, CHN = 112, RUS = 88 });
-
-        Data = olympicMedals;
     }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var chart = this.chart;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+	}
+
+	private IgbLegend legend;
+	private IgbCategoryChart chart;
+
+
+    private CountryRenewableElectricity _countryRenewableElectricity = null;
+    public CountryRenewableElectricity CountryRenewableElectricity
+    {
+        get
+        {
+            if (_countryRenewableElectricity == null)
+            {
+                _countryRenewableElectricity = new CountryRenewableElectricity(); 
+            }
+            return _countryRenewableElectricity;
+        }
+    }
+    
 }

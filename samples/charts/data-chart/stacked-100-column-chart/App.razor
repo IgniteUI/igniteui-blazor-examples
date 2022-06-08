@@ -1,65 +1,110 @@
-﻿@using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor;
-@inject IJSRuntime JSRuntime;
+@using IgniteUI.Blazor.Controls
+
+@inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options vertical">
-        <span class="legend-title">Distribution of Online Traffic Worldwide in 2019, by Device</span>
-        <div class="legend">
-            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
-        </div>
+	
+	<div class="legend-title">
+        Distribution of Online Traffic Worldwide, by Device
     </div>
-    <div class="container vertical">
-        @if (Data != null)
-        {
-            <IgbDataChart Height="100%" Width="100%" IsVerticalZoomEnabled="false" IsHorizontalZoomEnabled="false">
-                <IgbCategoryXAxis Name="xAxis" DataSource="Data" Label="Category" Gap="0.75"/>
-                <IgbNumericYAxis Name="yAxis" MinimumValue="0" />
-
-                <IgbStacked100ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="true" AreaFillOpacity="1" Legend="Legend">
-                    <IgbStackedFragmentSeries ValueMemberPath="Desktop" />
-                    <IgbStackedFragmentSeries ValueMemberPath="Mobile" />
-                    <IgbStackedFragmentSeries ValueMemberPath="Tablet" />
-                </IgbStacked100ColumnSeries>
-
-                <IgbPointSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="DesktopMarker"
-                             MarkerTemplateScript="onStacked100ChartMarkerTemplate" Title="THING" />
-                <IgbPointSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="MobileMarker"
-                             MarkerTemplateScript="onStacked100ChartMarkerTemplate" />
-                <IgbPointSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="TabletMarker"
-                             MarkerTemplateScript="onStacked100ChartMarkerTemplate" />
-            </IgbDataChart>
-        }
+	<div class="legend">
+        <IgbLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="Legend"
+        @ref="legend">
+        </IgbLegend>
+    </div>
+    <div class="container vertical fill">
+        <IgbDataChart
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        Name="chart"
+        @ref="chart">
+            <IgbCategoryXAxis
+            DataSource="OnlineTrafficByDevice"
+            Gap="0.75"
+            Label="Category"
+            Name="xAxis"
+            @ref="xAxis">
+            </IgbCategoryXAxis>
+            <IgbNumericYAxis
+            MinimumValue="0"
+            Name="yAxis"
+            @ref="yAxis">
+            </IgbNumericYAxis>
+            <IgbStacked100ColumnSeries
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="OnlineTrafficByDevice"
+            AreaFillOpacity="1"
+            ShowDefaultTooltip="true"
+            Name="Stacked100ColumnSeries"
+            @ref="stacked100ColumnSeries">
+                <IgbStackedFragmentSeries
+                Name="s1"
+                @ref="s1"
+                ValueMemberPath="Desktop">
+                </IgbStackedFragmentSeries>
+                <IgbStackedFragmentSeries
+                Name="s2"
+                @ref="s2"
+                ValueMemberPath="Mobile">
+                </IgbStackedFragmentSeries>
+                <IgbStackedFragmentSeries
+                Name="s3"
+                @ref="s3"
+                ValueMemberPath="Tablet">
+                </IgbStackedFragmentSeries>
+            </IgbStacked100ColumnSeries>
+        </IgbDataChart>
     </div>
 </div>
 
 @code {
-
-    private IgbLegend _legend;
-    public IgbLegend Legend
-    {
-        get { return _legend; }
-        set
-        {
-            _legend = value;
-            StateHasChanged();
-        }
-    }
-
-    private List<StackedOnlineTrafficInfo> Data = new StackedOnlineTrafficData();
-
     protected override void OnInitialized()
     {
-        base.OnInitialized();
-
-        IgbDataChartCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-        IgbDataChartStackedModule.Register(IgniteUIBlazor);
-        IgbColumnFragmentModule.Register(IgniteUIBlazor);
-        IgbStackedSplineSeriesModule.Register(IgniteUIBlazor);
-        IgbStackedFragmentSeriesModule.Register(IgniteUIBlazor);
-        IgbLegendModule.Register(IgniteUIBlazor);
     }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var chart = this.chart;
+		var xAxis = this.xAxis;
+		var yAxis = this.yAxis;
+		var stacked100ColumnSeries = this.stacked100ColumnSeries;
+		var s1 = this.s1;
+		var s2 = this.s2;
+		var s3 = this.s3;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+	}
+
+	private IgbLegend legend;
+	private IgbDataChart chart;
+	private IgbCategoryXAxis xAxis;
+	private IgbNumericYAxis yAxis;
+	private IgbStacked100ColumnSeries stacked100ColumnSeries;
+	private IgbStackedFragmentSeries s1;
+	private IgbStackedFragmentSeries s2;
+	private IgbStackedFragmentSeries s3;
+
+
+    private OnlineTrafficByDevice _onlineTrafficByDevice = null;
+    public OnlineTrafficByDevice OnlineTrafficByDevice
+    {
+        get
+        {
+            if (_onlineTrafficByDevice == null)
+            {
+                _onlineTrafficByDevice = new OnlineTrafficByDevice(); 
+            }
+            return _onlineTrafficByDevice;
+        }
+    }
+    
 }

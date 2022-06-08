@@ -1,107 +1,103 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options horizontal">
-        <span class="options-label">Chart Type </span>
-        <select @bind="@SelectedChart">
-            <option>@CategoryChartType.Area</option>
-            <option>@CategoryChartType.Column</option>
-            <option>@CategoryChartType.Point</option>
-            <option>@CategoryChartType.Line</option>
-            <option>@CategoryChartType.Spline</option>
-            <option>@CategoryChartType.SplineArea</option>
-            <option>@CategoryChartType.StepArea</option>
-            <option>@CategoryChartType.StepLine</option>
-            <option>@CategoryChartType.Waterfall</option>
-            <option>@CategoryChartType.Auto</option>
-        </select>
-        <span class="options-label"> Marker Type </span>
-        <select @bind="@SelectedMarker">
-            <option>@MarkerType.Circle</option>
-            <option>@MarkerType.Automatic</option>
-            <option>@MarkerType.Triangle</option>
-            <option>@MarkerType.Pyramid</option>
-            <option>@MarkerType.Square</option>
-            <option>@MarkerType.Diamond</option>
-            <option>@MarkerType.Pentagon</option>
-            <option>@MarkerType.Hexagon</option>
-            <option>@MarkerType.Tetragram</option>
-            <option>@MarkerType.Pentagram</option>
-            <option>@MarkerType.Hexagram</option>
-            <option>@MarkerType.None</option>
-        </select>
-        <span class="options-label"> Marker Fill </span>
-        <select @bind="@SelectedMarkerFillMode">
-            <option>@MarkerFillMode.Normal</option>
-            <option>@MarkerFillMode.MatchMarkerOutline</option>
-        </select>
+	<div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="CategoryChart"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="PropertyEditor"
+        @ref="propertyEditor">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="ChartType"
+            Label="Chart Type"
+            PrimitiveValue="@("Line")"
+            Name="ChartTypeEditor"
+            @ref="chartTypeEditor">
+            </IgbPropertyEditorPropertyDescription>
+            <IgbPropertyEditorPropertyDescription
+            DropDownNames="@(new string[] { "Circle", "Automatic", "Triangle", "Pyramid", "Square", "Diamond", "Pentagon", "Hexagon", "Tetragram", "Pentagram", "Hexagram", "None" })"
+            PrimitiveValue="@("Circle")"
+            Changed="EditorChangeUpdateMarkerType"
+            PropertyPath="MarkerTypeHandler"
+            Label="Marker Type"
+            ValueType="PropertyEditorValueType.EnumValue"
+            ShouldOverrideDefaultEditor="true"
+            DropDownValues="@(new string[] { "Circle", "Automatic", "Triangle", "Pyramid", "Square", "Diamond", "Pentagon", "Hexagon", "Tetragram", "Pentagram", "Hexagram", "None" })"
+            Name="MarkerTypeEditor"
+            @ref="markerTypeEditor">
+            </IgbPropertyEditorPropertyDescription>
+        </IgbPropertyEditorPanel>
     </div>
-    <div class="container vertical">
-        @if (Data != null)
-        {
-            // TODO add this code when supported: MarkerTypes="Circle"
-
-            // NOTE the MarkerTypes property is set in code-behind
-            <IgbCategoryChart Height="100%" Width="100%" @ref="Chart"
-                           DataSource="Data"
-                           ChartTitle="Renewable Electricity Generated" TitleTopMargin="10"
-                           ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
-                           IsSeriesHighlightingEnabled="true"
-                           ChartType="@SelectedChart"
-                           MarkerFillMode="@SelectedMarkerFillMode"
-                           MarkerThickness="1" MarkerFillOpacity="1.0" 
-                           MarkerBrushes="White"
-                           MarkerOutlines="#ee5879, #c4c4c4, #9af2e4"
-                           Brushes="#ee5879, #c4c4c4, #9af2e4"
-                           Outlines="#ee5879, #c4c4c4, #9af2e4"
-                           IsTransitionInEnabled="true"
-                           YAxisMinimumValue="0"
-                           MarkerTypes>
-            </IgbCategoryChart>
-        }
+	<div class="legend-title">
+        Renewable Electricity Generated
+    </div>
+	
+    <div class="container vertical fill">
+        <IgbCategoryChart
+        ChartType="CategoryChartType.Line"
+        DataSource="CountryRenewableElectricity"
+        IsSeriesHighlightingEnabled="true"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+        Name="chart"
+        @ref="chart">
+        </IgbCategoryChart>
     </div>
 </div>
 
 @code {
-
-    private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
-
-    private IgbCategoryChart Chart;
-    private CategoryChartType SelectedChart = CategoryChartType.Line;
-    private MarkerFillMode SelectedMarkerFillMode = MarkerFillMode.Normal;
-    private ComputedPlotAreaMarginMode ComputedPlotAreaMargin = ComputedPlotAreaMarginMode.Series;
-
-    private MarkerType _SelectedMarker = MarkerType.Circle;
-    private MarkerType SelectedMarker
-    {
-        get { return _SelectedMarker; }
-        set
-        {
-            _SelectedMarker = value;
-            SetChartMarker(_SelectedMarker);
-        }
-    }
-
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
     }
 
-    protected override void OnAfterRender(bool firstRender)
-    {
-        base.OnAfterRender(firstRender);
+	private Action BindElements { get; set; }
 
-        if (firstRender)
-            SetChartMarker(SelectedMarker); // initalizing to Circle marker
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var propertyEditor = this.propertyEditor;
+		var chartTypeEditor = this.chartTypeEditor;
+		var markerTypeEditor = this.markerTypeEditor;
+		var chart = this.chart;
+
+        this.BindElements = () => {
+            propertyEditor.Target = this.chart;
+        };
+        this.BindElements();
+	}
+
+	private IgbPropertyEditorPanel propertyEditor;
+	private IgbPropertyEditorPropertyDescription chartTypeEditor;
+	private IgbPropertyEditorPropertyDescription markerTypeEditor;
+	private IgbCategoryChart chart;
+
+    
+    public void EditorChangeUpdateMarkerType(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
+    {
+        //TODO: need access to sender
+        var item = this.markerTypeEditor;
+        var value = (string)item.PrimitiveValue;
+        var chart = this.chart;
+    
+        var markerVal = (MarkerType)Enum.Parse(typeof(MarkerType), value);
+        chart.MarkerTypes.Clear();
+        chart.MarkerTypes.Add(markerVal);
     }
+        
 
-    protected void SetChartMarker(MarkerType marker)
+    private CountryRenewableElectricity _countryRenewableElectricity = null;
+    public CountryRenewableElectricity CountryRenewableElectricity
     {
-        if (this.Chart != null)
+        get
         {
-            this.Chart.MarkerTypes.Clear();
-            this.Chart.MarkerTypes.Add(marker);
+            if (_countryRenewableElectricity == null)
+            {
+                _countryRenewableElectricity = new CountryRenewableElectricity(); 
+            }
+            return _countryRenewableElectricity;
         }
     }
+    
 }

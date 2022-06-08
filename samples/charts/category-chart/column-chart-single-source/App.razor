@@ -1,35 +1,63 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options vertical">
-        <span class="legend-title">NYC Average Temperature</span>
+	
+	<div class="legend-title">
+        Average Temperature Range in New York
     </div>
-
-    <div class="container vertical">
-        @if (Data != null)
-        {
-            <IgbCategoryChart Height="100%" Width="100%"
-                           DataSource="Data"
-                           ChartType="CategoryChartType.Column"
-                           XAxisInterval="1"
-                           YAxisTitle="Temperature in Degrees Celsius"
-                           YAxisTitleLeftMargin="10"
-                           YAxisTitleRightMargin="5"
-                           YAxisLabelLeftMargin="0"
-						   IsHorizontalZoomEnabled="false"
-                           IsVerticalZoomEnabled="false">
-            </IgbCategoryChart>
-        }
+	
+    <div class="container vertical fill">
+        <IgbCategoryChart
+        ChartType="CategoryChartType.Column"
+        IsCategoryHighlightingEnabled="true"
+        YAxisLabelLeftMargin="0"
+        YAxisTitleLeftMargin="10"
+        YAxisTitleRightMargin="5"
+        YAxisTitle="Temperature in Degrees Celsius"
+        DataSource="TemperatureAverageData"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        HighlightingMode="SeriesHighlightingMode.FadeOthersSpecific"
+        HighlightingBehavior="SeriesHighlightingBehavior.NearestItemsAndSeries"
+        CrosshairsDisplayMode="CrosshairsDisplayMode.None"
+        Name="chart"
+        @ref="chart">
+        </IgbCategoryChart>
     </div>
 </div>
 
 @code {
-
-    private List<TemperatureInfo> Data = new TemperatureData();
-
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
     }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var chart = this.chart;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+	}
+
+	private IgbCategoryChart chart;
+
+
+    private TemperatureAverageData _temperatureAverageData = null;
+    public TemperatureAverageData TemperatureAverageData
+    {
+        get
+        {
+            if (_temperatureAverageData == null)
+            {
+                _temperatureAverageData = new TemperatureAverageData(); 
+            }
+            return _temperatureAverageData;
+        }
+    }
+    
 }

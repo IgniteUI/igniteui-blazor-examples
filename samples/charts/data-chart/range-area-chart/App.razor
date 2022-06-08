@@ -1,38 +1,95 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="container vertical">
-        <IgbDataChart Height="100%" Width="100%"
-                   ChartTitle="Monthly Temperature Range in Los Angeles for 2020 (in Celsius)"
-                   TitleHorizontalAlignment="HorizontalAlignment.Left"
-                   TitleLeftMargin="25"
-                   TitleTopMargin="10"
-                   TitleBottomMargin="10"
-                   IsHorizontalZoomEnabled="false"
-                   IsVerticalZoomEnabled="false">
-
-            <IgbCategoryXAxis Name="xAxis" Label="Month" Interval="1" DataSource="Data" />
-            <IgbNumericYAxis Name="yAxis" MinimumValue="0" MaximumValue="50" Interval="10" Title="Temperature (in Celsius)" TitleLeftMargin="10" />
-
-            <IgbRangeAreaSeries XAxisName="xAxis" Title="Los Angeles"
-                               YAxisName="yAxis"
-                               DataSource="Data"
-                               LowMemberPath="LA_Low"
-                               HighMemberPath="LA_High" />
+	
+	<div class="legend-title">
+        Monthly Temperature Range in Los Angeles
+    </div>
+	
+    <div class="container vertical fill">
+        <IgbDataChart
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        Name="chart"
+        @ref="chart">
+            <IgbCategoryXAxis
+            Interval="1"
+            DataSource="TemperatureRangeData"
+            Label="Month"
+            Name="xAxis"
+            @ref="xAxis">
+            </IgbCategoryXAxis>
+            <IgbNumericYAxis
+            MinimumValue="0"
+            MaximumValue="50"
+            Interval="10"
+            Title="Temperature (in Celsius)"
+            TitleLeftMargin="10"
+            Name="yAxis"
+            @ref="yAxis">
+            </IgbNumericYAxis>
+            <IgbRangeAreaSeries
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            LowMemberPath="NY_Low"
+            HighMemberPath="NY_High"
+            DataSource="TemperatureRangeData"
+            Title="New York"
+            Name="series"
+            @ref="series">
+            </IgbRangeAreaSeries>
+            <IgbRangeAreaSeries
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            LowMemberPath="NY_Low"
+            HighMemberPath="NY_High"
+            DataSource="TemperatureRangeData"
+            Title="New York"
+            Name="series"
+            @ref="series">
+            </IgbRangeAreaSeries>
         </IgbDataChart>
     </div>
 </div>
 
 @code {
-
-    private List<CityTemperatureInfo> Data = new CityTemperatureData();
-
     protected override void OnInitialized()
     {
-        IgbDataChartCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
     }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var chart = this.chart;
+		var xAxis = this.xAxis;
+		var yAxis = this.yAxis;
+		var series = this.series;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+	}
+
+	private IgbDataChart chart;
+	private IgbCategoryXAxis xAxis;
+	private IgbNumericYAxis yAxis;
+	private IgbRangeAreaSeries series;
+
+
+    private TemperatureRangeData _temperatureRangeData = null;
+    public TemperatureRangeData TemperatureRangeData
+    {
+        get
+        {
+            if (_temperatureRangeData == null)
+            {
+                _temperatureRangeData = new TemperatureRangeData(); 
+            }
+            return _temperatureRangeData;
+        }
+    }
+    
 }

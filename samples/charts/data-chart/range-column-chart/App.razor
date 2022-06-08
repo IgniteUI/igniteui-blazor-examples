@@ -1,56 +1,103 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options vertical">
-        <span class="legend-title">Monthly Temperature Range in LA and NYC for 2020 (in Celsius)</span>
-        <div class="legend">
-            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
-        </div>
+	
+	<div class="legend-title">
+        Monthly Temperature Range in LA and NYC
     </div>
-    <div class="container vertical">
-        <IgbDataChart Height="100%" Width="100%"
-                   Legend="Legend"
-                   IsHorizontalZoomEnabled="false"
-                   IsVerticalZoomEnabled="false">
-
-            <IgbCategoryXAxis Name="xAxis" Label="Month" Interval="1" DataSource="Data" />
-            <IgbNumericYAxis Name="yAxis" Title="Temperature (in Celsius)" TitleLeftMargin="10" />
-
-            <IgbRangeColumnSeries XAxisName="xAxis" Title="Los Angeles"
-                               YAxisName="yAxis"
-                               DataSource="Data"
-                               LowMemberPath="LA_Low"
-                               HighMemberPath="LA_High" />
-
-            <IgbRangeColumnSeries XAxisName="xAxis" Title="New York City"
-                               YAxisName="yAxis"
-                               DataSource="Data"
-                               LowMemberPath="NY_Low"
-                               HighMemberPath="NY_High" />
+	<div class="legend">
+        <IgbLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="Legend"
+        @ref="legend">
+        </IgbLegend>
+    </div>
+    <div class="container vertical fill">
+        <IgbDataChart
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        Name="chart"
+        @ref="chart">
+            <IgbCategoryXAxis
+            Interval="1"
+            DataSource="TemperatureRangeData"
+            Label="Month"
+            Name="xAxis"
+            @ref="xAxis">
+            </IgbCategoryXAxis>
+            <IgbNumericYAxis
+            Title="Temperature (in Celsius)"
+            TitleLeftMargin="10"
+            Name="yAxis"
+            @ref="yAxis">
+            </IgbNumericYAxis>
+            <IgbRangeColumnSeries
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            LowMemberPath="LA_Low"
+            HighMemberPath="LA_High"
+            DataSource="TemperatureRangeData"
+            Title="Los Angeles"
+            Name="series1"
+            @ref="series1">
+            </IgbRangeColumnSeries>
+            <IgbRangeColumnSeries
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            Title="New York City"
+            LowMemberPath="NY_Low"
+            HighMemberPath="NY_High"
+            DataSource="TemperatureRangeData"
+            Name="series2"
+            @ref="series2">
+            </IgbRangeColumnSeries>
         </IgbDataChart>
-
     </div>
 </div>
 
 @code {
-
-    private IgbLegend _Legend;
-    private IgbLegend Legend
-    {
-        get { return _Legend; }
-        set { _Legend = value; StateHasChanged(); }
-    }
-
-    private List<CityTemperatureInfo> Data = new CityTemperatureData();
-
     protected override void OnInitialized()
     {
-        IgbDataChartCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-        IgbLegendModule.Register(IgniteUIBlazor);
     }
 
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var chart = this.chart;
+		var xAxis = this.xAxis;
+		var yAxis = this.yAxis;
+		var series1 = this.series1;
+		var series2 = this.series2;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+	}
+
+	private IgbLegend legend;
+	private IgbDataChart chart;
+	private IgbCategoryXAxis xAxis;
+	private IgbNumericYAxis yAxis;
+	private IgbRangeColumnSeries series1;
+	private IgbRangeColumnSeries series2;
+
+
+    private TemperatureRangeData _temperatureRangeData = null;
+    public TemperatureRangeData TemperatureRangeData
+    {
+        get
+        {
+            if (_temperatureRangeData == null)
+            {
+                _temperatureRangeData = new TemperatureRangeData(); 
+            }
+            return _temperatureRangeData;
+        }
+    }
+    
 }

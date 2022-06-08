@@ -1,79 +1,119 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options vertical">
-        <span class="legend-title">Renewable energy consumption</span>
-        <div class="legend">
-            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
-        </div>
+	
+	<div class="legend-title">
+        Renewable Energy Consumption
     </div>
-    <div class="container vertical">
-        @if (Data != null)
-        {
-            <IgbDataChart Height="100%" Width="100%" IsVerticalZoomEnabled="false" IsHorizontalZoomEnabled="false">
-
-                <IgbCategoryYAxis Name="yAxis" DataSource="Data" Label="Location" Gap="0.75" IsInverted="true" />
-                <IgbNumericXAxis Name="xAxis" MinimumValue="0" Title="TWh" />
-
-                <IgbStackedBarSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="true" AreaFillOpacity="1" Legend="Legend">
-                    <IgbStackedFragmentSeries ValueMemberPath="Hydro" />
-                    <IgbStackedFragmentSeries ValueMemberPath="Wind" />
-                    <IgbStackedFragmentSeries ValueMemberPath="Solar" />
-                    <IgbStackedFragmentSeries ValueMemberPath="Other" />
-                </IgbStackedBarSeries>
-                <IgbCalloutLayer DataSource="CalloutData" XMemberPath="X" YMemberPath="Y" LabelMemberPath="Label"
-                              CalloutBackground="Transparent" CalloutLeaderBrush="Transparent" CalloutTextColor="Black" />
-            </IgbDataChart>
-        }
+	<div class="legend">
+        <IgbLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="Legend"
+        @ref="legend">
+        </IgbLegend>
+    </div>
+    <div class="container vertical fill">
+        <IgbDataChart
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        Name="chart"
+        @ref="chart">
+            <IgbCategoryYAxis
+            DataSource="EnergyRenewableConsumption"
+            Gap="0.75"
+            IsInverted="true"
+            Label="Location"
+            Name="yAxis"
+            @ref="yAxis">
+            </IgbCategoryYAxis>
+            <IgbNumericXAxis
+            MinimumValue="0"
+            Title="TWh"
+            Name="xAxis"
+            @ref="xAxis">
+            </IgbNumericXAxis>
+            <IgbStackedBarSeries
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="EnergyRenewableConsumption"
+            AreaFillOpacity="1"
+            ShowDefaultTooltip="true"
+            Name="StackedBarSeries"
+            @ref="stackedBarSeries">
+                <IgbStackedFragmentSeries
+                Name="s1"
+                @ref="s1"
+                ValueMemberPath="Hydro">
+                </IgbStackedFragmentSeries>
+                <IgbStackedFragmentSeries
+                Name="s2"
+                @ref="s2"
+                ValueMemberPath="Wind">
+                </IgbStackedFragmentSeries>
+                <IgbStackedFragmentSeries
+                Name="s3"
+                @ref="s3"
+                ValueMemberPath="Solar">
+                </IgbStackedFragmentSeries>
+                <IgbStackedFragmentSeries
+                Name="s4"
+                @ref="s4"
+                ValueMemberPath="Other">
+                </IgbStackedFragmentSeries>
+            </IgbStackedBarSeries>
+        </IgbDataChart>
     </div>
 </div>
 
 @code {
-    private IgbLegend _legend;
-    public IgbLegend Legend
-    {
-        get { return _legend; }
-        set
-        {
-            _legend = value;
-            StateHasChanged();
-        }
-    }
-
-    public List<EnergySource> Data = new EnergyData();
-    public List<CalloutInfo> CalloutData { get; set; }
-
     protected override void OnInitialized()
     {
-
-        IgbDataChartCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-        IgbDataChartStackedModule.Register(IgniteUIBlazor);
-        IgbColumnFragmentModule.Register(IgniteUIBlazor);
-        IgbStackedSplineSeriesModule.Register(IgniteUIBlazor);
-        IgbStackedFragmentSeriesModule.Register(IgniteUIBlazor);
-        IgbLegendModule.Register(IgniteUIBlazor);
-        IgbCalloutLayerModule.Register(IgniteUIBlazor);
-
-        this.CalloutData = new List<CalloutInfo>();
-
-        for (int i = 0; i < this.Data.Count; i++)
-        {
-            var item = this.Data[i];
-
-            this.CalloutData.Add(new CalloutInfo() { X = item.Sum, Y = i, Label = item.Sum.ToString() });
-        }
-
     }
 
-    public class CalloutInfo
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var chart = this.chart;
+		var yAxis = this.yAxis;
+		var xAxis = this.xAxis;
+		var stackedBarSeries = this.stackedBarSeries;
+		var s1 = this.s1;
+		var s2 = this.s2;
+		var s3 = this.s3;
+		var s4 = this.s4;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+	}
+
+	private IgbLegend legend;
+	private IgbDataChart chart;
+	private IgbCategoryYAxis yAxis;
+	private IgbNumericXAxis xAxis;
+	private IgbStackedBarSeries stackedBarSeries;
+	private IgbStackedFragmentSeries s1;
+	private IgbStackedFragmentSeries s2;
+	private IgbStackedFragmentSeries s3;
+	private IgbStackedFragmentSeries s4;
+
+
+    private EnergyRenewableConsumption _energyRenewableConsumption = null;
+    public EnergyRenewableConsumption EnergyRenewableConsumption
     {
-        public double X { get; set; }
-        public double Y { get; set; }
-        public string Label { get; set; }
+        get
+        {
+            if (_energyRenewableConsumption == null)
+            {
+                _energyRenewableConsumption = new EnergyRenewableConsumption(); 
+            }
+            return _energyRenewableConsumption;
+        }
     }
-
+    
 }

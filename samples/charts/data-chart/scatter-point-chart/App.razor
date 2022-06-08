@@ -1,72 +1,121 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options vertical">
-        <span class="legend-title">Population Demographic for Selected Continents </span>
-        <div class="legend">
-            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
-        </div>
+	
+	<div class="legend-title">
+        Population Statistics for Selected Continents
     </div>
-    <div class="container vertical">
-
-        <IgbDataChart Height="100%" Width="100%"
-                   Legend="Legend"
-                   IsHorizontalZoomEnabled="true"
-                   IsVerticalZoomEnabled="true">
-
-            <IgbNumericXAxis Name="xAxis" Title="Death Rate (per 1,000 people)" MinimumValue="5" MaximumValue="16" Interval="1" />
-            <IgbNumericYAxis Name="yAxis" Title="Birth Rate (per 1,000 people)" MinimumValue="5" MaximumValue="45" Interval="5" />
-
-            <IgbScatterSeries XAxisName="xAxis"
-                           YAxisName="yAxis"
-                           DataSource="AfricaData"
-                           XMemberPath="DeathRate"
-                           YMemberPath="BirthRate"
-                           MarkerType="MarkerType.Circle"
-                           Title="Africa">
+	<div class="legend">
+        <IgbLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="Legend"
+        @ref="legend">
+        </IgbLegend>
+    </div>
+    <div class="container vertical fill">
+        <IgbDataChart
+        
+        Name="chart"
+        @ref="chart">
+            <IgbNumericXAxis
+            MinimumValue="5"
+            MaximumValue="15"
+            Title="Death Rate (per 1,000 people)"
+            Name="xAxis"
+            @ref="xAxis">
+            </IgbNumericXAxis>
+            <IgbNumericYAxis
+            MinimumValue="0"
+            MaximumValue="50"
+            Interval="10"
+            Title="Birth Rate (per 1,000 people)"
+            Name="yAxis"
+            @ref="yAxis">
+            </IgbNumericYAxis>
+            <IgbScatterSeries
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            XMemberPath="DeathRate"
+            YMemberPath="BirthRate"
+            MarkerType="MarkerType.Circle"
+            DataSource="CountryDemographicEurope"
+            ShowDefaultTooltip="true"
+            Title="Europe"
+            Name="ScatterSeries1"
+            @ref="scatterSeries1">
             </IgbScatterSeries>
-
-            <IgbScatterSeries XAxisName="xAxis"
-                           YAxisName="yAxis"
-                           DataSource="EuropeData"
-                           XMemberPath="DeathRate"
-                           YMemberPath="BirthRate"
-                           MarkerType="MarkerType.Circle"
-                           Title="Europe">
+            <IgbScatterSeries
+            Title="Africa"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            XMemberPath="DeathRate"
+            YMemberPath="BirthRate"
+            DataSource="CountryDemographicAfrican"
+            MarkerType="MarkerType.Circle"
+            ShowDefaultTooltip="true"
+            Name="ScatterSeries2"
+            @ref="scatterSeries2">
             </IgbScatterSeries>
         </IgbDataChart>
-
     </div>
 </div>
 
 @code {
-
-    private IgbLegend _legend;
-    public IgbLegend Legend
-    {
-        get { return _legend; }
-        set
-        {
-            _legend = value;
-            StateHasChanged();
-        }
-    }
-
-    private List<BirthAndDeathRateInfo> AfricaData;
-    private List<BirthAndDeathRateInfo> EuropeData;
-
     protected override void OnInitialized()
     {
-        IgbLegendModule.Register(IgniteUIBlazor);
-        IgbDataChartCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartScatterModule.Register(IgniteUIBlazor);
-        IgbDataChartScatterCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-        IgbNumberAbbreviatorModule.Register(IgniteUIBlazor);
-
-        var data = new BirthAndDeathRateData();
-        this.AfricaData = data.Where(d => d.Continent == "Africa").ToList();
-        this.EuropeData = data.Where(d => d.Continent == "Europe").ToList();
     }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var chart = this.chart;
+		var xAxis = this.xAxis;
+		var yAxis = this.yAxis;
+		var scatterSeries1 = this.scatterSeries1;
+		var scatterSeries2 = this.scatterSeries2;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+	}
+
+	private IgbLegend legend;
+	private IgbDataChart chart;
+	private IgbNumericXAxis xAxis;
+	private IgbNumericYAxis yAxis;
+	private IgbScatterSeries scatterSeries1;
+	private IgbScatterSeries scatterSeries2;
+
+
+    private CountryDemographicEurope _countryDemographicEurope = null;
+    public CountryDemographicEurope CountryDemographicEurope
+    {
+        get
+        {
+            if (_countryDemographicEurope == null)
+            {
+                _countryDemographicEurope = new CountryDemographicEurope(); 
+            }
+            return _countryDemographicEurope;
+        }
+    }
+    
+    private CountryDemographicAfrican _countryDemographicAfrican = null;
+    public CountryDemographicAfrican CountryDemographicAfrican
+    {
+        get
+        {
+            if (_countryDemographicAfrican == null)
+            {
+                _countryDemographicAfrican = new CountryDemographicAfrican(); 
+            }
+            return _countryDemographicAfrican;
+        }
+    }
+    
 }

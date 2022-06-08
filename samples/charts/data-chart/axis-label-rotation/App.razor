@@ -1,0 +1,108 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+	<div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="DataChart"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="ShouldConsiderAutoRotationForInitialLabels"
+            Label="Rotate Labels?"
+            ShouldOverrideDefaultEditor="true"
+            PrimitiveValue="true">
+            </IgbPropertyEditorPropertyDescription>
+            <IgbPropertyEditorPropertyDescription
+            DropDownValues="@(new string[] { "None", "SizeChanging", "SizeChangingAndZoom" })"
+            PrimitiveValue="@("SizeChangingAndZoom")"
+            PropertyPath="autoMarginAndAngleUpdateMode"
+            Label="AutoMarginAndAngleUpdateMode:"
+            ValueType="PropertyEditorValueType.EnumValue"
+            ShouldOverrideDefaultEditor="true"
+            DropDownNames="@(new string[] { "None", "SizeChanging", "SizeChangingAndZoom" })">
+            </IgbPropertyEditorPropertyDescription>
+        </IgbPropertyEditorPanel>
+    </div>
+	
+	
+    <div class="container vertical fill">
+        <IgbDataChart
+        IsHorizontalZoomEnabled="true"
+        IsVerticalZoomEnabled="true"
+        ShouldAutoExpandMarginForInitialLabels="true"
+        ShouldConsiderAutoRotationForInitialLabels="true"
+        AutoMarginAndAngleUpdateMode="AutoMarginsAndAngleUpdateMode.SizeChangingAndZoom"
+        Name="chart"
+        @ref="chart">
+            <IgbCategoryXAxis
+            DataSource="TemperatureAverageData"
+            UseEnhancedIntervalManagement="true"
+            EnhancedIntervalPreferMoreCategoryLabels="true"
+            LabelExtent="60"
+            Label="Month"
+            Name="xAxis"
+            @ref="xAxis">
+            </IgbCategoryXAxis>
+            <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis">
+            </IgbNumericYAxis>
+            <IgbColumnSeries
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            ValueMemberPath="Temperature"
+            DataSource="TemperatureAverageData"
+            Name="colSeries1"
+            @ref="colSeries1">
+            </IgbColumnSeries>
+        </IgbDataChart>
+    </div>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var propertyEditorPanel1 = this.propertyEditorPanel1;
+		var chart = this.chart;
+		var xAxis = this.xAxis;
+		var yAxis = this.yAxis;
+		var colSeries1 = this.colSeries1;
+
+        this.BindElements = () => {
+            propertyEditorPanel1.Target = this.chart;
+        };
+        this.BindElements();
+	}
+
+	private IgbPropertyEditorPanel propertyEditorPanel1;
+	private IgbDataChart chart;
+	private IgbCategoryXAxis xAxis;
+	private IgbNumericYAxis yAxis;
+	private IgbColumnSeries colSeries1;
+
+
+    private TemperatureAverageData _temperatureAverageData = null;
+    public TemperatureAverageData TemperatureAverageData
+    {
+        get
+        {
+            if (_temperatureAverageData == null)
+            {
+                _temperatureAverageData = new TemperatureAverageData(); 
+            }
+            return _temperatureAverageData;
+        }
+    }
+    
+}
