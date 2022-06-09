@@ -52,13 +52,22 @@ class SampleSourceFile extends SampleFile {
     // public Path: string;
     // public IsChanged: boolean;
 
-    constructor(file: SampleFile) {
+    constructor(file: SampleFile, modules: string[]) {
         super();
         this.Content = file.Content;
         this.Path = file.Path;
         this.Name = file.Name;
         this.IsChanged = file.IsChanged;
 
+        if (modules !== undefined && modules.length > 0) {
+            // inserting IG modules from Program.CS to App.razor file
+            var moduleReplace = "OnInitialized()\r\n    {";
+            var moduleInsert = "\r\n";
+            for (const module of modules) {
+                moduleInsert += "        " + module + ".Register(IgniteUIBlazor);\r\n"
+            }
+            this.Content = this.Content.replace(moduleReplace, moduleReplace + moduleInsert);
+        }
         // this.LocalPath = "";
     }
     // constructor() {
@@ -114,8 +123,9 @@ class SampleInfo {
     public PublicFiles_JS: SampleFile[];
     public PublicFiles_CSS: SampleFile[];
     public ProjectFile: SampleFile;
+    public ProgramModules: string[];
 
-    public DocsUrl: string             // https://infragistics.com/Reactsite/components/geo-map.html
+    public DocsUrl: string;            // https://infragistics.com/Reactsite/components/geo-map.html
 
     public SandboxUrlView: string;     // https://codesandbox.io/embed/github/IgniteUI/igniteui-react-examples/tree/master/samples/maps/geo-map/binding-csv-points
     public SandboxUrlEdit: string;     //     https://codesandbox.io/s/github/IgniteUI/igniteui-react-examples/tree/master/samples/maps/geo-map/binding-csv-points
@@ -331,7 +341,7 @@ class Transformer {
                 console.log(" - " + razorFiles.join("\n - "));
             } else { // good we have only one .razor file per sample
                 info.IsComplete = true;
-                info.SourceRazorFile = new SampleSourceFile(razorFiles[0]);
+                info.SourceRazorFile = new SampleSourceFile(razorFiles[0], info.ProgramModules);
                 info.SampleFileName = info.SourceRazorFile.Name;
                 // this.lintSample(info);
 
@@ -546,7 +556,23 @@ class Transformer {
                 info.SourceFiles.push(file);
 
             } else if (file.isCS()) {
-                info.SourceFiles.push(file);
+
+                if (file.Path.endsWith("Program.cs")) {
+                    // getting IG modules from Program.cs
+                    info.ProgramModules = [];
+                    var lines = file.Content.split("\r\n");
+                    for (const line of lines) {
+                        var moduleIndex = line.indexOf("typeof(")
+                        if (moduleIndex >= 0) {
+                            var module = line.replace("typeof(", "").replace(")", "").replace(",", "").trim();
+                            info.ProgramModules.push(module);
+                        }
+                    }
+                    // console.log("info.ProgramModules \n" + info.ProgramModules.join("\n"));
+                }
+                else {
+                    info.SourceFiles.push(file);
+                }
 
             } else if (file.isPublicCSS()) {
                 info.PublicFiles_CSS.push(file);

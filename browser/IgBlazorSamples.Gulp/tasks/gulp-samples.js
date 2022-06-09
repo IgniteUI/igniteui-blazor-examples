@@ -28,6 +28,8 @@ log('loaded gulp scripts');
 
 // NOTE you can comment out strings in this array to run subset of samples
 var sampleSource = [
+    // igConfig.SamplesCopyPath + '/charts/category-chart/axis-gap/App.razor',
+
     igConfig.SamplesCopyPath + '/charts/category-chart/**/App.razor',
     igConfig.SamplesCopyPath + '/charts/data-chart/**/App.razor',
     igConfig.SamplesCopyPath + '/charts/doughnut-chart/**/App.razor',
@@ -134,9 +136,8 @@ function getSamples(cb) {
         //   '!' + sampleFolder + "/Pages/_*.razor",
         //   '!' + sampleFolder + "/Pages/DataGridBindingLiveData.razor",
           '!' + sampleFolder + "/Pages/*.g.cs",
-        //   '!' + sampleFolder + "/App.razor",
           '!' + sampleFolder + "/_Imports.razor",
-          '!' + sampleFolder + "/Program.cs",
+        //   '!' + sampleFolder + "/Program.cs", // not excluded b/c we need to get names of IG modules
           '!' + sampleFolder + "/obj/**",
           '!' + sampleFolder + "/obj/*.*",
           '!' + sampleFolder + "/bin/**",
