@@ -13,12 +13,11 @@
         public async static Task<MultipleStocks> Fetch()
         {
             var google = await MultipleStocks.GetGoogleStock();
-            var microsoft = await MultipleStocks.GetMicrosoftStock();
+            var amazon = await MultipleStocks.GetAmazonStock();
 
             var val = new MultipleStocks();
             val.Add(google);
-            val.Add(microsoft);
-
+            val.Add(amazon);
             return val;
         }
 
@@ -86,7 +85,6 @@
                 item.Close = ((JsonElement)json["close"]).GetDouble();
                 item.Volume = ((JsonElement)json["volume"]).GetDouble();
                 ret.Add(item);
-
             }
 
             return ret;
@@ -97,7 +95,7 @@
     {
         [DataSeriesMemberIntent(DataSeriesIntent.SeriesTitle)]
         public string Title { get; set; }
-        public DateTime Date { get; set; }   
+        public DateTime Date { get; set; }
         public double Open { get; set; }
         public double High { get; set; }
         public double Low { get; set; }
@@ -108,6 +106,6 @@
     public class TitledStockData
         : ObservableCollection<MultipleStocksItem>
     {
-        
+
     }
     //end async data
