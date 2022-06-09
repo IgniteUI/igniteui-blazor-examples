@@ -1,5 +1,4 @@
-﻿console.log("test");
-
+﻿
 function onSeriesMouseEnter(o, e) {
     if (e.series.tooltipTemplate === null ||
         e.series.tooltipTemplate === undefined) {
