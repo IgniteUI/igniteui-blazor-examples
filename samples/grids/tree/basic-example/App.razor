@@ -1,0 +1,38 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container sample center">
+    <style>
+        igc-tree {
+            width: 320px;
+            max-height: 360px;
+            overflow-y: auto;
+        }
+    </style>
+
+    <IgbTree>
+          <IgbTreeItem Label="North America">
+            <IgbTreeItem Label="United States"></IgbTreeItem>
+            <IgbTreeItem Label="Canada"></IgbTreeItem>
+            <IgbTreeItem Label="Mexico"></IgbTreeItem>
+          </IgbTreeItem>
+          <IgbTreeItem Label="South America">
+            <IgbTreeItem Label="Brazil"></IgbTreeItem>
+            <IgbTreeItem Label="Uruguay"></IgbTreeItem>
+          </IgbTreeItem>
+          <IgbTreeItem Label="Europe">
+            <IgbTreeItem Label="United Kingdom"></IgbTreeItem>
+            <IgbTreeItem Label="Germany"></IgbTreeItem>
+            <IgbTreeItem Label="Bulgaria"></IgbTreeItem>
+          </IgbTreeItem>
+    </IgbTree>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        IgbTreeModule.Register(IgniteUIBlazor);
+        IgbTreeItemModule.Register(IgniteUIBlazor);
+    }
+}
