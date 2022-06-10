@@ -564,8 +564,19 @@ class Transformer {
                     for (const line of lines) {
                         var moduleIndex = line.indexOf("typeof(")
                         if (moduleIndex >= 0) {
-                            var module = line.replace("typeof(", "").replace(")", "").replace(",", "").trim();
-                            info.ProgramModules.push(module);
+                            var module = line;
+                            module = module.replace("builder.Services.AddScoped(","");
+                            module = module.replace("typeof(IIgniteUIBlazor","");
+                            module = module.replace("typeof(IgniteUIBlazor","");
+                            module = module.replace("typeof(","");
+                            module = module.split("(").join("");
+                            module = module.split(")").join("");
+                            module = module.replace(";","");
+                            module = module.replace(",","");
+                            module = module.trim();
+                            if (module !== "") {
+                                info.ProgramModules.push(module);
+                            }
                         }
                     }
                     // console.log("info.ProgramModules \n" + info.ProgramModules.join("\n"));
