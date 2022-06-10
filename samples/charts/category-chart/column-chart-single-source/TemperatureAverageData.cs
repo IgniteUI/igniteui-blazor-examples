@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 public class TemperatureAverageDataItem
 {
-    public double MarketShare{ get; set; }
-    public string Category{ get; set; }
-    public string Summary{ get; set; }
+    public string Month{ get; set; }
+    public double Temperature{ get; set; }
 }
 public class TemperatureAverageData
     : List<TemperatureAverageDataItem>
@@ -13,33 +12,63 @@ public class TemperatureAverageData
     {
         this.Add(new TemperatureAverageDataItem()
         {
-            MarketShare = 30,
-            Category = @"Google",
-            Summary = @"Google 30%"
+            Month = @"Jan",
+            Temperature = 3
         });
         this.Add(new TemperatureAverageDataItem()
         {
-            MarketShare = 25,
-            Category = @"Apple",
-            Summary = @"Apple 25%"
+            Month = @"Feb",
+            Temperature = 4
         });
         this.Add(new TemperatureAverageDataItem()
         {
-            MarketShare = 20,
-            Category = @"Microsoft",
-            Summary = @"Microsoft 20%"
+            Month = @"Mar",
+            Temperature = 9
         });
         this.Add(new TemperatureAverageDataItem()
         {
-            MarketShare = 15,
-            Category = @"Samsung",
-            Summary = @"Samsung 15%"
+            Month = @"Apr",
+            Temperature = 15
         });
         this.Add(new TemperatureAverageDataItem()
         {
-            MarketShare = 10,
-            Category = @"Other",
-            Summary = @"Other 10%"
+            Month = @"May",
+            Temperature = 21
+        });
+        this.Add(new TemperatureAverageDataItem()
+        {
+            Month = @"Jun",
+            Temperature = 26
+        });
+        this.Add(new TemperatureAverageDataItem()
+        {
+            Month = @"Jul",
+            Temperature = 29
+        });
+        this.Add(new TemperatureAverageDataItem()
+        {
+            Month = @"Aug",
+            Temperature = 28
+        });
+        this.Add(new TemperatureAverageDataItem()
+        {
+            Month = @"Sep",
+            Temperature = 24
+        });
+        this.Add(new TemperatureAverageDataItem()
+        {
+            Month = @"Oct",
+            Temperature = 18
+        });
+        this.Add(new TemperatureAverageDataItem()
+        {
+            Month = @"Nov",
+            Temperature = 11
+        });
+        this.Add(new TemperatureAverageDataItem()
+        {
+            Month = @"Dec",
+            Temperature = 5
         });
     }
 }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 public class OlympicMedalsTopCountriesItem
 {
     public string Year{ get; set; }
-    public double USA{ get; set; }
-    public double CHN{ get; set; }
-    public double RUS{ get; set; }
+    public double America{ get; set; }
+    public double China{ get; set; }
+    public double Russia{ get; set; }
 }
 public class OlympicMedalsTopCountries
     : List<OlympicMedalsTopCountriesItem>
@@ -15,44 +15,44 @@ public class OlympicMedalsTopCountries
         this.Add(new OlympicMedalsTopCountriesItem()
         {
             Year = @"1996",
-            USA = 148,
-            CHN = 110,
-            RUS = 95
+            America = 148,
+            China = 110,
+            Russia = 95
         });
         this.Add(new OlympicMedalsTopCountriesItem()
         {
             Year = @"2000",
-            USA = 142,
-            CHN = 115,
-            RUS = 91
+            America = 142,
+            China = 115,
+            Russia = 91
         });
         this.Add(new OlympicMedalsTopCountriesItem()
         {
             Year = @"2004",
-            USA = 134,
-            CHN = 121,
-            RUS = 86
+            America = 134,
+            China = 121,
+            Russia = 86
         });
         this.Add(new OlympicMedalsTopCountriesItem()
         {
             Year = @"2008",
-            USA = 131,
-            CHN = 129,
-            RUS = 65
+            America = 131,
+            China = 129,
+            Russia = 65
         });
         this.Add(new OlympicMedalsTopCountriesItem()
         {
             Year = @"2012",
-            USA = 135,
-            CHN = 115,
-            RUS = 77
+            America = 135,
+            China = 115,
+            Russia = 77
         });
         this.Add(new OlympicMedalsTopCountriesItem()
         {
             Year = @"2016",
-            USA = 146,
-            CHN = 112,
-            RUS = 88
+            America = 146,
+            China = 112,
+            Russia = 88
         });
     }
 }
