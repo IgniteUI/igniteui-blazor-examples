@@ -20,7 +20,9 @@
         Name="chart"
         @ref="chart">
             <IgbNumericXAxis
-            Title="Hours Worked per Week"
+            IsLogarithmic="true"
+            AbbreviateLargeNumbers="true"
+            Title="Population"
             Name="xAxis"
             @ref="xAxis">
             </IgbNumericXAxis>
@@ -35,13 +37,14 @@
             RadiusMemberPath="Population"
             XAxisName="xAxis"
             YAxisName="yAxis"
-            XMemberPath="WorkedHours"
+            XMemberPath="Population"
             YMemberPath="GDP"
             MarkerType="MarkerType.Circle"
             MarkerThickness="2"
-            MarkerBrush="#bae772"
-            MarkerOutline="#bae772"
-            DataSource="CountryDemographicAfrican"
+            MarkerBrush="#3eca3e"
+            MarkerOutline="#3eca3e"
+            DataSource="CountryStatsAfrica"
+            MarkerFillOpacity="0.5"
             ShowDefaultTooltip="true"
             Title="African Countries"
             Name="BubbleSeries1"
@@ -51,13 +54,14 @@
             Title="European Countries"
             XAxisName="xAxis"
             YAxisName="yAxis"
-            XMemberPath="WorkedHours"
+            XMemberPath="Population"
             YMemberPath="GDP"
             RadiusMemberPath="Population"
-            DataSource="CountryDemographicEurope"
+            DataSource="CountryStatsEurope"
             MarkerType="MarkerType.Circle"
-            MarkerOutline="#f8ae5f"
-            MarkerBrush="#f8ae5f"
+            MarkerOutline="#ab06dd"
+            MarkerBrush="#ab06dd"
+            MarkerFillOpacity="0.5"
             MarkerThickness="2"
             ShowDefaultTooltip="true"
             Name="BubbleSeries2"
@@ -97,47 +101,29 @@
 	private IgbBubbleSeries bubbleSeries2;
 
 
-    private SizeScaleItem _sizeScale = null;
-    public SizeScaleItem SizeScale
+    private CountryStatsAfrica _countryStatsAfrica = null;
+    public CountryStatsAfrica CountryStatsAfrica
     {
         get
         {
-            if (_sizeScale == null)
+            if (_countryStatsAfrica == null)
             {
-                _sizeScale = 
-                new SizeScaleItem()
-                {
-                    type = @"SizeScale",
-                    minimumValue = 10,
-                    maximumValue = 50
-                }}
-            return _sizeScale;
+                _countryStatsAfrica = new CountryStatsAfrica(); 
+            }
+            return _countryStatsAfrica;
         }
     }
     
-    private CountryDemographicAfrican _countryDemographicAfrican = null;
-    public CountryDemographicAfrican CountryDemographicAfrican
+    private CountryStatsEurope _countryStatsEurope = null;
+    public CountryStatsEurope CountryStatsEurope
     {
         get
         {
-            if (_countryDemographicAfrican == null)
+            if (_countryStatsEurope == null)
             {
-                _countryDemographicAfrican = new CountryDemographicAfrican(); 
+                _countryStatsEurope = new CountryStatsEurope(); 
             }
-            return _countryDemographicAfrican;
-        }
-    }
-    
-    private CountryDemographicEurope _countryDemographicEurope = null;
-    public CountryDemographicEurope CountryDemographicEurope
-    {
-        get
-        {
-            if (_countryDemographicEurope == null)
-            {
-                _countryDemographicEurope = new CountryDemographicEurope(); 
-            }
-            return _countryDemographicEurope;
+            return _countryStatsEurope;
         }
     }
     

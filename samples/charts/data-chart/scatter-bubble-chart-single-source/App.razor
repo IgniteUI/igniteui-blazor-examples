@@ -5,7 +5,7 @@
 <div class="container vertical">
 	
 	<div class="legend-title">
-        GDP per Capita vs Hours Worked per Week
+        GDP per Capita vs Population
     </div>
 	
     <div class="container vertical fill">
@@ -13,7 +13,9 @@
         Name="chart"
         @ref="chart">
             <IgbNumericXAxis
-            Title="Hours Worked per Week"
+            IsLogarithmic="true"
+            AbbreviateLargeNumbers="true"
+            Title="Population"
             Name="xAxis"
             @ref="xAxis">
             </IgbNumericXAxis>
@@ -28,10 +30,10 @@
             RadiusMemberPath="Population"
             XAxisName="xAxis"
             YAxisName="yAxis"
-            XMemberPath="WorkedHours"
+            XMemberPath="Population"
             YMemberPath="GDP"
             MarkerType="MarkerType.Circle"
-            DataSource="CountryDemographicEurope"
+            DataSource="CountryStatsEurope"
             ShowDefaultTooltip="true"
             Title="European Countries"
             Name="BubbleSeries1"
@@ -66,34 +68,16 @@
 	private IgbBubbleSeries bubbleSeries1;
 
 
-    private SizeScaleItem _sizeScale = null;
-    public SizeScaleItem SizeScale
+    private CountryStatsEurope _countryStatsEurope = null;
+    public CountryStatsEurope CountryStatsEurope
     {
         get
         {
-            if (_sizeScale == null)
+            if (_countryStatsEurope == null)
             {
-                _sizeScale = 
-                new SizeScaleItem()
-                {
-                    type = @"SizeScale",
-                    minimumValue = 10,
-                    maximumValue = 50
-                }}
-            return _sizeScale;
-        }
-    }
-    
-    private CountryDemographicEurope _countryDemographicEurope = null;
-    public CountryDemographicEurope CountryDemographicEurope
-    {
-        get
-        {
-            if (_countryDemographicEurope == null)
-            {
-                _countryDemographicEurope = new CountryDemographicEurope(); 
+                _countryStatsEurope = new CountryStatsEurope(); 
             }
-            return _countryDemographicEurope;
+            return _countryStatsEurope;
         }
     }
     

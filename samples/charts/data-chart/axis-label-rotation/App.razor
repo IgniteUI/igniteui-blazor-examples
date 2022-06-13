@@ -40,10 +40,9 @@
         Name="chart"
         @ref="chart">
             <IgbCategoryXAxis
-            DataSource="TemperatureAverageData"
+            DataSource="TemperatureAverageDataLongLabels"
             UseEnhancedIntervalManagement="true"
             EnhancedIntervalPreferMoreCategoryLabels="true"
-            LabelExtent="60"
             Label="Month"
             Name="xAxis"
             @ref="xAxis">
@@ -56,7 +55,7 @@
             XAxisName="xAxis"
             YAxisName="yAxis"
             ValueMemberPath="Temperature"
-            DataSource="TemperatureAverageData"
+            DataSource="TemperatureAverageDataLongLabels"
             Name="colSeries1"
             @ref="colSeries1">
             </IgbColumnSeries>
@@ -92,16 +91,16 @@
 	private IgbColumnSeries colSeries1;
 
 
-    private TemperatureAverageData _temperatureAverageData = null;
-    public TemperatureAverageData TemperatureAverageData
+    private TemperatureAverageDataLongLabels _temperatureAverageDataLongLabels = null;
+    public TemperatureAverageDataLongLabels TemperatureAverageDataLongLabels
     {
         get
         {
-            if (_temperatureAverageData == null)
+            if (_temperatureAverageDataLongLabels == null)
             {
-                _temperatureAverageData = new TemperatureAverageData(); 
+                _temperatureAverageDataLongLabels = new TemperatureAverageDataLongLabels(); 
             }
-            return _temperatureAverageData;
+            return _temperatureAverageDataLongLabels;
         }
     }
     

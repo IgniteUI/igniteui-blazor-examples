@@ -10,6 +10,8 @@
         <IgbDataChart
         IsHorizontalZoomEnabled="true"
         IsVerticalZoomEnabled="true"
+        ShouldAutoExpandMarginForInitialLabels="true"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
         Name="chart"
         @ref="chart">
             <IgbCategoryXAxis
@@ -22,11 +24,12 @@
             @ref="xAxis">
             </IgbCategoryXAxis>
             <IgbNumericYAxis
-            LabelLocation="AxisLabelsLocation.OutsideBottom"
+            LabelLocation="AxisLabelsLocation.OutsideRight"
             Name="yAxis"
             @ref="yAxis">
             </IgbNumericYAxis>
             <IgbFinancialPriceSeries
+            DisplayType="PriceDisplayType.Candlestick"
             XAxisName="xAxis"
             YAxisName="yAxis"
             OpenMemberPath="Open"
@@ -40,6 +43,10 @@
             Name="Series1"
             @ref="series1">
             </IgbFinancialPriceSeries>
+            <IgbDataToolTipLayer
+            Name="Tooltip"
+            @ref="tooltip">
+            </IgbDataToolTipLayer>
         </IgbDataChart>
     </div>
 </div>
@@ -57,6 +64,7 @@
 		var xAxis = this.xAxis;
 		var yAxis = this.yAxis;
 		var series1 = this.series1;
+		var tooltip = this.tooltip;
 
         this.BindElements = () => {
         };
@@ -67,6 +75,7 @@
 	private IgbCategoryXAxis xAxis;
 	private IgbNumericYAxis yAxis;
 	private IgbFinancialPriceSeries series1;
+	private IgbDataToolTipLayer tooltip;
 
 
     private Stock2Years _stock2Years = null;

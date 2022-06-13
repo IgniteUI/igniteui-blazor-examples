@@ -49,28 +49,16 @@
             @ref="scatterSplineSeries1">
             </IgbScatterSplineSeries>
             <IgbScatterSplineSeries
-            Title="France"
             XAxisName="xAxis"
             YAxisName="yAxis"
             XMemberPath="LifeExpectancy"
             YMemberPath="HealthExpense"
-            DataSource="HealthDataForFrance"
             MarkerType="MarkerType.Circle"
+            DataSource="HealthDataForFrance"
             ShowDefaultTooltip="true"
+            Title="France"
             Name="ScatterSplineSeries2"
             @ref="scatterSplineSeries2">
-            </IgbScatterSplineSeries>
-            <IgbScatterSplineSeries
-            Title="Norway"
-            XAxisName="xAxis"
-            YAxisName="yAxis"
-            XMemberPath="LifeExpectancy"
-            YMemberPath="HealthExpense"
-            DataSource="HealthDataForNorway"
-            MarkerType="MarkerType.Circle"
-            ShowDefaultTooltip="true"
-            Name="ScatterSplineSeries3"
-            @ref="scatterSplineSeries3">
             </IgbScatterSplineSeries>
         </IgbDataChart>
     </div>
@@ -91,7 +79,6 @@
 		var yAxis = this.yAxis;
 		var scatterSplineSeries1 = this.scatterSplineSeries1;
 		var scatterSplineSeries2 = this.scatterSplineSeries2;
-		var scatterSplineSeries3 = this.scatterSplineSeries3;
 
         this.BindElements = () => {
             chart.Legend = this.legend;
@@ -105,7 +92,6 @@
 	private IgbNumericYAxis yAxis;
 	private IgbScatterSplineSeries scatterSplineSeries1;
 	private IgbScatterSplineSeries scatterSplineSeries2;
-	private IgbScatterSplineSeries scatterSplineSeries3;
 
 
     private HealthDataForGermany _healthDataForGermany = null;
@@ -131,19 +117,6 @@
                 _healthDataForFrance = new HealthDataForFrance(); 
             }
             return _healthDataForFrance;
-        }
-    }
-    
-    private HealthDataForNorway _healthDataForNorway = null;
-    public HealthDataForNorway HealthDataForNorway
-    {
-        get
-        {
-            if (_healthDataForNorway == null)
-            {
-                _healthDataForNorway = new HealthDataForNorway(); 
-            }
-            return _healthDataForNorway;
         }
     }
     

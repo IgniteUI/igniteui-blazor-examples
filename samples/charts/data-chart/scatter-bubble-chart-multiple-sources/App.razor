@@ -20,7 +20,9 @@
         Name="chart"
         @ref="chart">
             <IgbNumericXAxis
-            Title="Hours Worked per Week"
+            IsLogarithmic="true"
+            AbbreviateLargeNumbers="true"
+            Title="Population"
             Name="xAxis"
             @ref="xAxis">
             </IgbNumericXAxis>
@@ -35,10 +37,10 @@
             RadiusMemberPath="Population"
             XAxisName="xAxis"
             YAxisName="yAxis"
-            XMemberPath="WorkedHours"
+            XMemberPath="Population"
             YMemberPath="GDP"
             MarkerType="MarkerType.Circle"
-            DataSource="CountryDemographicAfrican"
+            DataSource="CountryStatsAfrica"
             ShowDefaultTooltip="true"
             Title="African Countries"
             Name="BubbleSeries1"
@@ -48,10 +50,10 @@
             Title="European Countries"
             XAxisName="xAxis"
             YAxisName="yAxis"
-            XMemberPath="WorkedHours"
+            XMemberPath="Population"
             YMemberPath="GDP"
             RadiusMemberPath="Population"
-            DataSource="CountryDemographicEurope"
+            DataSource="CountryStatsEurope"
             MarkerType="MarkerType.Circle"
             ShowDefaultTooltip="true"
             Name="BubbleSeries2"
@@ -91,65 +93,29 @@
 	private IgbBubbleSeries bubbleSeries2;
 
 
-    private SizeScale1Item _sizeScale1 = null;
-    public SizeScale1Item SizeScale1
+    private CountryStatsAfrica _countryStatsAfrica = null;
+    public CountryStatsAfrica CountryStatsAfrica
     {
         get
         {
-            if (_sizeScale1 == null)
+            if (_countryStatsAfrica == null)
             {
-                _sizeScale1 = 
-                new SizeScale1Item()
-                {
-                    type = @"SizeScale",
-                    minimumValue = 10,
-                    maximumValue = 50
-                }}
-            return _sizeScale1;
-        }
-    }
-    
-    private SizeScale2Item _sizeScale2 = null;
-    public SizeScale2Item SizeScale2
-    {
-        get
-        {
-            if (_sizeScale2 == null)
-            {
-                _sizeScale2 = 
-                new SizeScale2Item()
-                {
-                    type = @"SizeScale",
-                    minimumValue = 10,
-                    maximumValue = 50
-                }}
-            return _sizeScale2;
-        }
-    }
-    
-    private CountryDemographicAfrican _countryDemographicAfrican = null;
-    public CountryDemographicAfrican CountryDemographicAfrican
-    {
-        get
-        {
-            if (_countryDemographicAfrican == null)
-            {
-                _countryDemographicAfrican = new CountryDemographicAfrican(); 
+                _countryStatsAfrica = new CountryStatsAfrica(); 
             }
-            return _countryDemographicAfrican;
+            return _countryStatsAfrica;
         }
     }
     
-    private CountryDemographicEurope _countryDemographicEurope = null;
-    public CountryDemographicEurope CountryDemographicEurope
+    private CountryStatsEurope _countryStatsEurope = null;
+    public CountryStatsEurope CountryStatsEurope
     {
         get
         {
-            if (_countryDemographicEurope == null)
+            if (_countryStatsEurope == null)
             {
-                _countryDemographicEurope = new CountryDemographicEurope(); 
+                _countryStatsEurope = new CountryStatsEurope(); 
             }
-            return _countryDemographicEurope;
+            return _countryStatsEurope;
         }
     }
     

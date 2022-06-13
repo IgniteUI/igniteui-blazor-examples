@@ -75,6 +75,12 @@ public class CountryRenewableCallouts
         {
             Index = 10,
             Label = @"38 TWh",
+            Value = 34
+        });
+        this.Add(new CountryRenewableCalloutsItem()
+        {
+            Index = 11,
+            Label = @"38 TWh",
             Value = 38
         });
     }

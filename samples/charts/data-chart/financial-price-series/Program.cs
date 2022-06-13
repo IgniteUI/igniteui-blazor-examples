@@ -30,7 +30,8 @@ namespace Infragistics.Samples
                 typeof(IgbDataChartFinancialCoreModule), 
                 typeof(IgbDataChartFinancialModule), 
                 typeof(IgbDataChartFinancialOverlaysModule), 
-                typeof(IgbDataChartInteractivityModule)
+                typeof(IgbDataChartInteractivityModule), 
+                typeof(IgbDataChartAnnotationModule)
             );
 
             await builder.Build().RunAsync();
