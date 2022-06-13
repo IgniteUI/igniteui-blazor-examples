@@ -22,8 +22,7 @@
                         ChartType="CategoryChartType.Line"
                         DataSource="@Data"
                         YAxisExtent="40"
-                        MarkerBrushes="transparent"
-                        MarkerOutlineMode="MarkerOutlineMode.MatchMarkerBrush">
+                        SeriesAdded="OnSeriesAdded">
          </IgbCategoryChart>
     </div>
 </div>
@@ -37,7 +36,8 @@
     private IgbCategoryChart Chart
     {
         get { return _Chart; }
-        set { _Chart = value; StateHasChanged(); }
+        set { _Chart = value;
+            StateHasChanged(); }
     }
 
     private int DataIndex = 0;
@@ -63,6 +63,12 @@
         this.Chart.NotifyInsertItem(this.Data, this.Data.Count - 1, newItem);
 
         Task.Delay((int)this.DataFeedInterval).ContinueWith((t) => OnDataUpdate());
+    }
+
+    private void OnSeriesAdded(IgbChartSeriesEventArgs e)
+    {
+        ((IgbCategoryChart)e.Parent).MarkerTypes.Clear();
+        ((IgbCategoryChart)e.Parent).MarkerTypes.Add(MarkerType.None);
     }
 
     protected override void OnInitialized()
