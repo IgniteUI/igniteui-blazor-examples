@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 public class SparklineMixedDataItem
 {
+    public string Label{ get; set; }
     public double Value{ get; set; }
-    public string Category{ get; set; }
-    public string Summary{ get; set; }
 }
 public class SparklineMixedData
     : List<SparklineMixedDataItem>
@@ -13,33 +12,43 @@ public class SparklineMixedData
     {
         this.Add(new SparklineMixedDataItem()
         {
-            Value = 37,
-            Category = @"Cooling",
-            Summary = @"Cooling 37%"
+            Label = @"A",
+            Value = 30
         });
         this.Add(new SparklineMixedDataItem()
         {
-            Value = 25,
-            Category = @"Residential",
-            Summary = @"Residential 25%"
+            Label = @"B",
+            Value = -10
         });
         this.Add(new SparklineMixedDataItem()
         {
-            Value = 12,
-            Category = @"Heating",
-            Summary = @"Heating 12%"
+            Label = @"C",
+            Value = 40
         });
         this.Add(new SparklineMixedDataItem()
         {
-            Value = 11,
-            Category = @"Lighting",
-            Summary = @"Lighting 11%"
+            Label = @"D",
+            Value = -20
         });
         this.Add(new SparklineMixedDataItem()
         {
-            Value = 15,
-            Category = @"Other",
-            Summary = @"Other 15%"
+            Label = @"E",
+            Value = 30
+        });
+        this.Add(new SparklineMixedDataItem()
+        {
+            Label = @"F",
+            Value = 40
+        });
+        this.Add(new SparklineMixedDataItem()
+        {
+            Label = @"G",
+            Value = -10
+        });
+        this.Add(new SparklineMixedDataItem()
+        {
+            Label = @"H",
+            Value = 30
         });
     }
 }
