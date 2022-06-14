@@ -15,16 +15,20 @@
             PropertyPath="ShouldConsiderAutoRotationForInitialLabels"
             Label="Rotate Labels?"
             ShouldOverrideDefaultEditor="true"
-            PrimitiveValue="true">
+            PrimitiveValue="true"
+            Name="ShouldConsiderAutoRotationForInitialLabels"
+            @ref="shouldConsiderAutoRotationForInitialLabels">
             </IgbPropertyEditorPropertyDescription>
             <IgbPropertyEditorPropertyDescription
-            DropDownValues="@(new string[] { "None", "SizeChanging", "SizeChangingAndZoom" })"
-            PrimitiveValue="@("SizeChangingAndZoom")"
-            PropertyPath="autoMarginAndAngleUpdateMode"
+            PropertyPath="AutoMarginAndAngleUpdateMode"
             Label="AutoMarginAndAngleUpdateMode:"
             ValueType="PropertyEditorValueType.EnumValue"
             ShouldOverrideDefaultEditor="true"
-            DropDownNames="@(new string[] { "None", "SizeChanging", "SizeChangingAndZoom" })">
+            DropDownNames="@(new string[] { "None", "SizeChanging", "SizeChangingAndZoom" })"
+            DropDownValues="@(new string[] { "None", "SizeChanging", "SizeChangingAndZoom" })"
+            PrimitiveValue="@("SizeChangingAndZoom")"
+            Name="AutoMarginAndAngleUpdateMode"
+            @ref="autoMarginAndAngleUpdateMode">
             </IgbPropertyEditorPropertyDescription>
         </IgbPropertyEditorPanel>
     </div>
@@ -73,6 +77,8 @@
 	protected override void OnAfterRender(bool firstRender)
 	{
 		var propertyEditorPanel1 = this.propertyEditorPanel1;
+		var shouldConsiderAutoRotationForInitialLabels = this.shouldConsiderAutoRotationForInitialLabels;
+		var autoMarginAndAngleUpdateMode = this.autoMarginAndAngleUpdateMode;
 		var chart = this.chart;
 		var xAxis = this.xAxis;
 		var yAxis = this.yAxis;
@@ -85,6 +91,8 @@
 	}
 
 	private IgbPropertyEditorPanel propertyEditorPanel1;
+	private IgbPropertyEditorPropertyDescription shouldConsiderAutoRotationForInitialLabels;
+	private IgbPropertyEditorPropertyDescription autoMarginAndAngleUpdateMode;
 	private IgbDataChart chart;
 	private IgbCategoryXAxis xAxis;
 	private IgbNumericYAxis yAxis;

@@ -18,7 +18,9 @@
             ShouldOverrideDefaultEditor="true"
             DropDownNames="@(new string[] { "0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100" })"
             DropDownValues="@(new string[] { "0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100" })"
-            PrimitiveValue="0">
+            PrimitiveValue="0"
+            Name="YAxisMinimumValue"
+            @ref="yAxisMinimumValue">
             </IgbPropertyEditorPropertyDescription>
             <IgbPropertyEditorPropertyDescription
             DropDownValues="@(new string[] { "100", "110", "120", "130", "140", "150", "160", "170", "180", "190", "200" })"
@@ -27,7 +29,9 @@
             Label="Y Axis Maximum Value"
             ValueType="PropertyEditorValueType.EnumValue"
             ShouldOverrideDefaultEditor="true"
-            DropDownNames="@(new string[] { "100", "110", "120", "130", "140", "150", "160", "170", "180", "190", "200" })">
+            DropDownNames="@(new string[] { "100", "110", "120", "130", "140", "150", "160", "170", "180", "190", "200" })"
+            Name="YAxisMaximumValue"
+            @ref="yAxisMaximumValue">
             </IgbPropertyEditorPropertyDescription>
         </IgbPropertyEditorPanel>
     </div>
@@ -68,6 +72,8 @@
 	{
 		var legend = this.legend;
 		var propertyEditorPanel1 = this.propertyEditorPanel1;
+		var yAxisMinimumValue = this.yAxisMinimumValue;
+		var yAxisMaximumValue = this.yAxisMaximumValue;
 		var chart = this.chart;
 
         this.BindElements = () => {
@@ -79,6 +85,8 @@
 
 	private IgbLegend legend;
 	private IgbPropertyEditorPanel propertyEditorPanel1;
+	private IgbPropertyEditorPropertyDescription yAxisMinimumValue;
+	private IgbPropertyEditorPropertyDescription yAxisMaximumValue;
 	private IgbCategoryChart chart;
 
 

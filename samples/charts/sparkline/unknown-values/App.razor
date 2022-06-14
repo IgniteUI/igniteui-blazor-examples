@@ -18,7 +18,9 @@
             ShouldOverrideDefaultEditor="true"
             DropDownNames="@(new string[] { "LinearInterpolate", "DontPlot" })"
             DropDownValues="@(new string[] { "LinearInterpolate", "DontPlot" })"
-            PrimitiveValue="@("LinearInterpolate")">
+            PrimitiveValue="@("LinearInterpolate")"
+            Name="UnknownValuePlottingEditor"
+            @ref="unknownValuePlottingEditor">
             </IgbPropertyEditorPropertyDescription>
         </IgbPropertyEditorPanel>
     </div>
@@ -47,6 +49,7 @@
 	protected override void OnAfterRender(bool firstRender)
 	{
 		var propertyEditorPanel1 = this.propertyEditorPanel1;
+		var unknownValuePlottingEditor = this.unknownValuePlottingEditor;
 		var chart = this.chart;
 
         this.BindElements = () => {
@@ -56,6 +59,7 @@
 	}
 
 	private IgbPropertyEditorPanel propertyEditorPanel1;
+	private IgbPropertyEditorPropertyDescription unknownValuePlottingEditor;
 	private IgbSparkline chart;
 
 

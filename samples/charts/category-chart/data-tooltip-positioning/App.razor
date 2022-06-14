@@ -3,7 +3,34 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-	
+	<div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="CategoryChart"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="PropertyEditor"
+        @ref="propertyEditor">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="dataToolTipGroupedPositionModeX"
+            Label="Grouped X Position:"
+            Name="GroupedPositionXEditor"
+            @ref="groupedPositionXEditor">
+            </IgbPropertyEditorPropertyDescription>
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="dataToolTipGroupedPositionModeY"
+            Label="Grouped Y Position:"
+            Name="GroupedPositionYEditor"
+            @ref="groupedPositionYEditor">
+            </IgbPropertyEditorPropertyDescription>
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="dataToolTipGroupingMode"
+            Label="Grouping Mode:"
+            Name="GroupingModeEditor"
+            @ref="groupingModeEditor">
+            </IgbPropertyEditorPropertyDescription>
+        </IgbPropertyEditorPanel>
+    </div>
 	<div class="legend-title">
         Highest Grossing Movie Franchises
     </div>
@@ -36,13 +63,22 @@
 
 	protected override void OnAfterRender(bool firstRender)
 	{
+		var propertyEditor = this.propertyEditor;
+		var groupedPositionXEditor = this.groupedPositionXEditor;
+		var groupedPositionYEditor = this.groupedPositionYEditor;
+		var groupingModeEditor = this.groupingModeEditor;
 		var chart = this.chart;
 
         this.BindElements = () => {
+            propertyEditor.Target = this.chart;
         };
         this.BindElements();
 	}
 
+	private IgbPropertyEditorPanel propertyEditor;
+	private IgbPropertyEditorPropertyDescription groupedPositionXEditor;
+	private IgbPropertyEditorPropertyDescription groupedPositionYEditor;
+	private IgbPropertyEditorPropertyDescription groupingModeEditor;
 	private IgbCategoryChart chart;
 
 

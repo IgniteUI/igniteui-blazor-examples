@@ -18,7 +18,9 @@
             ShouldOverrideDefaultEditor="true"
             DropDownNames="@(new string[] { "gray", "darkslategray", "salmon", "cornflowerblue", "darkgreen" })"
             DropDownValues="@(new string[] { "gray", "darkslategray", "salmon", "cornflowerblue", "darkgreen" })"
-            PrimitiveValue="@("gray")">
+            PrimitiveValue="@("gray")"
+            Name="YAxisStroke"
+            @ref="yAxisStroke">
             </IgbPropertyEditorPropertyDescription>
             <IgbPropertyEditorPropertyDescription
             DropDownValues="@(new string[] { "gray", "darkslategray", "salmon", "cornflowerblue", "darkgreen" })"
@@ -27,7 +29,9 @@
             Label="Y Axis Major Stroke"
             ValueType="PropertyEditorValueType.EnumValue"
             ShouldOverrideDefaultEditor="true"
-            DropDownNames="@(new string[] { "gray", "darkslategray", "salmon", "cornflowerblue", "darkgreen" })">
+            DropDownNames="@(new string[] { "gray", "darkslategray", "salmon", "cornflowerblue", "darkgreen" })"
+            Name="YAxisMajorStroke"
+            @ref="yAxisMajorStroke">
             </IgbPropertyEditorPropertyDescription>
             <IgbPropertyEditorPropertyDescription
             DropDownValues="@(new string[] { "gray", "darkslategray", "salmon", "cornflowerblue", "darkgreen" })"
@@ -36,7 +40,9 @@
             Label="Y Axis Minor Stroke"
             ValueType="PropertyEditorValueType.EnumValue"
             ShouldOverrideDefaultEditor="true"
-            DropDownNames="@(new string[] { "gray", "darkslategray", "salmon", "cornflowerblue", "darkgreen" })">
+            DropDownNames="@(new string[] { "gray", "darkslategray", "salmon", "cornflowerblue", "darkgreen" })"
+            Name="YAxisMinorStroke"
+            @ref="yAxisMinorStroke">
             </IgbPropertyEditorPropertyDescription>
         </IgbPropertyEditorPanel>
     </div>
@@ -89,6 +95,9 @@
 	{
 		var legend = this.legend;
 		var propertyEditorPanel1 = this.propertyEditorPanel1;
+		var yAxisStroke = this.yAxisStroke;
+		var yAxisMajorStroke = this.yAxisMajorStroke;
+		var yAxisMinorStroke = this.yAxisMinorStroke;
 		var chart = this.chart;
 
         this.BindElements = () => {
@@ -100,6 +109,9 @@
 
 	private IgbLegend legend;
 	private IgbPropertyEditorPanel propertyEditorPanel1;
+	private IgbPropertyEditorPropertyDescription yAxisStroke;
+	private IgbPropertyEditorPropertyDescription yAxisMajorStroke;
+	private IgbPropertyEditorPropertyDescription yAxisMinorStroke;
 	private IgbCategoryChart chart;
 
 

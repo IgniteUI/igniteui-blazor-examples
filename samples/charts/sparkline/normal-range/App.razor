@@ -18,16 +18,20 @@
             ShouldOverrideDefaultEditor="true"
             DropDownNames="@(new string[] { "Visible", "Collapsed" })"
             DropDownValues="@(new string[] { "Visible", "Collapsed" })"
-            PrimitiveValue="@("Visible")">
+            PrimitiveValue="@("Visible")"
+            Name="NormalRangeVisibilityEditor"
+            @ref="normalRangeVisibilityEditor">
             </IgbPropertyEditorPropertyDescription>
             <IgbPropertyEditorPropertyDescription
             DropDownValues="@(new string[] { "0", "10", "15", "20", "25", "30" })"
-            PrimitiveValue="15"
+            PrimitiveValue="25"
             PropertyPath="NormalRangeMinimum"
             Label="Normal Range Minimum"
             ValueType="PropertyEditorValueType.EnumValue"
             ShouldOverrideDefaultEditor="true"
-            DropDownNames="@(new string[] { "0", "10", "15", "20", "25", "30" })">
+            DropDownNames="@(new string[] { "0", "10", "15", "20", "25", "30" })"
+            Name="NormalRangeMinimumEditor"
+            @ref="normalRangeMinimumEditor">
             </IgbPropertyEditorPropertyDescription>
             <IgbPropertyEditorPropertyDescription
             DropDownValues="@(new string[] { "0", "10", "15", "20", "25", "30" })"
@@ -36,7 +40,9 @@
             Label="Normal Range Maximum"
             ValueType="PropertyEditorValueType.EnumValue"
             ShouldOverrideDefaultEditor="true"
-            DropDownNames="@(new string[] { "0", "10", "15", "20", "25", "30" })">
+            DropDownNames="@(new string[] { "0", "10", "15", "20", "25", "30" })"
+            Name="NormalRangeMaximumEditor"
+            @ref="normalRangeMaximumEditor">
             </IgbPropertyEditorPropertyDescription>
         </IgbPropertyEditorPanel>
     </div>
@@ -67,6 +73,9 @@
 	protected override void OnAfterRender(bool firstRender)
 	{
 		var propertyEditorPanel1 = this.propertyEditorPanel1;
+		var normalRangeVisibilityEditor = this.normalRangeVisibilityEditor;
+		var normalRangeMinimumEditor = this.normalRangeMinimumEditor;
+		var normalRangeMaximumEditor = this.normalRangeMaximumEditor;
 		var chart = this.chart;
 
         this.BindElements = () => {
@@ -76,6 +85,9 @@
 	}
 
 	private IgbPropertyEditorPanel propertyEditorPanel1;
+	private IgbPropertyEditorPropertyDescription normalRangeVisibilityEditor;
+	private IgbPropertyEditorPropertyDescription normalRangeMinimumEditor;
+	private IgbPropertyEditorPropertyDescription normalRangeMaximumEditor;
 	private IgbSparkline chart;
 
 

@@ -49,11 +49,12 @@
             @ref="bubbleSeries1">
                 <IgbSizeScale
                 MinimumValue="10"
-                MaximumValue="100">
+                MaximumValue="100"
+                Name="SizeScale1"
+                @ref="sizeScale1">
                 </IgbSizeScale>
             </IgbBubbleSeries>
             <IgbBubbleSeries
-            XAxisName="xAxis"
             YAxisName="yAxis"
             DataSource="CountryDemographicEurope"
             XMemberPath="DeathRate"
@@ -63,11 +64,14 @@
             RadiusMemberAsLegendLabel="Population:"
             XMemberAsLegendLabel="Death Rate:"
             YMemberAsLegendLabel="Birth Rate:"
+            XAxisName="xAxis"
             Name="BubbleSeries2"
             @ref="bubbleSeries2">
                 <IgbSizeScale
                 MinimumValue="10"
-                MaximumValue="100">
+                MaximumValue="100"
+                Name="SizeScale2"
+                @ref="sizeScale2">
                 </IgbSizeScale>
             </IgbBubbleSeries>
             <IgbCrosshairLayer
@@ -92,7 +96,9 @@
 		var xAxis = this.xAxis;
 		var yAxis = this.yAxis;
 		var bubbleSeries1 = this.bubbleSeries1;
+		var sizeScale1 = this.sizeScale1;
 		var bubbleSeries2 = this.bubbleSeries2;
+		var sizeScale2 = this.sizeScale2;
 		var crosshairLayer = this.crosshairLayer;
 
         this.BindElements = () => {
@@ -106,7 +112,9 @@
 	private IgbNumericXAxis xAxis;
 	private IgbNumericYAxis yAxis;
 	private IgbBubbleSeries bubbleSeries1;
+	private IgbSizeScale sizeScale1;
 	private IgbBubbleSeries bubbleSeries2;
+	private IgbSizeScale sizeScale2;
 	private IgbCrosshairLayer crosshairLayer;
 
 

@@ -43,29 +43,34 @@
             @ref="bubbleSeries1">
                 <IgbSizeScale
                 MinimumValue="10"
-                MaximumValue="100">
+                MaximumValue="100"
+                Name="SizeScale1"
+                @ref="sizeScale1">
                 </IgbSizeScale>
             </IgbBubbleSeries>
             <IgbBubbleSeries
+            RadiusMemberPath="Population"
+            RadiusMemberAsLegendLabel="Population:"
             XAxisName="xAxis"
             YAxisName="yAxis"
-            DataSource="CountryDemographicEurope"
             XMemberPath="DeathRate"
             YMemberPath="BirthRate"
-            RadiusMemberPath="Population"
-            Title="Europe"
-            RadiusMemberAsLegendLabel="Population:"
             XMemberAsLegendLabel="Death Rate:"
             YMemberAsLegendLabel="Birth Rate:"
+            DataSource="CountryDemographicEurope"
+            Title="Europe"
             Name="BubbleSeries2"
             @ref="bubbleSeries2">
                 <IgbSizeScale
                 MinimumValue="10"
-                MaximumValue="100">
+                MaximumValue="100"
+                Name="SizeScale2"
+                @ref="sizeScale2">
                 </IgbSizeScale>
             </IgbBubbleSeries>
             <IgbDataToolTipLayer
-            >
+            Name="DataToolTipLayer"
+            @ref="dataToolTipLayer">
             </IgbDataToolTipLayer>
         </IgbDataChart>
     </div>
@@ -84,7 +89,10 @@
 		var xAxis = this.xAxis;
 		var yAxis = this.yAxis;
 		var bubbleSeries1 = this.bubbleSeries1;
+		var sizeScale1 = this.sizeScale1;
 		var bubbleSeries2 = this.bubbleSeries2;
+		var sizeScale2 = this.sizeScale2;
+		var dataToolTipLayer = this.dataToolTipLayer;
 
         this.BindElements = () => {
         };
@@ -95,7 +103,10 @@
 	private IgbNumericXAxis xAxis;
 	private IgbNumericYAxis yAxis;
 	private IgbBubbleSeries bubbleSeries1;
+	private IgbSizeScale sizeScale1;
 	private IgbBubbleSeries bubbleSeries2;
+	private IgbSizeScale sizeScale2;
+	private IgbDataToolTipLayer dataToolTipLayer;
 
 
     private CountryDemographicAfrican _countryDemographicAfrican = null;

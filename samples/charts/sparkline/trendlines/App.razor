@@ -18,7 +18,9 @@
             ShouldOverrideDefaultEditor="true"
             DropDownNames="@(new string[] { "CubicFit", "CumulativeAverage", "ExponentialAverage", "ExponentialFit", "LinearFit", "LogarithmicFit", "ModifiedAverage", "None", "PowerLawFit", "QuadraticFit", "QuarticFit", "QuinticFit", "SimpleAverage", "WeightedAverage" })"
             DropDownValues="@(new string[] { "CubicFit", "CumulativeAverage", "ExponentialAverage", "ExponentialFit", "LinearFit", "LogarithmicFit", "ModifiedAverage", "None", "PowerLawFit", "QuadraticFit", "QuarticFit", "QuinticFit", "SimpleAverage", "WeightedAverage" })"
-            PrimitiveValue="@("CubicFit")">
+            PrimitiveValue="@("CubicFit")"
+            Name="TrendLineTypeEditor"
+            @ref="trendLineTypeEditor">
             </IgbPropertyEditorPropertyDescription>
         </IgbPropertyEditorPanel>
     </div>
@@ -47,6 +49,7 @@
 	protected override void OnAfterRender(bool firstRender)
 	{
 		var propertyEditorPanel1 = this.propertyEditorPanel1;
+		var trendLineTypeEditor = this.trendLineTypeEditor;
 		var chart = this.chart;
 
         this.BindElements = () => {
@@ -56,6 +59,7 @@
 	}
 
 	private IgbPropertyEditorPanel propertyEditorPanel1;
+	private IgbPropertyEditorPropertyDescription trendLineTypeEditor;
 	private IgbSparkline chart;
 
 

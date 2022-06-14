@@ -18,7 +18,9 @@
             ShouldOverrideDefaultEditor="true"
             DropDownNames="@(new string[] { "0", "45", "90", "135", "180", "225", "270" })"
             DropDownValues="@(new string[] { "0", "45", "90", "135", "180", "225", "270" })"
-            PrimitiveValue="0">
+            PrimitiveValue="0"
+            Name="XAxisLabelAngleEditor"
+            @ref="xAxisLabelAngleEditor">
             </IgbPropertyEditorPropertyDescription>
             <IgbPropertyEditorPropertyDescription
             DropDownValues="@(new string[] { "-90", "-45", "0", "45", "90" })"
@@ -27,7 +29,9 @@
             Label="Y Axis Label Angle"
             ValueType="PropertyEditorValueType.EnumValue"
             ShouldOverrideDefaultEditor="true"
-            DropDownNames="@(new string[] { "-90", "-45", "0", "45", "90" })">
+            DropDownNames="@(new string[] { "-90", "-45", "0", "45", "90" })"
+            Name="YAxisLabelAngleEditor"
+            @ref="yAxisLabelAngleEditor">
             </IgbPropertyEditorPropertyDescription>
             <IgbPropertyEditorPropertyDescription
             DropDownValues="@(new string[] { "red", "green" })"
@@ -36,7 +40,9 @@
             Label="Y Axis Label Color"
             ValueType="PropertyEditorValueType.EnumValue"
             ShouldOverrideDefaultEditor="true"
-            DropDownNames="@(new string[] { "red", "green" })">
+            DropDownNames="@(new string[] { "red", "green" })"
+            Name="XAxisLabelTextColorEditor"
+            @ref="xAxisLabelTextColorEditor">
             </IgbPropertyEditorPropertyDescription>
         </IgbPropertyEditorPanel>
     </div>
@@ -86,6 +92,9 @@
 	{
 		var legend = this.legend;
 		var propertyEditorPanel1 = this.propertyEditorPanel1;
+		var xAxisLabelAngleEditor = this.xAxisLabelAngleEditor;
+		var yAxisLabelAngleEditor = this.yAxisLabelAngleEditor;
+		var xAxisLabelTextColorEditor = this.xAxisLabelTextColorEditor;
 		var chart = this.chart;
 
         this.BindElements = () => {
@@ -97,6 +106,9 @@
 
 	private IgbLegend legend;
 	private IgbPropertyEditorPanel propertyEditorPanel1;
+	private IgbPropertyEditorPropertyDescription xAxisLabelAngleEditor;
+	private IgbPropertyEditorPropertyDescription yAxisLabelAngleEditor;
+	private IgbPropertyEditorPropertyDescription xAxisLabelTextColorEditor;
 	private IgbCategoryChart chart;
 
 

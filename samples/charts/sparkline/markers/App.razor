@@ -18,7 +18,9 @@
             ShouldOverrideDefaultEditor="true"
             DropDownNames="@(new string[] { "Visible", "Collapsed" })"
             DropDownValues="@(new string[] { "Visible", "Collapsed" })"
-            PrimitiveValue="@("Visible")">
+            PrimitiveValue="@("Visible")"
+            Name="FirstMarkerVisibilityEditor"
+            @ref="firstMarkerVisibilityEditor">
             </IgbPropertyEditorPropertyDescription>
             <IgbPropertyEditorPropertyDescription
             DropDownValues="@(new string[] { "Visible", "Collapsed" })"
@@ -26,7 +28,9 @@
             PropertyPath="HighMarkerVisibility"
             Label="High Markers"
             ValueType="PropertyEditorValueType.EnumValue"
-            DropDownNames="@(new string[] { "Visible", "Collapsed" })">
+            DropDownNames="@(new string[] { "Visible", "Collapsed" })"
+            Name="HighMarkerVisibilityEditor"
+            @ref="highMarkerVisibilityEditor">
             </IgbPropertyEditorPropertyDescription>
             <IgbPropertyEditorPropertyDescription
             DropDownValues="@(new string[] { "Visible", "Collapsed" })"
@@ -34,7 +38,9 @@
             PropertyPath="LowMarkerVisibility"
             Label="Low Markers"
             ValueType="PropertyEditorValueType.EnumValue"
-            DropDownNames="@(new string[] { "Visible", "Collapsed" })">
+            DropDownNames="@(new string[] { "Visible", "Collapsed" })"
+            Name="LowMarkerVisibilityEditor"
+            @ref="lowMarkerVisibilityEditor">
             </IgbPropertyEditorPropertyDescription>
             <IgbPropertyEditorPropertyDescription
             DropDownValues="@(new string[] { "Visible", "Collapsed" })"
@@ -42,7 +48,9 @@
             PropertyPath="NegativeMarkerVisibility"
             Label="Negative Markers"
             ValueType="PropertyEditorValueType.EnumValue"
-            DropDownNames="@(new string[] { "Visible", "Collapsed" })">
+            DropDownNames="@(new string[] { "Visible", "Collapsed" })"
+            Name="NegativeMarkerVisibilityEditor"
+            @ref="negativeMarkerVisibilityEditor">
             </IgbPropertyEditorPropertyDescription>
             <IgbPropertyEditorPropertyDescription
             DropDownValues="@(new string[] { "Visible", "Collapsed" })"
@@ -50,7 +58,9 @@
             PropertyPath="LastMarkerVisibility"
             Label="Last Markers"
             ValueType="PropertyEditorValueType.EnumValue"
-            DropDownNames="@(new string[] { "Visible", "Collapsed" })">
+            DropDownNames="@(new string[] { "Visible", "Collapsed" })"
+            Name="LastMarkerVisibilityEditor"
+            @ref="lastMarkerVisibilityEditor">
             </IgbPropertyEditorPropertyDescription>
             <IgbPropertyEditorPropertyDescription
             DropDownValues="@(new string[] { "Visible", "Collapsed" })"
@@ -58,7 +68,9 @@
             PropertyPath="MarkerVisibility"
             Label="All Markers"
             ValueType="PropertyEditorValueType.EnumValue"
-            DropDownNames="@(new string[] { "Visible", "Collapsed" })">
+            DropDownNames="@(new string[] { "Visible", "Collapsed" })"
+            Name="MarkerVisibilityEditor"
+            @ref="markerVisibilityEditor">
             </IgbPropertyEditorPropertyDescription>
         </IgbPropertyEditorPanel>
     </div>
@@ -100,6 +112,12 @@
 	protected override void OnAfterRender(bool firstRender)
 	{
 		var propertyEditorPanel1 = this.propertyEditorPanel1;
+		var firstMarkerVisibilityEditor = this.firstMarkerVisibilityEditor;
+		var highMarkerVisibilityEditor = this.highMarkerVisibilityEditor;
+		var lowMarkerVisibilityEditor = this.lowMarkerVisibilityEditor;
+		var negativeMarkerVisibilityEditor = this.negativeMarkerVisibilityEditor;
+		var lastMarkerVisibilityEditor = this.lastMarkerVisibilityEditor;
+		var markerVisibilityEditor = this.markerVisibilityEditor;
 		var chart = this.chart;
 
         this.BindElements = () => {
@@ -109,6 +127,12 @@
 	}
 
 	private IgbPropertyEditorPanel propertyEditorPanel1;
+	private IgbPropertyEditorPropertyDescription firstMarkerVisibilityEditor;
+	private IgbPropertyEditorPropertyDescription highMarkerVisibilityEditor;
+	private IgbPropertyEditorPropertyDescription lowMarkerVisibilityEditor;
+	private IgbPropertyEditorPropertyDescription negativeMarkerVisibilityEditor;
+	private IgbPropertyEditorPropertyDescription lastMarkerVisibilityEditor;
+	private IgbPropertyEditorPropertyDescription markerVisibilityEditor;
 	private IgbSparkline chart;
 
 

@@ -14,22 +14,30 @@
             <IgbPropertyEditorPropertyDescription
             PropertyPath="LayoutType"
             Label="Layout"
-            PrimitiveValue="@("Squarified")">
+            PrimitiveValue="@("Squarified")"
+            Name="LayoutTypeEditor"
+            @ref="layoutTypeEditor">
             </IgbPropertyEditorPropertyDescription>
             <IgbPropertyEditorPropertyDescription
             PropertyPath="LayoutOrientation"
             PrimitiveValue="@("Vertical")"
-            Label="Orientation">
+            Label="Orientation"
+            Name="LayoutOrientationEditor"
+            @ref="layoutOrientationEditor">
             </IgbPropertyEditorPropertyDescription>
             <IgbPropertyEditorPropertyDescription
             PropertyPath="HeaderDisplayMode"
             PrimitiveValue="@("Overlay")"
-            Label="Headers">
+            Label="Headers"
+            Name="HeaderDisplayModeEditor"
+            @ref="headerDisplayModeEditor">
             </IgbPropertyEditorPropertyDescription>
             <IgbPropertyEditorPropertyDescription
             PropertyPath="LabelVerticalAlignment"
             PrimitiveValue="@("Center")"
-            Label="Labels">
+            Label="Labels"
+            Name="LabelVerticalAlignmentEditor"
+            @ref="labelVerticalAlignmentEditor">
             </IgbPropertyEditorPropertyDescription>
         </IgbPropertyEditorPanel>
     </div>
@@ -68,6 +76,10 @@
 	protected override void OnAfterRender(bool firstRender)
 	{
 		var propertyEditorPanel1 = this.propertyEditorPanel1;
+		var layoutTypeEditor = this.layoutTypeEditor;
+		var layoutOrientationEditor = this.layoutOrientationEditor;
+		var headerDisplayModeEditor = this.headerDisplayModeEditor;
+		var labelVerticalAlignmentEditor = this.labelVerticalAlignmentEditor;
 		var treemap = this.treemap;
 
         this.BindElements = () => {
@@ -77,6 +89,10 @@
 	}
 
 	private IgbPropertyEditorPanel propertyEditorPanel1;
+	private IgbPropertyEditorPropertyDescription layoutTypeEditor;
+	private IgbPropertyEditorPropertyDescription layoutOrientationEditor;
+	private IgbPropertyEditorPropertyDescription headerDisplayModeEditor;
+	private IgbPropertyEditorPropertyDescription labelVerticalAlignmentEditor;
 	private IgbTreemap treemap;
 
 
