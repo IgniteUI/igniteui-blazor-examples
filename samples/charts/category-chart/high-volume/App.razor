@@ -12,13 +12,15 @@
     <div class="container vertical">
         <IgbCategoryChart @ref="chart"
             Height="100%" Width="100%"
-            ChartType="CategoryChartType.Line"
             DataSourceScript="getHighVolumeData"
-            IsTransitionInEnabled="true"
-            IsVerticalZoomEnabled="false"
             YAxisLabelLocation="YAxisLabelLocation.OutsideRight"
             YAxisTitle="Value of Data Points"
-            XAxisTitle="Index of Data Points">
+            XAxisTitle="Index of Data Points"
+            ToolTipType="ToolTipType.Default"
+            XAxisEnhancedIntervalPreferMoreCategoryLabels="false"
+            ShouldAutoExpandMarginForInitialLabels="false"
+            CrosshairsDisplayMode="CrosshairsDisplayMode.None" 
+            SeriesAdded="OnSeriesAdded">
         </IgbCategoryChart>
     </div>
 </div>
@@ -43,6 +45,12 @@
         }
 
         await base.OnAfterRenderAsync(firstRender);
+    }
+
+    private void OnSeriesAdded(IgbChartSeriesEventArgs e)
+    {
+        ((IgbCategoryChart)e.Parent).MarkerTypes.Clear();
+        ((IgbCategoryChart)e.Parent).MarkerTypes.Add(MarkerType.None);
     }
 
     private void OnDataPointsChanged(ChangeEventArgs args)
