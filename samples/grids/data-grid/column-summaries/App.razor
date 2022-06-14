@@ -85,6 +85,8 @@
             DisplayName = "ProductName"
         };
 
+        this.DataGridRef.GroupDescriptions.Add(productGroup);
+
         var productCount = new IgbColumnSummaryDescription()
         {
             Field = "ProductName",
@@ -147,16 +149,25 @@
             Operand = SummaryOperand.Average
         };
 
-        //var countryCustomSummary = new IgbColumnSummaryDescription()
-        //{
-        //    Field = "Country",
-        //    Operand = SummaryOperand.Custom,
-        //    //ProvideCalculatorScript = "onProvideCalculator" // <= This seems like what needs to be done, but how do you specify the logic that the calculator uses?
-        //};
+        var dateFormat = new IgbDateTimeFormatSpecifier() { Locale="en-US"};
+        orderDateMin.ValueFormatSpecifiers.Add(dateFormat);
+        orderDateMin.ValueFormat = "{0}";
+        orderDateMax.ValueFormatSpecifiers.Add(dateFormat);
+        orderDateMax.ValueFormat = "{0}";
 
-        //TODO CUSTOM SUMMARY
-
-        this.DataGridRef.GroupDescriptions.Add(productGroup);
+        var currFormat = new IgbNumberFormatSpecifier() { Locale="en-US", Style="currency", Currency="USD" };
+        priceMin.ValueFormatSpecifiers.Add(currFormat);
+        priceMin.ValueFormat = "{0}";
+        priceMax.ValueFormatSpecifiers.Add(currFormat);
+        priceMax.ValueFormat = "{0}";
+        orderValueSum.ValueFormatSpecifiers.Add(currFormat);
+        orderValueSum.ValueFormat = "{0}";
+        orderValueAvg.ValueFormatSpecifiers.Add(currFormat);
+        orderValueAvg.ValueFormat = "{0}";
+        sum1.ValueFormatSpecifiers.Add(currFormat);
+        sum1.ValueFormat = "{0}";
+        avg2.ValueFormatSpecifiers.Add(currFormat);
+        avg2.ValueFormat = "{0}";
 
         this.DataGridRef.SummaryDescriptions.Add(productCount);
         this.DataGridRef.SummaryDescriptions.Add(priceMin);
@@ -168,6 +179,5 @@
         this.DataGridRef.SummaryDescriptions.Add(orderDateMax);
         this.DataGridRef.SummaryDescriptions.Add(sum1);
         this.DataGridRef.SummaryDescriptions.Add(avg2);
-        //this.DataGridRef.SummaryDescriptions.Add(countryCustomSummary);
     }
 }
