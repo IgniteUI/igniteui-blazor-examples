@@ -1,49 +1,100 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-
-    <div class="options vertical">
-        <span class="legend-title">NYC Average Temperature</span>
-
-        <div class="overlay-right" >
-            <div class="options horizontal" >
-                <label class="options-label" >X-Axis Gap</label>
-                <label class="options-value" >@XAxisGapValue</label>
-                <input class="options-slider" type="range" min="0" max="1" step="0.05" value="1" @oninput="OnXAxisGapSliderChange"/>
-            </div>
-        </div>
+	<div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="CategoryChart"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="XAxisGap"
+            Label="X Axis - Gap"
+            ValueType="PropertyEditorValueType.Slider"
+            ShouldOverrideDefaultEditor="true"
+            PrimitiveValue="0.5"
+            Min="0"
+            Max="1.5"
+            Step="0.1"
+            Name="XAxisGap"
+            @ref="xAxisGap">
+            </IgbPropertyEditorPropertyDescription>
+            <IgbPropertyEditorPropertyDescription
+            DropDownValues="@(new string[] { "1.5", "1.3", "1.0", "0.6", "0.5", "0.4", "0.3", "0.2", "0.1", "0" })"
+            PrimitiveValue="0.5"
+            PropertyPath="XAxisMaximumGap"
+            Label="Maximum Gap"
+            ValueType="PropertyEditorValueType.EnumValue"
+            ShouldOverrideDefaultEditor="true"
+            DropDownNames="@(new string[] { "1.5", "1.3", "1.0", "0.6", "0.5", "0.4", "0.3", "0.2", "0.1", "0" })"
+            Name="XAxisMaximumGap"
+            @ref="xAxisMaximumGap">
+            </IgbPropertyEditorPropertyDescription>
+        </IgbPropertyEditorPanel>
     </div>
-
-    <div class="container vertical">
-        @if (Data != null)
-        {
-            <IgbCategoryChart Height="100%" Width="100%"
-                           DataSource="Data"
-                           ChartType="CategoryChartType.Column"
-                           YAxisTitle="Temperature In Celsius"
-                           IsHorizontalZoomEnabled="false"
-                           IsVerticalZoomEnabled="false"
-                           XAxisInterval="1"
-                           XAxisGap="@XAxisGapValue">
-            </IgbCategoryChart>
-        }
+	<div class="legend-title">
+        Renewable Electricity Generated
+    </div>
+	
+    <div class="container vertical fill">
+        <IgbCategoryChart
+        ChartType="CategoryChartType.Column"
+        XAxisInterval="1"
+        XAxisGap="0.5"
+        XAxisMaximumGap="1.5"
+        YAxisTitle="TWh"
+        DataSource="CountryRenewableElectricity"
+        IncludedProperties="@(new string[] { "Year", "Europe", "China", "America" })"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        CrosshairsSnapToData="true"
+        Name="chart"
+        @ref="chart">
+        </IgbCategoryChart>
     </div>
 </div>
 
 @code {
-
-    private List<TemperatureInfo> Data = new TemperatureData();
-
-    private double XAxisGapValue = 1;
-
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
     }
 
-    private void OnXAxisGapSliderChange(ChangeEventArgs args)
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var propertyEditorPanel1 = this.propertyEditorPanel1;
+		var xAxisGap = this.xAxisGap;
+		var xAxisMaximumGap = this.xAxisMaximumGap;
+		var chart = this.chart;
+
+        this.BindElements = () => {
+            propertyEditorPanel1.Target = this.chart;
+        };
+        this.BindElements();
+	}
+
+	private IgbPropertyEditorPanel propertyEditorPanel1;
+	private IgbPropertyEditorPropertyDescription xAxisGap;
+	private IgbPropertyEditorPropertyDescription xAxisMaximumGap;
+	private IgbCategoryChart chart;
+
+
+    private CountryRenewableElectricity _countryRenewableElectricity = null;
+    public CountryRenewableElectricity CountryRenewableElectricity
     {
-        this.XAxisGapValue = double.Parse(args.Value.ToString());
+        get
+        {
+            if (_countryRenewableElectricity == null)
+            {
+                _countryRenewableElectricity = new CountryRenewableElectricity(); 
+            }
+            return _countryRenewableElectricity;
+        }
     }
+    
 }

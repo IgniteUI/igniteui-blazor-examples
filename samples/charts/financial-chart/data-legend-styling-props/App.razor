@@ -1,0 +1,73 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+	
+	
+	<div class="legend">
+        <IgbDataLegend
+        IncludedColumns="@(new string[] { "Open", "Close", "High", "Low", "Change" })"
+        ValueFormatMode="DataLegendValueMode.Currency"
+        ValueTextColor="#00ad03"
+        ValueTextFontFamily="Verdana"
+        ValueTextFontWeight="Bold"
+        UnitsText="K"
+        UnitsTextColor="#00ad03"
+        UnitsTextFontFamily="Verdana"
+        UnitsTextFontWeight="Bold"
+        LabelTextColor="#4a4a4a"
+        Name="Legend"
+        @ref="legend">
+        </IgbDataLegend>
+    </div>
+    <div class="container vertical fill">
+        <IgbFinancialChart
+        IsHorizontalZoomEnabled="true"
+        ZoomSliderType="FinancialChartZoomSliderType.None"
+        IsVerticalZoomEnabled="true"
+        YAxisTitle="Thousands of Dollars ($)"
+        DataSource="StockGoogle"
+        ToolTipType="ToolTipType.None"
+        Name="chart"
+        @ref="chart">
+        </IgbFinancialChart>
+    </div>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var chart = this.chart;
+
+        this.BindElements = () => {
+            legend.Target = this.chart;
+        };
+        this.BindElements();
+	}
+
+	private IgbDataLegend legend;
+	private IgbFinancialChart chart;
+
+
+    private StockGoogle _stockGoogle = null;
+    public StockGoogle StockGoogle
+    {
+        get
+        {
+            if (_stockGoogle == null)
+            {
+                _stockGoogle = new StockGoogle(); 
+            }
+            return _stockGoogle;
+        }
+    }
+    
+}

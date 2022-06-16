@@ -1,80 +1,92 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="container vertical">
-
-        <IgbDoughnutChart Height="100%"
-                       Width="100%"
-                       AllowSliceSelection="false"
-                       AllowSliceExplosion="false">
-            <IgbRingSeries DataSource="DataBySeasons"
-                        LabelMemberPath="Label"
-                        ValueMemberPath="Value"
-                        LabelsPosition=LabelsPosition.Center
-                        RadiusFactor="0.9"
-                        Outlines="white"
-                        Brushes="#3cbdc9, #9fb328, #f96232,#8a58d6">
+	
+	<div class="legend-title">
+        Hierarchical Chart
+    </div>
+	
+    <div class="container vertical fill">
+        <IgbDoughnutChart
+        AllowSliceSelection="false"
+        AllowSliceExplosion="false"
+        Name="chart"
+        @ref="chart">
+            <IgbRingSeries
+            DataSource="CalendarSeasons"
+            ValueMemberPath="Value"
+            LabelMemberPath="Label"
+            LabelsPosition="LabelsPosition.Center"
+            Brushes="#3cbdc9 #9fb328 #f96232 #8a58d6"
+            Outlines="white"
+            RadiusFactor="0.9"
+            Name="series1"
+            @ref="series1">
             </IgbRingSeries>
-            <IgbRingSeries DataSource="DataByMonths"
-                        LabelMemberPath="Label"
-                        ValueMemberPath="Value"
-                        RadiusFactor="0.9"
-                        Outlines="white"
-                        LabelsPosition=LabelsPosition.Center
-                        Brushes="#3cbdc9, #3cbdc9, #3cbdc9, #9fb328, #9fb32, #9fb328,#f96232 , #f96232, #f96232,#8a58d6, #8a58d6, #8a58d6">
+            <IgbRingSeries
+            Brushes="#3cbdc9 #3cbdc9 #3cbdc9 #9fb328 #9fb328 #9fb328 #f96232 #f96232 #f96232 #8a58d6 #8a58d6 #8a58d6"
+            DataSource="CalendarMonths"
+            ValueMemberPath="Value"
+            LabelMemberPath="Label"
+            LabelsPosition="LabelsPosition.Center"
+            Outlines="white"
+            RadiusFactor="0.9"
+            Name="series2"
+            @ref="series2">
             </IgbRingSeries>
         </IgbDoughnutChart>
-
-
     </div>
 </div>
 
 @code {
-
-    private List<Months> DataByMonths;
-    private List<Seasons> DataBySeasons;
-
     protected override void OnInitialized()
     {
-        IgbDoughnutChartModule.Register(IgniteUIBlazor);
-
-        var months = new List<Months>();
-        months.Add(new Months() { Value = 1, Label = "December", });
-        months.Add(new Months() { Value = 1, Label = "January", });
-        months.Add(new Months() { Value = 1, Label = "February", });
-        months.Add(new Months() { Value = 1, Label = "March", });
-        months.Add(new Months() { Value = 1, Label = "April", });
-        months.Add(new Months() { Value = 1, Label = "May", });
-        months.Add(new Months() { Value = 1, Label = "June", });
-        months.Add(new Months() { Value = 1, Label = "July", });
-        months.Add(new Months() { Value = 1, Label = "August", });
-        months.Add(new Months() { Value = 1, Label = "September", });
-        months.Add(new Months() { Value = 1, Label = "October", });
-        months.Add(new Months() { Value = 1, Label = "November", });
-
-        this.DataByMonths = months ;
-
-        var seasons = new List<Seasons>();
-        seasons.Add(new Seasons() { Value = 4, Label = "Winter" });
-        seasons.Add(new Seasons() { Value = 4, Label = "Spring" });
-        seasons.Add(new Seasons() { Value = 4, Label = "Summer" });
-        seasons.Add(new Seasons() { Value = 4, Label = "Fall" });
-
-        this.DataBySeasons = seasons;
-
     }
 
-    public class Months
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var chart = this.chart;
+		var series1 = this.series1;
+		var series2 = this.series2;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+	}
+
+	private IgbDoughnutChart chart;
+	private IgbRingSeries series1;
+	private IgbRingSeries series2;
+
+
+    private CalendarSeasons _calendarSeasons = null;
+    public CalendarSeasons CalendarSeasons
     {
-        public double  Value { get; set; }
-        public string Label { get; set; }
+        get
+        {
+            if (_calendarSeasons == null)
+            {
+                _calendarSeasons = new CalendarSeasons(); 
+            }
+            return _calendarSeasons;
+        }
     }
-
-    public class Seasons
+    
+    private CalendarMonths _calendarMonths = null;
+    public CalendarMonths CalendarMonths
     {
-        public double Value { get; set; }
-        public string Label { get; set; }
+        get
+        {
+            if (_calendarMonths == null)
+            {
+                _calendarMonths = new CalendarMonths(); 
+            }
+            return _calendarMonths;
+        }
     }
-
+    
 }

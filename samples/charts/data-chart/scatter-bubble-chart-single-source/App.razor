@@ -1,42 +1,84 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options horizontal">
-        <span class="legend-title">Annual working hours vs. GDP per capita, 2015</span>
+	
+	<div class="legend-title">
+        GDP per Capita vs Population
     </div>
-    <div class="container vertical">
-        <IgbDataChart Height="100%" Width="100%"
-                   IsHorizontalZoomEnabled="true"
-                   IsVerticalZoomEnabled="true">
-
-            <IgbNumericXAxis Name="xAxis" Title="GDP Per Capita" MaximumValue="100000" Interval="50000" AbbreviateLargeNumbers="true" />
-            <IgbNumericYAxis Name="yAxis" Title="Average Hours Worked" AbbreviateLargeNumbers="true" MinimumValue="1400.00" MaximumValue="2400.00" Interval="200" />
-
-            <IgbBubbleSeries XAxisName="xAxis"
-                          YAxisName="yAxis"
-                          DataSource="Data"
-                          XMemberPath="GDPPerCapita"
-                          YMemberPath="AverageHoursWorked"
-                          MarkerType="MarkerType.Circle"
-                          RadiusScale="@SizeScale"
-                          RadiusMemberPath="TotalPopulation">
+	
+    <div class="container vertical fill">
+        <IgbDataChart
+        Name="chart"
+        @ref="chart">
+            <IgbNumericXAxis
+            IsLogarithmic="true"
+            AbbreviateLargeNumbers="true"
+            Title="Population"
+            Name="xAxis"
+            @ref="xAxis">
+            </IgbNumericXAxis>
+            <IgbNumericYAxis
+            IsLogarithmic="false"
+            AbbreviateLargeNumbers="true"
+            Title="GDP per Capita"
+            Name="yAxis"
+            @ref="yAxis">
+            </IgbNumericYAxis>
+            <IgbBubbleSeries
+            RadiusMemberPath="Population"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            XMemberPath="Population"
+            YMemberPath="GDP"
+            MarkerType="MarkerType.Circle"
+            DataSource="CountryStatsEurope"
+            ShowDefaultTooltip="true"
+            Title="European Countries"
+            Name="BubbleSeries1"
+            @ref="bubbleSeries1">
             </IgbBubbleSeries>
         </IgbDataChart>
     </div>
 </div>
 
 @code {
-
-    private List<GdpVsWorkRateInfo> Data = new GdpVsWorkRateData();
-    private IgbSizeScale SizeScale = new IgbSizeScale { MinimumValue = 10, MaximumValue = 50 };
-
     protected override void OnInitialized()
     {
-        IgbDataChartCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartScatterModule.Register(IgniteUIBlazor);
-        IgbDataChartScatterCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-        IgbNumberAbbreviatorModule.Register(IgniteUIBlazor);
     }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var chart = this.chart;
+		var xAxis = this.xAxis;
+		var yAxis = this.yAxis;
+		var bubbleSeries1 = this.bubbleSeries1;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+	}
+
+	private IgbDataChart chart;
+	private IgbNumericXAxis xAxis;
+	private IgbNumericYAxis yAxis;
+	private IgbBubbleSeries bubbleSeries1;
+
+
+    private CountryStatsEurope _countryStatsEurope = null;
+    public CountryStatsEurope CountryStatsEurope
+    {
+        get
+        {
+            if (_countryStatsEurope == null)
+            {
+                _countryStatsEurope = new CountryStatsEurope(); 
+            }
+            return _countryStatsEurope;
+        }
+    }
+    
 }

@@ -21,7 +21,8 @@
          <IgbCategoryChart Height="100%" Width="100%" @ref="Chart"
                         ChartType="CategoryChartType.Line"
                         DataSource="@Data"
-                        YAxisExtent="40" >
+                        YAxisExtent="40"
+                        SeriesAdded="OnSeriesAdded">
          </IgbCategoryChart>
     </div>
 </div>
@@ -63,6 +64,12 @@
         Task.Delay((int)this.DataFeedInterval).ContinueWith((t) => OnDataUpdate());
     }
 
+    private void OnSeriesAdded(IgbChartSeriesEventArgs e)
+    {
+        ((IgbCategoryChart)e.Parent).MarkerTypes.Clear();
+        ((IgbCategoryChart)e.Parent).MarkerTypes.Add(MarkerType.None);
+    }
+
     protected override void OnInitialized()
     {
         IgbCategoryChartModule.Register(IgniteUIBlazor);
@@ -75,7 +82,6 @@
         var dataList = CategoryDataSource.Generate(0, (int)this.DataPoints, false);
 
         this.Data = new ObservableCollection<CategoryDataItem>(dataList);
-        //this.Data = new List<CategoryDataItem>(dataList);
 
         SetupInterval();
     }

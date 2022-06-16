@@ -1,38 +1,63 @@
-
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="container vertical">
-        @if (Data != null)
-        {
-            <IgbCategoryChart Height="100%" Width="100%"
-                ChartType="CategoryChartType.SplineArea"
-                ChartTitle="Renewable Electricity Generated"
-                TitleAlignment="HorizontalAlignment.Left"
-                TitleLeftMargin="25"
-                TitleTopMargin="10"
-                TitleBottomMargin="10"
-                IncludedProperties="@(new string[] { "Year", "Europe" })"
-                DataSource="Data"
-                YAxisTitle="TWh"
-                ToolTipType="ToolTipType.Category"
-                IsTransitionInEnabled="true"
-				IsHorizontalZoomEnabled="false"
-                IsVerticalZoomEnabled="false">
-            </IgbCategoryChart>
-        }
+	
+	<div class="legend-title">
+        Renewable Electricity Generated
+    </div>
+	
+    <div class="container vertical fill">
+        <IgbCategoryChart
+        ChartType="CategoryChartType.SplineArea"
+        IsTransitionInEnabled="true"
+        YAxisLabelLeftMargin="0"
+        YAxisTitleLeftMargin="10"
+        YAxisTitleRightMargin="5"
+        YAxisTitle="TWh"
+        DataSource="CountryRenewableElectricity"
+        IncludedProperties="@(new string[] { "Year", "Europe" })"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+        ToolTipType="ToolTipType.Category"
+        Name="chart"
+        @ref="chart">
+        </IgbCategoryChart>
     </div>
 </div>
 
 @code {
-
-    private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
-
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-        IgbLegendModule.Register(IgniteUIBlazor);
     }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var chart = this.chart;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+	}
+
+	private IgbCategoryChart chart;
+
+
+    private CountryRenewableElectricity _countryRenewableElectricity = null;
+    public CountryRenewableElectricity CountryRenewableElectricity
+    {
+        get
+        {
+            if (_countryRenewableElectricity == null)
+            {
+                _countryRenewableElectricity = new CountryRenewableElectricity(); 
+            }
+            return _countryRenewableElectricity;
+        }
+    }
+    
 }

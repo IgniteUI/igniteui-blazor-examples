@@ -38,7 +38,8 @@
                            CalloutsXMemberPath="Index"
                            CalloutsLabelMemberPath="Label"
                            CalloutsDataSource="CalloutData"
-                           ExcludedProperties="@(new string[] { "China", "Europe" })">
+                           ExcludedProperties="@(new string[] { "China", "Europe" })"
+                           ComputedPlotAreaMarginMode=ComputedPlotAreaMarginMode.Series>
             </IgbCategoryChart>
         }
     </div>
@@ -66,13 +67,14 @@
 
     private void OnMarkersVisibleCheckBoxChange(ChangeEventArgs args)
     {
+        Chart.MarkerTypes.Clear();
         bool value = (bool)args.Value;
         if (value == true)
         {
             Chart.MarkerTypes.Add(MarkerType.Automatic);
         }
         else {
-            Chart.MarkerTypes.Clear();
+            Chart.MarkerTypes.Add(MarkerType.None);
         }
         this.MarkersVisible = value;
     }

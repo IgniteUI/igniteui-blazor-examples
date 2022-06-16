@@ -1,69 +1,116 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="container vertical">
-        <IgbDataChart Height="100%" Width="100%"
-                   ChartTitle="Where Online Shoppers Start Their Search"
-                   TitleHorizontalAlignment="HorizontalAlignment.Left"
-                   TitleLeftMargin="25"
-                   TitleTopMargin="10"
-                   TitleBottomMargin="10"
-                   IsHorizontalZoomEnabled="false"
-                   IsVerticalZoomEnabled="false">
-
-            <IgbCategoryYAxis Name="yAxis" Label="Shop" DataSource="Data" IsInverted="true" Gap="0.75" />
-            <IgbNumericXAxis Name="xAxis" Interval="20" LabelFormat="{0}%" />
-
-            <IgbBarSeries XAxisName="xAxis"
-                       YAxisName="yAxis"
-                       DataSource="Data"
-                       ValueMemberPath="Percent"
-                       ShowDefaultTooltip="true"
-                       IsTransitionInEnabled="true"
-                       IsHighlightingEnabled="true">
+	
+	<div class="legend-title">
+        Where Online Shoppers Start Their Search
+    </div>
+	
+    <div class="container vertical fill">
+        <IgbDataChart
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        Name="Chart"
+        @ref="chart">
+            <IgbCategoryYAxis
+            DataSource="OnlineShoppingSearches"
+            Gap="0.75"
+            IsInverted="true"
+            Label="Shop"
+            Name="yAxis"
+            @ref="yAxis">
+            </IgbCategoryYAxis>
+            <IgbNumericXAxis
+            MinimumValue="0"
+            MaximumValue="80"
+            Interval="20"
+            LabelFormat="{0}%"
+            Name="xAxis"
+            @ref="xAxis">
+            </IgbNumericXAxis>
+            <IgbCategoryHighlightLayer
+            Name="CategoryHighlightLayer"
+            @ref="categoryHighlightLayer">
+            </IgbCategoryHighlightLayer>
+            <IgbBarSeries
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            ValueMemberPath="Percent"
+            IsTransitionInEnabled="true"
+            DataSource="OnlineShoppingSearches"
+            Brush="#a786068a"
+            Outline="#85068a"
+            Thickness="2"
+            IsHighlightingEnabled="true"
+            AreaFillOpacity="0.5"
+            ShowDefaultTooltip="true"
+            Name="BarSeries1"
+            @ref="barSeries1">
             </IgbBarSeries>
-
-            <IgbCalloutLayer DataSource="CalloutItems" XMemberPath="X" YMemberPath="Y" LabelMemberPath="Label" ContentMemberPath="Label"
-                          CalloutTextColor="Black" CalloutBackground="Transparent" CalloutLeaderBrush="Transparent"/>
+            <IgbCalloutLayer
+            LabelMemberPath="Label"
+            XMemberPath="X"
+            YMemberPath="Y"
+            ContentMemberPath="Label"
+            CalloutTextColor="#85068a"
+            CalloutBackground="#00000000"
+            CalloutLeaderBrush="#00000000"
+            DataSource="OnlineShoppingSearches"
+            Name="CalloutLayer1"
+            @ref="calloutLayer1">
+            </IgbCalloutLayer>
+            <IgbDataToolTipLayer
+            Name="Tooltips"
+            @ref="tooltips">
+            </IgbDataToolTipLayer>
         </IgbDataChart>
     </div>
 </div>
 
 @code {
-
-    private List<OnlineShoppingInfo> Data = new OnlineShoppingData();
-    private List<CalloutInfo> CalloutItems { get; set; }
-
     protected override void OnInitialized()
     {
-        IgbDataChartCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-        IgbDataChartVerticalCategoryModule.Register(IgniteUIBlazor);
-        IgbDataChartAnnotationModule.Register(IgniteUIBlazor);
-        IgbCalloutLayerModule.Register(IgniteUIBlazor);
-
-        InitCallouts();
     }
 
-    public void InitCallouts()
-    {
-        var callouts = new List<CalloutInfo>();
+	private Action BindElements { get; set; }
 
-        for (int i = 0; i < this.Data.Count; i++)
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var chart = this.chart;
+		var yAxis = this.yAxis;
+		var xAxis = this.xAxis;
+		var categoryHighlightLayer = this.categoryHighlightLayer;
+		var barSeries1 = this.barSeries1;
+		var calloutLayer1 = this.calloutLayer1;
+		var tooltips = this.tooltips;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+	}
+
+	private IgbDataChart chart;
+	private IgbCategoryYAxis yAxis;
+	private IgbNumericXAxis xAxis;
+	private IgbCategoryHighlightLayer categoryHighlightLayer;
+	private IgbBarSeries barSeries1;
+	private IgbCalloutLayer calloutLayer1;
+	private IgbDataToolTipLayer tooltips;
+
+
+    private OnlineShoppingSearches _onlineShoppingSearches = null;
+    public OnlineShoppingSearches OnlineShoppingSearches
+    {
+        get
         {
-            callouts.Add(new CalloutInfo() { X = this.Data[i].Percent, Y = i, Label = this.Data[i].Percent.ToString() + "%" });
+            if (_onlineShoppingSearches == null)
+            {
+                _onlineShoppingSearches = new OnlineShoppingSearches(); 
+            }
+            return _onlineShoppingSearches;
         }
-
-        this.CalloutItems = callouts;
     }
-
-    public class CalloutInfo
-    {
-        public double X { get; set; }
-        public int Y { get; set; }
-        public string Label { get; set; }
-    }
+    
 }

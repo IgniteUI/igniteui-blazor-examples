@@ -1,0 +1,90 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+	
+	<div class="legend-title">
+        Average Temperature Range in New York
+    </div>
+	
+    <div class="container vertical fill">
+        <IgbDataChart
+        Name="chart"
+        @ref="chart">
+            <IgbCategoryXAxis
+            DataSource="TemperatureAverageData"
+            MinimumGapSize="25"
+            UseEnhancedIntervalManagement="true"
+            EnhancedIntervalPreferMoreCategoryLabels="true"
+            Label="Month"
+            Name="xAxis"
+            @ref="xAxis">
+            </IgbCategoryXAxis>
+            <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis">
+            </IgbNumericYAxis>
+            <IgbCategoryHighlightLayer
+            Name="CategoryHighlightLayer"
+            @ref="categoryHighlightLayer">
+            </IgbCategoryHighlightLayer>
+            <IgbColumnSeries
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            ValueMemberPath="Temperature"
+            DataSource="TemperatureAverageData"
+            Name="columnSeries1"
+            @ref="columnSeries1">
+            </IgbColumnSeries>
+            <IgbDataToolTipLayer
+            Name="Tooltips"
+            @ref="tooltips">
+            </IgbDataToolTipLayer>
+        </IgbDataChart>
+    </div>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var chart = this.chart;
+		var xAxis = this.xAxis;
+		var yAxis = this.yAxis;
+		var categoryHighlightLayer = this.categoryHighlightLayer;
+		var columnSeries1 = this.columnSeries1;
+		var tooltips = this.tooltips;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+	}
+
+	private IgbDataChart chart;
+	private IgbCategoryXAxis xAxis;
+	private IgbNumericYAxis yAxis;
+	private IgbCategoryHighlightLayer categoryHighlightLayer;
+	private IgbColumnSeries columnSeries1;
+	private IgbDataToolTipLayer tooltips;
+
+
+    private TemperatureAverageData _temperatureAverageData = null;
+    public TemperatureAverageData TemperatureAverageData
+    {
+        get
+        {
+            if (_temperatureAverageData == null)
+            {
+                _temperatureAverageData = new TemperatureAverageData(); 
+            }
+            return _temperatureAverageData;
+        }
+    }
+    
+}

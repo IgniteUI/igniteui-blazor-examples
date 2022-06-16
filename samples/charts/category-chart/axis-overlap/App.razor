@@ -1,59 +1,92 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-
-    <div class="options vertical">
-        <span class="legend-title">Highest Grossing Movie Franchises</span>
-        <div class="legend">
-            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
-        </div>
-
-        <div class="overlay-right" >
-            <div class="options horizontal" >
-                <label class="options-label" >X-Axis Overlap</label>
-                <label class="options-value" >@AxisOverlapValue</label>
-                <input class="options-slider" type="range" min="0" max="1" step="0.1" value="1" @oninput="OnXAxisOverlapChange"/>
-            </div>
-        </div>
+	<div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="CategoryChart"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="XAxisOverlap"
+            Label="X Axis - Overlap"
+            ValueType="PropertyEditorValueType.Slider"
+            ShouldOverrideDefaultEditor="true"
+            PrimitiveValue="0"
+            Min="0"
+            Max="1"
+            Step="0.1"
+            Name="XAxisOverlap"
+            @ref="xAxisOverlap">
+            </IgbPropertyEditorPropertyDescription>
+        </IgbPropertyEditorPanel>
     </div>
-    <div class="container vertical">
-        @if (Data != null)
-        {
-            <IgbCategoryChart Height="100%" Width="100%"
-                           Legend="Legend"
-                           DataSource="Data"
-                           ChartType="CategoryChartType.Column"
-						   IsHorizontalZoomEnabled="false"
-                           IsVerticalZoomEnabled="false"
-                           XAxisInterval="1"
-                           XAxisOverlap="AxisOverlapValue">
-            </IgbCategoryChart>
-        }
+	<div class="legend-title">
+        Highest Grossing Movie Franchises
+    </div>
+	<div class="legend">
+        <IgbLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="Legend"
+        @ref="legend">
+        </IgbLegend>
+    </div>
+    <div class="container vertical fill">
+        <IgbCategoryChart
+        ChartType="CategoryChartType.Column"
+        XAxisInterval="1"
+        XAxisOverlap="1"
+        DataSource="HighestGrossingMovies"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        CrosshairsSnapToData="true"
+        Name="chart"
+        @ref="chart">
+        </IgbCategoryChart>
     </div>
 </div>
 
 @code {
-
-    private IgbLegend _Legend;
-    private IgbLegend Legend
-    {
-        get { return _Legend; }
-        set { _Legend = value; StateHasChanged(); }
-    }
-
-    private double AxisOverlapValue = 1;
-
-    private List<FilmFranchiseInfo> Data = new FilmFranchiseData();
-
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
-        IgbLegendModule.Register(IgniteUIBlazor);
     }
 
-    private void OnXAxisOverlapChange(ChangeEventArgs args)
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var propertyEditorPanel1 = this.propertyEditorPanel1;
+		var xAxisOverlap = this.xAxisOverlap;
+		var chart = this.chart;
+
+        this.BindElements = () => {
+            propertyEditorPanel1.Target = this.chart;
+        };
+        this.BindElements();
+	}
+
+	private IgbLegend legend;
+	private IgbPropertyEditorPanel propertyEditorPanel1;
+	private IgbPropertyEditorPropertyDescription xAxisOverlap;
+	private IgbCategoryChart chart;
+
+
+    private HighestGrossingMovies _highestGrossingMovies = null;
+    public HighestGrossingMovies HighestGrossingMovies
     {
-        this.AxisOverlapValue = double.Parse(args.Value.ToString());
+        get
+        {
+            if (_highestGrossingMovies == null)
+            {
+                _highestGrossingMovies = new HighestGrossingMovies(); 
+            }
+            return _highestGrossingMovies;
+        }
     }
+    
 }

@@ -1,89 +1,114 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options vertical">
-        <span class="legend-title">Ronaldo vs. Messi Player Stats</span>
-        <div class="legend">
-            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
-        </div>
+	
+	<div class="legend-title">
+        Ronaldo vs Messi Player Stats
     </div>
-    <div class="container vertical">
-        <IgbDataChart @ref="Chart" Height="100%" Width="100%"
-                   IsHorizontalZoomEnabled="false"
-                   IsVerticalZoomEnabled="false"
-                   Legend="Legend">
-            <IgbCategoryAngleAxis Name="angleAxis" DataSource="Data"
-                               Label="Attribute" LabelFontWeight="Bold" />
-            <IgbNumericRadiusAxis Name="radiusAxis"
-                               RadiusExtentScale="0.6"
-                               InnerRadiusExtentScale="0.1"
-                               MinimumValue="0" MaximumValue="10" Interval="2" />
-
-            <IgbRadialAreaSeries DataSource="Data"
-                              AngleAxisName="angleAxis"
-                              ValueMemberPath="RonaldoValue"
-                              ValueAxisName="radiusAxis"
-                              ShowDefaultTooltip="true"
-                              AreaFillOpacity="0.30"
-                              Thickness="3"
-                              Title="Ronaldo"
-                              MarkerType="MarkerType.Circle" />
-
-            <IgbRadialAreaSeries DataSource="Data"
-                              AngleAxisName="angleAxis"
-                              ValueMemberPath="MessiValue"
-                              ValueAxisName="radiusAxis"
-                              ShowDefaultTooltip="true"
-                              AreaFillOpacity="0.30"
-                              Thickness="3"
-                              Title="Messi"
-                              MarkerType="MarkerType.Circle" />
+	<div class="legend">
+        <IgbLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="Legend"
+        @ref="legend">
+        </IgbLegend>
+    </div>
+    <div class="container vertical fill">
+        <IgbDataChart
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        Brushes="#8ce7d9 #ee5879"
+        Outlines="#8ce7d9 #ee5879"
+        MarkerBrushes="white"
+        MarkerOutlines="#8ce7d9 #ee5879"
+        Name="chart"
+        @ref="chart">
+            <IgbCategoryAngleAxis
+            DataSource="FootballPlayerStats"
+            Label="Attribute"
+            Name="angleAxis"
+            @ref="angleAxis">
+            </IgbCategoryAngleAxis>
+            <IgbNumericRadiusAxis
+            InnerRadiusExtentScale="0.1"
+            MinimumValue="0"
+            MaximumValue="10"
+            Interval="2"
+            Name="radiusAxis"
+            @ref="radiusAxis">
+            </IgbNumericRadiusAxis>
+            <IgbRadialAreaSeries
+            ValueMemberPath="Ronaldo"
+            AngleAxisName="angleAxis"
+            ValueAxisName="radiusAxis"
+            MarkerType="MarkerType.Circle"
+            DataSource="FootballPlayerStats"
+            Thickness="3"
+            AreaFillOpacity="0.5"
+            ShowDefaultTooltip="true"
+            Title="Ronaldo"
+            Name="RadialAreaSeries1"
+            @ref="radialAreaSeries1">
+            </IgbRadialAreaSeries>
+            <IgbRadialAreaSeries
+            DataSource="FootballPlayerStats"
+            AngleAxisName="angleAxis"
+            ValueAxisName="radiusAxis"
+            ValueMemberPath="Messi"
+            ShowDefaultTooltip="true"
+            AreaFillOpacity="0.5"
+            Thickness="3"
+            Title="Messi"
+            MarkerType="MarkerType.Circle"
+            Name="RadialAreaSeries2"
+            @ref="radialAreaSeries2">
+            </IgbRadialAreaSeries>
         </IgbDataChart>
-
     </div>
 </div>
 
 @code {
-
-    private List<PlayerStatsInfo> Data = new PlayerStatsData();
-
-    private IgbLegend _Legend;
-    private IgbLegend Legend
-    {
-        get { return _Legend; }
-        set { _Legend = value; StateHasChanged(); }
-    }
-
-    private IgbDataChart __Chart;
-    private IgbDataChart Chart
-    {
-        get { return __Chart; }
-        set
-        {
-            __Chart = value;
-            if (this.Chart != null)
-            {
-                this.Chart.MarkerBrushes = "White";
-                this.Chart.MarkerOutlines = "rgb(140, 231, 217) rgb(238, 88, 121)";
-                this.Chart.Brushes = "rgb(140, 231, 217) rgb(238, 88, 121)";
-                this.Chart.Outlines = "rgb(140, 231, 217) rgb(238, 88, 121)";
-
-                StateHasChanged();
-            }
-        }
-    }
-
     protected override void OnInitialized()
     {
-        IgbDataChartCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartRadialModule.Register(IgniteUIBlazor);
-        IgbDataChartRadialCoreModule.Register(IgniteUIBlazor);
-
-        IgbDataChartExtendedAxesModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-        IgbLegendModule.Register(IgniteUIBlazor);
     }
 
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var chart = this.chart;
+		var angleAxis = this.angleAxis;
+		var radiusAxis = this.radiusAxis;
+		var radialAreaSeries1 = this.radialAreaSeries1;
+		var radialAreaSeries2 = this.radialAreaSeries2;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+	}
+
+	private IgbLegend legend;
+	private IgbDataChart chart;
+	private IgbCategoryAngleAxis angleAxis;
+	private IgbNumericRadiusAxis radiusAxis;
+	private IgbRadialAreaSeries radialAreaSeries1;
+	private IgbRadialAreaSeries radialAreaSeries2;
+
+
+    private FootballPlayerStats _footballPlayerStats = null;
+    public FootballPlayerStats FootballPlayerStats
+    {
+        get
+        {
+            if (_footballPlayerStats == null)
+            {
+                _footballPlayerStats = new FootballPlayerStats(); 
+            }
+            return _footballPlayerStats;
+        }
+    }
+    
 }

@@ -10,7 +10,7 @@
 @code {
     public IgbCalendar CalendarRef { get; set; }
 
-    public IgbDateRangeDescriptor DisabledDateDescriptor { get; set; }
+    public IgbDateRangeDescriptor[] DisabledDateDescriptor { get; set; }
 
     protected override void OnInitialized()
     {
@@ -22,26 +22,7 @@
 
         IgbDateRangeDescriptor dateDescriptor = new IgbDateRangeDescriptor() { DateRange = range, RangeType = DateRangeType.Specific };
 
-        this.DisabledDateDescriptor = dateDescriptor;
+        this.DisabledDateDescriptor = new IgbDateRangeDescriptor[] { dateDescriptor };
 
-        //this.CalendarRef.DisabledDates = dateDescriptor;
     }
-
-    //protected override void OnAfterRender(bool firstRender)
-    //{
-    //    base.OnAfterRender(firstRender);
-
-    //    if (firstRender && this.CalendarRef != null)
-    //    {
-    //        var today = DateTime.Today;
-
-    //        var range = new[] { new DateTime(today.Year, today.Month, 3), new DateTime(today.Year, today.Month, 8) };            
-
-    //        IgbDateRangeDescriptor dateDescriptor = new IgbDateRangeDescriptor() { DateRange = range, RangeType = DateRangeType.Specific };
-
-    //        this.CalendarRef.DisabledDates = dateDescriptor;
-
-    //        StateHasChanged();
-    //    }
-    //}
 }

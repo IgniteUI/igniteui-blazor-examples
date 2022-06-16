@@ -61,7 +61,9 @@ git clone https://github.com/IgniteUI/igniteui-blazor-examples.git
 
 ## Running Individual Sample
 
-- in VS 2019, open a solution file from the [./samples](./samples) folder, e.g.
+Note, as of 2022, this repo is targeting .NET 6.0 and Visual Studio 2022. VS 2019 does not support .NET 6.0.
+
+- in VS 2022, open a solution file from the [./samples](./samples) folder, e.g.
 
 [./samples/charts/category-chart/overview/BlazorClientApp.csproj](./samples/charts/category-chart/overview/BlazorClientApp.csproj)
 
@@ -88,7 +90,7 @@ At this point, you should see a website with a single example of [Ignite UI for 
 
 - wait until all samples are copied to the browser client app
 
-- in VS 2019, open [./browser/IgBlazorSamplesBrowser.sln](./browser/IgBlazorSamplesBrowser.sln)
+- in VS 2022, open [./browser/IgBlazorSamplesBrowser.sln](./browser/IgBlazorSamplesBrowser.sln)
 
 - right click solution and select **Restore NuGet Packages** menu item
 

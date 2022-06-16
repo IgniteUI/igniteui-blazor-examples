@@ -1,85 +1,127 @@
-﻿@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options vertical">
-        <span class="legend-title">Electricity Production from Renewables</span>
-        <div class="legend">
-            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
-        </div>
+	
+	<div class="legend-title">
+        Electricity Production from Renewables
     </div>
-    <div class="container vertical">
-        @if (Data != null)
-        {
-            <IgbDataChart Height="100%" Width="100%" IsVerticalZoomEnabled="false" IsHorizontalZoomEnabled="false">
-                <IgbCategoryXAxis Name="xAxis" DataSource="Data" Label="Year" Gap="0.75" />
-                <IgbNumericYAxis Name="yAxis" MinimumValue="0" MaximumValue="300" Interval="50" Title="TWh" TitleLeftMargin="10" />
-
-                <IgbStackedColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="true" Legend="Legend">
-                    <IgbStackedFragmentSeries ValueMemberPath="USA" />
-                    <IgbStackedFragmentSeries ValueMemberPath="Europe" />
-                    <IgbStackedFragmentSeries ValueMemberPath="China" />
-                </IgbStackedColumnSeries>
-
-                <IgbPointSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="USAMarker"
-                             MarkerTemplateScript="onStackedChartMarkerTemplate" />
-                <IgbPointSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="EuropeMarker"
-                             MarkerTemplateScript="onStackedChartMarkerTemplate" />
-                <IgbPointSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ValueMemberPath="ChinaMarker"
-                             MarkerTemplateScript="onStackedChartMarkerTemplate" />
-
-                <IgbCalloutLayer DataSource="CalloutData" XMemberPath="X" YMemberPath="Y" LabelMemberPath="Label"
-                              CalloutBackground="Transparent" CalloutLeaderBrush="Transparent" CalloutTextColor="Black" />
-
-            </IgbDataChart>
-        }
+	<div class="legend">
+        <IgbLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="Legend"
+        @ref="legend">
+        </IgbLegend>
+    </div>
+    <div class="container vertical fill">
+        <IgbDataChart
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        Name="chart"
+        @ref="chart">
+            <IgbCategoryXAxis
+            DataSource="ContinentsBirthRate"
+            Gap="0.75"
+            Label="Year"
+            Name="xAxis"
+            @ref="xAxis">
+            </IgbCategoryXAxis>
+            <IgbNumericYAxis
+            MinimumValue="0"
+            MaximumValue="140"
+            Interval="20"
+            TitleLeftMargin="10"
+            LabelFormat="{0} m"
+            Name="yAxis"
+            @ref="yAxis">
+            </IgbNumericYAxis>
+            <IgbStackedColumnSeries
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="ContinentsBirthRate"
+            ShowDefaultTooltip="false"
+            Name="StackedColumnSeries"
+            @ref="stackedColumnSeries">
+                <IgbStackedFragmentSeries
+                Name="s1"
+                @ref="s1"
+                ValueMemberPath="Asia">
+                </IgbStackedFragmentSeries>
+                <IgbStackedFragmentSeries
+                Name="s2"
+                @ref="s2"
+                ValueMemberPath="Africa">
+                </IgbStackedFragmentSeries>
+                <IgbStackedFragmentSeries
+                Name="s3"
+                @ref="s3"
+                ValueMemberPath="Europe">
+                </IgbStackedFragmentSeries>
+                <IgbStackedFragmentSeries
+                Name="s4"
+                @ref="s4"
+                ValueMemberPath="NorthAmerica">
+                </IgbStackedFragmentSeries>
+                <IgbStackedFragmentSeries
+                Name="s5"
+                @ref="s5"
+                ValueMemberPath="SouthAmerica">
+                </IgbStackedFragmentSeries>
+            </IgbStackedColumnSeries>
+        </IgbDataChart>
     </div>
 </div>
 
 @code {
-
-    private IgbLegend _legend;
-    public IgbLegend Legend
-    {
-        get { return _legend; }
-        set
-        {
-            _legend = value;
-            StateHasChanged();
-        }
-    }
-
-    public List<RenewableElectricityStackedInfo> Data = new RenewableElectricityStackedData();
-    public List<CalloutInfo> CalloutData { get; set; }
-
     protected override void OnInitialized()
     {
-
-        IgbDataChartCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-        IgbDataChartStackedModule.Register(IgniteUIBlazor);
-        IgbColumnFragmentModule.Register(IgniteUIBlazor);
-        IgbStackedSplineSeriesModule.Register(IgniteUIBlazor);
-        IgbStackedFragmentSeriesModule.Register(IgniteUIBlazor);
-        IgbCalloutLayerModule.Register(IgniteUIBlazor);
-        IgbLegendModule.Register(IgniteUIBlazor);
-
-        this.CalloutData = new List<CalloutInfo>();
-
-        for (int i = 0; i < this.Data.Count; i++)
-        {
-            var item = this.Data[i];
-            this.CalloutData.Add(new CalloutInfo() { X = i, Y = item.Sum, Label = item.Sum.ToString() });
-        }
-
     }
 
-    public class CalloutInfo
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var chart = this.chart;
+		var xAxis = this.xAxis;
+		var yAxis = this.yAxis;
+		var stackedColumnSeries = this.stackedColumnSeries;
+		var s1 = this.s1;
+		var s2 = this.s2;
+		var s3 = this.s3;
+		var s4 = this.s4;
+		var s5 = this.s5;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+	}
+
+	private IgbLegend legend;
+	private IgbDataChart chart;
+	private IgbCategoryXAxis xAxis;
+	private IgbNumericYAxis yAxis;
+	private IgbStackedColumnSeries stackedColumnSeries;
+	private IgbStackedFragmentSeries s1;
+	private IgbStackedFragmentSeries s2;
+	private IgbStackedFragmentSeries s3;
+	private IgbStackedFragmentSeries s4;
+	private IgbStackedFragmentSeries s5;
+
+
+    private ContinentsBirthRate _continentsBirthRate = null;
+    public ContinentsBirthRate ContinentsBirthRate
     {
-        public int X { get; set; }
-        public double Y { get; set; }
-        public string Label { get; set; }
+        get
+        {
+            if (_continentsBirthRate == null)
+            {
+                _continentsBirthRate = new ContinentsBirthRate(); 
+            }
+            return _continentsBirthRate;
+        }
     }
+    
 }

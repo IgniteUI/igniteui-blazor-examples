@@ -14,13 +14,8 @@ let path = require('path');
 let flatten = require('gulp-flatten');
 let del = require('del');
 let es = require('event-stream');
-let shell = require('gulp-shell');
-let replace = require('gulp-replace');
-let contains = require('gulp-contains');
 
 var igConfig = require('./gulp-config.js')
-// var platform = "React";
-// var igConfig = require('./gulp-config.js')[platform];
 
 eval(require('typescript')
 .transpile(require('fs')
@@ -33,6 +28,8 @@ log('loaded gulp scripts');
 
 // NOTE you can comment out strings in this array to run subset of samples
 var sampleSource = [
+    // igConfig.SamplesCopyPath + '/charts/category-chart/axis-gap/App.razor',
+
     igConfig.SamplesCopyPath + '/charts/category-chart/**/App.razor',
     igConfig.SamplesCopyPath + '/charts/data-chart/**/App.razor',
     igConfig.SamplesCopyPath + '/charts/doughnut-chart/**/App.razor',
@@ -52,6 +49,7 @@ var sampleSource = [
     igConfig.SamplesCopyPath + '/menus/**/App.razor',
     igConfig.SamplesCopyPath + '/scheduling/**/App.razor',
     igConfig.SamplesCopyPath + '/excel/excel-library/**/App.razor',
+    igConfig.SamplesCopyPath + '/notifications/**/App.razor',
 
     // igConfig.SamplesCopyPath + '/excel/spreadsheet/**/App.razor',
     // igConfig.SamplesCopyPath + '/gauges/bullet-graph/animation/App.razor',
@@ -116,27 +114,19 @@ function saveSamples(cb) {
 } exports.saveSamples = saveSamples;
 
 function getSamples(cb) {
-
-    // deleteSamples();
-    // cleanSamples();
-
     samples = [];
-    // del.sync("./sample-test-files/**/*.*", {force:true});
 
     gulp.src(sampleSource)
     // .pipe(gSort( { asc: false } ))
     .pipe(es.map(function(sample, sampleCallback) {
-
         let sampleFolder = Transformer.getRelative(sample.dirname);
         // console.log("get " + sampleFolder + '/' + sample.basename);
-        // console.log("get " + sampleFolder + '/');
-
         let sampleFiles = [];
         gulp.src([
                 // sampleFolder + "/Pages/*",
                 sampleFolder + "/App.razor",
                 sampleFolder + "/Components/*",
-                sampleFolder + "/Services/*",
+                sampleFolder + "/**/*.cs",
                 sampleFolder + "/*.csproj",
                 sampleFolder + "/wwwroot/*.js",
                 sampleFolder + "/wwwroot/*.css",
@@ -146,8 +136,8 @@ function getSamples(cb) {
         //   '!' + sampleFolder + "/Pages/_*.razor",
         //   '!' + sampleFolder + "/Pages/DataGridBindingLiveData.razor",
           '!' + sampleFolder + "/Pages/*.g.cs",
-        //   '!' + sampleFolder + "/App.razor",
           '!' + sampleFolder + "/_Imports.razor",
+        //   '!' + sampleFolder + "/Program.cs", // not excluded b/c we need to get names of IG modules
           '!' + sampleFolder + "/obj/**",
           '!' + sampleFolder + "/obj/*.*",
           '!' + sampleFolder + "/bin/**",
@@ -161,15 +151,12 @@ function getSamples(cb) {
         }))
         .on("end", function() {
             // log(sampleFolder);
-
             let sampleInfo = Transformer.getSampleInfo(sample, sampleFiles);
             if (sampleInfo !== null) {
                 samples.push(sampleInfo);
             }
             sampleCallback(null, sample);
         });
-
-        // sampleCallback(null, sample);
     }))
     .on("end", function() {
         Transformer.sort(samples);
@@ -187,19 +174,14 @@ function getSamples(cb) {
         // last.PackageDependencies = Transformer.getDependencies(last);
         // log('packages \n' + last.PackageFileContent.dependencies);
         // log('dependencies: \n' + last.PackageDependencies);
-
         cb();
     });
-
-
 } exports.getSamples = getSamples;
-
-
 
 function makeDirectoryFor(filePath) {
     var dirname = path.dirname(filePath);
     if (fs.existsSync(dirname)) {
-      return true;
+        return true;
     }
     makeDirectoryFor(dirname);
     fs.mkdirSync(dirname);
@@ -248,7 +230,6 @@ function cleanupSampleBrowsers(cb) {
     cb();
 } exports.cleanupSampleBrowsers = cleanupSampleBrowsers;
 
-
 function saveFile(filePath, fileContent) {
     makeDirectoryFor(filePath);
     // if (!fs.existsSync(outputClientRazor)) {
@@ -258,8 +239,7 @@ function saveFile(filePath, fileContent) {
 
 function copySamplePages(cb, outputPath) {
 
-    log('copying  ' + outputPath + '/Pages/*.* from /samples/**/app.razor files:');
-    // log('copying sample files... ');
+    log('copying sample to ' + outputPath + '/Pages/*.* from /samples/**/app.razor files:');
     for (const sample of samples) {
 
         // lint and force auto-generation of routing paths (@page) in razor files
@@ -270,10 +250,8 @@ function copySamplePages(cb, outputPath) {
 
         for (const file of sample.SourceFiles) {
             if (file.isRazorSample()) {
-                var copySource = file.Path;
                 var copyTarget = outputPath + '/Pages/' + sampleFolder + '/' + file.Parent + '/' + file.Name;
-                // log("copying " + copyTarget + " from " + copySource);
-                log("copying  " + copyTarget);
+                log("copying sample to " + copyTarget);
                 saveFile(copyTarget, file.Content);
             } else if (file.isCS())  {
                 saveFile(outputPath + '/Services/' + file.Name, file.Content);
@@ -296,25 +274,40 @@ function copySamplePages(cb, outputPath) {
 function copySampleScripts(cb, outputPath, indexName) {
     var insertScriptFiles = [];
 
-    log('copying scripts to: ' + outputPath + '/wwwroot/');
+    log('deleting scripts in: ' + outputPath + '/wwwroot/sb/*.js');
+    del.sync('../IgBlazorSamples.Client/wwwroot/sb/' + "*.js", {force:true});
+
+    log('copying scripts to:  ' + outputPath + '/wwwroot/sb/*.js');
 
     var copiedScriptFiles = [];
     for (const sample of samples) {
         for (const file of sample.PublicFiles_JS) {
+
             if (copiedScriptFiles.indexOf(file.Name) === -1) {
                 copiedScriptFiles.push(file.Name);
                 const scriptPath = outputPath + '/wwwroot/sb/' + file.Name
-                log("copying  " + scriptPath);
-
+                log("copying scripts to:  " + scriptPath);
                 saveFile(scriptPath, file.Content);
+
                 if (file.Name.indexOf("DockManager") >= 0) {
-                    insertScriptFiles.push('<script type="module" src="sb/' + file.Name + '"></script>');
+                    var fileRequiresLoading = true;
+                    if (file.Name.indexOf("bundle") >= 0) {
+                        // skipping non-entry point bundle files for DockManager
+                        if (file.Name.indexOf("1") >= 0) fileRequiresLoading = false;
+                        if (file.Name.indexOf("2") >= 0) fileRequiresLoading = false;
+                        if (file.Name.indexOf("3") >= 0) fileRequiresLoading = false;
+                    }
+                    if (fileRequiresLoading) {
+                        insertScriptFiles.push('<script type="module" src="sb/' + file.Name + '"></script>');
+                    }
                 } else {
                     insertScriptFiles.push('<script src="sb/' + file.Name + '"></script>');
                 }
             }
         }
     }
+    // sorting inserts
+    //insertScriptFiles.sort((a, b) => a > b ? 1 : -1)
 
     // updating index.html with JavaScripts for samples
     let indexPath = outputPath + indexName;
@@ -333,21 +326,48 @@ function copySampleScripts(cb, outputPath, indexName) {
         }
     }
 
-    if (insertStart > 0) {
-        // for (let i = insertStart+1; i < insertEnd; i++) {
-        //     indexLines[i] = "";
-        // }
+    if (insertStart < 0 ) {
+        throw new Error("File '" + indexPath + "' is missing: '<!--AutoInsertJavaScriptsForSamples Start-->'");
+    }
+    else if (insertEnd < 0 ) {
+        throw new Error("File '" + indexPath + "' is missing: '<!--AutoInsertJavaScriptsForSamples End-->'");
+    }
+    else if (insertStart > 0 && insertEnd > 0) {
 
-        for (let i = insertEnd - 1; i > insertStart+1; i--) {
-            indexLines.splice(i, 1);
+        for (let i = insertStart+1; i < insertEnd; i++) {
+            if (indexLines[i].indexOf("AutoInsertJavaScriptsForSamples") < 0)
+                indexLines[i] = ""; // clearing previously auto-generated inserts for JS files
         }
 
-        indexLines[insertStart + 1] = insertScriptFiles.join('\n');
+        // for (let i = insertEnd - 1; i > insertStart+1; i--) {
+        //     indexLines.splice(i, 1);
+        // }
+
+        // adding latest auto-generated inserts for JS files
+        indexLines[insertStart] += '\n' + insertScriptFiles.join('\n');
     }
 
     // indexLines = indexLines.filter((v, i, a) => a.indexOf(v) === i);
 
+    var isLocalBuild = __dirname.indexOf('BuildAgent') < 0;
+    for (let i = 0; i < indexLines.length; i++) {
+        if (indexLines[i].indexOf('<base href') > 0) {
+            if (isLocalBuild) {
+                log('updating <base href="/" /> ');
+                indexLines[i] = '    <base href="/" />';
+            } else {
+                log('updating <base href="/blazor-client/" /> ');
+                indexLines[i] = '    <base href="/blazor-client/" />';
+            }
+            break;
+        }
+    }
+    log('is local build = ' + isLocalBuild + ' ' + __dirname);
+
     index = indexLines.join('\n');
+    while (index.indexOf('\n\n') >= 0) {
+        index = index.split('\n\n').join('\n');
+    }
     fs.writeFileSync(indexPath, index);
     // cb();
 }
@@ -472,7 +492,6 @@ function updateProjects(cb) {
 
 
 } exports.updateProjects = updateProjects;
-
 
 // updates ./public/meta.json with version in ./package.json file
 function updateVersion(cb) {
@@ -615,29 +634,17 @@ function updateDataFiles(cb) {
 
 } exports.updateDataFiles = updateDataFiles;
 
-
-
-// testing
-
+// testing functions
 function logRoutes(cb) {
-    // getSamples();
-
-    let index = 0;
-    let routingGroups = Transformer.getRoutingGroups(samples);
-    for (const group of routingGroups) {
-
-        console.log('- group ' + group.Name);
-
-        for (const component of group.Components) {
-
-            console.log('- component ' + component.Name);
-            for (const sample of component.Samples) {
-                index++;
-                console.log(index + ' ' + sample.SampleRoute + ' === ' + sample.SampleDisplayName);
-            }
-        }
+    let routes = [];
+    for (const sample of samples) {
+        // routes.push("/" + sample.SampleGroup + "/" + sample.SampleRoutePath)
+        routes.push(sample.SampleRoute)
     }
-
+    routes.sort();
+    for (const route of routes) {
+        console.log(route);
+    }
     cb();
 } exports.logRoutes = logRoutes;
 
@@ -710,7 +717,6 @@ function logUniqueFiles(cb) {
 
 } exports.logUniqueFiles = logUniqueFiles;
 
-
 function logSandboxUrls(cb) {
 
     for (const sample of samples) {
@@ -718,8 +724,6 @@ function logSandboxUrls(cb) {
     }
     cb();
 } exports.logSandboxUrls = logSandboxUrls;
-
-
 
 function copyTemplates(cb) {
 
@@ -819,7 +823,6 @@ function copyTemplates(cb) {
     });
 } exports.copyTemplates = copyTemplates;
 
-
 function listSamples(cb) {
 
     let sampleFiles = [];
@@ -902,12 +905,10 @@ function renameProjects(cb) {
 
 function updateCodeViewer(cb) {
 
+    log("code-viewer cleanup in /wwwroot/code-viewer/**/.json");
     del.sync("../IgBlazorSamples.Client/wwwroot/code-viewer/**/.json", { force: true });
-    // note you might need to add/modify functions in Transformer.ts to implement this function.
-    // however, be careful with those functions because you might break scripts for copying samples to browser
 
-    // Comment out all values in the 'sampleSource' array except '/charts/pie-chart/' and those with '!' strings
-    // this way, you can run this function faster on a small subset of samples
+    log("code-viewer generating in /wwwroot/code-viewer/**/.json");
 
     // note the 'samples' is a global variable with info about all samples
     // note the 'sample' is a local variable with info about ome sample, see SampleInfo class in Transformer.ts
@@ -920,7 +921,7 @@ function updateCodeViewer(cb) {
         // path = path.replace("/", "-");
 
         var codeViewPath = "../IgBlazorSamples.Client/wwwroot/code-viewer" + path + ".json";
-        log("generating " + codeViewPath);
+        // log("generating " + codeViewPath);
 
         var content = "{\r\n \"sampleFiles\":\r\n";
         var contentItems = [];

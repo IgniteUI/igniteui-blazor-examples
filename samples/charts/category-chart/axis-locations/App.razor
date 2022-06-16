@@ -1,77 +1,90 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-
-    <div class="options vertical">
-        <span class="legend-title">Renewable Electricity Generated</span>
-        <div class="legend">
-            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
-        </div>
-
-        <div class="overlay-right">
-            <div class="options horizontal">
-                <label class="options-label">Y - Axis Location </label>
-                <select @onchange="OnLabelsLocationChange">
-                    <option>Outside Left</option>
-                    <option>Outside Right</option>
-                    <option>Inside Left</option>
-                    <option>Inside Right</option>
-                </select>
-            </div>
-        </div>
+	<div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="CategoryChart"
+        IsHorizontal="true"
+        IsWrappingEnabled="false"
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="YAxisLabelLocation"
+            Label="Y Axis - Label Location"
+            PrimitiveValue="@("OutsideRight")"
+            Name="YAxisLabelLocation"
+            @ref="yAxisLabelLocation">
+            </IgbPropertyEditorPropertyDescription>
+        </IgbPropertyEditorPanel>
     </div>
-
-    <div class="container vertical">
-        @if (Data != null)
-        {
-            <IgbCategoryChart Height="100%" Width="100%"
-                           Legend="Legend"
-                           DataSource="Data"
-                           ChartType="CategoryChartType.Line"
-                           IsHorizontalZoomEnabled="false"
-                           IsVerticalZoomEnabled="false"
-                           YAxisLabelLocation="LabelsLocation">
-            </IgbCategoryChart>
-        }
+	<div class="legend-title">
+        Renewable Electricity Generated
+    </div>
+	<div class="legend">
+        <IgbLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="Legend"
+        @ref="legend">
+        </IgbLegend>
+    </div>
+    <div class="container vertical fill">
+        <IgbCategoryChart
+        ChartType="CategoryChartType.Line"
+        XAxisInterval="1"
+        YAxisTitle="Labels Location"
+        YAxisLabelLocation="YAxisLabelLocation.OutsideRight"
+        DataSource="CountryRenewableElectricity"
+        IncludedProperties="@(new string[] { "Year", "Europe", "China", "America" })"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+        Name="chart"
+        @ref="chart">
+        </IgbCategoryChart>
     </div>
 </div>
 
 @code {
-
-    private IgbLegend _Legend;
-    private IgbLegend Legend
-    {
-        get { return _Legend; }
-        set { _Legend = value; StateHasChanged(); }
-    }
-
-    private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
-
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
-        IgbLegendModule.Register(IgniteUIBlazor);
     }
 
-    private YAxisLabelLocation LabelsLocation = YAxisLabelLocation.OutsideLeft;
-    private void OnLabelsLocationChange(ChangeEventArgs args)
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var propertyEditorPanel1 = this.propertyEditorPanel1;
+		var yAxisLabelLocation = this.yAxisLabelLocation;
+		var chart = this.chart;
+
+        this.BindElements = () => {
+            propertyEditorPanel1.Target = this.chart;
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+	}
+
+	private IgbLegend legend;
+	private IgbPropertyEditorPanel propertyEditorPanel1;
+	private IgbPropertyEditorPropertyDescription yAxisLabelLocation;
+	private IgbCategoryChart chart;
+
+
+    private CountryRenewableElectricity _countryRenewableElectricity = null;
+    public CountryRenewableElectricity CountryRenewableElectricity
     {
-        string value = args.Value.ToString();
-
-        if (value.Contains("Inside"))
+        get
         {
-            if (value.Contains("Left"))
-                this.LabelsLocation = YAxisLabelLocation.InsideLeft;
-            else
-                this.LabelsLocation = YAxisLabelLocation.InsideRight;
-        }
-        else
-        {
-            if (value.Contains("Left"))
-                this.LabelsLocation = YAxisLabelLocation.OutsideLeft;
-            else
-                this.LabelsLocation = YAxisLabelLocation.OutsideRight;
+            if (_countryRenewableElectricity == null)
+            {
+                _countryRenewableElectricity = new CountryRenewableElectricity(); 
+            }
+            return _countryRenewableElectricity;
         }
     }
+    
 }

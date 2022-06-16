@@ -1,87 +1,131 @@
-
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options vertical">
-        <span class="legend-title">Renewable Electricity Generated</span>
-        <div class="legend">
-            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
-        </div>
-        <div class="overlay-right">
-            <div class="options horizontal">
-                <label>Y-Axis Line </label><input type="color" value="@AxisMainStroke"  @onchange="OnAxisMainStrokeChange" />
-                <label>Major</label><input type="color" value="@AxisMajorStroke" @onchange="OnAxisMajorStrokeChange"  />
-                <label>Minor</label><input type="color" value="@AxisMinorStroke" @onchange="OnAxisMinorStrokeChange"  />
-            </div>
-        </div>
+	<div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="CategoryChart"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="YAxisStroke"
+            Label="Y Axis Stroke"
+            ValueType="PropertyEditorValueType.EnumValue"
+            ShouldOverrideDefaultEditor="true"
+            DropDownNames="@(new string[] { "gray", "darkslategray", "salmon", "cornflowerblue", "darkgreen" })"
+            DropDownValues="@(new string[] { "gray", "darkslategray", "salmon", "cornflowerblue", "darkgreen" })"
+            PrimitiveValue="@("gray")"
+            Name="YAxisStroke"
+            @ref="yAxisStroke">
+            </IgbPropertyEditorPropertyDescription>
+            <IgbPropertyEditorPropertyDescription
+            DropDownValues="@(new string[] { "gray", "darkslategray", "salmon", "cornflowerblue", "darkgreen" })"
+            PrimitiveValue="@("darkslategray")"
+            PropertyPath="YAxisMajorStroke"
+            Label="Y Axis Major Stroke"
+            ValueType="PropertyEditorValueType.EnumValue"
+            ShouldOverrideDefaultEditor="true"
+            DropDownNames="@(new string[] { "gray", "darkslategray", "salmon", "cornflowerblue", "darkgreen" })"
+            Name="YAxisMajorStroke"
+            @ref="yAxisMajorStroke">
+            </IgbPropertyEditorPropertyDescription>
+            <IgbPropertyEditorPropertyDescription
+            DropDownValues="@(new string[] { "gray", "darkslategray", "salmon", "cornflowerblue", "darkgreen" })"
+            PrimitiveValue="@("gray")"
+            PropertyPath="YAxisMinorStroke"
+            Label="Y Axis Minor Stroke"
+            ValueType="PropertyEditorValueType.EnumValue"
+            ShouldOverrideDefaultEditor="true"
+            DropDownNames="@(new string[] { "gray", "darkslategray", "salmon", "cornflowerblue", "darkgreen" })"
+            Name="YAxisMinorStroke"
+            @ref="yAxisMinorStroke">
+            </IgbPropertyEditorPropertyDescription>
+        </IgbPropertyEditorPanel>
     </div>
-    <div class="container vertical">
-        @if (Data != null)
-        {
-            <IgbCategoryChart Height="100%" Width="100%" @ref="Chart"
-                           Legend="Legend"
-                           DataSource="Data"
-                           ChartType="CategoryChartType.Line"
-                           IsHorizontalZoomEnabled="false"
-                           IsVerticalZoomEnabled="false"
-
-                           XAxisStroke="#919191"
-                           XAxisStrokeThickness="2"
-
-                           XAxisInterval="1"
-                           XAxisMajorStroke="#474747"
-                           XAxisMajorStrokeThickness="0.5"
-
-                           YAxisStroke="@AxisMainStroke"
-                           YAxisStrokeThickness="2"
-
-                           YAxisInterval="20"
-                           YAxisMajorStroke="@AxisMajorStroke"
-                           YAxisMajorStrokeThickness="1"
-
-                           YAxisMinorInterval="5"
-                           YAxisMinorStroke="@AxisMinorStroke"
-                           YAxisMinorStrokeThickness="0.5"
-
-                           Thickness="2">
-            </IgbCategoryChart>
-        }
+	<div class="legend-title">
+        Renewable Electricity Generated
+    </div>
+	<div class="legend">
+        <IgbLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="Legend"
+        @ref="legend">
+        </IgbLegend>
+    </div>
+    <div class="container vertical fill">
+        <IgbCategoryChart
+        ChartType="CategoryChartType.Line"
+        XAxisInterval="1"
+        YAxisInterval="20"
+        YAxisMinorInterval="5"
+        XAxisMajorStroke="#474747"
+        YAxisMajorStroke="darkslategray"
+        XAxisMajorStrokeThickness="0.5"
+        YAxisMajorStrokeThickness="1"
+        YAxisMinorStrokeThickness="0.5"
+        XAxisStroke="#919191"
+        YAxisStroke="gray"
+        XAxisStrokeThickness="2"
+        YAxisStrokeThickness="2"
+        YAxisMinorStroke="gray"
+        DataSource="CountryRenewableElectricity"
+        IncludedProperties="@(new string[] { "Year", "Europe", "China", "America" })"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        Thickness="2"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+        Name="chart"
+        @ref="chart">
+        </IgbCategoryChart>
     </div>
 </div>
 
 @code {
-
-    private string AxisMainStroke  = "#919191";
-    private string AxisMajorStroke = "#474747";
-    private string AxisMinorStroke = "#919191";
-
-    private void OnAxisMainStrokeChange(ChangeEventArgs args)
-    {
-        this.AxisMainStroke = (string)args.Value;
-    }
-    private void OnAxisMajorStrokeChange(ChangeEventArgs args)
-    {
-        this.AxisMajorStroke = (string)args.Value;
-    }
-    private void OnAxisMinorStrokeChange(ChangeEventArgs args)
-    {
-        this.AxisMinorStroke = (string)args.Value;
-    }
-
-    private IgbCategoryChart Chart;
-    private IgbLegend _Legend;
-    private IgbLegend Legend
-    {
-        get { return _Legend; }
-        set { _Legend = value; StateHasChanged(); }
-    }
-
-    private List<EnergyRenewableInfo> Data = new EnergyRenewableData();
-
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
-        IgbLegendModule.Register(IgniteUIBlazor);
     }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var propertyEditorPanel1 = this.propertyEditorPanel1;
+		var yAxisStroke = this.yAxisStroke;
+		var yAxisMajorStroke = this.yAxisMajorStroke;
+		var yAxisMinorStroke = this.yAxisMinorStroke;
+		var chart = this.chart;
+
+        this.BindElements = () => {
+            propertyEditorPanel1.Target = this.chart;
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+	}
+
+	private IgbLegend legend;
+	private IgbPropertyEditorPanel propertyEditorPanel1;
+	private IgbPropertyEditorPropertyDescription yAxisStroke;
+	private IgbPropertyEditorPropertyDescription yAxisMajorStroke;
+	private IgbPropertyEditorPropertyDescription yAxisMinorStroke;
+	private IgbCategoryChart chart;
+
+
+    private CountryRenewableElectricity _countryRenewableElectricity = null;
+    public CountryRenewableElectricity CountryRenewableElectricity
+    {
+        get
+        {
+            if (_countryRenewableElectricity == null)
+            {
+                _countryRenewableElectricity = new CountryRenewableElectricity(); 
+            }
+            return _countryRenewableElectricity;
+        }
+    }
+    
 }

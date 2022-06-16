@@ -1,0 +1,70 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+	
+	
+	<div class="legend">
+        <IgbDataLegend
+        IncludedColumns="@(new string[] { "Close", "Change", "Value" })"
+        ExcludedColumns="@(new string[] { "High", "Low", "Open", "Volume" })"
+        ValueFormatMode="DataLegendValueMode.Currency"
+        ValueFormatCulture="en-GB"
+        LabelDisplayMode="DataLegendLabelMode.Hidden"
+        Name="Legend"
+        @ref="legend">
+        </IgbDataLegend>
+    </div>
+    <div class="container vertical fill">
+        <IgbFinancialChart
+        ChartType="FinancialChartType.Candle"
+        ZoomSliderType="FinancialChartZoomSliderType.None"
+        DataToolTipIncludedColumns="@(new string[] { "Close", "Change", "Value" })"
+        DataToolTipValueFormatMode="DataLegendValueMode.Currency"
+        DataToolTipValueFormatCulture="en-GB"
+        DataToolTipHeaderFormatTime="DataLegendHeaderTimeMode.None"
+        DataToolTipLabelDisplayMode="DataLegendLabelMode.Hidden"
+        DataSource="MultipleStocks"
+        Name="chart"
+        @ref="chart">
+        </IgbFinancialChart>
+    </div>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var chart = this.chart;
+
+        this.BindElements = () => {
+            legend.Target = this.chart;
+        };
+        this.BindElements();
+	}
+
+	private IgbDataLegend legend;
+	private IgbFinancialChart chart;
+
+
+    private MultipleStocks _multipleStocks = null;
+    public MultipleStocks MultipleStocks
+    {
+        get
+        {
+            if (_multipleStocks == null)
+            {
+                MultipleStocks.Fetch().ContinueWith((t) => {_multipleStocks = t.Result;  StateHasChanged(); });
+            }
+            return _multipleStocks;
+        }
+    }
+    
+}

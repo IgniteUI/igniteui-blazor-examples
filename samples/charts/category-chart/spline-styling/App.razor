@@ -1,73 +1,71 @@
-
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-
-    <div class="options vertical">
-        <span class="legend-title">Renewable Electricity Generated</span>
-        <div class="legend">
-            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" >
-            </IgbLegend>
-        </div>
+	
+	<div class="legend-title">
+        Renewable Electricity Generated
     </div>
-    <div class="container vertical">
-        @if (Data != null)
-        {
-            <IgbCategoryChart Height="100%" Width="100%"
-                @ref="@Chart"
-                Legend="Legend"
-                ChartType="CategoryChartType.Spline"
-                DataSource="Data"
-                YAxisTitle="TWh"
-                ToolTipType="ToolTipType.Category"
-                IsTransitionInEnabled="true"
-				IsHorizontalZoomEnabled="false"
-                IsVerticalZoomEnabled="false">
-            </IgbCategoryChart>
-        }
+	<div class="legend">
+        <IgbLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="Legend"
+        @ref="legend">
+        </IgbLegend>
+    </div>
+    <div class="container vertical fill">
+        <IgbCategoryChart
+        ChartType="CategoryChartType.Spline"
+        IsTransitionInEnabled="true"
+        YAxisTitle="TWh"
+        DataSource="CountryRenewableElectricity"
+        Brushes="#8ce7d9 #ee5879 #735656"
+        Outlines="#8ce7d9 #ee5879 #735656"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        MarkerBrushes="white"
+        MarkerOutlines="#8ce7d9 #ee5879 #735656"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+        Name="chart"
+        @ref="chart">
+        </IgbCategoryChart>
     </div>
 </div>
 
 @code {
-
-    private IgbCategoryChart _Chart;
-    private IgbCategoryChart Chart
-    {
-        get { return _Chart; }
-        set
-        {
-            _Chart = value;
-            if (this.Chart != null)
-            {
-                this.Chart.MarkerTypes.Clear();
-                this.Chart.MarkerTypes.Add(MarkerType.Triangle);
-                this.Chart.MarkerBrushes = "White";
-                this.Chart.MarkerOutlines = "rgb(140, 231, 217) rgb(238, 88, 121) rgb(115, 86, 86)";
-                this.Chart.Brushes = "rgb(140, 231, 217) rgb(238, 88, 121) rgb(115, 86, 86)";
-				this.Chart.Outlines = "rgb(140, 231, 217) rgb(238, 88, 121) rgb(115, 86, 86)";
-
-                StateHasChanged();
-            }
-        }
-    }
-    private List<EnergyRenewableInfo> Data;
-    private IgbLegend legend;
-    private IgbLegend Legend
-    {
-        get { return legend; }
-        set
-        {
-            legend = value;
-            StateHasChanged();
-        }
-    }
-
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-        IgbLegendModule.Register(IgniteUIBlazor);
-        this.Data = new EnergyRenewableData();
     }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var chart = this.chart;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+	}
+
+	private IgbLegend legend;
+	private IgbCategoryChart chart;
+
+
+    private CountryRenewableElectricity _countryRenewableElectricity = null;
+    public CountryRenewableElectricity CountryRenewableElectricity
+    {
+        get
+        {
+            if (_countryRenewableElectricity == null)
+            {
+                _countryRenewableElectricity = new CountryRenewableElectricity(); 
+            }
+            return _countryRenewableElectricity;
+        }
+    }
+    
 }

@@ -1,62 +1,90 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options vertical">
-        <span class="legend-title">Highest Grossing Movie Franchises</span>
-        <div class="legend">
-            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
-        </div>
-
-        <div class="overlay-right" >
-            <div class="options horizontal" >
-                <span class="options-label">Tooltip Type: </span>
-                <select @bind="@ChartTooltip">
-                    <option>@ToolTipType.Default</option>
-                    <option>@ToolTipType.Item</option>
-                    <option>@ToolTipType.Category</option>
-                </select>
-            </div>
-        </div>
-
+	<div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="CategoryChart"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="PropertyEditor"
+        @ref="propertyEditor">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="ToolTipType"
+            Label="ToolTip Type:"
+            PrimitiveValue="@("Data")"
+            Name="ToolTipTypeEditor"
+            @ref="toolTipTypeEditor">
+            </IgbPropertyEditorPropertyDescription>
+        </IgbPropertyEditorPanel>
     </div>
-
-    <div class="container vertical">
-        @if (Data != null)
-        {
-            <IgbCategoryChart Height="100%" Width="100%"
-                           Legend="Legend"
-                           DataSource="Data"
-                           ChartType="CategoryChartType.Column"
-                           ToolTipType="@ChartTooltip"
-                           XAxisInterval="1"
-                           YAxisTitle="Billions of U.S. Dollars"
-                           YAxisTitleLeftMargin="10"
-                           YAxisTitleRightMargin="5"
-                           YAxisLabelLeftMargin="0"
-                           IsHorizontalZoomEnabled="false"
-                           IsVerticalZoomEnabled="false">
-            </IgbCategoryChart>
-        }
+	<div class="legend-title">
+        Highest Grossing Movie Franchises
+    </div>
+	<div class="legend">
+        <IgbLegend
+        Name="Legend"
+        @ref="legend">
+        </IgbLegend>
+    </div>
+    <div class="container vertical fill">
+        <IgbCategoryChart
+        ChartType="CategoryChartType.Column"
+        XAxisInterval="1"
+        YAxisLabelLeftMargin="0"
+        YAxisTitleLeftMargin="10"
+        YAxisTitleRightMargin="5"
+        YAxisTitle="Billions of U.S. Dollars"
+        DataSource="HighestGrossingMovies"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        CrosshairsSnapToData="true"
+        Name="chart"
+        @ref="chart">
+        </IgbCategoryChart>
     </div>
 </div>
 
 @code {
-
-    private ToolTipType ChartTooltip = ToolTipType.Default;
-
-    private IgbLegend _Legend;
-    private IgbLegend Legend
-    {
-        get { return _Legend; }
-        set { _Legend = value; StateHasChanged(); }
-    }
-
-    private List<FilmFranchiseInfo> Data = new FilmFranchiseData();
-
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
-        IgbLegendModule.Register(IgniteUIBlazor);
     }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var propertyEditor = this.propertyEditor;
+		var toolTipTypeEditor = this.toolTipTypeEditor;
+		var legend = this.legend;
+		var chart = this.chart;
+
+        this.BindElements = () => {
+            propertyEditor.Target = this.chart;
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+	}
+
+	private IgbPropertyEditorPanel propertyEditor;
+	private IgbPropertyEditorPropertyDescription toolTipTypeEditor;
+	private IgbLegend legend;
+	private IgbCategoryChart chart;
+
+
+    private HighestGrossingMovies _highestGrossingMovies = null;
+    public HighestGrossingMovies HighestGrossingMovies
+    {
+        get
+        {
+            if (_highestGrossingMovies == null)
+            {
+                _highestGrossingMovies = new HighestGrossingMovies(); 
+            }
+            return _highestGrossingMovies;
+        }
+    }
+    
 }

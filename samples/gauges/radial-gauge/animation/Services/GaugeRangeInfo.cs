@@ -7,6 +7,7 @@ namespace Infragistics.Samples
 {
     public class GaugeRangeInfo
     {
+        public string Name { get; set; }
         public string Brush { get; set; }
         public string Outline { get; set; }
         public double StartValue { get; set; }

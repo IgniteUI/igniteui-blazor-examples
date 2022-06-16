@@ -1,0 +1,116 @@
+﻿@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+@inject IJSRuntime JSRuntime;
+
+<div class="container vertical">
+    <IgbDataChart Height="100%" Width="100%"
+        @ref="Chart"
+        IsHorizontalZoomEnabled="false" IsVerticalZoomEnabled="false"
+        ChartTitle="Brexit Timeline"
+        Subtitle="Brexit: Key events in the process of the UK's exit from the EU"
+        TitleTopMargin=50
+        PlotAreaMarginLeft=100
+        PlotAreaMarginRight=100>
+    </IgbDataChart>
+</div>
+
+@code {
+    private List<SampleTimelineItem> CategoryData;
+    private IgbNumericYAxis NumericYAxis;
+    private IgbTimeXAxis TimeXAxis;
+    private IgbCalloutLayer CalloutLayer;
+    private IgbLineSeries LineSeries1;
+
+    private IgbDataChart _chart;
+    private IgbDataChart Chart
+    {
+        get { return _chart; }
+        set
+        {
+            _chart = value;
+            this.OnChart();
+
+            value.Axes.Add(this.TimeXAxis);
+            value.Axes.Add(this.NumericYAxis);
+            value.Series.Add(this.LineSeries1);
+            value.Series.Add(this.CalloutLayer);
+            StateHasChanged();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        IgbDataChartCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
+        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartVerticalCategoryModule.Register(IgniteUIBlazor);
+        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
+        IgbDataChartExtendedAxesModule.Register(IgniteUIBlazor);
+        IgbDataChartAnnotationModule.Register(IgniteUIBlazor);
+        IgbTimeXAxisModule.Register(IgniteUIBlazor);
+        IgbAnnotationLayerProxyModule.Register(IgniteUIBlazor);
+        IgbCalloutLayerModule.Register(IgniteUIBlazor);
+    }
+
+    private void OnChart()
+    {
+        this.CategoryData = SampleTimelineData.Create();
+        this.InitAxes();
+        this.InitCategorySeries();
+    }
+
+    public void InitCategorySeries()
+    {
+        this.LineSeries1 = new IgbLineSeries()
+            {
+                Brush = "Navy",
+                DataSource = this.CategoryData,
+                XAxisName = "TimeXAxis",
+                YAxisName = "NumericYAxis",
+                ValueMemberPath = "Y",
+                Thickness = 15,
+                MarkerThickness = 15,
+                MarkerBrush = "#EC0D00",
+                MarkerOutline = "#EC0D00",
+                MarkerFillMode = MarkerFillMode.MatchMarkerOutline,
+                ShowDefaultTooltip = false,
+            };
+
+        this.CalloutLayer = new IgbCalloutLayer()
+            {
+                TargetSeries = this.LineSeries1,
+                DataSource = this.CategoryData,
+                XMemberPath = "Date",
+                YMemberPath = "Y",
+                LabelMemberPath = "Year",
+                IsAutoCalloutBehaviorEnabled = false,
+                UseValueForAutoCalloutLabels = false,
+                CalloutLeaderBrush = "#EC0D00",
+                CalloutTextColor = "Navy",
+                CalloutOutline = "#EC0D00",
+                CalloutBackground = "Transparent",
+                IsCalloutOffsettingEnabled = false,
+                TextStyle = "font-size: 25px",
+                CalloutPositionPadding = 50,
+                CalloutCollisionMode = CalloutCollisionMode.Greedy,
+                ShowDefaultTooltip = false,
+        };
+
+        this.CalloutLayer.AllowedPositions.Add(CalloutPlacementPositions.Top);
+        this.CalloutLayer.AllowedPositions.Add(CalloutPlacementPositions.TopLeft);
+        this.CalloutLayer.AllowedPositions.Add(CalloutPlacementPositions.TopRight);
+        this.CalloutLayer.AllowedPositions.Add(CalloutPlacementPositions.Bottom);
+        this.CalloutLayer.AllowedPositions.Add(CalloutPlacementPositions.BottomLeft);
+        this.CalloutLayer.AllowedPositions.Add(CalloutPlacementPositions.BottomRight);
+    }
+
+    public void InitAxes()
+    {
+        this.NumericYAxis = new IgbNumericYAxis() { Name = "NumericYAxis", Title = "Numeric Y Axis", MinimumValue=0, MaximumValue=10, LabelVisibility = Visibility.Collapsed, MajorStrokeThickness=0.0 };
+        this.TimeXAxis = new IgbTimeXAxis() { Name = "TimeXAxis", Title = "Time X Axis", DataSource = this.CategoryData, DateTimeMemberPath = "Date", LabelVisibility = Visibility.Collapsed };
+    }
+
+}
+

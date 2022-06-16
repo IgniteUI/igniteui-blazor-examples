@@ -1,74 +1,79 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-    <div class="container vertical">
-
-        <div class="options horizontal">
-            <label>Trendline Type: </label>
-            <select @bind="SelectedTrendlineType" >
-                @foreach (var trendLineType in Enum.GetValues(typeof(TrendLineType)))
-                {
-                    <option>@trendLineType</option>
-                }
-            </select>
-        </div>
-
-        <div class="container vertical">
-            @if (Data != null)
-            {
-                <IgbSparkline Height="100%"
-                        Width="100%"
-                        DataSource="Data"
-                        ValueMemberPath="Value"
-                        DisplayType="SparklineDisplayType.Area"
-                        TrendLineThickness="3"
-                        TrendLinePeriod="5"
-                        TrendLineType="@SelectedTrendlineType"
-                        TrendLineBrush="Red">
-                </IgbSparkline>
-            }
-
-        </div>
+<div class="container vertical">
+	<div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="Sparkline"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="TrendLineType"
+            Label="Trendline Type"
+            ValueType="PropertyEditorValueType.EnumValue"
+            ShouldOverrideDefaultEditor="true"
+            DropDownNames="@(new string[] { "CubicFit", "CumulativeAverage", "ExponentialAverage", "ExponentialFit", "LinearFit", "LogarithmicFit", "ModifiedAverage", "None", "PowerLawFit", "QuadraticFit", "QuarticFit", "QuinticFit", "SimpleAverage", "WeightedAverage" })"
+            DropDownValues="@(new string[] { "CubicFit", "CumulativeAverage", "ExponentialAverage", "ExponentialFit", "LinearFit", "LogarithmicFit", "ModifiedAverage", "None", "PowerLawFit", "QuadraticFit", "QuarticFit", "QuinticFit", "SimpleAverage", "WeightedAverage" })"
+            PrimitiveValue="@("CubicFit")"
+            Name="TrendLineTypeEditor"
+            @ref="trendLineTypeEditor">
+            </IgbPropertyEditorPropertyDescription>
+        </IgbPropertyEditorPanel>
     </div>
+	
+	
+    <div class="container vertical fill">
+        <IgbSparkline
+        DataSource="SparklineMixedData"
+        ValueMemberPath="Value"
+        LabelMemberPath="Label"
+        TrendLineType="TrendLineType.CubicFit"
+        DisplayType="SparklineDisplayType.Area"
+        Name="chart"
+        @ref="chart">
+        </IgbSparkline>
+    </div>
+</div>
 
 @code {
-
-    private List<DataItem> Data;
-    private TrendLineType SelectedTrendlineType = TrendLineType.ExponentialFit;
-
     protected override void OnInitialized()
     {
-        IgbSparklineModule.Register(IgniteUIBlazor);
-
-        var dataItems = new List<DataItem>();
-
-        var index = 0;
-        var min = 1000.0;
-        var max = - 1000.0;
-
-        for (var angle = 0; angle <= 360 * 4.0; angle += 5)
-        {
-            var v1 = Math.Sin(angle * Math.PI / 180);
-            var v2 = Math.Sin(3 * angle * Math.PI / 180) / 3;
-            var revenu = v1 + v2;
-
-            dataItems.Add(new DataItem()
-            {
-                Index = index++,
-                Angle = angle,
-                Value = revenu
-            });
-            min = Math.Min(min, v1 + v2);
-            max = Math.Max(max, v1 + v2);
-        }
-
-        Data = dataItems;
     }
 
-    public class DataItem
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var propertyEditorPanel1 = this.propertyEditorPanel1;
+		var trendLineTypeEditor = this.trendLineTypeEditor;
+		var chart = this.chart;
+
+        this.BindElements = () => {
+            propertyEditorPanel1.Target = this.chart;
+        };
+        this.BindElements();
+	}
+
+	private IgbPropertyEditorPanel propertyEditorPanel1;
+	private IgbPropertyEditorPropertyDescription trendLineTypeEditor;
+	private IgbSparkline chart;
+
+
+    private SparklineMixedData _sparklineMixedData = null;
+    public SparklineMixedData SparklineMixedData
     {
-        public double Index { get; set; }
-        public double Value { get; set; }
-        public double Angle { get; set; }
+        get
+        {
+            if (_sparklineMixedData == null)
+            {
+                _sparklineMixedData = new SparklineMixedData(); 
+            }
+            return _sparklineMixedData;
+        }
     }
+    
 }

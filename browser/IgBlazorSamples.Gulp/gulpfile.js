@@ -104,10 +104,10 @@ exports.convert = getSamples = gulp.series(
 // exports.logUniqueFiles = sb.logUniqueFiles;
 // exports.logRootFiles   = sb.logRootFiles;
 
-// exports.logRoutes = logRoutes = gulp.series(
-//     sb.getSamples,
-//     sb.logRoutes,
-// );
+exports.logRoutes = logRoutes = gulp.series(
+    sb.getSamples,
+    sb.logRoutes,
+);
 
 // exports.logSandboxUrls = logSandboxUrls = gulp.series(
 //     sb.getSamples,

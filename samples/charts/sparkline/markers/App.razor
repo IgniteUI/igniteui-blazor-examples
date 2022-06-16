@@ -1,90 +1,152 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
-    <div class="container vertical">
-
-        <div class="options horizontal">
-            <label class="options-label"><input type="checkbox" checked @onchange="onToggleFirstMarker" />First Marker</label>
-            <label class="options-label"><input type="checkbox" checked @onchange="onToggleHighMarker" />High Marker</label>
-            <label class="options-label"><input type="checkbox" checked @onchange="onToggleLowMarker" />Low Marker</label>
-            <label class="options-label"><input type="checkbox" checked @onchange="onToggleNegativeMarker" />Negative Marker</label>
-            <label class="options-label"><input type="checkbox" checked @onchange="onToggleLastMarker" />Last Marker</label>
-            <label class="options-label"><input type="checkbox" checked @onchange="onToggleOtherMarker" />Other Marker</label>
-        </div>
-
-        <div class="container vertical">
-
-            @if (Data != null)
-            {
-                <IgbSparkline Height="100%"
-                    Width="100%"
-                    DataSource="Data"
-                    DisplayType="SparklineDisplayType.Line"
-                    ValueMemberPath="Value"
-                    LabelMemberPath="Label"
-                    Minimum="-3"
-                    MarkerVisibility="@OtherMarkerVisibility"
-                    HighMarkerVisibility="@HighMarkerVisibility"
-                    LowMarkerVisibility="@LowhMarkerVisibility"
-                    FirstMarkerVisibility="@FirstMarkerVisibility"
-                    LastMarkerVisibility="@LastMarkerVisibility"
-                    NegativeMarkerVisibility="@NegativeMarkerVisibility"
-                    MarkerSize="10"
-                    FirstMarkerSize="10"
-                    LastMarkerSize="10"
-                    LowMarkerSize="10"
-                    HighMarkerSize="10"
-                    NegativeMarkerSize="10">
-                 </IgbSparkline>
-            }
-
-        </div>
+<div class="container vertical">
+	<div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="Sparkline"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="FirstMarkerVisibility"
+            Label="First Markers"
+            ValueType="PropertyEditorValueType.EnumValue"
+            ShouldOverrideDefaultEditor="true"
+            DropDownNames="@(new string[] { "Visible", "Collapsed" })"
+            DropDownValues="@(new string[] { "Visible", "Collapsed" })"
+            PrimitiveValue="@("Visible")"
+            Name="FirstMarkerVisibilityEditor"
+            @ref="firstMarkerVisibilityEditor">
+            </IgbPropertyEditorPropertyDescription>
+            <IgbPropertyEditorPropertyDescription
+            DropDownValues="@(new string[] { "Visible", "Collapsed" })"
+            PrimitiveValue="@("Visible")"
+            PropertyPath="HighMarkerVisibility"
+            Label="High Markers"
+            ValueType="PropertyEditorValueType.EnumValue"
+            DropDownNames="@(new string[] { "Visible", "Collapsed" })"
+            Name="HighMarkerVisibilityEditor"
+            @ref="highMarkerVisibilityEditor">
+            </IgbPropertyEditorPropertyDescription>
+            <IgbPropertyEditorPropertyDescription
+            DropDownValues="@(new string[] { "Visible", "Collapsed" })"
+            PrimitiveValue="@("Visible")"
+            PropertyPath="LowMarkerVisibility"
+            Label="Low Markers"
+            ValueType="PropertyEditorValueType.EnumValue"
+            DropDownNames="@(new string[] { "Visible", "Collapsed" })"
+            Name="LowMarkerVisibilityEditor"
+            @ref="lowMarkerVisibilityEditor">
+            </IgbPropertyEditorPropertyDescription>
+            <IgbPropertyEditorPropertyDescription
+            DropDownValues="@(new string[] { "Visible", "Collapsed" })"
+            PrimitiveValue="@("Visible")"
+            PropertyPath="NegativeMarkerVisibility"
+            Label="Negative Markers"
+            ValueType="PropertyEditorValueType.EnumValue"
+            DropDownNames="@(new string[] { "Visible", "Collapsed" })"
+            Name="NegativeMarkerVisibilityEditor"
+            @ref="negativeMarkerVisibilityEditor">
+            </IgbPropertyEditorPropertyDescription>
+            <IgbPropertyEditorPropertyDescription
+            DropDownValues="@(new string[] { "Visible", "Collapsed" })"
+            PrimitiveValue="@("Visible")"
+            PropertyPath="LastMarkerVisibility"
+            Label="Last Markers"
+            ValueType="PropertyEditorValueType.EnumValue"
+            DropDownNames="@(new string[] { "Visible", "Collapsed" })"
+            Name="LastMarkerVisibilityEditor"
+            @ref="lastMarkerVisibilityEditor">
+            </IgbPropertyEditorPropertyDescription>
+            <IgbPropertyEditorPropertyDescription
+            DropDownValues="@(new string[] { "Visible", "Collapsed" })"
+            PrimitiveValue="@("Visible")"
+            PropertyPath="MarkerVisibility"
+            Label="All Markers"
+            ValueType="PropertyEditorValueType.EnumValue"
+            DropDownNames="@(new string[] { "Visible", "Collapsed" })"
+            Name="MarkerVisibilityEditor"
+            @ref="markerVisibilityEditor">
+            </IgbPropertyEditorPropertyDescription>
+        </IgbPropertyEditorPanel>
     </div>
+	
+	
+    <div class="container vertical fill">
+        <IgbSparkline
+        MarkerVisibility="Visibility.Visible"
+        NegativeMarkerVisibility="Visibility.Visible"
+        FirstMarkerVisibility="Visibility.Visible"
+        LastMarkerVisibility="Visibility.Visible"
+        LowMarkerVisibility="Visibility.Visible"
+        HighMarkerVisibility="Visibility.Visible"
+        MarkerSize="10"
+        FirstMarkerSize="10"
+        LastMarkerSize="10"
+        HighMarkerSize="10"
+        LowMarkerSize="10"
+        NegativeMarkerSize="10"
+        Minimum="0"
+        Maximum="60"
+        DataSource="SparklineProfitData"
+        ValueMemberPath="Value"
+        LabelMemberPath="Label"
+        DisplayType="SparklineDisplayType.Line"
+        Name="chart"
+        @ref="chart">
+        </IgbSparkline>
+    </div>
+</div>
 
 @code {
+    protected override void OnInitialized()
+    {
+    }
 
-        private List<SparklineMarkerItem> Data;
-        private Visibility HighMarkerVisibility = Visibility.Visible;
-        private Visibility LowhMarkerVisibility = Visibility.Visible;
-        private Visibility FirstMarkerVisibility = Visibility.Visible;
-        private Visibility LastMarkerVisibility = Visibility.Visible;
-        private Visibility NegativeMarkerVisibility = Visibility.Visible;
-        private Visibility OtherMarkerVisibility = Visibility.Visible;
+	private Action BindElements { get; set; }
 
-        protected override void OnInitialized()
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var propertyEditorPanel1 = this.propertyEditorPanel1;
+		var firstMarkerVisibilityEditor = this.firstMarkerVisibilityEditor;
+		var highMarkerVisibilityEditor = this.highMarkerVisibilityEditor;
+		var lowMarkerVisibilityEditor = this.lowMarkerVisibilityEditor;
+		var negativeMarkerVisibilityEditor = this.negativeMarkerVisibilityEditor;
+		var lastMarkerVisibilityEditor = this.lastMarkerVisibilityEditor;
+		var markerVisibilityEditor = this.markerVisibilityEditor;
+		var chart = this.chart;
+
+        this.BindElements = () => {
+            propertyEditorPanel1.Target = this.chart;
+        };
+        this.BindElements();
+	}
+
+	private IgbPropertyEditorPanel propertyEditorPanel1;
+	private IgbPropertyEditorPropertyDescription firstMarkerVisibilityEditor;
+	private IgbPropertyEditorPropertyDescription highMarkerVisibilityEditor;
+	private IgbPropertyEditorPropertyDescription lowMarkerVisibilityEditor;
+	private IgbPropertyEditorPropertyDescription negativeMarkerVisibilityEditor;
+	private IgbPropertyEditorPropertyDescription lastMarkerVisibilityEditor;
+	private IgbPropertyEditorPropertyDescription markerVisibilityEditor;
+	private IgbSparkline chart;
+
+
+    private SparklineProfitData _sparklineProfitData = null;
+    public SparklineProfitData SparklineProfitData
+    {
+        get
         {
-            IgbSparklineModule.Register(IgniteUIBlazor);
-
-            this.Data = SparklineMarkerData.Generate();
+            if (_sparklineProfitData == null)
+            {
+                _sparklineProfitData = new SparklineProfitData(); 
+            }
+            return _sparklineProfitData;
         }
-
-        public void onToggleHighMarker(ChangeEventArgs e)
-        {
-            this.HighMarkerVisibility = (bool)e.Value ? Visibility.Visible : Visibility.Collapsed;
-        }
-
-        public void onToggleLowMarker(ChangeEventArgs e)
-        {
-            this.LowhMarkerVisibility = (bool)e.Value ? Visibility.Visible : Visibility.Collapsed;
-        }
-
-        public void onToggleFirstMarker(ChangeEventArgs e)
-        {
-            this.FirstMarkerVisibility = (bool)e.Value ? Visibility.Visible : Visibility.Collapsed;
-        }
-
-        public void onToggleLastMarker(ChangeEventArgs e)
-        {
-            this.LastMarkerVisibility = (bool)e.Value ? Visibility.Visible : Visibility.Collapsed;
-        }
-
-        public void onToggleNegativeMarker(ChangeEventArgs e)
-        {
-            this.NegativeMarkerVisibility = (bool)e.Value ? Visibility.Visible : Visibility.Collapsed;
-        }
-
-        public void onToggleOtherMarker(ChangeEventArgs e)
-        {
-            this.OtherMarkerVisibility = (bool)e.Value ? Visibility.Visible : Visibility.Collapsed;
-        }
+    }
+    
 }

@@ -1,96 +1,122 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options vertical">
-        <span class="legend-title">Total Population for Selected Continents </span>
-        <div class="legend">
-            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
-        </div>
+	
+	<div class="legend-title">
+        Total Population of Selected Countries
     </div>
-    <div class="container vertical">
-
-        <IgbDataChart Height="100%" Width="100%"
-                   Legend="Legend"
-                   IsHorizontalZoomEnabled="true"
-                   IsVerticalZoomEnabled="true">
-
-            <IgbNumericXAxis Name="xAxis" Title="Death Rate (per 1,000 people)" MinimumValue="4" MaximumValue="16" Interval="1" />
-            <IgbNumericYAxis Name="yAxis" Title="Birth Rate (per 1,000 people)" MinimumValue="0" MaximumValue="60" Interval="10" />
-
-            <IgbBubbleSeries XAxisName="xAxis"
-                          YAxisName="yAxis"
-                          Title="Africa"
-                          DataSource="AfricaData"
-                          XMemberPath="DeathRate"
-                          YMemberPath="BirthRate"
-                          RadiusMemberPath="Total"
-                          RadiusScale="@SizeScale"
-                          MarkerType="MarkerType.Circle">
+	<div class="legend">
+        <IgbLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="Legend"
+        @ref="legend">
+        </IgbLegend>
+    </div>
+    <div class="container vertical fill">
+        <IgbDataChart
+        
+        Name="chart"
+        @ref="chart">
+            <IgbNumericXAxis
+            IsLogarithmic="true"
+            AbbreviateLargeNumbers="true"
+            Title="Population"
+            Name="xAxis"
+            @ref="xAxis">
+            </IgbNumericXAxis>
+            <IgbNumericYAxis
+            IsLogarithmic="true"
+            AbbreviateLargeNumbers="true"
+            Title="GDP per Capita"
+            Name="yAxis"
+            @ref="yAxis">
+            </IgbNumericYAxis>
+            <IgbBubbleSeries
+            RadiusMemberPath="Population"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            XMemberPath="Population"
+            YMemberPath="GDP"
+            MarkerType="MarkerType.Circle"
+            DataSource="CountryStatsAfrica"
+            ShowDefaultTooltip="true"
+            Title="African Countries"
+            Name="BubbleSeries1"
+            @ref="bubbleSeries1">
             </IgbBubbleSeries>
-
-            <IgbBubbleSeries XAxisName="xAxis"
-                          YAxisName="yAxis"
-                          Title="Europe"
-                          DataSource="EuropeData"
-                          XMemberPath="DeathRate"
-                          YMemberPath="BirthRate"
-                          RadiusMemberPath="Total"
-                          RadiusScale="@SizeScale"
-                          MarkerType="MarkerType.Circle">
+            <IgbBubbleSeries
+            Title="European Countries"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            XMemberPath="Population"
+            YMemberPath="GDP"
+            RadiusMemberPath="Population"
+            DataSource="CountryStatsEurope"
+            MarkerType="MarkerType.Circle"
+            ShowDefaultTooltip="true"
+            Name="BubbleSeries2"
+            @ref="bubbleSeries2">
             </IgbBubbleSeries>
         </IgbDataChart>
-
     </div>
 </div>
 
 @code {
-
-    private IgbLegend _legend;
-    public IgbLegend Legend
-    {
-        get { return _legend; }
-        set
-        {
-            _legend = value;
-            StateHasChanged();
-        }
-    }
-
-    private List<PopulationInfo> AfricaData;
-    private List<PopulationInfo> EuropeData;
-    private IgbSizeScale SizeScale = new IgbSizeScale { MinimumValue = 10, MaximumValue = 100 };
-
-    public void InitializeData()
-    {
-        var data = new PopulationData();
-
-        var comparer = new BubbleSeriesSortComparer();
-
-        this.AfricaData = data.Where(d => d.Continent == "Africa").ToList();
-        this.AfricaData.Sort(comparer);
-
-        this.EuropeData = data.Where(d => d.Continent == "Europe").ToList();
-        this.EuropeData.Sort(comparer);
-    }
-
     protected override void OnInitialized()
     {
-        IgbLegendModule.Register(IgniteUIBlazor);
-        IgbDataChartCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartScatterModule.Register(IgniteUIBlazor);
-        IgbDataChartScatterCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-        IgbNumberAbbreviatorModule.Register(IgniteUIBlazor);
-
-        InitializeData();
     }
 
-    private class BubbleSeriesSortComparer : IComparer<PopulationInfo>
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var chart = this.chart;
+		var xAxis = this.xAxis;
+		var yAxis = this.yAxis;
+		var bubbleSeries1 = this.bubbleSeries1;
+		var bubbleSeries2 = this.bubbleSeries2;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+	}
+
+	private IgbLegend legend;
+	private IgbDataChart chart;
+	private IgbNumericXAxis xAxis;
+	private IgbNumericYAxis yAxis;
+	private IgbBubbleSeries bubbleSeries1;
+	private IgbBubbleSeries bubbleSeries2;
+
+
+    private CountryStatsAfrica _countryStatsAfrica = null;
+    public CountryStatsAfrica CountryStatsAfrica
     {
-        public int Compare(PopulationInfo x, PopulationInfo y)
+        get
         {
-            return y.Total.CompareTo(x.Total);
+            if (_countryStatsAfrica == null)
+            {
+                _countryStatsAfrica = new CountryStatsAfrica(); 
+            }
+            return _countryStatsAfrica;
         }
     }
+    
+    private CountryStatsEurope _countryStatsEurope = null;
+    public CountryStatsEurope CountryStatsEurope
+    {
+        get
+        {
+            if (_countryStatsEurope == null)
+            {
+                _countryStatsEurope = new CountryStatsEurope(); 
+            }
+            return _countryStatsEurope;
+        }
+    }
+    
 }

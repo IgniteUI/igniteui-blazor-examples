@@ -1,0 +1,65 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+	
+	<div class="legend-title">
+        Highest Grossing Movie Franchises
+    </div>
+	
+    <div class="container vertical fill">
+        <IgbCategoryChart
+        ChartType="CategoryChartType.Column"
+        XAxisInterval="1"
+        IsCategoryHighlightingEnabled="true"
+        YAxisLabelLeftMargin="0"
+        YAxisTitleLeftMargin="10"
+        YAxisTitleRightMargin="5"
+        YAxisTitle="Billions of U.S. Dollars"
+        DataSource="HighestGrossingMovies"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        HighlightingMode="SeriesHighlightingMode.FadeOthersSpecific"
+        HighlightingBehavior="SeriesHighlightingBehavior.NearestItemsAndSeries"
+        ToolTipType="ToolTipType.Data"
+        CrosshairsDisplayMode="CrosshairsDisplayMode.None"
+        Name="chart"
+        @ref="chart">
+        </IgbCategoryChart>
+    </div>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var chart = this.chart;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+	}
+
+	private IgbCategoryChart chart;
+
+
+    private HighestGrossingMovies _highestGrossingMovies = null;
+    public HighestGrossingMovies HighestGrossingMovies
+    {
+        get
+        {
+            if (_highestGrossingMovies == null)
+            {
+                _highestGrossingMovies = new HighestGrossingMovies(); 
+            }
+            return _highestGrossingMovies;
+        }
+    }
+    
+}

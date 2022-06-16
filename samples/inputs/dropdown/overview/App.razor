@@ -1,0 +1,21 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container sample center">
+    <IgbDropdown>
+        <IgbButton slot="target">Option</IgbButton>
+        <IgbDropdownItem>Option 1</IgbDropdownItem>
+        <IgbDropdownItem>Option 2</IgbDropdownItem>
+        <IgbDropdownItem>Option 3</IgbDropdownItem>        
+    </IgbDropdown>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        IgbDropdownModule.Register(IgniteUIBlazor);
+        IgbDropdownItemModule.Register(IgniteUIBlazor);
+        IgbButtonModule.Register(IgniteUIBlazor);
+    }
+}

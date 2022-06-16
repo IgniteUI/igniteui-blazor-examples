@@ -1,69 +1,110 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options vertical">
-        <span class="legend-title">Ronaldo vs. Messi Player Stats</span>
-        <div class="legend">
-            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
-        </div>
+	
+	<div class="legend-title">
+        Ronaldo vs Messi Player Stats
     </div>
-    <div class="container vertical">
-        <IgbDataChart Height="100%" Width="100%"
-                   IsHorizontalZoomEnabled="false"
-                   IsVerticalZoomEnabled="false"
-                   Legend="Legend">
-            <IgbCategoryAngleAxis Name="angleAxis" DataSource="Data"
-                               Label="Attribute" />
-            <IgbNumericRadiusAxis Name="radiusAxis"
-                               InnerRadiusExtentScale="0.1"
-                               MinimumValue="0" MaximumValue="10" Interval="2" />
-
-            <IgbRadialLineSeries DataSource="Data"
-                              AngleAxisName="angleAxis"
-                              ValueMemberPath="RonaldoValue"
-                              ValueAxisName="radiusAxis"
-                              ShowDefaultTooltip="true"
-                              AreaFillOpacity="0.8"
-                              Thickness="3"
-                              Title="Ronaldo"
-                              MarkerType="MarkerType.Circle" />
-
-            <IgbRadialLineSeries DataSource="Data"
-                              AngleAxisName="angleAxis"
-                              ValueMemberPath="MessiValue"
-                              ValueAxisName="radiusAxis"
-                              ShowDefaultTooltip="true"
-                              AreaFillOpacity="0.8"
-                              Thickness="3"
-                              Title="Messi"
-                              MarkerType="MarkerType.Circle" />
+	<div class="legend">
+        <IgbLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="Legend"
+        @ref="legend">
+        </IgbLegend>
+    </div>
+    <div class="container vertical fill">
+        <IgbDataChart
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        Name="chart"
+        @ref="chart">
+            <IgbCategoryAngleAxis
+            DataSource="FootballPlayerStats"
+            Label="Attribute"
+            Name="angleAxis"
+            @ref="angleAxis">
+            </IgbCategoryAngleAxis>
+            <IgbNumericRadiusAxis
+            InnerRadiusExtentScale="0.1"
+            MinimumValue="0"
+            MaximumValue="10"
+            Interval="2"
+            Name="radiusAxis"
+            @ref="radiusAxis">
+            </IgbNumericRadiusAxis>
+            <IgbRadialLineSeries
+            ValueMemberPath="Ronaldo"
+            AngleAxisName="angleAxis"
+            ValueAxisName="radiusAxis"
+            MarkerType="MarkerType.Circle"
+            DataSource="FootballPlayerStats"
+            Thickness="3"
+            AreaFillOpacity="0.8"
+            ShowDefaultTooltip="true"
+            Title="Ronaldo"
+            Name="RadialLineSeries1"
+            @ref="radialLineSeries1">
+            </IgbRadialLineSeries>
+            <IgbRadialLineSeries
+            DataSource="FootballPlayerStats"
+            AngleAxisName="angleAxis"
+            ValueAxisName="radiusAxis"
+            ValueMemberPath="Messi"
+            ShowDefaultTooltip="true"
+            AreaFillOpacity="0.8"
+            Thickness="3"
+            Title="Messi"
+            MarkerType="MarkerType.Circle"
+            Name="RadialLineSeries2"
+            @ref="radialLineSeries2">
+            </IgbRadialLineSeries>
         </IgbDataChart>
-
     </div>
 </div>
 
 @code {
-
-    private List<PlayerStatsInfo> Data = new PlayerStatsData();
-
-    private IgbLegend _Legend;
-    private IgbLegend Legend
-    {
-        get { return _Legend; }
-        set { _Legend = value; StateHasChanged(); }
-    }
-
     protected override void OnInitialized()
     {
-        IgbDataChartCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartRadialModule.Register(IgniteUIBlazor);
-        IgbDataChartRadialCoreModule.Register(IgniteUIBlazor);
-
-        IgbDataChartExtendedAxesModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-        IgbLegendModule.Register(IgniteUIBlazor);
     }
 
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var chart = this.chart;
+		var angleAxis = this.angleAxis;
+		var radiusAxis = this.radiusAxis;
+		var radialLineSeries1 = this.radialLineSeries1;
+		var radialLineSeries2 = this.radialLineSeries2;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+	}
+
+	private IgbLegend legend;
+	private IgbDataChart chart;
+	private IgbCategoryAngleAxis angleAxis;
+	private IgbNumericRadiusAxis radiusAxis;
+	private IgbRadialLineSeries radialLineSeries1;
+	private IgbRadialLineSeries radialLineSeries2;
+
+
+    private FootballPlayerStats _footballPlayerStats = null;
+    public FootballPlayerStats FootballPlayerStats
+    {
+        get
+        {
+            if (_footballPlayerStats == null)
+            {
+                _footballPlayerStats = new FootballPlayerStats(); 
+            }
+            return _footballPlayerStats;
+        }
+    }
+    
 }

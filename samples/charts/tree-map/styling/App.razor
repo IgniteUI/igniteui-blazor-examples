@@ -1,77 +1,140 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-
-    <div class="options vertical">
-        <span class="legend-title">Comparing Population of Countries</span>
+	
+	<div class="legend-title">
+        Comparing Population of Countries
     </div>
-
-    <div class="container vertical" style="padding: 0.75rem; padding-top: 0.5rem;">
-
-        <IgbTreemap @ref="TreeMap" Height="100%" Width="100%"
-                 RootTitle="Countries"
-                 DataSource="Data"
-                 ParentIdMemberPath="Parent"
-                 CustomValueMemberPath="Parent"
-                 IdMemberPath="Name"
-                 LabelMemberPath="Name"
-                 ValueMemberPath="Pop"
-                 HeaderDisplayMode="@TreemapHeaderDisplayMode.Overlay"
-                 OverlayHeaderBackground="#3f403f"
-                 HeaderHoverBackground="#3f403f"
-                 HeaderBackground="#3f403f"
-                 ParentNodeBottomPadding="0"
-                 ParentNodeLeftPadding="0"
-                 ParentNodeRightPadding="0"
-                 ParentNodeTopPadding="0"
-                 Outline="black"
-                 StrokeThickness="1">
-            </IgbTreemap>
-
+	
+    <div class="container vertical fill">
+        <IgbTreemap
+        ValueMemberPath="Population"
+        RootTitle="Countries"
+        ParentIdMemberPath="Parent"
+        LabelMemberPath="Name"
+        CustomValueMemberPath="Parent"
+        IdMemberPath="Name"
+        DataSource="CountyHierarchicalData"
+        HeaderHoverBackground="#3f403f"
+        HeaderBackground="#3f403f"
+        OverlayHeaderBackground="#3f403f"
+        HeaderDisplayMode="TreemapHeaderDisplayMode.Overlay"
+        ParentNodeLeftPadding="0"
+        ParentNodeTopPadding="0"
+        ParentNodeRightPadding="0"
+        ParentNodeBottomPadding="0"
+        Outline="black"
+        StrokeThickness="1"
+        Name="treemap"
+        @ref="treemap">
+            <IgbTreemapNodeStyleMapping
+            Value="@("Africa")"
+            MappingMode="TreemapValueMappingMode.CustomValue"
+            Fill="#735656"
+            Name="styling1"
+            @ref="styling1">
+            </IgbTreemapNodeStyleMapping>
+            <IgbTreemapNodeStyleMapping
+            Value="@("Europe")"
+            Fill="#61ab37"
+            MappingMode="TreemapValueMappingMode.CustomValue"
+            Name="styling2"
+            @ref="styling2">
+            </IgbTreemapNodeStyleMapping>
+            <IgbTreemapNodeStyleMapping
+            Value="@("Asia")"
+            Fill="#8b5bb1"
+            MappingMode="TreemapValueMappingMode.CustomValue"
+            Name="styling3"
+            @ref="styling3">
+            </IgbTreemapNodeStyleMapping>
+            <IgbTreemapNodeStyleMapping
+            Value="@("North America")"
+            Fill="#5fbaac"
+            MappingMode="TreemapValueMappingMode.CustomValue"
+            Name="styling4"
+            @ref="styling4">
+            </IgbTreemapNodeStyleMapping>
+            <IgbTreemapNodeStyleMapping
+            Value="@("South America")"
+            Fill="#ee5879"
+            MappingMode="TreemapValueMappingMode.CustomValue"
+            Name="styling5"
+            @ref="styling5">
+            </IgbTreemapNodeStyleMapping>
+            <IgbTreemapNodeStyleMapping
+            Value="@("Middle East")"
+            Fill="#6db1ff"
+            MappingMode="TreemapValueMappingMode.CustomValue"
+            Name="styling6"
+            @ref="styling6">
+            </IgbTreemapNodeStyleMapping>
+            <IgbTreemapNodeStyleMapping
+            Value="@("Central America")"
+            Fill="#f7d262"
+            MappingMode="TreemapValueMappingMode.CustomValue"
+            Name="styling7"
+            @ref="styling7">
+            </IgbTreemapNodeStyleMapping>
+            <IgbTreemapNodeStyleMapping
+            Value="@("Oceania")"
+            Fill="#a8a8b7"
+            MappingMode="TreemapValueMappingMode.CustomValue"
+            Name="styling8"
+            @ref="styling8">
+            </IgbTreemapNodeStyleMapping>
+        </IgbTreemap>
     </div>
 </div>
 
 @code {
-
-    private List<CountryInfo> Data;
-    private IgbTreemap _treeMap;
-    private IgbTreemap TreeMap
-    {
-        get { return _treeMap; }
-        set { _treeMap = value; StateHasChanged(); }
-    }
-
     protected override void OnInitialized()
     {
-        IgbTreemapModule.Register(IgniteUIBlazor);
-        this.Data = CountryTreeData.Create();
     }
 
-    protected void AddStyleMapping(string valueID, string fillColor)
-    {
-        this.TreeMap.StyleMappings.Add(new IgbTreemapNodeStyleMapping()
-        {
-            Value = valueID,
-            Fill = fillColor,
-            MappingMode = TreemapValueMappingMode.CustomValue
-        });
-    }
+	private Action BindElements { get; set; }
 
-    protected override void OnAfterRender(bool firstRender)
-    {
-        base.OnAfterRender(firstRender);
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var treemap = this.treemap;
+		var styling1 = this.styling1;
+		var styling2 = this.styling2;
+		var styling3 = this.styling3;
+		var styling4 = this.styling4;
+		var styling5 = this.styling5;
+		var styling6 = this.styling6;
+		var styling7 = this.styling7;
+		var styling8 = this.styling8;
 
-        if (!firstRender)
+        this.BindElements = () => {
+        };
+        this.BindElements();
+	}
+
+	private IgbTreemap treemap;
+	private IgbTreemapNodeStyleMapping styling1;
+	private IgbTreemapNodeStyleMapping styling2;
+	private IgbTreemapNodeStyleMapping styling3;
+	private IgbTreemapNodeStyleMapping styling4;
+	private IgbTreemapNodeStyleMapping styling5;
+	private IgbTreemapNodeStyleMapping styling6;
+	private IgbTreemapNodeStyleMapping styling7;
+	private IgbTreemapNodeStyleMapping styling8;
+
+
+    private CountyHierarchicalData _countyHierarchicalData = null;
+    public CountyHierarchicalData CountyHierarchicalData
+    {
+        get
         {
-            this.AddStyleMapping("Africa", "#735656");
-            this.AddStyleMapping("Asia", "#61ab37");
-            this.AddStyleMapping("Europe", "#8B5BB1");
-            this.AddStyleMapping("North America", "#5fbaac");
-            this.AddStyleMapping("South America", "#EE5879");
-            this.AddStyleMapping("Middle East", "#6DB1FF");
-            this.AddStyleMapping("Central America", "#F7D262");
-            this.AddStyleMapping("Oceania", "#A8A8B7");
+            if (_countyHierarchicalData == null)
+            {
+                _countyHierarchicalData = new CountyHierarchicalData(); 
+            }
+            return _countyHierarchicalData;
         }
     }
+    
 }

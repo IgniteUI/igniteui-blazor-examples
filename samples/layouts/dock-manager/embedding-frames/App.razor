@@ -1,9 +1,10 @@
 ﻿@inject IJSRuntime JSRuntime;
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
     <div class="container vertical">
-        <igc-dockmanager @ref="dockManager" id="dockManager" height="100%" width="100%">
-            @*NOTE: code in DockManagerEmbedding.js file sets layout of these DIV elements:*@
+        <IgbDockManager @ref="dockManager" Layout="Layout" height="100%" width="100%">
             <div slot="content1" class="container vertical">
                 <iframe src="https://infragistics.com/webcomponents-demos/charts/doughnut-chart-overview"
                         class="container vertical" seamless frameBorder="0" >
@@ -15,24 +16,58 @@
                 </iframe>
             </div>
             <div slot="content3" class="container vertical">
-                <iframe src="https://infragistics.com/react-demos/maps/geo-map-binding-data-csv"
+                <iframe src="https://infragistics.com/webcomponents-demos/maps/geo-map-binding-data-csv"
                         class="container vertical" seamless frameBorder="0" >
                 </iframe>
             </div>
-        </igc-dockmanager>
+        </IgbDockManager>
     </div>
 </div>
 
 @code {
 
-    ElementReference dockManager;
+    public IgbDockManager dockManager { get; set; }
+    public IgbDockManagerLayout Layout { get; set; }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override void OnInitialized()
     {
-        if (firstRender)
+        base.OnInitialized();
+
+        IgbDockManagerModule.Register(IgniteUIBlazor);
+
+        Layout = new IgbDockManagerLayout();
+        Layout.RootPane = new IgbSplitPane();
+        Layout.RootPane.PaneType = DockManagerPaneType.SplitPane;
+        Layout.RootPane.Orientation = SplitPaneOrientation.Horizontal;
+        Layout.RootPane.Panes = new IgbDockManagerPaneCollection(null, null)
         {
-            // open DockManagerEmbedding.bundle.js file to see how the arrange funciton is implemented
-            await JSRuntime.InvokeVoidAsync("DockManagerEmbedding.arrange", dockManager);
-        }
+            new IgbSplitPane()
+            {
+                PaneType = DockManagerPaneType.SplitPane,
+                Orientation = SplitPaneOrientation.Horizontal,
+                Size = 300,
+                Panes = new IgbDockManagerPaneCollection(null, null)
+                {
+                    new IgbContentPane
+                    {
+                        PaneType = DockManagerPaneType.ContentPane,
+                        Header = "EMBEDDED RADIAL GAUGE",
+                        ContentId = "content1",
+                    },
+                    new IgbContentPane
+                    {
+                        PaneType = DockManagerPaneType.ContentPane,
+                        Header = "EMBEDDED DOUGHNUT CHART",
+                        ContentId = "content2",
+                    },
+                    new IgbContentPane
+                    {
+                        PaneType = DockManagerPaneType.ContentPane,
+                        Header = "EMBEDDED GEOGRAPHIC MAP",
+                        ContentId = "content3",
+                    }
+                }
+             }
+        };
     }
 }

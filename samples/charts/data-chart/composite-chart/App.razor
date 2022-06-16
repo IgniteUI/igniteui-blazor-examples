@@ -13,39 +13,42 @@
                    IsHorizontalZoomEnabled="false"
                    IsVerticalZoomEnabled="false">
 
-            <IgbCategoryXAxis Name="xAxis" DataSource="Data" Label="Date" />
+            <IgbCategoryXAxis Name="xAxis" DataSource="Data" Label="Date" Overlap="0" Gap="0.1" UseClusteringMode="true"/>
             <IgbNumericYAxis Name="yAxis1" AbbreviateLargeNumbers="true" Title="In Millions of U.S. Dollars"
-                          MinimumValue="0" MaximumValue="30000" TitleLeftMargin="5" TitleRightMargin="0"/>
+                          MinimumValue="0" MaximumValue="30000000" TitleLeftMargin="5" TitleRightMargin="0"/>
             <IgbNumericYAxis Name="yAxis2" AbbreviateLargeNumbers="true" Title="Percentage" MajorStrokeThickness="0"
                           MinimumValue="0" MaximumValue="160" LabelLocation="AxisLabelsLocation.OutsideRight"
                           LabelHorizontalAlignment="HorizontalAlignment.Left"/>
 
             <IgbColumnSeries @ref="@RevenueSeries" XAxisName="xAxis" YAxisName="yAxis1" DataSource="Data"
                           ValueMemberPath="Revenue"
-                          Title="Revenue" MarkerType="MarkerType.Hidden" />
+                          Title="Revenue" MarkerType="MarkerType.Hidden"/>
             <IgbColumnSeries @ref="@ExpenseSeries" XAxisName="xAxis" YAxisName="yAxis1" DataSource="Data"
                           ValueMemberPath="Expenses"
-                          Title="Expenses" MarkerType="MarkerType.Hidden" />
+                          Title="Expenses" MarkerType="MarkerType.Hidden"/>
 
             <IgbSplineAreaSeries @ref="@IncomeSeries" XAxisName="xAxis" YAxisName="yAxis2" DataSource="Data"
-                              ValueMemberPath="IncomePerRevenue"
-                              Title="Income / Revenue %" MarkerType="MarkerType.Hidden" />
+                          ValueMemberPath="IncomePerRevenue"
+                          Title="Income / Revenue %" MarkerType="MarkerType.Circle"/>
 
-            <IgbCalloutLayer IsAutoCalloutBehaviorEnabled="true" TargetSeries="@RevenueSeries"
-                          UseValueForAutoCalloutLabels="true"
+            <IgbCalloutLayer DataSource="Data" IsAutoCalloutBehaviorEnabled="false" XMemberPath="RevenueX" YMemberPath="Revenue" LabelMemberPath="FormattedRevenue"
+                          TargetSeries="@RevenueSeries"
+                          UseValueForAutoCalloutLabels="false"
                           CalloutLeaderBrush="Transparent" CalloutTextColor="Black"
-                          CalloutBackground = "Transparent"/>
+                          CalloutBackground = "Transparent"
+                          CalloutPositionPadding="-5"/>
 
-            <IgbCalloutLayer IsAutoCalloutBehaviorEnabled="true" TargetSeries="@ExpenseSeries"
-                          UseValueForAutoCalloutLabels="true"
+            <IgbCalloutLayer DataSource="Data" IsAutoCalloutBehaviorEnabled="false" XMemberPath="ExpensesX" YMemberPath="Expenses" LabelMemberPath="FormattedExpenses"
+                          TargetSeries="@ExpenseSeries"
+                          UseValueForAutoCalloutLabels="false"
                           CalloutLeaderBrush="Transparent" CalloutTextColor="Black"
-                          CalloutBackground = "Transparent"/>
+                          CalloutBackground = "Transparent"
+                          CalloutPositionPadding="-5"/>
 
             <IgbCalloutLayer IsAutoCalloutBehaviorEnabled="true" TargetSeries="@IncomeSeries"
                           UseValueForAutoCalloutLabels="true" ContentMemberPath="IncomePerRevenue"
                           CalloutLeaderBrush="Transparent" CalloutTextColor="Black"
                           CalloutBackground = "LightGray" AutoCalloutLabelPrecision="1"/>
-
         </IgbDataChart>
     </div>
 </div>
@@ -80,7 +83,7 @@
         set { _IncomeSeries = value; StateHasChanged(); }
     }
 
-    private List<CompanyBudgetInfo> Data = new CompanyBudgetData();
+    private List<CompanyBudgetInfoWithFormatting> Data = new CompanyBudgetDataWithFormatting();
 
     protected override void OnInitialized()
     {
@@ -93,5 +96,4 @@
         IgbNumberAbbreviatorModule.Register(IgniteUIBlazor);
         IgbLegendModule.Register(IgniteUIBlazor);
     }
-
 }

@@ -1,83 +1,123 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options vertical">
-        <span class="legend-title">Life Expectancy vs Health Expenditure</span>
-        <div class="legend">
-            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
-        </div>
+	
+	<div class="legend-title">
+        Life Expectancy vs Health Expenditure
     </div>
-    <div class="container vertical">
-        <IgbDataChart Height="100%" Width="100%"
-                   Legend="Legend"
-                   IsHorizontalZoomEnabled="false"
-                   IsVerticalZoomEnabled="false">
-
-            <IgbNumericXAxis Name="xAxis" LabelFormat="${0}" Title="Health Expenditure"/>
-            <IgbNumericYAxis Name="yAxis" LabelFormat="{0} years" Title="Life Expectancy"/>
-
-            <IgbScatterSplineSeries XAxisName="xAxis"
-                               YAxisName="yAxis"
-                               DataSource="GermanyData"
-                               XMemberPath="HealthExpense"
-                               YMemberPath="LifeExpectancy"
-                               Title="Germany"
-                               MarkerType="MarkerType.Circle"/>
-
-            <IgbScatterSplineSeries XAxisName="xAxis"
-                               YAxisName="yAxis"
-                               DataSource="FranceData"
-                               XMemberPath="HealthExpense"
-                               YMemberPath="LifeExpectancy"
-                               Title="France"
-                               MarkerType="MarkerType.Circle"/>
-
-            <IgbScatterSplineSeries XAxisName="xAxis"
-                               YAxisName="yAxis"
-                               DataSource="LuxembourgData"
-                               XMemberPath="HealthExpense"
-                               YMemberPath="LifeExpectancy"
-                               Title="Luxembourg"
-                               MarkerType="MarkerType.Circle"/>
+	<div class="legend">
+        <IgbLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="Legend"
+        @ref="legend">
+        </IgbLegend>
+    </div>
+    <div class="container vertical fill">
+        <IgbDataChart
+        
+        Name="chart"
+        @ref="chart">
+            <IgbNumericXAxis
+            MinimumValue="72"
+            MaximumValue="84"
+            Interval="2"
+            Title="Life Expectancy (in years)"
+            Name="xAxis"
+            @ref="xAxis">
+            </IgbNumericXAxis>
+            <IgbNumericYAxis
+            MinimumValue="1000"
+            MaximumValue="6000"
+            Interval="1000"
+            AbbreviateLargeNumbers="true"
+            Title="Health Expenditure per Capita"
+            Name="yAxis"
+            @ref="yAxis">
+            </IgbNumericYAxis>
+            <IgbScatterSplineSeries
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            XMemberPath="LifeExpectancy"
+            YMemberPath="HealthExpense"
+            MarkerType="MarkerType.Circle"
+            DataSource="HealthDataForGermany"
+            ShowDefaultTooltip="true"
+            Title="Germany"
+            Name="ScatterSplineSeries1"
+            @ref="scatterSplineSeries1">
+            </IgbScatterSplineSeries>
+            <IgbScatterSplineSeries
+            Title="France"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            XMemberPath="LifeExpectancy"
+            YMemberPath="HealthExpense"
+            DataSource="HealthDataForFrance"
+            MarkerType="MarkerType.Circle"
+            ShowDefaultTooltip="true"
+            Name="ScatterSplineSeries2"
+            @ref="scatterSplineSeries2">
+            </IgbScatterSplineSeries>
         </IgbDataChart>
     </div>
 </div>
 
 @code {
-
-    private IgbLegend _legend;
-    public IgbLegend Legend
-    {
-        get { return _legend; }
-        set
-        {
-            _legend = value;
-            StateHasChanged();
-        }
-    }
-
-    private List<HealthInfo> GermanyData;
-    private List<HealthInfo> FranceData;
-    private List<HealthInfo> LuxembourgData;
-
-    public void InitializeData()
-    {
-        var fullList = new HealthData();
-        this.GermanyData = fullList.Where(c => c.Country == "Germany").ToList();
-        this.FranceData = fullList.Where(c => c.Country == "France").ToList();
-        this.LuxembourgData = fullList.Where(c => c.Country == "Luxembourg").ToList();
-    }
-
     protected override void OnInitialized()
     {
-        IgbLegendModule.Register(IgniteUIBlazor);
-        IgbDataChartCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartScatterModule.Register(IgniteUIBlazor);
-        IgbDataChartScatterCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-        IgbNumberAbbreviatorModule.Register(IgniteUIBlazor);
-
-        InitializeData();
     }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var chart = this.chart;
+		var xAxis = this.xAxis;
+		var yAxis = this.yAxis;
+		var scatterSplineSeries1 = this.scatterSplineSeries1;
+		var scatterSplineSeries2 = this.scatterSplineSeries2;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+	}
+
+	private IgbLegend legend;
+	private IgbDataChart chart;
+	private IgbNumericXAxis xAxis;
+	private IgbNumericYAxis yAxis;
+	private IgbScatterSplineSeries scatterSplineSeries1;
+	private IgbScatterSplineSeries scatterSplineSeries2;
+
+
+    private HealthDataForGermany _healthDataForGermany = null;
+    public HealthDataForGermany HealthDataForGermany
+    {
+        get
+        {
+            if (_healthDataForGermany == null)
+            {
+                _healthDataForGermany = new HealthDataForGermany(); 
+            }
+            return _healthDataForGermany;
+        }
+    }
+    
+    private HealthDataForFrance _healthDataForFrance = null;
+    public HealthDataForFrance HealthDataForFrance
+    {
+        get
+        {
+            if (_healthDataForFrance == null)
+            {
+                _healthDataForFrance = new HealthDataForFrance(); 
+            }
+            return _healthDataForFrance;
+        }
+    }
+    
 }

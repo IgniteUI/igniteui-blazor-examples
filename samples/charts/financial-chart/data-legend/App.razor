@@ -1,0 +1,64 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+	
+	
+	<div class="legend">
+        <IgbDataLegend
+        IncludedColumns="@(new string[] { "Open", "Close", "High", "Low", "Change" })"
+        Name="Legend"
+        @ref="legend">
+        </IgbDataLegend>
+    </div>
+    <div class="container vertical fill">
+        <IgbFinancialChart
+        IsHorizontalZoomEnabled="true"
+        ChartType="FinancialChartType.Candle"
+        ZoomSliderType="FinancialChartZoomSliderType.None"
+        IsVerticalZoomEnabled="true"
+        DataToolTipHeaderFormatTime="DataLegendHeaderTimeMode.None"
+        DataSource="MultipleStocks"
+        Name="chart"
+        @ref="chart">
+        </IgbFinancialChart>
+    </div>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var chart = this.chart;
+
+        this.BindElements = () => {
+            legend.Target = this.chart;
+        };
+        this.BindElements();
+	}
+
+	private IgbDataLegend legend;
+	private IgbFinancialChart chart;
+
+
+    private MultipleStocks _multipleStocks = null;
+    public MultipleStocks MultipleStocks
+    {
+        get
+        {
+            if (_multipleStocks == null)
+            {
+                MultipleStocks.Fetch().ContinueWith((t) => {_multipleStocks = t.Result;  StateHasChanged(); });
+            }
+            return _multipleStocks;
+        }
+    }
+    
+}

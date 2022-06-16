@@ -1,49 +1,62 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="container vertical">
-
-        @if (Data != null)
-        {
-            <IgbDoughnutChart Height="100%" Width="100%">
-                <IgbRingSeries DataSource="Data"
-                            LabelMemberPath="Summary"
-                            ValueMemberPath="MarketShare"
-                            LegendLabelMemberPath="Category"
-                            Outlines="white"
-                           >
-                </IgbRingSeries>
-            </IgbDoughnutChart>
-        }
-
+	
+	<div class="legend-title">
+        Market Share of Tech Companies
+    </div>
+	
+    <div class="container vertical fill">
+        <IgbDoughnutChart
+        Name="chart"
+        @ref="chart">
+            <IgbRingSeries
+            DataSource="CompanyMarketShares"
+            ValueMemberPath="Value"
+            LabelMemberPath="Summary"
+            LegendLabelMemberPath="Category"
+            Outlines="white"
+            Name="series"
+            @ref="series">
+            </IgbRingSeries>
+        </IgbDoughnutChart>
     </div>
 </div>
 
 @code {
-
-    private List<DataItem> Data;
-
     protected override void OnInitialized()
     {
-        IgbDoughnutChartModule.Register(IgniteUIBlazor);
-
-        var dataItems = new List<DataItem>();
-        dataItems.Add(new DataItem() { MarketShare = 30, Category = "Google", });
-        dataItems.Add(new DataItem() { MarketShare = 25, Category = "Apple", });
-        dataItems.Add(new DataItem() { MarketShare = 20, Category = "Microsoft", });
-        dataItems.Add(new DataItem() { MarketShare = 15, Category = "Samsung", });
-        dataItems.Add(new DataItem() { MarketShare = 10, Category = "Other", });
-
-        Data = dataItems;
-
     }
 
-    public class DataItem
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var chart = this.chart;
+		var series = this.series;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+	}
+
+	private IgbDoughnutChart chart;
+	private IgbRingSeries series;
+
+
+    private CompanyMarketShares _companyMarketShares = null;
+    public CompanyMarketShares CompanyMarketShares
     {
-        public string Category { get; set; }
-        public double MarketShare { get; set; }
-        public string Summary { get { return Category + " " + MarketShare + "%"; } }
+        get
+        {
+            if (_companyMarketShares == null)
+            {
+                _companyMarketShares = new CompanyMarketShares(); 
+            }
+            return _companyMarketShares;
+        }
     }
-
+    
 }

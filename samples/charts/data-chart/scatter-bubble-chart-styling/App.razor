@@ -1,91 +1,130 @@
 @using IgniteUI.Blazor.Controls
+
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="options vertical">
-        <span class="legend-title">Total Population of Selected Countries</span>
-        <div class="legend">
-            <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
-        </div>
+	
+	<div class="legend-title">
+        Total Population of Selected Countries
     </div>
-    <div class="container vertical">
-
-        <IgbDataChart Height="100%" Width="100%"
-                   Legend="Legend"
-                   IsHorizontalZoomEnabled="true"
-                   IsVerticalZoomEnabled="true">
-
-            <IgbNumericYAxis Name="yAxis" Title="GDP per Capita" AbbreviateLargeNumbers="true" IsLogarithmic="true"  />
-            <IgbNumericXAxis Name="xAxis" Title="Hours Worked per Week"   />
-
-            <IgbBubbleSeries XAxisName="xAxis"
-                          YAxisName="yAxis"
-                          DataSource="AfricaData"
-                          Title="African Countries"
-                          YMemberPath="GDP"
-                          XMemberPath="WorkedHours"
-                          MarkerType="MarkerType.Circle"
-                          MarkerOutline="rgb(186,231,114)"
-                          MarkerBrush="rgb(186,231,114)"
-                          MarkerFillOpacity="0.5"
-                          MarkerThickness="2"
-                          RadiusScale="@MarkerSizeScale"
-                          RadiusMemberPath="Population"
-                          ShowDefaultTooltip="true">
+	<div class="legend">
+        <IgbLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="Legend"
+        @ref="legend">
+        </IgbLegend>
+    </div>
+    <div class="container vertical fill">
+        <IgbDataChart
+        
+        Name="chart"
+        @ref="chart">
+            <IgbNumericXAxis
+            IsLogarithmic="true"
+            AbbreviateLargeNumbers="true"
+            Title="Population"
+            Name="xAxis"
+            @ref="xAxis">
+            </IgbNumericXAxis>
+            <IgbNumericYAxis
+            IsLogarithmic="true"
+            AbbreviateLargeNumbers="true"
+            Title="GDP per Capita"
+            Name="yAxis"
+            @ref="yAxis">
+            </IgbNumericYAxis>
+            <IgbBubbleSeries
+            RadiusMemberPath="Population"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            XMemberPath="Population"
+            YMemberPath="GDP"
+            MarkerType="MarkerType.Circle"
+            MarkerThickness="2"
+            MarkerBrush="#3eca3e"
+            MarkerOutline="#3eca3e"
+            DataSource="CountryStatsAfrica"
+            MarkerFillOpacity="0.5"
+            ShowDefaultTooltip="true"
+            Title="African Countries"
+            Name="BubbleSeries1"
+            @ref="bubbleSeries1">
             </IgbBubbleSeries>
-
-            <IgbBubbleSeries XAxisName="xAxis"
-                          YAxisName="yAxis"
-                          DataSource="EuropeData"
-                          Title="European Countries"
-                          YMemberPath="GDP"
-                          XMemberPath="WorkedHours"
-                          MarkerType="MarkerType.Circle"
-                          MarkerOutline="rgb(248,174,95)"
-                          MarkerBrush="rgb(248,174,95)"
-                          MarkerFillOpacity="0.5"
-                          MarkerThickness="2"
-                          RadiusScale="@MarkerSizeScale"
-                          RadiusMemberPath="Population"
-                          ShowDefaultTooltip="true">
+            <IgbBubbleSeries
+            RadiusMemberPath="Population"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            XMemberPath="Population"
+            YMemberPath="GDP"
+            MarkerType="MarkerType.Circle"
+            MarkerThickness="2"
+            MarkerBrush="#ab06dd"
+            MarkerOutline="#ab06dd"
+            DataSource="CountryStatsEurope"
+            MarkerFillOpacity="0.5"
+            ShowDefaultTooltip="true"
+            Title="European Countries"
+            Name="BubbleSeries2"
+            @ref="bubbleSeries2">
             </IgbBubbleSeries>
-
         </IgbDataChart>
-
     </div>
 </div>
 
 @code {
-
-    private IgbLegend _legend;
-    public IgbLegend Legend
-    {
-        get { return _legend; }
-        set { _legend = value; StateHasChanged(); }
-    }
-
-    private List<CountryStats> AfricaData;
-    private List<CountryStats> EuropeData;
-
-    private IgbSizeScale MarkerSizeScale = new IgbSizeScale { MinimumValue = 10, MaximumValue = 50 };
-
-    public void InitializeData()
-    {
-        var data = new CountryDataStats();
-
-        this.AfricaData = data.Where(d => d.Continent == "Africa").ToList();
-        this.EuropeData = data.Where(d => d.Continent == "Europe").ToList();
-    }
-
     protected override void OnInitialized()
     {
-        IgbLegendModule.Register(IgniteUIBlazor);
-        IgbDataChartCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartScatterModule.Register(IgniteUIBlazor);
-        IgbDataChartScatterCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-        IgbNumberAbbreviatorModule.Register(IgniteUIBlazor);
-
-        InitializeData();
     }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var chart = this.chart;
+		var xAxis = this.xAxis;
+		var yAxis = this.yAxis;
+		var bubbleSeries1 = this.bubbleSeries1;
+		var bubbleSeries2 = this.bubbleSeries2;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+	}
+
+	private IgbLegend legend;
+	private IgbDataChart chart;
+	private IgbNumericXAxis xAxis;
+	private IgbNumericYAxis yAxis;
+	private IgbBubbleSeries bubbleSeries1;
+	private IgbBubbleSeries bubbleSeries2;
+
+
+    private CountryStatsAfrica _countryStatsAfrica = null;
+    public CountryStatsAfrica CountryStatsAfrica
+    {
+        get
+        {
+            if (_countryStatsAfrica == null)
+            {
+                _countryStatsAfrica = new CountryStatsAfrica(); 
+            }
+            return _countryStatsAfrica;
+        }
+    }
+    
+    private CountryStatsEurope _countryStatsEurope = null;
+    public CountryStatsEurope CountryStatsEurope
+    {
+        get
+        {
+            if (_countryStatsEurope == null)
+            {
+                _countryStatsEurope = new CountryStatsEurope(); 
+            }
+            return _countryStatsEurope;
+        }
+    }
+    
 }
