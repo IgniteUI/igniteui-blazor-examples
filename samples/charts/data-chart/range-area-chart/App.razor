@@ -4,9 +4,10 @@
 
 <div class="container vertical">
 	
-	<div class="legend-title">
+	    <div class="legend-title">
         Monthly Temperature Range in Los Angeles
     </div>
+    
 	
     <div class="container vertical fill">
         <IgbDataChart
@@ -31,22 +32,22 @@
             <IgbRangeAreaSeries
             XAxisName="xAxis"
             YAxisName="yAxis"
-            LowMemberPath="LowNY"
-            HighMemberPath="HighNY"
+            LowMemberPath="LowLA"
+            HighMemberPath="HighLA"
             DataSource="TemperatureRangeData"
-            Title="New York"
-            Name="series"
-            @ref="series">
+            Title="Los Angeles"
+            Name="RangeAreaSeries1"
+            @ref="rangeAreaSeries1">
             </IgbRangeAreaSeries>
             <IgbRangeAreaSeries
             XAxisName="xAxis"
             YAxisName="yAxis"
+            Title="New York"
             LowMemberPath="LowNY"
             HighMemberPath="HighNY"
             DataSource="TemperatureRangeData"
-            Title="New York"
-            Name="series"
-            @ref="series">
+            Name="RangeAreaSeries2"
+            @ref="rangeAreaSeries2">
             </IgbRangeAreaSeries>
         </IgbDataChart>
     </div>
@@ -64,7 +65,8 @@
 		var chart = this.chart;
 		var xAxis = this.xAxis;
 		var yAxis = this.yAxis;
-		var series = this.series;
+		var rangeAreaSeries1 = this.rangeAreaSeries1;
+		var rangeAreaSeries2 = this.rangeAreaSeries2;
 
         this.BindElements = () => {
         };
@@ -74,7 +76,8 @@
 	private IgbDataChart chart;
 	private IgbCategoryXAxis xAxis;
 	private IgbNumericYAxis yAxis;
-	private IgbRangeAreaSeries series;
+	private IgbRangeAreaSeries rangeAreaSeries1;
+	private IgbRangeAreaSeries rangeAreaSeries2;
 
 
     private TemperatureRangeData _temperatureRangeData = null;
