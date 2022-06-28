@@ -410,7 +410,7 @@ function updateReadme(cb) {
     cb();
 } exports.updateReadme = updateReadme;
 
-// updating package.json files for all sample using a template
+// updating .csproj files for all samples using a template project
 function updateProjects(cb) {
 
     // del.sync("../../samples/**/css/open-iconic/README.md", {force:true});
@@ -450,48 +450,111 @@ function updateProjects(cb) {
     .on("end", function() {
         cb();
     });
-
-    // for (const sample of samples) {
-    //     if (sample.ProjectFile) {
-    //         let outputPath = sample.ProjectFile.Path;
-    //         let oldPackageFile = fs.readFileSync(outputPath).toString();
-    //         let newPackageFile = templateProject + ''; // Transformer.updateProject(sample.ProjectFile);
-    //         if (newPackageFile !== oldPackageFile) {
-    //             log('updated: ' + outputPath);
-    //             fs.writeFileSync(outputPath, newPackageFile);
-    //         }
-    //     }
-    // }
-    // gulp.src(sampleSource)
-    // // .pipe(gSort( { asc: false } ))
-    // .pipe(es.map(function(sample, sampleCallback) {
-
-    //     let sampleFolder = Transformer.getRelative(sample.dirname);
-    //     gulp.src([sampleFolder + "/*.csproj"])
-    //     // .pipe(flatten({ "includeParents": -1 }))
-    //     .pipe(es.map(function(file, fileCallback) {
-    //         let fileDir = Transformer.getRelative(file.dirname);
-    //         let filePath = fileDir + "/" + file.basename;
-    //         let oldContent =  file.contents.toString();
-    //         var newContent = templateProject + '';
-    //         if (newContent !== oldContent) {
-    //             log('updated: ' + filePath);
-    //             file.contents = new Buffer(newContent);
-    //         }
-    //         // send the updated file down the pipe
-    //         fileCallback(null, file);
-    //     }))
-    //     .on("end", function() {
-    //         // cb();
-    //         sampleCallback(null, sample);
-    //     });
-    // }))
-    // .on("end", function() {
-    //     cb();
-    // });
-
-
 } exports.updateProjects = updateProjects;
+
+
+// updating IG blazor versions in .csproj files for all samples
+function updateIG(cb) {
+
+    // NOTE: change this array with new version of packages
+    let packageUpgrades = [
+        // these IG packages are often updated:
+        { name: "IgniteUI.Blazor"                , version: "22.1.41" },
+        { name: "IgniteUI.Blazor.Documents.Core",  version: "22.1.41" },
+        { name: "IgniteUI.Blazor.Documents.Excel", version: "22.1.41" },
+        // these IG packages are sometimes updated:
+        { name: "Microsoft.AspNetCore.Components",                       version: "6.0.0" },
+        { name: "Microsoft.AspNetCore.Components.Web",                   version: "6.0.0" },
+        { name: "Microsoft.AspNetCore.Components.WebAssembly",           version: "6.0.0" },
+        { name: "Microsoft.AspNetCore.Components.WebAssembly.DevServer", version: "6.0.0", suffix: 'PrivateAssets="all" ' },
+        { name: "Microsoft.AspNetCore.Cors",                             version: "2.2.0" },
+        { name: "Microsoft.AspNetCore.Http.Abstractions",                version: "2.2.0" },
+        { name: "System.Net.Http.Json", version:"6.0.0" },
+    ];
+
+    // creating package mapping for quick lookup
+    let packageMappings = {};
+    for (const item of packageUpgrades) {
+        item.id = item.name;
+        let name = item.name;
+        packageMappings[name] = item;
+    }
+
+    let updatedPackages = 0; // NOTE you can comment out strings in this array to run these function only on a subset of samples
+    var packagePaths = [
+        '../../browser/**/*.csproj', // browser
+        '../../samples/charts/**/*.csproj',
+        '../../samples/editors/**/*.csproj',
+        '../../samples/excel/**/*.csproj',
+        '../../samples/gauges/**/*.csproj',
+        '../../samples/grids/**/*.csproj',
+        '../../samples/inputs/**/*.csproj',
+        '../../samples/layouts/**/*.csproj',
+        '../../samples/maps/**/*.csproj',
+        '../../samples/menus/**/*.csproj',
+        '../../samples/notifications/**/*.csproj',
+        '../../samples/scheduling/**/*.csproj',
+
+        // '../samples/charts/category-chart/**/*.csproj',
+        // '../samples/maps/geo-map/type-scatter-bubble-series/*.csproj',
+        '!../../samples/**/node_modules/**/*.csproj',
+    ];
+    gulp.src(packagePaths)
+    // .pipe(flatten({ "includeParents": -1 }))
+    .pipe(es.map(function(file, fileCallback) {
+        let filePath = file.dirname + "/" + file.basename;
+        var fileContent = file.contents.toString();
+        var fileLines = fileContent.split('\n');
+        // log("updating: " + filePath);
+
+        var fileChanged = false;
+        for (let i = 0; i < fileLines.length; i++) {
+            const line = fileLines[i];
+            //   <PackageReference Include="IgniteUI.Blazor.Documents.Excel" Version="22.1.46" />
+            let words = line.split("Version=");
+            if (words.length === 2 && words[0].indexOf('PackageReference') > 0) {
+                // matching packages
+                let packageName = words[0].replace("<PackageReference", "").replace("Include=", "").split('"').join('').trim();
+                let packageInfo = packageMappings[packageName];
+                if (packageInfo !== undefined) {
+                    let tabString = line.indexOf('      ') >= 0 ? '      ': '    ';
+                    let newLine = tabString + '<PackageReference Include="' + packageInfo.name + '" Version="' + packageInfo.version + '" ';
+                    if (packageInfo.suffix) {
+                        newLine += packageInfo.suffix;
+                    }
+                    newLine += '/>';
+
+                    if (fileLines[i].trim() !== newLine.trim()) {
+                        fileLines[i] = newLine;
+                        fileChanged = true;
+                    }
+                }
+            }
+        }
+        if (fileChanged) {
+            let newContent = fileLines.join('\n'); // newContent !== fileContent
+            updatedPackages++;
+            fs.writeFileSync(filePath, newContent);
+            log("updated: " + filePath);
+        }
+            // let filePath = fileDir + "/" + file.basename;
+            // // let filePath = file.dirname + "/" + file.basename;
+            // let oldContent = file.contents.toString();
+            // var newContent = templateProject + '';
+            // if (newContent !== oldContent) {
+            //     fs.writeFileSync(filePath, newContent);
+            //     log('updated project: ' + filePath);
+            //     // file.contents = new Buffer(newContent);
+            // }
+        // cb();
+        // send the updated file down the pipe
+        fileCallback(null, file);
+    }))
+    .on("end", function() {
+        log("updateIG... done = " + updatedPackages + " files");
+        cb();
+    });
+} exports.updateIG = updateIG;
 
 // updates ./public/meta.json with version in ./package.json file
 function updateVersion(cb) {
