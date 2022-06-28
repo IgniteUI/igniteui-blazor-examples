@@ -459,9 +459,9 @@ function updateIG(cb) {
     // NOTE: change this array with new version of packages
     let packageUpgrades = [
         // these IG packages are often updated:
-        { name: "IgniteUI.Blazor"                , version: "22.1.41" },
-        { name: "IgniteUI.Blazor.Documents.Core",  version: "22.1.41" },
-        { name: "IgniteUI.Blazor.Documents.Excel", version: "22.1.41" },
+        { name: "IgniteUI.Blazor"                , version: "22.1.46" },
+        { name: "IgniteUI.Blazor.Documents.Core",  version: "22.1.46" },
+        { name: "IgniteUI.Blazor.Documents.Excel", version: "22.1.46" },
         // these IG packages are sometimes updated:
         { name: "Microsoft.AspNetCore.Components",                       version: "6.0.0" },
         { name: "Microsoft.AspNetCore.Components.Web",                   version: "6.0.0" },
