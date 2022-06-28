@@ -524,7 +524,7 @@ function updateIG(cb) {
                     }
                     newLine += '/>';
 
-                    if (fileLines[i] !== newLine) {
+                    if (fileLines[i].trim() !== newLine.trim()) {
                         fileLines[i] = newLine;
                         fileChanged = true;
                     }
