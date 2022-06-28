@@ -517,7 +517,8 @@ function updateIG(cb) {
                 let packageName = words[0].replace("<PackageReference", "").replace("Include=", "").split('"').join('').trim();
                 let packageInfo = packageMappings[packageName];
                 if (packageInfo !== undefined) {
-                    let newLine = '      <PackageReference Include="' + packageInfo.name + '" Version="' + packageInfo.version + '" ';
+                    let tabString = line.indexOf('      ') >= 0 ? '      ': '    ';
+                    let newLine = tabString + '<PackageReference Include="' + packageInfo.name + '" Version="' + packageInfo.version + '" ';
                     if (packageInfo.suffix) {
                         newLine += packageInfo.suffix;
                     }
