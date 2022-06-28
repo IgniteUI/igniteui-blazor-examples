@@ -68,6 +68,9 @@ exports.updateCodeViewer = updateCodeViewer = gulp.series(
     sb.updateCodeViewer,
 );
 
+exports.updateIG = updateIG = gulp.series(
+    sb.updateIG,
+);
 
 exports.copySamplesToServer = copySamplesToServer = gulp.series(
     // sb.updateVersion,
