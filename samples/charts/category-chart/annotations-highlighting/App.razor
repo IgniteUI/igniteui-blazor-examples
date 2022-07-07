@@ -1,0 +1,95 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+	    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="CategoryChart"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="PropertyEditor"
+        @ref="propertyEditor">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="HighlightingMode"
+            Label="Highlighting Mode:"
+            PrimitiveValue="@("FadeOthersSpecific")"
+            Name="HighlightingModeEditor"
+            @ref="highlightingModeEditor">
+            </IgbPropertyEditorPropertyDescription>
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="HighlightingBehavior"
+            Label="Highlighting Behavior:"
+            PrimitiveValue="@("NearestItemsAndSeries")"
+            Name="HighlightingBehaviorEditor"
+            @ref="highlightingBehaviorEditor">
+            </IgbPropertyEditorPropertyDescription>
+        </IgbPropertyEditorPanel>
+    </div>
+	
+	    <div class="legend-title">
+        Average Temperature in Sedney
+    </div>
+    
+	
+    <div class="container vertical fill">
+        <IgbCategoryChart
+        ChartType="CategoryChartType.Column"
+        YAxisMaximumValue="35"
+        IsCategoryHighlightingEnabled="true"
+        YAxisLabelLocation="YAxisLabelLocation.OutsideRight"
+        DataSource="TemperatureAnnotatedData"
+        IncludedProperties="@(new string[] { "Month", "Temperature" })"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+        HighlightingMode="SeriesHighlightingMode.FadeOthersSpecific"
+        HighlightingBehavior="SeriesHighlightingBehavior.NearestItemsAndSeries"
+        CrosshairsAnnotationYAxisPrecision="0"
+        Name="chart"
+        @ref="chart">
+        </IgbCategoryChart>
+    </div>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var propertyEditor = this.propertyEditor;
+		var highlightingModeEditor = this.highlightingModeEditor;
+		var highlightingBehaviorEditor = this.highlightingBehaviorEditor;
+		var chart = this.chart;
+
+        this.BindElements = () => {
+            propertyEditor.Target = this.chart;
+        };
+        this.BindElements();
+	}
+
+	private IgbPropertyEditorPanel propertyEditor;
+	private IgbPropertyEditorPropertyDescription highlightingModeEditor;
+	private IgbPropertyEditorPropertyDescription highlightingBehaviorEditor;
+	private IgbCategoryChart chart;
+
+
+    private TemperatureAnnotatedData _temperatureAnnotatedData = null;
+    public TemperatureAnnotatedData TemperatureAnnotatedData
+    {
+        get
+        {
+            if (_temperatureAnnotatedData == null)
+            {
+                _temperatureAnnotatedData = new TemperatureAnnotatedData(); 
+            }
+            return _temperatureAnnotatedData;
+        }
+    }
+    
+}
