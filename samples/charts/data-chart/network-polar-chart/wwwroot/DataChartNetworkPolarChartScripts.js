@@ -1,7 +1,5 @@
-﻿console.log("loaded DataChartNetworkPolarChartScripts.js");
- 
-function onNetworkPolarChartMouseEnter(o, e) {
-    
+﻿function onNetworkPolarChartMouseEnter(o, e) {
+
     if (e.series.tooltipTemplate === null ||
         e.series.tooltipTemplate === undefined) {
         e.series.tooltipTemplate = onNetworkPolarChartTooltip;
@@ -23,7 +21,7 @@ function onNetworkPolarChartTooltip(context) {
     var div = document.createElement("div");
     div.innerHTML = "Node: " + dataItem.Label;
     div.style.color = dataItem.Fill;
-    tooltip.appendChild(div); 
+    tooltip.appendChild(div);
 
     div = document.createElement("div");
     div.innerHTML = "Level: " + dataItem.Radius;
@@ -66,24 +64,24 @@ function onNetworkPolarChartMarker(o, e) {
                 var data = renderInfo.data;
 
                 var viewportHeight = renderInfo.passInfo.viewportHeight;
-                var viewportRatio = viewportHeight / 200.0; 
-                var markerSize = viewportRatio * desiredSize; 
+                var viewportRatio = viewportHeight / 200.0;
+                var markerSize = viewportRatio * desiredSize;
                 var markerRadius = Math.min(50, data.item.Radius);
-                ctx.strokeStyle = data.item.Outline; 
-                ctx.fillStyle   = data.item.Fill;  
-                ctx.lineWidth   = data.item.Thickness; 
-                ctx.beginPath(); 
+                ctx.strokeStyle = data.item.Outline;
+                ctx.fillStyle   = data.item.Fill;
+                ctx.lineWidth   = data.item.Thickness;
+                ctx.beginPath();
                 ctx.arc(cx, cy, markerRadius, 0, 2 * Math.PI);
                 ctx.stroke();
-                ctx.fill(); 
+                ctx.fill();
 
                 var text = data.item.Label.toString();
                 // var textSize = Math.round(viewportRatio * 10);
-                var textSize = Math.max(10, data.item.LabelSize); 
+                var textSize = Math.max(10, data.item.LabelSize);
                 ctx.font = "normal " + textSize + "px Verdana";
                 ctx.textBaseline = "middle";
                 ctx.textAlign = "center";
-                ctx.fillStyle = data.item.LabelColor; 
+                ctx.fillStyle = data.item.LabelColor;
                 ctx.fillText(text, cx, cy);
             }
         }

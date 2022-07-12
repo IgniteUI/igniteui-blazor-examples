@@ -1,6 +1,4 @@
-﻿console.log("loaded DataChartTypeScatterPolygonStyles.js");
-
-function onPolygonShapeStyle(o, e) {
+﻿function onPolygonShapeStyle(o, e) {
 
     e.shapeOpacity = 1.0;
     e.shapeStrokeThickness = 0.5;
