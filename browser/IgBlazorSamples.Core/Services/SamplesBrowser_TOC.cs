@@ -43,12 +43,10 @@ namespace Infragistics.Samples.Core
         public async Task Load(TOC toc)
         {
             this.IsLoading = true;
-            Console.WriteLine("SB.TOC parsing ...");
-            //Console.WriteLine("SB.TOC " + this.AppBaseUri);
+            //Console.WriteLine("SB.TOC parsing ...");
 
             this.AppHomeUri = this.AppBaseUri + "/home";
             //this.AppHomeUri = this.AppBaseUri + "samples/home";
-
             foreach (var group in toc.Groups)
             {
                 foreach (var component in group.Components)
@@ -91,12 +89,11 @@ namespace Infragistics.Samples.Core
                 }
             }
 
-            // Console.WriteLine("SB.TOC added samples " + comp.Samples.Length);
-
-            TOC = toc;
-
+            this.TOC = toc;
             _SamplesCount = this.SampleRoutes.Count;
             _ComponentsCount = this.ComponentNames.Count;
+
+            Console.WriteLine("SB.TOC parsed " + _SamplesCount + " samples");
 
             this.IsLoading = false;
             OnLoaded();
@@ -106,8 +103,6 @@ namespace Infragistics.Samples.Core
         public event EventHandler<EventArgs> SamplesLoaded;
         public void OnLoaded()
         {
-            Console.WriteLine("SB.TOC parsing... done");
-
             this.SamplesLoaded?.Invoke(this, EventArgs.Empty);
         }
 
