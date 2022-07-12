@@ -1,6 +1,4 @@
-﻿console.log("loaded DataChartTooltipStyles.js");
-
-function onSeriesMouseEnter(o, e) {
+﻿function onSeriesMouseEnter(o, e) {
     if (e.series.tooltipTemplate === null ||
         e.series.tooltipTemplate === undefined) {
         e.series.tooltipTemplate = createDataChartTooltip;

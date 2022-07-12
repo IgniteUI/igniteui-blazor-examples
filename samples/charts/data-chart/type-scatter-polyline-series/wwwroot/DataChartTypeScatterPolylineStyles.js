@@ -1,6 +1,4 @@
-﻿console.log("loaded DataChartTypeScatterPolylineStyles.js");
-
-function onPolylineShapeStyle(o, e) {
+﻿function onPolylineShapeStyle(o, e) {
 
     e.shapeOpacity = 1.0;
     e.shapeStrokeThickness = 1.0;

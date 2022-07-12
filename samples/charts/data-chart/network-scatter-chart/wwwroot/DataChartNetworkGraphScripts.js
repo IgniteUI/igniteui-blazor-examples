@@ -1,6 +1,4 @@
-﻿console.log("loaded DataChartNetworkGraphScripts.js");
-
-function onNetworkGrahpMouseEnter(o, e) {
+﻿function onNetworkGrahpMouseEnter(o, e) {
 
     if (e.series.tooltipTemplate !== null &&
         e.series.tooltipTemplate !== undefined) {

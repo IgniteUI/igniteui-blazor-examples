@@ -1,0 +1,170 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+	
+	    <div class="legend-title">
+        Roadblocks Critical to Success of the Data & Analytics Team
+    </div>
+    
+	     <div class="legend">
+        <IgbLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="Legend"
+        @ref="legend">
+        </IgbLegend>
+    </div>
+	
+    <div class="container vertical fill">
+        <IgbDataChart
+        
+        Name="Chart"
+        @ref="chart">
+            <IgbCategoryYAxis
+            DataSource="RoadblocksToSuccess"
+            Gap="0.25"
+            LabelExtent="0"
+            Label="Category"
+            Name="yAxis1"
+            @ref="yAxis1">
+            </IgbCategoryYAxis>
+            <IgbCategoryYAxis
+            Label="Category"
+            DataSource="RoadblocksToSuccess"
+            Gap="1"
+            LabelHorizontalAlignment="HorizontalAlignment.Right"
+            Name="yAxis2"
+            @ref="yAxis2">
+            </IgbCategoryYAxis>
+            <IgbNumericXAxis
+            MinimumValue="0"
+            MaximumValue="50"
+            Stroke="gray"
+            StrokeThickness="2"
+            TickLength="5"
+            UseEnhancedIntervalManagement="true"
+            LabelFormat="{0}%"
+            Name="xAxis"
+            @ref="xAxis">
+            </IgbNumericXAxis>
+            <IgbCategoryHighlightLayer
+            Name="CategoryHighlightLayer"
+            @ref="categoryHighlightLayer">
+            </IgbCategoryHighlightLayer>
+            <IgbBarSeries
+            XAxisName="xAxis"
+            YAxisName="yAxis1"
+            ValueMemberPath="TopChoices"
+            IsTransitionInEnabled="true"
+            DataSource="RoadblocksToSuccess"
+            IsHighlightingEnabled="true"
+            ShowDefaultTooltip="true"
+            Title="Sum of Top 3 Choices"
+            Name="BarSeries1"
+            @ref="barSeries1">
+            </IgbBarSeries>
+            <IgbBarSeries
+            XAxisName="xAxis"
+            YAxisName="yAxis2"
+            Title="Top Choice"
+            ValueMemberPath="FirstChoice"
+            DataSource="RoadblocksToSuccess"
+            ShowDefaultTooltip="true"
+            IsTransitionInEnabled="true"
+            IsHighlightingEnabled="true"
+            Name="BarSeries2"
+            @ref="barSeries2">
+            </IgbBarSeries>
+            <IgbCalloutLayer
+            LabelMemberPath="FirstChoiceLabel"
+            XMemberPath="FirstChoice"
+            YMemberPath="Index"
+            CalloutTextColor="black"
+            CalloutBackground="#00000000"
+            CalloutOutline="#00000000"
+            CalloutLeaderBrush="#00000000"
+            CalloutPaddingTop="0"
+            CalloutPositionPadding="0"
+            CalloutStrokeThickness="2"
+            DataSource="RoadblocksToSuccess"
+            Name="CalloutLayer1"
+            @ref="calloutLayer1">
+            </IgbCalloutLayer>
+            <IgbCalloutLayer
+            DataSource="RoadblocksToSuccess"
+            YMemberPath="Index"
+            XMemberPath="TopChoices"
+            LabelMemberPath="TopChoicesLabel"
+            CalloutLeaderBrush="#00000000"
+            CalloutOutline="#00000000"
+            CalloutBackground="#00000000"
+            CalloutTextColor="black"
+            CalloutStrokeThickness="2"
+            CalloutPaddingTop="0"
+            CalloutPositionPadding="0"
+            Name="CalloutLayer2"
+            @ref="calloutLayer2">
+            </IgbCalloutLayer>
+            <IgbDataToolTipLayer
+            Name="Tooltips"
+            @ref="tooltips">
+            </IgbDataToolTipLayer>
+        </IgbDataChart>
+    </div>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var chart = this.chart;
+		var yAxis1 = this.yAxis1;
+		var yAxis2 = this.yAxis2;
+		var xAxis = this.xAxis;
+		var categoryHighlightLayer = this.categoryHighlightLayer;
+		var barSeries1 = this.barSeries1;
+		var barSeries2 = this.barSeries2;
+		var calloutLayer1 = this.calloutLayer1;
+		var calloutLayer2 = this.calloutLayer2;
+		var tooltips = this.tooltips;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+	}
+
+	private IgbLegend legend;
+	private IgbDataChart chart;
+	private IgbCategoryYAxis yAxis1;
+	private IgbCategoryYAxis yAxis2;
+	private IgbNumericXAxis xAxis;
+	private IgbCategoryHighlightLayer categoryHighlightLayer;
+	private IgbBarSeries barSeries1;
+	private IgbBarSeries barSeries2;
+	private IgbCalloutLayer calloutLayer1;
+	private IgbCalloutLayer calloutLayer2;
+	private IgbDataToolTipLayer tooltips;
+
+
+    private RoadblocksToSuccess _roadblocksToSuccess = null;
+    public RoadblocksToSuccess RoadblocksToSuccess
+    {
+        get
+        {
+            if (_roadblocksToSuccess == null)
+            {
+                _roadblocksToSuccess = new RoadblocksToSuccess(); 
+            }
+            return _roadblocksToSuccess;
+        }
+    }
+    
+}

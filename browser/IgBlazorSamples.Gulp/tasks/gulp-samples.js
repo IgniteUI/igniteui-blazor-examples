@@ -459,9 +459,9 @@ function updateIG(cb) {
     // NOTE: change this array with new version of packages
     let packageUpgrades = [
         // these IG packages are often updated:
-        { name: "IgniteUI.Blazor"                , version: "22.1.41" },
-        { name: "IgniteUI.Blazor.Documents.Core",  version: "22.1.41" },
-        { name: "IgniteUI.Blazor.Documents.Excel", version: "22.1.41" },
+        { name: "IgniteUI.Blazor"                , version: "22.1.46" },
+        { name: "IgniteUI.Blazor.Documents.Core",  version: "22.1.46" },
+        { name: "IgniteUI.Blazor.Documents.Excel", version: "22.1.46" },
         // these IG packages are sometimes updated:
         { name: "Microsoft.AspNetCore.Components",                       version: "6.0.0" },
         { name: "Microsoft.AspNetCore.Components.Web",                   version: "6.0.0" },
@@ -483,17 +483,18 @@ function updateIG(cb) {
     let updatedPackages = 0; // NOTE you can comment out strings in this array to run these function only on a subset of samples
     var packagePaths = [
         '../../browser/**/*.csproj', // browser
-        '../../samples/charts/**/*.csproj',
-        '../../samples/editors/**/*.csproj',
-        '../../samples/excel/**/*.csproj',
-        '../../samples/gauges/**/*.csproj',
-        '../../samples/grids/**/*.csproj',
-        '../../samples/inputs/**/*.csproj',
-        '../../samples/layouts/**/*.csproj',
-        '../../samples/maps/**/*.csproj',
-        '../../samples/menus/**/*.csproj',
-        '../../samples/notifications/**/*.csproj',
-        '../../samples/scheduling/**/*.csproj',
+        '../../samples/**/*.csproj',
+        // '../../samples/charts/**/*.csproj',
+        // '../../samples/editors/**/*.csproj',
+        // '../../samples/excel/**/*.csproj',
+        // '../../samples/gauges/**/*.csproj',
+        // '../../samples/grids/**/*.csproj',
+        // '../../samples/inputs/**/*.csproj',
+        // '../../samples/layouts/**/*.csproj',
+        // '../../samples/maps/**/*.csproj',
+        // '../../samples/menus/**/*.csproj',
+        // '../../samples/notifications/**/*.csproj',
+        // '../../samples/scheduling/**/*.csproj',
 
         // '../samples/charts/category-chart/**/*.csproj',
         // '../samples/maps/geo-map/type-scatter-bubble-series/*.csproj',

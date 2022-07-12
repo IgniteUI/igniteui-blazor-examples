@@ -1,6 +1,4 @@
-﻿console.log("loaded CategoryChartTooltipTemplates.js");
-
-function onCategoryChatTooltipCreated(o, e) {
+﻿function onCategoryChatTooltipCreated(o, e) {
     console.log("onCategoryChatTooltipCreated ");
 }
 igRegisterScript("onCategoryChatTooltipCreated", onCategoryChatTooltipCreated, false);

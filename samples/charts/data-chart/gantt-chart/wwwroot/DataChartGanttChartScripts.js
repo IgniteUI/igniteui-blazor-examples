@@ -1,6 +1,4 @@
-﻿console.log("loaded DataChartGanttChartScripts.js");
-
-function onGanttChartMouseEnter(o, e) {
+﻿function onGanttChartMouseEnter(o, e) {
 
     if (e.series.tooltipTemplate === null ||
         e.series.tooltipTemplate === undefined) {
@@ -27,11 +25,11 @@ function onGanttTooltip(context) {
     tooltip.appendChild(div);
 
     div = document.createElement("div");
-    div.innerHTML = "Department: " + dataItem.Category; 
+    div.innerHTML = "Department: " + dataItem.Category;
     tooltip.appendChild(div);
 
     div = document.createElement("div");
-    div.innerHTML = "Duration: " + dataItem.Duration; 
+    div.innerHTML = "Duration: " + dataItem.Duration;
     tooltip.appendChild(div);
 
     div = document.createElement("div");
@@ -86,7 +84,7 @@ function onGanttMarker(o, e) {
                 //ctx.beginPath();
                 //ctx.arc(cx, cy, markerRadius, 0, 2 * Math.PI);
                 //ctx.stroke();
-                //ctx.fill();           
+                //ctx.fill();
 
                 var text = data.item.Duration.toString();
                 //var textSize = Math.round(viewportRatio * 10);
@@ -94,7 +92,7 @@ function onGanttMarker(o, e) {
                 ctx.font = "normal " + textSize + "px Verdana";
                 ctx.textBaseline = "middle";
                 ctx.textAlign = "center";
-                ctx.fillStyle = "#494848"; 
+                ctx.fillStyle = "#494848";
                 ctx.fillText(text, cx, cy);
             }
         }

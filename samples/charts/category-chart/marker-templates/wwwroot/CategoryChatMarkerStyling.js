@@ -1,6 +1,4 @@
-﻿console.log("loaded CategoryChatMarkerStyling.js");
-
-function renderCircle(ctx, x, y, r, fill, outline) {
+﻿function renderCircle(ctx, x, y, r, fill, outline) {
     ctx.strokeStyle = outline;
     ctx.fillStyle = fill;
     ctx.beginPath();
@@ -11,7 +9,7 @@ function renderCircle(ctx, x, y, r, fill, outline) {
 
 function onCategoryChatMarkerStylingTemplate() {
 
-    return {       
+    return {
         measure: function (measureInfo) {
             const context = measureInfo.context;
             const height = context.measureText("M").width;
@@ -20,10 +18,10 @@ function onCategoryChatMarkerStylingTemplate() {
             measureInfo.height = height + 12;
         },
         render: function (renderInfo) {
-                     
+
             let ctx = renderInfo.context;
             let x = renderInfo.xPosition;
-            let y = renderInfo.yPosition;            
+            let y = renderInfo.yPosition;
 
             if (renderInfo.isHitTestRender) {
                 ctx.fillStyle = renderInfo.data.actualItemBrush.fill;
@@ -51,10 +49,10 @@ function onCategoryChatMarkerStylingTemplate() {
                 case "Hydro":   dataValue = dataItem.Hydro; break;
                 case "Wind":    dataValue = dataItem.Wind; break;
                 case "Nuclear": dataValue = dataItem.Nuclear; break;
-            }                   
+            }
             ctx.font = '8pt Verdana';
             ctx.textBaseline = 'top';
-            ctx.fillStyle = "black"; 
+            ctx.fillStyle = "black";
 
             let xOffset = 20;
             let yOffset = 10;
@@ -76,6 +74,6 @@ function onCategoryChatMarkerStylingSeries(o, e) {
 
     if (e.series) {
         e.series.markerTemplate = onCategoryChatMarkerStylingTemplate();
-    } 
+    }
 }
 igRegisterScript("onCategoryChatMarkerStylingSeries", onCategoryChatMarkerStylingSeries, false);
