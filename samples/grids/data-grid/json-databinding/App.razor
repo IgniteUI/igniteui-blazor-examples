@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Rendering
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.RenderTree
+@using Microsoft.AspNetCore.Components.Web
+
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+    <div class="container vertical">
+        <IgbDataGridToolbar ToolbarTitle="Sales Team" ColumnChooser="true" ColumnPinning="true" TargetGrid="@DataGridRef"/>
+        <div style="overflow: hidden">
+            <IgbDataGrid Height="100%" Width="100%"
+                    @ref="@DataGridRef"
+                    RowHeight="50" 
+                    DataSource="@RemoteJson.WithUri("https://excel2json.io/api/share/a876482a-7805-4e41-6c8a-08da1411ad26")"
+                    IsColumnOptionsEnabled="true"
+                    IsGroupCollapsable="true"
+                    ActivationMode="GridActivationMode.Cell"
+                    SelectionMode="GridSelectionMode.SingleRow">
+            </IgbDataGrid>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    private IgbDataGrid _grid;
+    private IgbDataGrid DataGridRef
+    {
+        get { return _grid; }
+        set { _grid = value; StateHasChanged(); }
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        IgbDataGridModule.Register(IgniteUIBlazor);
+        IgbDataGridToolbarModule.Register(IgniteUIBlazor);
+        IgbColumnChooserModule.Register(IgniteUIBlazor);
+
+    }
+}
