@@ -59,6 +59,24 @@ class SampleSourceFile extends SampleFile {
         this.Name = file.Name;
         this.IsChanged = file.IsChanged;
 
+        // remove lines with old Register(IgniteUIBlazor)
+        var oldLines = this.Content.split("\r\n");
+        var newLines = [];
+        for (const line of oldLines) {
+            if (line.indexOf(".Register(IgniteUIBlazor)") < 0){
+                newLines.push(line);
+            }
+        }
+        this.Content = newLines.join("\r\n");
+
+        // ensure razor code has OnInitialized()
+        if (this.Content.indexOf("OnInitialized()") < 0) {
+            var codeReplace = "@code {\r\n";
+            var codePaste   = "    protected override void OnInitialized()\r\n    {\r\n    }\r\n";
+            this.Content = this.Content.replace(codeReplace, codeReplace + codePaste);
+        }
+
+        // add lines with new Register(IgniteUIBlazor)
         if (modules !== undefined && modules.length > 0) {
             // inserting IG modules from Program.CS to App.razor file
             var moduleReplace = "OnInitialized()\r\n    {";
@@ -971,7 +989,7 @@ class Transformer {
         let firstLine = true;
         let validLines: string[] = [];
         let fileLines = file.Content.split("\n");
-        let spacedSymbols: string[] = ['(\\+)', '(\-)', '(\\*)', '(\{)', '(\})']; // '(\<)', '(\>)',  '(\=)',
+        let spacedSymbols: string[] = ['(\\+)', '(\\*)', '(\{)', '(\})']; // '(\<)', '(\>)',  '(\=)',
 
         for (let i = 0; i < fileLines.length; i++) {
             let currentLine = fileLines[i].trimRight();
