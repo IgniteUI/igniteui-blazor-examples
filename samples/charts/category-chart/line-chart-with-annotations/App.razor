@@ -68,7 +68,7 @@
     private void OnMarkersVisibleCheckBoxChange(ChangeEventArgs args)
     {
         Chart.MarkerTypes.Clear();
-        bool value = (bool)args.Value;
+        bool value = args.Value != null ? (bool)args.Value : false;
         if (value == true)
         {
             Chart.MarkerTypes.Add(MarkerType.Automatic);

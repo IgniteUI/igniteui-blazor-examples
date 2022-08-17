@@ -46,7 +46,7 @@
 
     private void OnChange(IgbNumberEventArgs e)
     {
-        if(e.Detail != null)
+        if(e != null)
         {
             ValueInt = e.Detail;
         }
@@ -54,7 +54,7 @@
 
     private void OnRangeChange(IgbRangeSliderValueEventArgs e)
     {
-        if(e.Detail.Lower != null && e.Detail.Upper != null)
+        if(e.Detail != null && !double.IsNaN(e.Detail.Lower) && !double.IsNaN(e.Detail.Upper))
         {
             LowerInt = e.Detail.Lower;
             UpperInt = e.Detail.Upper;
