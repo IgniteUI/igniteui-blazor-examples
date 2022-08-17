@@ -29,37 +29,9 @@ namespace Infragistics.Samples
                 typeof(IgbDataChartCategoryTrendLineModule),
                 typeof(IgbDataChartInteractivityModule),
                 typeof(IgbFinancialPriceSeriesModule),
-                typeof(IgbAbsoluteVolumeOscillatorIndicatorModule),
-                typeof(IgbAccumulationDistributionIndicatorModule),
-                typeof(IgbAverageDirectionalIndexIndicatorModule),
-                typeof(IgbAverageTrueRangeIndicatorModule),
-                typeof(IgbBollingerBandWidthIndicatorModule),
-                typeof(IgbChaikinVolatilityIndicatorModule),
-                typeof(IgbChaikinOscillatorIndicatorModule),
-                typeof(IgbCommodityChannelIndexIndicatorModule),
-                typeof(IgbDetrendedPriceOscillatorIndicatorModule),
-                typeof(IgbEaseOfMovementIndicatorModule),
-                typeof(IgbFastStochasticOscillatorIndicatorModule),
-                typeof(IgbForceIndexIndicatorModule),
-                typeof(IgbFullStochasticOscillatorIndicatorModule),
-                typeof(IgbMarketFacilitationIndexIndicatorModule),
-                typeof(IgbMassIndexIndicatorModule),
-                typeof(IgbMedianPriceIndicatorModule),
-                typeof(IgbMoneyFlowIndexIndicatorModule),
-                typeof(IgbMovingAverageConvergenceDivergenceIndicatorModule),
-                typeof(IgbNegativeVolumeIndexIndicatorModule),
-                typeof(IgbOnBalanceVolumeIndicatorModule),
-                typeof(IgbPercentagePriceOscillatorIndicatorModule),
-                typeof(IgbPercentageVolumeOscillatorIndicatorModule),
-                typeof(IgbPositiveVolumeIndexIndicatorModule),
-                typeof(IgbPriceVolumeTrendIndicatorModule),
-                typeof(IgbRateOfChangeAndMomentumIndicatorModule),
-                typeof(IgbRelativeStrengthIndexIndicatorModule),
-                typeof(IgbSlowStochasticOscillatorIndicatorModule),
-                typeof(IgbStandardDeviationIndicatorModule),
-                typeof(IgbStochRSIIndicatorModule),
-                typeof(IgbTRIXIndicatorModule)
-);
+                typeof(IgbDataChartFinancialCoreModule),
+                typeof(IgbDataChartFinancialIndicatorsModule)
+            );
 
             await builder.Build().RunAsync();
         }
