@@ -24,14 +24,14 @@ namespace Infragistics.Samples
 
             // registering Infragistics Blazor
             builder.Services.AddScoped(
-    typeof(IgbDataChartCoreModule),
-    typeof(IgbDataChartCategoryModule),
-    typeof(IgbDataChartCategoryCoreModule),
-    typeof(IgbDataChartFinancialCoreModule),
-    typeof(IgbDataChartFinancialModule),
-    typeof(IgbDataChartFinancialOverlaysModule),
-    typeof(IgbDataChartInteractivityModule),
-    typeof(IgbDataChartAnnotationModule)
+                typeof(IgbDataChartCoreModule),
+                typeof(IgbDataChartCategoryModule),
+                typeof(IgbDataChartCategoryCoreModule),
+                typeof(IgbDataChartFinancialCoreModule),
+                typeof(IgbDataChartFinancialModule),
+                typeof(IgbDataChartFinancialOverlaysModule),
+                typeof(IgbDataChartInteractivityModule),
+                typeof(IgbDataChartAnnotationModule)
 );
 
             await builder.Build().RunAsync();

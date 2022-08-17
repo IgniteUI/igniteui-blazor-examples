@@ -24,8 +24,8 @@ namespace Infragistics.Samples
 
             // registering Infragistics Blazor
             builder.Services.AddScoped(
-    typeof(IgbSparklineModule),
-    typeof(IgbDataGridModule)
+                typeof(IgbSparklineModule),
+                typeof(IgbDataGridModule)
 );
 
             await builder.Build().RunAsync();
