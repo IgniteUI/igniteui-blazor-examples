@@ -22,10 +22,9 @@ namespace Infragistics.Samples
 
             // registering Infragistics Blazor
             builder.Services.AddScoped(
-                typeof(IgbExcelModule),
                 typeof(IgbDataGridModule),
                 typeof(IgbSparklineModule)
-);
+            );
 
             await builder.Build().RunAsync();
         }
