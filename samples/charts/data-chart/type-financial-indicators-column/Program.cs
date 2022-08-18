@@ -23,10 +23,9 @@ namespace Infragistics.Samples
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
             // registering Infragistics Blazor
-            builder.Services.AddScoped(
+            builder.Services.AddIgniteUIBlazor(
                 typeof(IgbDataChartCoreModule),
                 typeof(IgbDataChartCategoryModule),
-                typeof(IgbDataChartCategoryTrendLineModule),
                 typeof(IgbDataChartInteractivityModule),
                 typeof(IgbFinancialPriceSeriesModule),
                 typeof(IgbDataChartFinancialCoreModule),

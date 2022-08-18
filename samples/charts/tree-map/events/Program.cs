@@ -23,7 +23,7 @@ namespace Infragistics.Samples
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
             // registering Infragistics Blazor
-            builder.Services.AddScoped(typeof(IgbTreemapModule));
+            builder.Services.AddIgniteUIBlazor(typeof(IgbTreemapModule));
 
             await builder.Build().RunAsync();
         }

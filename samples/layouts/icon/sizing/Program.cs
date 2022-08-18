@@ -23,7 +23,7 @@ namespace Infragistics.Samples
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
             // registering Infragistics Blazor
-            builder.Services.AddScoped(typeof(IgbIconModule));
+            builder.Services.AddIgniteUIBlazor(typeof(IgbIconModule));
 
             await builder.Build().RunAsync();
         }
