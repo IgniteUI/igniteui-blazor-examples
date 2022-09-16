@@ -69,7 +69,7 @@ class SampleSourceFile extends SampleFile {
         }
         this.Content = newLines.join("\r\n");
 
-        // ensure razor code has OnInitialized()
+        // add OnInitialized() if it is missing
         if (this.Content.indexOf("OnInitialized()") < 0) {
             var codeReplace = "@code {\r\n";
             var codePaste   = "    protected override void OnInitialized()\r\n    {\r\n    }\r\n";
@@ -78,6 +78,8 @@ class SampleSourceFile extends SampleFile {
 
         // add lines with new Register(IgniteUIBlazor)
         if (modules !== undefined && modules.length > 0) {
+            // console.log("update " + this.Path + " modules: " + (modules.join(','));
+
             // inserting IG modules from Program.CS to App.razor file
             var moduleReplace = "OnInitialized()\r\n    {";
             var moduleInsert = "\r\n";
@@ -86,30 +88,8 @@ class SampleSourceFile extends SampleFile {
             }
             this.Content = this.Content.replace(moduleReplace, moduleReplace + moduleInsert);
         }
-        // this.LocalPath = "";
     }
-    // constructor() {
-    //     super();
-    //     this.Content = "";
-    // }
 }
-
-// class SampleSourceBlock {
-//     public ImportLines: string[];
-//     public ImportFiles: string[];
-//     public HtmlCodeLines: string[];
-//     public CsharpCodeLines: string[];
-//     public OtherCodeLines: string[];
-
-//     constructor() {
-//         this.ImportFiles = [];
-//         this.ImportLines = [];
-//         this.ImportFiles = [];
-//         this.HtmlCodeLines = [];
-//         this.CsharpCodeLines = [];
-//         this.OtherCodeLines = [];
-//     }
-// }
 
 // this class provides information about a sample that is implemented in /samples folder
 class SampleInfo {
@@ -584,6 +564,7 @@ class Transformer {
                         if (moduleIndex >= 0) {
                             var module = line;
                             module = module.replace("builder.Services.AddScoped(","");
+                            module = module.replace("builder.Services.AddIgniteUIBlazor(","");
                             module = module.replace("typeof(IIgniteUIBlazor","");
                             module = module.replace("typeof(IgniteUIBlazor","");
                             module = module.replace("typeof(","");
