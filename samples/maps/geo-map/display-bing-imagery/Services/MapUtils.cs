@@ -92,7 +92,7 @@ namespace Infragistics.Samples
 
         public static string GetBingKey()
         {
-            return "Aj2inbXEmvSbAbbVUKH1-DWlUeWIGjFTY3K2K8d1lqE5mEwI3_1oFX2U2tqONiHF";
+            return "Avlo7qsH1zZZI0XNpTwZ4XwvUJmCbd-mczMeUXVAW9kYYOKdmBIVRe8aoO02Xctq";
         }
 
         public static Dictionary<MapRegion, Rect> GetRegions()
