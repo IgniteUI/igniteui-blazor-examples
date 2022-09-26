@@ -7,11 +7,11 @@
         <span>Selection Mode:</span>
         <select @bind="SelectionMode">
             <option>@GridSelectionMode.None</option>
-            <option>@GridSelectionMode.SingleCell</option>
-            <option>@GridSelectionMode.SingleRow</option>
-            <option>@GridSelectionMode.MultipleCell</option>
-            <option>@GridSelectionMode.MultipleRow</option>
-            <option>@GridSelectionMode.RangeCell</option>
+            @* <option>@GridSelectionMode.SingleCell</option> *@
+            <option>@GridSelectionMode.Single</option>
+            <option>@GridSelectionMode.Multiple</option>
+            <option>@GridSelectionMode.MultipleCascade</option>
+            @* <option>@GridSelectionMode.RangeCell</option> *@
         </select>
     </div>
     <div class="container vertical">
@@ -46,7 +46,7 @@
         base.OnInitialized();
         IgbDataGridModule.Register(IgniteUIBlazor);
 
-        this.SelectionMode = GridSelectionMode.MultipleRow;
+        this.SelectionMode = GridSelectionMode.Multiple;
 
         Data = EmployeeData.Create(100, false);
     }
