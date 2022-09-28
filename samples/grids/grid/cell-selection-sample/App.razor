@@ -1,0 +1,198 @@
+﻿@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+
+<div class="container vertical">
+    <div class="container vertical">
+
+        <IgbRadioGroup id="radioGroup" Alignment="RadioGroupAlignment.Horizontal">
+            <IgbRadio Value="None" LabelPosition="RadioLabelPosition.After" Change="CellSelectionRadioButtonChange">None</IgbRadio>
+            <IgbRadio Value="Single" LabelPosition="RadioLabelPosition.After" Change="CellSelectionRadioButtonChange">Single</IgbRadio>
+            <IgbRadio Value="Multiple" LabelPosition="RadioLabelPosition.After" Checked="true" Change="CellSelectionRadioButtonChange">Multiple</IgbRadio>
+        </IgbRadioGroup>
+
+        @if (Data != null)
+        {
+            <div style="overflow: hidden">
+                 <IgbGrid Height="500px" Width="100%" Data="Data" AutoGenerate=false CellSelection=CellSelectionMode>
+                     <IgbGridColumn Field="ProductID" />
+                     <IgbGridColumn Field="ProductName" />
+                     <IgbGridColumn Field="OrderItems" />
+                     <IgbGridColumn Field="OrderValue" />
+                </IgbGrid>
+
+                <IgbSnackbar Open=true ActionText="Got it. Thanks!">
+                    @*<IgbIcon>notification_important</IgbIcon>*@
+                    <div class="container">
+                        @if (this.CellSelectionMode == GridSelectionMode.Multiple)
+                        {
+                            <ul>
+                                <li><b>This is the default selection behavior.</b></li>
+                                <li>
+                                    Click on a cell and while pressing the mouse key perform drag action.
+                                </li>
+                                <li>Select a cell and press Shift + Arrow down key, this will start range selection as well.</li>
+                            </ul>
+                        }
+                        @if (this.CellSelectionMode == GridSelectionMode.Single)
+                        {
+                            <ul>
+                                <li><b>Now you can select only one cell within the grid.</b></li>
+                                <li>On single cell click the previous selection state will be cleared.</li>
+                                <li>The mouse drag will not work and instead of selecting a cell, this will make default text selection.</li>
+                            </ul>
+                        }
+                        @if (this.CellSelectionMode == GridSelectionMode.None)
+                        {
+                            <ul>
+                                <li><b>Now you are unable to select a cell while interacting with grid UI.</b></li>
+                                <li>If you need to select a cell, you can use the grid API methods.</li>
+                            </ul>
+                        }
+                    </div>
+                </IgbSnackbar>
+
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<SaleInfo> Data;
+
+    private Random Rand = new Random();
+
+    // TODO update this type for IgbGrid
+    public IgbDataGrid GridRef { get; set; }
+    public GridSelectionMode CellSelectionMode{ get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        // TODO update this call for IgbGrid
+        IgbGridModule.Register(IgniteUIBlazor);
+        IgbRadioModule.Register(IgniteUIBlazor);
+        IgbRadioGroupModule.Register(IgniteUIBlazor);
+        IgbSnackbarModule.Register(IgniteUIBlazor);
+        IgbIconModule.Register(IgniteUIBlazor);
+
+        GenerateData();
+
+        this.CellSelectionMode = GridSelectionMode.Multiple;
+    }
+
+    private void CellSelectionRadioButtonChange(IgbComponentBoolValueChangedEventArgs args)
+    {
+        IgbRadio radio = args.Parent as IgbRadio;
+
+        switch (radio.Value)
+        {
+            case "None":
+                {
+                    this.CellSelectionMode = GridSelectionMode.None;
+                    break;
+                }
+            case "Single":
+                {
+                    this.CellSelectionMode = GridSelectionMode.Single;
+                    break;
+                }
+            case "Multiple":
+                {
+                    this.CellSelectionMode = GridSelectionMode.Multiple;
+                    break;
+                }
+        }
+    }
+
+    public void GenerateData()
+    {
+        string[] names = new string[] {
+            "Intel CPU", "AMD CPU",
+            "Intel Motherboard", "AMD Motherboard", "Nvidia Motherboard",
+            "Nvidia GPU", "Gigabyte GPU", "Asus GPU", "AMD GPU", "MSI GPU",
+            "Corsair Memory", "Patriot Memory", "Skill Memory",
+            "Samsung HDD", "WD HDD", "Seagate HDD", "Intel HDD", "Asus HDD",
+            "Samsung SSD", "WD SSD", "Seagate SSD", "Intel SSD", "Asus SSD",
+            "Samsung Monitor", "Asus Monitor", "LG Monitor", "HP Monitor" };
+
+        string[] countries = new string[] {
+            "USA", "UK", "France", "Canada", "Poland",
+            "Denmark", "Croatia", "Australia", "Seychelles",
+            "Sweden", "Germany", "Japan", "Ireland",
+            "Barbados", "Jamaica", "Cuba", "Spain", };
+        string[] status = new string[] { "Packing", "Shipped", "Delivered" };
+
+        var sales = new List<SaleInfo>();
+
+        for (var i = 0; i < 200; i++)
+        {
+            var price = GetRandomNumber(10000, 90000) / 100;
+            var items = GetRandomNumber(4, 30);
+            var value = Math.Round(price * items);
+            var margin = GetRandomNumber(2, 5);
+            var profit = Math.Round((price * margin / 100) * items);
+            var country = GetRandomItem(countries);
+
+            var item = new SaleInfo()
+            {
+                Country = country,
+                CountryFlag = GetCountryFlag(country),
+                Margin = margin,
+                OrderDate = GetRandomDate(),
+                OrderItems = items,
+                OrderValue = value,
+                ProductID = 1001 + i,
+                ProductName = GetRandomItem(names),
+                ProductPrice = price,
+                Profit = Math.Round(profit),
+                Status = GetRandomItem(status)
+            };
+            sales.Add(item);
+        }
+
+        this.Data = sales;
+    }
+
+    public double GetRandomNumber(double min, double max)
+    {
+        return Math.Round(min + (Rand.NextDouble() * (max - min)));
+    }
+
+    public string GetRandomItem(string[] array)
+    {
+        var index = (int)Math.Round(GetRandomNumber(0, array.Length - 1));
+        return array[index];
+    }
+
+    public DateTime GetRandomDate()
+    {
+        var today = new DateTime();
+        var year = today.Year;
+        var month = this.GetRandomNumber(1, 9);
+        var day = this.GetRandomNumber(10, 27);
+        return new DateTime(year, (int)month, (int)day);
+    }
+
+    public string GetCountryFlag(string country)
+    {
+        var flag = "https://static.infragistics.com/xplatform/images/flags/" + country + ".png";
+        return flag;
+    }
+
+    public class SaleInfo
+    {
+        public string Status { get; set; }
+        public string ProductName { get; set; }
+        public string CountryFlag { get; set; }
+        public string Country { get; set; }
+        public DateTime OrderDate { get; set; }
+        public double Profit { get; set; }
+        public double ProductPrice { get; set; }
+        public double ProductID { get; set; }
+        public double OrderValue { get; set; }
+        public double OrderItems { get; set; }
+        public double Margin { get; set; }
+    }
+}
