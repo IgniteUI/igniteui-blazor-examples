@@ -1,0 +1,173 @@
+﻿@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+
+<div class="container vertical">
+    <div class="container vertical">
+        @if (Data != null)
+        {
+            <div class="options vertical">
+                <label style="align-self: auto">Change Copy Separator</label>
+                <IgbInput DisplayType=@InputType.Text Placeholder="CLIPBOARD OPTIONS DOESNT EXPOSE PROPS YET">
+                    <span slot="helper-text">The default value is a single tabulation which is shown as whitespace above. Click the clear icon to reset it back to tabulation.</span>
+                </IgbInput>                
+            </div>
+
+            <div class="options horizontal">
+                <IgbSwitch Value="Enabled" Checked=true Change=OnGridClipboardOptionChanged>Grid Copy Behavior</IgbSwitch>
+                <IgbSwitch Value="Headers" Checked=true Change=OnGridClipboardOptionChanged>Copy Header Labels</IgbSwitch>
+                <IgbSwitch Value="Formatters" Checked=true Change=OnGridClipboardOptionChanged>Copy Column Formatters</IgbSwitch>
+                <IgbButton>Clear Selection</IgbButton>
+            </div>
+
+            <div style="overflow: hidden">
+                 <IgbGrid @ref=GridRef Height="500px" Width="100%" Data="Data" RowEditable=true ColumnInit=OnColumnInit
+                          ClipboardOptions=GridClipboardOptions />
+            </div>
+
+            <div class="options vertical">
+                <label style="align-self: auto">Paste your data here (or in Excel)</label>
+                <textarea cols="30" rows="5"></textarea>                
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<SaleInfo> Data;
+
+    private Random Rand = new Random();
+
+    public IgbGrid GridRef { get; set; }   
+
+    private IgbGridClipboardOptions GridClipboardOptions{ get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        IgbGridModule.Register(IgniteUIBlazor);        
+        IgbSwitchModule.Register(IgniteUIBlazor);
+        IgbInputModule.Register(IgniteUIBlazor);
+
+        this.GridClipboardOptions = new IgbGridClipboardOptions();        
+
+        GenerateData();        
+    }
+
+    public void OnColumnInit(IgbColumnComponentEventArgs args)
+    {
+        //TO DO THIS EVENT DOESNT FIRE YET
+    }
+
+    public void OnGridClipboardOptionChanged(IgbComponentBoolValueChangedEventArgs args)
+    {
+        IgbSwitch s = args.Parent as IgbSwitch;
+        
+        //TO DO as it doesn't appear that the IgbGridClipboardOptions exposes the props from the Angular sample
+        switch(s.Value){
+            case "Enabled":
+                {
+                    break;
+                }
+            case "Headers":
+                {
+                    break;
+                }
+            case "Formatters":
+                {
+                    break;
+                }
+        }
+    }
+
+    public void GenerateData()
+    {
+        string[] names = new string[] {
+            "Intel CPU", "AMD CPU",
+            "Intel Motherboard", "AMD Motherboard", "Nvidia Motherboard",
+            "Nvidia GPU", "Gigabyte GPU", "Asus GPU", "AMD GPU", "MSI GPU",
+            "Corsair Memory", "Patriot Memory", "Skill Memory",
+            "Samsung HDD", "WD HDD", "Seagate HDD", "Intel HDD", "Asus HDD",
+            "Samsung SSD", "WD SSD", "Seagate SSD", "Intel SSD", "Asus SSD",
+            "Samsung Monitor", "Asus Monitor", "LG Monitor", "HP Monitor" };
+
+        string[] countries = new string[] {
+            "USA", "UK", "France", "Canada", "Poland",
+            "Denmark", "Croatia", "Australia", "Seychelles",
+            "Sweden", "Germany", "Japan", "Ireland",
+            "Barbados", "Jamaica", "Cuba", "Spain", };
+        string[] status = new string[] { "Packing", "Shipped", "Delivered" };
+
+        var sales = new List<SaleInfo>();
+
+        for (var i = 0; i < 200; i++)
+        {
+            var price = GetRandomNumber(10000, 90000) / 100;
+            var items = GetRandomNumber(4, 30);
+            var value = Math.Round(price * items);
+            var margin = GetRandomNumber(2, 5);
+            var profit = Math.Round((price * margin / 100) * items);
+            var country = GetRandomItem(countries);
+
+            var item = new SaleInfo()
+            {
+                Country = country,
+                CountryFlag = GetCountryFlag(country),
+                Margin = margin,
+                OrderDate = GetRandomDate(),
+                OrderItems = items,
+                OrderValue = value,
+                ProductID = 1001 + i,
+                ProductName = GetRandomItem(names),
+                ProductPrice = price,
+                Profit = Math.Round(profit),
+                Status = GetRandomItem(status)
+            };
+            sales.Add(item);
+        }
+
+        this.Data = sales;
+    }
+
+    public double GetRandomNumber(double min, double max)
+    {
+        return Math.Round(min + (Rand.NextDouble() * (max - min)));
+    }
+
+    public string GetRandomItem(string[] array)
+    {
+        var index = (int)Math.Round(GetRandomNumber(0, array.Length - 1));
+        return array[index];
+    }
+
+    public DateTime GetRandomDate()
+    {
+        var today = new DateTime();
+        var year = today.Year;
+        var month = this.GetRandomNumber(1, 9);
+        var day = this.GetRandomNumber(10, 27);
+        return new DateTime(year, (int)month, (int)day);
+    }
+
+    public string GetCountryFlag(string country)
+    {
+        var flag = "https://static.infragistics.com/xplatform/images/flags/" + country + ".png";
+        return flag;
+    }
+
+    public class SaleInfo
+    {
+        public string Status { get; set; }
+        public string ProductName { get; set; }
+        public string CountryFlag { get; set; }
+        public string Country { get; set; }
+        public DateTime OrderDate { get; set; }
+        public double Profit { get; set; }
+        public double ProductPrice { get; set; }
+        public double ProductID { get; set; }
+        public double OrderValue { get; set; }
+        public double OrderItems { get; set; }
+        public double Margin { get; set; }
+    }
+}
