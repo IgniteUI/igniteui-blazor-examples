@@ -28,10 +28,12 @@
             <div style="overflow: hidden">
                  <IgbGrid Height="500px" Width="100%" Data="Data" AutoGenerate=false SummaryCalculationMode=CalcMode SummaryPosition=SummaryPosition
                           ShowSummaryOnCollapse=SummaryOnCollapse>
-                     <IgbGridColumn Field="ProductID" />
-                     <IgbGridColumn Field="ProductName" Editable=true/>
-                     <IgbGridColumn Field="OrderItems" Editable=true/>
-                     <IgbGridColumn Field="OrderValue" Editable=true/>
+                     <IgbGridColumn Field="ShipCountry" Header="Ship Country" Width="250px" Groupable=true/>
+                     <IgbGridColumn Field="ShipCity" Header="Ship City" Width="250px" Groupable=true/>
+                     <IgbGridColumn Field="UnitPrice" Header="Unit Price" Width="150px" DataType=@GridColumnDataType.Number Groupable=true
+                                    HasSummary=true />
+                     <IgbGridColumn Field="Quantity" Header="Quantity" Width="150px" DataType=@GridColumnDataType.Number Groupable=true
+                                    HasSummary=true />
                 </IgbGrid>
             </div>
         }
@@ -40,7 +42,7 @@
 
 @code {
 
-    private List<SaleInfo> Data;
+    private InvoiceData Data;
 
     private Random Rand = new Random();
 
@@ -62,7 +64,7 @@
         this.SummaryPosition = GridSummaryPosition.Bottom;
         this.SummaryOnCollapse = false;
 
-        GenerateData();       
+        this.Data = new InvoiceData();
     }
 
     public void OnSummaryCalcModeRadioChange(IgbComponentBoolValueChangedEventArgs args)
@@ -109,96 +111,5 @@
     public void OnSummaryOnCollapseChanged(IgbComponentBoolValueChangedEventArgs args)
     {
         this.SummaryOnCollapse = !this.SummaryOnCollapse;
-    }
-
-
-    public void GenerateData()
-    {
-        string[] names = new string[] {
-            "Intel CPU", "AMD CPU",
-            "Intel Motherboard", "AMD Motherboard", "Nvidia Motherboard",
-            "Nvidia GPU", "Gigabyte GPU", "Asus GPU", "AMD GPU", "MSI GPU",
-            "Corsair Memory", "Patriot Memory", "Skill Memory",
-            "Samsung HDD", "WD HDD", "Seagate HDD", "Intel HDD", "Asus HDD",
-            "Samsung SSD", "WD SSD", "Seagate SSD", "Intel SSD", "Asus SSD",
-            "Samsung Monitor", "Asus Monitor", "LG Monitor", "HP Monitor" };
-
-        string[] countries = new string[] {
-            "USA", "UK", "France", "Canada", "Poland",
-            "Denmark", "Croatia", "Australia", "Seychelles",
-            "Sweden", "Germany", "Japan", "Ireland",
-            "Barbados", "Jamaica", "Cuba", "Spain", };
-        string[] status = new string[] { "Packing", "Shipped", "Delivered" };
-
-        var sales = new List<SaleInfo>();
-
-        for (var i = 0; i < 200; i++)
-        {
-            var price = GetRandomNumber(10000, 90000) / 100;
-            var items = GetRandomNumber(4, 30);
-            var value = Math.Round(price * items);
-            var margin = GetRandomNumber(2, 5);
-            var profit = Math.Round((price * margin / 100) * items);
-            var country = GetRandomItem(countries);
-
-            var item = new SaleInfo()
-            {
-                Country = country,
-                CountryFlag = GetCountryFlag(country),
-                Margin = margin,
-                OrderDate = GetRandomDate(),
-                OrderItems = items,
-                OrderValue = value,
-                ProductID = 1001 + i,
-                ProductName = GetRandomItem(names),
-                ProductPrice = price,
-                Profit = Math.Round(profit),
-                Status = GetRandomItem(status)
-            };
-            sales.Add(item);
-        }
-
-        this.Data = sales;
-    }
-
-    public double GetRandomNumber(double min, double max)
-    {
-        return Math.Round(min + (Rand.NextDouble() * (max - min)));
-    }
-
-    public string GetRandomItem(string[] array)
-    {
-        var index = (int)Math.Round(GetRandomNumber(0, array.Length - 1));
-        return array[index];
-    }
-
-    public DateTime GetRandomDate()
-    {
-        var today = new DateTime();
-        var year = today.Year;
-        var month = this.GetRandomNumber(1, 9);
-        var day = this.GetRandomNumber(10, 27);
-        return new DateTime(year, (int)month, (int)day);
-    }
-
-    public string GetCountryFlag(string country)
-    {
-        var flag = "https://static.infragistics.com/xplatform/images/flags/" + country + ".png";
-        return flag;
-    }
-
-    public class SaleInfo
-    {
-        public string Status { get; set; }
-        public string ProductName { get; set; }
-        public string CountryFlag { get; set; }
-        public string Country { get; set; }
-        public DateTime OrderDate { get; set; }
-        public double Profit { get; set; }
-        public double ProductPrice { get; set; }
-        public double ProductID { get; set; }
-        public double OrderValue { get; set; }
-        public double OrderItems { get; set; }
-        public double Margin { get; set; }
-    }
+    }  
 }

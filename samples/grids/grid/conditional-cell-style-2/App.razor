@@ -1,0 +1,37 @@
+﻿@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+
+<div class="container vertical">
+    <div class="container vertical">
+
+        @if (Data != null)
+        {
+            <div style="overflow: hidden">
+                 <IgbGrid Height="500px" Width="100%" Data="Data" AutoGenerate=false>
+                     <IgbGridColumn Field="Id" Header="Rank" Sortable=true Editable=true /> 
+                     <IgbGridColumn Field="Name" />
+                     <IgbGridColumn Field="BeatsPerMinute" />
+                     <IgbGridColumn Field="TopSpeed" />                     
+                     <IgbGridColumn Field="TrackProgress" />
+                     <IgbGridColumn Field="CountryFlag" />
+                </IgbGrid>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+
+    private AthletesData Data{ get; set; }
+
+    private Random Rand = new Random();
+
+    public IgbDataGrid GridRef { get; set; }    
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();        
+        IgbGridModule.Register(IgniteUIBlazor);
+        this.Data = new AthletesData();
+    }      
+}
