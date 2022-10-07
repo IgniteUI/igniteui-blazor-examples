@@ -8,30 +8,30 @@
         @if (marketData != null)
         {
         <div style="overflow: hidden">
-            <IgbInput ValueChanging="valueChanging" Value="@searchText"
-                @onkeypress="SearchKeyDown" @onkeydown:preventDefault="true">
+            <IgbInput ValueChanging="OnValueChanging" Value="@searchText"
+                @onkeydown="OnSearchKeyDown">
                 @if (searchText.Length == 0)
                 {
                     <IgbIcon @ref="searchIconRef" slot="prefix" IconName="search" Collection="material"/>
                 }
                 @if (searchText.Length > 0)
                 {
-                    <IgbIcon slot="prefix" IconName="clear" Collection="material" @onclick="clearSearch"/>
+                    <IgbIcon slot="prefix" IconName="clear" Collection="material" @onclick="ClearSearch"/>
                 }
 
                 <div class="chips" slot="suffix">
-                    <IgbChip Selectable=true SelectedChanged="updateCase">
+                    <IgbChip Selectable=true SelectedChanged="UpdateCase">
                         Case Sensitive
                     </IgbChip>
-                    <IgbChip  Selectable=true SelectedChanged="updateExactSearch">
+                    <IgbChip  Selectable=true SelectedChanged="UpdateExactSearch">
                         Exact Match
                     </IgbChip>
                 </div>
                 <div class="searchButtons" slot="suffix">
-                    <IgbIconButton Variant="IconButtonVariant.Flat" @onclick="prevSearch">
+                    <IgbIconButton Variant="IconButtonVariant.Flat" @onclick="PrevSearch">
                         <IgbIcon IconName="prev" Collection="material"/>
                     </IgbIconButton>
-                    <IgbIconButton Variant="IconButtonVariant.Flat" @onclick="nextSearch">
+                    <IgbIconButton Variant="IconButtonVariant.Flat" @onclick="NextSearch">
                         <IgbIcon IconName="next" Collection="material" />
                     </IgbIconButton>
                 </div>
@@ -51,7 +51,6 @@
 </div>
 
 @code {
-
     private List<MarketRecord> marketData;
     private IgbGrid grid;
 
@@ -64,8 +63,6 @@
     const string prevIcon = "<svg width='24' height='24' viewBox='0 0 24 24'><path d='M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z'></path></svg>";
     const string nextIcon = "<svg width='24' height='24' viewBox='0 0 24 24'><path d='M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z'></path></svg>";
     const string clearIcon = "<svg width='24' height='24' viewBox='0 0 24 24' title='Clear'><path d='M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'></path></svg>";
-
-    private IgbRenderFunction rendFunc = new IgbRenderFunction();
 
     protected override void OnInitialized()
     {
@@ -95,65 +92,43 @@
         }
     }
 
-    private RenderFragment CreateComponent() => builder =>
+    private void OnSearchKeyDown(KeyboardEventArgs evt)
     {
-        builder.OpenComponent(0, typeof(object));
-        builder.CloseComponent();
-    };
-
-    private string formatCurrency(object value) {
-        return string.Format("Dollar sign {0}", int.Parse(value.ToString()));
-    }
-
-    private void onResize(IgbColumnResizeEventArgs args)
-    {
-        IgbColumnType col = args.Detail.Column;
-        string pWidth = args.Detail.PrevWidth;
-        string nWidth = args.Detail.NewWidth;
-        IgbGridColumn column = grid.Columns.Where((col) => { return col.Field == "ID"; }).FirstOrDefault();
-        column.Autosize(false);
-        grid.PinColumn("AthleteNumber", 0);
-        grid.UnpinColumn("Name", 0);
-    }
-
-    private void SearchKeyDown(KeyboardEventArgs evt)
-    {
-        if (evt.Key == "Enter" || evt.Key == "ArrowDown" || evt.Key == "ArrowRight") {
+        if (evt.Key == "Enter" && evt.ShiftKey == false) {
             this.grid.FindNextAsync(this.searchText, this.caseSensitive, this.exactMatch);
-        } else if (evt.Key == "ArrowUp" || evt.Key == "ArrowLeft") {
+        } else if (evt.Key == "Enter") {
             this.grid.FindPrevAsync(this.searchText, this.caseSensitive, this.exactMatch);
         }
     }
 
-    public void valueChanging(string newValue)
+    public void OnValueChanging(string newValue)
     {
         this.searchText = newValue;
     }
 
-    public void prevSearch()
+    public void PrevSearch()
     {
         this.grid.FindPrevAsync(this.searchText, this.caseSensitive, this.exactMatch);
     }
 
-    public void nextSearch()
+    public void NextSearch()
     {
         this.grid.FindNextAsync(this.searchText, this.caseSensitive, this.exactMatch);
     }
 
-    public void clearSearch()
+    public void ClearSearch()
     {
         this.searchText = "";
         this.grid.ClearSearchAsync();
     }
 
-    public void updateCase(bool selected) {
+    public void UpdateCase(bool selected) {
         this.caseSensitive = selected;
         this.grid.FindNextAsync(this.searchText, this.caseSensitive, this.exactMatch);
     }
 
-    public void updateExactSearch(bool selected) {
+    public void UpdateExactSearch(bool selected) {
         this.exactMatch = selected;
         this.grid.FindNextAsync(this.searchText, this.caseSensitive, this.exactMatch);
     }
-
 }
