@@ -8,8 +8,7 @@
         @if (marketData != null)
         {
         <div style="overflow: hidden">
-            <IgbInput ValueChanging="OnValueChanging" Value="@searchText"
-                @onkeydown="OnSearchKeyDown">
+            <IgbInput ValueChanging="OnValueChanging" Value="@searchText" @onkeydown="OnSearchKeyDown">
                 @if (searchText.Length == 0)
                 {
                     <IgbIcon @ref="searchIconRef" slot="prefix" IconName="search" Collection="material"/>
@@ -94,7 +93,7 @@
 
     private void OnSearchKeyDown(KeyboardEventArgs evt)
     {
-        if (evt.Key == "Enter" && evt.ShiftKey == false) {
+        if (evt.Key == "Enter" && !evt.ShiftKey) {
             this.grid.FindNextAsync(this.searchText, this.caseSensitive, this.exactMatch);
         } else if (evt.Key == "Enter") {
             this.grid.FindPrevAsync(this.searchText, this.caseSensitive, this.exactMatch);
