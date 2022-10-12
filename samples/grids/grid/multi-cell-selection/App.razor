@@ -1,0 +1,161 @@
+﻿@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+
+<div class="container horizontal">
+    <div class="container vertical">
+        @if (mainData != null)
+        {
+            <div style="overflow: hidden">
+                <IgbGrid @ref="GridRef" Height="100%" Width="500px" Data="mainData" AutoGenerate=false AllowFiltering=true CellSelection="GridSelectionMode.Multiple" RangeSelected="RangeSelectionChanging">
+                     <IgbGridColumn Field="ProductID" />
+                     <IgbGridColumn Field="ProductName" />
+                     <IgbGridColumn Field="OrderItems" />
+                     <IgbGridColumn Field="OrderValue" />
+                </IgbGrid>
+            </div>
+        }
+    </div>
+    <div class="container vertical">
+        <div style="overflow: hidden">
+            <IgbGrid @ref="@targetGrid" Height="100%" Width="100%" Data="targetData" AutoGenerate=false>
+                <IgbGridColumn Field="ProductID" />
+                <IgbGridColumn Field="ProductName" />
+                <IgbGridColumn Field="OrderItems" />
+                <IgbGridColumn Field="OrderValue" />
+            </IgbGrid>
+        </div>              
+    </div>
+</div>
+
+@code {
+
+    private List<SaleInfo> mainData;
+    private List<SaleInfo> targetData;
+
+    private Random Rand = new Random();
+
+    public IgbGrid GridRef { get; set; }
+    public IgbGrid targetGrid { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        IgbGridModule.Register(IgniteUIBlazor);
+        IgbRadioModule.Register(IgniteUIBlazor);
+        IgbRadioGroupModule.Register(IgniteUIBlazor);
+        IgbSnackbarModule.Register(IgniteUIBlazor);
+        IgbIconModule.Register(IgniteUIBlazor);
+
+        GenerateData();
+
+    }
+
+    private void RangeSelectionChanging(IgbGridSelectionRangeEventArgs args)
+    {
+        transferData(this.GridRef, this.targetGrid);
+    }
+
+    public void transferData(IgbGrid grid, IgbGrid target)
+    {
+        //TODO come back when GetSelectedData returns correct data type for the rows.
+        target.ShouldGenerate = true;
+        this.targetData = new List<SaleInfo>();
+
+        for (int i = 0; i < grid.GetSelectedData(false, false).Length; i++)
+        {            
+            this.targetData.Add(grid.GetSelectedData(false, false)[i] as SaleInfo);
+        }
+
+    }
+
+    public void GenerateData()
+    {
+        string[] names = new string[] {
+            "Intel CPU", "AMD CPU",
+            "Intel Motherboard", "AMD Motherboard", "Nvidia Motherboard",
+            "Nvidia GPU", "Gigabyte GPU", "Asus GPU", "AMD GPU", "MSI GPU",
+            "Corsair Memory", "Patriot Memory", "Skill Memory",
+            "Samsung HDD", "WD HDD", "Seagate HDD", "Intel HDD", "Asus HDD",
+            "Samsung SSD", "WD SSD", "Seagate SSD", "Intel SSD", "Asus SSD",
+            "Samsung Monitor", "Asus Monitor", "LG Monitor", "HP Monitor" };
+
+        string[] countries = new string[] {
+            "USA", "UK", "France", "Canada", "Poland",
+            "Denmark", "Croatia", "Australia", "Seychelles",
+            "Sweden", "Germany", "Japan", "Ireland",
+            "Barbados", "Jamaica", "Cuba", "Spain", };
+        string[] status = new string[] { "Packing", "Shipped", "Delivered" };
+
+        var sales = new List<SaleInfo>();
+
+        for (var i = 0; i < 200; i++)
+        {
+            var price = GetRandomNumber(10000, 90000) / 100;
+            var items = GetRandomNumber(4, 30);
+            var value = Math.Round(price * items);
+            var margin = GetRandomNumber(2, 5);
+            var profit = Math.Round((price * margin / 100) * items);
+            var country = GetRandomItem(countries);
+
+            var item = new SaleInfo()
+            {
+                Country = country,
+                CountryFlag = GetCountryFlag(country),
+                Margin = margin,
+                OrderDate = GetRandomDate(),
+                OrderItems = items,
+                OrderValue = value,
+                ProductID = 1001 + i,
+                ProductName = GetRandomItem(names),
+                ProductPrice = price,
+                Profit = Math.Round(profit),
+                Status = GetRandomItem(status)
+            };
+            sales.Add(item);
+        }
+
+        this.mainData = sales;
+    }
+
+    public double GetRandomNumber(double min, double max)
+    {
+        return Math.Round(min + (Rand.NextDouble() * (max - min)));
+    }
+
+    public string GetRandomItem(string[] array)
+    {
+        var index = (int)Math.Round(GetRandomNumber(0, array.Length - 1));
+        return array[index];
+    }
+
+    public DateTime GetRandomDate()
+    {
+        var today = new DateTime();
+        var year = today.Year;
+        var month = this.GetRandomNumber(1, 9);
+        var day = this.GetRandomNumber(10, 27);
+        return new DateTime(year, (int)month, (int)day);
+    }
+
+    public string GetCountryFlag(string country)
+    {
+        var flag = "https://static.infragistics.com/xplatform/images/flags/" + country + ".png";
+        return flag;
+    }
+
+    public class SaleInfo
+    {
+        public string Status { get; set; }
+        public string ProductName { get; set; }
+        public string CountryFlag { get; set; }
+        public string Country { get; set; }
+        public DateTime OrderDate { get; set; }
+        public double Profit { get; set; }
+        public double ProductPrice { get; set; }
+        public double ProductID { get; set; }
+        public double OrderValue { get; set; }
+        public double OrderItems { get; set; }
+        public double Margin { get; set; }
+    }
+}
