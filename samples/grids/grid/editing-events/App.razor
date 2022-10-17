@@ -8,10 +8,10 @@
         {
             <div style="overflow: hidden">
                  <IgbGrid Height="500px" Width="100%" Data="Data" AutoGenerate=false CellEdit=OnCellEdit>
-                     <IgbGridColumn Field="ProductID" />
-                     <IgbGridColumn Field="ProductName" Editable=true/>
-                     <IgbGridColumn Field="OrderItems" Editable=true/>
-                     <IgbGridColumn Field="OrderValue" Editable=true/>
+                     <IgbColumn Field="ProductID" />
+                     <IgbColumn Field="ProductName" Editable=true/>
+                     <IgbColumn Field="OrderItems" Editable=true/>
+                     <IgbColumn Field="OrderValue" Editable=true/>
                 </IgbGrid>
 
                 <IgbToast>You cannot order more than the units in stock!</IgbToast>
@@ -26,18 +26,18 @@
     private List<SaleInfo> Data;
 
     private Random Rand = new Random();
-    
-    public IgbDataGrid GridRef { get; set; }    
+
+    public IgbDataGrid GridRef { get; set; }
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        
+
         IgbGridModule.Register(IgniteUIBlazor);
         IgbToastModule.Register(IgniteUIBlazor);
 
-        GenerateData();       
-    }    
+        GenerateData();
+    }
 
     public void OnCellEdit(IgbGridEditEventArgs args)
     {

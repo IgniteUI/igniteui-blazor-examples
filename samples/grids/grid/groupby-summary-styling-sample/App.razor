@@ -17,7 +17,7 @@
             <div class="options horizontal">
                 <IgbRadioGroup Alignment=@RadioGroupAlignment.Horizontal>
                     <IgbRadio Value="Top" Change=OnSummaryPositionRadioChange>Top</IgbRadio>
-                    <IgbRadio Value="Bottom" Change=OnSummaryPositionRadioChange Checked=true>Bottom</IgbRadio>                    
+                    <IgbRadio Value="Bottom" Change=OnSummaryPositionRadioChange Checked=true>Bottom</IgbRadio>
                 </IgbRadioGroup>
             </div>
 
@@ -28,10 +28,10 @@
             <div style="overflow: hidden">
                  <IgbGrid Height="500px" Width="100%" Data="Data" AutoGenerate=false SummaryCalculationMode=CalcMode SummaryPosition=SummaryPosition
                           ShowSummaryOnCollapse=SummaryOnCollapse>
-                     <IgbGridColumn Field="ProductID" />
-                     <IgbGridColumn Field="ProductName" Editable=true/>
-                     <IgbGridColumn Field="OrderItems" Editable=true/>
-                     <IgbGridColumn Field="OrderValue" Editable=true/>
+                     <IgbColumn Field="ProductID" />
+                     <IgbColumn Field="ProductName" Editable=true/>
+                     <IgbColumn Field="OrderItems" Editable=true/>
+                     <IgbColumn Field="OrderValue" Editable=true/>
                 </IgbGrid>
             </div>
         }
@@ -44,7 +44,7 @@
 
     private Random Rand = new Random();
 
-    public IgbGrid GridRef { get; set; }    
+    public IgbGrid GridRef { get; set; }
     public GridSummaryCalculationMode CalcMode{ get; set; }
     public GridSummaryPosition SummaryPosition{ get; set; }
     public bool SummaryOnCollapse{ get; set; }
@@ -62,7 +62,7 @@
         this.SummaryPosition = GridSummaryPosition.Bottom;
         this.SummaryOnCollapse = false;
 
-        GenerateData();       
+        GenerateData();
     }
 
     public void OnSummaryCalcModeRadioChange(IgbComponentBoolValueChangedEventArgs args)

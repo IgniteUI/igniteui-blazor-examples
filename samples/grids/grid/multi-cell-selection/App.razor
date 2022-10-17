@@ -6,15 +6,15 @@
         @if (mainData != null)
         {
             <div style="overflow: hidden">
-                <IgbGrid @ref="GridRef" Height="100%" Width="700px"  
+                <IgbGrid @ref="GridRef" Height="100%" Width="700px"
                 AutoGenerate=false
-                AllowFiltering=true 
-                CellSelection="GridSelectionMode.Multiple" 
+                AllowFiltering=true
+                CellSelection="GridSelectionMode.Multiple"
                 RangeSelected="RangeSelectionChanging">
-           @*          <IgbGridColumn Field="ProductID" />
-                     <IgbGridColumn Field="ProductName" />
-                     <IgbGridColumn Field="OrderItems" />
-                     <IgbGridColumn Field="OrderValue" />*@
+           @*          <IgbColumn Field="ProductID" />
+                     <IgbColumn Field="ProductName" />
+                     <IgbColumn Field="OrderItems" />
+                     <IgbColumn Field="OrderValue" />*@
                 </IgbGrid>
             </div>
         }
@@ -22,12 +22,12 @@
    @* <div class="container vertical">
         <div style="overflow: hidden">
             <IgbGrid @ref="@targetGrid" Height="100%" Width="100%" Data="targetData" AutoGenerate=false>
-                <IgbGridColumn Field="ProductID" />
-                <IgbGridColumn Field="ProductName" />
-                <IgbGridColumn Field="OrderItems" />
-                <IgbGridColumn Field="OrderValue" />
+                <IgbColumn Field="ProductID" />
+                <IgbColumn Field="ProductName" />
+                <IgbColumn Field="OrderItems" />
+                <IgbColumn Field="OrderValue" />
             </IgbGrid>
-        </div>              
+        </div>
     </div>*@
 </div>
 
@@ -67,7 +67,7 @@
         this.targetData = new List<SaleInfo>();
 
         for (int i = 0; i < grid.GetSelectedData(false, false).Length; i++)
-        {            
+        {
             this.targetData.Add(grid.GetSelectedData(false, false)[i] as SaleInfo);
         }
 
