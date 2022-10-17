@@ -21,7 +21,7 @@
                     IsGroupCollapsable="true"
                     ActivationMode="GridActivationMode.Cell"
                     SummaryScope="@SummaryScope.Root"
-                    SelectionMode="GridSelectionMode.Single">
+                    SelectionMode="DataGridSelectionMode.SingleRow">
 
                 <IgbImageColumn IsEditable="false" Width="@("*>120")" Field="Photo" HeaderText="写真" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
                             HorizontalAlignment="@CellContentHorizontalAlignment.Stretch"  />
@@ -81,10 +81,10 @@
         this._grid.GroupDescriptions.Add(countryGroup);
         this._grid.GroupDescriptions.Add(incomeGroup);
 
-        var ageSummary = new IgbColumnSummaryDescription() { Field = "Age", Operand = SummaryOperand.Average };
-        var photoSummary = new IgbColumnSummaryDescription() { Field = "Photo", Operand = SummaryOperand.Count };
-        var salarySummary = new IgbColumnSummaryDescription() { Field = "Salary", Operand = SummaryOperand.Sum };
-        var saleSummary = new IgbColumnSummaryDescription() { Field = "Sales", Operand = SummaryOperand.Max };
+        var ageSummary = new IgbColumnSummaryDescription() { Field = "Age", Operand = DataSourceSummaryOperand.Average };
+        var photoSummary = new IgbColumnSummaryDescription() { Field = "Photo", Operand = DataSourceSummaryOperand.Count };
+        var salarySummary = new IgbColumnSummaryDescription() { Field = "Salary", Operand = DataSourceSummaryOperand.Sum };
+        var saleSummary = new IgbColumnSummaryDescription() { Field = "Sales", Operand = DataSourceSummaryOperand.Max };
 
         this._grid.SummaryDescriptions.Add(ageSummary);
         this._grid.SummaryDescriptions.Add(photoSummary);
