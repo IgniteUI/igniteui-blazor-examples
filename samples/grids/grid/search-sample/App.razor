@@ -1,0 +1,133 @@
+﻿@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+
+<div class="container vertical">
+
+    <div class="container vertical">
+
+        @if (marketData != null)
+        {
+        <div style="overflow: hidden">
+            <IgbInput ValueChanging="OnValueChanging" Value="@searchText" @onkeydown="OnSearchKeyDown">
+                @if (searchText.Length == 0)
+                {
+                    <IgbIcon @ref="searchIconRef" slot="prefix" IconName="search" Collection="material"/>
+                }
+                @if (searchText.Length > 0)
+                {
+                    <IgbIcon slot="prefix" IconName="clear" Collection="material" @onclick="ClearSearch"/>
+                }
+
+                <div class="chips" slot="suffix">
+                    <IgbChip Selectable=true SelectedChanged="UpdateCase">
+                        Case Sensitive
+                    </IgbChip>
+                    <IgbChip  Selectable=true SelectedChanged="UpdateExactSearch">
+                        Exact Match
+                    </IgbChip>
+                </div>
+                <div class="searchButtons" slot="suffix">
+                    <IgbIconButton Variant="IconButtonVariant.Flat" @onclick="PrevSearch">
+                        <IgbIcon IconName="prev" Collection="material"/>
+                    </IgbIconButton>
+                    <IgbIconButton Variant="IconButtonVariant.Flat" @onclick="NextSearch">
+                        <IgbIcon IconName="next" Collection="material" />
+                    </IgbIconButton>
+                </div>
+            </IgbInput>
+            <IgbGrid @ref=grid Width="100%" Height="480px" AllowFiltering=true AutoGenerate=false Data=marketData DisplayDensity="DisplayDensity.Compact">
+                <IgbGridColumn Field="IndustrySector" DataType="GridColumnDataType.String1" Sortable=true></IgbGridColumn>
+                <IgbGridColumn Field="IndustryGroup" DataType="GridColumnDataType.String1" Sortable=true></IgbGridColumn>
+                <IgbGridColumn Field="SectorType" DataType="GridColumnDataType.String1" Sortable=true></IgbGridColumn>
+                <IgbGridColumn Field="KRD" DataType="GridColumnDataType.Number" Sortable=true></IgbGridColumn>
+                <IgbGridColumn Field="MarketNotion" DataType="GridColumnDataType.Number" Sortable=true></IgbGridColumn>
+            </IgbGrid>
+        </div>
+        }
+
+
+    </div>
+</div>
+
+@code {
+    private List<MarketRecord> marketData;
+    private IgbGrid grid;
+
+    public bool caseSensitive = false;
+    public bool exactMatch = false;
+    public string searchText = "";
+
+    private IgbIcon searchIconRef { get; set; }
+    const string searchIcon = "<svg width='24' height='24' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z' /></svg>";
+    const string prevIcon = "<svg width='24' height='24' viewBox='0 0 24 24'><path d='M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z'></path></svg>";
+    const string nextIcon = "<svg width='24' height='24' viewBox='0 0 24 24'><path d='M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z'></path></svg>";
+    const string clearIcon = "<svg width='24' height='24' viewBox='0 0 24 24' title='Clear'><path d='M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'></path></svg>";
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        IgbGridModule.Register(IgniteUIBlazor);
+        IgbInputModule.Register(IgniteUIBlazor);
+        IgbIconButtonModule.Register(IgniteUIBlazor);
+        IgbIconModule.Register(IgniteUIBlazor);
+
+        this.marketData = MarketData.GetData();
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        if (this.searchIconRef != null && firstRender)
+        {
+            this.searchIconRef.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.searchIconRef.RegisterIconFromTextAsync("search", searchIcon, "material");
+                this.searchIconRef.RegisterIconFromTextAsync("prev", prevIcon, "material");
+                this.searchIconRef.RegisterIconFromTextAsync("next", nextIcon, "material");
+                this.searchIconRef.RegisterIconFromTextAsync("clear", clearIcon, "material");
+            }));
+        }
+    }
+
+    private void OnSearchKeyDown(KeyboardEventArgs evt)
+    {
+        if (evt.Key == "Enter" && !evt.ShiftKey) {
+            this.grid.FindNextAsync(this.searchText, this.caseSensitive, this.exactMatch);
+        } else if (evt.Key == "Enter") {
+            this.grid.FindPrevAsync(this.searchText, this.caseSensitive, this.exactMatch);
+        }
+    }
+
+    public void OnValueChanging(string newValue)
+    {
+        this.searchText = newValue;
+    }
+
+    public void PrevSearch()
+    {
+        this.grid.FindPrevAsync(this.searchText, this.caseSensitive, this.exactMatch);
+    }
+
+    public void NextSearch()
+    {
+        this.grid.FindNextAsync(this.searchText, this.caseSensitive, this.exactMatch);
+    }
+
+    public void ClearSearch()
+    {
+        this.searchText = "";
+        this.grid.ClearSearchAsync();
+    }
+
+    public void UpdateCase(bool selected) {
+        this.caseSensitive = selected;
+        this.grid.FindNextAsync(this.searchText, this.caseSensitive, this.exactMatch);
+    }
+
+    public void UpdateExactSearch(bool selected) {
+        this.exactMatch = selected;
+        this.grid.FindNextAsync(this.searchText, this.caseSensitive, this.exactMatch);
+    }
+}
