@@ -6,16 +6,20 @@
         @if (mainData != null)
         {
             <div style="overflow: hidden">
-                <IgbGrid @ref="GridRef" Height="100%" Width="500px" Data="mainData" AutoGenerate=false AllowFiltering=true CellSelection="GridSelectionMode.Multiple" RangeSelected="RangeSelectionChanging">
-                     <IgbGridColumn Field="ProductID" />
+                <IgbGrid @ref="GridRef" Height="100%" Width="700px"  
+                AutoGenerate=false
+                AllowFiltering=true 
+                CellSelection="GridSelectionMode.Multiple" 
+                RangeSelected="RangeSelectionChanging">
+           @*          <IgbGridColumn Field="ProductID" />
                      <IgbGridColumn Field="ProductName" />
                      <IgbGridColumn Field="OrderItems" />
-                     <IgbGridColumn Field="OrderValue" />
+                     <IgbGridColumn Field="OrderValue" />*@
                 </IgbGrid>
             </div>
         }
     </div>
-    <div class="container vertical">
+   @* <div class="container vertical">
         <div style="overflow: hidden">
             <IgbGrid @ref="@targetGrid" Height="100%" Width="100%" Data="targetData" AutoGenerate=false>
                 <IgbGridColumn Field="ProductID" />
@@ -24,7 +28,7 @@
                 <IgbGridColumn Field="OrderValue" />
             </IgbGrid>
         </div>              
-    </div>
+    </div>*@
 </div>
 
 @code {
@@ -67,6 +71,12 @@
             this.targetData.Add(grid.GetSelectedData(false, false)[i] as SaleInfo);
         }
 
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        System.Diagnostics.Debug.WriteLine("mainData = " + mainData.Count);
+        this.GridRef.Data = mainData;
     }
 
     public void GenerateData()
@@ -114,6 +124,7 @@
             };
             sales.Add(item);
         }
+        System.Diagnostics.Debug.WriteLine("sales = " + sales.Count);
 
         this.mainData = sales;
     }
