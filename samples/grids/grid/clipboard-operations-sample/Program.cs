@@ -22,11 +22,11 @@ namespace Infragistics.Samples
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            // TODO update names of the following modules for the IgbGrid
+            // registering Infragistics Blazor
             builder.Services.AddIgniteUIBlazor(
-                typeof(IgbGridModule),
-                typeof(IgbInputModule),
-                typeof(IgbSwitchModule)
+                typeof(IgbInputModule), 
+                typeof(IgbPropertyEditorPanelModule), 
+                typeof(IgbGridModule)
             );
 
             await builder.Build().RunAsync();

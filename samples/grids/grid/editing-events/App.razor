@@ -1,137 +1,92 @@
-﻿@using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor;
+@using IgniteUI.Blazor.Controls
+using IgniteUI.Blazor.Controls;
+using System;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-    <div class="container vertical">
-
-        @if (Data != null)
-        {
-            <div style="overflow: hidden">
-                 <IgbGrid Height="500px" Width="100%" Data="Data" AutoGenerate=false CellEdit=OnCellEdit>
-                     <IgbColumn Field="ProductID" />
-                     <IgbColumn Field="ProductName" Editable=true/>
-                     <IgbColumn Field="OrderItems" Editable=true/>
-                     <IgbColumn Field="OrderValue" Editable=true/>
-                </IgbGrid>
-
-                <IgbToast>You cannot order more than the units in stock!</IgbToast>
-
-            </div>
-        }
+	
+	
+	
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="NwindData"
+        PrimaryKey="ProductID"
+        CellEdit="WebGridEditingEventsCellEdit"
+        Name="grid1"
+        @ref="grid1">
+            <IgbColumn
+            Field="ProductName"
+            Header="Product Name"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+            <IgbColumn
+            Field="UnitPrice"
+            Header="Unit Price"
+            DataType="GridColumnDataType.Number"
+            Editable="true">
+            </IgbColumn>
+            <IgbColumn
+            Field="UnitsInStock"
+            Header="Units In Stock"
+            DataType="GridColumnDataType.Number"
+            Editable="true"
+            Name="UnitsInStock"
+            @ref="unitsInStock">
+            </IgbColumn>
+            <IgbColumn
+            Field="UnitsOnOrder"
+            Header="Units on Order"
+            DataType="GridColumnDataType.Number"
+            Editable="true"
+            Name="UnitsOnOrder"
+            @ref="unitsOnOrder">
+            </IgbColumn>
+        </IgbGrid>
     </div>
 </div>
 
 @code {
-
-    private List<SaleInfo> Data;
-
-    private Random Rand = new Random();
-
-    public IgbDataGrid GridRef { get; set; }
-
     protected override void OnInitialized()
     {
-        base.OnInitialized();
-
-        IgbGridModule.Register(IgniteUIBlazor);
-        IgbToastModule.Register(IgniteUIBlazor);
-
-        GenerateData();
     }
 
-    public void OnCellEdit(IgbGridEditEventArgs args)
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var grid1 = this.grid1;
+		var unitsInStock = this.unitsInStock;
+		var unitsOnOrder = this.unitsOnOrder;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+	}
+
+	private IgbGrid grid1;
+	private IgbColumn unitsInStock;
+	private IgbColumn unitsOnOrder;
+
+    
+    public void WebGridEditingEventsCellEdit(IgbGridEditEventArgs args)
     {
-        // TODO Event not hit?
-        Console.WriteLine("CELL EDIT EVENT HIT!");
+    	Console.WriteLine("TEST" + args);
+        //TODO    
     }
-
-    public void GenerateData()
+        
+    private NwindData _nwindData = null;
+    public NwindData NwindData
     {
-        string[] names = new string[] {
-            "Intel CPU", "AMD CPU",
-            "Intel Motherboard", "AMD Motherboard", "Nvidia Motherboard",
-            "Nvidia GPU", "Gigabyte GPU", "Asus GPU", "AMD GPU", "MSI GPU",
-            "Corsair Memory", "Patriot Memory", "Skill Memory",
-            "Samsung HDD", "WD HDD", "Seagate HDD", "Intel HDD", "Asus HDD",
-            "Samsung SSD", "WD SSD", "Seagate SSD", "Intel SSD", "Asus SSD",
-            "Samsung Monitor", "Asus Monitor", "LG Monitor", "HP Monitor" };
-
-        string[] countries = new string[] {
-            "USA", "UK", "France", "Canada", "Poland",
-            "Denmark", "Croatia", "Australia", "Seychelles",
-            "Sweden", "Germany", "Japan", "Ireland",
-            "Barbados", "Jamaica", "Cuba", "Spain", };
-        string[] status = new string[] { "Packing", "Shipped", "Delivered" };
-
-        var sales = new List<SaleInfo>();
-
-        for (var i = 0; i < 200; i++)
+        get
         {
-            var price = GetRandomNumber(10000, 90000) / 100;
-            var items = GetRandomNumber(4, 30);
-            var value = Math.Round(price * items);
-            var margin = GetRandomNumber(2, 5);
-            var profit = Math.Round((price * margin / 100) * items);
-            var country = GetRandomItem(countries);
-
-            var item = new SaleInfo()
+            if (_nwindData == null)
             {
-                Country = country,
-                CountryFlag = GetCountryFlag(country),
-                Margin = margin,
-                OrderDate = GetRandomDate(),
-                OrderItems = items,
-                OrderValue = value,
-                ProductID = 1001 + i,
-                ProductName = GetRandomItem(names),
-                ProductPrice = price,
-                Profit = Math.Round(profit),
-                Status = GetRandomItem(status)
-            };
-            sales.Add(item);
+                _nwindData = new NwindData(); 
+            }
+            return _nwindData;
         }
-
-        this.Data = sales;
     }
-
-    public double GetRandomNumber(double min, double max)
-    {
-        return Math.Round(min + (Rand.NextDouble() * (max - min)));
-    }
-
-    public string GetRandomItem(string[] array)
-    {
-        var index = (int)Math.Round(GetRandomNumber(0, array.Length - 1));
-        return array[index];
-    }
-
-    public DateTime GetRandomDate()
-    {
-        var today = new DateTime();
-        var year = today.Year;
-        var month = this.GetRandomNumber(1, 9);
-        var day = this.GetRandomNumber(10, 27);
-        return new DateTime(year, (int)month, (int)day);
-    }
-
-    public string GetCountryFlag(string country)
-    {
-        var flag = "https://static.infragistics.com/xplatform/images/flags/" + country + ".png";
-        return flag;
-    }
-
-    public class SaleInfo
-    {
-        public string Status { get; set; }
-        public string ProductName { get; set; }
-        public string CountryFlag { get; set; }
-        public string Country { get; set; }
-        public DateTime OrderDate { get; set; }
-        public double Profit { get; set; }
-        public double ProductPrice { get; set; }
-        public double ProductID { get; set; }
-        public double OrderValue { get; set; }
-        public double OrderItems { get; set; }
-        public double Margin { get; set; }
-    }
+    
 }
