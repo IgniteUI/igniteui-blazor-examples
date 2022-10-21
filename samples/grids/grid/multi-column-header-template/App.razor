@@ -7,7 +7,7 @@
 
 
     <div class="container vertical fill">
-<IgbIcon @ref="IconRef" Size="SizableComponentSize.Small" IconName="expand_more" Collection="material" hidden="hidden" />
+        <IgbIcon @ref="IconRef" Size="SizableComponentSize.Small" IconName="expand_more" Collection="material" hidden="hidden" />
         <IgbGrid AutoGenerate="false"
                  Id="grid"
                  Data="CustomersData"
@@ -31,7 +31,17 @@
                     </IgbColumn>
                 </IgbColumnGroup>
             </IgbColumnGroup>
-            <IgbColumnGroup Header="Address Information">
+            <IgbColumnGroup Header="Address Information" HeaderTemplateScript="HeaderTemplate">
+                <IgbColumn Field="Location"
+                           Hidden=true
+                           Resizable="true"
+                           Sortable="true">
+                </IgbColumn>
+                <IgbColumn Field="Phone"
+                           Hidden=true
+                           Resizable="true"
+                           Sortable="true">
+                </IgbColumn>
                 <IgbColumnGroup Header="Location">
                     <IgbColumn Field="Country"
                                Resizable="true"
