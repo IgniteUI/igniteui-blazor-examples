@@ -2,12 +2,13 @@
 @inject IIgniteUIBlazor IgniteUIBlazor;
 
 <div class="container horizontal">
-    <div class="container vertical">
+    <p>You can Drag and Drop a row from the left grid to the right grid</p>
+    <div class="container vertical" style="padding: 0.5rem;">
 
-        @if (Data != null)
+        @if (Data1 != null)
         {
-            <div style="overflow: hidden; margin: 20px;">
-                <IgbGrid Height="500px" Id="grid1" Width="100%" Data="Data" PrimaryKey="@("ID")"
+                <IgbGrid Height="100%" Id="grid1" Width="100%"
+                         Data="Data1" PrimaryKey="@("ID")"
                     RowDragEndScript="OnRowDragEndHandler"
                      RowDraggable=true>
                     <IgbColumn Field="ID" Width="100px" />
@@ -21,15 +22,14 @@
                     <IgbColumn Field="Phone" Width="100px" />
                     <IgbColumn Field="Fax" Width="100px" />
                 </IgbGrid>
-            </div>
         }
     </div>
-    <div class="container vertical">
+    <div class="container vertical" style="padding: 0.5rem;">
         @if (Data2 != null)
         {
-            <div style="overflow: hidden; margin: 20px;">
-                <IgbGrid Id='grid2' Height="500px" Width="100%" Data="Data2" PrimaryKey="@("ID")"
-                EmptyGridMessage="Drop a row to add it to the grid">
+                <IgbGrid Id='grid2' Height="100%" Width="100%"
+                         Data="Data2" PrimaryKey="@("ID")"
+                         EmptyGridMessage="Drag and Drop a row from the left grid to this grid">
                     <IgbColumn Field="ID" Width="100px" />
                     <IgbColumn Field="CompanyName" Width="100px" />
                     <IgbColumn Field="ContactName" Width="100px" />
@@ -41,13 +41,12 @@
                     <IgbColumn Field="Phone" Width="100px" />
                     <IgbColumn Field="Fax" Width="100px" />
                 </IgbGrid>
-            </div>
         }
     </div>
 </div>
 
 @code {
-    private CustomersData Data { get; set; }
+    private CustomersData Data1 { get; set; }
     private List<CustomersDataItem> Data2 { get; set; }
 
     protected override void OnInitialized()
@@ -55,7 +54,7 @@
         base.OnInitialized();
 
         IgbGridModule.Register(IgniteUIBlazor);
-        this.Data = new CustomersData();
+        this.Data1 = new CustomersData();
         this.Data2 = new List<CustomersDataItem>() { };
     }
 }

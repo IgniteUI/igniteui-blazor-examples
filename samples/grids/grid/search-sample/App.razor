@@ -3,50 +3,52 @@
 
 <div class="container vertical">
 
-    <div class="container vertical">
-
         @if (marketData != null)
         {
-        <div style="overflow: hidden">
-            <IgbInput ValueChanging="OnValueChanging" Value="@searchText" @onkeydown="OnSearchKeyDown">
-                @if (searchText.Length == 0)
-                {
-                    <IgbIcon @ref="searchIconRef" slot="prefix" IconName="search" Collection="material"/>
-                }
-                @if (searchText.Length > 0)
-                {
-                    <IgbIcon slot="prefix" IconName="clear" Collection="material" @onclick="ClearSearch"/>
-                }
+            <div style="margin-bottom: 1rem">
 
-                <div class="chips" slot="suffix">
-                    <IgbChip Selectable=true SelectedChanged="UpdateCase">
-                        Case Sensitive
-                    </IgbChip>
-                    <IgbChip  Selectable=true SelectedChanged="UpdateExactSearch">
-                        Exact Match
-                    </IgbChip>
-                </div>
-                <div class="searchButtons" slot="suffix">
-                    <IgbIconButton Variant="IconButtonVariant.Flat" @onclick="PrevSearch">
-                        <IgbIcon IconName="prev" Collection="material"/>
-                    </IgbIconButton>
-                    <IgbIconButton Variant="IconButtonVariant.Flat" @onclick="NextSearch">
-                        <IgbIcon IconName="next" Collection="material" />
-                    </IgbIconButton>
-                </div>
-            </IgbInput>
-            <IgbGrid @ref=grid Width="100%" Height="480px" AllowFiltering=true AutoGenerate=false Data=marketData DisplayDensity="DisplayDensity.Compact">
-                <IgbColumn Field="IndustrySector" DataType="GridColumnDataType.String" Sortable=true></IgbColumn>
-                <IgbColumn Field="IndustryGroup" DataType="GridColumnDataType.String" Sortable=true></IgbColumn>
-                <IgbColumn Field="SectorType" DataType="GridColumnDataType.String" Sortable=true></IgbColumn>
-                <IgbColumn Field="KRD" DataType="GridColumnDataType.Number" Sortable=true></IgbColumn>
-                <IgbColumn Field="MarketNotion" DataType="GridColumnDataType.Number" Sortable=true></IgbColumn>
-            </IgbGrid>
-        </div>
+                <IgbInput ValueChanging="OnValueChanging" Value="@searchText" @onkeydown="OnSearchKeyDown">
+                    @if (searchText.Length == 0)
+                    {
+                        <IgbIcon @ref="searchIconRef" slot="prefix" IconName="search" Collection="material"/>
+                    }
+                    @if (searchText.Length > 0)
+                    {
+                        <IgbIcon slot="prefix" IconName="clear" Collection="material" @onclick="ClearSearch"/>
+                    }
+
+                    <div class="chips" slot="suffix">
+                        <IgbChip Selectable=true SelectedChanged="UpdateCase">
+                            Case Sensitive
+                        </IgbChip>
+                        <IgbChip  Selectable=true SelectedChanged="UpdateExactSearch">
+                            Exact Match
+                        </IgbChip>
+                    </div>
+                    <div class="searchButtons" slot="suffix">
+                        <IgbIconButton Variant="IconButtonVariant.Flat" @onclick="PrevSearch">
+                            <IgbIcon IconName="prev" Collection="material"/>
+                        </IgbIconButton>
+                        <IgbIconButton Variant="IconButtonVariant.Flat" @onclick="NextSearch">
+                            <IgbIcon IconName="next" Collection="material" />
+                        </IgbIconButton>
+                    </div>
+                </IgbInput>
+            </div>
+
+            <div class="container vertical">
+
+                <IgbGrid @ref=grid Width="100%" Height="100%" AllowFiltering=true
+                         AutoGenerate=false Data=marketData DisplayDensity="DisplayDensity.Compact">
+                    <IgbColumn Field="IndustrySector" DataType="GridColumnDataType.String" Sortable=true></IgbColumn>
+                    <IgbColumn Field="IndustryGroup" DataType="GridColumnDataType.String" Sortable=true></IgbColumn>
+                    <IgbColumn Field="SectorType" DataType="GridColumnDataType.String" Sortable=true></IgbColumn>
+                    <IgbColumn Field="KRD" DataType="GridColumnDataType.Number" Sortable=true></IgbColumn>
+                    <IgbColumn Field="MarketNotion" DataType="GridColumnDataType.Number" Sortable=true></IgbColumn>
+                </IgbGrid>
+            </div>
         }
 
-
-    </div>
 </div>
 
 @code {

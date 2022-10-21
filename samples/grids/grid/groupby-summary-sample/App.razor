@@ -2,7 +2,6 @@
 @inject IIgniteUIBlazor IgniteUIBlazor;
 
 <div class="container vertical">
-    <div class="container vertical">
 
         @if (Data != null)
         {
@@ -25,8 +24,8 @@
                 <IgbSwitch Change=OnSummaryOnCollapseChanged>Show summary row when group row is collapsed</IgbSwitch>
             </div>
 
-            <div style="overflow: hidden">
-                 <IgbGrid Height="500px" Width="100%" Data="Data" AutoGenerate=false SummaryCalculationMode=CalcMode SummaryPosition=SummaryPosition
+            <div class="container vertical">
+                 <IgbGrid Height="100%" Width="100%" Data="Data" AutoGenerate=false SummaryCalculationMode=CalcMode SummaryPosition=SummaryPosition
                           ShowSummaryOnCollapse=SummaryOnCollapse>
                      <IgbColumn Field="ProductID" />
                      <IgbColumn Field="ProductName" Editable=true/>
@@ -35,7 +34,6 @@
                 </IgbGrid>
             </div>
         }
-    </div>
 </div>
 
 @code {
