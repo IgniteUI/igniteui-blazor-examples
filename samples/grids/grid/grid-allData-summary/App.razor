@@ -1,0 +1,40 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid AutoGenerate="false"
+                 Data="NwindData"
+                 Id="grid"
+                 RenderedScript="OnRendered"
+                 ColumnInitScript="OnColumnInit"
+                 Name="grid">
+            <IgbColumn Field="ProductID" Header="Product ID"></IgbColumn>
+            <IgbColumn Field="ProductName" Header="Product Name"></IgbColumn>
+            <IgbColumn Field="UnitPrice" Header="Unit Price"></IgbColumn>
+            <IgbColumn Field="UnitsInStock" Header="Units In Stock" HasSummary=true></IgbColumn>
+            <IgbColumn Field="Discontinued"></IgbColumn>
+            <IgbColumn Field="OrderDate" DataType=GridColumnDataType.Date Header="Units In Stock" HasSummary=true></IgbColumn>
+        </IgbGrid>
+    </div>
+</div>
+
+@code {
+    private NwindData _nwindData = null;
+    public NwindData NwindData
+    {
+        get
+        {
+            if (_nwindData == null)
+            {
+                _nwindData = new NwindData();
+            }
+            return _nwindData;
+        }
+    }
+
+}
