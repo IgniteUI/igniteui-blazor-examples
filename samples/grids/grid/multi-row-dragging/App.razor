@@ -45,26 +45,26 @@
 </div>
 
 @code {
-    private CustomersData Data1 { get; set; }
-    private List<CustomersDataItem> Data2 { get; set; }
-
-    // TODO - add template when grid property and context are added.
-    //private RenderFragment<IgbGridRowDragGhostContext> GhostTemplate = (context) =>
-    //{
-    //    int count = context.Grid.SelectedRows.Length;
-    //    string countIcon = "filter_" + (count > 9 ? "9_plus" :count );
-    //    return
-    //@<div>
-    //    <span class="material-icons">add @countIcon</span>
-    //</div>;
-    //};
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
-
-        IgbGridModule.Register(IgniteUIBlazor);
+         
         this.Data1 = new CustomersData();
         this.Data2 = new List<CustomersDataItem>() { };
     }
+
+    private CustomersData Data1 { get; set; }
+    private List<CustomersDataItem> Data2 { get; set; }
+
+    // TODO - add template when grid property and context are added.
+    // private RenderFragment<IgbGridRowDragGhostContext> GhostTemplate = (context) =>
+    // {
+    //     int count = context.Grid.SelectedRows.Length;
+    //     string countIcon = "filter_" + (count > 9 ? "9_plus" :count );
+    //     return
+    // @<div>
+    //     <span class="material-icons">add @countIcon</span>
+    // </div>;
+    // };
 }
