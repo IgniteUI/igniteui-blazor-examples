@@ -1,0 +1,78 @@
+@using IgniteUI.Blazor.Controls;
+
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="CustomersData"
+        PrimaryKey="ID"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="ContactName"
+            Header="Contact"
+            Editable="true"
+            BodyTemplateScript="WebGridCompositeContactCellTemplate"
+            InlineEditorTemplateScript="WebGridCompositeContactEditCellTemplate"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Address"
+            Editable="true"
+            BodyTemplateScript="WebGridCompositeAddressCellTemplate"
+            InlineEditorTemplateScript="WebGridCompositeAddressEditCellTemplate"
+            Name="column2"
+            @ref="column2">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        var grid = this.grid;
+        var column1 = this.column1;
+        var column2 = this.column2;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+    }
+
+    private IgbGrid grid;
+    private IgbColumn column1;
+    private IgbColumn column2;
+
+    private CustomersData _customersData = null;
+    public CustomersData CustomersData
+    {
+        get
+        {
+            if (_customersData == null)
+            {
+                _customersData = new CustomersData(); 
+            }
+            return _customersData;
+        }
+    }
+    
+}

@@ -1,0 +1,148 @@
+@using IgniteUI.Blazor.Controls;
+using IgniteUI.Blazor.Controls;
+using System;
+
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="WebGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="false"
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
+            <IgbPropertyEditorPropertyDescription
+            Label=""
+            ValueType="PropertyEditorValueType.Button"
+            PrimitiveValue="@("Paste Options")"
+            ButtonClicked="WebGridPasteOptions"
+            Name="propertyEditorPropertyDescription1"
+            @ref="propertyEditorPropertyDescription1">
+            </IgbPropertyEditorPropertyDescription>
+            
+            <IgbPropertyEditorPropertyDescription
+            Label=""
+            ValueType="PropertyEditorValueType.Button"
+            PrimitiveValue="@("Download Sample - Excel File")"
+            ButtonClicked="WebGridExcelDownload"
+            Name="propertyEditorPropertyDescription2"
+            @ref="propertyEditorPropertyDescription2">
+            </IgbPropertyEditorPropertyDescription>
+            
+        </IgbPropertyEditorPanel>
+        
+    </div>
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid
+        Data="CustomersData"
+        PrimaryKey="ID"
+        BatchEditing="true"
+        Name="grid1"
+        @ref="grid1">
+            <IgbColumn
+            Field="ContactName"
+            Header="Contact Name"
+            Name="ContactName"
+            @ref="contactName">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ContactTitle"
+            Header="Contact Title"
+            Name="ContactTitle"
+            @ref="contactTitle">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Phone"
+            Header="Phone"
+            Name="Phone"
+            @ref="phone">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Country"
+            Header="Country"
+            Name="Country"
+            @ref="country">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var propertyEditorPropertyDescription1 = this.propertyEditorPropertyDescription1;
+        var propertyEditorPropertyDescription2 = this.propertyEditorPropertyDescription2;
+        var grid1 = this.grid1;
+        var contactName = this.contactName;
+        var contactTitle = this.contactTitle;
+        var phone = this.phone;
+        var country = this.country;
+
+        this.BindElements = () => {
+            propertyEditorPanel1.Target = this.grid1;
+        };
+        this.BindElements();
+    }
+
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
+    private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription2;
+    private IgbGrid grid1;
+    private IgbColumn contactName;
+    private IgbColumn contactTitle;
+    private IgbColumn phone;
+    private IgbColumn country;
+
+    
+    public void WebGridPasteOptions(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
+    {
+    	Console.WriteLine("test");
+    
+    	//TODO
+    
+    	// this.grid.transactions.commit(this.data);
+        // this.dialog.close();
+    }
+        
+    
+    public void WebGridExcelDownload(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
+    {
+    	Console.WriteLine("test");
+    
+    	//TODO
+    }
+        
+    private CustomersData _customersData = null;
+    public CustomersData CustomersData
+    {
+        get
+        {
+            if (_customersData == null)
+            {
+                _customersData = new CustomersData(); 
+            }
+            return _customersData;
+        }
+    }
+    
+}

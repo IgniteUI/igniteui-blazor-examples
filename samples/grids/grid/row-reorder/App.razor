@@ -1,0 +1,97 @@
+@using IgniteUI.Blazor.Controls;
+
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid
+        Data="CustomersData"
+        PrimaryKey="ID"
+        RowDraggable="true"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="ID"
+            Header="ID">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="CompanyName"
+            Header="Company Name">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ContactName"
+            Header="Contact Name"
+            MinWidth="60px"
+            MaxWidth="230px">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ContactTitle"
+            Header="Contact Title">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Address">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="City">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="PostalCode">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Phone">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Fax">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        var grid = this.grid;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+    }
+
+    private IgbGrid grid;
+
+    private CustomersData _customersData = null;
+    public CustomersData CustomersData
+    {
+        get
+        {
+            if (_customersData == null)
+            {
+                _customersData = new CustomersData(); 
+            }
+            return _customersData;
+        }
+    }
+    
+}

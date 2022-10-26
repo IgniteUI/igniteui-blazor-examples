@@ -1,0 +1,117 @@
+@using IgniteUI.Blazor.Controls;
+
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="WebGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="PropertyEditor"
+        @ref="propertyEditor">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="RowSelection"
+            Name="selectionType"
+            @ref="selectionType">
+            </IgbPropertyEditorPropertyDescription>
+            
+        </IgbPropertyEditorPanel>
+        
+    </div>
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Id="grid"
+        Data="CustomersData"
+        DisplayDensity="DisplayDensity.Cosy"
+        Name="grid"
+        @ref="grid">
+            <IgbPaginator
+            PerPage="15"
+            SelectOptions="5, 10, 15, 25, 50"
+            DisplayDensity="DisplayDensity.Cosy"
+            Name="paginator"
+            @ref="paginator">
+                <IgbPaginatorResourceStrings
+                Igx_paginator_label="Items per page">
+                </IgbPaginatorResourceStrings>
+                
+            </IgbPaginator>
+            
+            <IgbColumn
+            Field="ContactName"
+            Header="ContactName">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Country"
+            Header="Country">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="City"
+            Header="City">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="PostalCode"
+            Header="PostalCode">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="CompanyName"
+            Header="CompanyName">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        var grid = this.grid;
+        var paginator = this.paginator;
+        var propertyEditor = this.propertyEditor;
+        var selectionType = this.selectionType;
+
+        this.BindElements = () => {
+            propertyEditor.Target = this.grid;
+        };
+        this.BindElements();
+    }
+
+    private IgbGrid grid;
+    private IgbPaginator paginator;
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription selectionType;
+
+    private CustomersData _customersData = null;
+    public CustomersData CustomersData
+    {
+        get
+        {
+            if (_customersData == null)
+            {
+                _customersData = new CustomersData(); 
+            }
+            return _customersData;
+        }
+    }
+    
+}

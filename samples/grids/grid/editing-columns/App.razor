@@ -1,0 +1,123 @@
+@using IgniteUI.Blazor.Controls;
+
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="NwindData"
+        PrimaryKey="ProductID"
+        AllowFiltering="true"
+        DisplayDensity="DisplayDensity.Cosy"
+        Name="grid1"
+        @ref="grid1">
+            <IgbPaginator
+            PerPage="10">
+            </IgbPaginator>
+            
+            <IgbColumn
+            Field="ProductName"
+            Header="Product Name"
+            Sortable="true"
+            Editable="true"
+            Resizable="true"
+            HasSummary="true"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="UnitsInStock"
+            Header="Units in Stock"
+            DataType="GridColumnDataType.Number"
+            Sortable="true"
+            HasSummary="true"
+            Editable="true"
+            Resizable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="OrderDate"
+            Header="Order Date"
+            DataType="GridColumnDataType.Date"
+            Sortable="true"
+            HasSummary="true"
+            Editable="true"
+            Resizable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Discontinued"
+            Header="Discontinued"
+            DataType="GridColumnDataType.Boolean"
+            Sortable="true"
+            HasSummary="true"
+            Editable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ReorderLevel"
+            Header="Reorder Level"
+            DataType="GridColumnDataType.Number"
+            Sortable="true"
+            HasSummary="true"
+            Editable="true"
+            Filterable="false">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Locations"
+            Header="Available At"
+            Editable="true"
+            Filterable="true"
+            Width="220px">
+            </IgbColumn>
+            
+            <IgbColumn
+            Filterable="false"
+            Width="100px">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        var grid1 = this.grid1;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+    }
+
+    private IgbGrid grid1;
+
+    private NwindData _nwindData = null;
+    public NwindData NwindData
+    {
+        get
+        {
+            if (_nwindData == null)
+            {
+                _nwindData = new NwindData(); 
+            }
+            return _nwindData;
+        }
+    }
+    
+}

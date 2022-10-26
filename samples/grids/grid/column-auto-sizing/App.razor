@@ -1,0 +1,118 @@
+@using IgniteUI.Blazor.Controls;
+
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="CustomersData"
+        PrimaryKey="ProductID"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="ID"
+            Resizable="true"
+            Width="auto">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="CompanyName"
+            Width="auto"
+            Resizable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ContactName"
+            Width="auto"
+            Resizable="true"
+            Header="Contact Name">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ContactTitle"
+            Width="auto"
+            Resizable="true"
+            Header="Contact Title">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Address"
+            Width="auto"
+            Resizable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="City"
+            Width="auto"
+            Resizable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Region"
+            Width="auto"
+            Resizable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="PostalCode"
+            Width="auto"
+            Resizable="true"
+            Header="Postal Code">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Phone"
+            Width="auto"
+            Resizable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Fax"
+            Width="auto"
+            Resizable="true">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        var grid = this.grid;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+    }
+
+    private IgbGrid grid;
+
+    private CustomersData _customersData = null;
+    public CustomersData CustomersData
+    {
+        get
+        {
+            if (_customersData == null)
+            {
+                _customersData = new CustomersData(); 
+            }
+            return _customersData;
+        }
+    }
+    
+}

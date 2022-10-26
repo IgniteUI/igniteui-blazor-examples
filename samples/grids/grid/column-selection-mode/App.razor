@@ -1,0 +1,111 @@
+@using IgniteUI.Blazor.Controls;
+
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="WebGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="PropertyEditor"
+        @ref="propertyEditor">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="ColumnSelection"
+            Name="columnSelection"
+            @ref="columnSelection">
+            </IgbPropertyEditorPropertyDescription>
+            
+        </IgbPropertyEditorPanel>
+        
+    </div>
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid
+        Id="grid"
+        Data="CustomersData"
+        ColumnSelection="GridSelectionMode.Single"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="ID">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="CompanyName"
+            Header="Company Name">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ContactTitle"
+            Header="Contact Title"
+            Selectable="false">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="City"
+            Selectable="false">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Country">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="PostalCode"
+            Header="Postal Code">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Address"
+            Selectable="false">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        var propertyEditor = this.propertyEditor;
+        var columnSelection = this.columnSelection;
+        var grid = this.grid;
+
+        this.BindElements = () => {
+            propertyEditor.Target = this.grid;
+        };
+        this.BindElements();
+    }
+
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription columnSelection;
+    private IgbGrid grid;
+
+    private CustomersData _customersData = null;
+    public CustomersData CustomersData
+    {
+        get
+        {
+            if (_customersData == null)
+            {
+                _customersData = new CustomersData(); 
+            }
+            return _customersData;
+        }
+    }
+    
+}

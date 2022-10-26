@@ -1,0 +1,208 @@
+@using IgniteUI.Blazor.Controls;
+
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="CustomersData"
+        Moving="true"
+        AllowFiltering="true"
+        DisplayDensity="DisplayDensity.Compact"
+        Name="grid"
+        @ref="grid">
+            <IgbGridToolbar
+            >
+            </IgbGridToolbar>
+            
+            <IgbColumn
+            Field="ID"
+            Header="ID"
+            Filterable="false"
+            Resizable="true"
+            Name="ID"
+            @ref="iD">
+            </IgbColumn>
+            
+            <IgbColumnGroup
+            Header="General Information"
+            Collapsible="true"
+            Expanded="true"
+            Name="GeneralInformation"
+            @ref="generalInformation">
+                <IgbColumn
+                VisibleWhenCollapsed="true"
+                Name="CompanyName"
+                @ref="companyName">
+                </IgbColumn>
+                
+                <IgbColumnGroup
+                Header="Personal Details"
+                Collapsible="true"
+                Expanded="true"
+                VisibleWhenCollapsed="true"
+                Name="PersonalDetails"
+                @ref="personalDetails">
+                    <IgbColumn
+                    Field="ContactName"
+                    Name="ContactName"
+                    @ref="contactName">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="ContactTitle"
+                    Name="ContactTitle"
+                    @ref="contactTitle">
+                    </IgbColumn>
+                    
+                </IgbColumnGroup>
+                
+            </IgbColumnGroup>
+            
+            <IgbColumnGroup
+            Header="Address Information"
+            Name="AddressInformation"
+            @ref="addressInformation">
+                <IgbColumnGroup
+                Header="Location"
+                Collapsible="true"
+                Expanded="false"
+                VisibleWhenCollapsed="true"
+                Name="Location"
+                @ref="location">
+                    <IgbColumn
+                    Field="Country"
+                    VisibleWhenCollapsed="true"
+                    Hidden="true"
+                    Name="Country"
+                    @ref="country">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="Region"
+                    VisibleWhenCollapsed="false"
+                    Hidden="true"
+                    Name="Region"
+                    @ref="region">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="City"
+                    VisibleWhenCollapsed="false"
+                    Hidden="true"
+                    Name="City"
+                    @ref="city">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="Address"
+                    VisibleWhenCollapsed="false"
+                    Hidden="true"
+                    Name="Address"
+                    @ref="address">
+                    </IgbColumn>
+                    
+                </IgbColumnGroup>
+                
+                <IgbColumnGroup
+                Header="Contact Information"
+                Name="Contact Information"
+                @ref="contact Information">
+                    <IgbColumn
+                    Field="Phone"
+                    Name="Phone"
+                    @ref="phone">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="Fax"
+                    Name="Fax"
+                    @ref="fax">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="PostalCode"
+                    Name="PostalCode"
+                    @ref="postalCode">
+                    </IgbColumn>
+                    
+                </IgbColumnGroup>
+                
+            </IgbColumnGroup>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        var grid = this.grid;
+        var iD = this.iD;
+        var generalInformation = this.generalInformation;
+        var companyName = this.companyName;
+        var personalDetails = this.personalDetails;
+        var contactName = this.contactName;
+        var contactTitle = this.contactTitle;
+        var addressInformation = this.addressInformation;
+        var location = this.location;
+        var country = this.country;
+        var region = this.region;
+        var city = this.city;
+        var address = this.address;
+        var contact Information = this.contact Information;
+        var phone = this.phone;
+        var fax = this.fax;
+        var postalCode = this.postalCode;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+    }
+
+    private IgbGrid grid;
+    private IgbColumn iD;
+    private IgbColumnGroup generalInformation;
+    private IgbColumn companyName;
+    private IgbColumnGroup personalDetails;
+    private IgbColumn contactName;
+    private IgbColumn contactTitle;
+    private IgbColumnGroup addressInformation;
+    private IgbColumnGroup location;
+    private IgbColumn country;
+    private IgbColumn region;
+    private IgbColumn city;
+    private IgbColumn address;
+    private IgbColumnGroup contact Information;
+    private IgbColumn phone;
+    private IgbColumn fax;
+    private IgbColumn postalCode;
+
+    private CustomersData _customersData = null;
+    public CustomersData CustomersData
+    {
+        get
+        {
+            if (_customersData == null)
+            {
+                _customersData = new CustomersData(); 
+            }
+            return _customersData;
+        }
+    }
+    
+}

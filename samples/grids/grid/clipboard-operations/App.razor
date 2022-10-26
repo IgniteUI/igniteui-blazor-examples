@@ -1,0 +1,163 @@
+@using IgniteUI.Blazor.Controls;
+using IgniteUI.Blazor.Controls;
+using System;
+
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="WebGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="PropertyEditor"
+        @ref="propertyEditor">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="ClipboardOptions.Separator"
+            Label="Change Copy Separator"
+            ValueType="PropertyEditorValueType.StringValue">
+            </IgbPropertyEditorPropertyDescription>
+            
+            <IgbPropertyEditorPropertyDescription
+            ValueType="PropertyEditorValueType.Boolean1"
+            Label="Grid Copy Behavior"
+            PropertyPath="ClipboardOptions.Enabled"
+            PrimitiveValue="true"
+            Name="ClipboardEnabledEditor"
+            @ref="clipboardEnabledEditor">
+            </IgbPropertyEditorPropertyDescription>
+            
+            <IgbPropertyEditorPropertyDescription
+            ValueType="PropertyEditorValueType.Boolean1"
+            Label="Copying of Header Labels"
+            PropertyPath="ClipboardOptions.CopyHeaders"
+            PrimitiveValue="true"
+            Name="ClipboardHeadersEditor"
+            @ref="clipboardHeadersEditor">
+            </IgbPropertyEditorPropertyDescription>
+            
+            <IgbPropertyEditorPropertyDescription
+            ValueType="PropertyEditorValueType.Boolean1"
+            Label="Copying Column Formatters"
+            PropertyPath="ClipboardOptions.CopyFormatters"
+            PrimitiveValue="true"
+            Name="ClipboardFormattersEditor"
+            @ref="clipboardFormattersEditor">
+            </IgbPropertyEditorPropertyDescription>
+            
+            <IgbPropertyEditorPropertyDescription
+            ValueType="PropertyEditorValueType.Button"
+            PrimitiveValue="@("Clear Selection")"
+            ButtonClicked="WebGridClearSelection"
+            Name="propertyEditorPropertyDescription1"
+            @ref="propertyEditorPropertyDescription1">
+            </IgbPropertyEditorPropertyDescription>
+            
+        </IgbPropertyEditorPanel>
+        
+    </div>
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="NwindData"
+        RowEditable="true"
+        ColumnInit="WebGridClipboardOperationsColumnInit"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="ProductID">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ProductName">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="SupplierID">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="CategoryID">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="QuantityPerUnit">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="UnitPrice">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="UnitsInStock">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        var propertyEditor = this.propertyEditor;
+        var clipboardEnabledEditor = this.clipboardEnabledEditor;
+        var clipboardHeadersEditor = this.clipboardHeadersEditor;
+        var clipboardFormattersEditor = this.clipboardFormattersEditor;
+        var propertyEditorPropertyDescription1 = this.propertyEditorPropertyDescription1;
+        var grid = this.grid;
+
+        this.BindElements = () => {
+            propertyEditor.Target = this.grid;
+        };
+        this.BindElements();
+    }
+
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription clipboardEnabledEditor;
+    private IgbPropertyEditorPropertyDescription clipboardHeadersEditor;
+    private IgbPropertyEditorPropertyDescription clipboardFormattersEditor;
+    private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
+    private IgbGrid grid;
+
+    
+    public void WebGridClearSelection(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
+    {
+    	Console.WriteLine("TEST" + args);
+        //TODO
+    }
+        
+    
+    public void WebGridClipboardOperationsColumnInit(IgbColumnComponentEventArgs args)
+    {
+    	Console.WriteLine("TEST" + args);
+        //TODO    
+    }
+        
+    private NwindData _nwindData = null;
+    public NwindData NwindData
+    {
+        get
+        {
+            if (_nwindData == null)
+            {
+                _nwindData = new NwindData(); 
+            }
+            return _nwindData;
+        }
+    }
+    
+}

@@ -1,0 +1,131 @@
+@using IgniteUI.Blazor.Controls;
+
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="WebGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="PropertyEditor"
+        @ref="propertyEditor">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="DisplayDensity"
+            Name="DisplayDensityEditor"
+            @ref="displayDensityEditor">
+            </IgbPropertyEditorPropertyDescription>
+            
+        </IgbPropertyEditorPanel>
+        
+    </div>
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Id="grid"
+        Data="AthletesData"
+        DisplayDensity="DisplayDensity.Cosy"
+        Name="grid"
+        @ref="grid">
+            <IgbPaginator
+            PerPage="15"
+            SelectOptions="5, 15, 20, 50"
+            DisplayDensity="DisplayDensity.Cosy"
+            Name="paginator"
+            @ref="paginator">
+                <IgbPaginatorResourceStrings
+                Igx_paginator_label="Records per page">
+                </IgbPaginatorResourceStrings>
+                
+            </IgbPaginator>
+            
+            <IgbColumn
+            Field="Id"
+            Header="Rank"
+            Sortable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Name">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="BeatsPerMinute"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="TopSpeed"
+            DataType="GridColumnDataType.Number"
+            PipeArgs="ColumnPipeArgs1"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        var grid = this.grid;
+        var paginator = this.paginator;
+        var column1 = this.column1;
+        var propertyEditor = this.propertyEditor;
+        var displayDensityEditor = this.displayDensityEditor;
+
+        this.BindElements = () => {
+            propertyEditor.Target = this.grid;
+        };
+        this.BindElements();
+    }
+
+    private IgbGrid grid;
+    private IgbPaginator paginator;
+    private IgbColumn column1;
+    private IgbColumnPipeArgs _columnPipeArgs1 = null;
+    public IgbColumnPipeArgs ColumnPipeArgs1
+    {
+        get
+        {
+            if (this._columnPipeArgs1 == null)
+            {
+                var columnPipeArgs1 = new IgbColumnPipeArgs();
+                columnPipeArgs1.DigitsInfo = "1.1-5";
+                this._columnPipeArgs1 = columnPipeArgs1;
+            }
+            return this._columnPipeArgs1;
+        }
+    }
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription displayDensityEditor;
+
+    private AthletesData _athletesData = null;
+    public AthletesData AthletesData
+    {
+        get
+        {
+            if (_athletesData == null)
+            {
+                _athletesData = new AthletesData(); 
+            }
+            return _athletesData;
+        }
+    }
+    
+}

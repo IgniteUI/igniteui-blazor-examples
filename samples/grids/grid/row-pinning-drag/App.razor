@@ -1,0 +1,96 @@
+@using IgniteUI.Blazor.Controls;
+
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="CustomersData"
+        PrimaryKey="ID"
+        RowDraggable="true"
+        CellSelection="GridSelectionMode.None"
+        Name="grid"
+        @ref="grid">
+            <IgbPinningConfig
+            Rows="RowPinningPosition.Top">
+            </IgbPinningConfig>
+            
+            <IgbColumn
+            Field="CompanyName"
+            Header="Company Name">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ContactName"
+            Header="Contact Name">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ContactTitle"
+            Header="Contact Title">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Address">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="City">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="PostalCode">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Phone">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Fax">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        var grid = this.grid;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+    }
+
+    private IgbGrid grid;
+
+    private CustomersData _customersData = null;
+    public CustomersData CustomersData
+    {
+        get
+        {
+            if (_customersData == null)
+            {
+                _customersData = new CustomersData(); 
+            }
+            return _customersData;
+        }
+    }
+    
+}

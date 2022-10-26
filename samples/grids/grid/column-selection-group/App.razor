@@ -1,0 +1,119 @@
+@using IgniteUI.Blazor.Controls;
+
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid
+        Id="grid"
+        Data="CustomersData"
+        ColumnSelection="GridSelectionMode.Multiple"
+        Name="grid"
+        @ref="grid">
+            <IgbColumnGroup
+            Header="General Information">
+                <IgbColumn
+                Field="CompanyName"
+                Header="Company Name">
+                </IgbColumn>
+                
+                <IgbColumnGroup
+                Header="Personal Details">
+                    <IgbColumn
+                    Field="ContactName"
+                    Header="Contact Name"
+                    Hidden="true">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="ContactTitle"
+                    Header="Contact Title"
+                    Selectable="false">
+                    </IgbColumn>
+                    
+                </IgbColumnGroup>
+                
+            </IgbColumnGroup>
+            
+            <IgbColumn
+            Field="ID">
+            </IgbColumn>
+            
+            <IgbColumnGroup
+            Header="Country Information">
+                <IgbColumnGroup
+                Header="Region Information">
+                    <IgbColumn
+                    Field="Country"
+                    Selectable="false">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="City">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="PostalCode">
+                    </IgbColumn>
+                    
+                </IgbColumnGroup>
+                
+                <IgbColumnGroup
+                Header="City Information">
+                    <IgbColumn
+                    Field="Fax"
+                    Selectable="false">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="Address"
+                    Selectable="false">
+                    </IgbColumn>
+                    
+                </IgbColumnGroup>
+                
+            </IgbColumnGroup>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        var grid = this.grid;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+    }
+
+    private IgbGrid grid;
+
+    private CustomersData _customersData = null;
+    public CustomersData CustomersData
+    {
+        get
+        {
+            if (_customersData == null)
+            {
+                _customersData = new CustomersData(); 
+            }
+            return _customersData;
+        }
+    }
+    
+}
