@@ -3,6 +3,8 @@
 
 @inject IIgniteUIBlazor IgniteUIBlazor
 
+<style>
+</style>
 <div class="container vertical">
 
 
@@ -35,7 +37,7 @@
             Header="Unit Price"
             HasSummary="true"
             DataType="GridColumnDataType.Number"
-            BodyTemplate="NumberToUSDCellTemplate"
+            BodyTemplate="WebGridNumberToUSDCellTemplate"
             Name="column1"
             @ref="column1">
             </IgbColumn>
@@ -107,6 +109,15 @@
         }
     }
 
+    
+    public RenderFragment<IgbCellTemplateContext> WebGridNumberToUSDCellTemplate = (ctx) => {
+        return @<span>@formatNumber(ctx.Cell.Value)</span>;
+    };
+    	
+        private static string formatNumber(object value)
+        {
+            return "$" + value;
+        }
     private NwindData _nwindData = null;
     public NwindData NwindData
     {
