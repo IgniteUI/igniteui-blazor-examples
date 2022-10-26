@@ -1,4 +1,6 @@
 @using IgniteUI.Blazor.Controls;
+using IgniteUI.Blazor.Controls;
+using System;
 
 
 @inject IIgniteUIBlazor IgniteUIBlazor
@@ -19,6 +21,26 @@
         @ref="grid">
             <IgbGridToolbar
             >
+                <IgbGridToolbarActions
+                >
+                    <IgbGridToolbarHiding
+                    >
+                    </IgbGridToolbarHiding>
+                    
+                    <IgbGridToolbarPinning
+                    >
+                    </IgbGridToolbarPinning>
+                    
+                    <IgbGridToolbarExporter
+                    ExportCSV="false"
+                    ExportExcel="true"
+                    ExportStarted="WebGridExportEventMultiColumnHeaders"
+                    Name="gridToolbarExporter1"
+                    @ref="gridToolbarExporter1">
+                    </IgbGridToolbarExporter>
+                    
+                </IgbGridToolbarActions>
+                
             </IgbGridToolbar>
             
             <IgbColumn
@@ -78,32 +100,32 @@
                 @ref="location">
                     <IgbColumn
                     Field="Country"
-                    VisibleWhenCollapsed="true"
                     Hidden="true"
+                    VisibleWhenCollapsed="true"
                     Name="Country"
                     @ref="country">
                     </IgbColumn>
                     
                     <IgbColumn
                     Field="Region"
-                    VisibleWhenCollapsed="false"
                     Hidden="true"
+                    VisibleWhenCollapsed="false"
                     Name="Region"
                     @ref="region">
                     </IgbColumn>
                     
                     <IgbColumn
                     Field="City"
-                    VisibleWhenCollapsed="false"
                     Hidden="true"
+                    VisibleWhenCollapsed="false"
                     Name="City"
                     @ref="city">
                     </IgbColumn>
                     
                     <IgbColumn
                     Field="Address"
-                    VisibleWhenCollapsed="false"
                     Hidden="true"
+                    VisibleWhenCollapsed="false"
                     Name="Address"
                     @ref="address">
                     </IgbColumn>
@@ -112,8 +134,8 @@
                 
                 <IgbColumnGroup
                 Header="Contact Information"
-                Name="Contact Information"
-                @ref="contact Information">
+                Name="ContactInformation"
+                @ref="contactInformation">
                     <IgbColumn
                     Field="Phone"
                     Name="Phone"
@@ -152,6 +174,7 @@
     protected override void OnAfterRender(bool firstRender)
     {
         var grid = this.grid;
+        var gridToolbarExporter1 = this.gridToolbarExporter1;
         var iD = this.iD;
         var generalInformation = this.generalInformation;
         var companyName = this.companyName;
@@ -164,7 +187,7 @@
         var region = this.region;
         var city = this.city;
         var address = this.address;
-        var contact Information = this.contact Information;
+        var contactInformation = this.contactInformation;
         var phone = this.phone;
         var fax = this.fax;
         var postalCode = this.postalCode;
@@ -175,6 +198,7 @@
     }
 
     private IgbGrid grid;
+    private IgbGridToolbarExporter gridToolbarExporter1;
     private IgbColumn iD;
     private IgbColumnGroup generalInformation;
     private IgbColumn companyName;
@@ -187,11 +211,17 @@
     private IgbColumn region;
     private IgbColumn city;
     private IgbColumn address;
-    private IgbColumnGroup contact Information;
+    private IgbColumnGroup contactInformation;
     private IgbColumn phone;
     private IgbColumn fax;
     private IgbColumn postalCode;
 
+    
+    public void WebGridExportEventMultiColumnHeaders(IgbExporterEvent args)
+    {
+    	args.options.ignoreMultiColumnHeaders = false;   
+    }
+        
     private CustomersData _customersData = null;
     public CustomersData CustomersData
     {
