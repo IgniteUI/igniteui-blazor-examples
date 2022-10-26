@@ -2,18 +2,18 @@ using System;
 using System.Collections.Generic;
 public class CompanyDataItem
 {
-    public string _id { get; set; }
+    public string ID { get; set; }
     public string Company { get; set; }
     public string Address { get; set; }
     public string City { get; set; }
     public string Country { get; set; }
-    public double Sales_lifetimeSales { get; set; }
-    public double Sales_quarterlySales { get; set; }
-    public double Sales_yearlySales { get; set; }
-    public double Sales_marketPotential { get; set; }
-    public double Assets_cash { get; set; }
-    public double Assets_accRec { get; set; }
-    public double Assets_books { get; set; }
+    public double LifetimeSales { get; set; }
+    public double QuarterlySales { get; set; }
+    public double YearlySales { get; set; }
+    public double MarketPotential { get; set; }
+    public double AssetsCash { get; set; }
+    public double AccountsReceivable { get; set; }
+    public double AssetsBooks { get; set; }
 }
 
 public class CompanyData
@@ -23,438 +23,438 @@ public class CompanyData
     {
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee0991a4474f9ae631de",
-            company = @"Sportan",
-            address = @"Rapelye Street",
-            city = @"Oceola",
-            country = @"VU",
-            sales_lifetimeSales = 40882580.18,
-            sales_quarterlySales = 430845.78,
-            sales_yearlySales = 1197420.17,
-            sales_marketPotential = 4210805124.61,
-            assets_cash = 264714.71,
-            assets_accRec = 63084.44,
-            assets_books = 7534.74
+            ID = @"56c2ee0991a4474f9ae631de",
+            Company = @"Sportan",
+            Address = @"Rapelye Street",
+            City = @"Oceola",
+            Country = @"VU",
+            LifetimeSales = 40882580.18,
+            QuarterlySales = 430845.78,
+            YearlySales = 1197420.17,
+            MarketPotential = 4210805124.61,
+            AssetsCash = 264714.71,
+            AccountsReceivable = 63084.44,
+            AssetsBooks = 7534.74
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee09577c39def103f509",
-            company = @"Bugsall",
-            address = @"Hoyt Street",
-            city = @"Rosine",
-            country = @"FM",
-            sales_lifetimeSales = 29231147.89,
-            sales_quarterlySales = 227299.97,
-            sales_yearlySales = 1486467.06,
-            sales_marketPotential = 2505447478.96,
-            assets_cash = 370690.39,
-            assets_accRec = 69242.24,
-            assets_books = 12507.92
+            ID = @"56c2ee09577c39def103f509",
+            Company = @"Bugsall",
+            Address = @"Hoyt Street",
+            City = @"Rosine",
+            Country = @"FM",
+            LifetimeSales = 29231147.89,
+            QuarterlySales = 227299.97,
+            YearlySales = 1486467.06,
+            MarketPotential = 2505447478.96,
+            AssetsCash = 370690.39,
+            AccountsReceivable = 69242.24,
+            AssetsBooks = 12507.92
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee0924d0092051d8d45e",
-            company = @"Hydrocom",
-            address = @"Sunnyside Court",
-            city = @"Cornfields",
-            country = @"KE",
-            sales_lifetimeSales = 35628528.18,
-            sales_quarterlySales = 226007.91,
-            sales_yearlySales = 1092555.78,
-            sales_marketPotential = 4930069033.99,
-            assets_cash = 403038.64,
-            assets_accRec = 56183.05,
-            assets_books = 8113.52
+            ID = @"56c2ee0924d0092051d8d45e",
+            Company = @"Hydrocom",
+            Address = @"Sunnyside Court",
+            City = @"Cornfields",
+            Country = @"KE",
+            LifetimeSales = 35628528.18,
+            QuarterlySales = 226007.91,
+            YearlySales = 1092555.78,
+            MarketPotential = 4930069033.99,
+            AssetsCash = 403038.64,
+            AccountsReceivable = 56183.05,
+            AssetsBooks = 8113.52
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee09115c6a228f3c8ae0",
-            company = @"Eclipto",
-            address = @"Remsen Avenue",
-            city = @"Orin",
-            country = @"TZ",
-            sales_lifetimeSales = 20178683.42,
-            sales_quarterlySales = 319645.81,
-            sales_yearlySales = 1249194.57,
-            sales_marketPotential = 2488740024.16,
-            assets_cash = 237368.76,
-            assets_accRec = 50048.48,
-            assets_books = 13100.31
+            ID = @"56c2ee09115c6a228f3c8ae0",
+            Company = @"Eclipto",
+            Address = @"Remsen Avenue",
+            City = @"Orin",
+            Country = @"TZ",
+            LifetimeSales = 20178683.42,
+            QuarterlySales = 319645.81,
+            YearlySales = 1249194.57,
+            MarketPotential = 2488740024.16,
+            AssetsCash = 237368.76,
+            AccountsReceivable = 50048.48,
+            AssetsBooks = 13100.31
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee092ffa293f8ba4acd4",
-            company = @"Paprikut",
-            address = @"Bay Parkway",
-            city = @"Motley",
-            country = @"LR",
-            sales_lifetimeSales = 25575955.42,
-            sales_quarterlySales = 347046.85,
-            sales_yearlySales = 1611555.66,
-            sales_marketPotential = 1923959087.58,
-            assets_cash = 235064.57,
-            assets_accRec = 74596.25,
-            assets_books = 17057.85
+            ID = @"56c2ee092ffa293f8ba4acd4",
+            Company = @"Paprikut",
+            Address = @"Bay Parkway",
+            City = @"Motley",
+            Country = @"LR",
+            LifetimeSales = 25575955.42,
+            QuarterlySales = 347046.85,
+            YearlySales = 1611555.66,
+            MarketPotential = 1923959087.58,
+            AssetsCash = 235064.57,
+            AccountsReceivable = 74596.25,
+            AssetsBooks = 17057.85
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee094e10ebac49bb3445",
-            company = @"Unia",
-            address = @"Richards Street",
-            city = @"Herlong",
-            country = @"DZ",
-            sales_lifetimeSales = 13462122.23,
-            sales_quarterlySales = 368636.73,
-            sales_yearlySales = 489642.54,
-            sales_marketPotential = 1679474693.72,
-            assets_cash = 498174.1,
-            assets_accRec = 92476.88,
-            assets_books = 6961.9
+            ID = @"56c2ee094e10ebac49bb3445",
+            Company = @"Unia",
+            Address = @"Richards Street",
+            City = @"Herlong",
+            Country = @"DZ",
+            LifetimeSales = 13462122.23,
+            QuarterlySales = 368636.73,
+            YearlySales = 489642.54,
+            MarketPotential = 1679474693.72,
+            AssetsCash = 498174.1,
+            AccountsReceivable = 92476.88,
+            AssetsBooks = 6961.9
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee09cf079a741a75fd81",
-            company = @"Isologix",
-            address = @"Williams Court",
-            city = @"Marysville",
-            country = @"JO",
-            sales_lifetimeSales = 38448387.27,
-            sales_quarterlySales = 298248.71,
-            sales_yearlySales = 1904695.32,
-            sales_marketPotential = 4696918929,
-            assets_cash = 383266.93,
-            assets_accRec = 76247.35,
-            assets_books = 6818.03
+            ID = @"56c2ee09cf079a741a75fd81",
+            Company = @"Isologix",
+            Address = @"Williams Court",
+            City = @"Marysville",
+            Country = @"JO",
+            LifetimeSales = 38448387.27,
+            QuarterlySales = 298248.71,
+            YearlySales = 1904695.32,
+            MarketPotential = 4696918929,
+            AssetsCash = 383266.93,
+            AccountsReceivable = 76247.35,
+            AssetsBooks = 6818.03
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee091e9883c0d1f77f99",
-            company = @"Deepends",
-            address = @"Independence Avenue",
-            city = @"Riegelwood",
-            country = @"NO",
-            sales_lifetimeSales = 13730298.02,
-            sales_quarterlySales = 323612.72,
-            sales_yearlySales = 953860.54,
-            sales_marketPotential = 4825809829.87,
-            assets_cash = 416146.08,
-            assets_accRec = 62282.5,
-            assets_books = 13686.42
+            ID = @"56c2ee091e9883c0d1f77f99",
+            Company = @"Deepends",
+            Address = @"Independence Avenue",
+            City = @"Riegelwood",
+            Country = @"NO",
+            LifetimeSales = 13730298.02,
+            QuarterlySales = 323612.72,
+            YearlySales = 953860.54,
+            MarketPotential = 4825809829.87,
+            AssetsCash = 416146.08,
+            AccountsReceivable = 62282.5,
+            AssetsBooks = 13686.42
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee098c5bd0d8806720c1",
-            company = @"Quantasis",
-            address = @"Berriman Street",
-            city = @"Unionville",
-            country = @"ID",
-            sales_lifetimeSales = 19875841.19,
-            sales_quarterlySales = 468274.38,
-            sales_yearlySales = 1569184.18,
-            sales_marketPotential = 3489758844.49,
-            assets_cash = 415699.26,
-            assets_accRec = 54628.5,
-            assets_books = 19321.38
+            ID = @"56c2ee098c5bd0d8806720c1",
+            Company = @"Quantasis",
+            Address = @"Berriman Street",
+            City = @"Unionville",
+            Country = @"ID",
+            LifetimeSales = 19875841.19,
+            QuarterlySales = 468274.38,
+            YearlySales = 1569184.18,
+            MarketPotential = 3489758844.49,
+            AssetsCash = 415699.26,
+            AccountsReceivable = 54628.5,
+            AssetsBooks = 19321.38
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee0913724154a512e5ee",
-            company = @"Playce",
-            address = @"India Street",
-            city = @"Joppa",
-            country = @"VI",
-            sales_lifetimeSales = 45960329.03,
-            sales_quarterlySales = 448358.99,
-            sales_yearlySales = 1855678.13,
-            sales_marketPotential = 2740892152.3,
-            assets_cash = 447054.49,
-            assets_accRec = 69204.65,
-            assets_books = 23522.18
+            ID = @"56c2ee0913724154a512e5ee",
+            Company = @"Playce",
+            Address = @"India Street",
+            City = @"Joppa",
+            Country = @"VI",
+            LifetimeSales = 45960329.03,
+            QuarterlySales = 448358.99,
+            YearlySales = 1855678.13,
+            MarketPotential = 2740892152.3,
+            AssetsCash = 447054.49,
+            AccountsReceivable = 69204.65,
+            AssetsBooks = 23522.18
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee0978ab727bc193509a",
-            company = @"Ezent",
-            address = @"Decatur Street",
-            city = @"Lithium",
-            country = @"CV",
-            sales_lifetimeSales = 43613913.07,
-            sales_quarterlySales = 140288.25,
-            sales_yearlySales = 594517.52,
-            sales_marketPotential = 1419141218.99,
-            assets_cash = 324254.03,
-            assets_accRec = 78826.89,
-            assets_books = 20581.79
+            ID = @"56c2ee0978ab727bc193509a",
+            Company = @"Ezent",
+            Address = @"Decatur Street",
+            City = @"Lithium",
+            Country = @"CV",
+            LifetimeSales = 43613913.07,
+            QuarterlySales = 140288.25,
+            YearlySales = 594517.52,
+            MarketPotential = 1419141218.99,
+            AssetsCash = 324254.03,
+            AccountsReceivable = 78826.89,
+            AssetsBooks = 20581.79
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee097125fd1d983d9cf9",
-            company = @"Corepan",
-            address = @"Jefferson Street",
-            city = @"Roland",
-            country = @"CA",
-            sales_lifetimeSales = 19334236.7,
-            sales_quarterlySales = 413597.57,
-            sales_yearlySales = 1871048.41,
-            sales_marketPotential = 3524818686.77,
-            assets_cash = 464374.02,
-            assets_accRec = 68634.68,
-            assets_books = 16572.39
+            ID = @"56c2ee097125fd1d983d9cf9",
+            Company = @"Corepan",
+            Address = @"Jefferson Street",
+            City = @"Roland",
+            Country = @"CA",
+            LifetimeSales = 19334236.7,
+            QuarterlySales = 413597.57,
+            YearlySales = 1871048.41,
+            MarketPotential = 3524818686.77,
+            AssetsCash = 464374.02,
+            AccountsReceivable = 68634.68,
+            AssetsBooks = 16572.39
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee09acab49d850a7d3f6",
-            company = @"Quonata",
-            address = @"Bristol Street",
-            city = @"Belgreen",
-            country = @"ER",
-            sales_lifetimeSales = 21467135.56,
-            sales_quarterlySales = 224717.89,
-            sales_yearlySales = 657562.96,
-            sales_marketPotential = 3686684834.77,
-            assets_cash = 345941.49,
-            assets_accRec = 51842.73,
-            assets_books = 12948.79
+            ID = @"56c2ee09acab49d850a7d3f6",
+            Company = @"Quonata",
+            Address = @"Bristol Street",
+            City = @"Belgreen",
+            Country = @"ER",
+            LifetimeSales = 21467135.56,
+            QuarterlySales = 224717.89,
+            YearlySales = 657562.96,
+            MarketPotential = 3686684834.77,
+            AssetsCash = 345941.49,
+            AccountsReceivable = 51842.73,
+            AssetsBooks = 12948.79
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee099a657c6397d619bd",
-            company = @"Empirica",
-            address = @"Eaton Court",
-            city = @"Hampstead",
-            country = @"LY",
-            sales_lifetimeSales = 21711544.57,
-            sales_quarterlySales = 290740.22,
-            sales_yearlySales = 1202336.44,
-            sales_marketPotential = 2343942535.11,
-            assets_cash = 331479.28,
-            assets_accRec = 61027.27,
-            assets_books = 6199.99
+            ID = @"56c2ee099a657c6397d619bd",
+            Company = @"Empirica",
+            Address = @"Eaton Court",
+            City = @"Hampstead",
+            Country = @"LY",
+            LifetimeSales = 21711544.57,
+            QuarterlySales = 290740.22,
+            YearlySales = 1202336.44,
+            MarketPotential = 2343942535.11,
+            AssetsCash = 331479.28,
+            AccountsReceivable = 61027.27,
+            AssetsBooks = 6199.99
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee09cf6d97f31dd4b625",
-            company = @"Eventix",
-            address = @"Gain Court",
-            city = @"Dowling",
-            country = @"NG",
-            sales_lifetimeSales = 27108803.74,
-            sales_quarterlySales = 322969.25,
-            sales_yearlySales = 951465.66,
-            sales_marketPotential = 4841022751.3,
-            assets_cash = 287818.89,
-            assets_accRec = 79152.96,
-            assets_books = 9047.59
+            ID = @"56c2ee09cf6d97f31dd4b625",
+            Company = @"Eventix",
+            Address = @"Gain Court",
+            City = @"Dowling",
+            Country = @"NG",
+            LifetimeSales = 27108803.74,
+            QuarterlySales = 322969.25,
+            YearlySales = 951465.66,
+            MarketPotential = 4841022751.3,
+            AssetsCash = 287818.89,
+            AccountsReceivable = 79152.96,
+            AssetsBooks = 9047.59
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee094f28ff8ab6f86dde",
-            company = @"Dogspa",
-            address = @"Quay Street",
-            city = @"Marne",
-            country = @"TW",
-            sales_lifetimeSales = 15372014.44,
-            sales_quarterlySales = 376294.9,
-            sales_yearlySales = 978453.71,
-            sales_marketPotential = 1275418042.2,
-            assets_cash = 374628.65,
-            assets_accRec = 84888.29,
-            assets_books = 20578.59
+            ID = @"56c2ee094f28ff8ab6f86dde",
+            Company = @"Dogspa",
+            Address = @"Quay Street",
+            City = @"Marne",
+            Country = @"TW",
+            LifetimeSales = 15372014.44,
+            QuarterlySales = 376294.9,
+            YearlySales = 978453.71,
+            MarketPotential = 1275418042.2,
+            AssetsCash = 374628.65,
+            AccountsReceivable = 84888.29,
+            AssetsBooks = 20578.59
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee0997dfe157acaa78bb",
-            company = @"Jumpstack",
-            address = @"Quincy Street",
-            city = @"Hobucken",
-            country = @"CF",
-            sales_lifetimeSales = 38882346.28,
-            sales_quarterlySales = 140607.23,
-            sales_yearlySales = 1197166.82,
-            sales_marketPotential = 4820347822.28,
-            assets_cash = 231516.29,
-            assets_accRec = 87415.74,
-            assets_books = 12896.54
+            ID = @"56c2ee0997dfe157acaa78bb",
+            Company = @"Jumpstack",
+            Address = @"Quincy Street",
+            City = @"Hobucken",
+            Country = @"CF",
+            LifetimeSales = 38882346.28,
+            QuarterlySales = 140607.23,
+            YearlySales = 1197166.82,
+            MarketPotential = 4820347822.28,
+            AssetsCash = 231516.29,
+            AccountsReceivable = 87415.74,
+            AssetsBooks = 12896.54
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee0972c9c1187bb0d97d",
-            company = @"Sybixtex",
-            address = @"Ryder Street",
-            city = @"Alderpoint",
-            country = @"IO",
-            sales_lifetimeSales = 21445732.45,
-            sales_quarterlySales = 369036.23,
-            sales_yearlySales = 499606.34,
-            sales_marketPotential = 2807389991.36,
-            assets_cash = 408474.47,
-            assets_accRec = 65344.38,
-            assets_books = 8862.63
+            ID = @"56c2ee0972c9c1187bb0d97d",
+            Company = @"Sybixtex",
+            Address = @"Ryder Street",
+            City = @"Alderpoint",
+            Country = @"IO",
+            LifetimeSales = 21445732.45,
+            QuarterlySales = 369036.23,
+            YearlySales = 499606.34,
+            MarketPotential = 2807389991.36,
+            AssetsCash = 408474.47,
+            AccountsReceivable = 65344.38,
+            AssetsBooks = 8862.63
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee098a4166f0a5a19993",
-            company = @"Dognosis",
-            address = @"Wolcott Street",
-            city = @"Edgewater",
-            country = @"GL",
-            sales_lifetimeSales = 41661881.98,
-            sales_quarterlySales = 141108.09,
-            sales_yearlySales = 522969.48,
-            sales_marketPotential = 4374478218.15,
-            assets_cash = 225730.61,
-            assets_accRec = 72839.21,
-            assets_books = 8728.07
+            ID = @"56c2ee098a4166f0a5a19993",
+            Company = @"Dognosis",
+            Address = @"Wolcott Street",
+            City = @"Edgewater",
+            Country = @"GL",
+            LifetimeSales = 41661881.98,
+            QuarterlySales = 141108.09,
+            YearlySales = 522969.48,
+            MarketPotential = 4374478218.15,
+            AssetsCash = 225730.61,
+            AccountsReceivable = 72839.21,
+            AssetsBooks = 8728.07
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee091384f263dc9b8c25",
-            company = @"Twiggery",
-            address = @"Irwin Street",
-            city = @"Blackgum",
-            country = @"ZM",
-            sales_lifetimeSales = 36017506.06,
-            sales_quarterlySales = 354562.4,
-            sales_yearlySales = 1449893.92,
-            sales_marketPotential = 1948021644.72,
-            assets_cash = 376383.08,
-            assets_accRec = 62385.03,
-            assets_books = 14270.75
+            ID = @"56c2ee091384f263dc9b8c25",
+            Company = @"Twiggery",
+            Address = @"Irwin Street",
+            City = @"Blackgum",
+            Country = @"ZM",
+            LifetimeSales = 36017506.06,
+            QuarterlySales = 354562.4,
+            YearlySales = 1449893.92,
+            MarketPotential = 1948021644.72,
+            AssetsCash = 376383.08,
+            AccountsReceivable = 62385.03,
+            AssetsBooks = 14270.75
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee097fe9366d90a9066e",
-            company = @"Bizmatic",
-            address = @"Jerome Street",
-            city = @"Sylvanite",
-            country = @"MM",
-            sales_lifetimeSales = 11722193.14,
-            sales_quarterlySales = 213212.65,
-            sales_yearlySales = 1310614.58,
-            sales_marketPotential = 3463018300.01,
-            assets_cash = 252123.01,
-            assets_accRec = 57229.43,
-            assets_books = 19165.76
+            ID = @"56c2ee097fe9366d90a9066e",
+            Company = @"Bizmatic",
+            Address = @"Jerome Street",
+            City = @"Sylvanite",
+            Country = @"MM",
+            LifetimeSales = 11722193.14,
+            QuarterlySales = 213212.65,
+            YearlySales = 1310614.58,
+            MarketPotential = 3463018300.01,
+            AssetsCash = 252123.01,
+            AccountsReceivable = 57229.43,
+            AssetsBooks = 19165.76
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee09cb68c764dd8f5d23",
-            company = @"Accel",
-            address = @"Louisiana Avenue",
-            city = @"Cornucopia",
-            country = @"IE",
-            sales_lifetimeSales = 27607249.98,
-            sales_quarterlySales = 236774.12,
-            sales_yearlySales = 1546611.47,
-            sales_marketPotential = 2024251139.72,
-            assets_cash = 294508.31,
-            assets_accRec = 71612.5,
-            assets_books = 18155.66
+            ID = @"56c2ee09cb68c764dd8f5d23",
+            Company = @"Accel",
+            Address = @"Louisiana Avenue",
+            City = @"Cornucopia",
+            Country = @"IE",
+            LifetimeSales = 27607249.98,
+            QuarterlySales = 236774.12,
+            YearlySales = 1546611.47,
+            MarketPotential = 2024251139.72,
+            AssetsCash = 294508.31,
+            AccountsReceivable = 71612.5,
+            AssetsBooks = 18155.66
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee0918539a10bcaf6432",
-            company = @"Brainquil",
-            address = @"Tompkins Avenue",
-            city = @"Hanover",
-            country = @"MX",
-            sales_lifetimeSales = 25699331.36,
-            sales_quarterlySales = 186296.88,
-            sales_yearlySales = 736119.79,
-            sales_marketPotential = 1098592989.14,
-            assets_cash = 321341.22,
-            assets_accRec = 82055.95,
-            assets_books = 10149.55
+            ID = @"56c2ee0918539a10bcaf6432",
+            Company = @"Brainquil",
+            Address = @"Tompkins Avenue",
+            City = @"Hanover",
+            Country = @"MX",
+            LifetimeSales = 25699331.36,
+            QuarterlySales = 186296.88,
+            YearlySales = 736119.79,
+            MarketPotential = 1098592989.14,
+            AssetsCash = 321341.22,
+            AccountsReceivable = 82055.95,
+            AssetsBooks = 10149.55
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee09dbdd0ea1d711b0cd",
-            company = @"Eplode",
-            address = @"Desmond Court",
-            city = @"Lupton",
-            country = @"GA",
-            sales_lifetimeSales = 22446181.35,
-            sales_quarterlySales = 346390.58,
-            sales_yearlySales = 712190.68,
-            sales_marketPotential = 2534215258.43,
-            assets_cash = 266537.14,
-            assets_accRec = 87164.54,
-            assets_books = 24489.71
+            ID = @"56c2ee09dbdd0ea1d711b0cd",
+            Company = @"Eplode",
+            Address = @"Desmond Court",
+            City = @"Lupton",
+            Country = @"GA",
+            LifetimeSales = 22446181.35,
+            QuarterlySales = 346390.58,
+            YearlySales = 712190.68,
+            MarketPotential = 2534215258.43,
+            AssetsCash = 266537.14,
+            AccountsReceivable = 87164.54,
+            AssetsBooks = 24489.71
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee09d24e7b07dbfef583",
-            company = @"Crustatia",
-            address = @"Woodhull Street",
-            city = @"Conestoga",
-            country = @"GR",
-            sales_lifetimeSales = 48060275.78,
-            sales_quarterlySales = 319385.17,
-            sales_yearlySales = 1662973.16,
-            sales_marketPotential = 3562317203.73,
-            assets_cash = 471269.15,
-            assets_accRec = 98834.5,
-            assets_books = 10641.41
+            ID = @"56c2ee09d24e7b07dbfef583",
+            Company = @"Crustatia",
+            Address = @"Woodhull Street",
+            City = @"Conestoga",
+            Country = @"GR",
+            LifetimeSales = 48060275.78,
+            QuarterlySales = 319385.17,
+            YearlySales = 1662973.16,
+            MarketPotential = 3562317203.73,
+            AssetsCash = 471269.15,
+            AccountsReceivable = 98834.5,
+            AssetsBooks = 10641.41
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee093799fdc7340a9990",
-            company = @"Buzzness",
-            address = @"Guider Avenue",
-            city = @"Gratton",
-            country = @"MD",
-            sales_lifetimeSales = 26377352.6,
-            sales_quarterlySales = 439844.54,
-            sales_yearlySales = 601430.59,
-            sales_marketPotential = 1486755775.28,
-            assets_cash = 252524.24,
-            assets_accRec = 51795.96,
-            assets_books = 10315.84
+            ID = @"56c2ee093799fdc7340a9990",
+            Company = @"Buzzness",
+            Address = @"Guider Avenue",
+            City = @"Gratton",
+            Country = @"MD",
+            LifetimeSales = 26377352.6,
+            QuarterlySales = 439844.54,
+            YearlySales = 601430.59,
+            MarketPotential = 1486755775.28,
+            AssetsCash = 252524.24,
+            AccountsReceivable = 51795.96,
+            AssetsBooks = 10315.84
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee09b0bb9191f759ae94",
-            company = @"Helixo",
-            address = @"Logan Street",
-            city = @"Broadlands",
-            country = @"RE",
-            sales_lifetimeSales = 31633703.02,
-            sales_quarterlySales = 256392.06,
-            sales_yearlySales = 602291.9,
-            sales_marketPotential = 4323633265.68,
-            assets_cash = 468025.56,
-            assets_accRec = 95638.46,
-            assets_books = 22985.41
+            ID = @"56c2ee09b0bb9191f759ae94",
+            Company = @"Helixo",
+            Address = @"Logan Street",
+            City = @"Broadlands",
+            Country = @"RE",
+            LifetimeSales = 31633703.02,
+            QuarterlySales = 256392.06,
+            YearlySales = 602291.9,
+            MarketPotential = 4323633265.68,
+            AssetsCash = 468025.56,
+            AccountsReceivable = 95638.46,
+            AssetsBooks = 22985.41
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee099f65226772e2616e",
-            company = @"Geekosis",
-            address = @"Dictum Court",
-            city = @"Bellamy",
-            country = @"NF",
-            sales_lifetimeSales = 29268437.79,
-            sales_quarterlySales = 147691.1,
-            sales_yearlySales = 1691764.93,
-            sales_marketPotential = 1362207226.45,
-            assets_cash = 434628.23,
-            assets_accRec = 66871.54,
-            assets_books = 12574.59
+            ID = @"56c2ee099f65226772e2616e",
+            Company = @"Geekosis",
+            Address = @"Dictum Court",
+            City = @"Bellamy",
+            Country = @"NF",
+            LifetimeSales = 29268437.79,
+            QuarterlySales = 147691.1,
+            YearlySales = 1691764.93,
+            MarketPotential = 1362207226.45,
+            AssetsCash = 434628.23,
+            AccountsReceivable = 66871.54,
+            AssetsBooks = 12574.59
         });
         this.Add(new CompanyDataItem()
         {
-            _id = @"56c2ee093096177f7e7cc9c3",
-            company = @"Zipak",
-            address = @"Hendrix Street",
-            city = @"Enetai",
-            country = @"MH",
-            sales_lifetimeSales = 18691983.29,
-            sales_quarterlySales = 218666.54,
-            sales_yearlySales = 1038077.26,
-            sales_marketPotential = 1362313421.44,
-            assets_cash = 276294.7,
-            assets_accRec = 59302.02,
-            assets_books = 11183.04
+            ID = @"56c2ee093096177f7e7cc9c3",
+            Company = @"Zipak",
+            Address = @"Hendrix Street",
+            City = @"Enetai",
+            Country = @"MH",
+            LifetimeSales = 18691983.29,
+            QuarterlySales = 218666.54,
+            YearlySales = 1038077.26,
+            MarketPotential = 1362313421.44,
+            AssetsCash = 276294.7,
+            AccountsReceivable = 59302.02,
+            AssetsBooks = 11183.04
         });
     }
 }
