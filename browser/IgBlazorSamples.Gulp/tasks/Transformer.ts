@@ -911,7 +911,7 @@ class Transformer {
             }
             if (isInvalidLine) continue;
 
-            if (line.indexOf("<div") >= 0) {
+            if (line.indexOf("<div") >= 0 && isCS == false) {
                 isImport = false; isHtml = true; isCS = false;
             }
             if (line.indexOf("@code") >= 0) {
