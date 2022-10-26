@@ -29,6 +29,11 @@ log('loaded gulp scripts');
 // NOTE you can comment out strings in this array to run subset of samples
 var sampleSource = [
     // igConfig.SamplesCopyPath + '/charts/category-chart/axis-gap/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/grid/multi-row-dragging/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/grid/action-strip/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/grid/column*/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/grid/data*/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/grid/**/App.razor',
 
     igConfig.SamplesCopyPath + '/charts/category-chart/**/App.razor',
     igConfig.SamplesCopyPath + '/charts/data-chart/**/App.razor',
@@ -57,8 +62,8 @@ var sampleSource = [
     igConfig.SamplesCopyPath + '/layouts/dock-manager/**/App.razor',
     igConfig.SamplesCopyPath + '/menus/**/App.razor',
     igConfig.SamplesCopyPath + '/scheduling/**/App.razor',
-    // igConfig.SamplesCopyPath + '/excel/excel-library/**/App.razor',
     igConfig.SamplesCopyPath + '/notifications/**/App.razor',
+    // igConfig.SamplesCopyPath + '/excel/excel-library/**/App.razor',
 
     // igConfig.SamplesCopyPath + '/excel/spreadsheet/**/App.razor',
     // igConfig.SamplesCopyPath + '/gauges/bullet-graph/animation/App.razor',
@@ -69,7 +74,7 @@ var sampleSource = [
     // excluding project's .razor files
     // "!" + igConfig.SamplesCopyPath + '/grids/**/binding-live-data/App.razor',
     // "!" + igConfig.SamplesCopyPath + '/**/App.razor',
-    "!" + igConfig.SamplesCopyPath + '/**/Program.cs',
+    // "!" + igConfig.SamplesCopyPath + '/**/Program.cs',
     "!" + igConfig.SamplesCopyPath + '/**/obj/**',
     "!" + igConfig.SamplesCopyPath + '/**/bin/**',
     // "!" + igConfig.SamplesCopyPath + '/**/data-chart/type-scatter-polygon-series/App.razor',
@@ -258,7 +263,7 @@ function copySamplePages(cb, outputPath) {
         // outputFolder = Strings.toTitleCase(outputClient);
 
         for (const file of sample.SourceFiles) {
-            if (file.isRazorSample()) {
+            if (file.isRazorFile()) {
                 var copyTarget = outputPath + '/Pages/' + sampleFolder + '/' + file.Parent + '/' + file.Name;
                 log("copying sample to " + copyTarget);
                 saveFile(copyTarget, file.Content);
@@ -929,7 +934,7 @@ function convertSamples(cb) {
 
         for (const file of sample.SourceFiles) {
 
-            if (file.isRazorSample()) {
+            if (file.isRazorFile()) {
                 // log("converting " + file.Path)
                 var appRazor = file.Path.split("/Pages")[0];
                 appRazor += "/App.razor";
@@ -1000,8 +1005,17 @@ function updateCodeViewer(cb) {
         var contentItems = [];
 
         for (const file of sample.SourceFiles) {
-            if (file.isRazorSample()) {
-                var code = file.Content.replace(new RegExp('.*\@page.*\r?\n', 'g'), "");
+            if (file.isRazorFile()) {
+                //var code = file.Content.replace(new RegExp('.*\@page.*\r?\n', 'g'), "");
+                var codeLines = file.Content.split('\n');
+                var codeParsed = [];
+                for (const line of codeLines) {
+                    if (line.indexOf(".Register(IgniteUIBlazor)") < 0 &&
+                        line.indexOf("@page") < 0) {
+                        codeParsed.push(line);
+                    }
+                }
+                var code = codeParsed.join('\n');
                 var item = new CodeViewer(file.Path, code, "razor", "razor", true);
                 contentItems.push(item);
             }

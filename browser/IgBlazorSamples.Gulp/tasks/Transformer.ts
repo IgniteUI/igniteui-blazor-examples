@@ -25,7 +25,7 @@ class SampleFile {
         this.IsChanged = false;
     }
 
-    public isRazorSample(): boolean {
+    public isRazorFile(): boolean {
         // return this.Path.indexOf("Pages") > 0 && this.Name.endsWith(".razor");
         return this.Name.endsWith(".razor");
     }
@@ -538,7 +538,7 @@ class Transformer {
             file.Name = parts[parts.length - 1];
             file.Parent = parts[parts.length - 2];
 
-            if (file.isRazorSample() ||
+            if (file.isRazorFile() ||
                 file.isRazorComponent() ||
                 file.isCS() ||
                 file.isPublicCSS() ||
@@ -547,13 +547,15 @@ class Transformer {
                 // console.log("pro file " + file.Path + "   " + file.Name);
             }
 
-            if (file.isRazorSample()) {
+            if (file.isRazorFile()) {
                 info.SourceFiles.splice(0, 0, file);
 
             } else if (file.isRazorComponent()) {
                 info.SourceFiles.push(file);
 
             } else if (file.isCS()) {
+
+                info.SourceFiles.push(file);
 
                 if (file.Path.endsWith("Program.cs")) {
                     // getting IG modules from Program.cs
@@ -580,9 +582,9 @@ class Transformer {
                     }
                     // console.log("info.ProgramModules \n" + info.ProgramModules.join("\n"));
                 }
-                else {
-                    info.SourceFiles.push(file);
-                }
+                // else {
+                //     info.SourceFiles.push(file);
+                // }
 
             } else if (file.isPublicCSS()) {
                 info.PublicFiles_CSS.push(file);
@@ -848,7 +850,7 @@ class Transformer {
             // console.log("NOTE: lintSample() " + file.Path);
 
             let orgContent = file.Content;
-            if (file.isRazorSample()) {
+            if (file.isRazorFile()) {
                 // console.log("NOTE: lintRazor() " + file.Path);
                 this.lintRazor(info, generateRoutingPath);
                 this.lintFile(file);
