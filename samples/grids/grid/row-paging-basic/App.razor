@@ -1,0 +1,132 @@
+@using IgniteUI.Blazor.Controls;
+
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Id="grid"
+        Data="AthletesData"
+        Name="grid"
+        @ref="grid">
+            <IgbPaginator
+            PerPage="10">
+            </IgbPaginator>
+            
+            <IgbColumn
+            Field="Id"
+            Header="Rank"
+            Sortable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Name">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="BeatsPerMinute"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="TopSpeed"
+            DataType="GridColumnDataType.Number"
+            PipeArgs="ColumnPipeArgs1"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="TrackProgress"
+            BodyTemplate="WebGridProgressCellTemplate"
+            Name="column2"
+            @ref="column2">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="CountryFlag"
+            BodyTemplate="WebGridImageCellTemplate"
+            Name="column3"
+            @ref="column3">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        var grid = this.grid;
+        var column1 = this.column1;
+        var column2 = this.column2;
+        var column3 = this.column3;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+    }
+
+    private IgbGrid grid;
+    private IgbColumn column1;
+    private IgbColumnPipeArgs _columnPipeArgs1 = null;
+    public IgbColumnPipeArgs ColumnPipeArgs1
+    {
+        get
+        {
+            if (this._columnPipeArgs1 == null)
+            {
+                var columnPipeArgs1 = new IgbColumnPipeArgs();
+                columnPipeArgs1.DigitsInfo = "1.1-5";
+                this._columnPipeArgs1 = columnPipeArgs1;
+            }
+            return this._columnPipeArgs1;
+        }
+    }
+    private IgbColumn column2;
+    private IgbColumn column3;
+
+    
+    public RenderFragment<IgbCellTemplateContext> WebGridProgressCellTemplate = (ctx) => {
+        var val = Convert.ToDouble(ctx.Cell.Value as string);
+        return 
+         @<div>
+    		   <IgbLinearProgress Value=@val/>
+    		</div>;
+    };
+    	
+    
+    public RenderFragment<IgbCellTemplateContext> WebGridImageCellTemplate = (ctx) => {
+               return @<div>
+    		   <img src="@ctx.Cell.Value" class="flag" />
+    		</div>;
+    };
+    	
+    private AthletesData _athletesData = null;
+    public AthletesData AthletesData
+    {
+        get
+        {
+            if (_athletesData == null)
+            {
+                _athletesData = new AthletesData(); 
+            }
+            return _athletesData;
+        }
+    }
+    
+}

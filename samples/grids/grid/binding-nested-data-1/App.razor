@@ -1,0 +1,84 @@
+@using IgniteUI.Blazor.Controls;
+
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Id="grid"
+        Data="EmployeesNestedData"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="Name">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Title"
+            Width="20%">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Employees"
+            Width="40%"
+            BodyTemplateScript="WebGridNestedDataCellTemplate"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Age"
+            Width="10%">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="HireDate"
+            DataType="GridColumnDataType.Date">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        var grid = this.grid;
+        var column1 = this.column1;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+    }
+
+    private IgbGrid grid;
+    private IgbColumn column1;
+
+    private EmployeesNestedData _employeesNestedData = null;
+    public EmployeesNestedData EmployeesNestedData
+    {
+        get
+        {
+            if (_employeesNestedData == null)
+            {
+                _employeesNestedData = new EmployeesNestedData(); 
+            }
+            return _employeesNestedData;
+        }
+    }
+    
+}

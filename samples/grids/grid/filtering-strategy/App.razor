@@ -1,0 +1,119 @@
+@using IgniteUI.Blazor.Controls;
+
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<style>
+</style>
+<div class="container vertical">
+
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Id="grid"
+        Data="NwindData"
+        AllowFiltering="true"
+        FilterMode="FilterMode.ExcelStyleFilter"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="ProductName"
+            Header="Product Name"
+            Sortable="true"
+            DisableHiding="true"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="QuantityPerUnit"
+            Header="Quantity Per Unit"
+            Sortable="true"
+            DisableHiding="true"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="UnitPrice"
+            Header="Unit Price Category"
+            Sortable="true"
+            DisableHiding="true"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="OrderDate"
+            Header="Order Date"
+            Sortable="true"
+            DisableHiding="true"
+            DataType="GridColumnDataType.Date">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Discontinued"
+            Header="Discontinued"
+            Sortable="true"
+            DisableHiding="true"
+            DataType="GridColumnDataType.Boolean"
+            BodyTemplate="WebGridBooleanCellTemplate"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        var grid = this.grid;
+        var column1 = this.column1;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+    }
+
+    private IgbGrid grid;
+    private IgbColumn column1;
+
+    
+    public RenderFragment<IgbCellTemplateContext> WebGridBooleanCellTemplate = (ctx) => {
+    	bool value = Convert.ToBoolean(ctx.Cell.Value.ToString());
+        return @<div>
+    	@if (value == true)
+    	{
+    		<img src="https://www.infragistics.com/angular-demos-lob/assets/images/grid/active.png" title="Continued" alt="Continued" />
+    	}
+    	@if (value == false)
+    	{
+    		<img src="https://www.infragistics.com/angular-demos-lob/assets/images/grid/expired.png" title="Discontinued" alt="Discontinued" />
+    	}
+    	</div>;
+    };
+    	
+    private NwindData _nwindData = null;
+    public NwindData NwindData
+    {
+        get
+        {
+            if (_nwindData == null)
+            {
+                _nwindData = new NwindData(); 
+            }
+            return _nwindData;
+        }
+    }
+    
+}

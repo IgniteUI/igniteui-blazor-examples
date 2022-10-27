@@ -1,0 +1,131 @@
+@using IgniteUI.Blazor.Controls;
+
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="AthletesData"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="Id"
+            Header="Rank"
+            Sortable="true"
+            Editable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Name"
+            Header="Athlete"
+            Sortable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="BeatsPerMinute"
+            Header="Beats per Minute"
+            Sortable="true"
+            Editable="true"
+            DataType="GridColumnDataType.Number"
+            BodyTemplate="WebGridBeatsPerMinuteTemplate"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="TopSpeed"
+            Header="Top Speed"
+            Sortable="true"
+            Editable="true"
+            DataType="GridColumnDataType.Number"
+            BodyTemplate="WebGridTopSpeedTemplate"
+            Name="column2"
+            @ref="column2">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="TrackProgress"
+            Header="Track Progress"
+            Sortable="true"
+            Editable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="CountryFlag"
+            Header="Country"
+            BodyTemplate="WebGridCountryFlagTemplate"
+            Name="column3"
+            @ref="column3">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        var grid = this.grid;
+        var column1 = this.column1;
+        var column2 = this.column2;
+        var column3 = this.column3;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+    }
+
+    private IgbGrid grid;
+    private IgbColumn column1;
+    private IgbColumn column2;
+    private IgbColumn column3;
+
+    
+    public RenderFragment<IgbCellTemplateContext> WebGridBeatsPerMinuteTemplate = (ctx) => {
+        return @<div>    
+            <span>TODO BeatsPerMinuteTemplate</span>       
+          </div>;
+    };
+        
+    
+    public RenderFragment<IgbCellTemplateContext> WebGridTopSpeedTemplate = (ctx) => {
+    return @<div>
+        <span>TODO TopSpeedTemplate</span>
+        </div>;
+    };
+        
+    
+    public RenderFragment<IgbCellTemplateContext> WebGridCountryFlagTemplate = (ctx) => {
+        return @<div>
+            <span>TODO CountryFlagTemplate</span>   
+         </div>;
+    };
+        
+    private AthletesData _athletesData = null;
+    public AthletesData AthletesData
+    {
+        get
+        {
+            if (_athletesData == null)
+            {
+                _athletesData = new AthletesData(); 
+            }
+            return _athletesData;
+        }
+    }
+    
+}
