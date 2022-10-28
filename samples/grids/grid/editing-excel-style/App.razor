@@ -4,6 +4,7 @@
 
 
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
 
@@ -15,7 +16,7 @@
         AutoGenerate="false"
         Data="NwindData"
         PrimaryKey="ProductID"
-        GridKeydown="WebGridEditingExcelStyle"
+        GridKeydownScript="WebGridEditingExcelStyle"
         Name="grid1"
         @ref="grid1">
             <IgbColumn
@@ -63,30 +64,26 @@
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
     }
 
     private Action BindElements { get; set; }
 
-    protected override void OnAfterRender(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid1 = this.grid1;
 
         this.BindElements = () => {
         };
         this.BindElements();
-    }
+
+        if (firstRender) {
+        }
+	}
 
     private IgbGrid grid1;
 
-    
-    public void WebGridEditingExcelStyle(IgbGridKeydownEventArgs args)
-    {
-    	Console.WriteLine("TEST" + args);
-        //TODO    
-    }
-        
     private NwindData _nwindData = null;
     public NwindData NwindData
     {

@@ -2,6 +2,7 @@
 
 
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
 
@@ -91,13 +92,13 @@
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
     }
 
     private Action BindElements { get; set; }
 
-    protected override void OnAfterRender(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
         var orderID = this.orderID;
@@ -114,7 +115,10 @@
         this.BindElements = () => {
         };
         this.BindElements();
-    }
+
+        if (firstRender) {
+        }
+	}
 
     private IgbGrid grid;
     private IgbColumn orderID;

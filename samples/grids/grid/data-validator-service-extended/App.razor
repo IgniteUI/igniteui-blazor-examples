@@ -4,6 +4,7 @@
 
 
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
 
@@ -19,7 +20,7 @@
             Label=""
             ValueType="PropertyEditorValueType.Button"
             PrimitiveValue="@("Undo")"
-            ButtonClicked="WebGridUndo"
+            ButtonClickedScript="WebGridUndo"
             Name="propertyEditorPropertyDescription1"
             @ref="propertyEditorPropertyDescription1">
             </IgbPropertyEditorPropertyDescription>
@@ -28,7 +29,7 @@
             Label=""
             ValueType="PropertyEditorValueType.Button"
             PrimitiveValue="@("Redo")"
-            ButtonClicked="WebGridRedo"
+            ButtonClickedScript="WebGridRedo"
             Name="propertyEditorPropertyDescription2"
             @ref="propertyEditorPropertyDescription2">
             </IgbPropertyEditorPropertyDescription>
@@ -37,7 +38,7 @@
             Label=""
             ValueType="PropertyEditorValueType.Button"
             PrimitiveValue="@("Commit")"
-            ButtonClicked="WebGridCommit"
+            ButtonClickedScript="WebGridCommit"
             Name="propertyEditorPropertyDescription3"
             @ref="propertyEditorPropertyDescription3">
             </IgbPropertyEditorPropertyDescription>
@@ -133,13 +134,13 @@
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
     }
 
     private Action BindElements { get; set; }
 
-    protected override void OnAfterRender(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var propertyEditorPanel1 = this.propertyEditorPanel1;
         var propertyEditorPropertyDescription1 = this.propertyEditorPropertyDescription1;
@@ -161,7 +162,10 @@
             propertyEditorPanel1.Target = this.grid;
         };
         this.BindElements();
-    }
+
+        if (firstRender) {
+        }
+	}
 
     private IgbPropertyEditorPanel propertyEditorPanel1;
     private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
@@ -179,40 +183,6 @@
     private IgbColumn categoryID;
     private IgbColumn discontinued;
 
-    
-    public void WebGridUndo(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
-    {
-    	Console.WriteLine("test");
-    
-    	//TODO
-    
-    	// this.grid.endEdit(true);
-        // this.grid.transactions.undo();
-    }
-        
-    
-    public void WebGridRedo(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
-    {
-    	Console.WriteLine("test");
-    
-    	//TODO
-    
-    	// this.grid.endEdit(true);
-        // this.grid.transactions.redo();
-    
-    }
-        
-    
-    public void WebGridCommit(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
-    {
-    	Console.WriteLine("test");
-    
-    	//TODO
-    
-    	// this.grid.transactions.commit(this.data);
-        // this.dialog.close();
-    }
-        
     private NwindData _nwindData = null;
     public NwindData NwindData
     {

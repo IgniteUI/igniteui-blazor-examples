@@ -34,15 +34,16 @@
     <script src="_framework/blazor.webassembly.js"></script>
         <script>
         
-        igRegisterScript("PinHeaderTemplate", (ctx) => {
+        igRegisterScript("WebGridPinHeaderTemplate", (ctx) => {
             var html = window.igTemplating.html;
             window.toggleColumnPin = function toggleColumnPin(field) {
                 var col = grid.getColumnByName(field);
                 col.pinned = !col.pinned;
+                grid.markForCheck();
             }
             return html`<div>
             <span style="float:left">${ctx.column.field}</span>
-            <igc-icon style="float:right" size="large" name="fas" collection="fa-thumbtack" onclick='toggleColumnPin("${ctx.column.field}")' ></igc-icon>
+            <span style="float:right" onclick='toggleColumnPin("${ctx.column.field}")'>📌</span>
         </div>`;
         }, false);
         

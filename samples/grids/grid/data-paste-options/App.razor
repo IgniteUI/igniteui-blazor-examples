@@ -4,6 +4,7 @@
 
 
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
 
@@ -19,7 +20,7 @@
             Label=""
             ValueType="PropertyEditorValueType.Button"
             PrimitiveValue="@("Paste Options")"
-            ButtonClicked="WebGridPasteOptions"
+            ButtonClickedScript="WebGridPasteOptions"
             Name="propertyEditorPropertyDescription1"
             @ref="propertyEditorPropertyDescription1">
             </IgbPropertyEditorPropertyDescription>
@@ -28,7 +29,7 @@
             Label=""
             ValueType="PropertyEditorValueType.Button"
             PrimitiveValue="@("Download Sample - Excel File")"
-            ButtonClicked="WebGridExcelDownload"
+            ButtonClickedScript="WebGridExcelDownload"
             Name="propertyEditorPropertyDescription2"
             @ref="propertyEditorPropertyDescription2">
             </IgbPropertyEditorPropertyDescription>
@@ -81,13 +82,13 @@
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
     }
 
     private Action BindElements { get; set; }
 
-    protected override void OnAfterRender(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var propertyEditorPanel1 = this.propertyEditorPanel1;
         var propertyEditorPropertyDescription1 = this.propertyEditorPropertyDescription1;
@@ -102,7 +103,10 @@
             propertyEditorPanel1.Target = this.grid1;
         };
         this.BindElements();
-    }
+
+        if (firstRender) {
+        }
+	}
 
     private IgbPropertyEditorPanel propertyEditorPanel1;
     private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
@@ -113,25 +117,6 @@
     private IgbColumn phone;
     private IgbColumn country;
 
-    
-    public void WebGridPasteOptions(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
-    {
-    	Console.WriteLine("test");
-    
-    	//TODO
-    
-    	// this.grid.transactions.commit(this.data);
-        // this.dialog.close();
-    }
-        
-    
-    public void WebGridExcelDownload(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
-    {
-    	Console.WriteLine("test");
-    
-    	//TODO
-    }
-        
     private CustomersData _customersData = null;
     public CustomersData CustomersData
     {

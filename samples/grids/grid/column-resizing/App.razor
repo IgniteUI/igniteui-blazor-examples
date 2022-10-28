@@ -4,6 +4,7 @@
 
 
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
 
@@ -15,7 +16,7 @@
         AutoGenerate="false"
         Id="grid"
         Data="CustomersData"
-        ColumnResized="WebGridColumnResized"
+        ColumnResizedScript="WebGridColumnResized"
         Name="grid"
         @ref="grid">
             <IgbColumn
@@ -105,13 +106,13 @@
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
     }
 
     private Action BindElements { get; set; }
 
-    protected override void OnAfterRender(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
         var iD = this.iD;
@@ -128,7 +129,10 @@
         this.BindElements = () => {
         };
         this.BindElements();
-    }
+
+        if (firstRender) {
+        }
+	}
 
     private IgbGrid grid;
     private IgbColumn iD;
@@ -142,13 +146,6 @@
     private IgbColumn name;
     private IgbColumn phone;
 
-    
-    public void WebGridColumnResized(object args)
-    {
-    	Console.WriteLine("TEST" + args);
-        //TODO
-    }
-        
     private CustomersData _customersData = null;
     public CustomersData CustomersData
     {

@@ -4,6 +4,7 @@
 
 
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
 
@@ -51,7 +52,7 @@
             <IgbPropertyEditorPropertyDescription
             ValueType="PropertyEditorValueType.Button"
             PrimitiveValue="@("Clear Selection")"
-            ButtonClicked="WebGridClearSelection"
+            ButtonClickedScript="WebGridClearSelection"
             Name="propertyEditorPropertyDescription1"
             @ref="propertyEditorPropertyDescription1">
             </IgbPropertyEditorPropertyDescription>
@@ -67,7 +68,7 @@
         AutoGenerate="false"
         Data="NwindData"
         RowEditable="true"
-        ColumnInit="WebGridClipboardOperationsColumnInit"
+        ColumnInitScript="WebGridClipboardOperationsColumnInit"
         Name="grid"
         @ref="grid">
             <IgbColumn
@@ -105,13 +106,13 @@
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
     }
 
     private Action BindElements { get; set; }
 
-    protected override void OnAfterRender(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var propertyEditor = this.propertyEditor;
         var clipboardEnabledEditor = this.clipboardEnabledEditor;
@@ -124,7 +125,10 @@
             propertyEditor.Target = this.grid;
         };
         this.BindElements();
-    }
+
+        if (firstRender) {
+        }
+	}
 
     private IgbPropertyEditorPanel propertyEditor;
     private IgbPropertyEditorPropertyDescription clipboardEnabledEditor;
@@ -133,20 +137,6 @@
     private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
     private IgbGrid grid;
 
-    
-    public void WebGridClearSelection(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
-    {
-    	Console.WriteLine("TEST" + args);
-        //TODO
-    }
-        
-    
-    public void WebGridClipboardOperationsColumnInit(IgbColumnComponentEventArgs args)
-    {
-    	Console.WriteLine("TEST" + args);
-        //TODO    
-    }
-        
     private NwindData _nwindData = null;
     public NwindData NwindData
     {

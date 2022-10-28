@@ -1,9 +1,8 @@
 @using IgniteUI.Blazor.Controls;
-@using IgniteUI.Blazor.Controls;
-@using System;
 
 
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
 
@@ -17,7 +16,7 @@
         Data="CustomersData"
         PrimaryKey="ID"
         RowSelection="GridSelectionMode.Multiple"
-        RowSelectionChanging="WebGridRowSelectionConditional"
+        RowSelectionChangingScript="WebGridRowSelectionConditional"
         Name="grid"
         @ref="grid">
             <IgbColumn
@@ -55,30 +54,26 @@
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
     }
 
     private Action BindElements { get; set; }
 
-    protected override void OnAfterRender(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
 
         this.BindElements = () => {
         };
         this.BindElements();
-    }
+
+        if (firstRender) {
+        }
+	}
 
     private IgbGrid grid;
 
-    
-    public void WebGridRowSelectionConditional(IgbRowSelectionEventArgs args)
-    {
-    	Console.WriteLine("TEST" + args);
-        //TODO
-    }
-        
     private CustomersData _customersData = null;
     public CustomersData CustomersData
     {
