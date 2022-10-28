@@ -408,6 +408,7 @@ class Transformer {
         for (const sampleA of samples) {
 
             for (const fileA of sampleA.SourceFiles) {
+                if (fileA.Name.indexOf("Program.cs") >= 0) continue;
                 if (fileA.Name.indexOf(".razor") > 0) continue;
                 if (comparedFiles.includes(fileA.Name)) continue;
 
