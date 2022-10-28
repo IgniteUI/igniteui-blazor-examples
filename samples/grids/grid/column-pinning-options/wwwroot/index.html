@@ -32,22 +32,10 @@
     <!-- importing blazor bundle for IG controls: -->
     <script src="_content/IgniteUI.Blazor/app.bundle.js"></script>
     <script src="_framework/blazor.webassembly.js"></script>
-        <script>
-        
-        igRegisterScript("WebGridPinHeaderTemplate", (ctx) => {
-            var html = window.igTemplating.html;
-            window.toggleColumnPin = function toggleColumnPin(field) {
-                var col = grid.getColumnByName(field);
-                col.pinned = !col.pinned;
-                grid.markForCheck();
-            }
-            return html`<div>
-            <span style="float:left">${ctx.column.field}</span>
-            <span style="float:right" onclick='toggleColumnPin("${ctx.column.field}")'>📌</span>
-        </div>`;
-        }, false);
-        
-    </script>
-    </body>
+
+        <!-- importing java scripts used in razor page -->
+    <script src="events.js"></script>
+    
+</body>
 
 </html>
