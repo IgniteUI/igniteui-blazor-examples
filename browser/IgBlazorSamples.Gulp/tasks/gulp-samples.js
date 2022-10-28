@@ -267,6 +267,8 @@ function copySamplePages(cb, outputPath) {
                 var copyTarget = outputPath + '/Pages/' + sampleFolder + '/' + file.Parent + '/' + file.Name;
                 log("copying sample to " + copyTarget);
                 saveFile(copyTarget, file.Content);
+            } else if (file.Name.indexOf("Program.cs") >= 0)  {
+                continue;
             } else if (file.isCS())  {
                 saveFile(outputPath + '/Services/' + file.Name, file.Content);
             } else {
