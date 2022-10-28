@@ -14,6 +14,7 @@ public class CustomersDataItem
     public string Phone { get; set; }
     public string Fax { get; set; }
 }
+
 public class CustomersData
     : List<CustomersDataItem>
 {
