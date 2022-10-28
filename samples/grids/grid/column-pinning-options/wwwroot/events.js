@@ -1,5 +1,6 @@
 // this file contains events handlers and templates used in the razor page
 
+
 igRegisterScript("WebGridPinHeaderTemplate", (ctx) => {
     var html = window.igTemplating.html;
     window.toggleColumnPin = function toggleColumnPin(field) {
@@ -14,5 +15,3 @@ igRegisterScript("WebGridPinHeaderTemplate", (ctx) => {
 }, false);
 
 
-//insert eventScript
-//end eventScript

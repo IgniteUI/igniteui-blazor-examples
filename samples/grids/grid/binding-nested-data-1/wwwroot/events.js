@@ -1,5 +1,6 @@
 // this file contains events handlers and templates used in the razor page
 
+
 igRegisterScript("WebGridNestedDataCellTemplate", (ctx) => {
     var html = window.igTemplating.html;
     window.keyUpHandler = function () {
@@ -28,5 +29,3 @@ igRegisterScript("WebGridNestedDataCellTemplate", (ctx) => {
 }, false);
 
 
-//insert eventScript
-//end eventScript

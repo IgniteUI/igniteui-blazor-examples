@@ -16,8 +16,9 @@
         @ref="propertyEditor">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="ColumnSelection"
-            Name="columnSelection"
-            @ref="columnSelection">
+            Label="Column Selection"
+            Name="columnSelectionEditor"
+            @ref="columnSelectionEditor">
             </IgbPropertyEditorPropertyDescription>
             
         </IgbPropertyEditorPanel>
@@ -83,7 +84,7 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var propertyEditor = this.propertyEditor;
-        var columnSelection = this.columnSelection;
+        var columnSelectionEditor = this.columnSelectionEditor;
         var grid = this.grid;
 
         this.BindElements = () => {
@@ -96,7 +97,7 @@
 	}
 
     private IgbPropertyEditorPanel propertyEditor;
-    private IgbPropertyEditorPropertyDescription columnSelection;
+    private IgbPropertyEditorPropertyDescription columnSelectionEditor;
     private IgbGrid grid;
 
     private CustomersData _customersData = null;
