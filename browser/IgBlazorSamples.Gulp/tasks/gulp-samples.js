@@ -63,7 +63,7 @@ var sampleSource = [
     igConfig.SamplesCopyPath + '/menus/**/App.razor',
     igConfig.SamplesCopyPath + '/scheduling/**/App.razor',
     igConfig.SamplesCopyPath + '/notifications/**/App.razor',
-    // igConfig.SamplesCopyPath + '/excel/excel-library/**/App.razor',
+    igConfig.SamplesCopyPath + '/excel/excel-library/**/App.razor',
 
     // igConfig.SamplesCopyPath + '/excel/spreadsheet/**/App.razor',
     // igConfig.SamplesCopyPath + '/gauges/bullet-graph/animation/App.razor',
