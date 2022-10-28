@@ -1,0 +1,147 @@
+@using IgniteUI.Blazor.Controls;
+
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="WebGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="PropertyEditor"
+        @ref="propertyEditor">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="SortingOptions"
+            Label="Select Sorting Type"
+            Name="SortingOptionsEditor"
+            @ref="sortingOptionsEditor">
+            </IgbPropertyEditorPropertyDescription>
+            
+        </IgbPropertyEditorPanel>
+        
+    </div>
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="ProductSales"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="OrderID"
+            Header="Order ID"
+            Sortable="true"
+            Groupable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="CategoryName"
+            Header="Category Name"
+            Groupable="true"
+            Sortable="true"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="CompanyName"
+            Header="Company Name"
+            Groupable="true"
+            Sortable="true"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ShipCountry"
+            Header="Ship Country"
+            Groupable="true"
+            Sortable="true"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="SaleAmount"
+            Header="Sale Amount"
+            Groupable="true"
+            Sortable="true"
+            DataType="GridColumnDataType.Currency"
+            PipeArgs="ColumnPipeArgs1"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ShippedDate"
+            Header="Shipped Date"
+            Sortable="true"
+            DataType="GridColumnDataType.Date">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditor = this.propertyEditor;
+        var sortingOptionsEditor = this.sortingOptionsEditor;
+        var grid = this.grid;
+        var column1 = this.column1;
+
+        this.BindElements = () => {
+            propertyEditor.Target = this.grid;
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+	}
+
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription sortingOptionsEditor;
+    private IgbGrid grid;
+    private IgbColumn column1;
+    private IgbColumnPipeArgs _columnPipeArgs1 = null;
+    public IgbColumnPipeArgs ColumnPipeArgs1
+    {
+        get
+        {
+            if (this._columnPipeArgs1 == null)
+            {
+                var columnPipeArgs1 = new IgbColumnPipeArgs();
+                columnPipeArgs1.DigitsInfo = "1.2-2";
+                columnPipeArgs1.CurrencyCode = "USD";
+                this._columnPipeArgs1 = columnPipeArgs1;
+            }
+            return this._columnPipeArgs1;
+        }
+    }
+
+    private ProductSales _productSales = null;
+    public ProductSales ProductSales
+    {
+        get
+        {
+            if (_productSales == null)
+            {
+                _productSales = new ProductSales(); 
+            }
+            return _productSales;
+        }
+    }
+    
+}

@@ -1,0 +1,270 @@
+@using IgniteUI.Blazor.Controls;
+
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Id="grid"
+        Data="InvoicesDataExtendedDates"
+        Locale="EN"
+        AllowFiltering="true"
+        FilterMode="FilterMode.ExcelStyleFilter"
+        DisplayDensity="DisplayDensity.Compact"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="ProductName"
+            Header="Prod. Name"
+            Sortable="true"
+            Editable="true"
+            Resizable="true"
+            HasSummary="true"
+            Width="120px"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="UnitPrice"
+            Header="Unit Price"
+            Width="120px"
+            Sortable="true"
+            HasSummary="true"
+            Editable="true"
+            Resizable="true"
+            DataType="GridColumnDataType.Number"
+            PipeArgs="ColumnPipeArgs1"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="OrderFullDate"
+            Header="Order Full Date"
+            Width="300px"
+            Sortable="true"
+            HasSummary="true"
+            Editable="true"
+            Resizable="true"
+            DataType="GridColumnDataType.DateTime"
+            PipeArgs="ColumnPipeArgs2"
+            Name="column2"
+            @ref="column2">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="OrderDate"
+            Header="Order Date"
+            Width="160px"
+            Sortable="true"
+            HasSummary="true"
+            Editable="true"
+            Resizable="true"
+            DataType="GridColumnDataType.Date"
+            PipeArgs="ColumnPipeArgs3"
+            Name="column3"
+            @ref="column3">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="OrderDateDelay"
+            Header="Order Time"
+            Width="120px"
+            Sortable="true"
+            HasSummary="true"
+            Editable="true"
+            Resizable="true"
+            DataType="GridColumnDataType.Time"
+            PipeArgs="ColumnPipeArgs4"
+            Name="column4"
+            @ref="column4">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="UnitsInStock"
+            Header="Stock Value"
+            Width="120px"
+            Sortable="true"
+            HasSummary="true"
+            Editable="true"
+            Resizable="true"
+            DataType="GridColumnDataType.Currency"
+            PipeArgs="ColumnPipeArgs5"
+            Name="column5"
+            @ref="column5">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="UnitsOnOrder"
+            Header="% Change"
+            Width="120px"
+            Sortable="true"
+            HasSummary="true"
+            Editable="true"
+            Resizable="true"
+            DataType="GridColumnDataType.Percent"
+            PipeArgs="ColumnPipeArgs6"
+            Name="column6"
+            @ref="column6">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Discontinued"
+            Header="Discontinued"
+            Width="120px"
+            Sortable="true"
+            HasSummary="true"
+            Editable="true"
+            Resizable="true"
+            DataType="GridColumnDataType.Boolean">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+        var column1 = this.column1;
+        var column2 = this.column2;
+        var column3 = this.column3;
+        var column4 = this.column4;
+        var column5 = this.column5;
+        var column6 = this.column6;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+	}
+
+    private IgbGrid grid;
+    private IgbColumn column1;
+    private IgbColumnPipeArgs _columnPipeArgs1 = null;
+    public IgbColumnPipeArgs ColumnPipeArgs1
+    {
+        get
+        {
+            if (this._columnPipeArgs1 == null)
+            {
+                var columnPipeArgs1 = new IgbColumnPipeArgs();
+                columnPipeArgs1.DigitsInfo = "1.4-4";
+                columnPipeArgs1.CurrencyCode = "";
+                this._columnPipeArgs1 = columnPipeArgs1;
+            }
+            return this._columnPipeArgs1;
+        }
+    }
+    private IgbColumn column2;
+    private IgbColumnPipeArgs _columnPipeArgs2 = null;
+    public IgbColumnPipeArgs ColumnPipeArgs2
+    {
+        get
+        {
+            if (this._columnPipeArgs2 == null)
+            {
+                var columnPipeArgs2 = new IgbColumnPipeArgs();
+                columnPipeArgs2.Format = "long";
+                columnPipeArgs2.Timezone = "UTC+0";
+                this._columnPipeArgs2 = columnPipeArgs2;
+            }
+            return this._columnPipeArgs2;
+        }
+    }
+    private IgbColumn column3;
+    private IgbColumnPipeArgs _columnPipeArgs3 = null;
+    public IgbColumnPipeArgs ColumnPipeArgs3
+    {
+        get
+        {
+            if (this._columnPipeArgs3 == null)
+            {
+                var columnPipeArgs3 = new IgbColumnPipeArgs();
+                columnPipeArgs3.Format = "mediumDate";
+                this._columnPipeArgs3 = columnPipeArgs3;
+            }
+            return this._columnPipeArgs3;
+        }
+    }
+    private IgbColumn column4;
+    private IgbColumnPipeArgs _columnPipeArgs4 = null;
+    public IgbColumnPipeArgs ColumnPipeArgs4
+    {
+        get
+        {
+            if (this._columnPipeArgs4 == null)
+            {
+                var columnPipeArgs4 = new IgbColumnPipeArgs();
+                columnPipeArgs4.Format = "shortTime";
+                columnPipeArgs4.Timezone = "UTC+0";
+                this._columnPipeArgs4 = columnPipeArgs4;
+            }
+            return this._columnPipeArgs4;
+        }
+    }
+    private IgbColumn column5;
+    private IgbColumnPipeArgs _columnPipeArgs5 = null;
+    public IgbColumnPipeArgs ColumnPipeArgs5
+    {
+        get
+        {
+            if (this._columnPipeArgs5 == null)
+            {
+                var columnPipeArgs5 = new IgbColumnPipeArgs();
+                columnPipeArgs5.CurrencyCode = "";
+                columnPipeArgs5.DigitsInfo = "1.4-4";
+                this._columnPipeArgs5 = columnPipeArgs5;
+            }
+            return this._columnPipeArgs5;
+        }
+    }
+    private IgbColumn column6;
+    private IgbColumnPipeArgs _columnPipeArgs6 = null;
+    public IgbColumnPipeArgs ColumnPipeArgs6
+    {
+        get
+        {
+            if (this._columnPipeArgs6 == null)
+            {
+                var columnPipeArgs6 = new IgbColumnPipeArgs();
+                columnPipeArgs6.CurrencyCode = "";
+                columnPipeArgs6.DigitsInfo = "1.4-4";
+                this._columnPipeArgs6 = columnPipeArgs6;
+            }
+            return this._columnPipeArgs6;
+        }
+    }
+
+    private InvoicesDataExtendedDates _invoicesDataExtendedDates = null;
+    public InvoicesDataExtendedDates InvoicesDataExtendedDates
+    {
+        get
+        {
+            if (_invoicesDataExtendedDates == null)
+            {
+                _invoicesDataExtendedDates = new InvoicesDataExtendedDates(); 
+            }
+            return _invoicesDataExtendedDates;
+        }
+    }
+    
+}
