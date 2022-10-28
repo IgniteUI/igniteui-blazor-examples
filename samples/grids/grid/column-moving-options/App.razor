@@ -1,0 +1,248 @@
+@using IgniteUI.Blazor.Controls;
+
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<style>
+    .cellAlignSyle {
+        text-align: right;
+        float:right;
+    }
+    .cellAlignSyle > span {
+        float:right;
+    }
+    .up {
+        color: green;
+    }
+    .down {
+        color: red;
+    }
+    .grid__wrapper {
+    padding: 16px;
+    }
+    .currency-badge-container {
+        width: 80px; 
+        float: right;
+    }
+    .badge-left {
+        float: left;
+    }
+</style>
+<div class="container vertical">
+
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="FinancialDataAll"
+        Moving="true"
+        PrimaryKey="ProductID"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="Category"
+            Width="200px"
+            Pinned="true"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Type"
+            Pinned="true"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column2"
+            @ref="column2">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Price"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            DataType="GridColumnDataType.Currency"
+            PipeArgs="ColumnPipeArgs1"
+            Name="column3"
+            @ref="column3">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Buy"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            DataType="GridColumnDataType.Currency"
+            PipeArgs="ColumnPipeArgs2"
+            Name="column4"
+            @ref="column4">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Sell"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            DataType="GridColumnDataType.Currency"
+            PipeArgs="ColumnPipeArgs3"
+            Name="column5"
+            @ref="column5">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Spread"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column6"
+            @ref="column6">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Change"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            BodyTemplate="WebGridCurrencyCellTemplate"
+            Name="column7"
+            @ref="column7">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ChangePercent"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            DataType="GridColumnDataType.Number"
+            BodyTemplate="WebGridCurrencyCellTemplate"
+            Name="column8"
+            @ref="column8">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="AnnualChange"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            DataType="GridColumnDataType.Number"
+            BodyTemplate="WebGridCurrencyCellTemplate"
+            Name="column9"
+            @ref="column9">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+        var column1 = this.column1;
+        var column2 = this.column2;
+        var column3 = this.column3;
+        var column4 = this.column4;
+        var column5 = this.column5;
+        var column6 = this.column6;
+        var column7 = this.column7;
+        var column8 = this.column8;
+        var column9 = this.column9;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+	}
+
+    private IgbGrid grid;
+    private IgbColumn column1;
+    private IgbColumn column2;
+    private IgbColumn column3;
+    private IgbColumnPipeArgs _columnPipeArgs1 = null;
+    public IgbColumnPipeArgs ColumnPipeArgs1
+    {
+        get
+        {
+            if (this._columnPipeArgs1 == null)
+            {
+                var columnPipeArgs1 = new IgbColumnPipeArgs();
+                columnPipeArgs1.DigitsInfo = "1.2-2";
+                columnPipeArgs1.CurrencyCode = "USD";
+                this._columnPipeArgs1 = columnPipeArgs1;
+            }
+            return this._columnPipeArgs1;
+        }
+    }
+    private IgbColumn column4;
+    private IgbColumnPipeArgs _columnPipeArgs2 = null;
+    public IgbColumnPipeArgs ColumnPipeArgs2
+    {
+        get
+        {
+            if (this._columnPipeArgs2 == null)
+            {
+                var columnPipeArgs2 = new IgbColumnPipeArgs();
+                columnPipeArgs2.CurrencyCode = "USD";
+                columnPipeArgs2.DigitsInfo = "1.2-2";
+                this._columnPipeArgs2 = columnPipeArgs2;
+            }
+            return this._columnPipeArgs2;
+        }
+    }
+    private IgbColumn column5;
+    private IgbColumnPipeArgs _columnPipeArgs3 = null;
+    public IgbColumnPipeArgs ColumnPipeArgs3
+    {
+        get
+        {
+            if (this._columnPipeArgs3 == null)
+            {
+                var columnPipeArgs3 = new IgbColumnPipeArgs();
+                columnPipeArgs3.CurrencyCode = "USD";
+                columnPipeArgs3.DigitsInfo = "1.2-2";
+                this._columnPipeArgs3 = columnPipeArgs3;
+            }
+            return this._columnPipeArgs3;
+        }
+    }
+    private IgbColumn column6;
+    private IgbColumn column7;
+    private IgbColumn column8;
+    private IgbColumn column9;
+
+    
+    public RenderFragment<IgbCellTemplateContext> WebGridCurrencyCellTemplate = (ctx) => {
+        return @<div class="currency-badge-container">
+            @if (Convert.ToDouble(ctx.Cell.Value) > 0) 
+            {
+                <IgbBadge Variant="BadgeVariant.Success" Shape="BadgeShape.Rounded" Position="bottom-right" class="badge-left">
+                    <span>▲</span>
+                </IgbBadge>
+            }
+            @if (Convert.ToDouble(ctx.Cell.Value) < 0) 
+            {
+                <IgbBadge Variant="BadgeVariant.Danger" Shape="BadgeShape.Rounded" Position="bottom-right" class="error badge-left">
+                    <span>▼</span>
+                </IgbBadge>
+            }
+            <span class=@(Convert.ToDouble(ctx.Cell.Value) > 0 ? "cellAlignSyle up" : "cellAlignSyle down")>@formatNumber(ctx.Cell.Value)</span>
+        </div>;
+    };
+    	
+        private static string formatNumber(object value)
+        {
+            return Math.Round(Convert.ToDouble(value)).ToString();
+        }
+    private FinancialDataAll _financialDataAll = null;
+    public FinancialDataAll FinancialDataAll
+    {
+        get
+        {
+            if (_financialDataAll == null)
+            {
+                _financialDataAll = new FinancialDataAll(); 
+            }
+            return _financialDataAll;
+        }
+    }
+    
+}
