@@ -418,8 +418,8 @@ class Transformer {
                     for (const fileB of sampleB.SourceFiles) {
                         if (fileA.Name != fileB.Name) continue; // different file names
 
-                        let contentA = transFS.readFileSync(fileA.Path).toString();
-                        let contentB = transFS.readFileSync(fileB.Path).toString();
+                        let contentA = transFS.readFileSync(fileA.Path).toString().trim();
+                        let contentB = transFS.readFileSync(fileB.Path).toString().trim();
 
                         if (contentA !== contentB) {
                             console.log('WARNING: File "' + fileA.Name + '" has different content in these locations: \n' + fileA.Path + '\n' + fileB.Path)
