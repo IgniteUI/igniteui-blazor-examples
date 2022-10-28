@@ -295,12 +295,25 @@ function copySampleScripts(cb, outputPath, indexName) {
 
     var copiedScriptFiles = [];
     for (const sample of samples) {
+
+        //console.log(sample);
+        var fileIndex = 0;
+        var fileSuffix = "";
         for (const file of sample.PublicFiles_JS) {
 
-            if (copiedScriptFiles.indexOf(file.Name) === -1) {
-                copiedScriptFiles.push(file.Name);
-                const scriptPath = outputPath + '/wwwroot/sb/' + file.Name
-                log("copying scripts to:  " + scriptPath);
+            var fileName = sample.ComponentFolder + "-" + sample.SampleFolderName + fileSuffix + ".js";
+            fileIndex = fileIndex + 1;
+            fileSuffix = fileIndex;
+
+            var scriptPath = outputPath + '/wwwroot/sb/' + fileName
+            // log("-copying scripts to:  " + scriptPath);
+
+            if (copiedScriptFiles.indexOf(fileName) === -1) {
+                copiedScriptFiles.push(fileName);
+
+                log("+copying scripts to:  " + scriptPath);
+
+                // console.log("copySampleScripts " + scriptName);
                 saveFile(scriptPath, file.Content);
 
                 if (file.Name.indexOf("DockManager") >= 0) {
@@ -312,10 +325,10 @@ function copySampleScripts(cb, outputPath, indexName) {
                         if (file.Name.indexOf("3") >= 0) fileRequiresLoading = false;
                     }
                     if (fileRequiresLoading) {
-                        insertScriptFiles.push('<script type="module" src="sb/' + file.Name + '"></script>');
+                        insertScriptFiles.push('<script type="module" src="sb/' + fileName + '"></script>');
                     }
                 } else {
-                    insertScriptFiles.push('<script src="sb/' + file.Name + '"></script>');
+                    insertScriptFiles.push('<script src="sb/' + fileName + '"></script>');
                 }
             }
         }
