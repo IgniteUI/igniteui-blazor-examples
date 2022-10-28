@@ -1,0 +1,224 @@
+@using IgniteUI.Blazor.Controls;
+@using IgniteUI.Blazor.Controls;
+@using System;
+
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Id="grid"
+        Data="CompanyData"
+        GridKeydownScript="WebGridMRLCustomNavigationEvent"
+        DisplayDensity="DisplayDensity.Cosy"
+        Name="grid"
+        @ref="grid">
+            <IgbColumnLayout
+            Header="Company"
+            Name="CompanyInfo"
+            @ref="companyInfo">
+                <IgbColumn
+                Field="Company"
+                Header="Company"
+                ColEnd="3"
+                RowStart="1"
+                ColStart="1"
+                Name="Company"
+                @ref="company">
+                </IgbColumn>
+                
+                <IgbColumn
+                Field="Country"
+                Header="Country"
+                RowStart="2"
+                ColStart="1"
+                Name="Country"
+                @ref="country">
+                </IgbColumn>
+                
+                <IgbColumn
+                Field="City"
+                Header="City"
+                RowStart="2"
+                ColStart="2"
+                Name="City"
+                @ref="city">
+                </IgbColumn>
+                
+                <IgbColumn
+                Field="Address"
+                Header="Address"
+                RowStart="3"
+                ColStart="1"
+                ColEnd="3"
+                Name="Address"
+                @ref="address">
+                </IgbColumn>
+                
+            </IgbColumnLayout>
+            
+            <IgbColumnLayout
+            Header="Sales"
+            Name="Sales"
+            @ref="sales">
+                <IgbColumn
+                Field="LifetimeSales"
+                Header="Lifetime Sales"
+                RowStart="1"
+                ColStart="1"
+                ColEnd="3"
+                RowEnd="3"
+                Name="LifetimeSales"
+                @ref="lifetimeSales">
+                </IgbColumn>
+                
+                <IgbColumn
+                Field="QuarterlySales"
+                Header="Quarterly"
+                RowStart="3"
+                ColStart="1"
+                Name="Quarterly"
+                @ref="quarterly">
+                </IgbColumn>
+                
+                <IgbColumn
+                Field="YearlySales"
+                Header="Yearly"
+                RowStart="3"
+                ColStart="2"
+                Name="Yearly"
+                @ref="yearly">
+                </IgbColumn>
+                
+            </IgbColumnLayout>
+            
+            <IgbColumnLayout
+            Header="Market Potential"
+            Name="MarketPotentialInfo"
+            @ref="marketPotentialInfo">
+                <IgbColumn
+                Field="MarketPotential"
+                Header="Market Potential"
+                RowStart="1"
+                ColStart="1"
+                RowEnd="4"
+                Name="MarketPotential"
+                @ref="marketPotential">
+                </IgbColumn>
+                
+            </IgbColumnLayout>
+            
+            <IgbColumnLayout
+            Header="Assets"
+            Name="Assets"
+            @ref="assets">
+                <IgbColumn
+                Field="AssetsCash"
+                Header="Assets Cash"
+                RowStart="1"
+                ColStart="1"
+                Name="AssetsCash"
+                @ref="assetsCash">
+                </IgbColumn>
+                
+                <IgbColumn
+                Field="AccountsReceivable"
+                Header="Accounts Receivable"
+                RowStart="1"
+                ColStart="2"
+                ColEnd="4"
+                Name="AccountsReceivable"
+                @ref="accountsReceivable">
+                </IgbColumn>
+                
+                <IgbColumn
+                Field="AssetsBooks"
+                Header="Assets Books"
+                RowStart="2"
+                ColStart="1"
+                ColEnd="4"
+                RowEnd="4"
+                Name="AssetsBooks"
+                @ref="assetsBooks">
+                </IgbColumn>
+                
+            </IgbColumnLayout>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+        var companyInfo = this.companyInfo;
+        var company = this.company;
+        var country = this.country;
+        var city = this.city;
+        var address = this.address;
+        var sales = this.sales;
+        var lifetimeSales = this.lifetimeSales;
+        var quarterly = this.quarterly;
+        var yearly = this.yearly;
+        var marketPotentialInfo = this.marketPotentialInfo;
+        var marketPotential = this.marketPotential;
+        var assets = this.assets;
+        var assetsCash = this.assetsCash;
+        var accountsReceivable = this.accountsReceivable;
+        var assetsBooks = this.assetsBooks;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+	}
+
+    private IgbGrid grid;
+    private IgbColumnLayout companyInfo;
+    private IgbColumn company;
+    private IgbColumn country;
+    private IgbColumn city;
+    private IgbColumn address;
+    private IgbColumnLayout sales;
+    private IgbColumn lifetimeSales;
+    private IgbColumn quarterly;
+    private IgbColumn yearly;
+    private IgbColumnLayout marketPotentialInfo;
+    private IgbColumn marketPotential;
+    private IgbColumnLayout assets;
+    private IgbColumn assetsCash;
+    private IgbColumn accountsReceivable;
+    private IgbColumn assetsBooks;
+
+    private CompanyData _companyData = null;
+    public CompanyData CompanyData
+    {
+        get
+        {
+            if (_companyData == null)
+            {
+                _companyData = new CompanyData(); 
+            }
+            return _companyData;
+        }
+    }
+    
+}

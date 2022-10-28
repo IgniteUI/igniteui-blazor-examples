@@ -1,0 +1,117 @@
+@using IgniteUI.Blazor.Controls;
+
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="NwindData"
+        PrimaryKey="ProductID"
+        ColumnInitScript="WebGridCustomSummary"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="ProductID"
+            Name="ProductID"
+            @ref="productID">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ProductName"
+            Header="ProductName"
+            Name="ProductName"
+            @ref="productName">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="UnitPrice"
+            Header="Unit Price"
+            Name="UnitPrice"
+            @ref="unitPrice">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="UnitsInStock"
+            Header="Units In Stock"
+            HasSummary="true"
+            DataType="GridColumnDataType.Number"
+            Name="UnitsInStock"
+            @ref="unitsInStock">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Discontinued"
+            Header="Discontinued"
+            Name="Discontinued"
+            @ref="discontinued">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="OrderDate"
+            Header="OrderDate"
+            HasSummary="true"
+            DataType="GridColumnDataType.Date"
+            Name="OrderDate"
+            @ref="orderDate">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+        var productID = this.productID;
+        var productName = this.productName;
+        var unitPrice = this.unitPrice;
+        var unitsInStock = this.unitsInStock;
+        var discontinued = this.discontinued;
+        var orderDate = this.orderDate;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+	}
+
+    private IgbGrid grid;
+    private IgbColumn productID;
+    private IgbColumn productName;
+    private IgbColumn unitPrice;
+    private IgbColumn unitsInStock;
+    private IgbColumn discontinued;
+    private IgbColumn orderDate;
+
+    private NwindData _nwindData = null;
+    public NwindData NwindData
+    {
+        get
+        {
+            if (_nwindData == null)
+            {
+                _nwindData = new NwindData(); 
+            }
+            return _nwindData;
+        }
+    }
+    
+}

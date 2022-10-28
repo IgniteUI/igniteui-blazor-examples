@@ -1,0 +1,218 @@
+@using IgniteUI.Blazor.Controls;
+@using IgniteUI.Blazor.Controls;
+@using System;
+
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="WebGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="false"
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
+            <IgbPropertyEditorPropertyDescription
+            Label=""
+            ValueType="PropertyEditorValueType.Button"
+            PrimitiveValue="@("Add Row")"
+            ButtonClickedScript="WebGridAddRow"
+            Name="propertyEditorPropertyDescription1"
+            @ref="propertyEditorPropertyDescription1">
+            </IgbPropertyEditorPropertyDescription>
+            
+            <IgbPropertyEditorPropertyDescription
+            Label=""
+            ValueType="PropertyEditorValueType.Button"
+            PrimitiveValue="@("Undo")"
+            ButtonClickedScript="WebGridUndo"
+            Name="propertyEditorPropertyDescription2"
+            @ref="propertyEditorPropertyDescription2">
+            </IgbPropertyEditorPropertyDescription>
+            
+            <IgbPropertyEditorPropertyDescription
+            Label=""
+            ValueType="PropertyEditorValueType.Button"
+            PrimitiveValue="@("Redo")"
+            ButtonClickedScript="WebGridRedo"
+            Name="propertyEditorPropertyDescription3"
+            @ref="propertyEditorPropertyDescription3">
+            </IgbPropertyEditorPropertyDescription>
+            
+            <IgbPropertyEditorPropertyDescription
+            Label=""
+            ValueType="PropertyEditorValueType.Button"
+            PrimitiveValue="@("Commit")"
+            ButtonClickedScript="WebGridCommit"
+            Name="propertyEditorPropertyDescription4"
+            @ref="propertyEditorPropertyDescription4">
+            </IgbPropertyEditorPropertyDescription>
+            
+        </IgbPropertyEditorPanel>
+        
+    </div>
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid
+        Data="NwindData"
+        PrimaryKey="ProductID"
+        RowEditable="true"
+        BatchEditing="true"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            BodyTemplateScript="WebGridDeleteCellTemplate"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ProductID"
+            Header="Product ID"
+            Name="ProductID"
+            @ref="productID">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ProductName"
+            Header="Product Name"
+            Name="ProductName"
+            @ref="productName">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="UnitPrice"
+            Header="Unit Price"
+            Name="UnitPrice"
+            @ref="unitPrice">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="UnitsOnOrder"
+            Header="Units On Order"
+            Name="UnitsOnOrder"
+            @ref="unitsOnOrder">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="UnitsInStock"
+            Header="Units In Stock"
+            Name="UnitsInStock"
+            @ref="unitsInStock">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="QuantityPerUnit"
+            Header="Quantity Per Unit"
+            Name="QuantityPerUnit"
+            @ref="quantityPerUnit">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ReorderLevel"
+            Header="Reorder Level"
+            Name="ReorderLevel"
+            @ref="reorderLevel">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="SupplierID"
+            Header="Supplier ID"
+            Name="SupplierID"
+            @ref="supplierID">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="CategoryID"
+            Header="Category ID"
+            Name="CategoryID"
+            @ref="categoryID">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Discontinued"
+            Header="Discontinued"
+            Name="Discontinued"
+            @ref="discontinued">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var propertyEditorPropertyDescription1 = this.propertyEditorPropertyDescription1;
+        var propertyEditorPropertyDescription2 = this.propertyEditorPropertyDescription2;
+        var propertyEditorPropertyDescription3 = this.propertyEditorPropertyDescription3;
+        var propertyEditorPropertyDescription4 = this.propertyEditorPropertyDescription4;
+        var grid = this.grid;
+        var column1 = this.column1;
+        var productID = this.productID;
+        var productName = this.productName;
+        var unitPrice = this.unitPrice;
+        var unitsOnOrder = this.unitsOnOrder;
+        var unitsInStock = this.unitsInStock;
+        var quantityPerUnit = this.quantityPerUnit;
+        var reorderLevel = this.reorderLevel;
+        var supplierID = this.supplierID;
+        var categoryID = this.categoryID;
+        var discontinued = this.discontinued;
+
+        this.BindElements = () => {
+            propertyEditorPanel1.Target = this.grid;
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+	}
+
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
+    private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription2;
+    private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription3;
+    private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription4;
+    private IgbGrid grid;
+    private IgbColumn column1;
+    private IgbColumn productID;
+    private IgbColumn productName;
+    private IgbColumn unitPrice;
+    private IgbColumn unitsOnOrder;
+    private IgbColumn unitsInStock;
+    private IgbColumn quantityPerUnit;
+    private IgbColumn reorderLevel;
+    private IgbColumn supplierID;
+    private IgbColumn categoryID;
+    private IgbColumn discontinued;
+
+    private NwindData _nwindData = null;
+    public NwindData NwindData
+    {
+        get
+        {
+            if (_nwindData == null)
+            {
+                _nwindData = new NwindData(); 
+            }
+            return _nwindData;
+        }
+    }
+    
+}
