@@ -2,9 +2,7 @@
 
 
 
-public void WebGridEditingExcelStyle(IgbGridKeydownEventArgs args)
-{
-	Console.WriteLine("TEST" + args);
-    //TODO    
-}
-    
+igRegisterScript("WebGridEditingExcelStyle", (event) => {
+    console.log("TODO WebGridEditingExcelStyle");
+}, false);
+
