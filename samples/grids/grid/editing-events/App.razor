@@ -26,15 +26,15 @@
             <IgbColumn
             Field="UnitPrice"
             Header="Unit Price"
-            Editable="true"
-            DataType="GridColumnDataType.Number">
+            DataType="GridColumnDataType.Number"
+            Editable="true">
             </IgbColumn>
             
             <IgbColumn
             Field="UnitsInStock"
             Header="Units In Stock"
-            Editable="true"
             DataType="GridColumnDataType.Number"
+            Editable="true"
             Name="UnitsInStock"
             @ref="unitsInStock">
             </IgbColumn>
@@ -42,8 +42,8 @@
             <IgbColumn
             Field="UnitsOnOrder"
             Header="Units on Order"
-            Editable="true"
             DataType="GridColumnDataType.Number"
+            Editable="true"
             Name="UnitsOnOrder"
             @ref="unitsOnOrder">
             </IgbColumn>
@@ -57,6 +57,8 @@
 @code {
     protected override async Task OnInitializedAsync()
     {
+
+        await Task.Delay(1);
     }
 
     private Action BindElements { get; set; }
@@ -73,6 +75,8 @@
 
         if (firstRender) {
         }
+
+        await Task.Delay(1);
 	}
 
     private IgbGrid grid1;
