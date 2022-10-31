@@ -53,7 +53,7 @@ public class NwindData
                     Shop = @"Farmer Market",
                     LastInventory = @"04/04/2018"
                 }}
-            
+
         });
         this.Add(new NwindDataItem()
         {
@@ -76,7 +76,7 @@ public class NwindData
                     Shop = @"Super Market",
                     LastInventory = @"09/09/2018"
                 }}
-            
+
         });
         this.Add(new NwindDataItem()
         {
@@ -109,7 +109,7 @@ public class NwindData
                     Shop = @"24/7 Market",
                     LastInventory = @"11/11/2018"
                 }}
-            
+
         });
         this.Add(new NwindDataItem()
         {
@@ -142,7 +142,7 @@ public class NwindData
                     Shop = @"Street Market",
                     LastInventory = @"12/12/2018"
                 }}
-            
+
         });
         this.Add(new NwindDataItem()
         {
@@ -165,7 +165,7 @@ public class NwindData
                     Shop = @"Super Market",
                     LastInventory = @"09/09/2018"
                 }}
-            
+
         });
         this.Add(new NwindDataItem()
         {
@@ -188,7 +188,7 @@ public class NwindData
                     Shop = @"Super Market",
                     LastInventory = @"09/09/2018"
                 }}
-            
+
         });
         this.Add(new NwindDataItem()
         {
@@ -221,7 +221,7 @@ public class NwindData
                     Shop = @"Street Market",
                     LastInventory = @"12/12/2018"
                 }}
-            
+
         });
         this.Add(new NwindDataItem()
         {
@@ -249,7 +249,7 @@ public class NwindData
                     Shop = @"Farmer Market",
                     LastInventory = @"04/04/2018"
                 }}
-            
+
         });
         this.Add(new NwindDataItem()
         {
@@ -272,7 +272,7 @@ public class NwindData
                     Shop = @"Farmer Market",
                     LastInventory = @"04/04/2018"
                 }}
-            
+
         });
         this.Add(new NwindDataItem()
         {
@@ -295,7 +295,7 @@ public class NwindData
                     Shop = @"Wall Market",
                     LastInventory = @"12/06/2018"
                 }}
-            
+
         });
         this.Add(new NwindDataItem()
         {
@@ -323,7 +323,7 @@ public class NwindData
                     Shop = @"Farmer Market",
                     LastInventory = @"04/04/2018"
                 }}
-            
+
         });
         this.Add(new NwindDataItem()
         {
@@ -346,7 +346,7 @@ public class NwindData
                     Shop = @"Farmer Market",
                     LastInventory = @"04/04/2018"
                 }}
-            
+
         });
         this.Add(new NwindDataItem()
         {
@@ -369,7 +369,7 @@ public class NwindData
                     Shop = @"Super Market",
                     LastInventory = @"09/09/2018"
                 }}
-            
+
         });
         this.Add(new NwindDataItem()
         {
@@ -397,7 +397,7 @@ public class NwindData
                     Shop = @"Street Market",
                     LastInventory = @"12/12/2018"
                 }}
-            
+
         });
         this.Add(new NwindDataItem()
         {
@@ -425,7 +425,7 @@ public class NwindData
                     Shop = @"Wall Market",
                     LastInventory = @"12/06/2018"
                 }}
-            
+
         });
         this.Add(new NwindDataItem()
         {
@@ -458,7 +458,7 @@ public class NwindData
                     Shop = @"24/7 Market",
                     LastInventory = @"11/11/2018"
                 }}
-            
+
         });
         this.Add(new NwindDataItem()
         {
@@ -481,7 +481,7 @@ public class NwindData
                     Shop = @"Farmer Market",
                     LastInventory = @"04/04/2018"
                 }}
-            
+
         });
         this.Add(new NwindDataItem()
         {
@@ -509,7 +509,7 @@ public class NwindData
                     Shop = @"Super Market",
                     LastInventory = @"09/09/2018"
                 }}
-            
+
         });
         this.Add(new NwindDataItem()
         {
@@ -532,7 +532,7 @@ public class NwindData
                     Shop = @"Local Market",
                     LastInventory = @"07/03/2018"
                 }}
-            
+
         });
         this.Add(new NwindDataItem()
         {
@@ -540,7 +540,7 @@ public class NwindData
             ProductName = @"Sir Rodneys Marmalade",
             SupplierID = 8,
             CategoryID = 3,
-            QuantityPerUnit = null,
+            QuantityPerUnit = @"4 - 100 ml jars",
             UnitPrice = 4.5,
             UnitsInStock = 40,
             UnitsOnOrder = 30,
@@ -555,7 +555,7 @@ public class NwindData
                     Shop = @"Super Market",
                     LastInventory = @"09/09/2018"
                 }}
-            
+
         });
     }
 }
