@@ -90,8 +90,8 @@
                     ReorderLevel= 0,
                     Discontinued= true,
                     OrderDate= DateTime.Parse("2011-11-11"),
-                    OrderDateDelay= null,
-                    OrderFullDate= null
+                    OrderDateDelay= DateTime.Parse("2011-11-11") + new TimeSpan(11,11,0),
+                    OrderFullDate= DateTime.Parse("2011-11-11") + new TimeSpan(11,11,0)
                 },
                 new Invoice()
                 {
@@ -122,8 +122,8 @@
                     ReorderLevel= 10,
                     Discontinued= false,
                     OrderDate= DateTime.Parse("2016-07-17"),
-                    OrderDateDelay= null,
-                    OrderFullDate= DateTime.Parse("2016-07-17") + new TimeSpan(1,55,0)
+                    OrderDateDelay= DateTime.Parse("2016-07-17") + new TimeSpan(2,15,0),
+                    OrderFullDate= DateTime.Parse("2016-07-17") + new TimeSpan(2,15,0)
                 },
                 new Invoice()
                 {
@@ -138,8 +138,8 @@
                     ReorderLevel= 0,
                     Discontinued= false,
                     OrderDate= DateTime.Parse("2018-01-17"),
-                    OrderDateDelay= null,
-                    OrderFullDate= DateTime.Parse("2018-01-17") + new TimeSpan(1,55,0)
+                    OrderDateDelay= DateTime.Parse("2018-01-17") + new TimeSpan(2,15,0),
+                    OrderFullDate= DateTime.Parse("2018-01-17") + new TimeSpan(2,15,0)
                 },
                 new Invoice()
                 {
