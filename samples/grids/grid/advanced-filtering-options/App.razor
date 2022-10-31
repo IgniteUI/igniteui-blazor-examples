@@ -17,39 +17,44 @@
         AllowAdvancedFiltering="true"
         Name="grid"
         @ref="grid">
+            <IgbGridToolbar
+            >
+            </IgbGridToolbar>
+            
             <IgbColumn
             Field="ProductName"
-            Header="Product Name"
-            Name="ProductName"
-            @ref="productName">
+            Header="ProductName"
+            Sortable="true">
             </IgbColumn>
             
             <IgbColumn
             Field="QuantityPerUnit"
             Header="Quantity Per Unit"
-            Name="QuantityPerUnit"
-            @ref="quantityPerUnit">
+            Sortable="true">
             </IgbColumn>
             
             <IgbColumn
             Field="UnitPrice"
             Header="Unit Price"
-            Name="UnitPrice"
-            @ref="unitPrice">
+            Sortable="true"
+            DataType="GridColumnDataType.Currency">
             </IgbColumn>
             
             <IgbColumn
             Field="OrderDate"
             Header="Order Date"
-            Name="OrderDate"
-            @ref="orderDate">
+            Sortable="true"
+            DataType="GridColumnDataType.Date">
             </IgbColumn>
             
             <IgbColumn
             Field="Discontinued"
             Header="Discontinued"
-            Name="Discontinued"
-            @ref="discontinued">
+            Sortable="true"
+            DataType="GridColumnDataType.Boolean"
+            BodyTemplate="WebGridDiscontinuedCellTemplate"
+            Name="column1"
+            @ref="column1">
             </IgbColumn>
             
         </IgbGrid>
@@ -68,11 +73,7 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
-        var productName = this.productName;
-        var quantityPerUnit = this.quantityPerUnit;
-        var unitPrice = this.unitPrice;
-        var orderDate = this.orderDate;
-        var discontinued = this.discontinued;
+        var column1 = this.column1;
 
         this.BindElements = () => {
         };
@@ -83,12 +84,22 @@
 	}
 
     private IgbGrid grid;
-    private IgbColumn productName;
-    private IgbColumn quantityPerUnit;
-    private IgbColumn unitPrice;
-    private IgbColumn orderDate;
-    private IgbColumn discontinued;
+    private IgbColumn column1;
 
+    
+    public RenderFragment<IgbCellTemplateContext> WebGridDiscontinuedCellTemplate = (ctx) => {
+        return @<div>
+            @if (ctx.Cell.Value.ToString().ToLower() == "true")
+            {
+                <img src="https://www.infragistics.com/angular-demos-lob/assets/images/grid/active.png" title="Continued" alt="Continued" />
+            }
+            else
+            {
+                <img src="https://www.infragistics.com/angular-demos-lob/assets/images/grid/expired.png" title="Discontinued" alt="Discontinued" />
+            }
+        </div>;
+    };
+    	
     private NwindData _nwindData = null;
     public NwindData NwindData
     {
