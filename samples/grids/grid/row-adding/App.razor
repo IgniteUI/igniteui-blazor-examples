@@ -1,0 +1,145 @@
+@using IgniteUI.Blazor.Controls;
+
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Id="grid"
+        Data="NwindData"
+        PrimaryKey="ProductID"
+        RowEditable="true"
+        Name="grid"
+        @ref="grid">
+            <IgbActionStrip
+            >
+                <IgbGridEditingActions
+                AddRow="true">
+                </IgbGridEditingActions>
+                
+            </IgbActionStrip>
+            
+            <IgbColumn
+            Field="ProductID"
+            Header="ProductID"
+            Hidden="true"
+            DataType="GridColumnDataType.Number"
+            Name="ID"
+            @ref="iD">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ReorderLevel"
+            Header="ReorderLevel"
+            DataType="GridColumnDataType.Number"
+            Name="ReorderLevel"
+            @ref="reorderLevel">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ProductName"
+            Header="ProductName"
+            DataType="GridColumnDataType.String"
+            Name="ProductName"
+            @ref="productName">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="UnitsInStock"
+            Header="UnitsInStock"
+            DataType="GridColumnDataType.Number"
+            Name="UnitsInStock"
+            @ref="unitsInStock">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="CompanyName"
+            Header="CompanyName"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            Name="CompanyName"
+            @ref="companyName">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="OrderDate"
+            Header="OrderDate"
+            DataType="GridColumnDataType.Date"
+            Name="OrderDate"
+            @ref="orderDate">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Discontinued"
+            Header="Discontinued"
+            DataType="GridColumnDataType.Boolean"
+            Name="Discontinued"
+            @ref="discontinued">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+        var iD = this.iD;
+        var reorderLevel = this.reorderLevel;
+        var productName = this.productName;
+        var unitsInStock = this.unitsInStock;
+        var companyName = this.companyName;
+        var orderDate = this.orderDate;
+        var discontinued = this.discontinued;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbGrid grid;
+    private IgbColumn iD;
+    private IgbColumn reorderLevel;
+    private IgbColumn productName;
+    private IgbColumn unitsInStock;
+    private IgbColumn companyName;
+    private IgbColumn orderDate;
+    private IgbColumn discontinued;
+
+    private NwindData _nwindData = null;
+    public NwindData NwindData
+    {
+        get
+        {
+            if (_nwindData == null)
+            {
+                _nwindData = new NwindData(); 
+            }
+            return _nwindData;
+        }
+    }
+    
+}
