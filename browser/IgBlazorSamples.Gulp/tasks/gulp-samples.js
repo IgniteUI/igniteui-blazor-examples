@@ -71,15 +71,9 @@ var sampleSource = [
     // igConfig.SamplesCopyPath + '/grids/**/overview/App.razor',
     // igConfig.SamplesCopyPath + '/grids/**/column-types/App.razor',
 
-    // excluding project's .razor files
-    // "!" + igConfig.SamplesCopyPath + '/grids/**/binding-live-data/App.razor',
-    // "!" + igConfig.SamplesCopyPath + '/**/App.razor',
     // "!" + igConfig.SamplesCopyPath + '/**/Program.cs',
     "!" + igConfig.SamplesCopyPath + '/**/obj/**',
     "!" + igConfig.SamplesCopyPath + '/**/bin/**',
-    // "!" + igConfig.SamplesCopyPath + '/**/data-chart/type-scatter-polygon-series/App.razor',
-    // "!" + igConfig.SamplesCopyPath + '/**/data-chart/type-scatter-polyline-series/App.razor',
-    // "!" + igConfig.SamplesCopyPath + '/**/App.razor',
     // "!" + igConfig.SamplesCopyPath + '/**/_Imports.razor',
     // "!" + igConfig.SamplesCopyPath + '/**/wwwroot/index.html',
     // "!" + igConfig.SamplesCopyPath + '/**/wwwroot/index.css',
@@ -128,12 +122,63 @@ function saveSamples(cb) {
 } exports.saveSamples = saveSamples;
 
 function getSamples(cb) {
+
+    var excludedSamples = [
+      // excluding deferred gird samples
+      igConfig.SamplesCopyPath + '/grids/grid/toolbar-style/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/advanced-filtering-style/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/binding-nested-data-2/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/cell-selection-style/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/column-hiding-styles/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/column-moving-styles/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/column-pinning-styles/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/column-resize-styling/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/column-selection-styles/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/conditional-cell-style-2/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/custom-context-menu/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/data-exporting-indicator/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/data-performance-infinite-scroll/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/data-performance-operations/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/data-performance-summary/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/data-persistence-state/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/data-summary-custom-selection/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/editing-styles/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/excel-style-filtering-sample-1/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/excel-style-filtering-sample-2/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/excel-style-filtering-sample-3/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/excel-style-filtering-style/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/external-excel-style-filtering/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/filtering-style/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/filtering-template/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/groupby-styling/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/keyboard-custom-navigation/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/multi-column-headers-styling/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/remote-filtering-data/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/remote-paging-batch-editing/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/remote-paging-custom/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/remote-paging-template/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/row-classes/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/row-drop-indicator/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/row-editing-style/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/row-paging-style/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/row-pinning-style/App.razor/App.razor',
+    ];
+
+    var filteredSamples = [];
+    for (const sample of sampleSource) {
+        // console.log("includes " + sample + ' ' + excludedSamples.includes(sample));
+        if (!excludedSamples.includes(sample)) {
+            filteredSamples.push(sample);
+        }
+    }
+
     samples = [];
 
-    gulp.src(sampleSource)
+    gulp.src(filteredSamples)
     // .pipe(gSort( { asc: false } ))
     .pipe(es.map(function(sample, sampleCallback) {
         let sampleFolder = Transformer.getRelative(sample.dirname);
+
         // console.log("get " + sampleFolder + '/' + sample.basename);
         let sampleFiles = [];
         gulp.src([
@@ -313,7 +358,7 @@ function copySampleScripts(cb, outputPath, indexName) {
             if (copiedScriptFiles.indexOf(fileName) === -1) {
                 copiedScriptFiles.push(fileName);
 
-                log("+copying scripts to:  " + scriptPath);
+                log("copying scripts to:  " + scriptPath);
 
                 // console.log("copySampleScripts " + scriptName);
                 saveFile(scriptPath, file.Content);
