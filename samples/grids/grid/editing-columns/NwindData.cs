@@ -540,7 +540,7 @@ public class NwindData
             ProductName = @"Sir Rodneys Marmalade",
             SupplierID = 8,
             CategoryID = 3,
-            QuantityPerUnit = null,
+            QuantityPerUnit = @"4 - 100 ml jars",
             UnitPrice = 4.5,
             UnitsInStock = 40,
             UnitsOnOrder = 30,

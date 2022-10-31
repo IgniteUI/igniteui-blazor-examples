@@ -116,7 +116,7 @@ public class AthletesDataExtended
             ThirdPlaces = 1,
             RegistrationDate = @"2017-06-13T09:54:56.000Z",
             Birthday = @"1988-05-04T21:00:00.000Z",
-            Sponsor = null,
+            Sponsor = @"Andorra",
             Agent = @"Merle Affron",
             AgentContact = @"maffron3@cbc.ca",
             AgentPhone = @"+1-248-958-1645"
@@ -1887,7 +1887,7 @@ public class AthletesDataExtended
             ThirdPlaces = 2,
             RegistrationDate = @"2017-03-22T01:23:12.000Z",
             Birthday = @"1972-01-18T22:00:00.000Z",
-            Sponsor = null,
+            Sponsor = @"Italy",
             Agent = @"Shanna Mowling",
             AgentContact = @"smowling2f@apache.org",
             AgentPhone = @"+1-423-201-3489"
