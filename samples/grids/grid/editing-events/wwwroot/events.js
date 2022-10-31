@@ -2,9 +2,7 @@
 
 
 
-public void WebGridEditingEventsCellEdit(IgbGridEditEventArgs args)
-{
-	Console.WriteLine("TEST" + args);
-    //TODO    
-}
-    
+igRegisterScript("WebGridEditingEventsCellEdit", (event) => {
+    console.log("TODO WebGridEditingEventsCellEdit");
+}, false);
+

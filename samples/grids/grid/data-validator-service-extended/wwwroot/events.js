@@ -2,36 +2,17 @@
 
 
 
-public void WebGridUndo(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
-{
-	Console.WriteLine("test");
+igRegisterScript("WebGridUndo", (event) => {
+    console.log("TODO WebGridUndo");
+}, false);
 
-	//TODO
 
-	// this.grid.endEdit(true);
-    // this.grid.transactions.undo();
-}
-    
+igRegisterScript("WebGridRedo", (event) => {
+    console.log("TODO WebGridRedo");
+}, false);
 
-public void WebGridRedo(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
-{
-	Console.WriteLine("test");
 
-	//TODO
+igRegisterScript("WebGridCommit", (event) => {
+    console.log("TODO WebGridCommit");
+}, false);
 
-	// this.grid.endEdit(true);
-    // this.grid.transactions.redo();
-
-}
-    
-
-public void WebGridCommit(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
-{
-	Console.WriteLine("test");
-
-	//TODO
-
-	// this.grid.transactions.commit(this.data);
-    // this.dialog.close();
-}
-    

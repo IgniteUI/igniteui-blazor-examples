@@ -2,9 +2,7 @@
 
 
 
-public void WebGridColumnResized(object args)
-{
-	Console.WriteLine("TEST" + args);
-    //TODO
-}
-    
+igRegisterScript("WebGridColumnResized", (event) => {
+    console.log("TODO WebGridColumnResized");
+}, false);
+

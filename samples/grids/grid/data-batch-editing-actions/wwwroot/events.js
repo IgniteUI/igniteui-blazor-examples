@@ -1,51 +1,34 @@
 // this file contains events handlers and templates used in the razor page
 
 
+igRegisterScript("WebGridDeleteCellTemplate", (ctx) => {
+    var html = window.igTemplating.html;
+    // window.keyUpHandler = function () {
+    //     ctx.cell.row.data[window.event.target.id] = window.event.target.value;
+    // }
+    return html`<div class="contact-container--edit">
+ TODO
+</div>`;
+}, false);
 
-public void WebGridAddRow(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
-{
-    Console.WriteLine("test");
-    //TODO
-}
-    
 
-public void WebGridUndo(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
-{
-	Console.WriteLine("test");
 
-	//TODO
+igRegisterScript("WebGridAddRow", (event) => {
+    console.log("TODO WebGridAddRow");
+}, false);
 
-	// this.grid.endEdit(true);
-    // this.grid.transactions.undo();
-}
-    
 
-public void WebGridRedo(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
-{
-	Console.WriteLine("test");
+igRegisterScript("WebGridUndo", (event) => {
+    console.log("TODO WebGridUndo");
+}, false);
 
-	//TODO
 
-	// this.grid.endEdit(true);
-    // this.grid.transactions.redo();
+igRegisterScript("WebGridRedo", (event) => {
+    console.log("TODO WebGridRedo");
+}, false);
 
-}
-    
 
-public void WebGridCommit(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
-{
-	Console.WriteLine("test");
+igRegisterScript("WebGridCommit", (event) => {
+    console.log("TODO WebGridCommit");
+}, false);
 
-	//TODO
-
-	// this.grid.transactions.commit(this.data);
-    // this.dialog.close();
-}
-    
-
-public void WebGridDeleteCellTemplate(IgbGridEditEventArgs args)
-{
-	Console.WriteLine("TEST" + args);
-    //TODO
-}
-    

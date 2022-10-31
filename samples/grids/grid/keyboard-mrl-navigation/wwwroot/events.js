@@ -2,18 +2,16 @@
 
 
 
-public void WebGridMRLCustomNavigationEvent(IgbGridKeydownEventArgs args)
-{
-	//TODO IgbGridKeydownEventArgs needs access to which key was pressed
-	//const target = args.target;
-    //if (args.event.key.toLowerCase() === 'enter') {
-    //    args.event.preventDefault();
-    //    args.cancel = true;
-    //    const rowIndex = target.row.index === undefined ? target.index : target.row.index;
-    //    this.grid.navigateTo(args.event.shiftKey ? rowIndex - 1 : rowIndex + 1, target.column.visibleIndex,
-    //         (obj) => {
-    //            obj.target.activate();
-    //        });
-    //} 
-}
-    
+igRegisterScript("WebGridMRLCustomNavigationEvent", (args) => {
+	const target = args.detail.target;
+	if (args.detail.event.key.toLowerCase() === 'enter') {
+		args.detail.event.preventDefault();
+		args.detail.cancel = true;
+		const rowIndex = target.intRow.index === undefined ? target.index : target.intRow.index;
+		this.grid.navigateTo(args.detail.event.shiftKey ? rowIndex - 1 : rowIndex + 1, target.column.visibleIndex,
+			 (obj) => {
+				obj.target.activate();
+			});
+	}  
+}, false);
+

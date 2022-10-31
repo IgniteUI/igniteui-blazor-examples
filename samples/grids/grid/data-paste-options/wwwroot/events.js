@@ -2,21 +2,12 @@
 
 
 
-public void WebGridPasteOptions(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
-{
-	Console.WriteLine("test");
+igRegisterScript("WebGridPasteOptions", (event) => {
+    console.log("TODO WebGridPasteOptions");
+}, false);
 
-	//TODO
 
-	// this.grid.transactions.commit(this.data);
-    // this.dialog.close();
-}
-    
+igRegisterScript("WebGridExcelDownload", (event) => {
+    console.log("TODO WebGridExcelDownload");
+}, false);
 
-public void WebGridExcelDownload(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
-{
-	Console.WriteLine("test");
-
-	//TODO
-}
-    

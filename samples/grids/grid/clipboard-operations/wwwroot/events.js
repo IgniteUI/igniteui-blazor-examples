@@ -2,16 +2,12 @@
 
 
 
-public void WebGridClearSelection(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
-{
-	Console.WriteLine("TEST" + args);
-    //TODO
-}
-    
+igRegisterScript("WebGridClearSelection", (event) => {
+    console.log("TODO WebGridClearSelection");
+}, false);
 
-public void WebGridClipboardOperationsColumnInit(IgbColumnComponentEventArgs args)
-{
-	Console.WriteLine("TEST" + args);
-    //TODO    
-}
-    
+
+igRegisterScript("WebGridClipboardOperationsColumnInit", (event) => {
+    console.log("TODO WebGridClipboardOperationsColumnInit");
+}, false);
+
