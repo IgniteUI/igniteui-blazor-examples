@@ -2,12 +2,10 @@
 @using IgniteUI.Blazor.Controls;
 @using System;
 
-
 @inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
 <div class="container vertical">
-
     <div class="options vertical">
         <IgbPropertyEditorPanel
         
@@ -28,8 +26,6 @@
         </IgbPropertyEditorPanel>
         
     </div>
-
-
 
     <div class="container vertical fill">
         <IgbGrid
@@ -80,28 +76,28 @@
             Name="GeneralInformation"
             @ref="generalInformation">
                 <IgbColumn
-                VisibleWhenCollapsed="true"
                 Name="CompanyName"
-                @ref="companyName">
+                @ref="companyName"
+                VisibleWhenCollapsed="true">
                 </IgbColumn>
                 
                 <IgbColumnGroup
+                Name="PersonalDetails"
+                @ref="personalDetails"
                 Header="Personal Details"
-                VisibleWhenCollapsed="true"
                 Collapsible="true"
                 Expanded="true"
-                Name="PersonalDetails"
-                @ref="personalDetails">
+                VisibleWhenCollapsed="true">
                     <IgbColumn
-                    Field="ContactName"
                     Name="ContactName"
-                    @ref="contactName">
+                    @ref="contactName"
+                    Field="ContactName">
                     </IgbColumn>
                     
                     <IgbColumn
-                    Field="ContactTitle"
                     Name="ContactTitle"
-                    @ref="contactTitle">
+                    @ref="contactTitle"
+                    Field="ContactTitle">
                     </IgbColumn>
                     
                 </IgbColumnGroup>
@@ -109,70 +105,70 @@
             </IgbColumnGroup>
             
             <IgbColumnGroup
-            Header="Address Information"
             Name="AddressInformation"
-            @ref="addressInformation">
+            @ref="addressInformation"
+            Header="Address Information">
                 <IgbColumnGroup
+                Name="Location"
+                @ref="location"
                 Header="Location"
-                VisibleWhenCollapsed="true"
                 Collapsible="true"
                 Expanded="false"
-                Name="Location"
-                @ref="location">
+                VisibleWhenCollapsed="true">
                     <IgbColumn
-                    Field="Country"
-                    Hidden="true"
-                    VisibleWhenCollapsed="true"
                     Name="Country"
-                    @ref="country">
+                    @ref="country"
+                    Field="Country"
+                    VisibleWhenCollapsed="true"
+                    Hidden="true">
                     </IgbColumn>
                     
                     <IgbColumn
-                    Field="Region"
-                    Hidden="true"
-                    VisibleWhenCollapsed="false"
                     Name="Region"
-                    @ref="region">
+                    @ref="region"
+                    Field="Region"
+                    VisibleWhenCollapsed="false"
+                    Hidden="true">
                     </IgbColumn>
                     
                     <IgbColumn
-                    Field="City"
-                    Hidden="true"
-                    VisibleWhenCollapsed="false"
                     Name="City"
-                    @ref="city">
+                    @ref="city"
+                    Field="City"
+                    VisibleWhenCollapsed="false"
+                    Hidden="true">
                     </IgbColumn>
                     
                     <IgbColumn
-                    Field="Address"
-                    Hidden="true"
-                    VisibleWhenCollapsed="false"
                     Name="Address"
-                    @ref="address">
+                    @ref="address"
+                    Field="Address"
+                    VisibleWhenCollapsed="false"
+                    Hidden="true">
                     </IgbColumn>
                     
                 </IgbColumnGroup>
                 
                 <IgbColumnGroup
-                Header="Contact Information"
                 Name="ContactInformation"
-                @ref="contactInformation">
+                @ref="contactInformation"
+                Header="Contact Information">
                     <IgbColumn
-                    Field="Phone"
                     Name="Phone"
-                    @ref="phone">
+                    @ref="phone"
+                    Field="Phone">
                     </IgbColumn>
                     
                     <IgbColumn
-                    Field="Fax"
                     Name="Fax"
-                    @ref="fax">
+                    @ref="fax"
+                    Field="Fax">
                     </IgbColumn>
                     
                     <IgbColumn
-                    Field="PostalCode"
                     Name="PostalCode"
-                    @ref="postalCode">
+                    @ref="postalCode"
+                    Field="PostalCode">
                     </IgbColumn>
                     
                 </IgbColumnGroup>
