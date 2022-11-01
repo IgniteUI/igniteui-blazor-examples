@@ -4,8 +4,6 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
-<style>
-</style>
 <div class="container vertical">
 
 
@@ -20,50 +18,42 @@
         Name="grid"
         @ref="grid">
             <IgbColumn
-            Field="ProductID"
-            Header="Product ID"
-            Name="ProductID"
-            @ref="productID">
+            Field="ProductName"
+            Header="Product Name"
+            Sortable="true"
+            DataType="GridColumnDataType.String">
             </IgbColumn>
             
             <IgbColumn
-            Field="ProductName"
-            Header="Prod. Name"
-            HasSummary="true"
+            Field="QuantityPerUnit"
+            Header="Quantity Per Unit"
+            Sortable="true"
             DataType="GridColumnDataType.String">
             </IgbColumn>
             
             <IgbColumn
             Field="UnitPrice"
-            Header="Unit Price"
-            HasSummary="true"
-            DataType="GridColumnDataType.Number"
-            BodyTemplate="WebGridNumberToUSDCellTemplate"
-            Name="column1"
-            @ref="column1">
-            </IgbColumn>
-            
-            <IgbColumn
-            Field="UnitsInStock"
-            Header="UnitsInStock"
-            DataType="GridColumnDataType.Number">
-            </IgbColumn>
-            
-            <IgbColumn
-            Field="Discontinued"
-            Header="Discontinued"
-            HasSummary="true"
-            DataType="GridColumnDataType.Boolean">
+            Header="Unit Price Category"
+            Sortable="true"
+            DataType="GridColumnDataType.String">
             </IgbColumn>
             
             <IgbColumn
             Field="OrderDate"
             Header="Order Date"
-            HasSummary="true"
+            Sortable="true"
             DataType="GridColumnDataType.Date"
+            HasSummary="true"
             PipeArgs="ColumnPipeArgs1"
-            Name="column2"
-            @ref="column2">
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Discontinued"
+            Header="Discontinued"
+            Sortable="true"
+            DataType="GridColumnDataType.Boolean">
             </IgbColumn>
             
         </IgbGrid>
@@ -84,9 +74,7 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
-        var productID = this.productID;
         var column1 = this.column1;
-        var column2 = this.column2;
 
         this.BindElements = () => {
         };
@@ -99,9 +87,7 @@
 	}
 
     private IgbGrid grid;
-    private IgbColumn productID;
     private IgbColumn column1;
-    private IgbColumn column2;
     private IgbColumnPipeArgs _columnPipeArgs1 = null;
     public IgbColumnPipeArgs ColumnPipeArgs1
     {
@@ -110,22 +96,13 @@
             if (this._columnPipeArgs1 == null)
             {
                 var columnPipeArgs1 = new IgbColumnPipeArgs();
-                columnPipeArgs1.Format = "mediumDate";
+                columnPipeArgs1.Format = "MMM YYYY";
                 this._columnPipeArgs1 = columnPipeArgs1;
             }
             return this._columnPipeArgs1;
         }
     }
 
-    
-    public RenderFragment<IgbCellTemplateContext> WebGridNumberToUSDCellTemplate = (ctx) => {
-        return @<span>@formatNumber(ctx.Cell.Value)</span>;
-    };
-    	
-        private static string formatNumber(object value)
-        {
-            return "$" + value;
-        }
     private NwindData _nwindData = null;
     public NwindData NwindData
     {
