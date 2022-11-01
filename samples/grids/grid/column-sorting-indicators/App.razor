@@ -1,0 +1,192 @@
+@using IgniteUI.Blazor.Controls;
+
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Id="grid"
+        Data="FinancialDataAll"
+        SortingExpressions="@(new IgbSortingExpression[] { SortingExpression1, SortingExpression2, SortingExpression3, SortingExpression4, SortingExpression5, SortingExpression6 })"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="Settlement"
+            Sortable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Type"
+            Sortable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Region"
+            Sortable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Country"
+            Sortable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Price"
+            Sortable="true"
+            DataType="GridColumnDataType.Currency">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Buy"
+            Sortable="true"
+            DataType="GridColumnDataType.Currency">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbGrid grid;
+    private IgbSortingExpression _sortingExpression1 = null;
+    public IgbSortingExpression SortingExpression1
+    {
+        get
+        {
+            if (this._sortingExpression1 == null)
+            {
+                var sortingExpression1 = new IgbSortingExpression();
+                sortingExpression1.FieldName = "Settlement";
+                sortingExpression1.Dir = SortingDirection.Asc;
+                sortingExpression1.IgnoreCase = true;
+                this._sortingExpression1 = sortingExpression1;
+            }
+            return this._sortingExpression1;
+        }
+    }
+    private IgbSortingExpression _sortingExpression2 = null;
+    public IgbSortingExpression SortingExpression2
+    {
+        get
+        {
+            if (this._sortingExpression2 == null)
+            {
+                var sortingExpression2 = new IgbSortingExpression();
+                sortingExpression2.Dir = SortingDirection.Desc;
+                sortingExpression2.FieldName = "Type";
+                sortingExpression2.IgnoreCase = true;
+                this._sortingExpression2 = sortingExpression2;
+            }
+            return this._sortingExpression2;
+        }
+    }
+    private IgbSortingExpression _sortingExpression3 = null;
+    public IgbSortingExpression SortingExpression3
+    {
+        get
+        {
+            if (this._sortingExpression3 == null)
+            {
+                var sortingExpression3 = new IgbSortingExpression();
+                sortingExpression3.Dir = SortingDirection.Asc;
+                sortingExpression3.FieldName = "Region";
+                sortingExpression3.IgnoreCase = true;
+                this._sortingExpression3 = sortingExpression3;
+            }
+            return this._sortingExpression3;
+        }
+    }
+    private IgbSortingExpression _sortingExpression4 = null;
+    public IgbSortingExpression SortingExpression4
+    {
+        get
+        {
+            if (this._sortingExpression4 == null)
+            {
+                var sortingExpression4 = new IgbSortingExpression();
+                sortingExpression4.Dir = SortingDirection.Asc;
+                sortingExpression4.FieldName = "Country";
+                sortingExpression4.IgnoreCase = true;
+                this._sortingExpression4 = sortingExpression4;
+            }
+            return this._sortingExpression4;
+        }
+    }
+    private IgbSortingExpression _sortingExpression5 = null;
+    public IgbSortingExpression SortingExpression5
+    {
+        get
+        {
+            if (this._sortingExpression5 == null)
+            {
+                var sortingExpression5 = new IgbSortingExpression();
+                sortingExpression5.Dir = SortingDirection.Asc;
+                sortingExpression5.FieldName = "Price";
+                sortingExpression5.IgnoreCase = true;
+                this._sortingExpression5 = sortingExpression5;
+            }
+            return this._sortingExpression5;
+        }
+    }
+    private IgbSortingExpression _sortingExpression6 = null;
+    public IgbSortingExpression SortingExpression6
+    {
+        get
+        {
+            if (this._sortingExpression6 == null)
+            {
+                var sortingExpression6 = new IgbSortingExpression();
+                sortingExpression6.Dir = SortingDirection.Asc;
+                sortingExpression6.FieldName = "Buy";
+                sortingExpression6.IgnoreCase = true;
+                this._sortingExpression6 = sortingExpression6;
+            }
+            return this._sortingExpression6;
+        }
+    }
+
+    private FinancialDataAll _financialDataAll = null;
+    public FinancialDataAll FinancialDataAll
+    {
+        get
+        {
+            if (_financialDataAll == null)
+            {
+                _financialDataAll = new FinancialDataAll(); 
+            }
+            return _financialDataAll;
+        }
+    }
+    
+}
