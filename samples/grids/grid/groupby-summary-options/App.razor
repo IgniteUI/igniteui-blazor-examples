@@ -1,0 +1,170 @@
+@using IgniteUI.Blazor.Controls;
+
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="WebGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="PropertyEditor"
+        @ref="propertyEditor">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="SummaryCalculationMode"
+            Name="SummaryCalcModeEditor"
+            @ref="summaryCalcModeEditor">
+            </IgbPropertyEditorPropertyDescription>
+            
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="SummaryPosition"
+            Name="SummaryPositionEditor"
+            @ref="summaryPositionEditor">
+            </IgbPropertyEditorPropertyDescription>
+            
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="ShowSummaryOnCollapse"
+            Label="Show Summary Row when Group Row is Collapsed"
+            Name="ShowOnCollapseEditor"
+            @ref="showOnCollapseEditor">
+            </IgbPropertyEditorPropertyDescription>
+            
+        </IgbPropertyEditorPanel>
+        
+    </div>
+
+
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="InvoicesData"
+        GroupingExpressions="@(new IgbGroupingExpression[] { GroupingExpression1 })"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="ShipCountry"
+            Header="Ship Country"
+            Groupable="true"
+            Width="200px">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ShipCity"
+            Header="Ship City"
+            Width="250px"
+            Groupable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="UnitPrice"
+            Header="Unit Price"
+            Width="150px"
+            Groupable="true"
+            DataType="GridColumnDataType.Currency"
+            HasSummary="true"
+            PipeArgs="ColumnPipeArgs1"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Quantity"
+            Header="Quantity"
+            Width="150px"
+            Groupable="true"
+            DataType="GridColumnDataType.Number"
+            HasSummary="true">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditor = this.propertyEditor;
+        var summaryCalcModeEditor = this.summaryCalcModeEditor;
+        var summaryPositionEditor = this.summaryPositionEditor;
+        var showOnCollapseEditor = this.showOnCollapseEditor;
+        var grid = this.grid;
+        var column1 = this.column1;
+
+        this.BindElements = () => {
+            propertyEditor.Target = this.grid;
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription summaryCalcModeEditor;
+    private IgbPropertyEditorPropertyDescription summaryPositionEditor;
+    private IgbPropertyEditorPropertyDescription showOnCollapseEditor;
+    private IgbGrid grid;
+    private IgbGroupingExpression _groupingExpression1 = null;
+    public IgbGroupingExpression GroupingExpression1
+    {
+        get
+        {
+            if (this._groupingExpression1 == null)
+            {
+                var groupingExpression1 = new IgbGroupingExpression();
+                groupingExpression1.FieldName = "ShipCountry";
+                groupingExpression1.Dir = SortingDirection.Asc;
+                groupingExpression1.IgnoreCase = false;
+                this._groupingExpression1 = groupingExpression1;
+            }
+            return this._groupingExpression1;
+        }
+    }
+    private IgbColumn column1;
+    private IgbColumnPipeArgs _columnPipeArgs1 = null;
+    public IgbColumnPipeArgs ColumnPipeArgs1
+    {
+        get
+        {
+            if (this._columnPipeArgs1 == null)
+            {
+                var columnPipeArgs1 = new IgbColumnPipeArgs();
+                columnPipeArgs1.DigitsInfo = "1.2-2";
+                columnPipeArgs1.CurrencyCode = "USD";
+                this._columnPipeArgs1 = columnPipeArgs1;
+            }
+            return this._columnPipeArgs1;
+        }
+    }
+
+    private InvoicesData _invoicesData = null;
+    public InvoicesData InvoicesData
+    {
+        get
+        {
+            if (_invoicesData == null)
+            {
+                _invoicesData = new InvoicesData(); 
+            }
+            return _invoicesData;
+        }
+    }
+    
+}
