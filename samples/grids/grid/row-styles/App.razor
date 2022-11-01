@@ -4,31 +4,6 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
-<style>
-    .cellAlignSyle {
-        text-align: right;
-        float:right;
-    }
-    .cellAlignSyle > span {
-        float:right;
-    }
-    .up {
-        color: green;
-    }
-    .down {
-        color: red;
-    }
-    .grid__wrapper {
-    padding: 16px;
-    }
-    .currency-badge-container {
-        width: 80px; 
-        float: right;
-    }
-    .badge-left {
-        float: left;
-    }
-</style>
 <div class="container vertical">
 
 
@@ -57,50 +32,46 @@
             <IgbColumn
             Field="Open"
             Width="120px"
-            DataType="GridColumnDataType.Number">
+            Header="Open Price"
+            DataType="GridColumnDataType.Currency">
             </IgbColumn>
             
             <IgbColumn
             Field="Price"
             Width="120px"
-            DataType="GridColumnDataType.Number">
+            DataType="GridColumnDataType.Currency">
             </IgbColumn>
             
             <IgbColumn
             Field="Change"
             Width="120px"
-            DataType="GridColumnDataType.Number"
-            BodyTemplate="WebGridCurrencyCellTemplate"
-            Name="column1"
-            @ref="column1">
+            DataType="GridColumnDataType.Number">
             </IgbColumn>
             
             <IgbColumn
             Field="ChangePercent"
             Width="120px"
-            DataType="GridColumnDataType.Number"
-            Header="ChangePercent">
+            Header="Change(%)"
+            DataType="GridColumnDataType.Number">
             </IgbColumn>
             
             <IgbColumn
             Field="AnnualChange"
             Width="150px"
-            DataType="GridColumnDataType.Number"
-            BodyTemplate="WebGridCurrencyCellTemplate"
-            Name="column2"
-            @ref="column2">
+            Header="Change On Year(%)"
+            DataType="GridColumnDataType.Number">
             </IgbColumn>
             
             <IgbColumn
             Field="Buy"
             Width="130px"
-            DataType="GridColumnDataType.Number">
+            DataType="GridColumnDataType.Currency">
             </IgbColumn>
             
             <IgbColumn
             Field="Sell"
             Width="130px"
-            DataType="GridColumnDataType.Number">
+            DataType="GridColumnDataType.Currency">
             </IgbColumn>
             
             <IgbColumn
@@ -118,31 +89,36 @@
             <IgbColumn
             Field="High"
             Width="130px"
-            DataType="GridColumnDataType.Number">
+            Header="High(D)"
+            DataType="GridColumnDataType.Currency">
             </IgbColumn>
             
             <IgbColumn
             Field="Low"
             Width="130px"
-            DataType="GridColumnDataType.Number">
+            Header="Low(D)"
+            DataType="GridColumnDataType.Currency">
             </IgbColumn>
             
             <IgbColumn
             Field="AnnualHigh"
             Width="130px"
-            DataType="GridColumnDataType.Number">
+            Header="High(Y)"
+            DataType="GridColumnDataType.Currency">
             </IgbColumn>
             
             <IgbColumn
             Field="AnnualLow"
             Width="130px"
-            DataType="GridColumnDataType.Number">
+            Header="Low(Y)"
+            DataType="GridColumnDataType.Currency">
             </IgbColumn>
             
             <IgbColumn
             Field="AnnualStart"
             Width="130px"
-            DataType="GridColumnDataType.Number">
+            Header="Start(Y)"
+            DataType="GridColumnDataType.Currency">
             </IgbColumn>
             
         </IgbGrid>
@@ -163,8 +139,6 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
-        var column1 = this.column1;
-        var column2 = this.column2;
 
         this.BindElements = () => {
         };
@@ -177,32 +151,7 @@
 	}
 
     private IgbGrid grid;
-    private IgbColumn column1;
-    private IgbColumn column2;
 
-    
-    public RenderFragment<IgbCellTemplateContext> WebGridCurrencyCellTemplate = (ctx) => {
-        return @<div class="currency-badge-container">
-            @if (Convert.ToDouble(ctx.Cell.Value) > 0) 
-            {
-                <IgbBadge Variant="BadgeVariant.Success" Shape="BadgeShape.Rounded" Position="bottom-right" class="badge-left">
-                    <span>▲</span>
-                </IgbBadge>
-            }
-            @if (Convert.ToDouble(ctx.Cell.Value) < 0) 
-            {
-                <IgbBadge Variant="BadgeVariant.Danger" Shape="BadgeShape.Rounded" Position="bottom-right" class="error badge-left">
-                    <span>▼</span>
-                </IgbBadge>
-            }
-            <span class=@(Convert.ToDouble(ctx.Cell.Value) > 0 ? "cellAlignSyle up" : "cellAlignSyle down")>@formatNumber(ctx.Cell.Value)</span>
-        </div>;
-    };
-    	
-        private static string formatNumber(object value)
-        {
-            return Math.Round(Convert.ToDouble(value)).ToString();
-        }
     private FinancialDataAll _financialDataAll = null;
     public FinancialDataAll FinancialDataAll
     {
