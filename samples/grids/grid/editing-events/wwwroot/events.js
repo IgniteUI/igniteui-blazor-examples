@@ -1,8 +1,13 @@
-// this file contains events handlers and templates used in the razor page
 
 
+igRegisterScript("WebGridEditingEventsCellEdit", (ev) => {
+    var d = ev.detail;
 
-igRegisterScript("WebGridEditingEventsCellEdit", (event) => {
-    console.log("TODO WebGridEditingEventsCellEdit");
+    if (d.column != null && d.column.field == "UnitsOnOrder") {
+        if (d.newValue > d.rowData.UnitsInStock) {
+            d.cancel = true;
+            alert("You cannot order more than the units in stock!")
+        }
+    }
 }, false);
 

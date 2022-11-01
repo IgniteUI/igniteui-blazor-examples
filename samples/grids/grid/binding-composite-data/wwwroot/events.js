@@ -1,5 +1,3 @@
-// this file contains events handlers and templates used in the razor page
-
 
 igRegisterScript("WebGridCompositeContactCellTemplate", (ctx) => {
     var html = window.igTemplating.html;
