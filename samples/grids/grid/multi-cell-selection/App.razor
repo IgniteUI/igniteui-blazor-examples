@@ -6,25 +6,25 @@
         @if (mainData != null)
         {
             <div style="overflow: hidden">
-                <IgbGrid @ref="GridRef" Height="100%" Width="500px" Data="mainData" AutoGenerate=false AllowFiltering=true CellSelection="GridSelectionMode.Multiple" RangeSelected="RangeSelectionChanging">
-                     <IgbGridColumn Field="ProductID" />
-                     <IgbGridColumn Field="ProductName" />
-                     <IgbGridColumn Field="OrderItems" />
-                     <IgbGridColumn Field="OrderValue" />
+                <IgbGrid Id="grid1" @ref="GridRef" Height="100%" Width="500px" Data="mainData" AutoGenerate=false AllowFiltering=true CellSelection="GridSelectionMode.Multiple" RangeSelectedScript=onRangeSelectionChanging>
+                     <IgbColumn Field="ProductID" />
+                     <IgbColumn Field="ProductName" />
+                     <IgbColumn Field="OrderItems" />
+                     <IgbColumn Field="OrderValue" />
                 </IgbGrid>
             </div>
         }
     </div>
-    <div class="container vertical">
-        <div style="overflow: hidden">
-            <IgbGrid @ref="@targetGrid" Height="100%" Width="100%" Data="targetData" AutoGenerate=false>
-                <IgbGridColumn Field="ProductID" />
-                <IgbGridColumn Field="ProductName" />
-                <IgbGridColumn Field="OrderItems" />
-                <IgbGridColumn Field="OrderValue" />
-            </IgbGrid>
-        </div>              
-    </div>
+            <div class="container vertical">
+                <div style="overflow: hidden">
+            <IgbGrid Id="grid2" @ref="TargetGrid" Height="500px" Width="100%" Data="targetData" AutoGenerate=false>
+                        <IgbColumn Field="ProductID" />
+                        <IgbColumn Field="ProductName" />
+                        <IgbColumn Field="OrderItems" />
+                        <IgbColumn Field="OrderValue" />
+                    </IgbGrid>
+                </div>              
+            </div>
 </div>
 
 @code {
@@ -35,7 +35,7 @@
     private Random Rand = new Random();
 
     public IgbGrid GridRef { get; set; }
-    public IgbGrid targetGrid { get; set; }
+    public IgbGrid TargetGrid { get; set; }
 
     protected override void OnInitialized()
     {
@@ -48,24 +48,6 @@
         IgbIconModule.Register(IgniteUIBlazor);
 
         GenerateData();
-
-    }
-
-    private void RangeSelectionChanging(IgbGridSelectionRangeEventArgs args)
-    {
-        transferData(this.GridRef, this.targetGrid);
-    }
-
-    public void transferData(IgbGrid grid, IgbGrid target)
-    {
-        //TODO come back when GetSelectedData returns correct data type for the rows.
-        target.ShouldGenerate = true;
-        this.targetData = new List<SaleInfo>();
-
-        for (int i = 0; i < grid.GetSelectedData(false, false).Length; i++)
-        {            
-            this.targetData.Add(grid.GetSelectedData(false, false)[i] as SaleInfo);
-        }
 
     }
 
