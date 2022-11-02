@@ -5,37 +5,33 @@
     <div class="container vertical">
         @if (mainData != null)
         {
-            <IgbGrid @ref="GridRef" Height="100%" Width="100%"
-            AutoGenerate=false
-            AllowFiltering=true
-            CellSelection="GridSelectionMode.Multiple"
-            RangeSelected="RangeSelectionChanging">
-           @*          <IgbColumn Field="ProductID" />
+            <div>
+                <IgbGrid Id="grid1" @ref="GridRef" Height="100%" Width="95%" Data="mainData" AutoGenerate=false CellSelection="GridSelectionMode.Multiple" RangeSelectedScript="RangeSelectionChanging">
+                     <IgbColumn Field="ProductID" />
                      <IgbColumn Field="ProductName" />
                      <IgbColumn Field="OrderItems" />
-                     <IgbColumn Field="OrderValue" />*@
-            </IgbGrid>
+                     <IgbColumn Field="OrderValue" />
+                </IgbGrid>
+            </div>
         }
     </div>
-   @* <div class="container vertical">
-            <IgbGrid @ref="@targetGrid" Height="100%" Width="100%" Data="targetData" AutoGenerate=false>
-                <IgbColumn Field="ProductID" />
-                <IgbColumn Field="ProductName" />
-                <IgbColumn Field="OrderItems" />
-                <IgbColumn Field="OrderValue" />
-            </IgbGrid>
-    </div>*@
+    <div class="container vertical">
+            <div>
+                <IgbGrid Id="grid2" Height="550px" Width="100%" AutoGenerate=false>
+                    <IgbColumn Field="ProductID" />
+                    <IgbColumn Field="ProductName" />
+                    <IgbColumn Field="OrderItems" />
+                    <IgbColumn Field="OrderValue" />
+                </IgbGrid>
+            </div>              
+    </div>
 </div>
 
 @code {
 
     private List<SaleInfo> mainData;
-    private List<SaleInfo> targetData;
-
     private Random Rand = new Random();
-
     public IgbGrid GridRef { get; set; }
-    public IgbGrid targetGrid { get; set; }
 
     protected override void OnInitialized()
     {
@@ -49,30 +45,6 @@
 
         GenerateData();
 
-    }
-
-    private void RangeSelectionChanging(IgbGridSelectionRangeEventArgs args)
-    {
-        transferData(this.GridRef, this.targetGrid);
-    }
-
-    public void transferData(IgbGrid grid, IgbGrid target)
-    {
-        //TODO come back when GetSelectedData returns correct data type for the rows.
-        target.ShouldGenerate = true;
-        this.targetData = new List<SaleInfo>();
-
-        for (int i = 0; i < grid.GetSelectedData(false, false).Length; i++)
-        {
-            this.targetData.Add(grid.GetSelectedData(false, false)[i] as SaleInfo);
-        }
-
-    }
-
-    protected override void OnAfterRender(bool firstRender)
-    {
-        System.Diagnostics.Debug.WriteLine("mainData = " + mainData.Count);
-        this.GridRef.Data = mainData;
     }
 
     public void GenerateData()
@@ -120,7 +92,6 @@
             };
             sales.Add(item);
         }
-        System.Diagnostics.Debug.WriteLine("sales = " + sales.Count);
 
         this.mainData = sales;
     }
