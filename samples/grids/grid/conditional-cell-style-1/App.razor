@@ -1,13 +1,9 @@
 @using IgniteUI.Blazor.Controls;
 
-
 @inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
 <div class="container vertical">
-
-
-
 
     <div class="container vertical fill">
         <IgbGrid
@@ -34,7 +30,7 @@
             Sortable="true"
             Editable="true"
             DataType="GridColumnDataType.Number"
-            BodyTemplate="WebGridBeatsPerMinuteTemplate"
+            BodyTemplateScript="WebGridBeatsPerMinuteTemplate"
             Name="column1"
             @ref="column1">
             </IgbColumn>
@@ -45,7 +41,7 @@
             Sortable="true"
             Editable="true"
             DataType="GridColumnDataType.Number"
-            BodyTemplate="WebGridTopSpeedTemplate"
+            BodyTemplateScript="WebGridTopSpeedTemplate"
             Name="column2"
             @ref="column2">
             </IgbColumn>
@@ -60,7 +56,7 @@
             <IgbColumn
             Field="CountryFlag"
             Header="Country"
-            BodyTemplate="WebGridCountryFlagTemplate"
+            BodyTemplateScript="WebGridImageCellTemplate"
             Name="column3"
             @ref="column3">
             </IgbColumn>
@@ -74,6 +70,8 @@
 @code {
     protected override async Task OnInitializedAsync()
     {
+
+        await Task.Delay(1);
     }
 
     private Action BindElements { get; set; }
@@ -91,6 +89,8 @@
 
         if (firstRender) {
         }
+
+        await Task.Delay(1);
 	}
 
     private IgbGrid grid;
@@ -98,27 +98,6 @@
     private IgbColumn column2;
     private IgbColumn column3;
 
-    
-    public RenderFragment<IgbCellTemplateContext> WebGridBeatsPerMinuteTemplate = (ctx) => {
-        return @<div>    
-            <span>TODO BeatsPerMinuteTemplate</span>       
-          </div>;
-    };
-        
-    
-    public RenderFragment<IgbCellTemplateContext> WebGridTopSpeedTemplate = (ctx) => {
-    return @<div>
-        <span>TODO TopSpeedTemplate</span>
-        </div>;
-    };
-        
-    
-    public RenderFragment<IgbCellTemplateContext> WebGridCountryFlagTemplate = (ctx) => {
-        return @<div>
-            <span>TODO CountryFlagTemplate</span>   
-         </div>;
-    };
-        
     private AthletesData _athletesData = null;
     public AthletesData AthletesData
     {
