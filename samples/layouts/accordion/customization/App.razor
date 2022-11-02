@@ -1,0 +1,194 @@
+﻿@using IgniteUI.Blazor.Controls
+
+<style>
+    igc-accordion {
+        width: 100%;
+    }
+
+    .sample-wrapper {
+        overflow-y: auto;
+        max-height: 530px;
+        margin: 8px;
+    }
+
+    igc-range-slider {
+        margin: 24px;
+    }
+
+    .categories-container {
+        display: flex;
+        flex-flow: column nowrap;
+    }
+
+    igc-checkbox,
+    igc-radio {
+        margin: 4px 0;
+    }
+
+    igc-expansion-panel {
+        border: 1px solid rgba(174, 174, 174, 0.25);
+    }
+
+    igc-rating {
+        flex-direction: row;
+    }
+</style>
+
+<div class="container vertical">
+    <IgbAccordion>
+        <IgbExpansionPanel>
+            <h1 slot="title" id="categories">@CategoryTitle</h1>
+            <div class="categories-container">
+                @foreach (var category in Categories)
+                {
+                    <IgbCheckbox Value="@category.Id" Checked="@category.Selected" Change="OnCategoryChange">@category.Label</IgbCheckbox>
+                }
+            </div>
+        </IgbExpansionPanel>
+        <IgbExpansionPanel>
+            <h1 slot="title">Cost: $<span id="lowerCost">@SliderLower</span> to $<span id="upperCost">@SliderUpper</span></h1>
+            <IgbRangeSlider Min="0" Max="1000" Lower="@SliderLower" Upper="@SliderUpper" Change="OnSliderChange"></IgbRangeSlider>
+        </IgbExpansionPanel>
+        <IgbExpansionPanel>
+            <h1 slot="title" id="rating">@RatingTitle</h1>
+            <IgbRadioGroup>
+                @foreach (var rating in Ratings)
+                {
+                    <IgbRadio Value="@rating.Id" Change="OnRadioChange">
+                        <IgbRating Label="@rating.Label" Value="@rating.Value" Max="5" Size="SizableComponentSize.Small" Readonly="true"></IgbRating>
+                    </IgbRadio>
+                }
+            </IgbRadioGroup>
+        </IgbExpansionPanel>
+        <IgbExpansionPanel>
+            <h1 slot="title" id="timeTitle">@TimeTitle</h1>
+            <IgbDateTimeInput @ref="DateTimeInputRef" InputFormat="hh:mm tt" Label="Arrive before" Size="SizableComponentSize.Small" Change="OnTimeChange">
+                <IgbIcon IconName="clock" Collection="material" slot="prefix"></IgbIcon>
+                <IgbIcon IconName="clear" Collection="material" slot="suffix" @onclick="OnTimeClear"></IgbIcon>
+            </IgbDateTimeInput>
+        </IgbExpansionPanel>
+    </IgbAccordion>
+
+    <IgbIcon @ref="@RegisterIconRef"/>
+</div>
+
+@code {
+    IgbIcon? RegisterIconRef;
+
+    IgbDateTimeInput? DateTimeInputRef;
+
+    double SliderLower = 200;
+    double SliderUpper = 800;
+
+    string CategoryTitle = "Categories";
+    List<Category> Categories = new List<Category>();
+
+    string RatingTitle = "Rating";
+    List<Rating> Ratings = new List<Rating>();
+
+    string TimeTitle = "Time";
+
+    protected override Task OnInitializedAsync()
+    {
+        Categories.Add(new Category { Id = "0", Label = "Bike" });
+        Categories.Add(new Category { Id = "1", Label = "Motorcycle" });
+        Categories.Add(new Category { Id = "2", Label = "Car" });
+        Categories.Add(new Category { Id = "3", Label = "Taxi" });
+        Categories.Add(new Category { Id = "4", Label = "Public Transport" });
+
+        Ratings.Add(new Rating { Id = "0", Label = "1 star or more", Value = 1.5 });
+        Ratings.Add(new Rating { Id = "1", Label = "2 star or more", Value = 2.5 });
+        Ratings.Add(new Rating { Id = "2", Label = "3 star or more", Value = 3.5 });
+        Ratings.Add(new Rating { Id = "3", Label = "4 star or more", Value = 4.5 });
+
+        return base.OnInitializedAsync();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        if (firstRender && this.RegisterIconRef != null)
+        {
+            await this.RegisterIconRef.EnsureReady();
+            string clearIcon = "<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' width='24' height='24' viewBox='0 0 24 24'><path d='M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z' /></svg>";
+            string clockIcon = "<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' width='24' height='24' viewBox='0 0 24 24'><path d='M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z' /></svg>";
+            await this.RegisterIconRef.RegisterIconFromTextAsync("clear", clearIcon, "material");
+            await this.RegisterIconRef.RegisterIconFromTextAsync("clock", clockIcon, "material");
+        }
+    }
+
+    public void OnCategoryChange(IgbComponentBoolValueChangedEventArgs args)
+    {
+        var id = (args.Parent as IgbCheckbox).Value;
+        var category = Categories.Where(x => x.Id == id).FirstOrDefault();
+        if (category != null)
+            category.Selected = args.Detail;
+
+        UpdateCheckedCategories();
+    }
+
+    private void UpdateCheckedCategories()
+    {
+        string checkedItems = "";
+        Categories.ForEach(category =>
+        {
+            if (category.Selected)
+            {
+                checkedItems += checkedItems != "" ? ", " + category.Label : "Categories: " + category.Label;
+            }
+        });
+        CategoryTitle = checkedItems == "" ? "Categories" : checkedItems;
+        StateHasChanged();
+    }
+
+    private void OnSliderChange(IgbRangeSliderValueEventArgs args)
+    {
+        if (args.Detail != null)
+        {
+            SliderLower = args.Detail.Lower;
+            SliderUpper = args.Detail.Upper;
+            StateHasChanged();
+        }
+    }
+
+    private void OnRadioChange(IgbComponentBoolValueChangedEventArgs args)
+    {
+        var id = (args.Parent as IgbRadio).Value;
+        var rating = Ratings.Where(x => x.Id == id).FirstOrDefault();
+        if (rating != null)
+        {
+            RatingTitle = "Rating: " + rating.Label;
+            StateHasChanged();
+        }
+    }
+
+    private async void OnTimeChange(IgbComponentDateValueChangedEventArgs args)
+    {
+        TimeTitle = "Time: " + (args.Parent as IgbDateTimeInput).Label + " " + args.Detail.ToShortTimeString();
+        StateHasChanged();
+    }
+
+    private async void OnTimeClear()
+    {
+        if (DateTimeInputRef != null)
+        {
+            await DateTimeInputRef.ClearAsync();
+        }
+        TimeTitle = "Time";
+        StateHasChanged();
+    }
+
+    public class Category
+    {
+        public string Id { get; set; }
+        public bool Selected { get; set; }
+        public string Label { get; set; }
+    }
+
+    public class Rating
+    {
+        public string Id { get; set; }
+        public string Label { get; set; }
+        public double Value { get; set; }
+    }
+}
