@@ -7,6 +7,7 @@
 
     <div class="container vertical fill">
         <IgbGrid
+        AutoGenerate="false"
         Data="NwindData"
         PrimaryKey="ProductID"
         RowEditable="true"
@@ -14,18 +15,15 @@
         BatchEditing="true"
         Name="grid"
         @ref="grid">
-            <IgbColumn
-            Field="ProductID"
-            Header="Product ID"
-            Name="ProductID"
-            @ref="productID">
-            </IgbColumn>
+            <IgbPinningConfig
+            Rows="RowPinningPosition.Top">
+            </IgbPinningConfig>
             
             <IgbColumn
-            Name="ProductName"
-            @ref="productName"
             Field="ProductName"
-            Header="Product Name">
+            Header="Product Name"
+            Name="ProductName"
+            @ref="productName">
             </IgbColumn>
             
             <IgbColumn
@@ -88,7 +86,6 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
-        var productID = this.productID;
         var productName = this.productName;
         var unitPrice = this.unitPrice;
         var unitsOnOrder = this.unitsOnOrder;
@@ -96,6 +93,7 @@
         var quantityPerUnit = this.quantityPerUnit;
         var reorderLevel = this.reorderLevel;
         var discontinued = this.discontinued;
+        var actionStrip = this.actionStrip;
 
         this.BindElements = () => {
         };
@@ -108,7 +106,6 @@
 	}
 
     private IgbGrid grid;
-    private IgbColumn productID;
     private IgbColumn productName;
     private IgbColumn unitPrice;
     private IgbColumn unitsOnOrder;
@@ -116,6 +113,7 @@
     private IgbColumn quantityPerUnit;
     private IgbColumn reorderLevel;
     private IgbColumn discontinued;
+    private IgbActionStrip actionStrip;
 
     private NwindData _nwindData = null;
     public NwindData NwindData
