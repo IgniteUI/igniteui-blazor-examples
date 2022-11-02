@@ -1,0 +1,195 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="WebGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="PropertyEditor"
+        @ref="propertyEditor">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="SortingOptions"
+            Name="SortingOptionsEditor"
+            @ref="sortingOptionsEditor">
+            </IgbPropertyEditorPropertyDescription>
+            
+            <IgbPropertyEditorPropertyDescription
+            ValueType="PropertyEditorValueType.Button"
+            PrimitiveValue="@("Clear Sorting")"
+            ButtonClicked="WebGridClearSort"
+            Name="propertyEditorPropertyDescription1"
+            @ref="propertyEditorPropertyDescription1">
+            </IgbPropertyEditorPropertyDescription>
+            
+            <IgbPropertyEditorPropertyDescription
+            ValueType="PropertyEditorValueType.Button"
+            PrimitiveValue="@("Clear Grouped Columns")"
+            ButtonClicked="WebGridClearGrouping"
+            Name="propertyEditorPropertyDescription2"
+            @ref="propertyEditorPropertyDescription2">
+            </IgbPropertyEditorPropertyDescription>
+            
+        </IgbPropertyEditorPanel>
+        
+    </div>
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="ProductSales"
+        SortingExpressions="@(new IgbSortingExpression[] { SortingExpression1 })"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="OrderID"
+            Header="Order ID"
+            Sortable="true"
+            Groupable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="CategoryName"
+            Header="Category Name"
+            Groupable="true"
+            Sortable="true"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="CompanyName"
+            Header="Company Name"
+            Groupable="true"
+            Sortable="true"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ShipCountry"
+            Header="Ship Country"
+            Groupable="true"
+            Sortable="true"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="SaleAmount"
+            Header="Sale Amount"
+            Groupable="true"
+            Sortable="true"
+            DataType="GridColumnDataType.Currency"
+            PipeArgs="ColumnPipeArgs1"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ShippedDate"
+            Header="Shipped Date"
+            Sortable="true"
+            DataType="GridColumnDataType.Date">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditor = this.propertyEditor;
+        var sortingOptionsEditor = this.sortingOptionsEditor;
+        var propertyEditorPropertyDescription1 = this.propertyEditorPropertyDescription1;
+        var propertyEditorPropertyDescription2 = this.propertyEditorPropertyDescription2;
+        var grid = this.grid;
+        var column1 = this.column1;
+
+        this.BindElements = () => {
+            propertyEditor.Target = this.grid;
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription sortingOptionsEditor;
+    private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
+    private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription2;
+    private IgbGrid grid;
+    private IgbSortingExpression _sortingExpression1 = null;
+    public IgbSortingExpression SortingExpression1
+    {
+        get
+        {
+            if (this._sortingExpression1 == null)
+            {
+                var sortingExpression1 = new IgbSortingExpression();
+                sortingExpression1.FieldName = "CategoryName";
+                sortingExpression1.Dir = SortingDirection.Asc;
+                sortingExpression1.IgnoreCase = true;
+                this._sortingExpression1 = sortingExpression1;
+            }
+            return this._sortingExpression1;
+        }
+    }
+    private IgbColumn column1;
+    private IgbColumnPipeArgs _columnPipeArgs1 = null;
+    public IgbColumnPipeArgs ColumnPipeArgs1
+    {
+        get
+        {
+            if (this._columnPipeArgs1 == null)
+            {
+                var columnPipeArgs1 = new IgbColumnPipeArgs();
+                columnPipeArgs1.DigitsInfo = "1.2-2";
+                columnPipeArgs1.CurrencyCode = "USD";
+                this._columnPipeArgs1 = columnPipeArgs1;
+            }
+            return this._columnPipeArgs1;
+        }
+    }
+
+    
+    public void WebGridClearSort(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
+    {
+        this.grid.ClearSort("");
+    }
+        
+    
+    public void WebGridClearGrouping(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
+    {
+        this.grid.ClearGrouping("");
+    }
+        
+    private ProductSales _productSales = null;
+    public ProductSales ProductSales
+    {
+        get
+        {
+            if (_productSales == null)
+            {
+                _productSales = new ProductSales(); 
+            }
+            return _productSales;
+        }
+    }
+    
+}
