@@ -1,0 +1,50 @@
+﻿@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <IgbDateTimeInput @ref="DateTimeInputRef" SpinDelta="@SpinDelta">
+        <IgbIcon IconName="clear" Collection="myIcons" slot="prefix" @onclick="OnClear"></IgbIcon>
+        <IgbIcon IconName="up" Collection="myIcons" slot="suffix" @onclick="OnStepUp"></IgbIcon>
+        <IgbIcon IconName="down" Collection="myIcons" slot="suffix" @onclick="OnStepDown"></IgbIcon>
+    </IgbDateTimeInput>
+    <IgbIcon @ref="RegisterIconRef"/>
+</div>
+
+@code {
+    IgbDateTimeInput? DateTimeInputRef;
+    IgbIcon? RegisterIconRef;
+
+    IgbDatePartDeltas SpinDelta = new IgbDatePartDeltas()
+    {
+        Date = 2,
+        Month = 3,
+        Year = 10
+    };
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        if (firstRender && RegisterIconRef != null)
+        {
+            await RegisterIconRef.EnsureReady();
+            var upIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path d=\"M7 14l5-5 5 5z\"/></svg>";
+            var downIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path d=\"M7 10l5 5 5-5z\"/></svg>";
+            var clearIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path d=\"M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z\"/></svg>";
+            await RegisterIconRef.RegisterIconFromTextAsync("up", upIcon, "myIcons");
+            await RegisterIconRef.RegisterIconFromTextAsync("down", downIcon, "myIcons");
+            await RegisterIconRef.RegisterIconFromTextAsync("clear", clearIcon, "myIcons");
+        }
+    }
+
+    public async void OnClear()
+    {
+        await DateTimeInputRef?.ClearAsync();
+    }
+    public async void OnStepUp()
+    {
+        await DateTimeInputRef?.StepUpAsync(DateTimeInputDatePart.Month, SpinDelta.Month);
+    }
+    public async void OnStepDown()
+    {
+        await DateTimeInputRef?.StepDownAsync(DateTimeInputDatePart.Date, SpinDelta.Date);
+    }
+}
