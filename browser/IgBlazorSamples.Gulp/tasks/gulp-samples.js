@@ -50,7 +50,7 @@ var sampleSource = [
     igConfig.SamplesCopyPath + '/grids/data-grid/**/App.razor',
     igConfig.SamplesCopyPath + '/grids/list/**/App.razor',
     igConfig.SamplesCopyPath + '/grids/grid/**/App.razor',
-    // igConfig.SamplesCopyPath + '/grids/tree-grid/**/App.razor',
+    igConfig.SamplesCopyPath + '/grids/tree-grid/**/App.razor',
     // igConfig.SamplesCopyPath + '/grids/pivot-grid/**/App.razor',
     // igConfig.SamplesCopyPath + '/grids/hierarchical-grid/**/App.razor',
     igConfig.SamplesCopyPath + '/editors/**/App.razor',
@@ -123,7 +123,7 @@ function saveSamples(cb) {
 
 function getSamples(cb) {
 
-    var excludedSamples = [
+    var deferredSamples = [
       // excluding deferred gird samples
       igConfig.SamplesCopyPath + '/grids/grid/toolbar-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/advanced-filtering-style/App.razor',
@@ -164,58 +164,57 @@ function getSamples(cb) {
       igConfig.SamplesCopyPath + '/grids/grid/row-pinning-style/App.razor/App.razor',
     ];
 
-    var filteredSamples = [];
-    for (const sample of sampleSource) {
-        // console.log("includes " + sample + ' ' + excludedSamples.includes(sample));
-        if (!excludedSamples.includes(sample)) {
-            filteredSamples.push(sample);
-        }
-    }
-
     samples = [];
 
-    gulp.src(filteredSamples)
+    gulp.src(sampleSource)
     // .pipe(gSort( { asc: false } ))
     .pipe(es.map(function(sample, sampleCallback) {
         let sampleFolder = Transformer.getRelative(sample.dirname);
+        let samplePath = sampleFolder + '/' + sample.basename;
 
-        // console.log("get " + sampleFolder + '/' + sample.basename);
-        let sampleFiles = [];
-        gulp.src([
-                // sampleFolder + "/Pages/*",
-                sampleFolder + "/App.razor",
-                sampleFolder + "/Components/*",
-                sampleFolder + "/**/*.cs",
-                sampleFolder + "/*.csproj",
-                sampleFolder + "/wwwroot/*.js",
-                sampleFolder + "/wwwroot/*.css",
-             // sampleFolder + "/wwwroot/*",
-          '!' + sampleFolder + "/wwwroot/index.html",
-        //   '!' + sampleFolder + "/wwwroot/index.css",
-        //   '!' + sampleFolder + "/Pages/_*.razor",
-        //   '!' + sampleFolder + "/Pages/DataGridBindingLiveData.razor",
-          '!' + sampleFolder + "/Pages/*.g.cs",
-          '!' + sampleFolder + "/_Imports.razor",
-        //   '!' + sampleFolder + "/Program.cs", // not excluded b/c we need to get names of IG modules
-          '!' + sampleFolder + "/obj/**",
-          '!' + sampleFolder + "/obj/*.*",
-          '!' + sampleFolder + "/bin/**",
-          '!' + sampleFolder + "/bin/*.*",])
-        .pipe(flatten({ "includeParents": -1 }))
-        .pipe(es.map(function(file, fileCallback) {
-            let fileDir = Transformer.getRelative(file.dirname);
-            sampleFiles.push(fileDir + "/" + file.basename);
-            // console.log("get file " + fileDir + "/" + file.basename);
-            fileCallback(null, file);
-        }))
-        .on("end", function() {
-            // log(sampleFolder);
-            let sampleInfo = Transformer.getSampleInfo(sample, sampleFiles);
-            if (sampleInfo !== null) {
-                samples.push(sampleInfo);
-            }
+        // skip samples that were deferred
+        if (deferredSamples.includes(samplePath)) {
             sampleCallback(null, sample);
-        });
+        } else {
+            // console.log("get " + samplePath);
+            let sampleFiles = [];
+            gulp.src([
+                    // sampleFolder + "/Pages/*",
+                    sampleFolder + "/App.razor",
+                    sampleFolder + "/Components/*",
+                    sampleFolder + "/**/*.cs",
+                    sampleFolder + "/*.csproj",
+                    sampleFolder + "/wwwroot/*.js",
+                    sampleFolder + "/wwwroot/*.css",
+                 // sampleFolder + "/wwwroot/*",
+              '!' + sampleFolder + "/wwwroot/index.html",
+            //   '!' + sampleFolder + "/wwwroot/index.css",
+            //   '!' + sampleFolder + "/Pages/_*.razor",
+            //   '!' + sampleFolder + "/Pages/DataGridBindingLiveData.razor",
+              '!' + sampleFolder + "/Pages/*.g.cs",
+              '!' + sampleFolder + "/_Imports.razor",
+            //   '!' + sampleFolder + "/Program.cs", // not excluded b/c we need to get names of IG modules
+              '!' + sampleFolder + "/obj/**",
+              '!' + sampleFolder + "/obj/*.*",
+              '!' + sampleFolder + "/bin/**",
+              '!' + sampleFolder + "/bin/*.*",])
+            .pipe(flatten({ "includeParents": -1 }))
+            .pipe(es.map(function(file, fileCallback) {
+                let fileDir = Transformer.getRelative(file.dirname);
+                sampleFiles.push(fileDir + "/" + file.basename);
+                // console.log("get file " + fileDir + "/" + file.basename);
+                fileCallback(null, file);
+            }))
+            .on("end", function() {
+                // log(sampleFolder);
+                let sampleInfo = Transformer.getSampleInfo(sample, sampleFiles);
+                if (sampleInfo !== null) {
+                    samples.push(sampleInfo);
+                }
+                sampleCallback(null, sample);
+            });
+        }
+
     }))
     .on("end", function() {
         Transformer.sort(samples);
