@@ -39,7 +39,7 @@
             Editable="false"
             Width="80px"
             DataType="GridColumnDataType.String"
-            BodyTemplate="WebGridAvatarCellTemplate"
+            BodyTemplateScript="WebGridAvatarCellTemplate"
             Name="Avatar"
             @ref="avatar">
             </IgbColumn>
@@ -206,16 +206,6 @@
     private IgbColumn dealsWon;
     private IgbColumn dealsPending;
 
-    
-    public RenderFragment<IgbCellTemplateContext> WebGridAvatarCellTemplate = (ctx) => {
-        string value = ctx.Cell.Value as string;
-        return 
-         @<div>
-            <IgbAvatar Shape=AvatarShape.Circle Src="@value">
-            </IgbAvatar>
-        </div>;
-    };
-    	
     private EmployeesData _employeesData = null;
     public EmployeesData EmployeesData
     {

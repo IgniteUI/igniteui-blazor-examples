@@ -3,8 +3,6 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
-<style>
-</style>
 <div class="container vertical">
 
     <div class="container vertical fill">
@@ -48,7 +46,7 @@
             Width="200px"
             Groupable="true"
             DataType="GridColumnDataType.Boolean"
-            BodyTemplate="WebGridBooleanCellTemplate"
+            BodyTemplateScript="WebGridBooleanCellTemplate"
             Name="column1"
             @ref="column1">
             </IgbColumn>
@@ -159,21 +157,6 @@
     }
     private IgbColumn column1;
 
-    
-    public RenderFragment<IgbCellTemplateContext> WebGridBooleanCellTemplate = (ctx) => {
-    	bool value = Convert.ToBoolean(ctx.Cell.Value.ToString());
-        return @<div>
-    	@if (value == true)
-    	{
-    		<img src="https://www.infragistics.com/angular-demos-lob/assets/images/grid/active.png" title="Continued" alt="Continued" />
-    	}
-    	@if (value == false)
-    	{
-    		<img src="https://www.infragistics.com/angular-demos-lob/assets/images/grid/expired.png" title="Discontinued" alt="Discontinued" />
-    	}
-    	</div>;
-    };
-    	
     private InvoicesData _invoicesData = null;
     public InvoicesData InvoicesData
     {

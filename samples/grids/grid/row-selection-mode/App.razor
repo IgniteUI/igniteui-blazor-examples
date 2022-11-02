@@ -3,31 +3,6 @@
 @inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
-<style>
-    .cellAlignSyle {
-        text-align: right;
-        float:right;
-    }
-    .cellAlignSyle > span {
-        float:right;
-    }
-    .up {
-        color: green;
-    }
-    .down {
-        color: red;
-    }
-    .grid__wrapper {
-    padding: 16px;
-    }
-    .currency-badge-container {
-        width: 80px; 
-        float: right;
-    }
-    .badge-left {
-        float: left;
-    }
-</style>
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
@@ -95,7 +70,7 @@
             
             <IgbColumn
             Field="Change"
-            BodyTemplate="WebGridCurrencyCellTemplate"
+            BodyTemplateScript="WebGridCurrencyCellTemplate"
             Name="column4"
             @ref="column4">
             </IgbColumn>
@@ -103,7 +78,7 @@
             <IgbColumn
             Field="ChangePercent"
             DataType="GridColumnDataType.Number"
-            BodyTemplate="WebGridCurrencyCellTemplate"
+            BodyTemplateScript="WebGridCurrencyCellTemplate"
             Name="column5"
             @ref="column5">
             </IgbColumn>
@@ -111,7 +86,7 @@
             <IgbColumn
             Field="AnnualChange"
             DataType="GridColumnDataType.Number"
-            BodyTemplate="WebGridCurrencyCellTemplate"
+            BodyTemplateScript="WebGridCurrencyCellTemplate"
             Name="column6"
             @ref="column6">
             </IgbColumn>
@@ -211,29 +186,6 @@
     private IgbColumn column5;
     private IgbColumn column6;
 
-    
-    public RenderFragment<IgbCellTemplateContext> WebGridCurrencyCellTemplate = (ctx) => {
-        return @<div class="currency-badge-container">
-            @if (Convert.ToDouble(ctx.Cell.Value) > 0) 
-            {
-                <IgbBadge Variant="BadgeVariant.Success" Shape="BadgeShape.Rounded" Position="bottom-right" class="badge-left">
-                    <span>▲</span>
-                </IgbBadge>
-            }
-            @if (Convert.ToDouble(ctx.Cell.Value) < 0) 
-            {
-                <IgbBadge Variant="BadgeVariant.Danger" Shape="BadgeShape.Rounded" Position="bottom-right" class="error badge-left">
-                    <span>▼</span>
-                </IgbBadge>
-            }
-            <span class=@(Convert.ToDouble(ctx.Cell.Value) > 0 ? "cellAlignSyle up" : "cellAlignSyle down")>@formatNumber(ctx.Cell.Value)</span>
-        </div>;
-    };
-    	
-        private static string formatNumber(object value)
-        {
-            return Math.Round(Convert.ToDouble(value)).ToString();
-        }
     private FinancialDataAll _financialDataAll = null;
     public FinancialDataAll FinancialDataAll
     {

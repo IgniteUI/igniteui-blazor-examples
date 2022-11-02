@@ -64,7 +64,7 @@
             Header="Discontinued"
             Sortable="true"
             DataType="GridColumnDataType.Boolean"
-            BodyTemplate="WebGridDiscontinuedCellTemplate"
+            BodyTemplateScript="WebGridDiscontinuedCellTemplate"
             Name="column1"
             @ref="column1">
             </IgbColumn>
@@ -102,20 +102,6 @@
     private IgbGrid grid;
     private IgbColumn column1;
 
-    
-    public RenderFragment<IgbCellTemplateContext> WebGridDiscontinuedCellTemplate = (ctx) => {
-        return @<div>
-            @if (ctx.Cell.Value.ToString().ToLower() == "true")
-            {
-                <img src="https://www.infragistics.com/angular-demos-lob/assets/images/grid/active.png" title="Continued" alt="Continued" />
-            }
-            else
-            {
-                <img src="https://www.infragistics.com/angular-demos-lob/assets/images/grid/expired.png" title="Discontinued" alt="Discontinued" />
-            }
-        </div>;
-    };
-    	
     private NwindData _nwindData = null;
     public NwindData NwindData
     {

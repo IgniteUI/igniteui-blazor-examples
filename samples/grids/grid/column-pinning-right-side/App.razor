@@ -19,14 +19,14 @@
             <IgbColumn
             Field="CountryFlag"
             Header="Team"
-            BodyTemplate="WebGridImageCellTemplate"
+            BodyTemplateScript="WebGridImageCellTemplate"
             Name="column1"
             @ref="column1">
             </IgbColumn>
             
             <IgbColumn
             Field="Avatar"
-            BodyTemplate="WebGridAvatarCellTemplate"
+            BodyTemplateScript="WebGridAvatarCellTemplate"
             Name="column2"
             @ref="column2">
             </IgbColumn>
@@ -127,23 +127,6 @@
     private IgbColumn column1;
     private IgbColumn column2;
 
-    
-    public RenderFragment<IgbCellTemplateContext> WebGridImageCellTemplate = (ctx) => {
-               return @<div>
-    		   <img src="@ctx.Cell.Value" class="flag" />
-    		</div>;
-    };
-    	
-    
-    public RenderFragment<IgbCellTemplateContext> WebGridAvatarCellTemplate = (ctx) => {
-        string value = ctx.Cell.Value as string;
-        return 
-         @<div>
-            <IgbAvatar Shape=AvatarShape.Circle Src="@value">
-            </IgbAvatar>
-        </div>;
-    };
-    	
     private AthletesDataExtended _athletesDataExtended = null;
     public AthletesDataExtended AthletesDataExtended
     {

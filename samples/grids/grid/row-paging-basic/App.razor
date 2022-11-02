@@ -41,14 +41,14 @@
             
             <IgbColumn
             Field="TrackProgress"
-            BodyTemplate="WebGridProgressCellTemplate"
+            BodyTemplateScript="WebGridProgressCellTemplate"
             Name="column2"
             @ref="column2">
             </IgbColumn>
             
             <IgbColumn
             Field="CountryFlag"
-            BodyTemplate="WebGridImageCellTemplate"
+            BodyTemplateScript="WebGridImageCellTemplate"
             Name="column3"
             @ref="column3">
             </IgbColumn>
@@ -104,22 +104,6 @@
     private IgbColumn column2;
     private IgbColumn column3;
 
-    
-    public RenderFragment<IgbCellTemplateContext> WebGridProgressCellTemplate = (ctx) => {
-        var val = Convert.ToDouble(ctx.Cell.Value as string);
-        return 
-         @<div>
-    		   <IgbLinearProgress Value=@val/>
-    		</div>;
-    };
-    	
-    
-    public RenderFragment<IgbCellTemplateContext> WebGridImageCellTemplate = (ctx) => {
-               return @<div>
-    		   <img src="@ctx.Cell.Value" class="flag" />
-    		</div>;
-    };
-    	
     private AthletesData _athletesData = null;
     public AthletesData AthletesData
     {

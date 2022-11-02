@@ -6,7 +6,7 @@ class WebGridDiscontinuedSummary {
         const result = [];
         result.push({
             key: 'products',
-            label: 'Producs',
+            label: 'Products',
             summaryResult: data.length
         });
         result.push({
@@ -16,7 +16,7 @@ class WebGridDiscontinuedSummary {
         });
         result.push({
             key: 'discontinued',
-            label: 'Discontinued Producs',
+            label: 'Discontinued Products',
             summaryResult: allData.map(r => r['Discontinued']).filter((rec) => rec).length
         });
         result.push({
