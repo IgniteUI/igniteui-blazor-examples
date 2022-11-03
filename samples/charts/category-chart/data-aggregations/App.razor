@@ -1,0 +1,67 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+    <div class="legend-title">
+        Renewable Electricity Generated
+    </div>
+
+    <div class="container vertical fill">
+        <IgbCategoryChart
+        ChartType="CategoryChartType.Column"
+        GroupSorts="Sales Desc"
+        InitialGroups="Country"
+        InitialSummaries="Sum(Sales) as Sales"
+        DataSource="AggregateSalesData"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        CrosshairsDisplayMode="CrosshairsDisplayMode.None"
+        Name="chart"
+        @ref="chart">
+        </IgbCategoryChart>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var chart = this.chart;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbCategoryChart chart;
+
+    private AggregateSalesData _AggregateSalesData = null;
+    public AggregateSalesData AggregateSalesData
+    {
+        get
+        {
+            if (_AggregateSalesData == null)
+            {
+                _AggregateSalesData = new AggregateSalesData(); 
+            }
+            return _AggregateSalesData;
+        }
+    }
+    
+}
