@@ -186,8 +186,9 @@ function getSamples(cb) {
                     sampleFolder + "/*.csproj",
                     sampleFolder + "/wwwroot/*.js",
                     sampleFolder + "/wwwroot/*.css",
+                    sampleFolder + "/wwwroot/index.html",
                  // sampleFolder + "/wwwroot/*",
-              '!' + sampleFolder + "/wwwroot/index.html",
+            // '!' + sampleFolder + "/wwwroot/index.html",
             //   '!' + sampleFolder + "/wwwroot/index.css",
             //   '!' + sampleFolder + "/Pages/_*.razor",
             //   '!' + sampleFolder + "/Pages/DataGridBindingLiveData.razor",
@@ -1064,6 +1065,8 @@ function updateCodeViewer(cb) {
         var contentItems = [];
 
         for (const file of sample.SourceFiles) {
+            // console.log("SourceFiles " + file.Name);
+
             if (file.isRazorFile()) {
                 //var code = file.Content.replace(new RegExp('.*\@page.*\r?\n', 'g'), "");
                 var codeLines = file.Content.split('\n');
@@ -1083,8 +1086,7 @@ function updateCodeViewer(cb) {
                 var isDataFile = name.indexOf("data") >= 0 || name.indexOf("locations") >= 0 || name.indexOf("temperature") >= 0 || name.indexOf("connections") >= 0 || name.indexOf("products") >= 0 || name.indexOf("stocksutility") >= 0 || name.indexOf("medals") >= 0 || name.indexOf("places") >= 0 || name.indexOf("history") >= 0 || name.indexOf("stats") >= 0;
                 var header = isDataFile ? "DATA" : "CS";
                 var item = new CodeViewer(file.Path, file.Content, "cs", header, true);
-                // if (header === "CS")
-                //     log("generating DATA " + file.Path + "   " + header);
+
                 contentItems.push(item);
             }
         }
@@ -1102,6 +1104,13 @@ function updateCodeViewer(cb) {
                 contentItems.push(item);
             }
         }
+
+        if (sample.PublicIndexFile !== undefined) {
+            var file = sample.PublicIndexFile;
+            var item = new CodeViewer(file.Path, file.Content, "html", "html", true);
+            contentItems.push(item);
+        }
+
         content += JSON.stringify(contentItems, null, '  ');
         content += "\r\n}";
 

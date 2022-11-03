@@ -35,6 +35,9 @@ class SampleFile {
     public isCS(): boolean {
         return this.Name.endsWith(".cs") && !this.Name.endsWith(".css");
     }
+    public isHTML(): boolean {
+        return this.Name.endsWith(".html");
+    }
     public isPublicJS(): boolean {
         return this.Path.indexOf("wwwroot") > 0 && this.Name.endsWith(".js");
     }
@@ -120,6 +123,7 @@ class SampleInfo {
     public SourceRazorFile: SampleSourceFile;
     public PublicFiles_JS: SampleFile[];
     public PublicFiles_CSS: SampleFile[];
+    public PublicIndexFile: SampleFile;
     public ProjectFile: SampleFile;
     public ProgramModules: string[];
 
@@ -542,6 +546,7 @@ class Transformer {
             if (file.isRazorFile() ||
                 file.isRazorComponent() ||
                 file.isCS() ||
+                file.isHTML() ||
                 file.isPublicCSS() ||
                 file.isPublicJS() ) {
                 file.Content = transFS.readFileSync(filePath, "utf8");
@@ -593,9 +598,13 @@ class Transformer {
             } else if (file.isPublicJS()) {
                 info.PublicFiles_JS.push(file);
 
-            } else if (file.Name.indexOf(".csproj") > 0){
+            } else if (file.Name.indexOf(".csproj") > 0) {
                 // console.log("isProj " + file.Path)
                 info.ProjectFile = file;
+
+            } else if (file.Name.indexOf("index.html") >= 0) {
+                // console.log("isProj " + file.Path)
+                info.PublicIndexFile = file;
             }
             // info.SourceFiles.push(file);
             // info.SampleFileNames.push(parts[parts.length - 1]);
