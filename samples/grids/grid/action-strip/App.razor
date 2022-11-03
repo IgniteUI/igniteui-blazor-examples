@@ -6,70 +6,72 @@
 <div class="container vertical">
 
     <div class="container vertical fill">
-        <IgbGrid
-        AutoGenerate="false"
-        Data="NwindData"
-        PrimaryKey="ProductID"
-        RowEditable="true"
-        AllowFiltering="true"
-        BatchEditing="true"
-        Name="grid"
-        @ref="grid">
-            <IgbPinningConfig
-            Rows="RowPinningPosition.Top">
+        <IgbGrid AutoGenerate="false"
+                 Data="NwindData"
+                 PrimaryKey="ProductID"
+                 RowEditable="true"
+                 AllowFiltering="true"
+                 BatchEditing="true"
+                 Name="grid"
+                 @ref="grid">
+            <IgbActionStrip Name="actionStrip"
+                            @ref="actionStrip">
+                <IgbGridPinningActions>
+                </IgbGridPinningActions>
+
+                <IgbGridEditingActions EditRow="true"
+                                       DeleteRow="false">
+                </IgbGridEditingActions>
+
+            </IgbActionStrip>
+
+            <IgbPinningConfig Rows="RowPinningPosition.Top">
             </IgbPinningConfig>
-            
-            <IgbColumn
-            Field="ProductName"
-            Header="Product Name"
-            Name="ProductName"
-            @ref="productName">
+
+            <IgbColumn Field="ProductName"
+                       Header="Product Name"
+                       Name="ProductName"
+                       @ref="productName">
             </IgbColumn>
-            
-            <IgbColumn
-            Name="UnitPrice"
-            @ref="unitPrice"
-            Field="UnitPrice"
-            Header="Unit Price">
+
+            <IgbColumn Name="UnitPrice"
+                       @ref="unitPrice"
+                       Field="UnitPrice"
+                       Header="Unit Price">
             </IgbColumn>
-            
-            <IgbColumn
-            Name="UnitsOnOrder"
-            @ref="unitsOnOrder"
-            Field="UnitsOnOrder"
-            Header="Units On Order">
+
+            <IgbColumn Name="UnitsOnOrder"
+                       @ref="unitsOnOrder"
+                       Field="UnitsOnOrder"
+                       Header="Units On Order">
             </IgbColumn>
-            
-            <IgbColumn
-            Name="UnitsInStock"
-            @ref="unitsInStock"
-            Field="UnitsInStock"
-            Header="Units In Stock">
+
+            <IgbColumn Name="UnitsInStock"
+                       @ref="unitsInStock"
+                       Field="UnitsInStock"
+                       Header="Units In Stock">
             </IgbColumn>
-            
-            <IgbColumn
-            Name="QuantityPerUnit"
-            @ref="quantityPerUnit"
-            Field="QuantityPerUnit"
-            Header="Quantity Per Unit">
+
+            <IgbColumn Name="QuantityPerUnit"
+                       @ref="quantityPerUnit"
+                       Field="QuantityPerUnit"
+                       Header="Quantity Per Unit">
             </IgbColumn>
-            
-            <IgbColumn
-            Name="ReorderLevel"
-            @ref="reorderLevel"
-            Field="ReorderLevel"
-            Header="Reorder Level">
+
+            <IgbColumn Name="ReorderLevel"
+                       @ref="reorderLevel"
+                       Field="ReorderLevel"
+                       Header="Reorder Level">
             </IgbColumn>
-            
-            <IgbColumn
-            Name="Discontinued"
-            @ref="discontinued"
-            Field="Discontinued"
-            Header="Discontinued">
+
+            <IgbColumn Name="Discontinued"
+                       @ref="discontinued"
+                       Field="Discontinued"
+                       Header="Discontinued">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -86,6 +88,7 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
+        var actionStrip = this.actionStrip;
         var productName = this.productName;
         var unitPrice = this.unitPrice;
         var unitsOnOrder = this.unitsOnOrder;
@@ -93,19 +96,21 @@
         var quantityPerUnit = this.quantityPerUnit;
         var reorderLevel = this.reorderLevel;
         var discontinued = this.discontinued;
-        var actionStrip = this.actionStrip;
 
-        this.BindElements = () => {
+        this.BindElements = () =>
+        {
         };
         this.BindElements();
 
-        if (firstRender) {
+        if (firstRender)
+        {
         }
 
         await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
+    private IgbActionStrip actionStrip;
     private IgbColumn productName;
     private IgbColumn unitPrice;
     private IgbColumn unitsOnOrder;
@@ -113,7 +118,6 @@
     private IgbColumn quantityPerUnit;
     private IgbColumn reorderLevel;
     private IgbColumn discontinued;
-    private IgbActionStrip actionStrip;
 
     private NwindData _nwindData = null;
     public NwindData NwindData
@@ -122,10 +126,10 @@
         {
             if (_nwindData == null)
             {
-                _nwindData = new NwindData(); 
+                _nwindData = new NwindData();
             }
             return _nwindData;
         }
     }
-    
+
 }
