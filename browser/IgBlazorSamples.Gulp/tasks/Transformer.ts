@@ -599,11 +599,9 @@ class Transformer {
                 info.PublicFiles_JS.push(file);
 
             } else if (file.Name.indexOf(".csproj") > 0) {
-                // console.log("isProj " + file.Path)
                 info.ProjectFile = file;
 
             } else if (file.Name.indexOf("index.html") >= 0) {
-                // console.log("isProj " + file.Path)
                 info.PublicIndexFile = file;
             }
             // info.SourceFiles.push(file);
