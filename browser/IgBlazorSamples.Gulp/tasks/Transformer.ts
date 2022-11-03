@@ -164,6 +164,7 @@ class SampleInfo {
 class SampleGroup {
     public Name: string;
     public Components: SampleComponent[];
+    public IsDeprecated: boolean;
 
     constructor() {
         this.Components = [];
@@ -174,8 +175,10 @@ class SampleComponent {
     public Name: string;
     public Group: string;
     public Samples: SampleInfo[];
+    public IsDeprecated: boolean;
 
     constructor() {
+        this.IsDeprecated = false;
         this.Samples = [];
     }
 }
@@ -721,7 +724,13 @@ class Transformer {
             } else {
                 let component = new SampleComponent();
                 component.Name = sample.ComponentName;
-                component.Group = sample.ComponentGroup;
+                if (component.Name === "Data Grid") {
+                    component.Group = "Other / Deprecated Components";
+                    component.IsDeprecated = true;
+                } else {
+                    component.Group = sample.ComponentGroup;
+                    component.IsDeprecated = false;
+                }
                 component.Samples.push(sample);
                 componentsMap.set(sample.ComponentName, component);
             }
@@ -737,6 +746,7 @@ class Transformer {
             } else {
                 let group = new SampleGroup();
                 group.Name = component.Group;
+                group.IsDeprecated = component.IsDeprecated;
                 group.Components.push(component);
                 groupMap.set(component.Group, group);
             }
@@ -770,7 +780,30 @@ class Transformer {
             // // groups.push(map.get(key));
             groups.push(group);
         }
-        return groups;
+
+        var sortedGroups = groups.sort(this.sortByGroupName);
+
+        var allGroups: SampleGroup[] = [];
+        var deprecatedGroups: SampleGroup[] = [];
+        for (const group of sortedGroups) {
+            if (group.Name === "Other / Deprecated Components") {
+                deprecatedGroups.push(group);
+            } else {
+                allGroups.push(group);
+            }
+        }
+
+        for (const group of deprecatedGroups) {
+            allGroups.push(group);
+        }
+
+        return allGroups;
+    }
+
+    public static sortByGroupName(a: any, b: any) {
+        if (a.Name > b.Name) { return 1; }
+        if (a.Name < b.Name) { return -1; }
+        return 0;
     }
 
     public static sortByComponentsName(a: any, b: any) {
