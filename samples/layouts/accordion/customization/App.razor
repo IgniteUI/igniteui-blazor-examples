@@ -102,7 +102,7 @@
         Ratings.Add(new Rating { Id = "2", Label = "3 star or more", Value = 3.5 });
         Ratings.Add(new Rating { Id = "3", Label = "4 star or more", Value = 4.5 });
 
-        return base.OnInitializedAsync();
+        await base.OnInitializedAsync();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -167,6 +167,8 @@
     {
         TimeTitle = "Time: " + (args.Parent as IgbDateTimeInput).Label + " " + args.Detail.ToShortTimeString();
         StateHasChanged();
+
+        await Task.Delay(1);
     }
 
     private async void OnTimeClear()
