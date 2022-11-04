@@ -1,0 +1,201 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbGrid
+        Data="CustomersData"
+        GroupingExpressions="@(new IgbGroupingExpression[] { GroupingExpression1 })"
+        PrimaryKey="CompanyName"
+        RowEditable="true"
+        AllowFiltering="true"
+        BatchEditing="true"
+        Name="grid"
+        @ref="grid">
+            <IgbColumnLayout
+            Header="ID"
+            Pinned="true">
+                <IgbColumn
+                Field="ID"
+                Filterable="false"
+                Width="150px"
+                RowEnd="3"
+                RowStart="1"
+                ColStart="1">
+                </IgbColumn>
+                
+            </IgbColumnLayout>
+            
+            <IgbColumnLayout
+            Pinned="true"
+            Header="Contact Details">
+                <IgbColumn
+                Field="CompanyName"
+                RowStart="1"
+                ColStart="1"
+                Width="350px"
+                Header="Company Name"
+                ColEnd="3"
+                Sortable="true">
+                </IgbColumn>
+                
+                <IgbColumn
+                Field="ContactName"
+                RowStart="2"
+                ColStart="1"
+                Header="Contact Name"
+                ColEnd="2"
+                Groupable="true">
+                </IgbColumn>
+                
+                <IgbColumn
+                Field="ContactTitle"
+                RowStart="3"
+                ColStart="2"
+                RowEnd="3"
+                Header="Contact Title"
+                ColEnd="2"
+                Groupable="true">
+                </IgbColumn>
+                
+            </IgbColumnLayout>
+            
+            <IgbColumnLayout
+            Pinned="false"
+            Header="Address Details">
+                <IgbColumn
+                Field="Country"
+                RowStart="1"
+                ColStart="1"
+                Filterable="false"
+                Width="220px"
+                ColEnd="3"
+                Groupable="true">
+                </IgbColumn>
+                
+                <IgbColumn
+                Field="Region"
+                RowStart="1"
+                ColStart="3"
+                Filterable="false"
+                Width="220px"
+                ColEnd="5"
+                Groupable="true">
+                </IgbColumn>
+                
+                <IgbColumn
+                Field="PostalCode"
+                RowStart="1"
+                ColStart="5"
+                Filterable="false"
+                Width="220px"
+                ColEnd="7"
+                Groupable="true">
+                </IgbColumn>
+                
+                <IgbColumn
+                Field="City"
+                RowStart="2"
+                ColStart="1"
+                Filterable="false"
+                Width="220px"
+                ColEnd="4"
+                Groupable="true">
+                </IgbColumn>
+                
+                <IgbColumn
+                Field="Address"
+                RowStart="2"
+                ColStart="4"
+                Filterable="false"
+                ColEnd="7">
+                </IgbColumn>
+                
+            </IgbColumnLayout>
+            
+            <IgbColumnLayout
+            Header="Phone Details">
+                <IgbColumn
+                Field="Phone"
+                RowStart="1"
+                ColStart="1"
+                Filterable="false"
+                Width="220px"
+                ColEnd="2">
+                </IgbColumn>
+                
+                <IgbColumn
+                Field="Fax"
+                RowStart="2"
+                ColStart="1"
+                Filterable="false"
+                Width="220px"
+                ColEnd="2">
+                </IgbColumn>
+                
+            </IgbColumnLayout>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbGrid grid;
+    private IgbGroupingExpression _groupingExpression1 = null;
+    public IgbGroupingExpression GroupingExpression1
+    {
+        get
+        {
+            if (this._groupingExpression1 == null)
+            {
+                var groupingExpression1 = new IgbGroupingExpression();
+                groupingExpression1.FieldName = "Country";
+                groupingExpression1.Dir = SortingDirection.Asc;
+                groupingExpression1.IgnoreCase = false;
+                this._groupingExpression1 = groupingExpression1;
+            }
+            return this._groupingExpression1;
+        }
+    }
+
+    private CustomersData _customersData = null;
+    public CustomersData CustomersData
+    {
+        get
+        {
+            if (_customersData == null)
+            {
+                _customersData = new CustomersData(); 
+            }
+            return _customersData;
+        }
+    }
+    
+}

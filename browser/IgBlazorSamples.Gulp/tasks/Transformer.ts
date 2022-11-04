@@ -25,7 +25,7 @@ class SampleFile {
         this.IsChanged = false;
     }
 
-    public isRazorSample(): boolean {
+    public isRazorFile(): boolean {
         // return this.Path.indexOf("Pages") > 0 && this.Name.endsWith(".razor");
         return this.Name.endsWith(".razor");
     }
@@ -34,6 +34,9 @@ class SampleFile {
     }
     public isCS(): boolean {
         return this.Name.endsWith(".cs") && !this.Name.endsWith(".css");
+    }
+    public isHTML(): boolean {
+        return this.Name.endsWith(".html");
     }
     public isPublicJS(): boolean {
         return this.Path.indexOf("wwwroot") > 0 && this.Name.endsWith(".js");
@@ -59,7 +62,27 @@ class SampleSourceFile extends SampleFile {
         this.Name = file.Name;
         this.IsChanged = file.IsChanged;
 
+        // remove lines with old Register(IgniteUIBlazor)
+        var oldLines = this.Content.split("\r\n");
+        var newLines = [];
+        for (const line of oldLines) {
+            if (line.indexOf(".Register(IgniteUIBlazor)") < 0){
+                newLines.push(line);
+            }
+        }
+        this.Content = newLines.join("\r\n");
+
+        // add OnInitialized() if it is missing
+        if (this.Content.indexOf("OnInitialized()") < 0) {
+            var codeReplace = "@code {\r\n";
+            var codePaste   = "    protected override void OnInitialized()\r\n    {\r\n    }\r\n";
+            this.Content = this.Content.replace(codeReplace, codeReplace + codePaste);
+        }
+
+        // add lines with new Register(IgniteUIBlazor)
         if (modules !== undefined && modules.length > 0) {
+            // console.log("update " + this.Path + " modules: " + (modules.join(','));
+
             // inserting IG modules from Program.CS to App.razor file
             var moduleReplace = "OnInitialized()\r\n    {";
             var moduleInsert = "\r\n";
@@ -68,30 +91,8 @@ class SampleSourceFile extends SampleFile {
             }
             this.Content = this.Content.replace(moduleReplace, moduleReplace + moduleInsert);
         }
-        // this.LocalPath = "";
     }
-    // constructor() {
-    //     super();
-    //     this.Content = "";
-    // }
 }
-
-// class SampleSourceBlock {
-//     public ImportLines: string[];
-//     public ImportFiles: string[];
-//     public HtmlCodeLines: string[];
-//     public CsharpCodeLines: string[];
-//     public OtherCodeLines: string[];
-
-//     constructor() {
-//         this.ImportFiles = [];
-//         this.ImportLines = [];
-//         this.ImportFiles = [];
-//         this.HtmlCodeLines = [];
-//         this.CsharpCodeLines = [];
-//         this.OtherCodeLines = [];
-//     }
-// }
 
 // this class provides information about a sample that is implemented in /samples folder
 class SampleInfo {
@@ -122,6 +123,7 @@ class SampleInfo {
     public SourceRazorFile: SampleSourceFile;
     public PublicFiles_JS: SampleFile[];
     public PublicFiles_CSS: SampleFile[];
+    public PublicIndexFile: SampleFile;
     public ProjectFile: SampleFile;
     public ProgramModules: string[];
 
@@ -162,6 +164,7 @@ class SampleInfo {
 class SampleGroup {
     public Name: string;
     public Components: SampleComponent[];
+    public IsDeprecated: boolean;
 
     constructor() {
         this.Components = [];
@@ -172,8 +175,10 @@ class SampleComponent {
     public Name: string;
     public Group: string;
     public Samples: SampleInfo[];
+    public IsDeprecated: boolean;
 
     constructor() {
+        this.IsDeprecated = false;
         this.Samples = [];
     }
 }
@@ -410,6 +415,7 @@ class Transformer {
         for (const sampleA of samples) {
 
             for (const fileA of sampleA.SourceFiles) {
+                if (fileA.Name.indexOf("Program.cs") >= 0) continue;
                 if (fileA.Name.indexOf(".razor") > 0) continue;
                 if (comparedFiles.includes(fileA.Name)) continue;
 
@@ -419,8 +425,8 @@ class Transformer {
                     for (const fileB of sampleB.SourceFiles) {
                         if (fileA.Name != fileB.Name) continue; // different file names
 
-                        let contentA = transFS.readFileSync(fileA.Path).toString();
-                        let contentB = transFS.readFileSync(fileB.Path).toString();
+                        let contentA = transFS.readFileSync(fileA.Path).toString().trim();
+                        let contentB = transFS.readFileSync(fileB.Path).toString().trim();
 
                         if (contentA !== contentB) {
                             console.log('WARNING: File "' + fileA.Name + '" has different content in these locations: \n' + fileA.Path + '\n' + fileB.Path)
@@ -540,22 +546,25 @@ class Transformer {
             file.Name = parts[parts.length - 1];
             file.Parent = parts[parts.length - 2];
 
-            if (file.isRazorSample() ||
+            if (file.isRazorFile() ||
                 file.isRazorComponent() ||
                 file.isCS() ||
+                file.isHTML() ||
                 file.isPublicCSS() ||
                 file.isPublicJS() ) {
                 file.Content = transFS.readFileSync(filePath, "utf8");
                 // console.log("pro file " + file.Path + "   " + file.Name);
             }
 
-            if (file.isRazorSample()) {
+            if (file.isRazorFile()) {
                 info.SourceFiles.splice(0, 0, file);
 
             } else if (file.isRazorComponent()) {
                 info.SourceFiles.push(file);
 
             } else if (file.isCS()) {
+
+                info.SourceFiles.push(file);
 
                 if (file.Path.endsWith("Program.cs")) {
                     // getting IG modules from Program.cs
@@ -566,6 +575,7 @@ class Transformer {
                         if (moduleIndex >= 0) {
                             var module = line;
                             module = module.replace("builder.Services.AddScoped(","");
+                            module = module.replace("builder.Services.AddIgniteUIBlazor(","");
                             module = module.replace("typeof(IIgniteUIBlazor","");
                             module = module.replace("typeof(IgniteUIBlazor","");
                             module = module.replace("typeof(","");
@@ -581,9 +591,9 @@ class Transformer {
                     }
                     // console.log("info.ProgramModules \n" + info.ProgramModules.join("\n"));
                 }
-                else {
-                    info.SourceFiles.push(file);
-                }
+                // else {
+                //     info.SourceFiles.push(file);
+                // }
 
             } else if (file.isPublicCSS()) {
                 info.PublicFiles_CSS.push(file);
@@ -591,9 +601,11 @@ class Transformer {
             } else if (file.isPublicJS()) {
                 info.PublicFiles_JS.push(file);
 
-            } else if (file.Name.indexOf(".csproj") > 0){
-                // console.log("isProj " + file.Path)
+            } else if (file.Name.indexOf(".csproj") > 0) {
                 info.ProjectFile = file;
+
+            } else if (file.Name.indexOf("index.html") >= 0) {
+                info.PublicIndexFile = file;
             }
             // info.SourceFiles.push(file);
             // info.SampleFileNames.push(parts[parts.length - 1]);
@@ -712,7 +724,13 @@ class Transformer {
             } else {
                 let component = new SampleComponent();
                 component.Name = sample.ComponentName;
-                component.Group = sample.ComponentGroup;
+                if (component.Name === "Data Grid") {
+                    component.Group = "Other / Deprecated Components";
+                    component.IsDeprecated = true;
+                } else {
+                    component.Group = sample.ComponentGroup;
+                    component.IsDeprecated = false;
+                }
                 component.Samples.push(sample);
                 componentsMap.set(sample.ComponentName, component);
             }
@@ -728,6 +746,7 @@ class Transformer {
             } else {
                 let group = new SampleGroup();
                 group.Name = component.Group;
+                group.IsDeprecated = component.IsDeprecated;
                 group.Components.push(component);
                 groupMap.set(component.Group, group);
             }
@@ -761,7 +780,30 @@ class Transformer {
             // // groups.push(map.get(key));
             groups.push(group);
         }
-        return groups;
+
+        var sortedGroups = groups.sort(this.sortByGroupName);
+
+        var allGroups: SampleGroup[] = [];
+        var deprecatedGroups: SampleGroup[] = [];
+        for (const group of sortedGroups) {
+            if (group.Name === "Other / Deprecated Components") {
+                deprecatedGroups.push(group);
+            } else {
+                allGroups.push(group);
+            }
+        }
+
+        for (const group of deprecatedGroups) {
+            allGroups.push(group);
+        }
+
+        return allGroups;
+    }
+
+    public static sortByGroupName(a: any, b: any) {
+        if (a.Name > b.Name) { return 1; }
+        if (a.Name < b.Name) { return -1; }
+        return 0;
     }
 
     public static sortByComponentsName(a: any, b: any) {
@@ -849,7 +891,7 @@ class Transformer {
             // console.log("NOTE: lintSample() " + file.Path);
 
             let orgContent = file.Content;
-            if (file.isRazorSample()) {
+            if (file.isRazorFile()) {
                 // console.log("NOTE: lintRazor() " + file.Path);
                 this.lintRazor(info, generateRoutingPath);
                 this.lintFile(file);
@@ -912,7 +954,7 @@ class Transformer {
             }
             if (isInvalidLine) continue;
 
-            if (line.indexOf("<div") >= 0) {
+            if (line.indexOf("<div") >= 0 && isCS == false) {
                 isImport = false; isHtml = true; isCS = false;
             }
             if (line.indexOf("@code") >= 0) {
@@ -971,7 +1013,7 @@ class Transformer {
         let firstLine = true;
         let validLines: string[] = [];
         let fileLines = file.Content.split("\n");
-        let spacedSymbols: string[] = ['(\\+)', '(\-)', '(\\*)', '(\{)', '(\})']; // '(\<)', '(\>)',  '(\=)',
+        let spacedSymbols: string[] = ['(\\+)', '(\\*)', '(\{)', '(\})']; // '(\<)', '(\>)',  '(\=)',
 
         for (let i = 0; i < fileLines.length; i++) {
             let currentLine = fileLines[i].trimRight();

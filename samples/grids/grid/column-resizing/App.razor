@@ -1,0 +1,160 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Id="grid"
+        Data="CustomersData"
+        ColumnResizedScript="WebGridColumnResized"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="ID"
+            Header="ID"
+            Name="ID"
+            @ref="iD">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="CompanyName"
+            Header="Company Name"
+            Resizable="true"
+            Name="CompanyName"
+            @ref="companyName">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ContactName"
+            Header="Contact Name"
+            Resizable="true"
+            MaxWidth="230px"
+            MinWidth="60px"
+            Name="ContactName"
+            @ref="contactName">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ContactTitle"
+            Header="Contact Title"
+            Resizable="true"
+            Name="ContactTitle"
+            @ref="contactTitle">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Address"
+            Header="Address"
+            Resizable="true"
+            Name="Address"
+            @ref="address">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="City"
+            Header="City"
+            Name="City"
+            @ref="city">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Region"
+            Header="Region"
+            Resizable="true"
+            Name="Region"
+            @ref="region">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="PostalCode"
+            Header="Postal Code"
+            Resizable="true"
+            Name="PostalCode"
+            @ref="postalCode">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Country"
+            Header="Country"
+            Resizable="true"
+            Name="Country"
+            @ref="country">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Phone"
+            Header="Phone"
+            Resizable="true"
+            Name="Phone"
+            @ref="phone">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+        var iD = this.iD;
+        var companyName = this.companyName;
+        var contactName = this.contactName;
+        var contactTitle = this.contactTitle;
+        var address = this.address;
+        var city = this.city;
+        var region = this.region;
+        var postalCode = this.postalCode;
+        var country = this.country;
+        var phone = this.phone;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbGrid grid;
+    private IgbColumn iD;
+    private IgbColumn companyName;
+    private IgbColumn contactName;
+    private IgbColumn contactTitle;
+    private IgbColumn address;
+    private IgbColumn city;
+    private IgbColumn region;
+    private IgbColumn postalCode;
+    private IgbColumn country;
+    private IgbColumn phone;
+
+    private CustomersData _customersData = null;
+    public CustomersData CustomersData
+    {
+        get
+        {
+            if (_customersData == null)
+            {
+                _customersData = new CustomersData(); 
+            }
+            return _customersData;
+        }
+    }
+    
+}

@@ -1,0 +1,108 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbGrid
+        Data="CustomersData"
+        PrimaryKey="ID"
+        CellSelection="GridSelectionMode.None"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Filterable="false"
+            Width="70px"
+            Pinned="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Width="150px"
+            Field="ID"
+            Hidden="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Width="350px"
+            Field="CompanyName"
+            Header="Company Name">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ContactName"
+            Header="Contact Name">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ContactTitle"
+            Header="Contact Tiasdsadtle">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Address">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="City">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="PostalCode"
+            Header="Postal Code">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Phone">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Fax">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbGrid grid;
+
+    private CustomersData _customersData = null;
+    public CustomersData CustomersData
+    {
+        get
+        {
+            if (_customersData == null)
+            {
+                _customersData = new CustomersData(); 
+            }
+            return _customersData;
+        }
+    }
+    
+}

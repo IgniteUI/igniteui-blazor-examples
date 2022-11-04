@@ -1,0 +1,104 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Id="grid"
+        Data="InvoicesData"
+        GroupingExpressions="@(new IgbGroupingExpression[] { GroupingExpression1 })"
+        GroupRowTemplateScript="WebGridGroupByRowTemplate"
+        RowSelection="GridSelectionMode.Multiple"
+        Name="grid"
+        @ref="grid">
+            <IgbPaginator
+            PerPage="10">
+            </IgbPaginator>
+            
+            <IgbColumn
+            Field="ShipCountry"
+            Header="Ship Country"
+            Groupable="true"
+            Width="200px">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ShipCity"
+            Header="Ship City"
+            Width="250px"
+            Groupable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="UnitPrice"
+            Header="Unit Price"
+            Width="150px"
+            Groupable="true"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbGrid grid;
+    private IgbGroupingExpression _groupingExpression1 = null;
+    public IgbGroupingExpression GroupingExpression1
+    {
+        get
+        {
+            if (this._groupingExpression1 == null)
+            {
+                var groupingExpression1 = new IgbGroupingExpression();
+                groupingExpression1.FieldName = "ShipCountry";
+                groupingExpression1.Dir = SortingDirection.Asc;
+                groupingExpression1.IgnoreCase = false;
+                this._groupingExpression1 = groupingExpression1;
+            }
+            return this._groupingExpression1;
+        }
+    }
+
+    private InvoicesData _invoicesData = null;
+    public InvoicesData InvoicesData
+    {
+        get
+        {
+            if (_invoicesData == null)
+            {
+                _invoicesData = new InvoicesData(); 
+            }
+            return _invoicesData;
+        }
+    }
+    
+}

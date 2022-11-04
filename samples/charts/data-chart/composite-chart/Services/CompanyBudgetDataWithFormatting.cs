@@ -22,8 +22,8 @@ namespace Infragistics.Samples
         public string FormatNumber(double num)
         {
             var ret = num;
-            if (num >= 1000000) return (num / 1000000.0) + "M";
-            if (num >= 1000) return (num / 1000.0) + "K";
+            if (num >= 1000000) return (num / 1000000.0).ToString("0") + "M";
+            if (num >= 1000) return (num / 1000.0).ToString("0") + "K";
             return ret.ToString().Replace(@"/\B(?=(\d{3})+(?!\d))/g", ",");
         }
 
@@ -57,5 +57,5 @@ namespace Infragistics.Samples
                 i++;
             }
         }
-    }    
+    }
 }

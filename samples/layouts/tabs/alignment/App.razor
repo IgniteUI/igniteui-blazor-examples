@@ -1,0 +1,66 @@
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+    <IgbRadioGroup Alignment=@RadioGroupAlignment.Horizontal>
+        <IgbRadio Value="Start" label-position="after" Checked=true Change="OnRadioOptionClick">Start</IgbRadio>
+        <IgbRadio Value="Center" label-position="after" Change="OnRadioOptionClick">Center</IgbRadio>
+        <IgbRadio Value="End" label-position="after" Change="OnRadioOptionClick">End</IgbRadio>
+        <IgbRadio Value="Justify" label-position="after" Change="OnRadioOptionClick">Justify</IgbRadio>
+    </IgbRadioGroup>
+
+    <IgbTabs Alignment=@TabAlignment>
+        <IgbTab Panel="basics">Basics</IgbTab>                   
+        <IgbTab Panel="details">Details</IgbTab>         
+        <IgbTab Panel="custom">Custom</IgbTab>"
+        <IgbTab Panel="disabled" Disabled=true>Disabled</IgbTab>
+        <IgbTabPanel id="basics">Basics tab panel</IgbTabPanel>
+        <IgbTabPanel id="details">Details tab panel</IgbTabPanel>
+        <IgbTabPanel id="custom">Custom tab panel</IgbTabPanel>
+        <IgbTabPanel id="disabled">Disabled tab panel</IgbTabPanel>
+    </IgbTabs>
+</div>
+
+@code {
+
+    public TabsAlignment TabAlignment { get; set; }
+
+    protected override void OnInitialized()
+    {        
+        IgbRadioModule.Register(IgniteUIBlazor);
+        IgbRadioGroupModule.Register(IgniteUIBlazor);
+        IgbTabsModule.Register(IgniteUIBlazor);
+
+        TabAlignment = TabsAlignment.Start;
+    }
+
+    public void OnRadioOptionClick(IgbComponentBoolValueChangedEventArgs e)
+    {
+        IgbRadio radio = e.Parent as IgbRadio;
+
+        switch (radio.Value)
+        {
+            case "Start":
+                {
+                    this.TabAlignment = TabsAlignment.Start;
+                    break;
+                }
+            case "Center":
+                {
+                    this.TabAlignment = TabsAlignment.Center;
+                    break;
+                }
+            case "End":
+                {
+                    this.TabAlignment = TabsAlignment.End;
+                    break;
+                }
+            case "Justify":
+                {
+                    this.TabAlignment = TabsAlignment.Justify;
+                    break;
+                }
+        }
+    }
+}

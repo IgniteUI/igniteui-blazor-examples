@@ -1,0 +1,143 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Id="grid"
+        Data="AthletesDataExtended"
+        Name="grid"
+        @ref="grid">
+            <IgbPinningConfig
+            Columns="ColumnPinningPosition.End">
+            </IgbPinningConfig>
+            
+            <IgbColumn
+            Field="CountryFlag"
+            Header="Team"
+            BodyTemplateScript="WebGridImageCellTemplate"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Avatar"
+            BodyTemplateScript="WebGridAvatarCellTemplate"
+            Name="column2"
+            @ref="column2">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Name">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="AthleteNumber"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="BeatsPerMinute">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="TopSpeed">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="RegistrationDate"
+            DataType="GridColumnDataType.Date">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Birthday"
+            DataType="GridColumnDataType.Date">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Sponsor">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Agent">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="AgentContact">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="AgentPhone">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="FirstPlaces"
+            Header="Gold"
+            Pinned="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="SecondPlaces"
+            Header="Silver"
+            Pinned="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ThirdPlaces"
+            Header="Bronze"
+            Pinned="true">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+        var column1 = this.column1;
+        var column2 = this.column2;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbGrid grid;
+    private IgbColumn column1;
+    private IgbColumn column2;
+
+    private AthletesDataExtended _athletesDataExtended = null;
+    public AthletesDataExtended AthletesDataExtended
+    {
+        get
+        {
+            if (_athletesDataExtended == null)
+            {
+                _athletesDataExtended = new AthletesDataExtended(); 
+            }
+            return _athletesDataExtended;
+        }
+    }
+    
+}

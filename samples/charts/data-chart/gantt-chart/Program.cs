@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-// required for registering IgniteUIBlazor 
+// required for registering IgniteUIBlazor
 using IgniteUI.Blazor.Controls;
 
 namespace Infragistics.Samples
@@ -23,7 +23,17 @@ namespace Infragistics.Samples
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
             // registering Infragistics Blazor
-            builder.Services.AddScoped(typeof(IIgniteUIBlazor), typeof(IgniteUIBlazor));
+            builder.Services.AddIgniteUIBlazor(
+                 typeof(IgbDataChartCoreModule),
+                 typeof(IgbDataChartCategoryCoreModule),
+                 typeof(IgbDataChartCategoryModule),
+                 typeof(IgbDataChartVerticalCategoryModule),
+                 typeof(IgbDataChartInteractivityModule),
+                 typeof(IgbDataChartScatterModule),
+                 typeof(IgbDataChartScatterCoreModule),
+                 typeof(IgbScatterPolygonSeriesModule),
+                 typeof(IgbLegendModule)
+            );
 
             await builder.Build().RunAsync();
         }

@@ -1,0 +1,222 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="WebGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="PropertyEditor"
+        @ref="propertyEditor">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="RowEditable"
+            ValueType="PropertyEditorValueType.Boolean1"
+            PrimitiveValue="true"
+            Name="RowEditableEditor"
+            @ref="rowEditableEditor">
+            </IgbPropertyEditorPropertyDescription>
+            
+        </IgbPropertyEditorPanel>
+        
+    </div>
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="EmployeesData"
+        PrimaryKey="ID"
+        RowEditable="true"
+        BatchEditing="true"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="Avatar"
+            Header="Avatar"
+            Editable="false"
+            Width="80px"
+            DataType="GridColumnDataType.String"
+            BodyTemplateScript="WebGridAvatarCellTemplate"
+            Name="Avatar"
+            @ref="avatar">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="Name"
+            @ref="name"
+            Field="Name"
+            Header="Name"
+            Editable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="Company"
+            @ref="company"
+            Field="Company"
+            Header="Company"
+            Editable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="Email"
+            @ref="email"
+            Field="Email"
+            Header="Email"
+            Editable="true"
+            Width="190px">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="Fax"
+            @ref="fax"
+            Field="Fax"
+            Header="Phone"
+            Editable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="CreatedOn"
+            @ref="createdOn"
+            Field="CreatedOn"
+            Header="Date of Registration"
+            DataType="GridColumnDataType.Date"
+            Editable="true"
+            Width="170px"
+            PipeArgs="ColumnPipeArgs1">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="LastActivity"
+            @ref="lastActivity"
+            Field="LastActivity"
+            Header="Last Active"
+            DataType="GridColumnDataType.Date"
+            Editable="true"
+            Width="170px">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="EstimatedSales"
+            @ref="estimatedSales"
+            Field="EstimatedSales"
+            Header="Estimated Sales"
+            DataType="GridColumnDataType.Number"
+            Editable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="DealsLost"
+            @ref="dealsLost"
+            Field="DealsLost"
+            Header="Deals Lost"
+            DataType="GridColumnDataType.Number"
+            Editable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="DealsWon"
+            @ref="dealsWon"
+            Field="DealsWon"
+            Header="Deals Won"
+            DataType="GridColumnDataType.Number"
+            Editable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="DealsPending"
+            @ref="dealsPending"
+            Field="DealsPending"
+            Header="Deals Pending"
+            DataType="GridColumnDataType.Number"
+            Editable="true">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditor = this.propertyEditor;
+        var rowEditableEditor = this.rowEditableEditor;
+        var grid = this.grid;
+        var avatar = this.avatar;
+        var name = this.name;
+        var company = this.company;
+        var email = this.email;
+        var fax = this.fax;
+        var createdOn = this.createdOn;
+        var lastActivity = this.lastActivity;
+        var estimatedSales = this.estimatedSales;
+        var dealsLost = this.dealsLost;
+        var dealsWon = this.dealsWon;
+        var dealsPending = this.dealsPending;
+
+        this.BindElements = () => {
+            propertyEditor.Target = this.grid;
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription rowEditableEditor;
+    private IgbGrid grid;
+    private IgbColumn avatar;
+    private IgbColumn name;
+    private IgbColumn company;
+    private IgbColumn email;
+    private IgbColumn fax;
+    private IgbColumn createdOn;
+    private IgbColumnPipeArgs _columnPipeArgs1 = null;
+    public IgbColumnPipeArgs ColumnPipeArgs1
+    {
+        get
+        {
+            if (this._columnPipeArgs1 == null)
+            {
+                var columnPipeArgs1 = new IgbColumnPipeArgs();
+                columnPipeArgs1.Format = "longDate";
+                this._columnPipeArgs1 = columnPipeArgs1;
+            }
+            return this._columnPipeArgs1;
+        }
+    }
+    private IgbColumn lastActivity;
+    private IgbColumn estimatedSales;
+    private IgbColumn dealsLost;
+    private IgbColumn dealsWon;
+    private IgbColumn dealsPending;
+
+    private EmployeesData _employeesData = null;
+    public EmployeesData EmployeesData
+    {
+        get
+        {
+            if (_employeesData == null)
+            {
+                _employeesData = new EmployeesData(); 
+            }
+            return _employeesData;
+        }
+    }
+    
+}

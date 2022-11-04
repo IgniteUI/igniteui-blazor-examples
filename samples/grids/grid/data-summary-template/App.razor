@@ -1,0 +1,149 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="WebGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="false"
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="SummaryRowHeight"
+            Label="Summary Row Height"
+            ValueType="PropertyEditorValueType.Number">
+            </IgbPropertyEditorPropertyDescription>
+            
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="Columns[3 as WebGridColumn, 5 as WebGridColumn].HasSummary"
+            Label="Toggle Summaries"
+            ValueType="PropertyEditorValueType.Boolean1"
+            PrimitiveValue="true">
+            </IgbPropertyEditorPropertyDescription>
+            
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="DisplayDensity"
+            Name="DisplayDensityEditor"
+            @ref="displayDensityEditor">
+            </IgbPropertyEditorPropertyDescription>
+            
+        </IgbPropertyEditorPanel>
+        
+    </div>
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="NwindData"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="ProductID"
+            Header="Product ID"
+            Groupable="true"
+            Width="10%">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ProductName"
+            Header="Product Name"
+            Width="17%"
+            Groupable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="UnitPrice"
+            Header="Price"
+            Width="17%"
+            Groupable="true"
+            Filterable="false"
+            Editable="true"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="UnitsInStock"
+            Header="Units in Stock"
+            Width="21%"
+            Groupable="true"
+            Editable="true"
+            DataType="GridColumnDataType.Number"
+            HasSummary="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Discontinued"
+            Header="Discontinued"
+            Width="17%"
+            Groupable="true"
+            Editable="true"
+            DataType="GridColumnDataType.Boolean">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="OrderDate"
+            Width="18%"
+            Groupable="true"
+            DataType="GridColumnDataType.Date"
+            HasSummary="true"
+            SummaryTemplateScript="WebGridOrderDateSummaryTemplate"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var displayDensityEditor = this.displayDensityEditor;
+        var grid = this.grid;
+        var column1 = this.column1;
+
+        this.BindElements = () => {
+            propertyEditorPanel1.Target = this.grid;
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription displayDensityEditor;
+    private IgbGrid grid;
+    private IgbColumn column1;
+
+    private NwindData _nwindData = null;
+    public NwindData NwindData
+    {
+        get
+        {
+            if (_nwindData == null)
+            {
+                _nwindData = new NwindData(); 
+            }
+            return _nwindData;
+        }
+    }
+    
+}

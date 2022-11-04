@@ -1,0 +1,158 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="CustomersData"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="ID"
+            Hidden="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="CompanyName"
+            Header="Company Name"
+            Width="300px"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ContactName"
+            Header="Contact Name"
+            Width="200px"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Pinned="true"
+            Name="column2"
+            @ref="column2">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ContactTitle"
+            Header="Contact Title"
+            Width="200px"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Pinned="true"
+            Name="column3"
+            @ref="column3">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Address"
+            Width="300px"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column4"
+            @ref="column4">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="City"
+            Width="120px"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column5"
+            @ref="column5">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Region"
+            Width="120px"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column6"
+            @ref="column6">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="PostalCode"
+            Width="150px"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column7"
+            @ref="column7">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Phone"
+            Width="150px"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column8"
+            @ref="column8">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Fax"
+            Width="150px"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column9"
+            @ref="column9">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+        var column1 = this.column1;
+        var column2 = this.column2;
+        var column3 = this.column3;
+        var column4 = this.column4;
+        var column5 = this.column5;
+        var column6 = this.column6;
+        var column7 = this.column7;
+        var column8 = this.column8;
+        var column9 = this.column9;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbGrid grid;
+    private IgbColumn column1;
+    private IgbColumn column2;
+    private IgbColumn column3;
+    private IgbColumn column4;
+    private IgbColumn column5;
+    private IgbColumn column6;
+    private IgbColumn column7;
+    private IgbColumn column8;
+    private IgbColumn column9;
+
+    private CustomersData _customersData = null;
+    public CustomersData CustomersData
+    {
+        get
+        {
+            if (_customersData == null)
+            {
+                _customersData = new CustomersData(); 
+            }
+            return _customersData;
+        }
+    }
+    
+}

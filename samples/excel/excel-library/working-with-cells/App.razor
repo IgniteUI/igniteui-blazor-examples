@@ -54,7 +54,7 @@
 
     public void OnCommentChanged(ChangeEventArgs args)
     {
-        bool value = (bool)args.Value;
+        bool value = args.Value != null ? (bool)args.Value : false;
         var ws = this.wb.Worksheets[0];
         var wr = ws.Rows[0];
         var d = new WorksheetCellComment();
@@ -70,7 +70,7 @@
 
     public void OnFormulaChanged(ChangeEventArgs args)
     {
-        bool value = (bool)args.Value;
+        bool value = args.Value != null ? (bool)args.Value : false;
         // Cell Formula
         var ws = this.wb.Worksheets[0];
         Formula formula = null;
@@ -94,7 +94,7 @@
 
     public void OnMergeChanged(ChangeEventArgs args)
     {
-        bool value = (bool)args.Value;
+        bool value = args.Value != null ? (bool)args.Value : false;
         WorksheetMergedCellsRegion mergedRegion = null;
         if (value == true) {
         // Using merge cells

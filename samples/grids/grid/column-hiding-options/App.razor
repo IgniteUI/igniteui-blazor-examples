@@ -1,0 +1,188 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Id="grid"
+        Data="CustomersData"
+        ColumnWidth="200px"
+        AllowFiltering="true"
+        ColumnSelection="GridSelectionMode.Single"
+        Name="grid"
+        @ref="grid">
+            <IgbGridToolbar
+            >
+                <IgbGridToolbarTitle
+                >
+                </IgbGridToolbarTitle>
+                
+                <IgbGridToolbarActions
+                >
+                    <IgbGridToolbarHiding
+                    >
+                    </IgbGridToolbarHiding>
+                    
+                </IgbGridToolbarActions>
+                
+            </IgbGridToolbar>
+            
+            <IgbColumn
+            Field="ID"
+            Header="ID"
+            Sortable="true"
+            DataType="GridColumnDataType.String"
+            Name="ID"
+            @ref="iD">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="ContactName"
+            @ref="contactName"
+            Field="ContactName"
+            Header="ContactName"
+            DataType="GridColumnDataType.String"
+            Sortable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="ContactTitle"
+            @ref="contactTitle"
+            Field="ContactTitle"
+            Header="ContactTitle"
+            DataType="GridColumnDataType.String"
+            Sortable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="City"
+            @ref="city"
+            Field="City"
+            Header="City"
+            DataType="GridColumnDataType.String"
+            Sortable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="CompanyName"
+            @ref="companyName"
+            Field="CompanyName"
+            Header="CompanyName"
+            DataType="GridColumnDataType.String"
+            Sortable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="Fax"
+            @ref="fax"
+            Field="Fax"
+            Header="Fax"
+            DataType="GridColumnDataType.String"
+            Sortable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="Address"
+            @ref="address"
+            Field="Address"
+            Header="Address"
+            DataType="GridColumnDataType.String"
+            Sortable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="PostalCode"
+            @ref="postalCode"
+            Field="PostalCode"
+            Header="PostalCode"
+            DataType="GridColumnDataType.String"
+            Sortable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="Country"
+            @ref="country"
+            Field="Country"
+            Header="Country"
+            DataType="GridColumnDataType.String"
+            Sortable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="Phone"
+            @ref="phone"
+            Field="Phone"
+            Header="Phone"
+            DataType="GridColumnDataType.String"
+            Sortable="true">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+        var iD = this.iD;
+        var contactName = this.contactName;
+        var contactTitle = this.contactTitle;
+        var city = this.city;
+        var companyName = this.companyName;
+        var fax = this.fax;
+        var address = this.address;
+        var postalCode = this.postalCode;
+        var country = this.country;
+        var phone = this.phone;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbGrid grid;
+    private IgbColumn iD;
+    private IgbColumn contactName;
+    private IgbColumn contactTitle;
+    private IgbColumn city;
+    private IgbColumn companyName;
+    private IgbColumn fax;
+    private IgbColumn address;
+    private IgbColumn postalCode;
+    private IgbColumn country;
+    private IgbColumn phone;
+
+    private CustomersData _customersData = null;
+    public CustomersData CustomersData
+    {
+        get
+        {
+            if (_customersData == null)
+            {
+                _customersData = new CustomersData(); 
+            }
+            return _customersData;
+        }
+    }
+    
+}

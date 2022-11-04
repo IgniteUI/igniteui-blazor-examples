@@ -1,0 +1,144 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Id="grid"
+        Data="CustomersData"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="ID"
+            Resizable="true">
+            </IgbColumn>
+            
+            <IgbColumnGroup
+            Header="General Information">
+                <IgbColumn
+                Field="CompanyName"
+                Resizable="true"
+                Sortable="true">
+                </IgbColumn>
+                
+                <IgbColumnGroup
+                Header="Personal Details">
+                    <IgbColumn
+                    Field="ContactName"
+                    Resizable="true"
+                    Sortable="true">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="ContactTitle"
+                    Resizable="true"
+                    Sortable="true">
+                    </IgbColumn>
+                    
+                </IgbColumnGroup>
+                
+            </IgbColumnGroup>
+            
+            <IgbColumnGroup
+            Header="Address Information">
+                <IgbColumnGroup
+                Header="Location">
+                    <IgbColumn
+                    Field="Country"
+                    Resizable="true"
+                    Sortable="true">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="Region"
+                    Resizable="true"
+                    Sortable="true">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="City"
+                    Resizable="true"
+                    Sortable="true">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="Address"
+                    Resizable="true"
+                    Sortable="true">
+                    </IgbColumn>
+                    
+                </IgbColumnGroup>
+                
+                <IgbColumnGroup
+                Header="Contact Information">
+                    <IgbColumn
+                    Field="Phone"
+                    Resizable="true"
+                    Sortable="true">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="Fax"
+                    Resizable="true"
+                    Sortable="true">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="PostalCode"
+                    Resizable="true"
+                    Sortable="true">
+                    </IgbColumn>
+                    
+                </IgbColumnGroup>
+                
+            </IgbColumnGroup>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbGrid grid;
+
+    private CustomersData _customersData = null;
+    public CustomersData CustomersData
+    {
+        get
+        {
+            if (_customersData == null)
+            {
+                _customersData = new CustomersData(); 
+            }
+            return _customersData;
+        }
+    }
+    
+}

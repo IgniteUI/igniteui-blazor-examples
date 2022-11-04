@@ -29,6 +29,11 @@ log('loaded gulp scripts');
 // NOTE you can comment out strings in this array to run subset of samples
 var sampleSource = [
     // igConfig.SamplesCopyPath + '/charts/category-chart/axis-gap/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/grid/multi-row-dragging/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/grid/action-strip/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/grid/column*/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/grid/data*/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/grid/**/App.razor',
 
     igConfig.SamplesCopyPath + '/charts/category-chart/**/App.razor',
     igConfig.SamplesCopyPath + '/charts/data-chart/**/App.razor',
@@ -42,14 +47,43 @@ var sampleSource = [
     igConfig.SamplesCopyPath + '/gauges/bullet-graph/**/App.razor',
     igConfig.SamplesCopyPath + '/gauges/linear-gauge/**/App.razor',
     igConfig.SamplesCopyPath + '/gauges/radial-gauge/**/App.razor',
-    igConfig.SamplesCopyPath + '/grids/**/App.razor',
+    igConfig.SamplesCopyPath + '/grids/data-grid/**/App.razor',
+    igConfig.SamplesCopyPath + '/grids/list/**/App.razor',
+    igConfig.SamplesCopyPath + '/grids/grid/**/App.razor',
+    igConfig.SamplesCopyPath + '/grids/tree-grid/**/App.razor',
+    igConfig.SamplesCopyPath + '/grids/tree/**/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/pivot-grid/**/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/hierarchical-grid/**/App.razor',
     igConfig.SamplesCopyPath + '/editors/**/App.razor',
-    igConfig.SamplesCopyPath + '/inputs/**/App.razor',
-    igConfig.SamplesCopyPath + '/layouts/**/App.razor',
+
+    igConfig.SamplesCopyPath + '/inputs/badge/**/App.razor',
+    igConfig.SamplesCopyPath + '/inputs/button/**/App.razor',
+    igConfig.SamplesCopyPath + '/inputs/checkbox/**/App.razor',
+    igConfig.SamplesCopyPath + '/inputs/chip/**/App.razor',
+    igConfig.SamplesCopyPath + '/inputs/circular-progress-indicator/**/App.razor',
+    igConfig.SamplesCopyPath + '/inputs/date-time-input/**/App.razor',
+    igConfig.SamplesCopyPath + '/inputs/dropdown/**/App.razor',
+    igConfig.SamplesCopyPath + '/inputs/form/**/App.razor',
+    igConfig.SamplesCopyPath + '/inputs/icon-button/**/App.razor',
+    igConfig.SamplesCopyPath + '/inputs/input/**/App.razor',
+    igConfig.SamplesCopyPath + '/inputs/linear-progress-indicator/**/App.razor',
+    igConfig.SamplesCopyPath + '/inputs/radio/**/App.razor',
+    igConfig.SamplesCopyPath + '/inputs/ripple/**/App.razor',
+    igConfig.SamplesCopyPath + '/inputs/slider/**/App.razor',
+    igConfig.SamplesCopyPath + '/inputs/switches/**/App.razor',
+
+    igConfig.SamplesCopyPath + '/layouts/accordion/**/App.razor',
+    igConfig.SamplesCopyPath + '/layouts/expansion-panel/**/App.razor',
+    igConfig.SamplesCopyPath + '/layouts/avatar/**/App.razor',
+    igConfig.SamplesCopyPath + '/layouts/card/**/App.razor',
+    igConfig.SamplesCopyPath + '/layouts/icon/**/App.razor',
+    igConfig.SamplesCopyPath + '/layouts/tabs/**/App.razor',
+    igConfig.SamplesCopyPath + '/layouts/dock-manager/**/App.razor',
+
     igConfig.SamplesCopyPath + '/menus/**/App.razor',
     igConfig.SamplesCopyPath + '/scheduling/**/App.razor',
-    igConfig.SamplesCopyPath + '/excel/excel-library/**/App.razor',
     igConfig.SamplesCopyPath + '/notifications/**/App.razor',
+    igConfig.SamplesCopyPath + '/excel/excel-library/**/App.razor',
 
     // igConfig.SamplesCopyPath + '/excel/spreadsheet/**/App.razor',
     // igConfig.SamplesCopyPath + '/gauges/bullet-graph/animation/App.razor',
@@ -57,15 +91,9 @@ var sampleSource = [
     // igConfig.SamplesCopyPath + '/grids/**/overview/App.razor',
     // igConfig.SamplesCopyPath + '/grids/**/column-types/App.razor',
 
-    // excluding project's .razor files
-    // "!" + igConfig.SamplesCopyPath + '/grids/**/binding-live-data/App.razor',
-    // "!" + igConfig.SamplesCopyPath + '/**/App.razor',
-    "!" + igConfig.SamplesCopyPath + '/**/Program.cs',
+    // "!" + igConfig.SamplesCopyPath + '/**/Program.cs',
     "!" + igConfig.SamplesCopyPath + '/**/obj/**',
     "!" + igConfig.SamplesCopyPath + '/**/bin/**',
-    // "!" + igConfig.SamplesCopyPath + '/**/data-chart/type-scatter-polygon-series/App.razor',
-    // "!" + igConfig.SamplesCopyPath + '/**/data-chart/type-scatter-polyline-series/App.razor',
-    // "!" + igConfig.SamplesCopyPath + '/**/App.razor',
     // "!" + igConfig.SamplesCopyPath + '/**/_Imports.razor',
     // "!" + igConfig.SamplesCopyPath + '/**/wwwroot/index.html',
     // "!" + igConfig.SamplesCopyPath + '/**/wwwroot/index.css',
@@ -114,49 +142,100 @@ function saveSamples(cb) {
 } exports.saveSamples = saveSamples;
 
 function getSamples(cb) {
+
+    var deferredSamples = [
+      // excluding deferred gird samples
+      igConfig.SamplesCopyPath + '/grids/grid/toolbar-style/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/advanced-filtering-style/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/binding-nested-data-2/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/cell-selection-style/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/column-hiding-styles/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/column-moving-styles/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/column-pinning-styles/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/column-resize-styling/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/column-selection-styles/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/conditional-cell-style-2/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/custom-context-menu/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/data-exporting-indicator/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/data-performance-infinite-scroll/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/data-performance-operations/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/data-performance-summary/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/data-persistence-state/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/data-summary-custom-selection/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/editing-styles/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/excel-style-filtering-sample-1/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/excel-style-filtering-sample-2/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/excel-style-filtering-sample-3/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/excel-style-filtering-style/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/external-excel-style-filtering/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/filtering-style/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/filtering-template/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/groupby-styling/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/keyboard-custom-navigation/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/multi-column-headers-styling/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/remote-filtering-data/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/remote-paging-batch-editing/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/remote-paging-custom/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/remote-paging-template/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/row-classes/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/row-drop-indicator/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/row-editing-style/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/row-paging-style/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/row-pinning-style/App.razor/App.razor',
+    ];
+
     samples = [];
 
     gulp.src(sampleSource)
     // .pipe(gSort( { asc: false } ))
     .pipe(es.map(function(sample, sampleCallback) {
         let sampleFolder = Transformer.getRelative(sample.dirname);
-        // console.log("get " + sampleFolder + '/' + sample.basename);
-        let sampleFiles = [];
-        gulp.src([
-                // sampleFolder + "/Pages/*",
-                sampleFolder + "/App.razor",
-                sampleFolder + "/Components/*",
-                sampleFolder + "/**/*.cs",
-                sampleFolder + "/*.csproj",
-                sampleFolder + "/wwwroot/*.js",
-                sampleFolder + "/wwwroot/*.css",
-             // sampleFolder + "/wwwroot/*",
-          '!' + sampleFolder + "/wwwroot/index.html",
-        //   '!' + sampleFolder + "/wwwroot/index.css",
-        //   '!' + sampleFolder + "/Pages/_*.razor",
-        //   '!' + sampleFolder + "/Pages/DataGridBindingLiveData.razor",
-          '!' + sampleFolder + "/Pages/*.g.cs",
-          '!' + sampleFolder + "/_Imports.razor",
-        //   '!' + sampleFolder + "/Program.cs", // not excluded b/c we need to get names of IG modules
-          '!' + sampleFolder + "/obj/**",
-          '!' + sampleFolder + "/obj/*.*",
-          '!' + sampleFolder + "/bin/**",
-          '!' + sampleFolder + "/bin/*.*",])
-        .pipe(flatten({ "includeParents": -1 }))
-        .pipe(es.map(function(file, fileCallback) {
-            let fileDir = Transformer.getRelative(file.dirname);
-            sampleFiles.push(fileDir + "/" + file.basename);
-            // console.log("get file " + fileDir + "/" + file.basename);
-            fileCallback(null, file);
-        }))
-        .on("end", function() {
-            // log(sampleFolder);
-            let sampleInfo = Transformer.getSampleInfo(sample, sampleFiles);
-            if (sampleInfo !== null) {
-                samples.push(sampleInfo);
-            }
+        let samplePath = sampleFolder + '/' + sample.basename;
+
+        // skip samples that were deferred
+        if (deferredSamples.includes(samplePath)) {
             sampleCallback(null, sample);
-        });
+        } else {
+            // console.log("get " + samplePath);
+            let sampleFiles = [];
+            gulp.src([
+                    // sampleFolder + "/Pages/*",
+                    sampleFolder + "/App.razor",
+                    sampleFolder + "/Components/*",
+                    sampleFolder + "/**/*.cs",
+                    sampleFolder + "/*.csproj",
+                    sampleFolder + "/wwwroot/*.js",
+                    sampleFolder + "/wwwroot/*.css",
+                    sampleFolder + "/wwwroot/index.html",
+                 // sampleFolder + "/wwwroot/*",
+            // '!' + sampleFolder + "/wwwroot/index.html",
+            //   '!' + sampleFolder + "/wwwroot/index.css",
+            //   '!' + sampleFolder + "/Pages/_*.razor",
+            //   '!' + sampleFolder + "/Pages/DataGridBindingLiveData.razor",
+              '!' + sampleFolder + "/Pages/*.g.cs",
+              '!' + sampleFolder + "/_Imports.razor",
+            //   '!' + sampleFolder + "/Program.cs", // not excluded b/c we need to get names of IG modules
+              '!' + sampleFolder + "/obj/**",
+              '!' + sampleFolder + "/obj/*.*",
+              '!' + sampleFolder + "/bin/**",
+              '!' + sampleFolder + "/bin/*.*",])
+            .pipe(flatten({ "includeParents": -1 }))
+            .pipe(es.map(function(file, fileCallback) {
+                let fileDir = Transformer.getRelative(file.dirname);
+                sampleFiles.push(fileDir + "/" + file.basename);
+                // console.log("get file " + fileDir + "/" + file.basename);
+                fileCallback(null, file);
+            }))
+            .on("end", function() {
+                // log(sampleFolder);
+                let sampleInfo = Transformer.getSampleInfo(sample, sampleFiles);
+                if (sampleInfo !== null) {
+                    samples.push(sampleInfo);
+                }
+                sampleCallback(null, sample);
+            });
+        }
+
     }))
     .on("end", function() {
         Transformer.sort(samples);
@@ -249,10 +328,12 @@ function copySamplePages(cb, outputPath) {
         // outputFolder = Strings.toTitleCase(outputClient);
 
         for (const file of sample.SourceFiles) {
-            if (file.isRazorSample()) {
+            if (file.isRazorFile()) {
                 var copyTarget = outputPath + '/Pages/' + sampleFolder + '/' + file.Parent + '/' + file.Name;
                 log("copying sample to " + copyTarget);
                 saveFile(copyTarget, file.Content);
+            } else if (file.Name.indexOf("Program.cs") >= 0)  {
+                continue;
             } else if (file.isCS())  {
                 saveFile(outputPath + '/Services/' + file.Name, file.Content);
             } else {
@@ -281,12 +362,25 @@ function copySampleScripts(cb, outputPath, indexName) {
 
     var copiedScriptFiles = [];
     for (const sample of samples) {
+
+        //console.log(sample);
+        var fileIndex = 0;
+        var fileSuffix = "";
         for (const file of sample.PublicFiles_JS) {
 
-            if (copiedScriptFiles.indexOf(file.Name) === -1) {
-                copiedScriptFiles.push(file.Name);
-                const scriptPath = outputPath + '/wwwroot/sb/' + file.Name
+            var fileName = sample.ComponentFolder + "-" + sample.SampleFolderName + fileSuffix + ".js";
+            fileIndex = fileIndex + 1;
+            fileSuffix = fileIndex;
+
+            var scriptPath = outputPath + '/wwwroot/sb/' + fileName
+            // log("-copying scripts to:  " + scriptPath);
+
+            if (copiedScriptFiles.indexOf(fileName) === -1) {
+                copiedScriptFiles.push(fileName);
+
                 log("copying scripts to:  " + scriptPath);
+
+                // console.log("copySampleScripts " + scriptName);
                 saveFile(scriptPath, file.Content);
 
                 if (file.Name.indexOf("DockManager") >= 0) {
@@ -298,10 +392,10 @@ function copySampleScripts(cb, outputPath, indexName) {
                         if (file.Name.indexOf("3") >= 0) fileRequiresLoading = false;
                     }
                     if (fileRequiresLoading) {
-                        insertScriptFiles.push('<script type="module" src="sb/' + file.Name + '"></script>');
+                        insertScriptFiles.push('<script type="module" src="sb/' + fileName + '"></script>');
                     }
                 } else {
-                    insertScriptFiles.push('<script src="sb/' + file.Name + '"></script>');
+                    insertScriptFiles.push('<script src="sb/' + fileName + '"></script>');
                 }
             }
         }
@@ -459,9 +553,9 @@ function updateIG(cb) {
     // NOTE: change this array with new version of packages
     let packageUpgrades = [
         // these IG packages are often updated:
-        { name: "IgniteUI.Blazor"                , version: "22.1.46" },
-        { name: "IgniteUI.Blazor.Documents.Core",  version: "22.1.46" },
-        { name: "IgniteUI.Blazor.Documents.Excel", version: "22.1.46" },
+        { name: "IgniteUI.Blazor"                , version: "22.2.570-dev" },
+        { name: "IgniteUI.Blazor.Documents.Core",  version: "22.2.570-dev" },
+        { name: "IgniteUI.Blazor.Documents.Excel", version: "22.2.570-dev" },
         // these IG packages are sometimes updated:
         { name: "Microsoft.AspNetCore.Components",                       version: "6.0.0" },
         { name: "Microsoft.AspNetCore.Components.Web",                   version: "6.0.0" },
@@ -920,7 +1014,7 @@ function convertSamples(cb) {
 
         for (const file of sample.SourceFiles) {
 
-            if (file.isRazorSample()) {
+            if (file.isRazorFile()) {
                 // log("converting " + file.Path)
                 var appRazor = file.Path.split("/Pages")[0];
                 appRazor += "/App.razor";
@@ -991,8 +1085,19 @@ function updateCodeViewer(cb) {
         var contentItems = [];
 
         for (const file of sample.SourceFiles) {
-            if (file.isRazorSample()) {
-                var code = file.Content.replace(new RegExp('.*\@page.*\r?\n', 'g'), "");
+            // console.log("SourceFiles " + file.Name);
+
+            if (file.isRazorFile()) {
+                //var code = file.Content.replace(new RegExp('.*\@page.*\r?\n', 'g'), "");
+                var codeLines = file.Content.split('\n');
+                var codeParsed = [];
+                for (const line of codeLines) {
+                    if (line.indexOf(".Register(IgniteUIBlazor)") < 0 &&
+                        line.indexOf("@page") < 0) {
+                        codeParsed.push(line);
+                    }
+                }
+                var code = codeParsed.join('\n');
                 var item = new CodeViewer(file.Path, code, "razor", "razor", true);
                 contentItems.push(item);
             }
@@ -1001,8 +1106,7 @@ function updateCodeViewer(cb) {
                 var isDataFile = name.indexOf("data") >= 0 || name.indexOf("locations") >= 0 || name.indexOf("temperature") >= 0 || name.indexOf("connections") >= 0 || name.indexOf("products") >= 0 || name.indexOf("stocksutility") >= 0 || name.indexOf("medals") >= 0 || name.indexOf("places") >= 0 || name.indexOf("history") >= 0 || name.indexOf("stats") >= 0;
                 var header = isDataFile ? "DATA" : "CS";
                 var item = new CodeViewer(file.Path, file.Content, "cs", header, true);
-                // if (header === "CS")
-                //     log("generating DATA " + file.Path + "   " + header);
+
                 contentItems.push(item);
             }
         }
@@ -1020,6 +1124,13 @@ function updateCodeViewer(cb) {
                 contentItems.push(item);
             }
         }
+
+        if (sample.PublicIndexFile !== undefined) {
+            var file = sample.PublicIndexFile;
+            var item = new CodeViewer(file.Path, file.Content, "html", "html", true);
+            contentItems.push(item);
+        }
+
         content += JSON.stringify(contentItems, null, '  ');
         content += "\r\n}";
 

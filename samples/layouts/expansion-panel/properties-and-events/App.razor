@@ -1,0 +1,62 @@
+﻿@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<style>
+    span#fired-event {
+        background-color: rgba(0,0,0,0.5);
+        border-radius: 26px;
+        padding: 1rem 1.5rem;
+        color: white;
+    }
+</style>
+
+<div class="container vertical" style="align-items: center;">
+    <IgbExpansionPanel style="width: 100%" Opened="OnOpened" Closed="OnClosed">
+        <h1 slot="title">Golden Retriever</h1>
+        <h3 slot="subtitle" style="@SubtitleVisibility">Medium-large gun dog</h3>
+        <span>
+            The Golden Retriever is a medium-large gun dog that retrieves shot waterfowl, such as ducks
+            and upland game birds, during hunting and shooting parties.[3] The name "retriever" refers to the breed's ability
+            to retrieve shot game undamaged due to their soft mouth. Golden retrievers have an instinctive love of water, and
+            are easy to train to basic or advanced obedience standards.
+        </span>
+    </IgbExpansionPanel>
+    <span style="@ToastVisibility" id="fired-event">@ToastText</span>
+</div>
+
+@code {
+    public string SubtitleVisibility = "display: block;";
+    public string ToastVisibility = "display: none;";
+    public string ToastText = "Hello";
+
+    private string _visibleStyle = "display: block;";
+    private string _invisibleStyle = "display: none;";
+    private System.Timers.Timer _timer;
+
+    public void OnOpened(IgbExpansionPanelComponentEventArgs args)
+    {
+        SubtitleVisibility = _invisibleStyle;
+        ToastVisibility = _visibleStyle;
+        ToastText = "Opened event fired!";
+
+        if (_timer == null)
+        {
+            _timer = new System.Timers.Timer(2000);
+            _timer.Elapsed += (s, e) =>
+            {
+                ToastVisibility = _invisibleStyle;
+                _timer.Enabled = false;
+                StateHasChanged();
+            };
+        }
+        _timer.Start();
+    }
+
+    public void OnClosed(IgbExpansionPanelComponentEventArgs args)
+    {
+        SubtitleVisibility = _visibleStyle;
+        ToastVisibility = _visibleStyle;
+        ToastText = "Closed event fired!";
+        _timer.Start();
+    }
+}

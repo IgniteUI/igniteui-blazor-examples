@@ -1,0 +1,102 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="CustomersData"
+        PrimaryKey="ID"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="ID">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ContactName"
+            Header="Contact"
+            Editable="true"
+            BodyTemplateScript="WebGridCompositeContactCellTemplate"
+            InlineEditorTemplateScript="WebGridCompositeContactEditCellTemplate"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Address"
+            Editable="true"
+            BodyTemplateScript="WebGridCompositeAddressCellTemplate"
+            InlineEditorTemplateScript="WebGridCompositeAddressEditCellTemplate"
+            Name="column2"
+            @ref="column2">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Country">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Region">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Phone">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Fax">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+        var column1 = this.column1;
+        var column2 = this.column2;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbGrid grid;
+    private IgbColumn column1;
+    private IgbColumn column2;
+
+    private CustomersData _customersData = null;
+    public CustomersData CustomersData
+    {
+        get
+        {
+            if (_customersData == null)
+            {
+                _customersData = new CustomersData(); 
+            }
+            return _customersData;
+        }
+    }
+    
+}

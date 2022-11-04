@@ -68,9 +68,10 @@
 
     protected override void OnInitialized()
     {
-
         base.OnInitialized();
+
         IgbDataGridModule.Register(IgniteUIBlazor);
+
         Workbook.InProcessRuntime = this.Runtime as IJSInProcessRuntime;
 
         this.companies = new string[] { "Amazon", "Ford", "Jaguar", "Tesla", "IBM", "Microsoft" };
@@ -214,7 +215,7 @@
             {
                 for (int i = 0; i < this.grid.ActualColumns.Count; i++)
                 {
-                    IgbColumn c = this.grid.ActualColumns[i];
+                    IgbDataGridColumn c = this.grid.ActualColumns[i];
                     var value = typeof(SalesEmployee).GetProperty(c.Field).GetValue(emp);
                     ws.Rows[worksheetRow].Cells[i].Value = value;
                 }
@@ -229,7 +230,7 @@
             {
                 for (int i = 0; i < this.grid.ActualColumns.Count; i++)
                 {
-                    IgbColumn c = this.grid.ActualColumns[i];
+                    IgbDataGridColumn c = this.grid.ActualColumns[i];
                     var value = typeof(Expense).GetProperty(c.Field).GetValue(emp);
                     ws.Rows[worksheetRow].Cells[i].Value = value;
                 }
@@ -244,7 +245,7 @@
             {
                 for (int i = 0; i < this.grid.ActualColumns.Count; i++)
                 {
-                    IgbColumn c = this.grid.ActualColumns[i];
+                    IgbDataGridColumn c = this.grid.ActualColumns[i];
                     var value = typeof(Income).GetProperty(c.Field).GetValue(emp);
                     ws.Rows[worksheetRow].Cells[i].Value = value;
                 }

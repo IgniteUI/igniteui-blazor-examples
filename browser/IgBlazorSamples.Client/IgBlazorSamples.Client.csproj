@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -15,40 +15,21 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <NoWarn>1701;1702,IDE0028,BL0005,0219l,RSG002,CS8618,CS8612,CS8625,CS8601,CS8602,CS0219</NoWarn>
+    <NoWarn>1701;1702,IDE0028,BL0005,0219l,RSG002,CS8618,CS8612,CS8625,CS8601,CS8602,CS0219,CS8600,CS8622,CS8603,CS8604,CS8605</NoWarn>
     <OutputPath>output</OutputPath>
   </PropertyGroup>
-
-    <!-- NPM Updates for automatic build -->
-    <PropertyGroup>
-        <NpmRoot>npmJS\</NpmRoot>
-        <DefaultItemExcludes>$(DefaultItemExcludes);$(NpmRoot)node_modules\**</DefaultItemExcludes>
-    </PropertyGroup>
+        
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-      <NoWarn>1701;1702,IDE0028,BL0005,0219l,RSG002,CS8618,CS8612,CS8625,CS8601,CS8602,CS0219</NoWarn>
+      <NoWarn>1701;1702,IDE0028,BL0005,0219l,RSG002,CS8618,CS8612,CS8625,CS8601,CS8602,CS0219,CS8600,CS8622,CS8603,CS8604,CS8605</NoWarn>
     </PropertyGroup>
-
-    <ItemGroup>
-        <Content Remove="$(NpmRoot)**" />
-        <None Remove="$(NpmRoot)**" />
-        <None Include="$(NpmRoot)**" Exclude="$(NpmRoot)node_modules\**" />
-    </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(NpmRoot)node_modules') ">
         <Exec Command="node --version" ContinueOnError="true">
             <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
         </Exec>
         <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
-        <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
-        <Exec WorkingDirectory="$(NpmRoot)" Command="npm install" />
-        <Exec WorkingDirectory="$(NpmRoot)" Command="npm run build" />
-    </Target>
-
-    <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-        <Exec WorkingDirectory="$(NpmRoot)" Command="npm install" />
-        <!--TfsBuildContent-->
-        <Exec WorkingDirectory="$(NpmRoot)" Command="npm run build" />
-    </Target>
+        <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />        
+    </Target>   
 
     <ItemGroup>
       <None Remove="notes.txt" />
@@ -57,9 +38,9 @@
     <!-- End NPM Updates -->
 
   <ItemGroup>
-    <PackageReference Include="IgniteUI.Blazor" Version="22.1.46" />
-    <PackageReference Include="IgniteUI.Blazor.Documents.Core" Version="22.1.46" />
-    <PackageReference Include="IgniteUI.Blazor.Documents.Excel" Version="22.1.46" />
+    <PackageReference Include="IgniteUI.Blazor" Version="22.2.21" />
+    <PackageReference Include="IgniteUI.Blazor.Documents.Core" Version="22.2.21" />
+    <PackageReference Include="IgniteUI.Blazor.Documents.Excel" Version="22.2.21" />
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" PrivateAssets="all" />

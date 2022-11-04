@@ -1,0 +1,81 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="true"
+        Data="CustomersData"
+        HeadSelectorTemplateScript="WebGridHeaderRowSelectorTemplate"
+        RowSelectorTemplateScript="WebGridRowSelectorTemplate"
+        RowSelection="GridSelectionMode.Multiple"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="ContactName">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Country">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="City">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="PostalCode">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="CompanyName">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbGrid grid;
+
+    private CustomersData _customersData = null;
+    public CustomersData CustomersData
+    {
+        get
+        {
+            if (_customersData == null)
+            {
+                _customersData = new CustomersData(); 
+            }
+            return _customersData;
+        }
+    }
+    
+}

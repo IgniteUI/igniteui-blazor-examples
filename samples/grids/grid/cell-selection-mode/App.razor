@@ -1,0 +1,111 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="WebGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="PropertyEditor"
+        @ref="propertyEditor">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="CellSelection"
+            Name="CellSelectionEditor"
+            DropDownValues="@(new string[] {"None", "Single", "Multiple"})"
+            DropDownNames="@(new string[] {"None", "Single", "Multiple"})"
+            ShouldOverrideDefaultEditor=true
+            @ref="cellSelectionEditor">
+            </IgbPropertyEditorPropertyDescription>
+            
+        </IgbPropertyEditorPanel>
+        
+    </div>
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="NwindData"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="ProductID">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ProductName">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="UnitsInStock"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="UnitPrice"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Discontinued"
+            DataType="GridColumnDataType.Boolean">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="OrderDate"
+            DataType="GridColumnDataType.Date">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditor = this.propertyEditor;
+        var cellSelectionEditor = this.cellSelectionEditor;
+        var grid = this.grid;
+
+        this.BindElements = () => {
+            propertyEditor.Target = this.grid;
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription cellSelectionEditor;
+    private IgbGrid grid;
+
+    private NwindData _nwindData = null;
+    public NwindData NwindData
+    {
+        get
+        {
+            if (_nwindData == null)
+            {
+                _nwindData = new NwindData(); 
+            }
+            return _nwindData;
+        }
+    }
+    
+}

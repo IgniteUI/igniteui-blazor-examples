@@ -32,7 +32,7 @@ This browser application will allows you to browse all samples of the [IgniteUI 
 
 - close VS Code
 
-- open VS 2019
+- open VS 2019 or VS 2022
 
 - open `IgBlazorSamplesBrowser.sln` file
 
@@ -40,6 +40,6 @@ This browser application will allows you to browse all samples of the [IgniteUI 
 
 - build and run the IgBlazorSamples.Client project
 
-- Wait until the build is completed and then open [http://localhost:4200/blazor-client](http://localhost:4200/blazor-client) in your browser. You should see a website with navigation menu for browning all samples in this repository.
+- Wait until the build/run is completed with the IgBlazorSamples.Client project set as the startup project and Visual Studio should open the your browser automatically. You should see a website with navigation menu for browning all samples in this repository.
 
 

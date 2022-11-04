@@ -1,0 +1,140 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="WebGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="false"
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="Pinning.Rows"
+            Label="Row Pinning toggle"
+            Name="rowPinningEditor"
+            @ref="rowPinningEditor">
+            </IgbPropertyEditorPropertyDescription>
+            
+        </IgbPropertyEditorPanel>
+        
+    </div>
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="CustomersData"
+        PrimaryKey="ID"
+        RowEditable="true"
+        CellSelection="GridSelectionMode.None"
+        Name="grid"
+        @ref="grid">
+            <IgbActionStrip
+            Name="actionStrip"
+            @ref="actionStrip">
+                <IgbGridPinningActions
+                >
+                </IgbGridPinningActions>
+                
+            </IgbActionStrip>
+            
+            <IgbPinningConfig
+            Rows="RowPinningPosition.Top">
+            </IgbPinningConfig>
+            
+            <IgbColumn
+            Field="CompanyName"
+            Header="Company Name"
+            Width="300px">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ContactName"
+            Header="Contact Name">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ContactTitle"
+            Header="Contact Title">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Address"
+            Header="Address">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="City"
+            Header="City">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="PostalCode"
+            Header="Postal Code">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Phone"
+            Header="Phone">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Fax"
+            Header="Fax">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var rowPinningEditor = this.rowPinningEditor;
+        var grid = this.grid;
+        var actionStrip = this.actionStrip;
+
+        this.BindElements = () => {
+            propertyEditorPanel1.Target = this.grid;
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription rowPinningEditor;
+    private IgbGrid grid;
+    private IgbActionStrip actionStrip;
+
+    private CustomersData _customersData = null;
+    public CustomersData CustomersData
+    {
+        get
+        {
+            if (_customersData == null)
+            {
+                _customersData = new CustomersData(); 
+            }
+            return _customersData;
+        }
+    }
+    
+}

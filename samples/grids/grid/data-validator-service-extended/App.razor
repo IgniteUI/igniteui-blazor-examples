@@ -1,0 +1,197 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="WebGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="false"
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
+            <IgbPropertyEditorPropertyDescription
+            Label=""
+            ValueType="PropertyEditorValueType.Button"
+            PrimitiveValue="@("Undo")"
+            ButtonClickedScript="WebGridUndo"
+            Name="propertyEditorPropertyDescription1"
+            @ref="propertyEditorPropertyDescription1">
+            </IgbPropertyEditorPropertyDescription>
+            
+            <IgbPropertyEditorPropertyDescription
+            Label=""
+            ValueType="PropertyEditorValueType.Button"
+            PrimitiveValue="@("Redo")"
+            ButtonClickedScript="WebGridRedo"
+            Name="propertyEditorPropertyDescription2"
+            @ref="propertyEditorPropertyDescription2">
+            </IgbPropertyEditorPropertyDescription>
+            
+            <IgbPropertyEditorPropertyDescription
+            Label=""
+            ValueType="PropertyEditorValueType.Button"
+            PrimitiveValue="@("Commit")"
+            ButtonClickedScript="WebGridCommit"
+            Name="propertyEditorPropertyDescription3"
+            @ref="propertyEditorPropertyDescription3">
+            </IgbPropertyEditorPropertyDescription>
+            
+        </IgbPropertyEditorPanel>
+        
+    </div>
+
+    <div class="container vertical fill">
+        <IgbGrid
+        Data="NwindData"
+        PrimaryKey="ProductID"
+        RowEditable="true"
+        BatchEditing="true"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="ProductID"
+            Header="Product ID"
+            Name="ProductID"
+            @ref="productID">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="ProductName"
+            @ref="productName"
+            Field="ProductName"
+            Header="Product Name">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="UnitPrice"
+            @ref="unitPrice"
+            Field="UnitPrice"
+            Header="Unit Price">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="UnitsOnOrder"
+            @ref="unitsOnOrder"
+            Field="UnitsOnOrder"
+            Header="Units On Order">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="UnitsInStock"
+            @ref="unitsInStock"
+            Field="UnitsInStock"
+            Header="Units In Stock">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="QuantityPerUnit"
+            @ref="quantityPerUnit"
+            Field="QuantityPerUnit"
+            Header="Quantity Per Unit">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="ReorderLevel"
+            @ref="reorderLevel"
+            Field="ReorderLevel"
+            Header="Reorder Level">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="SupplierID"
+            @ref="supplierID"
+            Field="SupplierID"
+            Header="Supplier ID">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="CategoryID"
+            @ref="categoryID"
+            Field="CategoryID"
+            Header="Category ID">
+            </IgbColumn>
+            
+            <IgbColumn
+            Name="Discontinued"
+            @ref="discontinued"
+            Field="Discontinued"
+            Header="Discontinued">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var propertyEditorPropertyDescription1 = this.propertyEditorPropertyDescription1;
+        var propertyEditorPropertyDescription2 = this.propertyEditorPropertyDescription2;
+        var propertyEditorPropertyDescription3 = this.propertyEditorPropertyDescription3;
+        var grid = this.grid;
+        var productID = this.productID;
+        var productName = this.productName;
+        var unitPrice = this.unitPrice;
+        var unitsOnOrder = this.unitsOnOrder;
+        var unitsInStock = this.unitsInStock;
+        var quantityPerUnit = this.quantityPerUnit;
+        var reorderLevel = this.reorderLevel;
+        var supplierID = this.supplierID;
+        var categoryID = this.categoryID;
+        var discontinued = this.discontinued;
+
+        this.BindElements = () => {
+            propertyEditorPanel1.Target = this.grid;
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
+    private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription2;
+    private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription3;
+    private IgbGrid grid;
+    private IgbColumn productID;
+    private IgbColumn productName;
+    private IgbColumn unitPrice;
+    private IgbColumn unitsOnOrder;
+    private IgbColumn unitsInStock;
+    private IgbColumn quantityPerUnit;
+    private IgbColumn reorderLevel;
+    private IgbColumn supplierID;
+    private IgbColumn categoryID;
+    private IgbColumn discontinued;
+
+    private NwindData _nwindData = null;
+    public NwindData NwindData
+    {
+        get
+        {
+            if (_nwindData == null)
+            {
+                _nwindData = new NwindData(); 
+            }
+            return _nwindData;
+        }
+    }
+    
+}

@@ -1,0 +1,227 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="WebGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="PropertyEditor"
+        @ref="propertyEditor">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="DisplayDensity"
+            Name="DisplayDensityEditor"
+            @ref="displayDensityEditor">
+            </IgbPropertyEditorPropertyDescription>
+            
+        </IgbPropertyEditorPanel>
+        
+    </div>
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="InvoicesData"
+        AllowFiltering="true"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="CustomerName"
+            Header="Customer Name"
+            Sortable="true"
+            HasSummary="true"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Country"
+            Header="Country"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            HasSummary="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="City"
+            Header="City"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            HasSummary="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Address"
+            Header="Address"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            HasSummary="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="PostalCode"
+            Header="Postal Code"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            HasSummary="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Salesperson"
+            Header="Sales Person"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            HasSummary="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ShipperName"
+            Header="Shipper Name"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            HasSummary="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="OrderDate"
+            Header="Order Date"
+            DataType="GridColumnDataType.Date"
+            Sortable="true"
+            HasSummary="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ProductID"
+            Header="ID"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            HasSummary="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ProductName"
+            Header="Name"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            HasSummary="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="UnitPrice"
+            Header="Unit Price"
+            DataType="GridColumnDataType.Number"
+            Sortable="true"
+            HasSummary="true"
+            Filterable="false">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Quantity"
+            Header="Quantity"
+            DataType="GridColumnDataType.Number"
+            Sortable="true"
+            HasSummary="true"
+            Filterable="false">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Discontinued"
+            Header="Discontinued"
+            DataType="GridColumnDataType.Boolean"
+            Sortable="true"
+            HasSummary="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Discontinued"
+            Header="Discontinued"
+            DataType="GridColumnDataType.Boolean"
+            Sortable="true"
+            HasSummary="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ShipName"
+            Header="Name"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            HasSummary="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ShipCountry"
+            Header="Country"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            HasSummary="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ShipCity"
+            Header="City"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            HasSummary="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ShipPostalCode"
+            Header="Postal Code"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            HasSummary="true">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditor = this.propertyEditor;
+        var displayDensityEditor = this.displayDensityEditor;
+        var grid = this.grid;
+
+        this.BindElements = () => {
+            propertyEditor.Target = this.grid;
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription displayDensityEditor;
+    private IgbGrid grid;
+
+    private InvoicesData _invoicesData = null;
+    public InvoicesData InvoicesData
+    {
+        get
+        {
+            if (_invoicesData == null)
+            {
+                _invoicesData = new InvoicesData(); 
+            }
+            return _invoicesData;
+        }
+    }
+    
+}

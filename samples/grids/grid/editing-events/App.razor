@@ -1,0 +1,95 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="NwindData"
+        PrimaryKey="ProductID"
+        CellEditScript="WebGridEditingEventsCellEdit"
+        Name="grid1"
+        @ref="grid1">
+            <IgbColumn
+            Field="ProductName"
+            Header="Product Name"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="UnitPrice"
+            Header="Unit Price"
+            DataType="GridColumnDataType.Number"
+            Editable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="UnitsInStock"
+            Header="Units In Stock"
+            DataType="GridColumnDataType.Number"
+            Editable="true"
+            Name="UnitsInStock"
+            @ref="unitsInStock">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="UnitsOnOrder"
+            Header="Units on Order"
+            DataType="GridColumnDataType.Number"
+            Editable="true"
+            Name="UnitsOnOrder"
+            @ref="unitsOnOrder">
+            </IgbColumn>
+            
+        </IgbGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid1 = this.grid1;
+        var unitsInStock = this.unitsInStock;
+        var unitsOnOrder = this.unitsOnOrder;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbGrid grid1;
+    private IgbColumn unitsInStock;
+    private IgbColumn unitsOnOrder;
+
+    private NwindData _nwindData = null;
+    public NwindData NwindData
+    {
+        get
+        {
+            if (_nwindData == null)
+            {
+                _nwindData = new NwindData(); 
+            }
+            return _nwindData;
+        }
+    }
+    
+}

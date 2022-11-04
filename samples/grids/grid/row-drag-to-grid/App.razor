@@ -1,0 +1,65 @@
+﻿@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor;
+
+<div class="container horizontal">
+    <div class="container vertical" style="padding: 0.5rem;">
+
+        @if (Data1 != null)
+        {
+                <IgbGrid Height="100%" Id="grid1" Width="100%"
+                         Data="Data1" PrimaryKey="@("ID")"
+                         RowDragEndScript="OnRowDragEndHandler"
+                         DragIndicatorIconTemplate=@template
+                         RowDraggable=true>
+                    <IgbColumn Field="ID" Width="100px" />
+                    <IgbColumn Field="CompanyName" Width="100px" />
+                    <IgbColumn Field="ContactName" Width="100px" />
+                    <IgbColumn Field="ContactTitle" Width="100px" />
+                    <IgbColumn Field="Address" Width="100px" />
+                    <IgbColumn Field="City" Width="100px" />
+                    <IgbColumn Field="Region" Width="100px" />
+                    <IgbColumn Field="PostalCode" Width="100px" />
+                    <IgbColumn Field="Phone" Width="100px" />
+                    <IgbColumn Field="Fax" Width="100px" />
+                </IgbGrid>
+        }
+    </div>
+    <div class="container vertical" style="padding: 0.5rem;">
+        @if (Data2 != null)
+        {
+                <IgbGrid Id='grid2' Height="100%" Width="100%"
+                         Data="Data2" PrimaryKey="@("ID")"
+                         EmptyGridMessage="Drag and Drop a row from the left grid to this grid">
+                    <IgbColumn Field="ID" Width="100px" />
+                    <IgbColumn Field="CompanyName" Width="100px" />
+                    <IgbColumn Field="ContactName" Width="100px" />
+                    <IgbColumn Field="ContactTitle" Width="100px" />
+                    <IgbColumn Field="Address" Width="100px" />
+                    <IgbColumn Field="City" Width="100px" />
+                    <IgbColumn Field="Region" Width="100px" />
+                    <IgbColumn Field="PostalCode" Width="100px" />
+                    <IgbColumn Field="Phone" Width="100px" />
+                    <IgbColumn Field="Fax" Width="100px" />
+                </IgbGrid>
+        }
+    </div>
+</div>
+
+@code {
+    private CustomersData Data1 { get; set; }
+    private List<CustomersDataItem> Data2 { get; set; }
+
+    private RenderFragment<IgbGridEmptyTemplateContext> template = (context) =>
+    {
+        return @<igx-icon>drag_handle</igx-icon>;
+    };
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        IgbGridModule.Register(IgniteUIBlazor);
+        this.Data1 = new CustomersData();
+        this.Data2 = new List<CustomersDataItem>() { };
+    }
+}

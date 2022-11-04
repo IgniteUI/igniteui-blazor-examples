@@ -18,7 +18,7 @@
             <div style="overflow: hidden">
                 <IgbDataGrid Height="100%" Width="100%"
                       @ref="@DataGridRef"
-                      RowHeight="50" 
+                      RowHeight="50"
                       DataSource="Employees"
                       AutoGenerateColumns="false"
                       IsColumnOptionsEnabled="true"
@@ -34,7 +34,7 @@
                       ColumnMovingAnimationMode="ColumnMovingAnimationMode.SlideOver"
                       ColumnShowingAnimationMode="ColumnShowingAnimationMode.SlideFromRightAndFadeIn"
                       ColumnHidingAnimationMode="ColumnHidingAnimationMode.SlideToRightAndFadeOut"
-                      SelectionMode="GridSelectionMode.SingleRow">
+                      SelectionMode="DataGridSelectionMode.SingleRow">
 
                     <IgbImageColumn IsEditable="false" Width="@("*>120")" Field="Photo" PaddingTop="5" PaddingBottom="5" PaddingRight="10"
                                 HorizontalAlignment="@CellContentHorizontalAlignment.Stretch"  />
@@ -102,10 +102,10 @@
         this._grid.GroupDescriptions.Add(peopleGroup);
         this._grid.GroupDescriptions.Add(incomeGroup);
 
-        var ageSummary = new IgbColumnSummaryDescription() { Field = "Age", Operand = SummaryOperand.Average };
-        var peopleSummary = new IgbColumnSummaryDescription() { Field = "Photo", Operand = SummaryOperand.Count };
-        var salarySummary = new IgbColumnSummaryDescription() { Field = "Salary", Operand = SummaryOperand.Sum };
-        var saleSummary = new IgbColumnSummaryDescription() { Field = "Sales", Operand = SummaryOperand.Max };
+        var ageSummary = new IgbColumnSummaryDescription() { Field = "Age", Operand = DataSourceSummaryOperand.Average };
+        var peopleSummary = new IgbColumnSummaryDescription() { Field = "Photo", Operand = DataSourceSummaryOperand.Count };
+        var salarySummary = new IgbColumnSummaryDescription() { Field = "Salary", Operand = DataSourceSummaryOperand.Sum };
+        var saleSummary = new IgbColumnSummaryDescription() { Field = "Sales", Operand = DataSourceSummaryOperand.Max };
 
         this._grid.SummaryDescriptions.Add(ageSummary);
         this._grid.SummaryDescriptions.Add(peopleSummary);
@@ -113,7 +113,7 @@
         this._grid.SummaryDescriptions.Add(saleSummary);
 
         // TODO fix onSummarziePeopleGender
-        //var nameSummary = new IgbColumnSummaryDescription() { Field = "Name", Operand = SummaryOperand.Custom,
+        //var nameSummary = new IgbColumnSummaryDescription() { Field = "Name", Operand = DataSourceSummaryOperand.Custom,
         //    ProvideCalculatorScript = "onSummarziePeopleGender" };
         //this._grid.SummaryDescriptions.Add(nameSummary);
     }

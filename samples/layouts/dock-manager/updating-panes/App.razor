@@ -63,7 +63,7 @@
 @code {
 
     public IgbDockManager dockManager { get; set; }
-    public IgbDockManagerLayout Layout { get; set; }    
+    public IgbDockManagerLayout Layout { get; set; }
     protected List<PersonInfo> EmployeeList;
     protected List<PersonInfo> EmployeeSelected;
     protected IgbArcGISOnlineMapImagery GeoImagery;
@@ -100,12 +100,12 @@
                         ContentId = "content1",
                     }
                 }
-             }, 
+             },
              new IgbSplitPane()
              {
-                 PaneType = DockManagerPaneType.SplitPane, 
-                 Orientation = SplitPaneOrientation.Vertical, 
-                 Size = 200, 
+                 PaneType = DockManagerPaneType.SplitPane,
+                 Orientation = SplitPaneOrientation.Vertical,
+                 Size = 200,
                  Panes = new IgbDockManagerPaneCollection(null, null)
                  {
                     new IgbContentPane
@@ -149,6 +149,7 @@
                 this.ProductivityChart.DataSource = this.EmployeeList[0].Productivity;
             }
         }
+        await Task.Delay(1);
     }
 
     private void onClick(PersonInfo selectedManager)

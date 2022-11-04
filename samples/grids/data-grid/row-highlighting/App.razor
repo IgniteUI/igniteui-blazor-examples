@@ -28,7 +28,7 @@
                             DataSource="Data"
                             IsRowHoverEnabled="@RowHoverEnabled"
                             RowHoverBackground="@HighlightColor"
-                            SelectionMode="GridSelectionMode.MultipleRow"
+                            SelectionMode="DataGridSelectionMode.MultipleRow"
                             IsColumnOptionsEnabled="true">
                         <IgbTextColumn Field="Name" Width="@("*>150")" />
                         <IgbTextColumn Field="Street" HeaderText="Street" Width="@("*>160")" />
@@ -58,7 +58,7 @@
 
     private void OnIsRowHoverEnabledChange(ChangeEventArgs args)
     {
-        bool value = (bool)args.Value;
+        bool value = args.Value != null ? (bool)args.Value : false;
         if (value)
         {
             this.RowHoverEnabled = true;

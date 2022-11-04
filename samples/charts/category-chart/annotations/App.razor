@@ -68,19 +68,19 @@
 
     private void OnFinalValuesCheckboxChange(ChangeEventArgs args)
     {
-        bool value = (bool)args.Value;
+        bool value = args.Value != null ? (bool)args.Value : false;
         this.FinalValuesVisible = value;
     }
 
     private void OnCalloutsVisibleCheckboxChange(ChangeEventArgs args)
     {
-        bool value = (bool)args.Value;
+        bool value = args.Value != null ? (bool)args.Value : false;
         this.CalloutsVisible = value;
     }
 
     private void OnCrosshairsVisibleCheckboxChange(ChangeEventArgs args)
     {
-        bool value = (bool)args.Value;
+        bool value = args.Value != null ? (bool)args.Value : false;
         if (value)
         {
             this.CrosshairMode = CrosshairsDisplayMode.Both;
