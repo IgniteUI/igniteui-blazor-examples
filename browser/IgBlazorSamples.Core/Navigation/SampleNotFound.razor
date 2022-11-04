@@ -39,7 +39,7 @@
     </div>
     
     <div class="sb-comming-soon-details">
-        This <a href="@DocPath" >asset</a> is under developlment. We are almost done!
+        This <a href="@SampleUrl" title="@NavPath" >example</a> is under developlment. We are almost done!
     </div>
 </div>
 
@@ -73,7 +73,8 @@
 </div>*@
 
 @code {
-
+    
+    public string SampleUrl { get; set; }
     public string NavPath { get; set; }
     public string DocPath { get; set; }
     public string BrowserPath { get; set; }
@@ -91,11 +92,12 @@
         route = route.Replace("/samples", "");
         this.DocPath = route;
         this.NavPath = "/samples" + this.DocPath;
+        this.SampleUrl = pathUri.Replace("blazor-client", "blazor-client/samples");
         this.BrowserPath = baseUri + "samples";
-        Console.WriteLine("NotFound b=" + baseUri);
-        Console.WriteLine("NotFound p=" + pathUri);
-        Console.WriteLine("NotFound n=" + this.NavPath);
-        Console.WriteLine("NotFound d=" + this.DocPath);
+        //Console.WriteLine("NotFound b=" + baseUri);
+        //Console.WriteLine("NotFound p=" + pathUri);
+        Console.WriteLine("SB missing " + pathUri);
+        //Console.WriteLine("NotFound d=" + this.DocPath);
         StateHasChanged();
     }
 
