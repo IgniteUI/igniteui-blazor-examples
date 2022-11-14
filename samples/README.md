@@ -1,12 +1,12 @@
-<div style="display: flex; flex-flow: row;">
-<img height="70px" style="border-radius: 0.25rem" alt="ignite-ui" src="../browser/IgBlazorSamples.Client/wwwroot/images/logo-ignite-ui.svg"/>
-<!-- <div style="font-size: 2.5rem; align-self: start; justify-content: start; margin: 0px; margin-left: 0.5rem; margin-right: 0.5rem">BLAZOR SAMPLES</div> -->
-<!-- <img height="52px" style="border-radius: 0.25rem" alt="ignite-wc" src="./browser/IgBlazorSamples.Client/wwwroot/images/blazor.png"/> -->
+
+<div style="display: flex; flex-flow: row; font-family: 'Titillium Web'">
+    <img style="border-radius: 0.25rem" alt="ignite-ui" src="https://raw.githubusercontent.com/IgniteUI/igniteui-xplat-docs/vnext/doc/en/images/readme/ig-banner.png"/>
 </div>
 
-# Blazor Samples
 
-In this folder, you will find stand-alone **samples** on how the [IgniteUI for Blazor](https://www.infragistics.com/blazorsite/components/general-getting-started.html) components:
+# Individual Samples of Blazor Components
+
+In this folder, you will find stand-alone **samples** on how to use the [IgniteUI for Blazor](https://www.infragistics.com/blazorsite/components/general-getting-started.html) components:
 
 - [Bullet Graph, Linear Gauge, Radial Gauges](https://infragistics.com/blazorsite/components/radial-gauge.html)
 - [Data Chart, Category Chart, Financial Chart, Pie Chart](https://infragistics.com/blazorsite/components/data-chart.html)

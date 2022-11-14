@@ -1,8 +1,8 @@
-<div style="display: flex; flex-flow: row;">
-<img height="70px" style="border-radius: 0.25rem" alt="ignite-ui" src="../browser/IgBlazorSamples.Client/wwwroot/images/logo-ignite-ui.svg"/>
-<!-- <div style="font-size: 2.5rem; align-self: start; justify-content: start; margin: 0px; margin-left: 0.5rem; margin-right: 0.5rem">BLAZOR BROWSER</div> -->
-<!-- <img height="52px" style="border-radius: 0.25rem" alt="ignite-wc" src="./browser/IgBlazorSamples.Client/wwwroot/images/blazor.png"/> -->
+
+<div style="display: flex; flex-flow: row; font-family: 'Titillium Web'">
+    <img style="border-radius: 0.25rem" alt="ignite-ui" src="https://raw.githubusercontent.com/IgniteUI/igniteui-xplat-docs/vnext/doc/en/images/readme/ig-banner.png"/>
 </div>
+
 
 # Blazor Browser
 
