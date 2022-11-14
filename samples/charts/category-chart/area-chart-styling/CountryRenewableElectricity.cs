@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 public class CountryRenewableElectricityItem
 {
-    public string Year{ get; set; }
-    public double Europe{ get; set; }
-    public double China{ get; set; }
-    public double America{ get; set; }
+    public string Year { get; set; }
+    public double Europe { get; set; }
+    public double China { get; set; }
+    public double America { get; set; }
 }
+
 public class CountryRenewableElectricity
     : List<CountryRenewableElectricityItem>
 {

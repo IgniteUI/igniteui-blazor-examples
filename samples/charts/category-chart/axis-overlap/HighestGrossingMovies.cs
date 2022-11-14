@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 public class HighestGrossingMoviesItem
 {
-    public string Franchise{ get; set; }
-    public double TotalRevenue{ get; set; }
-    public double HighestGrossing{ get; set; }
+    public string Franchise { get; set; }
+    public double TotalRevenue { get; set; }
+    public double HighestGrossing { get; set; }
 }
+
 public class HighestGrossingMovies
     : List<HighestGrossingMoviesItem>
 {

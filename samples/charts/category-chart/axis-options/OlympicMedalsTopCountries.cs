@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 public class OlympicMedalsTopCountriesItem
 {
-    public string Year{ get; set; }
-    public double America{ get; set; }
-    public double China{ get; set; }
-    public double Russia{ get; set; }
+    public string Year { get; set; }
+    public double America { get; set; }
+    public double China { get; set; }
+    public double Russia { get; set; }
 }
+
 public class OlympicMedalsTopCountries
     : List<OlympicMedalsTopCountriesItem>
 {
