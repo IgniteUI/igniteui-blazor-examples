@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 public class TemperatureAverageDataItem
 {
-    public string Month{ get; set; }
-    public double Temperature{ get; set; }
+    public string Month { get; set; }
+    public double Temperature { get; set; }
 }
+
 public class TemperatureAverageData
     : List<TemperatureAverageDataItem>
 {
