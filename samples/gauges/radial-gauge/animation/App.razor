@@ -11,7 +11,7 @@
     <div class="container vertical">
         <IgbRadialGauge @ref="Gauge"
                      Height="100%" Width="100%"
-                     TransitionDuration="1000"
+                     TransitionDuration="@TransitionDuration"
                      Value=@Value
                      Interval=@Interval
                      MinimumValue=@MinimumValue
@@ -79,6 +79,7 @@
     private double MaximumValue;
     private double Value;
     private double Interval;
+    private int TransitionDuration;
 
     private double LabelExtent;
     private double LabelInterval;
@@ -122,7 +123,7 @@
     private double MinorTickEndExtent;
     private double MinorTickStartExtent;
     private double MinorTickCount;
-    private double MinorTickStrokeThickness;
+    private double MinorTickStrokeThickness;    
 
     private System.Collections.ObjectModel.ObservableCollection<GaugeRangeInfo> RangeInfo;
 
@@ -193,15 +194,12 @@
     }
 
     public void onAnimateToGauge1()
-    {
-
-        var thing = this.Gauge;
-        //if (!this.Gauge) { return; }
-
+    {                
+        this.TransitionDuration = 1000;
         this.MinimumValue = 0;
         this.MaximumValue = 10;
         this.Value = 7.5;
-
+        
         // Scale Settings
         this.ScaleStartAngle = 180;
         this.ScaleEndAngle = 270;
@@ -263,6 +261,7 @@
 
     public void onAnimateToGauge2()
     {
+        this.TransitionDuration = 1000;
         this.MinimumValue = 100;
         this.MaximumValue = 200;
         this.Value = 125;
@@ -326,6 +325,7 @@
 
     public void onAnimateToGauge3()
     {
+        this.TransitionDuration = 1000;
         this.MinimumValue = 0;
         this.MaximumValue = 80;
         this.Value = 10;
@@ -379,6 +379,7 @@
 
     public void onAnimateToGauge4()
     {
+        this.TransitionDuration = 1000;
         this.MinimumValue = 0;
         this.MaximumValue = 50;
         this.Value = 25;

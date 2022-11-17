@@ -9,8 +9,8 @@
         <button @onclick="onAnimateToGauge3">Gauge Animation #3</button>
     </div>
     <div class="container vertical">
-        <IgbBulletGraph Height="80px" Width="100%"
-                     TransitionDuration="1000"
+        <IgbBulletGraph Height="80px" Width="100%"     
+                     TransitionDuration=@TransitionDuration
                      MinimumValue=@MinimumValue
                      MaximumValue=@MaximumValue
                      Value=@Value
@@ -91,6 +91,7 @@
     private double MaximumValue;
     private double Value;
     private double Interval;
+    private int TransitionDuration;
 
     private double LabelInterval;
     private double LabelExtent;
@@ -120,6 +121,8 @@
     private string BackingOutline;
     private double BackingStrokeThickness;
 
+    private bool ShouldAnimate = false;
+
     private List<GaugeRangeInfo> GaugeRanges;
 
     protected override void OnInitialized()
@@ -139,6 +142,7 @@
         this.ScaleBackgroundThickness = 0;
         this.ScaleBackgroundBrush = "#DBDBDB";
         this.ScaleBackgroundOutline = "Gray";
+        this.TransitionDuration = 0;
 
         this.GaugeRanges = new List<GaugeRangeInfo>();
 
@@ -147,6 +151,10 @@
 
     private void onAnimateToGauge1()
     {
+        if (ShouldAnimate)
+        {
+            this.TransitionDuration = 1000;
+        }
         this.MinimumValue = 0;
         this.MaximumValue = 80;
         this.Value = 70;
@@ -206,10 +214,15 @@
             ranges.Add(info);
         }
         this.GaugeRanges = ranges;
+        this.ShouldAnimate = true;
     }
 
     private void onAnimateToGauge2()
     {
+        if (ShouldAnimate)
+        {
+            this.TransitionDuration = 1000;
+        }
         this.MinimumValue = 100;
         this.MaximumValue = 200;
         this.Value = 120;
@@ -272,10 +285,15 @@
             ranges.Add(info);
         }
         this.GaugeRanges = ranges;
+        this.ShouldAnimate = true;
     }
 
     private void onAnimateToGauge3()
     {
+        if (ShouldAnimate)
+        {
+            this.TransitionDuration = 1000;
+        }
         this.MinimumValue = 0;
         this.MaximumValue = 120;
         this.Value = 70;
@@ -336,5 +354,6 @@
             ranges.Add(info);
         }
         this.GaugeRanges = ranges;
+        this.ShouldAnimate = true;
     }
 }
