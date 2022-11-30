@@ -1,0 +1,101 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container horizontal">
+
+    <div class="container vertical">
+        <IgbPivotGrid PivotConfiguration="PivotConfiguration"
+                      Data="PivotSalesData"
+                      Name="grid"
+                      @ref="grid">
+        </IgbPivotGrid>
+    </div>
+    <div class="container vertical">
+        <IgbPivotDataSelector  @ref="selector" Grid=@grid></IgbPivotDataSelector>
+    </div>
+
+</div>
+
+@code {
+    public IgbPivotGrid grid;
+    private IgbPivotDataSelector selector;
+    private IgbPivotConfiguration _pivotConfiguration = null;
+    public IgbPivotConfiguration PivotConfiguration
+    {
+        get
+        {
+            if (this._pivotConfiguration == null)
+            {
+                IgbPivotConfiguration pivotConfiguration = new IgbPivotConfiguration();
+                IgbPivotDimension pivotDimension1 = new IgbPivotDimension()
+                    {
+                        MemberName = "Product",
+                        Enabled = true
+                    };
+
+                IgbPivotDimension pivotDimension2 = new IgbPivotDimension()
+                    {
+                        MemberName = "Country",
+                        Enabled = true
+                    };
+
+                IgbPivotDateDimension pivotDimension3 = new IgbPivotDateDimension();
+
+                pivotConfiguration.Columns.Add(pivotDimension1);
+                pivotConfiguration.Columns.Add(pivotDimension2);
+                pivotConfiguration.Rows.Add(pivotDimension3);
+
+                IgbPivotValue pivotValue1 = new IgbPivotValue()
+                    {
+
+                        Member = "Sales",
+                        Enabled = false,
+                        DataType = GridColumnDataType.Currency,
+                        Aggregate = new IgbPivotAggregator()
+                        {
+                            AggregatorName = PivotAggregationType.SUM,
+                            Key = "SUM",
+                            Label = "Sum"
+                        }
+                    };
+
+
+                IgbPivotValue pivotValue2 = new IgbPivotValue()
+                    {
+
+                        Member = "Profit",
+                        Enabled = true,
+                        DataType = GridColumnDataType.Currency,
+                        Aggregate = new IgbPivotAggregator()
+                        {
+                            AggregatorName = PivotAggregationType.SUM,
+                            Key = "SUM",
+                            Label = "Sum"
+                        }
+                    };
+
+                pivotConfiguration.Values.Add(pivotValue1);
+                pivotConfiguration.Values.Add(pivotValue2);
+
+                this._pivotConfiguration = pivotConfiguration;
+            }
+            return this._pivotConfiguration;
+        }
+    }
+
+    private PivotSalesData _pivotSalesData = null;
+    public PivotSalesData PivotSalesData
+    {
+        get
+        {
+            if (_pivotSalesData == null)
+            {
+                _pivotSalesData = new PivotSalesData();
+            }
+            return _pivotSalesData;
+        }
+    }
+
+}
