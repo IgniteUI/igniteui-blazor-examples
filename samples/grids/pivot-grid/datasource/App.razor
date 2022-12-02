@@ -6,19 +6,25 @@
 <div class="container horizontal">
 
     <div class="container vertical">
-        <IgbPivotGrid PivotConfiguration="PivotConfiguration"
-                      Data="PivotSalesData"
+        <IgbPivotGrid Data="PivotSalesData"
+                      DefaultExpandState=true
+                      PivotConfiguration="PivotConfiguration"
                       Name="grid"
                       @ref="grid">
         </IgbPivotGrid>
     </div>
     <div class="container vertical">
-        <IgbPivotDataSelector  @ref="selector" Grid=@grid></IgbPivotDataSelector>
+        <IgbPivotDataSelector @ref="selector" Grid=@grid></IgbPivotDataSelector>
     </div>
 
 </div>
 
 @code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
     public IgbPivotGrid grid;
     private IgbPivotDataSelector selector;
     private IgbPivotConfiguration _pivotConfiguration = null;
@@ -42,10 +48,22 @@
                     };
 
                 IgbPivotDateDimension pivotDimension3 = new IgbPivotDateDimension();
+                pivotDimension3.InBaseDimension = new IgbPivotDimension()
+                    {
+                        MemberName = "Date",
+                        Enabled = true
+                    };
+
+                IgbPivotDimension pivotDimension4 = new IgbPivotDimension()
+                    {
+                        MemberName = "MonthName",
+                        Enabled = false
+                    };
 
                 pivotConfiguration.Columns.Add(pivotDimension1);
                 pivotConfiguration.Columns.Add(pivotDimension2);
                 pivotConfiguration.Rows.Add(pivotDimension3);
+                pivotConfiguration.Filters.Add(pivotDimension4);
 
                 IgbPivotValue pivotValue1 = new IgbPivotValue()
                     {

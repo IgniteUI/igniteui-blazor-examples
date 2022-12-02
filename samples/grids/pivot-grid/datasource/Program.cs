@@ -24,8 +24,7 @@ namespace Infragistics.Samples
 
             // registering Infragistics Blazor
             builder.Services.AddIgniteUIBlazor(
-                typeof(IgbPivotGridModule),
-                typeof(IgbPivotDataSelectorModule)
+                typeof(IgbPivotGridModule)
             );
 
             await builder.Build().RunAsync();
