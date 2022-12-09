@@ -8,7 +8,7 @@
     <div class="container vertical fill">
         <IgbGrid
         Data="CustomersData"
-        GroupingExpressions="@(new IgbGroupingExpression[] { GroupingExpression1 })"
+        GroupingExpressions="GroupingExpression1"
         PrimaryKey="CompanyName"
         RowEditable="true"
         AllowFiltering="true"
@@ -168,17 +168,19 @@
 	}
 
     private IgbGrid grid;
-    private IgbGroupingExpression _groupingExpression1 = null;
-    public IgbGroupingExpression GroupingExpression1
+    private IgbGroupingExpression[] _groupingExpression1 = null;
+    public IgbGroupingExpression[] GroupingExpression1
     {
         get
         {
             if (this._groupingExpression1 == null)
             {
-                var groupingExpression1 = new IgbGroupingExpression();
-                groupingExpression1.FieldName = "Country";
-                groupingExpression1.Dir = SortingDirection.Asc;
-                groupingExpression1.IgnoreCase = false;
+                var groupingExpression1 = new IgbGroupingExpression[1];
+                var groupingExpression2 = new IgbGroupingExpression();
+                groupingExpression2.FieldName = "Country";
+                groupingExpression2.Dir = SortingDirection.Asc;
+                groupingExpression2.IgnoreCase = false;
+                groupingExpression1[0] = groupingExpression2;
                 this._groupingExpression1 = groupingExpression1;
             }
             return this._groupingExpression1;

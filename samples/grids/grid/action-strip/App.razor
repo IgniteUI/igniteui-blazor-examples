@@ -6,72 +6,84 @@
 <div class="container vertical">
 
     <div class="container vertical fill">
-        <IgbGrid AutoGenerate="false"
-                 Data="NwindData"
-                 PrimaryKey="ProductID"
-                 RowEditable="true"
-                 AllowFiltering="true"
-                 BatchEditing="true"
-                 Name="grid"
-                 @ref="grid">
-            <IgbActionStrip Name="actionStrip"
-                            @ref="actionStrip">
-                <IgbGridPinningActions>
+        <IgbGrid
+        AutoGenerate="false"
+        Data="NwindData"
+        PrimaryKey="ProductID"
+        RowEditable="true"
+        AllowFiltering="true"
+        BatchEditing="true"
+        Name="grid"
+        @ref="grid">
+            <IgbActionStrip
+            Name="actionStrip"
+            @ref="actionStrip">
+                <IgbGridPinningActions
+                >
                 </IgbGridPinningActions>
-
-                <IgbGridEditingActions EditRow="true"
-                                       DeleteRow="false">
+                
+                <IgbGridEditingActions
+                EditRow="true"
+                DeleteRow="false">
                 </IgbGridEditingActions>
-
+                
             </IgbActionStrip>
-
-            <IgbPinningConfig Rows="RowPinningPosition.Top">
+            
+            <IgbPinningConfig
+            Rows="RowPinningPosition.Top">
             </IgbPinningConfig>
-
-            <IgbColumn Field="ProductName"
-                       Header="Product Name"
-                       Name="ProductName"
-                       @ref="productName">
+            
+            <IgbColumn
+            Field="ProductName"
+            Header="Product Name"
+            Name="ProductName"
+            @ref="productName">
             </IgbColumn>
-
-            <IgbColumn Name="UnitPrice"
-                       @ref="unitPrice"
-                       Field="UnitPrice"
-                       Header="Unit Price">
+            
+            <IgbColumn
+            Name="UnitPrice"
+            @ref="unitPrice"
+            Field="UnitPrice"
+            Header="Unit Price">
             </IgbColumn>
-
-            <IgbColumn Name="UnitsOnOrder"
-                       @ref="unitsOnOrder"
-                       Field="UnitsOnOrder"
-                       Header="Units On Order">
+            
+            <IgbColumn
+            Name="UnitsOnOrder"
+            @ref="unitsOnOrder"
+            Field="UnitsOnOrder"
+            Header="Units On Order">
             </IgbColumn>
-
-            <IgbColumn Name="UnitsInStock"
-                       @ref="unitsInStock"
-                       Field="UnitsInStock"
-                       Header="Units In Stock">
+            
+            <IgbColumn
+            Name="UnitsInStock"
+            @ref="unitsInStock"
+            Field="UnitsInStock"
+            Header="Units In Stock">
             </IgbColumn>
-
-            <IgbColumn Name="QuantityPerUnit"
-                       @ref="quantityPerUnit"
-                       Field="QuantityPerUnit"
-                       Header="Quantity Per Unit">
+            
+            <IgbColumn
+            Name="QuantityPerUnit"
+            @ref="quantityPerUnit"
+            Field="QuantityPerUnit"
+            Header="Quantity Per Unit">
             </IgbColumn>
-
-            <IgbColumn Name="ReorderLevel"
-                       @ref="reorderLevel"
-                       Field="ReorderLevel"
-                       Header="Reorder Level">
+            
+            <IgbColumn
+            Name="ReorderLevel"
+            @ref="reorderLevel"
+            Field="ReorderLevel"
+            Header="Reorder Level">
             </IgbColumn>
-
-            <IgbColumn Name="Discontinued"
-                       @ref="discontinued"
-                       Field="Discontinued"
-                       Header="Discontinued">
+            
+            <IgbColumn
+            Name="Discontinued"
+            @ref="discontinued"
+            Field="Discontinued"
+            Header="Discontinued">
             </IgbColumn>
-
+            
         </IgbGrid>
-
+        
     </div>
 
 </div>
@@ -97,17 +109,15 @@
         var reorderLevel = this.reorderLevel;
         var discontinued = this.discontinued;
 
-        this.BindElements = () =>
-        {
+        this.BindElements = () => {
         };
         this.BindElements();
 
-        if (firstRender)
-        {
+        if (firstRender) {
         }
 
         await Task.Delay(1);
-    }
+	}
 
     private IgbGrid grid;
     private IgbActionStrip actionStrip;
@@ -126,10 +136,10 @@
         {
             if (_nwindData == null)
             {
-                _nwindData = new NwindData();
+                _nwindData = new NwindData(); 
             }
             return _nwindData;
         }
     }
-
+    
 }

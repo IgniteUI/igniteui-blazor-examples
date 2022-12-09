@@ -5,13 +5,14 @@ igRegisterScript("WebGridNestedDataCellTemplate", (ctx) => {
         ctx.cell.row.data[window.event.target.id] = window.event.target.value;
     }
     const people = ctx.cell.value;
-    if (people.length === 0) return html``;
-    const person = people[0];
-    return html`
+    if (people != null) {
+        if (people.length === 0) return html``;
+        const person = people[0];
+        return html`
     <igc-expansion-panel>
-        <h1 slot="title">
+        <h3 slot="title">
         ${person.Name}
-        </h1>
+        </h3>
         <div class="description">
             <div>
                 <label for="title">Title</label>
@@ -24,6 +25,7 @@ igRegisterScript("WebGridNestedDataCellTemplate", (ctx) => {
         </div>
     </igc-expansion-panel>
         `;
+    }
 }, false);
 
 

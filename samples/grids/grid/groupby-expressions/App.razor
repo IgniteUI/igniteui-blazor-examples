@@ -10,7 +10,7 @@
         AutoGenerate="false"
         Id="grid"
         Data="InvoicesData"
-        GroupingExpressions="@(new IgbGroupingExpression[] { GroupingExpression1, GroupingExpression2 })"
+        GroupingExpressions="GroupingExpression1"
         GroupRowTemplateScript="WebGridGroupByRowTemplate"
         Name="grid"
         @ref="grid">
@@ -123,36 +123,27 @@
 	}
 
     private IgbGrid grid;
-    private IgbGroupingExpression _groupingExpression1 = null;
-    public IgbGroupingExpression GroupingExpression1
+    private IgbGroupingExpression[] _groupingExpression1 = null;
+    public IgbGroupingExpression[] GroupingExpression1
     {
         get
         {
             if (this._groupingExpression1 == null)
             {
-                var groupingExpression1 = new IgbGroupingExpression();
-                groupingExpression1.FieldName = "ShipCountry";
-                groupingExpression1.Dir = SortingDirection.Asc;
-                groupingExpression1.IgnoreCase = false;
+                var groupingExpression1 = new IgbGroupingExpression[2];
+                var groupingExpression2 = new IgbGroupingExpression();
+                groupingExpression2.FieldName = "ShipCountry";
+                groupingExpression2.Dir = SortingDirection.Asc;
+                groupingExpression2.IgnoreCase = false;
+                groupingExpression1[0] = groupingExpression2;
+                var groupingExpression3 = new IgbGroupingExpression();
+                groupingExpression3.FieldName = "ShipCity";
+                groupingExpression3.IgnoreCase = false;
+                groupingExpression3.Dir = SortingDirection.Asc;
+                groupingExpression1[1] = groupingExpression3;
                 this._groupingExpression1 = groupingExpression1;
             }
             return this._groupingExpression1;
-        }
-    }
-    private IgbGroupingExpression _groupingExpression2 = null;
-    public IgbGroupingExpression GroupingExpression2
-    {
-        get
-        {
-            if (this._groupingExpression2 == null)
-            {
-                var groupingExpression2 = new IgbGroupingExpression();
-                groupingExpression2.FieldName = "ShipCity";
-                groupingExpression2.IgnoreCase = false;
-                groupingExpression2.Dir = SortingDirection.Asc;
-                this._groupingExpression2 = groupingExpression2;
-            }
-            return this._groupingExpression2;
         }
     }
     private IgbColumn column1;

@@ -4,6 +4,33 @@
 @inject IJSRuntime JS
 
 <div class="container vertical">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="WebGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="PropertyEditor"
+        @ref="propertyEditor">
+            <IgbPropertyEditorPropertyDescription
+            ValueType="PropertyEditorValueType.Button"
+            PrimitiveValue="@("Toggle First Group Pinned")"
+            ButtonClicked="WebGridPinFirstGroupToggle"
+            Name="propertyEditorPropertyDescription1"
+            @ref="propertyEditorPropertyDescription1">
+            </IgbPropertyEditorPropertyDescription>
+            
+            <IgbPropertyEditorPropertyDescription
+            ValueType="PropertyEditorValueType.Button"
+            PrimitiveValue="@("Toggle First Group Hidden")"
+            ButtonClicked="WebGridHideFirstGroupToggle"
+            Name="propertyEditorPropertyDescription2"
+            @ref="propertyEditorPropertyDescription2">
+            </IgbPropertyEditorPropertyDescription>
+            
+        </IgbPropertyEditorPanel>
+        
+    </div>
 
     <div class="container vertical fill">
         <IgbGrid
@@ -114,9 +141,13 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        var propertyEditor = this.propertyEditor;
+        var propertyEditorPropertyDescription1 = this.propertyEditorPropertyDescription1;
+        var propertyEditorPropertyDescription2 = this.propertyEditorPropertyDescription2;
         var grid = this.grid;
 
         this.BindElements = () => {
+            propertyEditor.Target = this.grid;
         };
         this.BindElements();
 
@@ -126,8 +157,25 @@
         await Task.Delay(1);
 	}
 
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
+    private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription2;
     private IgbGrid grid;
 
+    
+    public void WebGridPinFirstGroupToggle(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
+    {
+        var columnGroup = this.grid.ActualColumns[1];
+        columnGroup.Pinned = !columnGroup.Pinned;
+    }
+        
+    
+    public void WebGridHideFirstGroupToggle(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
+    {
+        var columnGroup = this.grid.ActualColumns[1];
+        columnGroup.Hidden = !columnGroup.Hidden;
+    }
+        
     private CustomersData _customersData = null;
     public CustomersData CustomersData
     {
