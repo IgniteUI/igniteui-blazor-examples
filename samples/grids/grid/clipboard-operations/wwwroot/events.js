@@ -5,7 +5,9 @@ igRegisterScript("WebGridClearSelection", (event) => {
 }, false);
 
 
-igRegisterScript("WebGridClipboardOperationsColumnInit", (event) => {
-    console.log("TODO WebGridClipboardOperationsColumnInit");
+igRegisterScript("WebGridClipboardOperationsColumnInit", (e) => {
+    var column = e.detail;
+    column.formatter = columnFormatter;
+    column.header = "🎉" + column.field;
 }, false);
 

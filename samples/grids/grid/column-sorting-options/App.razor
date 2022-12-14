@@ -42,7 +42,7 @@
         <IgbGrid
         AutoGenerate="false"
         Data="ProductSales"
-        SortingExpressions="@(new IgbSortingExpression[] { SortingExpression1 })"
+        SortingExpressions="SortingExpression1"
         Name="grid"
         @ref="grid">
             <IgbColumn
@@ -62,7 +62,7 @@
             
             <IgbColumn
             Field="CompanyName"
-            Header="Company Name"
+            Header="Company"
             Groupable="true"
             Sortable="true"
             DataType="GridColumnDataType.String">
@@ -134,17 +134,19 @@
     private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
     private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription2;
     private IgbGrid grid;
-    private IgbSortingExpression _sortingExpression1 = null;
-    public IgbSortingExpression SortingExpression1
+    private IgbSortingExpression[] _sortingExpression1 = null;
+    public IgbSortingExpression[] SortingExpression1
     {
         get
         {
             if (this._sortingExpression1 == null)
             {
-                var sortingExpression1 = new IgbSortingExpression();
-                sortingExpression1.FieldName = "CategoryName";
-                sortingExpression1.Dir = SortingDirection.Asc;
-                sortingExpression1.IgnoreCase = true;
+                var sortingExpression1 = new IgbSortingExpression[1];
+                var sortingExpression2 = new IgbSortingExpression();
+                sortingExpression2.FieldName = "CategoryName";
+                sortingExpression2.Dir = SortingDirection.Asc;
+                sortingExpression2.IgnoreCase = true;
+                sortingExpression1[0] = sortingExpression2;
                 this._sortingExpression1 = sortingExpression1;
             }
             return this._sortingExpression1;

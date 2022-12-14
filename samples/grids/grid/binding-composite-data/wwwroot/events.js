@@ -2,10 +2,10 @@
 igRegisterScript("WebGridCompositeContactCellTemplate", (ctx) => {
     var html = window.igTemplating.html;
     return html` <div class="contact-container">
-    <span><strong>ContactName:</strong> ${ctx.cell.row.data.ContactName}}</span>
-    <span><strong>Job Title:</strong> ${ctx.cell.row.data.ContactTitle}}</span>
+    <span><strong>Name:</strong> ${ctx.cell.row.data.ContactName}}</span>
+    <span><strong>Title:</strong> ${ctx.cell.row.data.ContactTitle}}</span>
     <br />
-    <span><strong>Company Name:</strong> ${ctx.cell.row.data.CompanyName}}</span>
+    <span><strong>Company:</strong> ${ctx.cell.row.data.CompanyName}}</span>
     <br />
 </div>`;
 }, false);
@@ -19,16 +19,16 @@ igRegisterScript("WebGridCompositeContactEditCellTemplate", (ctx) => {
     return html`<div class="contact-container--edit">
     <div style="display:flex; margin-top:3px">
         <div>
-            <strong>Contact Name:</strong>
+            <strong>Name:</strong>
             <input id='ContactName' onkeyup='keyUpHandler()' value="${ctx.cell.row.data.ContactName}"></input>
         </div>
         <div style="margin-left: 10px">
-            <strong>Job Title:</strong>
+            <strong>Title:</strong>
             <input id='ContactTitle' onkeyup='keyUpHandler()' value='${ctx.cell.row.data.ContactTitle}'></input>
         </div>
     </div>
     <div style="margin-top: 10px">
-        <strong>Company Name:</strong>
+        <strong>Company:</strong>
         <input id='CompanyName' onkeyup='keyUpHandler()' value='${ctx.cell.row.data.CompanyName}'></input>
     </div>
 </div>`;

@@ -52,7 +52,7 @@ var sampleSource = [
     igConfig.SamplesCopyPath + '/grids/grid/**/App.razor',
     igConfig.SamplesCopyPath + '/grids/tree-grid/**/App.razor',
     igConfig.SamplesCopyPath + '/grids/tree/**/App.razor',
-    // igConfig.SamplesCopyPath + '/grids/pivot-grid/**/App.razor',
+    igConfig.SamplesCopyPath + '/grids/pivot-grid/**/App.razor',
     // igConfig.SamplesCopyPath + '/grids/hierarchical-grid/**/App.razor',
     igConfig.SamplesCopyPath + '/editors/**/App.razor',
 

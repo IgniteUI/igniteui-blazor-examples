@@ -8,7 +8,7 @@
     <div class="container vertical fill">
         <IgbGrid
         Data="CustomersData"
-        GroupingExpressions="@(new IgbGroupingExpression[] { GroupingExpression1 })"
+        GroupingExpressions="GroupingExpression1"
         PrimaryKey="CompanyName"
         RowEditable="true"
         AllowFiltering="true"
@@ -37,7 +37,7 @@
                 RowStart="1"
                 ColStart="1"
                 Width="350px"
-                Header="Company Name"
+                Header="Company"
                 ColEnd="3"
                 Sortable="true">
                 </IgbColumn>
@@ -46,7 +46,7 @@
                 Field="ContactName"
                 RowStart="2"
                 ColStart="1"
-                Header="Contact Name"
+                Header="Name"
                 ColEnd="2"
                 Groupable="true">
                 </IgbColumn>
@@ -56,7 +56,7 @@
                 RowStart="3"
                 ColStart="2"
                 RowEnd="3"
-                Header="Contact Title"
+                Header="Title"
                 ColEnd="2"
                 Groupable="true">
                 </IgbColumn>
@@ -168,17 +168,19 @@
 	}
 
     private IgbGrid grid;
-    private IgbGroupingExpression _groupingExpression1 = null;
-    public IgbGroupingExpression GroupingExpression1
+    private IgbGroupingExpression[] _groupingExpression1 = null;
+    public IgbGroupingExpression[] GroupingExpression1
     {
         get
         {
             if (this._groupingExpression1 == null)
             {
-                var groupingExpression1 = new IgbGroupingExpression();
-                groupingExpression1.FieldName = "Country";
-                groupingExpression1.Dir = SortingDirection.Asc;
-                groupingExpression1.IgnoreCase = false;
+                var groupingExpression1 = new IgbGroupingExpression[1];
+                var groupingExpression2 = new IgbGroupingExpression();
+                groupingExpression2.FieldName = "Country";
+                groupingExpression2.Dir = SortingDirection.Asc;
+                groupingExpression2.IgnoreCase = false;
+                groupingExpression1[0] = groupingExpression2;
                 this._groupingExpression1 = groupingExpression1;
             }
             return this._groupingExpression1;

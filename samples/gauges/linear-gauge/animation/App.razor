@@ -9,7 +9,7 @@
     </div>
     <div class="container vertical">
         <IgbLinearGauge Height="80px" Width="100%"
-                     TransitionDuration="1000"
+                     TransitionDuration="@TransitionDuration"
                      MinimumValue=@MinimumValue
                      MaximumValue=@MaximumValue
                      Value=@Value
@@ -63,6 +63,7 @@
     private double MaximumValue;
     private double Value;
     private double Interval;
+    private int TransitionDuration;
 
     private double LabelInterval;
     private double LabelExtent;
@@ -97,6 +98,8 @@
 
     private System.Collections.ObjectModel.ObservableCollection<GaugeRangeInfo> RangeInfo;
 
+    private bool ShouldAnimate = false;
+
     protected override void OnInitialized()
     {
         IgbLinearGaugeModule.Register(IgniteUIBlazor);
@@ -129,6 +132,10 @@
 
     private void onAnimateToGauge1()
     {
+        if (ShouldAnimate)
+        {
+            this.TransitionDuration = 1000;
+        }
         // linear gauge requires settings for these properties:
         this.MinimumValue = 0;
         this.MaximumValue = 80;
@@ -193,10 +200,16 @@
 
             this.RangeInfo.Add(info);
         }
+
+        this.ShouldAnimate = true;
     }
 
     private void onAnimateToGauge2()
     {
+        if (ShouldAnimate)
+        {
+            this.TransitionDuration = 1000;
+        }
         // linear gauge requires settings for these properties:
         this.MinimumValue = 100;
         this.MaximumValue = 200;
@@ -261,10 +274,16 @@
 
             this.RangeInfo.Add(info);
         }
+
+        this.ShouldAnimate = true;
     }
 
     private void onAnimateToGauge3()
     {
+        if (ShouldAnimate)
+        {
+            this.TransitionDuration = 1000;
+        }
         // linear gauge requires settings for these properties:
         this.MinimumValue = 0;
         this.MaximumValue = 100;
@@ -329,5 +348,7 @@
 
             this.RangeInfo.Add(info);
         }
+
+        this.ShouldAnimate = true;
     }
 }

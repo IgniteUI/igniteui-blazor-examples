@@ -19,10 +19,12 @@
             </IgbPropertyEditorPropertyDescription>
             
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="Columns[3 as WebGridColumn, 5 as WebGridColumn].HasSummary"
             Label="Toggle Summaries"
             ValueType="PropertyEditorValueType.Boolean1"
-            PrimitiveValue="true">
+            PrimitiveValue="true"
+            Changed="WebGridHasSummariesChange"
+            Name="propertyEditorPropertyDescription1"
+            @ref="propertyEditorPropertyDescription1">
             </IgbPropertyEditorPropertyDescription>
             
             <IgbPropertyEditorPropertyDescription
@@ -113,6 +115,7 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var propertyEditorPropertyDescription1 = this.propertyEditorPropertyDescription1;
         var displayDensityEditor = this.displayDensityEditor;
         var grid = this.grid;
         var column1 = this.column1;
@@ -129,10 +132,23 @@
 	}
 
     private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
     private IgbPropertyEditorPropertyDescription displayDensityEditor;
     private IgbGrid grid;
     private IgbColumn column1;
 
+    
+    public void WebGridHasSummariesChange(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
+    {
+        bool newValue = bool.Parse(args.NewValue.ToString());
+    
+        var column1 = this.grid.ActualColumns[3];
+        var column2 = this.grid.ActualColumns[5];
+    
+        column1.HasSummary = newValue;
+        column2.HasSummary = newValue;
+    }
+        
     private NwindData _nwindData = null;
     public NwindData NwindData
     {
