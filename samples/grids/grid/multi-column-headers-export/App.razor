@@ -1,5 +1,4 @@
 @using IgniteUI.Blazor.Controls;
-@using IgniteUI.Blazor.Controls;
 @using System;
 
 @inject IIgniteUIBlazor IgniteUIBlazor
@@ -8,7 +7,7 @@
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="WebGrid"
         IsHorizontal="true"
         IsWrappingEnabled="true"
@@ -22,9 +21,9 @@
             Name="exportHeaders"
             @ref="exportHeaders">
             </IgbPropertyEditorPropertyDescription>
-            
+
         </IgbPropertyEditorPanel>
-        
+
     </div>
 
     <div class="container vertical fill">
@@ -43,11 +42,11 @@
                     <IgbGridToolbarHiding
                     >
                     </IgbGridToolbarHiding>
-                    
+
                     <IgbGridToolbarPinning
                     >
                     </IgbGridToolbarPinning>
-                    
+
                     <IgbGridToolbarExporter
                     ExportCSV="false"
                     ExportExcel="true"
@@ -55,11 +54,11 @@
                     Name="gridToolbarExporter1"
                     @ref="gridToolbarExporter1">
                     </IgbGridToolbarExporter>
-                    
+
                 </IgbGridToolbarActions>
-                
+
             </IgbGridToolbar>
-            
+
             <IgbColumn
             Field="ID"
             Header="ID"
@@ -68,7 +67,7 @@
             Name="ID"
             @ref="iD">
             </IgbColumn>
-            
+
             <IgbColumnGroup
             Header="General Information"
             Collapsible="true"
@@ -80,7 +79,7 @@
                 @ref="companyName"
                 VisibleWhenCollapsed="true">
                 </IgbColumn>
-                
+
                 <IgbColumnGroup
                 Name="PersonalDetails"
                 @ref="personalDetails"
@@ -93,17 +92,17 @@
                     @ref="contactName"
                     Field="ContactName">
                     </IgbColumn>
-                    
+
                     <IgbColumn
                     Name="ContactTitle"
                     @ref="contactTitle"
                     Field="ContactTitle">
                     </IgbColumn>
-                    
+
                 </IgbColumnGroup>
-                
+
             </IgbColumnGroup>
-            
+
             <IgbColumnGroup
             Name="AddressInformation"
             @ref="addressInformation"
@@ -122,7 +121,7 @@
                     VisibleWhenCollapsed="true"
                     Hidden="true">
                     </IgbColumn>
-                    
+
                     <IgbColumn
                     Name="Region"
                     @ref="region"
@@ -130,7 +129,7 @@
                     VisibleWhenCollapsed="false"
                     Hidden="true">
                     </IgbColumn>
-                    
+
                     <IgbColumn
                     Name="City"
                     @ref="city"
@@ -138,7 +137,7 @@
                     VisibleWhenCollapsed="false"
                     Hidden="true">
                     </IgbColumn>
-                    
+
                     <IgbColumn
                     Name="Address"
                     @ref="address"
@@ -146,9 +145,9 @@
                     VisibleWhenCollapsed="false"
                     Hidden="true">
                     </IgbColumn>
-                    
+
                 </IgbColumnGroup>
-                
+
                 <IgbColumnGroup
                 Name="ContactInformation"
                 @ref="contactInformation"
@@ -158,25 +157,25 @@
                     @ref="phone"
                     Field="Phone">
                     </IgbColumn>
-                    
+
                     <IgbColumn
                     Name="Fax"
                     @ref="fax"
                     Field="Fax">
                     </IgbColumn>
-                    
+
                     <IgbColumn
                     Name="PostalCode"
                     @ref="postalCode"
                     Field="PostalCode">
                     </IgbColumn>
-                    
+
                 </IgbColumnGroup>
-                
+
             </IgbColumnGroup>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -245,13 +244,13 @@
     private IgbColumn fax;
     private IgbColumn postalCode;
 
-    
+
     public void WebGridExportEventMultiColumnHeaders(IgbExporterEventEventArgs args)
     {
         bool exportMultiHeaders = (bool)exportHeaders.GetCurrentPrimitiveValue();
         args.Detail.Options.IgnoreMultiColumnHeaders = !exportMultiHeaders;
     }
-        
+
     private CustomersData _customersData = null;
     public CustomersData CustomersData
     {
@@ -259,10 +258,10 @@
         {
             if (_customersData == null)
             {
-                _customersData = new CustomersData(); 
+                _customersData = new CustomersData();
             }
             return _customersData;
         }
     }
-    
+
 }

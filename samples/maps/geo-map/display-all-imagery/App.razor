@@ -1,6 +1,7 @@
 @using IgniteUI.Blazor.Controls
 @using System.Reflection
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject NavigationManager NavManager
 
 <div class="container vertical">
     <div class="options horizontal">
@@ -56,8 +57,6 @@
 
 @code {
 
-    //TODO - BingMapsImagery doesn't appear to be working. Also warnings...
-
     private IgbGeographicMapImagery MapContent;
     private EsriStyle EsriRef;
 
@@ -93,25 +92,22 @@
                 this.MapContent = mapImage;
             }
         }
-        else if (str.Contains("Bing")) //TODO - BingMapsMapImagery seems to be broken? No default tile source or URI.
+        else if (str.Contains("Bing"))
         {
-            IgbBingMapsMapImagery mapImage = new IgbBingMapsMapImagery()
-            {
-                ApiKey = MapUtils.GetBingKey()
-            };
+            IgbBingMapsMapImagery mapImage = null;
 
             if (str.Contains("Aerial"))
             {
-                mapImage.ImageryStyle = BingMapsImageryStyle.Aerial;
+                mapImage = this.CreateBingMapsImagery(BingMapsImageryStyle.Aerial);                
             }
             else if (str.Contains("Labels"))
             {
-                mapImage.ImageryStyle = BingMapsImageryStyle.AerialWithLabels;
+                mapImage = this.CreateBingMapsImagery(BingMapsImageryStyle.AerialWithLabels);                
             }
             else
             {
-                mapImage.ImageryStyle = BingMapsImageryStyle.Road;
-            }
+                mapImage = this.CreateBingMapsImagery(BingMapsImageryStyle.Road);                
+            }            
 
             this.MapContent = mapImage;
         }
@@ -119,5 +115,26 @@
         {
             this.MapContent = new IgbOpenStreetMapImagery();
         }
+    }
+
+    private IgbBingMapsMapImagery CreateBingMapsImagery(BingMapsImageryStyle style)
+    {
+        string apiKey = MapUtils.GetBingKey();
+        var bingUrl = "http://dev.virtualearth.net/REST/v1/Imagery/Metadata/{STYLE}?key={KEY}&include=ImageryProviders";
+        bingUrl = bingUrl.Replace("{STYLE}", style.ToString());
+        bingUrl = bingUrl.Replace("{KEY}", apiKey);
+
+        var isHttpSecured = NavManager.Uri.StartsWith("https");
+        if (isHttpSecured)
+            bingUrl = bingUrl.Replace("http:", "https:");
+
+        var imagery = new IgbBingMapsMapImagery()
+        {
+             ApiKey = apiKey,
+             ImageryStyle = style,
+             ActualBingImageryRestUri = bingUrl
+        };
+
+        return imagery;
     }
 }
