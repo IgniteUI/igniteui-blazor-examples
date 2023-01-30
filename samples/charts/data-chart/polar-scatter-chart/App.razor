@@ -1,14 +1,11 @@
 @using IgniteUI.Blazor.Controls
-
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Wind Speed vs Boat Speed
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbDataChart
         IsHorizontalZoomEnabled="false"
@@ -23,6 +20,7 @@
             Name="angleAxis"
             @ref="angleAxis">
             </IgbNumericAngleAxis>
+            
             <IgbNumericRadiusAxis
             RadiusExtentScale="0.9"
             InnerRadiusExtentScale="0.1"
@@ -32,6 +30,7 @@
             Name="radiusAxis"
             @ref="radiusAxis">
             </IgbNumericRadiusAxis>
+            
             <IgbPolarScatterSeries
             AngleMemberPath="Direction"
             RadiusMemberPath="WindSpeed"
@@ -39,53 +38,70 @@
             RadiusAxisName="radiusAxis"
             MarkerType="MarkerType.Circle"
             DataSource="BoatSailingData"
-            ShowDefaultTooltip="true"
+            ShowDefaultTooltip="false"
             Title="Wind Speed"
             Name="PolarScatterSeries1"
             @ref="polarScatterSeries1">
             </IgbPolarScatterSeries>
+            
             <IgbPolarScatterSeries
             DataSource="BoatSailingData"
             AngleAxisName="angleAxis"
             RadiusAxisName="radiusAxis"
             AngleMemberPath="Direction"
             RadiusMemberPath="BoatSpeed"
-            ShowDefaultTooltip="true"
+            ShowDefaultTooltip="false"
             Title="Boat Speed"
             MarkerType="MarkerType.Circle"
             Name="PolarScatterSeries2"
             @ref="polarScatterSeries2">
             </IgbPolarScatterSeries>
+            
+            <IgbDataToolTipLayer
+            Name="DataToolTipLayer"
+            @ref="dataToolTipLayer">
+            </IgbDataToolTipLayer>
+            
         </IgbDataChart>
+        
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
+        await Task.Delay(1);
     }
 
-	private Action BindElements { get; set; }
+    private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var chart = this.chart;
-		var angleAxis = this.angleAxis;
-		var radiusAxis = this.radiusAxis;
-		var polarScatterSeries1 = this.polarScatterSeries1;
-		var polarScatterSeries2 = this.polarScatterSeries2;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var chart = this.chart;
+        var angleAxis = this.angleAxis;
+        var radiusAxis = this.radiusAxis;
+        var polarScatterSeries1 = this.polarScatterSeries1;
+        var polarScatterSeries2 = this.polarScatterSeries2;
+        var dataToolTipLayer = this.dataToolTipLayer;
 
         this.BindElements = () => {
         };
         this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
 	}
 
-	private IgbDataChart chart;
-	private IgbNumericAngleAxis angleAxis;
-	private IgbNumericRadiusAxis radiusAxis;
-	private IgbPolarScatterSeries polarScatterSeries1;
-	private IgbPolarScatterSeries polarScatterSeries2;
-
+    private IgbDataChart chart;
+    private IgbNumericAngleAxis angleAxis;
+    private IgbNumericRadiusAxis radiusAxis;
+    private IgbPolarScatterSeries polarScatterSeries1;
+    private IgbPolarScatterSeries polarScatterSeries2;
+    private IgbDataToolTipLayer dataToolTipLayer;
 
     private BoatSailingData _boatSailingData = null;
     public BoatSailingData BoatSailingData

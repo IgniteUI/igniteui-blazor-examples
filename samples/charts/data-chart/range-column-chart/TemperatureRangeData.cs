@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 public class TemperatureRangeDataItem
 {
-    public string Month{ get; set; }
-    public double HighNY{ get; set; }
-    public double LowNY{ get; set; }
-    public double HighLA{ get; set; }
-    public double LowLA{ get; set; }
+    public string Month { get; set; }
+    public double HighNY { get; set; }
+    public double LowNY { get; set; }
+    public double HighLA { get; set; }
+    public double LowLA { get; set; }
 }
+
 public class TemperatureRangeData
     : List<TemperatureRangeDataItem>
 {
