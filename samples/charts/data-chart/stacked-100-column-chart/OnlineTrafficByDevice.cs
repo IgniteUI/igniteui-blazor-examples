@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 public class OnlineTrafficByDeviceItem
 {
-    public string Category{ get; set; }
-    public double Desktop{ get; set; }
-    public double Mobile{ get; set; }
-    public double Tablet{ get; set; }
+    public string Category { get; set; }
+    public double Desktop { get; set; }
+    public double Mobile { get; set; }
+    public double Tablet { get; set; }
 }
+
 public class OnlineTrafficByDevice
     : List<OnlineTrafficByDeviceItem>
 {

@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 public class HealthDataForGermanyItem
 {
-    public double Year{ get; set; }
-    public double HealthExpense{ get; set; }
-    public double LifeExpectancy{ get; set; }
-    public string Name{ get; set; }
+    public double Year { get; set; }
+    public double HealthExpense { get; set; }
+    public double LifeExpectancy { get; set; }
+    public string Name { get; set; }
 }
+
 public class HealthDataForGermany
     : List<HealthDataForGermanyItem>
 {

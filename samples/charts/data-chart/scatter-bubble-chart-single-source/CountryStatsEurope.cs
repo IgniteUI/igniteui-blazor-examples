@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 public class CountryStatsEuropeItem
 {
-    public string Code{ get; set; }
-    public double Population{ get; set; }
-    public double WorkedHours{ get; set; }
-    public double GDP{ get; set; }
-    public string Name{ get; set; }
+    public string Code { get; set; }
+    public double Population { get; set; }
+    public double WorkedHours { get; set; }
+    public double GDP { get; set; }
+    public string Name { get; set; }
 }
+
 public class CountryStatsEurope
     : List<CountryStatsEuropeItem>
 {
