@@ -1,14 +1,11 @@
 @using IgniteUI.Blazor.Controls
-
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Monthly Temperature Range in Los Angeles
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbDataChart
         IsHorizontalZoomEnabled="false"
@@ -22,6 +19,7 @@
             Name="xAxis"
             @ref="xAxis">
             </IgbCategoryXAxis>
+            
             <IgbNumericYAxis
             Title="Temperature (in Celsius)"
             TitleAngle="-90"
@@ -29,56 +27,76 @@
             Name="yAxis"
             @ref="yAxis">
             </IgbNumericYAxis>
+            
             <IgbRangeAreaSeries
             XAxisName="xAxis"
             YAxisName="yAxis"
             LowMemberPath="LowLA"
             HighMemberPath="HighLA"
             DataSource="TemperatureRangeData"
+            ShowDefaultTooltip="false"
             Title="Los Angeles"
             Name="RangeAreaSeries1"
             @ref="rangeAreaSeries1">
             </IgbRangeAreaSeries>
+            
             <IgbRangeAreaSeries
             XAxisName="xAxis"
             YAxisName="yAxis"
             Title="New York"
             LowMemberPath="LowNY"
             HighMemberPath="HighNY"
+            ShowDefaultTooltip="false"
             DataSource="TemperatureRangeData"
             Name="RangeAreaSeries2"
             @ref="rangeAreaSeries2">
             </IgbRangeAreaSeries>
+            
+            <IgbDataToolTipLayer
+            Name="DataToolTipLayer"
+            @ref="dataToolTipLayer">
+            </IgbDataToolTipLayer>
+            
         </IgbDataChart>
+        
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
+        await Task.Delay(1);
     }
 
-	private Action BindElements { get; set; }
+    private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var chart = this.chart;
-		var xAxis = this.xAxis;
-		var yAxis = this.yAxis;
-		var rangeAreaSeries1 = this.rangeAreaSeries1;
-		var rangeAreaSeries2 = this.rangeAreaSeries2;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var rangeAreaSeries1 = this.rangeAreaSeries1;
+        var rangeAreaSeries2 = this.rangeAreaSeries2;
+        var dataToolTipLayer = this.dataToolTipLayer;
 
         this.BindElements = () => {
         };
         this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
 	}
 
-	private IgbDataChart chart;
-	private IgbCategoryXAxis xAxis;
-	private IgbNumericYAxis yAxis;
-	private IgbRangeAreaSeries rangeAreaSeries1;
-	private IgbRangeAreaSeries rangeAreaSeries2;
-
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbRangeAreaSeries rangeAreaSeries1;
+    private IgbRangeAreaSeries rangeAreaSeries2;
+    private IgbDataToolTipLayer dataToolTipLayer;
 
     private TemperatureRangeData _temperatureRangeData = null;
     public TemperatureRangeData TemperatureRangeData

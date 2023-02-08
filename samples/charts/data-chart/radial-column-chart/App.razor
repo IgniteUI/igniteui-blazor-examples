@@ -1,21 +1,19 @@
 @using IgniteUI.Blazor.Controls
-
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Ronaldo vs Messi Player Stats
     </div>
-    
-	     <div class="legend">
+    <div class="legend">
         <IgbLegend
         Orientation="LegendOrientation.Horizontal"
         Name="Legend"
         @ref="legend">
         </IgbLegend>
+        
     </div>
-	
+
     <div class="container vertical fill">
         <IgbDataChart
         IsHorizontalZoomEnabled="false"
@@ -28,6 +26,7 @@
             Name="angleAxis"
             @ref="angleAxis">
             </IgbCategoryAngleAxis>
+            
             <IgbNumericRadiusAxis
             InnerRadiusExtentScale="0.1"
             MinimumValue="0"
@@ -36,6 +35,7 @@
             Name="radiusAxis"
             @ref="radiusAxis">
             </IgbNumericRadiusAxis>
+            
             <IgbRadialColumnSeries
             ValueMemberPath="Ronaldo"
             AngleAxisName="angleAxis"
@@ -43,56 +43,73 @@
             DataSource="FootballPlayerStats"
             Thickness="3"
             AreaFillOpacity="0.8"
-            ShowDefaultTooltip="true"
+            ShowDefaultTooltip="false"
             Title="Ronaldo"
             Name="RadialColumnSeries1"
             @ref="radialColumnSeries1">
             </IgbRadialColumnSeries>
+            
             <IgbRadialColumnSeries
             DataSource="FootballPlayerStats"
             AngleAxisName="angleAxis"
             ValueAxisName="radiusAxis"
             ValueMemberPath="Messi"
-            ShowDefaultTooltip="true"
+            ShowDefaultTooltip="false"
             AreaFillOpacity="0.8"
             Thickness="3"
             Title="Messi"
             Name="RadialColumnSeries2"
             @ref="radialColumnSeries2">
             </IgbRadialColumnSeries>
+            
+            <IgbDataToolTipLayer
+            Name="DataToolTipLayer"
+            @ref="dataToolTipLayer">
+            </IgbDataToolTipLayer>
+            
         </IgbDataChart>
+        
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
+        await Task.Delay(1);
     }
 
-	private Action BindElements { get; set; }
+    private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var legend = this.legend;
-		var chart = this.chart;
-		var angleAxis = this.angleAxis;
-		var radiusAxis = this.radiusAxis;
-		var radialColumnSeries1 = this.radialColumnSeries1;
-		var radialColumnSeries2 = this.radialColumnSeries2;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var chart = this.chart;
+        var angleAxis = this.angleAxis;
+        var radiusAxis = this.radiusAxis;
+        var radialColumnSeries1 = this.radialColumnSeries1;
+        var radialColumnSeries2 = this.radialColumnSeries2;
+        var dataToolTipLayer = this.dataToolTipLayer;
 
         this.BindElements = () => {
             chart.Legend = this.legend;
         };
         this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
 	}
 
-	private IgbLegend legend;
-	private IgbDataChart chart;
-	private IgbCategoryAngleAxis angleAxis;
-	private IgbNumericRadiusAxis radiusAxis;
-	private IgbRadialColumnSeries radialColumnSeries1;
-	private IgbRadialColumnSeries radialColumnSeries2;
-
+    private IgbLegend legend;
+    private IgbDataChart chart;
+    private IgbCategoryAngleAxis angleAxis;
+    private IgbNumericRadiusAxis radiusAxis;
+    private IgbRadialColumnSeries radialColumnSeries1;
+    private IgbRadialColumnSeries radialColumnSeries2;
+    private IgbDataToolTipLayer dataToolTipLayer;
 
     private FootballPlayerStats _footballPlayerStats = null;
     public FootballPlayerStats FootballPlayerStats
