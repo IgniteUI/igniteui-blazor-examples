@@ -1,21 +1,19 @@
 @using IgniteUI.Blazor.Controls
-
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Life Expectancy vs Health Expenditure
     </div>
-    
-	     <div class="legend">
+    <div class="legend">
         <IgbLegend
         Orientation="LegendOrientation.Horizontal"
         Name="Legend"
         @ref="legend">
         </IgbLegend>
+        
     </div>
-	
+
     <div class="container vertical fill">
         <IgbDataChart
         
@@ -29,6 +27,7 @@
             Name="xAxis"
             @ref="xAxis">
             </IgbNumericXAxis>
+            
             <IgbNumericYAxis
             MinimumValue="1000"
             MaximumValue="6000"
@@ -38,6 +37,7 @@
             Name="yAxis"
             @ref="yAxis">
             </IgbNumericYAxis>
+            
             <IgbScatterSplineSeries
             XAxisName="xAxis"
             YAxisName="yAxis"
@@ -50,6 +50,7 @@
             Name="ScatterSplineSeries1"
             @ref="scatterSplineSeries1">
             </IgbScatterSplineSeries>
+            
             <IgbScatterSplineSeries
             Title="France"
             XAxisName="xAxis"
@@ -62,39 +63,55 @@
             Name="ScatterSplineSeries2"
             @ref="scatterSplineSeries2">
             </IgbScatterSplineSeries>
+            
+            <IgbDataToolTipLayer
+            Name="DataToolTipLayer"
+            @ref="dataToolTipLayer">
+            </IgbDataToolTipLayer>
+            
         </IgbDataChart>
+        
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
+        await Task.Delay(1);
     }
 
-	private Action BindElements { get; set; }
+    private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var legend = this.legend;
-		var chart = this.chart;
-		var xAxis = this.xAxis;
-		var yAxis = this.yAxis;
-		var scatterSplineSeries1 = this.scatterSplineSeries1;
-		var scatterSplineSeries2 = this.scatterSplineSeries2;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var scatterSplineSeries1 = this.scatterSplineSeries1;
+        var scatterSplineSeries2 = this.scatterSplineSeries2;
+        var dataToolTipLayer = this.dataToolTipLayer;
 
         this.BindElements = () => {
             chart.Legend = this.legend;
         };
         this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
 	}
 
-	private IgbLegend legend;
-	private IgbDataChart chart;
-	private IgbNumericXAxis xAxis;
-	private IgbNumericYAxis yAxis;
-	private IgbScatterSplineSeries scatterSplineSeries1;
-	private IgbScatterSplineSeries scatterSplineSeries2;
-
+    private IgbLegend legend;
+    private IgbDataChart chart;
+    private IgbNumericXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbScatterSplineSeries scatterSplineSeries1;
+    private IgbScatterSplineSeries scatterSplineSeries2;
+    private IgbDataToolTipLayer dataToolTipLayer;
 
     private HealthDataForGermany _healthDataForGermany = null;
     public HealthDataForGermany HealthDataForGermany

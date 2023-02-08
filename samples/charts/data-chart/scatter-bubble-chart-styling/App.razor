@@ -1,21 +1,19 @@
 @using IgniteUI.Blazor.Controls
-
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Total Population of Selected Countries
     </div>
-    
-	     <div class="legend">
+    <div class="legend">
         <IgbLegend
         Orientation="LegendOrientation.Horizontal"
         Name="Legend"
         @ref="legend">
         </IgbLegend>
+        
     </div>
-	
+
     <div class="container vertical fill">
         <IgbDataChart
         
@@ -28,6 +26,7 @@
             Name="xAxis"
             @ref="xAxis">
             </IgbNumericXAxis>
+            
             <IgbNumericYAxis
             IsLogarithmic="true"
             AbbreviateLargeNumbers="true"
@@ -35,6 +34,7 @@
             Name="yAxis"
             @ref="yAxis">
             </IgbNumericYAxis>
+            
             <IgbBubbleSeries
             RadiusMemberPath="Population"
             XAxisName="xAxis"
@@ -52,6 +52,7 @@
             Name="BubbleSeries1"
             @ref="bubbleSeries1">
             </IgbBubbleSeries>
+            
             <IgbBubbleSeries
             Title="European Countries"
             XAxisName="xAxis"
@@ -69,39 +70,55 @@
             Name="BubbleSeries2"
             @ref="bubbleSeries2">
             </IgbBubbleSeries>
+            
+            <IgbDataToolTipLayer
+            Name="DataToolTipLayer"
+            @ref="dataToolTipLayer">
+            </IgbDataToolTipLayer>
+            
         </IgbDataChart>
+        
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
+        await Task.Delay(1);
     }
 
-	private Action BindElements { get; set; }
+    private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var legend = this.legend;
-		var chart = this.chart;
-		var xAxis = this.xAxis;
-		var yAxis = this.yAxis;
-		var bubbleSeries1 = this.bubbleSeries1;
-		var bubbleSeries2 = this.bubbleSeries2;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var bubbleSeries1 = this.bubbleSeries1;
+        var bubbleSeries2 = this.bubbleSeries2;
+        var dataToolTipLayer = this.dataToolTipLayer;
 
         this.BindElements = () => {
             chart.Legend = this.legend;
         };
         this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
 	}
 
-	private IgbLegend legend;
-	private IgbDataChart chart;
-	private IgbNumericXAxis xAxis;
-	private IgbNumericYAxis yAxis;
-	private IgbBubbleSeries bubbleSeries1;
-	private IgbBubbleSeries bubbleSeries2;
-
+    private IgbLegend legend;
+    private IgbDataChart chart;
+    private IgbNumericXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbBubbleSeries bubbleSeries1;
+    private IgbBubbleSeries bubbleSeries2;
+    private IgbDataToolTipLayer dataToolTipLayer;
 
     private CountryStatsAfrica _countryStatsAfrica = null;
     public CountryStatsAfrica CountryStatsAfrica

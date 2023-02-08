@@ -1,21 +1,19 @@
 @using IgniteUI.Blazor.Controls
-
 @inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Distribution of Online Traffic Worldwide, by Device
     </div>
-    
-	     <div class="legend">
+    <div class="legend">
         <IgbLegend
         Orientation="LegendOrientation.Horizontal"
         Name="Legend"
         @ref="legend">
         </IgbLegend>
+        
     </div>
-	
+
     <div class="container vertical fill">
         <IgbDataChart
         IsHorizontalZoomEnabled="false"
@@ -29,11 +27,13 @@
             Name="xAxis"
             @ref="xAxis">
             </IgbCategoryXAxis>
+            
             <IgbNumericYAxis
             MinimumValue="0"
             Name="yAxis"
             @ref="yAxis">
             </IgbNumericYAxis>
+            
             <IgbStacked100ColumnSeries
             XAxisName="xAxis"
             YAxisName="yAxis"
@@ -48,56 +48,75 @@
                 Title="@("Desktop")"
                 ValueMemberPath="Desktop">
                 </IgbStackedFragmentSeries>
+                
                 <IgbStackedFragmentSeries
                 Name="s2"
                 @ref="s2"
                 ValueMemberPath="Mobile"
                 Title="@("Mobile")">
                 </IgbStackedFragmentSeries>
+                
                 <IgbStackedFragmentSeries
                 Name="s3"
                 @ref="s3"
                 ValueMemberPath="Tablet"
                 Title="@("Tablet")">
                 </IgbStackedFragmentSeries>
+                
             </IgbStacked100ColumnSeries>
+            
+            <IgbDataToolTipLayer
+            Name="DataToolTipLayer"
+            @ref="dataToolTipLayer">
+            </IgbDataToolTipLayer>
+            
         </IgbDataChart>
+        
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
+        await Task.Delay(1);
     }
 
-	private Action BindElements { get; set; }
+    private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var legend = this.legend;
-		var chart = this.chart;
-		var xAxis = this.xAxis;
-		var yAxis = this.yAxis;
-		var stacked100ColumnSeries = this.stacked100ColumnSeries;
-		var s1 = this.s1;
-		var s2 = this.s2;
-		var s3 = this.s3;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var stacked100ColumnSeries = this.stacked100ColumnSeries;
+        var s1 = this.s1;
+        var s2 = this.s2;
+        var s3 = this.s3;
+        var dataToolTipLayer = this.dataToolTipLayer;
 
         this.BindElements = () => {
             chart.Legend = this.legend;
         };
         this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
 	}
 
-	private IgbLegend legend;
-	private IgbDataChart chart;
-	private IgbCategoryXAxis xAxis;
-	private IgbNumericYAxis yAxis;
-	private IgbStacked100ColumnSeries stacked100ColumnSeries;
-	private IgbStackedFragmentSeries s1;
-	private IgbStackedFragmentSeries s2;
-	private IgbStackedFragmentSeries s3;
-
+    private IgbLegend legend;
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbStacked100ColumnSeries stacked100ColumnSeries;
+    private IgbStackedFragmentSeries s1;
+    private IgbStackedFragmentSeries s2;
+    private IgbStackedFragmentSeries s3;
+    private IgbDataToolTipLayer dataToolTipLayer;
 
     private OnlineTrafficByDevice _onlineTrafficByDevice = null;
     public OnlineTrafficByDevice OnlineTrafficByDevice
