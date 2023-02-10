@@ -86,7 +86,7 @@ stages:
             $newNode2.SetAttribute("value","releaseengineeringteam@infragistics.com");
             $newNode2 = $newNode.AppendChild($xml.CreateElement("add"));
             $newNode2.SetAttribute("key","ClearTextPassword");
-            $newNode2.SetAttribute("value","$env:PASS");
+            $newNode2.SetAttribute("value","$(NuGetFeedPassword)");
 
             $newNode = $newXmlElement.AppendChild($xml.CreateElement("IGProget"));
             $newNode2 = $newNode.AppendChild($xml.CreateElement("add"));
@@ -94,7 +94,7 @@ stages:
             $newNode2.SetAttribute("value","releaseengineeringteam@infragistics.com");
             $newNode2 = $newNode.AppendChild($xml.CreateElement("add"));
             $newNode2.SetAttribute("key","ClearTextPassword");
-            $newNode2.SetAttribute("value","$env:PASS");
+            $newNode2.SetAttribute("value","$(NuGetFeedPassword)");
             $xml.Save('.\NuGet.Config')
             env:
               PASS: $(NuGetFeedPassword)
