@@ -1,0 +1,102 @@
+trigger:
+  branches:
+    include:
+    - vnext
+    - master
+    - azure-pipelines
+
+pr:
+  branches:
+    exclude:
+    - '*'  # must quote since "*" is a YAML reserved character; we want a string
+
+parameters:
+- name: isVerbose
+  displayName: 'Get verbose output from steps - where configurable'
+  type: boolean
+  default: false
+
+name: $(BuildDefinitionName)_$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
+
+stages:
+- stage: Build
+  pool:
+    name: BuildAgentOnPrem
+    demands: npm
+  jobs:
+  - job: BuildSamples
+    steps:
+      - checkout: 'self' 
+        path: $(Build.Repository.Name)
+
+      - task: NodeTool@0
+        displayName: 'Install Node'
+        inputs:
+          versionSource: 'spec'
+          versionSpec: '16.x'
+
+      - task: Npm@1
+        displayName: 'npm ci'
+        inputs:
+          command: custom
+          workingDir: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
+          verbose: ${{ parameters.isVerbose }}
+          customCommand: ci
+
+      - task: CmdLine@2
+        displayName: 'npx gulp copySamplesToClient'
+        inputs:
+          script: 'npx gulp copySamplesToClient'
+          workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
+          failOnStderr: true
+
+      - task: NuGetAuthenticate@1
+        inputs:
+          nuGetServiceConnections: 'IG ProGet NuGet Trial'
+      
+      - task: CmdLine@2
+        displayName: 'dotnet restore'
+        inputs:
+          script: 'dotnet restore'
+          workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
+          failOnStderr: true
+
+      - task: CmdLine@2
+        displayName: 'dotnet build'
+        inputs:
+          script: 'dotnet build'
+          workingDir:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
+          workingDirectory: true
+
+
+      - task: CmdLine@2
+        displayName: 'dotnet publish'
+        inputs:
+          script: 'dotnet publish -c release -o $(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\publish'
+          workingDir:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
+          workingDirectory: true
+
+
+      - task: PowerShell@2
+        displayName: 'npm install igniteui-dockmanager (licensed)'
+        inputs:
+          targetType: 'inline'
+          script: |
+            cd $(Build.SourcesDirectory)\browser
+            npm install igniteui-dockmanager@npm:@infragistics/igniteui-dockmanager@$($(jq '.dependencies.\"igniteui-dockmanager\"' .\package.json).Trim('"'))
+
+      - task: ArchiveFiles@2
+        displayName: 'Package samples browser'
+        inputs:
+          verbose: ${{ parameters.isVerbose }}
+          rootFolderOrFile: '$(Build.SourcesDirectory)/browser/IgBlazorSamples.Client/publish'
+          includeRootFolder: false
+          archiveType: 'zip'
+          archiveFile: '$(Build.ArtifactStagingDirectory)/BlazorSamplesClient.zip'
+          replaceExistingArchive: true
+
+      - task: PublishPipelineArtifact@1
+        displayName: 'Publish pipeline artifact'
+        inputs:
+          targetPath: '$(Build.ArtifactStagingDirectory)/BlazorSamplesClient.zip'
+          artifact: 'ReactSamplesBrowser'
