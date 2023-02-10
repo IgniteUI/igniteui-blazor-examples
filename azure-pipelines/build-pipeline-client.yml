@@ -80,6 +80,11 @@ stages:
           showWarnings: true
           workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
 
+      - task: CmdLine@2
+        displayName: 'dotnet restore - cmd'
+        inputs:
+          script: 'dotnet restore $(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\ --configFile=$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\NuGet.Config'
+          workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
       - task: DotNetCoreCLI@2
         displayName: 'dotnet restore'
         inputs:
