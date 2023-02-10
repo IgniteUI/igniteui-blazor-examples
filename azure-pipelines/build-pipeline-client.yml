@@ -69,11 +69,11 @@ stages:
             $newNode.SetAttribute("value","true");
             
             $newNode = $xml.configuration.packageSources.AppendChild($xml.CreateElement("add"));
-            $newNode.SetAttribute("key","IG ProGet NuGet Trial");
+            $newNode.SetAttribute("key","IGProGetNuGetTrial");
             $newNode.SetAttribute("value","http://proget.infragistics.local:81/nuget/IgniteUINuGetTrial/");
 
             $newNode = $xml.configuration.packageSources.AppendChild($xml.CreateElement("add"));
-            $newNode.SetAttribute("key","IG ProGet NuGet");
+            $newNode.SetAttribute("key","IGProGetNuGet");
             $newNode.SetAttribute("value","http://proget.infragistics.local:81/nuget/IgniteUINuGet/");
             $xml.Save('.\NuGet.Config')
           failOnStderr: true
@@ -85,6 +85,7 @@ stages:
         inputs:
           command: 'restore'
           projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
+          restoreArguments: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
           feedsToUse: 'config'
           nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\NuGet.Config'
           externalFeedCredentials: 'IG ProGet NuGet Trial'
