@@ -63,19 +63,41 @@ stages:
             $newNode = $newXmlElement.AppendChild($xml.CreateElement("add"));
             $newNode.SetAttribute("key","enabled");
             $newNode.SetAttribute("value","true");
-            
+
             $newNode = $newXmlElement.AppendChild($xml.CreateElement("add"));
             $newNode.SetAttribute("key","automatic");
             $newNode.SetAttribute("value","true");
-            
+
+
+            #<add key="IGProgetTrial" value="http://proget.infragistics.local:81/nuget/IgniteUINuGetTrial/" />
+
             $newNode = $xml.configuration.packageSources.AppendChild($xml.CreateElement("add"));
-            $newNode.SetAttribute("key","IGProGetNuGetTrial");
+            $newNode.SetAttribute("key","IGProgetTrial");
             $newNode.SetAttribute("value","http://proget.infragistics.local:81/nuget/IgniteUINuGetTrial/");
 
             $newNode = $xml.configuration.packageSources.AppendChild($xml.CreateElement("add"));
-            $newNode.SetAttribute("key","IGProGetNuGet");
+            $newNode.SetAttribute("key","IGProget");
             $newNode.SetAttribute("value","http://proget.infragistics.local:81/nuget/IgniteUINuGet/");
+
+            $newXmlElement = $xml.configuration.AppendChild($xml.CreateElement("packageSourceCredentials"));
+            $newNode = $newXmlElement.AppendChild($xml.CreateElement("IGProgetTrial"));
+            $newNode2 = $newNode.AppendChild($xml.CreateElement("add"));
+            $newNode2.SetAttribute("key","Username");
+            $newNode2.SetAttribute("value","releaseengineeringteam@infragistics.com");
+            $newNode2 = $newNode.AppendChild($xml.CreateElement("add"));
+            $newNode2.SetAttribute("key","ClearTextPassword");
+            $newNode2.SetAttribute("value",$env:PASS);
+
+            $newNode = $newXmlElement.AppendChild($xml.CreateElement("IGProget"));
+            $newNode2 = $newNode.AppendChild($xml.CreateElement("add"));
+            $newNode2.SetAttribute("key","Username");
+            $newNode2.SetAttribute("value","releaseengineeringteam@infragistics.com");
+            $newNode2 = $newNode.AppendChild($xml.CreateElement("add"));
+            $newNode2.SetAttribute("key","ClearTextPassword");
+            $newNode2.SetAttribute("value",$env:PASS);
             $xml.Save('.\NuGet.Config')
+            env:
+              PASS: $(NuGetFeedPassword)
           failOnStderr: true
           showWarnings: true
           workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
@@ -83,17 +105,17 @@ stages:
       - task: CmdLine@2
         displayName: 'dotnet restore - cmd'
         inputs:
-          script: 'dotnet restore $(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\ --configFile=$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\NuGet.Config'
+          script: 'dotnet restore $(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\ --configFile $(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\NuGet.Config'
           workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
-      - task: DotNetCoreCLI@2
-        displayName: 'dotnet restore'
-        inputs:
-          command: 'restore'
-          projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
-          restoreArguments: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
-          feedsToUse: 'config'
-          nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\NuGet.Config'
-          externalFeedCredentials: 'IG ProGet NuGet Trial'
+#      - task: DotNetCoreCLI@2
+#        displayName: 'dotnet restore'
+#        inputs:
+#          command: 'restore'
+#          projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
+#          restoreArguments: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
+#          feedsToUse: 'config'
+#          nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\NuGet.Config'
+#          externalFeedCredentials: 'IG ProGet NuGet Trial'
 
       - task: DotNetCoreCLI@2
         displayName: 'dotnet build'
@@ -101,11 +123,11 @@ stages:
           command: 'build'
           projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
 
-      - task: DotNetCoreCLI@2
-        displayName: 'dotnet build'
+      - task: CmdLine@2
+        displayName: 'dotnet publish #2'
         inputs:
-          command: 'build'
-          projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
+          script: 'dotnet publish -c release -o $(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\publish'
+          workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
 
       - task: DotNetCoreCLI@2
         inputs:
@@ -114,20 +136,6 @@ stages:
           arguments: '-c release'
           modifyOutputPath: false
           workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
-
-      - task: CmdLine@2
-        displayName: 'dotnet publish #2'
-        inputs:
-          script: 'dotnet publish -c release -o $(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\publish'
-          workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
-
-      - task: PowerShell@2
-        displayName: 'npm install igniteui-dockmanager (licensed)'
-        inputs:
-          targetType: 'inline'
-          script: |
-            cd $(Build.SourcesDirectory)\browser
-            npm install igniteui-dockmanager@npm:@infragistics/igniteui-dockmanager@$($(jq '.dependencies.\"igniteui-dockmanager\"' .\package.json).Trim('"'))
 
       - task: ArchiveFiles@2
         displayName: 'Package samples browser'
