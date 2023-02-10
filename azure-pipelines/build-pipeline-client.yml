@@ -78,7 +78,7 @@ stages:
             $newNode = $xml.configuration.packageSources.AppendChild($xml.CreateElement("add"));
             $newNode.SetAttribute("key","IGProget");
             $newNode.SetAttribute("value","http://proget.infragistics.local:81/nuget/IgniteUINuGet/");
-
+            $secret = "$(NuGetFeedPassword)"
             $newXmlElement = $xml.configuration.AppendChild($xml.CreateElement("packageSourceCredentials"));
             $newNode = $newXmlElement.AppendChild($xml.CreateElement("IGProgetTrial"));
             $newNode2 = $newNode.AppendChild($xml.CreateElement("add"));
@@ -86,7 +86,7 @@ stages:
             $newNode2.SetAttribute("value","releaseengineeringteam@infragistics.com");
             $newNode2 = $newNode.AppendChild($xml.CreateElement("add"));
             $newNode2.SetAttribute("key","ClearTextPassword");
-            $newNode2.SetAttribute("value","$(NuGetFeedPassword)");
+            $newNode2.SetAttribute("value","$secret");
 
             $newNode = $newXmlElement.AppendChild($xml.CreateElement("IGProget"));
             $newNode2 = $newNode.AppendChild($xml.CreateElement("add"));
@@ -94,7 +94,7 @@ stages:
             $newNode2.SetAttribute("value","releaseengineeringteam@infragistics.com");
             $newNode2 = $newNode.AppendChild($xml.CreateElement("add"));
             $newNode2.SetAttribute("key","ClearTextPassword");
-            $newNode2.SetAttribute("value","$(NuGetFeedPassword)");
+            $newNode2.SetAttribute("value","$secret");
             $xml.Save('.\NuGet.Config')
             env:
               PASS: $(NuGetFeedPassword)
