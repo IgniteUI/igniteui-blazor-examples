@@ -79,7 +79,7 @@ stages:
           showWarnings: true
           workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
 # TODO add --ignore-failed-sources to 'dotnet restore'
-      - task: CmdLine@2
+#      - task: CmdLine@2
 #        displayName: 'dotnet restore - cmd'
 #        inputs:
 #          script: 'dotnet restore $(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\ --configFile $(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\NuGet.Config'
@@ -89,7 +89,7 @@ stages:
         inputs:
           command: 'restore'
           projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
-          restoreArguments: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client --ignore-failed-sources'
+          restoreArguments: '--ignore-failed-sources'
           feedsToUse: 'config'
           nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\NuGet.Config'
           externalFeedCredentials: 'IG ProGet NuGet Trial'
