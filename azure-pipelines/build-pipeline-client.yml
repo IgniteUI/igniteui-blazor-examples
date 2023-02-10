@@ -86,7 +86,7 @@ stages:
             $newNode2.SetAttribute("value","releaseengineeringteam@infragistics.com");
             $newNode2 = $newNode.AppendChild($xml.CreateElement("add"));
             $newNode2.SetAttribute("key","ClearTextPassword");
-            $newNode2.SetAttribute("value","$secret");
+            $newNode2.SetAttribute("value", $env:PASS1);
 
             $newNode = $newXmlElement.AppendChild($xml.CreateElement("IGProget"));
             $newNode2 = $newNode.AppendChild($xml.CreateElement("add"));
@@ -94,10 +94,10 @@ stages:
             $newNode2.SetAttribute("value","releaseengineeringteam@infragistics.com");
             $newNode2 = $newNode.AppendChild($xml.CreateElement("add"));
             $newNode2.SetAttribute("key","ClearTextPassword");
-            $newNode2.SetAttribute("value","$secret");
+            $newNode2.SetAttribute("value",$env:PASS1);
             $xml.Save('.\NuGet.Config')
             env:
-              PASS: $(NuGetFeedPassword)
+              PASS1: $(NuGetFeedPassword)
           failOnStderr: true
           showWarnings: true
           workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
