@@ -58,7 +58,7 @@ stages:
             
             #$pathToConfig = "C:\Work\git\igniteui-blazor-examples\browser\IgBlazorSamples.Gulp\nuget.config" #put your path here
             
-            $xml = [System.Xml.XmlDocument](Get-Content 'NuGet.Config');
+            $xml = [System.Xml.XmlDocument](Get-Content '.\NuGet.Config');
             
             
             #    <add key="enabled" value="True" />
@@ -87,7 +87,7 @@ stages:
             #$xml.configuration.InsertAfter($newNode,$foundNode) |out-null
             
             #save file
-            $xml.Save('NuGet.Config')
+            $xml.Save('.\NuGet.Config')
           failOnStderr: true
           showWarnings: true
           workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
