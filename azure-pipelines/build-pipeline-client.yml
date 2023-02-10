@@ -35,20 +35,20 @@ stages:
           versionSource: 'spec'
           versionSpec: '16.x'
 
-      - task: Npm@1
-        displayName: 'npm ci'
-        inputs:
-          command: custom
-          workingDir: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
-          verbose: ${{ parameters.isVerbose }}
-          customCommand: ci
-
-      - task: CmdLine@2
-        displayName: 'npx gulp copySamplesToClient'
-        inputs:
-          script: 'npx gulp copySamplesToClient'
-          workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
-          failOnStderr: true
+#      - task: Npm@1
+#        displayName: 'npm ci'
+#        inputs:
+#          command: custom
+#          workingDir: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
+#          verbose: ${{ parameters.isVerbose }}
+#          customCommand: ci
+#
+#      - task: CmdLine@2
+#        displayName: 'npx gulp copySamplesToClient'
+#        inputs:
+#          script: 'npx gulp copySamplesToClient'
+#          workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
+#          failOnStderr: true
 
       - task: PowerShell@2
         inputs:
@@ -71,6 +71,10 @@ stages:
             $newNode = $xml.configuration.packageSources.AppendChild($xml.CreateElement("add"));
             $newNode.SetAttribute("key","IG ProGet NuGet Trial");
             $newNode.SetAttribute("value","http://proget.infragistics.local:81/nuget/IgniteUINuGetTrial/");
+
+            $newNode = $xml.configuration.packageSources.AppendChild($xml.CreateElement("add"));
+            $newNode.SetAttribute("key","IG ProGet NuGet");
+            $newNode.SetAttribute("value","http://proget.infragistics.local:81/nuget/IgniteUINuGet/");
             $xml.Save('.\NuGet.Config')
           failOnStderr: true
           showWarnings: true
@@ -81,7 +85,7 @@ stages:
           command: 'restore'
           projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
           feedsToUse: 'config'
-          nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\NuGet.config'
+          nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\NuGet.Config'
           externalFeedCredentials: 'IG ProGet NuGet Trial'
 
       - task: CmdLine@2
