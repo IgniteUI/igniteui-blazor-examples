@@ -75,47 +75,24 @@ stages:
             $newNode.SetAttribute("key","IGProgetTrial");
             $newNode.SetAttribute("value","http://proget.infragistics.local:81/nuget/IgniteUINuGetTrial/");
 
-            $newNode = $xml.configuration.packageSources.AppendChild($xml.CreateElement("add"));
-            $newNode.SetAttribute("key","IGProget");
-            $newNode.SetAttribute("value","http://proget.infragistics.local:81/nuget/IgniteUINuGet/");
-
-            $newXmlElement = $xml.configuration.AppendChild($xml.CreateElement("packageSourceCredentials"));
-            $newNode = $newXmlElement.AppendChild($xml.CreateElement("IGProgetTrial"));
-            $newNode2 = $newNode.AppendChild($xml.CreateElement("add"));
-            $newNode2.SetAttribute("key","Username");
-            $newNode2.SetAttribute("value","releaseengineeringteam@infragistics.com");
-            $newNode2 = $newNode.AppendChild($xml.CreateElement("add"));
-            $newNode2.SetAttribute("key","ClearTextPassword");
-            $newNode2.SetAttribute("value", $env:PASS1);
-
-            $newNode = $newXmlElement.AppendChild($xml.CreateElement("IGProget"));
-            $newNode2 = $newNode.AppendChild($xml.CreateElement("add"));
-            $newNode2.SetAttribute("key","Username");
-            $newNode2.SetAttribute("value","releaseengineeringteam@infragistics.com");
-            $newNode2 = $newNode.AppendChild($xml.CreateElement("add"));
-            $newNode2.SetAttribute("key","ClearTextPassword");
-            $newNode2.SetAttribute("value",$env:PASS1);
-            $xml.Save('.\NuGet.Config')
-            env:
-              PASS1: $(NuGetFeedPassword)
           failOnStderr: true
           showWarnings: true
           workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
-
+# TODO add --ignore-failed-sources to 'dotnet restore'
       - task: CmdLine@2
-        displayName: 'dotnet restore - cmd'
-        inputs:
-          script: 'dotnet restore $(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\ --configFile $(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\NuGet.Config'
-          workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
-#      - task: DotNetCoreCLI@2
-#        displayName: 'dotnet restore'
+#        displayName: 'dotnet restore - cmd'
 #        inputs:
-#          command: 'restore'
-#          projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
-#          restoreArguments: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
-#          feedsToUse: 'config'
-#          nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\NuGet.Config'
-#          externalFeedCredentials: 'IG ProGet NuGet Trial'
+#          script: 'dotnet restore $(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\ --configFile $(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\NuGet.Config'
+#          workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
+      - task: DotNetCoreCLI@2
+        displayName: 'dotnet restore'
+        inputs:
+          command: 'restore'
+          projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
+          restoreArguments: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client --ignore-failed-sources'
+          feedsToUse: 'config'
+          nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\NuGet.Config'
+          externalFeedCredentials: 'IG ProGet NuGet Trial'
 
       - task: DotNetCoreCLI@2
         displayName: 'dotnet build'
