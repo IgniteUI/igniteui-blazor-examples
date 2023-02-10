@@ -50,10 +50,56 @@ stages:
           workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
           failOnStderr: true
 
-      - task: NuGetAuthenticate@1
+      - task: PowerShell@2
         inputs:
-          nuGetServiceConnections: 'IG ProGet NuGet Trial'
-      
+          targetType: 'inline'
+          script: |
+            dotnet new nugetconfig --force
+            
+            #$pathToConfig = "C:\Work\git\igniteui-blazor-examples\browser\IgBlazorSamples.Gulp\nuget.config" #put your path here
+            
+            $xml = [System.Xml.XmlDocument](Get-Content 'NuGet.Config');
+            
+            
+            #    <add key="enabled" value="True" />
+            #    <add key="automatic" value="True" />
+            $newXmlElement = $xml.configuration.AppendChild($xml.CreateElement("packageRestore"));
+            #$xml.configuration.AppendChild($xml.CreateElement("packageRestore"));
+            $newNode = $newXmlElement.AppendChild($xml.CreateElement("add"));
+            $newNode.SetAttribute("key","enabled");
+            $newNode.SetAttribute("value","true");
+            
+            $newNode = $newXmlElement.AppendChild($xml.CreateElement("add"));
+            $newNode.SetAttribute("key","automatic");
+            $newNode.SetAttribute("value","true");
+            
+            
+            #<add key="IGProgetTrial" value="http://proget.infragistics.local:81/nuget/IgniteUINuGetTrial/" />
+            
+            $newNode = $xml.configuration.packageSources.AppendChild($xml.CreateElement("add"));
+            $newNode.SetAttribute("key","IG ProGet NuGet Trial");
+            $newNode.SetAttribute("value","http://proget.infragistics.local:81/nuget/IgniteUINuGetTrial/");
+            
+            $newNode2.SetAttribute("value","Val1dateD0wnl0ads");
+            
+            #add new node AFTER the configsections node
+            #$newNode = $xml.ImportNode($newNode.appSettings,$true)
+            #$xml.configuration.InsertAfter($newNode,$foundNode) |out-null
+            
+            #save file
+            $xml.Save('NuGet.Config')
+          failOnStderr: true
+          showWarnings: true
+          workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
+
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: 'restore'
+          projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
+          feedsToUse: 'config'
+          nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\NuGet.config'
+          externalFeedCredentials: 'IG ProGet NuGet Trial'
+
       - task: CmdLine@2
         displayName: 'dotnet restore'
         inputs:
