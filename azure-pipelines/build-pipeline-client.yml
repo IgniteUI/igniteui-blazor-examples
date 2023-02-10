@@ -81,6 +81,7 @@ stages:
           workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
 
       - task: DotNetCoreCLI@2
+        displayName: 'dotnet restore'
         inputs:
           command: 'restore'
           projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
@@ -88,23 +89,28 @@ stages:
           nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\NuGet.Config'
           externalFeedCredentials: 'IG ProGet NuGet Trial'
 
-      - task: CmdLine@2
-        displayName: 'dotnet restore'
-        inputs:
-          script: 'dotnet restore'
-          workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
-          failOnStderr: true
-
-      - task: CmdLine@2
+      - task: DotNetCoreCLI@2
         displayName: 'dotnet build'
         inputs:
-          script: 'dotnet build'
-          workingDir:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
-          workingDirectory: true
+          command: 'build'
+          projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
 
+      - task: DotNetCoreCLI@2
+        displayName: 'dotnet build'
+        inputs:
+          command: 'build'
+          projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
+
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: 'publish'
+          publishWebProjects: true
+          arguments: '-c release'
+          modifyOutputPath: false
+          workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
 
       - task: CmdLine@2
-        displayName: 'dotnet publish'
+        displayName: 'dotnet publish #2'
         inputs:
           script: 'dotnet publish -c release -o $(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\publish'
           workingDir:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
