@@ -55,6 +55,7 @@ namespace Infragistics.Samples.Core
         public string Component { get; set; }
         public string Group { get; set; }
         //public bool IsExpanded { get; set; }
+        public bool ShowLink { get; set; }
 
         public TocSample()
         {
