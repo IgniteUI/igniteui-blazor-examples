@@ -35,20 +35,20 @@ stages:
           versionSource: 'spec'
           versionSpec: '16.x'
 
-#      - task: Npm@1
-#        displayName: 'npm ci'
-#        inputs:
-#          command: custom
-#          workingDir: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
-#          verbose: ${{ parameters.isVerbose }}
-#          customCommand: ci
-#
-#      - task: CmdLine@2
-#        displayName: 'npx gulp copySamplesToClient'
-#        inputs:
-#          script: 'npx gulp copySamplesToClient'
-#          workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
-#          failOnStderr: true
+      - task: Npm@1
+        displayName: 'npm ci'
+        inputs:
+          command: custom
+          workingDir: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
+          verbose: ${{ parameters.isVerbose }}
+          customCommand: ci
+
+      - task: CmdLine@2
+        displayName: 'npx gulp copySamplesToClient'
+        inputs:
+          script: 'npx gulp copySamplesToClient'
+          workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
+          failOnStderr: true
 
       - task: PowerShell@2
         inputs:
