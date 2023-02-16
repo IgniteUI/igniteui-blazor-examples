@@ -71,7 +71,7 @@ stages:
 
             $newNode = $xml.configuration.packageSources.AppendChild($xml.CreateElement("add"));
             $newNode.SetAttribute("key","IG ProGet NuGet");
-            $newNode.SetAttribute("value","http://proget.infragistics.local:81/nuget/IgniteUINuGet/");
+            $newNode.SetAttribute("value", ${env:IG_NUGET_FEED_URL});
             
             $xml.Save('.\NuGet.Config')
           failOnStderr: true
