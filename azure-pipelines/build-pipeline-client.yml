@@ -80,7 +80,6 @@ stages:
             $newNode.SetAttribute("value","http://proget.infragistics.local:81/nuget/IgniteUINuGet/");
             
             $xml.Save('.\NuGet.Config')
-
           failOnStderr: true
           showWarnings: true
           workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
@@ -95,12 +94,18 @@ stages:
           nuGetServiceConnections: 'IG ProGet NuGet'
           forceReinstallCredentialProvider: true
 
+      - task: UseDotNet@2
+        displayName: 'Install dotnet if not already present'
+        inputs:
+          packageType: 'sdk'
+          version: '6.x'
+          performMultiLevelLookup: true
+
       - task: DotNetCoreCLI@2
         displayName: 'dotnet restore'
         inputs:
           command: 'restore'
           projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
-          #restoreArguments: '--ignore-failed-sources'
           feedsToUse: 'config'
           nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\NuGet.Config'
 
@@ -111,18 +116,11 @@ stages:
           projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
 
       - task: CmdLine@2
+        # Using a CmldLine call for this opeation, because I couldn't get it to work as expected with the DotNetCoreCLI task
         displayName: 'dotnet publish'
         inputs:
           script: 'dotnet publish -c release -o $(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\publish'
           workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
-
-      - task: DotNetCoreCLI@2
-        inputs:
-          command: 'publish'
-          publishWebProjects: true
-          arguments: '-c release'
-          modifyOutputPath: false
-          workingDirectory: '$(Build.SourcesDirectory)/browser/IgBlazorSamples.Client/'
 
       - task: ArchiveFiles@2
         displayName: 'Package samples browser'
@@ -134,25 +132,9 @@ stages:
           archiveFile: '$(Build.ArtifactStagingDirectory)/BlazorSamplesClient.zip'
           replaceExistingArchive: true
 
-      - task: ArchiveFiles@2
-        displayName: 'Package samples browser #2'
-        inputs:
-          verbose: ${{ parameters.isVerbose }}
-          rootFolderOrFile: '$(Build.SourcesDirectory)/browser/IgBlazorSamples.Client/publish2'
-          includeRootFolder: false
-          archiveType: 'zip'
-          archiveFile: '$(Build.ArtifactStagingDirectory)/BlazorSamplesClient2.zip'
-          replaceExistingArchive: true
-
 
       - task: PublishPipelineArtifact@1
         displayName: 'Publish pipeline artifact'
         inputs:
           targetPath: '$(Build.ArtifactStagingDirectory)/BlazorSamplesClient.zip'
-          artifact: 'ReactSamplesBrowser'
-
-      - task: PublishPipelineArtifact@1
-        displayName: 'Publish pipeline artifact #2'
-        inputs:
-          targetPath: '$(Build.ArtifactStagingDirectory)/BlazorSamplesClient2.zip'
           artifact: 'ReactSamplesBrowser'
