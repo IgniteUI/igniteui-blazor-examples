@@ -94,7 +94,6 @@ stages:
         inputs:
           command: 'restore'
           projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
-          restoreArguments: '--no-cache'
           feedsToUse: 'config'
           nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\NuGet.Config'
 
@@ -103,6 +102,12 @@ stages:
         inputs:
           command: 'build'
           projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
+
+      - task: DeleteFiles@1
+        displayName: 'Delete NuGet.config file - used only at build time'
+        inputs:
+          SourceFolder: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\'
+          Contents: 'NuGet.config'
 
       - task: CmdLine@2
         # Using a CmldLine call for this opeation, because I couldn't get it to work as expected with the DotNetCoreCLI task
