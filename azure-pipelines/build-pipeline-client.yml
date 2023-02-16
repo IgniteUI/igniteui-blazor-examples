@@ -50,40 +50,72 @@ stages:
           workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
           failOnStderr: true
 
-      - task: NuGetAuthenticate@1
-        inputs:
-          nuGetServiceConnections: 'IG ProGet NuGet Trial'
-      
-      - task: CmdLine@2
-        displayName: 'dotnet restore'
-        inputs:
-          script: 'dotnet restore'
-          workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
-          failOnStderr: true
-
-      - task: CmdLine@2
-        displayName: 'dotnet build'
-        inputs:
-          script: 'dotnet build'
-          workingDir:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
-          workingDirectory: true
-
-
-      - task: CmdLine@2
-        displayName: 'dotnet publish'
-        inputs:
-          script: 'dotnet publish -c release -o $(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\publish'
-          workingDir:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
-          workingDirectory: true
-
-
       - task: PowerShell@2
-        displayName: 'npm install igniteui-dockmanager (licensed)'
         inputs:
           targetType: 'inline'
           script: |
-            cd $(Build.SourcesDirectory)\browser
-            npm install igniteui-dockmanager@npm:@infragistics/igniteui-dockmanager@$($(jq '.dependencies.\"igniteui-dockmanager\"' .\package.json).Trim('"'))
+            dotnet new nugetconfig --force
+
+            $xml = [System.Xml.XmlDocument](Get-Content '.\NuGet.Config');
+
+            $newXmlElement = $xml.configuration.AppendChild($xml.CreateElement("packageRestore"));
+            #$xml.configuration.AppendChild($xml.CreateElement("packageRestore"));
+            $newNode = $newXmlElement.AppendChild($xml.CreateElement("add"));
+            $newNode.SetAttribute("key","enabled");
+            $newNode.SetAttribute("value","true");
+
+            $newNode = $newXmlElement.AppendChild($xml.CreateElement("add"));
+            $newNode.SetAttribute("key","automatic");
+            $newNode.SetAttribute("value","true");
+
+            $newNode = $xml.configuration.packageSources.AppendChild($xml.CreateElement("add"));
+            $newNode.SetAttribute("key","IG ProGet NuGet");
+            $newNode.SetAttribute("value","http://proget.infragistics.local:81/nuget/IgniteUINuGet/");
+            
+            $xml.Save('.\NuGet.Config')
+          failOnStderr: true
+          showWarnings: true
+          workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
+
+      - task: NuGetAuthenticate@1
+        inputs:
+          nuGetServiceConnections: 'IG ProGet NuGet'
+          forceReinstallCredentialProvider: true
+
+      - task: UseDotNet@2
+        displayName: 'Install dotnet if not already present'
+        inputs:
+          packageType: 'sdk'
+          version: '6.x'
+          performMultiLevelLookup: true
+
+      - task: DotNetCoreCLI@2
+        displayName: 'dotnet restore'
+        inputs:
+          command: 'restore'
+          projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
+          feedsToUse: 'config'
+          nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\NuGet.Config'
+          verbosityRestore: 'Diagnostic'
+
+      - task: DotNetCoreCLI@2
+        displayName: 'dotnet build'
+        inputs:
+          command: 'build'
+          projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
+
+      - task: DeleteFiles@1
+        displayName: 'Delete NuGet.config file - used only at build time'
+        inputs:
+          SourceFolder: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\'
+          Contents: 'NuGet.config'
+
+      - task: CmdLine@2
+        # Using a CmldLine call for this opeation, because I couldn't get it to work as expected with the DotNetCoreCLI task
+        displayName: 'dotnet publish'
+        inputs:
+          script: 'dotnet publish -c release -o $(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\publish'
+          workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
 
       - task: ArchiveFiles@2
         displayName: 'Package samples browser'
@@ -99,4 +131,4 @@ stages:
         displayName: 'Publish pipeline artifact'
         inputs:
           targetPath: '$(Build.ArtifactStagingDirectory)/BlazorSamplesClient.zip'
-          artifact: 'ReactSamplesBrowser'
+          artifact: 'BlazorSamplesClient'
