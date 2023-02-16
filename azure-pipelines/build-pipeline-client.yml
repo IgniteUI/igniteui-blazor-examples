@@ -108,7 +108,7 @@ stages:
         displayName: 'Delete NuGet.config file - used only at build time'
         inputs:
           SourceFolder: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\'
-          Contents: 'NuGet.config'
+          Contents: '**/NuGet.config'
 
       - task: CmdLine@2
         # Using a CmldLine call for this opeation, because I couldn't get it to work as expected with the DotNetCoreCLI task
