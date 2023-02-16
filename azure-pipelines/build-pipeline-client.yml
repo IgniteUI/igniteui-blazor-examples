@@ -43,6 +43,7 @@ stages:
           verbose: ${{ parameters.isVerbose }}
           customCommand: ci
 
+      
       - task: CmdLine@2
         displayName: 'npx gulp copySamplesToClient'
         inputs:
@@ -56,24 +57,25 @@ stages:
           targetType: 'inline'
           script: |
             dotnet new nugetconfig --force
+            dotnet nuget add source --Name "IG ProGet NuGet" -Source ${env:IG_NUGET_FEED_URL}
 
-            $xml = [System.Xml.XmlDocument](Get-Content '.\NuGet.Config');
-
-            $newXmlElement = $xml.configuration.AppendChild($xml.CreateElement("packageRestore"));
-            #$xml.configuration.AppendChild($xml.CreateElement("packageRestore"));
-            $newNode = $newXmlElement.AppendChild($xml.CreateElement("add"));
-            $newNode.SetAttribute("key","enabled");
-            $newNode.SetAttribute("value","true");
-
-            $newNode = $newXmlElement.AppendChild($xml.CreateElement("add"));
-            $newNode.SetAttribute("key","automatic");
-            $newNode.SetAttribute("value","true");
-
-            $newNode = $xml.configuration.packageSources.AppendChild($xml.CreateElement("add"));
-            $newNode.SetAttribute("key","IG ProGet NuGet");
-            $newNode.SetAttribute("value", ${env:IG_NUGET_FEED_URL});
-            
-            $xml.Save('.\NuGet.Config')
+#            $xml = [System.Xml.XmlDocument](Get-Content '.\NuGet.Config');
+#
+#            $newXmlElement = $xml.configuration.AppendChild($xml.CreateElement("packageRestore"));
+#            #$xml.configuration.AppendChild($xml.CreateElement("packageRestore"));
+#            $newNode = $newXmlElement.AppendChild($xml.CreateElement("add"));
+#            $newNode.SetAttribute("key","enabled");
+#            $newNode.SetAttribute("value","true");
+#
+#            $newNode = $newXmlElement.AppendChild($xml.CreateElement("add"));
+#            $newNode.SetAttribute("key","automatic");
+#            $newNode.SetAttribute("value","true");
+#
+#            $newNode = $xml.configuration.packageSources.AppendChild($xml.CreateElement("add"));
+#            $newNode.SetAttribute("key","IG ProGet NuGet");
+#            $newNode.SetAttribute("value", ${env:IG_NUGET_FEED_URL});
+#            
+#            $xml.Save('.\NuGet.Config')
           failOnStderr: true
           showWarnings: true
           workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
