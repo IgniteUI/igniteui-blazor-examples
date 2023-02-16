@@ -18,6 +18,10 @@ parameters:
 
 name: $(BuildDefinitionName)_$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
 
+variables:
+  - name: IGVersion
+    value: '22.2.52'
+
 stages:
 - stage: Build
   pool:
@@ -58,6 +62,17 @@ stages:
           script: |
             dotnet new nugetconfig --force
             dotnet nuget add source --Name "IG ProGet NuGet" -Source ${env:IG_NUGET_FEED_URL}
+
+            $xml = [XML](gc '.\IgBlazorSamples.Client.csproj');
+
+            $nodes = $xml.SelectNodes("//PackageReference[starts-with(@Include,'IgniteUI')]") | 
+              ForEach-Object { 
+                  $_.SetAttribute("Include",$_.Include.Replace(".Trial",""));
+                  $_.SetAttribute("Version",$(IGVersion));
+                  Write-Host $_.Version
+              }
+            
+            $xml.Save('.\IgBlazorSamples.Client.csproj')
 
 #            $xml = [System.Xml.XmlDocument](Get-Content '.\NuGet.Config');
 #
