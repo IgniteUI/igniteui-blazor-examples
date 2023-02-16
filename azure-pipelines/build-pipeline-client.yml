@@ -71,9 +71,9 @@ stages:
 
             #<add key="IGProgetTrial" value="http://proget.infragistics.local:81/nuget/IgniteUINuGetTrial/" />
 
-            $newNode = $xml.configuration.packageSources.AppendChild($xml.CreateElement("add"));
-            $newNode.SetAttribute("key","IG ProGet NuGet Trial");
-            $newNode.SetAttribute("value","http://proget.infragistics.local:81/nuget/IgniteUINuGetTrial/");
+            #$newNode = $xml.configuration.packageSources.AppendChild($xml.CreateElement("add"));
+            #$newNode.SetAttribute("key","IG ProGet NuGet Trial");
+            #$newNode.SetAttribute("value","http://proget.infragistics.local:81/nuget/IgniteUINuGetTrial/");
 
             $newNode = $xml.configuration.packageSources.AppendChild($xml.CreateElement("add"));
             $newNode.SetAttribute("key","IG ProGet NuGet");
@@ -84,10 +84,10 @@ stages:
           showWarnings: true
           workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
 
-      - task: NuGetAuthenticate@1
-        inputs:
-          nuGetServiceConnections: 'IG ProGet NuGet Trial'
-          forceReinstallCredentialProvider: true
+#      - task: NuGetAuthenticate@1
+#        inputs:
+#          nuGetServiceConnections: 'IG ProGet NuGet Trial'
+#          forceReinstallCredentialProvider: true
 
       - task: NuGetAuthenticate@1
         inputs:
