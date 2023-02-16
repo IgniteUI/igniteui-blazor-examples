@@ -68,13 +68,6 @@ stages:
             $newNode.SetAttribute("key","automatic");
             $newNode.SetAttribute("value","true");
 
-
-            #<add key="IGProgetTrial" value="http://proget.infragistics.local:81/nuget/IgniteUINuGetTrial/" />
-
-            #$newNode = $xml.configuration.packageSources.AppendChild($xml.CreateElement("add"));
-            #$newNode.SetAttribute("key","IG ProGet NuGet Trial");
-            #$newNode.SetAttribute("value","http://proget.infragistics.local:81/nuget/IgniteUINuGetTrial/");
-
             $newNode = $xml.configuration.packageSources.AppendChild($xml.CreateElement("add"));
             $newNode.SetAttribute("key","IG ProGet NuGet");
             $newNode.SetAttribute("value","http://proget.infragistics.local:81/nuget/IgniteUINuGet/");
@@ -83,11 +76,6 @@ stages:
           failOnStderr: true
           showWarnings: true
           workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
-
-#      - task: NuGetAuthenticate@1
-#        inputs:
-#          nuGetServiceConnections: 'IG ProGet NuGet Trial'
-#          forceReinstallCredentialProvider: true
 
       - task: NuGetAuthenticate@1
         inputs:
@@ -131,7 +119,6 @@ stages:
           archiveType: 'zip'
           archiveFile: '$(Build.ArtifactStagingDirectory)/BlazorSamplesClient.zip'
           replaceExistingArchive: true
-
 
       - task: PublishPipelineArtifact@1
         displayName: 'Publish pipeline artifact'
