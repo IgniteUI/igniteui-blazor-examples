@@ -55,6 +55,13 @@ stages:
           workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
           failOnStderr: true
 
+      - task: UseDotNet@2
+        displayName: 'Install dotnet if not already present'
+        inputs:
+          packageType: 'sdk'
+          version: '6.x'
+          performMultiLevelLookup: true
+
       - task: PowerShell@2
         env:
           IGNUGET_FEED_URL: $(IG_Nuget_Feed_URL)
@@ -83,13 +90,6 @@ stages:
         inputs:
           nuGetServiceConnections: 'IG ProGet NuGet'
           forceReinstallCredentialProvider: true
-
-      - task: UseDotNet@2
-        displayName: 'Install dotnet if not already present'
-        inputs:
-          packageType: 'sdk'
-          version: '6.x'
-          performMultiLevelLookup: true
 
       - task: DotNetCoreCLI@2
         displayName: 'dotnet restore'
