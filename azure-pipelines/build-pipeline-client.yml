@@ -79,6 +79,7 @@ stages:
               ForEach-Object { 
                   $_.SetAttribute("Include",$_.Include.Replace(".Trial",""));
                   $_.SetAttribute("Version",$(IGVersion));
+                  $_.SetAttribute("Version",${{ variables.IGVersion }}));
                   Write-Host $_.Version
               }
             $xml.Save('.\IgBlazorSamples.Client.csproj')
