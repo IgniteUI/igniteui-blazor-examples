@@ -61,7 +61,7 @@ stages:
           targetType: 'inline'
           script: |
             dotnet new nugetconfig --force
-            dotnet nuget add source -Name "IG ProGet NuGet" -Source ${env:IG_NUGET_FEED_URL}
+            dotnet nuget add source ${env:IG_NUGET_FEED_URL} --name "IG ProGet NuGet" 
 
             $xml = [XML](gc '.\IgBlazorSamples.Client.csproj');
 
