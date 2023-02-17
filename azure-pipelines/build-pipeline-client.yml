@@ -55,27 +55,28 @@ stages:
           workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
           failOnStderr: true
 
-      - task: PowerShell@2
-        displayName: 'Generate NuGet.config'
+#      - task: PowerShell@2
+#        displayName: 'Generate NuGet.config'
+#        inputs:
+#          targetType: 'inline'
+#          script: |
+#            dotnet new nugetconfig --force
+#          failOnStderr: true
+#          showWarnings: true
+#          workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
+      - task: DotNetCoreCLI@2
+        displayName: 'dotnet new nugetconfig'
         inputs:
-          targetType: 'inline'
-          script: |
-            dotnet new nugetconfig --force
-          failOnStderr: true
-          showWarnings: true
-          workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
+          command: 'custom'
+          projects: '$(Build.SourcesDirectory)/browser/IgBlazorSamples.Client/IgBlazorSamples.Client.csproj'
+          custom: 'new nugetconfig'
 
-#      - task: DotNetCoreCLI@2
-#        inputs:
-#          command: 'custom'
-#          projects: '$(Build.SourcesDirectory)/browser/IgBlazorSamples.Client/IgBlazorSamples.Client.csproj'
-#          custom: 'new nugetconfig'
-#
-#      - task: DotNetCoreCLI@2
-#        inputs:
-#          command: 'custom'
-#          projects: '$(Build.SourcesDirectory)/browser/IgBlazorSamples.Client/IgBlazorSamples.Client.csproj'
-#          custom: 'new nugetconfig'
+      - task: DotNetCoreCLI@2
+        displayName: 'dotnet nuget add source'
+        inputs:
+          command: 'custom'
+          projects: '$(Build.SourcesDirectory)/browser/IgBlazorSamples.Client/IgBlazorSamples.Client.csproj'
+          custom: 'nuget add source $(IG_Nuget_Feed_URL) --name "IG ProGet NuGet"'
 
       - task: PowerShell@2
         displayName: 'Generate NuGet.config'
@@ -88,6 +89,8 @@ stages:
             dotnet nuget add source ${IGNUGET_FEED_URL} --name "IG ProGet NuGet"
             dotnet nuget add source $(IGNUGET_FEED_URL) --name "IG ProGet NuGet"
             dotnet nuget add source $(IG_Nuget_Feed_URL) --name "IG ProGet NuGet"
+            dotnet nuget add source %IG_Nuget_Feed_URL% --name "IG ProGet NuGet"
+            dotnet nuget add source %IGNUGET_FEED_URL% --name "IG ProGet NuGet"
 
             $xml = [XML](gc '.\IgBlazorSamples.Client.csproj');
 
