@@ -61,8 +61,11 @@ stages:
           targetType: 'inline'
           script: |
             dotnet new nugetconfig --force
+            Write-Host AAAAAAAAAAA
             Write-Host ${env:IG_NUGET_FEED_URL}
-            Write-Host env:IG_NUGET_FEED_URL
+            Write-Host BBBBBBBBBBBBBBb
+            Write-Host $env:IG_NUGET_FEED_URL
+            Write-Host CCCCCCCCCCCCCC
             Write-Host $env:MY_MAPPED_ENV_VAR
             dotnet nuget add source env:IG_NUGET_FEED_URL --name "IG ProGet NuGet" 
 
