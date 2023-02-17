@@ -18,9 +18,7 @@ parameters:
 
 name: $(BuildDefinitionName)_$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
 
-variables:
-  - name: IGVersion
-    value: '22.2.52'
+
 
 stages:
 - stage: Build
@@ -29,6 +27,10 @@ stages:
     demands: npm
   jobs:
   - job: BuildSamples
+    variables:
+      - name: IGVersion
+        value: '22.2.52'
+
     steps:
       - checkout: 'self' 
         path: $(Build.Repository.Name)
@@ -79,7 +81,6 @@ stages:
               ForEach-Object { 
                   $_.SetAttribute("Include",$_.Include.Replace(".Trial",""));
                   $_.SetAttribute("Version",$(IGVersion));
-                  $_.SetAttribute("Version",${{ variables.IGVersion }}));
                   Write-Host $_.Version
               }
             $xml.Save('.\IgBlazorSamples.Client.csproj')
