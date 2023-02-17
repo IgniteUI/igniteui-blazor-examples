@@ -1074,7 +1074,7 @@ function updateCodeViewer(cb) {
 
         // using actual sample route so store json files in sub-folders
         // this way we re-use route when creating a link to code-viewer file in topics
-        var path = sample.SampleRoute;
+        var path = sample.SampleRouteNew;
         // path = path.substring(1, path.length);
         // path = path.replace("/", "-");
 
