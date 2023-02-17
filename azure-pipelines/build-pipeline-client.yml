@@ -61,16 +61,33 @@ stages:
           targetType: 'inline'
           script: |
             dotnet new nugetconfig --force
-            Write-Host AAAAAAAAAAA
-            Write-Host ${env:IG_NUGET_FEED_URL}
-            Write-Host BBBBBBBBBBBBBBb
-            Write-Host $env:IG_NUGET_FEED_URL
-            Write-Host CCCCCCCCCCCCCC
-            Write-Host $env:IG_Nuget_Feed_URL666
-            "${env:IG_NUGET_FEED_URL} ,,, $env:IG_NUGET_FEED_URL ,,, $env:IG_Nuget_Feed_URL666" | out-file -filepath $(Build.SourcesDirectory)\123.txt
-            Write-Host "dotnet nuget add source $env:IG_Nuget_Feed_URL666 --name \"IG ProGet NuGet\""
-            dotnet nuget add source $env:IG_Nuget_Feed_URL666 --name "IG ProGet NuGet" 
-            dotnet nuget add source $env:IG_NUGET_FEED_URL --name "IG ProGet NuGet" 
+          failOnStderr: true
+          showWarnings: true
+          workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
+
+#      - task: DotNetCoreCLI@2
+#        inputs:
+#          command: 'custom'
+#          projects: '$(Build.SourcesDirectory)/browser/IgBlazorSamples.Client/IgBlazorSamples.Client.csproj'
+#          custom: 'new nugetconfig'
+#
+#      - task: DotNetCoreCLI@2
+#        inputs:
+#          command: 'custom'
+#          projects: '$(Build.SourcesDirectory)/browser/IgBlazorSamples.Client/IgBlazorSamples.Client.csproj'
+#          custom: 'new nugetconfig'
+
+      - task: PowerShell@2
+        displayName: 'Generate NuGet.config'
+        inputs:
+          targetType: 'inline'
+          script: |
+            dotnet new nugetconfig --force
+
+            dotnet nuget add source $env:IGNUGET_FEED_URL --name "IG ProGet NuGet" 
+            dotnet nuget add source ${IGNUGET_FEED_URL} --name "IG ProGet NuGet"
+            dotnet nuget add source $(IGNUGET_FEED_URL) --name "IG ProGet NuGet"
+            dotnet nuget add source $(IG_Nuget_Feed_URL) --name "IG ProGet NuGet"
 
             $xml = [XML](gc '.\IgBlazorSamples.Client.csproj');
 
@@ -83,7 +100,7 @@ stages:
 
             $xml.Save('.\IgBlazorSamples.Client.csproj')
             env:
-                IG_Nuget_Feed_URL666: $($(IG_Nuget_Feed_URL)) 
+                IGNUGET_FEED_URL: $(IG_Nuget_Feed_URL)
 #            $xml = [System.Xml.XmlDocument](Get-Content '.\NuGet.Config');
 #
 #            $newXmlElement = $xml.configuration.AppendChild($xml.CreateElement("packageRestore"));
