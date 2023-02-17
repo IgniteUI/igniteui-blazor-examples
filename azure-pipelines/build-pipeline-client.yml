@@ -67,6 +67,7 @@ stages:
             Write-Host $env:IG_NUGET_FEED_URL
             Write-Host CCCCCCCCCCCCCC
             Write-Host $env:MY_MAPPED_ENV_VAR
+            Write-Host "dotnet nuget add source env:IG_NUGET_FEED_URL --name \"IG ProGet NuGet\""
             dotnet nuget add source env:IG_NUGET_FEED_URL --name "IG ProGet NuGet" 
 
             $xml = [XML](gc '.\IgBlazorSamples.Client.csproj');
