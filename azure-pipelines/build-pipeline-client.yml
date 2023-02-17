@@ -61,7 +61,10 @@ stages:
           targetType: 'inline'
           script: |
             dotnet new nugetconfig --force
-            dotnet nuget add source ${env:IG_NUGET_FEED_URL} --name "IG ProGet NuGet" 
+            Write-Host ${env:IG_NUGET_FEED_URL}
+            Write-Host env:IG_NUGET_FEED_URL
+            Write-Host $env:MY_MAPPED_ENV_VAR
+            dotnet nuget add source env:IG_NUGET_FEED_URL --name "IG ProGet NuGet" 
 
             $xml = [XML](gc '.\IgBlazorSamples.Client.csproj');
 
@@ -73,7 +76,8 @@ stages:
               }
 
             $xml.Save('.\IgBlazorSamples.Client.csproj')
-
+            env:
+                IG_Nuget_Feed_URL666: $($(IG_Nuget_Feed_URL)) 
 #            $xml = [System.Xml.XmlDocument](Get-Content '.\NuGet.Config');
 #
 #            $newXmlElement = $xml.configuration.AppendChild($xml.CreateElement("packageRestore"));
