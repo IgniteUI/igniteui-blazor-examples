@@ -55,19 +55,6 @@ stages:
           workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
           failOnStderr: true
 
-      - task: CmdLine@2
-        inputs:
-          script: |
-            dotnet new nugetconfig --force
-            echo %IGNUGET_FEED_URL%
-            echo $(IG_Nuget_Feed_URL)
-            dotnet nuget add source %IGNUGET_FEED_URL% --name "IG ProGet NuGet"
-            dotnet nuget add source $(IG_Nuget_Feed_URL)/ --name "IG ProGet NuGet2"
-          workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
-        env:
-            IGNUGET_FEED_URL: $(IG_Nuget_Feed_URL)
-
-
       - task: PowerShell@2
         env:
           IGNUGET_FEED_URL: $(IG_Nuget_Feed_URL)
@@ -77,8 +64,7 @@ stages:
           script: |
             dotnet new nugetconfig --force
 
-            dotnet nuget add source $env:IGNUGET_FEED_URL/3 --name "IG ProGet NuGet3" 
-            dotnet nuget add source $(IG_Nuget_Feed_URL)/4 --name "IG ProGet NuGet4"
+            dotnet nuget add source $env:IGNUGET_FEED_URL --name "IG ProGet NuGet" 
 
             $xml = [XML](gc '.\IgBlazorSamples.Client.csproj');
 
@@ -89,25 +75,6 @@ stages:
                   Write-Host $_.Version
               }
             $xml.Save('.\IgBlazorSamples.Client.csproj')
-#            dotnet nuget add source ${IGNUGET_FEED_URL} --name "IG ProGet NuGet"
-#            dotnet nuget add source $(IGNUGET_FEED_URL) --name "IG ProGet NuGet"
-#            $xml = [System.Xml.XmlDocument](Get-Content '.\NuGet.Config');
-#
-#            $newXmlElement = $xml.configuration.AppendChild($xml.CreateElement("packageRestore"));
-#            #$xml.configuration.AppendChild($xml.CreateElement("packageRestore"));
-#            $newNode = $newXmlElement.AppendChild($xml.CreateElement("add"));
-#            $newNode.SetAttribute("key","enabled");
-#            $newNode.SetAttribute("value","true");
-#
-#            $newNode = $newXmlElement.AppendChild($xml.CreateElement("add"));
-#            $newNode.SetAttribute("key","automatic");
-#            $newNode.SetAttribute("value","true");
-#
-#            $newNode = $xml.configuration.packageSources.AppendChild($xml.CreateElement("add"));
-#            $newNode.SetAttribute("key","IG ProGet NuGet");
-#            $newNode.SetAttribute("value", ${env:IG_NUGET_FEED_URL});
-#            
-#            $xml.Save('.\NuGet.Config')
           failOnStderr: true
           showWarnings: true
           workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
