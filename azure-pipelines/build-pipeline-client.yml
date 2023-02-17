@@ -55,27 +55,18 @@ stages:
           workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
           failOnStderr: true
 
-#      - task: PowerShell@2
-#        displayName: 'Generate NuGet.config'
-#        inputs:
-#          targetType: 'inline'
-#          script: |
-#            dotnet new nugetconfig --force
-#          failOnStderr: true
-#          showWarnings: true
-#          workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
-      - task: DotNetCoreCLI@2
-        displayName: 'dotnet new nugetconfig'
+      - task: CmdLine@2
         inputs:
-          command: 'custom'
-          custom: 'new nugetconfig -o $(Build.SourcesDirectory)/browser/IgBlazorSamples.Client/' 
-
-      - task: DotNetCoreCLI@2
-        displayName: 'dotnet nuget add source'
-        inputs:
-          command: 'custom'
-          projects: '$(Build.SourcesDirectory)/browser/IgBlazorSamples.Client/IgBlazorSamples.Client.csproj'
-          custom: 'nuget add source $(IG_Nuget_Feed_URL) --name "IG ProGet NuGet"'
+          script: |
+            dotnet new nugetconfig --force
+            echo %IGNUGET_FEED_URL%
+            echo $(IG_Nuget_Feed_URL)
+            dotnet nuget add source %IGNUGET_FEED_URL% --name "IG ProGet NuGet"
+            dotnet nuget add source $(IG_Nuget_Feed_URL) --name "IG ProGet NuGet"
+          workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
+        env:
+            IGNUGET_FEED_URL: $(IG_Nuget_Feed_URL)
+        
 
       - task: PowerShell@2
         displayName: 'Generate NuGet.config'
