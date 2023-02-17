@@ -62,7 +62,7 @@ stages:
             echo %IGNUGET_FEED_URL%
             echo $(IG_Nuget_Feed_URL)
             dotnet nuget add source %IGNUGET_FEED_URL% --name "IG ProGet NuGet"
-            dotnet nuget add source $(IG_Nuget_Feed_URL) --name "IG ProGet NuGet2"
+            dotnet nuget add source $(IG_Nuget_Feed_URL)/ --name "IG ProGet NuGet2"
           workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
         env:
             IGNUGET_FEED_URL: $(IG_Nuget_Feed_URL)
