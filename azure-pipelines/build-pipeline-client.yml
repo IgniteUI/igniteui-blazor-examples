@@ -25,7 +25,12 @@ stages:
     demands: npm
   jobs:
   - job: BuildSamples
+    variables:
+      - name: IGVersion
+        value: '22.2.52'
+
     steps:
+      # This specific checkout is necessary for custom logic in the gulp processes. Once we retire them, this custom behavior can be deleted.
       - checkout: 'self' 
         path: $(Build.Repository.Name)
 
@@ -43,6 +48,7 @@ stages:
           verbose: ${{ parameters.isVerbose }}
           customCommand: ci
 
+      
       - task: CmdLine@2
         displayName: 'npx gulp copySamplesToClient'
         inputs:
@@ -50,44 +56,42 @@ stages:
           workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
           failOnStderr: true
 
-      - task: PowerShell@2
-        inputs:
-          targetType: 'inline'
-          script: |
-            dotnet new nugetconfig --force
-
-            $xml = [System.Xml.XmlDocument](Get-Content '.\NuGet.Config');
-
-            $newXmlElement = $xml.configuration.AppendChild($xml.CreateElement("packageRestore"));
-            #$xml.configuration.AppendChild($xml.CreateElement("packageRestore"));
-            $newNode = $newXmlElement.AppendChild($xml.CreateElement("add"));
-            $newNode.SetAttribute("key","enabled");
-            $newNode.SetAttribute("value","true");
-
-            $newNode = $newXmlElement.AppendChild($xml.CreateElement("add"));
-            $newNode.SetAttribute("key","automatic");
-            $newNode.SetAttribute("value","true");
-
-            $newNode = $xml.configuration.packageSources.AppendChild($xml.CreateElement("add"));
-            $newNode.SetAttribute("key","IG ProGet NuGet");
-            $newNode.SetAttribute("value","http://proget.infragistics.local:81/nuget/IgniteUINuGet/");
-            
-            $xml.Save('.\NuGet.Config')
-          failOnStderr: true
-          showWarnings: true
-          workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
-
-      - task: NuGetAuthenticate@1
-        inputs:
-          nuGetServiceConnections: 'IG ProGet NuGet'
-          forceReinstallCredentialProvider: true
-
       - task: UseDotNet@2
         displayName: 'Install dotnet if not already present'
         inputs:
           packageType: 'sdk'
           version: '6.x'
           performMultiLevelLookup: true
+
+      - task: PowerShell@2
+        env:
+          IGNUGET_FEED_URL: $(IG_Nuget_Feed_URL)
+        displayName: 'Generate NuGet.config for IG ProGet NuGet feed'
+        inputs:
+          targetType: 'inline'
+          script: |
+            dotnet new nugetconfig --force
+
+            dotnet nuget add source $env:IGNUGET_FEED_URL --name "IG ProGet NuGet" 
+
+            $xml = [XML](gc '.\IgBlazorSamples.Client.csproj');
+
+            $nodes = $xml.SelectNodes("//PackageReference[starts-with(@Include,'IgniteUI')]") | 
+              ForEach-Object { 
+                  $_.SetAttribute("Include",$_.Include.Replace(".Trial",""));
+                  $_.SetAttribute("Version",$env:IGVersion);
+                  Write-Host $_.Version
+              }
+            $xml.Save('.\IgBlazorSamples.Client.csproj')
+          failOnStderr: true
+          showWarnings: true
+          workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client'
+
+      - task: NuGetAuthenticate@1
+        displayName: 'Authenticate to IG ProGet NuGet feed'
+        inputs:
+          nuGetServiceConnections: 'IG ProGet NuGet'
+          forceReinstallCredentialProvider: true
 
       - task: DotNetCoreCLI@2
         displayName: 'dotnet restore'
@@ -108,7 +112,7 @@ stages:
         displayName: 'Delete NuGet.config file - used only at build time'
         inputs:
           SourceFolder: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Client\'
-          Contents: 'NuGet.config'
+          Contents: '**/NuGet.config'
 
       - task: CmdLine@2
         # Using a CmldLine call for this opeation, because I couldn't get it to work as expected with the DotNetCoreCLI task
