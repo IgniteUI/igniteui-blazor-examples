@@ -68,8 +68,8 @@ stages:
         displayName: 'dotnet new nugetconfig'
         inputs:
           command: 'custom'
-          projects: '$(Build.SourcesDirectory)/browser/IgBlazorSamples.Client/IgBlazorSamples.Client.csproj'
           custom: 'new nugetconfig'
+          arguments: '-o $(Build.SourcesDirectory)/browser/IgBlazorSamples.Client/'
 
       - task: DotNetCoreCLI@2
         displayName: 'dotnet nuget add source'
