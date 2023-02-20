@@ -30,8 +30,8 @@ stages:
       - checkout: 'self' 
         path: $(Build.Repository.Name)
 
-    - template: templates/build-steps-template.yml
-      parameters:
-        igVersion: '22.2.52'
-        projectToBuild: Client
-        verbose: ${{ parameters.isVerbose }}
+      - template: templates/build-steps-template.yml
+        parameters:
+          igVersion: '22.2.52'
+          projectToBuild: Client
+          verbose: ${{ parameters.isVerbose }}
