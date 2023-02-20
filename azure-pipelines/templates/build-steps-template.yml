@@ -1,5 +1,6 @@
 parameters:
   - name: igVersion
+  - name: igNuGetFeedUrl
   - name: projectToBuild
   - name: isVerbose
     default: false
@@ -36,7 +37,7 @@ steps:
 
   - task: PowerShell@2
     env:
-      IGNUGET_FEED_URL: $(IG_Nuget_Feed_URL)
+      IGNUGET_FEED_URL: ${{ parameters.igNuGetFeedUrl }}
     displayName: 'Generate NuGet.config for IG ProGet NuGet feed'
     inputs:
       targetType: 'inline'
