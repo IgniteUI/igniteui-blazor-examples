@@ -36,15 +36,13 @@ steps:
       performMultiLevelLookup: true
 
   - task: PowerShell@2
-    env:
-      IGNUGET_FEED_URL: ${{ parameters.igNuGetFeedUrl }}
     displayName: 'Generate NuGet.config for IG ProGet NuGet feed'
     inputs:
       targetType: 'inline'
       script: |
         dotnet new nugetconfig --force
 
-        dotnet nuget add source $env:IGNUGET_FEED_URL --name "IG ProGet NuGet" 
+        dotnet nuget add source ${{ parameters.igNuGetFeedUrl }} --name "IG ProGet NuGet" 
 
         $xml = [XML](gc '.\IgBlazorSamples.${{ parameters.projectToBuild }}.csproj');
 
@@ -65,14 +63,14 @@ steps:
       nuGetServiceConnections: 'IG ProGet NuGet'
       forceReinstallCredentialProvider: true
 
-  - task: DotNetCoreCLI@2
-    displayName: 'dotnet restore'
-    inputs:
-      command: 'restore'
-      projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
-      feedsToUse: 'config'
-      nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\NuGet.Config'
-      verbosityRestore: 'Diagnostic'
+#  - task: DotNetCoreCLI@2
+#    displayName: 'dotnet restore'
+#    inputs:
+#      command: 'restore'
+#      projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
+#      feedsToUse: 'config'
+#      nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\NuGet.Config'
+#      verbosityRestore: 'Diagnostic'
 
   - task: DotNetCoreCLI@2
     displayName: 'dotnet build'
