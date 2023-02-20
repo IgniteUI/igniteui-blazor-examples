@@ -41,8 +41,9 @@ steps:
       targetType: 'inline'
       script: |
         dotnet new nugetconfig --force
-
+        Write-Host AAAAAAAAAAAAAAAAAAAAAAAAAAAA ${{ parameters.igNuGetFeedUrl }}
         dotnet nuget add source ${{ parameters.igNuGetFeedUrl }} --name "IG ProGet NuGet" 
+        Write-Host BBBBBBBBBBBBBBBBBBBB
 
         $xml = [XML](gc '.\IgBlazorSamples.${{ parameters.projectToBuild }}.csproj');
 
