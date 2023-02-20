@@ -51,7 +51,7 @@ steps:
         $nodes = $xml.SelectNodes("//PackageReference[starts-with(@Include,'IgniteUI')]") | 
           ForEach-Object { 
               $_.SetAttribute("Include",$_.Include.Replace(".Trial",""));
-              $_.SetAttribute("Version",$env:igVersion);
+              $_.SetAttribute("Version",${{ parameters.igVersion }});
               Write-Host $_.Version
           }
         $xml.Save('.\IgBlazorSamples.${{ parameters.projectToBuild }}.csproj')
