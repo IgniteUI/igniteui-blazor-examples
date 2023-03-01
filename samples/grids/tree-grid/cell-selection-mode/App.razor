@@ -1,0 +1,115 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="WebTreeGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="PropertyEditor"
+        @ref="propertyEditor">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="CellSelection"
+            ValueType="PropertyEditorValueType.EnumValue"
+            DropDownNames="@(new string[] { "None", "Single", "Multiple" })"
+            DropDownValues="@(new string[] { "None", "Single", "Multiple" })"
+            Name="CellSelectionEditor"
+            @ref="cellSelectionEditor">
+            </IgbPropertyEditorPropertyDescription>
+            
+        </IgbPropertyEditorPanel>
+        
+    </div>
+
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        ForeignKey="ParentID"
+        Id="treeGrid"
+        Data="EmployeesFlatData"
+        PrimaryKey="ID"
+        Name="treeGrid"
+        @ref="treeGrid">
+            <IgbColumn
+            Field="ID">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Name">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Age"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Title">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="HireDate"
+            DataType="GridColumnDataType.Date"
+            Header="Hire Date">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="OnPTO"
+            DataType="GridColumnDataType.Boolean"
+            Header="On PTO">
+            </IgbColumn>
+            
+        </IgbTreeGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditor = this.propertyEditor;
+        var cellSelectionEditor = this.cellSelectionEditor;
+        var treeGrid = this.treeGrid;
+
+        this.BindElements = () => {
+            propertyEditor.Target = this.treeGrid;
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription cellSelectionEditor;
+    private IgbTreeGrid treeGrid;
+
+    private EmployeesFlatData _employeesFlatData = null;
+    public EmployeesFlatData EmployeesFlatData
+    {
+        get
+        {
+            if (_employeesFlatData == null)
+            {
+                _employeesFlatData = new EmployeesFlatData(); 
+            }
+            return _employeesFlatData;
+        }
+    }
+    
+}

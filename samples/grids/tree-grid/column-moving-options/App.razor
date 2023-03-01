@@ -1,0 +1,178 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        ForeignKey="ParentID"
+        Id="treeGrid"
+        Data="EmployeesFlatDetails"
+        Moving="true"
+        PrimaryKey="ID"
+        ColumnWidth="200"
+        Name="treeGrid"
+        @ref="treeGrid">
+            <IgbPaginator
+            PerPage="10"
+            TotalRecords="20">
+            </IgbPaginator>
+            
+            <IgbColumn
+            Field="Name"
+            DataType="GridColumnDataType.String"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Title"
+            DataType="GridColumnDataType.String"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column2"
+            @ref="column2">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ID"
+            DataType="GridColumnDataType.Number"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column3"
+            @ref="column3">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="HireDate"
+            DataType="GridColumnDataType.Date"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column4"
+            @ref="column4">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Age"
+            DataType="GridColumnDataType.Number"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column5"
+            @ref="column5">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Address"
+            DataType="GridColumnDataType.String"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column6"
+            @ref="column6">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="City"
+            DataType="GridColumnDataType.String"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column7"
+            @ref="column7">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Country"
+            DataType="GridColumnDataType.String"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column8"
+            @ref="column8">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Fax"
+            DataType="GridColumnDataType.String"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column9"
+            @ref="column9">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="PostalCode"
+            DataType="GridColumnDataType.String"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column10"
+            @ref="column10">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Phone"
+            DataType="GridColumnDataType.String"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column11"
+            @ref="column11">
+            </IgbColumn>
+            
+        </IgbTreeGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var treeGrid = this.treeGrid;
+        var column1 = this.column1;
+        var column2 = this.column2;
+        var column3 = this.column3;
+        var column4 = this.column4;
+        var column5 = this.column5;
+        var column6 = this.column6;
+        var column7 = this.column7;
+        var column8 = this.column8;
+        var column9 = this.column9;
+        var column10 = this.column10;
+        var column11 = this.column11;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbTreeGrid treeGrid;
+    private IgbColumn column1;
+    private IgbColumn column2;
+    private IgbColumn column3;
+    private IgbColumn column4;
+    private IgbColumn column5;
+    private IgbColumn column6;
+    private IgbColumn column7;
+    private IgbColumn column8;
+    private IgbColumn column9;
+    private IgbColumn column10;
+    private IgbColumn column11;
+
+    private EmployeesFlatDetails _employeesFlatDetails = null;
+    public EmployeesFlatDetails EmployeesFlatDetails
+    {
+        get
+        {
+            if (_employeesFlatDetails == null)
+            {
+                _employeesFlatDetails = new EmployeesFlatDetails(); 
+            }
+            return _employeesFlatDetails;
+        }
+    }
+    
+}

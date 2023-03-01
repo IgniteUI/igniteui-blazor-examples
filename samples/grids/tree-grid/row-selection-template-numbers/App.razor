@@ -1,0 +1,90 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        ForeignKey="ParentID"
+        Id="treeGrid"
+        Data="EmployeesFlatData"
+        PrimaryKey="ID"
+        HeadSelectorTemplateScript="WebGridHeaderRowSelectorTemplate"
+        RowSelectorTemplateScript="WebGridRowSelectorTemplate"
+        CellSelection="GridSelectionMode.None"
+        RowSelection="GridSelectionMode.Multiple"
+        Name="treeGrid"
+        @ref="treeGrid">
+            <IgbColumn
+            Field="Name"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Title"
+            Header="Job Title">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="HireDate"
+            DataType="GridColumnDataType.Date">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Age"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="OnPTO"
+            DataType="GridColumnDataType.Boolean">
+            </IgbColumn>
+            
+        </IgbTreeGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var treeGrid = this.treeGrid;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbTreeGrid treeGrid;
+
+    private EmployeesFlatData _employeesFlatData = null;
+    public EmployeesFlatData EmployeesFlatData
+    {
+        get
+        {
+            if (_employeesFlatData == null)
+            {
+                _employeesFlatData = new EmployeesFlatData(); 
+            }
+            return _employeesFlatData;
+        }
+    }
+    
+}

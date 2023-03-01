@@ -1,0 +1,146 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        ForeignKey="ParentID"
+        Id="treeGrid"
+        Data="EmployeesFlatDetails"
+        PrimaryKey="ID"
+        RowEditable="true"
+        AllowFiltering="true"
+        BatchEditing="true"
+        Name="treeGrid"
+        @ref="treeGrid">
+            <IgbActionStrip
+            Name="actionStrip"
+            @ref="actionStrip">
+                <IgbGridEditingActions
+                >
+                </IgbGridEditingActions>
+                
+            </IgbActionStrip>
+            
+            <IgbColumn
+            Field="Name"
+            Sortable="true"
+            DisableHiding="true"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ID"
+            DataType="GridColumnDataType.Number"
+            Sortable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Title"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            DisableHiding="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="HireDate"
+            DataType="GridColumnDataType.Date"
+            Sortable="true"
+            Hidden="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Age"
+            DataType="GridColumnDataType.Number"
+            Sortable="true"
+            Hidden="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Address"
+            DataType="GridColumnDataType.String"
+            Sortable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="City"
+            DataType="GridColumnDataType.String"
+            Sortable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Country"
+            DataType="GridColumnDataType.String"
+            Sortable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Fax"
+            DataType="GridColumnDataType.String"
+            Sortable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="PostalCode"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            Header="Postal Code">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Phone"
+            DataType="GridColumnDataType.String"
+            Sortable="true">
+            </IgbColumn>
+            
+        </IgbTreeGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var treeGrid = this.treeGrid;
+        var actionStrip = this.actionStrip;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbTreeGrid treeGrid;
+    private IgbActionStrip actionStrip;
+
+    private EmployeesFlatDetails _employeesFlatDetails = null;
+    public EmployeesFlatDetails EmployeesFlatDetails
+    {
+        get
+        {
+            if (_employeesFlatDetails == null)
+            {
+                _employeesFlatDetails = new EmployeesFlatDetails(); 
+            }
+            return _employeesFlatDetails;
+        }
+    }
+    
+}

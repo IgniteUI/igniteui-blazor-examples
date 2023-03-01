@@ -1,0 +1,132 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="WebTreeGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="RowSelection"
+            Name="selectionType"
+            @ref="selectionType">
+            </IgbPropertyEditorPropertyDescription>
+            
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="HideRowSelectors"
+            Label="Hide Row Selectors"
+            Name="hideRowSelectors"
+            @ref="hideRowSelectors">
+            </IgbPropertyEditorPropertyDescription>
+            
+        </IgbPropertyEditorPanel>
+        
+    </div>
+
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        ForeignKey="ParentID"
+        Id="treeGrid"
+        Data="EmployeesFlatData"
+        PrimaryKey="ID"
+        HideRowSelectors="false"
+        AllowFiltering="true"
+        CellSelection="GridSelectionMode.None"
+        Name="treeGrid"
+        @ref="treeGrid">
+            <IgbColumn
+            Field="Name"
+            Sortable="true"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Title"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            Header="Job Title">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="HireDate"
+            DataType="GridColumnDataType.Date"
+            Sortable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="ID"
+            DataType="GridColumnDataType.Number"
+            Sortable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Age"
+            DataType="GridColumnDataType.Number"
+            Sortable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="OnPTO"
+            DataType="GridColumnDataType.Boolean"
+            Sortable="true">
+            </IgbColumn>
+            
+        </IgbTreeGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var selectionType = this.selectionType;
+        var hideRowSelectors = this.hideRowSelectors;
+        var treeGrid = this.treeGrid;
+
+        this.BindElements = () => {
+            propertyEditorPanel1.Target = this.treeGrid;
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription selectionType;
+    private IgbPropertyEditorPropertyDescription hideRowSelectors;
+    private IgbTreeGrid treeGrid;
+
+    private EmployeesFlatData _employeesFlatData = null;
+    public EmployeesFlatData EmployeesFlatData
+    {
+        get
+        {
+            if (_employeesFlatData == null)
+            {
+                _employeesFlatData = new EmployeesFlatData(); 
+            }
+            return _employeesFlatData;
+        }
+    }
+    
+}

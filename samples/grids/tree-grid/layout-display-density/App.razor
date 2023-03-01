@@ -1,0 +1,182 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="WebTreeGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="PropertyEditor"
+        @ref="propertyEditor">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="DisplayDensity"
+            Name="DisplayDensityEditor"
+            @ref="displayDensityEditor">
+            </IgbPropertyEditorPropertyDescription>
+            
+        </IgbPropertyEditorPanel>
+        
+    </div>
+
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        ForeignKey="ParentID"
+        Id="treeGrid"
+        Data="EmployeesFlatDetails"
+        PrimaryKey="ID"
+        AllowFiltering="true"
+        Name="treeGrid"
+        @ref="treeGrid">
+            <IgbColumn
+            Field="Name"
+            Sortable="true"
+            HasSummary="true"
+            Width="200"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+            
+            <IgbColumnGroup
+            Header="General Information">
+                <IgbColumn
+                Field="HireDate"
+                DataType="GridColumnDataType.Date"
+                Sortable="true"
+                HasSummary="true">
+                </IgbColumn>
+                
+                <IgbColumnGroup
+                Header="Personal Details">
+                    <IgbColumn
+                    Field="ID"
+                    DataType="GridColumnDataType.Number"
+                    Filterable="false">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="Title"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    HasSummary="true">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="Age"
+                    DataType="GridColumnDataType.Number"
+                    Sortable="true"
+                    HasSummary="true"
+                    Filterable="false">
+                    </IgbColumn>
+                    
+                </IgbColumnGroup>
+                
+            </IgbColumnGroup>
+            
+            <IgbColumnGroup
+            Header="Address Information">
+                <IgbColumnGroup
+                Header="Location">
+                    <IgbColumn
+                    Field="Country"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    HasSummary="true">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="City"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    HasSummary="true">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="Address"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    HasSummary="true">
+                    </IgbColumn>
+                    
+                </IgbColumnGroup>
+                
+                <IgbColumnGroup
+                Header="Contact Information">
+                    <IgbColumn
+                    Field="Phone"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    HasSummary="true">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="Fax"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    HasSummary="true">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="PostalCode"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    HasSummary="true">
+                    </IgbColumn>
+                    
+                </IgbColumnGroup>
+                
+            </IgbColumnGroup>
+            
+        </IgbTreeGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditor = this.propertyEditor;
+        var displayDensityEditor = this.displayDensityEditor;
+        var treeGrid = this.treeGrid;
+
+        this.BindElements = () => {
+            propertyEditor.Target = this.treeGrid;
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription displayDensityEditor;
+    private IgbTreeGrid treeGrid;
+
+    private EmployeesFlatDetails _employeesFlatDetails = null;
+    public EmployeesFlatDetails EmployeesFlatDetails
+    {
+        get
+        {
+            if (_employeesFlatDetails == null)
+            {
+                _employeesFlatDetails = new EmployeesFlatDetails(); 
+            }
+            return _employeesFlatDetails;
+        }
+    }
+    
+}

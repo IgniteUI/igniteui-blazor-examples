@@ -1,0 +1,143 @@
+@using IgniteUI.Blazor.Controls;
+
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        ForeignKey="ParentID"
+        Id="treeGrid"
+        Data="EmployeesFlatDetails"
+        PrimaryKey="ID"
+        ColumnSelection="GridSelectionMode.Multiple"
+        Name="treeGrid"
+        @ref="treeGrid">
+            <IgbColumn
+            Field="Name"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+            
+            <IgbColumnGroup
+            Header="General Information">
+                <IgbColumn
+                Field="HireDate"
+                DataType="GridColumnDataType.Date"
+                Header="Hire Date">
+                </IgbColumn>
+                
+                <IgbColumnGroup
+                Header="Personal Details">
+                    <IgbColumn
+                    Field="ID"
+                    DataType="GridColumnDataType.Number">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="Title"
+                    DataType="GridColumnDataType.String">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="Age"
+                    DataType="GridColumnDataType.Number"
+                    Selectable="false">
+                    </IgbColumn>
+                    
+                </IgbColumnGroup>
+                
+            </IgbColumnGroup>
+            
+            <IgbColumnGroup
+            Header="Address Information">
+                <IgbColumnGroup
+                Header="Location">
+                    <IgbColumn
+                    Field="Country"
+                    DataType="GridColumnDataType.String"
+                    Selectable="false">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="City"
+                    DataType="GridColumnDataType.String">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="Address"
+                    DataType="GridColumnDataType.String">
+                    </IgbColumn>
+                    
+                </IgbColumnGroup>
+                
+                <IgbColumnGroup
+                Header="Contact Information">
+                    <IgbColumn
+                    Field="Phone"
+                    DataType="GridColumnDataType.String"
+                    Selectable="false">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="Fax"
+                    DataType="GridColumnDataType.String"
+                    Selectable="false">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="PostalCode"
+                    DataType="GridColumnDataType.String"
+                    Header="Postal Code">
+                    </IgbColumn>
+                    
+                </IgbColumnGroup>
+                
+            </IgbColumnGroup>
+            
+        </IgbTreeGrid>
+        
+    </div>
+
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var treeGrid = this.treeGrid;
+
+        this.BindElements = () => {
+        };
+        this.BindElements();
+
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
+
+    private IgbTreeGrid treeGrid;
+
+    private EmployeesFlatDetails _employeesFlatDetails = null;
+    public EmployeesFlatDetails EmployeesFlatDetails
+    {
+        get
+        {
+            if (_employeesFlatDetails == null)
+            {
+                _employeesFlatDetails = new EmployeesFlatDetails(); 
+            }
+            return _employeesFlatDetails;
+        }
+    }
+    
+}
