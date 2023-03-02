@@ -1,27 +1,27 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Global Electricity Demand by Energy Use
     </div>
-    
-	     <div class="legend">
+    <div class="legend">
         <IgbItemLegend
         Orientation="LegendOrientation.Horizontal"
         Name="Legend"
         @ref="legend">
         </IgbItemLegend>
+        
     </div>
-	
+
     <div class="container vertical fill">
         <IgbPieChart
         DataSource="EnergyGlobalDemand"
         ValueMemberPath="Value"
         LabelMemberPath="Summary"
-        LegendLabelMemberPath="Summary"
+        LegendLabelMemberPath="Category"
         LabelsPosition="LabelsPosition.OutsideEnd"
         OthersCategoryThreshold="10"
         OthersCategoryType="OthersCategoryType.Number"
@@ -32,30 +32,34 @@
         Name="chart"
         @ref="chart">
         </IgbPieChart>
+        
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
+    private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var legend = this.legend;
-		var chart = this.chart;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var chart = this.chart;
 
         this.BindElements = () => {
             chart.Legend = this.legend;
         };
         this.BindElements();
+
+
 	}
 
-	private IgbItemLegend legend;
-	private IgbPieChart chart;
-
+    private IgbItemLegend legend;
+    private IgbPieChart chart;
 
     private EnergyGlobalDemand _energyGlobalDemand = null;
     public EnergyGlobalDemand EnergyGlobalDemand

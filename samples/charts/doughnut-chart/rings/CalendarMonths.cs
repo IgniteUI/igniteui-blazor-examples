@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 public class CalendarMonthsItem
 {
-    public double Value{ get; set; }
-    public string Label{ get; set; }
+    public double Value { get; set; }
+    public string Label { get; set; }
 }
+
 public class CalendarMonths
     : List<CalendarMonthsItem>
 {

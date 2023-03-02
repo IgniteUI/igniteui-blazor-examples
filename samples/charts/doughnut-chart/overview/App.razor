@@ -1,14 +1,13 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Market Share of Tech Companies
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbDoughnutChart
         Name="chart"
@@ -22,30 +21,31 @@
             Name="series"
             @ref="series">
             </IgbRingSeries>
+            
         </IgbDoughnutChart>
+        
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var chart = this.chart;
-		var series = this.series;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var chart = this.chart;
+        var series = this.series;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
+
+
 	}
 
-	private IgbDoughnutChart chart;
-	private IgbRingSeries series;
-
+    private IgbDoughnutChart chart;
+    private IgbRingSeries series;
 
     private CompanyMarketShares _companyMarketShares = null;
     public CompanyMarketShares CompanyMarketShares

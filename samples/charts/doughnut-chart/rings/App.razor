@@ -1,14 +1,13 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Hierarchical Chart
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbDoughnutChart
         AllowSliceSelection="false"
@@ -26,6 +25,7 @@
             Name="series1"
             @ref="series1">
             </IgbRingSeries>
+            
             <IgbRingSeries
             Brushes="#3cbdc9 #3cbdc9 #3cbdc9 #9fb328 #9fb328 #9fb328 #f96232 #f96232 #f96232 #8a58d6 #8a58d6 #8a58d6"
             DataSource="CalendarMonths"
@@ -37,32 +37,33 @@
             Name="series2"
             @ref="series2">
             </IgbRingSeries>
+            
         </IgbDoughnutChart>
+        
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var chart = this.chart;
-		var series1 = this.series1;
-		var series2 = this.series2;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var chart = this.chart;
+        var series1 = this.series1;
+        var series2 = this.series2;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
+
+
 	}
 
-	private IgbDoughnutChart chart;
-	private IgbRingSeries series1;
-	private IgbRingSeries series2;
-
+    private IgbDoughnutChart chart;
+    private IgbRingSeries series1;
+    private IgbRingSeries series2;
 
     private CalendarSeasons _calendarSeasons = null;
     public CalendarSeasons CalendarSeasons
