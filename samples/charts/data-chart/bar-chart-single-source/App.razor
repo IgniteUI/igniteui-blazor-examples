@@ -1,14 +1,13 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Where Online Shoppers Start Their Search
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbDataChart
         IsHorizontalZoomEnabled="false"
@@ -26,15 +25,18 @@
             Name="yAxis"
             @ref="yAxis">
             </IgbCategoryYAxis>
+            
             <IgbNumericXAxis
             LabelFormat="{0}%"
             Name="xAxis"
             @ref="xAxis">
             </IgbNumericXAxis>
+            
             <IgbCategoryHighlightLayer
             Name="CategoryHighlightLayer"
             @ref="categoryHighlightLayer">
             </IgbCategoryHighlightLayer>
+            
             <IgbBarSeries
             XAxisName="xAxis"
             YAxisName="yAxis"
@@ -46,42 +48,44 @@
             Name="BarSeries1"
             @ref="barSeries1">
             </IgbBarSeries>
+            
             <IgbDataToolTipLayer
             Name="Tooltips"
             @ref="tooltips">
             </IgbDataToolTipLayer>
+            
         </IgbDataChart>
+        
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var chart = this.chart;
-		var yAxis = this.yAxis;
-		var xAxis = this.xAxis;
-		var categoryHighlightLayer = this.categoryHighlightLayer;
-		var barSeries1 = this.barSeries1;
-		var tooltips = this.tooltips;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var chart = this.chart;
+        var yAxis = this.yAxis;
+        var xAxis = this.xAxis;
+        var categoryHighlightLayer = this.categoryHighlightLayer;
+        var barSeries1 = this.barSeries1;
+        var tooltips = this.tooltips;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
+
+
 	}
 
-	private IgbDataChart chart;
-	private IgbCategoryYAxis yAxis;
-	private IgbNumericXAxis xAxis;
-	private IgbCategoryHighlightLayer categoryHighlightLayer;
-	private IgbBarSeries barSeries1;
-	private IgbDataToolTipLayer tooltips;
-
+    private IgbDataChart chart;
+    private IgbCategoryYAxis yAxis;
+    private IgbNumericXAxis xAxis;
+    private IgbCategoryHighlightLayer categoryHighlightLayer;
+    private IgbBarSeries barSeries1;
+    private IgbDataToolTipLayer tooltips;
 
     private OnlineShoppingSearches _onlineShoppingSearches = null;
     public OnlineShoppingSearches OnlineShoppingSearches

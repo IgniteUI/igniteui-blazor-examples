@@ -28,6 +28,7 @@ namespace Infragistics.Samples
                 typeof(IgbDataChartRadialModule), 
                 typeof(IgbDataChartRadialCoreModule), 
                 typeof(IgbDataChartInteractivityModule), 
+                typeof(IgbDataChartAnnotationModule), 
                 typeof(IgbLegendModule)
             );
 

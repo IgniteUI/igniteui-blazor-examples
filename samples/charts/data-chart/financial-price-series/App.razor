@@ -1,11 +1,10 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
-	
-	
-	
+
     <div class="container vertical fill">
         <IgbDataChart
         IsHorizontalZoomEnabled="true"
@@ -23,11 +22,13 @@
             Name="xAxis"
             @ref="xAxis">
             </IgbCategoryXAxis>
+            
             <IgbNumericYAxis
             LabelLocation="AxisLabelsLocation.OutsideRight"
             Name="yAxis"
             @ref="yAxis">
             </IgbNumericYAxis>
+            
             <IgbFinancialPriceSeries
             DisplayType="PriceDisplayType.Candlestick"
             XAxisName="xAxis"
@@ -43,40 +44,42 @@
             Name="Series1"
             @ref="series1">
             </IgbFinancialPriceSeries>
+            
             <IgbDataToolTipLayer
             Name="Tooltip"
             @ref="tooltip">
             </IgbDataToolTipLayer>
+            
         </IgbDataChart>
+        
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var chart = this.chart;
-		var xAxis = this.xAxis;
-		var yAxis = this.yAxis;
-		var series1 = this.series1;
-		var tooltip = this.tooltip;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var series1 = this.series1;
+        var tooltip = this.tooltip;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
+
+
 	}
 
-	private IgbDataChart chart;
-	private IgbCategoryXAxis xAxis;
-	private IgbNumericYAxis yAxis;
-	private IgbFinancialPriceSeries series1;
-	private IgbDataToolTipLayer tooltip;
-
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbFinancialPriceSeries series1;
+    private IgbDataToolTipLayer tooltip;
 
     private Stock2Years _stock2Years = null;
     public Stock2Years Stock2Years

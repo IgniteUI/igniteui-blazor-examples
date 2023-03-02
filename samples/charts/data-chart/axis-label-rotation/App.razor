@@ -1,9 +1,10 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
-	    <div class="options vertical">
+    <div class="options vertical">
         <IgbPropertyEditorPanel
         
         DescriptionType="DataChart"
@@ -19,22 +20,23 @@
             Name="ShouldConsiderAutoRotationForInitialLabels"
             @ref="shouldConsiderAutoRotationForInitialLabels">
             </IgbPropertyEditorPropertyDescription>
+            
             <IgbPropertyEditorPropertyDescription
             DropDownValues="@(new string[] { "None", "SizeChanging", "SizeChangingAndZoom" })"
             PrimitiveValue="@("SizeChangingAndZoom")"
             PropertyPath="AutoMarginAndAngleUpdateMode"
-            Label="AutoMarginAndAngleUpdateMode:"
+            Label="AutoMarginAndAngleUpdateMode: "
             ValueType="PropertyEditorValueType.EnumValue"
             ShouldOverrideDefaultEditor="true"
             DropDownNames="@(new string[] { "None", "SizeChanging", "SizeChangingAndZoom" })"
             Name="AutoMarginAndAngleUpdateMode"
             @ref="autoMarginAndAngleUpdateMode">
             </IgbPropertyEditorPropertyDescription>
+            
         </IgbPropertyEditorPanel>
+        
     </div>
-	
-	
-	
+
     <div class="container vertical fill">
         <IgbDataChart
         IsHorizontalZoomEnabled="true"
@@ -52,10 +54,12 @@
             Name="xAxis"
             @ref="xAxis">
             </IgbCategoryXAxis>
+            
             <IgbNumericYAxis
             Name="yAxis"
             @ref="yAxis">
             </IgbNumericYAxis>
+            
             <IgbColumnSeries
             XAxisName="xAxis"
             YAxisName="yAxis"
@@ -64,41 +68,46 @@
             Name="colSeries1"
             @ref="colSeries1">
             </IgbColumnSeries>
+            
         </IgbDataChart>
+        
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
+    private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var propertyEditorPanel1 = this.propertyEditorPanel1;
-		var shouldConsiderAutoRotationForInitialLabels = this.shouldConsiderAutoRotationForInitialLabels;
-		var autoMarginAndAngleUpdateMode = this.autoMarginAndAngleUpdateMode;
-		var chart = this.chart;
-		var xAxis = this.xAxis;
-		var yAxis = this.yAxis;
-		var colSeries1 = this.colSeries1;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var shouldConsiderAutoRotationForInitialLabels = this.shouldConsiderAutoRotationForInitialLabels;
+        var autoMarginAndAngleUpdateMode = this.autoMarginAndAngleUpdateMode;
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var colSeries1 = this.colSeries1;
 
         this.BindElements = () => {
             propertyEditorPanel1.Target = this.chart;
         };
         this.BindElements();
+
+
 	}
 
-	private IgbPropertyEditorPanel propertyEditorPanel1;
-	private IgbPropertyEditorPropertyDescription shouldConsiderAutoRotationForInitialLabels;
-	private IgbPropertyEditorPropertyDescription autoMarginAndAngleUpdateMode;
-	private IgbDataChart chart;
-	private IgbCategoryXAxis xAxis;
-	private IgbNumericYAxis yAxis;
-	private IgbColumnSeries colSeries1;
-
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription shouldConsiderAutoRotationForInitialLabels;
+    private IgbPropertyEditorPropertyDescription autoMarginAndAngleUpdateMode;
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbColumnSeries colSeries1;
 
     private TemperatureAverageDataLongLabels _temperatureAverageDataLongLabels = null;
     public TemperatureAverageDataLongLabels TemperatureAverageDataLongLabels

@@ -1,9 +1,19 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
+
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
     <div class="legend-title">
-        Monthly Temperature Range in Los Angeles
+        Monthly Temperature Range in LA and NYC
+    </div>
+    <div class="legend">
+        <IgbLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="Legend"
+        @ref="legend">
+        </IgbLegend>
+        
     </div>
 
     <div class="container vertical fill">
@@ -22,7 +32,7 @@
             
             <IgbNumericYAxis
             Title="Temperature (in Celsius)"
-            TitleAngle="-90"
+            TitleAngle="90"
             TitleLeftMargin="10"
             Name="yAxis"
             @ref="yAxis">
@@ -41,13 +51,13 @@
             </IgbRangeAreaSeries>
             
             <IgbRangeAreaSeries
-            XAxisName="xAxis"
             YAxisName="yAxis"
             Title="New York"
             LowMemberPath="LowNY"
             HighMemberPath="HighNY"
             ShowDefaultTooltip="false"
             DataSource="TemperatureRangeData"
+            XAxisName="xAxis"
             Name="RangeAreaSeries2"
             @ref="rangeAreaSeries2">
             </IgbRangeAreaSeries>
@@ -67,13 +77,13 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
     private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        var legend = this.legend;
         var chart = this.chart;
         var xAxis = this.xAxis;
         var yAxis = this.yAxis;
@@ -82,15 +92,14 @@
         var dataToolTipLayer = this.dataToolTipLayer;
 
         this.BindElements = () => {
+            chart.Legend = this.legend;
         };
         this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
 	}
 
+    private IgbLegend legend;
     private IgbDataChart chart;
     private IgbCategoryXAxis xAxis;
     private IgbNumericYAxis yAxis;

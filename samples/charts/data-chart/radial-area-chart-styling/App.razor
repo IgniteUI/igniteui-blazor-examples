@@ -1,21 +1,21 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Ronaldo vs Messi Player Stats
     </div>
-    
-	     <div class="legend">
+    <div class="legend">
         <IgbLegend
         Orientation="LegendOrientation.Horizontal"
         Name="Legend"
         @ref="legend">
         </IgbLegend>
+        
     </div>
-	
+
     <div class="container vertical fill">
         <IgbDataChart
         IsHorizontalZoomEnabled="false"
@@ -32,6 +32,7 @@
             Name="angleAxis"
             @ref="angleAxis">
             </IgbCategoryAngleAxis>
+            
             <IgbNumericRadiusAxis
             InnerRadiusExtentScale="0.1"
             MinimumValue="0"
@@ -40,6 +41,7 @@
             Name="radiusAxis"
             @ref="radiusAxis">
             </IgbNumericRadiusAxis>
+            
             <IgbRadialAreaSeries
             ValueMemberPath="Ronaldo"
             AngleAxisName="angleAxis"
@@ -53,6 +55,7 @@
             Name="RadialAreaSeries1"
             @ref="radialAreaSeries1">
             </IgbRadialAreaSeries>
+            
             <IgbRadialAreaSeries
             DataSource="FootballPlayerStats"
             AngleAxisName="angleAxis"
@@ -66,39 +69,44 @@
             Name="RadialAreaSeries2"
             @ref="radialAreaSeries2">
             </IgbRadialAreaSeries>
+            
         </IgbDataChart>
+        
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
+    private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var legend = this.legend;
-		var chart = this.chart;
-		var angleAxis = this.angleAxis;
-		var radiusAxis = this.radiusAxis;
-		var radialAreaSeries1 = this.radialAreaSeries1;
-		var radialAreaSeries2 = this.radialAreaSeries2;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var chart = this.chart;
+        var angleAxis = this.angleAxis;
+        var radiusAxis = this.radiusAxis;
+        var radialAreaSeries1 = this.radialAreaSeries1;
+        var radialAreaSeries2 = this.radialAreaSeries2;
 
         this.BindElements = () => {
             chart.Legend = this.legend;
         };
         this.BindElements();
+
+
 	}
 
-	private IgbLegend legend;
-	private IgbDataChart chart;
-	private IgbCategoryAngleAxis angleAxis;
-	private IgbNumericRadiusAxis radiusAxis;
-	private IgbRadialAreaSeries radialAreaSeries1;
-	private IgbRadialAreaSeries radialAreaSeries2;
-
+    private IgbLegend legend;
+    private IgbDataChart chart;
+    private IgbCategoryAngleAxis angleAxis;
+    private IgbNumericRadiusAxis radiusAxis;
+    private IgbRadialAreaSeries radialAreaSeries1;
+    private IgbRadialAreaSeries radialAreaSeries2;
 
     private FootballPlayerStats _footballPlayerStats = null;
     public FootballPlayerStats FootballPlayerStats

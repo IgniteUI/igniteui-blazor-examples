@@ -1,14 +1,13 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Average Temperature Range in New York
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbDataChart
         Name="chart"
@@ -22,14 +21,17 @@
             Name="xAxis"
             @ref="xAxis">
             </IgbCategoryXAxis>
+            
             <IgbNumericYAxis
             Name="yAxis"
             @ref="yAxis">
             </IgbNumericYAxis>
+            
             <IgbCategoryHighlightLayer
             Name="CategoryHighlightLayer"
             @ref="categoryHighlightLayer">
             </IgbCategoryHighlightLayer>
+            
             <IgbColumnSeries
             XAxisName="xAxis"
             YAxisName="yAxis"
@@ -38,42 +40,44 @@
             Name="columnSeries1"
             @ref="columnSeries1">
             </IgbColumnSeries>
+            
             <IgbDataToolTipLayer
             Name="Tooltips"
             @ref="tooltips">
             </IgbDataToolTipLayer>
+            
         </IgbDataChart>
+        
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var chart = this.chart;
-		var xAxis = this.xAxis;
-		var yAxis = this.yAxis;
-		var categoryHighlightLayer = this.categoryHighlightLayer;
-		var columnSeries1 = this.columnSeries1;
-		var tooltips = this.tooltips;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var categoryHighlightLayer = this.categoryHighlightLayer;
+        var columnSeries1 = this.columnSeries1;
+        var tooltips = this.tooltips;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
+
+
 	}
 
-	private IgbDataChart chart;
-	private IgbCategoryXAxis xAxis;
-	private IgbNumericYAxis yAxis;
-	private IgbCategoryHighlightLayer categoryHighlightLayer;
-	private IgbColumnSeries columnSeries1;
-	private IgbDataToolTipLayer tooltips;
-
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbCategoryHighlightLayer categoryHighlightLayer;
+    private IgbColumnSeries columnSeries1;
+    private IgbDataToolTipLayer tooltips;
 
     private TemperatureAverageData _temperatureAverageData = null;
     public TemperatureAverageData TemperatureAverageData

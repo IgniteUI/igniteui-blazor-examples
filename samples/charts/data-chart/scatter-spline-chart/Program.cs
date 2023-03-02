@@ -30,7 +30,7 @@ namespace Infragistics.Samples
                 typeof(IgbDataChartScatterModule), 
                 typeof(IgbDataChartScatterCoreModule), 
                 typeof(IgbDataChartInteractivityModule), 
-                typeof(IgbDataChartInteractivityModule)
+                typeof(IgbDataChartAnnotationModule)
             );
 
             await builder.Build().RunAsync();

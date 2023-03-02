@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 public class CompanyIncomeDataItem
 {
-    public double Costs{ get; set; }
-    public double NetIncome{ get; set; }
-    public string Category{ get; set; }
+    public double Costs { get; set; }
+    public double NetIncome { get; set; }
+    public string Category { get; set; }
 }
+
 public class CompanyIncomeData
     : List<CompanyIncomeDataItem>
 {

@@ -1,5 +1,7 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
+
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
     <div class="legend-title">
@@ -72,10 +74,8 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -86,14 +86,8 @@
         var polarScatterSeries2 = this.polarScatterSeries2;
         var dataToolTipLayer = this.dataToolTipLayer;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
 	}
 
     private IgbDataChart chart;

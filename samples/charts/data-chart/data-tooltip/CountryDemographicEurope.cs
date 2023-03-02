@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 public class CountryDemographicEuropeItem
 {
-    public double Population{ get; set; }
-    public double BirthRate{ get; set; }
-    public double DeathRate{ get; set; }
-    public string Name{ get; set; }
+    public double Population { get; set; }
+    public double BirthRate { get; set; }
+    public double DeathRate { get; set; }
+    public string Name { get; set; }
 }
+
 public class CountryDemographicEurope
     : List<CountryDemographicEuropeItem>
 {

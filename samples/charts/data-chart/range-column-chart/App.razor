@@ -1,5 +1,7 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
+
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
     <div class="legend-title">
@@ -44,20 +46,20 @@
             DataSource="TemperatureRangeData"
             ShowDefaultTooltip="false"
             Title="Los Angeles"
-            Name="series1"
-            @ref="series1">
+            Name="RangeColumnSeries1"
+            @ref="rangeColumnSeries1">
             </IgbRangeColumnSeries>
             
             <IgbRangeColumnSeries
             XAxisName="xAxis"
             YAxisName="yAxis"
-            Title="New York City"
+            Title="New York"
             LowMemberPath="LowNY"
             HighMemberPath="HighNY"
             ShowDefaultTooltip="false"
             DataSource="TemperatureRangeData"
-            Name="series2"
-            @ref="series2">
+            Name="RangeColumnSeries2"
+            @ref="rangeColumnSeries2">
             </IgbRangeColumnSeries>
             
             <IgbDataToolTipLayer
@@ -75,7 +77,6 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
     private Action BindElements { get; set; }
@@ -86,8 +87,8 @@
         var chart = this.chart;
         var xAxis = this.xAxis;
         var yAxis = this.yAxis;
-        var series1 = this.series1;
-        var series2 = this.series2;
+        var rangeColumnSeries1 = this.rangeColumnSeries1;
+        var rangeColumnSeries2 = this.rangeColumnSeries2;
         var dataToolTipLayer = this.dataToolTipLayer;
 
         this.BindElements = () => {
@@ -95,18 +96,15 @@
         };
         this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
 	}
 
     private IgbLegend legend;
     private IgbDataChart chart;
     private IgbCategoryXAxis xAxis;
     private IgbNumericYAxis yAxis;
-    private IgbRangeColumnSeries series1;
-    private IgbRangeColumnSeries series2;
+    private IgbRangeColumnSeries rangeColumnSeries1;
+    private IgbRangeColumnSeries rangeColumnSeries2;
     private IgbDataToolTipLayer dataToolTipLayer;
 
     private TemperatureRangeData _temperatureRangeData = null;

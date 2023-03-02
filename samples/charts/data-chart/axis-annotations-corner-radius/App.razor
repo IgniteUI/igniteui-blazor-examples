@@ -1,14 +1,13 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Renewable Electricity Generated
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbDataChart
         Name="chart"
@@ -19,11 +18,13 @@
             Name="xAxis"
             @ref="xAxis">
             </IgbCategoryXAxis>
+            
             <IgbNumericYAxis
             Title="TWh"
             Name="yAxis"
             @ref="yAxis">
             </IgbNumericYAxis>
+            
             <IgbLineSeries
             XAxisName="xAxis"
             YAxisName="yAxis"
@@ -33,6 +34,7 @@
             Name="LineSeries1"
             @ref="lineSeries1">
             </IgbLineSeries>
+            
             <IgbCalloutLayer
             LabelMemberPath="Label"
             XMemberPath="Index"
@@ -46,6 +48,7 @@
             Name="CalloutLayer1"
             @ref="calloutLayer1">
             </IgbCalloutLayer>
+            
             <IgbFinalValueLayer
             AxisAnnotationBackgroundCornerRadius="10"
             AxisAnnotationPaddingLeft="10"
@@ -55,6 +58,7 @@
             Name="FinalValueLayer"
             @ref="finalValueLayer">
             </IgbFinalValueLayer>
+            
             <IgbCrosshairLayer
             IsAxisAnnotationEnabled="true"
             XAxisAnnotationBackgroundCornerRadius="10"
@@ -63,46 +67,48 @@
             Name="CrosshairLayer"
             @ref="crosshairLayer">
             </IgbCrosshairLayer>
+            
             <IgbDataToolTipLayer
             Name="Tooltips"
             @ref="tooltips">
             </IgbDataToolTipLayer>
+            
         </IgbDataChart>
+        
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var chart = this.chart;
-		var xAxis = this.xAxis;
-		var yAxis = this.yAxis;
-		var lineSeries1 = this.lineSeries1;
-		var calloutLayer1 = this.calloutLayer1;
-		var finalValueLayer = this.finalValueLayer;
-		var crosshairLayer = this.crosshairLayer;
-		var tooltips = this.tooltips;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var lineSeries1 = this.lineSeries1;
+        var calloutLayer1 = this.calloutLayer1;
+        var finalValueLayer = this.finalValueLayer;
+        var crosshairLayer = this.crosshairLayer;
+        var tooltips = this.tooltips;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
+
+
 	}
 
-	private IgbDataChart chart;
-	private IgbCategoryXAxis xAxis;
-	private IgbNumericYAxis yAxis;
-	private IgbLineSeries lineSeries1;
-	private IgbCalloutLayer calloutLayer1;
-	private IgbFinalValueLayer finalValueLayer;
-	private IgbCrosshairLayer crosshairLayer;
-	private IgbDataToolTipLayer tooltips;
-
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbLineSeries lineSeries1;
+    private IgbCalloutLayer calloutLayer1;
+    private IgbFinalValueLayer finalValueLayer;
+    private IgbCrosshairLayer crosshairLayer;
+    private IgbDataToolTipLayer tooltips;
 
     private CountryRenewableElectricity _countryRenewableElectricity = null;
     public CountryRenewableElectricity CountryRenewableElectricity
