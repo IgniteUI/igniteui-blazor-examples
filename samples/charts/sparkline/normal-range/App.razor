@@ -1,9 +1,10 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
-	    <div class="options vertical">
+    <div class="options vertical">
         <IgbPropertyEditorPanel
         
         DescriptionType="Sparkline"
@@ -22,6 +23,7 @@
             Name="NormalRangeVisibilityEditor"
             @ref="normalRangeVisibilityEditor">
             </IgbPropertyEditorPropertyDescription>
+            
             <IgbPropertyEditorPropertyDescription
             DropDownValues="@(new string[] { "0", "10", "15", "20", "25", "30" })"
             PrimitiveValue="25"
@@ -33,6 +35,7 @@
             Name="NormalRangeMinimumEditor"
             @ref="normalRangeMinimumEditor">
             </IgbPropertyEditorPropertyDescription>
+            
             <IgbPropertyEditorPropertyDescription
             DropDownValues="@(new string[] { "0", "10", "15", "20", "25", "30" })"
             PrimitiveValue="25"
@@ -44,11 +47,11 @@
             Name="NormalRangeMaximumEditor"
             @ref="normalRangeMaximumEditor">
             </IgbPropertyEditorPropertyDescription>
+            
         </IgbPropertyEditorPanel>
+        
     </div>
-	
-	
-	
+
     <div class="container vertical fill">
         <IgbSparkline
         NormalRangeVisibility="Visibility.Visible"
@@ -61,36 +64,40 @@
         Name="chart"
         @ref="chart">
         </IgbSparkline>
+        
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
+    private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var propertyEditorPanel1 = this.propertyEditorPanel1;
-		var normalRangeVisibilityEditor = this.normalRangeVisibilityEditor;
-		var normalRangeMinimumEditor = this.normalRangeMinimumEditor;
-		var normalRangeMaximumEditor = this.normalRangeMaximumEditor;
-		var chart = this.chart;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var normalRangeVisibilityEditor = this.normalRangeVisibilityEditor;
+        var normalRangeMinimumEditor = this.normalRangeMinimumEditor;
+        var normalRangeMaximumEditor = this.normalRangeMaximumEditor;
+        var chart = this.chart;
 
         this.BindElements = () => {
             propertyEditorPanel1.Target = this.chart;
         };
         this.BindElements();
+
+
 	}
 
-	private IgbPropertyEditorPanel propertyEditorPanel1;
-	private IgbPropertyEditorPropertyDescription normalRangeVisibilityEditor;
-	private IgbPropertyEditorPropertyDescription normalRangeMinimumEditor;
-	private IgbPropertyEditorPropertyDescription normalRangeMaximumEditor;
-	private IgbSparkline chart;
-
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription normalRangeVisibilityEditor;
+    private IgbPropertyEditorPropertyDescription normalRangeMinimumEditor;
+    private IgbPropertyEditorPropertyDescription normalRangeMaximumEditor;
+    private IgbSparkline chart;
 
     private SparklineMixedData _sparklineMixedData = null;
     public SparklineMixedData SparklineMixedData

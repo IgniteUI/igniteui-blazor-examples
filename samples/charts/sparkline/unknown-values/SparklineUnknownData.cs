@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 public class SparklineUnknownDataItem
 {
-    public double Label{ get; set; }
-    public double Value{ get; set; }
+    public double Label { get; set; }
+    public double Value { get; set; }
 }
+
 public class SparklineUnknownData
     : List<SparklineUnknownDataItem>
 {

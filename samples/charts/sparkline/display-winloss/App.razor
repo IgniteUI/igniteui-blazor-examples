@@ -1,11 +1,10 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
-	
-	
-	
+
     <div class="container vertical fill">
         <IgbSparkline
         DataSource="SparklineMixedData"
@@ -15,27 +14,27 @@
         Name="chart"
         @ref="chart">
         </IgbSparkline>
+        
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var chart = this.chart;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var chart = this.chart;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
+
+
 	}
 
-	private IgbSparkline chart;
-
+    private IgbSparkline chart;
 
     private SparklineMixedData _sparklineMixedData = null;
     public SparklineMixedData SparklineMixedData

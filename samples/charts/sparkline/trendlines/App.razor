@@ -1,9 +1,10 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
-	    <div class="options vertical">
+    <div class="options vertical">
         <IgbPropertyEditorPanel
         
         DescriptionType="Sparkline"
@@ -22,11 +23,11 @@
             Name="TrendLineTypeEditor"
             @ref="trendLineTypeEditor">
             </IgbPropertyEditorPropertyDescription>
+            
         </IgbPropertyEditorPanel>
+        
     </div>
-	
-	
-	
+
     <div class="container vertical fill">
         <IgbSparkline
         DataSource="SparklineMixedData"
@@ -37,32 +38,36 @@
         Name="chart"
         @ref="chart">
         </IgbSparkline>
+        
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
+    private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var propertyEditorPanel1 = this.propertyEditorPanel1;
-		var trendLineTypeEditor = this.trendLineTypeEditor;
-		var chart = this.chart;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var trendLineTypeEditor = this.trendLineTypeEditor;
+        var chart = this.chart;
 
         this.BindElements = () => {
             propertyEditorPanel1.Target = this.chart;
         };
         this.BindElements();
+
+
 	}
 
-	private IgbPropertyEditorPanel propertyEditorPanel1;
-	private IgbPropertyEditorPropertyDescription trendLineTypeEditor;
-	private IgbSparkline chart;
-
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription trendLineTypeEditor;
+    private IgbSparkline chart;
 
     private SparklineMixedData _sparklineMixedData = null;
     public SparklineMixedData SparklineMixedData

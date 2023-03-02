@@ -1,14 +1,13 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Comparing Population of Countries
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbTreemap
         ValueMemberPath="Population"
@@ -37,6 +36,7 @@
             Name="styling1"
             @ref="styling1">
             </IgbTreemapNodeStyleMapping>
+            
             <IgbTreemapNodeStyleMapping
             Value="@("Europe")"
             Fill="#61ab37"
@@ -44,6 +44,7 @@
             Name="styling2"
             @ref="styling2">
             </IgbTreemapNodeStyleMapping>
+            
             <IgbTreemapNodeStyleMapping
             Value="@("Asia")"
             Fill="#8b5bb1"
@@ -51,6 +52,7 @@
             Name="styling3"
             @ref="styling3">
             </IgbTreemapNodeStyleMapping>
+            
             <IgbTreemapNodeStyleMapping
             Value="@("North America")"
             Fill="#5fbaac"
@@ -58,6 +60,7 @@
             Name="styling4"
             @ref="styling4">
             </IgbTreemapNodeStyleMapping>
+            
             <IgbTreemapNodeStyleMapping
             Value="@("South America")"
             Fill="#ee5879"
@@ -65,6 +68,7 @@
             Name="styling5"
             @ref="styling5">
             </IgbTreemapNodeStyleMapping>
+            
             <IgbTreemapNodeStyleMapping
             Value="@("Middle East")"
             Fill="#6db1ff"
@@ -72,6 +76,7 @@
             Name="styling6"
             @ref="styling6">
             </IgbTreemapNodeStyleMapping>
+            
             <IgbTreemapNodeStyleMapping
             Value="@("Central America")"
             Fill="#f7d262"
@@ -79,6 +84,7 @@
             Name="styling7"
             @ref="styling7">
             </IgbTreemapNodeStyleMapping>
+            
             <IgbTreemapNodeStyleMapping
             Value="@("Oceania")"
             Fill="#a8a8b7"
@@ -86,44 +92,45 @@
             Name="styling8"
             @ref="styling8">
             </IgbTreemapNodeStyleMapping>
+            
         </IgbTreemap>
+        
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var treemap = this.treemap;
-		var styling1 = this.styling1;
-		var styling2 = this.styling2;
-		var styling3 = this.styling3;
-		var styling4 = this.styling4;
-		var styling5 = this.styling5;
-		var styling6 = this.styling6;
-		var styling7 = this.styling7;
-		var styling8 = this.styling8;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var treemap = this.treemap;
+        var styling1 = this.styling1;
+        var styling2 = this.styling2;
+        var styling3 = this.styling3;
+        var styling4 = this.styling4;
+        var styling5 = this.styling5;
+        var styling6 = this.styling6;
+        var styling7 = this.styling7;
+        var styling8 = this.styling8;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
+
+
 	}
 
-	private IgbTreemap treemap;
-	private IgbTreemapNodeStyleMapping styling1;
-	private IgbTreemapNodeStyleMapping styling2;
-	private IgbTreemapNodeStyleMapping styling3;
-	private IgbTreemapNodeStyleMapping styling4;
-	private IgbTreemapNodeStyleMapping styling5;
-	private IgbTreemapNodeStyleMapping styling6;
-	private IgbTreemapNodeStyleMapping styling7;
-	private IgbTreemapNodeStyleMapping styling8;
-
+    private IgbTreemap treemap;
+    private IgbTreemapNodeStyleMapping styling1;
+    private IgbTreemapNodeStyleMapping styling2;
+    private IgbTreemapNodeStyleMapping styling3;
+    private IgbTreemapNodeStyleMapping styling4;
+    private IgbTreemapNodeStyleMapping styling5;
+    private IgbTreemapNodeStyleMapping styling6;
+    private IgbTreemapNodeStyleMapping styling7;
+    private IgbTreemapNodeStyleMapping styling8;
 
     private CountyHierarchicalData _countyHierarchicalData = null;
     public CountyHierarchicalData CountyHierarchicalData

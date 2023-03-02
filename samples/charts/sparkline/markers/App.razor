@@ -1,9 +1,10 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
-	    <div class="options vertical">
+    <div class="options vertical">
         <IgbPropertyEditorPanel
         
         DescriptionType="Sparkline"
@@ -22,6 +23,7 @@
             Name="FirstMarkerVisibilityEditor"
             @ref="firstMarkerVisibilityEditor">
             </IgbPropertyEditorPropertyDescription>
+            
             <IgbPropertyEditorPropertyDescription
             DropDownValues="@(new string[] { "Visible", "Collapsed" })"
             PrimitiveValue="@("Visible")"
@@ -32,6 +34,7 @@
             Name="HighMarkerVisibilityEditor"
             @ref="highMarkerVisibilityEditor">
             </IgbPropertyEditorPropertyDescription>
+            
             <IgbPropertyEditorPropertyDescription
             DropDownValues="@(new string[] { "Visible", "Collapsed" })"
             PrimitiveValue="@("Visible")"
@@ -42,6 +45,7 @@
             Name="LowMarkerVisibilityEditor"
             @ref="lowMarkerVisibilityEditor">
             </IgbPropertyEditorPropertyDescription>
+            
             <IgbPropertyEditorPropertyDescription
             DropDownValues="@(new string[] { "Visible", "Collapsed" })"
             PrimitiveValue="@("Visible")"
@@ -52,6 +56,7 @@
             Name="NegativeMarkerVisibilityEditor"
             @ref="negativeMarkerVisibilityEditor">
             </IgbPropertyEditorPropertyDescription>
+            
             <IgbPropertyEditorPropertyDescription
             DropDownValues="@(new string[] { "Visible", "Collapsed" })"
             PrimitiveValue="@("Visible")"
@@ -62,6 +67,7 @@
             Name="LastMarkerVisibilityEditor"
             @ref="lastMarkerVisibilityEditor">
             </IgbPropertyEditorPropertyDescription>
+            
             <IgbPropertyEditorPropertyDescription
             DropDownValues="@(new string[] { "Visible", "Collapsed" })"
             PrimitiveValue="@("Visible")"
@@ -72,11 +78,11 @@
             Name="MarkerVisibilityEditor"
             @ref="markerVisibilityEditor">
             </IgbPropertyEditorPropertyDescription>
+            
         </IgbPropertyEditorPanel>
+        
     </div>
-	
-	
-	
+
     <div class="container vertical fill">
         <IgbSparkline
         MarkerVisibility="Visibility.Visible"
@@ -100,42 +106,46 @@
         Name="chart"
         @ref="chart">
         </IgbSparkline>
+        
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
+    private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var propertyEditorPanel1 = this.propertyEditorPanel1;
-		var firstMarkerVisibilityEditor = this.firstMarkerVisibilityEditor;
-		var highMarkerVisibilityEditor = this.highMarkerVisibilityEditor;
-		var lowMarkerVisibilityEditor = this.lowMarkerVisibilityEditor;
-		var negativeMarkerVisibilityEditor = this.negativeMarkerVisibilityEditor;
-		var lastMarkerVisibilityEditor = this.lastMarkerVisibilityEditor;
-		var markerVisibilityEditor = this.markerVisibilityEditor;
-		var chart = this.chart;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var firstMarkerVisibilityEditor = this.firstMarkerVisibilityEditor;
+        var highMarkerVisibilityEditor = this.highMarkerVisibilityEditor;
+        var lowMarkerVisibilityEditor = this.lowMarkerVisibilityEditor;
+        var negativeMarkerVisibilityEditor = this.negativeMarkerVisibilityEditor;
+        var lastMarkerVisibilityEditor = this.lastMarkerVisibilityEditor;
+        var markerVisibilityEditor = this.markerVisibilityEditor;
+        var chart = this.chart;
 
         this.BindElements = () => {
             propertyEditorPanel1.Target = this.chart;
         };
         this.BindElements();
+
+
 	}
 
-	private IgbPropertyEditorPanel propertyEditorPanel1;
-	private IgbPropertyEditorPropertyDescription firstMarkerVisibilityEditor;
-	private IgbPropertyEditorPropertyDescription highMarkerVisibilityEditor;
-	private IgbPropertyEditorPropertyDescription lowMarkerVisibilityEditor;
-	private IgbPropertyEditorPropertyDescription negativeMarkerVisibilityEditor;
-	private IgbPropertyEditorPropertyDescription lastMarkerVisibilityEditor;
-	private IgbPropertyEditorPropertyDescription markerVisibilityEditor;
-	private IgbSparkline chart;
-
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription firstMarkerVisibilityEditor;
+    private IgbPropertyEditorPropertyDescription highMarkerVisibilityEditor;
+    private IgbPropertyEditorPropertyDescription lowMarkerVisibilityEditor;
+    private IgbPropertyEditorPropertyDescription negativeMarkerVisibilityEditor;
+    private IgbPropertyEditorPropertyDescription lastMarkerVisibilityEditor;
+    private IgbPropertyEditorPropertyDescription markerVisibilityEditor;
+    private IgbSparkline chart;
 
     private SparklineProfitData _sparklineProfitData = null;
     public SparklineProfitData SparklineProfitData
