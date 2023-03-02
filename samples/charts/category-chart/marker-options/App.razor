@@ -1,9 +1,13 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
+@using IgniteUI.Blazor.Controls;
+@using System;
+@using System.Linq;
 
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
-	    <div class="options vertical">
+    <div class="options vertical">
         <IgbPropertyEditorPanel
         
         DescriptionType="CategoryChart"
@@ -18,6 +22,7 @@
             Name="ChartTypeEditor"
             @ref="chartTypeEditor">
             </IgbPropertyEditorPropertyDescription>
+            
             <IgbPropertyEditorPropertyDescription
             DropDownNames="@(new string[] { "Circle", "Automatic", "Triangle", "Pyramid", "Square", "Diamond", "Pentagon", "Hexagon", "Tetragram", "Pentagram", "Hexagram", "None" })"
             PrimitiveValue="@("Circle")"
@@ -30,14 +35,14 @@
             Name="MarkerTypeEditor"
             @ref="markerTypeEditor">
             </IgbPropertyEditorPropertyDescription>
+            
         </IgbPropertyEditorPanel>
+        
     </div>
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Renewable Electricity Generated
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbCategoryChart
         ChartType="CategoryChartType.Line"
@@ -47,48 +52,50 @@
         Name="chart"
         @ref="chart">
         </IgbCategoryChart>
+        
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
+    private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var propertyEditor = this.propertyEditor;
-		var chartTypeEditor = this.chartTypeEditor;
-		var markerTypeEditor = this.markerTypeEditor;
-		var chart = this.chart;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditor = this.propertyEditor;
+        var chartTypeEditor = this.chartTypeEditor;
+        var markerTypeEditor = this.markerTypeEditor;
+        var chart = this.chart;
 
         this.BindElements = () => {
             propertyEditor.Target = this.chart;
         };
         this.BindElements();
+
+
 	}
 
-	private IgbPropertyEditorPanel propertyEditor;
-	private IgbPropertyEditorPropertyDescription chartTypeEditor;
-	private IgbPropertyEditorPropertyDescription markerTypeEditor;
-	private IgbCategoryChart chart;
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription chartTypeEditor;
+    private IgbPropertyEditorPropertyDescription markerTypeEditor;
+    private IgbCategoryChart chart;
 
     
     public void EditorChangeUpdateMarkerType(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
     {
         //TODO: need access to sender
-        var item = this.markerTypeEditor;
-        var value = (string)item.PrimitiveValue;
-        var chart = this.chart;
+        var item = this.chart;
     
         var markerVal = (MarkerType)Enum.Parse(typeof(MarkerType), value);
         chart.MarkerTypes.Clear();
         chart.MarkerTypes.Add(markerVal);
     }
         
-
     private CountryRenewableElectricity _countryRenewableElectricity = null;
     public CountryRenewableElectricity CountryRenewableElectricity
     {

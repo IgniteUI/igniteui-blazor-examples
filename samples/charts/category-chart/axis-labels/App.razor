@@ -1,9 +1,10 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
-	    <div class="options vertical">
+    <div class="options vertical">
         <IgbPropertyEditorPanel
         
         DescriptionType="CategoryChart"
@@ -22,6 +23,7 @@
             Name="XAxisLabelAngleEditor"
             @ref="xAxisLabelAngleEditor">
             </IgbPropertyEditorPropertyDescription>
+            
             <IgbPropertyEditorPropertyDescription
             DropDownValues="@(new string[] { "-90", "-45", "0", "45", "90" })"
             PrimitiveValue="0"
@@ -33,6 +35,7 @@
             Name="YAxisLabelAngleEditor"
             @ref="yAxisLabelAngleEditor">
             </IgbPropertyEditorPropertyDescription>
+            
             <IgbPropertyEditorPropertyDescription
             DropDownValues="@(new string[] { "red", "green" })"
             PrimitiveValue="@("red")"
@@ -44,21 +47,22 @@
             Name="XAxisLabelTextColorEditor"
             @ref="xAxisLabelTextColorEditor">
             </IgbPropertyEditorPropertyDescription>
+            
         </IgbPropertyEditorPanel>
+        
     </div>
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Renewable Electricity Generated
     </div>
-    
-	     <div class="legend">
+    <div class="legend">
         <IgbLegend
         Orientation="LegendOrientation.Horizontal"
         Name="Legend"
         @ref="legend">
         </IgbLegend>
+        
     </div>
-	
+
     <div class="container vertical fill">
         <IgbCategoryChart
         ChartType="CategoryChartType.Line"
@@ -81,39 +85,43 @@
         Name="chart"
         @ref="chart">
         </IgbCategoryChart>
+        
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
+    private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var legend = this.legend;
-		var propertyEditorPanel1 = this.propertyEditorPanel1;
-		var xAxisLabelAngleEditor = this.xAxisLabelAngleEditor;
-		var yAxisLabelAngleEditor = this.yAxisLabelAngleEditor;
-		var xAxisLabelTextColorEditor = this.xAxisLabelTextColorEditor;
-		var chart = this.chart;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var xAxisLabelAngleEditor = this.xAxisLabelAngleEditor;
+        var yAxisLabelAngleEditor = this.yAxisLabelAngleEditor;
+        var xAxisLabelTextColorEditor = this.xAxisLabelTextColorEditor;
+        var chart = this.chart;
 
         this.BindElements = () => {
             propertyEditorPanel1.Target = this.chart;
             chart.Legend = this.legend;
         };
         this.BindElements();
+
+
 	}
 
-	private IgbLegend legend;
-	private IgbPropertyEditorPanel propertyEditorPanel1;
-	private IgbPropertyEditorPropertyDescription xAxisLabelAngleEditor;
-	private IgbPropertyEditorPropertyDescription yAxisLabelAngleEditor;
-	private IgbPropertyEditorPropertyDescription xAxisLabelTextColorEditor;
-	private IgbCategoryChart chart;
-
+    private IgbLegend legend;
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription xAxisLabelAngleEditor;
+    private IgbPropertyEditorPropertyDescription yAxisLabelAngleEditor;
+    private IgbPropertyEditorPropertyDescription xAxisLabelTextColorEditor;
+    private IgbCategoryChart chart;
 
     private CountryRenewableElectricity _countryRenewableElectricity = null;
     public CountryRenewableElectricity CountryRenewableElectricity

@@ -1,11 +1,12 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
-	    <div class="options vertical">
+    <div class="options vertical">
         <IgbPropertyEditorPanel
-
+        
         DescriptionType="CategoryChart"
         IsHorizontal="true"
         IsWrappingEnabled="true"
@@ -13,41 +14,44 @@
         @ref="propertyEditor">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="CrosshairsDisplayMode"
-            Label="Crosshairs:"
+            Label="Crosshairs: "
             PrimitiveValue="@("Both")"
             Name="CrosshairsDisplayModeEditor"
             @ref="crosshairsDisplayModeEditor">
             </IgbPropertyEditorPropertyDescription>
+            
             <IgbPropertyEditorPropertyDescription
             PropertyPath="HighlightingMode"
-            Label="Highlighting:"
+            Label="Highlighting: "
             PrimitiveValue="@("BrightenSpecific")"
             Name="HighlightingModeEditor"
             @ref="highlightingModeEditor">
             </IgbPropertyEditorPropertyDescription>
+            
             <IgbPropertyEditorPropertyDescription
             PropertyPath="CalloutsVisible"
-            Label="Callouts:"
+            Label="Callouts: "
             PrimitiveValue="true"
             ShouldOverrideDefaultEditor="true"
             Name="CalloutsVisibleEditor"
             @ref="calloutsVisibleEditor">
             </IgbPropertyEditorPropertyDescription>
+            
             <IgbPropertyEditorPropertyDescription
             PropertyPath="FinalValueAnnotationsVisible"
-            Label="Final Value:"
+            Label="Final Value: "
             PrimitiveValue="true"
             ShouldOverrideDefaultEditor="true"
             Name="FinalValueAnnotationsEditor"
             @ref="finalValueAnnotationsEditor">
             </IgbPropertyEditorPropertyDescription>
+            
         </IgbPropertyEditorPanel>
+        
     </div>
-
-	    <div class="legend-title">
+    <div class="legend-title">
         Average Temperature in Sedney
     </div>
-
 
     <div class="container vertical fill">
         <IgbCategoryChart
@@ -77,38 +81,42 @@
         Name="chart"
         @ref="chart">
         </IgbCategoryChart>
+        
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
+    private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var propertyEditor = this.propertyEditor;
-		var crosshairsDisplayModeEditor = this.crosshairsDisplayModeEditor;
-		var highlightingModeEditor = this.highlightingModeEditor;
-		var calloutsVisibleEditor = this.calloutsVisibleEditor;
-		var finalValueAnnotationsEditor = this.finalValueAnnotationsEditor;
-		var chart = this.chart;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditor = this.propertyEditor;
+        var crosshairsDisplayModeEditor = this.crosshairsDisplayModeEditor;
+        var highlightingModeEditor = this.highlightingModeEditor;
+        var calloutsVisibleEditor = this.calloutsVisibleEditor;
+        var finalValueAnnotationsEditor = this.finalValueAnnotationsEditor;
+        var chart = this.chart;
 
         this.BindElements = () => {
             propertyEditor.Target = this.chart;
         };
         this.BindElements();
+
+
 	}
 
-	private IgbPropertyEditorPanel propertyEditor;
-	private IgbPropertyEditorPropertyDescription crosshairsDisplayModeEditor;
-	private IgbPropertyEditorPropertyDescription highlightingModeEditor;
-	private IgbPropertyEditorPropertyDescription calloutsVisibleEditor;
-	private IgbPropertyEditorPropertyDescription finalValueAnnotationsEditor;
-	private IgbCategoryChart chart;
-
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription crosshairsDisplayModeEditor;
+    private IgbPropertyEditorPropertyDescription highlightingModeEditor;
+    private IgbPropertyEditorPropertyDescription calloutsVisibleEditor;
+    private IgbPropertyEditorPropertyDescription finalValueAnnotationsEditor;
+    private IgbCategoryChart chart;
 
     private TemperatureAnnotatedData _temperatureAnnotatedData = null;
     public TemperatureAnnotatedData TemperatureAnnotatedData
@@ -117,10 +125,10 @@
         {
             if (_temperatureAnnotatedData == null)
             {
-                _temperatureAnnotatedData = new TemperatureAnnotatedData();
+                _temperatureAnnotatedData = new TemperatureAnnotatedData(); 
             }
             return _temperatureAnnotatedData;
         }
     }
-
+    
 }

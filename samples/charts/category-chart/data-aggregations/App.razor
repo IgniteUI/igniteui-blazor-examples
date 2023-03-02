@@ -4,6 +4,41 @@
 @inject IJSRuntime JS
 
 <div class="container vertical">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="CategoryChart"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="InitialGroups"
+            Label="Initial Groups"
+            ValueType="PropertyEditorValueType.StringValue"
+            Name="InitialGroups"
+            @ref="initialGroups">
+            </IgbPropertyEditorPropertyDescription>
+            
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="InitialSummaries"
+            Label="Initial Summaries"
+            ValueType="PropertyEditorValueType.StringValue"
+            Name="InitialSummaries"
+            @ref="initialSummaries">
+            </IgbPropertyEditorPropertyDescription>
+            
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="GroupSorts"
+            Label="Sort Groups"
+            ValueType="PropertyEditorValueType.StringValue"
+            Name="GroupSorts"
+            @ref="groupSorts">
+            </IgbPropertyEditorPropertyDescription>
+            
+        </IgbPropertyEditorPanel>
+        
+    </div>
     <div class="legend-title">
         Renewable Electricity Generated
     </div>
@@ -14,7 +49,7 @@
         GroupSorts="Sales Desc"
         InitialGroups="Country"
         InitialSummaries="Sum(Sales) as Sales"
-        DataSource="AggregateSalesData"
+        DataSource="SalesData"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
         CrosshairsDisplayMode="CrosshairsDisplayMode.None"
@@ -30,37 +65,42 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
     private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var initialGroups = this.initialGroups;
+        var initialSummaries = this.initialSummaries;
+        var groupSorts = this.groupSorts;
         var chart = this.chart;
 
         this.BindElements = () => {
+            propertyEditorPanel1.Target = this.chart;
         };
         this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
 	}
 
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription initialGroups;
+    private IgbPropertyEditorPropertyDescription initialSummaries;
+    private IgbPropertyEditorPropertyDescription groupSorts;
     private IgbCategoryChart chart;
 
-    private AggregateSalesData _AggregateSalesData = null;
-    public AggregateSalesData AggregateSalesData
+    private SalesData _salesData = null;
+    public SalesData SalesData
     {
         get
         {
-            if (_AggregateSalesData == null)
+            if (_salesData == null)
             {
-                _AggregateSalesData = new AggregateSalesData(); 
+                _salesData = new SalesData(); 
             }
-            return _AggregateSalesData;
+            return _salesData;
         }
     }
     

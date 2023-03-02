@@ -1,9 +1,10 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
 @inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
 
 <div class="container vertical">
-	    <div class="options vertical">
+    <div class="options vertical">
         <IgbPropertyEditorPanel
         
         DescriptionType="CategoryChart"
@@ -13,26 +14,27 @@
         @ref="propertyEditor">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="HighlightingMode"
-            Label="Highlighting Mode:"
+            Label="Highlighting Mode: "
             PrimitiveValue="@("FadeOthersSpecific")"
             Name="HighlightingModeEditor"
             @ref="highlightingModeEditor">
             </IgbPropertyEditorPropertyDescription>
+            
             <IgbPropertyEditorPropertyDescription
             PropertyPath="HighlightingBehavior"
-            Label="Highlighting Behavior:"
+            Label="Highlighting Behavior: "
             PrimitiveValue="@("NearestItemsAndSeries")"
             Name="HighlightingBehaviorEditor"
             @ref="highlightingBehaviorEditor">
             </IgbPropertyEditorPropertyDescription>
+            
         </IgbPropertyEditorPanel>
+        
     </div>
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Average Temperature in Sedney
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbCategoryChart
         ChartType="CategoryChartType.Column"
@@ -50,34 +52,38 @@
         Name="chart"
         @ref="chart">
         </IgbCategoryChart>
+        
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
+    private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var propertyEditor = this.propertyEditor;
-		var highlightingModeEditor = this.highlightingModeEditor;
-		var highlightingBehaviorEditor = this.highlightingBehaviorEditor;
-		var chart = this.chart;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditor = this.propertyEditor;
+        var highlightingModeEditor = this.highlightingModeEditor;
+        var highlightingBehaviorEditor = this.highlightingBehaviorEditor;
+        var chart = this.chart;
 
         this.BindElements = () => {
             propertyEditor.Target = this.chart;
         };
         this.BindElements();
+
+
 	}
 
-	private IgbPropertyEditorPanel propertyEditor;
-	private IgbPropertyEditorPropertyDescription highlightingModeEditor;
-	private IgbPropertyEditorPropertyDescription highlightingBehaviorEditor;
-	private IgbCategoryChart chart;
-
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription highlightingModeEditor;
+    private IgbPropertyEditorPropertyDescription highlightingBehaviorEditor;
+    private IgbCategoryChart chart;
 
     private TemperatureAnnotatedData _temperatureAnnotatedData = null;
     public TemperatureAnnotatedData TemperatureAnnotatedData
