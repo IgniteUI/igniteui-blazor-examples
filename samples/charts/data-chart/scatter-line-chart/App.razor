@@ -1,6 +1,5 @@
 @using IgniteUI.Blazor.Controls
 
-
 <div class="container vertical">
     <div class="legend-title">
         Life Expectancy vs Health Expenditure
@@ -52,14 +51,14 @@
             </IgbScatterLineSeries>
 
             <IgbScatterLineSeries
-            Title="France"
             XAxisName="xAxis"
             YAxisName="yAxis"
             XMemberPath="LifeExpectancy"
             YMemberPath="HealthExpense"
-            DataSource="HealthDataForFrance"
             MarkerType="MarkerType.Circle"
+            DataSource="HealthDataForFrance"
             ShowDefaultTooltip="true"
+            Title="France"
             Name="ScatterLineSeries2"
             @ref="scatterLineSeries2">
             </IgbScatterLineSeries>
@@ -72,14 +71,9 @@
         </IgbDataChart>
 
     </div>
-
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-    }
 
     private Action BindElements { get; set; }
 
@@ -97,7 +91,6 @@
             chart.Legend = this.legend;
         };
         this.BindElements();
-
 
     }
 

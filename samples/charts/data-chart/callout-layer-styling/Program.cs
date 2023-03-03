@@ -24,10 +24,10 @@ namespace Infragistics.Samples
 
             // registering Infragistics Blazor
             builder.Services.AddIgniteUIBlazor(
-                typeof(IgbDataChartCoreModule), 
-                typeof(IgbDataChartCategoryModule), 
-                typeof(IgbDataChartAnnotationModule), 
-                typeof(IgbDataChartInteractivityModule), 
+                typeof(IgbDataChartCoreModule),
+                typeof(IgbDataChartCategoryModule),
+                typeof(IgbDataChartAnnotationModule),
+                typeof(IgbDataChartInteractivityModule),
                 typeof(IgbAnnotationLayerProxyModule)
             );
 

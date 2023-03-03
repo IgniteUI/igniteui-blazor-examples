@@ -1,6 +1,5 @@
 @using IgniteUI.Blazor.Controls
 
-
 <div class="container vertical">
     <div class="legend-title">
         Roadblocks Critical to Success of the Data & Analytics Team
@@ -70,12 +69,12 @@
             <IgbBarSeries
             XAxisName="xAxis"
             YAxisName="yAxis2"
-            ValueMemberPath="FirstChoice"
-            IsTransitionInEnabled="true"
-            DataSource="RoadblocksToSuccess"
-            IsHighlightingEnabled="true"
-            ShowDefaultTooltip="true"
             Title="Top Choice"
+            ValueMemberPath="FirstChoice"
+            DataSource="RoadblocksToSuccess"
+            ShowDefaultTooltip="true"
+            IsTransitionInEnabled="true"
+            IsHighlightingEnabled="true"
             Name="BarSeries2"
             @ref="barSeries2">
             </IgbBarSeries>
@@ -97,17 +96,17 @@
             </IgbCalloutLayer>
 
             <IgbCalloutLayer
-            LabelMemberPath="TopChoicesLabel"
-            XMemberPath="TopChoices"
+            DataSource="RoadblocksToSuccess"
             YMemberPath="Index"
-            CalloutTextColor="black"
-            CalloutBackground="#00000000"
-            CalloutOutline="#00000000"
+            XMemberPath="TopChoices"
+            LabelMemberPath="TopChoicesLabel"
             CalloutLeaderBrush="#00000000"
+            CalloutOutline="#00000000"
+            CalloutBackground="#00000000"
+            CalloutTextColor="black"
+            CalloutStrokeThickness="2"
             CalloutPaddingTop="0"
             CalloutPositionPadding="0"
-            CalloutStrokeThickness="2"
-            DataSource="RoadblocksToSuccess"
             Name="CalloutLayer2"
             @ref="calloutLayer2">
             </IgbCalloutLayer>
@@ -120,14 +119,9 @@
         </IgbDataChart>
 
     </div>
-
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-    }
 
     private Action BindElements { get; set; }
 
@@ -149,7 +143,6 @@
             chart.Legend = this.legend;
         };
         this.BindElements();
-
 
     }
 

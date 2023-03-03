@@ -1,6 +1,5 @@
 @using IgniteUI.Blazor.Controls
 
-
 <div class="container vertical">
 
     <div class="container vertical fill">
@@ -21,26 +20,26 @@
                 Name="Employees"
                 @ref="employees">
                 </IgbGridToolbarTitle>
-                
+
                 <IgbGridToolbarActions
                 >
                     <IgbGridToolbarHiding
                     >
                     </IgbGridToolbarHiding>
-                    
+
                     <IgbGridToolbarPinning
                     >
                     </IgbGridToolbarPinning>
-                    
+
                     <IgbGridToolbarExporter
                     ExportCSV="true"
                     ExportExcel="true">
                     </IgbGridToolbarExporter>
-                    
+
                 </IgbGridToolbarActions>
-                
+
             </IgbGridToolbar>
-            
+
             <IgbColumn
             Field="ID"
             Header="ID"
@@ -50,7 +49,7 @@
             HasSummary="true"
             DataType="GridColumnDataType.Number">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Name"
             Header="Name"
@@ -60,7 +59,7 @@
             Resizable="true"
             HasSummary="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="HireDate"
             Header="Hire Date"
@@ -69,7 +68,7 @@
             Editable="true"
             Resizable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Age"
             Header="Age"
@@ -78,7 +77,7 @@
             Editable="true"
             Resizable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Salary"
             Header="Salary"
@@ -87,7 +86,7 @@
             Editable="true"
             Resizable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Productivity"
             Header="Productivity"
@@ -96,20 +95,18 @@
             Editable="true"
             Resizable="true">
             </IgbColumn>
-            
+
         </IgbTreeGrid>
-        
+
     </div>
 </div>
 
 @code {
 
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var treeGrid = this.treeGrid;
         var employees = this.employees;
-
 
     }
 
@@ -123,10 +120,10 @@
         {
             if (_employeesNestedData == null)
             {
-                _employeesNestedData = new EmployeesNestedData(); 
+                _employeesNestedData = new EmployeesNestedData();
             }
             return _employeesNestedData;
         }
     }
-    
+
 }

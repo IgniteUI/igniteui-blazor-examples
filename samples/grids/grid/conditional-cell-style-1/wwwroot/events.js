@@ -12,7 +12,6 @@ igRegisterScript("WebGridBeatsPerMinuteTemplate", (ctx) => {
     }
 }, false);
 
-
 igRegisterScript("WebGridTopSpeedTemplate", (ctx) => {
     var html = window.igTemplating.html;
 
@@ -26,12 +25,10 @@ igRegisterScript("WebGridTopSpeedTemplate", (ctx) => {
     }
 }, false);
 
-
 igRegisterScript("WebGridImageCellTemplate", (ctx) => {
     var html = window.igTemplating.html;
     return html`<div>
     <img src="${ctx.cell.value}"/>
  </div>`;
 }, false);
-
 

@@ -1,6 +1,5 @@
 @using IgniteUI.Blazor.Controls
 
-
 <div class="container vertical">
     <div class="legend-title">
         Distribution of Online Traffic Worldwide, by Device
@@ -52,15 +51,15 @@
                 <IgbStackedFragmentSeries
                 Name="s2"
                 @ref="s2"
-                ValueMemberPath="Mobile"
-                Title="@("Mobile")">
+                Title="@("Mobile")"
+                ValueMemberPath="Mobile">
                 </IgbStackedFragmentSeries>
 
                 <IgbStackedFragmentSeries
                 Name="s3"
                 @ref="s3"
-                ValueMemberPath="Tablet"
-                Title="@("Tablet")">
+                Title="@("Tablet")"
+                ValueMemberPath="Tablet">
                 </IgbStackedFragmentSeries>
 
             </IgbStacked100ColumnSeries>
@@ -73,14 +72,9 @@
         </IgbDataChart>
 
     </div>
-
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-    }
 
     private Action BindElements { get; set; }
 
@@ -100,7 +94,6 @@
             chart.Legend = this.legend;
         };
         this.BindElements();
-
 
     }
 

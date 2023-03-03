@@ -13,4 +13,3 @@ igRegisterScript("WebGridPinHeaderTemplate", (ctx) => {
 </div>`;
 }, false);
 
-

@@ -6,12 +6,10 @@ igRegisterScript("WebGridProgressCellTemplate", (ctx) => {
  </div>`;
 }, false);
 
-
 igRegisterScript("WebGridImageCellTemplate", (ctx) => {
     var html = window.igTemplating.html;
     return html`<div>
     <img src="${ctx.cell.value}"/>
  </div>`;
 }, false);
-
 

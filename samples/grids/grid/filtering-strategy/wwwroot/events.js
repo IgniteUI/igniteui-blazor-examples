@@ -8,4 +8,3 @@ igRegisterScript("WebGridBooleanCellTemplate", (ctx) => {
     }
 }, false);
 
-

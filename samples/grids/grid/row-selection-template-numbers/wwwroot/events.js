@@ -6,7 +6,6 @@ igRegisterScript("WebGridHeaderRowSelectorTemplate", (ctx) => {
 </div>`;
 }, false);
 
-
 igRegisterScript("WebGridRowSelectorTemplate", (ctx) => {
     var html = window.igTemplating.html;
     if (ctx.$implicit.selected) {
@@ -21,5 +20,4 @@ igRegisterScript("WebGridRowSelectorTemplate", (ctx) => {
 </div>`;
     }
 }, false);
-
 

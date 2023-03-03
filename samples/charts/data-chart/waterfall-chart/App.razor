@@ -1,6 +1,5 @@
 @using IgniteUI.Blazor.Controls
 
-
 <div class="container vertical">
     <div class="legend-title">
         Facebook Consolidated Statements of Income
@@ -44,15 +43,15 @@
             </IgbWaterfallSeries>
 
             <IgbWaterfallSeries
-            Title="Value"
             XAxisName="xAxis"
             YAxisName="yAxis"
-            DataSource="CompanyIncomeData"
             ValueMemberPath="NetIncome"
-            ShowDefaultTooltip="true"
             IsTransitionInEnabled="true"
+            DataSource="CompanyIncomeData"
             Brush="#7446b9"
             Outline="#7446b9"
+            ShowDefaultTooltip="true"
+            Title="Value"
             Name="WaterfallSeries2"
             @ref="waterfallSeries2">
             </IgbWaterfallSeries>
@@ -60,15 +59,9 @@
         </IgbDataChart>
 
     </div>
-
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-    }
-
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -77,8 +70,6 @@
         var yAxis = this.yAxis;
         var waterfallSeries1 = this.waterfallSeries1;
         var waterfallSeries2 = this.waterfallSeries2;
-
-
 
     }
 

@@ -1,8 +1,7 @@
 @using IgniteUI.Blazor.Controls
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 @using System;
 @using System.Linq;
-
 
 <div class="container vertical">
     <div class="options vertical">
@@ -52,14 +51,9 @@
         </IgbCategoryChart>
 
     </div>
-
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-    }
 
     private Action BindElements { get; set; }
 
@@ -75,14 +69,12 @@
         };
         this.BindElements();
 
-
     }
 
     private IgbPropertyEditorPanel propertyEditor;
     private IgbPropertyEditorPropertyDescription chartTypeEditor;
     private IgbPropertyEditorPropertyDescription markerTypeEditor;
     private IgbCategoryChart chart;
-
 
     public void EditorChangeUpdateMarkerType(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
     {

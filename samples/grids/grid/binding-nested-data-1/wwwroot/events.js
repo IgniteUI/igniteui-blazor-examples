@@ -28,4 +28,3 @@ igRegisterScript("WebGridNestedDataCellTemplate", (ctx) => {
     }
 }, false);
 
-

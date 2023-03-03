@@ -13,7 +13,6 @@ igRegisterScript("WebGridPinHeaderTemplate", (ctx) => {
 </div>`;
 }, false);
 
-
 igRegisterScript("WebGridCurrencyCellTemplate", (ctx) => {
     var html = window.igTemplating.html;
     if (ctx.cell.value > 0) {
@@ -28,5 +27,4 @@ igRegisterScript("WebGridCurrencyCellTemplate", (ctx) => {
         </div>`;
     }
 }, false);
-
 

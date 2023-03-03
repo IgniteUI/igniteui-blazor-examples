@@ -24,9 +24,9 @@ namespace Infragistics.Samples
 
             // registering Infragistics Blazor
             builder.Services.AddIgniteUIBlazor(
-                typeof(IgbInputModule), 
-                typeof(IgbGridModule), 
-                typeof(IgbColumnGroupModule), 
+                typeof(IgbInputModule),
+                typeof(IgbGridModule),
+                typeof(IgbColumnGroupModule),
                 typeof(IgbPropertyEditorPanelModule)
             );
 
