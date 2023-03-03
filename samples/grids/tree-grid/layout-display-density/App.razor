@@ -1,7 +1,5 @@
-@using IgniteUI.Blazor.Controls;
+@using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-@inject IJSRuntime JS
 
 <div class="container vertical">
     <div class="options vertical">
@@ -133,15 +131,9 @@
         </IgbTreeGrid>
         
     </div>
-
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-        await Task.Delay(1);
-    }
 
     private Action BindElements { get; set; }
 
@@ -156,11 +148,7 @@
         };
         this.BindElements();
 
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbPropertyEditorPanel propertyEditor;
     private IgbPropertyEditorPropertyDescription displayDensityEditor;

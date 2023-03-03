@@ -1,7 +1,5 @@
-@using IgniteUI.Blazor.Controls;
+@using IgniteUI.Blazor.Controls
 
-
-@inject IJSRuntime JS
 
 <div class="container vertical">
 
@@ -23,65 +21,96 @@
                 Name="Employees"
                 @ref="employees">
                 </IgbGridToolbarTitle>
-
+                
                 <IgbGridToolbarActions
                 >
                     <IgbGridToolbarHiding
                     >
                     </IgbGridToolbarHiding>
-
+                    
                     <IgbGridToolbarPinning
                     >
                     </IgbGridToolbarPinning>
-
+                    
                     <IgbGridToolbarExporter
                     ExportCSV="true"
                     ExportExcel="true">
                     </IgbGridToolbarExporter>
-
+                    
                 </IgbGridToolbarActions>
-
+                
             </IgbGridToolbar>
-
+            
             <IgbColumn
-            Field="Name"
+            Field="ID"
+            Header="ID"
             Sortable="true"
             Editable="true"
             Resizable="true"
             HasSummary="true"
-            DataType="GridColumnDataType.String">
+            DataType="GridColumnDataType.Number">
             </IgbColumn>
-
+            
+            <IgbColumn
+            Field="Name"
+            Header="Name"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            Editable="true"
+            Resizable="true"
+            HasSummary="true">
+            </IgbColumn>
+            
             <IgbColumn
             Field="HireDate"
+            Header="Hire Date"
             DataType="GridColumnDataType.Date"
             Sortable="true"
             Editable="true"
             Resizable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Age"
+            Header="Age"
             DataType="GridColumnDataType.Number"
             Sortable="true"
             Editable="true"
             Resizable="true">
             </IgbColumn>
-
+            
+            <IgbColumn
+            Field="Salary"
+            Header="Salary"
+            DataType="GridColumnDataType.Number"
+            Sortable="true"
+            Editable="true"
+            Resizable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Productivity"
+            Header="Productivity"
+            DataType="GridColumnDataType.Number"
+            Sortable="true"
+            Editable="true"
+            Resizable="true">
+            </IgbColumn>
+            
         </IgbTreeGrid>
-
+        
     </div>
-
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var treeGrid = this.treeGrid;
         var employees = this.employees;
+
+
     }
 
     private IgbTreeGrid treeGrid;
@@ -94,10 +123,10 @@
         {
             if (_employeesNestedData == null)
             {
-                _employeesNestedData = new EmployeesNestedData();
+                _employeesNestedData = new EmployeesNestedData(); 
             }
             return _employeesNestedData;
         }
     }
-
+    
 }

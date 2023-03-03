@@ -1,6 +1,5 @@
-@using IgniteUI.Blazor.Controls;
+@using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
 <div class="container vertical">
@@ -112,17 +111,10 @@
         </IgbTreeGrid>
         
     </div>
-
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
 
-        await Task.Delay(1);
-    }
-
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -139,15 +131,8 @@
         var column10 = this.column10;
         var column11 = this.column11;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
 
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbTreeGrid treeGrid;
     private IgbColumn column1;
