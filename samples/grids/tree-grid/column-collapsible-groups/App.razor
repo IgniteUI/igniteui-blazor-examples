@@ -1,0 +1,174 @@
+@using IgniteUI.Blazor.Controls
+
+
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        ForeignKey="ParentID"
+        Id="treeGrid"
+        Data="EmployeesFlatDetails"
+        Moving="true"
+        PrimaryKey="ID"
+        RowSelection="GridSelectionMode.None"
+        DisplayDensity="DisplayDensity.Compact"
+        Name="treeGrid"
+        @ref="treeGrid">
+            <IgbColumnGroup
+            Header="General Information"
+            Pinned="false"
+            Collapsible="true"
+            Expanded="false">
+                <IgbColumn
+                Field="Name"
+                Header="Full Name"
+                Sortable="true"
+                Resizable="true"
+                Width="200"
+                DataType="GridColumnDataType.String"
+                VisibleWhenCollapsed="false">
+                </IgbColumn>
+                
+                <IgbColumn
+                Field="LastName"
+                Header="Last Name"
+                DataType="GridColumnDataType.String"
+                Sortable="true"
+                Resizable="true"
+                Width="200"
+                VisibleWhenCollapsed="true">
+                </IgbColumn>
+                
+                <IgbColumn
+                Field="Title"
+                DataType="GridColumnDataType.String"
+                Sortable="true"
+                Resizable="true"
+                Width="250">
+                </IgbColumn>
+                
+                <IgbColumn
+                Field="ID"
+                DataType="GridColumnDataType.Number"
+                Resizable="true"
+                VisibleWhenCollapsed="false"
+                Filterable="false">
+                </IgbColumn>
+                
+                <IgbColumn
+                Field="HireDate"
+                DataType="GridColumnDataType.Date"
+                Sortable="true"
+                Resizable="true"
+                VisibleWhenCollapsed="false">
+                </IgbColumn>
+                
+                <IgbColumn
+                Field="Age"
+                DataType="GridColumnDataType.Number"
+                Sortable="true"
+                Resizable="true"
+                VisibleWhenCollapsed="false">
+                </IgbColumn>
+                
+            </IgbColumnGroup>
+            
+            <IgbColumnGroup
+            Header="Address Information">
+                <IgbColumnGroup
+                Header="Location"
+                Collapsible="true">
+                    <IgbColumn
+                    Field="FullAddress"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    Resizable="true"
+                    Width="300"
+                    VisibleWhenCollapsed="true">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="Country"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    Resizable="true"
+                    VisibleWhenCollapsed="false">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="City"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    Resizable="true"
+                    VisibleWhenCollapsed="false">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="Address"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    Resizable="true"
+                    VisibleWhenCollapsed="false">
+                    </IgbColumn>
+                    
+                </IgbColumnGroup>
+                
+                <IgbColumnGroup
+                Header="Contact Information">
+                    <IgbColumn
+                    Field="Phone"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="Fax"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+                    
+                    <IgbColumn
+                    Field="PostalCode"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+                    
+                </IgbColumnGroup>
+                
+            </IgbColumnGroup>
+            
+        </IgbTreeGrid>
+        
+    </div>
+</div>
+
+@code {
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var treeGrid = this.treeGrid;
+
+
+    }
+
+    private IgbTreeGrid treeGrid;
+
+    private EmployeesFlatDetails _employeesFlatDetails = null;
+    public EmployeesFlatDetails EmployeesFlatDetails
+    {
+        get
+        {
+            if (_employeesFlatDetails == null)
+            {
+                _employeesFlatDetails = new EmployeesFlatDetails(); 
+            }
+            return _employeesFlatDetails;
+        }
+    }
+    
+}

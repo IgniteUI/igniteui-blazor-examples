@@ -1,0 +1,96 @@
+@using IgniteUI.Blazor.Controls
+
+
+<div class="container vertical">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        
+        DescriptionType="WebTreeGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="PropertyEditor"
+        @ref="propertyEditor">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="ColumnSelection"
+            Label="Column Selection"
+            Name="columnSelectionEditor"
+            @ref="columnSelectionEditor">
+            </IgbPropertyEditorPropertyDescription>
+            
+        </IgbPropertyEditorPanel>
+        
+    </div>
+
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        ForeignKey="ParentID"
+        Id="treeGrid"
+        Data="FoodsData"
+        PrimaryKey="ID"
+        Name="treeGrid"
+        @ref="treeGrid">
+            <IgbColumn
+            Field="ID">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Name">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="UnitPrice"
+            Header="Unit Price"
+            Selectable="false">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="AddedDate"
+            Header="Added Date">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Discontinued"
+            Selectable="false">
+            </IgbColumn>
+            
+        </IgbTreeGrid>
+        
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditor = this.propertyEditor;
+        var columnSelectionEditor = this.columnSelectionEditor;
+        var treeGrid = this.treeGrid;
+
+        this.BindElements = () => {
+            propertyEditor.Target = this.treeGrid;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription columnSelectionEditor;
+    private IgbTreeGrid treeGrid;
+
+    private FoodsData _foodsData = null;
+    public FoodsData FoodsData
+    {
+        get
+        {
+            if (_foodsData == null)
+            {
+                _foodsData = new FoodsData(); 
+            }
+            return _foodsData;
+        }
+    }
+    
+}

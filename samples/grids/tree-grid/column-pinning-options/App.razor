@@ -1,0 +1,108 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        ForeignKey="ParentID"
+        Id="treeGrid"
+        Data="EmployeesFlatData"
+        PrimaryKey="ID"
+        Name="treeGrid"
+        @ref="treeGrid">
+            <IgbColumn
+            Field="Name"
+            DataType="GridColumnDataType.String"
+            Pinned="true"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Title"
+            DataType="GridColumnDataType.String"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Pinned="true"
+            Name="column2"
+            @ref="column2">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Phone"
+            DataType="GridColumnDataType.String"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column3"
+            @ref="column3">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Age"
+            DataType="GridColumnDataType.Number"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column4"
+            @ref="column4">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="HireDate"
+            DataType="GridColumnDataType.Date"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column5"
+            @ref="column5">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="OnPTO"
+            DataType="GridColumnDataType.Boolean"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Name="column6"
+            @ref="column6">
+            </IgbColumn>
+            
+        </IgbTreeGrid>
+        
+    </div>
+</div>
+
+@code {
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var treeGrid = this.treeGrid;
+        var column1 = this.column1;
+        var column2 = this.column2;
+        var column3 = this.column3;
+        var column4 = this.column4;
+        var column5 = this.column5;
+        var column6 = this.column6;
+
+
+    }
+
+    private IgbTreeGrid treeGrid;
+    private IgbColumn column1;
+    private IgbColumn column2;
+    private IgbColumn column3;
+    private IgbColumn column4;
+    private IgbColumn column5;
+    private IgbColumn column6;
+
+    private EmployeesFlatData _employeesFlatData = null;
+    public EmployeesFlatData EmployeesFlatData
+    {
+        get
+        {
+            if (_employeesFlatData == null)
+            {
+                _employeesFlatData = new EmployeesFlatData(); 
+            }
+            return _employeesFlatData;
+        }
+    }
+    
+}
