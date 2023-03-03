@@ -12,7 +12,7 @@
 @using Microsoft.JSInterop.WebAssembly
 @using Infragistics.Documents.Excel
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
 
@@ -79,10 +79,6 @@
 
     protected override void OnInitialized()
     {
-
-        base.OnInitialized();
-        IgbDataGridModule.Register(IgniteUIBlazor);
-        IgbSparklineModule.Register(IgniteUIBlazor);
         Workbook.InProcessRuntime = this.Runtime as IJSInProcessRuntime;
 
         InitData();

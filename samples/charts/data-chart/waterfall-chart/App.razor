@@ -1,14 +1,11 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Facebook Consolidated Statements of Income
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbDataChart
         IsHorizontalZoomEnabled="false"
@@ -23,6 +20,7 @@
             Name="xAxis"
             @ref="xAxis">
             </IgbCategoryXAxis>
+
             <IgbNumericYAxis
             MinimumValue="0"
             MaximumValue="60"
@@ -32,6 +30,7 @@
             Name="yAxis"
             @ref="yAxis">
             </IgbNumericYAxis>
+
             <IgbWaterfallSeries
             XAxisName="xAxis"
             YAxisName="yAxis"
@@ -43,6 +42,7 @@
             Name="WaterfallSeries1"
             @ref="waterfallSeries1">
             </IgbWaterfallSeries>
+
             <IgbWaterfallSeries
             Title="Value"
             XAxisName="xAxis"
@@ -56,36 +56,37 @@
             Name="WaterfallSeries2"
             @ref="waterfallSeries2">
             </IgbWaterfallSeries>
+
         </IgbDataChart>
+
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var chart = this.chart;
-		var xAxis = this.xAxis;
-		var yAxis = this.yAxis;
-		var waterfallSeries1 = this.waterfallSeries1;
-		var waterfallSeries2 = this.waterfallSeries2;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var waterfallSeries1 = this.waterfallSeries1;
+        var waterfallSeries2 = this.waterfallSeries2;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
-	}
 
-	private IgbDataChart chart;
-	private IgbCategoryXAxis xAxis;
-	private IgbNumericYAxis yAxis;
-	private IgbWaterfallSeries waterfallSeries1;
-	private IgbWaterfallSeries waterfallSeries2;
 
+    }
+
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbWaterfallSeries waterfallSeries1;
+    private IgbWaterfallSeries waterfallSeries2;
 
     private CompanyIncomeData _companyIncomeData = null;
     public CompanyIncomeData CompanyIncomeData
@@ -94,10 +95,10 @@
         {
             if (_companyIncomeData == null)
             {
-                _companyIncomeData = new CompanyIncomeData(); 
+                _companyIncomeData = new CompanyIncomeData();
             }
             return _companyIncomeData;
         }
     }
-    
+
 }

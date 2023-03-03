@@ -1,6 +1,5 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
 <div class="container vertical">
@@ -20,45 +19,45 @@
                     <IgbGridToolbarAdvancedFiltering
                     >
                     </IgbGridToolbarAdvancedFiltering>
-                    
+
                     <IgbGridToolbarHiding
                     >
                     </IgbGridToolbarHiding>
-                    
+
                     <IgbGridToolbarPinning
                     >
                     </IgbGridToolbarPinning>
-                    
+
                 </IgbGridToolbarActions>
-                
+
             </IgbGridToolbar>
-            
+
             <IgbColumn
             Field="ProductName"
             Header="Product Name"
             Sortable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="QuantityPerUnit"
             Header="Quantity Per Unit"
             Sortable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="UnitPrice"
             Header="Unit Price"
             Sortable="true"
             DataType="GridColumnDataType.Currency">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="OrderDate"
             Header="Order Date"
             Sortable="true"
             DataType="GridColumnDataType.Date">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Discontinued"
             Header="Discontinued"
@@ -68,9 +67,9 @@
             Name="column1"
             @ref="column1">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -79,25 +78,17 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
         var column1 = this.column1;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
     private IgbColumn column1;
@@ -109,10 +100,10 @@
         {
             if (_nwindData == null)
             {
-                _nwindData = new NwindData(); 
+                _nwindData = new NwindData();
             }
             return _nwindData;
         }
     }
-    
+
 }

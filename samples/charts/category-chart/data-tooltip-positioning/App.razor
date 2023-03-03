@@ -1,11 +1,10 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-	    <div class="options vertical">
+    <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="CategoryChart"
         IsHorizontal="true"
         IsWrappingEnabled="true"
@@ -13,33 +12,35 @@
         @ref="propertyEditor">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="DataToolTipGroupedPositionModeX"
-            Label="Grouped X Position:"
+            Label="Grouped X Position: "
             PrimitiveValue="@("PinRight")"
             Name="GroupedPositionXEditor"
             @ref="groupedPositionXEditor">
             </IgbPropertyEditorPropertyDescription>
+
             <IgbPropertyEditorPropertyDescription
             PropertyPath="DataToolTipGroupedPositionModeY"
             PrimitiveValue="@("PinTop")"
-            Label="Grouped Y Position:"
+            Label="Grouped Y Position: "
             Name="GroupedPositionYEditor"
             @ref="groupedPositionYEditor">
             </IgbPropertyEditorPropertyDescription>
+
             <IgbPropertyEditorPropertyDescription
             PropertyPath="DataToolTipGroupingMode"
             PrimitiveValue="@("Grouped")"
-            Label="Grouping Mode:"
+            Label="Grouping Mode: "
             Name="GroupingModeEditor"
             @ref="groupingModeEditor">
             </IgbPropertyEditorPropertyDescription>
+
         </IgbPropertyEditorPanel>
+
     </div>
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Highest Grossing Movie Franchises
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbCategoryChart
         ChartType="CategoryChartType.Column"
@@ -57,36 +58,40 @@
         Name="chart"
         @ref="chart">
         </IgbCategoryChart>
+
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
+    private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var propertyEditor = this.propertyEditor;
-		var groupedPositionXEditor = this.groupedPositionXEditor;
-		var groupedPositionYEditor = this.groupedPositionYEditor;
-		var groupingModeEditor = this.groupingModeEditor;
-		var chart = this.chart;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditor = this.propertyEditor;
+        var groupedPositionXEditor = this.groupedPositionXEditor;
+        var groupedPositionYEditor = this.groupedPositionYEditor;
+        var groupingModeEditor = this.groupingModeEditor;
+        var chart = this.chart;
 
         this.BindElements = () => {
             propertyEditor.Target = this.chart;
         };
         this.BindElements();
-	}
 
-	private IgbPropertyEditorPanel propertyEditor;
-	private IgbPropertyEditorPropertyDescription groupedPositionXEditor;
-	private IgbPropertyEditorPropertyDescription groupedPositionYEditor;
-	private IgbPropertyEditorPropertyDescription groupingModeEditor;
-	private IgbCategoryChart chart;
 
+    }
+
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription groupedPositionXEditor;
+    private IgbPropertyEditorPropertyDescription groupedPositionYEditor;
+    private IgbPropertyEditorPropertyDescription groupingModeEditor;
+    private IgbCategoryChart chart;
 
     private HighestGrossingMovies _highestGrossingMovies = null;
     public HighestGrossingMovies HighestGrossingMovies
@@ -95,10 +100,10 @@
         {
             if (_highestGrossingMovies == null)
             {
-                _highestGrossingMovies = new HighestGrossingMovies(); 
+                _highestGrossingMovies = new HighestGrossingMovies();
             }
             return _highestGrossingMovies;
         }
     }
-    
+
 }

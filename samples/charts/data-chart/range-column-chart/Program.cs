@@ -26,6 +26,8 @@ namespace Infragistics.Samples
             builder.Services.AddIgniteUIBlazor(
                 typeof(IgbDataChartCoreModule), 
                 typeof(IgbDataChartCategoryModule), 
+                typeof(IgbDataChartInteractivityModule), 
+                typeof(IgbDataChartAnnotationModule), 
                 typeof(IgbLegendModule)
             );
 

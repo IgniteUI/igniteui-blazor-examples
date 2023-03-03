@@ -1,7 +1,5 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-@inject IJSRuntime JS
 
 <div class="container vertical">
 
@@ -20,17 +18,17 @@
                 <IgbGridToolbarTitle
                 >
                 </IgbGridToolbarTitle>
-                
+
                 <IgbGridToolbarActions
                 >
                     <IgbGridToolbarHiding
                     >
                     </IgbGridToolbarHiding>
-                    
+
                 </IgbGridToolbarActions>
-                
+
             </IgbGridToolbar>
-            
+
             <IgbColumn
             Field="ID"
             Header="ID"
@@ -39,7 +37,7 @@
             Name="ID"
             @ref="iD">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="ContactName"
             @ref="contactName"
@@ -48,7 +46,7 @@
             DataType="GridColumnDataType.String"
             Sortable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="ContactTitle"
             @ref="contactTitle"
@@ -57,7 +55,7 @@
             DataType="GridColumnDataType.String"
             Sortable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="City"
             @ref="city"
@@ -66,7 +64,7 @@
             DataType="GridColumnDataType.String"
             Sortable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="CompanyName"
             @ref="companyName"
@@ -75,7 +73,7 @@
             DataType="GridColumnDataType.String"
             Sortable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="Fax"
             @ref="fax"
@@ -84,7 +82,7 @@
             DataType="GridColumnDataType.String"
             Sortable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="Address"
             @ref="address"
@@ -93,7 +91,7 @@
             DataType="GridColumnDataType.String"
             Sortable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="PostalCode"
             @ref="postalCode"
@@ -102,7 +100,7 @@
             DataType="GridColumnDataType.String"
             Sortable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="Country"
             @ref="country"
@@ -111,7 +109,7 @@
             DataType="GridColumnDataType.String"
             Sortable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="Phone"
             @ref="phone"
@@ -120,9 +118,9 @@
             DataType="GridColumnDataType.String"
             Sortable="true">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -131,10 +129,8 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -150,15 +146,9 @@
         var country = this.country;
         var phone = this.phone;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
     private IgbColumn iD;
@@ -179,10 +169,10 @@
         {
             if (_customersData == null)
             {
-                _customersData = new CustomersData(); 
+                _customersData = new CustomersData();
             }
             return _customersData;
         }
     }
-    
+
 }

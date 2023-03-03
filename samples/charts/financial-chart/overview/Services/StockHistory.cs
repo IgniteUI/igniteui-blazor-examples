@@ -151,7 +151,6 @@ namespace Infragistics.Samples
             Type typeToConvert,
             JsonSerializerOptions options)
         {
-            Console.WriteLine(reader.GetString());
             return DateTime.Now;
         }
 

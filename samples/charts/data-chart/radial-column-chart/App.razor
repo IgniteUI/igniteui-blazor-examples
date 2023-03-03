@@ -1,5 +1,5 @@
-@using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+@using IgniteUI.Blazor.Controls;
+
 
 <div class="container vertical">
     <div class="legend-title">
@@ -11,7 +11,7 @@
         Name="Legend"
         @ref="legend">
         </IgbLegend>
-        
+
     </div>
 
     <div class="container vertical fill">
@@ -26,7 +26,7 @@
             Name="angleAxis"
             @ref="angleAxis">
             </IgbCategoryAngleAxis>
-            
+
             <IgbNumericRadiusAxis
             InnerRadiusExtentScale="0.1"
             MinimumValue="0"
@@ -35,7 +35,7 @@
             Name="radiusAxis"
             @ref="radiusAxis">
             </IgbNumericRadiusAxis>
-            
+
             <IgbRadialColumnSeries
             ValueMemberPath="Ronaldo"
             AngleAxisName="angleAxis"
@@ -48,27 +48,27 @@
             Name="RadialColumnSeries1"
             @ref="radialColumnSeries1">
             </IgbRadialColumnSeries>
-            
+
             <IgbRadialColumnSeries
-            DataSource="FootballPlayerStats"
+            ValueMemberPath="Messi"
             AngleAxisName="angleAxis"
             ValueAxisName="radiusAxis"
-            ValueMemberPath="Messi"
-            ShowDefaultTooltip="false"
-            AreaFillOpacity="0.8"
+            DataSource="FootballPlayerStats"
             Thickness="3"
+            AreaFillOpacity="0.8"
+            ShowDefaultTooltip="false"
             Title="Messi"
             Name="RadialColumnSeries2"
             @ref="radialColumnSeries2">
             </IgbRadialColumnSeries>
-            
+
             <IgbDataToolTipLayer
             Name="DataToolTipLayer"
             @ref="dataToolTipLayer">
             </IgbDataToolTipLayer>
-            
+
         </IgbDataChart>
-        
+
     </div>
 
 </div>
@@ -77,7 +77,6 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
     private Action BindElements { get; set; }
@@ -97,11 +96,8 @@
         };
         this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbLegend legend;
     private IgbDataChart chart;
@@ -118,10 +114,10 @@
         {
             if (_footballPlayerStats == null)
             {
-                _footballPlayerStats = new FootballPlayerStats(); 
+                _footballPlayerStats = new FootballPlayerStats();
             }
             return _footballPlayerStats;
         }
     }
-    
+
 }

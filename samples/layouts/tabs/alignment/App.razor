@@ -1,5 +1,5 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
 
@@ -11,8 +11,8 @@
     </IgbRadioGroup>
 
     <IgbTabs Alignment=@TabAlignment>
-        <IgbTab Panel="basics">Basics</IgbTab>                   
-        <IgbTab Panel="details">Details</IgbTab>         
+        <IgbTab Panel="basics">Basics</IgbTab>
+        <IgbTab Panel="details">Details</IgbTab>
         <IgbTab Panel="custom">Custom</IgbTab>"
         <IgbTab Panel="disabled" Disabled=true>Disabled</IgbTab>
         <IgbTabPanel id="basics">Basics tab panel</IgbTabPanel>
@@ -27,11 +27,7 @@
     public TabsAlignment TabAlignment { get; set; }
 
     protected override void OnInitialized()
-    {        
-        IgbRadioModule.Register(IgniteUIBlazor);
-        IgbRadioGroupModule.Register(IgniteUIBlazor);
-        IgbTabsModule.Register(IgniteUIBlazor);
-
+    {
         TabAlignment = TabsAlignment.Start;
     }
 

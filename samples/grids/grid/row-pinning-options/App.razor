@@ -1,12 +1,10 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-@inject IJSRuntime JS
 
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="WebGrid"
         IsHorizontal="true"
         IsWrappingEnabled="false"
@@ -18,9 +16,9 @@
             Name="rowPinningEditor"
             @ref="rowPinningEditor">
             </IgbPropertyEditorPropertyDescription>
-            
+
         </IgbPropertyEditorPanel>
-        
+
     </div>
 
     <div class="container vertical fill">
@@ -38,56 +36,56 @@
                 <IgbGridPinningActions
                 >
                 </IgbGridPinningActions>
-                
+
             </IgbActionStrip>
-            
+
             <IgbPinningConfig
             Rows="RowPinningPosition.Top">
             </IgbPinningConfig>
-            
+
             <IgbColumn
             Field="CompanyName"
             Header="Company"
             Width="300px">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="ContactName"
             Header="Name">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="ContactTitle"
             Header="Title">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Address"
             Header="Address">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="City"
             Header="City">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="PostalCode"
             Header="Postal Code">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Phone"
             Header="Phone">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Fax"
             Header="Fax">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -96,7 +94,6 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
     private Action BindElements { get; set; }
@@ -113,11 +110,8 @@
         };
         this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbPropertyEditorPanel propertyEditorPanel1;
     private IgbPropertyEditorPropertyDescription rowPinningEditor;
@@ -131,10 +125,10 @@
         {
             if (_customersData == null)
             {
-                _customersData = new CustomersData(); 
+                _customersData = new CustomersData();
             }
             return _customersData;
         }
     }
-    
+
 }

@@ -1,7 +1,5 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-@inject IJSRuntime JS
 
 <div class="container vertical">
 
@@ -20,25 +18,25 @@
                 Header="Customer Name"
                 VisibleWhenCollapsed="true">
                 </IgbColumn>
-                
+
                 <IgbColumn
                 Field="CustomerID"
                 Header="Customer ID"
                 VisibleWhenCollapsed="false">
                 </IgbColumn>
-                
+
                 <IgbColumn
                 Field="CustomerFirstName"
                 Header="First Name"
                 VisibleWhenCollapsed="false">
                 </IgbColumn>
-                
+
                 <IgbColumn
                 Field="CustomerLastName"
                 Header="Last Name"
                 VisibleWhenCollapsed="false">
                 </IgbColumn>
-                
+
                 <IgbColumnGroup
                 Header="Customer Address"
                 Collapsible="true"
@@ -49,42 +47,42 @@
                     VisibleWhenCollapsed="true"
                     Width="250px">
                     </IgbColumn>
-                    
+
                     <IgbColumn
                     Field="Address"
                     VisibleWhenCollapsed="false">
                     </IgbColumn>
-                    
+
                     <IgbColumn
                     Field="City"
                     VisibleWhenCollapsed="false">
                     </IgbColumn>
-                    
+
                     <IgbColumn
                     Field="Country"
                     VisibleWhenCollapsed="false">
                     </IgbColumn>
-                    
+
                     <IgbColumn
                     Field="PostalCode"
                     Header="Postal Code"
                     VisibleWhenCollapsed="false">
                     </IgbColumn>
-                    
+
                 </IgbColumnGroup>
-                
+
             </IgbColumnGroup>
-            
+
             <IgbColumn
             Field="ShipperName"
             Header="Shipper Name">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="OrderDate"
             Header="Order Date">
             </IgbColumn>
-            
+
             <IgbColumnGroup
             Header="Product Details"
             Collapsible="true"
@@ -94,33 +92,33 @@
                 Header="Name"
                 VisibleWhenCollapsed="true">
                 </IgbColumn>
-                
+
                 <IgbColumn
                 Field="UnitPrice"
                 Header="Unit Price"
                 VisibleWhenCollapsed="true">
                 </IgbColumn>
-                
+
                 <IgbColumn
                 Field="ProductID"
                 Header="ID"
                 VisibleWhenCollapsed="true">
                 </IgbColumn>
-                
+
                 <IgbColumn
                 Field="Quantity"
                 VisibleWhenCollapsed="false">
                 </IgbColumn>
-                
+
                 <IgbColumn
                 Field="Quantity"
                 VisibleWhenCollapsed="false">
                 </IgbColumn>
-                
+
             </IgbColumnGroup>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -129,24 +127,16 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
 
@@ -157,10 +147,10 @@
         {
             if (_invoicesData == null)
             {
-                _invoicesData = new InvoicesData(); 
+                _invoicesData = new InvoicesData();
             }
             return _invoicesData;
         }
     }
-    
+
 }

@@ -1,11 +1,10 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-	    <div class="options vertical">
+    <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="CategoryChart"
         IsHorizontal="true"
         IsWrappingEnabled="true"
@@ -19,14 +18,14 @@
             Name="FinalValueAnnotationsEditor"
             @ref="finalValueAnnotationsEditor">
             </IgbPropertyEditorPropertyDescription>
+
         </IgbPropertyEditorPanel>
+
     </div>
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Average Temperature in Sedney
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbCategoryChart
         ChartType="CategoryChartType.Column"
@@ -45,32 +44,36 @@
         Name="chart"
         @ref="chart">
         </IgbCategoryChart>
+
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
+    private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var propertyEditor = this.propertyEditor;
-		var finalValueAnnotationsEditor = this.finalValueAnnotationsEditor;
-		var chart = this.chart;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditor = this.propertyEditor;
+        var finalValueAnnotationsEditor = this.finalValueAnnotationsEditor;
+        var chart = this.chart;
 
         this.BindElements = () => {
             propertyEditor.Target = this.chart;
         };
         this.BindElements();
-	}
 
-	private IgbPropertyEditorPanel propertyEditor;
-	private IgbPropertyEditorPropertyDescription finalValueAnnotationsEditor;
-	private IgbCategoryChart chart;
 
+    }
+
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription finalValueAnnotationsEditor;
+    private IgbCategoryChart chart;
 
     private TemperatureAnnotatedData _temperatureAnnotatedData = null;
     public TemperatureAnnotatedData TemperatureAnnotatedData
@@ -79,10 +82,10 @@
         {
             if (_temperatureAnnotatedData == null)
             {
-                _temperatureAnnotatedData = new TemperatureAnnotatedData(); 
+                _temperatureAnnotatedData = new TemperatureAnnotatedData();
             }
             return _temperatureAnnotatedData;
         }
     }
-    
+
 }

@@ -1,5 +1,5 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
     <div class="container vertical">
 
@@ -8,7 +8,7 @@
                 <label style="margin-left: 0.25rem; margin-right: 1.0rem">Treemap Hovered Node's</label>
                 @* this label displays info about currently hovered item in Treemap*@
                 <label style="margin-left: 0.5rem">Parent:</label>
-                <label style="width: 3rem; font-weight: 800">@HoveredNodeParent</label> 
+                <label style="width: 3rem; font-weight: 800">@HoveredNodeParent</label>
                 <label style="margin-left: 1.5rem">Name:</label>
                 <label style="width: 5rem; font-weight: 800">@HoveredNodeName</label>
                 <label style="margin-left: 1.5rem">Value:</label>
@@ -18,7 +18,7 @@
                 <label style="margin-left: 0.25rem; margin-right: 1.0rem">Treemap Selected Node's</label>
                 @* this label displays info about currently selected item in Treemap*@
                 <label style="margin-left: 0.5rem">Parent:</label>
-                <label style="width: 3rem; font-weight: 800">@SelectedNodeParent</label> 
+                <label style="width: 3rem; font-weight: 800">@SelectedNodeParent</label>
                 <label style="margin-left: 1.5rem">Name:</label>
                 <label style="width: 5rem; font-weight: 800">@SelectedNodeName</label>
                 <label style="margin-left: 1.5rem">Value:</label>
@@ -31,18 +31,18 @@
         </div>
 
         <div class="container vertical" style="padding: 0.75rem; width: calc(100% - 1.5rem); height: calc(100% - 1.5rem)">
-            <IgbTreemap Height="100%" Width="100%" @ref="TreeMap" 
+            <IgbTreemap Height="100%" Width="100%" @ref="TreeMap"
                      DataSource="Data"
                      RootTitle="Countries"
                      ParentIdMemberPath="Parent"
                      IdMemberPath="Name"
                      LabelMemberPath="Name"
-                     ValueMemberPath="Pop"  
+                     ValueMemberPath="Pop"
                      NodePointerEnter="@onNodePointerEnter"
-                     NodePointerLeave="@onNodePointerLeave" 
-                     NodePointerPressed="@onNodePointerPressed" 
+                     NodePointerLeave="@onNodePointerLeave"
+                     NodePointerPressed="@onNodePointerPressed"
 
-                     HeaderDisplayMode="TreemapHeaderDisplayMode.Overlay"            
+                     HeaderDisplayMode="TreemapHeaderDisplayMode.Overlay"
                      FillBrushes="#299e41, #4e62cf, #5e359c"
                      IsFillScaleLogarithmic="true"
                      ParentNodeBottomPadding="0"
@@ -68,10 +68,7 @@
 
     protected override void OnInitialized()
     {
-        IgbTreemapModule.Register(IgniteUIBlazor);
-
         this.Data = CountryTreeData.Create();
-        Console.WriteLine("CountryTreeData " + this.Data.Count);
     }
 
     private void onNodePointerPressed(IgbTreemapNodePointerEventArgs arg)

@@ -1,7 +1,5 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-@inject IJSRuntime JS
 
 <div class="container vertical">
 
@@ -17,104 +15,104 @@
             Field="Category"
             Width="120px">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Type"
             Width="150px"
             Filterable="false">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Open"
             Width="120px"
             DataType="GridColumnDataType.Currency">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Price"
             Width="120px"
             DataType="GridColumnDataType.Currency">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Change"
             Width="120px"
             DataType="GridColumnDataType.Number">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="ChangePercent"
             Width="120px"
             DataType="GridColumnDataType.Number"
             Header="Change(%)">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="AnnualChange"
             Width="150px"
             DataType="GridColumnDataType.Number"
             Header="Change On Year(%)">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Buy"
             Width="130px"
             DataType="GridColumnDataType.Currency">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Sell"
             Width="130px"
             DataType="GridColumnDataType.Currency">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Spread"
             Width="130px"
             DataType="GridColumnDataType.Number">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Volume"
             Width="130px"
             DataType="GridColumnDataType.Number">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="High"
             Width="130px"
             DataType="GridColumnDataType.Currency">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Low"
             Width="130px"
             DataType="GridColumnDataType.Currency">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="AnnualHigh"
             Width="130px"
             DataType="GridColumnDataType.Currency"
             Header="High(Y)">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="AnnualLow"
             Width="130px"
             DataType="GridColumnDataType.Currency"
             Header="Low(Y)">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="AnnualStart"
             Width="130px"
             DataType="GridColumnDataType.Currency"
             Header="Start(Y)">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -123,24 +121,16 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
 
@@ -151,10 +141,10 @@
         {
             if (_financialDataAll == null)
             {
-                _financialDataAll = new FinancialDataAll(); 
+                _financialDataAll = new FinancialDataAll();
             }
             return _financialDataAll;
         }
     }
-    
+
 }

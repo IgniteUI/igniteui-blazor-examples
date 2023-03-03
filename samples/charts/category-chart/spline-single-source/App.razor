@@ -1,14 +1,11 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Renewable Electricity Generated
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbCategoryChart
         ChartType="CategoryChartType.Spline"
@@ -25,27 +22,27 @@
         Name="chart"
         @ref="chart">
         </IgbCategoryChart>
+
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var chart = this.chart;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var chart = this.chart;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
-	}
 
-	private IgbCategoryChart chart;
 
+    }
+
+    private IgbCategoryChart chart;
 
     private CountryRenewableElectricity _countryRenewableElectricity = null;
     public CountryRenewableElectricity CountryRenewableElectricity
@@ -54,10 +51,10 @@
         {
             if (_countryRenewableElectricity == null)
             {
-                _countryRenewableElectricity = new CountryRenewableElectricity(); 
+                _countryRenewableElectricity = new CountryRenewableElectricity();
             }
             return _countryRenewableElectricity;
         }
     }
-    
+
 }

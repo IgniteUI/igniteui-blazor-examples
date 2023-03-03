@@ -1,5 +1,5 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
     <div class="options horizontal" >
@@ -51,9 +51,6 @@
 
     protected override void OnInitialized()
     {
-        IgbDoughnutChartModule.Register(IgniteUIBlazor);
-        IgbItemLegendModule.Register(IgniteUIBlazor);
-
         this.Data = new List<DataItem>();
         this.Data.Add(new DataItem { MarketShare = 37, Category = "Cooling", });
         this.Data.Add(new DataItem { MarketShare = 25, Category = "Residential", });
@@ -74,8 +71,6 @@
 
     protected override void OnAfterRender(bool firstRender)
     {
-        base.OnAfterRender(firstRender);
-
         if (Chart != null && Legend != null && !firstRender)
             this.Chart.ActualSeries[0].Legend = Legend;
 
@@ -83,8 +78,6 @@
 
     protected void OnSliceClick(IgbSliceClickEventArgs e)
     {
-        Console.WriteLine("OnSliceClick " + this.Data[e.Index].Category);
-
         if (e.IsSelected)
         {
             this.SelectedSliceLabel = this.Data[e.Index].Category;

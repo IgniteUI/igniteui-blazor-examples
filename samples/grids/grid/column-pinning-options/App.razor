@@ -1,6 +1,5 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
 <div class="container vertical">
@@ -15,7 +14,7 @@
             Field="ID"
             Hidden="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="CompanyName"
             Header="Company"
@@ -24,27 +23,27 @@
             Name="column1"
             @ref="column1">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="ContactName"
             Header="Name"
             Width="200px"
-            HeaderTemplateScript="WebGridPinHeaderTemplate"
             Pinned="true"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
             Name="column2"
             @ref="column2">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="ContactTitle"
             Header="Title"
             Width="200px"
-            HeaderTemplateScript="WebGridPinHeaderTemplate"
             Pinned="true"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
             Name="column3"
             @ref="column3">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Address"
             Width="300px"
@@ -52,7 +51,7 @@
             Name="column4"
             @ref="column4">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="City"
             Width="120px"
@@ -60,7 +59,7 @@
             Name="column5"
             @ref="column5">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Region"
             Width="120px"
@@ -68,7 +67,7 @@
             Name="column6"
             @ref="column6">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="PostalCode"
             Width="150px"
@@ -76,7 +75,7 @@
             Name="column7"
             @ref="column7">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Phone"
             Width="150px"
@@ -84,7 +83,7 @@
             Name="column8"
             @ref="column8">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Fax"
             Width="150px"
@@ -92,9 +91,9 @@
             Name="column9"
             @ref="column9">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -103,10 +102,8 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -121,15 +118,9 @@
         var column8 = this.column8;
         var column9 = this.column9;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
     private IgbColumn column1;
@@ -149,10 +140,10 @@
         {
             if (_customersData == null)
             {
-                _customersData = new CustomersData(); 
+                _customersData = new CustomersData();
             }
             return _customersData;
         }
     }
-    
+
 }

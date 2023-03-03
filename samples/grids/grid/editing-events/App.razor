@@ -1,6 +1,5 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
 <div class="container vertical">
@@ -18,14 +17,14 @@
             Header="Product Name"
             DataType="GridColumnDataType.String">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="UnitPrice"
             Header="Unit Price"
             DataType="GridColumnDataType.Number"
             Editable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="UnitsInStock"
             Header="Units In Stock"
@@ -34,7 +33,7 @@
             Name="UnitsInStock"
             @ref="unitsInStock">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="UnitsOnOrder"
             Header="Units on Order"
@@ -43,9 +42,9 @@
             Name="UnitsOnOrder"
             @ref="unitsOnOrder">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -54,10 +53,8 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -65,15 +62,9 @@
         var unitsInStock = this.unitsInStock;
         var unitsOnOrder = this.unitsOnOrder;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid1;
     private IgbColumn unitsInStock;
@@ -86,10 +77,10 @@
         {
             if (_nwindData == null)
             {
-                _nwindData = new NwindData(); 
+                _nwindData = new NwindData();
             }
             return _nwindData;
         }
     }
-    
+
 }

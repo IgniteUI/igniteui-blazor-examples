@@ -1,5 +1,5 @@
 ﻿@using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 @inject IJSRuntime JSRuntime
 
 <div class="container vertical">
@@ -75,11 +75,6 @@
 
     protected override void OnInitialized()
     {
-        IgbDockManagerModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-        IgbGeographicMapModule.Register(IgniteUIBlazor);
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
-
         Layout = new IgbDockManagerLayout();
         Layout.RootPane = new IgbSplitPane();
         Layout.RootPane.Size = 200;
@@ -136,8 +131,6 @@
         this.EmployeeList[0].Background = "#a8d3fd";
         this.EmployeeSelected =  new List<PersonInfo> { this.EmployeeList[0] };
         this.EmployeeSelectedInfo = this.EmployeeList[0].Name + " (" + this.EmployeeList[0].City + ", " + this.EmployeeList[0].Country + ")";
-
-        await Task.Delay(1);
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -149,13 +142,10 @@
                 this.ProductivityChart.DataSource = this.EmployeeList[0].Productivity;
             }
         }
-        await Task.Delay(1);
     }
 
     private void onClick(PersonInfo selectedManager)
     {
-        //Console.WriteLine(selectedManager.Name + " " + selectedManager.Productivity.Count);
-
         this.EmployeeSelected = new List<PersonInfo> { selectedManager };
         this.EmployeeSelectedInfo = selectedManager.Name + " (" + selectedManager.City + ", " + selectedManager.Country + ")";
         this.ProductivityChart.DataSource = selectedManager.Productivity;

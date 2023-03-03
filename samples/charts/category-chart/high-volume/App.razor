@@ -1,5 +1,5 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
     <div class="options horizontal">
@@ -19,7 +19,7 @@
             ToolTipType="ToolTipType.Default"
             XAxisEnhancedIntervalPreferMoreCategoryLabels="false"
             ShouldAutoExpandMarginForInitialLabels="false"
-            CrosshairsDisplayMode="CrosshairsDisplayMode.None" 
+            CrosshairsDisplayMode="CrosshairsDisplayMode.None"
             SeriesAdded="OnSeriesAdded">
         </IgbCategoryChart>
     </div>
@@ -32,8 +32,6 @@
 
     protected override void OnInitialized()
     {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
-
         this.DataInfo = ToShortString(this.DataPoints);
     }
 
@@ -43,8 +41,6 @@
         {
             await IgniteUIBlazor.JsRuntime.InvokeVoidAsync("setHighVolumeDataCount", this.DataPoints);
         }
-
-        await base.OnAfterRenderAsync(firstRender);
     }
 
     private void OnSeriesAdded(IgbChartSeriesEventArgs e)

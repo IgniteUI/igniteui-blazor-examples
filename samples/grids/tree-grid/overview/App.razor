@@ -1,6 +1,6 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 @inject IJSRuntime JS
 
 <div class="container vertical">
@@ -23,26 +23,26 @@
                 Name="Employees"
                 @ref="employees">
                 </IgbGridToolbarTitle>
-                
+
                 <IgbGridToolbarActions
                 >
                     <IgbGridToolbarHiding
                     >
                     </IgbGridToolbarHiding>
-                    
+
                     <IgbGridToolbarPinning
                     >
                     </IgbGridToolbarPinning>
-                    
+
                     <IgbGridToolbarExporter
                     ExportCSV="true"
                     ExportExcel="true">
                     </IgbGridToolbarExporter>
-                    
+
                 </IgbGridToolbarActions>
-                
+
             </IgbGridToolbar>
-            
+
             <IgbColumn
             Field="Name"
             Sortable="true"
@@ -51,7 +51,7 @@
             HasSummary="true"
             DataType="GridColumnDataType.String">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="HireDate"
             DataType="GridColumnDataType.Date"
@@ -59,7 +59,7 @@
             Editable="true"
             Resizable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Age"
             DataType="GridColumnDataType.Number"
@@ -67,19 +67,14 @@
             Editable="true"
             Resizable="true">
             </IgbColumn>
-            
+
         </IgbTreeGrid>
-        
+
     </div>
 
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-        await Task.Delay(1);
-    }
 
     private Action BindElements { get; set; }
 
@@ -87,16 +82,7 @@
     {
         var treeGrid = this.treeGrid;
         var employees = this.employees;
-
-        this.BindElements = () => {
-        };
-        this.BindElements();
-
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbTreeGrid treeGrid;
     private IgbGridToolbarTitle employees;
@@ -108,10 +94,10 @@
         {
             if (_employeesNestedData == null)
             {
-                _employeesNestedData = new EmployeesNestedData(); 
+                _employeesNestedData = new EmployeesNestedData();
             }
             return _employeesNestedData;
         }
     }
-    
+
 }

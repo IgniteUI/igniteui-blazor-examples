@@ -1,5 +1,5 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 @inject HttpClient Http
 
 <div class="container vertical">
@@ -28,9 +28,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        IgbGeographicMapModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-
         this.Data = new GeoPlaceData();
 
         this.GeoBound = new Rect(100, -40, new Size(50, 25));
@@ -39,15 +36,13 @@
 
     protected override void OnAfterRender(bool firstRender)
     {
-        base.OnAfterRender(firstRender);
-
         if (MapRef != null && !firstRender)
         {
             Task.Delay(500).ContinueWith((t) => OnMapRender());
         }
     }
 
-	private void OnMapRender()
+    private void OnMapRender()
     {
         if (MapRef != null)
         {

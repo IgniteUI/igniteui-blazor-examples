@@ -1,11 +1,10 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-	    <div class="options vertical">
+    <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="CategoryChart"
         IsHorizontal="true"
         IsWrappingEnabled="true"
@@ -13,25 +12,26 @@
         @ref="propertyEditor">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="ToolTipType"
-            Label="ToolTip Type:"
+            Label="ToolTip Type: "
             PrimitiveValue="@("Data")"
             Name="ToolTipTypeEditor"
             @ref="toolTipTypeEditor">
             </IgbPropertyEditorPropertyDescription>
+
         </IgbPropertyEditorPanel>
+
     </div>
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Highest Grossing Movie Franchises
     </div>
-    
-	     <div class="legend">
+    <div class="legend">
         <IgbLegend
         Name="Legend"
         @ref="legend">
         </IgbLegend>
+
     </div>
-	
+
     <div class="container vertical fill">
         <IgbCategoryChart
         ChartType="CategoryChartType.Column"
@@ -47,35 +47,39 @@
         Name="chart"
         @ref="chart">
         </IgbCategoryChart>
+
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
+    private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var propertyEditor = this.propertyEditor;
-		var toolTipTypeEditor = this.toolTipTypeEditor;
-		var legend = this.legend;
-		var chart = this.chart;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditor = this.propertyEditor;
+        var toolTipTypeEditor = this.toolTipTypeEditor;
+        var legend = this.legend;
+        var chart = this.chart;
 
         this.BindElements = () => {
             propertyEditor.Target = this.chart;
             chart.Legend = this.legend;
         };
         this.BindElements();
-	}
 
-	private IgbPropertyEditorPanel propertyEditor;
-	private IgbPropertyEditorPropertyDescription toolTipTypeEditor;
-	private IgbLegend legend;
-	private IgbCategoryChart chart;
 
+    }
+
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription toolTipTypeEditor;
+    private IgbLegend legend;
+    private IgbCategoryChart chart;
 
     private HighestGrossingMovies _highestGrossingMovies = null;
     public HighestGrossingMovies HighestGrossingMovies
@@ -84,10 +88,10 @@
         {
             if (_highestGrossingMovies == null)
             {
-                _highestGrossingMovies = new HighestGrossingMovies(); 
+                _highestGrossingMovies = new HighestGrossingMovies();
             }
             return _highestGrossingMovies;
         }
     }
-    
+
 }

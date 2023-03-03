@@ -1,5 +1,5 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
     <div class="legend-title">
@@ -11,12 +11,12 @@
         Name="Legend"
         @ref="legend">
         </IgbLegend>
-        
+
     </div>
 
     <div class="container vertical fill">
         <IgbDataChart
-        
+
         Name="chart"
         @ref="chart">
             <IgbNumericXAxis
@@ -26,7 +26,7 @@
             Name="xAxis"
             @ref="xAxis">
             </IgbNumericXAxis>
-            
+
             <IgbNumericYAxis
             IsLogarithmic="true"
             AbbreviateLargeNumbers="true"
@@ -34,7 +34,7 @@
             Name="yAxis"
             @ref="yAxis">
             </IgbNumericYAxis>
-            
+
             <IgbBubbleSeries
             RadiusMemberPath="Population"
             XAxisName="xAxis"
@@ -52,7 +52,7 @@
             Name="BubbleSeries1"
             @ref="bubbleSeries1">
             </IgbBubbleSeries>
-            
+
             <IgbBubbleSeries
             Title="European Countries"
             XAxisName="xAxis"
@@ -70,14 +70,14 @@
             Name="BubbleSeries2"
             @ref="bubbleSeries2">
             </IgbBubbleSeries>
-            
+
             <IgbDataToolTipLayer
             Name="DataToolTipLayer"
             @ref="dataToolTipLayer">
             </IgbDataToolTipLayer>
-            
+
         </IgbDataChart>
-        
+
     </div>
 
 </div>
@@ -86,7 +86,7 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
+
     }
 
     private Action BindElements { get; set; }
@@ -105,12 +105,7 @@
             chart.Legend = this.legend;
         };
         this.BindElements();
-
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbLegend legend;
     private IgbDataChart chart;
@@ -127,12 +122,12 @@
         {
             if (_countryStatsAfrica == null)
             {
-                _countryStatsAfrica = new CountryStatsAfrica(); 
+                _countryStatsAfrica = new CountryStatsAfrica();
             }
             return _countryStatsAfrica;
         }
     }
-    
+
     private CountryStatsEurope _countryStatsEurope = null;
     public CountryStatsEurope CountryStatsEurope
     {
@@ -140,10 +135,10 @@
         {
             if (_countryStatsEurope == null)
             {
-                _countryStatsEurope = new CountryStatsEurope(); 
+                _countryStatsEurope = new CountryStatsEurope();
             }
             return _countryStatsEurope;
         }
     }
-    
+
 }

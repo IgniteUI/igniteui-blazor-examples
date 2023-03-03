@@ -1,6 +1,5 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
 <div class="container vertical">
@@ -19,7 +18,7 @@
             Name="ID"
             @ref="iD">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="CompanyName"
             @ref="companyName"
@@ -27,7 +26,7 @@
             Header="Company"
             Resizable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="ContactName"
             @ref="contactName"
@@ -37,7 +36,7 @@
             MinWidth="60px"
             MaxWidth="230px">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="ContactTitle"
             @ref="contactTitle"
@@ -45,7 +44,7 @@
             Header="Title"
             Resizable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="Address"
             @ref="address"
@@ -53,14 +52,14 @@
             Header="Address"
             Resizable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="City"
             @ref="city"
             Field="City"
             Header="City">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="Region"
             @ref="region"
@@ -68,7 +67,7 @@
             Header="Region"
             Resizable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="PostalCode"
             @ref="postalCode"
@@ -76,7 +75,7 @@
             Header="Postal Code"
             Resizable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="Country"
             @ref="country"
@@ -84,7 +83,7 @@
             Header="Country"
             Resizable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="Phone"
             @ref="phone"
@@ -92,9 +91,9 @@
             Header="Phone"
             Resizable="true">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -103,10 +102,8 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -122,15 +119,9 @@
         var country = this.country;
         var phone = this.phone;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
     private IgbColumn iD;
@@ -151,10 +142,10 @@
         {
             if (_customersData == null)
             {
-                _customersData = new CustomersData(); 
+                _customersData = new CustomersData();
             }
             return _customersData;
         }
     }
-    
+
 }

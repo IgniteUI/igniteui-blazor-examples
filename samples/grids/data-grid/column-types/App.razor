@@ -1,6 +1,6 @@
 ﻿@using System.ComponentModel
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
 
@@ -11,7 +11,7 @@
             <div style="overflow: hidden">
                 <IgbDataGrid Height="100%" Width="100%"
                   @ref="@DataGridRef"
-                  RowHeight="50" 
+                  RowHeight="50"
                   DataSource="Employees"
                   AutoGenerateColumns="false"
                   ActivationMode="GridActivationMode.Cell">
@@ -67,10 +67,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
-
-        IgbDataGridModule.Register(IgniteUIBlazor);
-
         this.Employees = EmployeeData.Create(50, false);
         for (int i = 0; i < this.Employees.Count; i++)
         {

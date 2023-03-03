@@ -1,6 +1,5 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
 <div class="container vertical">
@@ -20,31 +19,31 @@
             Header="Name"
             Width="20%">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Country"
             Header="Country"
             Width="20%">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="City"
             Header="City"
             Width="20%">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="PostalCode"
             Width="20%">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="CompanyName"
             Width="20%">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -53,24 +52,16 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
 
@@ -81,10 +72,10 @@
         {
             if (_customersData == null)
             {
-                _customersData = new CustomersData(); 
+                _customersData = new CustomersData();
             }
             return _customersData;
         }
     }
-    
+
 }

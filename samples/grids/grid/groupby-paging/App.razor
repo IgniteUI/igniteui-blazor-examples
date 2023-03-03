@@ -1,6 +1,5 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
 <div class="container vertical">
@@ -18,31 +17,31 @@
             <IgbPaginator
             PerPage="10">
             </IgbPaginator>
-            
+
             <IgbColumn
             Field="ShipCountry"
             Header="Ship Country"
             Groupable="true"
             Width="200px">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="ShipCity"
             Header="Ship City"
-            Groupable="true"
-            Width="250px">
+            Width="250px"
+            Groupable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="UnitPrice"
             Header="Unit Price"
-            Groupable="true"
             Width="150px"
+            Groupable="true"
             DataType="GridColumnDataType.Number">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -51,24 +50,16 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
     private IgbGroupingExpression[] _groupingExpression1 = null;
@@ -97,10 +88,10 @@
         {
             if (_invoicesData == null)
             {
-                _invoicesData = new InvoicesData(); 
+                _invoicesData = new InvoicesData();
             }
             return _invoicesData;
         }
     }
-    
+
 }

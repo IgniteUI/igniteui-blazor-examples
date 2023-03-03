@@ -1,6 +1,5 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
 <div class="container vertical">
@@ -17,19 +16,19 @@
             Header="Name"
             Width="15%">
             </IgbColumn>
-            
+
             <IgbColumn
             Header="Title"
             Field="Title"
             Width="15%">
             </IgbColumn>
-            
+
             <IgbColumn
             Header="Salary"
             Field="Salary"
             Width="10%">
             </IgbColumn>
-            
+
             <IgbColumn
             Header="Employees"
             Field="Employees"
@@ -38,33 +37,33 @@
             Name="column1"
             @ref="column1">
             </IgbColumn>
-            
+
             <IgbColumn
             Header="City"
             Field="City"
             Width="15%">
             </IgbColumn>
-            
+
             <IgbColumn
             Header="Country"
             Field="Country"
             Width="15%">
             </IgbColumn>
-            
+
             <IgbColumn
             Header="Age"
             Field="Age"
             Width="10%">
             </IgbColumn>
-            
+
             <IgbColumn
             Header="Hire Date"
             Field="HireDate"
             DataType="GridColumnDataType.Date">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -73,25 +72,17 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
         var column1 = this.column1;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
     private IgbColumn column1;
@@ -103,10 +94,10 @@
         {
             if (_employeesNestedData == null)
             {
-                _employeesNestedData = new EmployeesNestedData(); 
+                _employeesNestedData = new EmployeesNestedData();
             }
             return _employeesNestedData;
         }
     }
-    
+
 }

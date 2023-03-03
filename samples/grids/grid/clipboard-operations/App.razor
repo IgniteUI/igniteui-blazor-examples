@@ -1,12 +1,11 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="WebGrid"
         IsHorizontal="true"
         IsWrappingEnabled="true"
@@ -17,7 +16,7 @@
             Label="Change Copy Separator"
             ValueType="PropertyEditorValueType.StringValue">
             </IgbPropertyEditorPropertyDescription>
-            
+
             <IgbPropertyEditorPropertyDescription
             ValueType="PropertyEditorValueType.Boolean1"
             Label="Grid Copy Behavior"
@@ -26,7 +25,7 @@
             Name="ClipboardEnabledEditor"
             @ref="clipboardEnabledEditor">
             </IgbPropertyEditorPropertyDescription>
-            
+
             <IgbPropertyEditorPropertyDescription
             ValueType="PropertyEditorValueType.Boolean1"
             Label="Copying of Header Labels"
@@ -35,7 +34,7 @@
             Name="ClipboardHeadersEditor"
             @ref="clipboardHeadersEditor">
             </IgbPropertyEditorPropertyDescription>
-            
+
             <IgbPropertyEditorPropertyDescription
             ValueType="PropertyEditorValueType.Boolean1"
             Label="Copying Column Formatters"
@@ -44,7 +43,7 @@
             Name="ClipboardFormattersEditor"
             @ref="clipboardFormattersEditor">
             </IgbPropertyEditorPropertyDescription>
-            
+
             <IgbPropertyEditorPropertyDescription
             ValueType="PropertyEditorValueType.Button"
             PrimitiveValue="@("Clear Selection")"
@@ -52,9 +51,9 @@
             Name="propertyEditorPropertyDescription1"
             @ref="propertyEditorPropertyDescription1">
             </IgbPropertyEditorPropertyDescription>
-            
+
         </IgbPropertyEditorPanel>
-        
+
     </div>
 
     <div class="container vertical fill">
@@ -68,33 +67,33 @@
             <IgbColumn
             Field="ProductID">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="ProductName">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="SupplierID">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="CategoryID">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="QuantityPerUnit">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="UnitPrice">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="UnitsInStock">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -103,7 +102,6 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
     private Action BindElements { get; set; }
@@ -122,11 +120,8 @@
         };
         this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbPropertyEditorPanel propertyEditor;
     private IgbPropertyEditorPropertyDescription clipboardEnabledEditor;
@@ -142,10 +137,10 @@
         {
             if (_nwindData == null)
             {
-                _nwindData = new NwindData(); 
+                _nwindData = new NwindData();
             }
             return _nwindData;
         }
     }
-    
+
 }

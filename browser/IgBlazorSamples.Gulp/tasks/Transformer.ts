@@ -83,6 +83,14 @@ class SampleSourceFile extends SampleFile {
         if (modules !== undefined && modules.length > 0) {
             // console.log("update " + this.Path + " modules: " + (modules.join(','));
 
+            // adding IG injection if it is missing
+            var codeUsingIG  = "@using IgniteUI.Blazor.Controls";
+            var codeInjectIG = "@inject IIgniteUIBlazor IgniteUIBlazor";
+            if (this.Content.indexOf(codeInjectIG) < 0 &&
+                this.Content.indexOf(codeUsingIG) >= 0) {
+                this.Content = this.Content.replace(codeUsingIG, codeUsingIG + "\n" + codeInjectIG);
+            }
+
             // inserting IG modules from Program.CS to App.razor file
             var moduleReplace = "OnInitialized()\r\n    {";
             var moduleInsert = "\r\n";

@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 public class EnergyGlobalDemandItem
 {
-    public double Value{ get; set; }
-    public string Category{ get; set; }
-    public string Summary{ get; set; }
+    public double Value { get; set; }
+    public string Category { get; set; }
+    public string Summary { get; set; }
 }
+
 public class EnergyGlobalDemand
     : List<EnergyGlobalDemandItem>
 {

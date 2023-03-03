@@ -1,6 +1,6 @@
 @using IgniteUI.Blazor.Controls
 @using System.Reflection
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 @inject NavigationManager NavManager
 
 <div class="container vertical">
@@ -62,9 +62,6 @@
 
     protected override void OnInitialized()
     {
-        IgbGeographicMapModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-
         EsriRef = new EsriStyle();
         this.MapContent = new IgbOpenStreetMapImagery();
     }
@@ -98,16 +95,16 @@
 
             if (str.Contains("Aerial"))
             {
-                mapImage = this.CreateBingMapsImagery(BingMapsImageryStyle.Aerial);                
+                mapImage = this.CreateBingMapsImagery(BingMapsImageryStyle.Aerial);
             }
             else if (str.Contains("Labels"))
             {
-                mapImage = this.CreateBingMapsImagery(BingMapsImageryStyle.AerialWithLabels);                
+                mapImage = this.CreateBingMapsImagery(BingMapsImageryStyle.AerialWithLabels);
             }
             else
             {
-                mapImage = this.CreateBingMapsImagery(BingMapsImageryStyle.Road);                
-            }            
+                mapImage = this.CreateBingMapsImagery(BingMapsImageryStyle.Road);
+            }
 
             this.MapContent = mapImage;
         }

@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 public class OnlineShoppingSearchesItem
 {
-    public double X{ get; set; }
-    public double Y{ get; set; }
-    public string Label{ get; set; }
-    public double Percent{ get; set; }
-    public string Shop{ get; set; }
+    public double X { get; set; }
+    public double Y { get; set; }
+    public string Label { get; set; }
+    public double Percent { get; set; }
+    public string Shop { get; set; }
 }
+
 public class OnlineShoppingSearches
     : List<OnlineShoppingSearchesItem>
 {

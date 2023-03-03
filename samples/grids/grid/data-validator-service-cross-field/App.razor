@@ -1,7 +1,5 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-@inject IJSRuntime JS
 
 <div class="container vertical">
 
@@ -18,72 +16,72 @@
             Name="ProductID"
             @ref="productID">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="ProductName"
             @ref="productName"
             Field="ProductName"
             Header="Product Name">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="UnitPrice"
             @ref="unitPrice"
             Field="UnitPrice"
             Header="Unit Price">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="UnitsOnOrder"
             @ref="unitsOnOrder"
             Field="UnitsOnOrder"
             Header="Units On Order">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="UnitsInStock"
             @ref="unitsInStock"
             Field="UnitsInStock"
             Header="Units In Stock">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="QuantityPerUnit"
             @ref="quantityPerUnit"
             Field="QuantityPerUnit"
             Header="Quantity Per Unit">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="ReorderLevel"
             @ref="reorderLevel"
             Field="ReorderLevel"
             Header="Reorder Level">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="SupplierID"
             @ref="supplierID"
             Field="SupplierID"
             Header="Supplier ID">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="CategoryID"
             @ref="categoryID"
             Field="CategoryID"
             Header="Category ID">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="Discontinued"
             @ref="discontinued"
             Field="Discontinued"
             Header="Discontinued">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -92,10 +90,8 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -111,15 +107,9 @@
         var categoryID = this.categoryID;
         var discontinued = this.discontinued;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
     private IgbColumn productID;
@@ -140,10 +130,10 @@
         {
             if (_nwindData == null)
             {
-                _nwindData = new NwindData(); 
+                _nwindData = new NwindData();
             }
             return _nwindData;
         }
     }
-    
+
 }

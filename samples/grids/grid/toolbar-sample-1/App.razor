@@ -1,7 +1,5 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-@inject IJSRuntime JS
 
 <div class="container vertical">
 
@@ -18,57 +16,57 @@
                     <IgbGridToolbarAdvancedFiltering
                     >
                     </IgbGridToolbarAdvancedFiltering>
-                    
+
                     <IgbGridToolbarHiding
                     >
                     </IgbGridToolbarHiding>
-                    
+
                     <IgbGridToolbarPinning
                     >
                     </IgbGridToolbarPinning>
-                    
+
                     <IgbGridToolbarExporter
                     >
                     </IgbGridToolbarExporter>
-                    
+
                 </IgbGridToolbarActions>
-                
+
             </IgbGridToolbar>
-            
+
             <IgbColumn
             Field="Name"
             Header="Athlete"
             Width="200px">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="CountryName"
             Header="Country"
             Width="200px">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="BeatsPerMinute"
             Header="Beats Per Minute">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="TopSpeed"
             Header="Top Speed">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="AthleteNumber"
             Header="ID">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="TrackProgress"
             Header="Progress">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -77,24 +75,16 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid1 = this.grid1;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid1;
 
@@ -105,10 +95,10 @@
         {
             if (_athletesData == null)
             {
-                _athletesData = new AthletesData(); 
+                _athletesData = new AthletesData();
             }
             return _athletesData;
         }
     }
-    
+
 }

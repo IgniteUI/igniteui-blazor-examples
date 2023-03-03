@@ -1,7 +1,5 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-@inject IJSRuntime JS
 
 <div class="container vertical">
 
@@ -17,52 +15,52 @@
             Width="70px"
             Pinned="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Width="150px"
             Field="ID"
             Hidden="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Width="350px"
             Field="CompanyName"
             Header="Company">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="ContactName"
             Header="Name">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="ContactTitle"
             Header="Contact Tiasdsadtle">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Address">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="City">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="PostalCode"
             Header="Postal Code">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Phone">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Fax">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -71,24 +69,16 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
 
@@ -99,10 +89,10 @@
         {
             if (_customersData == null)
             {
-                _customersData = new CustomersData(); 
+                _customersData = new CustomersData();
             }
             return _customersData;
         }
     }
-    
+
 }

@@ -1,21 +1,19 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Total Population of Selected Countries
     </div>
-    
-	     <div class="legend">
+    <div class="legend">
         <IgbDataLegend
-        
+
         Name="Legend"
         @ref="legend">
         </IgbDataLegend>
+
     </div>
-	
+
     <div class="container vertical fill">
         <IgbDataChart
         Name="chart"
@@ -28,6 +26,7 @@
             Name="xAxis"
             @ref="xAxis">
             </IgbNumericXAxis>
+
             <IgbNumericYAxis
             MinimumValue="0"
             MaximumValue="60"
@@ -36,15 +35,16 @@
             Name="yAxis"
             @ref="yAxis">
             </IgbNumericYAxis>
+
             <IgbBubbleSeries
             RadiusMemberPath="Population"
-            RadiusMemberAsLegendLabel="Population:"
+            RadiusMemberAsLegendLabel="Population: "
             XAxisName="xAxis"
             YAxisName="yAxis"
             XMemberPath="DeathRate"
             YMemberPath="BirthRate"
-            XMemberAsLegendLabel="Death Rate:"
-            YMemberAsLegendLabel="Birth Rate:"
+            XMemberAsLegendLabel="Death Rate: "
+            YMemberAsLegendLabel="Birth Rate: "
             DataSource="CountryDemographicAfrican"
             Title="Africa"
             Name="BubbleSeries1"
@@ -55,7 +55,9 @@
                 Name="SizeScale1"
                 @ref="sizeScale1">
                 </IgbSizeScale>
+
             </IgbBubbleSeries>
+
             <IgbBubbleSeries
             XAxisName="xAxis"
             YAxisName="yAxis"
@@ -64,9 +66,9 @@
             YMemberPath="BirthRate"
             RadiusMemberPath="Population"
             Title="Europe"
-            RadiusMemberAsLegendLabel="Population:"
-            XMemberAsLegendLabel="Death Rate:"
-            YMemberAsLegendLabel="Birth Rate:"
+            RadiusMemberAsLegendLabel="Population: "
+            XMemberAsLegendLabel="Death Rate: "
+            YMemberAsLegendLabel="Birth Rate: "
             Name="BubbleSeries2"
             @ref="bubbleSeries2">
                 <IgbSizeScale
@@ -75,50 +77,57 @@
                 Name="SizeScale2"
                 @ref="sizeScale2">
                 </IgbSizeScale>
+
             </IgbBubbleSeries>
+
             <IgbCrosshairLayer
             Name="CrosshairLayer"
             @ref="crosshairLayer">
             </IgbCrosshairLayer>
+
         </IgbDataChart>
+
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
+    private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var legend = this.legend;
-		var chart = this.chart;
-		var xAxis = this.xAxis;
-		var yAxis = this.yAxis;
-		var bubbleSeries1 = this.bubbleSeries1;
-		var sizeScale1 = this.sizeScale1;
-		var bubbleSeries2 = this.bubbleSeries2;
-		var sizeScale2 = this.sizeScale2;
-		var crosshairLayer = this.crosshairLayer;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var bubbleSeries1 = this.bubbleSeries1;
+        var sizeScale1 = this.sizeScale1;
+        var bubbleSeries2 = this.bubbleSeries2;
+        var sizeScale2 = this.sizeScale2;
+        var crosshairLayer = this.crosshairLayer;
 
         this.BindElements = () => {
             legend.Target = this.chart;
         };
         this.BindElements();
-	}
 
-	private IgbDataLegend legend;
-	private IgbDataChart chart;
-	private IgbNumericXAxis xAxis;
-	private IgbNumericYAxis yAxis;
-	private IgbBubbleSeries bubbleSeries1;
-	private IgbSizeScale sizeScale1;
-	private IgbBubbleSeries bubbleSeries2;
-	private IgbSizeScale sizeScale2;
-	private IgbCrosshairLayer crosshairLayer;
 
+    }
+
+    private IgbDataLegend legend;
+    private IgbDataChart chart;
+    private IgbNumericXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbBubbleSeries bubbleSeries1;
+    private IgbSizeScale sizeScale1;
+    private IgbBubbleSeries bubbleSeries2;
+    private IgbSizeScale sizeScale2;
+    private IgbCrosshairLayer crosshairLayer;
 
     private CountryDemographicAfrican _countryDemographicAfrican = null;
     public CountryDemographicAfrican CountryDemographicAfrican
@@ -127,12 +136,12 @@
         {
             if (_countryDemographicAfrican == null)
             {
-                _countryDemographicAfrican = new CountryDemographicAfrican(); 
+                _countryDemographicAfrican = new CountryDemographicAfrican();
             }
             return _countryDemographicAfrican;
         }
     }
-    
+
     private CountryDemographicEurope _countryDemographicEurope = null;
     public CountryDemographicEurope CountryDemographicEurope
     {
@@ -140,10 +149,10 @@
         {
             if (_countryDemographicEurope == null)
             {
-                _countryDemographicEurope = new CountryDemographicEurope(); 
+                _countryDemographicEurope = new CountryDemographicEurope();
             }
             return _countryDemographicEurope;
         }
     }
-    
+
 }

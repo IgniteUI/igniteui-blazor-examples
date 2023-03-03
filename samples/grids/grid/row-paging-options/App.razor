@@ -1,12 +1,10 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-@inject IJSRuntime JS
 
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="WebGrid"
         IsHorizontal="true"
         IsWrappingEnabled="true"
@@ -17,9 +15,9 @@
             Name="DisplayDensityEditor"
             @ref="displayDensityEditor">
             </IgbPropertyEditorPropertyDescription>
-            
+
         </IgbPropertyEditorPanel>
-        
+
     </div>
 
     <div class="container vertical fill">
@@ -39,24 +37,24 @@
                 <IgbPaginatorResourceStrings
                 Igx_paginator_label="Records per page">
                 </IgbPaginatorResourceStrings>
-                
+
             </IgbPaginator>
-            
+
             <IgbColumn
             Field="Id"
             Header="Rank"
             Sortable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Name">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="BeatsPerMinute"
             DataType="GridColumnDataType.Number">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="TopSpeed"
             DataType="GridColumnDataType.Number"
@@ -64,9 +62,9 @@
             Name="column1"
             @ref="column1">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -75,7 +73,6 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
     private Action BindElements { get; set; }
@@ -93,11 +90,8 @@
         };
         this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
     private IgbPaginator paginator;
@@ -126,10 +120,10 @@
         {
             if (_athletesData == null)
             {
-                _athletesData = new AthletesData(); 
+                _athletesData = new AthletesData();
             }
             return _athletesData;
         }
     }
-    
+
 }

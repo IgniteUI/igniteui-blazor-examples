@@ -32,7 +32,7 @@ var sampleSource = [
     // igConfig.SamplesCopyPath + '/grids/grid/multi-row-dragging/App.razor',
     // igConfig.SamplesCopyPath + '/grids/grid/action-strip/App.razor',
     // igConfig.SamplesCopyPath + '/grids/grid/column*/App.razor',
-    // igConfig.SamplesCopyPath + '/grids/grid/data*/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/grid/editing-events/App.razor',
     // igConfig.SamplesCopyPath + '/grids/grid/**/App.razor',
 
     igConfig.SamplesCopyPath + '/charts/category-chart/**/App.razor',
@@ -1093,7 +1093,8 @@ function updateCodeViewer(cb) {
                 var codeParsed = [];
                 for (const line of codeLines) {
                     if (line.indexOf(".Register(IgniteUIBlazor)") < 0 &&
-                        line.indexOf("@page") < 0) {
+                        line.indexOf("@page") < 0 &&
+                        line.indexOf("@inject IIgniteUIBlazor IgniteUIBlazor") < 0) {
                         codeParsed.push(line);
                     }
                 }

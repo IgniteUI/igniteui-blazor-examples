@@ -1,9 +1,9 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
     <div style="border: 1px solid gainsboro;">
-        <IgbCalendar @ref="CalendarRef" DisabledDates="@DisabledDateDescriptor" />        
+        <IgbCalendar @ref="CalendarRef" DisabledDates="@DisabledDateDescriptor" />
     </div>
 </div>
 
@@ -14,8 +14,6 @@
 
     protected override void OnInitialized()
     {
-        IgbCalendarModule.Register(IgniteUIBlazor);
-
         var today = DateTime.Today;
 
         DateTime[] range = new DateTime[] { new DateTime(today.Year, today.Month, 3), new DateTime(today.Year, today.Month, 8) };

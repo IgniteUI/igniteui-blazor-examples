@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 public class EnergyRenewableConsumptionItem
 {
-    public string Location{ get; set; }
-    public double Year{ get; set; }
-    public double Hydro{ get; set; }
-    public double Solar{ get; set; }
-    public double Wind{ get; set; }
-    public double Other{ get; set; }
+    public string Location { get; set; }
+    public double Year { get; set; }
+    public double Hydro { get; set; }
+    public double Solar { get; set; }
+    public double Wind { get; set; }
+    public double Other { get; set; }
 }
+
 public class EnergyRenewableConsumption
     : List<EnergyRenewableConsumptionItem>
 {

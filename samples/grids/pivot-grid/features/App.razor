@@ -1,6 +1,5 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
 <div class="container vertical">
@@ -14,7 +13,7 @@
         Name="grid"
         @ref="grid">
         </IgbPivotGrid>
-        
+
     </div>
 
 </div>
@@ -23,24 +22,16 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbPivotGrid grid;
     private IgbPivotConfiguration _pivotConfiguration1 = null;
@@ -104,7 +95,7 @@
                 pivotDimension4.MemberName = "SellerName";
                 pivotDimension4.Enabled = true;
                 pivotDimension4.Name = "pivotDimension4";pivotConfiguration1.Filters.Add(pivotDimension4);
-                
+
                 this._pivotConfiguration1 = pivotConfiguration1;
             }
             return this._pivotConfiguration1;
@@ -118,10 +109,10 @@
         {
             if (_pivotDataFlat == null)
             {
-                _pivotDataFlat = new PivotDataFlat(); 
+                _pivotDataFlat = new PivotDataFlat();
             }
             return _pivotDataFlat;
         }
     }
-    
+
 }

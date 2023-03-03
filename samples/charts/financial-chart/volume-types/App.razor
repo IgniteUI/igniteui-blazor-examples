@@ -1,7 +1,7 @@
 
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
     <div class="options horizontal">
@@ -41,12 +41,6 @@
     public FinancialChartVolumeType VolumeType { get; set; } = FinancialChartVolumeType.Area;
 
     protected override void OnInitialized()
-    {
-        IgbFinancialChartModule.Register(IgniteUIBlazor);
-        InitData();
-    }
-
-    public void InitData()
     {
         var today = DateTime.Now;
         var year = today.Year;

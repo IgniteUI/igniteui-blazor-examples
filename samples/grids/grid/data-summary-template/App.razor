@@ -1,12 +1,11 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="WebGrid"
         IsHorizontal="true"
         IsWrappingEnabled="false"
@@ -17,7 +16,7 @@
             Label="Summary Row Height"
             ValueType="PropertyEditorValueType.Number">
             </IgbPropertyEditorPropertyDescription>
-            
+
             <IgbPropertyEditorPropertyDescription
             Label="Toggle Summaries"
             ValueType="PropertyEditorValueType.Boolean1"
@@ -26,15 +25,15 @@
             Name="propertyEditorPropertyDescription1"
             @ref="propertyEditorPropertyDescription1">
             </IgbPropertyEditorPropertyDescription>
-            
+
             <IgbPropertyEditorPropertyDescription
             PropertyPath="DisplayDensity"
             Name="DisplayDensityEditor"
             @ref="displayDensityEditor">
             </IgbPropertyEditorPropertyDescription>
-            
+
         </IgbPropertyEditorPanel>
-        
+
     </div>
 
     <div class="container vertical fill">
@@ -49,14 +48,14 @@
             Groupable="true"
             Width="10%">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="ProductName"
             Header="Product Name"
             Width="17%"
             Groupable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="UnitPrice"
             Header="Price"
@@ -66,7 +65,7 @@
             Editable="true"
             DataType="GridColumnDataType.Number">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="UnitsInStock"
             Header="Units in Stock"
@@ -76,7 +75,7 @@
             DataType="GridColumnDataType.Number"
             HasSummary="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Discontinued"
             Header="Discontinued"
@@ -85,7 +84,7 @@
             Editable="true"
             DataType="GridColumnDataType.Boolean">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="OrderDate"
             Width="18%"
@@ -96,9 +95,9 @@
             Name="column1"
             @ref="column1">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -107,7 +106,6 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
     private Action BindElements { get; set; }
@@ -125,11 +123,8 @@
         };
         this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbPropertyEditorPanel propertyEditorPanel1;
     private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
@@ -137,18 +132,18 @@
     private IgbGrid grid;
     private IgbColumn column1;
 
-    
+
     public void WebGridHasSummariesChange(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
     {
         bool newValue = bool.Parse(args.NewValue.ToString());
-    
+
         var column1 = this.grid.ActualColumns[3];
         var column2 = this.grid.ActualColumns[5];
-    
+
         column1.HasSummary = newValue;
         column2.HasSummary = newValue;
     }
-        
+
     private NwindData _nwindData = null;
     public NwindData NwindData
     {
@@ -156,10 +151,10 @@
         {
             if (_nwindData == null)
             {
-                _nwindData = new NwindData(); 
+                _nwindData = new NwindData();
             }
             return _nwindData;
         }
     }
-    
+
 }

@@ -1,6 +1,5 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
 <div class="container vertical">
@@ -15,22 +14,22 @@
             <IgbPaginator
             PerPage="10">
             </IgbPaginator>
-            
+
             <IgbColumn
             Field="Id"
             Header="Rank"
             Sortable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Name">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="BeatsPerMinute"
             DataType="GridColumnDataType.Number">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="TopSpeed"
             DataType="GridColumnDataType.Number"
@@ -38,23 +37,23 @@
             Name="column1"
             @ref="column1">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="TrackProgress"
             BodyTemplateScript="WebGridProgressCellTemplate"
             Name="column2"
             @ref="column2">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="CountryFlag"
             BodyTemplateScript="WebGridImageCellTemplate"
             Name="column3"
             @ref="column3">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -63,10 +62,8 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -75,15 +72,9 @@
         var column2 = this.column2;
         var column3 = this.column3;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
     private IgbColumn column1;
@@ -111,10 +102,10 @@
         {
             if (_athletesData == null)
             {
-                _athletesData = new AthletesData(); 
+                _athletesData = new AthletesData();
             }
             return _athletesData;
         }
     }
-    
+
 }

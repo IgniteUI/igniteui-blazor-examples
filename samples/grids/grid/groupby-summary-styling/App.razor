@@ -1,12 +1,10 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-@inject IJSRuntime JS
 
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="WebGrid"
         IsHorizontal="true"
         IsWrappingEnabled="true"
@@ -17,15 +15,15 @@
             Name="SummaryCalcModeEditor"
             @ref="summaryCalcModeEditor">
             </IgbPropertyEditorPropertyDescription>
-            
+
             <IgbPropertyEditorPropertyDescription
             PropertyPath="SummaryPosition"
             Name="SummaryPositionEditor"
             @ref="summaryPositionEditor">
             </IgbPropertyEditorPropertyDescription>
-            
+
         </IgbPropertyEditorPanel>
-        
+
     </div>
 
     <div class="container vertical fill">
@@ -41,14 +39,14 @@
             Groupable="true"
             Width="200px">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="ShipCity"
             Header="Ship City"
             Width="250px"
             Groupable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="UnitPrice"
             Header="Unit Price"
@@ -60,7 +58,7 @@
             Name="column1"
             @ref="column1">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Quantity"
             Header="Quantity"
@@ -69,9 +67,9 @@
             DataType="GridColumnDataType.Number"
             HasSummary="true">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -80,7 +78,6 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
     private Action BindElements { get; set; }
@@ -98,11 +95,8 @@
         };
         this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbPropertyEditorPanel propertyEditor;
     private IgbPropertyEditorPropertyDescription summaryCalcModeEditor;
@@ -150,10 +144,10 @@
         {
             if (_invoicesData == null)
             {
-                _invoicesData = new InvoicesData(); 
+                _invoicesData = new InvoicesData();
             }
             return _invoicesData;
         }
     }
-    
+
 }

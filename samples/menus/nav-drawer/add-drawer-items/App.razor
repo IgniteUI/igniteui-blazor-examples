@@ -1,6 +1,6 @@
 
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
     <IgbNavDrawer Open="true">
@@ -25,17 +25,8 @@
     public IgbIcon HomeIcon { get; set; }
     public IgbIcon SearchIcon { get; set; }
 
-    protected override void OnInitialized()
-    {
-        IgbNavDrawerModule.Register(IgniteUIBlazor);
-        IgbNavDrawerHeaderItemModule.Register(IgniteUIBlazor);
-        IgbIconModule.Register(IgniteUIBlazor);
-    }
-
     protected override void OnAfterRender(bool firstRender)
     {
-        base.OnAfterRender(firstRender);
-
         if (this.HomeIcon != null && firstRender)
         {
             this.HomeIcon.EnsureReady().ContinueWith(new Action<Task>((e) =>

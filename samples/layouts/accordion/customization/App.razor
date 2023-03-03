@@ -1,5 +1,5 @@
 ﻿@using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <style>
     igc-accordion {
@@ -101,13 +101,10 @@
         Ratings.Add(new Rating { Id = "1", Label = "2 star or more", Value = 2.5 });
         Ratings.Add(new Rating { Id = "2", Label = "3 star or more", Value = 3.5 });
         Ratings.Add(new Rating { Id = "3", Label = "4 star or more", Value = 4.5 });
-
-        await base.OnInitializedAsync();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await base.OnAfterRenderAsync(firstRender);
         if (firstRender && this.RegisterIconRef != null)
         {
             await this.RegisterIconRef.EnsureReady();
@@ -163,15 +160,15 @@
         }
     }
 
-    private async void OnTimeChange(IgbComponentDateValueChangedEventArgs args)
+    private async Task OnTimeChange(IgbComponentDateValueChangedEventArgs args)
     {
         TimeTitle = "Time: " + (args.Parent as IgbDateTimeInput).Label + " " + args.Detail.ToShortTimeString();
         StateHasChanged();
 
-        await Task.Delay(1);
+
     }
 
-    private async void OnTimeClear()
+    private async Task OnTimeClear()
     {
         if (DateTimeInputRef != null)
         {

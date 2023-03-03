@@ -1,6 +1,6 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 @inject IJSRuntime JS
 
 <div class="container vertical">
@@ -26,7 +26,7 @@
             Width="120px"
             DataType="GridColumnDataType.String">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="UnitPrice"
             Header="Unit Price"
@@ -40,7 +40,7 @@
             Name="column1"
             @ref="column1">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="OrderFullDate"
             Header="Order Full Date"
@@ -54,7 +54,7 @@
             Name="column2"
             @ref="column2">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="OrderDate"
             Header="Order Date"
@@ -68,7 +68,7 @@
             Name="column3"
             @ref="column3">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="OrderDateDelay"
             Header="Order Time"
@@ -82,7 +82,7 @@
             Name="column4"
             @ref="column4">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="UnitsInStock"
             Header="Stock Value"
@@ -96,7 +96,7 @@
             Name="column5"
             @ref="column5">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="UnitsOnOrder"
             Header="% Change"
@@ -110,7 +110,7 @@
             Name="column6"
             @ref="column6">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Discontinued"
             Header="Discontinued"
@@ -121,9 +121,9 @@
             Resizable="true"
             DataType="GridColumnDataType.Boolean">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -132,7 +132,7 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
+
     }
 
     private Action BindElements { get; set; }
@@ -146,16 +146,7 @@
         var column4 = this.column4;
         var column5 = this.column5;
         var column6 = this.column6;
-
-        this.BindElements = () => {
-        };
-        this.BindElements();
-
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
     private IgbColumn column1;
@@ -261,10 +252,10 @@
         {
             if (_invoicesDataExtendedDates == null)
             {
-                _invoicesDataExtendedDates = new InvoicesDataExtendedDates(); 
+                _invoicesDataExtendedDates = new InvoicesDataExtendedDates();
             }
             return _invoicesDataExtendedDates;
         }
     }
-    
+
 }

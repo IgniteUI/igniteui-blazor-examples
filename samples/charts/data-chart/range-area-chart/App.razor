@@ -1,9 +1,17 @@
-@using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+@using IgniteUI.Blazor.Controls;
+
 
 <div class="container vertical">
     <div class="legend-title">
-        Monthly Temperature Range in Los Angeles
+        Monthly Temperature Range in LA and NYC
+    </div>
+    <div class="legend">
+        <IgbLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="Legend"
+        @ref="legend">
+        </IgbLegend>
+
     </div>
 
     <div class="container vertical fill">
@@ -19,15 +27,15 @@
             Name="xAxis"
             @ref="xAxis">
             </IgbCategoryXAxis>
-            
+
             <IgbNumericYAxis
             Title="Temperature (in Celsius)"
-            TitleAngle="-90"
+            TitleAngle="90"
             TitleLeftMargin="10"
             Name="yAxis"
             @ref="yAxis">
             </IgbNumericYAxis>
-            
+
             <IgbRangeAreaSeries
             XAxisName="xAxis"
             YAxisName="yAxis"
@@ -39,7 +47,7 @@
             Name="RangeAreaSeries1"
             @ref="rangeAreaSeries1">
             </IgbRangeAreaSeries>
-            
+
             <IgbRangeAreaSeries
             XAxisName="xAxis"
             YAxisName="yAxis"
@@ -51,14 +59,14 @@
             Name="RangeAreaSeries2"
             @ref="rangeAreaSeries2">
             </IgbRangeAreaSeries>
-            
+
             <IgbDataToolTipLayer
             Name="DataToolTipLayer"
             @ref="dataToolTipLayer">
             </IgbDataToolTipLayer>
-            
+
         </IgbDataChart>
-        
+
     </div>
 
 </div>
@@ -67,13 +75,13 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
     private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        var legend = this.legend;
         var chart = this.chart;
         var xAxis = this.xAxis;
         var yAxis = this.yAxis;
@@ -82,15 +90,14 @@
         var dataToolTipLayer = this.dataToolTipLayer;
 
         this.BindElements = () => {
+            chart.Legend = this.legend;
         };
         this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
+    private IgbLegend legend;
     private IgbDataChart chart;
     private IgbCategoryXAxis xAxis;
     private IgbNumericYAxis yAxis;
@@ -105,10 +112,10 @@
         {
             if (_temperatureRangeData == null)
             {
-                _temperatureRangeData = new TemperatureRangeData(); 
+                _temperatureRangeData = new TemperatureRangeData();
             }
             return _temperatureRangeData;
         }
     }
-    
+
 }

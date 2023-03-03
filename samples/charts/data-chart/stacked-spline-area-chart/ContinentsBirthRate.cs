@@ -2,14 +2,15 @@ using System;
 using System.Collections.Generic;
 public class ContinentsBirthRateItem
 {
-    public string Year{ get; set; }
-    public double Asia{ get; set; }
-    public double Africa{ get; set; }
-    public double Europe{ get; set; }
-    public double NorthAmerica{ get; set; }
-    public double SouthAmerica{ get; set; }
-    public double Oceania{ get; set; }
+    public string Year { get; set; }
+    public double Asia { get; set; }
+    public double Africa { get; set; }
+    public double Europe { get; set; }
+    public double NorthAmerica { get; set; }
+    public double SouthAmerica { get; set; }
+    public double Oceania { get; set; }
 }
+
 public class ContinentsBirthRate
     : List<ContinentsBirthRateItem>
 {

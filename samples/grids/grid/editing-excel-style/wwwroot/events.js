@@ -20,7 +20,7 @@ igRegisterScript("WebGridEditingExcelStyle", (ev) => {
         var column = activeElem.column;
         var rowInfo = grid.dataView;
 
-        var nextRow = this.getNextEditableRowIndex(thisRow, rowInfo, event.shiftKey);
+        var nextRow = this.getNextEditableRowIndex(thisRow, rowInfo, ev.detail.event.shiftKey);
 
         grid.navigateTo(nextRow, column, (obj) => {
             obj.target.activate();
@@ -28,4 +28,19 @@ igRegisterScript("WebGridEditingExcelStyle", (ev) => {
         });
     }
 }, false);
+
+function getNextEditableRowIndex(currentRowIndex, dataView, previous) {
+    if (currentRowIndex < 0 || (currentRowIndex === 0 && previous) || (currentRowIndex >= dataView.length - 1 && !previous)) {
+        return currentRowIndex;
+    }
+    if (previous) {
+        return dataView.findLastIndex((rec, index) => index < currentRowIndex && this.isEditableDataRecordAtIndex(index, dataView));
+    }
+    return dataView.findIndex((rec, index) => index > currentRowIndex && this.isEditableDataRecordAtIndex(index, dataView));
+}
+
+function isEditableDataRecordAtIndex(dataViewIndex, dataView) {
+    const rec = dataView[dataViewIndex];
+    return !rec.expression && !rec.summaries && !rec.childGridsData && !rec.detailsData;
+}
 

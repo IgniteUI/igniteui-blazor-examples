@@ -1,12 +1,10 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-@inject IJSRuntime JS
 
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="WebGrid"
         IsHorizontal="true"
         IsWrappingEnabled="true"
@@ -18,9 +16,9 @@
             Name="SortingOptionsEditor"
             @ref="sortingOptionsEditor">
             </IgbPropertyEditorPropertyDescription>
-            
+
         </IgbPropertyEditorPanel>
-        
+
     </div>
 
     <div class="container vertical fill">
@@ -35,7 +33,7 @@
             Sortable="true"
             Groupable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="CategoryName"
             Header="Category Name"
@@ -43,7 +41,7 @@
             Sortable="true"
             DataType="GridColumnDataType.String">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="CompanyName"
             Header="Company"
@@ -51,7 +49,7 @@
             Sortable="true"
             DataType="GridColumnDataType.String">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="ShipCountry"
             Header="Ship Country"
@@ -59,7 +57,7 @@
             Sortable="true"
             DataType="GridColumnDataType.String">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="SaleAmount"
             Header="Sale Amount"
@@ -70,16 +68,16 @@
             Name="column1"
             @ref="column1">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="ShippedDate"
             Header="Shipped Date"
             Sortable="true"
             DataType="GridColumnDataType.Date">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -88,7 +86,6 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
     private Action BindElements { get; set; }
@@ -105,11 +102,8 @@
         };
         this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbPropertyEditorPanel propertyEditor;
     private IgbPropertyEditorPropertyDescription sortingOptionsEditor;
@@ -138,10 +132,10 @@
         {
             if (_productSales == null)
             {
-                _productSales = new ProductSales(); 
+                _productSales = new ProductSales();
             }
             return _productSales;
         }
     }
-    
+
 }

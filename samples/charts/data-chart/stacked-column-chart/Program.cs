@@ -29,6 +29,7 @@ namespace Infragistics.Samples
                 typeof(IgbDataChartCategoryModule), 
                 typeof(IgbDataChartCategoryCoreModule), 
                 typeof(IgbDataChartInteractivityModule), 
+                typeof(IgbDataChartAnnotationModule), 
                 typeof(IgbDataChartStackedModule), 
                 typeof(IgbStackedFragmentSeriesModule)
             );

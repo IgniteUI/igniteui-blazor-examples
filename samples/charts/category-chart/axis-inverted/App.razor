@@ -1,11 +1,10 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-	    <div class="options vertical">
+    <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="CategoryChart"
         IsHorizontal="true"
         IsWrappingEnabled="true"
@@ -19,6 +18,7 @@
             Name="XAxisInvertedEditor"
             @ref="xAxisInvertedEditor">
             </IgbPropertyEditorPropertyDescription>
+
             <IgbPropertyEditorPropertyDescription
             PropertyPath="YAxisInverted"
             Label="Y Axis - Inverted"
@@ -27,14 +27,14 @@
             Name="YAxisInvertedEditor"
             @ref="yAxisInvertedEditor">
             </IgbPropertyEditorPropertyDescription>
+
         </IgbPropertyEditorPanel>
+
     </div>
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Renewable Electricity Generated
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbCategoryChart
         ChartType="CategoryChartType.Line"
@@ -52,34 +52,38 @@
         Name="chart"
         @ref="chart">
         </IgbCategoryChart>
+
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
+    private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var propertyEditorPanel1 = this.propertyEditorPanel1;
-		var xAxisInvertedEditor = this.xAxisInvertedEditor;
-		var yAxisInvertedEditor = this.yAxisInvertedEditor;
-		var chart = this.chart;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var xAxisInvertedEditor = this.xAxisInvertedEditor;
+        var yAxisInvertedEditor = this.yAxisInvertedEditor;
+        var chart = this.chart;
 
         this.BindElements = () => {
             propertyEditorPanel1.Target = this.chart;
         };
         this.BindElements();
-	}
 
-	private IgbPropertyEditorPanel propertyEditorPanel1;
-	private IgbPropertyEditorPropertyDescription xAxisInvertedEditor;
-	private IgbPropertyEditorPropertyDescription yAxisInvertedEditor;
-	private IgbCategoryChart chart;
 
+    }
+
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription xAxisInvertedEditor;
+    private IgbPropertyEditorPropertyDescription yAxisInvertedEditor;
+    private IgbCategoryChart chart;
 
     private CountryRenewableElectricity _countryRenewableElectricity = null;
     public CountryRenewableElectricity CountryRenewableElectricity
@@ -88,10 +92,10 @@
         {
             if (_countryRenewableElectricity == null)
             {
-                _countryRenewableElectricity = new CountryRenewableElectricity(); 
+                _countryRenewableElectricity = new CountryRenewableElectricity();
             }
             return _countryRenewableElectricity;
         }
     }
-    
+
 }

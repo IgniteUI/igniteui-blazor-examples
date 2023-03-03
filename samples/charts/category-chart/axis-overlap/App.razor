@@ -1,11 +1,10 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-	    <div class="options vertical">
+    <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="CategoryChart"
         IsHorizontal="true"
         IsWrappingEnabled="true"
@@ -23,21 +22,22 @@
             Name="XAxisOverlap"
             @ref="xAxisOverlap">
             </IgbPropertyEditorPropertyDescription>
+
         </IgbPropertyEditorPanel>
+
     </div>
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Highest Grossing Movie Franchises
     </div>
-    
-	     <div class="legend">
+    <div class="legend">
         <IgbLegend
         Orientation="LegendOrientation.Horizontal"
         Name="Legend"
         @ref="legend">
         </IgbLegend>
+
     </div>
-	
+
     <div class="container vertical fill">
         <IgbCategoryChart
         ChartType="CategoryChartType.Column"
@@ -50,34 +50,38 @@
         Name="chart"
         @ref="chart">
         </IgbCategoryChart>
+
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
+    private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var legend = this.legend;
-		var propertyEditorPanel1 = this.propertyEditorPanel1;
-		var xAxisOverlap = this.xAxisOverlap;
-		var chart = this.chart;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var xAxisOverlap = this.xAxisOverlap;
+        var chart = this.chart;
 
         this.BindElements = () => {
             propertyEditorPanel1.Target = this.chart;
         };
         this.BindElements();
-	}
 
-	private IgbLegend legend;
-	private IgbPropertyEditorPanel propertyEditorPanel1;
-	private IgbPropertyEditorPropertyDescription xAxisOverlap;
-	private IgbCategoryChart chart;
 
+    }
+
+    private IgbLegend legend;
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription xAxisOverlap;
+    private IgbCategoryChart chart;
 
     private HighestGrossingMovies _highestGrossingMovies = null;
     public HighestGrossingMovies HighestGrossingMovies
@@ -86,10 +90,10 @@
         {
             if (_highestGrossingMovies == null)
             {
-                _highestGrossingMovies = new HighestGrossingMovies(); 
+                _highestGrossingMovies = new HighestGrossingMovies();
             }
             return _highestGrossingMovies;
         }
     }
-    
+
 }

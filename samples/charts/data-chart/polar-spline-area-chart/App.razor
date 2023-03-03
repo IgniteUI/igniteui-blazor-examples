@@ -1,5 +1,5 @@
-@using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+@using IgniteUI.Blazor.Controls;
+
 
 <div class="container vertical">
     <div class="legend-title">
@@ -20,7 +20,7 @@
             Name="angleAxis"
             @ref="angleAxis">
             </IgbNumericAngleAxis>
-            
+
             <IgbNumericRadiusAxis
             RadiusExtentScale="0.9"
             InnerRadiusExtentScale="0.1"
@@ -30,7 +30,7 @@
             Name="radiusAxis"
             @ref="radiusAxis">
             </IgbNumericRadiusAxis>
-            
+
             <IgbPolarSplineAreaSeries
             AngleMemberPath="Direction"
             RadiusMemberPath="WindSpeed"
@@ -45,7 +45,7 @@
             Name="PolarSplineAreaSeries1"
             @ref="polarSplineAreaSeries1">
             </IgbPolarSplineAreaSeries>
-            
+
             <IgbPolarSplineAreaSeries
             DataSource="BoatSailingData"
             AngleAxisName="angleAxis"
@@ -60,14 +60,14 @@
             Name="PolarSplineAreaSeries2"
             @ref="polarSplineAreaSeries2">
             </IgbPolarSplineAreaSeries>
-            
+
             <IgbDataToolTipLayer
             Name="DataToolTipLayer"
             @ref="dataToolTipLayer">
             </IgbDataToolTipLayer>
-            
+
         </IgbDataChart>
-        
+
     </div>
 
 </div>
@@ -76,10 +76,8 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -90,15 +88,9 @@
         var polarSplineAreaSeries2 = this.polarSplineAreaSeries2;
         var dataToolTipLayer = this.dataToolTipLayer;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbDataChart chart;
     private IgbNumericAngleAxis angleAxis;
@@ -114,10 +106,10 @@
         {
             if (_boatSailingData == null)
             {
-                _boatSailingData = new BoatSailingData(); 
+                _boatSailingData = new BoatSailingData();
             }
             return _boatSailingData;
         }
     }
-    
+
 }

@@ -1,14 +1,11 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Comparing Population of Countries
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbTreemap
         ValueMemberPath="Population"
@@ -32,27 +29,27 @@
         Name="treemap"
         @ref="treemap">
         </IgbTreemap>
+
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var treemap = this.treemap;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var treemap = this.treemap;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
-	}
 
-	private IgbTreemap treemap;
 
+    }
+
+    private IgbTreemap treemap;
 
     private CountyHierarchicalData _countyHierarchicalData = null;
     public CountyHierarchicalData CountyHierarchicalData
@@ -61,10 +58,10 @@
         {
             if (_countyHierarchicalData == null)
             {
-                _countyHierarchicalData = new CountyHierarchicalData(); 
+                _countyHierarchicalData = new CountyHierarchicalData();
             }
             return _countyHierarchicalData;
         }
     }
-    
+
 }

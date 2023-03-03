@@ -1,7 +1,5 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-@inject IJSRuntime JS
 
 <div class="container vertical">
 
@@ -17,7 +15,7 @@
             <IgbPaginator
             PerPage="10">
             </IgbPaginator>
-            
+
             <IgbColumn
             Field="ProductID"
             Header="Product ID"
@@ -27,68 +25,68 @@
             HasSummary="true"
             DataType="GridColumnDataType.Number">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="ProductName"
             Header="Product Name"
-            DataType="GridColumnDataType.String"
             Sortable="true"
-            HasSummary="true"
             Editable="true"
-            Resizable="true">
+            Resizable="true"
+            HasSummary="true"
+            DataType="GridColumnDataType.String">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="UnitPrice"
             Header="Unit Price"
-            DataType="GridColumnDataType.Number"
             Sortable="true"
-            HasSummary="true"
             Editable="true"
-            Resizable="true">
+            Resizable="true"
+            HasSummary="true"
+            DataType="GridColumnDataType.Number">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="UnitsInStock"
             Header="Units in Stock"
-            DataType="GridColumnDataType.Number"
             Sortable="true"
-            HasSummary="true"
             Editable="true"
-            Resizable="true">
+            Resizable="true"
+            HasSummary="true"
+            DataType="GridColumnDataType.Number">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="OrderDate"
             Header="Order Date"
-            DataType="GridColumnDataType.Date"
             Sortable="true"
-            HasSummary="true"
             Editable="true"
-            Resizable="true">
+            Resizable="true"
+            HasSummary="true"
+            DataType="GridColumnDataType.Date">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Discontinued"
             Header="Discontinued"
-            DataType="GridColumnDataType.Boolean"
             Sortable="true"
+            Editable="true"
             HasSummary="true"
-            Editable="true">
+            DataType="GridColumnDataType.Boolean">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="ReorderLevel"
             Header="Reorder Level"
-            DataType="GridColumnDataType.Number"
             Sortable="true"
-            HasSummary="true"
             Editable="true"
-            Filterable="true">
+            Filterable="true"
+            HasSummary="true"
+            DataType="GridColumnDataType.Number">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -97,24 +95,16 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid1 = this.grid1;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid1;
 
@@ -125,10 +115,10 @@
         {
             if (_nwindData == null)
             {
-                _nwindData = new NwindData(); 
+                _nwindData = new NwindData();
             }
             return _nwindData;
         }
     }
-    
+
 }

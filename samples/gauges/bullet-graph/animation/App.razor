@@ -1,6 +1,6 @@
 @using System.Collections.ObjectModel
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
     <div class="options horizontal">
@@ -9,7 +9,7 @@
         <button @onclick="onAnimateToGauge3">Gauge Animation #3</button>
     </div>
     <div class="container vertical">
-        <IgbBulletGraph Height="80px" Width="100%"     
+        <IgbBulletGraph Height="80px" Width="100%"
                      TransitionDuration=@TransitionDuration
                      MinimumValue=@MinimumValue
                      MaximumValue=@MaximumValue
@@ -127,8 +127,6 @@
 
     protected override void OnInitialized()
     {
-        IgbBulletGraphModule.Register(IgniteUIBlazor);
-
         this.MinimumValue = 0;
         this.MaximumValue = 120;
         this.ValueBrush = "#4286F4";

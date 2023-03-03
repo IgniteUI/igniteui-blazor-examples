@@ -12,7 +12,7 @@
 @using Microsoft.JSInterop.WebAssembly
 @using Infragistics.Documents.Excel
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
 
@@ -68,10 +68,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
-
-        IgbDataGridModule.Register(IgniteUIBlazor);
-
         Workbook.InProcessRuntime = this.Runtime as IJSInProcessRuntime;
 
         this.companies = new string[] { "Amazon", "Ford", "Jaguar", "Tesla", "IBM", "Microsoft" };
@@ -82,7 +78,6 @@
         this.titles = new string[] { "Sales Rep.", "Engineer", "Administrator", "Manager" };
         this.employeeColumns = new string[] { "Name", "Company", "Title", "Age", "Country" };
         this.streets = new string[] { "Main St", "Madison St", "Broad Way" };
-
 
         GenerateData();
         this.Data = this.salesEmployeeData;

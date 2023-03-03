@@ -1,11 +1,12 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
+@using IgniteUI.Blazor.Controls;
+@using System;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-	    <div class="options vertical">
+    <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="DataChart"
         IsHorizontal="true"
         IsWrappingEnabled="false"
@@ -20,14 +21,14 @@
             Name="propertyEditorPropertyDescription1"
             @ref="propertyEditorPropertyDescription1">
             </IgbPropertyEditorPropertyDescription>
+
         </IgbPropertyEditorPanel>
+
     </div>
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Facebook Consolidated Statements of Income
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbDataChart
         IsHorizontalZoomEnabled="false"
@@ -42,6 +43,7 @@
             Name="xAxis"
             @ref="xAxis">
             </IgbCategoryXAxis>
+
             <IgbNumericYAxis
             MinimumValue="0"
             MaximumValue="60"
@@ -51,6 +53,7 @@
             Name="yAxis"
             @ref="yAxis">
             </IgbNumericYAxis>
+
             <IgbWaterfallSeries
             XAxisName="xAxis"
             YAxisName="yAxis"
@@ -61,6 +64,7 @@
             Name="WaterfallSeries1"
             @ref="waterfallSeries1">
             </IgbWaterfallSeries>
+
             <IgbWaterfallSeries
             XAxisName="xAxis"
             YAxisName="yAxis"
@@ -73,42 +77,48 @@
             Name="WaterfallSeries2"
             @ref="waterfallSeries2">
             </IgbWaterfallSeries>
+
         </IgbDataChart>
+
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
+    private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var propertyEditorPanel1 = this.propertyEditorPanel1;
-		var propertyEditorPropertyDescription1 = this.propertyEditorPropertyDescription1;
-		var chart = this.chart;
-		var xAxis = this.xAxis;
-		var yAxis = this.yAxis;
-		var waterfallSeries1 = this.waterfallSeries1;
-		var waterfallSeries2 = this.waterfallSeries2;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var propertyEditorPropertyDescription1 = this.propertyEditorPropertyDescription1;
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var waterfallSeries1 = this.waterfallSeries1;
+        var waterfallSeries2 = this.waterfallSeries2;
 
         this.BindElements = () => {
             propertyEditorPanel1.Target = this.chart;
         };
         this.BindElements();
-	}
 
-	private IgbPropertyEditorPanel propertyEditorPanel1;
-	private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
-	private IgbDataChart chart;
-	private IgbCategoryXAxis xAxis;
-	private IgbNumericYAxis yAxis;
-	private IgbWaterfallSeries waterfallSeries1;
-	private IgbWaterfallSeries waterfallSeries2;
 
-    
+    }
+
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbWaterfallSeries waterfallSeries1;
+    private IgbWaterfallSeries waterfallSeries2;
+
+
     public void EditorButtonReplayTransitionIn(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
     {
         var series = this.chart.ActualSeries;
@@ -117,7 +127,6 @@
             series[i].ReplayTransitionIn();
         }
     }
-        
 
     private CompanyIncomeData _companyIncomeData = null;
     public CompanyIncomeData CompanyIncomeData
@@ -126,10 +135,10 @@
         {
             if (_companyIncomeData == null)
             {
-                _companyIncomeData = new CompanyIncomeData(); 
+                _companyIncomeData = new CompanyIncomeData();
             }
             return _companyIncomeData;
         }
     }
-    
+
 }

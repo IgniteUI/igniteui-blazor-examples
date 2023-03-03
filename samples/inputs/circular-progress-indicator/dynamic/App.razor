@@ -1,5 +1,5 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <style>
     #sampleContent {
@@ -17,15 +17,15 @@
     }
 </style>
 
-<div id="sampleContent">   
+<div id="sampleContent">
     <IgbCircularProgress @ref="CircularProgressRef" id="circularProgress" Max=100 Value=@ProgressValue>
-        <IgbCircularGradient slot="gradient" Offset="0%"   Color="#ff9a40"/>        
-        <IgbCircularGradient slot="gradient" Offset="50%"  Color="#1eccd4"/>        
-        <IgbCircularGradient slot="gradient" Offset="100%" Color="#ff0079"/>        
+        <IgbCircularGradient slot="gradient" Offset="0%"   Color="#ff9a40"/>
+        <IgbCircularGradient slot="gradient" Offset="50%"  Color="#1eccd4"/>
+        <IgbCircularGradient slot="gradient" Offset="100%" Color="#ff0079"/>
     </IgbCircularProgress>
     <div class="buttonContainer">
         <IgbIconButton @ref="RemoveIconRef" @onclick="OnRemoveIconClick" IconName="remove" Collection="material" />
-        <IgbIconButton @ref="AddIconRef" @onclick="OnAddIconClick" IconName="add" Collection="material" />        
+        <IgbIconButton @ref="AddIconRef" @onclick="OnAddIconClick" IconName="add" Collection="material" />
     </div>
 </div>
 
@@ -35,20 +35,15 @@
     private double ProgressValue { get; set; }
 
     private IgbIconButton AddIconRef { get; set; }
-    private IgbIconButton RemoveIconRef { get; set; }        
+    private IgbIconButton RemoveIconRef { get; set; }
 
     protected override void OnInitialized()
     {
-        IgbCircularProgressModule.Register(IgniteUIBlazor);
-        IgbIconButtonModule.Register(IgniteUIBlazor);
-
         this.ProgressValue = 0;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await base.OnAfterRenderAsync(firstRender);
-
         if(firstRender && this.AddIconRef != null && this.RemoveIconRef != null)
         {
             await this.AddIconRef.EnsureReady();
@@ -58,7 +53,7 @@
             string removeIcon = "<svg xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 0 24 24' width='24'><path d='M0 0h24v24H0z' fill='none'/><path d='M19 13H5v-2h14v2z'/></svg>";
 
             await this.AddIconRef.RegisterIconFromTextAsync("add", addIcon, "material");
-            await this.RemoveIconRef.RegisterIconFromTextAsync("remove", removeIcon, "material");            
+            await this.RemoveIconRef.RegisterIconFromTextAsync("remove", removeIcon, "material");
         }
     }
 

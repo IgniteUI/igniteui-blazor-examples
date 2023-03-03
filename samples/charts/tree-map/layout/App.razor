@@ -1,11 +1,10 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-	    <div class="options vertical">
+    <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="Treemap"
         IsHorizontal="true"
         IsWrappingEnabled="true"
@@ -18,6 +17,7 @@
             Name="LayoutTypeEditor"
             @ref="layoutTypeEditor">
             </IgbPropertyEditorPropertyDescription>
+
             <IgbPropertyEditorPropertyDescription
             PropertyPath="LayoutOrientation"
             PrimitiveValue="@("Vertical")"
@@ -25,6 +25,7 @@
             Name="LayoutOrientationEditor"
             @ref="layoutOrientationEditor">
             </IgbPropertyEditorPropertyDescription>
+
             <IgbPropertyEditorPropertyDescription
             PropertyPath="HeaderDisplayMode"
             PrimitiveValue="@("Overlay")"
@@ -32,6 +33,7 @@
             Name="HeaderDisplayModeEditor"
             @ref="headerDisplayModeEditor">
             </IgbPropertyEditorPropertyDescription>
+
             <IgbPropertyEditorPropertyDescription
             PropertyPath="LabelVerticalAlignment"
             PrimitiveValue="@("Center")"
@@ -39,14 +41,14 @@
             Name="LabelVerticalAlignmentEditor"
             @ref="labelVerticalAlignmentEditor">
             </IgbPropertyEditorPropertyDescription>
+
         </IgbPropertyEditorPanel>
+
     </div>
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Comparing Population of Countries
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbTreemap
         ValueMemberPath="Population"
@@ -65,38 +67,42 @@
         Name="treemap"
         @ref="treemap">
         </IgbTreemap>
+
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
+    private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var propertyEditorPanel1 = this.propertyEditorPanel1;
-		var layoutTypeEditor = this.layoutTypeEditor;
-		var layoutOrientationEditor = this.layoutOrientationEditor;
-		var headerDisplayModeEditor = this.headerDisplayModeEditor;
-		var labelVerticalAlignmentEditor = this.labelVerticalAlignmentEditor;
-		var treemap = this.treemap;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var layoutTypeEditor = this.layoutTypeEditor;
+        var layoutOrientationEditor = this.layoutOrientationEditor;
+        var headerDisplayModeEditor = this.headerDisplayModeEditor;
+        var labelVerticalAlignmentEditor = this.labelVerticalAlignmentEditor;
+        var treemap = this.treemap;
 
         this.BindElements = () => {
             propertyEditorPanel1.Target = this.treemap;
         };
         this.BindElements();
-	}
 
-	private IgbPropertyEditorPanel propertyEditorPanel1;
-	private IgbPropertyEditorPropertyDescription layoutTypeEditor;
-	private IgbPropertyEditorPropertyDescription layoutOrientationEditor;
-	private IgbPropertyEditorPropertyDescription headerDisplayModeEditor;
-	private IgbPropertyEditorPropertyDescription labelVerticalAlignmentEditor;
-	private IgbTreemap treemap;
 
+    }
+
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription layoutTypeEditor;
+    private IgbPropertyEditorPropertyDescription layoutOrientationEditor;
+    private IgbPropertyEditorPropertyDescription headerDisplayModeEditor;
+    private IgbPropertyEditorPropertyDescription labelVerticalAlignmentEditor;
+    private IgbTreemap treemap;
 
     private CountyHierarchicalData _countyHierarchicalData = null;
     public CountyHierarchicalData CountyHierarchicalData
@@ -105,10 +111,10 @@
         {
             if (_countyHierarchicalData == null)
             {
-                _countyHierarchicalData = new CountyHierarchicalData(); 
+                _countyHierarchicalData = new CountyHierarchicalData();
             }
             return _countyHierarchicalData;
         }
     }
-    
+
 }

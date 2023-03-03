@@ -1,7 +1,5 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-@inject IJSRuntime JS
 
 <div class="container vertical">
 
@@ -17,72 +15,72 @@
             Name="OrderID"
             @ref="orderID">
             </IgbColumn>
-            
+
             <IgbColumn
-            Field="ShipCountry"
-            Header="Ship Country"
             Name="ShipCountry"
-            @ref="shipCountry">
+            @ref="shipCountry"
+            Field="ShipCountry"
+            Header="Ship Country">
             </IgbColumn>
-            
+
             <IgbColumn
-            Field="OrderDate"
-            Header="Order Date"
             Name="OrderDate"
-            @ref="orderDate">
+            @ref="orderDate"
+            Field="OrderDate"
+            Header="Order Date">
             </IgbColumn>
-            
+
             <IgbColumn
-            Field="PostalCode"
-            Header="Postal Code"
             Name="PostalCode"
-            @ref="postalCode">
+            @ref="postalCode"
+            Field="PostalCode"
+            Header="Postal Code">
             </IgbColumn>
-            
+
             <IgbColumn
-            Field="Discontinued"
-            Header="Discontinued"
             Name="Discontinued"
-            @ref="discontinued">
+            @ref="discontinued"
+            Field="Discontinued"
+            Header="Discontinued">
             </IgbColumn>
-            
+
             <IgbColumn
-            Field="ShipName"
-            Header="Ship Name"
             Name="ShipName"
-            @ref="shipName">
+            @ref="shipName"
+            Field="ShipName"
+            Header="Ship Name">
             </IgbColumn>
-            
+
             <IgbColumn
-            Field="ShipperName"
-            Header="Shipper Name"
             Name="ShipperName"
-            @ref="shipperName">
+            @ref="shipperName"
+            Field="ShipperName"
+            Header="Shipper Name">
             </IgbColumn>
-            
+
             <IgbColumn
-            Field="SalesPerson"
-            Header="Sales Person"
             Name="SalesPerson"
-            @ref="salesPerson">
+            @ref="salesPerson"
+            Field="SalesPerson"
+            Header="Sales Person">
             </IgbColumn>
-            
+
             <IgbColumn
-            Field="UnitPrice"
-            Header="Unit Price"
             Name="UnitPrice"
-            @ref="unitPrice">
+            @ref="unitPrice"
+            Field="UnitPrice"
+            Header="Unit Price">
             </IgbColumn>
-            
+
             <IgbColumn
-            Field="Quantity"
-            Header="Quantity"
             Name="Quantity"
-            @ref="quantity">
+            @ref="quantity"
+            Field="Quantity"
+            Header="Quantity">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -91,10 +89,8 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -110,15 +106,9 @@
         var unitPrice = this.unitPrice;
         var quantity = this.quantity;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
     private IgbColumn orderID;
@@ -139,10 +129,10 @@
         {
             if (_invoicesData == null)
             {
-                _invoicesData = new InvoicesData(); 
+                _invoicesData = new InvoicesData();
             }
             return _invoicesData;
         }
     }
-    
+
 }

@@ -1,21 +1,19 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Wind Speed vs Boat Speed
     </div>
-    
-	     <div class="legend">
+    <div class="legend">
         <IgbLegend
         Orientation="LegendOrientation.Horizontal"
         Name="Legend"
         @ref="legend">
         </IgbLegend>
+
     </div>
-	
+
     <div class="container vertical fill">
         <IgbDataChart
         IsHorizontalZoomEnabled="false"
@@ -35,6 +33,7 @@
             Name="angleAxis"
             @ref="angleAxis">
             </IgbNumericAngleAxis>
+
             <IgbNumericRadiusAxis
             RadiusExtentScale="0.9"
             InnerRadiusExtentScale="0.1"
@@ -44,6 +43,7 @@
             Name="radiusAxis"
             @ref="radiusAxis">
             </IgbNumericRadiusAxis>
+
             <IgbPolarAreaSeries
             AngleMemberPath="Direction"
             RadiusMemberPath="WindSpeed"
@@ -58,6 +58,7 @@
             Name="PolarAreaSeries1"
             @ref="polarAreaSeries1">
             </IgbPolarAreaSeries>
+
             <IgbPolarAreaSeries
             DataSource="BoatSailingData"
             AngleAxisName="angleAxis"
@@ -72,39 +73,44 @@
             Name="PolarAreaSeries2"
             @ref="polarAreaSeries2">
             </IgbPolarAreaSeries>
+
         </IgbDataChart>
+
     </div>
+
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+
     }
 
-	private Action BindElements { get; set; }
+    private Action BindElements { get; set; }
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var legend = this.legend;
-		var chart = this.chart;
-		var angleAxis = this.angleAxis;
-		var radiusAxis = this.radiusAxis;
-		var polarAreaSeries1 = this.polarAreaSeries1;
-		var polarAreaSeries2 = this.polarAreaSeries2;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var chart = this.chart;
+        var angleAxis = this.angleAxis;
+        var radiusAxis = this.radiusAxis;
+        var polarAreaSeries1 = this.polarAreaSeries1;
+        var polarAreaSeries2 = this.polarAreaSeries2;
 
         this.BindElements = () => {
             chart.Legend = this.legend;
         };
         this.BindElements();
-	}
 
-	private IgbLegend legend;
-	private IgbDataChart chart;
-	private IgbNumericAngleAxis angleAxis;
-	private IgbNumericRadiusAxis radiusAxis;
-	private IgbPolarAreaSeries polarAreaSeries1;
-	private IgbPolarAreaSeries polarAreaSeries2;
 
+    }
+
+    private IgbLegend legend;
+    private IgbDataChart chart;
+    private IgbNumericAngleAxis angleAxis;
+    private IgbNumericRadiusAxis radiusAxis;
+    private IgbPolarAreaSeries polarAreaSeries1;
+    private IgbPolarAreaSeries polarAreaSeries2;
 
     private BoatSailingData _boatSailingData = null;
     public BoatSailingData BoatSailingData
@@ -113,10 +119,10 @@
         {
             if (_boatSailingData == null)
             {
-                _boatSailingData = new BoatSailingData(); 
+                _boatSailingData = new BoatSailingData();
             }
             return _boatSailingData;
         }
     }
-    
+
 }

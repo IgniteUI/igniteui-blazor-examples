@@ -1,10 +1,10 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container sample center">
     <IgbInput DisplayType="@InputType.Tel" Label="Phone" Placeholder="888 123 4567">
         <span slot="prefix">+359</span>
-        <IgbIcon @ref="IconRef" slot="suffix" IconName="phone" Collection="material"/>        
+        <IgbIcon @ref="IconRef" slot="suffix" IconName="phone" Collection="material"/>
     </IgbInput>
 </div>
 
@@ -12,16 +12,8 @@
 
     private IgbIcon IconRef { get; set; }
 
-    protected override void OnInitialized()
-    {
-        IgbIconModule.Register(IgniteUIBlazor);
-        IgbInputModule.Register(IgniteUIBlazor);       
-    }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await base.OnAfterRenderAsync(firstRender);
-
         if(firstRender && this.IconRef != null)
         {
             await this.IconRef.EnsureReady();

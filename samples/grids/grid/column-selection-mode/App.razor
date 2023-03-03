@@ -1,12 +1,10 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-@inject IJSRuntime JS
 
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="WebGrid"
         IsHorizontal="true"
         IsWrappingEnabled="true"
@@ -18,9 +16,9 @@
             Name="columnSelectionEditor"
             @ref="columnSelectionEditor">
             </IgbPropertyEditorPropertyDescription>
-            
+
         </IgbPropertyEditorPanel>
-        
+
     </div>
 
     <div class="container vertical fill">
@@ -33,39 +31,39 @@
             <IgbColumn
             Field="ID">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="CompanyName"
             Header="Company">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="ContactTitle"
             Header="Title"
             Selectable="false">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="City"
             Selectable="false">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Country">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="PostalCode"
             Header="Postal Code">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Address"
             Selectable="false">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -74,7 +72,6 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
     private Action BindElements { get; set; }
@@ -90,11 +87,8 @@
         };
         this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbPropertyEditorPanel propertyEditor;
     private IgbPropertyEditorPropertyDescription columnSelectionEditor;
@@ -107,10 +101,10 @@
         {
             if (_customersData == null)
             {
-                _customersData = new CustomersData(); 
+                _customersData = new CustomersData();
             }
             return _customersData;
         }
     }
-    
+
 }

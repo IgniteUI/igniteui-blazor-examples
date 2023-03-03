@@ -1,5 +1,5 @@
-@using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+@using IgniteUI.Blazor.Controls;
+
 
 <div class="container vertical">
     <div class="legend-title">
@@ -11,7 +11,7 @@
         Name="Legend"
         @ref="legend">
         </IgbLegend>
-        
+
     </div>
 
     <div class="container vertical fill">
@@ -28,7 +28,7 @@
             Name="angleAxis"
             @ref="angleAxis">
             </IgbNumericAngleAxis>
-            
+
             <IgbNumericRadiusAxis
             RadiusExtentScale="0.9"
             InnerRadiusExtentScale="0.1"
@@ -38,7 +38,7 @@
             Name="radiusAxis"
             @ref="radiusAxis">
             </IgbNumericRadiusAxis>
-            
+
             <IgbPolarLineSeries
             AngleMemberPath="Direction"
             RadiusMemberPath="WindSpeed"
@@ -52,7 +52,7 @@
             Name="PolarLineSeries1"
             @ref="polarLineSeries1">
             </IgbPolarLineSeries>
-            
+
             <IgbPolarLineSeries
             DataSource="BoatSailingData"
             AngleAxisName="angleAxis"
@@ -66,14 +66,14 @@
             Name="PolarLineSeries2"
             @ref="polarLineSeries2">
             </IgbPolarLineSeries>
-            
+
             <IgbDataToolTipLayer
             Name="DataToolTipLayer"
             @ref="dataToolTipLayer">
             </IgbDataToolTipLayer>
-            
+
         </IgbDataChart>
-        
+
     </div>
 
 </div>
@@ -82,7 +82,6 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
     }
 
     private Action BindElements { get; set; }
@@ -102,11 +101,8 @@
         };
         this.BindElements();
 
-        if (firstRender) {
-        }
 
-        await Task.Delay(1);
-	}
+    }
 
     private IgbLegend legend;
     private IgbDataChart chart;
@@ -123,10 +119,10 @@
         {
             if (_boatSailingData == null)
             {
-                _boatSailingData = new BoatSailingData(); 
+                _boatSailingData = new BoatSailingData();
             }
             return _boatSailingData;
         }
     }
-    
+
 }
