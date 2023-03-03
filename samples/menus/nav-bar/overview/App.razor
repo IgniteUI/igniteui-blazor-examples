@@ -1,7 +1,7 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="container vertical">    
+
+<div class="container vertical">
     <IgbNavbar style="height:4rem">
         <IgbIcon @ref="@HomeIcon" slot="start" IconName="home" Collection="material" Size="SizableComponentSize.Large" />
         <h3>Sample App</h3>
@@ -17,12 +17,6 @@
     public IgbIcon SearchIcon { get; set; }
     public IgbIcon FavoriteIcon { get; set; }
     public IgbIcon MoreVertIcon { get; set; }
-
-    protected override void OnInitialized()
-    {
-        IgbNavbarModule.Register(IgniteUIBlazor);
-        IgbIconModule.Register(IgniteUIBlazor);
-    }
 
     protected override void OnAfterRender(bool firstRender)
     {

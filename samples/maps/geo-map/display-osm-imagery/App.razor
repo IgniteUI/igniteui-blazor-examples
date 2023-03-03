@@ -1,5 +1,5 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
 
@@ -10,15 +10,12 @@
 
 @code {
 
-    private IgbOpenStreetMapImagery OSMImagery;    
+    private IgbOpenStreetMapImagery OSMImagery;
     private IgbGeographicMap MapRef { get; set; }
 
     protected override void OnInitialized()
     {
-        IgbGeographicMapModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-
-        this.OSMImagery = new IgbOpenStreetMapImagery();        
+        this.OSMImagery = new IgbOpenStreetMapImagery();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -29,7 +26,7 @@
         {
             Rect zoomRect = new Rect() { Left = -150, Top = -60, Width = 315, Height = 140 };
             await this.MapRef.EnsureReady();
-            await this.MapRef.UpdateWorldRectAsync(zoomRect);            
+            await this.MapRef.UpdateWorldRectAsync(zoomRect);
         }
     }
 }

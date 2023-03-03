@@ -1,6 +1,6 @@
 @using IgniteUI.Blazor.Controls
 @using System.Net.Http.Json;
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
     <div class="container vertical">
@@ -58,12 +58,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        IgbDataChartCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartScatterModule.Register(IgniteUIBlazor);
-        IgbDataChartScatterCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-        IgbScatterPolylineSeriesModule.Register(IgniteUIBlazor);
-
         var http = new HttpClient();
         var shape = "https://static.infragistics.com/xplatform/json/airplane-shape.json";
         this.AirplaneShape = await http.GetFromJsonAsync<AirplaneSeatInfo[]>(shape);

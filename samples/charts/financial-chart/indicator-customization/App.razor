@@ -1,6 +1,6 @@
 
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
     <div class="container vertical">
@@ -24,13 +24,6 @@
 
     protected override void OnInitialized()
     {
-        IgbFinancialChartModule.Register(IgniteUIBlazor);
-        IgbFinancialChartCoreModule.Register(IgniteUIBlazor);
-
-        GetStockData();
-    }
-
-    public void GetStockData() {
         var today = DateTime.Now;
         var year = today.Year;
         var month = today.Month;

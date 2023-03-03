@@ -1,5 +1,5 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container sample center">
     <IgbDropdown>
@@ -15,7 +15,7 @@
         <IgbDropdownItem Selected="true">
             <IgbIcon @ref=RestaurantIcon slot="prefix" IconName="restaurant-icon" Collection="material"></IgbIcon>
             Restaurant
-        </IgbDropdownItem>        
+        </IgbDropdownItem>
     </IgbDropdown>
 </div>
 
@@ -24,13 +24,6 @@
     IgbIcon HotelIcon { get; set; }
     IgbIcon GroceryIcon { get; set; }
     IgbIcon RestaurantIcon { get; set; }
-
-    protected override void OnInitialized()
-    {
-        IgbDropdownModule.Register(IgniteUIBlazor);
-        IgbDropdownItemModule.Register(IgniteUIBlazor);
-        IgbButtonModule.Register(IgniteUIBlazor);
-    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

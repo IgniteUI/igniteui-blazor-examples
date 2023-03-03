@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Components
 @using Microsoft.AspNetCore.Components.Rendering
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor;
+;
 
 <div class="container vertical">
     <div class="container vertical">
@@ -56,11 +56,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
-        IgbDataGridModule.Register(IgniteUIBlazor);
-        IgbSparklineModule.Register(IgniteUIBlazor);
-
         this.Data = Products.GetData(20);
-        Console.WriteLine("SparklineGrid " + this.Data.Count);
     }
 }

@@ -1,5 +1,5 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container sample center">
     <IgbDropdown>
@@ -15,7 +15,7 @@
         </IgbDropdownItem>
         <IgbDropdownItem>Silent
             <IgbIcon @ref=SilentIcon slot="prefix" IconName="silent-icon" Collection="material"></IgbIcon>
-        </IgbDropdownItem>        
+        </IgbDropdownItem>
     </IgbDropdown>
 </div>
 
@@ -24,14 +24,6 @@
     IgbIcon RingIcon { get; set; }
     IgbIcon VibrateIcon { get; set; }
     IgbIcon SilentIcon { get; set; }
-
-    protected override void OnInitialized()
-    {
-        IgbDropdownModule.Register(IgniteUIBlazor);
-        IgbDropdownItemModule.Register(IgniteUIBlazor);
-        IgbDropdownHeaderModule.Register(IgniteUIBlazor);
-        IgbButtonModule.Register(IgniteUIBlazor);
-    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

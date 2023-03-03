@@ -6,7 +6,7 @@
 @inject HttpClient Http;
 
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
     @if (Employees != null)
@@ -66,11 +66,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
-
-        IgbDataGridModule.Register(IgniteUIBlazor);
-        IgbColumnChooserModule.Register(IgniteUIBlazor);
-
         this.Employees = EmployeeDataJA.Create(100, false);
     }
 

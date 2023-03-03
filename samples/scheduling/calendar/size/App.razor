@@ -1,7 +1,7 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
 
-<div class="container vertical">   
+
+<div class="container vertical">
     <IgbRadioGroup Alignment="@RadioGroupAlignment.Horizontal">
         <IgbRadio Value="Small" label-position="after" Change="OnRadioOptionClick">Small</IgbRadio>
         <IgbRadio Value="Medium" label-position="after" Change="OnRadioOptionClick">Medium</IgbRadio>
@@ -15,14 +15,7 @@
 
 @code {
 
-    private SizableComponentSize CalendarSize { get; set; }    
-
-    protected override void OnInitialized()
-    {
-        IgbCalendarModule.Register(IgniteUIBlazor);
-        IgbRadioGroupModule.Register(IgniteUIBlazor);
-        IgbRadioModule.Register(IgniteUIBlazor);
-    }
+    private SizableComponentSize CalendarSize { get; set; }
 
     public void OnRadioOptionClick(IgbComponentBoolValueChangedEventArgs e)
     {
@@ -32,17 +25,17 @@
         {
             case "Small":
                 {
-                    this.CalendarSize = SizableComponentSize.Small;                    
+                    this.CalendarSize = SizableComponentSize.Small;
                     break;
                 }
             case "Medium":
                 {
-                    this.CalendarSize = SizableComponentSize.Medium;                    
+                    this.CalendarSize = SizableComponentSize.Medium;
                     break;
                 }
             case "Large":
                 {
-                    this.CalendarSize = SizableComponentSize.Large;                    
+                    this.CalendarSize = SizableComponentSize.Large;
                     break;
                 }
         }

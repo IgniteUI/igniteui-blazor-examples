@@ -1,5 +1,5 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
     <div id="root" style="display: flex;">
@@ -7,20 +7,20 @@
             igc-nav-drawer::part(base) {
                 background: #2d313a;
             }
-            
+
             igc-nav-drawer-item::part(base) {
                 color: #fff;
             }
-            
+
             igc-nav-drawer-item::part(base):hover {
                 background-color: #3D4149;
             }
-            
+
             igc-nav-drawer-item[active]::part(base) {
                 background: #f3c03e;
                 color: #2c2c2c
             }
-            
+
             igc-nav-drawer-header-item {
                 color: #f3c03e
             }
@@ -46,15 +46,7 @@
 
 @code {
 
-    public IgbIcon HomeIcon { get; set; }    
-
-    protected override void OnInitialized()
-    {
-        IgbNavDrawerModule.Register(IgniteUIBlazor);
-        IgbNavDrawerItemModule.Register(IgniteUIBlazor);
-        IgbNavDrawerHeaderItemModule.Register(IgniteUIBlazor);
-        IgbIconModule.Register(IgniteUIBlazor);
-    }
+    public IgbIcon HomeIcon { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

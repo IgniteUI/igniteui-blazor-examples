@@ -1,5 +1,5 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
     <div class="options vertical">
@@ -54,18 +54,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        IgbDataChartCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
-        IgbDataChartVerticalCategoryModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-        IgbDataChartScatterModule.Register(IgniteUIBlazor);
-        IgbDataChartScatterCoreModule.Register(IgniteUIBlazor);
-        IgbScatterPolygonSeriesModule.Register(IgniteUIBlazor);
-
-        IgbLegendModule.Register(IgniteUIBlazor);
-
-        // deinfing information about tasks
+        // deifying information about tasks
         TaskDefinitions = new List<TaskInfo>();
         // tasks for VD department
         TaskDefinitions.Add(new TaskInfo { Start = 10, Stop = 20, Category = "VD", Name = "Research" });
@@ -108,7 +97,7 @@
         taskColors.Add("Fixing",    "#33C633");
         taskColors.Add("Reporting", "#EF2E2E");
 
-        // groupping tasks by their name and category
+        // grouping tasks by their name and category
         var tasksByCategory = new Dictionary<string, TaskInfo>();
         var tasksByName = new Dictionary<string, List<TaskInfo>>();
         var taskCategoryID = 0;

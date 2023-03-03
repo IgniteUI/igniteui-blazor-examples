@@ -1,7 +1,7 @@
 
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
     <div class="options horizontal">
@@ -49,12 +49,6 @@
 
     protected override void OnInitialized()
     {
-        IgbFinancialChartModule.Register(IgniteUIBlazor);
-        InitData();
-    }
-
-    public void InitData()
-    {
         var today = DateTime.Now;
         var year = today.Year;
         var month = today.Month;
@@ -62,7 +56,7 @@
         var dateStart = new DateTime(year - 1, month, 1);
         this.Data = StocksUtility.GetStocksBetween(dateStart, dateEnd);
     }
-	
+
     public void OnChanged(ChangeEventArgs args)
     {
         YAxisIsLogarithmic = (bool)args.Value;

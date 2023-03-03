@@ -1,5 +1,5 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical sample">
 
@@ -84,12 +84,6 @@
 
     private List<AverageTemperature> Data = new AverageTemperatureData();
 
-    protected override void OnInitialized()
-    {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
-        IgbLegendModule.Register(IgniteUIBlazor);
-    }
-
     private void OnHighlightingTargetChanged(ChangeEventArgs args)
     {
         var highlighingTarget = (string)args.Value;
@@ -110,7 +104,7 @@
             this.IsItemHighlighting = false;
             this.IsSeriesHighlighting = false;
             this.IsCategoryHighlighting = true;
-        } 
+        }
         else
         {
             this.IsItemHighlighting = false;

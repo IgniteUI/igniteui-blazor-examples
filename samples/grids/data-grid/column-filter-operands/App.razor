@@ -1,9 +1,9 @@
 ﻿@using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor;
+;
 @inject IJSRuntime JSRuntime;
 
 <div class="container vertical">
-    
+
     <div class="container vertical">
         @if (Data != null)
         {
@@ -45,11 +45,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
-        IgbDataGridModule.Register(IgniteUIBlazor);
-        IgbGridColumnOptionsModule.Register(IgniteUIBlazor);
-        IgbGridColumnFilterOptionsModule.Register(IgniteUIBlazor);
-
         this.Data = EmployeeData.Create(100, false);
     }
 

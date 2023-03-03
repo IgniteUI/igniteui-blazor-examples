@@ -1,6 +1,6 @@
 
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
     <div id="nav-drawer-container" style="display: flex;">
@@ -39,18 +39,9 @@
 @code {
 
     public IgbIcon HomeIcon { get; set; }
-    public IgbIcon SearchIcon { get; set; }    
+    public IgbIcon SearchIcon { get; set; }
 
     public IgbNavDrawer NavDrawerRef { get; set; }
-
-    protected override void OnInitialized()
-    {
-        IgbNavDrawerModule.Register(IgniteUIBlazor);
-        IgbNavDrawerHeaderItemModule.Register(IgniteUIBlazor);
-        IgbNavDrawerItemModule.Register(IgniteUIBlazor);
-        IgbIconModule.Register(IgniteUIBlazor);
-        IgbButtonModule.Register(IgniteUIBlazor);
-    }
 
     protected override void OnAfterRender(bool firstRender)
     {
@@ -61,7 +52,7 @@
             this.NavDrawerRef.EnsureReady().ContinueWith(new Action<Task>((e) =>
             {
                 this.NavDrawerRef.Toggle();
-            }));            
+            }));
         }
 
         if (this.HomeIcon != null && firstRender)

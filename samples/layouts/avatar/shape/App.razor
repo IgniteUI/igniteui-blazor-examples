@@ -1,27 +1,21 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
     <IgbAvatar Shape=AvatarShape.Rounded>
         <IgbIcon @ref="ChildIcon" IconName="home" Collection="material" />
-    </IgbAvatar>        
+    </IgbAvatar>
 </div>
 
 @code {
 
 	public IgbIcon ChildIcon { get; set; }
 
-    protected override void OnInitialized()
-    {
-        IgbAvatarModule.Register(IgniteUIBlazor);
-        IgbIconModule.Register(IgniteUIBlazor);
-    }
-
     protected override void OnAfterRender(bool firstRender)
     {
         base.OnAfterRender(firstRender);
 		if (this.ChildIcon != null && firstRender)
-		{                        
+		{
 			this.ChildIcon.EnsureReady().ContinueWith(new Action<Task>((e) =>
 			{
 				this.ChildIcon.RegisterIcon("home", "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg", "material");

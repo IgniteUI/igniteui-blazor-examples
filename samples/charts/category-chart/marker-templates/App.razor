@@ -1,5 +1,5 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
     <div class="options vertical">
@@ -12,7 +12,7 @@
     <div class="container vertical">
              <IgbCategoryChart Height="100%" Width="100%"
                            Legend="Legend"
-                           DataSource="Data"  
+                           DataSource="Data"
                            ChartType="CategoryChartType.Column"
                            Thickness="2"
                            IsHorizontalZoomEnabled="false"
@@ -27,7 +27,7 @@
 </div>
 
 @code {
-     
+
     private IgbLegend _Legend;
     private IgbLegend Legend
     {
@@ -37,9 +37,4 @@
 
     private List<EnergyChangeInfo> Data = new EnergyChangeData();
 
-    protected override void OnInitialized()
-    {
-        IgbCategoryChartModule.Register(IgniteUIBlazor);
-        IgbLegendModule.Register(IgniteUIBlazor);
-    }
 }
