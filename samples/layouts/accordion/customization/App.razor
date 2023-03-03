@@ -101,13 +101,10 @@
         Ratings.Add(new Rating { Id = "1", Label = "2 star or more", Value = 2.5 });
         Ratings.Add(new Rating { Id = "2", Label = "3 star or more", Value = 3.5 });
         Ratings.Add(new Rating { Id = "3", Label = "4 star or more", Value = 4.5 });
-
-        await base.OnInitializedAsync();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await base.OnAfterRenderAsync(firstRender);
         if (firstRender && this.RegisterIconRef != null)
         {
             await this.RegisterIconRef.EnsureReady();
