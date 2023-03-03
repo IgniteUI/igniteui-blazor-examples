@@ -1,7 +1,5 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-@inject IJSRuntime JS
 
 <div class="container vertical">
     <div class="legend-title">
@@ -57,8 +55,6 @@
             </IgbPolarAreaSeries>
             
             <IgbPolarAreaSeries
-            DataSource="BoatSailingData"
-            AngleAxisName="angleAxis"
             RadiusAxisName="radiusAxis"
             AngleMemberPath="Direction"
             RadiusMemberPath="BoatSpeed"
@@ -67,6 +63,8 @@
             Thickness="1"
             Title="Boat Speed"
             MarkerType="MarkerType.Circle"
+            DataSource="BoatSailingData"
+            AngleAxisName="angleAxis"
             Name="PolarAreaSeries2"
             @ref="polarAreaSeries2">
             </IgbPolarAreaSeries>

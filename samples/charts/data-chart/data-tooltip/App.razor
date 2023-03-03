@@ -1,7 +1,5 @@
 @using IgniteUI.Blazor.Controls;
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-@inject IJSRuntime JS
 
 <div class="container vertical">
     <div class="legend-title">
@@ -53,16 +51,16 @@
             </IgbBubbleSeries>
             
             <IgbBubbleSeries
-            RadiusMemberPath="Population"
-            RadiusMemberAsLegendLabel="Population: "
             XAxisName="xAxis"
             YAxisName="yAxis"
+            DataSource="CountryDemographicEurope"
             XMemberPath="DeathRate"
             YMemberPath="BirthRate"
+            RadiusMemberPath="Population"
+            Title="Europe"
+            RadiusMemberAsLegendLabel="Population: "
             XMemberAsLegendLabel="Death Rate: "
             YMemberAsLegendLabel="Birth Rate: "
-            DataSource="CountryDemographicEurope"
-            Title="Europe"
             Name="BubbleSeries2"
             @ref="bubbleSeries2">
                 <IgbSizeScale
