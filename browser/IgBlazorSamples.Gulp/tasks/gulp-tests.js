@@ -1,9 +1,6 @@
-
 let gulp = require('gulp');
 let fs = require('fs.extra');
-let path = require('path');
 let flatten = require('gulp-flatten');
-let del = require('del');
 let es = require('event-stream');
 
 // var igConfig = require('./gulp-config.js')
@@ -15,11 +12,7 @@ function getPath(file) {
     return filePath;
 }
 
-function logIssue(file, msg) {
-    var filePath = getPath(file);
-    console.log(msg + " " + filePath)
-}
-function verifyFile(file, cbFile, requiredStrings) {
+function verifyFile(file, fileCallback, requiredStrings) {
 
     var issues = [];
     var filePath = getPath(file);
@@ -33,25 +26,26 @@ function verifyFile(file, cbFile, requiredStrings) {
         // console.log("Found issues in " + getPath(file) + " file:");
         console.log(issues.join('\n'));
     }
-    cbFile(null, file);
+    fileCallback(null, file);
 }
 
-
 function testAppFiles(cb) {
-
     var checks = [
         { forbidden: "async void", valid: "async Task" },
         { forbidden: "@inject IIgniteUIBlazor IgniteUIBlazor" },
-        // { forbidden: "RegisterIconRef" },
+        { forbidden: "Register(IgniteUIBlazor)" },
+        { forbidden: "Task.Delay(1);" },
+        { forbidden: "Task.Delay(0);" },
     ];
     gulp.src([
-        '../../samples/layouts/expansion-panel/**/*.razor',
-        '../../samples/layouts/accordion/**/*.razor',
-       '!../../samples/layouts/accordion/**/*Imports.razor',
-       '!../../samples/layouts/expansion-panel/**/*Imports.razor',
+        '../../samples/**/*.razor',
+    //     '../../samples/layouts/expansion-panel/**/*.razor',
+    //     '../../samples/layouts/accordion/**/*.razor',
+    //    '!../../samples/layouts/accordion/**/*Imports.razor',
+    //    '!../../samples/layouts/expansion-panel/**/*Imports.razor',
     ])
     // .pipe(es.map(verifySampleFile ))
-    .pipe(es.map(function(file, cbFile) {
+    .pipe(es.map(function(file, fileCallback) {
 
         var issues = [];
         let content = file.contents.toString();
@@ -68,13 +62,7 @@ function testAppFiles(cb) {
             //console.log("Found issues in " + getPath(file) + " file:");
             console.log(issues.join('\n'));
         }
-
-        // if (fileNames.indexOf(file.basename) === -1) {
-        //     fileNames.push(file.basename);
-        // }
-        // let content = file.contents.toString();
-        //console.log("testAppFiles " + filePath);
-        cbFile(null, file);
+        fileCallback(null, file);
     }))
     .on("end", function() { cb(); });
 }
@@ -83,6 +71,7 @@ function testProjectFiles(cb) {
 
     var requiredStrings = [
         '<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">',
+        '<NoWarn>1701;1702,IDE0028,BL0005,0219,CS1998</NoWarn>',
         '<TargetFramework>net6.0</TargetFramework>',
         '<RazorLangVersion>3.0</RazorLangVersion>',
         '<PackageReference Include="IgniteUI.Blazor" Version',
@@ -91,11 +80,12 @@ function testProjectFiles(cb) {
         '</Project>',
     ];
     gulp.src([
-        '../../samples/layouts/expansion-panel/**/*.csproj',
+        '../../samples/**/*.csproj',
+        // '../../samples/layouts/expansion-panel/**/*.csproj',
     ])
     // .pipe(es.map(verifySampleFile ))
-    .pipe(es.map(function(file, cbFile) {
-        verifyFile(file, cbFile, requiredStrings);
+    .pipe(es.map(function(file, fileCallback) {
+        verifyFile(file, fileCallback, requiredStrings);
     }))
     .on("end", function() { cb(); });
 }
@@ -104,7 +94,3 @@ exports.testSampleFiles = testSampleFiles = gulp.series(
     testProjectFiles,
     testAppFiles,
 );
-
-// function testSampleFiles(cb) {
-
-// } exports.testSampleFiles = testSampleFiles;
