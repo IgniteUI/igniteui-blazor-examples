@@ -4,7 +4,7 @@
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="WebGrid"
         IsHorizontal="true"
         IsWrappingEnabled="true"
@@ -17,7 +17,7 @@
             Name="propertyEditorPropertyDescription1"
             @ref="propertyEditorPropertyDescription1">
             </IgbPropertyEditorPropertyDescription>
-            
+
             <IgbPropertyEditorPropertyDescription
             ValueType="PropertyEditorValueType.Button"
             PrimitiveValue="@("Toggle First Group Hidden")"
@@ -25,9 +25,9 @@
             Name="propertyEditorPropertyDescription2"
             @ref="propertyEditorPropertyDescription2">
             </IgbPropertyEditorPropertyDescription>
-            
+
         </IgbPropertyEditorPanel>
-        
+
     </div>
 
     <div class="container vertical fill">
@@ -41,7 +41,7 @@
             Field="ID"
             Resizable="true">
             </IgbColumn>
-            
+
             <IgbColumnGroup
             Header="General Information">
                 <IgbColumn
@@ -49,7 +49,7 @@
                 Resizable="true"
                 Sortable="true">
                 </IgbColumn>
-                
+
                 <IgbColumnGroup
                 Header="Personal Details">
                     <IgbColumn
@@ -57,17 +57,17 @@
                     Resizable="true"
                     Sortable="true">
                     </IgbColumn>
-                    
+
                     <IgbColumn
                     Field="ContactTitle"
                     Resizable="true"
                     Sortable="true">
                     </IgbColumn>
-                    
+
                 </IgbColumnGroup>
-                
+
             </IgbColumnGroup>
-            
+
             <IgbColumnGroup
             Header="Address Information">
                 <IgbColumnGroup
@@ -77,27 +77,27 @@
                     Resizable="true"
                     Sortable="true">
                     </IgbColumn>
-                    
+
                     <IgbColumn
                     Field="Region"
                     Resizable="true"
                     Sortable="true">
                     </IgbColumn>
-                    
+
                     <IgbColumn
                     Field="City"
                     Resizable="true"
                     Sortable="true">
                     </IgbColumn>
-                    
+
                     <IgbColumn
                     Field="Address"
                     Resizable="true"
                     Sortable="true">
                     </IgbColumn>
-                    
+
                 </IgbColumnGroup>
-                
+
                 <IgbColumnGroup
                 Header="Contact Information">
                     <IgbColumn
@@ -105,25 +105,25 @@
                     Resizable="true"
                     Sortable="true">
                     </IgbColumn>
-                    
+
                     <IgbColumn
                     Field="Fax"
                     Resizable="true"
                     Sortable="true">
                     </IgbColumn>
-                    
+
                     <IgbColumn
                     Field="PostalCode"
                     Resizable="true"
                     Sortable="true">
                     </IgbColumn>
-                    
+
                 </IgbColumnGroup>
-                
+
             </IgbColumnGroup>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -149,27 +149,27 @@
         this.BindElements();
 
 
-	}
+    }
 
     private IgbPropertyEditorPanel propertyEditor;
     private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
     private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription2;
     private IgbGrid grid;
 
-    
+
     public void WebGridPinFirstGroupToggle(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
     {
         var columnGroup = this.grid.ActualColumns[1];
         columnGroup.Pinned = !columnGroup.Pinned;
     }
-        
-    
+
+
     public void WebGridHideFirstGroupToggle(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
     {
         var columnGroup = this.grid.ActualColumns[1];
         columnGroup.Hidden = !columnGroup.Hidden;
     }
-        
+
     private CustomersData _customersData = null;
     public CustomersData CustomersData
     {
@@ -177,10 +177,10 @@
         {
             if (_customersData == null)
             {
-                _customersData = new CustomersData(); 
+                _customersData = new CustomersData();
             }
             return _customersData;
         }
     }
-    
+
 }

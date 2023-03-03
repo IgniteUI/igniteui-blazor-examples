@@ -6,7 +6,7 @@
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="DataChart"
         IsHorizontal="true"
         IsWrappingEnabled="false"
@@ -21,9 +21,9 @@
             Name="propertyEditorPropertyDescription1"
             @ref="propertyEditorPropertyDescription1">
             </IgbPropertyEditorPropertyDescription>
-            
+
         </IgbPropertyEditorPanel>
-        
+
     </div>
     <div class="legend-title">
         Facebook Consolidated Statements of Income
@@ -43,7 +43,7 @@
             Name="xAxis"
             @ref="xAxis">
             </IgbCategoryXAxis>
-            
+
             <IgbNumericYAxis
             MinimumValue="0"
             MaximumValue="60"
@@ -53,7 +53,7 @@
             Name="yAxis"
             @ref="yAxis">
             </IgbNumericYAxis>
-            
+
             <IgbWaterfallSeries
             XAxisName="xAxis"
             YAxisName="yAxis"
@@ -64,7 +64,7 @@
             Name="WaterfallSeries1"
             @ref="waterfallSeries1">
             </IgbWaterfallSeries>
-            
+
             <IgbWaterfallSeries
             XAxisName="xAxis"
             YAxisName="yAxis"
@@ -77,9 +77,9 @@
             Name="WaterfallSeries2"
             @ref="waterfallSeries2">
             </IgbWaterfallSeries>
-            
+
         </IgbDataChart>
-        
+
     </div>
 
 </div>
@@ -108,7 +108,7 @@
         this.BindElements();
 
 
-	}
+    }
 
     private IgbPropertyEditorPanel propertyEditorPanel1;
     private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
@@ -118,7 +118,7 @@
     private IgbWaterfallSeries waterfallSeries1;
     private IgbWaterfallSeries waterfallSeries2;
 
-    
+
     public void EditorButtonReplayTransitionIn(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
     {
         var series = this.chart.ActualSeries;
@@ -127,7 +127,7 @@
             series[i].ReplayTransitionIn();
         }
     }
-        
+
     private CompanyIncomeData _companyIncomeData = null;
     public CompanyIncomeData CompanyIncomeData
     {
@@ -135,10 +135,10 @@
         {
             if (_companyIncomeData == null)
             {
-                _companyIncomeData = new CompanyIncomeData(); 
+                _companyIncomeData = new CompanyIncomeData();
             }
             return _companyIncomeData;
         }
     }
-    
+
 }

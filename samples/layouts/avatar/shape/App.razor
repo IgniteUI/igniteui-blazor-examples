@@ -9,16 +9,16 @@
 
 @code {
 
-	public IgbIcon ChildIcon { get; set; }
+    public IgbIcon ChildIcon { get; set; }
 
     protected override void OnAfterRender(bool firstRender)
     {
-		if (this.ChildIcon != null && firstRender)
-		{
-			this.ChildIcon.EnsureReady().ContinueWith(new Action<Task>((e) =>
-			{
-				this.ChildIcon.RegisterIcon("home", "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg", "material");
-			}));
-		}
+        if (this.ChildIcon != null && firstRender)
+        {
+            this.ChildIcon.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.ChildIcon.RegisterIcon("home", "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg", "material");
+            }));
+        }
     }
 }

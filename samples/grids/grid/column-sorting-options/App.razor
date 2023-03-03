@@ -4,7 +4,7 @@
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="WebGrid"
         IsHorizontal="true"
         IsWrappingEnabled="true"
@@ -15,7 +15,7 @@
             Name="SortingOptionsEditor"
             @ref="sortingOptionsEditor">
             </IgbPropertyEditorPropertyDescription>
-            
+
             <IgbPropertyEditorPropertyDescription
             ValueType="PropertyEditorValueType.Button"
             PrimitiveValue="@("Clear Sorting")"
@@ -23,7 +23,7 @@
             Name="propertyEditorPropertyDescription1"
             @ref="propertyEditorPropertyDescription1">
             </IgbPropertyEditorPropertyDescription>
-            
+
             <IgbPropertyEditorPropertyDescription
             ValueType="PropertyEditorValueType.Button"
             PrimitiveValue="@("Clear Grouped Columns")"
@@ -31,9 +31,9 @@
             Name="propertyEditorPropertyDescription2"
             @ref="propertyEditorPropertyDescription2">
             </IgbPropertyEditorPropertyDescription>
-            
+
         </IgbPropertyEditorPanel>
-        
+
     </div>
 
     <div class="container vertical fill">
@@ -49,7 +49,7 @@
             Sortable="true"
             Groupable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="CategoryName"
             Header="Category Name"
@@ -57,7 +57,7 @@
             Sortable="true"
             DataType="GridColumnDataType.String">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="CompanyName"
             Header="Company"
@@ -65,7 +65,7 @@
             Sortable="true"
             DataType="GridColumnDataType.String">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="ShipCountry"
             Header="Ship Country"
@@ -73,7 +73,7 @@
             Sortable="true"
             DataType="GridColumnDataType.String">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="SaleAmount"
             Header="Sale Amount"
@@ -84,16 +84,16 @@
             Name="column1"
             @ref="column1">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="ShippedDate"
             Header="Shipped Date"
             Sortable="true"
             DataType="GridColumnDataType.Date">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -121,7 +121,7 @@
         this.BindElements();
 
 
-	}
+    }
 
     private IgbPropertyEditorPanel propertyEditor;
     private IgbPropertyEditorPropertyDescription sortingOptionsEditor;
@@ -163,18 +163,18 @@
         }
     }
 
-    
+
     public void WebGridClearSort(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
     {
         this.grid.ClearSort("");
     }
-        
-    
+
+
     public void WebGridClearGrouping(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
     {
         this.grid.ClearGrouping("");
     }
-        
+
     private ProductSales _productSales = null;
     public ProductSales ProductSales
     {
@@ -182,10 +182,10 @@
         {
             if (_productSales == null)
             {
-                _productSales = new ProductSales(); 
+                _productSales = new ProductSales();
             }
             return _productSales;
         }
     }
-    
+
 }
