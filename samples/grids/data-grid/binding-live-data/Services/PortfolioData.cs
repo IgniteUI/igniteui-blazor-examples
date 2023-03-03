@@ -67,7 +67,6 @@ namespace Infragistics.Samples
                 RandomizeDataValues(item);
                 dataItems.Add(item);
             }
-            Console.WriteLine("PortfolioData " + dataItems.Count);
             return dataItems;
         }
 

@@ -24,16 +24,12 @@
     {
         this.CalendarLocale = "en";
         this.CalendarFormat = new IgbCalendarFormatOptions() { Month = "short", Weekday = "short" };
-
-        Console.WriteLine("GOT HERE 1");
     }
 
     public void OnRadioOptionClick(IgbComponentBoolValueChangedEventArgs e)
     {
         IgbRadio radio = e.Parent as IgbRadio;
         this.CalendarLocale = radio.Value.ToString();
-
-        Console.WriteLine("GOT HERE 2: " + this.CalendarLocale);
 
         StateHasChanged();
     }

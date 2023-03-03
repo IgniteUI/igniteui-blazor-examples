@@ -131,8 +131,6 @@
         this.EmployeeList[0].Background = "#a8d3fd";
         this.EmployeeSelected =  new List<PersonInfo> { this.EmployeeList[0] };
         this.EmployeeSelectedInfo = this.EmployeeList[0].Name + " (" + this.EmployeeList[0].City + ", " + this.EmployeeList[0].Country + ")";
-
-
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -144,13 +142,10 @@
                 this.ProductivityChart.DataSource = this.EmployeeList[0].Productivity;
             }
         }
-
     }
 
     private void onClick(PersonInfo selectedManager)
     {
-        //Console.WriteLine(selectedManager.Name + " " + selectedManager.Productivity.Count);
-
         this.EmployeeSelected = new List<PersonInfo> { selectedManager };
         this.EmployeeSelectedInfo = selectedManager.Name + " (" + selectedManager.City + ", " + selectedManager.Country + ")";
         this.ProductivityChart.DataSource = selectedManager.Productivity;

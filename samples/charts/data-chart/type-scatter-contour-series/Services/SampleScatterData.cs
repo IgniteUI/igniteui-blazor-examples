@@ -27,7 +27,7 @@ namespace Infragistics.Samples
                     var z = Math.Cos(x) + Math.Cos(y);
                     var p = new SampleScatterPoint { X = x, Y = y, Z = z, Index = index++ };
                     data.Add(p);
-                    Console.WriteLine("x=" + x + " y=" + y + " z=" + z);
+
                 }
             }
             return data;

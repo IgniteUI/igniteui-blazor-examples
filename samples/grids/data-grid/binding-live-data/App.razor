@@ -118,7 +118,6 @@
     {
         if (this.liveAllPricesDisabled) return;
 
-        Console.WriteLine(">>> onLiveAllPricesClicked");
         this.isUpdatingAllPrices = !this.isUpdatingAllPrices;
         this.isUpdatingSomePrices = false;
 
@@ -145,7 +144,6 @@
     {
         if (this.liveSomePricesDisabled) return;
 
-        Console.WriteLine(">>> onLiveSomePricesClicked");
         this.isUpdatingAllPrices = false;
         this.isUpdatingSomePrices = !this.isUpdatingSomePrices;
 
@@ -170,7 +168,6 @@
 
     public void stopTicking()
     {
-        Console.WriteLine(">>> stopTicking");
         if (this.isTimerTicking)
         {
             this.isTimerTicking = false;
@@ -179,7 +176,6 @@
 
     public void startTicking()
     {
-        Console.WriteLine(">>> startTicking");
         if (!this.isTimerTicking)
         {
             this.isTimerTicking = true;
@@ -191,7 +187,6 @@
     public static Random random = new Random();
     public void onTimerTick()
     {
-        //Console.WriteLine(">>> onTimerTick");
         if (!this.isTimerTicking)
         {
             return;
@@ -231,7 +226,6 @@
         {
             toChange = (int)(random.Next(2, this.Data.Count - 1));
         }
-        //Console.WriteLine(">>> onTimerTick toChange " + toChange);
 
         var sortingByPrice = false;
         for (var i = 0; i < this.grid.SortDescriptions.Count; i++)
@@ -251,8 +245,6 @@
         var elapsedInterval = elapsedTime.TotalMilliseconds > this.frequency;
         if (elapsedInterval)
         {
-            //Console.WriteLine(">>> onTimerTick elapsedInterval " + elapsedTime);
-
             this.lastUpdateTime = DateTime.Now;
             for (var i = 0; i < toChange; i++)
             {
@@ -261,14 +253,12 @@
                 //{
                 //    index = (int)Math.Round(random.NextDouble() * this.Data.Count - 1);
                 //}
-                //Console.WriteLine(">>> onTimerTick toChangeIndexes " + index);
 
                 toChangeIndexes[index] = true;
                 toChangeCount++;
                 changing = true;
 
             }
-            //Console.WriteLine(">>> onTimerTick toChangeIndexes " + toChangeCount);
         }
 
         for (var i = 0; i < this.Data.Count; i++)
@@ -278,8 +268,6 @@
             {
                 if (sortingByPrice && !useClear)
                 {
-                    //Console.WriteLine(">>> onTimerTick NotifyInsertItem");
-
                     this.grid.NotifyRemoveItem(this.Data, i, item);
                     PortfolioData.RandomizeDataValues(item);
                     this.grid.NotifyInsertItem(this.Data, i, item);
@@ -353,15 +341,12 @@
 
     private void onToggleHeat(bool isCheched)
     {
-        Console.WriteLine(">>> onToggleHeat " + isCheched);
         this.UseHeatBackground = isCheched;
         this.grid.Flush();
     }
 
     private void onToggleGrouping(bool isCheched)
     {
-        Console.WriteLine(">>> onToggleGrouping " + isCheched);
-
         this.UseRowGrouping = isCheched;
         if (this.UseRowGrouping)
             this.onGridGroupingAdd();

@@ -18,12 +18,10 @@ namespace Infragistics.Samples
 
             if (distance <= interval)
             {
-                // Console.WriteLine("Distance Less Than Equal To Interval!");
                 paths[pathID].Add(new Point() { X = dest.Lon, Y = dest.Lat });
             }
             else
             {
-                // Console.WriteLine("Distance Greater Than Interval!");
                 GeoLocation current = origin;
                 GeoLocation previous = origin;
 

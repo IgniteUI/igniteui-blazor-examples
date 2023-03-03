@@ -91,9 +91,9 @@
                 ExplodedSlices = list.ToArray();
             }
             else
-                ExplodedSlices = new int[] { }; // for single selection
-
-            Console.WriteLine("RMV: " + slice + ", selected: " + string.Join(", ", ExplodedSlices));
+            {
+                ExplodedSlices = new int[] { e.Index }; // for single selection
+            }
         }
         else
         {
@@ -103,9 +103,10 @@
                 ExplodedSlices = list.ToArray();
             }
             else
+            {
                 ExplodedSlices = new int[] { e.Index }; // for single selection
+            }
 
-            Console.WriteLine("ADD: "  + slice + ", selected: " + string.Join(", ", ExplodedSlices));
         }
     }
 
