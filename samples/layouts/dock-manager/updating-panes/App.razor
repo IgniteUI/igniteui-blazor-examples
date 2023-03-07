@@ -80,44 +80,19 @@
         Layout.RootPane.Size = 200;
         Layout.RootPane.PaneType = DockManagerPaneType.SplitPane;
         Layout.RootPane.Orientation = SplitPaneOrientation.Horizontal;
-        Layout.RootPane.Panes = new IgbDockManagerPaneCollection(null, null)
-        {
-            new IgbSplitPane()
-            {
-                PaneType = DockManagerPaneType.SplitPane,
-                Orientation = SplitPaneOrientation.Vertical,
-                Panes = new IgbDockManagerPaneCollection(null, null)
-                {
-                    new IgbContentPane
-                    {
-                        PaneType = DockManagerPaneType.ContentPane,
-                        Header = "Managers List",
-                        ContentId = "content1",
-                    }
-                }
-             },
-             new IgbSplitPane()
-             {
-                 PaneType = DockManagerPaneType.SplitPane,
-                 Orientation = SplitPaneOrientation.Vertical,
-                 Size = 200,
-                 Panes = new IgbDockManagerPaneCollection(null, null)
-                 {
-                    new IgbContentPane
-                    {
-                        PaneType = DockManagerPaneType.ContentPane,
-                        Header = "Manager's Productivity",
-                        ContentId = "content2",
-                    },
-                    new IgbContentPane
-                    {
-                        PaneType = DockManagerPaneType.ContentPane,
-                        Header = "Managers Location",
-                        ContentId = "content3",
-                    }
-                 }
-             }
-        };
+
+        var rootPane = new IgbDockManagerPaneCollection(null, null);
+        var splitpane1 = new IgbSplitPane { PaneType = DockManagerPaneType.SplitPane, Orientation = SplitPaneOrientation.Vertical };
+        var splitpane2 = new IgbSplitPane { PaneType = DockManagerPaneType.SplitPane, Orientation = SplitPaneOrientation.Vertical, Size=200 };
+        var contentpane1 = new IgbContentPane { PaneType = DockManagerPaneType.ContentPane, Header = "Managers List", ContentId = "content1" };
+        var contentpane2 = new IgbContentPane { PaneType = DockManagerPaneType.ContentPane, Header = "Manager's Productivity", ContentId = "content2" };
+        var contentpane3 = new IgbContentPane { PaneType = DockManagerPaneType.ContentPane, Header = "Managers Location", ContentId = "content3" };
+
+        splitpane1.Panes.Add(contentpane1);
+        splitpane2.Panes.Add(contentpane2);
+        splitpane2.Panes.Add(contentpane3);
+        Layout.RootPane.Panes.Add(splitpane1);
+        Layout.RootPane.Panes.Add(splitpane2);
     }
 
     protected override async Task OnInitializedAsync()
@@ -125,7 +100,7 @@
         this.GeoBounds = new Rect() { Left = - 150, Top = - 60, Width = 315, Height = 140 };
 
         this.GeoImagery = new IgbArcGISOnlineMapImagery();
-        this.GeoImagery.MapServerUri = "https://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer";
+        this.GeoImagery.MapServerUri = "https://services.arcgisonline.com/arcgis/rest/services/Ocean/World_Ocean_Base/MapServer";
 
         this.EmployeeList = PersonDataSource.Create(200);
         this.EmployeeList[0].Background = "#a8d3fd";

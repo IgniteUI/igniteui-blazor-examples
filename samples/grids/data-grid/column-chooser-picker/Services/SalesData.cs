@@ -21,7 +21,7 @@ namespace Infragistics.Samples
         public string Status { get; set; }
     }
 
-    public static class SalesData
+    public class SalesData
     {
         public static List<Sale> Create(int? count)
         {

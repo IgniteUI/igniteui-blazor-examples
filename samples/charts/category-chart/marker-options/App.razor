@@ -1,12 +1,15 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 @using IgniteUI.Blazor.Controls;
 @using System;
 @using System.Linq;
 
+@inject IIgniteUIBlazor IgniteUIBlazor
+@inject IJSRuntime JS
+
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-
+        
         DescriptionType="CategoryChart"
         IsHorizontal="true"
         IsWrappingEnabled="true"
@@ -19,7 +22,7 @@
             Name="ChartTypeEditor"
             @ref="chartTypeEditor">
             </IgbPropertyEditorPropertyDescription>
-
+            
             <IgbPropertyEditorPropertyDescription
             DropDownNames="@(new string[] { "Circle", "Automatic", "Triangle", "Pyramid", "Square", "Diamond", "Pentagon", "Hexagon", "Tetragram", "Pentagram", "Hexagram", "None" })"
             PrimitiveValue="@("Circle")"
@@ -32,9 +35,9 @@
             Name="MarkerTypeEditor"
             @ref="markerTypeEditor">
             </IgbPropertyEditorPropertyDescription>
-
+            
         </IgbPropertyEditorPanel>
-
+        
     </div>
     <div class="legend-title">
         Renewable Electricity Generated
@@ -49,11 +52,17 @@
         Name="chart"
         @ref="chart">
         </IgbCategoryChart>
-
+        
     </div>
+
 </div>
 
 @code {
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Delay(1);
+    }
 
     private Action BindElements { get; set; }
 
@@ -69,23 +78,25 @@
         };
         this.BindElements();
 
-    }
+        if (firstRender) {
+        }
+
+        await Task.Delay(1);
+	}
 
     private IgbPropertyEditorPanel propertyEditor;
     private IgbPropertyEditorPropertyDescription chartTypeEditor;
     private IgbPropertyEditorPropertyDescription markerTypeEditor;
     private IgbCategoryChart chart;
 
+    
     public void EditorChangeUpdateMarkerType(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
     {
-        //TODO: need access to sender
-        var item = this.chart;
-
-        var markerVal = (MarkerType)Enum.Parse(typeof(MarkerType), value);
+        var markerVal = (MarkerType)Enum.Parse(typeof(MarkerType), args.NewValue.ToString());
         chart.MarkerTypes.Clear();
         chart.MarkerTypes.Add(markerVal);
     }
-
+        
     private CountryRenewableElectricity _countryRenewableElectricity = null;
     public CountryRenewableElectricity CountryRenewableElectricity
     {
@@ -93,10 +104,10 @@
         {
             if (_countryRenewableElectricity == null)
             {
-                _countryRenewableElectricity = new CountryRenewableElectricity();
+                _countryRenewableElectricity = new CountryRenewableElectricity(); 
             }
             return _countryRenewableElectricity;
         }
     }
-
+    
 }
