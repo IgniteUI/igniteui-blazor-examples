@@ -443,7 +443,7 @@ function copySampleScripts(cb, outputPath, indexName) {
 
     // indexLines = indexLines.filter((v, i, a) => a.indexOf(v) === i);
 
-    var isLocalBuild = __dirname.indexOf('BuildAgent') < 0;
+    var isLocalBuild = __dirname.indexOf('Agent') < 0;
     for (let i = 0; i < indexLines.length; i++) {
         if (indexLines[i].indexOf('<base href') > 0) {
             if (isLocalBuild) {

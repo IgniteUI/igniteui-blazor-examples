@@ -1,0 +1,110 @@
+parameters:
+  - name: igVersion
+  - name: igNuGetFeedUrl
+  - name: projectToBuild
+  - name: isVerbose
+    default: false
+
+steps:
+  - task: NodeTool@0
+    displayName: 'Install Node'
+    inputs:
+      versionSource: 'spec'
+      versionSpec: '16.x'
+
+  - task: Npm@1
+    displayName: 'npm ci'
+    inputs:
+      command: custom
+      workingDir: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
+      verbose: ${{ parameters.isVerbose }}
+      customCommand: ci
+
+  
+  - task: CmdLine@2
+    displayName: 'npx gulp copySamplesTo${{ parameters.projectToBuild }}'
+    inputs:
+      script: 'npx gulp copySamplesTo${{ parameters.projectToBuild }}'
+      workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
+      failOnStderr: true
+
+  - task: UseDotNet@2
+    displayName: 'Install dotnet if not already present'
+    inputs:
+      packageType: 'sdk'
+      version: '6.x'
+      performMultiLevelLookup: true
+
+  - task: PowerShell@2
+    displayName: 'Generate NuGet.config for IG ProGet NuGet feed'
+    inputs:
+      targetType: 'inline'
+      script: |
+        dotnet new nugetconfig --force
+        Write-Host AAAAAAAAAAAAAAAAAAAAAAAAAAAA ${{ parameters.igNuGetFeedUrl }}
+        dotnet nuget add source ${{ parameters.igNuGetFeedUrl }} --name "IG ProGet NuGet" 
+        Write-Host BBBBBBBBBBBBBBBBBBBB
+
+        $xml = [XML](gc '.\IgBlazorSamples.${{ parameters.projectToBuild }}.csproj');
+
+        $nodes = $xml.SelectNodes("//PackageReference[starts-with(@Include,'IgniteUI')]") | 
+          ForEach-Object { 
+              $_.SetAttribute("Include",$_.Include.Replace(".Trial",""));
+              $_.SetAttribute("Version", "${{ parameters.igVersion }}");
+              Write-Host $_.Version
+          }
+        $xml.Save('.\IgBlazorSamples.${{ parameters.projectToBuild }}.csproj')
+      failOnStderr: true
+      showWarnings: true
+      workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
+
+  - task: NuGetAuthenticate@1
+    displayName: 'Authenticate to IG ProGet NuGet feed'
+    inputs:
+      nuGetServiceConnections: 'IG ProGet NuGet'
+      forceReinstallCredentialProvider: true
+
+#  - task: DotNetCoreCLI@2
+#    displayName: 'dotnet restore'
+#    inputs:
+#      command: 'restore'
+#      projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
+#      feedsToUse: 'config'
+#      nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\NuGet.Config'
+#      verbosityRestore: 'Diagnostic'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet build'
+    inputs:
+      command: 'build'
+      projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
+#      arguments: '--configuration Release'
+
+  - task: DeleteFiles@1
+    displayName: 'Delete NuGet.config file - used only at build time'
+    inputs:
+      SourceFolder: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\'
+      Contents: '**/NuGet.config'
+
+  - task: CmdLine@2
+    # Using a CmldLine call for this opeation, because I couldn't get it to work as expected with the DotNetCoreCLI task
+    displayName: 'dotnet publish'
+    inputs:
+      script: 'dotnet publish -c release -o $(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\publish'
+      workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
+
+  - task: ArchiveFiles@2
+    displayName: 'Package samples browser'
+    inputs:
+      verbose: ${{ parameters.isVerbose }}
+      rootFolderOrFile: '$(Build.SourcesDirectory)/browser/IgBlazorSamples.${{ parameters.projectToBuild }}/publish'
+      includeRootFolder: false
+      archiveType: 'zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/BlazorSamples${{ parameters.projectToBuild }}.zip'
+      replaceExistingArchive: true
+
+  - task: PublishPipelineArtifact@1
+    displayName: 'Publish pipeline artifact'
+    inputs:
+      targetPath: '$(Build.ArtifactStagingDirectory)/BlazorSamples${{ parameters.projectToBuild }}.zip'
+      artifact: 'BlazorSamples${{ parameters.projectToBuild }}'
