@@ -35,35 +35,33 @@
         Layout.RootPane = new IgbSplitPane();
         Layout.RootPane.PaneType = DockManagerPaneType.SplitPane;
         Layout.RootPane.Orientation = SplitPaneOrientation.Horizontal;
-        Layout.RootPane.Panes = new IgbDockManagerPaneCollection(null, null)
+        var splitPane1 = new IgbSplitPane
         {
-            new IgbSplitPane()
-            {
-                PaneType = DockManagerPaneType.SplitPane,
-                Orientation = SplitPaneOrientation.Horizontal,
-                Size = 300,
-                Panes = new IgbDockManagerPaneCollection(null, null)
-                {
-                    new IgbContentPane
-                    {
-                        PaneType = DockManagerPaneType.ContentPane,
-                        Header = "EMBEDDED RADIAL GAUGE",
-                        ContentId = "content1",
-                    },
-                    new IgbContentPane
-                    {
-                        PaneType = DockManagerPaneType.ContentPane,
-                        Header = "EMBEDDED DOUGHNUT CHART",
-                        ContentId = "content2",
-                    },
-                    new IgbContentPane
-                    {
-                        PaneType = DockManagerPaneType.ContentPane,
-                        Header = "EMBEDDED GEOGRAPHIC MAP",
-                        ContentId = "content3",
-                    }
-                }
-             }
+            PaneType = DockManagerPaneType.SplitPane,
+            Orientation = SplitPaneOrientation.Horizontal,
+            Size = 300
         };
+        var contentPane1 = new IgbContentPane
+        {
+            PaneType = DockManagerPaneType.ContentPane,
+            Header = "EMBEDDED RADIAL GAUGE",
+            ContentId = "content1",
+        };
+        var contentPane2 = new IgbContentPane
+        {
+            PaneType = DockManagerPaneType.ContentPane,
+            Header = "EMBEDDED DOUGHNUT CHART",
+            ContentId = "content2",
+        };
+        var contentPane3 = new IgbContentPane
+        {
+            PaneType = DockManagerPaneType.ContentPane,
+            Header = "EMBEDDED GEOGRAPHIC MAP",
+            ContentId = "content3",
+        };
+        Layout.RootPane.Panes.Add(splitPane1);
+        splitPane1.Panes.Add(contentPane1);
+        splitPane1.Panes.Add(contentPane2);
+        splitPane1.Panes.Add(contentPane3);
     }
 }
