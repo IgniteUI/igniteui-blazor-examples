@@ -3,10 +3,9 @@ using System.Collections.Generic;
 
 namespace Infragistics.Samples
 {
-    public class Sale
+    public class SaleInfo
     {
         public DateTime OrderDate { get; set; }
-
         public string ID { get; set; }
         public string ProductName { get; set; }
         public double ProductPrice { get; set; }
@@ -21,9 +20,9 @@ namespace Infragistics.Samples
         public string Status { get; set; }
     }
 
-    public class SalesData
+    public class SalesDataService
     {
-        public static List<Sale> Create(int? count)
+        public static List<SaleInfo> Create(int? count)
         {
             if (count == null) count = 100;
 
@@ -38,7 +37,7 @@ namespace Infragistics.Samples
             string[] countries = { "USA", "UK", "France", "Canada", "Poland", "Japan", "Germany" };
             string[] status = { "Packing", "Shipped", "Delivered" };
 
-            var sales = new List<Sale>();
+            var sales = new List<SaleInfo>();
             for (var i = 0; i < count; i++)
             {
                 var price = DataGenerator.GetNumber(100, 900);
@@ -49,7 +48,7 @@ namespace Infragistics.Samples
                 var country = DataGenerator.GetItem(countries);
                 var city = DataGenerator.GetCity(country);
 
-                sales.Add(new Sale
+                sales.Add(new SaleInfo
                 {
                     ID = DataGenerator.Pad(1001 + i, 4),
                     BundlePrice = price,
@@ -57,7 +56,7 @@ namespace Infragistics.Samples
                     Margin = margin,
                     OrderDate = DataGenerator.GetDate(),
                     OrderItems = items,
-                    OrderValue = value, //  Math.round(value / 1000) + "," + Math.round(value % 1000),
+                    OrderValue = value,
                     ProductName = DataGenerator.GetItem(names),
                     Profit = profit,
                     City = city,
