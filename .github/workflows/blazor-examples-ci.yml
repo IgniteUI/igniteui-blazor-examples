@@ -1,0 +1,48 @@
+name: Build Blazor Examples CI
+
+on:
+  push:
+    branches: [ master, vnext ]
+  pull_request:
+    branches: [ master, vnext ]
+
+pr:
+  branches:
+    exclude:
+    - '*'  # must quote since "*" is a YAML reserved character; we want a string
+
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - task: Npm@1
+        displayName: 'npm ci'
+        inputs:
+          command: custom
+          workingDir: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
+          customCommand: ci
+
+      - task: CmdLine@2
+        displayName: 'npx gulp copySamplesToClient'
+        inputs:
+          script: 'npx gulp copySamplesToClient'
+          workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
+          failOnStderr: true
+
+      - task: UseDotNet@2
+        displayName: 'Use dotnet'
+        inputs:
+          packageType: 'sdk'
+          version: '6.x'
+          performMultiLevelLookup: true
+
+      - task: DotNetCoreCLI@2
+        displayName: 'dotnet build'
+        inputs:
+          command: 'build'
+          projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
