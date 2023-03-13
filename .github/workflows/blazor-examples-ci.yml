@@ -18,18 +18,19 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 16
-
-    - name: Install packages
-      run: npm ci
-      working-directory: ./browser/IgBlazorSamples.Gulp
-
-    - name: npx gulp copySamplesToClient
-      run: npx gulp copySamplesToClient
-      working-directory: ./browser/IgBlazorSamples.Gulp
-
+    
     - uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '6.0.x'
 
+    - name: Install packages
+      run: npm ci
+      working-directory: browser/IgBlazorSamples.Gulp
+
+    - name: npx gulp copySamplesToClient
+      run: npx gulp copySamplesToClient
+      shell: pwsh
+      working-directory: browser/IgBlazorSamples.Gulp
+
     - name: Run Build
-      run: donet build ./browser/IgBlazorSamples.Client
+      run: donet build browser/IgBlazorSamples.Client
