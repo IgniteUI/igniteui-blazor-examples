@@ -185,12 +185,15 @@ function getSamples(cb) {
     ];
 
     samples = [];
+    console.log(deferredSamples[0]);
 
     gulp.src(sampleSource)
     // .pipe(gSort( { asc: false } ))
     .pipe(es.map(function(sample, sampleCallback) {
         let sampleFolder = Transformer.getRelative(sample.dirname);
+        console.log('SampleFolder: ' + sampleFolder);
         let samplePath = sampleFolder + '/' + sample.basename;
+        console.log('SamplePath: ' + samplePath);
 
         // skip samples that were deferred
         if (deferredSamples.includes(samplePath)) {
@@ -222,6 +225,7 @@ function getSamples(cb) {
             .pipe(flatten({ "includeParents": -1 }))
             .pipe(es.map(function(file, fileCallback) {
                 let fileDir = Transformer.getRelative(file.dirname);
+                console.log('PipeFildir: ' + fileDir);
                 sampleFiles.push(fileDir + "/" + file.basename);
                 // console.log("get file " + fileDir + "/" + file.basename);
                 fileCallback(null, file);
