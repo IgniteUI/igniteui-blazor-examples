@@ -16,33 +16,20 @@ jobs:
   build:
 
     runs-on: windows-latest
-    
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - task: Npm@1
-        displayName: 'npm ci'
-        inputs:
-          command: custom
-          workingDir: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
-          customCommand: ci
+    - uses: actions/checkout@v3
+    - name: Install packages
+      run: npm ci
+      working-directory: ./browser/IgBlazorSamples.Gulp
 
-      - task: CmdLine@2
-        displayName: 'npx gulp copySamplesToClient'
-        inputs:
-          script: 'npx gulp copySamplesToClient'
-          workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
-          failOnStderr: true
+    - name: npx gulp copySamplesToClient
+      run: npx gulp copySamplesToClient
+      working-directory: ./browser/IgBlazorSamples.Gulp
 
-      - task: UseDotNet@2
-        displayName: 'Use dotnet'
-        inputs:
-          packageType: 'sdk'
-          version: '6.x'
-          performMultiLevelLookup: true
+    - uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '6.0.x'
 
-      - task: DotNetCoreCLI@2
-        displayName: 'dotnet build'
-        inputs:
-          command: 'build'
-          projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
+    - name: Run Build
+      run: donet build ./browser/IgBlazorSamples.Client
