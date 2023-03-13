@@ -23,14 +23,11 @@ jobs:
       with:
         dotnet-version: '6.0.x'
 
-    - name: Install packages
-      run: npm ci
-      working-directory: browser\IgBlazorSamples.Gulp
-
-    - name: npx gulp copySamplesToClient
-      run: npx gulp copySamplesToClient
-      shell: pwsh
-      working-directory: browser\IgBlazorSamples.Gulp
+    - name: Copy Samples to Client
+      run: |
+        cd browser/IgBlazorSamples.Gulp
+        npm ci
+        npx gulp copySamplesToClient
 
     - name: Run Build
       run: donet build browser\IgBlazorSamples.Client
