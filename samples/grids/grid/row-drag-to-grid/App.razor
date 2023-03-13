@@ -6,10 +6,10 @@
 
         @if (Data1 != null)
         {
+                @*TODO set DragIndicatorIconTemplate=@template on the grid and fix icon in template *@
                 <IgbGrid Height="100%" Id="grid1" Width="100%"
                          Data="Data1" PrimaryKey="@("ID")"
                          RowDragEndScript="OnRowDragEndHandler"
-                         DragIndicatorIconTemplate=@template
                          RowDraggable=true>
                     <IgbColumn Field="ID" Width="100px" />
                     <IgbColumn Field="CompanyName" Width="100px" />
@@ -51,6 +51,11 @@
 
     private RenderFragment<IgbGridEmptyTemplateContext> template = (context) =>
     {
+        // TODO fix icon either using igx, igc or igb icon
+        // return @<IgbIcon IconName="drag_handle" Collection="material" ></IgbIcon>;
+        // return @<IgbIcon IconName="drag_indicator" Collection="material" ></IgbIcon>;
+        // return @<igc-icon size="medium" name="build" collection="material"></igc-icon>;
+        // return @<igx-icon>drag_indicator</igx-icon>;
         return @<igx-icon>drag_handle</igx-icon>;
     };
 

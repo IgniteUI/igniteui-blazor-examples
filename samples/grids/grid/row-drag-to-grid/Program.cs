@@ -24,6 +24,7 @@ namespace Infragistics.Samples
 
             // TODO update names of the following modules for the IgbGrid
             builder.Services.AddIgniteUIBlazor(
+                typeof(IgbIconModule),
                 typeof(IgbGridModule)
             );
 
