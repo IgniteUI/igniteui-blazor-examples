@@ -9,8 +9,7 @@ igRegisterScript("WebGridRowSelectionConditional", (event) => {
         const originalAddedLength = eventArgs.added.length;
 
         // only allow selection of items that contain 'A'
-        eventArgs.newSelection = eventArgs.newSelection.filter(x => x.indexOf('A') !== -1);
-
+        eventArgs.newSelection = eventArgs.newSelection.filter(x => x.ID.indexOf('A') !== -1);
         // cleanup selection if all conditionally selectable rows are already selected
         if (eventArgs.newSelection.length
             && !eventArgs.newSelection.filter(x => eventArgs.oldSelection.indexOf(x) === -1).length
