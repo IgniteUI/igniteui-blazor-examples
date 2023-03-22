@@ -11,9 +11,9 @@
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="Pinning.Rows"
-            Label="Row Pinning toggle"
             Name="rowPinningEditor"
-            @ref="rowPinningEditor">
+            @ref="rowPinningEditor"
+            Label="Row Pinning toggle">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -23,21 +23,12 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
+        Name="grid"
+        @ref="grid"
         Data="CustomersData"
         PrimaryKey="ID"
-        RowEditable="true"
         CellSelection="GridSelectionMode.None"
-        Name="grid"
-        @ref="grid">
-            <IgbActionStrip
-            Name="actionStrip"
-            @ref="actionStrip">
-                <IgbGridPinningActions
-                >
-                </IgbGridPinningActions>
-
-            </IgbActionStrip>
-
+        RowEditable="true">
             <IgbPinningConfig
             Rows="RowPinningPosition.Top">
             </IgbPinningConfig>
@@ -82,6 +73,15 @@
             Field="Fax"
             Header="Fax">
             </IgbColumn>
+
+            <IgbActionStrip
+            Name="actionStrip"
+            @ref="actionStrip">
+                <IgbGridPinningActions
+                >
+                </IgbGridPinningActions>
+
+            </IgbActionStrip>
 
         </IgbGrid>
 

@@ -6,57 +6,57 @@
     </div>
     <div class="legend">
         <IgbLegend
-        Orientation="LegendOrientation.Horizontal"
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
 
     </div>
 
     <div class="container vertical fill">
         <IgbDataChart
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false">
             <IgbCategoryXAxis
-            Interval="1"
-            DataSource="TemperatureRangeData"
-            Label="Month"
             Name="xAxis"
-            @ref="xAxis">
+            @ref="xAxis"
+            Label="Month"
+            Interval="1"
+            DataSource="TemperatureRangeData">
             </IgbCategoryXAxis>
 
             <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis"
             Title="Temperature (in Celsius)"
             TitleAngle="90"
-            TitleLeftMargin="10"
-            Name="yAxis"
-            @ref="yAxis">
+            TitleLeftMargin="10">
             </IgbNumericYAxis>
 
             <IgbRangeAreaSeries
+            Name="RangeAreaSeries1"
+            @ref="rangeAreaSeries1"
             XAxisName="xAxis"
             YAxisName="yAxis"
+            Title="Los Angeles"
             LowMemberPath="LowLA"
             HighMemberPath="HighLA"
-            DataSource="TemperatureRangeData"
             ShowDefaultTooltip="false"
-            Title="Los Angeles"
-            Name="RangeAreaSeries1"
-            @ref="rangeAreaSeries1">
+            DataSource="TemperatureRangeData">
             </IgbRangeAreaSeries>
 
             <IgbRangeAreaSeries
+            Name="RangeAreaSeries2"
+            @ref="rangeAreaSeries2"
             XAxisName="xAxis"
             YAxisName="yAxis"
             Title="New York"
             LowMemberPath="LowNY"
             HighMemberPath="HighNY"
             ShowDefaultTooltip="false"
-            DataSource="TemperatureRangeData"
-            Name="RangeAreaSeries2"
-            @ref="rangeAreaSeries2">
+            DataSource="TemperatureRangeData">
             </IgbRangeAreaSeries>
 
             <IgbDataToolTipLayer

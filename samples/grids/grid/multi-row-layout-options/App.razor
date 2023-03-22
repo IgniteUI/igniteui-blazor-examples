@@ -4,23 +4,24 @@
 
     <div class="container vertical fill">
         <IgbGrid
+        Name="grid"
+        @ref="grid"
         Data="CustomersData"
-        GroupingExpressions="GroupingExpression1"
-        PrimaryKey="CompanyName"
         RowEditable="true"
         AllowFiltering="true"
-        Name="grid"
-        @ref="grid">
+        FilterMode="FilterMode.ExcelStyleFilter"
+        PrimaryKey="CompanyName"
+        GroupingExpressions="GroupingExpression1">
             <IgbColumnLayout
-            Header="ID"
-            Pinned="true">
+            Hidden="true"
+            Header="ID">
                 <IgbColumn
                 Field="ID"
-                Filterable="false"
-                Width="150px"
-                RowEnd="3"
                 RowStart="1"
-                ColStart="1">
+                ColStart="1"
+                RowEnd="3"
+                Filterable="false"
+                Width="150px">
                 </IgbColumn>
 
             </IgbColumnLayout>
@@ -30,30 +31,29 @@
             Header="Contact Details">
                 <IgbColumn
                 Field="CompanyName"
+                Header="Company"
                 RowStart="1"
                 ColStart="1"
-                Width="350px"
-                Header="Company"
                 ColEnd="3"
-                Sortable="true">
+                Sortable="true"
+                Width="350px">
                 </IgbColumn>
 
                 <IgbColumn
                 Field="ContactName"
+                Header="Name"
                 RowStart="2"
                 ColStart="1"
-                Header="Name"
                 ColEnd="2"
                 Groupable="true">
                 </IgbColumn>
 
                 <IgbColumn
                 Field="ContactTitle"
-                RowStart="3"
-                ColStart="2"
-                RowEnd="3"
                 Header="Title"
-                ColEnd="2"
+                RowStart="2"
+                ColStart="2"
+                ColEnd="3"
                 Groupable="true">
                 </IgbColumn>
 
@@ -66,48 +66,48 @@
                 Field="Country"
                 RowStart="1"
                 ColStart="1"
-                Filterable="false"
-                Width="220px"
                 ColEnd="3"
-                Groupable="true">
+                Groupable="true"
+                Filterable="false"
+                Width="220px">
                 </IgbColumn>
 
                 <IgbColumn
                 Field="Region"
                 RowStart="1"
                 ColStart="3"
-                Filterable="false"
-                Width="220px"
                 ColEnd="5"
-                Groupable="true">
+                Groupable="true"
+                Filterable="false"
+                Width="220px">
                 </IgbColumn>
 
                 <IgbColumn
                 Field="PostalCode"
                 RowStart="1"
                 ColStart="5"
-                Filterable="false"
-                Width="220px"
                 ColEnd="7"
-                Groupable="true">
+                Groupable="true"
+                Filterable="false"
+                Width="220px">
                 </IgbColumn>
 
                 <IgbColumn
                 Field="City"
                 RowStart="2"
                 ColStart="1"
-                Filterable="false"
-                Width="220px"
                 ColEnd="4"
-                Groupable="true">
+                Groupable="true"
+                Filterable="false"
+                Width="220px">
                 </IgbColumn>
 
                 <IgbColumn
                 Field="Address"
                 RowStart="2"
                 ColStart="4"
-                Filterable="false"
-                ColEnd="7">
+                ColEnd="7"
+                Filterable="false">
                 </IgbColumn>
 
             </IgbColumnLayout>
@@ -118,18 +118,18 @@
                 Field="Phone"
                 RowStart="1"
                 ColStart="1"
+                ColEnd="2"
                 Filterable="false"
-                Width="220px"
-                ColEnd="2">
+                Width="220px">
                 </IgbColumn>
 
                 <IgbColumn
                 Field="Fax"
                 RowStart="2"
                 ColStart="1"
+                ColEnd="2"
                 Filterable="false"
-                Width="220px"
-                ColEnd="2">
+                Width="220px">
                 </IgbColumn>
 
             </IgbColumnLayout>
@@ -158,8 +158,8 @@
                 var groupingExpression1 = new IgbGroupingExpression[1];
                 var groupingExpression2 = new IgbGroupingExpression();
                 groupingExpression2.FieldName = "Country";
-                groupingExpression2.Dir = SortingDirection.Asc;
                 groupingExpression2.IgnoreCase = false;
+                groupingExpression2.Dir = SortingDirection.Asc;
                 groupingExpression1[0] = groupingExpression2;
                 this._groupingExpression1 = groupingExpression1;
             }

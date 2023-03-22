@@ -1,19 +1,20 @@
 @using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 @using System;
 
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
+        Name="PropertyEditor"
+        @ref="propertyEditor"
 
         DescriptionType="WebGrid"
         IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="PropertyEditor"
-        @ref="propertyEditor">
+        IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
-            Label="Export Multi-Column Headers"
             ValueType="PropertyEditorValueType.Boolean1"
             ShouldOverrideDefaultEditor="true"
+            Label="Export Multi-Column Headers"
             PrimitiveValue="true"
             Name="exportHeaders"
             @ref="exportHeaders">
@@ -26,12 +27,12 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
+        Name="grid"
+        @ref="grid"
         Data="CustomersData"
         Moving="true"
-        AllowFiltering="true"
         DisplayDensity="DisplayDensity.Compact"
-        Name="grid"
-        @ref="grid">
+        AllowFiltering="true">
             <IgbGridToolbar
             >
                 <IgbGridToolbarActions
@@ -57,20 +58,20 @@
             </IgbGridToolbar>
 
             <IgbColumn
+            Name="ID"
+            @ref="iD"
             Field="ID"
             Header="ID"
-            Filterable="false"
             Resizable="true"
-            Name="ID"
-            @ref="iD">
+            Filterable="false">
             </IgbColumn>
 
             <IgbColumnGroup
+            Name="GeneralInformation"
+            @ref="generalInformation"
             Header="General Information"
             Collapsible="true"
-            Expanded="true"
-            Name="GeneralInformation"
-            @ref="generalInformation">
+            Expanded="true">
                 <IgbColumn
                 Name="CompanyName"
                 @ref="companyName"

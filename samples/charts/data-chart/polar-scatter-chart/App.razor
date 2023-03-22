@@ -7,43 +7,45 @@
 
     <div class="container vertical fill">
         <IgbDataChart
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false">
             <IgbNumericAngleAxis
-            StartAngleOffset="-90"
-            MinimumValue="0"
-            MaximumValue="360"
-            Interval="30"
             Name="angleAxis"
-            @ref="angleAxis">
+            @ref="angleAxis"
+            StartAngleOffset="-90"
+            Interval="30"
+            MinimumValue="0"
+            MaximumValue="360">
             </IgbNumericAngleAxis>
 
             <IgbNumericRadiusAxis
+            Name="radiusAxis"
+            @ref="radiusAxis"
             RadiusExtentScale="0.9"
             InnerRadiusExtentScale="0.1"
-            MinimumValue="0"
-            MaximumValue="100"
             Interval="25"
-            Name="radiusAxis"
-            @ref="radiusAxis">
+            MinimumValue="0"
+            MaximumValue="100">
             </IgbNumericRadiusAxis>
 
             <IgbPolarScatterSeries
-            AngleMemberPath="Direction"
-            RadiusMemberPath="WindSpeed"
+            Name="PolarScatterSeries1"
+            @ref="polarScatterSeries1"
+            DataSource="BoatSailingData"
             AngleAxisName="angleAxis"
             RadiusAxisName="radiusAxis"
-            MarkerType="MarkerType.Circle"
-            DataSource="BoatSailingData"
+            AngleMemberPath="Direction"
+            RadiusMemberPath="WindSpeed"
             ShowDefaultTooltip="false"
             Title="Wind Speed"
-            Name="PolarScatterSeries1"
-            @ref="polarScatterSeries1">
+            MarkerType="MarkerType.Circle">
             </IgbPolarScatterSeries>
 
             <IgbPolarScatterSeries
+            Name="PolarScatterSeries2"
+            @ref="polarScatterSeries2"
             DataSource="BoatSailingData"
             AngleAxisName="angleAxis"
             RadiusAxisName="radiusAxis"
@@ -51,9 +53,7 @@
             RadiusMemberPath="BoatSpeed"
             ShowDefaultTooltip="false"
             Title="Boat Speed"
-            MarkerType="MarkerType.Circle"
-            Name="PolarScatterSeries2"
-            @ref="polarScatterSeries2">
+            MarkerType="MarkerType.Circle">
             </IgbPolarScatterSeries>
 
             <IgbDataToolTipLayer

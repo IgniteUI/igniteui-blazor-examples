@@ -6,30 +6,30 @@
     </div>
     <div class="legend">
         <IgbItemLegend
-        Orientation="LegendOrientation.Horizontal"
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
         </IgbItemLegend>
 
     </div>
 
     <div class="container vertical fill">
         <IgbDoughnutChart
-        AllowSliceExplosion="true"
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        AllowSliceExplosion="true">
             <IgbRingSeries
-            DataSource="EnergyGlobalDemand"
-            ValueMemberPath="Value"
+            Name="series"
+            @ref="series"
             LabelMemberPath="Summary"
-            LegendLabelMemberPath="Category"
             LabelsPosition="LabelsPosition.OutsideEnd"
             LabelExtent="30"
-            StartAngle="30"
+            ValueMemberPath="Value"
+            LegendLabelMemberPath="Category"
             Outlines="white"
             RadiusFactor="0.6"
-            Name="series"
-            @ref="series">
+            StartAngle="30"
+            DataSource="EnergyGlobalDemand">
             </IgbRingSeries>
 
         </IgbDoughnutChart>

@@ -3,12 +3,12 @@
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
+        Name="PropertyEditor"
+        @ref="propertyEditor"
 
         DescriptionType="WebGrid"
         IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="PropertyEditor"
-        @ref="propertyEditor">
+        IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="SortingOptions"
             Name="SortingOptionsEditor"
@@ -39,46 +39,46 @@
         <IgbGrid
         AutoGenerate="false"
         Data="ProductSales"
-        SortingExpressions="SortingExpression1"
         Name="grid"
-        @ref="grid">
+        @ref="grid"
+        SortingExpressions="SortingExpression1">
             <IgbColumn
             Field="OrderID"
             Header="Order ID"
-            Sortable="true"
-            Groupable="true">
+            Groupable="true"
+            Sortable="true">
             </IgbColumn>
 
             <IgbColumn
             Field="CategoryName"
             Header="Category Name"
+            DataType="GridColumnDataType.String"
             Groupable="true"
-            Sortable="true"
-            DataType="GridColumnDataType.String">
+            Sortable="true">
             </IgbColumn>
 
             <IgbColumn
             Field="CompanyName"
             Header="Company"
+            DataType="GridColumnDataType.String"
             Groupable="true"
-            Sortable="true"
-            DataType="GridColumnDataType.String">
+            Sortable="true">
             </IgbColumn>
 
             <IgbColumn
             Field="ShipCountry"
             Header="Ship Country"
+            DataType="GridColumnDataType.String"
             Groupable="true"
-            Sortable="true"
-            DataType="GridColumnDataType.String">
+            Sortable="true">
             </IgbColumn>
 
             <IgbColumn
             Field="SaleAmount"
             Header="Sale Amount"
+            DataType="GridColumnDataType.Currency"
             Groupable="true"
             Sortable="true"
-            DataType="GridColumnDataType.Currency"
             PipeArgs="ColumnPipeArgs1"
             Name="column1"
             @ref="column1">
@@ -87,8 +87,8 @@
             <IgbColumn
             Field="ShippedDate"
             Header="Shipped Date"
-            Sortable="true"
-            DataType="GridColumnDataType.Date">
+            DataType="GridColumnDataType.Date"
+            Sortable="true">
             </IgbColumn>
 
         </IgbGrid>
@@ -148,8 +148,8 @@
             if (this._columnPipeArgs1 == null)
             {
                 var columnPipeArgs1 = new IgbColumnPipeArgs();
-                columnPipeArgs1.DigitsInfo = "1.2-2";
                 columnPipeArgs1.CurrencyCode = "USD";
+                columnPipeArgs1.DigitsInfo = "1.2-2";
                 this._columnPipeArgs1 = columnPipeArgs1;
             }
             return this._columnPipeArgs1;

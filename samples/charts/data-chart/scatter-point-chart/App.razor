@@ -6,49 +6,50 @@
     </div>
     <div class="legend">
         <IgbLegend
-        Orientation="LegendOrientation.Horizontal"
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
 
     </div>
 
     <div class="container vertical fill">
         <IgbDataChart
-
         Name="chart"
         @ref="chart">
             <IgbNumericXAxis
-            MinimumValue="5"
-            MaximumValue="15"
-            Title="Death Rate (per 1,000 people)"
             Name="xAxis"
-            @ref="xAxis">
+            @ref="xAxis"
+            Title="Death Rate (per 1,000 people)"
+            MinimumValue="5"
+            MaximumValue="15">
             </IgbNumericXAxis>
 
             <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis"
+            Title="Birth Rate (per 1,000 people)"
             MinimumValue="0"
             MaximumValue="50"
-            Interval="10"
-            Title="Birth Rate (per 1,000 people)"
-            Name="yAxis"
-            @ref="yAxis">
+            Interval="10">
             </IgbNumericYAxis>
 
             <IgbScatterSeries
+            Name="ScatterSeries1"
+            @ref="scatterSeries1"
+            Title="Europe"
             XAxisName="xAxis"
             YAxisName="yAxis"
             XMemberPath="DeathRate"
             YMemberPath="BirthRate"
-            MarkerType="MarkerType.Circle"
             DataSource="CountryDemographicEurope"
-            ShowDefaultTooltip="true"
-            Title="Europe"
-            Name="ScatterSeries1"
-            @ref="scatterSeries1">
+            MarkerType="MarkerType.Circle"
+            ShowDefaultTooltip="true">
             </IgbScatterSeries>
 
             <IgbScatterSeries
+            Name="ScatterSeries2"
+            @ref="scatterSeries2"
             Title="Africa"
             XAxisName="xAxis"
             YAxisName="yAxis"
@@ -56,9 +57,7 @@
             YMemberPath="BirthRate"
             DataSource="CountryDemographicAfrican"
             MarkerType="MarkerType.Circle"
-            ShowDefaultTooltip="true"
-            Name="ScatterSeries2"
-            @ref="scatterSeries2">
+            ShowDefaultTooltip="true">
             </IgbScatterSeries>
 
         </IgbDataChart>

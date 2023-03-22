@@ -6,60 +6,60 @@
     </div>
     <div class="legend">
         <IgbLegend
-        Orientation="LegendOrientation.Horizontal"
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
 
     </div>
 
     <div class="container vertical fill">
         <IgbDataChart
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false">
             <IgbCategoryXAxis
-            DataSource="OnlineTrafficByDevice"
-            Gap="0.75"
-            Label="Category"
             Name="xAxis"
-            @ref="xAxis">
+            @ref="xAxis"
+            DataSource="OnlineTrafficByDevice"
+            Label="Category"
+            Gap="0.75">
             </IgbCategoryXAxis>
 
             <IgbNumericYAxis
-            MinimumValue="0"
             Name="yAxis"
-            @ref="yAxis">
+            @ref="yAxis"
+            MinimumValue="0">
             </IgbNumericYAxis>
 
             <IgbStacked100ColumnSeries
+            Name="Stacked100ColumnSeries"
+            @ref="stacked100ColumnSeries"
+            DataSource="OnlineTrafficByDevice"
             XAxisName="xAxis"
             YAxisName="yAxis"
-            DataSource="OnlineTrafficByDevice"
-            AreaFillOpacity="1"
             ShowDefaultTooltip="true"
-            Name="Stacked100ColumnSeries"
-            @ref="stacked100ColumnSeries">
+            AreaFillOpacity="1">
                 <IgbStackedFragmentSeries
                 Name="s1"
                 @ref="s1"
-                Title="@("Desktop")"
-                ValueMemberPath="Desktop">
+                ValueMemberPath="Desktop"
+                Title="@("Desktop")">
                 </IgbStackedFragmentSeries>
 
                 <IgbStackedFragmentSeries
                 Name="s2"
                 @ref="s2"
-                Title="@("Mobile")"
-                ValueMemberPath="Mobile">
+                ValueMemberPath="Mobile"
+                Title="@("Mobile")">
                 </IgbStackedFragmentSeries>
 
                 <IgbStackedFragmentSeries
                 Name="s3"
                 @ref="s3"
-                Title="@("Tablet")"
-                ValueMemberPath="Tablet">
+                ValueMemberPath="Tablet"
+                Title="@("Tablet")">
                 </IgbStackedFragmentSeries>
 
             </IgbStacked100ColumnSeries>

@@ -10,9 +10,9 @@ igRegisterScript("WebGridNestedDataCellTemplate", (ctx) => {
         const person = people[0];
         return html`
     <igc-expansion-panel>
-        <h3 slot="title">
+        <div slot="title" style="font-size: 1.1em; font-weight: bold; margin-top: 1rem; margin-bottom: 0.25rem;">
         ${person.Name}
-        </h3>
+        </div>
         <div class="description">
             <div>
                 <label for="title">Title</label>

@@ -7,24 +7,24 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
+        Name="grid"
+        @ref="grid"
         Id="grid"
         Data="CompanyData"
-        GridKeydownScript="WebGridMRLCustomNavigationEvent"
         DisplayDensity="DisplayDensity.Cosy"
-        Name="grid"
-        @ref="grid">
+        GridKeydownScript="WebGridMRLCustomNavigationEvent">
             <IgbColumnLayout
-            Header="Company"
             Name="CompanyInfo"
-            @ref="companyInfo">
+            @ref="companyInfo"
+            Header="Company">
                 <IgbColumn
+                Name="Company"
+                @ref="company"
                 Field="Company"
                 Header="Company"
-                ColEnd="3"
                 RowStart="1"
                 ColStart="1"
-                Name="Company"
-                @ref="company">
+                ColEnd="3">
                 </IgbColumn>
 
                 <IgbColumn
@@ -67,9 +67,9 @@
                 Field="LifetimeSales"
                 Header="Lifetime Sales"
                 RowStart="1"
+                RowEnd="3"
                 ColStart="1"
-                ColEnd="3"
-                RowEnd="3">
+                ColEnd="3">
                 </IgbColumn>
 
                 <IgbColumn
@@ -102,8 +102,8 @@
                 Field="MarketPotential"
                 Header="Market Potential"
                 RowStart="1"
-                ColStart="1"
-                RowEnd="4">
+                RowEnd="4"
+                ColStart="1">
                 </IgbColumn>
 
             </IgbColumnLayout>
@@ -137,9 +137,9 @@
                 Field="AssetsBooks"
                 Header="Assets Books"
                 RowStart="2"
+                RowEnd="4"
                 ColStart="1"
-                ColEnd="4"
-                RowEnd="4">
+                ColEnd="4">
                 </IgbColumn>
 
             </IgbColumnLayout>

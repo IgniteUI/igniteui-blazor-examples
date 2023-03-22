@@ -3,29 +3,29 @@
 <div class="container vertical">
     <div class="legend">
         <IgbDataLegend
+        Name="Legend"
+        @ref="legend"
         IncludedColumns="@(new string[] { "Close", "Change", "Value" })"
         ExcludedColumns="@(new string[] { "High", "Low", "Open", "Volume" })"
-        ValueFormatMode="DataLegendValueMode.Currency"
-        ValueFormatCulture="en-GB"
         LabelDisplayMode="DataLegendLabelMode.Hidden"
-        Name="Legend"
-        @ref="legend">
+        ValueFormatMode="DataLegendValueMode.Currency"
+        ValueFormatCulture="en-GB">
         </IgbDataLegend>
 
     </div>
 
     <div class="container vertical fill">
         <IgbFinancialChart
+        Name="chart"
+        @ref="chart"
         ChartType="FinancialChartType.Candle"
-        ZoomSliderType="FinancialChartZoomSliderType.None"
-        DataToolTipIncludedColumns="@(new string[] { "Close", "Change", "Value" })"
+        DataSource="MultipleStocks"
         DataToolTipValueFormatMode="DataLegendValueMode.Currency"
         DataToolTipValueFormatCulture="en-GB"
-        DataToolTipHeaderFormatTime="DataLegendHeaderTimeMode.None"
         DataToolTipLabelDisplayMode="DataLegendLabelMode.Hidden"
-        DataSource="MultipleStocks"
-        Name="chart"
-        @ref="chart">
+        DataToolTipIncludedColumns="@(new string[] { "Close", "Change", "Value" })"
+        DataToolTipHeaderFormatTime="DataLegendHeaderTimeMode.None"
+        ZoomSliderType="FinancialChartZoomSliderType.None">
         </IgbFinancialChart>
 
     </div>

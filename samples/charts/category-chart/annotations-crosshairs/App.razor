@@ -3,27 +3,27 @@
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
+        Name="PropertyEditor"
+        @ref="propertyEditor"
 
         DescriptionType="CategoryChart"
         IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="PropertyEditor"
-        @ref="propertyEditor">
+        IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="CrosshairsDisplayMode"
-            Label="Crosshairs Display Mode: "
-            PrimitiveValue="@("Both")"
             Name="CrosshairsDisplayModeEditor"
-            @ref="crosshairsDisplayModeEditor">
+            @ref="crosshairsDisplayModeEditor"
+            Label="Crosshairs Display Mode: "
+            PrimitiveValue="@("Both")">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
             PropertyPath="CrosshairsSnapToData"
-            Label="Crosshairs Snap to Data"
-            PrimitiveValue="true"
-            ShouldOverrideDefaultEditor="true"
             Name="CrosshairsSnapToDataEditor"
-            @ref="crosshairsSnapToDataEditor">
+            @ref="crosshairsSnapToDataEditor"
+            Label="Crosshairs Snap to Data"
+            ShouldOverrideDefaultEditor="true"
+            PrimitiveValue="true">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -35,24 +35,24 @@
 
     <div class="container vertical fill">
         <IgbCategoryChart
+        Name="chart"
+        @ref="chart"
         ChartType="CategoryChartType.Column"
-        YAxisMaximumValue="35"
-        YAxisLabelLocation="YAxisLabelLocation.OutsideRight"
-        DataSource="TemperatureAnnotatedData"
-        IncludedProperties="@(new string[] { "Month", "Temperature" })"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
-        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+        IncludedProperties="@(new string[] { "Month", "Temperature" })"
+        DataSource="TemperatureAnnotatedData"
         CrosshairsDisplayMode="CrosshairsDisplayMode.Both"
-        CrosshairsSnapToData="true"
-        CrosshairsLineVerticalStroke="black"
-        CrosshairsLineThickness="2"
-        CrosshairsLineHorizontalStroke="dodgerblue"
+        CrosshairsAnnotationYAxisPrecision="0"
         CrosshairsAnnotationXAxisBackground="black"
         CrosshairsAnnotationYAxisBackground="dodgerblue"
-        CrosshairsAnnotationYAxisPrecision="0"
-        Name="chart"
-        @ref="chart">
+        CrosshairsLineHorizontalStroke="dodgerblue"
+        CrosshairsLineVerticalStroke="black"
+        CrosshairsLineThickness="2"
+        CrosshairsSnapToData="true"
+        YAxisMaximumValue="35"
+        YAxisLabelLocation="YAxisLabelLocation.OutsideRight">
         </IgbCategoryChart>
 
     </div>

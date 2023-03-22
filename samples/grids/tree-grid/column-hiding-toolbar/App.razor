@@ -5,14 +5,14 @@
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
-        ForeignKey="ParentID"
+        Name="treeGrid"
+        @ref="treeGrid"
         Id="treeGrid"
         Data="EmployeesFlatDetails"
         PrimaryKey="ID"
+        ForeignKey="ParentID"
         ColumnWidth="200"
-        AllowFiltering="true"
-        Name="treeGrid"
-        @ref="treeGrid">
+        AllowFiltering="true">
             <IgbGridToolbar
             >
                 <IgbGridToolbarActions
@@ -27,8 +27,8 @@
 
             <IgbColumn
             Field="Name"
-            Sortable="true"
-            DataType="GridColumnDataType.String">
+            DataType="GridColumnDataType.String"
+            Sortable="true">
             </IgbColumn>
 
             <IgbColumn

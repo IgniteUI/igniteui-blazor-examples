@@ -3,17 +3,17 @@
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
+        Name="PropertyEditor"
+        @ref="propertyEditor"
 
         DescriptionType="WebTreeGrid"
         IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="PropertyEditor"
-        @ref="propertyEditor">
+        IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="ColumnSelection"
-            Label="Column Selection"
             Name="columnSelectionEditor"
-            @ref="columnSelectionEditor">
+            @ref="columnSelectionEditor"
+            Label="Column Selection">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -23,12 +23,12 @@
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
-        ForeignKey="ParentID"
+        Name="treeGrid"
+        @ref="treeGrid"
         Id="treeGrid"
         Data="FoodsData"
         PrimaryKey="ID"
-        Name="treeGrid"
-        @ref="treeGrid">
+        ForeignKey="ParentID">
             <IgbColumn
             Field="ID">
             </IgbColumn>

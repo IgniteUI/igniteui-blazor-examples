@@ -11,14 +11,14 @@
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="UnknownValuePlotting"
+            Name="UnknownValuePlottingEditor"
+            @ref="unknownValuePlottingEditor"
             Label="Unknown Value Plotting"
-            ValueType="PropertyEditorValueType.EnumValue"
             ShouldOverrideDefaultEditor="true"
+            ValueType="PropertyEditorValueType.EnumValue"
             DropDownNames="@(new string[] { "LinearInterpolate", "DontPlot" })"
             DropDownValues="@(new string[] { "LinearInterpolate", "DontPlot" })"
-            PrimitiveValue="@("LinearInterpolate")"
-            Name="UnknownValuePlottingEditor"
-            @ref="unknownValuePlottingEditor">
+            PrimitiveValue="@("LinearInterpolate")">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -27,13 +27,13 @@
 
     <div class="container vertical fill">
         <IgbSparkline
-        DataSource="SparklineUnknownData"
-        ValueMemberPath="Value"
-        LabelMemberPath="Label"
-        DisplayType="SparklineDisplayType.Area"
-        UnknownValuePlotting="UnknownValuePlotting.LinearInterpolate"
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        DataSource="SparklineUnknownData"
+        DisplayType="SparklineDisplayType.Area"
+        LabelMemberPath="Label"
+        ValueMemberPath="Value"
+        UnknownValuePlotting="UnknownValuePlotting.LinearInterpolate">
         </IgbSparkline>
 
     </div>

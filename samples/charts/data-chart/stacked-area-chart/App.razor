@@ -6,51 +6,51 @@
     </div>
     <div class="legend">
         <IgbLegend
-        Orientation="LegendOrientation.Horizontal"
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
 
     </div>
 
     <div class="container vertical fill">
         <IgbDataChart
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false">
             <IgbCategoryXAxis
-            DataSource="ContinentsBirthRate"
-            Gap="0.75"
-            Label="Year"
             Name="xAxis"
-            @ref="xAxis">
+            @ref="xAxis"
+            DataSource="ContinentsBirthRate"
+            Label="Year"
+            Gap="0.75">
             </IgbCategoryXAxis>
 
             <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis"
             MinimumValue="0"
             MaximumValue="140"
             Interval="20"
             Title="Millions of Births"
             TitleAngle="-90"
-            LabelFormat="{0} m"
-            Name="yAxis"
-            @ref="yAxis">
+            LabelFormat="{0} m">
             </IgbNumericYAxis>
 
             <IgbStackedAreaSeries
+            Name="StackedAreaSeries"
+            @ref="stackedAreaSeries"
+            DataSource="ContinentsBirthRate"
             XAxisName="xAxis"
             YAxisName="yAxis"
-            MarkerType="MarkerType.Circle"
-            DataSource="ContinentsBirthRate"
             ShowDefaultTooltip="true"
-            Name="StackedAreaSeries"
-            @ref="stackedAreaSeries">
+            MarkerType="MarkerType.Circle">
                 <IgbStackedFragmentSeries
                 Name="s1"
                 @ref="s1"
-                Title="@("Asia")"
-                ValueMemberPath="Asia">
+                ValueMemberPath="Asia"
+                Title="@("Asia")">
                 </IgbStackedFragmentSeries>
 
                 <IgbStackedFragmentSeries

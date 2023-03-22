@@ -3,26 +3,26 @@
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
+        Name="PropertyEditor"
+        @ref="propertyEditor"
 
         DescriptionType="CategoryChart"
         IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="PropertyEditor"
-        @ref="propertyEditor">
+        IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="HighlightingMode"
-            Label="Highlighting Mode: "
-            PrimitiveValue="@("FadeOthersSpecific")"
             Name="HighlightingModeEditor"
-            @ref="highlightingModeEditor">
+            @ref="highlightingModeEditor"
+            Label="Highlighting Mode: "
+            PrimitiveValue="@("FadeOthersSpecific")">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
             PropertyPath="HighlightingBehavior"
-            Label="Highlighting Behavior: "
-            PrimitiveValue="@("NearestItemsAndSeries")"
             Name="HighlightingBehaviorEditor"
-            @ref="highlightingBehaviorEditor">
+            @ref="highlightingBehaviorEditor"
+            Label="Highlighting Behavior: "
+            PrimitiveValue="@("NearestItemsAndSeries")">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -34,20 +34,20 @@
 
     <div class="container vertical fill">
         <IgbCategoryChart
+        Name="chart"
+        @ref="chart"
         ChartType="CategoryChartType.Column"
-        YAxisMaximumValue="35"
-        IsCategoryHighlightingEnabled="true"
-        YAxisLabelLocation="YAxisLabelLocation.OutsideRight"
-        DataSource="TemperatureAnnotatedData"
-        IncludedProperties="@(new string[] { "Month", "Temperature" })"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
-        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+        IncludedProperties="@(new string[] { "Month", "Temperature" })"
+        DataSource="TemperatureAnnotatedData"
+        IsCategoryHighlightingEnabled="true"
         HighlightingMode="SeriesHighlightingMode.FadeOthersSpecific"
         HighlightingBehavior="SeriesHighlightingBehavior.NearestItemsAndSeries"
         CrosshairsAnnotationYAxisPrecision="0"
-        Name="chart"
-        @ref="chart">
+        YAxisMaximumValue="35"
+        YAxisLabelLocation="YAxisLabelLocation.OutsideRight">
         </IgbCategoryChart>
 
     </div>

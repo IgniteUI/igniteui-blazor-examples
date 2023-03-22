@@ -5,27 +5,27 @@
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
-        ForeignKey="ParentID"
+        Name="treeGrid"
+        @ref="treeGrid"
         Id="treeGrid"
         Data="EmployeesFlatDetails"
-        Moving="true"
         PrimaryKey="ID"
-        RowSelection="GridSelectionMode.None"
+        ForeignKey="ParentID"
+        Moving="true"
         DisplayDensity="DisplayDensity.Compact"
-        Name="treeGrid"
-        @ref="treeGrid">
+        RowSelection="GridSelectionMode.None">
             <IgbColumnGroup
             Header="General Information"
-            Pinned="false"
             Collapsible="true"
-            Expanded="false">
+            Expanded="false"
+            Pinned="false">
                 <IgbColumn
                 Field="Name"
                 Header="Full Name"
+                DataType="GridColumnDataType.String"
                 Sortable="true"
                 Resizable="true"
                 Width="200"
-                DataType="GridColumnDataType.String"
                 VisibleWhenCollapsed="false">
                 </IgbColumn>
 
@@ -41,18 +41,18 @@
 
                 <IgbColumn
                 Field="Title"
+                Width="250"
                 DataType="GridColumnDataType.String"
                 Sortable="true"
-                Resizable="true"
-                Width="250">
+                Resizable="true">
                 </IgbColumn>
 
                 <IgbColumn
                 Field="ID"
                 DataType="GridColumnDataType.Number"
                 Resizable="true"
-                VisibleWhenCollapsed="false"
-                Filterable="false">
+                Filterable="false"
+                VisibleWhenCollapsed="false">
                 </IgbColumn>
 
                 <IgbColumn
@@ -80,10 +80,10 @@
                 Collapsible="true">
                     <IgbColumn
                     Field="FullAddress"
+                    Width="300"
                     DataType="GridColumnDataType.String"
                     Sortable="true"
                     Resizable="true"
-                    Width="300"
                     VisibleWhenCollapsed="true">
                     </IgbColumn>
 

@@ -7,13 +7,13 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
+        Name="grid"
+        @ref="grid"
         Id="grid"
         Data="InvoicesData"
-        GroupingExpressions="GroupingExpression1"
-        GroupRowTemplateScript="WebGridGroupByRowTemplate"
         RowSelection="GridSelectionMode.Multiple"
-        Name="grid"
-        @ref="grid">
+        GroupingExpressions="GroupingExpression1"
+        GroupRowTemplateScript="WebGridGroupByRowTemplate">
             <IgbPaginator
             PerPage="10">
             </IgbPaginator>
@@ -21,8 +21,8 @@
             <IgbColumn
             Field="ShipCountry"
             Header="Ship Country"
-            Groupable="true"
-            Width="200px">
+            Width="200px"
+            Groupable="true">
             </IgbColumn>
 
             <IgbColumn
@@ -36,8 +36,8 @@
             Field="UnitPrice"
             Header="Unit Price"
             Width="150px"
-            Groupable="true"
-            DataType="GridColumnDataType.Number">
+            DataType="GridColumnDataType.Number"
+            Groupable="true">
             </IgbColumn>
 
         </IgbGrid>
@@ -63,8 +63,8 @@
             {
                 var groupingExpression1 = new IgbGroupingExpression[1];
                 var groupingExpression2 = new IgbGroupingExpression();
-                groupingExpression2.FieldName = "ShipCountry";
                 groupingExpression2.Dir = SortingDirection.Asc;
+                groupingExpression2.FieldName = "ShipCountry";
                 groupingExpression2.IgnoreCase = false;
                 groupingExpression1[0] = groupingExpression2;
                 this._groupingExpression1 = groupingExpression1;

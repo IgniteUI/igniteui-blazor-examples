@@ -6,49 +6,51 @@
     </div>
     <div class="legend">
         <IgbLegend
-        Orientation="LegendOrientation.Horizontal"
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
 
     </div>
 
     <div class="container vertical fill">
         <IgbDataChart
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false">
             <IgbCategoryAngleAxis
-            DataSource="FootballPlayerStats"
-            Label="Attribute"
             Name="angleAxis"
-            @ref="angleAxis">
+            @ref="angleAxis"
+            DataSource="FootballPlayerStats"
+            Label="Attribute">
             </IgbCategoryAngleAxis>
 
             <IgbNumericRadiusAxis
-            InnerRadiusExtentScale="0.1"
-            MinimumValue="0"
-            MaximumValue="10"
-            Interval="2"
             Name="radiusAxis"
-            @ref="radiusAxis">
+            @ref="radiusAxis"
+            InnerRadiusExtentScale="0.1"
+            Interval="2"
+            MinimumValue="0"
+            MaximumValue="10">
             </IgbNumericRadiusAxis>
 
             <IgbRadialPieSeries
-            ValueMemberPath="Ronaldo"
+            Name="RadialPieSeries1"
+            @ref="radialPieSeries1"
+            DataSource="FootballPlayerStats"
             AngleAxisName="angleAxis"
             ValueAxisName="radiusAxis"
-            DataSource="FootballPlayerStats"
-            Thickness="3"
-            AreaFillOpacity="0.8"
+            ValueMemberPath="Ronaldo"
             ShowDefaultTooltip="false"
-            Title="Ronaldo"
-            Name="RadialPieSeries1"
-            @ref="radialPieSeries1">
+            AreaFillOpacity="0.8"
+            Thickness="3"
+            Title="Ronaldo">
             </IgbRadialPieSeries>
 
             <IgbRadialPieSeries
+            Name="RadialPieSeries2"
+            @ref="radialPieSeries2"
             DataSource="FootballPlayerStats"
             AngleAxisName="angleAxis"
             ValueAxisName="radiusAxis"
@@ -56,9 +58,7 @@
             ShowDefaultTooltip="false"
             AreaFillOpacity="0.8"
             Thickness="3"
-            Title="Messi"
-            Name="RadialPieSeries2"
-            @ref="radialPieSeries2">
+            Title="Messi">
             </IgbRadialPieSeries>
 
             <IgbDataToolTipLayer

@@ -7,58 +7,51 @@
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
-        Id="grid"
         Data="NwindData"
-        PrimaryKey="ProductID"
+        Name="grid"
+        @ref="grid"
+        Id="grid"
         RowEditable="true"
-        CellEditEnterScript="WebGridCellEditEnter"
-        CellEditExitScript="WebGridCellEditExit"
-        CellEditScript="WebGridCellEdit"
-        CellEditDone="OnCellEditDone"
+        PrimaryKey="ProductID"
+        RenderedScript="WebTreeGridRendered"
         RowEditEnterScript="WebGridRowEditEnter"
         RowEditScript="WebGridRowEdit"
         RowEditDoneScript="WebGridRowEditDone"
         RowEditExitScript="WebGridRowEditExit"
-        RenderedScript="WebTreeGridRendered"
-        Name="grid"
-        @ref="grid">
+        CellEditEnterScript="WebGridCellEditEnter"
+        CellEditScript="WebGridCellEdit"
+        CellEditDoneScript="WebGridCellEditDone"
+        CellEditExitScript="WebGridCellEditExit">
             <IgbColumn
             Field="ProductName"
             Header="Product Name">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="UnitPrice"
             Header="Unit Price">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="UnitsInStock"
             Header="Units In Stock">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Ordered">
             </IgbColumn>
-            
+
         </IgbTreeGrid>
-        
+
     </div>
 </div>
 
 @code {
 
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
 
-
-    }
-
-    private void OnCellEditDone(IgbGridEditDoneEventArgs args)
-    {
-        Console.WriteLine("cell edit done");
     }
 
     private IgbTreeGrid grid;
@@ -70,10 +63,10 @@
         {
             if (_nwindData == null)
             {
-                _nwindData = new NwindData(); 
+                _nwindData = new NwindData();
             }
             return _nwindData;
         }
     }
-    
+
 }

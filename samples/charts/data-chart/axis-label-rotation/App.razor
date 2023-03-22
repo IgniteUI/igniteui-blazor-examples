@@ -11,23 +11,23 @@
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="ShouldConsiderAutoRotationForInitialLabels"
+            Name="ShouldConsiderAutoRotationForInitialLabels"
+            @ref="shouldConsiderAutoRotationForInitialLabels"
             Label="Rotate Labels?"
             ShouldOverrideDefaultEditor="true"
-            PrimitiveValue="true"
-            Name="ShouldConsiderAutoRotationForInitialLabels"
-            @ref="shouldConsiderAutoRotationForInitialLabels">
+            PrimitiveValue="true">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
-            DropDownValues="@(new string[] { "None", "SizeChanging", "SizeChangingAndZoom" })"
-            PrimitiveValue="@("SizeChangingAndZoom")"
             PropertyPath="AutoMarginAndAngleUpdateMode"
-            Label="AutoMarginAndAngleUpdateMode: "
-            ValueType="PropertyEditorValueType.EnumValue"
-            ShouldOverrideDefaultEditor="true"
-            DropDownNames="@(new string[] { "None", "SizeChanging", "SizeChangingAndZoom" })"
             Name="AutoMarginAndAngleUpdateMode"
-            @ref="autoMarginAndAngleUpdateMode">
+            @ref="autoMarginAndAngleUpdateMode"
+            Label="AutoMarginAndAngleUpdateMode: "
+            ShouldOverrideDefaultEditor="true"
+            ValueType="PropertyEditorValueType.EnumValue"
+            DropDownNames="@(new string[] { "None", "SizeChanging", "SizeChangingAndZoom" })"
+            DropDownValues="@(new string[] { "None", "SizeChanging", "SizeChangingAndZoom" })"
+            PrimitiveValue="@("SizeChangingAndZoom")">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -36,20 +36,20 @@
 
     <div class="container vertical fill">
         <IgbDataChart
+        Name="chart"
+        @ref="chart"
         IsHorizontalZoomEnabled="true"
         IsVerticalZoomEnabled="true"
-        ShouldAutoExpandMarginForInitialLabels="true"
-        ShouldConsiderAutoRotationForInitialLabels="true"
         AutoMarginAndAngleUpdateMode="AutoMarginsAndAngleUpdateMode.SizeChangingAndZoom"
-        Name="chart"
-        @ref="chart">
+        ShouldConsiderAutoRotationForInitialLabels="true"
+        ShouldAutoExpandMarginForInitialLabels="true">
             <IgbCategoryXAxis
-            DataSource="TemperatureAverageDataLongLabels"
-            UseEnhancedIntervalManagement="true"
-            EnhancedIntervalPreferMoreCategoryLabels="true"
-            Label="Month"
             Name="xAxis"
-            @ref="xAxis">
+            @ref="xAxis"
+            DataSource="TemperatureAverageDataLongLabels"
+            EnhancedIntervalPreferMoreCategoryLabels="true"
+            UseEnhancedIntervalManagement="true"
+            Label="Month">
             </IgbCategoryXAxis>
 
             <IgbNumericYAxis
@@ -58,12 +58,12 @@
             </IgbNumericYAxis>
 
             <IgbColumnSeries
+            Name="colSeries1"
+            @ref="colSeries1"
             XAxisName="xAxis"
             YAxisName="yAxis"
-            ValueMemberPath="Temperature"
             DataSource="TemperatureAverageDataLongLabels"
-            Name="colSeries1"
-            @ref="colSeries1">
+            ValueMemberPath="Temperature">
             </IgbColumnSeries>
 
         </IgbDataChart>

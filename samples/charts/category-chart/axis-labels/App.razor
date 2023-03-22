@@ -11,38 +11,38 @@
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="XAxisLabelAngle"
+            Name="XAxisLabelAngleEditor"
+            @ref="xAxisLabelAngleEditor"
             Label="X Axis Label Angle"
-            ValueType="PropertyEditorValueType.EnumValue"
             ShouldOverrideDefaultEditor="true"
+            ValueType="PropertyEditorValueType.EnumValue"
             DropDownNames="@(new string[] { "0", "45", "90", "135", "180", "225", "270" })"
             DropDownValues="@(new string[] { "0", "45", "90", "135", "180", "225", "270" })"
-            PrimitiveValue="0"
-            Name="XAxisLabelAngleEditor"
-            @ref="xAxisLabelAngleEditor">
+            PrimitiveValue="0">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
-            DropDownValues="@(new string[] { "-90", "-45", "0", "45", "90" })"
-            PrimitiveValue="0"
             PropertyPath="YAxisLabelAngle"
-            Label="Y Axis Label Angle"
-            ValueType="PropertyEditorValueType.EnumValue"
-            ShouldOverrideDefaultEditor="true"
-            DropDownNames="@(new string[] { "-90", "-45", "0", "45", "90" })"
             Name="YAxisLabelAngleEditor"
-            @ref="yAxisLabelAngleEditor">
+            @ref="yAxisLabelAngleEditor"
+            Label="Y Axis Label Angle"
+            ShouldOverrideDefaultEditor="true"
+            ValueType="PropertyEditorValueType.EnumValue"
+            DropDownNames="@(new string[] { "-90", "-45", "0", "45", "90" })"
+            DropDownValues="@(new string[] { "-90", "-45", "0", "45", "90" })"
+            PrimitiveValue="0">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
-            DropDownValues="@(new string[] { "red", "green" })"
-            PrimitiveValue="@("red")"
             PropertyPath="XAxisLabelTextColor"
+            Name="XAxisLabelTextColorEditor"
+            @ref="xAxisLabelTextColorEditor"
             Label="Y Axis Label Color"
             ValueType="PropertyEditorValueType.EnumValue"
             ShouldOverrideDefaultEditor="true"
             DropDownNames="@(new string[] { "red", "green" })"
-            Name="XAxisLabelTextColorEditor"
-            @ref="xAxisLabelTextColorEditor">
+            DropDownValues="@(new string[] { "red", "green" })"
+            PrimitiveValue="@("red")">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -53,34 +53,34 @@
     </div>
     <div class="legend">
         <IgbLegend
-        Orientation="LegendOrientation.Horizontal"
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
 
     </div>
 
     <div class="container vertical fill">
         <IgbCategoryChart
-        ChartType="CategoryChartType.Line"
-        XAxisLabelTopMargin="5"
-        YAxisLabelRightMargin="5"
-        XAxisLabelTextColor="gray"
-        YAxisLabelTextColor="gray"
-        XAxisLabelTextStyle="10pt 'Titillium Web'"
-        YAxisLabelTextStyle="10pt 'Titillium Web'"
-        XAxisLabelAngle="0"
-        YAxisLabelAngle="0"
-        YAxisLabelLocation="YAxisLabelLocation.OutsideRight"
-        TitleTopMargin="10"
-        TopMargin="20"
+        Name="chart"
+        @ref="chart"
         DataSource="CountryRenewableElectricity"
         IncludedProperties="@(new string[] { "Year", "Europe", "China", "America" })"
+        ChartType="CategoryChartType.Line"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
-        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
-        Name="chart"
-        @ref="chart">
+        TopMargin="20"
+        XAxisLabelAngle="0"
+        XAxisLabelTextColor="gray"
+        XAxisLabelTextStyle="10pt 'Titillium Web'"
+        XAxisLabelTopMargin="5"
+        YAxisLabelAngle="0"
+        YAxisLabelTextColor="gray"
+        YAxisLabelTextStyle="10pt 'Titillium Web'"
+        YAxisLabelRightMargin="5"
+        YAxisLabelLocation="YAxisLabelLocation.OutsideRight"
+        TitleTopMargin="10">
         </IgbCategoryChart>
 
     </div>

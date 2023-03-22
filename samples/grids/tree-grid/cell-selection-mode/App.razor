@@ -3,19 +3,19 @@
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
+        Name="PropertyEditor"
+        @ref="propertyEditor"
 
         DescriptionType="WebTreeGrid"
         IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="PropertyEditor"
-        @ref="propertyEditor">
+        IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="CellSelection"
+            Name="CellSelectionEditor"
+            @ref="cellSelectionEditor"
             ValueType="PropertyEditorValueType.EnumValue"
             DropDownNames="@(new string[] { "None", "Single", "Multiple" })"
-            DropDownValues="@(new string[] { "None", "Single", "Multiple" })"
-            Name="CellSelectionEditor"
-            @ref="cellSelectionEditor">
+            DropDownValues="@(new string[] { "None", "Single", "Multiple" })">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -25,12 +25,12 @@
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
-        ForeignKey="ParentID"
+        Name="treeGrid"
+        @ref="treeGrid"
         Id="treeGrid"
         Data="EmployeesFlatData"
         PrimaryKey="ID"
-        Name="treeGrid"
-        @ref="treeGrid">
+        ForeignKey="ParentID">
             <IgbColumn
             Field="ID">
             </IgbColumn>
@@ -50,14 +50,14 @@
 
             <IgbColumn
             Field="HireDate"
-            DataType="GridColumnDataType.Date"
-            Header="Hire Date">
+            Header="Hire Date"
+            DataType="GridColumnDataType.Date">
             </IgbColumn>
 
             <IgbColumn
             Field="OnPTO"
-            DataType="GridColumnDataType.Boolean"
-            Header="On PTO">
+            Header="On PTO"
+            DataType="GridColumnDataType.Boolean">
             </IgbColumn>
 
         </IgbTreeGrid>

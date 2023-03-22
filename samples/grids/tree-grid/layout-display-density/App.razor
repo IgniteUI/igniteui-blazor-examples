@@ -3,12 +3,12 @@
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
+        Name="PropertyEditor"
+        @ref="propertyEditor"
 
         DescriptionType="WebTreeGrid"
         IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="PropertyEditor"
-        @ref="propertyEditor">
+        IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="DisplayDensity"
             Name="DisplayDensityEditor"
@@ -22,19 +22,19 @@
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
-        ForeignKey="ParentID"
+        Name="treeGrid"
+        @ref="treeGrid"
         Id="treeGrid"
         Data="EmployeesFlatDetails"
         PrimaryKey="ID"
-        AllowFiltering="true"
-        Name="treeGrid"
-        @ref="treeGrid">
+        ForeignKey="ParentID"
+        AllowFiltering="true">
             <IgbColumn
             Field="Name"
+            DataType="GridColumnDataType.String"
             Sortable="true"
             HasSummary="true"
-            Width="200"
-            DataType="GridColumnDataType.String">
+            Width="200">
             </IgbColumn>
 
             <IgbColumnGroup

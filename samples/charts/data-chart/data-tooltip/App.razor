@@ -10,46 +10,48 @@
         Name="chart"
         @ref="chart">
             <IgbNumericXAxis
-            MinimumValue="4"
-            MaximumValue="16"
-            Interval="1"
-            Title="Death Rate"
             Name="xAxis"
-            @ref="xAxis">
+            @ref="xAxis"
+            Title="Death Rate"
+            Interval="1"
+            MinimumValue="4"
+            MaximumValue="16">
             </IgbNumericXAxis>
 
             <IgbNumericYAxis
-            MinimumValue="0"
-            MaximumValue="60"
-            Interval="10"
-            Title="Birth Rate"
             Name="yAxis"
-            @ref="yAxis">
+            @ref="yAxis"
+            Title="Birth Rate"
+            Interval="10"
+            MinimumValue="0"
+            MaximumValue="60">
             </IgbNumericYAxis>
 
             <IgbBubbleSeries
-            RadiusMemberPath="Population"
-            RadiusMemberAsLegendLabel="Population: "
+            Name="BubbleSeries1"
+            @ref="bubbleSeries1"
             XAxisName="xAxis"
             YAxisName="yAxis"
+            DataSource="CountryDemographicAfrican"
             XMemberPath="DeathRate"
             YMemberPath="BirthRate"
-            XMemberAsLegendLabel="Death Rate: "
-            YMemberAsLegendLabel="Birth Rate: "
-            DataSource="CountryDemographicAfrican"
+            RadiusMemberPath="Population"
             Title="Africa"
-            Name="BubbleSeries1"
-            @ref="bubbleSeries1">
+            RadiusMemberAsLegendLabel="Population: "
+            XMemberAsLegendLabel="Death Rate: "
+            YMemberAsLegendLabel="Birth Rate: ">
                 <IgbSizeScale
-                MinimumValue="10"
-                MaximumValue="100"
                 Name="SizeScale1"
-                @ref="sizeScale1">
+                @ref="sizeScale1"
+                MinimumValue="10"
+                MaximumValue="100">
                 </IgbSizeScale>
 
             </IgbBubbleSeries>
 
             <IgbBubbleSeries
+            Name="BubbleSeries2"
+            @ref="bubbleSeries2"
             XAxisName="xAxis"
             YAxisName="yAxis"
             DataSource="CountryDemographicEurope"
@@ -59,14 +61,12 @@
             Title="Europe"
             RadiusMemberAsLegendLabel="Population: "
             XMemberAsLegendLabel="Death Rate: "
-            YMemberAsLegendLabel="Birth Rate: "
-            Name="BubbleSeries2"
-            @ref="bubbleSeries2">
+            YMemberAsLegendLabel="Birth Rate: ">
                 <IgbSizeScale
-                MinimumValue="10"
-                MaximumValue="100"
                 Name="SizeScale2"
-                @ref="sizeScale2">
+                @ref="sizeScale2"
+                MinimumValue="10"
+                MaximumValue="100">
                 </IgbSizeScale>
 
             </IgbBubbleSeries>

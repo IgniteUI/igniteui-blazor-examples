@@ -5,18 +5,18 @@
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
+        Name="PropertyEditor"
+        @ref="propertyEditor"
 
         DescriptionType="WebGrid"
         IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="PropertyEditor"
-        @ref="propertyEditor">
+        IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="RowEditable"
-            ValueType="PropertyEditorValueType.Boolean1"
-            PrimitiveValue="true"
             Name="RowEditableEditor"
-            @ref="rowEditableEditor">
+            @ref="rowEditableEditor"
+            ValueType="PropertyEditorValueType.Boolean1"
+            PrimitiveValue="true">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -26,20 +26,20 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Data="EmployeesData"
-        PrimaryKey="ID"
-        RowEditable="true"
         Name="grid"
-        @ref="grid">
+        @ref="grid"
+        Data="EmployeesData"
+        RowEditable="true"
+        PrimaryKey="ID">
             <IgbColumn
+            Name="Avatar"
+            @ref="avatar"
             Field="Avatar"
             Header="Avatar"
+            DataType="GridColumnDataType.String"
             Editable="false"
             Width="80px"
-            DataType="GridColumnDataType.String"
-            BodyTemplateScript="WebGridAvatarCellTemplate"
-            Name="Avatar"
-            @ref="avatar">
+            BodyTemplateScript="WebGridAvatarCellTemplate">
             </IgbColumn>
 
             <IgbColumn
@@ -63,8 +63,8 @@
             @ref="email"
             Field="Email"
             Header="Email"
-            Editable="true"
-            Width="190px">
+            Width="190px"
+            Editable="true">
             </IgbColumn>
 
             <IgbColumn
@@ -80,9 +80,9 @@
             @ref="createdOn"
             Field="CreatedOn"
             Header="Date of Registration"
+            Width="170px"
             DataType="GridColumnDataType.Date"
             Editable="true"
-            Width="170px"
             PipeArgs="ColumnPipeArgs1">
             </IgbColumn>
 
@@ -91,9 +91,9 @@
             @ref="lastActivity"
             Field="LastActivity"
             Header="Last Active"
+            Width="170px"
             DataType="GridColumnDataType.Date"
-            Editable="true"
-            Width="170px">
+            Editable="true">
             </IgbColumn>
 
             <IgbColumn

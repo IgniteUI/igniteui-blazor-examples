@@ -10,13 +10,13 @@
         Name="chart"
         @ref="chart">
             <IgbCategoryXAxis
-            DataSource="TemperatureAverageData"
-            MinimumGapSize="25"
+            Name="xAxis"
+            @ref="xAxis"
             UseEnhancedIntervalManagement="true"
             EnhancedIntervalPreferMoreCategoryLabels="true"
+            DataSource="TemperatureAverageData"
             Label="Month"
-            Name="xAxis"
-            @ref="xAxis">
+            MinimumGapSize="25">
             </IgbCategoryXAxis>
 
             <IgbNumericYAxis
@@ -30,12 +30,12 @@
             </IgbCategoryHighlightLayer>
 
             <IgbColumnSeries
+            Name="columnSeries1"
+            @ref="columnSeries1"
             XAxisName="xAxis"
             YAxisName="yAxis"
-            ValueMemberPath="Temperature"
             DataSource="TemperatureAverageData"
-            Name="columnSeries1"
-            @ref="columnSeries1">
+            ValueMemberPath="Temperature">
             </IgbColumnSeries>
 
             <IgbDataToolTipLayer

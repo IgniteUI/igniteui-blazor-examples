@@ -11,14 +11,14 @@
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="TrendLineType"
+            Name="TrendLineTypeEditor"
+            @ref="trendLineTypeEditor"
             Label="Trendline Type"
-            ValueType="PropertyEditorValueType.EnumValue"
             ShouldOverrideDefaultEditor="true"
+            ValueType="PropertyEditorValueType.EnumValue"
             DropDownNames="@(new string[] { "CubicFit", "CumulativeAverage", "ExponentialAverage", "ExponentialFit", "LinearFit", "LogarithmicFit", "ModifiedAverage", "None", "PowerLawFit", "QuadraticFit", "QuarticFit", "QuinticFit", "SimpleAverage", "WeightedAverage" })"
             DropDownValues="@(new string[] { "CubicFit", "CumulativeAverage", "ExponentialAverage", "ExponentialFit", "LinearFit", "LogarithmicFit", "ModifiedAverage", "None", "PowerLawFit", "QuadraticFit", "QuarticFit", "QuinticFit", "SimpleAverage", "WeightedAverage" })"
-            PrimitiveValue="@("CubicFit")"
-            Name="TrendLineTypeEditor"
-            @ref="trendLineTypeEditor">
+            PrimitiveValue="@("CubicFit")">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -27,13 +27,13 @@
 
     <div class="container vertical fill">
         <IgbSparkline
-        DataSource="SparklineMixedData"
-        ValueMemberPath="Value"
-        LabelMemberPath="Label"
-        TrendLineType="TrendLineType.CubicFit"
-        DisplayType="SparklineDisplayType.Area"
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        DataSource="SparklineMixedData"
+        DisplayType="SparklineDisplayType.Area"
+        LabelMemberPath="Label"
+        ValueMemberPath="Value"
+        TrendLineType="TrendLineType.CubicFit">
         </IgbSparkline>
 
     </div>

@@ -7,12 +7,12 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Id="grid"
         Data="InvoicesData"
-        GroupingExpressions="GroupingExpression1"
-        GroupRowTemplateScript="WebGridGroupByRowTemplate"
         Name="grid"
-        @ref="grid">
+        @ref="grid"
+        Id="grid"
+        GroupingExpressions="GroupingExpression1"
+        GroupRowTemplateScript="WebGridGroupByRowTemplate">
             <IgbColumn
             Field="OrderID"
             Hidden="true">
@@ -28,9 +28,9 @@
             <IgbColumn
             Field="OrderDate"
             Header="Order Date"
+            DataType="GridColumnDataType.Date"
             Width="200px"
-            Groupable="true"
-            DataType="GridColumnDataType.Date">
+            Groupable="true">
             </IgbColumn>
 
             <IgbColumn
@@ -43,8 +43,8 @@
             <IgbColumn
             Field="Discontinued"
             Width="200px"
-            Groupable="true"
             DataType="GridColumnDataType.Boolean"
+            Groupable="true"
             BodyTemplateScript="WebGridBooleanCellTemplate"
             Name="column1"
             @ref="column1">
@@ -116,8 +116,8 @@
                 var groupingExpression1 = new IgbGroupingExpression[2];
                 var groupingExpression2 = new IgbGroupingExpression();
                 groupingExpression2.FieldName = "ShipCountry";
-                groupingExpression2.Dir = SortingDirection.Asc;
                 groupingExpression2.IgnoreCase = false;
+                groupingExpression2.Dir = SortingDirection.Asc;
                 groupingExpression1[0] = groupingExpression2;
                 var groupingExpression3 = new IgbGroupingExpression();
                 groupingExpression3.FieldName = "ShipCity";

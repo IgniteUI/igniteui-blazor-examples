@@ -7,14 +7,14 @@
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
-        ForeignKey="ParentID"
+        Name="treeGrid"
+        @ref="treeGrid"
         Id="treeGrid"
         Data="EmployeesFlatDetails"
-        Moving="true"
         PrimaryKey="ID"
-        ColumnWidth="200"
-        Name="treeGrid"
-        @ref="treeGrid">
+        ForeignKey="ParentID"
+        Moving="true"
+        ColumnWidth="200">
             <IgbPaginator
             PerPage="10"
             TotalRecords="20">
@@ -23,7 +23,7 @@
             <IgbColumn
             Field="Name"
             DataType="GridColumnDataType.String"
-            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            HeaderTemplateScript="WebTreeGridPinHeaderTemplate"
             Name="column1"
             @ref="column1">
             </IgbColumn>
@@ -31,7 +31,7 @@
             <IgbColumn
             Field="Title"
             DataType="GridColumnDataType.String"
-            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            HeaderTemplateScript="WebTreeGridPinHeaderTemplate"
             Name="column2"
             @ref="column2">
             </IgbColumn>
@@ -39,7 +39,7 @@
             <IgbColumn
             Field="ID"
             DataType="GridColumnDataType.Number"
-            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            HeaderTemplateScript="WebTreeGridPinHeaderTemplate"
             Name="column3"
             @ref="column3">
             </IgbColumn>

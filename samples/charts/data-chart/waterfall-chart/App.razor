@@ -7,53 +7,53 @@
 
     <div class="container vertical fill">
         <IgbDataChart
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false">
             <IgbCategoryXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            Label="Category"
             Interval="1"
             DataSource="CompanyIncomeData"
-            Overlap="1"
-            Label="Category"
-            Name="xAxis"
-            @ref="xAxis">
+            Overlap="1">
             </IgbCategoryXAxis>
 
             <IgbNumericYAxis
-            MinimumValue="0"
-            MaximumValue="60"
+            Name="yAxis"
+            @ref="yAxis"
             Title="Millions of Dollars"
             TitleAngle="90"
             TitleLeftMargin="10"
-            Name="yAxis"
-            @ref="yAxis">
+            MinimumValue="0"
+            MaximumValue="60">
             </IgbNumericYAxis>
 
             <IgbWaterfallSeries
+            Name="WaterfallSeries1"
+            @ref="waterfallSeries1"
+            Title="Value"
             XAxisName="xAxis"
             YAxisName="yAxis"
-            ValueMemberPath="Costs"
-            IsTransitionInEnabled="true"
             DataSource="CompanyIncomeData"
+            ValueMemberPath="Costs"
             ShowDefaultTooltip="true"
-            Title="Value"
-            Name="WaterfallSeries1"
-            @ref="waterfallSeries1">
+            IsTransitionInEnabled="true">
             </IgbWaterfallSeries>
 
             <IgbWaterfallSeries
+            Name="WaterfallSeries2"
+            @ref="waterfallSeries2"
+            Title="Value"
             XAxisName="xAxis"
             YAxisName="yAxis"
-            ValueMemberPath="NetIncome"
-            IsTransitionInEnabled="true"
             DataSource="CompanyIncomeData"
             Brush="#7446b9"
             Outline="#7446b9"
+            ValueMemberPath="NetIncome"
             ShowDefaultTooltip="true"
-            Title="Value"
-            Name="WaterfallSeries2"
-            @ref="waterfallSeries2">
+            IsTransitionInEnabled="true">
             </IgbWaterfallSeries>
 
         </IgbDataChart>
