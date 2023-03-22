@@ -5,15 +5,15 @@
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
-        ForeignKey="ParentID"
+        Name="treeGrid"
+        @ref="treeGrid"
         Id="treeGrid"
         Data="EmployeesFlatDetails"
         PrimaryKey="ID"
+        ForeignKey="ParentID"
         RowEditable="true"
-        AllowFiltering="true"
         BatchEditing="true"
-        Name="treeGrid"
-        @ref="treeGrid">
+        AllowFiltering="true">
             <IgbActionStrip
             Name="actionStrip"
             @ref="actionStrip">
@@ -25,9 +25,9 @@
 
             <IgbColumn
             Field="Name"
+            DataType="GridColumnDataType.String"
             Sortable="true"
-            DisableHiding="true"
-            DataType="GridColumnDataType.String">
+            DisableHiding="true">
             </IgbColumn>
 
             <IgbColumn
@@ -83,9 +83,9 @@
 
             <IgbColumn
             Field="PostalCode"
+            Header="Postal Code"
             DataType="GridColumnDataType.String"
-            Sortable="true"
-            Header="Postal Code">
+            Sortable="true">
             </IgbColumn>
 
             <IgbColumn
