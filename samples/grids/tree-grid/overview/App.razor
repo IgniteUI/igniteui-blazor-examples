@@ -1,55 +1,57 @@
 @using IgniteUI.Blazor.Controls
 
+
 <div class="container vertical">
 
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
-        Name="treeGrid"
-        @ref="treeGrid"
+        ChildDataKey="Employees"
         Id="treeGrid"
         Data="EmployeesNestedData"
-        ChildDataKey="Employees"
-        RowSelection="GridSelectionMode.Multiple"
         Moving="true"
+        Paging="true"
         AllowFiltering="true"
-        Paging="true">
+        FilterMode="FilterMode.ExcelStyleFilter"
+        RowSelection="GridSelectionMode.Multiple"
+        Name="treeGrid"
+        @ref="treeGrid">
             <IgbGridToolbar
             >
                 <IgbGridToolbarTitle
                 Name="Employees"
                 @ref="employees">
                 </IgbGridToolbarTitle>
-
+                
                 <IgbGridToolbarActions
                 >
                     <IgbGridToolbarHiding
                     >
                     </IgbGridToolbarHiding>
-
+                    
                     <IgbGridToolbarPinning
                     >
                     </IgbGridToolbarPinning>
-
+                    
                     <IgbGridToolbarExporter
                     ExportCSV="true"
                     ExportExcel="true">
                     </IgbGridToolbarExporter>
-
+                    
                 </IgbGridToolbarActions>
-
+                
             </IgbGridToolbar>
-
+            
             <IgbColumn
             Field="iD"
             Header="ID"
-            DataType="GridColumnDataType.Number"
             Sortable="true"
             Editable="true"
             Resizable="true"
-            HasSummary="true">
+            HasSummary="true"
+            DataType="GridColumnDataType.Number">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Name"
             Header="Name"
@@ -59,7 +61,7 @@
             Resizable="true"
             HasSummary="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="HireDate"
             Header="Hire Date"
@@ -68,7 +70,7 @@
             Editable="true"
             Resizable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Age"
             Header="Age"
@@ -77,7 +79,7 @@
             Editable="true"
             Resizable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="salary"
             Header="Salary"
@@ -86,7 +88,7 @@
             Editable="true"
             Resizable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="productivity"
             Header="Productivity"
@@ -95,18 +97,20 @@
             Editable="true"
             Resizable="true">
             </IgbColumn>
-
+            
         </IgbTreeGrid>
-
+        
     </div>
 </div>
 
 @code {
 
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var treeGrid = this.treeGrid;
         var employees = this.employees;
+
 
     }
 
@@ -120,10 +124,10 @@
         {
             if (_employeesNestedData == null)
             {
-                _employeesNestedData = new EmployeesNestedData();
+                _employeesNestedData = new EmployeesNestedData(); 
             }
             return _employeesNestedData;
         }
     }
-
+    
 }
