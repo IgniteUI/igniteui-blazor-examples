@@ -7,72 +7,76 @@
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
-        Data="NwindData"
-        PrimaryKey="ProductID"
-        CellEditScript="WebGridEditingEventsCellEdit"
-        Name="treeGrid1"
-        @ref="treeGrid1">
+        ForeignKey="ParentID"
+        Id="treeGrid"
+        Data="EmployeesFlatDetails"
+        PrimaryKey="ID"
+        CellEditScript="WebTreeGridEditingEventsCellEdit"
+        Name="treeGrid"
+        @ref="treeGrid">
             <IgbColumn
-            Field="ProductName"
-            Header="Product Name"
-            DataType="GridColumnDataType.String">
+            Field="ID"
+            Sortable="true"
+            DataType="GridColumnDataType.Number">
             </IgbColumn>
-
+            
             <IgbColumn
-            Field="UnitPrice"
-            Header="Unit Price"
-            DataType="GridColumnDataType.Number"
-            Editable="true">
+            Field="Name"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            Editable="true"
+            DisableHiding="true">
             </IgbColumn>
-
+            
             <IgbColumn
-            Name="UnitsInStock"
-            @ref="unitsInStock"
-            Field="UnitsInStock"
-            Header="Units In Stock"
-            DataType="GridColumnDataType.Number"
-            Editable="true">
+            Field="Title"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            Editable="true"
+            DisableHiding="true">
             </IgbColumn>
-
+            
             <IgbColumn
-            Name="UnitsOnOrder"
-            @ref="unitsOnOrder"
-            Field="UnitsOnOrder"
-            Header="Units on Order"
-            DataType="GridColumnDataType.Number"
-            Editable="true">
+            Field="HireDate"
+            DataType="GridColumnDataType.Date"
+            Sortable="true"
+            Hidden="true">
             </IgbColumn>
-
+            
+            <IgbColumn
+            Field="Address"
+            DataType="GridColumnDataType.String"
+            Sortable="true">
+            </IgbColumn>
+            
         </IgbTreeGrid>
-
+        
     </div>
 </div>
 
 @code {
 
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var treeGrid1 = this.treeGrid1;
-        var unitsInStock = this.unitsInStock;
-        var unitsOnOrder = this.unitsOnOrder;
+        var treeGrid = this.treeGrid;
+
 
     }
 
-    private IgbTreeGrid treeGrid1;
-    private IgbColumn unitsInStock;
-    private IgbColumn unitsOnOrder;
+    private IgbTreeGrid treeGrid;
 
-    private NwindData _nwindData = null;
-    public NwindData NwindData
+    private EmployeesFlatDetails _employeesFlatDetails = null;
+    public EmployeesFlatDetails EmployeesFlatDetails
     {
         get
         {
-            if (_nwindData == null)
+            if (_employeesFlatDetails == null)
             {
-                _nwindData = new NwindData();
+                _employeesFlatDetails = new EmployeesFlatDetails(); 
             }
-            return _nwindData;
+            return _employeesFlatDetails;
         }
     }
-
+    
 }

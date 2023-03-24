@@ -5,45 +5,45 @@
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-        Name="PropertyEditor"
-        @ref="propertyEditor"
-
+        
         DescriptionType="WebTreeGrid"
         IsHorizontal="true"
-        IsWrappingEnabled="true">
+        IsWrappingEnabled="true"
+        Name="PropertyEditor"
+        @ref="propertyEditor">
             <IgbPropertyEditorPropertyDescription
-            ValueType="PropertyEditorValueType.StringValue"
+            PropertyPath="ClipboardOptions.Separator"
             Label="Change Copy Separator"
-            PropertyPath="ClipboardOptions.Separator">
+            ValueType="PropertyEditorValueType.StringValue">
             </IgbPropertyEditorPropertyDescription>
-
+            
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="ClipboardOptions.Enabled"
-            Name="ClipboardEnabledEditor"
-            @ref="clipboardEnabledEditor"
+            ValueType="PropertyEditorValueType.Boolean1"
             Label="Grid Copy Behavior"
-            ValueType="PropertyEditorValueType.Boolean1"
-            PrimitiveValue="true">
+            PropertyPath="ClipboardOptions.Enabled"
+            PrimitiveValue="true"
+            Name="ClipboardEnabledEditor"
+            @ref="clipboardEnabledEditor">
             </IgbPropertyEditorPropertyDescription>
-
+            
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="ClipboardOptions.CopyHeaders"
-            Name="ClipboardHeadersEditor"
-            @ref="clipboardHeadersEditor"
+            ValueType="PropertyEditorValueType.Boolean1"
             Label="Copying of Header Labels"
-            ValueType="PropertyEditorValueType.Boolean1"
-            PrimitiveValue="true">
+            PropertyPath="ClipboardOptions.CopyHeaders"
+            PrimitiveValue="true"
+            Name="ClipboardHeadersEditor"
+            @ref="clipboardHeadersEditor">
             </IgbPropertyEditorPropertyDescription>
-
+            
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="ClipboardOptions.CopyFormatters"
-            Name="ClipboardFormattersEditor"
-            @ref="clipboardFormattersEditor"
-            Label="Copying Column Formatters"
             ValueType="PropertyEditorValueType.Boolean1"
-            PrimitiveValue="true">
+            Label="Copying Column Formatters"
+            PropertyPath="ClipboardOptions.CopyFormatters"
+            PrimitiveValue="true"
+            Name="ClipboardFormattersEditor"
+            @ref="clipboardFormattersEditor">
             </IgbPropertyEditorPropertyDescription>
-
+            
             <IgbPropertyEditorPropertyDescription
             ValueType="PropertyEditorValueType.Button"
             PrimitiveValue="@("Clear Selection")"
@@ -51,50 +51,94 @@
             Name="propertyEditorPropertyDescription1"
             @ref="propertyEditorPropertyDescription1">
             </IgbPropertyEditorPropertyDescription>
-
+            
         </IgbPropertyEditorPanel>
-
+        
     </div>
 
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
-        Name="grid"
-        @ref="grid"
-        Data="NwindData"
-        RowEditable="true"
+        ForeignKey="ParentID"
+        Id="treeGrid"
+        Data="EmployeesFlatDetails"
+        PrimaryKey="ID"
         ColumnInitScript="WebGridClipboardOperationsColumnInit"
-        PrimaryKey="SupplierID">
+        Name="treeGrid"
+        @ref="treeGrid">
             <IgbColumn
-            Field="ProductID">
+            Field="ID"
+            Sortable="true"
+            DataType="GridColumnDataType.Number">
             </IgbColumn>
-
+            
             <IgbColumn
-            Field="ProductName">
+            Field="Name"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            DisableHiding="true">
             </IgbColumn>
-
+            
             <IgbColumn
-            Field="SupplierID">
+            Field="Title"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            DisableHiding="true">
             </IgbColumn>
-
+            
             <IgbColumn
-            Field="CategoryID">
+            Field="HireDate"
+            DataType="GridColumnDataType.Date"
+            Sortable="true"
+            Hidden="true">
             </IgbColumn>
-
+            
             <IgbColumn
-            Field="QuantityPerUnit">
+            Field="Age"
+            DataType="GridColumnDataType.Number"
+            Sortable="true"
+            Hidden="true">
             </IgbColumn>
-
+            
             <IgbColumn
-            Field="UnitPrice">
+            Field="Address"
+            DataType="GridColumnDataType.String"
+            Sortable="true">
             </IgbColumn>
-
+            
             <IgbColumn
-            Field="UnitsInStock">
+            Field="City"
+            DataType="GridColumnDataType.String"
+            Sortable="true">
             </IgbColumn>
-
+            
+            <IgbColumn
+            Field="Country"
+            DataType="GridColumnDataType.String"
+            Sortable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Fax"
+            DataType="GridColumnDataType.String"
+            Sortable="true">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="PostalCode"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            Header="Postal Code">
+            </IgbColumn>
+            
+            <IgbColumn
+            Field="Phone"
+            DataType="GridColumnDataType.String"
+            Sortable="true">
+            </IgbColumn>
+            
         </IgbTreeGrid>
-
+        
     </div>
 </div>
 
@@ -109,10 +153,10 @@
         var clipboardHeadersEditor = this.clipboardHeadersEditor;
         var clipboardFormattersEditor = this.clipboardFormattersEditor;
         var propertyEditorPropertyDescription1 = this.propertyEditorPropertyDescription1;
-        var grid = this.grid;
+        var treeGrid = this.treeGrid;
 
         this.BindElements = () => {
-            propertyEditor.Target = this.grid;
+            propertyEditor.Target = this.treeGrid;
         };
         this.BindElements();
 
@@ -123,19 +167,19 @@
     private IgbPropertyEditorPropertyDescription clipboardHeadersEditor;
     private IgbPropertyEditorPropertyDescription clipboardFormattersEditor;
     private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
-    private IgbTreeGrid grid;
+    private IgbTreeGrid treeGrid;
 
-    private NwindData _nwindData = null;
-    public NwindData NwindData
+    private EmployeesFlatDetails _employeesFlatDetails = null;
+    public EmployeesFlatDetails EmployeesFlatDetails
     {
         get
         {
-            if (_nwindData == null)
+            if (_employeesFlatDetails == null)
             {
-                _nwindData = new NwindData();
+                _employeesFlatDetails = new EmployeesFlatDetails(); 
             }
-            return _nwindData;
+            return _employeesFlatDetails;
         }
     }
-
+    
 }
