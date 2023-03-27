@@ -35,6 +35,9 @@ class SampleFile {
     public isCS(): boolean {
         return this.Name.endsWith(".cs") && !this.Name.endsWith(".css");
     }
+    public isProgramCS(): boolean {
+        return this.Name.endsWith("Program.cs");
+    }
     public isHTML(): boolean {
         return this.Name.endsWith(".html");
     }
@@ -135,6 +138,7 @@ class SampleInfo {
     public PublicIndexFile: SampleFile;
     public ProjectFile: SampleFile;
     public ProgramModules: string[];
+    public DataFilesCount: number = 0;
 
     public DocsUrl: string;            // https://infragistics.com/Reactsite/components/geo-map.html
 

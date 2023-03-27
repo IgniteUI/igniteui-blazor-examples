@@ -53,7 +53,6 @@ var sampleSource = [
     igConfig.SamplesCopyPath + '/grids/tree-grid/**/App.razor',
     igConfig.SamplesCopyPath + '/grids/tree/**/App.razor',
     igConfig.SamplesCopyPath + '/grids/pivot-grid/**/App.razor',
-    // igConfig.SamplesCopyPath + '/grids/hierarchical-grid/**/App.razor',
     igConfig.SamplesCopyPath + '/editors/**/App.razor',
 
     igConfig.SamplesCopyPath + '/inputs/badge/**/App.razor',
@@ -326,7 +325,7 @@ function copySamplePages(cb, outputPath) {
 
         let sampleFolder = sample.ComponentGroup + '/' + sample.ComponentFolder
         // outputFolder = Strings.toTitleCase(outputClient);
-
+        // let dataFiles = [];
         for (const file of sample.SourceFiles) {
             if (file.isRazorFile()) {
                 var copyTarget = outputPath + '/Pages/' + sampleFolder + '/' + file.Parent + '/' + file.Name;
@@ -334,12 +333,21 @@ function copySamplePages(cb, outputPath) {
                 saveFile(copyTarget, file.Content);
             } else if (file.Name.indexOf("Program.cs") >= 0)  {
                 continue;
-            } else if (file.isCS())  {
+            } else if (file.isCS()) {
                 saveFile(outputPath + '/Services/' + file.Name, file.Content);
+                sample.DataFilesCount++;
+                if (file.Name.indexOf("DataGenerator") >= 0) {
+                    // dataFiles.push('../samples/' + sampleFolder + '/' + file.Parent + '/' + file.Name);
+                }
             } else {
-                log("WARNING unknown source file: " + file.Path);
+                // log("WARNING unknown source file: " + file.Path);
+                throw new Error("ERROR unknown source file: " + file.Path);
             }
         }
+
+        // if (dataFiles.length > 1) {
+        //     console.log(dataFiles);
+        // }
     }
 
     log('TOC generating with routing paths for samples');
@@ -1102,12 +1110,18 @@ function updateCodeViewer(cb) {
                 var item = new CodeViewer(file.Path, code, "razor", "razor", true);
                 contentItems.push(item);
             }
+            else if (file.isProgramCS()) {
+                var item = new CodeViewer(file.Path, file.Content, "cs", "MODULES", true);
+                contentItems.push(item);
+            }
             else if (file.isCS()) {
                 var name = file.Name.toLowerCase();
-                var isDataFile = name.indexOf("data") >= 0 || name.indexOf("locations") >= 0 || name.indexOf("temperature") >= 0 || name.indexOf("connections") >= 0 || name.indexOf("products") >= 0 || name.indexOf("stocksutility") >= 0 || name.indexOf("medals") >= 0 || name.indexOf("places") >= 0 || name.indexOf("history") >= 0 || name.indexOf("stats") >= 0;
-                var header = isDataFile ? "DATA" : "CS";
+                var header = "DATA";
+                if (sample.DataFilesCount > 1) {
+                    var isGenerator = name.indexOf("generator") >= 0;
+                    header = isGenerator ? "DATA GENERATOR" : "DATA SOURCE";
+                }
                 var item = new CodeViewer(file.Path, file.Content, "cs", header, true);
-
                 contentItems.push(item);
             }
         }
