@@ -1127,23 +1127,26 @@ function updateCodeViewer(cb) {
         }
 
         if (sample.PublicFiles_JS.length > 0) {
-            for(const file of sample.PublicFiles_JS){
+            for(const file of sample.PublicFiles_JS) {
                 var item = new CodeViewer(file.Path, file.Content, "js", "js", true);
                 contentItems.push(item);
             }
         }
 
         if (sample.PublicFiles_CSS.length > 0) {
-            for(const file of sample.PublicFiles_CSS){
-                var item = new CodeViewer(file.Path, file.Content, "css", "css", true);
-                contentItems.push(item);
+            for(const file of sample.PublicFiles_CSS) {
+                // if (!file.Content.includes("loaded from the shared CSS file")) {
+                //     console.log("CSS " + file.Path);
+                    var item = new CodeViewer(file.Path, file.Content, "css", "css", true);
+                    contentItems.push(item);
+                // }
             }
         }
 
         if (sample.PublicIndexFile !== undefined) {
             var file = sample.PublicIndexFile;
             var item = new CodeViewer(file.Path, file.Content, "html", "html", true);
-            contentItems.push(item);
+            // contentItems.push(item);
         }
 
         content += JSON.stringify(contentItems, null, '  ');
