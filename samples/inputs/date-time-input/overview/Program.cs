@@ -5,9 +5,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-
-// required for registering IgniteUIBlazor
-using IgniteUI.Blazor.Controls;
+using IgniteUI.Blazor.Controls; // for registering Ignite UI modules
 using BlazorClientApp;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
