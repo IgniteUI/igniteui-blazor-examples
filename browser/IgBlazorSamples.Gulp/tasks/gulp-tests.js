@@ -94,3 +94,40 @@ exports.testSampleFiles = testSampleFiles = gulp.series(
     testProjectFiles,
     testAppFiles,
 );
+
+
+function testCodeViewer(cb) {
+    var contentKeep = `
+<html/>
+@code {
+    protected override void OnInitialized()
+    {
+        var keep = true;
+    }
+}`;
+    var contentSkip = `
+    <html/>
+    @code {
+
+        protected override void OnInitialized()
+        {
+
+        }
+
+        line1;
+
+        line2;
+
+
+        line3;
+    }`;
+    //var exp = /(protected override void OnInitialized\(\)\n\s*{\n\s*\n\s*})/gm;
+    //var ret = contentSkip.replace(exp, '');
+    var ret = contentSkip.replace(/\n\n\n/gm, '\n\n');
+    console.log(contentSkip);
+    console.log('testCodeViewer');
+    console.log(ret);
+
+    cb();
+} exports.testCodeViewer = testCodeViewer;
+

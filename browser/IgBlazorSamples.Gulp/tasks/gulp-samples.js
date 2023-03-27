@@ -1103,10 +1103,14 @@ function updateCodeViewer(cb) {
                     if (line.indexOf(".Register(IgniteUIBlazor)") < 0 &&
                         line.indexOf("@page") < 0 &&
                         line.indexOf("@inject IIgniteUIBlazor IgniteUIBlazor") < 0) {
-                        codeParsed.push(line);
+                        codeParsed.push(line.trimEnd());
                     }
                 }
                 var code = codeParsed.join('\n');
+                var exp = /(protected override void OnInitialized\(\)\n\s*{\n\s*\n\s*})/gm;
+                code = code.replace(exp, '');
+                code = code.replace(/\n\n\n/gm, '\n\n');
+                //code = code.replace(/\n\n/gm, '\n');
                 var item = new CodeViewer(file.Path, code, "razor", "razor", true);
                 contentItems.push(item);
             }
