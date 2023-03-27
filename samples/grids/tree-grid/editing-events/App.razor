@@ -7,19 +7,19 @@
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
-        ForeignKey="ParentID"
+        Name="treeGrid"
+        @ref="treeGrid"
         Id="treeGrid"
         Data="EmployeesFlatDetails"
         PrimaryKey="ID"
-        CellEditScript="WebTreeGridEditingEventsCellEdit"
-        Name="treeGrid"
-        @ref="treeGrid">
+        ForeignKey="ParentID"
+        CellEditScript="WebTreeGridEditingEventsCellEdit">
             <IgbColumn
             Field="ID"
-            Sortable="true"
-            DataType="GridColumnDataType.Number">
+            DataType="GridColumnDataType.Number"
+            Sortable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Name"
             DataType="GridColumnDataType.String"
@@ -27,7 +27,7 @@
             Editable="true"
             DisableHiding="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Title"
             DataType="GridColumnDataType.String"
@@ -35,32 +35,30 @@
             Editable="true"
             DisableHiding="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="HireDate"
             DataType="GridColumnDataType.Date"
             Sortable="true"
             Hidden="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Address"
             DataType="GridColumnDataType.String"
             Sortable="true">
             </IgbColumn>
-            
+
         </IgbTreeGrid>
-        
+
     </div>
 </div>
 
 @code {
 
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var treeGrid = this.treeGrid;
-
 
     }
 
@@ -73,10 +71,10 @@
         {
             if (_employeesFlatDetails == null)
             {
-                _employeesFlatDetails = new EmployeesFlatDetails(); 
+                _employeesFlatDetails = new EmployeesFlatDetails();
             }
             return _employeesFlatDetails;
         }
     }
-    
+
 }

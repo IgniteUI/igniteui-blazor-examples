@@ -1,6 +1,6 @@
 
 
-igRegisterScript("WebGridRendered", (event) => {
+igRegisterScript("WebTreeGridRendered", (event) => {
         const grid = document.getElementsByTagName("igc-tree-grid")[0];
         grid.parentElement.style.display = "flex";
         const container = document.createElement("div");

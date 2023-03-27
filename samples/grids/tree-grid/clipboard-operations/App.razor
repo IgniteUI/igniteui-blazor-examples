@@ -5,45 +5,45 @@
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+        Name="PropertyEditor"
+        @ref="propertyEditor"
+
         DescriptionType="WebTreeGrid"
         IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="PropertyEditor"
-        @ref="propertyEditor">
+        IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="ClipboardOptions.Separator"
+            ValueType="PropertyEditorValueType.StringValue"
             Label="Change Copy Separator"
-            ValueType="PropertyEditorValueType.StringValue">
+            PropertyPath="ClipboardOptions.Separator">
             </IgbPropertyEditorPropertyDescription>
-            
+
             <IgbPropertyEditorPropertyDescription
-            ValueType="PropertyEditorValueType.Boolean1"
-            Label="Grid Copy Behavior"
             PropertyPath="ClipboardOptions.Enabled"
-            PrimitiveValue="true"
             Name="ClipboardEnabledEditor"
-            @ref="clipboardEnabledEditor">
-            </IgbPropertyEditorPropertyDescription>
-            
-            <IgbPropertyEditorPropertyDescription
+            @ref="clipboardEnabledEditor"
+            Label="Grid Copy Behavior"
             ValueType="PropertyEditorValueType.Boolean1"
-            Label="Copying of Header Labels"
+            PrimitiveValue="true">
+            </IgbPropertyEditorPropertyDescription>
+
+            <IgbPropertyEditorPropertyDescription
             PropertyPath="ClipboardOptions.CopyHeaders"
-            PrimitiveValue="true"
             Name="ClipboardHeadersEditor"
-            @ref="clipboardHeadersEditor">
-            </IgbPropertyEditorPropertyDescription>
-            
-            <IgbPropertyEditorPropertyDescription
+            @ref="clipboardHeadersEditor"
+            Label="Copying of Header Labels"
             ValueType="PropertyEditorValueType.Boolean1"
-            Label="Copying Column Formatters"
-            PropertyPath="ClipboardOptions.CopyFormatters"
-            PrimitiveValue="true"
-            Name="ClipboardFormattersEditor"
-            @ref="clipboardFormattersEditor">
+            PrimitiveValue="true">
             </IgbPropertyEditorPropertyDescription>
-            
+
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="ClipboardOptions.CopyFormatters"
+            Name="ClipboardFormattersEditor"
+            @ref="clipboardFormattersEditor"
+            Label="Copying Column Formatters"
+            ValueType="PropertyEditorValueType.Boolean1"
+            PrimitiveValue="true">
+            </IgbPropertyEditorPropertyDescription>
+
             <IgbPropertyEditorPropertyDescription
             ValueType="PropertyEditorValueType.Button"
             PrimitiveValue="@("Clear Selection")"
@@ -51,94 +51,94 @@
             Name="propertyEditorPropertyDescription1"
             @ref="propertyEditorPropertyDescription1">
             </IgbPropertyEditorPropertyDescription>
-            
+
         </IgbPropertyEditorPanel>
-        
+
     </div>
 
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
-        ForeignKey="ParentID"
+        Name="treeGrid"
+        @ref="treeGrid"
         Id="treeGrid"
         Data="EmployeesFlatDetails"
         PrimaryKey="ID"
-        ColumnInitScript="WebGridClipboardOperationsColumnInit"
-        Name="treeGrid"
-        @ref="treeGrid">
+        ForeignKey="ParentID"
+        ColumnInitScript="WebGridClipboardOperationsColumnInit">
             <IgbColumn
             Field="ID"
-            Sortable="true"
-            DataType="GridColumnDataType.Number">
+            DataType="GridColumnDataType.Number"
+            Sortable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Name"
             DataType="GridColumnDataType.String"
             Sortable="true"
             DisableHiding="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Title"
             DataType="GridColumnDataType.String"
             Sortable="true"
             DisableHiding="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="HireDate"
             DataType="GridColumnDataType.Date"
             Sortable="true"
             Hidden="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Age"
             DataType="GridColumnDataType.Number"
             Sortable="true"
             Hidden="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Address"
             DataType="GridColumnDataType.String"
             Sortable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="City"
             DataType="GridColumnDataType.String"
             Sortable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Country"
             DataType="GridColumnDataType.String"
             Sortable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Fax"
             DataType="GridColumnDataType.String"
             Sortable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="PostalCode"
+            Header="Postal Code"
             DataType="GridColumnDataType.String"
-            Sortable="true"
-            Header="Postal Code">
+            Sortable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Phone"
             DataType="GridColumnDataType.String"
             Sortable="true">
             </IgbColumn>
-            
+
         </IgbTreeGrid>
-        
+
     </div>
 </div>
 
@@ -176,10 +176,10 @@
         {
             if (_employeesFlatDetails == null)
             {
-                _employeesFlatDetails = new EmployeesFlatDetails(); 
+                _employeesFlatDetails = new EmployeesFlatDetails();
             }
             return _employeesFlatDetails;
         }
     }
-    
+
 }
