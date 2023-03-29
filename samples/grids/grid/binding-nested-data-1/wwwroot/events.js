@@ -14,12 +14,12 @@ igRegisterScript("WebGridNestedDataCellTemplate", (ctx) => {
         ${person.Name}
         </div>
         <div class="description">
-            <div>
-                <label for="title">Title</label>
+            <div style="display: flex; align-items: center;">
+                <label for="title" style="width: 2rem; margin: 0rem;">Title</label>
                 <input id='Title' type="text" name="title" value="${person.Title}" style="text-overflow: ellipsis;" />
             </div>
-            <div>
-                <label for="age">Age</label>
+            <div style="display: flex; align-items: center;">
+                <label for="age" style="width: 2rem; margin: 0rem;">Age</label>
                 <input id='Age' type="text" name="title" value="${person.Age}" style="text-overflow: ellipsis;" />
             </div>
         </div>
