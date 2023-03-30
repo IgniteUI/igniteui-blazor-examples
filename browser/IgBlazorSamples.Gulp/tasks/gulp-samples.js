@@ -68,6 +68,7 @@ var sampleSource = [
     igConfig.SamplesCopyPath + '/inputs/linear-progress-indicator/**/App.razor',
     igConfig.SamplesCopyPath + '/inputs/radio/**/App.razor',
     igConfig.SamplesCopyPath + '/inputs/ripple/**/App.razor',
+    igConfig.SamplesCopyPath + '/inputs/select/**/App.razor',
     igConfig.SamplesCopyPath + '/inputs/slider/**/App.razor',
     igConfig.SamplesCopyPath + '/inputs/switches/**/App.razor',
 
