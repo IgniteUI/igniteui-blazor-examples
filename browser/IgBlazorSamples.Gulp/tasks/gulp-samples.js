@@ -60,6 +60,7 @@ var sampleSource = [
     igConfig.SamplesCopyPath + '/inputs/checkbox/**/App.razor',
     igConfig.SamplesCopyPath + '/inputs/chip/**/App.razor',
     igConfig.SamplesCopyPath + '/inputs/circular-progress-indicator/**/App.razor',
+    igConfig.SamplesCopyPath + '/inputs/combo/**/App.razor',
     igConfig.SamplesCopyPath + '/inputs/date-time-input/**/App.razor',
     igConfig.SamplesCopyPath + '/inputs/dropdown/**/App.razor',
     igConfig.SamplesCopyPath + '/inputs/form/**/App.razor',

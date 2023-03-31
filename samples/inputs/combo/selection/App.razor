@@ -1,0 +1,54 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample center">
+    <style>
+        .button-container {
+            display: flex;
+            margin-top: 16px;
+            gap: 8px;
+        }
+    </style>
+
+    <IgbCombo 
+        Label="Cities" 
+        Placeholder="Pick a city" 
+        Data="Data" 
+        ValueKey="Id" 
+        DisplayKey="Name"
+        @ref="Combo">
+    </IgbCombo>
+
+    <div class="button-container">
+        <IgbButton @onclick="SelectUKCities">Select UK Cities</IgbButton>
+        <IgbButton @onclick="DeselectUKCities">Deselect UK Cities</IgbButton>
+        <IgbButton @onclick="SelectAll">Select All</IgbButton>
+        <IgbButton @onclick="DeselectAll">Deselect All</IgbButton>
+    </div>
+</div>
+
+@code {
+    private List<City> Data;
+    private IgbCombo Combo;
+    private object[] UKCities; 
+
+    protected override void OnInitialized() {
+        this.Data = SampleData.Cities;
+        this.UKCities = new object[] { "UK01", "UK02", "UK03", "UK04", "UK05" };
+    }
+
+    public void SelectUKCities() {
+        this.Combo.Select(UKCities);
+    }
+
+    public void DeselectUKCities() {
+        this.Combo.Deselect(UKCities);
+    }
+
+    public void SelectAll() {
+        this.Combo.Select(new object[] {});
+    }
+
+    public void DeselectAll() {
+        this.Combo.Deselect(new object[] {});
+    }
+}
