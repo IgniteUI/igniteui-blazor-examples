@@ -12,7 +12,7 @@
                 <div class="cards-wrapper">
                     @foreach (var card in this.cards)
                     {
-                       <div class="card-wrapper">
+                       <div class="card-wrapper card-first-step @selectedClassCss(card.ID)">
                            <IgbCard @onclick="() => selectCard(card.ID)">
                                 @if(selectedCard.ID == card.ID)
                                 {                                    
@@ -180,7 +180,8 @@
                 </IgbCardContent>   
             </div>
         </IgbCard>  
-    </div>;
+    </div>
+    ;
 
     protected override void OnAfterRender(bool firstRender)
     {
@@ -227,6 +228,10 @@
     {
         selectedCard = Array.Find(this.cards, card => card.ID == cardID);
         stepper.NavigateTo(1);
+    }
+
+    public string selectedClassCss(int cardID){
+        return cardID == selectedCard.ID ? "selected-card" : "";
     }
 
     public void OnBusinessRadioChange(IgbComponentBoolValueChangedEventArgs args)
