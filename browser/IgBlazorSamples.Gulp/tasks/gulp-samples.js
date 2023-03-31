@@ -563,9 +563,9 @@ function updateIG(cb) {
     // NOTE: change this array with new version of packages
     let packageUpgrades = [
         // these IG packages are often updated:
-        { name: "IgniteUI.Blazor"                , version: "22.2.64" },
-        { name: "IgniteUI.Blazor.Documents.Core",  version: "22.2.64" },
-        { name: "IgniteUI.Blazor.Documents.Excel", version: "22.2.64" },
+        { name: "IgniteUI.Blazor.Trial"                , version: "22.2.65" },
+        { name: "IgniteUI.Blazor.Documents.Core.Trial",  version: "22.2.65" },
+        { name: "IgniteUI.Blazor.Documents.Excel.Trial", version: "22.2.65" },
         // these IG packages are sometimes updated:
         { name: "Microsoft.AspNetCore.Components",                       version: "6.0.0" },
         { name: "Microsoft.AspNetCore.Components.Web",                   version: "6.0.0" },
@@ -615,7 +615,7 @@ function updateIG(cb) {
         var fileChanged = false;
         for (let i = 0; i < fileLines.length; i++) {
             const line = fileLines[i];
-            //   <PackageReference Include="IgniteUI.Blazor.Documents.Excel" Version="22.1.46" />
+            //   <PackageReference Include="IgniteUI.Blazor.Documents.Excel.Trial" Version="22.1.46" />
             let words = line.split("Version=");
             if (words.length === 2 && words[0].indexOf('PackageReference') > 0) {
                 // matching packages

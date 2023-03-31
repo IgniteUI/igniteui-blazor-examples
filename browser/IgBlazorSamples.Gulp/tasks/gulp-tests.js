@@ -74,7 +74,7 @@ function testProjectFiles(cb) {
         '<NoWarn>1701;1702,IDE0028,BL0005,0219,CS1998</NoWarn>',
         '<TargetFramework>net6.0</TargetFramework>',
         '<RazorLangVersion>3.0</RazorLangVersion>',
-        '<PackageReference Include="IgniteUI.Blazor" Version',
+        '<PackageReference Include="IgniteUI.Blazor.Trial" Version',
         '<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0" />',
         '<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" />',
         '</Project>',
