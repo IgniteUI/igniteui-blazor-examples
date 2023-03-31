@@ -991,33 +991,26 @@ function copyTemplates(cb) {
     });
 } exports.copyTemplates = copyTemplates;
 
-function listSamples(cb) {
-
-    let sampleFiles = [];
+function logSampleNames(cb) {
+    let sampleNames = [];
     gulp.src([
-               igConfig.SamplesCopyPath + '/**/Pages/*',
-        '!' +  igConfig.SamplesCopyPath + '/**/Pages/*.g.cs',
-         // sampleFolder + "/wwwroot/*",
-    //   '!' + sampleFolder + "/wwwroot/index.html",
-    //   '!' + sampleFolder + "/Pages/*.g.cs",
+       '../../samples/**/App.razor',
+      '!../../samples/**/bin/**/App.razor',
+      '!../../samples/**/obj/**/App.razor',
     ])
-    // .pipe(flatten({ "includeParents": -1 }))
-    .pipe(es.map(function(file, fileCallback) {
-        let fileDir = Transformer.getRelative(file.dirname);
-        sampleFiles.push(fileDir + "/" + file.basename);
-        // console.log("get file " + fileDir + "/" + file.basename);
-        fileCallback(null, file);
-    }))
+    .pipe(es.map(function(file, cbFile) {
+        sampleNames.push(file.dirname.split('samples')[1]);
+        cbFile(null, file);
+    })
     .on("end", function() {
-        sampleFiles.sort();
-        for (const fileDir of sampleFiles) {
-            if (fileDir.indexOf(".razor") === -1)
-                console.log("list " + fileDir);
+        sampleNames.sort();
+        for (const name of sampleNames) {
+            console.log(name);
         }
         cb();
-    });
+    }));
 
-} exports.listSamples = listSamples;
+} exports.logSampleNames = logSampleNames;
 
 function convertSamples(cb) {
     for (const sample of samples) {
