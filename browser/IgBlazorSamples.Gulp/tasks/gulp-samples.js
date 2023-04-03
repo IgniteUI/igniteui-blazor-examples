@@ -191,11 +191,11 @@ function getSamples(cb) {
     gulp.src(sampleSource)
     // .pipe(gSort( { asc: false } ))
     .pipe(es.map(function(sample, sampleCallback) {
-        console.log('Sample: ' + sample.dirname);
+        // console.log('Sample: ' + sample.dirname);
         let sampleFolder = Transformer.getRelative(sample.dirname);
-        console.log('SampleFolder: ' + sampleFolder);
-        let samplePath = sampleFolder + sample.basename;
-        console.log('SamplePath: ' + samplePath);
+        // console.log('SampleFolder: ' + sampleFolder);
+        let samplePath = sampleFolder + '/' + sample.basename;
+        // console.log('SamplePath: ' + samplePath);
 
         // skip samples that were deferred
         if (deferredSamples.includes(samplePath)) {
