@@ -630,7 +630,7 @@ class Transformer {
     public static getRelative(path: string): string {
         // let path = filePath;
         if (path.indexOf(igConfig.RepositoryName) > -1) {
-            path = path.split(igConfig.RepositoryName)[1];
+            path = path.split(igConfig.RepositoryName).pop() as string;
             path = path.split("\\").join("/");
             // return "." + path;
             return "../.." + path;
