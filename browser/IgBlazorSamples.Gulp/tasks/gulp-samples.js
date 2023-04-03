@@ -193,7 +193,7 @@ function getSamples(cb) {
     .pipe(es.map(function(sample, sampleCallback) {
         let sampleFolder = Transformer.getRelative(sample.dirname);
         console.log('SampleFolder: ' + sampleFolder);
-        let samplePath = sampleFolder + '/' + sample.basename;
+        let samplePath = sampleFolder + sample.basename;
         console.log('SamplePath: ' + samplePath);
 
         // skip samples that were deferred
