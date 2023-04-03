@@ -6,47 +6,47 @@
     </div>
     <div class="legend">
         <IgbLegend
-        Orientation="LegendOrientation.Horizontal"
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
 
     </div>
 
     <div class="container vertical fill">
         <IgbDataChart
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false">
             <IgbCategoryXAxis
-            DataSource="ContinentsBirthRate"
-            Label="Year"
             Name="xAxis"
-            @ref="xAxis">
+            @ref="xAxis"
+            DataSource="ContinentsBirthRate"
+            Label="Year">
             </IgbCategoryXAxis>
 
             <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis"
             Interval="20"
             TitleLeftMargin="10"
-            LabelFormat="{0}%"
-            Name="yAxis"
-            @ref="yAxis">
+            LabelFormat="{0}%">
             </IgbNumericYAxis>
 
             <IgbStacked100SplineAreaSeries
+            Name="Stacked100SplineAreaSeries"
+            @ref="stacked100SplineAreaSeries"
+            DataSource="ContinentsBirthRate"
             XAxisName="xAxis"
             YAxisName="yAxis"
-            MarkerType="MarkerType.Circle"
-            DataSource="ContinentsBirthRate"
             ShowDefaultTooltip="false"
-            Name="Stacked100SplineAreaSeries"
-            @ref="stacked100SplineAreaSeries">
+            MarkerType="MarkerType.Circle">
                 <IgbStackedFragmentSeries
                 Name="s1"
                 @ref="s1"
-                Title="@("Asia")"
-                ValueMemberPath="Asia">
+                ValueMemberPath="Asia"
+                Title="@("Asia")">
                 </IgbStackedFragmentSeries>
 
                 <IgbStackedFragmentSeries

@@ -12,40 +12,40 @@
         Name="chart"
         @ref="chart">
             <IgbCategoryXAxis
-            DataSource="CountryRenewableElectricity"
-            Label="Year"
             Name="xAxis"
-            @ref="xAxis">
+            @ref="xAxis"
+            DataSource="CountryRenewableElectricity"
+            Label="Year">
             </IgbCategoryXAxis>
 
             <IgbNumericYAxis
-            Title="TWh"
-            LabelLocation="AxisLabelsLocation.OutsideRight"
             Name="yAxis"
-            @ref="yAxis">
+            @ref="yAxis"
+            Title="TWh"
+            LabelLocation="AxisLabelsLocation.OutsideRight">
             </IgbNumericYAxis>
 
             <IgbLineSeries
+            Name="LineSeries1"
+            @ref="lineSeries1"
             XAxisName="xAxis"
             YAxisName="yAxis"
-            ValueMemberPath="America"
             DataSource="CountryRenewableElectricity"
-            Name="LineSeries1"
-            @ref="lineSeries1">
+            ValueMemberPath="America">
             </IgbLineSeries>
 
             <IgbCalloutLayer
-            LabelMemberPath="Label"
+            Name="CalloutLayer1"
+            @ref="calloutLayer1"
+            DataSource="CountryRenewableCallouts"
             XMemberPath="Index"
             YMemberPath="Value"
-            CalloutTextColor="black"
-            CalloutBackground="orange"
-            CalloutOutline="black"
+            LabelMemberPath="Label"
             CalloutLeaderBrush="black"
-            CalloutStrokeThickness="2"
-            DataSource="CountryRenewableCallouts"
-            Name="CalloutLayer1"
-            @ref="calloutLayer1">
+            CalloutOutline="black"
+            CalloutBackground="orange"
+            CalloutTextColor="black"
+            CalloutStrokeThickness="2">
             </IgbCalloutLayer>
 
         </IgbDataChart>

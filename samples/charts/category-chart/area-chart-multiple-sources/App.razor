@@ -6,27 +6,27 @@
     </div>
     <div class="legend">
         <IgbLegend
-        Orientation="LegendOrientation.Horizontal"
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
 
     </div>
 
     <div class="container vertical fill">
         <IgbCategoryChart
+        Name="chart"
+        @ref="chart"
         ChartType="CategoryChartType.Area"
-        YAxisLabelLeftMargin="0"
-        YAxisTitleLeftMargin="10"
-        YAxisTitleRightMargin="5"
-        YAxisTitle="TWh"
         DataSource="CountryRenewableElectricity"
         IncludedProperties="@(new string[] { "Year", "Europe", "China", "America" })"
+        YAxisTitle="TWh"
+        YAxisTitleLeftMargin="10"
+        YAxisTitleRightMargin="5"
+        YAxisLabelLeftMargin="0"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
-        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
-        Name="chart"
-        @ref="chart">
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series">
         </IgbCategoryChart>
 
     </div>

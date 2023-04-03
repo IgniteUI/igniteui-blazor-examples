@@ -1,8 +1,8 @@
 
-igRegisterScript("WebGridPinHeaderTemplate", (ctx) => {
+igRegisterScript("WebTreeGridPinHeaderTemplate", (ctx) => {
     var html = window.igTemplating.html;
     window.toggleColumnPin = function toggleColumnPin(field) {
-        var grid = document.getElementsByTagName("igc-grid")[0];
+        var grid = document.getElementsByTagName("igc-tree-grid")[0];
         var col = grid.getColumnByName(field);
         col.pinned = !col.pinned;
         grid.markForCheck();

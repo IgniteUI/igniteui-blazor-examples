@@ -6,54 +6,56 @@
     </div>
     <div class="legend">
         <IgbLegend
-        Orientation="LegendOrientation.Horizontal"
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
 
     </div>
 
     <div class="container vertical fill">
         <IgbDataChart
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false">
             <IgbNumericAngleAxis
-            StartAngleOffset="-90"
-            MinimumValue="0"
-            MaximumValue="360"
-            Interval="30"
             Name="angleAxis"
-            @ref="angleAxis">
+            @ref="angleAxis"
+            StartAngleOffset="-90"
+            Interval="30"
+            MinimumValue="0"
+            MaximumValue="360">
             </IgbNumericAngleAxis>
 
             <IgbNumericRadiusAxis
+            Name="radiusAxis"
+            @ref="radiusAxis"
             RadiusExtentScale="0.9"
             InnerRadiusExtentScale="0.1"
-            MinimumValue="0"
-            MaximumValue="100"
             Interval="25"
-            Name="radiusAxis"
-            @ref="radiusAxis">
+            MinimumValue="0"
+            MaximumValue="100">
             </IgbNumericRadiusAxis>
 
             <IgbPolarAreaSeries
-            AngleMemberPath="Direction"
-            RadiusMemberPath="WindSpeed"
+            Name="PolarAreaSeries1"
+            @ref="polarAreaSeries1"
+            DataSource="BoatSailingData"
             AngleAxisName="angleAxis"
             RadiusAxisName="radiusAxis"
-            MarkerType="MarkerType.Circle"
-            DataSource="BoatSailingData"
-            Thickness="1"
-            AreaFillOpacity="0.8"
+            AngleMemberPath="Direction"
+            RadiusMemberPath="WindSpeed"
             ShowDefaultTooltip="false"
+            AreaFillOpacity="0.8"
+            Thickness="1"
             Title="Wind Speed"
-            Name="PolarAreaSeries1"
-            @ref="polarAreaSeries1">
+            MarkerType="MarkerType.Circle">
             </IgbPolarAreaSeries>
 
             <IgbPolarAreaSeries
+            Name="PolarAreaSeries2"
+            @ref="polarAreaSeries2"
             DataSource="BoatSailingData"
             AngleAxisName="angleAxis"
             RadiusAxisName="radiusAxis"
@@ -63,9 +65,7 @@
             AreaFillOpacity="0.8"
             Thickness="1"
             Title="Boat Speed"
-            MarkerType="MarkerType.Circle"
-            Name="PolarAreaSeries2"
-            @ref="polarAreaSeries2">
+            MarkerType="MarkerType.Circle">
             </IgbPolarAreaSeries>
 
             <IgbDataToolTipLayer

@@ -84,7 +84,7 @@ exports.cleanupSampleBrowsers = cleanupSampleBrowsers = gulp.series(
     sb.cleanupSampleBrowsers,
 );
 
-exports.listSamples = sb.listSamples;
+exports.logSampleNames = sb.logSampleNames;
 exports.removeSamplePages = sb.removeSamplePages;
 exports.renameProjects = sb.renameProjects;
 

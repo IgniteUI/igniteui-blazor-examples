@@ -3,34 +3,34 @@
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
+        Name="PropertyEditor"
+        @ref="propertyEditor"
 
         DescriptionType="CategoryChart"
         IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="PropertyEditor"
-        @ref="propertyEditor">
+        IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="DataToolTipGroupedPositionModeX"
-            Label="Grouped X Position: "
             PrimitiveValue="@("PinRight")"
             Name="GroupedPositionXEditor"
-            @ref="groupedPositionXEditor">
+            @ref="groupedPositionXEditor"
+            Label="Grouped X Position: ">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
             PropertyPath="DataToolTipGroupedPositionModeY"
             PrimitiveValue="@("PinTop")"
-            Label="Grouped Y Position: "
             Name="GroupedPositionYEditor"
-            @ref="groupedPositionYEditor">
+            @ref="groupedPositionYEditor"
+            Label="Grouped Y Position: ">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
             PropertyPath="DataToolTipGroupingMode"
             PrimitiveValue="@("Grouped")"
-            Label="Grouping Mode: "
             Name="GroupingModeEditor"
-            @ref="groupingModeEditor">
+            @ref="groupingModeEditor"
+            Label="Grouping Mode: ">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -42,20 +42,20 @@
 
     <div class="container vertical fill">
         <IgbCategoryChart
+        Name="chart"
+        @ref="chart"
         ChartType="CategoryChartType.Column"
-        XAxisInterval="1"
-        YAxisLabelLeftMargin="0"
-        YAxisTitleLeftMargin="10"
-        YAxisTitleRightMargin="5"
-        YAxisTitle="Billions of U.S. Dollars"
-        DataToolTipGroupingMode="DataToolTipLayerGroupingMode.Grouped"
-        DataToolTipGroupedPositionModeX="DataTooltipGroupedPositionX.PinRight"
-        DataToolTipGroupedPositionModeY="DataTooltipGroupedPositionY.PinTop"
         DataSource="HighestGrossingMovies"
         ToolTipType="ToolTipType.Data"
-        CrosshairsDisplayMode="CrosshairsDisplayMode.None"
-        Name="chart"
-        @ref="chart">
+        DataToolTipGroupedPositionModeX="DataTooltipGroupedPositionX.PinRight"
+        DataToolTipGroupedPositionModeY="DataTooltipGroupedPositionY.PinTop"
+        DataToolTipGroupingMode="DataToolTipLayerGroupingMode.Grouped"
+        XAxisInterval="1"
+        YAxisTitle="Billions of U.S. Dollars"
+        YAxisTitleLeftMargin="10"
+        YAxisTitleRightMargin="5"
+        YAxisLabelLeftMargin="0"
+        CrosshairsDisplayMode="CrosshairsDisplayMode.None">
         </IgbCategoryChart>
 
     </div>

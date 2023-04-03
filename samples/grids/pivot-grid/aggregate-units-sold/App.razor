@@ -6,10 +6,10 @@
 
     <div class="container vertical fill">
         <IgbPivotGrid
-        PivotConfiguration="PivotConfiguration1"
         Data="PivotSalesData"
         Name="grid"
-        @ref="grid">
+        @ref="grid"
+        PivotConfiguration="PivotConfiguration1">
         </IgbPivotGrid>
 
     </div>
@@ -33,13 +33,13 @@
             {
                 var pivotConfiguration1 = new IgbPivotConfiguration();
                 var pivotDimension1 = new IgbPivotDimension();
-                pivotDimension1.MemberName = "Product";
+                pivotDimension1.MemberName = "Country";
                 pivotDimension1.Enabled = true;
-                pivotDimension1.Name = "pivotDimension1";pivotConfiguration1.Rows.Add(pivotDimension1);
+                pivotDimension1.Name = "pivotDimension1";pivotConfiguration1.Columns.Add(pivotDimension1);
                 var pivotDimension2 = new IgbPivotDimension();
-                pivotDimension2.MemberName = "Country";
+                pivotDimension2.MemberName = "Product";
                 pivotDimension2.Enabled = true;
-                pivotDimension2.Name = "pivotDimension2";pivotConfiguration1.Columns.Add(pivotDimension2);
+                pivotDimension2.Name = "pivotDimension2";pivotConfiguration1.Rows.Add(pivotDimension2);
                 var pivotValue1 = new IgbPivotValue();
                 pivotValue1.Member = "Sales";
                 pivotValue1.Enabled = true;

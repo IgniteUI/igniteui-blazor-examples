@@ -7,26 +7,26 @@
 
     <div class="container vertical fill">
         <IgbDataChart
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
         Name="Chart"
-        @ref="chart">
+        @ref="chart"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false">
             <IgbCategoryYAxis
-            DataSource="OnlineShoppingSearches"
-            Gap="0.5"
-            Overlap="-0.1"
-            IsInverted="true"
+            Name="yAxis"
+            @ref="yAxis"
+            Label="Shop"
             UseEnhancedIntervalManagement="true"
             EnhancedIntervalPreferMoreCategoryLabels="true"
-            Label="Shop"
-            Name="yAxis"
-            @ref="yAxis">
+            DataSource="OnlineShoppingSearches"
+            IsInverted="true"
+            Gap="0.5"
+            Overlap="-0.1">
             </IgbCategoryYAxis>
 
             <IgbNumericXAxis
-            LabelFormat="{0}%"
             Name="xAxis"
-            @ref="xAxis">
+            @ref="xAxis"
+            LabelFormat="{0}%">
             </IgbNumericXAxis>
 
             <IgbCategoryHighlightLayer
@@ -35,15 +35,15 @@
             </IgbCategoryHighlightLayer>
 
             <IgbBarSeries
+            Name="BarSeries1"
+            @ref="barSeries1"
             XAxisName="xAxis"
             YAxisName="yAxis"
             ValueMemberPath="Percent"
-            IsTransitionInEnabled="true"
             DataSource="OnlineShoppingSearches"
-            IsHighlightingEnabled="true"
             ShowDefaultTooltip="true"
-            Name="BarSeries1"
-            @ref="barSeries1">
+            IsTransitionInEnabled="true"
+            IsHighlightingEnabled="true">
             </IgbBarSeries>
 
             <IgbDataToolTipLayer

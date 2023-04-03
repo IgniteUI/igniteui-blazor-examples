@@ -3,12 +3,12 @@
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
+        Name="PropertyEditor"
+        @ref="propertyEditor"
 
         DescriptionType="WebGrid"
         IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="PropertyEditor"
-        @ref="propertyEditor">
+        IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="DisplayDensity"
             Name="DisplayDensityEditor"
@@ -22,16 +22,16 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Data="InvoicesData"
-        AllowFiltering="true"
         Name="grid"
-        @ref="grid">
+        @ref="grid"
+        Data="InvoicesData"
+        AllowFiltering="true">
             <IgbColumn
             Field="CustomerName"
             Header="Customer Name"
+            DataType="GridColumnDataType.String"
             Sortable="true"
-            HasSummary="true"
-            DataType="GridColumnDataType.String">
+            HasSummary="true">
             </IgbColumn>
 
             <IgbColumn

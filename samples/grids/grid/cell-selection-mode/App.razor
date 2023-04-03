@@ -3,19 +3,19 @@
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
+        Name="PropertyEditor"
+        @ref="propertyEditor"
 
         DescriptionType="WebGrid"
         IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="PropertyEditor"
-        @ref="propertyEditor">
+        IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="CellSelection"
+            Name="CellSelectionEditor"
+            @ref="cellSelectionEditor"
             ValueType="PropertyEditorValueType.EnumValue"
             DropDownNames="@(new string[] { "None", "Single", "Multiple" })"
-            DropDownValues="@(new string[] { "NOne", "Single", "Multiple" })"
-            Name="CellSelectionEditor"
-            @ref="cellSelectionEditor">
+            DropDownValues="@(new string[] { "NOne", "Single", "Multiple" })">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -25,9 +25,9 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Data="NwindData"
         Name="grid"
-        @ref="grid">
+        @ref="grid"
+        Data="NwindData">
             <IgbColumn
             Field="ProductID">
             </IgbColumn>

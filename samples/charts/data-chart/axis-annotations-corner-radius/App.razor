@@ -10,59 +10,59 @@
         Name="chart"
         @ref="chart">
             <IgbCategoryXAxis
-            DataSource="CountryRenewableElectricity"
-            Label="Year"
             Name="xAxis"
-            @ref="xAxis">
+            @ref="xAxis"
+            DataSource="CountryRenewableElectricity"
+            Label="Year">
             </IgbCategoryXAxis>
 
             <IgbNumericYAxis
-            Title="TWh"
             Name="yAxis"
-            @ref="yAxis">
+            @ref="yAxis"
+            Title="TWh">
             </IgbNumericYAxis>
 
             <IgbLineSeries
+            Name="LineSeries1"
+            @ref="lineSeries1"
+            Title="Electricity"
             XAxisName="xAxis"
             YAxisName="yAxis"
-            ValueMemberPath="America"
             DataSource="CountryRenewableElectricity"
-            Title="Electricity"
-            Name="LineSeries1"
-            @ref="lineSeries1">
+            ValueMemberPath="America">
             </IgbLineSeries>
 
             <IgbCalloutLayer
-            LabelMemberPath="Label"
+            Name="CalloutLayer1"
+            @ref="calloutLayer1"
+            DataSource="CountryRenewableCallouts"
             XMemberPath="Index"
             YMemberPath="Value"
-            CalloutCornerRadius="5"
+            LabelMemberPath="Label"
             CalloutPaddingLeft="20"
-            CalloutPaddingTop="10"
             CalloutPaddingRight="20"
             CalloutPaddingBottom="10"
-            DataSource="CountryRenewableCallouts"
-            Name="CalloutLayer1"
-            @ref="calloutLayer1">
+            CalloutPaddingTop="10"
+            CalloutCornerRadius="5">
             </IgbCalloutLayer>
 
             <IgbFinalValueLayer
-            AxisAnnotationBackgroundCornerRadius="10"
-            AxisAnnotationPaddingLeft="10"
-            AxisAnnotationPaddingTop="10"
-            AxisAnnotationPaddingRight="10"
-            AxisAnnotationPaddingBottom="10"
             Name="FinalValueLayer"
-            @ref="finalValueLayer">
+            @ref="finalValueLayer"
+            AxisAnnotationBackgroundCornerRadius="10"
+            AxisAnnotationPaddingBottom="10"
+            AxisAnnotationPaddingTop="10"
+            AxisAnnotationPaddingLeft="10"
+            AxisAnnotationPaddingRight="10">
             </IgbFinalValueLayer>
 
             <IgbCrosshairLayer
-            IsAxisAnnotationEnabled="true"
-            XAxisAnnotationBackgroundCornerRadius="10"
-            YAxisAnnotationBackgroundCornerRadius="10"
-            YAxisAnnotationInterpolatedValuePrecision="0"
             Name="CrosshairLayer"
-            @ref="crosshairLayer">
+            @ref="crosshairLayer"
+            IsAxisAnnotationEnabled="true"
+            YAxisAnnotationInterpolatedValuePrecision="0"
+            XAxisAnnotationBackgroundCornerRadius="10"
+            YAxisAnnotationBackgroundCornerRadius="10">
             </IgbCrosshairLayer>
 
             <IgbDataToolTipLayer

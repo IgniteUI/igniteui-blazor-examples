@@ -5,15 +5,16 @@
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
-        ChildDataKey="Employees"
+        Name="treeGrid"
+        @ref="treeGrid"
         Id="treeGrid"
         Data="EmployeesNestedData"
-        Moving="true"
-        Paging="true"
-        AllowFiltering="true"
+        ChildDataKey="Employees"
         RowSelection="GridSelectionMode.Multiple"
-        Name="treeGrid"
-        @ref="treeGrid">
+        Moving="true"
+        AllowFiltering="true"
+        FilterMode="FilterMode.ExcelStyleFilter"
+        Paging="true">
             <IgbGridToolbar
             >
                 <IgbGridToolbarTitle
@@ -41,13 +42,13 @@
             </IgbGridToolbar>
 
             <IgbColumn
-            Field="ID"
+            Field="iD"
             Header="ID"
+            DataType="GridColumnDataType.Number"
             Sortable="true"
             Editable="true"
             Resizable="true"
-            HasSummary="true"
-            DataType="GridColumnDataType.Number">
+            HasSummary="true">
             </IgbColumn>
 
             <IgbColumn
@@ -79,7 +80,7 @@
             </IgbColumn>
 
             <IgbColumn
-            Field="Salary"
+            Field="salary"
             Header="Salary"
             DataType="GridColumnDataType.Number"
             Sortable="true"
@@ -88,7 +89,7 @@
             </IgbColumn>
 
             <IgbColumn
-            Field="Productivity"
+            Field="productivity"
             Header="Productivity"
             DataType="GridColumnDataType.Number"
             Sortable="true"

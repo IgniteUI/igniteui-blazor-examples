@@ -6,30 +6,30 @@
     </div>
     <div class="legend">
         <IgbLegend
-        Orientation="LegendOrientation.Horizontal"
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
 
     </div>
 
     <div class="container vertical fill">
         <IgbCategoryChart
+        Name="chart"
+        @ref="chart"
         ChartType="CategoryChartType.StepLine"
-        IsCategoryHighlightingEnabled="true"
-        YAxisTitle="TWh"
         DataSource="CountryRenewableElectricity"
         IncludedProperties="@(new string[] { "Year", "Europe", "China", "America" })"
-        Brushes="#8ce7d9 #ee5879 #735656"
-        Outlines="#8ce7d9 #ee5879 #735656"
+        IsCategoryHighlightingEnabled="true"
+        IsSeriesHighlightingEnabled="true"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
-        IsSeriesHighlightingEnabled="true"
+        YAxisTitle="TWh"
         MarkerBrushes="white"
         MarkerOutlines="#8ce7d9 #ee5879 #735656"
-        CrosshairsSnapToData="true"
-        Name="chart"
-        @ref="chart">
+        Brushes="#8ce7d9 #ee5879 #735656"
+        Outlines="#8ce7d9 #ee5879 #735656"
+        CrosshairsSnapToData="true">
         </IgbCategoryChart>
 
     </div>

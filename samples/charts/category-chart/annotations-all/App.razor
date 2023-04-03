@@ -3,80 +3,80 @@
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
+        Name="PropertyEditor"
+        @ref="propertyEditor"
 
         DescriptionType="CategoryChart"
         IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="PropertyEditor"
-        @ref="propertyEditor">
+        IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="CrosshairsDisplayMode"
-            Label="Crosshairs: "
-            PrimitiveValue="@("Both")"
             Name="CrosshairsDisplayModeEditor"
-            @ref="crosshairsDisplayModeEditor">
+            @ref="crosshairsDisplayModeEditor"
+            Label="Crosshairs: "
+            PrimitiveValue="@("Both")">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
             PropertyPath="HighlightingMode"
-            Label="Highlighting: "
-            PrimitiveValue="@("BrightenSpecific")"
             Name="HighlightingModeEditor"
-            @ref="highlightingModeEditor">
+            @ref="highlightingModeEditor"
+            Label="Highlighting: "
+            PrimitiveValue="@("BrightenSpecific")">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
             PropertyPath="CalloutsVisible"
-            Label="Callouts: "
-            PrimitiveValue="true"
-            ShouldOverrideDefaultEditor="true"
             Name="CalloutsVisibleEditor"
-            @ref="calloutsVisibleEditor">
+            @ref="calloutsVisibleEditor"
+            Label="Callouts: "
+            ShouldOverrideDefaultEditor="true"
+            PrimitiveValue="true">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
             PropertyPath="FinalValueAnnotationsVisible"
-            Label="Final Value: "
-            PrimitiveValue="true"
-            ShouldOverrideDefaultEditor="true"
             Name="FinalValueAnnotationsEditor"
-            @ref="finalValueAnnotationsEditor">
+            @ref="finalValueAnnotationsEditor"
+            Label="Final Value: "
+            ShouldOverrideDefaultEditor="true"
+            PrimitiveValue="true">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
 
     </div>
     <div class="legend-title">
-        Average Temperature in Sedney
+        Average Temperature in Sydney
     </div>
 
     <div class="container vertical fill">
         <IgbCategoryChart
+        Name="chart"
+        @ref="chart"
         ChartType="CategoryChartType.Column"
-        YAxisMaximumValue="35"
-        IsCategoryHighlightingEnabled="true"
-        YAxisLabelLocation="YAxisLabelLocation.OutsideRight"
-        DataSource="TemperatureAnnotatedData"
-        IncludedProperties="@(new string[] { "Month", "Temperature" })"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
-        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+        IncludedProperties="@(new string[] { "Month", "Temperature" })"
+        DataSource="TemperatureAnnotatedData"
+        CalloutsDataSource="TemperatureAnnotatedData"
+        CalloutsVisible="true"
+        CalloutsXMemberPath="Index"
+        CalloutsYMemberPath="Temperature"
+        CalloutsLabelMemberPath="TempInfo"
+        IsCategoryHighlightingEnabled="true"
         HighlightingMode="SeriesHighlightingMode.BrightenSpecific"
         HighlightingBehavior="SeriesHighlightingBehavior.NearestItemsAndSeries"
         CrosshairsDisplayMode="CrosshairsDisplayMode.Both"
-        CrosshairsAnnotationXAxisBackground="black"
         CrosshairsAnnotationYAxisPrecision="0"
+        CrosshairsAnnotationXAxisBackground="black"
         FinalValueAnnotationsVisible="true"
         FinalValueAnnotationsBackground="dodgerblue"
         FinalValueAnnotationsTextColor="white"
         FinalValueAnnotationsPrecision="0"
-        CalloutsVisible="true"
-        CalloutsDataSource="TemperatureAnnotatedData"
-        CalloutsXMemberPath="Index"
-        CalloutsYMemberPath="Temperature"
-        CalloutsLabelMemberPath="TempInfo"
-        Name="chart"
-        @ref="chart">
+        YAxisMaximumValue="35"
+        YAxisLabelLocation="YAxisLabelLocation.OutsideRight">
         </IgbCategoryChart>
 
     </div>

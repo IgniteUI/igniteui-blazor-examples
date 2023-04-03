@@ -7,20 +7,21 @@
         <IgbPropertyEditorPanel
 
         DescriptionType="WebGrid"
-        IsHorizontal="true"
         IsWrappingEnabled="true"
+        IsHorizontal="true"
+
         Name="propertyEditorPanel1"
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="RowSelection"
             Name="selectionType"
-            @ref="selectionType">
+            @ref="selectionType"
+            PropertyPath="RowSelection">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="HideRowSelectors"
             Name="hideRowSelectors"
-            @ref="hideRowSelectors">
+            @ref="hideRowSelectors"
+            PropertyPath="HideRowSelectors">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -30,9 +31,9 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Id="grid1"
         Data="FinancialDataAll"
         Moving="true"
+        Id="grid1"
         Name="grid1"
         @ref="grid1">
             <IgbColumn
@@ -132,8 +133,8 @@
             if (this._columnPipeArgs1 == null)
             {
                 var columnPipeArgs1 = new IgbColumnPipeArgs();
-                columnPipeArgs1.DigitsInfo = "1.2-2";
                 columnPipeArgs1.CurrencyCode = "USD";
+                columnPipeArgs1.DigitsInfo = "1.2-2";
                 this._columnPipeArgs1 = columnPipeArgs1;
             }
             return this._columnPipeArgs1;

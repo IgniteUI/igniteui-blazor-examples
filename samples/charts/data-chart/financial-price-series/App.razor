@@ -4,42 +4,42 @@
 
     <div class="container vertical fill">
         <IgbDataChart
-        IsHorizontalZoomEnabled="true"
-        IsVerticalZoomEnabled="true"
+        Name="chart"
+        @ref="chart"
         ShouldAutoExpandMarginForInitialLabels="true"
         ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
-        Name="chart"
-        @ref="chart">
+        IsVerticalZoomEnabled="true"
+        IsHorizontalZoomEnabled="true">
             <IgbCategoryXAxis
-            Interval="1"
+            Name="xAxis"
+            @ref="xAxis"
             DataSource="Stock2Years"
             LabelLocation="AxisLabelsLocation.OutsideBottom"
-            LabelExtent="30"
             Label="Month"
-            Name="xAxis"
-            @ref="xAxis">
+            Interval="1"
+            LabelExtent="30">
             </IgbCategoryXAxis>
 
             <IgbNumericYAxis
-            LabelLocation="AxisLabelsLocation.OutsideRight"
             Name="yAxis"
-            @ref="yAxis">
+            @ref="yAxis"
+            LabelLocation="AxisLabelsLocation.OutsideRight">
             </IgbNumericYAxis>
 
             <IgbFinancialPriceSeries
+            Name="Series1"
+            @ref="series1"
+            Title="Stock Price"
             DisplayType="PriceDisplayType.Candlestick"
             XAxisName="xAxis"
             YAxisName="yAxis"
+            DataSource="Stock2Years"
             OpenMemberPath="Open"
             HighMemberPath="High"
             LowMemberPath="Low"
             CloseMemberPath="Close"
             VolumeMemberPath="Volume"
-            DataSource="Stock2Years"
-            ShowDefaultTooltip="true"
-            Title="Stock Price"
-            Name="Series1"
-            @ref="series1">
+            ShowDefaultTooltip="true">
             </IgbFinancialPriceSeries>
 
             <IgbDataToolTipLayer

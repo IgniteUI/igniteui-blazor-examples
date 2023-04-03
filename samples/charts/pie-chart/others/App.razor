@@ -6,28 +6,28 @@
     </div>
     <div class="legend">
         <IgbItemLegend
-        Orientation="LegendOrientation.Horizontal"
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
         </IgbItemLegend>
 
     </div>
 
     <div class="container vertical fill">
         <IgbPieChart
-        DataSource="EnergyGlobalDemand"
-        ValueMemberPath="Value"
+        Name="chart"
+        @ref="chart"
         LabelMemberPath="Summary"
-        LegendLabelMemberPath="Category"
         LabelsPosition="LabelsPosition.OutsideEnd"
+        LabelExtent="30"
+        ValueMemberPath="Value"
+        Outlines="white"
         OthersCategoryThreshold="10"
         OthersCategoryType="OthersCategoryType.Number"
         OthersCategoryText="Others"
         RadiusFactor="0.7"
-        LabelExtent="30"
-        Outlines="white"
-        Name="chart"
-        @ref="chart">
+        LegendLabelMemberPath="Category"
+        DataSource="EnergyGlobalDemand">
         </IgbPieChart>
 
     </div>

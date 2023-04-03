@@ -3,45 +3,45 @@
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
+        Name="PropertyEditor"
+        @ref="propertyEditor"
 
         DescriptionType="CategoryChart"
         IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="PropertyEditor"
-        @ref="propertyEditor">
+        IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="FinalValueAnnotationsVisible"
+            Name="FinalValueAnnotationsEditor"
+            @ref="finalValueAnnotationsEditor"
             Label="Final Value Visible"
             ShouldOverrideDefaultEditor="true"
-            PrimitiveValue="true"
-            Name="FinalValueAnnotationsEditor"
-            @ref="finalValueAnnotationsEditor">
+            PrimitiveValue="true">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
 
     </div>
     <div class="legend-title">
-        Average Temperature in Sedney
+        Average Temperature in Sydney
     </div>
 
     <div class="container vertical fill">
         <IgbCategoryChart
+        Name="chart"
+        @ref="chart"
         ChartType="CategoryChartType.Column"
-        YAxisMaximumValue="35"
-        YAxisLabelLocation="YAxisLabelLocation.OutsideRight"
-        DataSource="TemperatureAnnotatedData"
-        IncludedProperties="@(new string[] { "Month", "Temperature" })"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
-        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
-        CrosshairsAnnotationYAxisPrecision="0"
+        IncludedProperties="@(new string[] { "Month", "Temperature" })"
+        DataSource="TemperatureAnnotatedData"
         FinalValueAnnotationsVisible="true"
         FinalValueAnnotationsBackground="dodgerblue"
         FinalValueAnnotationsTextColor="white"
         FinalValueAnnotationsPrecision="0"
-        Name="chart"
-        @ref="chart">
+        CrosshairsAnnotationYAxisPrecision="0"
+        YAxisMaximumValue="35"
+        YAxisLabelLocation="YAxisLabelLocation.OutsideRight">
         </IgbCategoryChart>
 
     </div>

@@ -1,38 +1,36 @@
 @using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 @using System;
 @using System.Linq;
-
-@inject IIgniteUIBlazor IgniteUIBlazor
-@inject IJSRuntime JS
 
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
+        Name="PropertyEditor"
+        @ref="propertyEditor"
 
         DescriptionType="CategoryChart"
         IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="PropertyEditor"
-        @ref="propertyEditor">
+        IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="ChartType"
-            Label="Chart Type"
-            PrimitiveValue="@("Line")"
             Name="ChartTypeEditor"
-            @ref="chartTypeEditor">
+            @ref="chartTypeEditor"
+            Label="Chart Type"
+            PrimitiveValue="@("Line")">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
+            PropertyPath="MarkerTypeHandler"
+            Name="MarkerTypeEditor"
+            @ref="markerTypeEditor"
+            Label="Marker Type"
+            ShouldOverrideDefaultEditor="true"
+            ValueType="PropertyEditorValueType.EnumValue"
+            DropDownValues="@(new string[] { "Circle", "Automatic", "Triangle", "Pyramid", "Square", "Diamond", "Pentagon", "Hexagon", "Tetragram", "Pentagram", "Hexagram", "None" })"
             DropDownNames="@(new string[] { "Circle", "Automatic", "Triangle", "Pyramid", "Square", "Diamond", "Pentagon", "Hexagon", "Tetragram", "Pentagram", "Hexagram", "None" })"
             PrimitiveValue="@("Circle")"
-            Changed="EditorChangeUpdateMarkerType"
-            PropertyPath="MarkerTypeHandler"
-            Label="Marker Type"
-            ValueType="PropertyEditorValueType.EnumValue"
-            ShouldOverrideDefaultEditor="true"
-            DropDownValues="@(new string[] { "Circle", "Automatic", "Triangle", "Pyramid", "Square", "Diamond", "Pentagon", "Hexagon", "Tetragram", "Pentagram", "Hexagram", "None" })"
-            Name="MarkerTypeEditor"
-            @ref="markerTypeEditor">
+            Changed="EditorChangeUpdateMarkerType">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -44,24 +42,18 @@
 
     <div class="container vertical fill">
         <IgbCategoryChart
+        Name="chart"
+        @ref="chart"
+        IsSeriesHighlightingEnabled="true"
         ChartType="CategoryChartType.Line"
         DataSource="CountryRenewableElectricity"
-        IsSeriesHighlightingEnabled="true"
-        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
-        Name="chart"
-        @ref="chart">
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series">
         </IgbCategoryChart>
 
     </div>
-
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-        await Task.Delay(1);
-    }
 
     private Action BindElements { get; set; }
 
@@ -77,20 +69,17 @@
         };
         this.BindElements();
 
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbPropertyEditorPanel propertyEditor;
     private IgbPropertyEditorPropertyDescription chartTypeEditor;
     private IgbPropertyEditorPropertyDescription markerTypeEditor;
     private IgbCategoryChart chart;
 
-
     public void EditorChangeUpdateMarkerType(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
     {
+        //var item = this.chart;
+
         var markerVal = (MarkerType)Enum.Parse(typeof(MarkerType), args.NewValue.ToString());
         chart.MarkerTypes.Clear();
         chart.MarkerTypes.Add(markerVal);

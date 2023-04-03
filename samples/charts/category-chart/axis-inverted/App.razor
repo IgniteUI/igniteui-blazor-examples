@@ -11,20 +11,20 @@
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="XAxisInverted"
+            Name="XAxisInvertedEditor"
+            @ref="xAxisInvertedEditor"
             Label="X Axis - Inverted"
             ShouldOverrideDefaultEditor="true"
-            PrimitiveValue="true"
-            Name="XAxisInvertedEditor"
-            @ref="xAxisInvertedEditor">
+            PrimitiveValue="true">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
             PropertyPath="YAxisInverted"
+            Name="YAxisInvertedEditor"
+            @ref="yAxisInvertedEditor"
             Label="Y Axis - Inverted"
             ShouldOverrideDefaultEditor="true"
-            PrimitiveValue="true"
-            Name="YAxisInvertedEditor"
-            @ref="yAxisInvertedEditor">
+            PrimitiveValue="true">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -36,20 +36,20 @@
 
     <div class="container vertical fill">
         <IgbCategoryChart
+        Name="chart"
+        @ref="chart"
         ChartType="CategoryChartType.Line"
-        YAxisLabelLeftMargin="0"
-        YAxisTitleLeftMargin="10"
-        YAxisTitleRightMargin="5"
-        YAxisTitle="TWh"
-        XAxisInverted="true"
-        YAxisInverted="true"
-        DataSource="CountryRenewableElectricity"
-        IncludedProperties="@(new string[] { "Year", "Europe" })"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
-        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
-        Name="chart"
-        @ref="chart">
+        DataSource="CountryRenewableElectricity"
+        IncludedProperties="@(new string[] { "Year", "Europe" })"
+        YAxisTitle="TWh"
+        YAxisTitleLeftMargin="10"
+        YAxisTitleRightMargin="5"
+        YAxisLabelLeftMargin="0"
+        XAxisInverted="true"
+        YAxisInverted="true">
         </IgbCategoryChart>
 
     </div>

@@ -7,17 +7,17 @@
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
-        ForeignKey="ParentID"
+        Name="treeGrid"
+        @ref="treeGrid"
         Id="treeGrid"
         Data="EmployeesFlatData"
         PrimaryKey="ID"
-        Name="treeGrid"
-        @ref="treeGrid">
+        ForeignKey="ParentID">
             <IgbColumn
             Field="Name"
             DataType="GridColumnDataType.String"
+            HeaderTemplateScript="WebTreeGridPinHeaderTemplate"
             Pinned="true"
-            HeaderTemplateScript="WebGridPinHeaderTemplate"
             Name="column1"
             @ref="column1">
             </IgbColumn>
@@ -25,7 +25,7 @@
             <IgbColumn
             Field="Title"
             DataType="GridColumnDataType.String"
-            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            HeaderTemplateScript="WebTreeGridPinHeaderTemplate"
             Pinned="true"
             Name="column2"
             @ref="column2">
@@ -34,7 +34,7 @@
             <IgbColumn
             Field="Phone"
             DataType="GridColumnDataType.String"
-            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            HeaderTemplateScript="WebTreeGridPinHeaderTemplate"
             Name="column3"
             @ref="column3">
             </IgbColumn>
@@ -42,7 +42,7 @@
             <IgbColumn
             Field="Age"
             DataType="GridColumnDataType.Number"
-            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            HeaderTemplateScript="WebTreeGridPinHeaderTemplate"
             Name="column4"
             @ref="column4">
             </IgbColumn>
@@ -50,7 +50,7 @@
             <IgbColumn
             Field="HireDate"
             DataType="GridColumnDataType.Date"
-            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            HeaderTemplateScript="WebTreeGridPinHeaderTemplate"
             Name="column5"
             @ref="column5">
             </IgbColumn>
@@ -58,7 +58,7 @@
             <IgbColumn
             Field="OnPTO"
             DataType="GridColumnDataType.Boolean"
-            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            HeaderTemplateScript="WebTreeGridPinHeaderTemplate"
             Name="column6"
             @ref="column6">
             </IgbColumn>

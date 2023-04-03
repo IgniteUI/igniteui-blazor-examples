@@ -74,7 +74,7 @@ function testProjectFiles(cb) {
         '<NoWarn>1701;1702,IDE0028,BL0005,0219,CS1998</NoWarn>',
         '<TargetFramework>net6.0</TargetFramework>',
         '<RazorLangVersion>3.0</RazorLangVersion>',
-        '<PackageReference Include="IgniteUI.Blazor" Version',
+        '<PackageReference Include="IgniteUI.Blazor.Trial" Version',
         '<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0" />',
         '<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" />',
         '</Project>',
@@ -94,3 +94,40 @@ exports.testSampleFiles = testSampleFiles = gulp.series(
     testProjectFiles,
     testAppFiles,
 );
+
+
+function testCodeViewer(cb) {
+    var contentKeep = `
+<html/>
+@code {
+    protected override void OnInitialized()
+    {
+        var keep = true;
+    }
+}`;
+    var contentSkip = `
+    <html/>
+    @code {
+
+        protected override void OnInitialized()
+        {
+
+        }
+
+        line1;
+
+        line2;
+
+
+        line3;
+    }`;
+    //var exp = /(protected override void OnInitialized\(\)\n\s*{\n\s*\n\s*})/gm;
+    //var ret = contentSkip.replace(exp, '');
+    var ret = contentSkip.replace(/\n\n\n/gm, '\n\n');
+    console.log(contentSkip);
+    console.log('testCodeViewer');
+    console.log(ret);
+
+    cb();
+} exports.testCodeViewer = testCodeViewer;
+

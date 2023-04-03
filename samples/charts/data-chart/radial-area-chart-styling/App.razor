@@ -6,54 +6,56 @@
     </div>
     <div class="legend">
         <IgbLegend
-        Orientation="LegendOrientation.Horizontal"
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
 
     </div>
 
     <div class="container vertical fill">
         <IgbDataChart
+        Name="chart"
+        @ref="chart"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
-        Brushes="#8ce7d9 #ee5879"
-        Outlines="#8ce7d9 #ee5879"
         MarkerBrushes="white"
         MarkerOutlines="#8ce7d9 #ee5879"
-        Name="chart"
-        @ref="chart">
+        Brushes="#8ce7d9 #ee5879"
+        Outlines="#8ce7d9 #ee5879">
             <IgbCategoryAngleAxis
-            DataSource="FootballPlayerStats"
-            Label="Attribute"
             Name="angleAxis"
-            @ref="angleAxis">
+            @ref="angleAxis"
+            DataSource="FootballPlayerStats"
+            Label="Attribute">
             </IgbCategoryAngleAxis>
 
             <IgbNumericRadiusAxis
-            InnerRadiusExtentScale="0.1"
-            MinimumValue="0"
-            MaximumValue="10"
-            Interval="2"
             Name="radiusAxis"
-            @ref="radiusAxis">
+            @ref="radiusAxis"
+            InnerRadiusExtentScale="0.1"
+            Interval="2"
+            MinimumValue="0"
+            MaximumValue="10">
             </IgbNumericRadiusAxis>
 
             <IgbRadialAreaSeries
-            ValueMemberPath="Ronaldo"
+            Name="RadialAreaSeries1"
+            @ref="radialAreaSeries1"
+            DataSource="FootballPlayerStats"
             AngleAxisName="angleAxis"
             ValueAxisName="radiusAxis"
-            MarkerType="MarkerType.Circle"
-            DataSource="FootballPlayerStats"
-            Thickness="3"
-            AreaFillOpacity="0.5"
+            ValueMemberPath="Ronaldo"
             ShowDefaultTooltip="true"
+            AreaFillOpacity="0.5"
+            Thickness="3"
             Title="Ronaldo"
-            Name="RadialAreaSeries1"
-            @ref="radialAreaSeries1">
+            MarkerType="MarkerType.Circle">
             </IgbRadialAreaSeries>
 
             <IgbRadialAreaSeries
+            Name="RadialAreaSeries2"
+            @ref="radialAreaSeries2"
             DataSource="FootballPlayerStats"
             AngleAxisName="angleAxis"
             ValueAxisName="radiusAxis"
@@ -62,9 +64,7 @@
             AreaFillOpacity="0.5"
             Thickness="3"
             Title="Messi"
-            MarkerType="MarkerType.Circle"
-            Name="RadialAreaSeries2"
-            @ref="radialAreaSeries2">
+            MarkerType="MarkerType.Circle">
             </IgbRadialAreaSeries>
 
         </IgbDataChart>

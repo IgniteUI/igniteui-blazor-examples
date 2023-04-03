@@ -3,17 +3,17 @@
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
+        Name="PropertyEditor"
+        @ref="propertyEditor"
 
         DescriptionType="WebGrid"
         IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="PropertyEditor"
-        @ref="propertyEditor">
+        IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="ColumnSelection"
-            Label="Column Selection"
             Name="columnSelectionEditor"
-            @ref="columnSelectionEditor">
+            @ref="columnSelectionEditor"
+            Label="Column Selection">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -22,11 +22,11 @@
 
     <div class="container vertical fill">
         <IgbGrid
+        Name="grid"
+        @ref="grid"
         Id="grid"
         Data="CustomersData"
-        ColumnSelection="GridSelectionMode.Single"
-        Name="grid"
-        @ref="grid">
+        ColumnSelection="GridSelectionMode.Single">
             <IgbColumn
             Field="ID">
             </IgbColumn>

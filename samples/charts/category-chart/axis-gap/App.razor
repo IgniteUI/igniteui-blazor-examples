@@ -11,27 +11,27 @@
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="XAxisGap"
+            Name="XAxisGap"
+            @ref="xAxisGap"
             Label="X Axis - Gap"
-            ValueType="PropertyEditorValueType.Slider"
             ShouldOverrideDefaultEditor="true"
+            ValueType="PropertyEditorValueType.Slider"
             PrimitiveValue="0.5"
             Min="0"
             Max="1.5"
-            Step="0.1"
-            Name="XAxisGap"
-            @ref="xAxisGap">
+            Step="0.1">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
-            DropDownValues="@(new string[] { "1.5", "1.3", "1.0", "0.6", "0.5", "0.4", "0.3", "0.2", "0.1", "0" })"
-            PrimitiveValue="0.5"
             PropertyPath="XAxisMaximumGap"
-            Label="Maximum Gap"
-            ValueType="PropertyEditorValueType.EnumValue"
-            ShouldOverrideDefaultEditor="true"
-            DropDownNames="@(new string[] { "1.5", "1.3", "1.0", "0.6", "0.5", "0.4", "0.3", "0.2", "0.1", "0" })"
             Name="XAxisMaximumGap"
-            @ref="xAxisMaximumGap">
+            @ref="xAxisMaximumGap"
+            Label="Maximum Gap"
+            ShouldOverrideDefaultEditor="true"
+            ValueType="PropertyEditorValueType.EnumValue"
+            DropDownNames="@(new string[] { "1.5", "1.3", "1.0", "0.6", "0.5", "0.4", "0.3", "0.2", "0.1", "0" })"
+            DropDownValues="@(new string[] { "1.5", "1.3", "1.0", "0.6", "0.5", "0.4", "0.3", "0.2", "0.1", "0" })"
+            PrimitiveValue="0.5">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -43,18 +43,18 @@
 
     <div class="container vertical fill">
         <IgbCategoryChart
-        ChartType="CategoryChartType.Column"
-        XAxisInterval="1"
-        XAxisGap="0.5"
-        XAxisMaximumGap="1.5"
-        YAxisTitle="TWh"
+        Name="chart"
+        @ref="chart"
         DataSource="CountryRenewableElectricity"
         IncludedProperties="@(new string[] { "Year", "Europe", "China", "America" })"
+        ChartType="CategoryChartType.Column"
+        CrosshairsSnapToData="true"
+        YAxisTitle="TWh"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
-        CrosshairsSnapToData="true"
-        Name="chart"
-        @ref="chart">
+        XAxisInterval="1"
+        XAxisGap="0.5"
+        XAxisMaximumGap="1.5">
         </IgbCategoryChart>
 
     </div>

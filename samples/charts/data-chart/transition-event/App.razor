@@ -1,4 +1,5 @@
 @using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
 @using System;
 
 <div class="container vertical">
@@ -29,51 +30,51 @@
 
     <div class="container vertical fill">
         <IgbDataChart
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false">
             <IgbCategoryXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            Label="Category"
             Interval="1"
             DataSource="CompanyIncomeData"
-            Overlap="1"
-            Label="Category"
-            Name="xAxis"
-            @ref="xAxis">
+            Overlap="1">
             </IgbCategoryXAxis>
 
             <IgbNumericYAxis
-            MinimumValue="0"
-            MaximumValue="60"
-            Title="Millions of Dollars"
-            TitleAngle="-90"
-            TitleLeftMargin="10"
             Name="yAxis"
-            @ref="yAxis">
+            @ref="yAxis"
+            Title="Millions of Dollars"
+            TitleLeftMargin="10"
+            TitleAngle="-90"
+            MinimumValue="0"
+            MaximumValue="60">
             </IgbNumericYAxis>
 
             <IgbWaterfallSeries
+            Name="WaterfallSeries1"
+            @ref="waterfallSeries1"
             XAxisName="xAxis"
             YAxisName="yAxis"
-            ValueMemberPath="Costs"
-            IsTransitionInEnabled="true"
             DataSource="CompanyIncomeData"
+            ValueMemberPath="Costs"
             ShowDefaultTooltip="true"
-            Name="WaterfallSeries1"
-            @ref="waterfallSeries1">
+            IsTransitionInEnabled="true">
             </IgbWaterfallSeries>
 
             <IgbWaterfallSeries
+            Name="WaterfallSeries2"
+            @ref="waterfallSeries2"
             XAxisName="xAxis"
             YAxisName="yAxis"
             DataSource="CompanyIncomeData"
-            ValueMemberPath="NetIncome"
-            ShowDefaultTooltip="true"
-            IsTransitionInEnabled="true"
             Brush="#7446b9"
             Outline="#7446b9"
-            Name="WaterfallSeries2"
-            @ref="waterfallSeries2">
+            ValueMemberPath="NetIncome"
+            ShowDefaultTooltip="true"
+            IsTransitionInEnabled="true">
             </IgbWaterfallSeries>
 
         </IgbDataChart>

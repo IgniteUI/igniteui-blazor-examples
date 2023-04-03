@@ -11,69 +11,69 @@
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="FirstMarkerVisibility"
+            Name="FirstMarkerVisibilityEditor"
+            @ref="firstMarkerVisibilityEditor"
             Label="First Markers"
-            ValueType="PropertyEditorValueType.EnumValue"
             ShouldOverrideDefaultEditor="true"
+            ValueType="PropertyEditorValueType.EnumValue"
             DropDownNames="@(new string[] { "Visible", "Collapsed" })"
             DropDownValues="@(new string[] { "Visible", "Collapsed" })"
-            PrimitiveValue="@("Visible")"
-            Name="FirstMarkerVisibilityEditor"
-            @ref="firstMarkerVisibilityEditor">
+            PrimitiveValue="@("Visible")">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
-            DropDownValues="@(new string[] { "Visible", "Collapsed" })"
-            PrimitiveValue="@("Visible")"
             PropertyPath="HighMarkerVisibility"
+            Name="HighMarkerVisibilityEditor"
+            @ref="highMarkerVisibilityEditor"
             Label="High Markers"
             ValueType="PropertyEditorValueType.EnumValue"
             DropDownNames="@(new string[] { "Visible", "Collapsed" })"
-            Name="HighMarkerVisibilityEditor"
-            @ref="highMarkerVisibilityEditor">
+            DropDownValues="@(new string[] { "Visible", "Collapsed" })"
+            PrimitiveValue="@("Visible")">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
-            DropDownValues="@(new string[] { "Visible", "Collapsed" })"
-            PrimitiveValue="@("Visible")"
             PropertyPath="LowMarkerVisibility"
+            Name="LowMarkerVisibilityEditor"
+            @ref="lowMarkerVisibilityEditor"
             Label="Low Markers"
             ValueType="PropertyEditorValueType.EnumValue"
             DropDownNames="@(new string[] { "Visible", "Collapsed" })"
-            Name="LowMarkerVisibilityEditor"
-            @ref="lowMarkerVisibilityEditor">
+            DropDownValues="@(new string[] { "Visible", "Collapsed" })"
+            PrimitiveValue="@("Visible")">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
-            DropDownValues="@(new string[] { "Visible", "Collapsed" })"
-            PrimitiveValue="@("Visible")"
             PropertyPath="NegativeMarkerVisibility"
+            Name="NegativeMarkerVisibilityEditor"
+            @ref="negativeMarkerVisibilityEditor"
             Label="Negative Markers"
             ValueType="PropertyEditorValueType.EnumValue"
             DropDownNames="@(new string[] { "Visible", "Collapsed" })"
-            Name="NegativeMarkerVisibilityEditor"
-            @ref="negativeMarkerVisibilityEditor">
+            DropDownValues="@(new string[] { "Visible", "Collapsed" })"
+            PrimitiveValue="@("Visible")">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
-            DropDownValues="@(new string[] { "Visible", "Collapsed" })"
-            PrimitiveValue="@("Visible")"
             PropertyPath="LastMarkerVisibility"
+            Name="LastMarkerVisibilityEditor"
+            @ref="lastMarkerVisibilityEditor"
             Label="Last Markers"
             ValueType="PropertyEditorValueType.EnumValue"
             DropDownNames="@(new string[] { "Visible", "Collapsed" })"
-            Name="LastMarkerVisibilityEditor"
-            @ref="lastMarkerVisibilityEditor">
+            DropDownValues="@(new string[] { "Visible", "Collapsed" })"
+            PrimitiveValue="@("Visible")">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
-            DropDownValues="@(new string[] { "Visible", "Collapsed" })"
-            PrimitiveValue="@("Visible")"
             PropertyPath="MarkerVisibility"
+            Name="MarkerVisibilityEditor"
+            @ref="markerVisibilityEditor"
             Label="All Markers"
             ValueType="PropertyEditorValueType.EnumValue"
             DropDownNames="@(new string[] { "Visible", "Collapsed" })"
-            Name="MarkerVisibilityEditor"
-            @ref="markerVisibilityEditor">
+            DropDownValues="@(new string[] { "Visible", "Collapsed" })"
+            PrimitiveValue="@("Visible")">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -82,26 +82,26 @@
 
     <div class="container vertical fill">
         <IgbSparkline
+        Name="chart"
+        @ref="chart"
+        DataSource="SparklineProfitData"
+        DisplayType="SparklineDisplayType.Line"
+        LabelMemberPath="Label"
+        ValueMemberPath="Value"
         MarkerVisibility="Visibility.Visible"
-        NegativeMarkerVisibility="Visibility.Visible"
+        HighMarkerVisibility="Visibility.Visible"
+        LowMarkerVisibility="Visibility.Visible"
         FirstMarkerVisibility="Visibility.Visible"
         LastMarkerVisibility="Visibility.Visible"
-        LowMarkerVisibility="Visibility.Visible"
-        HighMarkerVisibility="Visibility.Visible"
+        NegativeMarkerVisibility="Visibility.Visible"
         MarkerSize="10"
         FirstMarkerSize="10"
         LastMarkerSize="10"
-        HighMarkerSize="10"
         LowMarkerSize="10"
+        HighMarkerSize="10"
         NegativeMarkerSize="10"
         Minimum="0"
-        Maximum="60"
-        DataSource="SparklineProfitData"
-        ValueMemberPath="Value"
-        LabelMemberPath="Label"
-        DisplayType="SparklineDisplayType.Line"
-        Name="chart"
-        @ref="chart">
+        Maximum="60">
         </IgbSparkline>
 
     </div>

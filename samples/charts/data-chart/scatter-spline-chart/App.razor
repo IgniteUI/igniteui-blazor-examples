@@ -6,51 +6,52 @@
     </div>
     <div class="legend">
         <IgbLegend
-        Orientation="LegendOrientation.Horizontal"
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
 
     </div>
 
     <div class="container vertical fill">
         <IgbDataChart
-
         Name="chart"
         @ref="chart">
             <IgbNumericXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            Title="Life Expectancy (in years)"
             MinimumValue="72"
             MaximumValue="84"
-            Interval="2"
-            Title="Life Expectancy (in years)"
-            Name="xAxis"
-            @ref="xAxis">
+            Interval="2">
             </IgbNumericXAxis>
 
             <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis"
+            Title="Health Expenditure per Capita"
+            AbbreviateLargeNumbers="true"
             MinimumValue="1000"
             MaximumValue="6000"
-            Interval="1000"
-            AbbreviateLargeNumbers="true"
-            Title="Health Expenditure per Capita"
-            Name="yAxis"
-            @ref="yAxis">
+            Interval="1000">
             </IgbNumericYAxis>
 
             <IgbScatterSplineSeries
+            Name="ScatterSplineSeries1"
+            @ref="scatterSplineSeries1"
+            Title="Germany"
             XAxisName="xAxis"
             YAxisName="yAxis"
             XMemberPath="LifeExpectancy"
             YMemberPath="HealthExpense"
-            MarkerType="MarkerType.Circle"
             DataSource="HealthDataForGermany"
-            ShowDefaultTooltip="true"
-            Title="Germany"
-            Name="ScatterSplineSeries1"
-            @ref="scatterSplineSeries1">
+            MarkerType="MarkerType.Circle"
+            ShowDefaultTooltip="true">
             </IgbScatterSplineSeries>
 
             <IgbScatterSplineSeries
+            Name="ScatterSplineSeries2"
+            @ref="scatterSplineSeries2"
             Title="France"
             XAxisName="xAxis"
             YAxisName="yAxis"
@@ -58,9 +59,7 @@
             YMemberPath="HealthExpense"
             DataSource="HealthDataForFrance"
             MarkerType="MarkerType.Circle"
-            ShowDefaultTooltip="true"
-            Name="ScatterSplineSeries2"
-            @ref="scatterSplineSeries2">
+            ShowDefaultTooltip="true">
             </IgbScatterSplineSeries>
 
             <IgbDataToolTipLayer

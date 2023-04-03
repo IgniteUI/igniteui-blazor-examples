@@ -53,7 +53,6 @@ var sampleSource = [
     igConfig.SamplesCopyPath + '/grids/tree-grid/**/App.razor',
     igConfig.SamplesCopyPath + '/grids/tree/**/App.razor',
     igConfig.SamplesCopyPath + '/grids/pivot-grid/**/App.razor',
-    // igConfig.SamplesCopyPath + '/grids/hierarchical-grid/**/App.razor',
     igConfig.SamplesCopyPath + '/editors/**/App.razor',
 
     igConfig.SamplesCopyPath + '/inputs/badge/**/App.razor',
@@ -61,6 +60,7 @@ var sampleSource = [
     igConfig.SamplesCopyPath + '/inputs/checkbox/**/App.razor',
     igConfig.SamplesCopyPath + '/inputs/chip/**/App.razor',
     igConfig.SamplesCopyPath + '/inputs/circular-progress-indicator/**/App.razor',
+    igConfig.SamplesCopyPath + '/inputs/combo/**/App.razor',
     igConfig.SamplesCopyPath + '/inputs/date-time-input/**/App.razor',
     igConfig.SamplesCopyPath + '/inputs/dropdown/**/App.razor',
     igConfig.SamplesCopyPath + '/inputs/form/**/App.razor',
@@ -69,6 +69,7 @@ var sampleSource = [
     igConfig.SamplesCopyPath + '/inputs/linear-progress-indicator/**/App.razor',
     igConfig.SamplesCopyPath + '/inputs/radio/**/App.razor',
     igConfig.SamplesCopyPath + '/inputs/ripple/**/App.razor',
+    igConfig.SamplesCopyPath + '/inputs/select/**/App.razor',
     igConfig.SamplesCopyPath + '/inputs/slider/**/App.razor',
     igConfig.SamplesCopyPath + '/inputs/switches/**/App.razor',
 
@@ -330,7 +331,7 @@ function copySamplePages(cb, outputPath) {
 
         let sampleFolder = sample.ComponentGroup + '/' + sample.ComponentFolder
         // outputFolder = Strings.toTitleCase(outputClient);
-
+        // let dataFiles = [];
         for (const file of sample.SourceFiles) {
             if (file.isRazorFile()) {
                 var copyTarget = outputPath + '/Pages/' + sampleFolder + '/' + file.Parent + '/' + file.Name;
@@ -338,12 +339,21 @@ function copySamplePages(cb, outputPath) {
                 saveFile(copyTarget, file.Content);
             } else if (file.Name.indexOf("Program.cs") >= 0)  {
                 continue;
-            } else if (file.isCS())  {
+            } else if (file.isCS()) {
                 saveFile(outputPath + '/Services/' + file.Name, file.Content);
+                sample.DataFilesCount++;
+                if (file.Name.indexOf("DataGenerator") >= 0) {
+                    // dataFiles.push('../samples/' + sampleFolder + '/' + file.Parent + '/' + file.Name);
+                }
             } else {
-                log("WARNING unknown source file: " + file.Path);
+                // log("WARNING unknown source file: " + file.Path);
+                throw new Error("ERROR unknown source file: " + file.Path);
             }
         }
+
+        // if (dataFiles.length > 1) {
+        //     console.log(dataFiles);
+        // }
     }
 
     log('TOC generating with routing paths for samples');
@@ -557,14 +567,14 @@ function updateIG(cb) {
     // NOTE: change this array with new version of packages
     let packageUpgrades = [
         // these IG packages are often updated:
-        { name: "IgniteUI.Blazor"                , version: "22.2.58" },
-        { name: "IgniteUI.Blazor.Documents.Core",  version: "22.2.58" },
-        { name: "IgniteUI.Blazor.Documents.Excel", version: "22.2.58" },
+        { name: "IgniteUI.Blazor.Trial"                , version: "22.2.65" },
+        { name: "IgniteUI.Blazor.Documents.Core.Trial",  version: "22.2.65" },
+        { name: "IgniteUI.Blazor.Documents.Excel.Trial", version: "22.2.65" },
         // these IG packages are sometimes updated:
         { name: "Microsoft.AspNetCore.Components",                       version: "6.0.0" },
         { name: "Microsoft.AspNetCore.Components.Web",                   version: "6.0.0" },
         { name: "Microsoft.AspNetCore.Components.WebAssembly",           version: "6.0.0" },
-        { name: "Microsoft.AspNetCore.Components.WebAssembly.DevServer", version: "6.0.0", suffix: 'PrivateAssets="all" ' },
+        { name: "Microsoft.AspNetCore.Components.WebAssembly.DevServer", version: "6.0.0" }, // suffix: 'PrivateAssets="all" ' },
         { name: "Microsoft.AspNetCore.Cors",                             version: "2.2.0" },
         { name: "Microsoft.AspNetCore.Http.Abstractions",                version: "2.2.0" },
         { name: "System.Net.Http.Json", version:"6.0.0" },
@@ -609,7 +619,7 @@ function updateIG(cb) {
         var fileChanged = false;
         for (let i = 0; i < fileLines.length; i++) {
             const line = fileLines[i];
-            //   <PackageReference Include="IgniteUI.Blazor.Documents.Excel" Version="22.1.46" />
+            //   <PackageReference Include="IgniteUI.Blazor.Documents.Excel.Trial" Version="22.1.46" />
             let words = line.split("Version=");
             if (words.length === 2 && words[0].indexOf('PackageReference') > 0) {
                 // matching packages
@@ -985,33 +995,26 @@ function copyTemplates(cb) {
     });
 } exports.copyTemplates = copyTemplates;
 
-function listSamples(cb) {
-
-    let sampleFiles = [];
+function logSampleNames(cb) {
+    let sampleNames = [];
     gulp.src([
-               igConfig.SamplesCopyPath + '/**/Pages/*',
-        '!' +  igConfig.SamplesCopyPath + '/**/Pages/*.g.cs',
-         // sampleFolder + "/wwwroot/*",
-    //   '!' + sampleFolder + "/wwwroot/index.html",
-    //   '!' + sampleFolder + "/Pages/*.g.cs",
+       '../../samples/**/App.razor',
+      '!../../samples/**/bin/**/App.razor',
+      '!../../samples/**/obj/**/App.razor',
     ])
-    // .pipe(flatten({ "includeParents": -1 }))
-    .pipe(es.map(function(file, fileCallback) {
-        let fileDir = Transformer.getRelative(file.dirname);
-        sampleFiles.push(fileDir + "/" + file.basename);
-        // console.log("get file " + fileDir + "/" + file.basename);
-        fileCallback(null, file);
-    }))
+    .pipe(es.map(function(file, cbFile) {
+        sampleNames.push(file.dirname.split('samples')[1]);
+        cbFile(null, file);
+    })
     .on("end", function() {
-        sampleFiles.sort();
-        for (const fileDir of sampleFiles) {
-            if (fileDir.indexOf(".razor") === -1)
-                console.log("list " + fileDir);
+        sampleNames.sort();
+        for (const name of sampleNames) {
+            console.log(name);
         }
         cb();
-    });
+    }));
 
-} exports.listSamples = listSamples;
+} exports.logSampleNames = logSampleNames;
 
 function convertSamples(cb) {
     for (const sample of samples) {
@@ -1099,41 +1102,54 @@ function updateCodeViewer(cb) {
                     if (line.indexOf(".Register(IgniteUIBlazor)") < 0 &&
                         line.indexOf("@page") < 0 &&
                         line.indexOf("@inject IIgniteUIBlazor IgniteUIBlazor") < 0) {
-                        codeParsed.push(line);
+                        codeParsed.push(line.trimEnd());
                     }
                 }
                 var code = codeParsed.join('\n');
+                var exp = /(protected override void OnInitialized\(\)\n\s*{\n\s*\n\s*})/gm;
+                code = code.replace(exp, '');
+                code = code.replace(/\n\n\n/gm, '\n\n');
+                //code = code.replace(/\n\n/gm, '\n');
                 var item = new CodeViewer(file.Path, code, "razor", "razor", true);
+                contentItems.push(item);
+            }
+            else if (file.isProgramCS()) {
+                var item = new CodeViewer(file.Path, file.Content, "cs", "MODULES", true);
                 contentItems.push(item);
             }
             else if (file.isCS()) {
                 var name = file.Name.toLowerCase();
-                var isDataFile = name.indexOf("data") >= 0 || name.indexOf("locations") >= 0 || name.indexOf("temperature") >= 0 || name.indexOf("connections") >= 0 || name.indexOf("products") >= 0 || name.indexOf("stocksutility") >= 0 || name.indexOf("medals") >= 0 || name.indexOf("places") >= 0 || name.indexOf("history") >= 0 || name.indexOf("stats") >= 0;
-                var header = isDataFile ? "DATA" : "CS";
+                var header = "DATA";
+                if (sample.DataFilesCount > 1) {
+                    var isGenerator = name.indexOf("generator") >= 0;
+                    header = isGenerator ? "DATA GENERATOR" : "DATA SOURCE";
+                }
                 var item = new CodeViewer(file.Path, file.Content, "cs", header, true);
-
                 contentItems.push(item);
             }
         }
 
         if (sample.PublicFiles_JS.length > 0) {
-            for(const file of sample.PublicFiles_JS){
+            for(const file of sample.PublicFiles_JS) {
                 var item = new CodeViewer(file.Path, file.Content, "js", "js", true);
                 contentItems.push(item);
             }
         }
 
         if (sample.PublicFiles_CSS.length > 0) {
-            for(const file of sample.PublicFiles_CSS){
-                var item = new CodeViewer(file.Path, file.Content, "css", "css", true);
-                contentItems.push(item);
+            for(const file of sample.PublicFiles_CSS) {
+                // if (!file.Content.includes("loaded from the shared CSS file")) {
+                //     console.log("CSS " + file.Path);
+                    var item = new CodeViewer(file.Path, file.Content, "css", "css", true);
+                    contentItems.push(item);
+                // }
             }
         }
 
         if (sample.PublicIndexFile !== undefined) {
             var file = sample.PublicIndexFile;
             var item = new CodeViewer(file.Path, file.Content, "html", "html", true);
-            contentItems.push(item);
+            // contentItems.push(item);
         }
 
         content += JSON.stringify(contentItems, null, '  ');

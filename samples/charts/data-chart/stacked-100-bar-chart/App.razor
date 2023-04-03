@@ -6,47 +6,47 @@
     </div>
     <div class="legend">
         <IgbLegend
-        Orientation="LegendOrientation.Horizontal"
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
 
     </div>
 
     <div class="container vertical fill">
         <IgbDataChart
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false">
             <IgbCategoryYAxis
-            DataSource="EnergyRenewableConsumption"
-            IsInverted="true"
-            Label="Location"
             Name="yAxis"
-            @ref="yAxis">
+            @ref="yAxis"
+            DataSource="EnergyRenewableConsumption"
+            Label="Location"
+            IsInverted="true">
             </IgbCategoryYAxis>
 
             <IgbNumericXAxis
-            MinimumValue="0"
-            Title="TWh"
             Name="xAxis"
-            @ref="xAxis">
+            @ref="xAxis"
+            MinimumValue="0"
+            Title="TWh">
             </IgbNumericXAxis>
 
             <IgbStacked100BarSeries
+            Name="Stacked100BarSeries"
+            @ref="stacked100BarSeries"
+            DataSource="EnergyRenewableConsumption"
             XAxisName="xAxis"
             YAxisName="yAxis"
-            DataSource="EnergyRenewableConsumption"
-            AreaFillOpacity="1"
             ShowDefaultTooltip="true"
-            Name="Stacked100BarSeries"
-            @ref="stacked100BarSeries">
+            AreaFillOpacity="1">
                 <IgbStackedFragmentSeries
                 Name="s1"
                 @ref="s1"
-                Title="@("Hydro")"
-                ValueMemberPath="Hydro">
+                ValueMemberPath="Hydro"
+                Title="@("Hydro")">
                 </IgbStackedFragmentSeries>
 
                 <IgbStackedFragmentSeries

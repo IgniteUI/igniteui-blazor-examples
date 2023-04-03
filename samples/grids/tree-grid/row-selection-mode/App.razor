@@ -5,21 +5,22 @@
         <IgbPropertyEditorPanel
 
         DescriptionType="WebTreeGrid"
-        IsHorizontal="true"
         IsWrappingEnabled="true"
+        IsHorizontal="true"
+
         Name="propertyEditorPanel1"
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="RowSelection"
             Name="selectionType"
-            @ref="selectionType">
+            @ref="selectionType"
+            PropertyPath="RowSelection">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="HideRowSelectors"
-            Label="Hide Row Selectors"
             Name="hideRowSelectors"
-            @ref="hideRowSelectors">
+            @ref="hideRowSelectors"
+            PropertyPath="HideRowSelectors"
+            Label="Hide Row Selectors">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -29,26 +30,26 @@
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
-        ForeignKey="ParentID"
+        Name="treeGrid"
+        @ref="treeGrid"
         Id="treeGrid"
         Data="EmployeesFlatData"
         PrimaryKey="ID"
-        HideRowSelectors="false"
-        AllowFiltering="true"
+        ForeignKey="ParentID"
         CellSelection="GridSelectionMode.None"
-        Name="treeGrid"
-        @ref="treeGrid">
+        AllowFiltering="true"
+        HideRowSelectors="false">
             <IgbColumn
             Field="Name"
-            Sortable="true"
-            DataType="GridColumnDataType.String">
+            DataType="GridColumnDataType.String"
+            Sortable="true">
             </IgbColumn>
 
             <IgbColumn
             Field="Title"
+            Header="Job Title"
             DataType="GridColumnDataType.String"
-            Sortable="true"
-            Header="Job Title">
+            Sortable="true">
             </IgbColumn>
 
             <IgbColumn

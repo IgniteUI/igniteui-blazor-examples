@@ -64,14 +64,14 @@ steps:
       nuGetServiceConnections: 'IG ProGet NuGet'
       forceReinstallCredentialProvider: true
 
-#  - task: DotNetCoreCLI@2
-#    displayName: 'dotnet restore'
-#    inputs:
-#      command: 'restore'
-#      projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
-#      feedsToUse: 'config'
-#      nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\NuGet.Config'
-#      verbosityRestore: 'Diagnostic'
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet restore'
+    inputs:
+      command: 'restore'
+      projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
+      feedsToUse: 'config'
+      nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\NuGet.Config'
+      verbosityRestore: 'Diagnostic'
 
   - task: DotNetCoreCLI@2
     displayName: 'dotnet build'

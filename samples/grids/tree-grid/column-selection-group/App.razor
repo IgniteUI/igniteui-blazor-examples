@@ -5,13 +5,13 @@
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
-        ForeignKey="ParentID"
+        Name="treeGrid"
+        @ref="treeGrid"
         Id="treeGrid"
         Data="EmployeesFlatDetails"
         PrimaryKey="ID"
-        ColumnSelection="GridSelectionMode.Multiple"
-        Name="treeGrid"
-        @ref="treeGrid">
+        ForeignKey="ParentID"
+        ColumnSelection="GridSelectionMode.Multiple">
             <IgbColumn
             Field="Name"
             DataType="GridColumnDataType.String">
@@ -21,8 +21,8 @@
             Header="General Information">
                 <IgbColumn
                 Field="HireDate"
-                DataType="GridColumnDataType.Date"
-                Header="Hire Date">
+                Header="Hire Date"
+                DataType="GridColumnDataType.Date">
                 </IgbColumn>
 
                 <IgbColumnGroup
@@ -85,8 +85,8 @@
 
                     <IgbColumn
                     Field="PostalCode"
-                    DataType="GridColumnDataType.String"
-                    Header="Postal Code">
+                    Header="Postal Code"
+                    DataType="GridColumnDataType.String">
                     </IgbColumn>
 
                 </IgbColumnGroup>
