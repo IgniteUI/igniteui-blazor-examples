@@ -67,7 +67,7 @@ class SampleSourceFile extends SampleFile {
 
         // remove lines with old Register(IgniteUIBlazor)
         var oldLines = this.Content.split("\r\n");
-        var newLines = [];
+        var newLines: string [] = [];
         for (const line of oldLines) {
             if (line.indexOf(".Register(IgniteUIBlazor)") < 0){
                 newLines.push(line);
