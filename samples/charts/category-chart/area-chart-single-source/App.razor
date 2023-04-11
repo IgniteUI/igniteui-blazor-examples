@@ -1,50 +1,38 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Renewable Electricity Generated
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbCategoryChart
-        ChartType="CategoryChartType.Area"
-        YAxisLabelLeftMargin="0"
-        YAxisTitleLeftMargin="10"
-        YAxisTitleRightMargin="5"
-        YAxisTitle="TWh"
+        Name="chart"
+        @ref="chart"
         DataSource="CountryRenewableElectricity"
         IncludedProperties="@(new string[] { "Year", "Europe" })"
+        ChartType="CategoryChartType.Area"
+        YAxisTitle="TWh"
+        YAxisTitleLeftMargin="10"
+        YAxisTitleRightMargin="5"
+        YAxisLabelLeftMargin="0"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
-        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
-        Name="chart"
-        @ref="chart">
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series">
         </IgbCategoryChart>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        var chart = this.chart;
+
     }
 
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var chart = this.chart;
-
-        this.BindElements = () => {
-        };
-        this.BindElements();
-	}
-
-	private IgbCategoryChart chart;
-
+    private IgbCategoryChart chart;
 
     private CountryRenewableElectricity _countryRenewableElectricity = null;
     public CountryRenewableElectricity CountryRenewableElectricity
@@ -53,10 +41,10 @@
         {
             if (_countryRenewableElectricity == null)
             {
-                _countryRenewableElectricity = new CountryRenewableElectricity(); 
+                _countryRenewableElectricity = new CountryRenewableElectricity();
             }
             return _countryRenewableElectricity;
         }
     }
-    
+
 }

@@ -1,146 +1,127 @@
-@using IgniteUI.Blazor.Controls;
-
-@inject IIgniteUIBlazor IgniteUIBlazor
-@inject IJSRuntime JS
+@using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
 
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Id="grid"
         Data="FinancialDataAll"
-        AllowFiltering="true"
         Name="grid"
-        @ref="grid">
+        @ref="grid"
+        Id="grid"
+        AllowFiltering="true">
             <IgbColumn
             Field="Category"
             Width="120px">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Type"
-            Width="150px"
-            Filterable="false">
+            Filterable="false"
+            Width="150px">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Open"
             Width="120px"
             DataType="GridColumnDataType.Currency">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Price"
             Width="120px"
             DataType="GridColumnDataType.Currency">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Change"
             Width="120px"
             DataType="GridColumnDataType.Number">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="ChangePercent"
+            Header="Change(%)"
             Width="120px"
-            DataType="GridColumnDataType.Number"
-            Header="Change(%)">
+            DataType="GridColumnDataType.Number">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="AnnualChange"
+            Header="Change On Year(%)"
             Width="150px"
-            DataType="GridColumnDataType.Number"
-            Header="Change On Year(%)">
+            DataType="GridColumnDataType.Number">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Buy"
             Width="130px"
             DataType="GridColumnDataType.Currency">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Sell"
             Width="130px"
             DataType="GridColumnDataType.Currency">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Spread"
             Width="130px"
             DataType="GridColumnDataType.Number">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Volume"
             Width="130px"
             DataType="GridColumnDataType.Number">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="High"
             Width="130px"
             DataType="GridColumnDataType.Currency">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Low"
             Width="130px"
             DataType="GridColumnDataType.Currency">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="AnnualHigh"
+            Header="High(Y)"
             Width="130px"
-            DataType="GridColumnDataType.Currency"
-            Header="High(Y)">
+            DataType="GridColumnDataType.Currency">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="AnnualLow"
+            Header="Low(Y)"
             Width="130px"
-            DataType="GridColumnDataType.Currency"
-            Header="Low(Y)">
+            DataType="GridColumnDataType.Currency">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="AnnualStart"
+            Header="Start(Y)"
             Width="130px"
-            DataType="GridColumnDataType.Currency"
-            Header="Start(Y)">
+            DataType="GridColumnDataType.Currency">
             </IgbColumn>
-            
-        </IgbGrid>
-        
-    </div>
 
+        </IgbGrid>
+
+    </div>
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-        await Task.Delay(1);
-    }
-
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
-
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
 
@@ -151,10 +132,10 @@
         {
             if (_financialDataAll == null)
             {
-                _financialDataAll = new FinancialDataAll(); 
+                _financialDataAll = new FinancialDataAll();
             }
             return _financialDataAll;
         }
     }
-    
+
 }

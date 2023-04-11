@@ -1,83 +1,80 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	    <div class="options vertical">
+    <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+        Name="PropertyEditor"
+        @ref="propertyEditor"
+
         DescriptionType="CategoryChart"
         IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="PropertyEditor"
-        @ref="propertyEditor">
+        IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="HighlightingMode"
-            Label="Highlighting Mode:"
-            PrimitiveValue="@("FadeOthersSpecific")"
             Name="HighlightingModeEditor"
-            @ref="highlightingModeEditor">
+            @ref="highlightingModeEditor"
+            Label="Highlighting Mode: "
+            PrimitiveValue="@("FadeOthersSpecific")">
             </IgbPropertyEditorPropertyDescription>
+
             <IgbPropertyEditorPropertyDescription
             PropertyPath="HighlightingBehavior"
-            Label="Highlighting Behavior:"
-            PrimitiveValue="@("NearestItemsAndSeries")"
             Name="HighlightingBehaviorEditor"
-            @ref="highlightingBehaviorEditor">
+            @ref="highlightingBehaviorEditor"
+            Label="Highlighting Behavior: "
+            PrimitiveValue="@("NearestItemsAndSeries")">
             </IgbPropertyEditorPropertyDescription>
+
         </IgbPropertyEditorPanel>
+
     </div>
-	
-	    <div class="legend-title">
-        Average Temperature in Sedney
+    <div class="legend-title">
+        Average Temperature in Sydney
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbCategoryChart
+        Name="chart"
+        @ref="chart"
         ChartType="CategoryChartType.Column"
-        YAxisMaximumValue="35"
-        IsCategoryHighlightingEnabled="true"
-        YAxisLabelLocation="YAxisLabelLocation.OutsideRight"
-        DataSource="TemperatureAnnotatedData"
-        IncludedProperties="@(new string[] { "Month", "Temperature" })"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
-        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+        IncludedProperties="@(new string[] { "Month", "Temperature" })"
+        DataSource="TemperatureAnnotatedData"
+        IsCategoryHighlightingEnabled="true"
         HighlightingMode="SeriesHighlightingMode.FadeOthersSpecific"
         HighlightingBehavior="SeriesHighlightingBehavior.NearestItemsAndSeries"
         CrosshairsAnnotationYAxisPrecision="0"
-        Name="chart"
-        @ref="chart">
+        YAxisMaximumValue="35"
+        YAxisLabelLocation="YAxisLabelLocation.OutsideRight">
         </IgbCategoryChart>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-    }
-
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var propertyEditor = this.propertyEditor;
-		var highlightingModeEditor = this.highlightingModeEditor;
-		var highlightingBehaviorEditor = this.highlightingBehaviorEditor;
-		var chart = this.chart;
+        var propertyEditor = this.propertyEditor;
+        var highlightingModeEditor = this.highlightingModeEditor;
+        var highlightingBehaviorEditor = this.highlightingBehaviorEditor;
+        var chart = this.chart;
 
         this.BindElements = () => {
             propertyEditor.Target = this.chart;
         };
         this.BindElements();
-	}
 
-	private IgbPropertyEditorPanel propertyEditor;
-	private IgbPropertyEditorPropertyDescription highlightingModeEditor;
-	private IgbPropertyEditorPropertyDescription highlightingBehaviorEditor;
-	private IgbCategoryChart chart;
+    }
 
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription highlightingModeEditor;
+    private IgbPropertyEditorPropertyDescription highlightingBehaviorEditor;
+    private IgbCategoryChart chart;
 
     private TemperatureAnnotatedData _temperatureAnnotatedData = null;
     public TemperatureAnnotatedData TemperatureAnnotatedData
@@ -86,10 +83,10 @@
         {
             if (_temperatureAnnotatedData == null)
             {
-                _temperatureAnnotatedData = new TemperatureAnnotatedData(); 
+                _temperatureAnnotatedData = new TemperatureAnnotatedData();
             }
             return _temperatureAnnotatedData;
         }
     }
-    
+
 }

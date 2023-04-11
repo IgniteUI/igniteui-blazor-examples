@@ -1,5 +1,5 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
 
@@ -14,7 +14,7 @@
         </select>
 
         @* TODO uncomment when GeoMap refreshes on setting MarkerType *@
-        @*<span> Marker Type </span>
+      @*  <label> Marker Type </label>
         <select @onchange="onMarkerTypeChanged">
             <option>Custom</option>
             <option>@MarkerType.Circle</option>
@@ -34,10 +34,10 @@
     <div class="container vertical" style="height: calc(100% - 2rem)">
         <IgbGeographicMap Height="100%" Width="100%" Zoomable="true"  @ref="GeoMap">
 
-            <IgbGeographicSymbolSeries DataSource="Capitals" @ref="GeoSeries"
+            <IgbGeographicSymbolSeries DataSource="Countries" @ref="GeoSeries"
                                     MarkerCollisionAvoidance="@MarkerCollisionType"
-                                    LatitudeMemberPath="Lat"
-                                    LongitudeMemberPath="Lon"
+                                    LatitudeMemberPath="Y"
+                                    LongitudeMemberPath="X"
                                     MarkerBrush="White"
                                     MarkerOutline="#7D73E6"
                                     MarkerTemplateScript="@MarkerScript"/>
@@ -49,7 +49,7 @@
 
 @code {
 
-    private List<WorldCity> Capitals;
+    private List<WorldCountry> Countries;
     private string MarkerScript;
     private CollisionAvoidanceType MarkerCollisionType;
 
@@ -58,13 +58,9 @@
 
     protected override void OnInitialized()
     {
-        IgbGeographicMapModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-
         this.MarkerScript = "onMapMarkerTemplate";
         this.MarkerCollisionType = CollisionAvoidanceType.Fade;
-        this.Capitals = WorldLocations.GetCapitals();
-
+        this.Countries = WorldCountries.GetData();
     }
 
     void onMarkerTypeChanged(ChangeEventArgs e)
@@ -73,17 +69,18 @@
 
         if (GeoSeries == null) return;
 
-        //GeoSeries.Data = null;
+        //this.GeoMap.NotifyClearItems(this.Countries);
+        //GeoSeries.DataSource = null;
 
         if (markerType == "Custom")
         {
-            //GeoSeries.MarkerTemplateScript = "onMapMarkerTemplate";
-            this.MarkerScript = "onMapMarkerTemplate";
+          //  GeoSeries.MarkerTemplateScript = "onMapMarkerTemplate";
+          //  this.MarkerScript = "onMapMarkerTemplate";
         }
         else
         {
-            //GeoSeries.MarkerTemplateScript = "";
-            this.MarkerScript = "";
+          //  GeoSeries.MarkerTemplateScript = "";
+          //  this.MarkerScript = "";
 
             if (markerType == "Circle")
                 GeoSeries.MarkerType = MarkerType.Circle;
@@ -106,10 +103,8 @@
             else if (markerType == "Hexagram")
                 GeoSeries.MarkerType = MarkerType.Hexagram;
 
-            //GeoSeries.Data = this.Capitals;
+            //GeoSeries.DataSource = this.Countries;
             //GeoSeries.RenderSeries(false);
         }
-
-        Console.WriteLine("onMarkerTypeChanged: " + markerType);
     }
 }

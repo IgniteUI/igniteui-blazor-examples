@@ -1,6 +1,5 @@
-@using IgniteUI.Blazor.Controls;
+@using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
 <div class="container vertical">
@@ -8,69 +7,53 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Id="grid"
         Data="CustomersData"
+        Name="grid"
+        @ref="grid"
+        Id="grid"
         PrimaryKey="ID"
         RowSelection="GridSelectionMode.Multiple"
-        RowSelectionChangingScript="WebGridRowSelectionConditional"
-        Name="grid"
-        @ref="grid">
+        RowSelectionChangingScript="WebGridRowSelectionConditional">
             <IgbColumn
             Field="ContactName"
             Header="Name"
             Width="20%">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Country"
             Header="Country"
             Width="20%">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="City"
             Header="City"
             Width="20%">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="PostalCode"
             Width="20%">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="CompanyName"
             Width="20%">
             </IgbColumn>
-            
-        </IgbGrid>
-        
-    </div>
 
+        </IgbGrid>
+
+    </div>
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-        await Task.Delay(1);
-    }
-
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
-
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
 
@@ -81,10 +64,10 @@
         {
             if (_customersData == null)
             {
-                _customersData = new CustomersData(); 
+                _customersData = new CustomersData();
             }
             return _customersData;
         }
     }
-    
+
 }

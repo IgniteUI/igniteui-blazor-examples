@@ -1,0 +1,90 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample center">
+    <IgbSelect>
+        <IgbSelectGroup>
+            <span slot="label">Europe</span>
+
+            <IgbSelectItem>
+              <IgbIcon @ref="IconRef" slot="prefix" name="place" collection="material"></IgbIcon>
+              Germany
+              <span slot="suffix">DE</span>
+            </IgbSelectItem>
+
+            <IgbSelectItem>
+              <IgbIcon slot="prefix" name="place" collection="material"></IgbIcon>
+              France
+              <span slot="suffix">FR</span>
+            </IgbSelectItem>
+
+            <IgbSelectItem>
+              <IgbIcon slot="prefix" name="place" collection="material"></IgbIcon>
+              Spain
+              <span slot="suffix">ES</span>
+            </IgbSelectItem>
+        </IgbSelectGroup>
+
+        <IgbSelectGroup disabled>
+            <span slot="label">Asia</span>
+
+            <IgbSelectItem>
+              <IgbIcon slot="prefix" name="place" collection="material"></IgbIcon>
+              China
+              <span slot="suffix">CN</span>
+            </IgbSelectItem>
+
+            <IgbSelectItem>
+              <IgbIcon slot="prefix" name="place" collection="material"></IgbIcon>
+              Japan
+              <span slot="suffix">JP</span>
+            </IgbSelectItem>
+
+            <IgbSelectItem>
+              <IgbIcon slot="prefix" name="place" collection="material"></IgbIcon>
+              India
+              <span slot="suffix">IN</span>
+            </IgbSelectItem>
+
+            <IgbSelectItem>
+              <IgbIcon slot="prefix" name="place" collection="material"></IgbIcon>
+              Thailand
+              <span slot="suffix">TH</span>
+            </IgbSelectItem>
+        </IgbSelectGroup>
+
+        <IgbSelectGroup>
+            <span slot="label">North America</span>
+
+            <IgbSelectItem>
+              <IgbIcon slot="prefix" name="place" collection="material"></IgbIcon>
+              USA
+              <span slot="suffix">US</span>
+            </IgbSelectItem>
+
+            <IgbSelectItem>
+              <IgbIcon slot="prefix" name="place" collection="material"></IgbIcon>
+              Canada
+              <span slot="suffix">CA</span>
+            </IgbSelectItem>
+
+            <IgbSelectItem>
+              <IgbIcon slot="prefix" name="place" collection="material"></IgbIcon>
+              Mexico
+              <span slot="suffix">MX</span>
+            </IgbSelectItem>
+        </IgbSelectGroup>
+
+    </IgbSelect>
+</div>
+
+@code {
+    private IgbIcon IconRef { get; set; }
+    private string placeSvg = "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px'><path d='M0 0h24v24H0z' fill='none'/><path d='M12 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6-1.8C18 6.57 15.35 4 12 4s-6 2.57-6 6.2c0 2.34 1.95 5.44 6 9.14 4.05-3.7 6-6.8 6-9.14zM12 2c4.2 0 8 3.22 8 8.2 0 3.32-2.67 7.25-8 11.8-5.33-4.55-8-8.48-8-11.8C4 5.22 7.8 2 12 2z'/></svg>";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender) {
+        if(firstRender) {
+            await this.IconRef.EnsureReady();
+            await this.IconRef.RegisterIconFromTextAsync("place", placeSvg, "material");
+        }
+    }
+}

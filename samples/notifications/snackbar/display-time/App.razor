@@ -1,11 +1,11 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container sample vertical">
     <div class="button-container">
         <IgbCheckbox Change=OnChange2>Increase Display Time</IgbCheckbox>
-        <IgbButton onclick="snackbar1.show()" >Show Snackbar</IgbButton> 
-        <IgbSnackbar @ref="ToggleSnackbarRef" id="snackbar1" KeepOpen="false"> @SnackbarDisplayText </IgbSnackbar>  
+        <IgbButton onclick="snackbar1.show()" >Show Snackbar</IgbButton>
+        <IgbSnackbar @ref="ToggleSnackbarRef" id="snackbar1" KeepOpen="false"> @SnackbarDisplayText </IgbSnackbar>
     </div>
 </div>
 
@@ -16,29 +16,22 @@
     public IgbSnackbar ToggleSnackbarRef
     {
         get { return snackbar1; }
-        set { 
+        set {
             snackbar1 = value; StateHasChanged();
             snackbar1.DisplayTime = 1000;
         }
     }
 
-    protected override void OnInitialized()
-    {   
-        IgbCheckboxModule.Register(IgniteUIBlazor);
-        IgbButtonModule.Register(IgniteUIBlazor);
-        IgbSnackbarModule.Register(IgniteUIBlazor);
-    }
-
     private void OnChange2(IgbComponentBoolValueChangedEventArgs e)
     {
-        if(snackbar1.DisplayTime != 5000) 
-        { 
-            snackbar1.DisplayTime = 5000; 
+        if(snackbar1.DisplayTime != 5000)
+        {
+            snackbar1.DisplayTime = 5000;
             this.SnackbarDisplayText = "Displaying for 5 seconds...";
         }
         else
-        { 
-            snackbar1.DisplayTime = 1000; 
+        {
+            snackbar1.DisplayTime = 1000;
             this.SnackbarDisplayText = "Hello there!";
         }
     }

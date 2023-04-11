@@ -1,25 +1,25 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
     <style>
         igc-icon {
             color: currentColor;
         }
-        
+
         igc-navbar {
             background-color: #232121
         }
-        
+
         igc-navbar::part(start) {
             color: #f23269;
         }
-        
+
         igc-navbar::part(middle) {
             font-family: Titillium Web,sans-serif;
             color: #e9e8ea
         }
-        
+
         igc-navbar::part(end) {
             color: #e9e8ea
         }
@@ -41,16 +41,8 @@
     public IgbIcon FavoriteIcon { get; set; }
     public IgbIcon MoreVertIcon { get; set; }
 
-    protected override void OnInitialized()
-    {
-        IgbNavbarModule.Register(IgniteUIBlazor);
-        IgbIconModule.Register(IgniteUIBlazor);        
-    }
-
     protected override void OnAfterRender(bool firstRender)
     {
-        base.OnAfterRender(firstRender);
-
         if (this.HomeIcon != null && firstRender)
         {
             this.HomeIcon.EnsureReady().ContinueWith(new Action<Task>((e) =>

@@ -1,94 +1,85 @@
-@using IgniteUI.Blazor.Controls;
-
-@inject IIgniteUIBlazor IgniteUIBlazor
-@inject IJSRuntime JS
+@using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+        Name="PropertyEditor"
+        @ref="propertyEditor"
+
         DescriptionType="WebGrid"
         IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="PropertyEditor"
-        @ref="propertyEditor">
+        IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="SummaryCalculationMode"
             Name="SummaryCalcModeEditor"
             @ref="summaryCalcModeEditor">
             </IgbPropertyEditorPropertyDescription>
-            
+
             <IgbPropertyEditorPropertyDescription
             PropertyPath="SummaryPosition"
             Name="SummaryPositionEditor"
             @ref="summaryPositionEditor">
             </IgbPropertyEditorPropertyDescription>
-            
+
             <IgbPropertyEditorPropertyDescription
             PropertyPath="ShowSummaryOnCollapse"
-            Label="Show Summary Row when Group Row is Collapsed"
             Name="ShowOnCollapseEditor"
-            @ref="showOnCollapseEditor">
+            @ref="showOnCollapseEditor"
+            Label="Show Summary Row when Group Row is Collapsed">
             </IgbPropertyEditorPropertyDescription>
-            
+
         </IgbPropertyEditorPanel>
-        
+
     </div>
 
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Data="InvoicesData"
-        GroupingExpressions="GroupingExpression1"
         Name="grid"
-        @ref="grid">
+        @ref="grid"
+        Data="InvoicesData"
+        GroupingExpressions="GroupingExpression1">
             <IgbColumn
             Field="ShipCountry"
             Header="Ship Country"
-            Groupable="true"
-            Width="200px">
+            Width="200px"
+            Groupable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="ShipCity"
             Header="Ship City"
             Width="250px"
             Groupable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="UnitPrice"
             Header="Unit Price"
             Width="150px"
-            Groupable="true"
             DataType="GridColumnDataType.Currency"
+            Groupable="true"
             HasSummary="true"
             PipeArgs="ColumnPipeArgs1"
             Name="column1"
             @ref="column1">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Quantity"
             Header="Quantity"
             Width="150px"
-            Groupable="true"
             DataType="GridColumnDataType.Number"
+            Groupable="true"
             HasSummary="true">
             </IgbColumn>
-            
-        </IgbGrid>
-        
-    </div>
 
+        </IgbGrid>
+
+    </div>
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-        await Task.Delay(1);
-    }
 
     private Action BindElements { get; set; }
 
@@ -106,11 +97,7 @@
         };
         this.BindElements();
 
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbPropertyEditorPanel propertyEditor;
     private IgbPropertyEditorPropertyDescription summaryCalcModeEditor;
@@ -127,8 +114,8 @@
                 var groupingExpression1 = new IgbGroupingExpression[1];
                 var groupingExpression2 = new IgbGroupingExpression();
                 groupingExpression2.FieldName = "ShipCountry";
-                groupingExpression2.Dir = SortingDirection.Asc;
                 groupingExpression2.IgnoreCase = false;
+                groupingExpression2.Dir = SortingDirection.Asc;
                 groupingExpression1[0] = groupingExpression2;
                 this._groupingExpression1 = groupingExpression1;
             }
@@ -144,8 +131,8 @@
             if (this._columnPipeArgs1 == null)
             {
                 var columnPipeArgs1 = new IgbColumnPipeArgs();
-                columnPipeArgs1.DigitsInfo = "1.2-2";
                 columnPipeArgs1.CurrencyCode = "USD";
+                columnPipeArgs1.DigitsInfo = "1.2-2";
                 this._columnPipeArgs1 = columnPipeArgs1;
             }
             return this._columnPipeArgs1;
@@ -159,10 +146,10 @@
         {
             if (_invoicesData == null)
             {
-                _invoicesData = new InvoicesData(); 
+                _invoicesData = new InvoicesData();
             }
             return _invoicesData;
         }
     }
-    
+
 }

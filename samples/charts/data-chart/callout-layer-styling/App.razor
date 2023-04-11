@@ -1,14 +1,10 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Renewable Electricity Generated
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbDataChart
         ShouldAutoExpandMarginForInitialLabels="true"
@@ -16,68 +12,64 @@
         Name="chart"
         @ref="chart">
             <IgbCategoryXAxis
-            DataSource="CountryRenewableElectricity"
-            Label="Year"
             Name="xAxis"
-            @ref="xAxis">
+            @ref="xAxis"
+            DataSource="CountryRenewableElectricity"
+            Label="Year">
             </IgbCategoryXAxis>
+
             <IgbNumericYAxis
-            Title="TWh"
-            LabelLocation="AxisLabelsLocation.OutsideRight"
             Name="yAxis"
-            @ref="yAxis">
+            @ref="yAxis"
+            Title="TWh"
+            LabelLocation="AxisLabelsLocation.OutsideRight">
             </IgbNumericYAxis>
+
             <IgbLineSeries
+            Name="LineSeries1"
+            @ref="lineSeries1"
             XAxisName="xAxis"
             YAxisName="yAxis"
-            ValueMemberPath="America"
             DataSource="CountryRenewableElectricity"
-            Name="LineSeries1"
-            @ref="lineSeries1">
+            ValueMemberPath="America">
             </IgbLineSeries>
+
             <IgbCalloutLayer
-            LabelMemberPath="Label"
+            Name="CalloutLayer1"
+            @ref="calloutLayer1"
+            DataSource="CountryRenewableCallouts"
             XMemberPath="Index"
             YMemberPath="Value"
-            CalloutTextColor="black"
-            CalloutBackground="orange"
-            CalloutOutline="black"
+            LabelMemberPath="Label"
             CalloutLeaderBrush="black"
-            CalloutStrokeThickness="2"
-            DataSource="CountryRenewableCallouts"
-            Name="CalloutLayer1"
-            @ref="calloutLayer1">
+            CalloutOutline="black"
+            CalloutBackground="orange"
+            CalloutTextColor="black"
+            CalloutStrokeThickness="2">
             </IgbCalloutLayer>
+
         </IgbDataChart>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var lineSeries1 = this.lineSeries1;
+        var calloutLayer1 = this.calloutLayer1;
+
     }
 
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var chart = this.chart;
-		var xAxis = this.xAxis;
-		var yAxis = this.yAxis;
-		var lineSeries1 = this.lineSeries1;
-		var calloutLayer1 = this.calloutLayer1;
-
-        this.BindElements = () => {
-        };
-        this.BindElements();
-	}
-
-	private IgbDataChart chart;
-	private IgbCategoryXAxis xAxis;
-	private IgbNumericYAxis yAxis;
-	private IgbLineSeries lineSeries1;
-	private IgbCalloutLayer calloutLayer1;
-
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbLineSeries lineSeries1;
+    private IgbCalloutLayer calloutLayer1;
 
     private CountryRenewableElectricity _countryRenewableElectricity = null;
     public CountryRenewableElectricity CountryRenewableElectricity
@@ -86,12 +78,12 @@
         {
             if (_countryRenewableElectricity == null)
             {
-                _countryRenewableElectricity = new CountryRenewableElectricity(); 
+                _countryRenewableElectricity = new CountryRenewableElectricity();
             }
             return _countryRenewableElectricity;
         }
     }
-    
+
     private CountryRenewableCallouts _countryRenewableCallouts = null;
     public CountryRenewableCallouts CountryRenewableCallouts
     {
@@ -99,10 +91,10 @@
         {
             if (_countryRenewableCallouts == null)
             {
-                _countryRenewableCallouts = new CountryRenewableCallouts(); 
+                _countryRenewableCallouts = new CountryRenewableCallouts();
             }
             return _countryRenewableCallouts;
         }
     }
-    
+
 }

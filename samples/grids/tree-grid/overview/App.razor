@@ -1,102 +1,115 @@
-@using IgniteUI.Blazor.Controls;
-
-@inject IIgniteUIBlazor IgniteUIBlazor
-@inject IJSRuntime JS
+@using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
 
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
-        ChildDataKey="Employees"
+        Name="treeGrid"
+        @ref="treeGrid"
         Id="treeGrid"
         Data="EmployeesNestedData"
-        Moving="true"
-        Paging="true"
-        AllowFiltering="true"
+        ChildDataKey="Employees"
         RowSelection="GridSelectionMode.Multiple"
-        Name="treeGrid"
-        @ref="treeGrid">
+        Moving="true"
+        AllowFiltering="true"
+        FilterMode="FilterMode.ExcelStyleFilter"
+        Paging="true">
             <IgbGridToolbar
             >
                 <IgbGridToolbarTitle
                 Name="Employees"
                 @ref="employees">
                 </IgbGridToolbarTitle>
-                
+
                 <IgbGridToolbarActions
                 >
                     <IgbGridToolbarHiding
                     >
                     </IgbGridToolbarHiding>
-                    
+
                     <IgbGridToolbarPinning
                     >
                     </IgbGridToolbarPinning>
-                    
+
                     <IgbGridToolbarExporter
                     ExportCSV="true"
                     ExportExcel="true">
                     </IgbGridToolbarExporter>
-                    
+
                 </IgbGridToolbarActions>
-                
+
             </IgbGridToolbar>
-            
+
             <IgbColumn
-            Field="Name"
+            Field="iD"
+            Header="ID"
+            DataType="GridColumnDataType.Number"
             Sortable="true"
             Editable="true"
             Resizable="true"
-            HasSummary="true"
-            DataType="GridColumnDataType.String">
+            HasSummary="true">
             </IgbColumn>
-            
+
+            <IgbColumn
+            Field="Name"
+            Header="Name"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            Editable="true"
+            Resizable="true"
+            HasSummary="true">
+            </IgbColumn>
+
             <IgbColumn
             Field="HireDate"
+            Header="Hire Date"
             DataType="GridColumnDataType.Date"
             Sortable="true"
             Editable="true"
             Resizable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Age"
+            Header="Age"
             DataType="GridColumnDataType.Number"
             Sortable="true"
             Editable="true"
             Resizable="true">
             </IgbColumn>
-            
-        </IgbTreeGrid>
-        
-    </div>
 
+            <IgbColumn
+            Field="salary"
+            Header="Salary"
+            DataType="GridColumnDataType.Number"
+            Sortable="true"
+            Editable="true"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="productivity"
+            Header="Productivity"
+            DataType="GridColumnDataType.Number"
+            Sortable="true"
+            Editable="true"
+            Resizable="true">
+            </IgbColumn>
+
+        </IgbTreeGrid>
+
+    </div>
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-        await Task.Delay(1);
-    }
-
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var treeGrid = this.treeGrid;
         var employees = this.employees;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
-
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbTreeGrid treeGrid;
     private IgbGridToolbarTitle employees;
@@ -108,10 +121,10 @@
         {
             if (_employeesNestedData == null)
             {
-                _employeesNestedData = new EmployeesNestedData(); 
+                _employeesNestedData = new EmployeesNestedData();
             }
             return _employeesNestedData;
         }
     }
-    
+
 }

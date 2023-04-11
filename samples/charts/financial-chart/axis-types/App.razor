@@ -1,7 +1,7 @@
 
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
     <div class="options horizontal">
@@ -16,7 +16,7 @@
                 <option>@FinancialChartYAxisMode.Numeric</option>
                 <option>@FinancialChartYAxisMode.PercentChange</option>
             </select>
-			<label class="options-label">Y-Axis IsLogarithmic:</label>
+            <label class="options-label">Y-Axis IsLogarithmic:</label>
             <label class="options-item">
                 <input type="checkbox" @onchange="OnChanged" />
             </label>
@@ -34,7 +34,7 @@
                 Thickness=2
                 XAxisMode="XAxisMode"
                 YAxisMode="YAxisMode"
-				YAxisIsLogarithmic=YAxisIsLogarithmic/>
+                YAxisIsLogarithmic=YAxisIsLogarithmic/>
         }
     </div>
 </div>
@@ -49,12 +49,6 @@
 
     protected override void OnInitialized()
     {
-        IgbFinancialChartModule.Register(IgniteUIBlazor);
-        InitData();
-    }
-
-    public void InitData()
-    {
         var today = DateTime.Now;
         var year = today.Year;
         var month = today.Month;
@@ -62,7 +56,7 @@
         var dateStart = new DateTime(year - 1, month, 1);
         this.Data = StocksUtility.GetStocksBetween(dateStart, dateEnd);
     }
-	
+
     public void OnChanged(ChangeEventArgs args)
     {
         YAxisIsLogarithmic = (bool)args.Value;

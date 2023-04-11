@@ -1,6 +1,5 @@
-@using IgniteUI.Blazor.Controls;
+@using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
 <div class="container vertical">
@@ -8,11 +7,11 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
+        Name="grid"
+        @ref="grid"
         Data="NwindData"
         Moving="true"
-        AllowAdvancedFiltering="true"
-        Name="grid"
-        @ref="grid">
+        AllowAdvancedFiltering="true">
             <IgbGridToolbar
             >
                 <IgbGridToolbarActions
@@ -20,84 +19,68 @@
                     <IgbGridToolbarAdvancedFiltering
                     >
                     </IgbGridToolbarAdvancedFiltering>
-                    
+
                     <IgbGridToolbarHiding
                     >
                     </IgbGridToolbarHiding>
-                    
+
                     <IgbGridToolbarPinning
                     >
                     </IgbGridToolbarPinning>
-                    
+
                 </IgbGridToolbarActions>
-                
+
             </IgbGridToolbar>
-            
+
             <IgbColumn
             Field="ProductName"
             Header="Product Name"
             Sortable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="QuantityPerUnit"
             Header="Quantity Per Unit"
             Sortable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="UnitPrice"
             Header="Unit Price"
             Sortable="true"
             DataType="GridColumnDataType.Currency">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="OrderDate"
             Header="Order Date"
-            Sortable="true"
-            DataType="GridColumnDataType.Date">
+            DataType="GridColumnDataType.Date"
+            Sortable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Discontinued"
             Header="Discontinued"
-            Sortable="true"
             DataType="GridColumnDataType.Boolean"
             BodyTemplateScript="WebGridDiscontinuedCellTemplate"
+            Sortable="true"
             Name="column1"
             @ref="column1">
             </IgbColumn>
-            
-        </IgbGrid>
-        
-    </div>
 
+        </IgbGrid>
+
+    </div>
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-        await Task.Delay(1);
-    }
-
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
         var column1 = this.column1;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
-
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
     private IgbColumn column1;
@@ -109,10 +92,10 @@
         {
             if (_nwindData == null)
             {
-                _nwindData = new NwindData(); 
+                _nwindData = new NwindData();
             }
             return _nwindData;
         }
     }
-    
+
 }

@@ -1,11 +1,9 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	    <div class="options vertical">
+    <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="CategoryChart"
         IsHorizontal="true"
         IsWrappingEnabled="true"
@@ -13,73 +11,72 @@
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="XAxisInverted"
+            Name="XAxisInvertedEditor"
+            @ref="xAxisInvertedEditor"
             Label="X Axis - Inverted"
             ShouldOverrideDefaultEditor="true"
-            PrimitiveValue="true"
-            Name="XAxisInvertedEditor"
-            @ref="xAxisInvertedEditor">
+            PrimitiveValue="true">
             </IgbPropertyEditorPropertyDescription>
+
             <IgbPropertyEditorPropertyDescription
             PropertyPath="YAxisInverted"
+            Name="YAxisInvertedEditor"
+            @ref="yAxisInvertedEditor"
             Label="Y Axis - Inverted"
             ShouldOverrideDefaultEditor="true"
-            PrimitiveValue="true"
-            Name="YAxisInvertedEditor"
-            @ref="yAxisInvertedEditor">
+            PrimitiveValue="true">
             </IgbPropertyEditorPropertyDescription>
+
         </IgbPropertyEditorPanel>
+
     </div>
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Renewable Electricity Generated
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbCategoryChart
+        Name="chart"
+        @ref="chart"
         ChartType="CategoryChartType.Line"
-        YAxisLabelLeftMargin="0"
-        YAxisTitleLeftMargin="10"
-        YAxisTitleRightMargin="5"
-        YAxisTitle="TWh"
-        XAxisInverted="true"
-        YAxisInverted="true"
-        DataSource="CountryRenewableElectricity"
-        IncludedProperties="@(new string[] { "Year", "Europe" })"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
-        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
-        Name="chart"
-        @ref="chart">
+        DataSource="CountryRenewableElectricity"
+        IncludedProperties="@(new string[] { "Year", "Europe" })"
+        YAxisTitle="TWh"
+        YAxisTitleLeftMargin="10"
+        YAxisTitleRightMargin="5"
+        YAxisLabelLeftMargin="0"
+        XAxisInverted="true"
+        YAxisInverted="true">
         </IgbCategoryChart>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-    }
-
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var propertyEditorPanel1 = this.propertyEditorPanel1;
-		var xAxisInvertedEditor = this.xAxisInvertedEditor;
-		var yAxisInvertedEditor = this.yAxisInvertedEditor;
-		var chart = this.chart;
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var xAxisInvertedEditor = this.xAxisInvertedEditor;
+        var yAxisInvertedEditor = this.yAxisInvertedEditor;
+        var chart = this.chart;
 
         this.BindElements = () => {
             propertyEditorPanel1.Target = this.chart;
         };
         this.BindElements();
-	}
 
-	private IgbPropertyEditorPanel propertyEditorPanel1;
-	private IgbPropertyEditorPropertyDescription xAxisInvertedEditor;
-	private IgbPropertyEditorPropertyDescription yAxisInvertedEditor;
-	private IgbCategoryChart chart;
+    }
 
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription xAxisInvertedEditor;
+    private IgbPropertyEditorPropertyDescription yAxisInvertedEditor;
+    private IgbCategoryChart chart;
 
     private CountryRenewableElectricity _countryRenewableElectricity = null;
     public CountryRenewableElectricity CountryRenewableElectricity
@@ -88,10 +85,10 @@
         {
             if (_countryRenewableElectricity == null)
             {
-                _countryRenewableElectricity = new CountryRenewableElectricity(); 
+                _countryRenewableElectricity = new CountryRenewableElectricity();
             }
             return _countryRenewableElectricity;
         }
     }
-    
+
 }

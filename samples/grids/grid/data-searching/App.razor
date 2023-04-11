@@ -1,5 +1,5 @@
 ﻿@using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor;
+;
 
 <div class="container vertical">
 
@@ -67,20 +67,11 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
-
-        IgbGridModule.Register(IgniteUIBlazor);
-        IgbInputModule.Register(IgniteUIBlazor);
-        IgbIconButtonModule.Register(IgniteUIBlazor);
-        IgbIconModule.Register(IgniteUIBlazor);
-
         this.marketData = MarketData.GetData();
     }
 
     protected override void OnAfterRender(bool firstRender)
     {
-        base.OnAfterRender(firstRender);
-
         if (this.searchIconRef != null && firstRender)
         {
             this.searchIconRef.EnsureReady().ContinueWith(new Action<Task>((e) =>

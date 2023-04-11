@@ -1,5 +1,5 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container sample">
 
@@ -51,7 +51,7 @@
             {
                 <IgbStackedBarSeries XAxisName="xAxis2" YAxisName="yAxis2" DataSource="Data" ShowDefaultTooltip="false" >
                     @foreach (var column in this.DataColumns)
-                    {    
+                    {
                         <IgbStackedFragmentSeries ValueMemberPath="@column" Title="@column" />
                     }
                 </IgbStackedBarSeries>
@@ -61,7 +61,7 @@
             {
                 <IgbStacked100BarSeries XAxisName="xAxis2" YAxisName="yAxis2" DataSource="Data" ShowDefaultTooltip="false" >
                     @foreach (var column in this.DataColumns)
-                    {    
+                    {
                         <IgbStackedFragmentSeries ValueMemberPath="@column" Title="@column" />
                     }
                 </IgbStacked100BarSeries>
@@ -71,7 +71,7 @@
             {
                 <IgbStackedColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false" >
                     @foreach (var column in this.DataColumns)
-                    {    
+                    {
                         <IgbStackedFragmentSeries ValueMemberPath="@column" Title="@column" />
                     }
                 </IgbStackedColumnSeries>
@@ -81,7 +81,7 @@
             {
                 <IgbStacked100ColumnSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false" >
                     @foreach (var column in this.DataColumns)
-                    {    
+                    {
                         <IgbStackedFragmentSeries ValueMemberPath="@column" Title="@column" />
                     }
                 </IgbStacked100ColumnSeries>
@@ -91,7 +91,7 @@
             {
                 <IgbStackedAreaSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false" >
                     @foreach (var column in this.DataColumns)
-                    {    
+                    {
                         <IgbStackedFragmentSeries ValueMemberPath="@column" Title="@column" />
                     }
                 </IgbStackedAreaSeries>
@@ -101,7 +101,7 @@
             {
                 <IgbStacked100AreaSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false" >
                     @foreach (var column in this.DataColumns)
-                    {    
+                    {
                         <IgbStackedFragmentSeries ValueMemberPath="@column" Title="@column" />
                     }
                 </IgbStacked100AreaSeries>
@@ -111,7 +111,7 @@
             {
                 <IgbStackedLineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false" >
                     @foreach (var column in this.DataColumns)
-                    {    
+                    {
                         <IgbStackedFragmentSeries ValueMemberPath="@column" Title="@column" />
                     }
                 </IgbStackedLineSeries>
@@ -121,7 +121,7 @@
             {
                 <IgbStacked100LineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false" >
                     @foreach (var column in this.DataColumns)
-                    {    
+                    {
                         <IgbStackedFragmentSeries ValueMemberPath="@column" Title="@column" />
                     }
                 </IgbStacked100LineSeries>
@@ -131,7 +131,7 @@
             {
                 <IgbStackedSplineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false" >
                     @foreach (var column in this.DataColumns)
-                    {    
+                    {
                         <IgbStackedFragmentSeries ValueMemberPath="@column" Title="@column" />
                     }
                 </IgbStackedSplineSeries>
@@ -141,7 +141,7 @@
             {
                 <IgbStacked100SplineSeries XAxisName="xAxis" YAxisName="yAxis" DataSource="Data" ShowDefaultTooltip="false" >
                     @foreach (var column in this.DataColumns)
-                    {    
+                    {
                         <IgbStackedFragmentSeries ValueMemberPath="@column" Title="@column" />
                     }
                 </IgbStacked100SplineSeries>
@@ -178,23 +178,6 @@
 
     protected override void OnInitialized()
     {
-        IgbDataChartCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-
-        IgbDataChartStackedModule.Register(IgniteUIBlazor);
-        IgbStackedColumnSeriesModule.Register(IgniteUIBlazor);
-        IgbStacked100ColumnSeriesModule.Register(IgniteUIBlazor);
-        IgbStackedAreaSeriesModule.Register(IgniteUIBlazor);
-        IgbStacked100AreaSeriesModule.Register(IgniteUIBlazor);
-
-        IgbColumnFragmentModule.Register(IgniteUIBlazor);
-        IgbStackedFragmentSeriesModule.Register(IgniteUIBlazor);
-
-        IgbStackedSplineSeriesModule.Register(IgniteUIBlazor);
-
-        IgbLegendModule.Register(IgniteUIBlazor);
         Data = SampleStackedData.Create();
     }
 
@@ -206,8 +189,6 @@
 
     protected override void OnAfterRender(bool firstRender)
     {
-        base.OnAfterRender(firstRender);
-
         if (this.Chart != null && !firstRender)
         {
             ////  System.Console.WriteLine("OnAfterRender " + this.Chart.ActualSeries.Count);

@@ -1,68 +1,58 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Hierarchical Chart
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbDoughnutChart
-        AllowSliceSelection="false"
-        AllowSliceExplosion="false"
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        AllowSliceExplosion="false"
+        AllowSliceSelection="false">
             <IgbRingSeries
-            DataSource="CalendarSeasons"
-            ValueMemberPath="Value"
-            LabelMemberPath="Label"
-            LabelsPosition="LabelsPosition.Center"
-            Brushes="#3cbdc9 #9fb328 #f96232 #8a58d6"
-            Outlines="white"
-            RadiusFactor="0.9"
             Name="series1"
-            @ref="series1">
-            </IgbRingSeries>
-            <IgbRingSeries
-            Brushes="#3cbdc9 #3cbdc9 #3cbdc9 #9fb328 #9fb328 #9fb328 #f96232 #f96232 #f96232 #8a58d6 #8a58d6 #8a58d6"
-            DataSource="CalendarMonths"
-            ValueMemberPath="Value"
+            @ref="series1"
             LabelMemberPath="Label"
+            ValueMemberPath="Value"
             LabelsPosition="LabelsPosition.Center"
-            Outlines="white"
             RadiusFactor="0.9"
-            Name="series2"
-            @ref="series2">
+            Outlines="white"
+            Brushes="#3cbdc9 #9fb328 #f96232 #8a58d6"
+            DataSource="CalendarSeasons">
             </IgbRingSeries>
+
+            <IgbRingSeries
+            Name="series2"
+            @ref="series2"
+            LabelMemberPath="Label"
+            ValueMemberPath="Value"
+            LabelsPosition="LabelsPosition.Center"
+            RadiusFactor="0.9"
+            Outlines="white"
+            Brushes="#3cbdc9 #3cbdc9 #3cbdc9 #9fb328 #9fb328 #9fb328 #f96232 #f96232 #f96232 #8a58d6 #8a58d6 #8a58d6"
+            DataSource="CalendarMonths">
+            </IgbRingSeries>
+
         </IgbDoughnutChart>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        var chart = this.chart;
+        var series1 = this.series1;
+        var series2 = this.series2;
+
     }
 
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var chart = this.chart;
-		var series1 = this.series1;
-		var series2 = this.series2;
-
-        this.BindElements = () => {
-        };
-        this.BindElements();
-	}
-
-	private IgbDoughnutChart chart;
-	private IgbRingSeries series1;
-	private IgbRingSeries series2;
-
+    private IgbDoughnutChart chart;
+    private IgbRingSeries series1;
+    private IgbRingSeries series2;
 
     private CalendarSeasons _calendarSeasons = null;
     public CalendarSeasons CalendarSeasons
@@ -71,12 +61,12 @@
         {
             if (_calendarSeasons == null)
             {
-                _calendarSeasons = new CalendarSeasons(); 
+                _calendarSeasons = new CalendarSeasons();
             }
             return _calendarSeasons;
         }
     }
-    
+
     private CalendarMonths _calendarMonths = null;
     public CalendarMonths CalendarMonths
     {
@@ -84,10 +74,10 @@
         {
             if (_calendarMonths == null)
             {
-                _calendarMonths = new CalendarMonths(); 
+                _calendarMonths = new CalendarMonths();
             }
             return _calendarMonths;
         }
     }
-    
+
 }

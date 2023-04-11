@@ -1,84 +1,102 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	
-	    <div class="legend-title">
-        Monthly Temperature Range in Los Angeles
+    <div class="legend-title">
+        Monthly Temperature Range in LA and NYC
     </div>
-    
-	
+    <div class="legend">
+        <IgbLegend
+        Name="Legend"
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
+        </IgbLegend>
+
+    </div>
+
     <div class="container vertical fill">
         <IgbDataChart
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false">
             <IgbCategoryXAxis
-            Interval="1"
-            DataSource="TemperatureRangeData"
-            Label="Month"
             Name="xAxis"
-            @ref="xAxis">
+            @ref="xAxis"
+            Label="Month"
+            Interval="1"
+            DataSource="TemperatureRangeData">
             </IgbCategoryXAxis>
+
             <IgbNumericYAxis
-            Title="Temperature (in Celsius)"
-            TitleAngle="-90"
-            TitleLeftMargin="10"
             Name="yAxis"
-            @ref="yAxis">
+            @ref="yAxis"
+            Title="Temperature (in Celsius)"
+            TitleAngle="90"
+            TitleLeftMargin="10">
             </IgbNumericYAxis>
+
             <IgbRangeAreaSeries
+            Name="RangeAreaSeries1"
+            @ref="rangeAreaSeries1"
             XAxisName="xAxis"
             YAxisName="yAxis"
+            Title="Los Angeles"
             LowMemberPath="LowLA"
             HighMemberPath="HighLA"
-            DataSource="TemperatureRangeData"
-            Title="Los Angeles"
-            Name="RangeAreaSeries1"
-            @ref="rangeAreaSeries1">
+            ShowDefaultTooltip="false"
+            DataSource="TemperatureRangeData">
             </IgbRangeAreaSeries>
+
             <IgbRangeAreaSeries
+            Name="RangeAreaSeries2"
+            @ref="rangeAreaSeries2"
             XAxisName="xAxis"
             YAxisName="yAxis"
             Title="New York"
             LowMemberPath="LowNY"
             HighMemberPath="HighNY"
-            DataSource="TemperatureRangeData"
-            Name="RangeAreaSeries2"
-            @ref="rangeAreaSeries2">
+            ShowDefaultTooltip="false"
+            DataSource="TemperatureRangeData">
             </IgbRangeAreaSeries>
+
+            <IgbDataToolTipLayer
+            Name="DataToolTipLayer"
+            @ref="dataToolTipLayer">
+            </IgbDataToolTipLayer>
+
         </IgbDataChart>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-    }
-
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var chart = this.chart;
-		var xAxis = this.xAxis;
-		var yAxis = this.yAxis;
-		var rangeAreaSeries1 = this.rangeAreaSeries1;
-		var rangeAreaSeries2 = this.rangeAreaSeries2;
+        var legend = this.legend;
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var rangeAreaSeries1 = this.rangeAreaSeries1;
+        var rangeAreaSeries2 = this.rangeAreaSeries2;
+        var dataToolTipLayer = this.dataToolTipLayer;
 
         this.BindElements = () => {
+            chart.Legend = this.legend;
         };
         this.BindElements();
-	}
 
-	private IgbDataChart chart;
-	private IgbCategoryXAxis xAxis;
-	private IgbNumericYAxis yAxis;
-	private IgbRangeAreaSeries rangeAreaSeries1;
-	private IgbRangeAreaSeries rangeAreaSeries2;
+    }
 
+    private IgbLegend legend;
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbRangeAreaSeries rangeAreaSeries1;
+    private IgbRangeAreaSeries rangeAreaSeries2;
+    private IgbDataToolTipLayer dataToolTipLayer;
 
     private TemperatureRangeData _temperatureRangeData = null;
     public TemperatureRangeData TemperatureRangeData
@@ -87,10 +105,10 @@
         {
             if (_temperatureRangeData == null)
             {
-                _temperatureRangeData = new TemperatureRangeData(); 
+                _temperatureRangeData = new TemperatureRangeData();
             }
             return _temperatureRangeData;
         }
     }
-    
+
 }

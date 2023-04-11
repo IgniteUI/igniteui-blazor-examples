@@ -1,5 +1,5 @@
 ﻿@using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
     <IgbDateTimeInput @ref="DateTimeInputRef" MinValue="@MinDate" MaxValue="@MaxDate">
@@ -17,7 +17,6 @@
 
     protected async override Task OnAfterRenderAsync(bool firstRender)
     {
-        await base.OnAfterRenderAsync(firstRender);
         if (firstRender && RegisterIconRef != null)
         {
             await RegisterIconRef.EnsureReady();
@@ -26,7 +25,7 @@
         }
     }
 
-    public async void OnClear()
+    public async Task OnClear()
     {
         await DateTimeInputRef?.ClearAsync();
     }

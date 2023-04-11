@@ -1,11 +1,9 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	    <div class="options vertical">
+    <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="DataChart"
         IsHorizontal="true"
         IsWrappingEnabled="true"
@@ -13,92 +11,94 @@
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="ShouldConsiderAutoRotationForInitialLabels"
+            Name="ShouldConsiderAutoRotationForInitialLabels"
+            @ref="shouldConsiderAutoRotationForInitialLabels"
             Label="Rotate Labels?"
             ShouldOverrideDefaultEditor="true"
-            PrimitiveValue="true"
-            Name="ShouldConsiderAutoRotationForInitialLabels"
-            @ref="shouldConsiderAutoRotationForInitialLabels">
+            PrimitiveValue="true">
             </IgbPropertyEditorPropertyDescription>
+
             <IgbPropertyEditorPropertyDescription
-            DropDownValues="@(new string[] { "None", "SizeChanging", "SizeChangingAndZoom" })"
-            PrimitiveValue="@("SizeChangingAndZoom")"
             PropertyPath="AutoMarginAndAngleUpdateMode"
-            Label="AutoMarginAndAngleUpdateMode:"
-            ValueType="PropertyEditorValueType.EnumValue"
-            ShouldOverrideDefaultEditor="true"
-            DropDownNames="@(new string[] { "None", "SizeChanging", "SizeChangingAndZoom" })"
             Name="AutoMarginAndAngleUpdateMode"
-            @ref="autoMarginAndAngleUpdateMode">
+            @ref="autoMarginAndAngleUpdateMode"
+            Label="AutoMarginAndAngleUpdateMode: "
+            ShouldOverrideDefaultEditor="true"
+            ValueType="PropertyEditorValueType.EnumValue"
+            DropDownNames="@(new string[] { "None", "SizeChanging", "SizeChangingAndZoom" })"
+            DropDownValues="@(new string[] { "None", "SizeChanging", "SizeChangingAndZoom" })"
+            PrimitiveValue="@("SizeChangingAndZoom")">
             </IgbPropertyEditorPropertyDescription>
+
         </IgbPropertyEditorPanel>
+
     </div>
-	
-	
-	
+
     <div class="container vertical fill">
         <IgbDataChart
+        Name="chart"
+        @ref="chart"
         IsHorizontalZoomEnabled="true"
         IsVerticalZoomEnabled="true"
-        ShouldAutoExpandMarginForInitialLabels="true"
-        ShouldConsiderAutoRotationForInitialLabels="true"
         AutoMarginAndAngleUpdateMode="AutoMarginsAndAngleUpdateMode.SizeChangingAndZoom"
-        Name="chart"
-        @ref="chart">
+        ShouldConsiderAutoRotationForInitialLabels="true"
+        ShouldAutoExpandMarginForInitialLabels="true">
             <IgbCategoryXAxis
-            DataSource="TemperatureAverageDataLongLabels"
-            UseEnhancedIntervalManagement="true"
-            EnhancedIntervalPreferMoreCategoryLabels="true"
-            Label="Month"
             Name="xAxis"
-            @ref="xAxis">
+            @ref="xAxis"
+            DataSource="TemperatureAverageDataLongLabels"
+            EnhancedIntervalPreferMoreCategoryLabels="true"
+            UseEnhancedIntervalManagement="true"
+            Label="Month">
             </IgbCategoryXAxis>
+
             <IgbNumericYAxis
             Name="yAxis"
             @ref="yAxis">
             </IgbNumericYAxis>
+
             <IgbColumnSeries
+            Name="colSeries1"
+            @ref="colSeries1"
             XAxisName="xAxis"
             YAxisName="yAxis"
-            ValueMemberPath="Temperature"
             DataSource="TemperatureAverageDataLongLabels"
-            Name="colSeries1"
-            @ref="colSeries1">
+            ValueMemberPath="Temperature">
             </IgbColumnSeries>
+
         </IgbDataChart>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-    }
-
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var propertyEditorPanel1 = this.propertyEditorPanel1;
-		var shouldConsiderAutoRotationForInitialLabels = this.shouldConsiderAutoRotationForInitialLabels;
-		var autoMarginAndAngleUpdateMode = this.autoMarginAndAngleUpdateMode;
-		var chart = this.chart;
-		var xAxis = this.xAxis;
-		var yAxis = this.yAxis;
-		var colSeries1 = this.colSeries1;
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var shouldConsiderAutoRotationForInitialLabels = this.shouldConsiderAutoRotationForInitialLabels;
+        var autoMarginAndAngleUpdateMode = this.autoMarginAndAngleUpdateMode;
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var colSeries1 = this.colSeries1;
 
         this.BindElements = () => {
             propertyEditorPanel1.Target = this.chart;
         };
         this.BindElements();
-	}
 
-	private IgbPropertyEditorPanel propertyEditorPanel1;
-	private IgbPropertyEditorPropertyDescription shouldConsiderAutoRotationForInitialLabels;
-	private IgbPropertyEditorPropertyDescription autoMarginAndAngleUpdateMode;
-	private IgbDataChart chart;
-	private IgbCategoryXAxis xAxis;
-	private IgbNumericYAxis yAxis;
-	private IgbColumnSeries colSeries1;
+    }
 
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription shouldConsiderAutoRotationForInitialLabels;
+    private IgbPropertyEditorPropertyDescription autoMarginAndAngleUpdateMode;
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbColumnSeries colSeries1;
 
     private TemperatureAverageDataLongLabels _temperatureAverageDataLongLabels = null;
     public TemperatureAverageDataLongLabels TemperatureAverageDataLongLabels
@@ -107,10 +107,10 @@
         {
             if (_temperatureAverageDataLongLabels == null)
             {
-                _temperatureAverageDataLongLabels = new TemperatureAverageDataLongLabels(); 
+                _temperatureAverageDataLongLabels = new TemperatureAverageDataLongLabels();
             }
             return _temperatureAverageDataLongLabels;
         }
     }
-    
+
 }

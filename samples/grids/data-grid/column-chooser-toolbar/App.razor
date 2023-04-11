@@ -1,5 +1,5 @@
 ﻿@using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor;
+;
 @inject IJSRuntime JSRuntime;
 
 <div class="container vertical">
@@ -44,16 +44,10 @@
         }
     }
 
-    private List<Sale> Data;
+    private List<SaleInfo> Data;
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
-        IgbDataGridModule.Register(IgniteUIBlazor);
-        IgbDataGridToolbarModule.Register(IgniteUIBlazor);
-        IgbColumnChooserModule.Register(IgniteUIBlazor);
-        IgbGridColumnOptionsModule.Register(IgniteUIBlazor);
-
-        Data = SalesData.Create(100);
+        Data = SalesDataService.Create(100);
     }
 }

@@ -1,62 +1,59 @@
-@using IgniteUI.Blazor.Controls;
-
-@inject IIgniteUIBlazor IgniteUIBlazor
-@inject IJSRuntime JS
+@using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+        Name="PropertyEditor"
+        @ref="propertyEditor"
+
         DescriptionType="WebGrid"
         IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="PropertyEditor"
-        @ref="propertyEditor">
+        IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="DisplayDensity"
             Name="DisplayDensityEditor"
             @ref="displayDensityEditor">
             </IgbPropertyEditorPropertyDescription>
-            
+
         </IgbPropertyEditorPanel>
-        
+
     </div>
 
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Id="grid"
         Data="AthletesData"
-        DisplayDensity="DisplayDensity.Cosy"
         Name="grid"
-        @ref="grid">
+        @ref="grid"
+        Id="grid"
+        DisplayDensity="DisplayDensity.Cosy">
             <IgbPaginator
-            PerPage="15"
-            SelectOptions="@(new double[] { 5, 15, 20, 50 })"
             Name="paginator"
             @ref="paginator"
-            DisplayDensity="DisplayDensity.Cosy">
+            PerPage="15"
+            DisplayDensity="DisplayDensity.Cosy"
+            SelectOptions="@(new double[] { 5, 15, 20, 50 })">
                 <IgbPaginatorResourceStrings
                 Igx_paginator_label="Records per page">
                 </IgbPaginatorResourceStrings>
-                
+
             </IgbPaginator>
-            
+
             <IgbColumn
             Field="Id"
             Header="Rank"
             Sortable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Name">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="BeatsPerMinute"
             DataType="GridColumnDataType.Number">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="TopSpeed"
             DataType="GridColumnDataType.Number"
@@ -64,19 +61,13 @@
             Name="column1"
             @ref="column1">
             </IgbColumn>
-            
-        </IgbGrid>
-        
-    </div>
 
+        </IgbGrid>
+
+    </div>
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-        await Task.Delay(1);
-    }
 
     private Action BindElements { get; set; }
 
@@ -93,11 +84,7 @@
         };
         this.BindElements();
 
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
     private IgbPaginator paginator;
@@ -126,10 +113,10 @@
         {
             if (_athletesData == null)
             {
-                _athletesData = new AthletesData(); 
+                _athletesData = new AthletesData();
             }
             return _athletesData;
         }
     }
-    
+
 }

@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 public class SparklineMixedDataItem
 {
-    public string Label{ get; set; }
-    public double Value{ get; set; }
+    public string Label { get; set; }
+    public double Value { get; set; }
 }
+
 public class SparklineMixedData
     : List<SparklineMixedDataItem>
 {

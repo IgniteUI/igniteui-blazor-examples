@@ -122,7 +122,6 @@ namespace Infragistics.Samples
 
                         if (connectionsCount > connectionsMax)
                         {
-                            //Console.WriteLine("Count: " + connectionsCount + ", Origin Name: " + origin.Name);
                             break;
                         }
                         if (flightsCount > flightsLimit)
@@ -141,7 +140,6 @@ namespace Infragistics.Samples
             }
 
             Airports = AirportsLookup.Values.ToList();
-            Console.WriteLine("Cities= " + cities.Count + " Airports=" + Airports.Count + " Flights=" + Flights.Count);
         }
 
         public static void AddAirport(WorldCity city)

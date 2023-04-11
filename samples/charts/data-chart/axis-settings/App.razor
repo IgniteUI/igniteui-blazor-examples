@@ -1,6 +1,5 @@
 ﻿@using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor;
-@inject IJSRuntime JSRuntime;
+
 
 <div class="container vertical">
     <div class="options horizontal">
@@ -87,14 +86,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
-
-        IgbDataChartCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
-        IgbNumberAbbreviatorModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-        IgbLegendModule.Register(IgniteUIBlazor);
-
         this.Data = EnergyProductionData.Generate();
     }
 }

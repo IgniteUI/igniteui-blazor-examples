@@ -8,4 +8,3 @@ igRegisterScript("WebGridDiscontinuedCellTemplate", (ctx) => {
     }
 }, false);
 
-

@@ -1,95 +1,94 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Wind Speed vs Boat Speed
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbDataChart
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false">
             <IgbNumericAngleAxis
-            StartAngleOffset="-90"
-            MinimumValue="0"
-            MaximumValue="360"
-            Interval="30"
             Name="angleAxis"
-            @ref="angleAxis">
+            @ref="angleAxis"
+            StartAngleOffset="-90"
+            Interval="30"
+            MinimumValue="0"
+            MaximumValue="360">
             </IgbNumericAngleAxis>
+
             <IgbNumericRadiusAxis
+            Name="radiusAxis"
+            @ref="radiusAxis"
             RadiusExtentScale="0.9"
             InnerRadiusExtentScale="0.1"
-            MinimumValue="0"
-            MaximumValue="100"
             Interval="25"
-            Name="radiusAxis"
-            @ref="radiusAxis">
+            MinimumValue="0"
+            MaximumValue="100">
             </IgbNumericRadiusAxis>
+
             <IgbPolarSplineAreaSeries
-            AngleMemberPath="Direction"
-            RadiusMemberPath="WindSpeed"
+            Name="PolarSplineAreaSeries1"
+            @ref="polarSplineAreaSeries1"
+            DataSource="BoatSailingData"
             AngleAxisName="angleAxis"
             RadiusAxisName="radiusAxis"
-            MarkerType="MarkerType.Circle"
-            DataSource="BoatSailingData"
-            Thickness="1"
+            AngleMemberPath="Direction"
+            RadiusMemberPath="WindSpeed"
+            ShowDefaultTooltip="false"
             AreaFillOpacity="0.8"
-            ShowDefaultTooltip="true"
+            Thickness="1"
             Title="Wind Speed"
-            Name="PolarSplineAreaSeries1"
-            @ref="polarSplineAreaSeries1">
+            MarkerType="MarkerType.Circle">
             </IgbPolarSplineAreaSeries>
+
             <IgbPolarSplineAreaSeries
+            Name="PolarSplineAreaSeries2"
+            @ref="polarSplineAreaSeries2"
             DataSource="BoatSailingData"
             AngleAxisName="angleAxis"
             RadiusAxisName="radiusAxis"
             AngleMemberPath="Direction"
             RadiusMemberPath="BoatSpeed"
-            ShowDefaultTooltip="true"
+            ShowDefaultTooltip="false"
             AreaFillOpacity="0.8"
             Thickness="1"
             Title="Boat Speed"
-            MarkerType="MarkerType.Circle"
-            Name="PolarSplineAreaSeries2"
-            @ref="polarSplineAreaSeries2">
+            MarkerType="MarkerType.Circle">
             </IgbPolarSplineAreaSeries>
+
+            <IgbDataToolTipLayer
+            Name="DataToolTipLayer"
+            @ref="dataToolTipLayer">
+            </IgbDataToolTipLayer>
+
         </IgbDataChart>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        var chart = this.chart;
+        var angleAxis = this.angleAxis;
+        var radiusAxis = this.radiusAxis;
+        var polarSplineAreaSeries1 = this.polarSplineAreaSeries1;
+        var polarSplineAreaSeries2 = this.polarSplineAreaSeries2;
+        var dataToolTipLayer = this.dataToolTipLayer;
+
     }
 
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var chart = this.chart;
-		var angleAxis = this.angleAxis;
-		var radiusAxis = this.radiusAxis;
-		var polarSplineAreaSeries1 = this.polarSplineAreaSeries1;
-		var polarSplineAreaSeries2 = this.polarSplineAreaSeries2;
-
-        this.BindElements = () => {
-        };
-        this.BindElements();
-	}
-
-	private IgbDataChart chart;
-	private IgbNumericAngleAxis angleAxis;
-	private IgbNumericRadiusAxis radiusAxis;
-	private IgbPolarSplineAreaSeries polarSplineAreaSeries1;
-	private IgbPolarSplineAreaSeries polarSplineAreaSeries2;
-
+    private IgbDataChart chart;
+    private IgbNumericAngleAxis angleAxis;
+    private IgbNumericRadiusAxis radiusAxis;
+    private IgbPolarSplineAreaSeries polarSplineAreaSeries1;
+    private IgbPolarSplineAreaSeries polarSplineAreaSeries2;
+    private IgbDataToolTipLayer dataToolTipLayer;
 
     private BoatSailingData _boatSailingData = null;
     public BoatSailingData BoatSailingData
@@ -98,10 +97,10 @@
         {
             if (_boatSailingData == null)
             {
-                _boatSailingData = new BoatSailingData(); 
+                _boatSailingData = new BoatSailingData();
             }
             return _boatSailingData;
         }
     }
-    
+
 }

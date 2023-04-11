@@ -1,6 +1,5 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor;
-@inject IJSRuntime JSRuntime;
+
 
 <div class="container vertical">
     <div class="container vertical">
@@ -24,12 +23,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
-
-        IgbDataChartCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
-
         // initializing data
         var data = new List<MarkerTemplateDataPoint>();
         var values = new int[] { 80, 50, 75, 100, 80, 40, 80, 75, 80, 85, 50, 85, 50, 75, 100, 80, 40, 80, 75, 80, 85, 50, 85, 50, 75, 100 };

@@ -1,6 +1,6 @@
 ﻿@inject IJSRuntime JSRuntime;
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
     <div class="container vertical">
@@ -25,158 +25,168 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
-
-        IgbDockManagerModule.Register(IgniteUIBlazor);
-
         Layout = new IgbDockManagerLayout();
         Layout.RootPane = new IgbSplitPane();
         Layout.RootPane.PaneType = DockManagerPaneType.SplitPane;
         Layout.RootPane.Orientation = SplitPaneOrientation.Horizontal;
-        Layout.RootPane.Panes = new IgbDockManagerPaneCollection(null, null)
-        {
-            new IgbSplitPane()
+
+        IgbSplitPane rootsplitPane1 = new IgbSplitPane
             {
                 PaneType = DockManagerPaneType.SplitPane,
                 Orientation = SplitPaneOrientation.Vertical,
-                Panes = new IgbDockManagerPaneCollection(null, null)
-                {
-                    new IgbContentPane
-                    {
-                        PaneType = DockManagerPaneType.ContentPane,
-                        Header = "Content Pane 1",
-                        ContentId = "content1"
-                    },
-                    new IgbContentPane
-                    {
-                        PaneType = DockManagerPaneType.ContentPane,
-                        Header = "Unpinned Pane 1",
-                        ContentId = "content2",
-                        IsPinned = false
-                    }
-                }
-            },
-            new IgbSplitPane()
+            };
+
+        IgbContentPane contentPane1 = new IgbContentPane
+            {
+                PaneType = DockManagerPaneType.ContentPane,
+                Header = "Content Pane 1",
+                ContentId = "content1"
+            };
+
+        IgbContentPane contentPane2 = new IgbContentPane
+            {
+                PaneType = DockManagerPaneType.ContentPane,
+                Header = "Unpinned Pane 1",
+                ContentId = "content2",
+                IsPinned = false
+            };
+
+        IgbSplitPane splitPane2 = new IgbSplitPane
             {
                 PaneType = DockManagerPaneType.SplitPane,
                 Orientation = SplitPaneOrientation.Vertical,
                 Size = 200,
-                Panes = new IgbDockManagerPaneCollection(null, null)
-                {
-                    new IgbDocumentHost
-                    {
-                        PaneType = DockManagerPaneType.DocumentHost,
-                        Size = 200,
-                        RootPane = new IgbSplitPane
-                        {
-                            PaneType = DockManagerPaneType.SplitPane,
-                            Orientation = SplitPaneOrientation.Horizontal,
-                            Panes = new IgbDockManagerPaneCollection(null, null)
-                            {
-                                new IgbTabGroupPane
-                                {
-                                    PaneType = DockManagerPaneType.TabGroupPane,
-                                    Panes = new IgbContentPaneCollection(null, null)
-                                    {
-                                        new IgbContentPane
-                                        {
-                                            PaneType = DockManagerPaneType.ContentPane,
-                                            Header = "Document 1",
-                                            ContentId = "content3"
-                                        },
-                                        new IgbContentPane
-                                        {
-                                            PaneType = DockManagerPaneType.ContentPane,
-                                            Header = "Document 2",
-                                            ContentId = "content4"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    new IgbContentPane
-                    {
-                        PaneType = DockManagerPaneType.ContentPane,
-                        ContentId = "content5",
-                        Header = "Unpinned Pane 2",
-                        IsPinned = false
-                    }
-                }
-            },
-            new IgbSplitPane()
+            };
+
+        IgbDocumentHost documentHost1 = new IgbDocumentHost
             {
-                PaneType = DockManagerPaneType.SplitPane,
-                Orientation = SplitPaneOrientation.Vertical,
-                Panes = new IgbDockManagerPaneCollection(null, null)
-                {
-                    new IgbTabGroupPane
-                    {
-                        PaneType = DockManagerPaneType.TabGroupPane,
-                        Size = 200,
-                        Panes = new IgbContentPaneCollection(null, null)
-                        {
-                            new IgbContentPane
-                            {
-                                PaneType = DockManagerPaneType.ContentPane,
-                                ContentId = "content6",
-                                Header = "Tab 1"
-                            },
-                            new IgbContentPane
-                            {
-                                PaneType = DockManagerPaneType.ContentPane,
-                                ContentId = "content7",
-                                Header = "Tab 2"
-                            },
-                            new IgbContentPane
-                            {
-                                PaneType = DockManagerPaneType.ContentPane,
-                                ContentId = "content8",
-                                Header = "Tab 3"
-                            },
-                            new IgbContentPane
-                            {
-                                PaneType = DockManagerPaneType.ContentPane,
-                                ContentId = "content9",
-                                Header = "Tab 4"
-                            },
-                            new IgbContentPane
-                            {
-                                PaneType = DockManagerPaneType.ContentPane,
-                                ContentId = "content10",
-                                Header = "Tab 5"
-                            }
-                        }
-                    },
-                    new IgbContentPane
-                    {
-                        PaneType = DockManagerPaneType.ContentPane,
-                        ContentId = "content11",
-                        Header = "Content Pane 2"
-                    }
-                }
-            }
-        };
-        Layout.FloatingPanes = new IgbSplitPaneCollection(null, null)
-        {
-            new IgbSplitPane
+                PaneType = DockManagerPaneType.DocumentHost,
+                Size = 200,
+            };
+
+        IgbSplitPane documentHost1RootSplitPane = new IgbSplitPane
             {
                 PaneType = DockManagerPaneType.SplitPane,
                 Orientation = SplitPaneOrientation.Horizontal,
-                FloatingHeight = 150,
-                FloatingWidth = 250,
-                FloatingLocation = new IgbDockManagerPoint { X = 300, Y = 200 },
-                Panes = new IgbDockManagerPaneCollection(null, null)
-                {
-                    new IgbContentPane
-                    {
-                        PaneType = DockManagerPaneType.ContentPane,
-                        ContentId = "content12",
-                        Header = "Floating Pane"
-                    }
-                }
-            }
+            };
+
+        IgbTabGroupPane tabGroupPane1 = new IgbTabGroupPane
+            {
+                PaneType = DockManagerPaneType.TabGroupPane,
+
+            };
+
+        IgbContentPane documentContentPane1 = new IgbContentPane
+            {
+                PaneType = DockManagerPaneType.ContentPane,
+                Header = "Document 1",
+                ContentId = "content3"
+            };
+
+        IgbContentPane documentContentPane2 = new IgbContentPane
+            {
+                PaneType = DockManagerPaneType.ContentPane,
+                Header = "Document 2",
+                ContentId = "content4"
+            };
+
+        IgbContentPane contentPane5 = new IgbContentPane
+            {
+                PaneType = DockManagerPaneType.ContentPane,
+                ContentId = "content5",
+                Header = "Unpinned Pane 2",
+                IsPinned = false
+            };
+
+
+        IgbSplitPane rootsplitPane2 = new IgbSplitPane
+        {
+            PaneType = DockManagerPaneType.SplitPane,
+            Orientation = SplitPaneOrientation.Vertical,
+
         };
+
+        IgbTabGroupPane tabGroupPane2 = new IgbTabGroupPane
+            {
+                PaneType = DockManagerPaneType.TabGroupPane,
+                Size = 200,
+
+            };
+
+        IgbContentPane tabGroupContentPane1 = new IgbContentPane
+            {
+                PaneType = DockManagerPaneType.ContentPane,
+                ContentId = "content6",
+                Header = "Tab 1"
+            };
+        IgbContentPane tabGroupContentPane2 = new IgbContentPane
+            {
+                PaneType = DockManagerPaneType.ContentPane,
+                ContentId = "content7",
+                Header = "Tab 2"
+            };
+        IgbContentPane tabGroupContentPane3 = new IgbContentPane
+            {
+                PaneType = DockManagerPaneType.ContentPane,
+                ContentId = "content8",
+                Header = "Tab 3"
+            };
+        IgbContentPane tabGroupContentPane4 = new IgbContentPane
+            {
+                PaneType = DockManagerPaneType.ContentPane,
+                ContentId = "content9",
+                Header = "Tab 4"
+            };
+        IgbContentPane tabGroupContentPane5 = new IgbContentPane
+            {
+                PaneType = DockManagerPaneType.ContentPane,
+                ContentId = "content10",
+                Header = "Tab 5"
+            };
+
+        IgbContentPane contentPane6 = new IgbContentPane
+        {
+            PaneType = DockManagerPaneType.ContentPane,
+            ContentId = "content11",
+            Header = "Content Pane 2"
+        };
+
+        IgbSplitPane floatingSplitPane = new IgbSplitPane
+        {
+            PaneType = DockManagerPaneType.SplitPane,
+            Orientation = SplitPaneOrientation.Horizontal,
+            FloatingHeight = 150,
+            FloatingWidth = 250,
+            FloatingLocation = new IgbDockManagerPoint { X = 300, Y = 200 },
+
+        };
+        IgbContentPane contentPane7 = new IgbContentPane
+        {
+            PaneType = DockManagerPaneType.ContentPane,
+            ContentId = "content12",
+            Header = "Floating Pane"
+        };
+
+
+        rootsplitPane1.Panes.Add(contentPane1);
+        rootsplitPane1.Panes.Add(contentPane2);
+        splitPane2.Panes.Add(documentHost1);
+        splitPane2.Panes.Add(contentPane5);
+        documentHost1.RootPane = documentHost1RootSplitPane;
+        documentHost1RootSplitPane.Panes.Add(tabGroupPane1);
+        tabGroupPane1.Panes.Add(documentContentPane1);
+        tabGroupPane1.Panes.Add(documentContentPane2);
+        rootsplitPane2.Panes.Add(tabGroupPane2);
+        tabGroupPane2.Panes.Add(tabGroupContentPane1);
+        tabGroupPane2.Panes.Add(tabGroupContentPane2);
+        tabGroupPane2.Panes.Add(tabGroupContentPane3);
+        tabGroupPane2.Panes.Add(tabGroupContentPane4);
+        tabGroupPane2.Panes.Add(tabGroupContentPane5);
+        rootsplitPane2.Panes.Add(contentPane6);
+        floatingSplitPane.Panes.Add(contentPane7);
+        Layout.RootPane.Panes.Add(rootsplitPane1);
+        Layout.RootPane.Panes.Add(rootsplitPane2);
+        Layout.FloatingPanes.Add(floatingSplitPane);
     }
 
 }

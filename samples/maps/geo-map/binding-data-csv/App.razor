@@ -1,5 +1,5 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 @inject HttpClient Http
 
 <div class="container vertical">
@@ -25,9 +25,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        IgbGeographicMapModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-
         string url = "https://static.infragistics.com/xplatform/data/UsaCitiesPopulation.csv";
         string csv = await Http.GetStringAsync(url);
         var csvLines = csv.Split(Environment.NewLine);
@@ -47,15 +44,10 @@
         }
 
         this.Data = dataItems;
-
-        Console.WriteLine("loaded data points: " + csvLines.Length);
-        await Task.Delay(1);
     }
 
     protected override void OnAfterRender(bool firstRender)
     {
-        base.OnAfterRender(firstRender);
-
         if (MapRef != null && !firstRender)
         {
             var geoRegion = new Rect(-130, 15, new Size(65, 35));

@@ -1,6 +1,5 @@
-@using IgniteUI.Blazor.Controls;
+@using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
 <div class="container vertical">
@@ -9,19 +8,19 @@
         <IgbGrid
         AutoGenerate="false"
         Data="FinancialDataAll"
-        Moving="true"
         PrimaryKey="ProductID"
+        Moving="true"
         Name="grid"
         @ref="grid">
             <IgbColumn
             Field="Category"
-            Width="200px"
             Pinned="true"
+            Width="200px"
             HeaderTemplateScript="WebGridPinHeaderTemplate"
             Name="column1"
             @ref="column1">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Type"
             Pinned="true"
@@ -29,81 +28,73 @@
             Name="column2"
             @ref="column2">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Price"
-            HeaderTemplateScript="WebGridPinHeaderTemplate"
             DataType="GridColumnDataType.Currency"
             PipeArgs="ColumnPipeArgs1"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
             Name="column3"
             @ref="column3">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Buy"
-            HeaderTemplateScript="WebGridPinHeaderTemplate"
             DataType="GridColumnDataType.Currency"
             PipeArgs="ColumnPipeArgs2"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
             Name="column4"
             @ref="column4">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Sell"
-            HeaderTemplateScript="WebGridPinHeaderTemplate"
             DataType="GridColumnDataType.Currency"
             PipeArgs="ColumnPipeArgs3"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
             Name="column5"
             @ref="column5">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Spread"
             HeaderTemplateScript="WebGridPinHeaderTemplate"
             Name="column6"
             @ref="column6">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Change"
-            HeaderTemplateScript="WebGridPinHeaderTemplate"
             BodyTemplateScript="WebGridCurrencyCellTemplate"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
             Name="column7"
             @ref="column7">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="ChangePercent"
-            HeaderTemplateScript="WebGridPinHeaderTemplate"
             DataType="GridColumnDataType.Number"
             BodyTemplateScript="WebGridCurrencyCellTemplate"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
             Name="column8"
             @ref="column8">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="AnnualChange"
-            HeaderTemplateScript="WebGridPinHeaderTemplate"
             DataType="GridColumnDataType.Number"
             BodyTemplateScript="WebGridCurrencyCellTemplate"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
             Name="column9"
             @ref="column9">
             </IgbColumn>
-            
-        </IgbGrid>
-        
-    </div>
 
+        </IgbGrid>
+
+    </div>
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-        await Task.Delay(1);
-    }
-
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -118,15 +109,7 @@
         var column8 = this.column8;
         var column9 = this.column9;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
-
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
     private IgbColumn column1;
@@ -140,8 +123,8 @@
             if (this._columnPipeArgs1 == null)
             {
                 var columnPipeArgs1 = new IgbColumnPipeArgs();
-                columnPipeArgs1.DigitsInfo = "1.2-2";
                 columnPipeArgs1.CurrencyCode = "USD";
+                columnPipeArgs1.DigitsInfo = "1.2-2";
                 this._columnPipeArgs1 = columnPipeArgs1;
             }
             return this._columnPipeArgs1;
@@ -191,10 +174,10 @@
         {
             if (_financialDataAll == null)
             {
-                _financialDataAll = new FinancialDataAll(); 
+                _financialDataAll = new FinancialDataAll();
             }
             return _financialDataAll;
         }
     }
-    
+
 }

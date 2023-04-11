@@ -1,12 +1,9 @@
-@using IgniteUI.Blazor.Controls;
-
-@inject IIgniteUIBlazor IgniteUIBlazor
-@inject IJSRuntime JS
+@using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="WebGrid"
         IsHorizontal="true"
         IsWrappingEnabled="false"
@@ -14,90 +11,84 @@
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="Pinning.Rows"
-            Label="Row Pinning toggle"
             Name="rowPinningEditor"
-            @ref="rowPinningEditor">
+            @ref="rowPinningEditor"
+            Label="Row Pinning toggle">
             </IgbPropertyEditorPropertyDescription>
-            
+
         </IgbPropertyEditorPanel>
-        
+
     </div>
 
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
+        Name="grid"
+        @ref="grid"
         Data="CustomersData"
         PrimaryKey="ID"
-        RowEditable="true"
         CellSelection="GridSelectionMode.None"
-        Name="grid"
-        @ref="grid">
+        RowEditable="true">
+            <IgbPinningConfig
+            Rows="RowPinningPosition.Top">
+            </IgbPinningConfig>
+
+            <IgbColumn
+            Field="CompanyName"
+            Header="Company"
+            Width="300px">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="ContactName"
+            Header="Name">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="ContactTitle"
+            Header="Title">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Address"
+            Header="Address">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="City"
+            Header="City">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="PostalCode"
+            Header="Postal Code">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Phone"
+            Header="Phone">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Fax"
+            Header="Fax">
+            </IgbColumn>
+
             <IgbActionStrip
             Name="actionStrip"
             @ref="actionStrip">
                 <IgbGridPinningActions
                 >
                 </IgbGridPinningActions>
-                
-            </IgbActionStrip>
-            
-            <IgbPinningConfig
-            Rows="RowPinningPosition.Top">
-            </IgbPinningConfig>
-            
-            <IgbColumn
-            Field="CompanyName"
-            Header="Company"
-            Width="300px">
-            </IgbColumn>
-            
-            <IgbColumn
-            Field="ContactName"
-            Header="Name">
-            </IgbColumn>
-            
-            <IgbColumn
-            Field="ContactTitle"
-            Header="Title">
-            </IgbColumn>
-            
-            <IgbColumn
-            Field="Address"
-            Header="Address">
-            </IgbColumn>
-            
-            <IgbColumn
-            Field="City"
-            Header="City">
-            </IgbColumn>
-            
-            <IgbColumn
-            Field="PostalCode"
-            Header="Postal Code">
-            </IgbColumn>
-            
-            <IgbColumn
-            Field="Phone"
-            Header="Phone">
-            </IgbColumn>
-            
-            <IgbColumn
-            Field="Fax"
-            Header="Fax">
-            </IgbColumn>
-            
-        </IgbGrid>
-        
-    </div>
 
+            </IgbActionStrip>
+
+        </IgbGrid>
+
+    </div>
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-        await Task.Delay(1);
-    }
 
     private Action BindElements { get; set; }
 
@@ -113,11 +104,7 @@
         };
         this.BindElements();
 
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbPropertyEditorPanel propertyEditorPanel1;
     private IgbPropertyEditorPropertyDescription rowPinningEditor;
@@ -131,10 +118,10 @@
         {
             if (_customersData == null)
             {
-                _customersData = new CustomersData(); 
+                _customersData = new CustomersData();
             }
             return _customersData;
         }
     }
-    
+
 }

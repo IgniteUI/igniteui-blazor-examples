@@ -1,11 +1,9 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	    <div class="options vertical">
+    <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="Treemap"
         IsHorizontal="true"
         IsWrappingEnabled="true"
@@ -13,90 +11,91 @@
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="LayoutType"
-            Label="Layout"
-            PrimitiveValue="@("Squarified")"
             Name="LayoutTypeEditor"
-            @ref="layoutTypeEditor">
+            @ref="layoutTypeEditor"
+            PrimitiveValue="@("Squarified")"
+            Label="Layout">
             </IgbPropertyEditorPropertyDescription>
+
             <IgbPropertyEditorPropertyDescription
             PropertyPath="LayoutOrientation"
-            PrimitiveValue="@("Vertical")"
-            Label="Orientation"
             Name="LayoutOrientationEditor"
-            @ref="layoutOrientationEditor">
+            @ref="layoutOrientationEditor"
+            PrimitiveValue="@("Vertical")"
+            Label="Orientation">
             </IgbPropertyEditorPropertyDescription>
+
             <IgbPropertyEditorPropertyDescription
             PropertyPath="HeaderDisplayMode"
-            PrimitiveValue="@("Overlay")"
-            Label="Headers"
             Name="HeaderDisplayModeEditor"
-            @ref="headerDisplayModeEditor">
+            @ref="headerDisplayModeEditor"
+            PrimitiveValue="@("Overlay")"
+            Label="Headers">
             </IgbPropertyEditorPropertyDescription>
+
             <IgbPropertyEditorPropertyDescription
             PropertyPath="LabelVerticalAlignment"
-            PrimitiveValue="@("Center")"
-            Label="Labels"
             Name="LabelVerticalAlignmentEditor"
-            @ref="labelVerticalAlignmentEditor">
+            @ref="labelVerticalAlignmentEditor"
+            PrimitiveValue="@("Center")"
+            Label="Labels">
             </IgbPropertyEditorPropertyDescription>
+
         </IgbPropertyEditorPanel>
+
     </div>
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Comparing Population of Countries
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbTreemap
-        ValueMemberPath="Population"
+        Name="treemap"
+        @ref="treemap"
+        DataSource="CountyHierarchicalData"
         RootTitle="Countries"
         ParentIdMemberPath="Parent"
-        LabelMemberPath="Name"
         IdMemberPath="Name"
-        DataSource="CountyHierarchicalData"
+        LabelMemberPath="Name"
+        ValueMemberPath="Population"
         FillBrushes="#299e41 #4e62cf #5e359c"
         IsFillScaleLogarithmic="true"
         HeaderDisplayMode="TreemapHeaderDisplayMode.Overlay"
-        ParentNodeLeftPadding="0"
-        ParentNodeTopPadding="0"
-        ParentNodeRightPadding="0"
         ParentNodeBottomPadding="0"
-        Name="treemap"
-        @ref="treemap">
+        ParentNodeLeftPadding="0"
+        ParentNodeRightPadding="0"
+        ParentNodeTopPadding="0">
         </IgbTreemap>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-    }
-
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var propertyEditorPanel1 = this.propertyEditorPanel1;
-		var layoutTypeEditor = this.layoutTypeEditor;
-		var layoutOrientationEditor = this.layoutOrientationEditor;
-		var headerDisplayModeEditor = this.headerDisplayModeEditor;
-		var labelVerticalAlignmentEditor = this.labelVerticalAlignmentEditor;
-		var treemap = this.treemap;
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var layoutTypeEditor = this.layoutTypeEditor;
+        var layoutOrientationEditor = this.layoutOrientationEditor;
+        var headerDisplayModeEditor = this.headerDisplayModeEditor;
+        var labelVerticalAlignmentEditor = this.labelVerticalAlignmentEditor;
+        var treemap = this.treemap;
 
         this.BindElements = () => {
             propertyEditorPanel1.Target = this.treemap;
         };
         this.BindElements();
-	}
 
-	private IgbPropertyEditorPanel propertyEditorPanel1;
-	private IgbPropertyEditorPropertyDescription layoutTypeEditor;
-	private IgbPropertyEditorPropertyDescription layoutOrientationEditor;
-	private IgbPropertyEditorPropertyDescription headerDisplayModeEditor;
-	private IgbPropertyEditorPropertyDescription labelVerticalAlignmentEditor;
-	private IgbTreemap treemap;
+    }
 
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription layoutTypeEditor;
+    private IgbPropertyEditorPropertyDescription layoutOrientationEditor;
+    private IgbPropertyEditorPropertyDescription headerDisplayModeEditor;
+    private IgbPropertyEditorPropertyDescription labelVerticalAlignmentEditor;
+    private IgbTreemap treemap;
 
     private CountyHierarchicalData _countyHierarchicalData = null;
     public CountyHierarchicalData CountyHierarchicalData
@@ -105,10 +104,10 @@
         {
             if (_countyHierarchicalData == null)
             {
-                _countyHierarchicalData = new CountyHierarchicalData(); 
+                _countyHierarchicalData = new CountyHierarchicalData();
             }
             return _countyHierarchicalData;
         }
     }
-    
+
 }

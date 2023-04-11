@@ -1,100 +1,89 @@
-@using IgniteUI.Blazor.Controls;
-
-@inject IIgniteUIBlazor IgniteUIBlazor
-@inject IJSRuntime JS
+@using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
 
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Data="InvoicesData"
         Name="grid"
-        @ref="grid">
+        @ref="grid"
+        Data="InvoicesData">
             <IgbColumn
-            Field="OrderID"
-            Header="Order ID"
             Name="OrderID"
-            @ref="orderID">
+            @ref="orderID"
+            Field="OrderID"
+            Header="Order ID">
             </IgbColumn>
-            
-            <IgbColumn
-            Field="ShipCountry"
-            Header="Ship Country"
-            Name="ShipCountry"
-            @ref="shipCountry">
-            </IgbColumn>
-            
-            <IgbColumn
-            Field="OrderDate"
-            Header="Order Date"
-            Name="OrderDate"
-            @ref="orderDate">
-            </IgbColumn>
-            
-            <IgbColumn
-            Field="PostalCode"
-            Header="Postal Code"
-            Name="PostalCode"
-            @ref="postalCode">
-            </IgbColumn>
-            
-            <IgbColumn
-            Field="Discontinued"
-            Header="Discontinued"
-            Name="Discontinued"
-            @ref="discontinued">
-            </IgbColumn>
-            
-            <IgbColumn
-            Field="ShipName"
-            Header="Ship Name"
-            Name="ShipName"
-            @ref="shipName">
-            </IgbColumn>
-            
-            <IgbColumn
-            Field="ShipperName"
-            Header="Shipper Name"
-            Name="ShipperName"
-            @ref="shipperName">
-            </IgbColumn>
-            
-            <IgbColumn
-            Field="SalesPerson"
-            Header="Sales Person"
-            Name="SalesPerson"
-            @ref="salesPerson">
-            </IgbColumn>
-            
-            <IgbColumn
-            Field="UnitPrice"
-            Header="Unit Price"
-            Name="UnitPrice"
-            @ref="unitPrice">
-            </IgbColumn>
-            
-            <IgbColumn
-            Field="Quantity"
-            Header="Quantity"
-            Name="Quantity"
-            @ref="quantity">
-            </IgbColumn>
-            
-        </IgbGrid>
-        
-    </div>
 
+            <IgbColumn
+            Name="ShipCountry"
+            @ref="shipCountry"
+            Field="ShipCountry"
+            Header="Ship Country">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="OrderDate"
+            @ref="orderDate"
+            Field="OrderDate"
+            Header="Order Date">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="PostalCode"
+            @ref="postalCode"
+            Field="PostalCode"
+            Header="Postal Code">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="Discontinued"
+            @ref="discontinued"
+            Field="Discontinued"
+            Header="Discontinued">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="ShipName"
+            @ref="shipName"
+            Field="ShipName"
+            Header="Ship Name">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="ShipperName"
+            @ref="shipperName"
+            Field="ShipperName"
+            Header="Shipper Name">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="SalesPerson"
+            @ref="salesPerson"
+            Field="SalesPerson"
+            Header="Sales Person">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="UnitPrice"
+            @ref="unitPrice"
+            Field="UnitPrice"
+            Header="Unit Price">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="Quantity"
+            @ref="quantity"
+            Field="Quantity"
+            Header="Quantity">
+            </IgbColumn>
+
+        </IgbGrid>
+
+    </div>
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-        await Task.Delay(1);
-    }
-
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -110,15 +99,7 @@
         var unitPrice = this.unitPrice;
         var quantity = this.quantity;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
-
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
     private IgbColumn orderID;
@@ -139,10 +120,10 @@
         {
             if (_invoicesData == null)
             {
-                _invoicesData = new InvoicesData(); 
+                _invoicesData = new InvoicesData();
             }
             return _invoicesData;
         }
     }
-    
+
 }

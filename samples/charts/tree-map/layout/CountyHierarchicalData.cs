@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 public class CountyHierarchicalDataItem
 {
-    public string Code{ get; set; }
-    public string Parent{ get; set; }
-    public string Name{ get; set; }
-    public double Population{ get; set; }
+    public string Code { get; set; }
+    public string Parent { get; set; }
+    public string Name { get; set; }
+    public double Population { get; set; }
 }
+
 public class CountyHierarchicalData
     : List<CountyHierarchicalDataItem>
 {

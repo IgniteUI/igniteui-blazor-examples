@@ -1,52 +1,40 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	
-	
-	
+
     <div class="container vertical fill">
         <IgbFinancialChart
-        IsHorizontalZoomEnabled="true"
-        ZoomSliderType="FinancialChartZoomSliderType.None"
+        Name="chart"
+        @ref="chart"
         IsVerticalZoomEnabled="true"
-        YAxisTitle="Thousands of Dollars ($)"
+        IsHorizontalZoomEnabled="true"
+        DataSource="StockGoogle"
+        ToolTipType="ToolTipType.Data"
         DataToolTipIncludedColumns="@(new string[] { "Open", "Close", "High", "Low", "Change" })"
+        DataToolTipLabelTextColor="#4a4a4a"
+        DataToolTipUnitsText="K"
+        DataToolTipUnitsTextColor="#00ad03"
+        DataToolTipUnitsTextFontWeight="Bold"
         DataToolTipValueFormatMode="DataLegendValueMode.Currency"
         DataToolTipValueTextColor="#00ad03"
         DataToolTipValueTextFontWeight="Bold"
         DataToolTipHeaderFormatTime="DataLegendHeaderTimeMode.None"
-        DataToolTipUnitsText="K"
-        DataToolTipUnitsTextColor="#00ad03"
-        DataToolTipUnitsTextFontWeight="Bold"
-        DataToolTipLabelTextColor="#4a4a4a"
-        DataSource="StockGoogle"
-        ToolTipType="ToolTipType.Data"
-        Name="chart"
-        @ref="chart">
+        YAxisTitle="Thousands of Dollars ($)"
+        ZoomSliderType="FinancialChartZoomSliderType.None">
         </IgbFinancialChart>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        var chart = this.chart;
+
     }
 
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var chart = this.chart;
-
-        this.BindElements = () => {
-        };
-        this.BindElements();
-	}
-
-	private IgbFinancialChart chart;
-
+    private IgbFinancialChart chart;
 
     private StockGoogle _stockGoogle = null;
     public StockGoogle StockGoogle
@@ -55,10 +43,10 @@
         {
             if (_stockGoogle == null)
             {
-                _stockGoogle = new StockGoogle(); 
+                _stockGoogle = new StockGoogle();
             }
             return _stockGoogle;
         }
     }
-    
+
 }

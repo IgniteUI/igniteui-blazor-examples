@@ -1,6 +1,5 @@
-@using IgniteUI.Blazor.Controls;
+@using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
 <div class="container vertical">
@@ -8,68 +7,52 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Id="grid"
         Data="NwindData"
-        PrimaryKey="ProductID"
+        Name="grid"
+        @ref="grid"
+        Id="grid"
         RowEditable="true"
-        CellEditEnterScript="WebGridCellEditEnter"
-        CellEditExitScript="WebGridCellEditExit"
-        CellEditScript="WebGridCellEdit"
-        CellEditDoneScript="WebGridCellEditDone"
+        PrimaryKey="ProductID"
+        RenderedScript="WebGridRendered"
         RowEditEnterScript="WebGridRowEditEnter"
         RowEditScript="WebGridRowEdit"
         RowEditDoneScript="WebGridRowEditDone"
         RowEditExitScript="WebGridRowEditExit"
-        RenderedScript="WebGridRendered"
-        Name="grid"
-        @ref="grid">
+        CellEditEnterScript="WebGridCellEditEnter"
+        CellEditScript="WebGridCellEdit"
+        CellEditDoneScript="WebGridCellEditDone"
+        CellEditExitScript="WebGridCellEditExit">
             <IgbColumn
             Field="ProductName"
             Header="Product Name">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="UnitPrice"
             Header="Unit Price">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="UnitsInStock"
             Header="Units In Stock">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Ordered">
             </IgbColumn>
-            
-        </IgbGrid>
-        
-    </div>
 
+        </IgbGrid>
+
+    </div>
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-        await Task.Delay(1);
-    }
-
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
-
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
 
@@ -80,10 +63,10 @@
         {
             if (_nwindData == null)
             {
-                _nwindData = new NwindData(); 
+                _nwindData = new NwindData();
             }
             return _nwindData;
         }
     }
-    
+
 }

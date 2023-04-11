@@ -1,47 +1,35 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	
-	
-	
+
     <div class="container vertical fill">
         <IgbFinancialChart
+        Name="chart"
+        @ref="chart"
         ChartType="FinancialChartType.Candle"
-        ZoomSliderType="FinancialChartZoomSliderType.None"
+        ToolTipType="ToolTipType.Data"
+        DataSource="MultipleStocks"
         DataToolTipIncludedColumns="@(new string[] { "Close", "Change", "Value" })"
         DataToolTipExcludedColumns="@(new string[] { "High", "Low", "Open", "Volume" })"
+        DataToolTipLabelDisplayMode="DataLegendLabelMode.Hidden"
         DataToolTipValueFormatMode="DataLegendValueMode.Currency"
         DataToolTipValueFormatCulture="en-GB"
         DataToolTipHeaderFormatTime="DataLegendHeaderTimeMode.None"
-        DataToolTipLabelDisplayMode="DataLegendLabelMode.Hidden"
-        DataSource="MultipleStocks"
-        ToolTipType="ToolTipType.Data"
-        Name="chart"
-        @ref="chart">
+        ZoomSliderType="FinancialChartZoomSliderType.None">
         </IgbFinancialChart>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        var chart = this.chart;
+
     }
 
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var chart = this.chart;
-
-        this.BindElements = () => {
-        };
-        this.BindElements();
-	}
-
-	private IgbFinancialChart chart;
-
+    private IgbFinancialChart chart;
 
     private MultipleStocks _multipleStocks = null;
     public MultipleStocks MultipleStocks
@@ -55,5 +43,5 @@
             return _multipleStocks;
         }
     }
-    
+
 }

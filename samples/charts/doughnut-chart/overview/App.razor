@@ -1,51 +1,40 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Market Share of Tech Companies
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbDoughnutChart
         Name="chart"
         @ref="chart">
             <IgbRingSeries
-            DataSource="CompanyMarketShares"
-            ValueMemberPath="Value"
+            Name="series"
+            @ref="series"
             LabelMemberPath="Summary"
+            ValueMemberPath="Value"
             LegendLabelMemberPath="Category"
             Outlines="white"
-            Name="series"
-            @ref="series">
+            DataSource="CompanyMarketShares">
             </IgbRingSeries>
+
         </IgbDoughnutChart>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        var chart = this.chart;
+        var series = this.series;
+
     }
 
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var chart = this.chart;
-		var series = this.series;
-
-        this.BindElements = () => {
-        };
-        this.BindElements();
-	}
-
-	private IgbDoughnutChart chart;
-	private IgbRingSeries series;
-
+    private IgbDoughnutChart chart;
+    private IgbRingSeries series;
 
     private CompanyMarketShares _companyMarketShares = null;
     public CompanyMarketShares CompanyMarketShares
@@ -54,10 +43,10 @@
         {
             if (_companyMarketShares == null)
             {
-                _companyMarketShares = new CompanyMarketShares(); 
+                _companyMarketShares = new CompanyMarketShares();
             }
             return _companyMarketShares;
         }
     }
-    
+
 }

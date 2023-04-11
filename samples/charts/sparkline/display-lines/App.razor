@@ -1,41 +1,29 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	
-	
-	
+
     <div class="container vertical fill">
         <IgbSparkline
-        DataSource="SparklineMixedData"
-        ValueMemberPath="Value"
-        LabelMemberPath="Label"
-        DisplayType="SparklineDisplayType.Line"
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        DataSource="SparklineMixedData"
+        DisplayType="SparklineDisplayType.Line"
+        LabelMemberPath="Label"
+        ValueMemberPath="Value">
         </IgbSparkline>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        var chart = this.chart;
+
     }
 
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var chart = this.chart;
-
-        this.BindElements = () => {
-        };
-        this.BindElements();
-	}
-
-	private IgbSparkline chart;
-
+    private IgbSparkline chart;
 
     private SparklineMixedData _sparklineMixedData = null;
     public SparklineMixedData SparklineMixedData
@@ -44,10 +32,10 @@
         {
             if (_sparklineMixedData == null)
             {
-                _sparklineMixedData = new SparklineMixedData(); 
+                _sparklineMixedData = new SparklineMixedData();
             }
             return _sparklineMixedData;
         }
     }
-    
+
 }

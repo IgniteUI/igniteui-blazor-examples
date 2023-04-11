@@ -1,58 +1,53 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Global Electricity Demand by Energy Use
     </div>
-    
-	     <div class="legend">
+    <div class="legend">
         <IgbItemLegend
-        Orientation="LegendOrientation.Horizontal"
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
         </IgbItemLegend>
+
     </div>
-	
+
     <div class="container vertical fill">
         <IgbPieChart
-        DataSource="EnergyGlobalDemand"
+        Name="chart"
+        @ref="chart"
         ValueMemberPath="Value"
         LabelMemberPath="Summary"
-        LegendLabelMemberPath="Summary"
         LabelsPosition="LabelsPosition.OutsideEnd"
+        LegendLabelMemberPath="Category"
+        Outlines="white"
         RadiusFactor="0.7"
         LabelExtent="30"
-        Outlines="white"
-        Name="chart"
-        @ref="chart">
+        DataSource="EnergyGlobalDemand">
         </IgbPieChart>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-    }
-
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var legend = this.legend;
-		var chart = this.chart;
+        var legend = this.legend;
+        var chart = this.chart;
 
         this.BindElements = () => {
             chart.Legend = this.legend;
         };
         this.BindElements();
-	}
 
-	private IgbItemLegend legend;
-	private IgbPieChart chart;
+    }
 
+    private IgbItemLegend legend;
+    private IgbPieChart chart;
 
     private EnergyGlobalDemand _energyGlobalDemand = null;
     public EnergyGlobalDemand EnergyGlobalDemand
@@ -61,10 +56,10 @@
         {
             if (_energyGlobalDemand == null)
             {
-                _energyGlobalDemand = new EnergyGlobalDemand(); 
+                _energyGlobalDemand = new EnergyGlobalDemand();
             }
             return _energyGlobalDemand;
         }
     }
-    
+
 }

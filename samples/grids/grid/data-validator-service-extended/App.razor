@@ -1,12 +1,11 @@
-@using IgniteUI.Blazor.Controls;
+@using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="WebGrid"
         IsHorizontal="true"
         IsWrappingEnabled="false"
@@ -20,7 +19,7 @@
             Name="propertyEditorPropertyDescription1"
             @ref="propertyEditorPropertyDescription1">
             </IgbPropertyEditorPropertyDescription>
-            
+
             <IgbPropertyEditorPropertyDescription
             Label=""
             ValueType="PropertyEditorValueType.Button"
@@ -29,7 +28,7 @@
             Name="propertyEditorPropertyDescription2"
             @ref="propertyEditorPropertyDescription2">
             </IgbPropertyEditorPropertyDescription>
-            
+
             <IgbPropertyEditorPropertyDescription
             Label=""
             ValueType="PropertyEditorValueType.Button"
@@ -38,101 +37,94 @@
             Name="propertyEditorPropertyDescription3"
             @ref="propertyEditorPropertyDescription3">
             </IgbPropertyEditorPropertyDescription>
-            
+
         </IgbPropertyEditorPanel>
-        
+
     </div>
 
     <div class="container vertical fill">
         <IgbGrid
-        Data="NwindData"
-        PrimaryKey="ProductID"
-        RowEditable="true"
-        BatchEditing="true"
         Name="grid"
-        @ref="grid">
+        @ref="grid"
+        Data="NwindData"
+        RowEditable="true"
+        PrimaryKey="ProductID">
             <IgbColumn
-            Field="ProductID"
-            Header="Product ID"
             Name="ProductID"
-            @ref="productID">
+            @ref="productID"
+            Field="ProductID"
+            Header="Product ID">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="ProductName"
             @ref="productName"
             Field="ProductName"
             Header="Product Name">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="UnitPrice"
             @ref="unitPrice"
             Field="UnitPrice"
             Header="Unit Price">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="UnitsOnOrder"
             @ref="unitsOnOrder"
             Field="UnitsOnOrder"
             Header="Units On Order">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="UnitsInStock"
             @ref="unitsInStock"
             Field="UnitsInStock"
             Header="Units In Stock">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="QuantityPerUnit"
             @ref="quantityPerUnit"
             Field="QuantityPerUnit"
             Header="Quantity Per Unit">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="ReorderLevel"
             @ref="reorderLevel"
             Field="ReorderLevel"
             Header="Reorder Level">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="SupplierID"
             @ref="supplierID"
             Field="SupplierID"
             Header="Supplier ID">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="CategoryID"
             @ref="categoryID"
             Field="CategoryID"
             Header="Category ID">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="Discontinued"
             @ref="discontinued"
             Field="Discontinued"
             Header="Discontinued">
             </IgbColumn>
-            
-        </IgbGrid>
-        
-    </div>
 
+        </IgbGrid>
+
+    </div>
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-        await Task.Delay(1);
-    }
 
     private Action BindElements { get; set; }
 
@@ -159,11 +151,7 @@
         };
         this.BindElements();
 
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbPropertyEditorPanel propertyEditorPanel1;
     private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
@@ -188,10 +176,10 @@
         {
             if (_nwindData == null)
             {
-                _nwindData = new NwindData(); 
+                _nwindData = new NwindData();
             }
             return _nwindData;
         }
     }
-    
+
 }

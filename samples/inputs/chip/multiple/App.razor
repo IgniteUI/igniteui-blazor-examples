@@ -1,26 +1,26 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container sample center" style="flex-direction: row; gap: 8px">
     <IgbChip Size="SizableComponentSize.Medium" Selectable="true" Removable="true">
         <span slot="select">
             <IgbIcon @ref="@SelectIconRef" IconName="custom-select" Collection="material" ></IgbIcon>
         </span>
-        Custom Icons       
+        Custom Icons
     </IgbChip>
 
     <IgbChip Size="SizableComponentSize.Medium" Selectable="false" Removable="false">
          <span slot="start">
             <IgbIcon @ref="@BrushIconRef" IconName="brush" Collection="material" ></IgbIcon>
         </span>
-        Start Slot       
+        Start Slot
     </IgbChip>
 
     <IgbChip Size="SizableComponentSize.Medium" Selectable="false" Removable="false">
          End Slot
         <span slot="end">
             <IgbIcon @ref="@BrickWallIconRef" IconName="brick-wall" Collection="material"></IgbIcon>
-        </span>   
+        </span>
     </IgbChip>
 
     <IgbChip Size="SizableComponentSize.Medium" Disabled="true">
@@ -28,7 +28,7 @@
         <span slot="end">
             <IgbIcon @ref="@DogIconRef" IconName="dog-icon" Collection="material" ></IgbIcon>
         </span>
-    </IgbChip>    
+    </IgbChip>
 </div>
 
 @code {
@@ -38,17 +38,8 @@
     private IgbIcon BrickWallIconRef { get; set; }
     private IgbIcon DogIconRef { get; set; }
 
-
-    protected override void OnInitialized()
-    {
-        IgbChipModule.Register(IgniteUIBlazor);
-        IgbIconModule.Register(IgniteUIBlazor);
-    }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await base.OnAfterRenderAsync(firstRender);
-
         if(firstRender && this.SelectIconRef != null)
         {
             await this.SelectIconRef.EnsureReady();

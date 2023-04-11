@@ -2,12 +2,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 let gulp = require('gulp');
-let rename = require('gulp-rename');
-let fs = require('fs.extra');
-let path = require('path');
-let flatten = require('gulp-flatten');
-let del = require('del');
-let es = require('event-stream');
 
 function log(msg) {
     console.log('GULP ' + msg);
@@ -90,7 +84,7 @@ exports.cleanupSampleBrowsers = cleanupSampleBrowsers = gulp.series(
     sb.cleanupSampleBrowsers,
 );
 
-exports.listSamples = sb.listSamples;
+exports.logSampleNames = sb.logSampleNames;
 exports.removeSamplePages = sb.removeSamplePages;
 exports.renameProjects = sb.renameProjects;
 
@@ -119,4 +113,10 @@ exports.logRoutes = logRoutes = gulp.series(
 
 exports.copyTemplates = copyTemplates = gulp.series(
     sb.copyTemplates,
+);
+
+
+var gt = require('./tasks/gulp-tests.js')
+exports.testSampleFiles = testSampleFiles = gulp.series(
+    gt.testSampleFiles,
 );

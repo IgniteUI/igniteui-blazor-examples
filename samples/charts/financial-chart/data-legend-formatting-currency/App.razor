@@ -1,59 +1,54 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	
-	
-	     <div class="legend">
+    <div class="legend">
         <IgbDataLegend
+        Name="Legend"
+        @ref="legend"
         IncludedColumns="@(new string[] { "Close", "Change", "Value" })"
         ExcludedColumns="@(new string[] { "High", "Low", "Open", "Volume" })"
-        ValueFormatMode="DataLegendValueMode.Currency"
-        ValueFormatCulture="en-GB"
         LabelDisplayMode="DataLegendLabelMode.Hidden"
-        Name="Legend"
-        @ref="legend">
+        ValueFormatMode="DataLegendValueMode.Currency"
+        ValueFormatCulture="en-GB">
         </IgbDataLegend>
+
     </div>
-	
+
     <div class="container vertical fill">
         <IgbFinancialChart
+        Name="chart"
+        @ref="chart"
         ChartType="FinancialChartType.Candle"
-        ZoomSliderType="FinancialChartZoomSliderType.None"
-        DataToolTipIncludedColumns="@(new string[] { "Close", "Change", "Value" })"
+        DataSource="MultipleStocks"
         DataToolTipValueFormatMode="DataLegendValueMode.Currency"
         DataToolTipValueFormatCulture="en-GB"
-        DataToolTipHeaderFormatTime="DataLegendHeaderTimeMode.None"
         DataToolTipLabelDisplayMode="DataLegendLabelMode.Hidden"
-        DataSource="MultipleStocks"
-        Name="chart"
-        @ref="chart">
+        DataToolTipIncludedColumns="@(new string[] { "Close", "Change", "Value" })"
+        DataToolTipHeaderFormatTime="DataLegendHeaderTimeMode.None"
+        ZoomSliderType="FinancialChartZoomSliderType.None">
         </IgbFinancialChart>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-    }
-
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var legend = this.legend;
-		var chart = this.chart;
+        var legend = this.legend;
+        var chart = this.chart;
 
         this.BindElements = () => {
             legend.Target = this.chart;
         };
         this.BindElements();
-	}
 
-	private IgbDataLegend legend;
-	private IgbFinancialChart chart;
+    }
 
+    private IgbDataLegend legend;
+    private IgbFinancialChart chart;
 
     private MultipleStocks _multipleStocks = null;
     public MultipleStocks MultipleStocks
@@ -67,5 +62,5 @@
             return _multipleStocks;
         }
     }
-    
+
 }

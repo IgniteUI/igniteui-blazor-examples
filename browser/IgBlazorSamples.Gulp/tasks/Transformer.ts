@@ -35,6 +35,9 @@ class SampleFile {
     public isCS(): boolean {
         return this.Name.endsWith(".cs") && !this.Name.endsWith(".css");
     }
+    public isProgramCS(): boolean {
+        return this.Name.endsWith("Program.cs");
+    }
     public isHTML(): boolean {
         return this.Name.endsWith(".html");
     }
@@ -83,6 +86,14 @@ class SampleSourceFile extends SampleFile {
         if (modules !== undefined && modules.length > 0) {
             // console.log("update " + this.Path + " modules: " + (modules.join(','));
 
+            // adding IG injection if it is missing
+            var codeUsingIG  = "@using IgniteUI.Blazor.Controls";
+            var codeInjectIG = "@inject IIgniteUIBlazor IgniteUIBlazor";
+            if (this.Content.indexOf(codeInjectIG) < 0 &&
+                this.Content.indexOf(codeUsingIG) >= 0) {
+                this.Content = this.Content.replace(codeUsingIG, codeUsingIG + "\n" + codeInjectIG);
+            }
+
             // inserting IG modules from Program.CS to App.razor file
             var moduleReplace = "OnInitialized()\r\n    {";
             var moduleInsert = "\r\n";
@@ -103,7 +114,8 @@ class SampleInfo {
     // public SampleDirOnDisk: string;    // C:\repo\igniteui-react-examples\samples\maps\geo-map\binding-csv-points\
     public SampleFolderPath: string;     // /samples/maps/geo-map/binding-csv-points/
     public SampleFilePath: string;       // /samples/maps/geo-map/binding-csv-points/src/MapBindingDataCSV.razor
-    public SampleRoute: string;          //         /maps/geo-map/binding-csv-points/
+    public SampleRouteNew: string;       //         /maps/geo-map/binding-csv-points/
+    public SampleRouteOld: string;       //         /maps/geo-map-binding-csv-points/
     public SampleFolderName: string;     //                       binding-csv-points
     public SampleFileName: string;       // MapBindingDataCSV.razor
     // public SampleImportName: string;     // MapBindingDataCSV
@@ -126,6 +138,7 @@ class SampleInfo {
     public PublicIndexFile: SampleFile;
     public ProjectFile: SampleFile;
     public ProgramModules: string[];
+    public DataFilesCount: number = 0;
 
     public DocsUrl: string;            // https://infragistics.com/Reactsite/components/geo-map.html
 
@@ -278,7 +291,7 @@ class Transformer {
     }
     public static printRoutes(samples: SampleInfo[]): void {
         for (const info of samples) {
-            console.log(info.SampleFolderPath + " => " + info.SampleRoute);
+            console.log(info.SampleFolderPath + " => " + info.SampleRouteNew);
         }
     }
     public static printUrls(samples: SampleInfo[]): void {
@@ -316,9 +329,10 @@ class Transformer {
             info.ComponentName = info.ComponentName.replace("Combobox", "ComboBox");
 
             // info.SampleFolderPath = relativePath;
-            info.SampleRoute = "/" +  info.ComponentGroup + "/" + info.ComponentFolder + "-" + info.SampleFolderName;
+            info.SampleRouteOld = "/" +  info.ComponentGroup + "/" + info.ComponentFolder + "-" + info.SampleFolderName;
+            info.SampleRouteNew = "/" +  info.ComponentGroup + "/" + info.ComponentFolder + "/" + info.SampleFolderName;
 
-            // console.log("pro " + info.SampleFolderPath + " >> " + info.SampleRoute);
+            // console.log("pro " + info.SampleFolderPath + " >> " + info.SampleRouteNew);
 
             let razorFiles: SampleFile[] = [];
             // finding .razor files in Pages folder
@@ -353,8 +367,8 @@ class Transformer {
                 // info.SourceRazorFile.LocalPath = "./Pages/" + info.SampleFileName;
                 // info.SourceRazorFile.Blocks = this.getSampleBlocks(info.SourceRazorFile.Content);
                 // auto-generating routing paths for a sample with and without SB navigation
-                // info.SourceRazorFile.Blocks.ImportLines.splice(0, 0, "@page /samples" + info.SampleRoute);
-                // info.SourceRazorFile.Blocks.ImportLines.splice(1, 0, "@page         " + info.SampleRoute);
+                // info.SourceRazorFile.Blocks.ImportLines.splice(0, 0, "@page /samples" + info.SampleRouteNew);
+                // info.SourceRazorFile.Blocks.ImportLines.splice(1, 0, "@page         " + info.SampleRouteNew);
                 // info.SourceRazorFile.Blocks.ImportLines.splice(2, 0, "");
 
                 // info.SampleFilePath = fileNames[0];
@@ -403,7 +417,7 @@ class Transformer {
                 // console.log("SAMPLE " + info.SampleFilePath + " => " + info.SampleDisplayName);
             }
 
-            // console.log(info.SampleFolderPath + " => " + info.SampleRoute + " => " + info.SampleDisplayName);
+            // console.log(info.SampleFolderPath + " => " + info.SampleRouteNew + " => " + info.SampleDisplayName);
 
         }
     }
@@ -685,7 +699,7 @@ class Transformer {
         // readMe = Strings.replaceAll(readMe, "{SampleFolderPath}", sample.SampleFolderPath);
         readMe = Strings.replaceAll(readMe, "{SampleFolderPath}", sample.SampleFolderPath);
         readMe = Strings.replaceAll(readMe, "{SampleFolderName}", sample.SampleFolderName);
-        readMe = Strings.replaceAll(readMe, "{SampleRoute}", sample.SampleRoute);
+        readMe = Strings.replaceAll(readMe, "{SampleRoute}", sample.SampleRouteNew);
         readMe = Strings.replaceAll(readMe, "{SampleDisplayName}", sample.SampleDisplayName);
         readMe = Strings.replaceAll(readMe, "{SampleFileName}", sample.SampleFileName);
         readMe = Strings.replaceAll(readMe, "{SampleFilePath}", sample.SampleFilePath);
@@ -775,7 +789,7 @@ class Transformer {
             // group.samples = map.get(key);
 
             // for (let item of map.get(key) ) {
-            //     console.log(item.SampleRoute);
+            //     console.log(item.SampleRouteNew);
             // }
             // // groups.push(map.get(key));
             groups.push(group);
@@ -823,7 +837,9 @@ class Transformer {
     }
 
     public static getTocSample(info: SampleInfo): string {
-        let toc = this.tabs(6) + '{ "route": "' + info.SampleRoute + '", "name": "' + info.SampleDisplayName + '" }';
+        let toc = "";
+        toc += this.tabs(6) + '{ "route": "' + info.SampleRouteOld + '", "name": "' + info.SampleDisplayName + '", "showLink": false },\n';
+        toc += this.tabs(6) + '{ "route": "' + info.SampleRouteNew + '", "name": "' + info.SampleDisplayName + '", "showLink": true }';
         return toc;
     }
 
@@ -987,9 +1003,11 @@ class Transformer {
 
         if (generateRoutingPath) {
             // generating routing paths (@page) for a sample with and without SB navigation
-            importLines.splice(0, 0, '@page "/samples' + sample.SampleRoute + '"');
-            importLines.splice(1, 0, '@page         "' + sample.SampleRoute + '"');
-            importLines.splice(2, 0, '');
+            importLines.splice(0, 0, '@page "/samples' + sample.SampleRouteNew + '"');
+            importLines.splice(1, 0, '@page "/samples' + sample.SampleRouteOld + '"');
+            importLines.splice(2, 0, '@page         "' + sample.SampleRouteNew + '"');
+            importLines.splice(3, 0, '@page         "' + sample.SampleRouteOld + '"');
+            importLines.splice(4, 0, '');
             // console.log("NOTE: lintRazor() importLines \n" + importLines.join('\n'));
         }
 

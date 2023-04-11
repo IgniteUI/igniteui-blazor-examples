@@ -1,6 +1,5 @@
 ﻿@using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor;
-@inject IJSRuntime JSRuntime;
+
 
 <div class="container vertical">
     <div class="container vertical">
@@ -31,18 +30,6 @@
     private List<OverlayDataItem> Data;
 
     protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        IgbDataChartCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-        IgbValueOverlayModule.Register(IgniteUIBlazor);
-
-        this.InitData();
-    }
-
-    private void InitData()
     {
         var data = new List<OverlayDataItem>() {
             new OverlayDataItem() { Label = "1", Value = 1.0 },

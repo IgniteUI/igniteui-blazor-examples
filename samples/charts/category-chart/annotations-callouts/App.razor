@@ -1,77 +1,73 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	    <div class="options vertical">
+    <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+        Name="PropertyEditor"
+        @ref="propertyEditor"
+
         DescriptionType="CategoryChart"
         IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="PropertyEditor"
-        @ref="propertyEditor">
+        IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="CalloutsVisible"
+            Name="CalloutsVisibleEditor"
+            @ref="calloutsVisibleEditor"
             Label="Callouts Visible"
             ShouldOverrideDefaultEditor="true"
-            PrimitiveValue="true"
-            Name="CalloutsVisibleEditor"
-            @ref="calloutsVisibleEditor">
+            PrimitiveValue="true">
             </IgbPropertyEditorPropertyDescription>
+
         </IgbPropertyEditorPanel>
+
     </div>
-	
-	    <div class="legend-title">
-        Average Temperature in Sedney
+    <div class="legend-title">
+        Average Temperature in Sydney
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbCategoryChart
+        Name="chart"
+        @ref="chart"
         ChartType="CategoryChartType.Column"
-        YAxisMaximumValue="35"
-        YAxisLabelLocation="YAxisLabelLocation.OutsideRight"
-        DataSource="TemperatureAnnotatedData"
-        IncludedProperties="@(new string[] { "Month", "Temperature" })"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
-        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
-        CrosshairsAnnotationYAxisPrecision="0"
-        CalloutsVisible="true"
+        IncludedProperties="@(new string[] { "Month", "Temperature" })"
+        DataSource="TemperatureAnnotatedData"
         CalloutsDataSource="TemperatureAnnotatedData"
+        CalloutsVisible="true"
         CalloutsXMemberPath="Index"
         CalloutsYMemberPath="Temperature"
         CalloutsLabelMemberPath="TempInfo"
-        Name="chart"
-        @ref="chart">
+        CrosshairsAnnotationYAxisPrecision="0"
+        YAxisMaximumValue="35"
+        YAxisLabelLocation="YAxisLabelLocation.OutsideRight">
         </IgbCategoryChart>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-    }
-
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var propertyEditor = this.propertyEditor;
-		var calloutsVisibleEditor = this.calloutsVisibleEditor;
-		var chart = this.chart;
+        var propertyEditor = this.propertyEditor;
+        var calloutsVisibleEditor = this.calloutsVisibleEditor;
+        var chart = this.chart;
 
         this.BindElements = () => {
             propertyEditor.Target = this.chart;
         };
         this.BindElements();
-	}
 
-	private IgbPropertyEditorPanel propertyEditor;
-	private IgbPropertyEditorPropertyDescription calloutsVisibleEditor;
-	private IgbCategoryChart chart;
+    }
 
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription calloutsVisibleEditor;
+    private IgbCategoryChart chart;
 
     private TemperatureAnnotatedData _temperatureAnnotatedData = null;
     public TemperatureAnnotatedData TemperatureAnnotatedData
@@ -80,10 +76,10 @@
         {
             if (_temperatureAnnotatedData == null)
             {
-                _temperatureAnnotatedData = new TemperatureAnnotatedData(); 
+                _temperatureAnnotatedData = new TemperatureAnnotatedData();
             }
             return _temperatureAnnotatedData;
         }
     }
-    
+
 }

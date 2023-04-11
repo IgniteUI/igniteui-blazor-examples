@@ -1,11 +1,11 @@
 @using IgniteUI.Blazor.Controls
-
-@inject IIgniteUIBlazor IgniteUIBlazor
+@using IgniteUI.Blazor.Controls;
+@using System;
 
 <div class="container vertical">
-	    <div class="options vertical">
+    <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="DataChart"
         IsHorizontal="true"
         IsWrappingEnabled="false"
@@ -20,95 +20,97 @@
             Name="propertyEditorPropertyDescription1"
             @ref="propertyEditorPropertyDescription1">
             </IgbPropertyEditorPropertyDescription>
+
         </IgbPropertyEditorPanel>
+
     </div>
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Facebook Consolidated Statements of Income
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbDataChart
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false">
             <IgbCategoryXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            Label="Category"
             Interval="1"
             DataSource="CompanyIncomeData"
-            Overlap="1"
-            Label="Category"
-            Name="xAxis"
-            @ref="xAxis">
+            Overlap="1">
             </IgbCategoryXAxis>
+
             <IgbNumericYAxis
-            MinimumValue="0"
-            MaximumValue="60"
-            Title="Millions of Dollars"
-            TitleAngle="-90"
-            TitleLeftMargin="10"
             Name="yAxis"
-            @ref="yAxis">
+            @ref="yAxis"
+            Title="Millions of Dollars"
+            TitleLeftMargin="10"
+            TitleAngle="-90"
+            MinimumValue="0"
+            MaximumValue="60">
             </IgbNumericYAxis>
+
             <IgbWaterfallSeries
-            XAxisName="xAxis"
-            YAxisName="yAxis"
-            ValueMemberPath="Costs"
-            IsTransitionInEnabled="true"
-            DataSource="CompanyIncomeData"
-            ShowDefaultTooltip="true"
             Name="WaterfallSeries1"
-            @ref="waterfallSeries1">
-            </IgbWaterfallSeries>
-            <IgbWaterfallSeries
+            @ref="waterfallSeries1"
             XAxisName="xAxis"
             YAxisName="yAxis"
             DataSource="CompanyIncomeData"
-            ValueMemberPath="NetIncome"
+            ValueMemberPath="Costs"
             ShowDefaultTooltip="true"
-            IsTransitionInEnabled="true"
+            IsTransitionInEnabled="true">
+            </IgbWaterfallSeries>
+
+            <IgbWaterfallSeries
+            Name="WaterfallSeries2"
+            @ref="waterfallSeries2"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="CompanyIncomeData"
             Brush="#7446b9"
             Outline="#7446b9"
-            Name="WaterfallSeries2"
-            @ref="waterfallSeries2">
+            ValueMemberPath="NetIncome"
+            ShowDefaultTooltip="true"
+            IsTransitionInEnabled="true">
             </IgbWaterfallSeries>
+
         </IgbDataChart>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-    }
-
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var propertyEditorPanel1 = this.propertyEditorPanel1;
-		var propertyEditorPropertyDescription1 = this.propertyEditorPropertyDescription1;
-		var chart = this.chart;
-		var xAxis = this.xAxis;
-		var yAxis = this.yAxis;
-		var waterfallSeries1 = this.waterfallSeries1;
-		var waterfallSeries2 = this.waterfallSeries2;
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var propertyEditorPropertyDescription1 = this.propertyEditorPropertyDescription1;
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var waterfallSeries1 = this.waterfallSeries1;
+        var waterfallSeries2 = this.waterfallSeries2;
 
         this.BindElements = () => {
             propertyEditorPanel1.Target = this.chart;
         };
         this.BindElements();
-	}
 
-	private IgbPropertyEditorPanel propertyEditorPanel1;
-	private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
-	private IgbDataChart chart;
-	private IgbCategoryXAxis xAxis;
-	private IgbNumericYAxis yAxis;
-	private IgbWaterfallSeries waterfallSeries1;
-	private IgbWaterfallSeries waterfallSeries2;
+    }
 
-    
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbWaterfallSeries waterfallSeries1;
+    private IgbWaterfallSeries waterfallSeries2;
+
     public void EditorButtonReplayTransitionIn(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
     {
         var series = this.chart.ActualSeries;
@@ -117,7 +119,6 @@
             series[i].ReplayTransitionIn();
         }
     }
-        
 
     private CompanyIncomeData _companyIncomeData = null;
     public CompanyIncomeData CompanyIncomeData
@@ -126,10 +127,10 @@
         {
             if (_companyIncomeData == null)
             {
-                _companyIncomeData = new CompanyIncomeData(); 
+                _companyIncomeData = new CompanyIncomeData();
             }
             return _companyIncomeData;
         }
     }
-    
+
 }

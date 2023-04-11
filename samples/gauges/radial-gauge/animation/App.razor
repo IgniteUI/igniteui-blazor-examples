@@ -1,5 +1,5 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
     <div class="options horizontal">
@@ -123,14 +123,12 @@
     private double MinorTickEndExtent;
     private double MinorTickStartExtent;
     private double MinorTickCount;
-    private double MinorTickStrokeThickness;    
+    private double MinorTickStrokeThickness;
 
     private System.Collections.ObjectModel.ObservableCollection<GaugeRangeInfo> RangeInfo;
 
     protected override void OnInitialized()
     {
-        IgbRadialGaugeModule.Register(IgniteUIBlazor);
-
         this.MinimumValue = 0;
         this.MaximumValue = 50;
         this.Value = 25;
@@ -194,12 +192,12 @@
     }
 
     public void onAnimateToGauge1()
-    {                
+    {
         this.TransitionDuration = 1000;
         this.MinimumValue = 0;
         this.MaximumValue = 10;
         this.Value = 7.5;
-        
+
         // Scale Settings
         this.ScaleStartAngle = 180;
         this.ScaleEndAngle = 270;

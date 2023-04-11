@@ -1,87 +1,80 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Where Online Shoppers Start Their Search
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbDataChart
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
         Name="Chart"
-        @ref="chart">
+        @ref="chart"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false">
             <IgbCategoryYAxis
-            DataSource="OnlineShoppingSearches"
-            Gap="0.5"
-            Overlap="-0.1"
-            IsInverted="true"
+            Name="yAxis"
+            @ref="yAxis"
+            Label="Shop"
             UseEnhancedIntervalManagement="true"
             EnhancedIntervalPreferMoreCategoryLabels="true"
-            Label="Shop"
-            Name="yAxis"
-            @ref="yAxis">
+            DataSource="OnlineShoppingSearches"
+            IsInverted="true"
+            Gap="0.5"
+            Overlap="-0.1">
             </IgbCategoryYAxis>
+
             <IgbNumericXAxis
-            LabelFormat="{0}%"
             Name="xAxis"
-            @ref="xAxis">
+            @ref="xAxis"
+            LabelFormat="{0}%">
             </IgbNumericXAxis>
+
             <IgbCategoryHighlightLayer
             Name="CategoryHighlightLayer"
             @ref="categoryHighlightLayer">
             </IgbCategoryHighlightLayer>
+
             <IgbBarSeries
+            Name="BarSeries1"
+            @ref="barSeries1"
             XAxisName="xAxis"
             YAxisName="yAxis"
             ValueMemberPath="Percent"
-            IsTransitionInEnabled="true"
             DataSource="OnlineShoppingSearches"
-            IsHighlightingEnabled="true"
             ShowDefaultTooltip="true"
-            Name="BarSeries1"
-            @ref="barSeries1">
+            IsTransitionInEnabled="true"
+            IsHighlightingEnabled="true">
             </IgbBarSeries>
+
             <IgbDataToolTipLayer
             Name="Tooltips"
             @ref="tooltips">
             </IgbDataToolTipLayer>
+
         </IgbDataChart>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        var chart = this.chart;
+        var yAxis = this.yAxis;
+        var xAxis = this.xAxis;
+        var categoryHighlightLayer = this.categoryHighlightLayer;
+        var barSeries1 = this.barSeries1;
+        var tooltips = this.tooltips;
+
     }
 
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var chart = this.chart;
-		var yAxis = this.yAxis;
-		var xAxis = this.xAxis;
-		var categoryHighlightLayer = this.categoryHighlightLayer;
-		var barSeries1 = this.barSeries1;
-		var tooltips = this.tooltips;
-
-        this.BindElements = () => {
-        };
-        this.BindElements();
-	}
-
-	private IgbDataChart chart;
-	private IgbCategoryYAxis yAxis;
-	private IgbNumericXAxis xAxis;
-	private IgbCategoryHighlightLayer categoryHighlightLayer;
-	private IgbBarSeries barSeries1;
-	private IgbDataToolTipLayer tooltips;
-
+    private IgbDataChart chart;
+    private IgbCategoryYAxis yAxis;
+    private IgbNumericXAxis xAxis;
+    private IgbCategoryHighlightLayer categoryHighlightLayer;
+    private IgbBarSeries barSeries1;
+    private IgbDataToolTipLayer tooltips;
 
     private OnlineShoppingSearches _onlineShoppingSearches = null;
     public OnlineShoppingSearches OnlineShoppingSearches
@@ -90,10 +83,10 @@
         {
             if (_onlineShoppingSearches == null)
             {
-                _onlineShoppingSearches = new OnlineShoppingSearches(); 
+                _onlineShoppingSearches = new OnlineShoppingSearches();
             }
             return _onlineShoppingSearches;
         }
     }
-    
+
 }

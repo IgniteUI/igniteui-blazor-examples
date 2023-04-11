@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 public class RoadblocksToSuccessItem
 {
-    public double Index{ get; set; }
-    public double FirstChoice{ get; set; }
-    public double TopChoices{ get; set; }
-    public string FirstChoiceLabel{ get; set; }
-    public string TopChoicesLabel{ get; set; }
-    public string Category{ get; set; }
+    public double Index { get; set; }
+    public double FirstChoice { get; set; }
+    public double TopChoices { get; set; }
+    public string FirstChoiceLabel { get; set; }
+    public string TopChoicesLabel { get; set; }
+    public string Category { get; set; }
 }
+
 public class RoadblocksToSuccess
     : List<RoadblocksToSuccessItem>
 {

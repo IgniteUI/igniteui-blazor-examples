@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 public class FootballPlayerStatsItem
 {
-    public string Attribute{ get; set; }
-    public double Ronaldo{ get; set; }
-    public double Messi{ get; set; }
+    public string Attribute { get; set; }
+    public double Ronaldo { get; set; }
+    public double Messi { get; set; }
 }
+
 public class FootballPlayerStats
     : List<FootballPlayerStatsItem>
 {

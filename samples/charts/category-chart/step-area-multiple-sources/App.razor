@@ -1,63 +1,58 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Renewable Electricity Generated
     </div>
-    
-	     <div class="legend">
+    <div class="legend">
         <IgbLegend
-        Orientation="LegendOrientation.Horizontal"
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
+
     </div>
-	
+
     <div class="container vertical fill">
         <IgbCategoryChart
+        DataSource="CountryRenewableElectricity"
+        Name="chart"
+        @ref="chart"
         ChartType="CategoryChartType.StepArea"
-        IsTransitionInEnabled="true"
-        IsCategoryHighlightingEnabled="true"
-        YAxisTitle="TWh"
+        TitleAlignment="HorizontalAlignment.Left"
         TitleLeftMargin="25"
         TitleTopMargin="10"
         TitleBottomMargin="10"
-        DataSource="CountryRenewableElectricity"
+        IsCategoryHighlightingEnabled="true"
+        IsSeriesHighlightingEnabled="true"
+        IsTransitionInEnabled="true"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
-        IsSeriesHighlightingEnabled="true"
-        TitleAlignment="HorizontalAlignment.Left"
-        CrosshairsSnapToData="true"
-        Name="chart"
-        @ref="chart">
+        YAxisTitle="TWh"
+        CrosshairsSnapToData="true">
         </IgbCategoryChart>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-    }
-
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var legend = this.legend;
-		var chart = this.chart;
+        var legend = this.legend;
+        var chart = this.chart;
 
         this.BindElements = () => {
             chart.Legend = this.legend;
         };
         this.BindElements();
-	}
 
-	private IgbLegend legend;
-	private IgbCategoryChart chart;
+    }
 
+    private IgbLegend legend;
+    private IgbCategoryChart chart;
 
     private CountryRenewableElectricity _countryRenewableElectricity = null;
     public CountryRenewableElectricity CountryRenewableElectricity
@@ -66,10 +61,10 @@
         {
             if (_countryRenewableElectricity == null)
             {
-                _countryRenewableElectricity = new CountryRenewableElectricity(); 
+                _countryRenewableElectricity = new CountryRenewableElectricity();
             }
             return _countryRenewableElectricity;
         }
     }
-    
+
 }

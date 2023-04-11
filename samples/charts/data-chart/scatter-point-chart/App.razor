@@ -1,54 +1,55 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Population Statistics for Selected Continents
     </div>
-    
-	     <div class="legend">
+    <div class="legend">
         <IgbLegend
-        Orientation="LegendOrientation.Horizontal"
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
+
     </div>
-	
+
     <div class="container vertical fill">
         <IgbDataChart
-        
         Name="chart"
         @ref="chart">
             <IgbNumericXAxis
-            MinimumValue="5"
-            MaximumValue="15"
-            Title="Death Rate (per 1,000 people)"
             Name="xAxis"
-            @ref="xAxis">
+            @ref="xAxis"
+            Title="Death Rate (per 1,000 people)"
+            MinimumValue="5"
+            MaximumValue="15">
             </IgbNumericXAxis>
+
             <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis"
+            Title="Birth Rate (per 1,000 people)"
             MinimumValue="0"
             MaximumValue="50"
-            Interval="10"
-            Title="Birth Rate (per 1,000 people)"
-            Name="yAxis"
-            @ref="yAxis">
+            Interval="10">
             </IgbNumericYAxis>
+
             <IgbScatterSeries
+            Name="ScatterSeries1"
+            @ref="scatterSeries1"
+            Title="Europe"
             XAxisName="xAxis"
             YAxisName="yAxis"
             XMemberPath="DeathRate"
             YMemberPath="BirthRate"
-            MarkerType="MarkerType.Circle"
             DataSource="CountryDemographicEurope"
-            ShowDefaultTooltip="true"
-            Title="Europe"
-            Name="ScatterSeries1"
-            @ref="scatterSeries1">
+            MarkerType="MarkerType.Circle"
+            ShowDefaultTooltip="true">
             </IgbScatterSeries>
+
             <IgbScatterSeries
+            Name="ScatterSeries2"
+            @ref="scatterSeries2"
             Title="Africa"
             XAxisName="xAxis"
             YAxisName="yAxis"
@@ -56,43 +57,40 @@
             YMemberPath="BirthRate"
             DataSource="CountryDemographicAfrican"
             MarkerType="MarkerType.Circle"
-            ShowDefaultTooltip="true"
-            Name="ScatterSeries2"
-            @ref="scatterSeries2">
+            ShowDefaultTooltip="true">
             </IgbScatterSeries>
+
         </IgbDataChart>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-    }
-
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var legend = this.legend;
-		var chart = this.chart;
-		var xAxis = this.xAxis;
-		var yAxis = this.yAxis;
-		var scatterSeries1 = this.scatterSeries1;
-		var scatterSeries2 = this.scatterSeries2;
+        var legend = this.legend;
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var scatterSeries1 = this.scatterSeries1;
+        var scatterSeries2 = this.scatterSeries2;
 
         this.BindElements = () => {
             chart.Legend = this.legend;
         };
         this.BindElements();
-	}
 
-	private IgbLegend legend;
-	private IgbDataChart chart;
-	private IgbNumericXAxis xAxis;
-	private IgbNumericYAxis yAxis;
-	private IgbScatterSeries scatterSeries1;
-	private IgbScatterSeries scatterSeries2;
+    }
 
+    private IgbLegend legend;
+    private IgbDataChart chart;
+    private IgbNumericXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbScatterSeries scatterSeries1;
+    private IgbScatterSeries scatterSeries2;
 
     private CountryDemographicEurope _countryDemographicEurope = null;
     public CountryDemographicEurope CountryDemographicEurope
@@ -101,12 +99,12 @@
         {
             if (_countryDemographicEurope == null)
             {
-                _countryDemographicEurope = new CountryDemographicEurope(); 
+                _countryDemographicEurope = new CountryDemographicEurope();
             }
             return _countryDemographicEurope;
         }
     }
-    
+
     private CountryDemographicAfrican _countryDemographicAfrican = null;
     public CountryDemographicAfrican CountryDemographicAfrican
     {
@@ -114,10 +112,10 @@
         {
             if (_countryDemographicAfrican == null)
             {
-                _countryDemographicAfrican = new CountryDemographicAfrican(); 
+                _countryDemographicAfrican = new CountryDemographicAfrican();
             }
             return _countryDemographicAfrican;
         }
     }
-    
+
 }

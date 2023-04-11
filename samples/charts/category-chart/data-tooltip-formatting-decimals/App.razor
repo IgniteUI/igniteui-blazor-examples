@@ -1,55 +1,43 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Highest Grossing Movie Franchises
     </div>
-    
-	
+
     <div class="container vertical fill">
         <IgbCategoryChart
+        Name="chart"
+        @ref="chart"
         ChartType="CategoryChartType.Column"
+        DataSource="HighestGrossingMovies"
+        ToolTipType="ToolTipType.Data"
+        DataToolTipUnitsText="B"
+        DataToolTipValueFormatMode="DataLegendValueMode.Decimal"
+        DataToolTipValueFormatMinFractions="2"
         XAxisInterval="1"
-        IsCategoryHighlightingEnabled="true"
-        YAxisLabelLeftMargin="0"
+        YAxisTitle="Billions of U.S. Dollars"
         YAxisTitleLeftMargin="10"
         YAxisTitleRightMargin="5"
-        YAxisTitle="Billions of U.S. Dollars"
-        DataToolTipValueFormatMinFractions="2"
-        DataToolTipValueFormatMode="DataLegendValueMode.Decimal"
-        DataToolTipUnitsText="B"
-        DataSource="HighestGrossingMovies"
-        HighlightingMode="SeriesHighlightingMode.FadeOthersSpecific"
-        HighlightingBehavior="SeriesHighlightingBehavior.NearestItemsAndSeries"
-        ToolTipType="ToolTipType.Data"
+        YAxisLabelLeftMargin="0"
+        IsCategoryHighlightingEnabled="true"
         CrosshairsDisplayMode="CrosshairsDisplayMode.None"
-        Name="chart"
-        @ref="chart">
+        HighlightingMode="SeriesHighlightingMode.FadeOthersSpecific"
+        HighlightingBehavior="SeriesHighlightingBehavior.NearestItemsAndSeries">
         </IgbCategoryChart>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        var chart = this.chart;
+
     }
 
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var chart = this.chart;
-
-        this.BindElements = () => {
-        };
-        this.BindElements();
-	}
-
-	private IgbCategoryChart chart;
-
+    private IgbCategoryChart chart;
 
     private HighestGrossingMovies _highestGrossingMovies = null;
     public HighestGrossingMovies HighestGrossingMovies
@@ -58,10 +46,10 @@
         {
             if (_highestGrossingMovies == null)
             {
-                _highestGrossingMovies = new HighestGrossingMovies(); 
+                _highestGrossingMovies = new HighestGrossingMovies();
             }
             return _highestGrossingMovies;
         }
     }
-    
+
 }

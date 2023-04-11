@@ -1,120 +1,130 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Annual Birth Rates by World Region
     </div>
-    
-	     <div class="legend">
+    <div class="legend">
         <IgbLegend
-        Orientation="LegendOrientation.Horizontal"
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
+
     </div>
-	
+
     <div class="container vertical fill">
         <IgbDataChart
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false">
             <IgbCategoryXAxis
-            DataSource="ContinentsBirthRate"
-            Label="Year"
             Name="xAxis"
-            @ref="xAxis">
+            @ref="xAxis"
+            DataSource="ContinentsBirthRate"
+            Label="Year">
             </IgbCategoryXAxis>
+
             <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis"
             Interval="20"
             TitleLeftMargin="10"
-            LabelFormat="{0}%"
-            Name="yAxis"
-            @ref="yAxis">
+            LabelFormat="{0}%">
             </IgbNumericYAxis>
+
             <IgbStacked100SplineAreaSeries
+            Name="Stacked100SplineAreaSeries"
+            @ref="stacked100SplineAreaSeries"
+            DataSource="ContinentsBirthRate"
             XAxisName="xAxis"
             YAxisName="yAxis"
-            MarkerType="MarkerType.Circle"
-            DataSource="ContinentsBirthRate"
             ShowDefaultTooltip="false"
-            Name="Stacked100SplineAreaSeries"
-            @ref="stacked100SplineAreaSeries">
+            MarkerType="MarkerType.Circle">
                 <IgbStackedFragmentSeries
                 Name="s1"
                 @ref="s1"
-                Title="@("Asia")"
-                ValueMemberPath="Asia">
+                ValueMemberPath="Asia"
+                Title="@("Asia")">
                 </IgbStackedFragmentSeries>
+
                 <IgbStackedFragmentSeries
                 Name="s2"
                 @ref="s2"
                 ValueMemberPath="Africa"
                 Title="@("Africa")">
                 </IgbStackedFragmentSeries>
+
                 <IgbStackedFragmentSeries
                 Name="s3"
                 @ref="s3"
                 ValueMemberPath="Europe"
                 Title="@("Europe")">
                 </IgbStackedFragmentSeries>
+
                 <IgbStackedFragmentSeries
                 Name="s4"
                 @ref="s4"
                 ValueMemberPath="NorthAmerica"
                 Title="@("North America")">
                 </IgbStackedFragmentSeries>
+
                 <IgbStackedFragmentSeries
                 Name="s5"
                 @ref="s5"
                 ValueMemberPath="SouthAmerica"
                 Title="@("South America")">
                 </IgbStackedFragmentSeries>
+
             </IgbStacked100SplineAreaSeries>
+
+            <IgbDataToolTipLayer
+            Name="DataToolTipLayer"
+            @ref="dataToolTipLayer">
+            </IgbDataToolTipLayer>
+
         </IgbDataChart>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-    }
-
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var legend = this.legend;
-		var chart = this.chart;
-		var xAxis = this.xAxis;
-		var yAxis = this.yAxis;
-		var stacked100SplineAreaSeries = this.stacked100SplineAreaSeries;
-		var s1 = this.s1;
-		var s2 = this.s2;
-		var s3 = this.s3;
-		var s4 = this.s4;
-		var s5 = this.s5;
+        var legend = this.legend;
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var stacked100SplineAreaSeries = this.stacked100SplineAreaSeries;
+        var s1 = this.s1;
+        var s2 = this.s2;
+        var s3 = this.s3;
+        var s4 = this.s4;
+        var s5 = this.s5;
+        var dataToolTipLayer = this.dataToolTipLayer;
 
         this.BindElements = () => {
             chart.Legend = this.legend;
         };
         this.BindElements();
-	}
 
-	private IgbLegend legend;
-	private IgbDataChart chart;
-	private IgbCategoryXAxis xAxis;
-	private IgbNumericYAxis yAxis;
-	private IgbStacked100SplineAreaSeries stacked100SplineAreaSeries;
-	private IgbStackedFragmentSeries s1;
-	private IgbStackedFragmentSeries s2;
-	private IgbStackedFragmentSeries s3;
-	private IgbStackedFragmentSeries s4;
-	private IgbStackedFragmentSeries s5;
+    }
 
+    private IgbLegend legend;
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbStacked100SplineAreaSeries stacked100SplineAreaSeries;
+    private IgbStackedFragmentSeries s1;
+    private IgbStackedFragmentSeries s2;
+    private IgbStackedFragmentSeries s3;
+    private IgbStackedFragmentSeries s4;
+    private IgbStackedFragmentSeries s5;
+    private IgbDataToolTipLayer dataToolTipLayer;
 
     private ContinentsBirthRate _continentsBirthRate = null;
     public ContinentsBirthRate ContinentsBirthRate
@@ -123,10 +133,10 @@
         {
             if (_continentsBirthRate == null)
             {
-                _continentsBirthRate = new ContinentsBirthRate(); 
+                _continentsBirthRate = new ContinentsBirthRate();
             }
             return _continentsBirthRate;
         }
     }
-    
+
 }

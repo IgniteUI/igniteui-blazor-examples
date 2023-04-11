@@ -1,56 +1,57 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Life Expectancy vs Health Expenditure
     </div>
-    
-	     <div class="legend">
+    <div class="legend">
         <IgbLegend
-        Orientation="LegendOrientation.Horizontal"
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
+
     </div>
-	
+
     <div class="container vertical fill">
         <IgbDataChart
-        
         Name="chart"
         @ref="chart">
             <IgbNumericXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            Title="Life Expectancy (in years)"
             MinimumValue="72"
             MaximumValue="84"
-            Interval="2"
-            Title="Life Expectancy (in years)"
-            Name="xAxis"
-            @ref="xAxis">
+            Interval="2">
             </IgbNumericXAxis>
+
             <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis"
+            Title="Health Expenditure per Capita"
+            AbbreviateLargeNumbers="true"
             MinimumValue="1000"
             MaximumValue="6000"
-            Interval="1000"
-            AbbreviateLargeNumbers="true"
-            Title="Health Expenditure per Capita"
-            Name="yAxis"
-            @ref="yAxis">
+            Interval="1000">
             </IgbNumericYAxis>
+
             <IgbScatterSplineSeries
+            Name="ScatterSplineSeries1"
+            @ref="scatterSplineSeries1"
+            Title="Germany"
             XAxisName="xAxis"
             YAxisName="yAxis"
             XMemberPath="LifeExpectancy"
             YMemberPath="HealthExpense"
-            MarkerType="MarkerType.Circle"
             DataSource="HealthDataForGermany"
-            ShowDefaultTooltip="true"
-            Title="Germany"
-            Name="ScatterSplineSeries1"
-            @ref="scatterSplineSeries1">
+            MarkerType="MarkerType.Circle"
+            ShowDefaultTooltip="true">
             </IgbScatterSplineSeries>
+
             <IgbScatterSplineSeries
+            Name="ScatterSplineSeries2"
+            @ref="scatterSplineSeries2"
             Title="France"
             XAxisName="xAxis"
             YAxisName="yAxis"
@@ -58,43 +59,47 @@
             YMemberPath="HealthExpense"
             DataSource="HealthDataForFrance"
             MarkerType="MarkerType.Circle"
-            ShowDefaultTooltip="true"
-            Name="ScatterSplineSeries2"
-            @ref="scatterSplineSeries2">
+            ShowDefaultTooltip="true">
             </IgbScatterSplineSeries>
+
+            <IgbDataToolTipLayer
+            Name="DataToolTipLayer"
+            @ref="dataToolTipLayer">
+            </IgbDataToolTipLayer>
+
         </IgbDataChart>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-    }
-
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var legend = this.legend;
-		var chart = this.chart;
-		var xAxis = this.xAxis;
-		var yAxis = this.yAxis;
-		var scatterSplineSeries1 = this.scatterSplineSeries1;
-		var scatterSplineSeries2 = this.scatterSplineSeries2;
+        var legend = this.legend;
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var scatterSplineSeries1 = this.scatterSplineSeries1;
+        var scatterSplineSeries2 = this.scatterSplineSeries2;
+        var dataToolTipLayer = this.dataToolTipLayer;
 
         this.BindElements = () => {
             chart.Legend = this.legend;
         };
         this.BindElements();
-	}
 
-	private IgbLegend legend;
-	private IgbDataChart chart;
-	private IgbNumericXAxis xAxis;
-	private IgbNumericYAxis yAxis;
-	private IgbScatterSplineSeries scatterSplineSeries1;
-	private IgbScatterSplineSeries scatterSplineSeries2;
+    }
 
+    private IgbLegend legend;
+    private IgbDataChart chart;
+    private IgbNumericXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbScatterSplineSeries scatterSplineSeries1;
+    private IgbScatterSplineSeries scatterSplineSeries2;
+    private IgbDataToolTipLayer dataToolTipLayer;
 
     private HealthDataForGermany _healthDataForGermany = null;
     public HealthDataForGermany HealthDataForGermany
@@ -103,12 +108,12 @@
         {
             if (_healthDataForGermany == null)
             {
-                _healthDataForGermany = new HealthDataForGermany(); 
+                _healthDataForGermany = new HealthDataForGermany();
             }
             return _healthDataForGermany;
         }
     }
-    
+
     private HealthDataForFrance _healthDataForFrance = null;
     public HealthDataForFrance HealthDataForFrance
     {
@@ -116,10 +121,10 @@
         {
             if (_healthDataForFrance == null)
             {
-                _healthDataForFrance = new HealthDataForFrance(); 
+                _healthDataForFrance = new HealthDataForFrance();
             }
             return _healthDataForFrance;
         }
     }
-    
+
 }

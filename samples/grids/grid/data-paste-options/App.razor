@@ -1,12 +1,12 @@
-@using IgniteUI.Blazor.Controls;
+@using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 @inject IJSRuntime JS
 
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="WebGrid"
         IsHorizontal="true"
         IsWrappingEnabled="false"
@@ -20,7 +20,7 @@
             Name="propertyEditorPropertyDescription1"
             @ref="propertyEditorPropertyDescription1">
             </IgbPropertyEditorPropertyDescription>
-            
+
             <IgbPropertyEditorPropertyDescription
             Label=""
             ValueType="PropertyEditorValueType.Button"
@@ -29,16 +29,15 @@
             Name="propertyEditorPropertyDescription2"
             @ref="propertyEditorPropertyDescription2">
             </IgbPropertyEditorPropertyDescription>
-            
+
         </IgbPropertyEditorPanel>
-        
+
     </div>
 
     <div class="container vertical fill">
         <IgbGrid
         Data="CustomersData"
         PrimaryKey="ID"
-        BatchEditing="true"
         Name="grid1"
         @ref="grid1">
             <IgbColumn
@@ -47,30 +46,30 @@
             Name="ContactName"
             @ref="contactName">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="ContactTitle"
             @ref="contactTitle"
             Field="ContactTitle"
             Header="Contact Title">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="Phone"
             @ref="phone"
             Field="Phone"
             Header="Phone">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="Country"
             @ref="country"
             Field="Country"
             Header="Country">
             </IgbColumn>
-            
+
         </IgbGrid>
-        
+
     </div>
 
 </div>
@@ -79,7 +78,7 @@
     protected override async Task OnInitializedAsync()
     {
 
-        await Task.Delay(1);
+
     }
 
     private Action BindElements { get; set; }
@@ -99,12 +98,7 @@
             propertyEditorPanel1.Target = this.grid1;
         };
         this.BindElements();
-
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbPropertyEditorPanel propertyEditorPanel1;
     private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
@@ -122,10 +116,10 @@
         {
             if (_customersData == null)
             {
-                _customersData = new CustomersData(); 
+                _customersData = new CustomersData();
             }
             return _customersData;
         }
     }
-    
+
 }

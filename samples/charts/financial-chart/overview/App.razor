@@ -1,6 +1,6 @@
 
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
 
@@ -36,15 +36,11 @@
 
     protected override async Task OnInitializedAsync()
     {
-        IgbFinancialChartModule.Register(IgniteUIBlazor);
-        IgbLegendModule.Register(IgniteUIBlazor);
         this.Data = await StocksHistory.GetMultipleStocks();
     }
 
     protected override void OnAfterRender(bool firstRender)
     {
-        base.OnAfterRender(firstRender);
-
         if (Chart != null && FinancialLegend != null && !firstRender)
             Chart.Legend = FinancialLegend;
 

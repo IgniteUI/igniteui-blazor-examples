@@ -1,5 +1,5 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container horizontal">
     <div class="container vertical">
@@ -97,7 +97,7 @@
     </div>
 
     @*<div class="overlay-border overlay-bottom-right">Imagery Tiles: ESRI/ArcGIS</div>*@
-    
+
 </div>
 
 @code {
@@ -109,9 +109,6 @@
 
     protected override void OnInitialized()
     {
-        IgbGeographicMapModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-
         regions = MapUtils.GetRegions();
         this.MapRegionRect = regions[MapRegion.Australia];
     }

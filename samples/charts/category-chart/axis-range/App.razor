@@ -1,11 +1,9 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	    <div class="options vertical">
+    <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="CategoryChart"
         IsHorizontal="true"
         IsWrappingEnabled="true"
@@ -13,85 +11,85 @@
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="YAxisMinimumValue"
+            Name="YAxisMinimumValue"
+            @ref="yAxisMinimumValue"
             Label="Y Axis Minimum Value"
-            ValueType="PropertyEditorValueType.EnumValue"
             ShouldOverrideDefaultEditor="true"
+            ValueType="PropertyEditorValueType.EnumValue"
             DropDownNames="@(new string[] { "0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100" })"
             DropDownValues="@(new string[] { "0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100" })"
-            PrimitiveValue="0"
-            Name="YAxisMinimumValue"
-            @ref="yAxisMinimumValue">
+            PrimitiveValue="0">
             </IgbPropertyEditorPropertyDescription>
+
             <IgbPropertyEditorPropertyDescription
-            DropDownValues="@(new string[] { "100", "110", "120", "130", "140", "150", "160", "170", "180", "190", "200" })"
-            PrimitiveValue="150"
             PropertyPath="YAxisMaximumValue"
-            Label="Y Axis Maximum Value"
-            ValueType="PropertyEditorValueType.EnumValue"
-            ShouldOverrideDefaultEditor="true"
-            DropDownNames="@(new string[] { "100", "110", "120", "130", "140", "150", "160", "170", "180", "190", "200" })"
             Name="YAxisMaximumValue"
-            @ref="yAxisMaximumValue">
+            @ref="yAxisMaximumValue"
+            Label="Y Axis Maximum Value"
+            ShouldOverrideDefaultEditor="true"
+            ValueType="PropertyEditorValueType.EnumValue"
+            DropDownNames="@(new string[] { "100", "110", "120", "130", "140", "150", "160", "170", "180", "190", "200" })"
+            DropDownValues="@(new string[] { "100", "110", "120", "130", "140", "150", "160", "170", "180", "190", "200" })"
+            PrimitiveValue="150">
             </IgbPropertyEditorPropertyDescription>
+
         </IgbPropertyEditorPanel>
+
     </div>
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Highest Grossing Movie Franchises
     </div>
-    
-	     <div class="legend">
+    <div class="legend">
         <IgbLegend
-        Orientation="LegendOrientation.Horizontal"
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
+
     </div>
-	
+
     <div class="container vertical fill">
         <IgbCategoryChart
-        ChartType="CategoryChartType.Line"
-        YAxisMinimumValue="0"
-        YAxisMaximumValue="150"
+        Name="chart"
+        @ref="chart"
         DataSource="CountryRenewableElectricity"
         IncludedProperties="@(new string[] { "Year", "Europe", "China", "America" })"
+        ChartType="CategoryChartType.Line"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
-        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
-        Name="chart"
-        @ref="chart">
+        YAxisMinimumValue="0"
+        YAxisMaximumValue="150">
         </IgbCategoryChart>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-    }
-
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var legend = this.legend;
-		var propertyEditorPanel1 = this.propertyEditorPanel1;
-		var yAxisMinimumValue = this.yAxisMinimumValue;
-		var yAxisMaximumValue = this.yAxisMaximumValue;
-		var chart = this.chart;
+        var legend = this.legend;
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var yAxisMinimumValue = this.yAxisMinimumValue;
+        var yAxisMaximumValue = this.yAxisMaximumValue;
+        var chart = this.chart;
 
         this.BindElements = () => {
             propertyEditorPanel1.Target = this.chart;
             chart.Legend = this.legend;
         };
         this.BindElements();
-	}
 
-	private IgbLegend legend;
-	private IgbPropertyEditorPanel propertyEditorPanel1;
-	private IgbPropertyEditorPropertyDescription yAxisMinimumValue;
-	private IgbPropertyEditorPropertyDescription yAxisMaximumValue;
-	private IgbCategoryChart chart;
+    }
 
+    private IgbLegend legend;
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription yAxisMinimumValue;
+    private IgbPropertyEditorPropertyDescription yAxisMaximumValue;
+    private IgbCategoryChart chart;
 
     private CountryRenewableElectricity _countryRenewableElectricity = null;
     public CountryRenewableElectricity CountryRenewableElectricity
@@ -100,10 +98,10 @@
         {
             if (_countryRenewableElectricity == null)
             {
-                _countryRenewableElectricity = new CountryRenewableElectricity(); 
+                _countryRenewableElectricity = new CountryRenewableElectricity();
             }
             return _countryRenewableElectricity;
         }
     }
-    
+
 }

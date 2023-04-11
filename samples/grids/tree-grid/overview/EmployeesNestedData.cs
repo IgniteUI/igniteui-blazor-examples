@@ -99,7 +99,7 @@ public class EmployeesNestedData
                     Name = @"Roland Mendel",
                     Title = @"Senior Software Developer"
                 }}
-            
+
         });
         this.Add(new EmployeesNestedDataItem()
         {
@@ -154,7 +154,7 @@ public class EmployeesNestedData
                     Name = @"Trevor Ashworth",
                     Title = @"Director"
                 }}
-            
+
         });
         this.Add(new EmployeesNestedDataItem()
         {
@@ -222,7 +222,7 @@ public class EmployeesNestedData
                     Name = @"Monica Mendel",
                     Title = @"Senior Software Developer"
                 }}
-            
+
         });
         this.Add(new EmployeesNestedDataItem()
         {
@@ -235,7 +235,36 @@ public class EmployeesNestedData
             Phone = @"259-266-887",
             HireDate = @"2010, 1, 1",
             Name = @"Yang Wang",
-            Title = @"Localization Developer"
+            Title = @"Localization Developer",
+            Employees = new List<EmployeesNestedDataItem_EmployeesItem>()
+            {
+                new EmployeesNestedDataItem_EmployeesItem()
+                {
+                    Age = 31,
+                    Salary = 90000,
+                    Productivity = 80,
+                    City = @"Warasw",
+                    Country = @"Poland",
+                    Phone = @"609-222-205",
+                    HireDate = @"2014, 8, 18",
+                    ID = 11,
+                    Name = @"Monica Reyes",
+                    Title = @"Software Development Team Lead"
+                },
+                new EmployeesNestedDataItem_EmployeesItem()
+                {
+                    Age = 35,
+                    Salary = 70000,
+                    Productivity = 70,
+                    City = @"Koln",
+                    Country = @"Germany",
+                    Phone = @"609-502-525",
+                    HireDate = @"2015, 9, 17",
+                    ID = 6,
+                    Name = @"Roland Mendel",
+                    Title = @"Senior Software Developer"
+                }}
+
         });
         this.Add(new EmployeesNestedDataItem()
         {
@@ -248,7 +277,36 @@ public class EmployeesNestedData
             Phone = @"688-244-844",
             HireDate = @"2014, 1, 22",
             Name = @"Janine Munoz",
-            Title = @"HR"
+            Title = @"HR",
+            Employees = new List<EmployeesNestedDataItem_EmployeesItem>()
+            {
+                new EmployeesNestedDataItem_EmployeesItem()
+                {
+                    Age = 43,
+                    Salary = 70000,
+                    Productivity = 80,
+                    City = @"Hamburg",
+                    Country = @"Germany",
+                    Phone = @"609-444-555",
+                    HireDate = @"2011, 6, 3",
+                    ID = 3,
+                    Name = @"Michael Burke",
+                    Title = @"Senior Software Developer"
+                },
+                new EmployeesNestedDataItem_EmployeesItem()
+                {
+                    Age = 31,
+                    Salary = 90000,
+                    Productivity = 80,
+                    City = @"Warasw",
+                    Country = @"Poland",
+                    Phone = @"609-222-205",
+                    HireDate = @"2014, 8, 18",
+                    ID = 11,
+                    Name = @"Monica Reyes",
+                    Title = @"Software Development Team Lead"
+                }}
+
         });
         this.Add(new EmployeesNestedDataItem()
         {
@@ -261,7 +319,36 @@ public class EmployeesNestedData
             Phone = @"677-266-555",
             HireDate = @"2010, 1, 1",
             Name = @"Yang Wang",
-            Title = @"Sales Manager"
+            Title = @"Sales Manager",
+            Employees = new List<EmployeesNestedDataItem_EmployeesItem>()
+            {
+                new EmployeesNestedDataItem_EmployeesItem()
+                {
+                    Age = 29,
+                    Salary = 60000,
+                    Productivity = 80,
+                    City = @"Munich",
+                    Country = @"Germany",
+                    Phone = @"609-333-444",
+                    HireDate = @"2009, 6, 19",
+                    ID = 2,
+                    Name = @"Thomas Anderson",
+                    Title = @"Senior Software Developer"
+                },
+                new EmployeesNestedDataItem_EmployeesItem()
+                {
+                    Age = 35,
+                    Salary = 70000,
+                    Productivity = 70,
+                    City = @"Koln",
+                    Country = @"Germany",
+                    Phone = @"609-502-525",
+                    HireDate = @"2015, 9, 17",
+                    ID = 6,
+                    Name = @"Roland Mendel",
+                    Title = @"Senior Software Developer"
+                }}
+
         });
     }
 }

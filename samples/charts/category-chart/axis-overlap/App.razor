@@ -1,11 +1,9 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	    <div class="options vertical">
+    <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="CategoryChart"
         IsHorizontal="true"
         IsWrappingEnabled="true"
@@ -13,71 +11,70 @@
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="XAxisOverlap"
+            Name="XAxisOverlap"
+            @ref="xAxisOverlap"
             Label="X Axis - Overlap"
-            ValueType="PropertyEditorValueType.Slider"
             ShouldOverrideDefaultEditor="true"
-            PrimitiveValue="0"
+            ValueType="PropertyEditorValueType.Slider"
             Min="0"
             Max="1"
             Step="0.1"
-            Name="XAxisOverlap"
-            @ref="xAxisOverlap">
+            PrimitiveValue="0">
             </IgbPropertyEditorPropertyDescription>
+
         </IgbPropertyEditorPanel>
+
     </div>
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Highest Grossing Movie Franchises
     </div>
-    
-	     <div class="legend">
+    <div class="legend">
         <IgbLegend
-        Orientation="LegendOrientation.Horizontal"
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
+
     </div>
-	
+
     <div class="container vertical fill">
         <IgbCategoryChart
-        ChartType="CategoryChartType.Column"
-        XAxisInterval="1"
-        XAxisOverlap="1"
+        Name="chart"
+        @ref="chart"
         DataSource="HighestGrossingMovies"
+        ChartType="CategoryChartType.Column"
+        CrosshairsSnapToData="true"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
-        CrosshairsSnapToData="true"
-        Name="chart"
-        @ref="chart">
+        XAxisInterval="1"
+        XAxisOverlap="1">
         </IgbCategoryChart>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-    }
-
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var legend = this.legend;
-		var propertyEditorPanel1 = this.propertyEditorPanel1;
-		var xAxisOverlap = this.xAxisOverlap;
-		var chart = this.chart;
+        var legend = this.legend;
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var xAxisOverlap = this.xAxisOverlap;
+        var chart = this.chart;
 
         this.BindElements = () => {
             propertyEditorPanel1.Target = this.chart;
         };
         this.BindElements();
-	}
 
-	private IgbLegend legend;
-	private IgbPropertyEditorPanel propertyEditorPanel1;
-	private IgbPropertyEditorPropertyDescription xAxisOverlap;
-	private IgbCategoryChart chart;
+    }
 
+    private IgbLegend legend;
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription xAxisOverlap;
+    private IgbCategoryChart chart;
 
     private HighestGrossingMovies _highestGrossingMovies = null;
     public HighestGrossingMovies HighestGrossingMovies
@@ -86,10 +83,10 @@
         {
             if (_highestGrossingMovies == null)
             {
-                _highestGrossingMovies = new HighestGrossingMovies(); 
+                _highestGrossingMovies = new HighestGrossingMovies();
             }
             return _highestGrossingMovies;
         }
     }
-    
+
 }

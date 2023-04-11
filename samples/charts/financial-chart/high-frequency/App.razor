@@ -2,7 +2,7 @@
 @using IgniteUI.Blazor.Controls
 @using System.Collections.ObjectModel
 
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
     <div class="options horizontal">
@@ -60,21 +60,15 @@
     private int FrameCount = 0;
     private DateTime FrameUpdateTime;
 
-    void InitalizeChart()
+    protected override async Task OnInitializedAsync()
     {
-        IgbFinancialChartModule.Register(IgniteUIBlazor);
-
         var dataList = StocksUtility.GetStocksItems(this.DataPoints);
         this.Data = new ObservableCollection<StockItem>(dataList);
 
         this.DataInfo = StocksUtility.ToShortString(this.DataPoints);
         this.FrameUpdateTime = DateTime.Now;
         this.DataUpdateInfo = (this.DataUpdateInterval / 1000.0).ToString("0.0") + "s ";
-    }
 
-    protected override async Task OnInitializedAsync()
-    {
-        InitalizeChart();
         await Task.Delay(1000);
         this.OnDataToggleFeedClick();
     }

@@ -1,6 +1,6 @@
 
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical" style="display: list-item">
     <style>
@@ -20,16 +20,8 @@
 
     private IgbIcon RegisterIconRef { get; set; }
 
-    protected override void OnInitialized()
-    {
-        IgbIconButtonModule.Register(IgniteUIBlazor);
-        IgbIconModule.Register(IgniteUIBlazor);
-    }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await base.OnAfterRenderAsync(firstRender);
-
         if(firstRender && this.RegisterIconRef != null)
         {
             await this.RegisterIconRef.EnsureReady();

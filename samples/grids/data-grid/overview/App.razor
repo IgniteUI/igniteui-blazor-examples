@@ -5,7 +5,7 @@
 @using Microsoft.AspNetCore.Components.Web
 
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
 
@@ -84,15 +84,7 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
-
-        IgbDataGridModule.Register(IgniteUIBlazor);
-        IgbDataGridToolbarModule.Register(IgniteUIBlazor);
-        IgbColumnChooserModule.Register(IgniteUIBlazor);
-
         this.Employees = EmployeeData.Create(100, false);
-
-        Console.WriteLine("Data " + this.Employees.Count);
     }
 
     private void OnDataGridRef()

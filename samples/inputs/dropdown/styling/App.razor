@@ -1,5 +1,5 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <style>
 igc-dropdown::part(list) {
@@ -56,7 +56,7 @@ igc-dropdown-group::part(label) {
               <span slot="suffix">MX</span>
               </IgbDropdownItem>
         </IgbDropdownGroup>
-              
+
     </IgbDropdown>
 </div>
 
@@ -64,19 +64,8 @@ igc-dropdown-group::part(label) {
 
     private IgbIcon LocationIcon { get; set; }
 
-    protected override void OnInitialized()
-    {
-        IgbDropdownModule.Register(IgniteUIBlazor);
-        IgbDropdownGroupModule.Register(IgniteUIBlazor);
-        IgbDropdownItemModule.Register(IgniteUIBlazor);
-        IgbButtonModule.Register(IgniteUIBlazor);
-        IgbIconModule.Register(IgniteUIBlazor);
-    }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await base.OnAfterRenderAsync(firstRender);
-
         if (firstRender && this.LocationIcon != null)
         {
             await this.LocationIcon.EnsureReady();

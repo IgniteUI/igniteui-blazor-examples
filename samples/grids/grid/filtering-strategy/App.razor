@@ -1,6 +1,5 @@
-@using IgniteUI.Blazor.Controls;
+@using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
 <div class="container vertical">
@@ -8,12 +7,12 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Id="grid"
         Data="NwindData"
-        AllowFiltering="true"
-        FilterMode="FilterMode.ExcelStyleFilter"
         Name="grid"
-        @ref="grid">
+        @ref="grid"
+        Id="grid"
+        AllowFiltering="true"
+        FilterMode="FilterMode.ExcelStyleFilter">
             <IgbColumn
             Field="ProductName"
             Header="Product Name"
@@ -21,7 +20,7 @@
             DisableHiding="true"
             DataType="GridColumnDataType.String">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="QuantityPerUnit"
             Header="Quantity Per Unit"
@@ -29,7 +28,7 @@
             DisableHiding="true"
             DataType="GridColumnDataType.String">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="UnitPrice"
             Header="Unit Price Category"
@@ -37,7 +36,7 @@
             DisableHiding="true"
             DataType="GridColumnDataType.String">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="OrderDate"
             Header="Order Date"
@@ -45,7 +44,7 @@
             DisableHiding="true"
             DataType="GridColumnDataType.Date">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Discontinued"
             Header="Discontinued"
@@ -56,36 +55,20 @@
             Name="column1"
             @ref="column1">
             </IgbColumn>
-            
-        </IgbGrid>
-        
-    </div>
 
+        </IgbGrid>
+
+    </div>
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-        await Task.Delay(1);
-    }
-
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
         var column1 = this.column1;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
-
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
     private IgbColumn column1;
@@ -97,10 +80,10 @@
         {
             if (_nwindData == null)
             {
-                _nwindData = new NwindData(); 
+                _nwindData = new NwindData();
             }
             return _nwindData;
         }
     }
-    
+
 }

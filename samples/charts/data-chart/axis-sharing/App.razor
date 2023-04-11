@@ -1,6 +1,5 @@
 ﻿@using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor;
-@inject IJSRuntime JSRuntime;
+
 
 <div class="container vertical">
     <div class="container vertical">
@@ -12,29 +11,29 @@
                        IsHorizontalZoomEnabled="true"
                        IsVerticalZoomEnabled="true">
                 <IgbCategoryXAxis Name="xAxisShared" Label="Label" Gap="0.75" DataSource="Data" />
-                <IgbNumericYAxis Name="yAxisRight" LabelLocation="AxisLabelsLocation.OutsideRight" 
+                <IgbNumericYAxis Name="yAxisRight" LabelLocation="AxisLabelsLocation.OutsideRight"
                                  MinimumValue="400"
                                  MaximumValue="700" Title="Stock Price ($)" />
-                <IgbNumericYAxis Name="yAxisLeft" LabelLocation="AxisLabelsLocation.OutsideLeft" 
+                <IgbNumericYAxis Name="yAxisLeft" LabelLocation="AxisLabelsLocation.OutsideLeft"
                                  MinimumValue="5000"
-                                 MaximumValue="45000" Title="Trade Volume" 
-                                 MajorStrokeThickness="0" 
+                                 MaximumValue="45000" Title="Trade Volume"
+                                 MajorStrokeThickness="0"
                                  AbbreviateLargeNumbers="true" />
 
-                <IgbColumnSeries XAxisName="xAxisShared" 
-                                 YAxisName="yAxisLeft" 
-                                 DataSource="Data" 
+                <IgbColumnSeries XAxisName="xAxisShared"
+                                 YAxisName="yAxisLeft"
+                                 DataSource="Data"
                                  ValueMemberPath="Volume"
-                                 ShowDefaultTooltip="true" 
+                                 ShowDefaultTooltip="true"
                                  Title="Trade Volume" />
 
-                <IgbFinancialPriceSeries XAxisName="xAxisShared" 
-                                         YAxisName="yAxisRight" 
+                <IgbFinancialPriceSeries XAxisName="xAxisShared"
+                                         YAxisName="yAxisRight"
                                          DisplayType="PriceDisplayType.Candlestick"
                                          DataSource="Data"
                                          HighMemberPath="High" LowMemberPath="Low" CloseMemberPath="Close" OpenMemberPath="Open"
-                                         VolumeMemberPath="Volume" 
-                                         ShowDefaultTooltip="true" 
+                                         VolumeMemberPath="Volume"
+                                         ShowDefaultTooltip="true"
                                          Title="Stock Price" />
             </IgbDataChart>
         }
@@ -48,18 +47,6 @@
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
-
-        IgbNumberAbbreviatorModule.Register(IgniteUIBlazor);
-        IgbDataChartCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-        IgbDataChartFinancialModule.Register(IgniteUIBlazor);
-        IgbDataChartFinancialCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
-
         this.Data = SharedAxisFinancialData.Create();
-
-        Console.WriteLine(this.Data.Count);
     }
 }

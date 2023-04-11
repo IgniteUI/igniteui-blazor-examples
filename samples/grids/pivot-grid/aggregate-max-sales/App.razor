@@ -1,44 +1,27 @@
-@using IgniteUI.Blazor.Controls;
+@using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
 <div class="container vertical">
 
     <div class="container vertical fill">
         <IgbPivotGrid
-        PivotConfiguration="PivotConfiguration1"
         Data="PivotSalesData"
         Name="grid"
-        @ref="grid">
+        @ref="grid"
+        PivotConfiguration="PivotConfiguration1">
         </IgbPivotGrid>
-        
-    </div>
 
+    </div>
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-        await Task.Delay(1);
-    }
-
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
-
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbPivotGrid grid;
     private IgbPivotConfiguration _pivotConfiguration1 = null;
@@ -50,13 +33,13 @@
             {
                 var pivotConfiguration1 = new IgbPivotConfiguration();
                 var pivotDimension1 = new IgbPivotDimension();
-                pivotDimension1.MemberName = "Product";
+                pivotDimension1.MemberName = "Country";
                 pivotDimension1.Enabled = true;
-                pivotDimension1.Name = "pivotDimension1";pivotConfiguration1.Rows.Add(pivotDimension1);
+                pivotDimension1.Name = "pivotDimension1";pivotConfiguration1.Columns.Add(pivotDimension1);
                 var pivotDimension2 = new IgbPivotDimension();
-                pivotDimension2.MemberName = "Country";
+                pivotDimension2.MemberName = "Product";
                 pivotDimension2.Enabled = true;
-                pivotDimension2.Name = "pivotDimension2";pivotConfiguration1.Columns.Add(pivotDimension2);
+                pivotDimension2.Name = "pivotDimension2";pivotConfiguration1.Rows.Add(pivotDimension2);
                 var pivotValue1 = new IgbPivotValue();
                 pivotValue1.Member = "Sales";
                 pivotValue1.Enabled = true;
@@ -65,7 +48,7 @@
                 pivotAggregator1.AggregatorScript = "PivotSalesDataAggregateMaxSales";
                 pivotAggregator1.Name = "pivotAggregator1";pivotValue1.Aggregate = pivotAggregator1;
                 pivotConfiguration1.Values.Add(pivotValue1);
-                
+
                 this._pivotConfiguration1 = pivotConfiguration1;
             }
             return this._pivotConfiguration1;
@@ -79,10 +62,10 @@
         {
             if (_pivotSalesData == null)
             {
-                _pivotSalesData = new PivotSalesData(); 
+                _pivotSalesData = new PivotSalesData();
             }
             return _pivotSalesData;
         }
     }
-    
+
 }

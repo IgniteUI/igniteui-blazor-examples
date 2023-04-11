@@ -1,103 +1,109 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Wind Speed vs Boat Speed
     </div>
-    
-	     <div class="legend">
+    <div class="legend">
         <IgbLegend
-        Orientation="LegendOrientation.Horizontal"
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
+
     </div>
-	
+
     <div class="container vertical fill">
         <IgbDataChart
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false">
             <IgbNumericAngleAxis
-            StartAngleOffset="-90"
-            MinimumValue="0"
-            MaximumValue="360"
-            Interval="30"
             Name="angleAxis"
-            @ref="angleAxis">
+            @ref="angleAxis"
+            StartAngleOffset="-90"
+            Interval="30"
+            MinimumValue="0"
+            MaximumValue="360">
             </IgbNumericAngleAxis>
+
             <IgbNumericRadiusAxis
+            Name="radiusAxis"
+            @ref="radiusAxis"
             RadiusExtentScale="0.9"
             InnerRadiusExtentScale="0.1"
-            MinimumValue="0"
-            MaximumValue="100"
             Interval="25"
-            Name="radiusAxis"
-            @ref="radiusAxis">
+            MinimumValue="0"
+            MaximumValue="100">
             </IgbNumericRadiusAxis>
+
             <IgbPolarLineSeries
-            AngleMemberPath="Direction"
-            RadiusMemberPath="WindSpeed"
+            Name="PolarLineSeries1"
+            @ref="polarLineSeries1"
+            DataSource="BoatSailingData"
             AngleAxisName="angleAxis"
             RadiusAxisName="radiusAxis"
-            MarkerType="MarkerType.Circle"
-            DataSource="BoatSailingData"
+            AngleMemberPath="Direction"
+            RadiusMemberPath="WindSpeed"
+            ShowDefaultTooltip="false"
             Thickness="1"
-            ShowDefaultTooltip="true"
             Title="Wind Speed"
-            Name="PolarLineSeries1"
-            @ref="polarLineSeries1">
+            MarkerType="MarkerType.Circle">
             </IgbPolarLineSeries>
+
             <IgbPolarLineSeries
+            Name="PolarLineSeries2"
+            @ref="polarLineSeries2"
             DataSource="BoatSailingData"
             AngleAxisName="angleAxis"
             RadiusAxisName="radiusAxis"
             AngleMemberPath="Direction"
             RadiusMemberPath="BoatSpeed"
-            ShowDefaultTooltip="true"
+            ShowDefaultTooltip="false"
             Thickness="1"
             Title="Boat Speed"
-            MarkerType="MarkerType.Circle"
-            Name="PolarLineSeries2"
-            @ref="polarLineSeries2">
+            MarkerType="MarkerType.Circle">
             </IgbPolarLineSeries>
+
+            <IgbDataToolTipLayer
+            Name="DataToolTipLayer"
+            @ref="dataToolTipLayer">
+            </IgbDataToolTipLayer>
+
         </IgbDataChart>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-    }
-
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var legend = this.legend;
-		var chart = this.chart;
-		var angleAxis = this.angleAxis;
-		var radiusAxis = this.radiusAxis;
-		var polarLineSeries1 = this.polarLineSeries1;
-		var polarLineSeries2 = this.polarLineSeries2;
+        var legend = this.legend;
+        var chart = this.chart;
+        var angleAxis = this.angleAxis;
+        var radiusAxis = this.radiusAxis;
+        var polarLineSeries1 = this.polarLineSeries1;
+        var polarLineSeries2 = this.polarLineSeries2;
+        var dataToolTipLayer = this.dataToolTipLayer;
 
         this.BindElements = () => {
             chart.Legend = this.legend;
         };
         this.BindElements();
-	}
 
-	private IgbLegend legend;
-	private IgbDataChart chart;
-	private IgbNumericAngleAxis angleAxis;
-	private IgbNumericRadiusAxis radiusAxis;
-	private IgbPolarLineSeries polarLineSeries1;
-	private IgbPolarLineSeries polarLineSeries2;
+    }
 
+    private IgbLegend legend;
+    private IgbDataChart chart;
+    private IgbNumericAngleAxis angleAxis;
+    private IgbNumericRadiusAxis radiusAxis;
+    private IgbPolarLineSeries polarLineSeries1;
+    private IgbPolarLineSeries polarLineSeries2;
+    private IgbDataToolTipLayer dataToolTipLayer;
 
     private BoatSailingData _boatSailingData = null;
     public BoatSailingData BoatSailingData
@@ -106,10 +112,10 @@
         {
             if (_boatSailingData == null)
             {
-                _boatSailingData = new BoatSailingData(); 
+                _boatSailingData = new BoatSailingData();
             }
             return _boatSailingData;
         }
     }
-    
+
 }

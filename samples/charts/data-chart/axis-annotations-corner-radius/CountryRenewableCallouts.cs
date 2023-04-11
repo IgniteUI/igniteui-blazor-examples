@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 public class CountryRenewableCalloutsItem
 {
-    public double Index{ get; set; }
-    public string Label{ get; set; }
-    public double Value{ get; set; }
+    public double Index { get; set; }
+    public string Label { get; set; }
+    public double Value { get; set; }
 }
+
 public class CountryRenewableCallouts
     : List<CountryRenewableCalloutsItem>
 {

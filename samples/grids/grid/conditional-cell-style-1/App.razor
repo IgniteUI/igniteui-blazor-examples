@@ -1,6 +1,5 @@
-@using IgniteUI.Blazor.Controls;
+@using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
 <div class="container vertical">
@@ -8,51 +7,51 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Data="AthletesData"
         Name="grid"
-        @ref="grid">
+        @ref="grid"
+        Data="AthletesData">
             <IgbColumn
             Field="Id"
             Header="Rank"
             Sortable="true"
             Editable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Name"
             Header="Athlete"
             Sortable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="BeatsPerMinute"
             Header="Beats per Minute"
-            Sortable="true"
-            Editable="true"
             DataType="GridColumnDataType.Number"
+            Editable="true"
+            Sortable="true"
             BodyTemplateScript="WebGridBeatsPerMinuteTemplate"
             Name="column1"
             @ref="column1">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="TopSpeed"
             Header="Top Speed"
-            Sortable="true"
-            Editable="true"
             DataType="GridColumnDataType.Number"
+            Editable="true"
+            Sortable="true"
             BodyTemplateScript="WebGridTopSpeedTemplate"
             Name="column2"
             @ref="column2">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="TrackProgress"
             Header="Track Progress"
-            Sortable="true"
-            Editable="true">
+            Editable="true"
+            Sortable="true">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="CountryFlag"
             Header="Country"
@@ -60,21 +59,13 @@
             Name="column3"
             @ref="column3">
             </IgbColumn>
-            
-        </IgbGrid>
-        
-    </div>
 
+        </IgbGrid>
+
+    </div>
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-        await Task.Delay(1);
-    }
-
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -83,15 +74,7 @@
         var column2 = this.column2;
         var column3 = this.column3;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
-
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
     private IgbColumn column1;
@@ -105,10 +88,10 @@
         {
             if (_athletesData == null)
             {
-                _athletesData = new AthletesData(); 
+                _athletesData = new AthletesData();
             }
             return _athletesData;
         }
     }
-    
+
 }

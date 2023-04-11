@@ -8,7 +8,7 @@ function onMapMarkerTemplate(o, e) {
             var data = measureInfo.data;
             let value = "0.00";
             var item = data.item;
-            if (item != null) {
+            if (item !== null) {
                 value = item.Name.toString();
             }
             var context = measureInfo.context;
@@ -35,43 +35,41 @@ function onMapMarkerTemplate(o, e) {
             var x = renderInfo.xPosition - halfWidth;
             var y = renderInfo.yPosition - halfHeight;
 
-            if (renderInfo.isHitTestRender) {
-                //ctx.fillRect(cx - rectHalf, cy - rectHalf, rectSize, rectSize);
-                ctx.fillRect(x, y, renderInfo.availableWidth, renderInfo.availableHeight);
-                return;
+            var labelWidth = 24;
 
+            if (renderInfo.isHitTestRender) {
+                //ctx.fillRect(x, y, renderInfo.availableWidth, renderInfo.availableHeight);
+                ctx.fillRect(x, y, labelWidth, renderInfo.availableHeight);
+                return;
             } else {
 
                 var data = renderInfo.data;
 
                 var viewportHeight = renderInfo.passInfo.viewportHeight;
                 var viewportRatio = viewportHeight / 500.0;
-                var markerSize = viewportRatio * desiredSize;
+                var markerSize = (viewportRatio * desiredSize) + 2;
                 var markerRadius = markerSize / 2.0;
 
                 var fontSize = Math.round(viewportRatio * 10);
-                var lineSize = Math.round(viewportRatio * 6);
+                var lineSize = Math.round(viewportRatio * 5.5);
 
                 x = renderInfo.xPosition + 5;
-                y = renderInfo.yPosition + 10;
-                if (y < 0) {
-                    y -= renderInfo.availableHeight + 7.5;
-                }
+                y = renderInfo.yPosition; //+ 10;
 
-                let bottomEdge = renderInfo.passInfo.viewportTop + renderInfo.passInfo.viewportHeight;
-                if (y + renderInfo.availableHeight > bottomEdge) {
-                    y -= renderInfo.availableHeight + 5;
-                }
+                let labelX = x;
 
                 let rightEdge = renderInfo.passInfo.viewportLeft + renderInfo.passInfo.viewportWidth;
-                if (x + renderInfo.availableWidth > rightEdge) {
-                    x -= renderInfo.availableWidth + 12;
+                if (x + labelWidth + 10 > rightEdge) {
+                    x -= labelWidth + 5;
+                    labelX = x;
+                } else {
+                    labelX = x + 2;
                 }
 
                 // rendering rectanlge as background of the marker's text
                 ctx.beginPath();
                 ctx.fillStyle = "#7D73E6";
-                ctx.fillRect(x - 2, y - lineSize, renderInfo.availableWidth + 8, lineSize + 8);
+                ctx.fillRect(x - 2, y - lineSize, labelWidth, lineSize + 6);
                 ctx.closePath();
 
                 // rendering circle for the marker's location
@@ -84,12 +82,12 @@ function onMapMarkerTemplate(o, e) {
                 ctx.stroke();
                 ctx.closePath();
 
+                var name = data.item.Code.toString();
                 // rendering text of the marker
-                ctx.font = '8pt Verdana';
-                ctx.textBaseline = "top";
+                ctx.font = '6pt Verdana';
+                ctx.textBaseline = "middle";
                 ctx.fillStyle = "white";
-                var name = data.item.Name.toString();
-                ctx.fillText(name, x + 2, y + 2 - lineSize);
+                ctx.fillText(name, labelX, cy);
             }
         }
     }

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -15,21 +15,21 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <NoWarn>1701;1702,IDE0028,BL0005,0219l,RSG002,CS8618,CS8612,CS8625,CS8601,CS8602,CS0219,CS8600,CS8622,CS8603,CS8604,CS8605</NoWarn>
+    <NoWarn>1701;1702,IDE0028,BL0005,0219,CS1998,0219l,RSG002,CS8618,CS8612,CS8625,CS8601,CS8602,CS0219,CS8600,CS8622,CS8603,CS8604,CS8605</NoWarn>
     <OutputPath>output</OutputPath>
   </PropertyGroup>
-        
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-      <NoWarn>1701;1702,IDE0028,BL0005,0219l,RSG002,CS8618,CS8612,CS8625,CS8601,CS8602,CS0219,CS8600,CS8622,CS8603,CS8604,CS8605</NoWarn>
-    </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702,IDE0028,BL0005,0219,CS1998,0219l,RSG002,CS8618,CS8612,CS8625,CS8601,CS8602,CS0219,CS8600,CS8622,CS8603,CS8604,CS8605</NoWarn>
+  </PropertyGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(NpmRoot)node_modules') ">
         <Exec Command="node --version" ContinueOnError="true">
             <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
         </Exec>
         <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
-        <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />        
-    </Target>   
+        <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+    </Target>
 
     <ItemGroup>
       <None Remove="notes.txt" />
@@ -38,12 +38,12 @@
     <!-- End NPM Updates -->
 
   <ItemGroup>
-    <PackageReference Include="IgniteUI.Blazor.Documents.Core.Trial" Version="22.2.52" />
-    <PackageReference Include="IgniteUI.Blazor.Documents.Excel.Trial" Version="22.2.52" />
-    <PackageReference Include="IgniteUI.Blazor.Trial" Version="22.2.52" />
+    <PackageReference Include="IgniteUI.Blazor.Documents.Core.Trial" Version="22.2.65" />
+    <PackageReference Include="IgniteUI.Blazor.Documents.Excel.Trial" Version="22.2.65" />
+    <PackageReference Include="IgniteUI.Blazor.Trial" Version="22.2.65" />
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="System.Net.Http.Json" Version="6.0.0" />

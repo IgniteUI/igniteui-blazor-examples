@@ -1,6 +1,5 @@
-@using IgniteUI.Blazor.Controls;
+@using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
 <div class="container vertical">
@@ -13,13 +12,13 @@
         Name="grid"
         @ref="grid">
             <IgbColumn
-            Field="ID"
-            Header="ID">
+            Header="ID"
+            Field="ID">
             </IgbColumn>
-            
+
             <IgbColumn
-            Header="Contact"
             Field="ContactName"
+            Header="Contact"
             Editable="true"
             BodyTemplateScript="WebGridCompositeContactCellTemplate"
             InlineEditorTemplateScript="WebGridCompositeContactEditCellTemplate"
@@ -28,7 +27,7 @@
             Name="column1"
             @ref="column1">
             </IgbColumn>
-            
+
             <IgbColumn
             Header="Address"
             Field="Address"
@@ -40,41 +39,33 @@
             Name="column2"
             @ref="column2">
             </IgbColumn>
-            
+
             <IgbColumn
             Header="Country"
             Field="Country">
             </IgbColumn>
-            
+
             <IgbColumn
             Header="Region"
             Field="Region">
             </IgbColumn>
-            
+
             <IgbColumn
             Header="Phone"
             Field="Phone">
             </IgbColumn>
-            
+
             <IgbColumn
             Header="Fax"
             Field="Fax">
             </IgbColumn>
-            
-        </IgbGrid>
-        
-    </div>
 
+        </IgbGrid>
+
+    </div>
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-        await Task.Delay(1);
-    }
-
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -82,15 +73,7 @@
         var column1 = this.column1;
         var column2 = this.column2;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
-
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
     private IgbColumn column1;
@@ -103,10 +86,10 @@
         {
             if (_customersData == null)
             {
-                _customersData = new CustomersData(); 
+                _customersData = new CustomersData();
             }
             return _customersData;
         }
     }
-    
+
 }

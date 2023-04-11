@@ -1,24 +1,21 @@
-@using IgniteUI.Blazor.Controls;
-
-@inject IIgniteUIBlazor IgniteUIBlazor
-@inject IJSRuntime JS
+@using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
 
     <div class="container vertical fill">
         <IgbGrid
+        Name="grid"
+        @ref="grid"
         Id="grid"
         Data="CustomersData"
-        ColumnSelection="GridSelectionMode.Multiple"
-        Name="grid"
-        @ref="grid">
+        ColumnSelection="GridSelectionMode.Multiple">
             <IgbColumnGroup
             Header="General Information">
                 <IgbColumn
                 Field="CompanyName"
                 Header="Company">
                 </IgbColumn>
-                
+
                 <IgbColumnGroup
                 Header="Personal Details">
                     <IgbColumn
@@ -26,21 +23,21 @@
                     Header="Name"
                     Hidden="true">
                     </IgbColumn>
-                    
+
                     <IgbColumn
                     Field="ContactTitle"
                     Header="Title"
                     Selectable="false">
                     </IgbColumn>
-                    
+
                 </IgbColumnGroup>
-                
+
             </IgbColumnGroup>
-            
+
             <IgbColumn
             Field="ID">
             </IgbColumn>
-            
+
             <IgbColumnGroup
             Header="Country Information">
                 <IgbColumnGroup
@@ -49,61 +46,45 @@
                     Field="Country"
                     Selectable="false">
                     </IgbColumn>
-                    
+
                     <IgbColumn
                     Field="City">
                     </IgbColumn>
-                    
+
                     <IgbColumn
                     Field="PostalCode">
                     </IgbColumn>
-                    
+
                 </IgbColumnGroup>
-                
+
                 <IgbColumnGroup
                 Header="City Information">
                     <IgbColumn
                     Field="Fax"
                     Selectable="false">
                     </IgbColumn>
-                    
+
                     <IgbColumn
                     Field="Address"
                     Selectable="false">
                     </IgbColumn>
-                    
-                </IgbColumnGroup>
-                
-            </IgbColumnGroup>
-            
-        </IgbGrid>
-        
-    </div>
 
+                </IgbColumnGroup>
+
+            </IgbColumnGroup>
+
+        </IgbGrid>
+
+    </div>
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-        await Task.Delay(1);
-    }
-
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
-
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
 
@@ -114,10 +95,10 @@
         {
             if (_customersData == null)
             {
-                _customersData = new CustomersData(); 
+                _customersData = new CustomersData();
             }
             return _customersData;
         }
     }
-    
+
 }

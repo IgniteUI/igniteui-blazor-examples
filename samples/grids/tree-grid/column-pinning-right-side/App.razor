@@ -1,0 +1,121 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        Name="treeGrid"
+        @ref="treeGrid"
+        Id="treeGrid"
+        Data="EmployeesFlatDetails"
+        PrimaryKey="ID"
+        ForeignKey="ParentID">
+            <IgbPinningConfig
+            Columns="ColumnPinningPosition.End">
+            </IgbPinningConfig>
+
+            <IgbGridToolbar
+            >
+                <IgbGridToolbarActions
+                >
+                    <IgbGridToolbarPinning
+                    >
+                    </IgbGridToolbarPinning>
+
+                </IgbGridToolbarActions>
+
+            </IgbGridToolbar>
+
+            <IgbColumn
+            Field="Name"
+            DataType="GridColumnDataType.String"
+            Width="250">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Title"
+            DataType="GridColumnDataType.String"
+            Width="300"
+            Pinned="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="HireDate"
+            Header="Hire Date"
+            DataType="GridColumnDataType.Date"
+            Width="200">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Age"
+            DataType="GridColumnDataType.Number"
+            Width="100">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Address"
+            DataType="GridColumnDataType.String"
+            Width="200">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="City"
+            DataType="GridColumnDataType.String"
+            Width="200">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Country"
+            DataType="GridColumnDataType.String"
+            Width="200">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Fax"
+            DataType="GridColumnDataType.String"
+            Width="200">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="PostalCode"
+            Header="Postal Code"
+            DataType="GridColumnDataType.String"
+            Width="200">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Phone"
+            DataType="GridColumnDataType.String"
+            Width="200">
+            </IgbColumn>
+
+        </IgbTreeGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var treeGrid = this.treeGrid;
+
+    }
+
+    private IgbTreeGrid treeGrid;
+
+    private EmployeesFlatDetails _employeesFlatDetails = null;
+    public EmployeesFlatDetails EmployeesFlatDetails
+    {
+        get
+        {
+            if (_employeesFlatDetails == null)
+            {
+                _employeesFlatDetails = new EmployeesFlatDetails();
+            }
+            return _employeesFlatDetails;
+        }
+    }
+
+}

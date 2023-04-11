@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 public class BoatSailingDataItem
 {
-    public double Direction{ get; set; }
-    public double BoatSpeed{ get; set; }
-    public double WindSpeed{ get; set; }
+    public double Direction { get; set; }
+    public double BoatSpeed { get; set; }
+    public double WindSpeed { get; set; }
 }
+
 public class BoatSailingData
     : List<BoatSailingDataItem>
 {

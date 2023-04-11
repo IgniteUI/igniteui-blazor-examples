@@ -1,7 +1,7 @@
 
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
 
@@ -24,12 +24,6 @@
 
     protected override void OnInitialized()
     {
-        IgbFinancialChartModule.Register(IgniteUIBlazor);
-        InitData();
-    }
-
-    public void InitData()
-    {
         // generating data with 20,000 points every 1 hour
         var current = DateTime.Now.Date;
         var dataCount = Math.Ceiling(20000 / 24.0);
@@ -42,6 +36,5 @@
 
         this.DataTitle = "Stock Prices between " + dateStart.Year + " and " + dateEnd.Year;
         this.DataSubtitle = "Total of " + StocksUtility.ToShortString(this.DataItems.Count) + " Data Points with 1-Hour Interval";
-        Console.WriteLine("DataItems " + this.DataItems.Count);
     }
 }

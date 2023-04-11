@@ -1,66 +1,62 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
-
 <div class="container vertical">
-	
-	    <div class="legend-title">
+    <div class="legend-title">
         Global Electricity Demand by Energy Use
     </div>
-    
-	     <div class="legend">
+    <div class="legend">
         <IgbItemLegend
-        Orientation="LegendOrientation.Horizontal"
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
         </IgbItemLegend>
+
     </div>
-	
+
     <div class="container vertical fill">
         <IgbDoughnutChart
-        AllowSliceExplosion="true"
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        AllowSliceExplosion="true">
             <IgbRingSeries
-            DataSource="EnergyGlobalDemand"
-            ValueMemberPath="Value"
+            Name="series"
+            @ref="series"
             LabelMemberPath="Summary"
-            LegendLabelMemberPath="Category"
             LabelsPosition="LabelsPosition.OutsideEnd"
             LabelExtent="30"
-            StartAngle="30"
+            ValueMemberPath="Value"
+            LegendLabelMemberPath="Category"
             Outlines="white"
             RadiusFactor="0.6"
-            Name="series"
-            @ref="series">
+            StartAngle="30"
+            DataSource="EnergyGlobalDemand">
             </IgbRingSeries>
+
         </IgbDoughnutChart>
+
     </div>
 </div>
 
 @code {
-    protected override void OnInitialized()
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-    }
-
-	private Action BindElements { get; set; }
-
-	protected override void OnAfterRender(bool firstRender)
-	{
-		var legend = this.legend;
-		var chart = this.chart;
-		var series = this.series;
+        var legend = this.legend;
+        var chart = this.chart;
+        var series = this.series;
 
         this.BindElements = () => {
             series.Legend = this.legend;
         };
         this.BindElements();
-	}
 
-	private IgbItemLegend legend;
-	private IgbDoughnutChart chart;
-	private IgbRingSeries series;
+    }
 
+    private IgbItemLegend legend;
+    private IgbDoughnutChart chart;
+    private IgbRingSeries series;
 
     private EnergyGlobalDemand _energyGlobalDemand = null;
     public EnergyGlobalDemand EnergyGlobalDemand
@@ -69,10 +65,10 @@
         {
             if (_energyGlobalDemand == null)
             {
-                _energyGlobalDemand = new EnergyGlobalDemand(); 
+                _energyGlobalDemand = new EnergyGlobalDemand();
             }
             return _energyGlobalDemand;
         }
     }
-    
+
 }

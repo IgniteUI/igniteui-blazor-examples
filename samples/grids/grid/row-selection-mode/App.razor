@@ -1,49 +1,49 @@
-@using IgniteUI.Blazor.Controls;
+@using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+
         DescriptionType="WebGrid"
-        IsHorizontal="true"
         IsWrappingEnabled="true"
+        IsHorizontal="true"
+
         Name="propertyEditorPanel1"
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="RowSelection"
             Name="selectionType"
-            @ref="selectionType">
+            @ref="selectionType"
+            PropertyPath="RowSelection">
             </IgbPropertyEditorPropertyDescription>
-            
+
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="HideRowSelectors"
             Name="hideRowSelectors"
-            @ref="hideRowSelectors">
+            @ref="hideRowSelectors"
+            PropertyPath="HideRowSelectors">
             </IgbPropertyEditorPropertyDescription>
-            
+
         </IgbPropertyEditorPanel>
-        
+
     </div>
 
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Id="grid1"
         Data="FinancialDataAll"
         Moving="true"
+        Id="grid1"
         Name="grid1"
         @ref="grid1">
             <IgbColumn
             Field="Category">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Type">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Price"
             DataType="GridColumnDataType.Currency"
@@ -51,7 +51,7 @@
             Name="column1"
             @ref="column1">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Buy"
             DataType="GridColumnDataType.Currency"
@@ -59,7 +59,7 @@
             Name="column2"
             @ref="column2">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Sell"
             DataType="GridColumnDataType.Currency"
@@ -67,14 +67,14 @@
             Name="column3"
             @ref="column3">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="Change"
             BodyTemplateScript="WebGridCurrencyCellTemplate"
             Name="column4"
             @ref="column4">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="ChangePercent"
             DataType="GridColumnDataType.Number"
@@ -82,7 +82,7 @@
             Name="column5"
             @ref="column5">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="AnnualChange"
             DataType="GridColumnDataType.Number"
@@ -90,19 +90,13 @@
             Name="column6"
             @ref="column6">
             </IgbColumn>
-            
-        </IgbGrid>
-        
-    </div>
 
+        </IgbGrid>
+
+    </div>
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-        await Task.Delay(1);
-    }
 
     private Action BindElements { get; set; }
 
@@ -124,11 +118,7 @@
         };
         this.BindElements();
 
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbPropertyEditorPanel propertyEditorPanel1;
     private IgbPropertyEditorPropertyDescription selectionType;
@@ -143,8 +133,8 @@
             if (this._columnPipeArgs1 == null)
             {
                 var columnPipeArgs1 = new IgbColumnPipeArgs();
-                columnPipeArgs1.DigitsInfo = "1.2-2";
                 columnPipeArgs1.CurrencyCode = "USD";
+                columnPipeArgs1.DigitsInfo = "1.2-2";
                 this._columnPipeArgs1 = columnPipeArgs1;
             }
             return this._columnPipeArgs1;
@@ -193,10 +183,10 @@
         {
             if (_financialDataAll == null)
             {
-                _financialDataAll = new FinancialDataAll(); 
+                _financialDataAll = new FinancialDataAll();
             }
             return _financialDataAll;
         }
     }
-    
+
 }

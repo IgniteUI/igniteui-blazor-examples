@@ -1,101 +1,89 @@
-@using IgniteUI.Blazor.Controls;
-
-@inject IIgniteUIBlazor IgniteUIBlazor
-@inject IJSRuntime JS
+@using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
 
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
+        Name="grid"
+        @ref="grid"
         Data="NwindData"
-        PrimaryKey="ProductID"
         RowEditable="true"
         AllowFiltering="true"
-        BatchEditing="true"
-        Name="grid"
-        @ref="grid">
+        PrimaryKey="ProductID">
+            <IgbPinningConfig
+            Rows="RowPinningPosition.Top">
+            </IgbPinningConfig>
+
             <IgbActionStrip
             Name="actionStrip"
             @ref="actionStrip">
                 <IgbGridPinningActions
                 >
                 </IgbGridPinningActions>
-                
+
                 <IgbGridEditingActions
                 EditRow="true"
                 DeleteRow="false">
                 </IgbGridEditingActions>
-                
+
             </IgbActionStrip>
-            
-            <IgbPinningConfig
-            Rows="RowPinningPosition.Top">
-            </IgbPinningConfig>
-            
+
             <IgbColumn
-            Field="ProductName"
-            Header="Product Name"
             Name="ProductName"
-            @ref="productName">
+            @ref="productName"
+            Field="ProductName"
+            Header="Product Name">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="UnitPrice"
             @ref="unitPrice"
             Field="UnitPrice"
             Header="Unit Price">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="UnitsOnOrder"
             @ref="unitsOnOrder"
             Field="UnitsOnOrder"
             Header="Units On Order">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="UnitsInStock"
             @ref="unitsInStock"
             Field="UnitsInStock"
             Header="Units In Stock">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="QuantityPerUnit"
             @ref="quantityPerUnit"
             Field="QuantityPerUnit"
             Header="Quantity Per Unit">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="ReorderLevel"
             @ref="reorderLevel"
             Field="ReorderLevel"
             Header="Reorder Level">
             </IgbColumn>
-            
+
             <IgbColumn
             Name="Discontinued"
             @ref="discontinued"
             Field="Discontinued"
             Header="Discontinued">
             </IgbColumn>
-            
-        </IgbGrid>
-        
-    </div>
 
+        </IgbGrid>
+
+    </div>
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-        await Task.Delay(1);
-    }
-
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -109,15 +97,7 @@
         var reorderLevel = this.reorderLevel;
         var discontinued = this.discontinued;
 
-        this.BindElements = () => {
-        };
-        this.BindElements();
-
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbGrid grid;
     private IgbActionStrip actionStrip;
@@ -136,10 +116,10 @@
         {
             if (_nwindData == null)
             {
-                _nwindData = new NwindData(); 
+                _nwindData = new NwindData();
             }
             return _nwindData;
         }
     }
-    
+
 }

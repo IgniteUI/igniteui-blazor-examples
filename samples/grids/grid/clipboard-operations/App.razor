@@ -1,50 +1,49 @@
-@using IgniteUI.Blazor.Controls;
+@using IgniteUI.Blazor.Controls
 
-@inject IIgniteUIBlazor IgniteUIBlazor
 @inject IJSRuntime JS
 
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-        
+        Name="PropertyEditor"
+        @ref="propertyEditor"
+
         DescriptionType="WebGrid"
         IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="PropertyEditor"
-        @ref="propertyEditor">
+        IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="ClipboardOptions.Separator"
+            ValueType="PropertyEditorValueType.StringValue"
             Label="Change Copy Separator"
-            ValueType="PropertyEditorValueType.StringValue">
+            PropertyPath="ClipboardOptions.Separator">
             </IgbPropertyEditorPropertyDescription>
-            
+
             <IgbPropertyEditorPropertyDescription
-            ValueType="PropertyEditorValueType.Boolean1"
-            Label="Grid Copy Behavior"
             PropertyPath="ClipboardOptions.Enabled"
-            PrimitiveValue="true"
             Name="ClipboardEnabledEditor"
-            @ref="clipboardEnabledEditor">
-            </IgbPropertyEditorPropertyDescription>
-            
-            <IgbPropertyEditorPropertyDescription
+            @ref="clipboardEnabledEditor"
+            Label="Grid Copy Behavior"
             ValueType="PropertyEditorValueType.Boolean1"
-            Label="Copying of Header Labels"
+            PrimitiveValue="true">
+            </IgbPropertyEditorPropertyDescription>
+
+            <IgbPropertyEditorPropertyDescription
             PropertyPath="ClipboardOptions.CopyHeaders"
-            PrimitiveValue="true"
             Name="ClipboardHeadersEditor"
-            @ref="clipboardHeadersEditor">
-            </IgbPropertyEditorPropertyDescription>
-            
-            <IgbPropertyEditorPropertyDescription
+            @ref="clipboardHeadersEditor"
+            Label="Copying of Header Labels"
             ValueType="PropertyEditorValueType.Boolean1"
-            Label="Copying Column Formatters"
-            PropertyPath="ClipboardOptions.CopyFormatters"
-            PrimitiveValue="true"
-            Name="ClipboardFormattersEditor"
-            @ref="clipboardFormattersEditor">
+            PrimitiveValue="true">
             </IgbPropertyEditorPropertyDescription>
-            
+
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="ClipboardOptions.CopyFormatters"
+            Name="ClipboardFormattersEditor"
+            @ref="clipboardFormattersEditor"
+            Label="Copying Column Formatters"
+            ValueType="PropertyEditorValueType.Boolean1"
+            PrimitiveValue="true">
+            </IgbPropertyEditorPropertyDescription>
+
             <IgbPropertyEditorPropertyDescription
             ValueType="PropertyEditorValueType.Button"
             PrimitiveValue="@("Clear Selection")"
@@ -52,59 +51,53 @@
             Name="propertyEditorPropertyDescription1"
             @ref="propertyEditorPropertyDescription1">
             </IgbPropertyEditorPropertyDescription>
-            
+
         </IgbPropertyEditorPanel>
-        
+
     </div>
 
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
+        Name="grid"
+        @ref="grid"
         Data="NwindData"
         RowEditable="true"
-        ColumnInitScript="WebGridClipboardOperationsColumnInit"
-        Name="grid"
-        @ref="grid">
+        ColumnInitScript="WebGridClipboardOperationsColumnInit">
             <IgbColumn
             Field="ProductID">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="ProductName">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="SupplierID">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="CategoryID">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="QuantityPerUnit">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="UnitPrice">
             </IgbColumn>
-            
+
             <IgbColumn
             Field="UnitsInStock">
             </IgbColumn>
-            
-        </IgbGrid>
-        
-    </div>
 
+        </IgbGrid>
+
+    </div>
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-        await Task.Delay(1);
-    }
 
     private Action BindElements { get; set; }
 
@@ -122,11 +115,7 @@
         };
         this.BindElements();
 
-        if (firstRender) {
-        }
-
-        await Task.Delay(1);
-	}
+    }
 
     private IgbPropertyEditorPanel propertyEditor;
     private IgbPropertyEditorPropertyDescription clipboardEnabledEditor;
@@ -142,10 +131,10 @@
         {
             if (_nwindData == null)
             {
-                _nwindData = new NwindData(); 
+                _nwindData = new NwindData();
             }
             return _nwindData;
         }
     }
-    
+
 }

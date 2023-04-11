@@ -1,5 +1,5 @@
 @using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor
+
 
 <div class="container vertical">
     <div class="container vertical">
@@ -39,7 +39,7 @@
                            LabelHorizontalAlignment="HorizontalAlignment.Right"
                            LabelLocation="AxisLabelsLocation.OutsideRight"
                            AbbreviateLargeNumbers="true"/>
-	    <IgbChaikinOscillatorIndicator XAxisName="xAxis2"
+        <IgbChaikinOscillatorIndicator XAxisName="xAxis2"
                                YAxisName="yAxis2"
                                DisplayType="@IndicatorDisplayType.Line"
                                DataSource="Data"
@@ -62,17 +62,6 @@
 
     protected override void OnInitialized()
     {
-        IgbDataChartCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartFinancialModule.Register(IgniteUIBlazor);
-        IgbDataChartFinancialCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartFinancialIndicatorsModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-        IgbNumberAbbreviatorModule.Register(IgniteUIBlazor);
-
         Data = SampleFinancialData.Create();
-
-
     }
 }

@@ -1,6 +1,5 @@
 ﻿@using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor;
-@inject IJSRuntime JSRuntime;
+
 
 <div class="container vertical">
     <div class="options horizontal">
@@ -33,15 +32,15 @@
             <option>@LegendHighlightingMode.None</option>
         </select>
     </div>
-    
+
     <div class="legend">
          <IgbLegend @ref="Legend" Orientation="LegendOrientation.Horizontal" />
     </div>
 
     <div class="container vertical">
         <IgbDataChart Height="100%" Width="100%"
-                   IsVerticalZoomEnabled="true"  
-                   IsHorizontalZoomEnabled="true" @ref="Chart" 
+                   IsVerticalZoomEnabled="true"
+                   IsHorizontalZoomEnabled="true" @ref="Chart"
                    HighlightingBehavior="@HighlightingBehavior"
                    HighlightingMode="@HighlightingMode"
                    LegendHighlightingMode="@HighlightingLegend"
@@ -51,24 +50,24 @@
             <IgbNumericYAxis  Name="yAxis" MinimumValue="0" Title="TWh" TitleLeftMargin="10" />
 
             <IgbAreaSeries Title="Europe" XAxisName="xAxis" YAxisName="yAxis"
-                        ValueMemberPath="Europe" 
-                        DataSource="Data" 
+                        ValueMemberPath="Europe"
+                        DataSource="Data"
                         ShowDefaultTooltip="true"
-                        IsTransitionInEnabled="true" 
+                        IsTransitionInEnabled="true"
                         IsHighlightingEnabled="true"/>
 
             <IgbAreaSeries Title="China" XAxisName="xAxis" YAxisName="yAxis"
-                        ValueMemberPath="China" 
-                        DataSource="Data" 
+                        ValueMemberPath="China"
+                        DataSource="Data"
                         ShowDefaultTooltip="true"
-                        IsTransitionInEnabled="true"  
+                        IsTransitionInEnabled="true"
                         IsHighlightingEnabled="true"/>
 
             <IgbAreaSeries Title="USA" XAxisName="xAxis" YAxisName="yAxis"
-                        ValueMemberPath="USA" 
-                        DataSource="Data" 
+                        ValueMemberPath="USA"
+                        DataSource="Data"
                         ShowDefaultTooltip="true"
-                        IsTransitionInEnabled="true"  
+                        IsTransitionInEnabled="true"
                         IsHighlightingEnabled="true"/>
         </IgbDataChart>
     </div>
@@ -88,18 +87,6 @@
         get { return _Legend; }
         set { _Legend = value; StateHasChanged(); }
     }
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        IgbDataChartCoreModule.Register(IgniteUIBlazor);
-        IgbDataChartCategoryModule.Register(IgniteUIBlazor);
-        IgbDataChartInteractivityModule.Register(IgniteUIBlazor);
-        IgbCategoryHighlightLayerModule.Register(IgniteUIBlazor); 
-
-        IgbLegendModule.Register(IgniteUIBlazor); 
-    } 
 
 }
 

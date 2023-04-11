@@ -1,5 +1,5 @@
 ﻿@using IgniteUI.Blazor.Controls
-@inject IIgniteUIBlazor IgniteUIBlazor;
+;
 
 <div class="container vertical">
 
@@ -73,17 +73,13 @@
 @code {
 
     private List<Employee> Employees;
-    private List<Sale> Sales;
+    private List<SaleInfo> Sales;
     private List<RealEstate> RealEstates;
 
     protected override void OnInitialized()
     {
-        base.OnInitialized();
-
-        IgbDataGridModule.Register(IgniteUIBlazor);
-
         this.Employees = EmployeeData.Create(200, false);
-        this.Sales = SalesData.Create(200);
+        this.Sales = SalesDataService.Create(200);
         this.RealEstates = RealEstateData.Create(200);
     }
 

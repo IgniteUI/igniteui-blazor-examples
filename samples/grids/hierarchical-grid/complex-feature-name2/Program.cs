@@ -7,9 +7,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-
-// required for registering IgniteUIBlazor
-using IgniteUI.Blazor.Controls;
+using IgniteUI.Blazor.Controls; // for registering Ignite UI modules
 
 namespace Infragistics.Samples
 {
@@ -19,7 +17,6 @@ namespace Infragistics.Samples
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
-
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
             // TODO update names of the following modules for the IgbHierarchicalGrid
@@ -27,7 +24,6 @@ namespace Infragistics.Samples
                 typeof(IgbDataGridModule),
                 typeof(IgbGridColumnOptionsModule)
             );
-
             await builder.Build().RunAsync();
         }
     }
