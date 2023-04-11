@@ -1,33 +1,34 @@
 @using IgniteUI.Blazor.Controls
 
+
 <div class="container vertical">
 
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Name="grid"
-        @ref="grid"
         Id="grid"
         Data="NwindData"
         PrimaryKey="ProductID"
-        RowEditable="true">
+        RowEditable="true"
+        Name="grid"
+        @ref="grid">
             <IgbActionStrip
             >
                 <IgbGridEditingActions
                 AddRow="true">
                 </IgbGridEditingActions>
-
+                
             </IgbActionStrip>
-
+            
             <IgbColumn
-            Name="ID"
-            @ref="iD"
             Field="ProductID"
             Header="Product ID"
+            Hidden="true"
             DataType="GridColumnDataType.Number"
-            Hidden="true">
+            Name="ID"
+            @ref="iD">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="ReorderLevel"
             @ref="reorderLevel"
@@ -35,7 +36,7 @@
             Header="Reorder Level"
             DataType="GridColumnDataType.Number">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="ProductName"
             @ref="productName"
@@ -43,7 +44,7 @@
             Header="Product Name"
             DataType="GridColumnDataType.String">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="UnitsInStock"
             @ref="unitsInStock"
@@ -51,7 +52,7 @@
             Header="Units In Stock"
             DataType="GridColumnDataType.Number">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="UnitPrice"
             @ref="unitPrice"
@@ -60,7 +61,7 @@
             DataType="GridColumnDataType.Number"
             Sortable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="OrderDate"
             @ref="orderDate"
@@ -68,7 +69,7 @@
             Header="Order Date"
             DataType="GridColumnDataType.Date">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="Discontinued"
             @ref="discontinued"
@@ -76,13 +77,14 @@
             Header="Discontinued"
             DataType="GridColumnDataType.Boolean">
             </IgbColumn>
-
+            
         </IgbGrid>
-
+        
     </div>
 </div>
 
 @code {
+
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -94,6 +96,7 @@
         var unitPrice = this.unitPrice;
         var orderDate = this.orderDate;
         var discontinued = this.discontinued;
+
 
     }
 
@@ -113,10 +116,10 @@
         {
             if (_nwindData == null)
             {
-                _nwindData = new NwindData();
+                _nwindData = new NwindData(); 
             }
             return _nwindData;
         }
     }
-
+    
 }

@@ -7,39 +7,27 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Name="grid"
-        @ref="grid"
         Data="NwindData"
         Moving="true"
+        ExcelStyleHeaderIconTemplateScript="WebGridFilterAltIconTemplate"
         AllowFiltering="true"
         FilterMode="FilterMode.ExcelStyleFilter"
-        ExcelStyleHeaderIconTemplateScript="WebGridFilterAltIconTemplate">
-            <IgbGridToolbar
-            >
-                <IgbGridToolbarActions
-                >
-                    <IgbGridToolbarHiding
-                    >
-                    </IgbGridToolbarHiding>
-
-                </IgbGridToolbarActions>
-
-            </IgbGridToolbar>
-
+        Name="grid"
+        @ref="grid">
             <IgbColumn
-            Name="ProductName"
-            @ref="productName"
             Field="ProductName"
-            Header="Product Name">
+            Header="Product Name"
+            Name="ProductName"
+            @ref="productName">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="QuantityPerUnit"
             @ref="quantityPerUnit"
             Field="QuantityPerUnit"
             Header="Quantity Per Unit">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="UnitPrice"
             @ref="unitPrice"
@@ -48,7 +36,7 @@
             DataType="GridColumnDataType.Currency"
             PipeArgs="ColumnPipeArgs1">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="OrderDate"
             @ref="orderDate"
@@ -57,7 +45,7 @@
             DataType="GridColumnDataType.Date"
             PipeArgs="ColumnPipeArgs2">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="Discontinued"
             @ref="discontinued"
@@ -65,13 +53,26 @@
             Header="Discontinued"
             BodyTemplateScript="WebGridBooleanCellTemplate">
             </IgbColumn>
-
+            
+            <IgbGridToolbar
+            >
+                <IgbGridToolbarActions
+                >
+                    <IgbGridToolbarHiding
+                    >
+                    </IgbGridToolbarHiding>
+                    
+                </IgbGridToolbarActions>
+                
+            </IgbGridToolbar>
+            
         </IgbGrid>
-
+        
     </div>
 </div>
 
 @code {
+
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -81,6 +82,7 @@
         var unitPrice = this.unitPrice;
         var orderDate = this.orderDate;
         var discontinued = this.discontinued;
+
 
     }
 
@@ -126,10 +128,10 @@
         {
             if (_nwindData == null)
             {
-                _nwindData = new NwindData();
+                _nwindData = new NwindData(); 
             }
             return _nwindData;
         }
     }
-
+    
 }

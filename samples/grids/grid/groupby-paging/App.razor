@@ -7,66 +7,66 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Name="grid"
-        @ref="grid"
         Id="grid"
         Data="InvoicesData"
+        GroupingExpressions="@(new IgbGroupingExpression[] { GroupingExpression1 })"
+        GroupRowTemplateScript="WebGridGroupByRowTemplate"
         RowSelection="GridSelectionMode.Multiple"
-        GroupingExpressions="GroupingExpression1"
-        GroupRowTemplateScript="WebGridGroupByRowTemplate">
+        Name="grid"
+        @ref="grid">
             <IgbPaginator
             PerPage="10">
             </IgbPaginator>
-
+            
             <IgbColumn
             Field="ShipCountry"
             Header="Ship Country"
-            Width="200px"
-            Groupable="true">
+            Groupable="true"
+            Width="200px">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="ShipCity"
             Header="Ship City"
             Width="250px"
             Groupable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="UnitPrice"
             Header="Unit Price"
             Width="150px"
-            DataType="GridColumnDataType.Number"
-            Groupable="true">
+            Groupable="true"
+            DataType="GridColumnDataType.Number">
             </IgbColumn>
-
+            
         </IgbGrid>
-
+        
     </div>
 </div>
 
 @code {
 
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
 
+
     }
 
     private IgbGrid grid;
-    private IgbGroupingExpression[] _groupingExpression1 = null;
-    public IgbGroupingExpression[] GroupingExpression1
+    private IgbGroupingExpression _groupingExpression1 = null;
+    public IgbGroupingExpression GroupingExpression1
     {
         get
         {
             if (this._groupingExpression1 == null)
             {
-                var groupingExpression1 = new IgbGroupingExpression[1];
-                var groupingExpression2 = new IgbGroupingExpression();
-                groupingExpression2.Dir = SortingDirection.Asc;
-                groupingExpression2.FieldName = "ShipCountry";
-                groupingExpression2.IgnoreCase = false;
-                groupingExpression1[0] = groupingExpression2;
+                var groupingExpression1 = new IgbGroupingExpression();
+                groupingExpression1.FieldName = "ShipCountry";
+                groupingExpression1.Dir = SortingDirection.Asc;
+                groupingExpression1.IgnoreCase = false;
                 this._groupingExpression1 = groupingExpression1;
             }
             return this._groupingExpression1;
@@ -80,10 +80,10 @@
         {
             if (_invoicesData == null)
             {
-                _invoicesData = new InvoicesData();
+                _invoicesData = new InvoicesData(); 
             }
             return _invoicesData;
         }
     }
-
+    
 }

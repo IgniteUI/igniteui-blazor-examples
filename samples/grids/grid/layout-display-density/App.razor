@@ -1,39 +1,40 @@
 @using IgniteUI.Blazor.Controls
 
+
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-        Name="PropertyEditor"
-        @ref="propertyEditor"
-
+        
         DescriptionType="WebGrid"
         IsHorizontal="true"
-        IsWrappingEnabled="true">
+        IsWrappingEnabled="true"
+        Name="PropertyEditor"
+        @ref="propertyEditor">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="DisplayDensity"
             Name="DisplayDensityEditor"
             @ref="displayDensityEditor">
             </IgbPropertyEditorPropertyDescription>
-
+            
         </IgbPropertyEditorPanel>
-
+        
     </div>
 
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Name="grid"
-        @ref="grid"
         Data="InvoicesData"
-        AllowFiltering="true">
+        AllowFiltering="true"
+        Name="grid"
+        @ref="grid">
             <IgbColumn
             Field="CustomerName"
             Header="Customer Name"
-            DataType="GridColumnDataType.String"
             Sortable="true"
-            HasSummary="true">
+            HasSummary="true"
+            DataType="GridColumnDataType.String">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Country"
             Header="Country"
@@ -41,7 +42,7 @@
             Sortable="true"
             HasSummary="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="City"
             Header="City"
@@ -49,7 +50,7 @@
             Sortable="true"
             HasSummary="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Address"
             Header="Address"
@@ -57,7 +58,7 @@
             Sortable="true"
             HasSummary="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="PostalCode"
             Header="Postal Code"
@@ -65,7 +66,7 @@
             Sortable="true"
             HasSummary="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Salesperson"
             Header="Sales Person"
@@ -73,7 +74,7 @@
             Sortable="true"
             HasSummary="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="ShipperName"
             Header="Shipper Name"
@@ -81,7 +82,7 @@
             Sortable="true"
             HasSummary="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="OrderDate"
             Header="Order Date"
@@ -89,7 +90,7 @@
             Sortable="true"
             HasSummary="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="ProductID"
             Header="ID"
@@ -97,7 +98,7 @@
             Sortable="true"
             HasSummary="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="ProductName"
             Header="Name"
@@ -105,7 +106,7 @@
             Sortable="true"
             HasSummary="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="UnitPrice"
             Header="Unit Price"
@@ -114,7 +115,7 @@
             HasSummary="true"
             Filterable="false">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Quantity"
             Header="Quantity"
@@ -123,7 +124,7 @@
             HasSummary="true"
             Filterable="false">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Discontinued"
             Header="Discontinued"
@@ -131,7 +132,7 @@
             Sortable="true"
             HasSummary="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Discontinued"
             Header="Discontinued"
@@ -139,7 +140,7 @@
             Sortable="true"
             HasSummary="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="ShipName"
             Header="Name"
@@ -147,7 +148,7 @@
             Sortable="true"
             HasSummary="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="ShipCountry"
             Header="Country"
@@ -155,7 +156,7 @@
             Sortable="true"
             HasSummary="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="ShipCity"
             Header="City"
@@ -163,7 +164,7 @@
             Sortable="true"
             HasSummary="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="ShipPostalCode"
             Header="Postal Code"
@@ -171,9 +172,9 @@
             Sortable="true"
             HasSummary="true">
             </IgbColumn>
-
+            
         </IgbGrid>
-
+        
     </div>
 </div>
 
@@ -205,10 +206,10 @@
         {
             if (_invoicesData == null)
             {
-                _invoicesData = new InvoicesData();
+                _invoicesData = new InvoicesData(); 
             }
             return _invoicesData;
         }
     }
-
+    
 }

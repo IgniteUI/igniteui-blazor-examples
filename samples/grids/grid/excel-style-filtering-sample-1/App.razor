@@ -5,51 +5,39 @@
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-        Name="PropertyEditor"
-        @ref="propertyEditor"
-
+        
         DescriptionType="WebGrid"
         IsHorizontal="true"
-        IsWrappingEnabled="true">
+        IsWrappingEnabled="true"
+        Name="PropertyEditor"
+        @ref="propertyEditor">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="DisplayDensity"
             Name="DisplayDensityEditor"
             @ref="displayDensityEditor">
             </IgbPropertyEditorPropertyDescription>
-
+            
         </IgbPropertyEditorPanel>
-
+        
     </div>
 
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Name="grid"
-        @ref="grid"
         Data="NwindData"
         Moving="true"
         AllowFiltering="true"
-        FilterMode="FilterMode.ExcelStyleFilter">
-            <IgbGridToolbar
-            >
-                <IgbGridToolbarActions
-                >
-                    <IgbGridToolbarHiding
-                    >
-                    </IgbGridToolbarHiding>
-
-                </IgbGridToolbarActions>
-
-            </IgbGridToolbar>
-
+        FilterMode="FilterMode.ExcelStyleFilter"
+        Name="grid"
+        @ref="grid">
             <IgbColumn
-            Name="ProductName"
-            @ref="productName"
             Field="ProductName"
             Header="Product Name"
-            Sortable="true">
+            Sortable="true"
+            Name="ProductName"
+            @ref="productName">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="QuantityPerUnit"
             @ref="quantityPerUnit"
@@ -57,27 +45,27 @@
             Header="Quantity Per Unit"
             Sortable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="UnitPrice"
             @ref="unitPrice"
             Field="UnitPrice"
             Header="Unit Price"
-            DataType="GridColumnDataType.Currency"
             Sortable="true"
+            DataType="GridColumnDataType.Currency"
             PipeArgs="ColumnPipeArgs1">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="OrderDate"
             @ref="orderDate"
             Field="OrderDate"
             Header="Order Date"
-            DataType="GridColumnDataType.Date"
             Sortable="true"
+            DataType="GridColumnDataType.Date"
             PipeArgs="ColumnPipeArgs2">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="Discontinued"
             @ref="discontinued"
@@ -86,9 +74,21 @@
             Sortable="true"
             BodyTemplateScript="WebGridBooleanCellTemplate">
             </IgbColumn>
-
+            
+            <IgbGridToolbar
+            >
+                <IgbGridToolbarActions
+                >
+                    <IgbGridToolbarHiding
+                    >
+                    </IgbGridToolbarHiding>
+                    
+                </IgbGridToolbarActions>
+                
+            </IgbGridToolbar>
+            
         </IgbGrid>
-
+        
     </div>
 </div>
 
@@ -158,10 +158,10 @@
         {
             if (_nwindData == null)
             {
-                _nwindData = new NwindData();
+                _nwindData = new NwindData(); 
             }
             return _nwindData;
         }
     }
-
+    
 }

@@ -7,3 +7,4 @@ igRegisterScript("WebGridAvatarCellTemplate", (ctx) => {
 </div>`;
 }, false);
 
+

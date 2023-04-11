@@ -1,63 +1,69 @@
 @using IgniteUI.Blazor.Controls
 
+
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-        Name="PropertyEditor"
-        @ref="propertyEditor"
-
+        
         DescriptionType="WebGrid"
         IsHorizontal="true"
-        IsWrappingEnabled="true">
+        IsWrappingEnabled="true"
+        Name="PropertyEditor"
+        @ref="propertyEditor">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="CellSelection"
-            Name="CellSelectionEditor"
-            @ref="cellSelectionEditor"
             ValueType="PropertyEditorValueType.EnumValue"
             DropDownNames="@(new string[] { "None", "Single", "Multiple" })"
-            DropDownValues="@(new string[] { "NOne", "Single", "Multiple" })">
+            DropDownValues="@(new string[] { "NOne", "Single", "Multiple" })"
+            Name="CellSelectionEditor"
+            @ref="cellSelectionEditor">
             </IgbPropertyEditorPropertyDescription>
-
+            
         </IgbPropertyEditorPanel>
-
+        
     </div>
 
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
+        Data="NwindData"
         Name="grid"
-        @ref="grid"
-        Data="NwindData">
+        @ref="grid">
             <IgbColumn
-            Field="ProductID">
+            Field="ProductID"
+            Header="Product ID">
             </IgbColumn>
-
+            
             <IgbColumn
-            Field="ProductName">
+            Field="ProductName"
+            Header="Product Name">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="UnitsInStock"
+            Header="Units In Stock"
             DataType="GridColumnDataType.Number">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="UnitPrice"
+            Header="Units Price"
             DataType="GridColumnDataType.Number">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Discontinued"
             DataType="GridColumnDataType.Boolean">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="OrderDate"
+            Header="Order Date"
             DataType="GridColumnDataType.Date">
             </IgbColumn>
-
+            
         </IgbGrid>
-
+        
     </div>
 </div>
 
@@ -89,10 +95,10 @@
         {
             if (_nwindData == null)
             {
-                _nwindData = new NwindData();
+                _nwindData = new NwindData(); 
             }
             return _nwindData;
         }
     }
-
+    
 }

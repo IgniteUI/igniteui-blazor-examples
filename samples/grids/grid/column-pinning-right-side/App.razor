@@ -7,14 +7,14 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
+        Id="grid"
         Data="AthletesDataExtended"
         Name="grid"
-        @ref="grid"
-        Id="grid">
+        @ref="grid">
             <IgbPinningConfig
             Columns="ColumnPinningPosition.End">
             </IgbPinningConfig>
-
+            
             <IgbColumn
             Field="CountryFlag"
             Header="Team"
@@ -22,87 +22,95 @@
             Name="column1"
             @ref="column1">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Avatar"
             BodyTemplateScript="WebGridAvatarCellTemplate"
             Name="column2"
             @ref="column2">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Name">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="AthleteNumber"
+            Header="Athlete Number"
             DataType="GridColumnDataType.Number">
             </IgbColumn>
-
+            
             <IgbColumn
-            Field="BeatsPerMinute">
+            Field="BeatsPerMinute"
+            Header="Beats Per Minute">
             </IgbColumn>
-
+            
             <IgbColumn
-            Field="TopSpeed">
+            Field="TopSpeed"
+            Header="Top Speed">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="RegistrationDate"
+            Header="Registration Date"
             DataType="GridColumnDataType.Date">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Birthday"
             DataType="GridColumnDataType.Date">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Sponsor">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Agent">
             </IgbColumn>
-
+            
             <IgbColumn
-            Field="AgentContact">
+            Field="AgentContact"
+            Header="Agent Contact">
             </IgbColumn>
-
+            
             <IgbColumn
-            Field="AgentPhone">
+            Field="AgentPhone"
+            Header="Agent Phone">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="FirstPlaces"
             Header="Gold"
             Pinned="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="SecondPlaces"
             Header="Silver"
             Pinned="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="ThirdPlaces"
             Header="Bronze"
             Pinned="true">
             </IgbColumn>
-
+            
         </IgbGrid>
-
+        
     </div>
 </div>
 
 @code {
+
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
         var column1 = this.column1;
         var column2 = this.column2;
+
 
     }
 
@@ -117,10 +125,10 @@
         {
             if (_athletesDataExtended == null)
             {
-                _athletesDataExtended = new AthletesDataExtended();
+                _athletesDataExtended = new AthletesDataExtended(); 
             }
             return _athletesDataExtended;
         }
     }
-
+    
 }

@@ -17,3 +17,4 @@ igRegisterScript("WebGridGroupByRowTemplate", (ctx) => {
 </div>`;
 }, false);
 
+

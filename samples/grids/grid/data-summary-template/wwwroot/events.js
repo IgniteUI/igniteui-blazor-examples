@@ -14,3 +14,4 @@ igRegisterScript("WebGridOrderDateSummaryTemplate", (ctx) => {
         </div>`;
 }, false);
 
+

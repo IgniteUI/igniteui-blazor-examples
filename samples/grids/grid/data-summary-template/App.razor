@@ -5,7 +5,7 @@
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-
+        
         DescriptionType="WebGrid"
         IsHorizontal="true"
         IsWrappingEnabled="false"
@@ -16,7 +16,7 @@
             Label="Summary Row Height"
             ValueType="PropertyEditorValueType.Number">
             </IgbPropertyEditorPropertyDescription>
-
+            
             <IgbPropertyEditorPropertyDescription
             Label="Toggle Summaries"
             ValueType="PropertyEditorValueType.Boolean1"
@@ -25,79 +25,79 @@
             Name="propertyEditorPropertyDescription1"
             @ref="propertyEditorPropertyDescription1">
             </IgbPropertyEditorPropertyDescription>
-
+            
             <IgbPropertyEditorPropertyDescription
             PropertyPath="DisplayDensity"
             Name="DisplayDensityEditor"
             @ref="displayDensityEditor">
             </IgbPropertyEditorPropertyDescription>
-
+            
         </IgbPropertyEditorPanel>
-
+        
     </div>
 
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
+        Data="NwindData"
         Name="grid"
-        @ref="grid"
-        Data="NwindData">
+        @ref="grid">
             <IgbColumn
             Field="ProductID"
             Header="Product ID"
-            Width="10%"
-            Groupable="true">
+            Groupable="true"
+            Width="10%">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="ProductName"
             Header="Product Name"
             Width="17%"
             Groupable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="UnitPrice"
             Header="Price"
-            Filterable="false"
             Width="17%"
+            Groupable="true"
+            Filterable="false"
             Editable="true"
-            DataType="GridColumnDataType.Number"
-            Groupable="true">
+            DataType="GridColumnDataType.Number">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="UnitsInStock"
             Header="Units in Stock"
             Width="21%"
-            DataType="GridColumnDataType.Number"
-            Editable="true"
             Groupable="true"
+            Editable="true"
+            DataType="GridColumnDataType.Number"
             HasSummary="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Discontinued"
             Header="Discontinued"
-            Editable="true"
             Width="17%"
-            DataType="GridColumnDataType.Boolean"
-            Groupable="true">
+            Groupable="true"
+            Editable="true"
+            DataType="GridColumnDataType.Boolean">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="OrderDate"
             Width="18%"
-            DataType="GridColumnDataType.Date"
             Groupable="true"
+            DataType="GridColumnDataType.Date"
             HasSummary="true"
             SummaryTemplateScript="WebGridOrderDateSummaryTemplate"
             Name="column1"
             @ref="column1">
             </IgbColumn>
-
+            
         </IgbGrid>
-
+        
     </div>
 </div>
 
@@ -126,17 +126,18 @@
     private IgbGrid grid;
     private IgbColumn column1;
 
+    
     public void WebGridHasSummariesChange(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
     {
         bool newValue = bool.Parse(args.NewValue.ToString());
-
+    
         var column1 = this.grid.ActualColumns[3];
         var column2 = this.grid.ActualColumns[5];
-
+    
         column1.HasSummary = newValue;
         column2.HasSummary = newValue;
     }
-
+        
     private NwindData _nwindData = null;
     public NwindData NwindData
     {
@@ -144,10 +145,10 @@
         {
             if (_nwindData == null)
             {
-                _nwindData = new NwindData();
+                _nwindData = new NwindData(); 
             }
             return _nwindData;
         }
     }
-
+    
 }

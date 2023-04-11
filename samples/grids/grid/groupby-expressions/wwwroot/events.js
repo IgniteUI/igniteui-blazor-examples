@@ -17,6 +17,7 @@ igRegisterScript("WebGridGroupByRowTemplate", (ctx) => {
 </div>`;
 }, false);
 
+
 igRegisterScript("WebGridBooleanCellTemplate", (ctx) => {
     var html = window.igTemplating.html;
     if (ctx.cell.value) {
@@ -25,4 +26,5 @@ igRegisterScript("WebGridBooleanCellTemplate", (ctx) => {
         return html`<img src="https://www.infragistics.com/angular-demos-lob/assets/images/grid/expired.png" title="Discontinued" alt="Discontinued" />`;
     }
 }, false);
+
 

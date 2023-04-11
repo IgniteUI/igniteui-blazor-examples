@@ -7,32 +7,20 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Name="grid"
-        @ref="grid"
         Data="NwindData"
         Moving="true"
         AllowFiltering="true"
-        FilterMode="FilterMode.ExcelStyleFilter">
-            <IgbGridToolbar
-            >
-                <IgbGridToolbarActions
-                >
-                    <IgbGridToolbarHiding
-                    >
-                    </IgbGridToolbarHiding>
-
-                </IgbGridToolbarActions>
-
-            </IgbGridToolbar>
-
+        FilterMode="FilterMode.ExcelStyleFilter"
+        Name="grid"
+        @ref="grid">
             <IgbColumn
-            Name="ProductName"
-            @ref="productName"
             Field="ProductName"
             Header="Product Name"
-            Sortable="true">
+            Sortable="true"
+            Name="ProductName"
+            @ref="productName">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="QuantityPerUnit"
             @ref="quantityPerUnit"
@@ -42,29 +30,29 @@
             DisablePinning="true"
             DisableHiding="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="UnitPrice"
             @ref="unitPrice"
             Field="UnitPrice"
             Header="Unit Price"
-            DataType="GridColumnDataType.Currency"
             Sortable="true"
             DisablePinning="true"
             DisableHiding="true"
+            DataType="GridColumnDataType.Currency"
             PipeArgs="ColumnPipeArgs1">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="OrderDate"
             @ref="orderDate"
             Field="OrderDate"
             Header="Order Date"
-            DataType="GridColumnDataType.Date"
             Sortable="false"
+            DataType="GridColumnDataType.Date"
             PipeArgs="ColumnPipeArgs2">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="Discontinued"
             @ref="discontinued"
@@ -73,13 +61,26 @@
             Sortable="true"
             BodyTemplateScript="WebGridBooleanCellTemplate">
             </IgbColumn>
-
+            
+            <IgbGridToolbar
+            >
+                <IgbGridToolbarActions
+                >
+                    <IgbGridToolbarHiding
+                    >
+                    </IgbGridToolbarHiding>
+                    
+                </IgbGridToolbarActions>
+                
+            </IgbGridToolbar>
+            
         </IgbGrid>
-
+        
     </div>
 </div>
 
 @code {
+
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -89,6 +90,7 @@
         var unitPrice = this.unitPrice;
         var orderDate = this.orderDate;
         var discontinued = this.discontinued;
+
 
     }
 
@@ -134,10 +136,10 @@
         {
             if (_nwindData == null)
             {
-                _nwindData = new NwindData();
+                _nwindData = new NwindData(); 
             }
             return _nwindData;
         }
     }
-
+    
 }

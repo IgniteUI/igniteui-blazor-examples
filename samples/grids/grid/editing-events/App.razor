@@ -17,44 +17,46 @@
             Header="Product Name"
             DataType="GridColumnDataType.String">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="UnitPrice"
             Header="Unit Price"
-            DataType="GridColumnDataType.Number"
-            Editable="true">
+            Editable="true"
+            DataType="GridColumnDataType.Number">
             </IgbColumn>
-
+            
             <IgbColumn
-            Name="UnitsInStock"
-            @ref="unitsInStock"
             Field="UnitsInStock"
             Header="Units In Stock"
+            Editable="true"
             DataType="GridColumnDataType.Number"
-            Editable="true">
+            Name="UnitsInStock"
+            @ref="unitsInStock">
             </IgbColumn>
-
+            
             <IgbColumn
-            Name="UnitsOnOrder"
-            @ref="unitsOnOrder"
             Field="UnitsOnOrder"
             Header="Units on Order"
+            Editable="true"
             DataType="GridColumnDataType.Number"
-            Editable="true">
+            Name="UnitsOnOrder"
+            @ref="unitsOnOrder">
             </IgbColumn>
-
+            
         </IgbGrid>
-
+        
     </div>
 </div>
 
 @code {
+
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid1 = this.grid1;
         var unitsInStock = this.unitsInStock;
         var unitsOnOrder = this.unitsOnOrder;
+
 
     }
 
@@ -69,10 +71,10 @@
         {
             if (_nwindData == null)
             {
-                _nwindData = new NwindData();
+                _nwindData = new NwindData(); 
             }
             return _nwindData;
         }
     }
-
+    
 }

@@ -1,90 +1,92 @@
 @using IgniteUI.Blazor.Controls
 
+
 <div class="container vertical">
 
     <div class="container vertical fill">
         <IgbGrid
-        Name="grid"
-        @ref="grid"
         Data="NwindData"
+        PrimaryKey="ProductID"
         RowEditable="true"
-        PrimaryKey="ProductID">
+        Name="grid"
+        @ref="grid">
             <IgbColumn
-            Name="ProductID"
-            @ref="productID"
             Field="ProductID"
-            Header="Product ID">
+            Header="Product ID"
+            Name="ProductID"
+            @ref="productID">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="ProductName"
             @ref="productName"
             Field="ProductName"
             Header="Product Name">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="UnitPrice"
             @ref="unitPrice"
             Field="UnitPrice"
             Header="Unit Price">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="UnitsOnOrder"
             @ref="unitsOnOrder"
             Field="UnitsOnOrder"
             Header="Units On Order">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="UnitsInStock"
             @ref="unitsInStock"
             Field="UnitsInStock"
             Header="Units In Stock">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="QuantityPerUnit"
             @ref="quantityPerUnit"
             Field="QuantityPerUnit"
             Header="Quantity Per Unit">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="ReorderLevel"
             @ref="reorderLevel"
             Field="ReorderLevel"
             Header="Reorder Level">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="SupplierID"
             @ref="supplierID"
             Field="SupplierID"
             Header="Supplier ID">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="CategoryID"
             @ref="categoryID"
             Field="CategoryID"
             Header="Category ID">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="Discontinued"
             @ref="discontinued"
             Field="Discontinued"
             Header="Discontinued">
             </IgbColumn>
-
+            
         </IgbGrid>
-
+        
     </div>
 </div>
 
 @code {
+
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -99,6 +101,7 @@
         var supplierID = this.supplierID;
         var categoryID = this.categoryID;
         var discontinued = this.discontinued;
+
 
     }
 
@@ -121,10 +124,10 @@
         {
             if (_nwindData == null)
             {
-                _nwindData = new NwindData();
+                _nwindData = new NwindData(); 
             }
             return _nwindData;
         }
     }
-
+    
 }

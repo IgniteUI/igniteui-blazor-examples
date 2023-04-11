@@ -1,73 +1,76 @@
 @using IgniteUI.Blazor.Controls
 
+
 <div class="container vertical">
 
     <div class="container vertical fill">
         <IgbGrid
-        Name="grid"
-        @ref="grid"
         Data="CustomersData"
         PrimaryKey="ID"
-        CellSelection="GridSelectionMode.None">
+        CellSelection="GridSelectionMode.None"
+        Name="grid"
+        @ref="grid">
             <IgbColumn
-            Width="70px"
             Filterable="false"
+            Width="70px"
             Pinned="true">
             </IgbColumn>
-
+            
             <IgbColumn
-            Field="ID"
             Width="150px"
+            Field="ID"
             Hidden="true">
             </IgbColumn>
-
+            
             <IgbColumn
+            Width="350px"
             Field="CompanyName"
-            Header="Company"
-            Width="350px">
+            Header="Company">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="ContactName"
             Header="Name">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="ContactTitle"
             Header="Contact Tiasdsadtle">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Address">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="City">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="PostalCode"
             Header="Postal Code">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Phone">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Fax">
             </IgbColumn>
-
+            
         </IgbGrid>
-
+        
     </div>
 </div>
 
 @code {
 
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
+
 
     }
 
@@ -80,10 +83,10 @@
         {
             if (_customersData == null)
             {
-                _customersData = new CustomersData();
+                _customersData = new CustomersData(); 
             }
             return _customersData;
         }
     }
-
+    
 }

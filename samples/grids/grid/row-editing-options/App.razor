@@ -1,41 +1,42 @@
 @using IgniteUI.Blazor.Controls
 
+
 <div class="container vertical">
 
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Data="NwindData"
-        Name="grid"
-        @ref="grid"
         Id="grid"
-        DisplayDensity="DisplayDensity.Compact"
+        Data="NwindData"
         PrimaryKey="ProductID"
-        RowEditable="true">
+        RowEditable="true"
+        DisplayDensity="DisplayDensity.Compact"
+        Name="grid"
+        @ref="grid">
             <IgbColumn
             Field="ProductID"
             Header="Product ID"
             DataType="GridColumnDataType.Number">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="ReorderLevel"
             Header="Reorder Level"
             DataType="GridColumnDataType.Number">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="ProductName"
             Header="Prod. Name"
             DataType="GridColumnDataType.String">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="UnitsInStock"
             Header="Units In Stock"
             DataType="GridColumnDataType.Number">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="OrderDate"
             Header="Order Date"
@@ -44,24 +45,26 @@
             Name="column1"
             @ref="column1">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Discontinued"
             Header="Discontinued"
             DataType="GridColumnDataType.Boolean">
             </IgbColumn>
-
+            
         </IgbGrid>
-
+        
     </div>
 </div>
 
 @code {
 
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
         var column1 = this.column1;
+
 
     }
 
@@ -89,10 +92,10 @@
         {
             if (_nwindData == null)
             {
-                _nwindData = new NwindData();
+                _nwindData = new NwindData(); 
             }
             return _nwindData;
         }
     }
-
+    
 }

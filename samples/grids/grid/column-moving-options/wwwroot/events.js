@@ -8,10 +8,11 @@ igRegisterScript("WebGridPinHeaderTemplate", (ctx) => {
         grid.markForCheck();
     }
     return html`<div>
-    <span style="float:left">${ctx.column.field}</span>
+    <span style="float:left">${ctx.column.header}</span>
     <span style="float:right" onpointerdown='toggleColumnPin("${ctx.column.field}")'>📌</span>
 </div>`;
 }, false);
+
 
 igRegisterScript("WebGridCurrencyCellTemplate", (ctx) => {
     var html = window.igTemplating.html;
@@ -27,4 +28,5 @@ igRegisterScript("WebGridCurrencyCellTemplate", (ctx) => {
         </div>`;
     }
 }, false);
+
 

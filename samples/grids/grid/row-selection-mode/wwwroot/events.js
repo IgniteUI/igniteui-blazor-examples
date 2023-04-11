@@ -14,3 +14,4 @@ igRegisterScript("WebGridCurrencyCellTemplate", (ctx) => {
     }
 }, false);
 
+

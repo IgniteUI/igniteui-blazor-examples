@@ -7,126 +7,137 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Data="InvoicesData"
-        Name="grid"
-        @ref="grid"
         Id="grid"
-        GroupingExpressions="GroupingExpression1"
-        GroupRowTemplateScript="WebGridGroupByRowTemplate">
+        Data="InvoicesData"
+        GroupingExpressions="@(new IgbGroupingExpression[] { GroupingExpression1, GroupingExpression2 })"
+        GroupRowTemplateScript="WebGridGroupByRowTemplate"
+        Name="grid"
+        @ref="grid">
             <IgbColumn
             Field="OrderID"
             Hidden="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="ShipCountry"
             Header="Ship Country"
             Width="200px"
             Groupable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="OrderDate"
             Header="Order Date"
-            DataType="GridColumnDataType.Date"
             Width="200px"
-            Groupable="true">
+            Groupable="true"
+            DataType="GridColumnDataType.Date">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="PostalCode"
             Header="Postal Code"
             Width="200px"
             Groupable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Discontinued"
             Width="200px"
-            DataType="GridColumnDataType.Boolean"
             Groupable="true"
+            DataType="GridColumnDataType.Boolean"
             BodyTemplateScript="WebGridBooleanCellTemplate"
             Name="column1"
             @ref="column1">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="ShipName"
             Header="Ship Name"
             Width="200px"
             Groupable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="ShipCity"
             Header="Ship City"
             Width="200px"
             Groupable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="ShipperName"
             Header="Shipper Name"
             Width="200px"
             Groupable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Salesperson"
             Header="Sales Person"
             Width="200px"
             Groupable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="UnitPrice"
             Header="Unit Price"
             Width="200px"
             Groupable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Quantity"
             Width="200px"
             Groupable="true">
             </IgbColumn>
-
+            
         </IgbGrid>
-
+        
     </div>
 </div>
 
 @code {
+
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
         var column1 = this.column1;
 
+
     }
 
     private IgbGrid grid;
-    private IgbGroupingExpression[] _groupingExpression1 = null;
-    public IgbGroupingExpression[] GroupingExpression1
+    private IgbGroupingExpression _groupingExpression1 = null;
+    public IgbGroupingExpression GroupingExpression1
     {
         get
         {
             if (this._groupingExpression1 == null)
             {
-                var groupingExpression1 = new IgbGroupingExpression[2];
-                var groupingExpression2 = new IgbGroupingExpression();
-                groupingExpression2.FieldName = "ShipCountry";
-                groupingExpression2.IgnoreCase = false;
-                groupingExpression2.Dir = SortingDirection.Asc;
-                groupingExpression1[0] = groupingExpression2;
-                var groupingExpression3 = new IgbGroupingExpression();
-                groupingExpression3.FieldName = "ShipCity";
-                groupingExpression3.IgnoreCase = false;
-                groupingExpression3.Dir = SortingDirection.Asc;
-                groupingExpression1[1] = groupingExpression3;
+                var groupingExpression1 = new IgbGroupingExpression();
+                groupingExpression1.FieldName = "ShipCountry";
+                groupingExpression1.Dir = SortingDirection.Asc;
+                groupingExpression1.IgnoreCase = false;
                 this._groupingExpression1 = groupingExpression1;
             }
             return this._groupingExpression1;
+        }
+    }
+    private IgbGroupingExpression _groupingExpression2 = null;
+    public IgbGroupingExpression GroupingExpression2
+    {
+        get
+        {
+            if (this._groupingExpression2 == null)
+            {
+                var groupingExpression2 = new IgbGroupingExpression();
+                groupingExpression2.FieldName = "ShipCity";
+                groupingExpression2.IgnoreCase = false;
+                groupingExpression2.Dir = SortingDirection.Asc;
+                this._groupingExpression2 = groupingExpression2;
+            }
+            return this._groupingExpression2;
         }
     }
     private IgbColumn column1;
@@ -138,10 +149,10 @@
         {
             if (_invoicesData == null)
             {
-                _invoicesData = new InvoicesData();
+                _invoicesData = new InvoicesData(); 
             }
             return _invoicesData;
         }
     }
-
+    
 }

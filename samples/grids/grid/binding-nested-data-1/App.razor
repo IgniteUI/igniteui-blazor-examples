@@ -7,72 +7,74 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
+        Id="grid"
         Data="EmployeesNestedData"
         Name="grid"
-        @ref="grid"
-        Id="grid">
+        @ref="grid">
             <IgbColumn
-            Header="Name"
             Field="Name"
+            Header="Name"
             Width="15%">
             </IgbColumn>
-
+            
             <IgbColumn
-            Field="Title"
             Header="Title"
+            Field="Title"
             Width="15%">
             </IgbColumn>
-
+            
             <IgbColumn
-            Field="Salary"
             Header="Salary"
+            Field="Salary"
             Width="10%">
             </IgbColumn>
-
+            
             <IgbColumn
-            Field="Employees"
             Header="Employees"
-            BodyTemplateScript="WebGridNestedDataCellTemplate"
+            Field="Employees"
             Width="30%"
+            BodyTemplateScript="WebGridNestedDataCellTemplate"
             Name="column1"
             @ref="column1">
             </IgbColumn>
-
+            
             <IgbColumn
-            Field="City"
             Header="City"
+            Field="City"
             Width="15%">
             </IgbColumn>
-
+            
             <IgbColumn
-            Field="Country"
             Header="Country"
+            Field="Country"
             Width="15%">
             </IgbColumn>
-
+            
             <IgbColumn
-            Field="Age"
             Header="Age"
+            Field="Age"
             Width="10%">
             </IgbColumn>
-
+            
             <IgbColumn
-            Field="HireDate"
             Header="Hire Date"
+            Field="HireDate"
             DataType="GridColumnDataType.Date">
             </IgbColumn>
-
+            
         </IgbGrid>
-
+        
     </div>
 </div>
 
 @code {
 
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
         var column1 = this.column1;
+
 
     }
 
@@ -86,10 +88,10 @@
         {
             if (_employeesNestedData == null)
             {
-                _employeesNestedData = new EmployeesNestedData();
+                _employeesNestedData = new EmployeesNestedData(); 
             }
             return _employeesNestedData;
         }
     }
-
+    
 }

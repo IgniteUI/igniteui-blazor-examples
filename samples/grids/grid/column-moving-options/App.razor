@@ -8,19 +8,19 @@
         <IgbGrid
         AutoGenerate="false"
         Data="FinancialDataAll"
-        PrimaryKey="ProductID"
         Moving="true"
+        PrimaryKey="ProductID"
         Name="grid"
         @ref="grid">
             <IgbColumn
             Field="Category"
-            Pinned="true"
             Width="200px"
+            Pinned="true"
             HeaderTemplateScript="WebGridPinHeaderTemplate"
             Name="column1"
             @ref="column1">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Type"
             Pinned="true"
@@ -28,73 +28,76 @@
             Name="column2"
             @ref="column2">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Price"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
             DataType="GridColumnDataType.Currency"
             PipeArgs="ColumnPipeArgs1"
-            HeaderTemplateScript="WebGridPinHeaderTemplate"
             Name="column3"
             @ref="column3">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Buy"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
             DataType="GridColumnDataType.Currency"
             PipeArgs="ColumnPipeArgs2"
-            HeaderTemplateScript="WebGridPinHeaderTemplate"
             Name="column4"
             @ref="column4">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Sell"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
             DataType="GridColumnDataType.Currency"
             PipeArgs="ColumnPipeArgs3"
-            HeaderTemplateScript="WebGridPinHeaderTemplate"
             Name="column5"
             @ref="column5">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Spread"
             HeaderTemplateScript="WebGridPinHeaderTemplate"
             Name="column6"
             @ref="column6">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Change"
-            BodyTemplateScript="WebGridCurrencyCellTemplate"
             HeaderTemplateScript="WebGridPinHeaderTemplate"
+            BodyTemplateScript="WebGridCurrencyCellTemplate"
             Name="column7"
             @ref="column7">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="ChangePercent"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
             DataType="GridColumnDataType.Number"
             BodyTemplateScript="WebGridCurrencyCellTemplate"
-            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Header="Change Percent"
             Name="column8"
             @ref="column8">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="AnnualChange"
+            HeaderTemplateScript="WebGridPinHeaderTemplate"
             DataType="GridColumnDataType.Number"
             BodyTemplateScript="WebGridCurrencyCellTemplate"
-            HeaderTemplateScript="WebGridPinHeaderTemplate"
+            Header="Annual Change"
             Name="column9"
             @ref="column9">
             </IgbColumn>
-
+            
         </IgbGrid>
-
+        
     </div>
 </div>
 
 @code {
+
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -108,6 +111,7 @@
         var column7 = this.column7;
         var column8 = this.column8;
         var column9 = this.column9;
+
 
     }
 
@@ -123,8 +127,8 @@
             if (this._columnPipeArgs1 == null)
             {
                 var columnPipeArgs1 = new IgbColumnPipeArgs();
-                columnPipeArgs1.CurrencyCode = "USD";
                 columnPipeArgs1.DigitsInfo = "1.2-2";
+                columnPipeArgs1.CurrencyCode = "USD";
                 this._columnPipeArgs1 = columnPipeArgs1;
             }
             return this._columnPipeArgs1;
@@ -174,10 +178,10 @@
         {
             if (_financialDataAll == null)
             {
-                _financialDataAll = new FinancialDataAll();
+                _financialDataAll = new FinancialDataAll(); 
             }
             return _financialDataAll;
         }
     }
-
+    
 }

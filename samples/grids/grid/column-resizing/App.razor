@@ -7,18 +7,18 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Data="CustomersData"
         Id="grid"
+        Data="CustomersData"
+        ColumnResizedScript="WebGridColumnResized"
         Name="grid"
-        @ref="grid"
-        ColumnResizedScript="WebGridColumnResized">
+        @ref="grid">
             <IgbColumn
-            Name="ID"
-            @ref="iD"
             Field="ID"
-            Header="ID">
+            Header="ID"
+            Name="ID"
+            @ref="iD">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="CompanyName"
             @ref="companyName"
@@ -26,17 +26,17 @@
             Header="Company"
             Resizable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="ContactName"
             @ref="contactName"
             Field="ContactName"
             Header="Name"
+            Resizable="true"
             MinWidth="60px"
-            MaxWidth="230px"
-            Resizable="true">
+            MaxWidth="230px">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="ContactTitle"
             @ref="contactTitle"
@@ -44,7 +44,7 @@
             Header="Title"
             Resizable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="Address"
             @ref="address"
@@ -52,14 +52,14 @@
             Header="Address"
             Resizable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="City"
             @ref="city"
             Field="City"
             Header="City">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="Region"
             @ref="region"
@@ -67,7 +67,7 @@
             Header="Region"
             Resizable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="PostalCode"
             @ref="postalCode"
@@ -75,7 +75,7 @@
             Header="Postal Code"
             Resizable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="Country"
             @ref="country"
@@ -83,7 +83,7 @@
             Header="Country"
             Resizable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="Phone"
             @ref="phone"
@@ -91,13 +91,14 @@
             Header="Phone"
             Resizable="true">
             </IgbColumn>
-
+            
         </IgbGrid>
-
+        
     </div>
 </div>
 
 @code {
+
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -112,6 +113,7 @@
         var postalCode = this.postalCode;
         var country = this.country;
         var phone = this.phone;
+
 
     }
 
@@ -134,10 +136,10 @@
         {
             if (_customersData == null)
             {
-                _customersData = new CustomersData();
+                _customersData = new CustomersData(); 
             }
             return _customersData;
         }
     }
-
+    
 }

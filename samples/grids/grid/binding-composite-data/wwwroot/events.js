@@ -10,6 +10,7 @@ igRegisterScript("WebGridCompositeContactCellTemplate", (ctx) => {
 </div>`;
 }, false);
 
+
 igRegisterScript("WebGridCompositeContactEditCellTemplate", (ctx) => {
     var html = window.igTemplating.html;
     window.keyUpHandler = function () {
@@ -33,6 +34,7 @@ igRegisterScript("WebGridCompositeContactEditCellTemplate", (ctx) => {
 </div>`;
 }, false);
 
+
 igRegisterScript("WebGridCompositeAddressCellTemplate", (ctx) => {
     var html = window.igTemplating.html;
     return html`<div class="address-container">
@@ -49,6 +51,7 @@ igRegisterScript("WebGridCompositeAddressCellTemplate", (ctx) => {
     <br />
 </div>`;
 }, false);
+
 
 igRegisterScript("WebGridCompositeAddressEditCellTemplate", (ctx) => {
     var html = window.igTemplating.html;
@@ -74,4 +77,5 @@ igRegisterScript("WebGridCompositeAddressEditCellTemplate", (ctx) => {
     <br>
 </div>`;
 }, false);
+
 

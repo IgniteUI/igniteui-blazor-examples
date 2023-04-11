@@ -5,43 +5,43 @@
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-        Name="PropertyEditor"
-        @ref="propertyEditor"
-
+        
         DescriptionType="WebGrid"
         IsHorizontal="true"
-        IsWrappingEnabled="true">
+        IsWrappingEnabled="true"
+        Name="PropertyEditor"
+        @ref="propertyEditor">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="RowEditable"
-            Name="RowEditableEditor"
-            @ref="rowEditableEditor"
             ValueType="PropertyEditorValueType.Boolean1"
-            PrimitiveValue="true">
+            PrimitiveValue="true"
+            Name="RowEditableEditor"
+            @ref="rowEditableEditor">
             </IgbPropertyEditorPropertyDescription>
-
+            
         </IgbPropertyEditorPanel>
-
+        
     </div>
 
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Name="grid"
-        @ref="grid"
         Data="EmployeesData"
+        PrimaryKey="ID"
         RowEditable="true"
-        PrimaryKey="ID">
+        Name="grid"
+        @ref="grid">
             <IgbColumn
-            Name="Avatar"
-            @ref="avatar"
             Field="Avatar"
             Header="Avatar"
-            DataType="GridColumnDataType.String"
             Editable="false"
             Width="80px"
-            BodyTemplateScript="WebGridAvatarCellTemplate">
+            DataType="GridColumnDataType.String"
+            BodyTemplateScript="WebGridAvatarCellTemplate"
+            Name="Avatar"
+            @ref="avatar">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="Name"
             @ref="name"
@@ -49,7 +49,7 @@
             Header="Name"
             Editable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="Company"
             @ref="company"
@@ -57,16 +57,16 @@
             Header="Company"
             Editable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="Email"
             @ref="email"
             Field="Email"
             Header="Email"
-            Width="190px"
-            Editable="true">
+            Editable="true"
+            Width="190px">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="Fax"
             @ref="fax"
@@ -74,28 +74,28 @@
             Header="Phone"
             Editable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="CreatedOn"
             @ref="createdOn"
             Field="CreatedOn"
             Header="Date of Registration"
-            Width="170px"
             DataType="GridColumnDataType.Date"
             Editable="true"
+            Width="170px"
             PipeArgs="ColumnPipeArgs1">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="LastActivity"
             @ref="lastActivity"
             Field="LastActivity"
             Header="Last Active"
-            Width="170px"
             DataType="GridColumnDataType.Date"
-            Editable="true">
+            Editable="true"
+            Width="170px">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="EstimatedSales"
             @ref="estimatedSales"
@@ -104,7 +104,7 @@
             DataType="GridColumnDataType.Number"
             Editable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="DealsLost"
             @ref="dealsLost"
@@ -113,7 +113,7 @@
             DataType="GridColumnDataType.Number"
             Editable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="DealsWon"
             @ref="dealsWon"
@@ -122,7 +122,7 @@
             DataType="GridColumnDataType.Number"
             Editable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Name="DealsPending"
             @ref="dealsPending"
@@ -131,9 +131,9 @@
             DataType="GridColumnDataType.Number"
             Editable="true">
             </IgbColumn>
-
+            
         </IgbGrid>
-
+        
     </div>
 </div>
 
@@ -201,10 +201,10 @@
         {
             if (_employeesData == null)
             {
-                _employeesData = new EmployeesData();
+                _employeesData = new EmployeesData(); 
             }
             return _employeesData;
         }
     }
-
+    
 }

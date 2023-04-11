@@ -10,6 +10,7 @@ igRegisterScript("WebGridImageCellTemplate", (ctx) => {
  </div>`;
 }, false);
 
+
 igRegisterScript("WebGridAvatarCellTemplate", (ctx) => {
     var html = window.igTemplating.html;
     return html`<div>
@@ -17,4 +18,5 @@ igRegisterScript("WebGridAvatarCellTemplate", (ctx) => {
     </igc-avatar>
 </div>`;
 }, false);
+
 

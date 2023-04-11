@@ -7,57 +7,62 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
+        Id="grid"
         Data="AthletesData"
         Name="grid"
-        @ref="grid"
-        Id="grid">
-            <IgbPaginator
-            PerPage="10">
-            </IgbPaginator>
-
+        @ref="grid">
             <IgbColumn
             Field="Id"
             Header="Rank"
             Sortable="true">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Name">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="BeatsPerMinute"
+            Header="Beats Per Minute"
             DataType="GridColumnDataType.Number">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="TopSpeed"
+            Header="Top Speed"
             DataType="GridColumnDataType.Number"
             PipeArgs="ColumnPipeArgs1"
             Name="column1"
             @ref="column1">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="TrackProgress"
+            Header="Track Progress"
             BodyTemplateScript="WebGridProgressCellTemplate"
             Name="column2"
             @ref="column2">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="CountryFlag"
+            Header="Country Flag"
             BodyTemplateScript="WebGridImageCellTemplate"
             Name="column3"
             @ref="column3">
             </IgbColumn>
-
+            
+            <IgbPaginator
+            PerPage="10">
+            </IgbPaginator>
+            
         </IgbGrid>
-
+        
     </div>
 </div>
 
 @code {
+
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -65,6 +70,7 @@
         var column1 = this.column1;
         var column2 = this.column2;
         var column3 = this.column3;
+
 
     }
 
@@ -94,10 +100,10 @@
         {
             if (_athletesData == null)
             {
-                _athletesData = new AthletesData();
+                _athletesData = new AthletesData(); 
             }
             return _athletesData;
         }
     }
-
+    
 }

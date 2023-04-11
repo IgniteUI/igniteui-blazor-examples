@@ -7,42 +7,44 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="true"
-        Name="grid"
-        @ref="grid"
         Data="CustomersData"
-        RowSelection="GridSelectionMode.Multiple"
+        HeadSelectorTemplateScript="WebGridHeaderRowSelectorTemplate"
         RowSelectorTemplateScript="WebGridRowSelectorTemplate"
-        HeadSelectorTemplateScript="WebGridHeaderRowSelectorTemplate">
+        RowSelection="GridSelectionMode.Multiple"
+        Name="grid"
+        @ref="grid">
             <IgbColumn
             Field="ContactName">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="Country">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="City">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="PostalCode">
             </IgbColumn>
-
+            
             <IgbColumn
             Field="CompanyName">
             </IgbColumn>
-
+            
         </IgbGrid>
-
+        
     </div>
 </div>
 
 @code {
 
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
+
 
     }
 
@@ -55,10 +57,10 @@
         {
             if (_customersData == null)
             {
-                _customersData = new CustomersData();
+                _customersData = new CustomersData(); 
             }
             return _customersData;
         }
     }
-
+    
 }
