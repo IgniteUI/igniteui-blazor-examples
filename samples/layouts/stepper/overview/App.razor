@@ -12,7 +12,7 @@
                 <div class="cards-wrapper">
                     @foreach (var card in this.cards)
                     {
-                       <div class="card-wrapper card-first-step @selectedClassCss(card.ID)">
+                       <div class="card-wrapper card-first-step @selectedCardCss(card.ID)">
                            <IgbCard @onclick="() => selectCard(card.ID)">
                                 @if(selectedCard.ID == card.ID)
                                 {                                    
@@ -230,7 +230,7 @@
         stepper.NavigateTo(1);
     }
 
-    public string selectedClassCss(int cardID){
+    public string selectedCardCss(int cardID){
         return cardID == selectedCard.ID ? "selected-card" : "";
     }
 
