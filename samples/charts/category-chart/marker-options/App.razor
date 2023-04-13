@@ -1,101 +1,29 @@
 @using IgniteUI.Blazor.Controls
-@using IgniteUI.Blazor.Controls;
-@using System;
-@using System.Linq;
+
 
 <div class="container vertical">
-    <div class="options vertical">
-        <IgbPropertyEditorPanel
-        Name="PropertyEditor"
-        @ref="propertyEditor"
-
-        DescriptionType="CategoryChart"
-        IsHorizontal="true"
-        IsWrappingEnabled="true">
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="ChartType"
-            Name="ChartTypeEditor"
-            @ref="chartTypeEditor"
-            Label="Chart Type"
-            PrimitiveValue="@("Line")">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="MarkerTypeHandler"
-            Name="MarkerTypeEditor"
-            @ref="markerTypeEditor"
-            Label="Marker Type"
-            ShouldOverrideDefaultEditor="true"
-            ValueType="PropertyEditorValueType.EnumValue"
-            DropDownValues="@(new string[] { "Circle", "Automatic", "Triangle", "Pyramid", "Square", "Diamond", "Pentagon", "Hexagon", "Tetragram", "Pentagram", "Hexagram", "None" })"
-            DropDownNames="@(new string[] { "Circle", "Automatic", "Triangle", "Pyramid", "Square", "Diamond", "Pentagon", "Hexagon", "Tetragram", "Pentagram", "Hexagram", "None" })"
-            PrimitiveValue="@("Circle")"
-            Changed="EditorChangeUpdateMarkerType">
-            </IgbPropertyEditorPropertyDescription>
-
-        </IgbPropertyEditorPanel>
-
-    </div>
     <div class="legend-title">
         Renewable Electricity Generated
     </div>
 
     <div class="container vertical fill">
-        <IgbCategoryChart
-        Name="chart"
-        @ref="chart"
-        IsSeriesHighlightingEnabled="true"
-        ChartType="CategoryChartType.Line"
-        DataSource="CountryRenewableElectricity"
-        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series">
-        </IgbCategoryChart>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var propertyEditor = this.propertyEditor;
-        var chartTypeEditor = this.chartTypeEditor;
-        var markerTypeEditor = this.markerTypeEditor;
-        var chart = this.chart;
+        //insert bindingInit
+        //end bindingInit
 
-        this.BindElements = () => {
-            propertyEditor.Target = this.chart;
-        };
-        this.BindElements();
 
     }
 
-    private IgbPropertyEditorPanel propertyEditor;
-    private IgbPropertyEditorPropertyDescription chartTypeEditor;
-    private IgbPropertyEditorPropertyDescription markerTypeEditor;
-    private IgbCategoryChart chart;
-
-    public void EditorChangeUpdateMarkerType(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
-    {
-        //var item = this.chart;
-
-        var markerVal = (MarkerType)Enum.Parse(typeof(MarkerType), args.NewValue.ToString());
-        chart.MarkerTypes.Clear();
-        chart.MarkerTypes.Add(markerVal);
-    }
-
-    private CountryRenewableElectricity _countryRenewableElectricity = null;
-    public CountryRenewableElectricity CountryRenewableElectricity
-    {
-        get
-        {
-            if (_countryRenewableElectricity == null)
-            {
-                _countryRenewableElectricity = new CountryRenewableElectricity();
-            }
-            return _countryRenewableElectricity;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

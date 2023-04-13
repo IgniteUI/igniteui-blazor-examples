@@ -1,83 +1,26 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IJSRuntime JS
 
 <div class="container vertical">
 
     <div class="container vertical fill">
-        <IgbTreeGrid
-        Name="treeGrid"
-        @ref="treeGrid"
-        Id="treeGrid"
-        Data="FoodsData"
-        PrimaryKey="ID"
-        ForeignKey="ParentID">
-            <IgbColumn
-            Field="ID"
-            Header="Product ID"
-            DataType="GridColumnDataType.String">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Name"
-            Header="Product Name"
-            DataType="GridColumnDataType.String"
-            BodyTemplateScript="WebTreeGridProductNameTemplate"
-            Name="column1"
-            @ref="column1">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="UnitPrice"
-            Header="Unit Price"
-            DataType="GridColumnDataType.Number"
-            BodyTemplateScript="WebTreeGridUnitPriceTemplate"
-            Name="column2"
-            @ref="column2">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="AddedDate"
-            Header="Added Date"
-            DataType="GridColumnDataType.Date">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Discontinued"
-            Header="Discontinued"
-            DataType="GridColumnDataType.Boolean">
-            </IgbColumn>
-
-        </IgbTreeGrid>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var treeGrid = this.treeGrid;
-        var column1 = this.column1;
-        var column2 = this.column2;
+        //insert bindingInit
+        //end bindingInit
+
 
     }
 
-    private IgbTreeGrid treeGrid;
-    private IgbColumn column1;
-    private IgbColumn column2;
-
-    private FoodsData _foodsData = null;
-    public FoodsData FoodsData
-    {
-        get
-        {
-            if (_foodsData == null)
-            {
-                _foodsData = new FoodsData();
-            }
-            return _foodsData;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

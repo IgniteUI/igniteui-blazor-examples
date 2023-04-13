@@ -1,97 +1,29 @@
 @using IgniteUI.Blazor.Controls
 
+
 <div class="container vertical">
-    <div class="options vertical">
-        <IgbPropertyEditorPanel
-
-        DescriptionType="CategoryChart"
-        IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="propertyEditorPanel1"
-        @ref="propertyEditorPanel1">
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="XAxisTickLength"
-            Name="XAxisTickLength"
-            @ref="xAxisTickLength"
-            Label="X Axis Tick Length"
-            ShouldOverrideDefaultEditor="true"
-            ValueType="PropertyEditorValueType.Slider"
-            Min="0"
-            Max="20"
-            PrimitiveValue="10">
-            </IgbPropertyEditorPropertyDescription>
-
-        </IgbPropertyEditorPanel>
-
-    </div>
     <div class="legend-title">
         Renewable Electricity Generated
     </div>
-    <div class="legend">
-        <IgbLegend
-        Name="Legend"
-        @ref="legend"
-        Orientation="LegendOrientation.Horizontal">
-        </IgbLegend>
-
-    </div>
 
     <div class="container vertical fill">
-        <IgbCategoryChart
-        Name="chart"
-        @ref="chart"
-        DataSource="CountryRenewableElectricity"
-        IncludedProperties="@(new string[] { "Year", "Europe", "China", "America" })"
-        ChartType="CategoryChartType.Line"
-        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
-        XAxisTickLength="10"
-        XAxisTickStrokeThickness="1"
-        XAxisTickStroke="gray"
-        YAxisTickLength="0"
-        YAxisTickStrokeThickness="0"
-        YAxisTickStroke="#00000000">
-        </IgbCategoryChart>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var legend = this.legend;
-        var propertyEditorPanel1 = this.propertyEditorPanel1;
-        var xAxisTickLength = this.xAxisTickLength;
-        var chart = this.chart;
+        //insert bindingInit
+        //end bindingInit
 
-        this.BindElements = () => {
-            propertyEditorPanel1.Target = this.chart;
-            chart.Legend = this.legend;
-        };
-        this.BindElements();
 
     }
 
-    private IgbLegend legend;
-    private IgbPropertyEditorPanel propertyEditorPanel1;
-    private IgbPropertyEditorPropertyDescription xAxisTickLength;
-    private IgbCategoryChart chart;
-
-    private CountryRenewableElectricity _countryRenewableElectricity = null;
-    public CountryRenewableElectricity CountryRenewableElectricity
-    {
-        get
-        {
-            if (_countryRenewableElectricity == null)
-            {
-                _countryRenewableElectricity = new CountryRenewableElectricity();
-            }
-            return _countryRenewableElectricity;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

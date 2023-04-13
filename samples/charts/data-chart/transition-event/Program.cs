@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using IgniteUI.Blazor.Controls; // for registering Ignite UI modules
+
+// required for registering IgniteUIBlazor
+using IgniteUI.Blazor.Controls;
 
 namespace Infragistics.Samples
 {
@@ -17,14 +19,17 @@ namespace Infragistics.Samples
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
+
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            // registering Ignite UI modules
+
+            // registering Infragistics Blazor
             builder.Services.AddIgniteUIBlazor(
-                typeof(IgbInputModule),
-                typeof(IgbPropertyEditorPanelModule),
-                typeof(IgbDataChartCoreModule),
+                typeof(IgbInputModule), 
+                typeof(IgbPropertyEditorPanelModule), 
+                typeof(IgbDataChartCoreModule), 
                 typeof(IgbDataChartCategoryModule)
             );
+
             await builder.Build().RunAsync();
         }
     }

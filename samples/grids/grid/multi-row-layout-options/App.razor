@@ -1,183 +1,26 @@
 @using IgniteUI.Blazor.Controls
 
+
 <div class="container vertical">
 
     <div class="container vertical fill">
-        <IgbGrid
-        Name="grid"
-        @ref="grid"
-        Data="CustomersData"
-        RowEditable="true"
-        AllowFiltering="true"
-        FilterMode="FilterMode.ExcelStyleFilter"
-        PrimaryKey="CompanyName"
-        GroupingExpressions="GroupingExpression1">
-            <IgbColumnLayout
-            Hidden="true"
-            Header="ID">
-                <IgbColumn
-                Field="ID"
-                RowStart="1"
-                ColStart="1"
-                RowEnd="3"
-                Filterable="false"
-                Width="150px">
-                </IgbColumn>
-
-            </IgbColumnLayout>
-
-            <IgbColumnLayout
-            Pinned="true"
-            Header="Contact Details">
-                <IgbColumn
-                Field="CompanyName"
-                Header="Company"
-                RowStart="1"
-                ColStart="1"
-                ColEnd="3"
-                Sortable="true"
-                Width="350px">
-                </IgbColumn>
-
-                <IgbColumn
-                Field="ContactName"
-                Header="Name"
-                RowStart="2"
-                ColStart="1"
-                ColEnd="2"
-                Groupable="true">
-                </IgbColumn>
-
-                <IgbColumn
-                Field="ContactTitle"
-                Header="Title"
-                RowStart="2"
-                ColStart="2"
-                ColEnd="3"
-                Groupable="true">
-                </IgbColumn>
-
-            </IgbColumnLayout>
-
-            <IgbColumnLayout
-            Pinned="false"
-            Header="Address Details">
-                <IgbColumn
-                Field="Country"
-                RowStart="1"
-                ColStart="1"
-                ColEnd="3"
-                Groupable="true"
-                Filterable="false"
-                Width="220px">
-                </IgbColumn>
-
-                <IgbColumn
-                Field="Region"
-                RowStart="1"
-                ColStart="3"
-                ColEnd="5"
-                Groupable="true"
-                Filterable="false"
-                Width="220px">
-                </IgbColumn>
-
-                <IgbColumn
-                Field="PostalCode"
-                RowStart="1"
-                ColStart="5"
-                ColEnd="7"
-                Groupable="true"
-                Filterable="false"
-                Width="220px">
-                </IgbColumn>
-
-                <IgbColumn
-                Field="City"
-                RowStart="2"
-                ColStart="1"
-                ColEnd="4"
-                Groupable="true"
-                Filterable="false"
-                Width="220px">
-                </IgbColumn>
-
-                <IgbColumn
-                Field="Address"
-                RowStart="2"
-                ColStart="4"
-                ColEnd="7"
-                Filterable="false">
-                </IgbColumn>
-
-            </IgbColumnLayout>
-
-            <IgbColumnLayout
-            Header="Phone Details">
-                <IgbColumn
-                Field="Phone"
-                RowStart="1"
-                ColStart="1"
-                ColEnd="2"
-                Filterable="false"
-                Width="220px">
-                </IgbColumn>
-
-                <IgbColumn
-                Field="Fax"
-                RowStart="2"
-                ColStart="1"
-                ColEnd="2"
-                Filterable="false"
-                Width="220px">
-                </IgbColumn>
-
-            </IgbColumnLayout>
-
-        </IgbGrid>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var grid = this.grid;
+        //insert bindingInit
+        //end bindingInit
+
 
     }
 
-    private IgbGrid grid;
-    private IgbGroupingExpression[] _groupingExpression1 = null;
-    public IgbGroupingExpression[] GroupingExpression1
-    {
-        get
-        {
-            if (this._groupingExpression1 == null)
-            {
-                var groupingExpression1 = new IgbGroupingExpression[1];
-                var groupingExpression2 = new IgbGroupingExpression();
-                groupingExpression2.FieldName = "Country";
-                groupingExpression2.IgnoreCase = false;
-                groupingExpression2.Dir = SortingDirection.Asc;
-                groupingExpression1[0] = groupingExpression2;
-                this._groupingExpression1 = groupingExpression1;
-            }
-            return this._groupingExpression1;
-        }
-    }
-
-    private CustomersData _customersData = null;
-    public CustomersData CustomersData
-    {
-        get
-        {
-            if (_customersData == null)
-            {
-                _customersData = new CustomersData();
-            }
-            return _customersData;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

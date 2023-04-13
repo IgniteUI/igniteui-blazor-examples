@@ -1,95 +1,29 @@
 @using IgniteUI.Blazor.Controls
 
+
 <div class="container vertical">
     <div class="legend-title">
         Facebook Consolidated Statements of Income
     </div>
 
     <div class="container vertical fill">
-        <IgbDataChart
-        Name="chart"
-        @ref="chart"
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false">
-            <IgbCategoryXAxis
-            Name="xAxis"
-            @ref="xAxis"
-            Label="Category"
-            Interval="1"
-            DataSource="CompanyIncomeData"
-            Overlap="1">
-            </IgbCategoryXAxis>
-
-            <IgbNumericYAxis
-            Name="yAxis"
-            @ref="yAxis"
-            Title="Millions of Dollars"
-            TitleAngle="90"
-            TitleLeftMargin="10"
-            MinimumValue="0"
-            MaximumValue="60">
-            </IgbNumericYAxis>
-
-            <IgbWaterfallSeries
-            Name="WaterfallSeries1"
-            @ref="waterfallSeries1"
-            Title="Value"
-            XAxisName="xAxis"
-            YAxisName="yAxis"
-            DataSource="CompanyIncomeData"
-            ValueMemberPath="Costs"
-            ShowDefaultTooltip="true"
-            IsTransitionInEnabled="true">
-            </IgbWaterfallSeries>
-
-            <IgbWaterfallSeries
-            Name="WaterfallSeries2"
-            @ref="waterfallSeries2"
-            Title="Value"
-            XAxisName="xAxis"
-            YAxisName="yAxis"
-            DataSource="CompanyIncomeData"
-            Brush="#7446b9"
-            Outline="#7446b9"
-            ValueMemberPath="NetIncome"
-            ShowDefaultTooltip="true"
-            IsTransitionInEnabled="true">
-            </IgbWaterfallSeries>
-
-        </IgbDataChart>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var chart = this.chart;
-        var xAxis = this.xAxis;
-        var yAxis = this.yAxis;
-        var waterfallSeries1 = this.waterfallSeries1;
-        var waterfallSeries2 = this.waterfallSeries2;
+        //insert bindingInit
+        //end bindingInit
+
 
     }
 
-    private IgbDataChart chart;
-    private IgbCategoryXAxis xAxis;
-    private IgbNumericYAxis yAxis;
-    private IgbWaterfallSeries waterfallSeries1;
-    private IgbWaterfallSeries waterfallSeries2;
-
-    private CompanyIncomeData _companyIncomeData = null;
-    public CompanyIncomeData CompanyIncomeData
-    {
-        get
-        {
-            if (_companyIncomeData == null)
-            {
-                _companyIncomeData = new CompanyIncomeData();
-            }
-            return _companyIncomeData;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

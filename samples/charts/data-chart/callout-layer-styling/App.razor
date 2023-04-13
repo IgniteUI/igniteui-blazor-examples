@@ -1,100 +1,29 @@
 @using IgniteUI.Blazor.Controls
 
+
 <div class="container vertical">
     <div class="legend-title">
         Renewable Electricity Generated
     </div>
 
     <div class="container vertical fill">
-        <IgbDataChart
-        ShouldAutoExpandMarginForInitialLabels="true"
-        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
-        Name="chart"
-        @ref="chart">
-            <IgbCategoryXAxis
-            Name="xAxis"
-            @ref="xAxis"
-            DataSource="CountryRenewableElectricity"
-            Label="Year">
-            </IgbCategoryXAxis>
-
-            <IgbNumericYAxis
-            Name="yAxis"
-            @ref="yAxis"
-            Title="TWh"
-            LabelLocation="AxisLabelsLocation.OutsideRight">
-            </IgbNumericYAxis>
-
-            <IgbLineSeries
-            Name="LineSeries1"
-            @ref="lineSeries1"
-            XAxisName="xAxis"
-            YAxisName="yAxis"
-            DataSource="CountryRenewableElectricity"
-            ValueMemberPath="America">
-            </IgbLineSeries>
-
-            <IgbCalloutLayer
-            Name="CalloutLayer1"
-            @ref="calloutLayer1"
-            DataSource="CountryRenewableCallouts"
-            XMemberPath="Index"
-            YMemberPath="Value"
-            LabelMemberPath="Label"
-            CalloutLeaderBrush="black"
-            CalloutOutline="black"
-            CalloutBackground="orange"
-            CalloutTextColor="black"
-            CalloutStrokeThickness="2">
-            </IgbCalloutLayer>
-
-        </IgbDataChart>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var chart = this.chart;
-        var xAxis = this.xAxis;
-        var yAxis = this.yAxis;
-        var lineSeries1 = this.lineSeries1;
-        var calloutLayer1 = this.calloutLayer1;
+        //insert bindingInit
+        //end bindingInit
+
 
     }
 
-    private IgbDataChart chart;
-    private IgbCategoryXAxis xAxis;
-    private IgbNumericYAxis yAxis;
-    private IgbLineSeries lineSeries1;
-    private IgbCalloutLayer calloutLayer1;
-
-    private CountryRenewableElectricity _countryRenewableElectricity = null;
-    public CountryRenewableElectricity CountryRenewableElectricity
-    {
-        get
-        {
-            if (_countryRenewableElectricity == null)
-            {
-                _countryRenewableElectricity = new CountryRenewableElectricity();
-            }
-            return _countryRenewableElectricity;
-        }
-    }
-
-    private CountryRenewableCallouts _countryRenewableCallouts = null;
-    public CountryRenewableCallouts CountryRenewableCallouts
-    {
-        get
-        {
-            if (_countryRenewableCallouts == null)
-            {
-                _countryRenewableCallouts = new CountryRenewableCallouts();
-            }
-            return _countryRenewableCallouts;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

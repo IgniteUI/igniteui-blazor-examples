@@ -1,111 +1,29 @@
 @using IgniteUI.Blazor.Controls
 
+
 <div class="container vertical">
     <div class="legend-title">
         Where Online Shoppers Start Their Search
     </div>
 
     <div class="container vertical fill">
-        <IgbDataChart
-        Name="Chart"
-        @ref="chart"
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false">
-            <IgbCategoryYAxis
-            Name="yAxis"
-            @ref="yAxis"
-            Label="Shop"
-            DataSource="OnlineShoppingSearches"
-            IsInverted="true"
-            Gap="0.75">
-            </IgbCategoryYAxis>
-
-            <IgbNumericXAxis
-            Name="xAxis"
-            @ref="xAxis"
-            Interval="20"
-            MaximumValue="80"
-            MinimumValue="0"
-            LabelFormat="{0}%">
-            </IgbNumericXAxis>
-
-            <IgbCategoryHighlightLayer
-            Name="CategoryHighlightLayer"
-            @ref="categoryHighlightLayer">
-            </IgbCategoryHighlightLayer>
-
-            <IgbBarSeries
-            Name="BarSeries1"
-            @ref="barSeries1"
-            XAxisName="xAxis"
-            YAxisName="yAxis"
-            ValueMemberPath="Percent"
-            DataSource="OnlineShoppingSearches"
-            ShowDefaultTooltip="true"
-            IsTransitionInEnabled="true"
-            IsHighlightingEnabled="true"
-            Brush="#a786068a"
-            Outline="#85068a"
-            Thickness="2"
-            AreaFillOpacity="0.5">
-            </IgbBarSeries>
-
-            <IgbCalloutLayer
-            Name="CalloutLayer1"
-            @ref="calloutLayer1"
-            XMemberPath="X"
-            YMemberPath="Y"
-            LabelMemberPath="Label"
-            ContentMemberPath="Label"
-            CalloutTextColor="#85068a"
-            CalloutBackground="#00000000"
-            CalloutLeaderBrush="#00000000"
-            DataSource="OnlineShoppingSearches">
-            </IgbCalloutLayer>
-
-            <IgbDataToolTipLayer
-            Name="Tooltips"
-            @ref="tooltips">
-            </IgbDataToolTipLayer>
-
-        </IgbDataChart>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var chart = this.chart;
-        var yAxis = this.yAxis;
-        var xAxis = this.xAxis;
-        var categoryHighlightLayer = this.categoryHighlightLayer;
-        var barSeries1 = this.barSeries1;
-        var calloutLayer1 = this.calloutLayer1;
-        var tooltips = this.tooltips;
+        //insert bindingInit
+        //end bindingInit
+
 
     }
 
-    private IgbDataChart chart;
-    private IgbCategoryYAxis yAxis;
-    private IgbNumericXAxis xAxis;
-    private IgbCategoryHighlightLayer categoryHighlightLayer;
-    private IgbBarSeries barSeries1;
-    private IgbCalloutLayer calloutLayer1;
-    private IgbDataToolTipLayer tooltips;
-
-    private OnlineShoppingSearches _onlineShoppingSearches = null;
-    public OnlineShoppingSearches OnlineShoppingSearches
-    {
-        get
-        {
-            if (_onlineShoppingSearches == null)
-            {
-                _onlineShoppingSearches = new OnlineShoppingSearches();
-            }
-            return _onlineShoppingSearches;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

@@ -1,153 +1,26 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IJSRuntime JS
 
 <div class="container vertical">
-    <div class="options vertical">
-        <IgbPropertyEditorPanel
-
-        DescriptionType="WebGrid"
-        IsHorizontal="true"
-        IsWrappingEnabled="false"
-        Name="propertyEditorPanel1"
-        @ref="propertyEditorPanel1">
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="SummaryRowHeight"
-            Label="Summary Row Height"
-            ValueType="PropertyEditorValueType.Number">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            Label="Toggle Summaries"
-            ValueType="PropertyEditorValueType.Boolean1"
-            PrimitiveValue="true"
-            Changed="WebGridHasSummariesChange"
-            Name="propertyEditorPropertyDescription1"
-            @ref="propertyEditorPropertyDescription1">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="DisplayDensity"
-            Name="DisplayDensityEditor"
-            @ref="displayDensityEditor">
-            </IgbPropertyEditorPropertyDescription>
-
-        </IgbPropertyEditorPanel>
-
-    </div>
 
     <div class="container vertical fill">
-        <IgbGrid
-        AutoGenerate="false"
-        Name="grid"
-        @ref="grid"
-        Data="NwindData">
-            <IgbColumn
-            Field="ProductID"
-            Header="Product ID"
-            Width="10%"
-            Groupable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="ProductName"
-            Header="Product Name"
-            Width="17%"
-            Groupable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="UnitPrice"
-            Header="Price"
-            Filterable="false"
-            Width="17%"
-            Editable="true"
-            DataType="GridColumnDataType.Number"
-            Groupable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="UnitsInStock"
-            Header="Units in Stock"
-            Width="21%"
-            DataType="GridColumnDataType.Number"
-            Editable="true"
-            Groupable="true"
-            HasSummary="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Discontinued"
-            Header="Discontinued"
-            Editable="true"
-            Width="17%"
-            DataType="GridColumnDataType.Boolean"
-            Groupable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="OrderDate"
-            Width="18%"
-            DataType="GridColumnDataType.Date"
-            Groupable="true"
-            HasSummary="true"
-            SummaryTemplateScript="WebGridOrderDateSummaryTemplate"
-            Name="column1"
-            @ref="column1">
-            </IgbColumn>
-
-        </IgbGrid>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var propertyEditorPanel1 = this.propertyEditorPanel1;
-        var propertyEditorPropertyDescription1 = this.propertyEditorPropertyDescription1;
-        var displayDensityEditor = this.displayDensityEditor;
-        var grid = this.grid;
-        var column1 = this.column1;
+        //insert bindingInit
+        //end bindingInit
 
-        this.BindElements = () => {
-            propertyEditorPanel1.Target = this.grid;
-        };
-        this.BindElements();
 
     }
 
-    private IgbPropertyEditorPanel propertyEditorPanel1;
-    private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
-    private IgbPropertyEditorPropertyDescription displayDensityEditor;
-    private IgbGrid grid;
-    private IgbColumn column1;
-
-    public void WebGridHasSummariesChange(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
-    {
-        bool newValue = bool.Parse(args.NewValue.ToString());
-
-        var column1 = this.grid.ActualColumns[3];
-        var column2 = this.grid.ActualColumns[5];
-
-        column1.HasSummary = newValue;
-        column2.HasSummary = newValue;
-    }
-
-    private NwindData _nwindData = null;
-    public NwindData NwindData
-    {
-        get
-        {
-            if (_nwindData == null)
-            {
-                _nwindData = new NwindData();
-            }
-            return _nwindData;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

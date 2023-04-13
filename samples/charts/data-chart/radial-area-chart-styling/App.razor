@@ -1,115 +1,29 @@
 @using IgniteUI.Blazor.Controls
 
+
 <div class="container vertical">
     <div class="legend-title">
         Ronaldo vs Messi Player Stats
     </div>
-    <div class="legend">
-        <IgbLegend
-        Name="Legend"
-        @ref="legend"
-        Orientation="LegendOrientation.Horizontal">
-        </IgbLegend>
-
-    </div>
 
     <div class="container vertical fill">
-        <IgbDataChart
-        Name="chart"
-        @ref="chart"
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
-        MarkerBrushes="white"
-        MarkerOutlines="#8ce7d9 #ee5879"
-        Brushes="#8ce7d9 #ee5879"
-        Outlines="#8ce7d9 #ee5879">
-            <IgbCategoryAngleAxis
-            Name="angleAxis"
-            @ref="angleAxis"
-            DataSource="FootballPlayerStats"
-            Label="Attribute">
-            </IgbCategoryAngleAxis>
-
-            <IgbNumericRadiusAxis
-            Name="radiusAxis"
-            @ref="radiusAxis"
-            InnerRadiusExtentScale="0.1"
-            Interval="2"
-            MinimumValue="0"
-            MaximumValue="10">
-            </IgbNumericRadiusAxis>
-
-            <IgbRadialAreaSeries
-            Name="RadialAreaSeries1"
-            @ref="radialAreaSeries1"
-            DataSource="FootballPlayerStats"
-            AngleAxisName="angleAxis"
-            ValueAxisName="radiusAxis"
-            ValueMemberPath="Ronaldo"
-            ShowDefaultTooltip="true"
-            AreaFillOpacity="0.5"
-            Thickness="3"
-            Title="Ronaldo"
-            MarkerType="MarkerType.Circle">
-            </IgbRadialAreaSeries>
-
-            <IgbRadialAreaSeries
-            Name="RadialAreaSeries2"
-            @ref="radialAreaSeries2"
-            DataSource="FootballPlayerStats"
-            AngleAxisName="angleAxis"
-            ValueAxisName="radiusAxis"
-            ValueMemberPath="Messi"
-            ShowDefaultTooltip="true"
-            AreaFillOpacity="0.5"
-            Thickness="3"
-            Title="Messi"
-            MarkerType="MarkerType.Circle">
-            </IgbRadialAreaSeries>
-
-        </IgbDataChart>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var legend = this.legend;
-        var chart = this.chart;
-        var angleAxis = this.angleAxis;
-        var radiusAxis = this.radiusAxis;
-        var radialAreaSeries1 = this.radialAreaSeries1;
-        var radialAreaSeries2 = this.radialAreaSeries2;
+        //insert bindingInit
+        //end bindingInit
 
-        this.BindElements = () => {
-            chart.Legend = this.legend;
-        };
-        this.BindElements();
 
     }
 
-    private IgbLegend legend;
-    private IgbDataChart chart;
-    private IgbCategoryAngleAxis angleAxis;
-    private IgbNumericRadiusAxis radiusAxis;
-    private IgbRadialAreaSeries radialAreaSeries1;
-    private IgbRadialAreaSeries radialAreaSeries2;
-
-    private FootballPlayerStats _footballPlayerStats = null;
-    public FootballPlayerStats FootballPlayerStats
-    {
-        get
-        {
-            if (_footballPlayerStats == null)
-            {
-                _footballPlayerStats = new FootballPlayerStats();
-            }
-            return _footballPlayerStats;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

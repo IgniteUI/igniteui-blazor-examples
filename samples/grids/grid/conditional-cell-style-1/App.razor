@@ -1,97 +1,26 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IJSRuntime JS
 
 <div class="container vertical">
 
     <div class="container vertical fill">
-        <IgbGrid
-        AutoGenerate="false"
-        Name="grid"
-        @ref="grid"
-        Data="AthletesData">
-            <IgbColumn
-            Field="Id"
-            Header="Rank"
-            Sortable="true"
-            Editable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Name"
-            Header="Athlete"
-            Sortable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="BeatsPerMinute"
-            Header="Beats per Minute"
-            DataType="GridColumnDataType.Number"
-            Editable="true"
-            Sortable="true"
-            BodyTemplateScript="WebGridBeatsPerMinuteTemplate"
-            Name="column1"
-            @ref="column1">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="TopSpeed"
-            Header="Top Speed"
-            DataType="GridColumnDataType.Number"
-            Editable="true"
-            Sortable="true"
-            BodyTemplateScript="WebGridTopSpeedTemplate"
-            Name="column2"
-            @ref="column2">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="TrackProgress"
-            Header="Track Progress"
-            Editable="true"
-            Sortable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="CountryFlag"
-            Header="Country"
-            BodyTemplateScript="WebGridImageCellTemplate"
-            Name="column3"
-            @ref="column3">
-            </IgbColumn>
-
-        </IgbGrid>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var grid = this.grid;
-        var column1 = this.column1;
-        var column2 = this.column2;
-        var column3 = this.column3;
+        //insert bindingInit
+        //end bindingInit
+
 
     }
 
-    private IgbGrid grid;
-    private IgbColumn column1;
-    private IgbColumn column2;
-    private IgbColumn column3;
-
-    private AthletesData _athletesData = null;
-    public AthletesData AthletesData
-    {
-        get
-        {
-            if (_athletesData == null)
-            {
-                _athletesData = new AthletesData();
-            }
-            return _athletesData;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

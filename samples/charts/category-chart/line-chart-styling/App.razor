@@ -1,70 +1,29 @@
 @using IgniteUI.Blazor.Controls
 
+
 <div class="container vertical">
     <div class="legend-title">
         Renewable Electricity Generated
     </div>
-    <div class="legend">
-        <IgbLegend
-        Name="Legend"
-        @ref="legend"
-        Orientation="LegendOrientation.Horizontal">
-        </IgbLegend>
-
-    </div>
 
     <div class="container vertical fill">
-        <IgbCategoryChart
-        Name="chart"
-        @ref="chart"
-        DataSource="CountryRenewableElectricity"
-        ChartType="CategoryChartType.Line"
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
-        MarkerBrushes="#ee5879 #c4c4c4 #9af2e4"
-        MarkerOutlines="white"
-        Brushes="#ee5879 #c4c4c4 #9af2e4"
-        Outlines="#ee5879 #c4c4c4 #9af2e4"
-        YAxisTitle="TWh"
-        YAxisTitleLeftMargin="10"
-        YAxisLabelLeftMargin="0"
-        Thickness="2"
-        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series">
-        </IgbCategoryChart>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var legend = this.legend;
-        var chart = this.chart;
+        //insert bindingInit
+        //end bindingInit
 
-        this.BindElements = () => {
-            chart.Legend = this.legend;
-        };
-        this.BindElements();
 
     }
 
-    private IgbLegend legend;
-    private IgbCategoryChart chart;
-
-    private CountryRenewableElectricity _countryRenewableElectricity = null;
-    public CountryRenewableElectricity CountryRenewableElectricity
-    {
-        get
-        {
-            if (_countryRenewableElectricity == null)
-            {
-                _countryRenewableElectricity = new CountryRenewableElectricity();
-            }
-            return _countryRenewableElectricity;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

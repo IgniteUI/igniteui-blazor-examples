@@ -1,192 +1,26 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IJSRuntime JS
 
 <div class="container vertical">
-    <div class="options vertical">
-        <IgbPropertyEditorPanel
-
-        DescriptionType="WebGrid"
-        IsWrappingEnabled="true"
-        IsHorizontal="true"
-
-        Name="propertyEditorPanel1"
-        @ref="propertyEditorPanel1">
-            <IgbPropertyEditorPropertyDescription
-            Name="selectionType"
-            @ref="selectionType"
-            PropertyPath="RowSelection">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            Name="hideRowSelectors"
-            @ref="hideRowSelectors"
-            PropertyPath="HideRowSelectors">
-            </IgbPropertyEditorPropertyDescription>
-
-        </IgbPropertyEditorPanel>
-
-    </div>
 
     <div class="container vertical fill">
-        <IgbGrid
-        AutoGenerate="false"
-        Data="FinancialDataAll"
-        Moving="true"
-        Id="grid1"
-        Name="grid1"
-        @ref="grid1">
-            <IgbColumn
-            Field="Category">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Type">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Price"
-            DataType="GridColumnDataType.Currency"
-            PipeArgs="ColumnPipeArgs1"
-            Name="column1"
-            @ref="column1">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Buy"
-            DataType="GridColumnDataType.Currency"
-            PipeArgs="ColumnPipeArgs2"
-            Name="column2"
-            @ref="column2">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Sell"
-            DataType="GridColumnDataType.Currency"
-            PipeArgs="ColumnPipeArgs3"
-            Name="column3"
-            @ref="column3">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Change"
-            BodyTemplateScript="WebGridCurrencyCellTemplate"
-            Name="column4"
-            @ref="column4">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="ChangePercent"
-            DataType="GridColumnDataType.Number"
-            BodyTemplateScript="WebGridCurrencyCellTemplate"
-            Name="column5"
-            @ref="column5">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="AnnualChange"
-            DataType="GridColumnDataType.Number"
-            BodyTemplateScript="WebGridCurrencyCellTemplate"
-            Name="column6"
-            @ref="column6">
-            </IgbColumn>
-
-        </IgbGrid>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var propertyEditorPanel1 = this.propertyEditorPanel1;
-        var selectionType = this.selectionType;
-        var hideRowSelectors = this.hideRowSelectors;
-        var grid1 = this.grid1;
-        var column1 = this.column1;
-        var column2 = this.column2;
-        var column3 = this.column3;
-        var column4 = this.column4;
-        var column5 = this.column5;
-        var column6 = this.column6;
+        //insert bindingInit
+        //end bindingInit
 
-        this.BindElements = () => {
-            propertyEditorPanel1.Target = this.grid1;
-        };
-        this.BindElements();
 
     }
 
-    private IgbPropertyEditorPanel propertyEditorPanel1;
-    private IgbPropertyEditorPropertyDescription selectionType;
-    private IgbPropertyEditorPropertyDescription hideRowSelectors;
-    private IgbGrid grid1;
-    private IgbColumn column1;
-    private IgbColumnPipeArgs _columnPipeArgs1 = null;
-    public IgbColumnPipeArgs ColumnPipeArgs1
-    {
-        get
-        {
-            if (this._columnPipeArgs1 == null)
-            {
-                var columnPipeArgs1 = new IgbColumnPipeArgs();
-                columnPipeArgs1.CurrencyCode = "USD";
-                columnPipeArgs1.DigitsInfo = "1.2-2";
-                this._columnPipeArgs1 = columnPipeArgs1;
-            }
-            return this._columnPipeArgs1;
-        }
-    }
-    private IgbColumn column2;
-    private IgbColumnPipeArgs _columnPipeArgs2 = null;
-    public IgbColumnPipeArgs ColumnPipeArgs2
-    {
-        get
-        {
-            if (this._columnPipeArgs2 == null)
-            {
-                var columnPipeArgs2 = new IgbColumnPipeArgs();
-                columnPipeArgs2.CurrencyCode = "USD";
-                columnPipeArgs2.DigitsInfo = "1.2-2";
-                this._columnPipeArgs2 = columnPipeArgs2;
-            }
-            return this._columnPipeArgs2;
-        }
-    }
-    private IgbColumn column3;
-    private IgbColumnPipeArgs _columnPipeArgs3 = null;
-    public IgbColumnPipeArgs ColumnPipeArgs3
-    {
-        get
-        {
-            if (this._columnPipeArgs3 == null)
-            {
-                var columnPipeArgs3 = new IgbColumnPipeArgs();
-                columnPipeArgs3.CurrencyCode = "USD";
-                columnPipeArgs3.DigitsInfo = "1.2-2";
-                this._columnPipeArgs3 = columnPipeArgs3;
-            }
-            return this._columnPipeArgs3;
-        }
-    }
-    private IgbColumn column4;
-    private IgbColumn column5;
-    private IgbColumn column6;
-
-    private FinancialDataAll _financialDataAll = null;
-    public FinancialDataAll FinancialDataAll
-    {
-        get
-        {
-            if (_financialDataAll == null)
-            {
-                _financialDataAll = new FinancialDataAll();
-            }
-            return _financialDataAll;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

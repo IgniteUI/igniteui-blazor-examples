@@ -1,130 +1,29 @@
 @using IgniteUI.Blazor.Controls
 
+
 <div class="container vertical">
-    <div class="options vertical">
-        <IgbPropertyEditorPanel
-
-        DescriptionType="CategoryChart"
-        IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="propertyEditorPanel1"
-        @ref="propertyEditorPanel1">
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="XAxisLabelAngle"
-            Name="XAxisLabelAngleEditor"
-            @ref="xAxisLabelAngleEditor"
-            Label="X Axis Label Angle"
-            ShouldOverrideDefaultEditor="true"
-            ValueType="PropertyEditorValueType.EnumValue"
-            DropDownNames="@(new string[] { "0", "45", "90", "135", "180", "225", "270" })"
-            DropDownValues="@(new string[] { "0", "45", "90", "135", "180", "225", "270" })"
-            PrimitiveValue="0">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="YAxisLabelAngle"
-            Name="YAxisLabelAngleEditor"
-            @ref="yAxisLabelAngleEditor"
-            Label="Y Axis Label Angle"
-            ShouldOverrideDefaultEditor="true"
-            ValueType="PropertyEditorValueType.EnumValue"
-            DropDownNames="@(new string[] { "-90", "-45", "0", "45", "90" })"
-            DropDownValues="@(new string[] { "-90", "-45", "0", "45", "90" })"
-            PrimitiveValue="0">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="XAxisLabelTextColor"
-            Name="XAxisLabelTextColorEditor"
-            @ref="xAxisLabelTextColorEditor"
-            Label="Y Axis Label Color"
-            ValueType="PropertyEditorValueType.EnumValue"
-            ShouldOverrideDefaultEditor="true"
-            DropDownNames="@(new string[] { "red", "green" })"
-            DropDownValues="@(new string[] { "red", "green" })"
-            PrimitiveValue="@("red")">
-            </IgbPropertyEditorPropertyDescription>
-
-        </IgbPropertyEditorPanel>
-
-    </div>
     <div class="legend-title">
         Renewable Electricity Generated
     </div>
-    <div class="legend">
-        <IgbLegend
-        Name="Legend"
-        @ref="legend"
-        Orientation="LegendOrientation.Horizontal">
-        </IgbLegend>
-
-    </div>
 
     <div class="container vertical fill">
-        <IgbCategoryChart
-        Name="chart"
-        @ref="chart"
-        DataSource="CountryRenewableElectricity"
-        IncludedProperties="@(new string[] { "Year", "Europe", "China", "America" })"
-        ChartType="CategoryChartType.Line"
-        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
-        TopMargin="20"
-        XAxisLabelAngle="0"
-        XAxisLabelTextColor="gray"
-        XAxisLabelTextStyle="10pt 'Titillium Web'"
-        XAxisLabelTopMargin="5"
-        YAxisLabelAngle="0"
-        YAxisLabelTextColor="gray"
-        YAxisLabelTextStyle="10pt 'Titillium Web'"
-        YAxisLabelRightMargin="5"
-        YAxisLabelLocation="YAxisLabelLocation.OutsideRight"
-        TitleTopMargin="10">
-        </IgbCategoryChart>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var legend = this.legend;
-        var propertyEditorPanel1 = this.propertyEditorPanel1;
-        var xAxisLabelAngleEditor = this.xAxisLabelAngleEditor;
-        var yAxisLabelAngleEditor = this.yAxisLabelAngleEditor;
-        var xAxisLabelTextColorEditor = this.xAxisLabelTextColorEditor;
-        var chart = this.chart;
+        //insert bindingInit
+        //end bindingInit
 
-        this.BindElements = () => {
-            propertyEditorPanel1.Target = this.chart;
-            chart.Legend = this.legend;
-        };
-        this.BindElements();
 
     }
 
-    private IgbLegend legend;
-    private IgbPropertyEditorPanel propertyEditorPanel1;
-    private IgbPropertyEditorPropertyDescription xAxisLabelAngleEditor;
-    private IgbPropertyEditorPropertyDescription yAxisLabelAngleEditor;
-    private IgbPropertyEditorPropertyDescription xAxisLabelTextColorEditor;
-    private IgbCategoryChart chart;
-
-    private CountryRenewableElectricity _countryRenewableElectricity = null;
-    public CountryRenewableElectricity CountryRenewableElectricity
-    {
-        get
-        {
-            if (_countryRenewableElectricity == null)
-            {
-                _countryRenewableElectricity = new CountryRenewableElectricity();
-            }
-            return _countryRenewableElectricity;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

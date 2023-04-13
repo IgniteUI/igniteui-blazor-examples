@@ -1,98 +1,26 @@
 @using IgniteUI.Blazor.Controls
 
+
 <div class="container vertical">
 
     <div class="container vertical fill">
-        <IgbGrid
-        AutoGenerate="false"
-        Data="NwindData"
-        Name="grid"
-        @ref="grid"
-        Id="grid"
-        DisplayDensity="DisplayDensity.Compact"
-        PrimaryKey="ProductID"
-        RowEditable="true">
-            <IgbColumn
-            Field="ProductID"
-            Header="Product ID"
-            DataType="GridColumnDataType.Number">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="ReorderLevel"
-            Header="Reorder Level"
-            DataType="GridColumnDataType.Number">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="ProductName"
-            Header="Prod. Name"
-            DataType="GridColumnDataType.String">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="UnitsInStock"
-            Header="Units In Stock"
-            DataType="GridColumnDataType.Number">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="OrderDate"
-            Header="Order Date"
-            DataType="GridColumnDataType.Date"
-            PipeArgs="ColumnPipeArgs1"
-            Name="column1"
-            @ref="column1">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Discontinued"
-            Header="Discontinued"
-            DataType="GridColumnDataType.Boolean">
-            </IgbColumn>
-
-        </IgbGrid>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var grid = this.grid;
-        var column1 = this.column1;
+        //insert bindingInit
+        //end bindingInit
+
 
     }
 
-    private IgbGrid grid;
-    private IgbColumn column1;
-    private IgbColumnPipeArgs _columnPipeArgs1 = null;
-    public IgbColumnPipeArgs ColumnPipeArgs1
-    {
-        get
-        {
-            if (this._columnPipeArgs1 == null)
-            {
-                var columnPipeArgs1 = new IgbColumnPipeArgs();
-                columnPipeArgs1.Format = "mediumDate";
-                this._columnPipeArgs1 = columnPipeArgs1;
-            }
-            return this._columnPipeArgs1;
-        }
-    }
-
-    private NwindData _nwindData = null;
-    public NwindData NwindData
-    {
-        get
-        {
-            if (_nwindData == null)
-            {
-                _nwindData = new NwindData();
-            }
-            return _nwindData;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

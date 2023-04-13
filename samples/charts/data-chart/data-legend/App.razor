@@ -1,150 +1,29 @@
 @using IgniteUI.Blazor.Controls
 
+
 <div class="container vertical">
     <div class="legend-title">
         Total Population of Selected Countries
     </div>
-    <div class="legend">
-        <IgbDataLegend
-        Name="Legend"
-        @ref="legend">
-        </IgbDataLegend>
-
-    </div>
 
     <div class="container vertical fill">
-        <IgbDataChart
-        Name="chart"
-        @ref="chart">
-            <IgbNumericXAxis
-            Name="xAxis"
-            @ref="xAxis"
-            Title="Death Rate"
-            Interval="1"
-            MinimumValue="4"
-            MaximumValue="16">
-            </IgbNumericXAxis>
-
-            <IgbNumericYAxis
-            Name="yAxis"
-            @ref="yAxis"
-            Title="Birth Rate"
-            Interval="10"
-            MinimumValue="0"
-            MaximumValue="60">
-            </IgbNumericYAxis>
-
-            <IgbBubbleSeries
-            Name="BubbleSeries1"
-            @ref="bubbleSeries1"
-            XAxisName="xAxis"
-            YAxisName="yAxis"
-            DataSource="CountryDemographicAfrican"
-            XMemberPath="DeathRate"
-            YMemberPath="BirthRate"
-            RadiusMemberPath="Population"
-            Title="Africa"
-            RadiusMemberAsLegendLabel="Population: "
-            XMemberAsLegendLabel="Death Rate: "
-            YMemberAsLegendLabel="Birth Rate: ">
-                <IgbSizeScale
-                Name="SizeScale1"
-                @ref="sizeScale1"
-                MinimumValue="10"
-                MaximumValue="100">
-                </IgbSizeScale>
-
-            </IgbBubbleSeries>
-
-            <IgbBubbleSeries
-            Name="BubbleSeries2"
-            @ref="bubbleSeries2"
-            XAxisName="xAxis"
-            YAxisName="yAxis"
-            DataSource="CountryDemographicEurope"
-            XMemberPath="DeathRate"
-            YMemberPath="BirthRate"
-            RadiusMemberPath="Population"
-            Title="Europe"
-            RadiusMemberAsLegendLabel="Population: "
-            XMemberAsLegendLabel="Death Rate: "
-            YMemberAsLegendLabel="Birth Rate: ">
-                <IgbSizeScale
-                Name="SizeScale2"
-                @ref="sizeScale2"
-                MinimumValue="10"
-                MaximumValue="100">
-                </IgbSizeScale>
-
-            </IgbBubbleSeries>
-
-            <IgbCrosshairLayer
-            Name="CrosshairLayer"
-            @ref="crosshairLayer">
-            </IgbCrosshairLayer>
-
-        </IgbDataChart>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var legend = this.legend;
-        var chart = this.chart;
-        var xAxis = this.xAxis;
-        var yAxis = this.yAxis;
-        var bubbleSeries1 = this.bubbleSeries1;
-        var sizeScale1 = this.sizeScale1;
-        var bubbleSeries2 = this.bubbleSeries2;
-        var sizeScale2 = this.sizeScale2;
-        var crosshairLayer = this.crosshairLayer;
+        //insert bindingInit
+        //end bindingInit
 
-        this.BindElements = () => {
-            legend.Target = this.chart;
-        };
-        this.BindElements();
 
     }
 
-    private IgbDataLegend legend;
-    private IgbDataChart chart;
-    private IgbNumericXAxis xAxis;
-    private IgbNumericYAxis yAxis;
-    private IgbBubbleSeries bubbleSeries1;
-    private IgbSizeScale sizeScale1;
-    private IgbBubbleSeries bubbleSeries2;
-    private IgbSizeScale sizeScale2;
-    private IgbCrosshairLayer crosshairLayer;
-
-    private CountryDemographicAfrican _countryDemographicAfrican = null;
-    public CountryDemographicAfrican CountryDemographicAfrican
-    {
-        get
-        {
-            if (_countryDemographicAfrican == null)
-            {
-                _countryDemographicAfrican = new CountryDemographicAfrican();
-            }
-            return _countryDemographicAfrican;
-        }
-    }
-
-    private CountryDemographicEurope _countryDemographicEurope = null;
-    public CountryDemographicEurope CountryDemographicEurope
-    {
-        get
-        {
-            if (_countryDemographicEurope == null)
-            {
-                _countryDemographicEurope = new CountryDemographicEurope();
-            }
-            return _countryDemographicEurope;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

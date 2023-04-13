@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using IgniteUI.Blazor.Controls; // for registering Ignite UI modules
+
+// required for registering IgniteUIBlazor
+using IgniteUI.Blazor.Controls;
 
 namespace Infragistics.Samples
 {
@@ -17,19 +19,22 @@ namespace Infragistics.Samples
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
+
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            // registering Ignite UI modules
+
+            // registering Infragistics Blazor
             builder.Services.AddIgniteUIBlazor(
-                typeof(IgbLegendModule),
-                typeof(IgbDataChartCoreModule),
-                typeof(IgbDataChartCategoryModule),
-                typeof(IgbDataChartCategoryCoreModule),
-                typeof(IgbDataChartInteractivityModule),
-                typeof(IgbDataChartAnnotationModule),
-                typeof(IgbDataChartStackedModule),
-                typeof(IgbStackedFragmentSeriesModule),
+                typeof(IgbLegendModule), 
+                typeof(IgbDataChartCoreModule), 
+                typeof(IgbDataChartCategoryModule), 
+                typeof(IgbDataChartCategoryCoreModule), 
+                typeof(IgbDataChartInteractivityModule), 
+                typeof(IgbDataChartAnnotationModule), 
+                typeof(IgbDataChartStackedModule), 
+                typeof(IgbStackedFragmentSeriesModule), 
                 typeof(IgbCalloutLayerModule)
             );
+
             await builder.Build().RunAsync();
         }
     }

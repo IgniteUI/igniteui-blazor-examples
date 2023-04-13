@@ -1,45 +1,26 @@
 @using IgniteUI.Blazor.Controls
 
+
 <div class="container vertical">
 
     <div class="container vertical fill">
-        <IgbFinancialChart
-        Name="chart"
-        @ref="chart"
-        ChartType="FinancialChartType.Candle"
-        IsVerticalZoomEnabled="true"
-        IsHorizontalZoomEnabled="true"
-        DataSource="MultipleStocks"
-        ToolTipType="ToolTipType.Data"
-        DataToolTipIncludedColumns="@(new string[] { "Open", "Close", "High", "Low", "Change" })"
-        DataToolTipHeaderFormatTime="DataLegendHeaderTimeMode.None"
-        ZoomSliderType="FinancialChartZoomSliderType.None">
-        </IgbFinancialChart>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var chart = this.chart;
+        //insert bindingInit
+        //end bindingInit
+
 
     }
 
-    private IgbFinancialChart chart;
-
-    private MultipleStocks _multipleStocks = null;
-    public MultipleStocks MultipleStocks
-    {
-        get
-        {
-            if (_multipleStocks == null)
-            {
-                MultipleStocks.Fetch().ContinueWith((t) => {_multipleStocks = t.Result;  StateHasChanged(); });
-            }
-            return _multipleStocks;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

@@ -1,121 +1,29 @@
 @using IgniteUI.Blazor.Controls
 
+
 <div class="container vertical">
     <div class="legend-title">
         Population Statistics for Selected Continents
     </div>
-    <div class="legend">
-        <IgbLegend
-        Name="Legend"
-        @ref="legend"
-        Orientation="LegendOrientation.Horizontal">
-        </IgbLegend>
-
-    </div>
 
     <div class="container vertical fill">
-        <IgbDataChart
-        Name="chart"
-        @ref="chart">
-            <IgbNumericXAxis
-            Name="xAxis"
-            @ref="xAxis"
-            Title="Death Rate (per 1,000 people)"
-            MinimumValue="5"
-            MaximumValue="15">
-            </IgbNumericXAxis>
-
-            <IgbNumericYAxis
-            Name="yAxis"
-            @ref="yAxis"
-            Title="Birth Rate (per 1,000 people)"
-            MinimumValue="0"
-            MaximumValue="50"
-            Interval="10">
-            </IgbNumericYAxis>
-
-            <IgbScatterSeries
-            Name="ScatterSeries1"
-            @ref="scatterSeries1"
-            Title="Europe"
-            XAxisName="xAxis"
-            YAxisName="yAxis"
-            XMemberPath="DeathRate"
-            YMemberPath="BirthRate"
-            DataSource="CountryDemographicEurope"
-            MarkerType="MarkerType.Circle"
-            ShowDefaultTooltip="true">
-            </IgbScatterSeries>
-
-            <IgbScatterSeries
-            Name="ScatterSeries2"
-            @ref="scatterSeries2"
-            Title="Africa"
-            XAxisName="xAxis"
-            YAxisName="yAxis"
-            XMemberPath="DeathRate"
-            YMemberPath="BirthRate"
-            DataSource="CountryDemographicAfrican"
-            MarkerType="MarkerType.Circle"
-            ShowDefaultTooltip="true">
-            </IgbScatterSeries>
-
-        </IgbDataChart>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var legend = this.legend;
-        var chart = this.chart;
-        var xAxis = this.xAxis;
-        var yAxis = this.yAxis;
-        var scatterSeries1 = this.scatterSeries1;
-        var scatterSeries2 = this.scatterSeries2;
+        //insert bindingInit
+        //end bindingInit
 
-        this.BindElements = () => {
-            chart.Legend = this.legend;
-        };
-        this.BindElements();
 
     }
 
-    private IgbLegend legend;
-    private IgbDataChart chart;
-    private IgbNumericXAxis xAxis;
-    private IgbNumericYAxis yAxis;
-    private IgbScatterSeries scatterSeries1;
-    private IgbScatterSeries scatterSeries2;
-
-    private CountryDemographicEurope _countryDemographicEurope = null;
-    public CountryDemographicEurope CountryDemographicEurope
-    {
-        get
-        {
-            if (_countryDemographicEurope == null)
-            {
-                _countryDemographicEurope = new CountryDemographicEurope();
-            }
-            return _countryDemographicEurope;
-        }
-    }
-
-    private CountryDemographicAfrican _countryDemographicAfrican = null;
-    public CountryDemographicAfrican CountryDemographicAfrican
-    {
-        get
-        {
-            if (_countryDemographicAfrican == null)
-            {
-                _countryDemographicAfrican = new CountryDemographicAfrican();
-            }
-            return _countryDemographicAfrican;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

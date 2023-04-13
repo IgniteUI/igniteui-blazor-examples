@@ -1,185 +1,26 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IJSRuntime JS
 
 <div class="container vertical">
-    <div class="options vertical">
-        <IgbPropertyEditorPanel
-        Name="PropertyEditor"
-        @ref="propertyEditor"
-
-        DescriptionType="WebTreeGrid"
-        IsHorizontal="true"
-        IsWrappingEnabled="true">
-            <IgbPropertyEditorPropertyDescription
-            ValueType="PropertyEditorValueType.StringValue"
-            Label="Change Copy Separator"
-            PropertyPath="ClipboardOptions.Separator">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="ClipboardOptions.Enabled"
-            Name="ClipboardEnabledEditor"
-            @ref="clipboardEnabledEditor"
-            Label="Grid Copy Behavior"
-            ValueType="PropertyEditorValueType.Boolean1"
-            PrimitiveValue="true">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="ClipboardOptions.CopyHeaders"
-            Name="ClipboardHeadersEditor"
-            @ref="clipboardHeadersEditor"
-            Label="Copying of Header Labels"
-            ValueType="PropertyEditorValueType.Boolean1"
-            PrimitiveValue="true">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="ClipboardOptions.CopyFormatters"
-            Name="ClipboardFormattersEditor"
-            @ref="clipboardFormattersEditor"
-            Label="Copying Column Formatters"
-            ValueType="PropertyEditorValueType.Boolean1"
-            PrimitiveValue="true">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            ValueType="PropertyEditorValueType.Button"
-            PrimitiveValue="@("Clear Selection")"
-            ButtonClickedScript="WebGridClearSelection"
-            Name="propertyEditorPropertyDescription1"
-            @ref="propertyEditorPropertyDescription1">
-            </IgbPropertyEditorPropertyDescription>
-
-        </IgbPropertyEditorPanel>
-
-    </div>
 
     <div class="container vertical fill">
-        <IgbTreeGrid
-        AutoGenerate="false"
-        Name="treeGrid"
-        @ref="treeGrid"
-        Id="treeGrid"
-        Data="EmployeesFlatDetails"
-        PrimaryKey="ID"
-        ForeignKey="ParentID"
-        ColumnInitScript="WebGridClipboardOperationsColumnInit">
-            <IgbColumn
-            Field="ID"
-            DataType="GridColumnDataType.Number"
-            Sortable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Name"
-            DataType="GridColumnDataType.String"
-            Sortable="true"
-            DisableHiding="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Title"
-            DataType="GridColumnDataType.String"
-            Sortable="true"
-            DisableHiding="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="HireDate"
-            DataType="GridColumnDataType.Date"
-            Sortable="true"
-            Hidden="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Age"
-            DataType="GridColumnDataType.Number"
-            Sortable="true"
-            Hidden="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Address"
-            DataType="GridColumnDataType.String"
-            Sortable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="City"
-            DataType="GridColumnDataType.String"
-            Sortable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Country"
-            DataType="GridColumnDataType.String"
-            Sortable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Fax"
-            DataType="GridColumnDataType.String"
-            Sortable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="PostalCode"
-            Header="Postal Code"
-            DataType="GridColumnDataType.String"
-            Sortable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Phone"
-            DataType="GridColumnDataType.String"
-            Sortable="true">
-            </IgbColumn>
-
-        </IgbTreeGrid>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var propertyEditor = this.propertyEditor;
-        var clipboardEnabledEditor = this.clipboardEnabledEditor;
-        var clipboardHeadersEditor = this.clipboardHeadersEditor;
-        var clipboardFormattersEditor = this.clipboardFormattersEditor;
-        var propertyEditorPropertyDescription1 = this.propertyEditorPropertyDescription1;
-        var treeGrid = this.treeGrid;
+        //insert bindingInit
+        //end bindingInit
 
-        this.BindElements = () => {
-            propertyEditor.Target = this.treeGrid;
-        };
-        this.BindElements();
 
     }
 
-    private IgbPropertyEditorPanel propertyEditor;
-    private IgbPropertyEditorPropertyDescription clipboardEnabledEditor;
-    private IgbPropertyEditorPropertyDescription clipboardHeadersEditor;
-    private IgbPropertyEditorPropertyDescription clipboardFormattersEditor;
-    private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
-    private IgbTreeGrid treeGrid;
-
-    private EmployeesFlatDetails _employeesFlatDetails = null;
-    public EmployeesFlatDetails EmployeesFlatDetails
-    {
-        get
-        {
-            if (_employeesFlatDetails == null)
-            {
-                _employeesFlatDetails = new EmployeesFlatDetails();
-            }
-            return _employeesFlatDetails;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

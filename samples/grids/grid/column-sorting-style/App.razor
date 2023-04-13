@@ -1,134 +1,26 @@
 @using IgniteUI.Blazor.Controls
 
+
 <div class="container vertical">
-    <div class="options vertical">
-        <IgbPropertyEditorPanel
-        Name="PropertyEditor"
-        @ref="propertyEditor"
-
-        DescriptionType="WebGrid"
-        IsHorizontal="true"
-        IsWrappingEnabled="true">
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="SortingOptions"
-            Label="Select Sorting Type"
-            Name="SortingOptionsEditor"
-            @ref="sortingOptionsEditor">
-            </IgbPropertyEditorPropertyDescription>
-
-        </IgbPropertyEditorPanel>
-
-    </div>
 
     <div class="container vertical fill">
-        <IgbGrid
-        AutoGenerate="false"
-        Name="grid"
-        @ref="grid"
-        Data="ProductSales">
-            <IgbColumn
-            Field="OrderID"
-            Header="Order ID"
-            Groupable="true"
-            Sortable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="CategoryName"
-            Header="Category Name"
-            DataType="GridColumnDataType.String"
-            Groupable="true"
-            Sortable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="CompanyName"
-            Header="Company"
-            DataType="GridColumnDataType.String"
-            Groupable="true"
-            Sortable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="ShipCountry"
-            Header="Ship Country"
-            DataType="GridColumnDataType.String"
-            Groupable="true"
-            Sortable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="SaleAmount"
-            Header="Sale Amount"
-            DataType="GridColumnDataType.Currency"
-            Groupable="true"
-            Sortable="true"
-            PipeArgs="ColumnPipeArgs1"
-            Name="column1"
-            @ref="column1">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="ShippedDate"
-            Header="Shipped Date"
-            DataType="GridColumnDataType.Date"
-            Sortable="true">
-            </IgbColumn>
-
-        </IgbGrid>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var propertyEditor = this.propertyEditor;
-        var sortingOptionsEditor = this.sortingOptionsEditor;
-        var grid = this.grid;
-        var column1 = this.column1;
+        //insert bindingInit
+        //end bindingInit
 
-        this.BindElements = () => {
-            propertyEditor.Target = this.grid;
-        };
-        this.BindElements();
 
     }
 
-    private IgbPropertyEditorPanel propertyEditor;
-    private IgbPropertyEditorPropertyDescription sortingOptionsEditor;
-    private IgbGrid grid;
-    private IgbColumn column1;
-    private IgbColumnPipeArgs _columnPipeArgs1 = null;
-    public IgbColumnPipeArgs ColumnPipeArgs1
-    {
-        get
-        {
-            if (this._columnPipeArgs1 == null)
-            {
-                var columnPipeArgs1 = new IgbColumnPipeArgs();
-                columnPipeArgs1.CurrencyCode = "USD";
-                columnPipeArgs1.DigitsInfo = "1.2-2";
-                this._columnPipeArgs1 = columnPipeArgs1;
-            }
-            return this._columnPipeArgs1;
-        }
-    }
-
-    private ProductSales _productSales = null;
-    public ProductSales ProductSales
-    {
-        get
-        {
-            if (_productSales == null)
-            {
-                _productSales = new ProductSales();
-            }
-            return _productSales;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

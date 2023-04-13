@@ -1,89 +1,26 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IJSRuntime JS
 
 <div class="container vertical">
 
     <div class="container vertical fill">
-        <IgbGrid
-        AutoGenerate="false"
-        Name="grid"
-        @ref="grid"
-        Id="grid"
-        Data="InvoicesData"
-        RowSelection="GridSelectionMode.Multiple"
-        GroupingExpressions="GroupingExpression1"
-        GroupRowTemplateScript="WebGridGroupByRowTemplate">
-            <IgbPaginator
-            PerPage="10">
-            </IgbPaginator>
-
-            <IgbColumn
-            Field="ShipCountry"
-            Header="Ship Country"
-            Width="200px"
-            Groupable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="ShipCity"
-            Header="Ship City"
-            Width="250px"
-            Groupable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="UnitPrice"
-            Header="Unit Price"
-            Width="150px"
-            DataType="GridColumnDataType.Number"
-            Groupable="true">
-            </IgbColumn>
-
-        </IgbGrid>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var grid = this.grid;
+        //insert bindingInit
+        //end bindingInit
+
 
     }
 
-    private IgbGrid grid;
-    private IgbGroupingExpression[] _groupingExpression1 = null;
-    public IgbGroupingExpression[] GroupingExpression1
-    {
-        get
-        {
-            if (this._groupingExpression1 == null)
-            {
-                var groupingExpression1 = new IgbGroupingExpression[1];
-                var groupingExpression2 = new IgbGroupingExpression();
-                groupingExpression2.Dir = SortingDirection.Asc;
-                groupingExpression2.FieldName = "ShipCountry";
-                groupingExpression2.IgnoreCase = false;
-                groupingExpression1[0] = groupingExpression2;
-                this._groupingExpression1 = groupingExpression1;
-            }
-            return this._groupingExpression1;
-        }
-    }
-
-    private InvoicesData _invoicesData = null;
-    public InvoicesData InvoicesData
-    {
-        get
-        {
-            if (_invoicesData == null)
-            {
-                _invoicesData = new InvoicesData();
-            }
-            return _invoicesData;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

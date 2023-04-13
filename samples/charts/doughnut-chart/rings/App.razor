@@ -1,83 +1,29 @@
 @using IgniteUI.Blazor.Controls
 
+
 <div class="container vertical">
     <div class="legend-title">
         Hierarchical Chart
     </div>
 
     <div class="container vertical fill">
-        <IgbDoughnutChart
-        Name="chart"
-        @ref="chart"
-        AllowSliceExplosion="false"
-        AllowSliceSelection="false">
-            <IgbRingSeries
-            Name="series1"
-            @ref="series1"
-            LabelMemberPath="Label"
-            ValueMemberPath="Value"
-            LabelsPosition="LabelsPosition.Center"
-            RadiusFactor="0.9"
-            Outlines="white"
-            Brushes="#3cbdc9 #9fb328 #f96232 #8a58d6"
-            DataSource="CalendarSeasons">
-            </IgbRingSeries>
-
-            <IgbRingSeries
-            Name="series2"
-            @ref="series2"
-            LabelMemberPath="Label"
-            ValueMemberPath="Value"
-            LabelsPosition="LabelsPosition.Center"
-            RadiusFactor="0.9"
-            Outlines="white"
-            Brushes="#3cbdc9 #3cbdc9 #3cbdc9 #9fb328 #9fb328 #9fb328 #f96232 #f96232 #f96232 #8a58d6 #8a58d6 #8a58d6"
-            DataSource="CalendarMonths">
-            </IgbRingSeries>
-
-        </IgbDoughnutChart>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var chart = this.chart;
-        var series1 = this.series1;
-        var series2 = this.series2;
+        //insert bindingInit
+        //end bindingInit
+
 
     }
 
-    private IgbDoughnutChart chart;
-    private IgbRingSeries series1;
-    private IgbRingSeries series2;
-
-    private CalendarSeasons _calendarSeasons = null;
-    public CalendarSeasons CalendarSeasons
-    {
-        get
-        {
-            if (_calendarSeasons == null)
-            {
-                _calendarSeasons = new CalendarSeasons();
-            }
-            return _calendarSeasons;
-        }
-    }
-
-    private CalendarMonths _calendarMonths = null;
-    public CalendarMonths CalendarMonths
-    {
-        get
-        {
-            if (_calendarMonths == null)
-            {
-                _calendarMonths = new CalendarMonths();
-            }
-            return _calendarMonths;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }
