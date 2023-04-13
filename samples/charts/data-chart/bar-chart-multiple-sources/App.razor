@@ -4,120 +4,23 @@
     <div class="legend-title">
         Highest Grossing Movie Franchises
     </div>
-    <div class="legend">
-        <IgbLegend
-        Name="Legend"
-        @ref="legend"
-        Orientation="LegendOrientation.Horizontal">
-        </IgbLegend>
-
-    </div>
 
     <div class="container vertical fill">
-        <IgbDataChart
-        Name="Chart"
-        @ref="chart">
-            <IgbCategoryYAxis
-            Name="yAxis"
-            @ref="yAxis"
-            Label="Franchise"
-            UseEnhancedIntervalManagement="true"
-            EnhancedIntervalPreferMoreCategoryLabels="true"
-            DataSource="HighestGrossingMovies"
-            IsInverted="true"
-            Gap="0.5"
-            Overlap="-0.1">
-            </IgbCategoryYAxis>
-
-            <IgbNumericXAxis
-            Name="xAxis"
-            @ref="xAxis"
-            Title="Billions of U.S. Dollars">
-            </IgbNumericXAxis>
-
-            <IgbCategoryHighlightLayer
-            Name="CategoryHighlightLayer"
-            @ref="categoryHighlightLayer">
-            </IgbCategoryHighlightLayer>
-
-            <IgbBarSeries
-            Name="BarSeries1"
-            @ref="barSeries1"
-            XAxisName="xAxis"
-            YAxisName="yAxis"
-            Title="Total Revenue of Franchise"
-            ValueMemberPath="TotalRevenue"
-            DataSource="HighestGrossingMovies"
-            ShowDefaultTooltip="true"
-            IsTransitionInEnabled="true"
-            IsHighlightingEnabled="true">
-            </IgbBarSeries>
-
-            <IgbBarSeries
-            Name="BarSeries2"
-            @ref="barSeries2"
-            XAxisName="xAxis"
-            YAxisName="yAxis"
-            Title="Highest Grossing Movie in Series"
-            ValueMemberPath="HighestGrossing"
-            DataSource="HighestGrossingMovies"
-            ShowDefaultTooltip="true"
-            IsTransitionInEnabled="true"
-            IsHighlightingEnabled="true">
-            </IgbBarSeries>
-
-            <IgbDataToolTipLayer
-            Name="Tooltips"
-            @ref="tooltips">
-            </IgbDataToolTipLayer>
-
-        </IgbDataChart>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var legend = this.legend;
-        var chart = this.chart;
-        var yAxis = this.yAxis;
-        var xAxis = this.xAxis;
-        var categoryHighlightLayer = this.categoryHighlightLayer;
-        var barSeries1 = this.barSeries1;
-        var barSeries2 = this.barSeries2;
-        var tooltips = this.tooltips;
-
-        this.BindElements = () => {
-            chart.Legend = this.legend;
-        };
-        this.BindElements();
+        //insert bindingInit
+        //end bindingInit
 
     }
 
-    private IgbLegend legend;
-    private IgbDataChart chart;
-    private IgbCategoryYAxis yAxis;
-    private IgbNumericXAxis xAxis;
-    private IgbCategoryHighlightLayer categoryHighlightLayer;
-    private IgbBarSeries barSeries1;
-    private IgbBarSeries barSeries2;
-    private IgbDataToolTipLayer tooltips;
-
-    private HighestGrossingMovies _highestGrossingMovies = null;
-    public HighestGrossingMovies HighestGrossingMovies
-    {
-        get
-        {
-            if (_highestGrossingMovies == null)
-            {
-                _highestGrossingMovies = new HighestGrossingMovies();
-            }
-            return _highestGrossingMovies;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }
