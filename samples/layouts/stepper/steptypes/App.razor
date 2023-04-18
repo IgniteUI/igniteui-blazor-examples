@@ -1,0 +1,38 @@
+@using IgniteUI.Blazor.Controls
+
+
+<div class="container vertical">   
+   <label>Step type</label>
+   <div class="radio-group-container">
+        <IgbRadioGroup Alignment="RadioGroupAlignment.Horizontal">
+            <IgbRadio Value="indicator" Change="onStepTypeChange">Indicator</IgbRadio>
+            <IgbRadio Value="title" Change="onStepTypeChange">Title</IgbRadio>
+            <IgbRadio Value="full" Checked="true" Change="onStepTypeChange">Full</IgbRadio>
+        </IgbRadioGroup>
+   </div>  
+
+   <IgbStepper Name="stepper" @ref="stepper">
+        <IgbStep>
+            <span slot="title">Pricing Plan</span>
+        </IgbStep>
+        <IgbStep>
+            <span slot="title">Car Details</span>
+        </IgbStep>
+        <IgbStep>
+            <span slot="title">Payment</span>            
+        </IgbStep>          
+   </IgbStepper>
+</div>
+
+@code {
+    public IgbStepper stepper;
+
+    public void onStepTypeChange(IgbComponentBoolValueChangedEventArgs args)
+    {
+        if(args.Detail)
+        {
+            string value = (args.Parent as IgbRadio).Value.ToString();           
+            stepper.StepType = (StepperStepType)System.Enum.Parse(typeof(StepperStepType), value, true); 
+        }
+    }
+}
