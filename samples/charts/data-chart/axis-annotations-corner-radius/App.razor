@@ -6,72 +6,8 @@
     </div>
 
     <div class="container vertical fill">
-        <IgbDataChart
-        Name="chart"
-        @ref="chart">
-            <IgbCategoryXAxis
-            Name="xAxis"
-            @ref="xAxis"
-            DataSource="CountryRenewableElectricity"
-            Label="Year">
-            </IgbCategoryXAxis>
-
-            <IgbNumericYAxis
-            Name="yAxis"
-            @ref="yAxis"
-            Title="TWh">
-            </IgbNumericYAxis>
-
-            <IgbLineSeries
-            Name="LineSeries1"
-            @ref="lineSeries1"
-            Title="Electricity"
-            XAxisName="xAxis"
-            YAxisName="yAxis"
-            DataSource="CountryRenewableElectricity"
-            ValueMemberPath="America">
-            </IgbLineSeries>
-
-            <IgbCalloutLayer
-            Name="CalloutLayer1"
-            @ref="calloutLayer1"
-            DataSource="CountryRenewableCallouts"
-            XMemberPath="Index"
-            YMemberPath="Value"
-            LabelMemberPath="Label"
-            CalloutPaddingLeft="20"
-            CalloutPaddingRight="20"
-            CalloutPaddingBottom="10"
-            CalloutPaddingTop="10"
-            CalloutCornerRadius="5">
-            </IgbCalloutLayer>
-
-            <IgbFinalValueLayer
-            Name="FinalValueLayer"
-            @ref="finalValueLayer"
-            AxisAnnotationBackgroundCornerRadius="10"
-            AxisAnnotationPaddingBottom="10"
-            AxisAnnotationPaddingTop="10"
-            AxisAnnotationPaddingLeft="10"
-            AxisAnnotationPaddingRight="10">
-            </IgbFinalValueLayer>
-
-            <IgbCrosshairLayer
-            Name="CrosshairLayer"
-            @ref="crosshairLayer"
-            IsAxisAnnotationEnabled="true"
-            YAxisAnnotationInterpolatedValuePrecision="0"
-            XAxisAnnotationBackgroundCornerRadius="10"
-            YAxisAnnotationBackgroundCornerRadius="10">
-            </IgbCrosshairLayer>
-
-            <IgbDataToolTipLayer
-            Name="Tooltips"
-            @ref="tooltips">
-            </IgbDataToolTipLayer>
-
-        </IgbDataChart>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
@@ -79,50 +15,12 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var chart = this.chart;
-        var xAxis = this.xAxis;
-        var yAxis = this.yAxis;
-        var lineSeries1 = this.lineSeries1;
-        var calloutLayer1 = this.calloutLayer1;
-        var finalValueLayer = this.finalValueLayer;
-        var crosshairLayer = this.crosshairLayer;
-        var tooltips = this.tooltips;
+        //insert bindingInit
+        //end bindingInit
 
     }
 
-    private IgbDataChart chart;
-    private IgbCategoryXAxis xAxis;
-    private IgbNumericYAxis yAxis;
-    private IgbLineSeries lineSeries1;
-    private IgbCalloutLayer calloutLayer1;
-    private IgbFinalValueLayer finalValueLayer;
-    private IgbCrosshairLayer crosshairLayer;
-    private IgbDataToolTipLayer tooltips;
-
-    private CountryRenewableElectricity _countryRenewableElectricity = null;
-    public CountryRenewableElectricity CountryRenewableElectricity
-    {
-        get
-        {
-            if (_countryRenewableElectricity == null)
-            {
-                _countryRenewableElectricity = new CountryRenewableElectricity();
-            }
-            return _countryRenewableElectricity;
-        }
-    }
-
-    private CountryRenewableCallouts _countryRenewableCallouts = null;
-    public CountryRenewableCallouts CountryRenewableCallouts
-    {
-        get
-        {
-            if (_countryRenewableCallouts == null)
-            {
-                _countryRenewableCallouts = new CountryRenewableCallouts();
-            }
-            return _countryRenewableCallouts;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

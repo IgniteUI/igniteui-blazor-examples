@@ -4,71 +4,23 @@
     <div class="legend-title">
         Global Electricity Demand by Energy Use
     </div>
-    <div class="legend">
-        <IgbItemLegend
-        Name="Legend"
-        @ref="legend"
-        Orientation="LegendOrientation.Horizontal">
-        </IgbItemLegend>
-
-    </div>
 
     <div class="container vertical fill">
-        <IgbDoughnutChart
-        Name="chart"
-        @ref="chart"
-        AllowSliceExplosion="true">
-            <IgbRingSeries
-            Name="series"
-            @ref="series"
-            LabelMemberPath="Summary"
-            LabelsPosition="LabelsPosition.OutsideEnd"
-            LabelExtent="30"
-            ValueMemberPath="Value"
-            LegendLabelMemberPath="Category"
-            Outlines="white"
-            RadiusFactor="0.6"
-            StartAngle="30"
-            DataSource="EnergyGlobalDemand">
-            </IgbRingSeries>
-
-        </IgbDoughnutChart>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var legend = this.legend;
-        var chart = this.chart;
-        var series = this.series;
-
-        this.BindElements = () => {
-            series.Legend = this.legend;
-        };
-        this.BindElements();
+        //insert bindingInit
+        //end bindingInit
 
     }
 
-    private IgbItemLegend legend;
-    private IgbDoughnutChart chart;
-    private IgbRingSeries series;
-
-    private EnergyGlobalDemand _energyGlobalDemand = null;
-    public EnergyGlobalDemand EnergyGlobalDemand
-    {
-        get
-        {
-            if (_energyGlobalDemand == null)
-            {
-                _energyGlobalDemand = new EnergyGlobalDemand();
-            }
-            return _energyGlobalDemand;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

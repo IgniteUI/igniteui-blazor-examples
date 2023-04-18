@@ -4,67 +4,23 @@
     <div class="legend-title">
         Renewable Electricity Generated
     </div>
-    <div class="legend">
-        <IgbLegend
-        Name="Legend"
-        @ref="legend"
-        Orientation="LegendOrientation.Horizontal">
-        </IgbLegend>
-
-    </div>
 
     <div class="container vertical fill">
-        <IgbCategoryChart
-        DataSource="CountryRenewableElectricity"
-        Name="chart"
-        @ref="chart"
-        ChartType="CategoryChartType.StepArea"
-        TitleAlignment="HorizontalAlignment.Left"
-        TitleLeftMargin="25"
-        TitleTopMargin="10"
-        TitleBottomMargin="10"
-        IsCategoryHighlightingEnabled="true"
-        IsSeriesHighlightingEnabled="true"
-        IsTransitionInEnabled="true"
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
-        YAxisTitle="TWh"
-        CrosshairsSnapToData="true">
-        </IgbCategoryChart>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var legend = this.legend;
-        var chart = this.chart;
-
-        this.BindElements = () => {
-            chart.Legend = this.legend;
-        };
-        this.BindElements();
+        //insert bindingInit
+        //end bindingInit
 
     }
 
-    private IgbLegend legend;
-    private IgbCategoryChart chart;
-
-    private CountryRenewableElectricity _countryRenewableElectricity = null;
-    public CountryRenewableElectricity CountryRenewableElectricity
-    {
-        get
-        {
-            if (_countryRenewableElectricity == null)
-            {
-                _countryRenewableElectricity = new CountryRenewableElectricity();
-            }
-            return _countryRenewableElectricity;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

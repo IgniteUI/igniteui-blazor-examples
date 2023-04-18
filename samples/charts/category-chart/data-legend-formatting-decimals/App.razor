@@ -4,68 +4,23 @@
     <div class="legend-title">
         Highest Grossing Movie Franchises
     </div>
-    <div class="legend">
-        <IgbDataLegend
-        Name="Legend"
-        @ref="legend"
-        ValueFormatMode="DataLegendValueMode.Decimal"
-        ValueFormatMinFractions="1"
-        UnitsText="B">
-        </IgbDataLegend>
-
-    </div>
 
     <div class="container vertical fill">
-        <IgbCategoryChart
-        Name="chart"
-        @ref="chart"
-        ChartType="CategoryChartType.Column"
-        DataSource="HighestGrossingMovies"
-        XAxisInterval="1"
-        YAxisTitle="Billions of U.S. Dollars"
-        YAxisTitleLeftMargin="10"
-        YAxisTitleRightMargin="5"
-        YAxisLabelLeftMargin="0"
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
-        ToolTipType="ToolTipType.None"
-        CrosshairsDisplayMode="CrosshairsDisplayMode.None"
-        IsCategoryHighlightingEnabled="true">
-        </IgbCategoryChart>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var legend = this.legend;
-        var chart = this.chart;
-
-        this.BindElements = () => {
-            legend.Target = this.chart;
-        };
-        this.BindElements();
+        //insert bindingInit
+        //end bindingInit
 
     }
 
-    private IgbDataLegend legend;
-    private IgbCategoryChart chart;
-
-    private HighestGrossingMovies _highestGrossingMovies = null;
-    public HighestGrossingMovies HighestGrossingMovies
-    {
-        get
-        {
-            if (_highestGrossingMovies == null)
-            {
-                _highestGrossingMovies = new HighestGrossingMovies();
-            }
-            return _highestGrossingMovies;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }
