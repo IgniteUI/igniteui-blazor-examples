@@ -3,60 +3,8 @@
 <div class="container vertical">
 
     <div class="container vertical fill">
-        <IgbTreeGrid
-        AutoGenerate="false"
-        Name="treeGrid"
-        @ref="treeGrid"
-        Id="treeGrid"
-        Data="EmployeesFlatData"
-        PrimaryKey="ID"
-        ForeignKey="ParentID"
-        AllowAdvancedFiltering="true"
-        Moving="true">
-            <IgbGridToolbar
-            >
-                <IgbGridToolbarActions
-                >
-                    <IgbGridToolbarAdvancedFiltering
-                    >
-                    </IgbGridToolbarAdvancedFiltering>
-
-                </IgbGridToolbarActions>
-
-            </IgbGridToolbar>
-
-            <IgbColumn
-            Field="Name"
-            DataType="GridColumnDataType.String"
-            Sortable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Title"
-            DataType="GridColumnDataType.String"
-            Sortable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Age"
-            DataType="GridColumnDataType.Number"
-            Sortable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="HireDate"
-            DataType="GridColumnDataType.Date"
-            Sortable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="OnPTO"
-            DataType="GridColumnDataType.Boolean"
-            Sortable="true">
-            </IgbColumn>
-
-        </IgbTreeGrid>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
@@ -64,23 +12,12 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var treeGrid = this.treeGrid;
+        //insert bindingInit
+        //end bindingInit
 
     }
 
-    private IgbTreeGrid treeGrid;
-
-    private EmployeesFlatData _employeesFlatData = null;
-    public EmployeesFlatData EmployeesFlatData
-    {
-        get
-        {
-            if (_employeesFlatData == null)
-            {
-                _employeesFlatData = new EmployeesFlatData();
-            }
-            return _employeesFlatData;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

@@ -1,49 +1,10 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IJSRuntime JS
-
 <div class="container vertical">
 
     <div class="container vertical fill">
-        <IgbGrid
-        AutoGenerate="false"
-        Data="CustomersData"
-        Name="grid"
-        @ref="grid"
-        Id="grid"
-        PrimaryKey="ID"
-        RowSelection="GridSelectionMode.Multiple"
-        RowSelectionChangingScript="WebGridRowSelectionConditional">
-            <IgbColumn
-            Field="ContactName"
-            Header="Name"
-            Width="20%">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Country"
-            Header="Country"
-            Width="20%">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="City"
-            Header="City"
-            Width="20%">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="PostalCode"
-            Width="20%">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="CompanyName"
-            Width="20%">
-            </IgbColumn>
-
-        </IgbGrid>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
@@ -51,23 +12,12 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var grid = this.grid;
+        //insert bindingInit
+        //end bindingInit
 
     }
 
-    private IgbGrid grid;
-
-    private CustomersData _customersData = null;
-    public CustomersData CustomersData
-    {
-        get
-        {
-            if (_customersData == null)
-            {
-                _customersData = new CustomersData();
-            }
-            return _customersData;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

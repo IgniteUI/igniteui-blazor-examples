@@ -1,76 +1,23 @@
 @using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
-    <div class="options vertical">
-        <IgbPropertyEditorPanel
-
-        DescriptionType="Sparkline"
-        IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="propertyEditorPanel1"
-        @ref="propertyEditorPanel1">
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="TrendLineType"
-            Name="TrendLineTypeEditor"
-            @ref="trendLineTypeEditor"
-            Label="Trendline Type"
-            ShouldOverrideDefaultEditor="true"
-            ValueType="PropertyEditorValueType.EnumValue"
-            DropDownNames="@(new string[] { "CubicFit", "CumulativeAverage", "ExponentialAverage", "ExponentialFit", "LinearFit", "LogarithmicFit", "ModifiedAverage", "None", "PowerLawFit", "QuadraticFit", "QuarticFit", "QuinticFit", "SimpleAverage", "WeightedAverage" })"
-            DropDownValues="@(new string[] { "CubicFit", "CumulativeAverage", "ExponentialAverage", "ExponentialFit", "LinearFit", "LogarithmicFit", "ModifiedAverage", "None", "PowerLawFit", "QuadraticFit", "QuarticFit", "QuinticFit", "SimpleAverage", "WeightedAverage" })"
-            PrimitiveValue="@("CubicFit")">
-            </IgbPropertyEditorPropertyDescription>
-
-        </IgbPropertyEditorPanel>
-
-    </div>
 
     <div class="container vertical fill">
-        <IgbSparkline
-        Name="chart"
-        @ref="chart"
-        DataSource="SparklineMixedData"
-        DisplayType="SparklineDisplayType.Area"
-        LabelMemberPath="Label"
-        ValueMemberPath="Value"
-        TrendLineType="TrendLineType.CubicFit">
-        </IgbSparkline>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var propertyEditorPanel1 = this.propertyEditorPanel1;
-        var trendLineTypeEditor = this.trendLineTypeEditor;
-        var chart = this.chart;
-
-        this.BindElements = () => {
-            propertyEditorPanel1.Target = this.chart;
-        };
-        this.BindElements();
+        //insert bindingInit
+        //end bindingInit
 
     }
 
-    private IgbPropertyEditorPanel propertyEditorPanel1;
-    private IgbPropertyEditorPropertyDescription trendLineTypeEditor;
-    private IgbSparkline chart;
-
-    private SparklineMixedData _sparklineMixedData = null;
-    public SparklineMixedData SparklineMixedData
-    {
-        get
-        {
-            if (_sparklineMixedData == null)
-            {
-                _sparklineMixedData = new SparklineMixedData();
-            }
-            return _sparklineMixedData;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

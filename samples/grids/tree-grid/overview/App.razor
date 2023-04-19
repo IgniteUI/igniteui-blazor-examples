@@ -3,102 +3,8 @@
 <div class="container vertical">
 
     <div class="container vertical fill">
-        <IgbTreeGrid
-        AutoGenerate="false"
-        Name="treeGrid"
-        @ref="treeGrid"
-        Id="treeGrid"
-        Data="EmployeesNestedData"
-        ChildDataKey="Employees"
-        RowSelection="GridSelectionMode.Multiple"
-        Moving="true"
-        AllowFiltering="true"
-        FilterMode="FilterMode.ExcelStyleFilter"
-        Paging="true">
-            <IgbGridToolbar
-            >
-                <IgbGridToolbarTitle
-                Name="Employees"
-                @ref="employees">
-                </IgbGridToolbarTitle>
-
-                <IgbGridToolbarActions
-                >
-                    <IgbGridToolbarHiding
-                    >
-                    </IgbGridToolbarHiding>
-
-                    <IgbGridToolbarPinning
-                    >
-                    </IgbGridToolbarPinning>
-
-                    <IgbGridToolbarExporter
-                    ExportCSV="true"
-                    ExportExcel="true">
-                    </IgbGridToolbarExporter>
-
-                </IgbGridToolbarActions>
-
-            </IgbGridToolbar>
-
-            <IgbColumn
-            Field="iD"
-            Header="ID"
-            DataType="GridColumnDataType.Number"
-            Sortable="true"
-            Editable="true"
-            Resizable="true"
-            HasSummary="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Name"
-            Header="Name"
-            DataType="GridColumnDataType.String"
-            Sortable="true"
-            Editable="true"
-            Resizable="true"
-            HasSummary="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="HireDate"
-            Header="Hire Date"
-            DataType="GridColumnDataType.Date"
-            Sortable="true"
-            Editable="true"
-            Resizable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Age"
-            Header="Age"
-            DataType="GridColumnDataType.Number"
-            Sortable="true"
-            Editable="true"
-            Resizable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="salary"
-            Header="Salary"
-            DataType="GridColumnDataType.Number"
-            Sortable="true"
-            Editable="true"
-            Resizable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="productivity"
-            Header="Productivity"
-            DataType="GridColumnDataType.Number"
-            Sortable="true"
-            Editable="true"
-            Resizable="true">
-            </IgbColumn>
-
-        </IgbTreeGrid>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
@@ -106,25 +12,12 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var treeGrid = this.treeGrid;
-        var employees = this.employees;
+        //insert bindingInit
+        //end bindingInit
 
     }
 
-    private IgbTreeGrid treeGrid;
-    private IgbGridToolbarTitle employees;
-
-    private EmployeesNestedData _employeesNestedData = null;
-    public EmployeesNestedData EmployeesNestedData
-    {
-        get
-        {
-            if (_employeesNestedData == null)
-            {
-                _employeesNestedData = new EmployeesNestedData();
-            }
-            return _employeesNestedData;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }
