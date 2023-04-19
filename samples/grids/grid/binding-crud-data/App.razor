@@ -3,54 +3,8 @@
 <div class="container vertical">
 
     <div class="container vertical fill">
-        <IgbGrid
-        AutoGenerate="false"
-        Name="grid"
-        @ref="grid"
-        Data="NwindData"
-        Moving="true"
-        PrimaryKey="ProductID"
-        IsLoading="true"
-        AllowFiltering="false"
-        PagingMode="GridPagingMode.Remote"
-        RowEditable="true">
-            <IgbColumn
-            Name="ProductName"
-            @ref="productName"
-            Field="ProductName"
-            Header="Product Name">
-            </IgbColumn>
-
-            <IgbColumn
-            Name="QuantityPerUnit"
-            @ref="quantityPerUnit"
-            Field="QuantityPerUnit"
-            Header="Quantity Per Unit">
-            </IgbColumn>
-
-            <IgbColumn
-            Name="UnitPrice"
-            @ref="unitPrice"
-            Field="UnitPrice"
-            Header="Unit Price">
-            </IgbColumn>
-
-            <IgbColumn
-            Name="OrderDate"
-            @ref="orderDate"
-            Field="OrderDate"
-            Header="Order Date">
-            </IgbColumn>
-
-            <IgbColumn
-            Name="Discontinued"
-            @ref="discontinued"
-            Field="Discontinued"
-            Header="Discontinued">
-            </IgbColumn>
-
-        </IgbGrid>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
@@ -58,33 +12,12 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var grid = this.grid;
-        var productName = this.productName;
-        var quantityPerUnit = this.quantityPerUnit;
-        var unitPrice = this.unitPrice;
-        var orderDate = this.orderDate;
-        var discontinued = this.discontinued;
+        //insert bindingInit
+        //end bindingInit
 
     }
 
-    private IgbGrid grid;
-    private IgbColumn productName;
-    private IgbColumn quantityPerUnit;
-    private IgbColumn unitPrice;
-    private IgbColumn orderDate;
-    private IgbColumn discontinued;
-
-    private NwindData _nwindData = null;
-    public NwindData NwindData
-    {
-        get
-        {
-            if (_nwindData == null)
-            {
-                _nwindData = new NwindData();
-            }
-            return _nwindData;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

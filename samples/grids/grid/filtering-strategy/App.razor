@@ -1,63 +1,10 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IJSRuntime JS
-
 <div class="container vertical">
 
     <div class="container vertical fill">
-        <IgbGrid
-        AutoGenerate="false"
-        Data="NwindData"
-        Name="grid"
-        @ref="grid"
-        Id="grid"
-        AllowFiltering="true"
-        FilterMode="FilterMode.ExcelStyleFilter">
-            <IgbColumn
-            Field="ProductName"
-            Header="Product Name"
-            Sortable="true"
-            DisableHiding="true"
-            DataType="GridColumnDataType.String">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="QuantityPerUnit"
-            Header="Quantity Per Unit"
-            Sortable="true"
-            DisableHiding="true"
-            DataType="GridColumnDataType.String">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="UnitPrice"
-            Header="Unit Price Category"
-            Sortable="true"
-            DisableHiding="true"
-            DataType="GridColumnDataType.String">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="OrderDate"
-            Header="Order Date"
-            Sortable="true"
-            DisableHiding="true"
-            DataType="GridColumnDataType.Date">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Discontinued"
-            Header="Discontinued"
-            Sortable="true"
-            DisableHiding="true"
-            DataType="GridColumnDataType.Boolean"
-            BodyTemplateScript="WebGridBooleanCellTemplate"
-            Name="column1"
-            @ref="column1">
-            </IgbColumn>
-
-        </IgbGrid>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
@@ -65,25 +12,12 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var grid = this.grid;
-        var column1 = this.column1;
+        //insert bindingInit
+        //end bindingInit
 
     }
 
-    private IgbGrid grid;
-    private IgbColumn column1;
-
-    private NwindData _nwindData = null;
-    public NwindData NwindData
-    {
-        get
-        {
-            if (_nwindData == null)
-            {
-                _nwindData = new NwindData();
-            }
-            return _nwindData;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

@@ -3,54 +3,8 @@
 <div class="container vertical">
 
     <div class="container vertical fill">
-        <IgbGrid
-        AutoGenerate="false"
-        Data="NwindData"
-        Name="grid"
-        @ref="grid"
-        Id="grid"
-        DisplayDensity="DisplayDensity.Compact">
-            <IgbColumn
-            Field="ProductName"
-            Header="Product Name"
-            Sortable="true"
-            DataType="GridColumnDataType.String">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="QuantityPerUnit"
-            Header="Quantity Per Unit"
-            Sortable="true"
-            DataType="GridColumnDataType.String">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="UnitPrice"
-            Header="Unit Price Category"
-            Sortable="true"
-            DataType="GridColumnDataType.String">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="OrderDate"
-            Header="Order Date"
-            Sortable="true"
-            HasSummary="true"
-            DataType="GridColumnDataType.Date"
-            PipeArgs="ColumnPipeArgs1"
-            Name="column1"
-            @ref="column1">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Discontinued"
-            Header="Discontinued"
-            Sortable="true"
-            DataType="GridColumnDataType.Boolean">
-            </IgbColumn>
-
-        </IgbGrid>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
@@ -58,39 +12,12 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var grid = this.grid;
-        var column1 = this.column1;
+        //insert bindingInit
+        //end bindingInit
 
     }
 
-    private IgbGrid grid;
-    private IgbColumn column1;
-    private IgbColumnPipeArgs _columnPipeArgs1 = null;
-    public IgbColumnPipeArgs ColumnPipeArgs1
-    {
-        get
-        {
-            if (this._columnPipeArgs1 == null)
-            {
-                var columnPipeArgs1 = new IgbColumnPipeArgs();
-                columnPipeArgs1.Format = "MMM YYYY";
-                this._columnPipeArgs1 = columnPipeArgs1;
-            }
-            return this._columnPipeArgs1;
-        }
-    }
-
-    private NwindData _nwindData = null;
-    public NwindData NwindData
-    {
-        get
-        {
-            if (_nwindData == null)
-            {
-                _nwindData = new NwindData();
-            }
-            return _nwindData;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

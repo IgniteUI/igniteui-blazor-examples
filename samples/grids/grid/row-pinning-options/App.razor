@@ -1,127 +1,23 @@
 @using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
-    <div class="options vertical">
-        <IgbPropertyEditorPanel
-
-        DescriptionType="WebGrid"
-        IsHorizontal="true"
-        IsWrappingEnabled="false"
-        Name="propertyEditorPanel1"
-        @ref="propertyEditorPanel1">
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="Pinning.Rows"
-            Name="rowPinningEditor"
-            @ref="rowPinningEditor"
-            Label="Row Pinning toggle">
-            </IgbPropertyEditorPropertyDescription>
-
-        </IgbPropertyEditorPanel>
-
-    </div>
 
     <div class="container vertical fill">
-        <IgbGrid
-        AutoGenerate="false"
-        Name="grid"
-        @ref="grid"
-        Data="CustomersData"
-        PrimaryKey="ID"
-        CellSelection="GridSelectionMode.None"
-        RowEditable="true">
-            <IgbPinningConfig
-            Rows="RowPinningPosition.Top">
-            </IgbPinningConfig>
-
-            <IgbColumn
-            Field="CompanyName"
-            Header="Company"
-            Width="300px">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="ContactName"
-            Header="Name">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="ContactTitle"
-            Header="Title">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Address"
-            Header="Address">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="City"
-            Header="City">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="PostalCode"
-            Header="Postal Code">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Phone"
-            Header="Phone">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Fax"
-            Header="Fax">
-            </IgbColumn>
-
-            <IgbActionStrip
-            Name="actionStrip"
-            @ref="actionStrip">
-                <IgbGridPinningActions
-                >
-                </IgbGridPinningActions>
-
-            </IgbActionStrip>
-
-        </IgbGrid>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var propertyEditorPanel1 = this.propertyEditorPanel1;
-        var rowPinningEditor = this.rowPinningEditor;
-        var grid = this.grid;
-        var actionStrip = this.actionStrip;
-
-        this.BindElements = () => {
-            propertyEditorPanel1.Target = this.grid;
-        };
-        this.BindElements();
+        //insert bindingInit
+        //end bindingInit
 
     }
 
-    private IgbPropertyEditorPanel propertyEditorPanel1;
-    private IgbPropertyEditorPropertyDescription rowPinningEditor;
-    private IgbGrid grid;
-    private IgbActionStrip actionStrip;
-
-    private CustomersData _customersData = null;
-    public CustomersData CustomersData
-    {
-        get
-        {
-            if (_customersData == null)
-            {
-                _customersData = new CustomersData();
-            }
-            return _customersData;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

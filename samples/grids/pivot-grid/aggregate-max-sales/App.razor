@@ -1,17 +1,10 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IJSRuntime JS
-
 <div class="container vertical">
 
     <div class="container vertical fill">
-        <IgbPivotGrid
-        Data="PivotSalesData"
-        Name="grid"
-        @ref="grid"
-        PivotConfiguration="PivotConfiguration1">
-        </IgbPivotGrid>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
@@ -19,53 +12,12 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var grid = this.grid;
+        //insert bindingInit
+        //end bindingInit
 
     }
 
-    private IgbPivotGrid grid;
-    private IgbPivotConfiguration _pivotConfiguration1 = null;
-    public IgbPivotConfiguration PivotConfiguration1
-    {
-        get
-        {
-            if (this._pivotConfiguration1 == null)
-            {
-                var pivotConfiguration1 = new IgbPivotConfiguration();
-                var pivotDimension1 = new IgbPivotDimension();
-                pivotDimension1.MemberName = "Country";
-                pivotDimension1.Enabled = true;
-                pivotDimension1.Name = "pivotDimension1";pivotConfiguration1.Columns.Add(pivotDimension1);
-                var pivotDimension2 = new IgbPivotDimension();
-                pivotDimension2.MemberName = "Product";
-                pivotDimension2.Enabled = true;
-                pivotDimension2.Name = "pivotDimension2";pivotConfiguration1.Rows.Add(pivotDimension2);
-                var pivotValue1 = new IgbPivotValue();
-                pivotValue1.Member = "Sales";
-                pivotValue1.Enabled = true;
-                pivotValue1.Name = "pivotValue1";var pivotAggregator1 = new IgbPivotAggregator();
-                pivotAggregator1.Key = "MAX";
-                pivotAggregator1.AggregatorScript = "PivotSalesDataAggregateMaxSales";
-                pivotAggregator1.Name = "pivotAggregator1";pivotValue1.Aggregate = pivotAggregator1;
-                pivotConfiguration1.Values.Add(pivotValue1);
-
-                this._pivotConfiguration1 = pivotConfiguration1;
-            }
-            return this._pivotConfiguration1;
-        }
-    }
-
-    private PivotSalesData _pivotSalesData = null;
-    public PivotSalesData PivotSalesData
-    {
-        get
-        {
-            if (_pivotSalesData == null)
-            {
-                _pivotSalesData = new PivotSalesData();
-            }
-            return _pivotSalesData;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }
