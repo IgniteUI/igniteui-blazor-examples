@@ -4,67 +4,23 @@
     <div class="legend-title">
         Renewable Electricity Generated
     </div>
-    <div class="legend">
-        <IgbLegend
-        Name="Legend"
-        @ref="legend"
-        Orientation="LegendOrientation.Horizontal">
-        </IgbLegend>
-
-    </div>
 
     <div class="container vertical fill">
-        <IgbCategoryChart
-        Name="chart"
-        @ref="chart"
-        ChartType="CategoryChartType.SplineArea"
-        DataSource="CountryRenewableElectricity"
-        YAxisTitle="TWh"
-        IsTransitionInEnabled="true"
-        IsVerticalZoomEnabled="false"
-        IsHorizontalZoomEnabled="false"
-        MarkerBrushes="white"
-        MarkerOutlines="#8ce7d9 #ee5879 #735656"
-        Brushes="#8ce7d9 #ee5879 #735656"
-        Outlines="#8ce7d9 #ee5879 #735656"
-        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
-        HighlightingMode="SeriesHighlightingMode.FadeOthersSpecific"
-        HighlightingBehavior="SeriesHighlightingBehavior.NearestItemsAndSeries">
-        </IgbCategoryChart>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var legend = this.legend;
-        var chart = this.chart;
-
-        this.BindElements = () => {
-            chart.Legend = this.legend;
-        };
-        this.BindElements();
+        //insert bindingInit
+        //end bindingInit
 
     }
 
-    private IgbLegend legend;
-    private IgbCategoryChart chart;
-
-    private CountryRenewableElectricity _countryRenewableElectricity = null;
-    public CountryRenewableElectricity CountryRenewableElectricity
-    {
-        get
-        {
-            if (_countryRenewableElectricity == null)
-            {
-                _countryRenewableElectricity = new CountryRenewableElectricity();
-            }
-            return _countryRenewableElectricity;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

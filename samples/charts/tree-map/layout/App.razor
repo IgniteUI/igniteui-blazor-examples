@@ -1,113 +1,26 @@
 @using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
-    <div class="options vertical">
-        <IgbPropertyEditorPanel
-
-        DescriptionType="Treemap"
-        IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="propertyEditorPanel1"
-        @ref="propertyEditorPanel1">
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="LayoutType"
-            Name="LayoutTypeEditor"
-            @ref="layoutTypeEditor"
-            PrimitiveValue="@("Squarified")"
-            Label="Layout">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="LayoutOrientation"
-            Name="LayoutOrientationEditor"
-            @ref="layoutOrientationEditor"
-            PrimitiveValue="@("Vertical")"
-            Label="Orientation">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="HeaderDisplayMode"
-            Name="HeaderDisplayModeEditor"
-            @ref="headerDisplayModeEditor"
-            PrimitiveValue="@("Overlay")"
-            Label="Headers">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="LabelVerticalAlignment"
-            Name="LabelVerticalAlignmentEditor"
-            @ref="labelVerticalAlignmentEditor"
-            PrimitiveValue="@("Center")"
-            Label="Labels">
-            </IgbPropertyEditorPropertyDescription>
-
-        </IgbPropertyEditorPanel>
-
-    </div>
     <div class="legend-title">
         Comparing Population of Countries
     </div>
 
     <div class="container vertical fill">
-        <IgbTreemap
-        Name="treemap"
-        @ref="treemap"
-        DataSource="CountyHierarchicalData"
-        RootTitle="Countries"
-        ParentIdMemberPath="Parent"
-        IdMemberPath="Name"
-        LabelMemberPath="Name"
-        ValueMemberPath="Population"
-        FillBrushes="#299e41 #4e62cf #5e359c"
-        IsFillScaleLogarithmic="true"
-        HeaderDisplayMode="TreemapHeaderDisplayMode.Overlay"
-        ParentNodeBottomPadding="0"
-        ParentNodeLeftPadding="0"
-        ParentNodeRightPadding="0"
-        ParentNodeTopPadding="0">
-        </IgbTreemap>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var propertyEditorPanel1 = this.propertyEditorPanel1;
-        var layoutTypeEditor = this.layoutTypeEditor;
-        var layoutOrientationEditor = this.layoutOrientationEditor;
-        var headerDisplayModeEditor = this.headerDisplayModeEditor;
-        var labelVerticalAlignmentEditor = this.labelVerticalAlignmentEditor;
-        var treemap = this.treemap;
-
-        this.BindElements = () => {
-            propertyEditorPanel1.Target = this.treemap;
-        };
-        this.BindElements();
+        //insert bindingInit
+        //end bindingInit
 
     }
 
-    private IgbPropertyEditorPanel propertyEditorPanel1;
-    private IgbPropertyEditorPropertyDescription layoutTypeEditor;
-    private IgbPropertyEditorPropertyDescription layoutOrientationEditor;
-    private IgbPropertyEditorPropertyDescription headerDisplayModeEditor;
-    private IgbPropertyEditorPropertyDescription labelVerticalAlignmentEditor;
-    private IgbTreemap treemap;
-
-    private CountyHierarchicalData _countyHierarchicalData = null;
-    public CountyHierarchicalData CountyHierarchicalData
-    {
-        get
-        {
-            if (_countyHierarchicalData == null)
-            {
-                _countyHierarchicalData = new CountyHierarchicalData();
-            }
-            return _countyHierarchicalData;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

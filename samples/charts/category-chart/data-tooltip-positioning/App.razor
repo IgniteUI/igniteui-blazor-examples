@@ -1,102 +1,26 @@
 @using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
-    <div class="options vertical">
-        <IgbPropertyEditorPanel
-        Name="PropertyEditor"
-        @ref="propertyEditor"
-
-        DescriptionType="CategoryChart"
-        IsHorizontal="true"
-        IsWrappingEnabled="true">
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="DataToolTipGroupedPositionModeX"
-            PrimitiveValue="@("PinRight")"
-            Name="GroupedPositionXEditor"
-            @ref="groupedPositionXEditor"
-            Label="Grouped X Position: ">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="DataToolTipGroupedPositionModeY"
-            PrimitiveValue="@("PinTop")"
-            Name="GroupedPositionYEditor"
-            @ref="groupedPositionYEditor"
-            Label="Grouped Y Position: ">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="DataToolTipGroupingMode"
-            PrimitiveValue="@("Grouped")"
-            Name="GroupingModeEditor"
-            @ref="groupingModeEditor"
-            Label="Grouping Mode: ">
-            </IgbPropertyEditorPropertyDescription>
-
-        </IgbPropertyEditorPanel>
-
-    </div>
     <div class="legend-title">
         Highest Grossing Movie Franchises
     </div>
 
     <div class="container vertical fill">
-        <IgbCategoryChart
-        Name="chart"
-        @ref="chart"
-        ChartType="CategoryChartType.Column"
-        DataSource="HighestGrossingMovies"
-        ToolTipType="ToolTipType.Data"
-        DataToolTipGroupedPositionModeX="DataTooltipGroupedPositionX.PinRight"
-        DataToolTipGroupedPositionModeY="DataTooltipGroupedPositionY.PinTop"
-        DataToolTipGroupingMode="DataToolTipLayerGroupingMode.Grouped"
-        XAxisInterval="1"
-        YAxisTitle="Billions of U.S. Dollars"
-        YAxisTitleLeftMargin="10"
-        YAxisTitleRightMargin="5"
-        YAxisLabelLeftMargin="0"
-        CrosshairsDisplayMode="CrosshairsDisplayMode.None">
-        </IgbCategoryChart>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var propertyEditor = this.propertyEditor;
-        var groupedPositionXEditor = this.groupedPositionXEditor;
-        var groupedPositionYEditor = this.groupedPositionYEditor;
-        var groupingModeEditor = this.groupingModeEditor;
-        var chart = this.chart;
-
-        this.BindElements = () => {
-            propertyEditor.Target = this.chart;
-        };
-        this.BindElements();
+        //insert bindingInit
+        //end bindingInit
 
     }
 
-    private IgbPropertyEditorPanel propertyEditor;
-    private IgbPropertyEditorPropertyDescription groupedPositionXEditor;
-    private IgbPropertyEditorPropertyDescription groupedPositionYEditor;
-    private IgbPropertyEditorPropertyDescription groupingModeEditor;
-    private IgbCategoryChart chart;
-
-    private HighestGrossingMovies _highestGrossingMovies = null;
-    public HighestGrossingMovies HighestGrossingMovies
-    {
-        get
-        {
-            if (_highestGrossingMovies == null)
-            {
-                _highestGrossingMovies = new HighestGrossingMovies();
-            }
-            return _highestGrossingMovies;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }
