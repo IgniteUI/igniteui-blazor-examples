@@ -1,94 +1,26 @@
 @using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
-    <div class="options vertical">
-        <IgbPropertyEditorPanel
-
-        DescriptionType="CategoryChart"
-        IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="propertyEditorPanel1"
-        @ref="propertyEditorPanel1">
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="XAxisInverted"
-            Name="XAxisInvertedEditor"
-            @ref="xAxisInvertedEditor"
-            Label="X Axis - Inverted"
-            ShouldOverrideDefaultEditor="true"
-            PrimitiveValue="true">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="YAxisInverted"
-            Name="YAxisInvertedEditor"
-            @ref="yAxisInvertedEditor"
-            Label="Y Axis - Inverted"
-            ShouldOverrideDefaultEditor="true"
-            PrimitiveValue="true">
-            </IgbPropertyEditorPropertyDescription>
-
-        </IgbPropertyEditorPanel>
-
-    </div>
     <div class="legend-title">
         Renewable Electricity Generated
     </div>
 
     <div class="container vertical fill">
-        <IgbCategoryChart
-        Name="chart"
-        @ref="chart"
-        ChartType="CategoryChartType.Line"
-        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
-        DataSource="CountryRenewableElectricity"
-        IncludedProperties="@(new string[] { "Year", "Europe" })"
-        YAxisTitle="TWh"
-        YAxisTitleLeftMargin="10"
-        YAxisTitleRightMargin="5"
-        YAxisLabelLeftMargin="0"
-        XAxisInverted="true"
-        YAxisInverted="true">
-        </IgbCategoryChart>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var propertyEditorPanel1 = this.propertyEditorPanel1;
-        var xAxisInvertedEditor = this.xAxisInvertedEditor;
-        var yAxisInvertedEditor = this.yAxisInvertedEditor;
-        var chart = this.chart;
-
-        this.BindElements = () => {
-            propertyEditorPanel1.Target = this.chart;
-        };
-        this.BindElements();
+        //insert bindingInit
+        //end bindingInit
 
     }
 
-    private IgbPropertyEditorPanel propertyEditorPanel1;
-    private IgbPropertyEditorPropertyDescription xAxisInvertedEditor;
-    private IgbPropertyEditorPropertyDescription yAxisInvertedEditor;
-    private IgbCategoryChart chart;
-
-    private CountryRenewableElectricity _countryRenewableElectricity = null;
-    public CountryRenewableElectricity CountryRenewableElectricity
-    {
-        get
-        {
-            if (_countryRenewableElectricity == null)
-            {
-                _countryRenewableElectricity = new CountryRenewableElectricity();
-            }
-            return _countryRenewableElectricity;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

@@ -1,76 +1,23 @@
 @using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
-    <div class="options vertical">
-        <IgbPropertyEditorPanel
-
-        DescriptionType="Sparkline"
-        IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="propertyEditorPanel1"
-        @ref="propertyEditorPanel1">
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="UnknownValuePlotting"
-            Name="UnknownValuePlottingEditor"
-            @ref="unknownValuePlottingEditor"
-            Label="Unknown Value Plotting"
-            ShouldOverrideDefaultEditor="true"
-            ValueType="PropertyEditorValueType.EnumValue"
-            DropDownNames="@(new string[] { "LinearInterpolate", "DontPlot" })"
-            DropDownValues="@(new string[] { "LinearInterpolate", "DontPlot" })"
-            PrimitiveValue="@("LinearInterpolate")">
-            </IgbPropertyEditorPropertyDescription>
-
-        </IgbPropertyEditorPanel>
-
-    </div>
 
     <div class="container vertical fill">
-        <IgbSparkline
-        Name="chart"
-        @ref="chart"
-        DataSource="SparklineUnknownData"
-        DisplayType="SparklineDisplayType.Area"
-        LabelMemberPath="Label"
-        ValueMemberPath="Value"
-        UnknownValuePlotting="UnknownValuePlotting.LinearInterpolate">
-        </IgbSparkline>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var propertyEditorPanel1 = this.propertyEditorPanel1;
-        var unknownValuePlottingEditor = this.unknownValuePlottingEditor;
-        var chart = this.chart;
-
-        this.BindElements = () => {
-            propertyEditorPanel1.Target = this.chart;
-        };
-        this.BindElements();
+        //insert bindingInit
+        //end bindingInit
 
     }
 
-    private IgbPropertyEditorPanel propertyEditorPanel1;
-    private IgbPropertyEditorPropertyDescription unknownValuePlottingEditor;
-    private IgbSparkline chart;
-
-    private SparklineUnknownData _sparklineUnknownData = null;
-    public SparklineUnknownData SparklineUnknownData
-    {
-        get
-        {
-            if (_sparklineUnknownData == null)
-            {
-                _sparklineUnknownData = new SparklineUnknownData();
-            }
-            return _sparklineUnknownData;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

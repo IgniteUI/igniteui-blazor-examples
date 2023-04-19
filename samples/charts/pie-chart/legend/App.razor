@@ -4,62 +4,23 @@
     <div class="legend-title">
         Global Electricity Demand by Energy Use
     </div>
-    <div class="legend">
-        <IgbItemLegend
-        Name="Legend"
-        @ref="legend"
-        Orientation="LegendOrientation.Horizontal">
-        </IgbItemLegend>
-
-    </div>
 
     <div class="container vertical fill">
-        <IgbPieChart
-        Name="chart"
-        @ref="chart"
-        ValueMemberPath="Value"
-        LabelMemberPath="Summary"
-        LabelsPosition="LabelsPosition.OutsideEnd"
-        LegendLabelMemberPath="Category"
-        Outlines="white"
-        RadiusFactor="0.7"
-        LabelExtent="30"
-        DataSource="EnergyGlobalDemand">
-        </IgbPieChart>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var legend = this.legend;
-        var chart = this.chart;
-
-        this.BindElements = () => {
-            chart.Legend = this.legend;
-        };
-        this.BindElements();
+        //insert bindingInit
+        //end bindingInit
 
     }
 
-    private IgbItemLegend legend;
-    private IgbPieChart chart;
-
-    private EnergyGlobalDemand _energyGlobalDemand = null;
-    public EnergyGlobalDemand EnergyGlobalDemand
-    {
-        get
-        {
-            if (_energyGlobalDemand == null)
-            {
-                _energyGlobalDemand = new EnergyGlobalDemand();
-            }
-            return _energyGlobalDemand;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }
