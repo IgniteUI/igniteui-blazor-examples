@@ -1,146 +1,23 @@
 @using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
-    <div class="options vertical">
-        <IgbPropertyEditorPanel
-        Name="PropertyEditor"
-        @ref="propertyEditor"
-
-        DescriptionType="WebGrid"
-        IsHorizontal="true"
-        IsWrappingEnabled="true">
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="SummaryCalculationMode"
-            Name="SummaryCalcModeEditor"
-            @ref="summaryCalcModeEditor">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="SummaryPosition"
-            Name="SummaryPositionEditor"
-            @ref="summaryPositionEditor">
-            </IgbPropertyEditorPropertyDescription>
-
-        </IgbPropertyEditorPanel>
-
-    </div>
 
     <div class="container vertical fill">
-        <IgbGrid
-        AutoGenerate="false"
-        Name="grid"
-        @ref="grid"
-        Data="InvoicesData"
-        GroupingExpressions="GroupingExpression1">
-            <IgbColumn
-            Field="ShipCountry"
-            Header="Ship Country"
-            Width="200px"
-            Groupable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="ShipCity"
-            Header="Ship City"
-            Width="250px"
-            Groupable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="UnitPrice"
-            Header="Unit Price"
-            Width="150px"
-            DataType="GridColumnDataType.Currency"
-            Groupable="true"
-            HasSummary="true"
-            PipeArgs="ColumnPipeArgs1"
-            Name="column1"
-            @ref="column1">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Quantity"
-            Header="Quantity"
-            Width="150px"
-            DataType="GridColumnDataType.Number"
-            Groupable="true"
-            HasSummary="true">
-            </IgbColumn>
-
-        </IgbGrid>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var propertyEditor = this.propertyEditor;
-        var summaryCalcModeEditor = this.summaryCalcModeEditor;
-        var summaryPositionEditor = this.summaryPositionEditor;
-        var grid = this.grid;
-        var column1 = this.column1;
-
-        this.BindElements = () => {
-            propertyEditor.Target = this.grid;
-        };
-        this.BindElements();
+        //insert bindingInit
+        //end bindingInit
 
     }
 
-    private IgbPropertyEditorPanel propertyEditor;
-    private IgbPropertyEditorPropertyDescription summaryCalcModeEditor;
-    private IgbPropertyEditorPropertyDescription summaryPositionEditor;
-    private IgbGrid grid;
-    private IgbGroupingExpression[] _groupingExpression1 = null;
-    public IgbGroupingExpression[] GroupingExpression1
-    {
-        get
-        {
-            if (this._groupingExpression1 == null)
-            {
-                var groupingExpression1 = new IgbGroupingExpression[1];
-                var groupingExpression2 = new IgbGroupingExpression();
-                groupingExpression2.Dir = SortingDirection.Asc;
-                groupingExpression2.FieldName = "ShipCountry";
-                groupingExpression2.IgnoreCase = false;
-                groupingExpression1[0] = groupingExpression2;
-                this._groupingExpression1 = groupingExpression1;
-            }
-            return this._groupingExpression1;
-        }
-    }
-    private IgbColumn column1;
-    private IgbColumnPipeArgs _columnPipeArgs1 = null;
-    public IgbColumnPipeArgs ColumnPipeArgs1
-    {
-        get
-        {
-            if (this._columnPipeArgs1 == null)
-            {
-                var columnPipeArgs1 = new IgbColumnPipeArgs();
-                columnPipeArgs1.CurrencyCode = "USD";
-                columnPipeArgs1.DigitsInfo = "1.2-2";
-                this._columnPipeArgs1 = columnPipeArgs1;
-            }
-            return this._columnPipeArgs1;
-        }
-    }
-
-    private InvoicesData _invoicesData = null;
-    public InvoicesData InvoicesData
-    {
-        get
-        {
-            if (_invoicesData == null)
-            {
-                _invoicesData = new InvoicesData();
-            }
-            return _invoicesData;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

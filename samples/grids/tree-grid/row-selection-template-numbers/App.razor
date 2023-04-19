@@ -1,49 +1,10 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IJSRuntime JS
-
 <div class="container vertical">
 
     <div class="container vertical fill">
-        <IgbTreeGrid
-        AutoGenerate="false"
-        Name="treeGrid"
-        @ref="treeGrid"
-        Id="treeGrid"
-        Data="EmployeesFlatData"
-        PrimaryKey="ID"
-        ForeignKey="ParentID"
-        RowSelection="GridSelectionMode.Multiple"
-        RowSelectorTemplateScript="WebGridRowSelectorTemplate"
-        HeadSelectorTemplateScript="WebGridHeaderRowSelectorTemplate"
-        CellSelection="GridSelectionMode.None">
-            <IgbColumn
-            Field="Name"
-            DataType="GridColumnDataType.String">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Title"
-            Header="Job Title">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="HireDate"
-            DataType="GridColumnDataType.Date">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Age"
-            DataType="GridColumnDataType.Number">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="OnPTO"
-            DataType="GridColumnDataType.Boolean">
-            </IgbColumn>
-
-        </IgbTreeGrid>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
@@ -51,23 +12,12 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var treeGrid = this.treeGrid;
+        //insert bindingInit
+        //end bindingInit
 
     }
 
-    private IgbTreeGrid treeGrid;
-
-    private EmployeesFlatData _employeesFlatData = null;
-    public EmployeesFlatData EmployeesFlatData
-    {
-        get
-        {
-            if (_employeesFlatData == null)
-            {
-                _employeesFlatData = new EmployeesFlatData();
-            }
-            return _employeesFlatData;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

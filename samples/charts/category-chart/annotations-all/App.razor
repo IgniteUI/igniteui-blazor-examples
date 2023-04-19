@@ -1,125 +1,26 @@
 @using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
-    <div class="options vertical">
-        <IgbPropertyEditorPanel
-        Name="PropertyEditor"
-        @ref="propertyEditor"
-
-        DescriptionType="CategoryChart"
-        IsHorizontal="true"
-        IsWrappingEnabled="true">
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="CrosshairsDisplayMode"
-            Name="CrosshairsDisplayModeEditor"
-            @ref="crosshairsDisplayModeEditor"
-            Label="Crosshairs: "
-            PrimitiveValue="@("Both")">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="HighlightingMode"
-            Name="HighlightingModeEditor"
-            @ref="highlightingModeEditor"
-            Label="Highlighting: "
-            PrimitiveValue="@("BrightenSpecific")">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="CalloutsVisible"
-            Name="CalloutsVisibleEditor"
-            @ref="calloutsVisibleEditor"
-            Label="Callouts: "
-            ShouldOverrideDefaultEditor="true"
-            PrimitiveValue="true">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="FinalValueAnnotationsVisible"
-            Name="FinalValueAnnotationsEditor"
-            @ref="finalValueAnnotationsEditor"
-            Label="Final Value: "
-            ShouldOverrideDefaultEditor="true"
-            PrimitiveValue="true">
-            </IgbPropertyEditorPropertyDescription>
-
-        </IgbPropertyEditorPanel>
-
-    </div>
     <div class="legend-title">
         Average Temperature in Sydney
     </div>
 
     <div class="container vertical fill">
-        <IgbCategoryChart
-        Name="chart"
-        @ref="chart"
-        ChartType="CategoryChartType.Column"
-        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
-        IncludedProperties="@(new string[] { "Month", "Temperature" })"
-        DataSource="TemperatureAnnotatedData"
-        CalloutsDataSource="TemperatureAnnotatedData"
-        CalloutsVisible="true"
-        CalloutsXMemberPath="Index"
-        CalloutsYMemberPath="Temperature"
-        CalloutsLabelMemberPath="TempInfo"
-        IsCategoryHighlightingEnabled="true"
-        HighlightingMode="SeriesHighlightingMode.BrightenSpecific"
-        HighlightingBehavior="SeriesHighlightingBehavior.NearestItemsAndSeries"
-        CrosshairsDisplayMode="CrosshairsDisplayMode.Both"
-        CrosshairsAnnotationYAxisPrecision="0"
-        CrosshairsAnnotationXAxisBackground="black"
-        FinalValueAnnotationsVisible="true"
-        FinalValueAnnotationsBackground="dodgerblue"
-        FinalValueAnnotationsTextColor="white"
-        FinalValueAnnotationsPrecision="0"
-        YAxisMaximumValue="35"
-        YAxisLabelLocation="YAxisLabelLocation.OutsideRight">
-        </IgbCategoryChart>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var propertyEditor = this.propertyEditor;
-        var crosshairsDisplayModeEditor = this.crosshairsDisplayModeEditor;
-        var highlightingModeEditor = this.highlightingModeEditor;
-        var calloutsVisibleEditor = this.calloutsVisibleEditor;
-        var finalValueAnnotationsEditor = this.finalValueAnnotationsEditor;
-        var chart = this.chart;
-
-        this.BindElements = () => {
-            propertyEditor.Target = this.chart;
-        };
-        this.BindElements();
+        //insert bindingInit
+        //end bindingInit
 
     }
 
-    private IgbPropertyEditorPanel propertyEditor;
-    private IgbPropertyEditorPropertyDescription crosshairsDisplayModeEditor;
-    private IgbPropertyEditorPropertyDescription highlightingModeEditor;
-    private IgbPropertyEditorPropertyDescription calloutsVisibleEditor;
-    private IgbPropertyEditorPropertyDescription finalValueAnnotationsEditor;
-    private IgbCategoryChart chart;
-
-    private TemperatureAnnotatedData _temperatureAnnotatedData = null;
-    public TemperatureAnnotatedData TemperatureAnnotatedData
-    {
-        get
-        {
-            if (_temperatureAnnotatedData == null)
-            {
-                _temperatureAnnotatedData = new TemperatureAnnotatedData();
-            }
-            return _temperatureAnnotatedData;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

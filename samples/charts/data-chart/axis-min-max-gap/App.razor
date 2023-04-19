@@ -6,45 +6,8 @@
     </div>
 
     <div class="container vertical fill">
-        <IgbDataChart
-        Name="chart"
-        @ref="chart">
-            <IgbCategoryXAxis
-            Name="xAxis"
-            @ref="xAxis"
-            UseEnhancedIntervalManagement="true"
-            EnhancedIntervalPreferMoreCategoryLabels="true"
-            DataSource="TemperatureAverageData"
-            Label="Month"
-            MinimumGapSize="25">
-            </IgbCategoryXAxis>
-
-            <IgbNumericYAxis
-            Name="yAxis"
-            @ref="yAxis">
-            </IgbNumericYAxis>
-
-            <IgbCategoryHighlightLayer
-            Name="CategoryHighlightLayer"
-            @ref="categoryHighlightLayer">
-            </IgbCategoryHighlightLayer>
-
-            <IgbColumnSeries
-            Name="columnSeries1"
-            @ref="columnSeries1"
-            XAxisName="xAxis"
-            YAxisName="yAxis"
-            DataSource="TemperatureAverageData"
-            ValueMemberPath="Temperature">
-            </IgbColumnSeries>
-
-            <IgbDataToolTipLayer
-            Name="Tooltips"
-            @ref="tooltips">
-            </IgbDataToolTipLayer>
-
-        </IgbDataChart>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
@@ -52,33 +15,12 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var chart = this.chart;
-        var xAxis = this.xAxis;
-        var yAxis = this.yAxis;
-        var categoryHighlightLayer = this.categoryHighlightLayer;
-        var columnSeries1 = this.columnSeries1;
-        var tooltips = this.tooltips;
+        //insert bindingInit
+        //end bindingInit
 
     }
 
-    private IgbDataChart chart;
-    private IgbCategoryXAxis xAxis;
-    private IgbNumericYAxis yAxis;
-    private IgbCategoryHighlightLayer categoryHighlightLayer;
-    private IgbColumnSeries columnSeries1;
-    private IgbDataToolTipLayer tooltips;
-
-    private TemperatureAverageData _temperatureAverageData = null;
-    public TemperatureAverageData TemperatureAverageData
-    {
-        get
-        {
-            if (_temperatureAverageData == null)
-            {
-                _temperatureAverageData = new TemperatureAverageData();
-            }
-            return _temperatureAverageData;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }

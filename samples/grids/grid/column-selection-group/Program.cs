@@ -20,8 +20,8 @@ namespace Infragistics.Samples
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             // registering Ignite UI modules
             builder.Services.AddIgniteUIBlazor(
-                typeof(IgbGridModule),
-                typeof(IgbColumnGroupModule)
+                typeof(IgbWebGridModule),
+                typeof(IgbWebColumnGroupModule)
             );
             await builder.Build().RunAsync();
         }
