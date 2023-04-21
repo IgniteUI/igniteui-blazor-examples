@@ -1,106 +1,23 @@
 @using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
-    <div class="options vertical">
-        <IgbPropertyEditorPanel
-
-        DescriptionType="Sparkline"
-        IsHorizontal="true"
-        IsWrappingEnabled="true"
-        Name="propertyEditorPanel1"
-        @ref="propertyEditorPanel1">
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="NormalRangeVisibility"
-            Name="NormalRangeVisibilityEditor"
-            @ref="normalRangeVisibilityEditor"
-            Label="Normal Range Visibility"
-            ShouldOverrideDefaultEditor="true"
-            ValueType="PropertyEditorValueType.EnumValue"
-            DropDownNames="@(new string[] { "Visible", "Collapsed" })"
-            DropDownValues="@(new string[] { "Visible", "Collapsed" })"
-            PrimitiveValue="@("Visible")">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="NormalRangeMinimum"
-            Name="NormalRangeMinimumEditor"
-            @ref="normalRangeMinimumEditor"
-            Label="Normal Range Minimum"
-            ShouldOverrideDefaultEditor="true"
-            ValueType="PropertyEditorValueType.EnumValue"
-            DropDownNames="@(new string[] { "0", "10", "15", "20", "25", "30" })"
-            DropDownValues="@(new string[] { "0", "10", "15", "20", "25", "30" })"
-            PrimitiveValue="25">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="NormalRangeMaximum"
-            Name="NormalRangeMaximumEditor"
-            @ref="normalRangeMaximumEditor"
-            Label="Normal Range Maximum"
-            ShouldOverrideDefaultEditor="true"
-            ValueType="PropertyEditorValueType.EnumValue"
-            DropDownNames="@(new string[] { "0", "10", "15", "20", "25", "30" })"
-            DropDownValues="@(new string[] { "0", "10", "15", "20", "25", "30" })"
-            PrimitiveValue="25">
-            </IgbPropertyEditorPropertyDescription>
-
-        </IgbPropertyEditorPanel>
-
-    </div>
 
     <div class="container vertical fill">
-        <IgbSparkline
-        Name="chart"
-        @ref="chart"
-        DataSource="SparklineMixedData"
-        DisplayType="SparklineDisplayType.Area"
-        LabelMemberPath="Label"
-        ValueMemberPath="Value"
-        NormalRangeVisibility="Visibility.Visible"
-        NormalRangeMinimum="15"
-        NormalRangeMaximum="25">
-        </IgbSparkline>
-
+        <!-- insert content -->
+        <!-- end content -->
     </div>
 </div>
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var propertyEditorPanel1 = this.propertyEditorPanel1;
-        var normalRangeVisibilityEditor = this.normalRangeVisibilityEditor;
-        var normalRangeMinimumEditor = this.normalRangeMinimumEditor;
-        var normalRangeMaximumEditor = this.normalRangeMaximumEditor;
-        var chart = this.chart;
-
-        this.BindElements = () => {
-            propertyEditorPanel1.Target = this.chart;
-        };
-        this.BindElements();
+        //insert bindingInit
+        //end bindingInit
 
     }
 
-    private IgbPropertyEditorPanel propertyEditorPanel1;
-    private IgbPropertyEditorPropertyDescription normalRangeVisibilityEditor;
-    private IgbPropertyEditorPropertyDescription normalRangeMinimumEditor;
-    private IgbPropertyEditorPropertyDescription normalRangeMaximumEditor;
-    private IgbSparkline chart;
-
-    private SparklineMixedData _sparklineMixedData = null;
-    public SparklineMixedData SparklineMixedData
-    {
-        get
-        {
-            if (_sparklineMixedData == null)
-            {
-                _sparklineMixedData = new SparklineMixedData();
-            }
-            return _sparklineMixedData;
-        }
-    }
+    //insert bindingFields
+    //end bindingFields
 
 }
