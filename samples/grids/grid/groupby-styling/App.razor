@@ -1,0 +1,103 @@
+@using IgniteUI.Blazor.Controls
+
+<style>
+    .grid * {
+        --group-row-background: #969799;
+        --group-row-selected-background: #969799;
+        --group-label-column-name-text: #f8f8f8;
+        --group-label-text: #f8f8f8;
+        --group-count-text-color: #222;
+        --expand-icon-color: #f8f8f8;
+        --expand-icon-hover-color: #f8f8f8;
+    }
+</style>
+
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Class="grid"
+        Name="grid"        
+        GroupingExpressions="GroupingExpression"
+        Data="InvoicesData">
+
+            <IgbColumn
+            Name="ShipCountry"
+            Field="ShipCountry"
+            Header="Ship Country">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="OrderDate"
+            Field="OrderDate"
+            Header="Order Date">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="PostalCode"
+            Field="PostalCode"
+            Header="Postal Code">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="Discontinued"
+            Field="Discontinued"
+            Header="Discontinued">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="ShipName"
+            Field="ShipName"
+            Header="Ship Name">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="ShipperName"
+            Field="ShipperName"
+            Header="Shipper Name">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="SalesPerson"
+            Field="SalesPerson"
+            Header="Sales Person">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="UnitPrice"
+            Field="UnitPrice"
+            Header="Unit Price">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="Quantity"
+            Field="Quantity"
+            Header="Quantity">
+            </IgbColumn>
+
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+    public IgbGroupingExpression[] GroupingExpression = new IgbGroupingExpression[2]
+    {
+        new IgbGroupingExpression(){ FieldName = "ShipCountry", Dir= SortingDirection.Desc },
+        new IgbGroupingExpression() { FieldName = "PostalCode", Dir= SortingDirection.Desc  }
+    };
+    private InvoicesData _invoicesData = null;
+    public InvoicesData InvoicesData
+    {
+        get
+        {
+            if (_invoicesData == null)
+            {
+                _invoicesData = new InvoicesData();
+            }
+            return _invoicesData;
+        }
+    }
+
+}
