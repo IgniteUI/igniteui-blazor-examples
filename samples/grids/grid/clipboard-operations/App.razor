@@ -3,62 +3,21 @@
 @inject IJSRuntime JS
 
 <div class="container vertical">
-    <div class="options vertical">
-        <IgbPropertyEditorPanel
-        Name="PropertyEditor"
-        @ref="propertyEditor"
-
-        DescriptionType="WebGrid"
-        IsHorizontal="true"
-        IsWrappingEnabled="true">
-            <IgbPropertyEditorPropertyDescription
-            ValueType="PropertyEditorValueType.StringValue"
-            Label="Change Copy Separator"
-            PropertyPath="ClipboardOptions.Separator">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="ClipboardOptions.Enabled"
-            Name="ClipboardEnabledEditor"
-            @ref="clipboardEnabledEditor"
-            Label="Grid Copy Behavior"
-            ValueType="PropertyEditorValueType.Boolean1"
-            PrimitiveValue="true">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="ClipboardOptions.CopyHeaders"
-            Name="ClipboardHeadersEditor"
-            @ref="clipboardHeadersEditor"
-            Label="Copying of Header Labels"
-            ValueType="PropertyEditorValueType.Boolean1"
-            PrimitiveValue="true">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="ClipboardOptions.CopyFormatters"
-            Name="ClipboardFormattersEditor"
-            @ref="clipboardFormattersEditor"
-            Label="Copying Column Formatters"
-            ValueType="PropertyEditorValueType.Boolean1"
-            PrimitiveValue="true">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            ValueType="PropertyEditorValueType.Button"
-            PrimitiveValue="@("Clear Selection")"
-            ButtonClickedScript="WebGridClearSelection"
-            Name="propertyEditorPropertyDescription1"
-            @ref="propertyEditorPropertyDescription1">
-            </IgbPropertyEditorPropertyDescription>
-
-        </IgbPropertyEditorPanel>
-
+    <div class="options horizontal" style="gap:50px;">
+        <IgbInput onkeyup="inputChange()" id="input">
+            <span slot="prefix">Change copy separator:</span>
+            <span slot="helper-text">The default value is a single tabulation.</span>
+        </IgbInput>
+        <IgbSwitch Checked=true onclick="toggleClipboardOperations()" id="copyEnable">Grid copy behavior</IgbSwitch>
+        <IgbSwitch Checked=true onclick="toggleHeaderCopy()" id="headerCopy">Copying of header labels</IgbSwitch>
+        <IgbSwitch Checked=true  onclick="toggleFormatterCopy()" id="formatterCopy">Copying column formatters</IgbSwitch>
+        <IgbButton Checked=true  onclick="clearSelection()" id="btn">Clear Selection</IgbButton>
     </div>
 
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
+        Id="grid"
         Name="grid"
         @ref="grid"
         Data="NwindData"
@@ -105,33 +64,9 @@
 </div>
 
 @code {
-
-    private Action BindElements { get; set; }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        var propertyEditor = this.propertyEditor;
-        var clipboardEnabledEditor = this.clipboardEnabledEditor;
-        var clipboardHeadersEditor = this.clipboardHeadersEditor;
-        var clipboardFormattersEditor = this.clipboardFormattersEditor;
-        var propertyEditorPropertyDescription1 = this.propertyEditorPropertyDescription1;
-        var grid = this.grid;
-
-        this.BindElements = () => {
-            propertyEditor.Target = this.grid;
-        };
-        this.BindElements();
-
-    }
-
-    private IgbPropertyEditorPanel propertyEditor;
-    private IgbPropertyEditorPropertyDescription clipboardEnabledEditor;
-    private IgbPropertyEditorPropertyDescription clipboardHeadersEditor;
-    private IgbPropertyEditorPropertyDescription clipboardFormattersEditor;
-    private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
     private IgbGrid grid;
-
     private NwindData _nwindData = null;
+
     public NwindData NwindData
     {
         get
