@@ -149,7 +149,6 @@ function getSamples(cb) {
       igConfig.SamplesCopyPath + '/grids/grid/toolbar-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/advanced-filtering-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/binding-nested-data-2/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/cell-selection-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/column-hiding-styles/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/column-moving-styles/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/column-pinning-styles/App.razor',
