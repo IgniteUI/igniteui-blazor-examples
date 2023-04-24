@@ -170,7 +170,6 @@ function getSamples(cb) {
       igConfig.SamplesCopyPath + '/grids/grid/external-excel-style-filtering/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/filtering-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/filtering-template/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/groupby-styling/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/keyboard-custom-navigation/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/multi-column-headers-styling/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/remote-filtering-data/App.razor',
