@@ -1,0 +1,84 @@
+@using IgniteUI.Blazor.Controls
+<style>
+    .grid {
+        --igx-grid-row-selected-background: #0062A3;
+        --igx-grid-row-selected-text-color: #ecaa53;
+        --igx-grid-row-selected-hover-background: #0062A3;
+        --igx-grid-header-selected-text-color: #ecaa53;
+        --igx-grid-header-selected-background: #0062A3;
+        --igx-grid-row-selected-hover-text-color: #ecaa53;
+        --igx-grid-row-selected-hover-background: #0062A3;
+    }
+</style>
+<div class="container vertical">
+    <div class="container vertical fill">
+        <IgbGrid
+        Name="grid"
+        Class="grid"
+        @ref="grid"
+        Id="grid"
+        Data="CustomersData"
+        ColumnSelection="GridSelectionMode.Multiple">
+            <IgbColumn
+            Field="CompanyName"
+            Header="Company">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="ContactTitle"
+            Header="Title"
+            Selectable="false">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="City"
+            Selectable="false">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Country">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="PostalCode"
+            Header="Postal Code">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Address"
+            Selectable="false">
+            </IgbColumn>
+
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await this.grid.EnsureReady();
+        var grid = this.grid;
+        string[] columns = new string[] { "CompanyName", "PostalCode" };
+        await this.grid.SelectColumnsAsync(columns, true);
+    }
+
+   
+
+    private IgbGrid grid;
+
+    private CustomersData _customersData = null;
+    public CustomersData CustomersData
+    {
+        get
+        {
+            if (_customersData == null)
+            {
+                _customersData = new CustomersData();
+            }
+            return _customersData;
+        }
+    }
+
+}
