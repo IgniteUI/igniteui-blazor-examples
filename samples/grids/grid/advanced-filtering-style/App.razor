@@ -1,0 +1,101 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<style>
+    .grid {
+    --igx-grid-filtering-row-background: #ffcd0f;
+    --igx-grid-filtering-background-or: #d83434;
+    }
+</style>
+
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Name="grid"
+        @ref="grid"
+        Class="grid"
+        Data="NwindData"
+        Moving="true"
+        AllowAdvancedFiltering="true">
+            <IgbGridToolbar
+            >
+                <IgbGridToolbarActions
+                >
+                    <IgbGridToolbarAdvancedFiltering
+                    >
+                    </IgbGridToolbarAdvancedFiltering>
+
+                </IgbGridToolbarActions>
+
+            </IgbGridToolbar>
+
+            <IgbColumn
+            Field="ProductName"
+            Header="Product Name"
+            Sortable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="QuantityPerUnit"
+            Header="Quantity Per Unit"
+            Sortable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="UnitPrice"
+            Header="Unit Price"
+            Sortable="true"
+            DataType="GridColumnDataType.Currency">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="OrderDate"
+            Header="Order Date"
+            DataType="GridColumnDataType.Date"
+            Sortable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Discontinued"
+            Header="Discontinued"
+            DataType="GridColumnDataType.Boolean"
+            BodyTemplateScript="WebGridDiscontinuedCellTemplate"
+            Sortable="true"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+        var column1 = this.column1;
+
+    }
+
+    private IgbGrid grid;
+    private IgbColumn column1;
+
+    private NwindData _nwindData = null;
+    public NwindData NwindData
+    {
+        get
+        {
+            if (_nwindData == null)
+            {
+                _nwindData = new NwindData();
+            }
+            return _nwindData;
+        }
+    }
+
+}

@@ -147,7 +147,6 @@ function getSamples(cb) {
     var deferredSamples = [
       // excluding deferred gird samples
       igConfig.SamplesCopyPath + '/grids/grid/toolbar-style/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/advanced-filtering-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/binding-nested-data-2/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/column-hiding-styles/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/column-moving-styles/App.razor',
