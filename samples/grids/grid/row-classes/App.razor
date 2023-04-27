@@ -1,0 +1,91 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <style>
+        .activeRow {
+            border: 2px solid #fc81b8;
+            border-left: 3px solid #e41c77;
+        }
+    </style>
+
+    <div class="container vertical fill">
+        <IgbGrid 
+        RowClassesScript="RowClassesHandler"
+        AutoGenerate="false"
+        Name="grid"
+        Id="grid"
+        Data="NwindData"
+        PrimaryKey="ProductID"
+        RowEditable="true">
+            <IgbColumn
+            Name="ID"
+            Field="ProductID"
+            Header="Product ID"
+            DataType="GridColumnDataType.Number"
+            Hidden="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="ReorderLevel"
+            Field="ReorderLevel"
+            Header="Reorder Level"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="ProductName"
+            Field="ProductName"
+            Header="Product Name"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="UnitsInStock"
+            Field="UnitsInStock"
+            Header="Units In Stock"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="UnitPrice"
+            Field="UnitPrice"
+            Header="Unit Price"
+            DataType="GridColumnDataType.Number"
+            Sortable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="OrderDate"
+            Field="OrderDate"
+            Header="Order Date"
+            DataType="GridColumnDataType.Date">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="Discontinued"
+            Field="Discontinued"
+            Header="Discontinued"
+            DataType="GridColumnDataType.Boolean">
+            </IgbColumn>
+
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+
+    private NwindData _nwindData = null;
+    public NwindData NwindData
+    {
+        get
+        {
+            if (_nwindData == null)
+            {
+                _nwindData = new NwindData();
+            }
+            return _nwindData;
+        }
+    }
+
+}
