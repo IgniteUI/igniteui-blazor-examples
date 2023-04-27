@@ -1,30 +1,19 @@
 @using IgniteUI.Blazor.Controls
 
+<style>
+    .grid {
+    --igx-grid-sorted-header-icon-color: #ffb06a;
+    --igx-grid-sortable-header-icon-hover-color: black;
+    }
+</style>
 <div class="container vertical">
-    <div class="options vertical">
-        <IgbPropertyEditorPanel
-        Name="PropertyEditor"
-        @ref="propertyEditor"
-
-        DescriptionType="WebGrid"
-        IsHorizontal="true"
-        IsWrappingEnabled="true">
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="SortingOptions"
-            Label="Select Sorting Type"
-            Name="SortingOptionsEditor"
-            @ref="sortingOptionsEditor">
-            </IgbPropertyEditorPropertyDescription>
-
-        </IgbPropertyEditorPanel>
-
-    </div>
-
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
         Name="grid"
         @ref="grid"
+        Class="grid"
+        SortingExpressions="SortingExpression"
         Data="ProductSales">
             <IgbColumn
             Field="OrderID"
@@ -82,24 +71,12 @@
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var propertyEditor = this.propertyEditor;
-        var sortingOptionsEditor = this.sortingOptionsEditor;
         var grid = this.grid;
         var column1 = this.column1;
-
-        this.BindElements = () => {
-            propertyEditor.Target = this.grid;
-        };
-        this.BindElements();
-
     }
 
-    private IgbPropertyEditorPanel propertyEditor;
-    private IgbPropertyEditorPropertyDescription sortingOptionsEditor;
     private IgbGrid grid;
     private IgbColumn column1;
     private IgbColumnPipeArgs _columnPipeArgs1 = null;
@@ -128,6 +105,23 @@
                 _productSales = new ProductSales();
             }
             return _productSales;
+        }
+    }
+
+    private IgbSortingExpression[] _sortingExpression = null;
+    public IgbSortingExpression[] SortingExpression
+    {
+        get
+        {
+            if (this._sortingExpression == null)
+            {
+                var sortingExpression = new IgbSortingExpression();
+                sortingExpression.Dir = SortingDirection.Asc;
+                sortingExpression.FieldName = "CategoryName";
+                sortingExpression.IgnoreCase = true;
+                this._sortingExpression = new IgbSortingExpression[] { sortingExpression };;
+            }
+            return this._sortingExpression;
         }
     }
 
