@@ -2,6 +2,16 @@
 
 @inject IJSRuntime JS
 
+<style>
+    .upFont {
+        color: green !important;
+    }
+
+    .downFont {
+        color: red !important;
+    }
+</style>
+
 <div class="container vertical">
 
     <div class="container vertical fill">
@@ -26,10 +36,10 @@
             <IgbColumn
             Field="BeatsPerMinute"
             Header="Beats per Minute"
+                       CellClassesScript="CellClassesHandler"
             DataType="GridColumnDataType.Number"
             Editable="true"
             Sortable="true"
-            BodyTemplateScript="WebGridBeatsPerMinuteTemplate"
             Name="column1"
             @ref="column1">
             </IgbColumn>
@@ -40,7 +50,6 @@
             DataType="GridColumnDataType.Number"
             Editable="true"
             Sortable="true"
-            BodyTemplateScript="WebGridTopSpeedTemplate"
             Name="column2"
             @ref="column2">
             </IgbColumn>
@@ -55,7 +64,7 @@
             <IgbColumn
             Field="CountryFlag"
             Header="Country"
-            BodyTemplateScript="WebGridImageCellTemplate"
+            DataType="GridColumnDataType.Image"
             Name="column3"
             @ref="column3">
             </IgbColumn>
