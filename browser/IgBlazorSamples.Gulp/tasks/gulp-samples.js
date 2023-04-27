@@ -178,7 +178,6 @@ function getSamples(cb) {
       igConfig.SamplesCopyPath + '/grids/grid/remote-paging-batch-editing/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/remote-paging-custom/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/remote-paging-template/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/row-classes/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/row-drop-indicator/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/row-editing-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/row-paging-style/App.razor',
