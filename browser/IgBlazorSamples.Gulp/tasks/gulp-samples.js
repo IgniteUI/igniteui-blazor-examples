@@ -171,7 +171,6 @@ function getSamples(cb) {
       igConfig.SamplesCopyPath + '/grids/grid/filtering-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/filtering-template/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/keyboard-custom-navigation/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/multi-column-headers-styling/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/remote-filtering-data/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/remote-paging-batch-editing/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/remote-paging-custom/App.razor',

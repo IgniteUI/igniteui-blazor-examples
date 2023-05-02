@@ -18,7 +18,7 @@ function toggleColumnGroup(name) {
 igRegisterScript("HeaderTemplate", (ctx) => {
     var html = window.igTemplating.html;
     var iconName = columnGroupStates.get(ctx.column.header) ? 'expand_more' : 'expand_less';
-    return html`<div>
+    return html`<div style="display:flex;align-items:center;">
     <igc-icon name="${iconName}" collection="material" onclick='toggleColumnGroup("${ctx.column.header}")' ></igc-icon>
     <span>${ctx.column.header}</span>
 </div>`;
