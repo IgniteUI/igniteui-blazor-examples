@@ -1,0 +1,173 @@
+@using IgniteUI.Blazor.Controls
+
+<style>
+    .grid {
+        --igx-grid-cell-active-border-color: #ffcd0f;
+        --igx-grid-cell-selected-background: #6f6f6f;
+        --igx-grid-row-hover-background: #fde069;
+        --igx-grid-row-selected-background: #8d8d8d;
+        --igx-grid-header-background: #494949;
+        --igx-grid-header-text-color: #fff;
+    }
+</style>
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbGrid
+        Name="grid"
+        @ref="grid"
+        Class="grid"
+        Data="CustomersData"
+        DisplayDensity="DisplayDensity.Cosy">
+            <IgbColumnLayout
+            
+            Header="ID">
+                <IgbColumn
+                Field="ID"
+                RowStart="1"
+                ColStart="1"
+                RowEnd="3"
+                Filterable="false"
+                Width="150px">
+                </IgbColumn>
+
+            </IgbColumnLayout>
+
+            <IgbColumnLayout
+            Pinned="true"
+            Header="Contact Details">
+                <IgbColumn
+                Field="CompanyName"
+                Header="Company"
+                RowStart="1"
+                ColStart="1"
+                ColEnd="3"
+                Sortable="true"
+                Width="350px">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="ContactName"
+                Header="Name"
+                RowStart="2"
+                ColStart="1"
+                ColEnd="2"
+                Groupable="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="ContactTitle"
+                Header="Title"
+                RowStart="2"
+                ColStart="2"
+                ColEnd="3"
+                Groupable="true">
+                </IgbColumn>
+
+            </IgbColumnLayout>
+
+            <IgbColumnLayout
+            Pinned="false"
+            Header="Address Details">
+                <IgbColumn
+                Field="Country"
+                RowStart="1"
+                ColStart="1"
+                ColEnd="3"
+                Groupable="true"
+                Filterable="false"
+                Width="220px">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="Region"
+                RowStart="1"
+                ColStart="3"
+                ColEnd="5"
+                Groupable="true"
+                Filterable="false"
+                Width="220px">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="PostalCode"
+                RowStart="1"
+                ColStart="5"
+                ColEnd="7"
+                Groupable="true"
+                Filterable="false"
+                Width="220px">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="City"
+                RowStart="2"
+                ColStart="1"
+                ColEnd="4"
+                Groupable="true"
+                Filterable="false"
+                Width="220px">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="Address"
+                RowStart="2"
+                ColStart="4"
+                ColEnd="7"
+                Filterable="false">
+                </IgbColumn>
+
+            </IgbColumnLayout>
+
+            <IgbColumnLayout
+            Header="Phone Details">
+                <IgbColumn
+                Field="Phone"
+                RowStart="1"
+                ColStart="1"
+                ColEnd="2"
+                Filterable="false"
+                Width="220px">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="Fax"
+                RowStart="2"
+                ColStart="1"
+                ColEnd="2"
+                Filterable="false"
+                Width="220px">
+                </IgbColumn>
+
+            </IgbColumnLayout>
+
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+
+    }
+
+    private IgbGrid grid;
+    
+
+    private CustomersData _customersData = null;
+    public CustomersData CustomersData
+    {
+        get
+        {
+            if (_customersData == null)
+            {
+                _customersData = new CustomersData();
+            }
+            return _customersData;
+        }
+    }
+
+}
