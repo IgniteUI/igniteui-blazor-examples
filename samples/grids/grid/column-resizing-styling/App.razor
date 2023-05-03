@@ -1,0 +1,93 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<style>
+	.grid {
+		--igx-grid-resize-line-color: #f35b04;
+	}
+</style>
+
+<div class="container vertical">
+
+	<div class="container vertical fill">
+		<IgbGrid AutoGenerate="false"
+				 Data="AthletesData"
+				 Id="grid"
+				 Name="grid"
+				 @ref="grid"
+				 Class="grid">
+			<IgbColumn Name="ID"
+					   @ref="iD"
+					   Field="ID"
+					   Header="Rank"
+					   Resizable="true">
+			</IgbColumn>
+
+			<IgbColumn Name="Name"
+					   @ref="athleteName"
+					   Field="Name"
+					   Header="Athlete"
+					   Resizable="true">
+			</IgbColumn>
+
+			<IgbColumn Name="BeatsPerMinute"
+					   @ref="beatsPerMinute"
+					   Field="BeatsPerMinute"
+					   Header="Beats Per Minute"
+					   Resizable="true">
+			</IgbColumn>
+
+			<IgbColumn Name="TopSpeed"
+					   @ref="topSpeed"
+					   Field="TopSpeed"
+					   Header="Top Speed"
+					   Resizable="true">
+			</IgbColumn>
+
+			<IgbColumn Name="TrackProgress"
+					   @ref="address"
+					   Field="TrackProgress"
+					   Header="Track progress"
+					   Resizable="true">
+			</IgbColumn>
+
+		</IgbGrid>
+
+	</div>
+</div>
+
+@code {
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		var grid = this.grid;
+		var iD = this.iD;
+		var athleteName = this.athleteName;
+		var beatsPerMinute = this.beatsPerMinute;
+		var topSpeed = this.topSpeed;
+		var address = this.address;
+
+	}
+
+	private IgbGrid grid;
+	private IgbColumn iD;
+	private IgbColumn athleteName;
+	private IgbColumn beatsPerMinute;
+	private IgbColumn topSpeed;
+	private IgbColumn address;
+	
+	private AthletesData _athletesData = null;
+	public AthletesData AthletesData
+	{
+		get
+		{
+			if (_athletesData == null)
+			{
+				_athletesData = new AthletesData();
+			}
+			return _athletesData;
+		}
+	}
+
+}
