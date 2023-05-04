@@ -5,7 +5,7 @@
     <IgbSwitch Change="OnCloseOnOutsideClickSwitchChange" LabelPosition=CheckboxBaseLabelPosition.Before>CloseOnOutsideClick</IgbSwitch>
 
     <IgbButton @onclick="ToggleDialog" Variant=@ButtonVariant.Contained>Show Dialog</IgbButton>
-    <IgbDialog @ref="_dialog" KeepOpenOnEscape="@KeepOpenOnEscape" CloseOnOutsideClick="@CloseOnOutsideClick" Title="Confirmation">
+    <IgbDialog @ref="DialogRef" KeepOpenOnEscape="@KeepOpenOnEscape" CloseOnOutsideClick="@CloseOnOutsideClick" Title="Confirmation">
         <p>Are you sure you want to delete the Annual_Report_2016.pdf and Annual_Report_2017.pdf files?</p>
         <IgbButton slot="footer" @onclick="ToggleDialog" Variant=@ButtonVariant.Flat>Cancel</IgbButton>
         <IgbButton slot="footer" @onclick="ToggleDialog" Variant=@ButtonVariant.Flat>OK</IgbButton>
@@ -13,8 +13,7 @@
 </div>
 
 @code {
-    private IgbDialog _dialog;
-
+    public IgbDialog DialogRef;
     public bool KeepOpenOnEscape { get; set; }
     public bool CloseOnOutsideClick { get; set; }
 
@@ -28,8 +27,11 @@
         CloseOnOutsideClick = args.Detail;
     }
 
-    private async Task ToggleDialog()
+    public void ToggleDialog()
     {
-        if (this._dialog != null) await this._dialog.ToggleAsync();
+        if (this.DialogRef != null)
+        {
+            this.DialogRef.Toggle();
+        }
     }
 }
