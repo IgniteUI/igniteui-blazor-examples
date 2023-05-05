@@ -1,7 +1,7 @@
 @using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
-    <IgbButton @onclick="ToggleDialog" Variant=@ButtonVariant.Contained>Show Dialog</IgbButton>
+    <IgbButton @onclick="OnDialogShow" Variant=@ButtonVariant.Contained>Show Dialog</IgbButton>
     <IgbDialog @ref="DialogRef" Title="Login">
         <IgbForm id="form" method="dialog">
             <IgbInput Label="Username">
@@ -51,11 +51,11 @@
         }
     }
 
-    public void ToggleDialog()
+    public void OnDialogShow()
     {
         if (this.DialogRef != null)
         {
-            this.DialogRef.Toggle();
+            this.DialogRef.Show();
         }
     }
 }
