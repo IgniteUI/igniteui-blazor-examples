@@ -1,0 +1,111 @@
+@using IgniteUI.Blazor.Controls
+
+
+<div class="container vertical">
+   <div class="radio-groups">
+        <div class="radio-group">
+            <label>Title position</label>
+            <div class="radio-group-container">
+                <IgbRadioGroup Alignment="RadioGroupAlignment.Horizontal">
+                    <IgbRadio Value="top" Change="onTitlePositionChange">Top</IgbRadio>
+                    <IgbRadio Value="bottom" Change="onTitlePositionChange">Bottom</IgbRadio>
+                    <IgbRadio Value="start" Change="onTitlePositionChange">Start</IgbRadio>
+                    <IgbRadio Value="end" Change="onTitlePositionChange">End</IgbRadio>
+                    <IgbRadio Value="" Checked="true" Change="onTitlePositionChange">Default</IgbRadio>
+                </IgbRadioGroup>
+            </div>
+        </div>
+
+        <div class="radio-group">
+            <label>Orientation</label>
+            <div class="radio-group-container">
+                <IgbRadioGroup Alignment="RadioGroupAlignment.Horizontal">
+                    <IgbRadio Value="horizontal" Checked="true" Change="onOrientationChange">Horizontal</IgbRadio>
+                    <IgbRadio Value="vertical" Change="onOrientationChange">Vertical</IgbRadio>
+                </IgbRadioGroup>
+            </div>
+        </div>
+   </div>
+
+   <IgbStepper Name="stepper" @ref="stepper" Orientation="@Orientation">
+        <IgbStep>
+            <span slot="title">Order</span>
+             <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Next">NEXT</IgbButton>
+           
+        </IgbStep>
+        <IgbStep>
+            <span slot="title">Payment</span>
+            <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Previous">PREVIOUS</IgbButton>
+            <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Next">NEXT</IgbButton>  
+        </IgbStep>
+        <IgbStep>
+            <span slot="title">Confirmation</span>            
+                 <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Previous">PREVIOUS</IgbButton>
+                 <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Reset">RESET</IgbButton>
+        </IgbStep>          
+    </IgbStepper>
+</div>
+
+@code {
+    public IgbStepper stepper;
+    public StepperOrientation Orientation = StepperOrientation.Horizontal;
+    public StepperTitlePosition TitlePosition;
+
+    private bool IsDefaultTitlePosition;
+
+    public void onTitlePositionChange(IgbComponentBoolValueChangedEventArgs args)
+    {
+        if(args.Detail)
+        {
+            string value = (args.Parent as IgbRadio).Value.ToString();
+            if (String.IsNullOrEmpty(value))
+            {
+                IsDefaultTitlePosition = true;
+                setDefaultTitleOrientation(stepper.Orientation);
+
+            } else
+            {
+                IsDefaultTitlePosition = false;
+                stepper.TitlePosition = (StepperTitlePosition)System.Enum.Parse(typeof(StepperTitlePosition), value, true);                
+            }
+        }
+    }
+
+    public void onOrientationChange(IgbComponentBoolValueChangedEventArgs args)
+    {
+        if(args.Detail)
+        {
+            string value = (args.Parent as IgbRadio).Value.ToString();          
+            Orientation = (StepperOrientation)System.Enum.Parse(typeof(StepperOrientation), value, true);
+
+            if (IsDefaultTitlePosition)
+                setDefaultTitleOrientation(Orientation);
+
+        }
+    }
+
+    public void Previous()
+    {
+        this.stepper.Prev();
+    }
+
+    public void Next()
+    {
+        this.stepper.Next();
+    }
+
+    public void Reset()
+    {
+        this.stepper.Reset();
+    }
+
+    private void setDefaultTitleOrientation(StepperOrientation orientation)
+    {
+        if( orientation == StepperOrientation.Horizontal )
+        {
+            stepper.TitlePosition = StepperTitlePosition.Bottom;
+        } else {
+            stepper.TitlePosition = StepperTitlePosition.End;
+        }
+    }
+}
