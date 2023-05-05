@@ -1,8 +1,8 @@
 @using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
-    <IgbButton onclick="dialog.show()" Variant=@ButtonVariant.Contained>Show Dialog</IgbButton>
-    <IgbDialog id="dialog" Title="Login">
+    <IgbButton @onclick="OnDialogShow" Variant=@ButtonVariant.Contained>Show Dialog</IgbButton>
+    <IgbDialog @ref="DialogRef" Title="Login">
         <IgbForm id="form" method="dialog">
             <IgbInput Label="Username">
                 <span slot="prefix">
@@ -32,6 +32,8 @@
     private IgbIcon UsernameIconRef { get; set; }
     private IgbIcon PasswordIconRef { get; set; }
 
+    public IgbDialog DialogRef;
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender && this.UsernameIconRef != null)
@@ -48,5 +50,12 @@
             await this.PasswordIconRef.RegisterIconFromTextAsync("password", passwordIcon, "material");
         }
     }
-}
 
+    public void OnDialogShow()
+    {
+        if (this.DialogRef != null)
+        {
+            this.DialogRef.Show();
+        }
+    }
+}
