@@ -1,5 +1,6 @@
 ﻿@inject IJSRuntime JSRuntime;
 @using IgniteUI.Blazor.Controls
+@using System.Timers;
 
 <style>
     :root {
@@ -196,7 +197,7 @@ igc-card-content {
 
 
 <div id="root">
-    <IgbDockManager id="dockManager" Height="100%" Width="100%" Layout="Layout">
+    <IgbDockManager @ref=dockManager id="dockManager" Height="100%" Width="100%" Layout="Layout">
         <div slot="accountHeader" class="header">
             <span>ACCOUNTS</span>
             <menu-component></menu-component>
@@ -204,7 +205,7 @@ igc-card-content {
         <div slot="accountFloatingHeader" class="floatingHeader">
             <span>ACCOUNTS</span>
             <button id="close" class="closeButton">
-                <IgbIcon name="close" />
+                <IgbIcon IconName="close" />
             </button>
         </div>
         <div class="dockManagerFull" slot="content1">
@@ -241,7 +242,7 @@ igc-card-content {
         <div slot="todayTopMoversFloatingHeader" class="floatingHeader">
             <span>TODAY'S TOP MOVERS</span>
             <button id="close" class="closeButton">
-                <IgbIcon name="close" />
+                <IgbIcon IconName="close" />
             </button>
         </div>
         <div class="dockManagerFull" slot="content2" style="overflow-y: auto;">
@@ -250,7 +251,7 @@ igc-card-content {
                     <IgbAvatar Src="https://static.infragistics.com/xplatform/images/company/tesla.png" Size="@SizableComponentSize.Large" Shape="@AvatarShape.Circle">TSLA</IgbAvatar>
                     <span>1017,08$</span>
                     <div class="stock-item-movement-down">
-                        <IgbIcon IconName="arrow-down" Collection="material"/>
+                        <IgbIcon @ref=RegisterIconRef IconName="arrow-down" Collection="material"/>
                         12,54%
                     </div>
                 </div>
@@ -265,32 +266,32 @@ igc-card-content {
                 <div class="top-move-stock-item">
                     <IgbAvatar Src="https://static.infragistics.com/xplatform/images/company/canoo.png" Size="@SizableComponentSize.Large" Shape="@AvatarShape.Circle">GOEV</IgbAvatar>
                     <span>12,33$</span>
-                    <div class="stock-item-movement-up"><IgbIcon name="arrow-up" collection="material"></IgbIcon>45,92%</div>
+                    <div class="stock-item-movement-up"><IgbIcon IconName="arrow-up" Collection="material"></IgbIcon>45,92%</div>
                 </div>
                 <div class="top-move-stock-item">
                     <IgbAvatar Src="https://static.infragistics.com/xplatform/images/company/lucid.png" Size="@SizableComponentSize.Large" Shape="@AvatarShape.Circle">LCID</IgbAvatar>
                     <span>58,14$</span>
-                    <div class="stock-item-movement-up"><IgbIcon name="arrow-up" collection="material"></IgbIcon>29,42%</div>
+                    <div class="stock-item-movement-up"><IgbIcon IconName="arrow-up" Collection="material"></IgbIcon>29,42%</div>
                 </div>
                 <div class="top-move-stock-item">
                     <IgbAvatar Src="https://static.infragistics.com/xplatform/images/company/nio.png" Size="@SizableComponentSize.Large" Shape="@AvatarShape.Circle">NIO</IgbAvatar>
                     <span>21,67$</span>
-                    <div class="stock-item-movement-down"><IgbIcon name="arrow-down" collection="material"></IgbIcon>7,25%</div>
+                    <div class="stock-item-movement-down"><IgbIcon IconName="arrow-down" Collection="material"></IgbIcon>7,25%</div>
                 </div>
                 <div class="top-move-stock-item">
                     <IgbAvatar Src="https://static.infragistics.com/xplatform/images/company/stoneco.png" Size="@SizableComponentSize.Large" Shape="@AvatarShape.Circle">STNE</IgbAvatar>
                     <span>22,48$</span>
-                    <div class="stock-item-movement-down"><IgbIcon name="arrow-down" collection="material"></IgbIcon>28,68%</div>
+                    <div class="stock-item-movement-down"><IgbIcon IconName="arrow-down" Collection="material"></IgbIcon>28,68%</div>
                 </div>
                 <div class="top-move-stock-item">
                     <IgbAvatar Src="https://static.infragistics.com/xplatform/images/company/roku.png" Size="@SizableComponentSize.Large" Shape="@AvatarShape.Circle">ROKU</IgbAvatar>
                     <span>249,35$</span>
-                    <div class="stock-item-movement-down"><IgbIcon name="arrow-down" collection="material"></IgbIcon>9,5%</div>
+                    <div class="stock-item-movement-down"><IgbIcon IconName="arrow-down" Collection="material"></IgbIcon>9,5%</div>
                 </div>
                 <div class="top-move-stock-item">
                     <IgbAvatar Src="https://static.infragistics.com/xplatform/images/company/maxar.png" Size="@SizableComponentSize.Large" Shape="@AvatarShape.Circle">MAXR</IgbAvatar>
                     <span>33,14$</span>
-                    <div class="stock-item-movement-up"><IgbIcon name="arrow-up" collection="material"></IgbIcon>8,12%</div>
+                    <div class="stock-item-movement-up"><IgbIcon IconName="arrow-up" Collection="material"></IgbIcon>8,12%</div>
                 </div>
             </div>
         </div>
@@ -301,7 +302,7 @@ igc-card-content {
         <div slot="transactionsFloatingHeader" class="floatingHeader">
             <span>TRANSACTIONS</span>
             <button id="close" class="closeButton">
-                <IgbIcon name="close" />
+                <IgbIcon IconName="close" />
             </button>
         </div>
         <div class="dockManagerFull" slot="content3">
@@ -382,7 +383,7 @@ igc-card-content {
         <div slot="popularStocksFloatingHeader" class="floatingHeader">
             <span>POPULAR STOCKS</span>
             <button id="close" class="closeButton">
-                <IgbIcon name="close" />
+                <IgbIcon IconName="close" />
             </button>
         </div>
         <div class="dockManagerFull" slot="content4">
@@ -393,7 +394,7 @@ igc-card-content {
                     <span slot="subtitle">TSLA - Electric Vehicles</span>
                     <div slot="end" class="stock-price">
                         <span>1017,08 $</span>
-                        <div class="stock-item-movement-down"><IgbIcon name="arrow-down" collection="material"></IgbIcon>12,54%</div>
+                        <div class="stock-item-movement-down"><IgbIcon IconName="arrow-down" Collection="material"></IgbIcon>12,54%</div>
                     </div>
                 </IgbListItem>
                 <IgbListItem>
@@ -402,7 +403,7 @@ igc-card-content {
                     <span slot="subtitle">APPL - iPhones and Macs</span>
                     <div slot="end" class="stock-price">
                         <span>150,47 $</span>
-                        <div class="stock-item-movement-up"><IgbIcon name="arrow-up" collection="material"></IgbIcon>0,2%</div>
+                        <div class="stock-item-movement-up"><IgbIcon IconName="arrow-up" Collection="material"></IgbIcon>0,2%</div>
                     </div>
                 </IgbListItem>
                 <IgbListItem>
@@ -411,7 +412,7 @@ igc-card-content {
                     <span slot="subtitle">NIO - Electric Vehicles</span>
                     <div slot="end" class="stock-price">
                         <span>40,07 $</span>
-                        <div class="stock-item-movement-down"><IgbIcon name="arrow-down" collection="material"></IgbIcon>7,25%</div>
+                        <div class="stock-item-movement-down"><IgbIcon IconName="arrow-down" Collection="material"></IgbIcon>7,25%</div>
                     </div>
                 </IgbListItem>
                 <IgbListItem>
@@ -420,7 +421,7 @@ igc-card-content {
                     <span slot="subtitle">AMZN - E-Commerce</span>
                     <div slot="end" class="stock-price">
                         <span>3582,32 $</span>
-                        <div class="stock-item-movement-down"><IgbIcon name="arrow-down" collection="material"></IgbIcon>2,68%</div>
+                        <div class="stock-item-movement-down"><IgbIcon IconName="arrow-down" Collection="material"></IgbIcon>2,68%</div>
                     </div>
                 </IgbListItem>
                 <IgbListItem>
@@ -429,7 +430,7 @@ igc-card-content {
                     <span slot="subtitle">GME - Video Games Retail</span>
                     <div slot="end" class="stock-price">
                         <span>205,60 $</span>
-                        <div class="stock-item-movement-down"><IgbIcon name="arrow-down" collection="material"></IgbIcon>5,96%</div>
+                        <div class="stock-item-movement-down"><IgbIcon IconName="arrow-down" Collection="material"></IgbIcon>5,96%</div>
                     </div>
                 </IgbListItem>
                 <IgbListItem>
@@ -438,7 +439,7 @@ igc-card-content {
                     <span slot="subtitle">AMC - Entertainment</span>
                     <div slot="end" class="stock-price">
                         <span>39,33 $</span>
-                        <div class="stock-item-movement-down"><IgbIcon name="arrow-down" collection="material"></IgbIcon>12,72%</div>
+                        <div class="stock-item-movement-down"><IgbIcon IconName="arrow-down" Collection="material"></IgbIcon>12,72%</div>
                     </div>
                 </IgbListItem>
                 <IgbListItem>
@@ -447,7 +448,7 @@ igc-card-content {
                     <span slot="subtitle">MSFT - Tech Giant</span>
                     <div slot="end" class="stock-price">
                         <span>335,66 $</span>
-                        <div class="stock-item-movement-down"><IgbIcon name="arrow-down" collection="material"></IgbIcon>0,39%</div>
+                        <div class="stock-item-movement-down"><IgbIcon IconName="arrow-down" Collection="material"></IgbIcon>0,39%</div>
                     </div>
                 </IgbListItem>
                 <IgbListItem>
@@ -456,7 +457,7 @@ igc-card-content {
                     <span slot="subtitle">SPCE - Space Tourism</span>
                     <div slot="end" class="stock-price">
                         <span>18,90 $</span>
-                        <div class="stock-item-movement-down"><IgbIcon name="arrow-down" collection="material"></IgbIcon>1,66%</div>
+                        <div class="stock-item-movement-down"><IgbIcon IconName="arrow-down" Collection="material"></IgbIcon>1,66%</div>
                     </div>
                 </IgbListItem>
                 <IgbListItem>
@@ -465,7 +466,7 @@ igc-card-content {
                     <span slot="subtitle">PFE - Pharmaceuticals</span>
                     <div slot="end" class="stock-price">
                         <span>49,43 $</span>
-                        <div class="stock-item-movement-down"><IgbIcon name="arrow-down" collection="material"></IgbIcon>0,60%</div>
+                        <div class="stock-item-movement-down"><IgbIcon IconName="arrow-down" Collection="material"></IgbIcon>0,60%</div>
                     </div>
                 </IgbListItem>
                 <IgbListItem>
@@ -474,7 +475,7 @@ igc-card-content {
                     <span slot="subtitle">GOOGL - Tech Giant</span>
                     <div slot="end" class="stock-price">
                         <span>2972,88 $</span>
-                        <div class="stock-item-movement-down"><IgbIcon name="arrow-down" collection="material"></IgbIcon>0,02%</div>
+                        <div class="stock-item-movement-down"><IgbIcon IconName="arrow-down" Collection="material"></IgbIcon>0,02%</div>
                     </div>
                 </IgbListItem>
                 <IgbListItem>
@@ -483,7 +484,7 @@ igc-card-content {
                     <span slot="subtitle">FB - Tech Giant</span>
                     <div slot="end" class="stock-price">
                         <span>347,86 $</span>
-                        <div class="stock-item-movement-up"><IgbIcon name="arrow-up" collection="material"></IgbIcon>2,04%</div>
+                        <div class="stock-item-movement-up"><IgbIcon IconName="arrow-up" Collection="material"></IgbIcon>2,04%</div>
                     </div>
                 </IgbListItem>
                 <IgbListItem>
@@ -492,7 +493,7 @@ igc-card-content {
                     <span slot="subtitle">PLTR - Data Analytics</span>
                     <div slot="end" class="stock-price">
                         <span>23,30 $</span>
-                        <div class="stock-item-movement-up"><IgbIcon name="arrow-up" collection="material"></IgbIcon>2,06%</div>
+                        <div class="stock-item-movement-up"><IgbIcon IconName="arrow-up" Collection="material"></IgbIcon>2,06%</div>
                     </div>
                 </IgbListItem>
                 <IgbListItem>
@@ -501,7 +502,7 @@ igc-card-content {
                     <span slot="subtitle">AAL - Airline Service</span>
                     <div slot="end" class="stock-price">
                         <span>20,45 $</span>
-                        <div class="stock-item-movement-up"><IgbIcon name="arrow-up" collection="material"></IgbIcon>0.79%</div>
+                        <div class="stock-item-movement-up"><IgbIcon IconName="arrow-up" Collection="material"></IgbIcon>0.79%</div>
                     </div>
                 </IgbListItem>
                 <IgbListItem>
@@ -510,7 +511,7 @@ igc-card-content {
                     <span slot="subtitle">NFLX - TV Streaming</span>
                     <div slot="end" class="stock-price">
                         <span>679,39 $</span>
-                        <div class="stock-item-movement-down"><IgbIcon name="arrow-down" collection="material"></IgbIcon>0,47%</div>
+                        <div class="stock-item-movement-down"><IgbIcon IconName="arrow-down" Collection="material"></IgbIcon>0,47%</div>
                     </div>
                 </IgbListItem>
             </IgbList>
@@ -523,7 +524,7 @@ igc-card-content {
         <div slot="cardsFloatingHeader" class="floatingHeader">
             <span>TODAY'S TOP MOVERS</span>
             <button id="close" class="closeButton">
-                <IgbIcon name="close" />
+                <IgbIcon IconName="close" />
             </button>
         </div>
         <div class="dockManagerFull" slot="content5">
@@ -559,73 +560,101 @@ igc-card-content {
 
     public IgbDockManager dockManager { get; set; }
     public IgbDockManagerLayout Layout { get; set; }
+    public IgbIcon RegisterIconRef{ get; set; }    
+
+    private double MaxWidth = 1200;
+    private double MinWidth = 800;
+
+    public IgbDockManagerLayout[] layouts;
+    private Timer _timer;
 
     protected override void OnInitialized()
     {
-        var accountPane = new IgbContentPane()
-            {
-                PaneType = DockManagerPaneType.ContentPane,
-                Header = "ACCOUNTS",
-                ContentId = "content1",
-                HeaderId = "accountHeader",
-                FloatingHeaderId = "accountFloatingHeader",
-                IsPinned = true,
-                AllowMaximize = false,
-                AllowClose = false,
-                AllowPinning = false
-            };
+        IgbDockManagerLayout layout1 = this.GetLayout1();
+        IgbDockManagerLayout layout2 = this.GetLayout2();
+        IgbDockManagerLayout layout3 = this.GetLayout3();
 
-        var cardsPane = new IgbContentPane()
-            {
-                PaneType = DockManagerPaneType.ContentPane,
-                Header = "PHYSICAL CARDS",
-                ContentId = "content5",
-                HeaderId = "cardsHeader",
-                FloatingHeaderId = "cardsFloatingHeader",
-                IsPinned = true,
-                AllowMaximize = false,
-                AllowPinning = false,
-                AllowClose = false
-            };
+        this.Layout = layout1;
+        layouts = new IgbDockManagerLayout[] { layout1, layout2, layout3 };        
+    }
 
-        var transactionsPane = new IgbContentPane()
+    public async void TimerElapsed(object sender, ElapsedEventArgs e)
+    {
+        double dockWidth = await JSRuntime.InvokeAsync<double>("getDockManagerOffset", null);
+
+        if (dockWidth != double.NaN)
+        {
+            IgbDockManagerLayout newLayout = null;
+
+            if (dockWidth >= this.MaxWidth)
+            {
+                newLayout = this.layouts[0];
+            }
+            else if (dockWidth < this.MaxWidth && dockWidth > this.MinWidth)
+            {
+                newLayout = this.layouts[1];
+            }
+            else if (dockWidth <= this.MinWidth)
+            {
+                newLayout = this.layouts[2];
+            }
+
+            if (newLayout != null && this.Layout != newLayout && this.dockManager != null)
+            {
+                this.Layout = newLayout;
+                this.dockManager.Layout = this.Layout;
+            }
+        }        
+    }    
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if(firstRender && this.RegisterIconRef != null)
+        {
+            await this.RegisterIconRef.EnsureReady();
+
+            var arrowDown = "<svg xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 0 24 24' width='24'><path d='M0 0h24v24H0V0z' fill='none'/><path d='M7 10l5 5 5-5H7z'/></svg>";
+            var arrowUp = "<svg xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 0 24 24' width='24'><path d='M0 0h24v24H0V0z' fill='none'/><path d='M7 14l5-5 5 5H7z'/></svg>";
+
+            await this.RegisterIconRef.RegisterIconFromTextAsync("arrow-down", arrowDown, "material");
+            await this.RegisterIconRef.RegisterIconFromTextAsync("arrow-up", arrowUp, "material");            
+
+            if(_timer == null)
+            {
+                _timer = new Timer();
+                _timer.AutoReset = true;
+                _timer.Elapsed += TimerElapsed;
+                _timer.Interval = 500;
+                _timer.Start();   
+            }            
+        } 
+    }
+
+    public IgbContentPane GetContentPane(string header, string contentId, string headerId, string floatingHeaderId)
+    {
+        var pane = new IgbContentPane()
         {
             PaneType = DockManagerPaneType.ContentPane,
-            Header = "TRANSACTIONS",
-            ContentId = "content3",
-            HeaderId = "transactionsHeader",
-            FloatingHeaderId = "transactionsFloatingHeader",
-            IsPinned = true,
-            AllowMaximize = false,
-            AllowClose = false,
-            AllowPinning = false
-        };
-
-        var popularStocksPane = new IgbContentPane()
-        {
-            PaneType = DockManagerPaneType.ContentPane,
-            Header = "POPULAR STOCKS",
-            ContentId = "content4",
-            FloatingHeaderId = "popularStocksFloatingHeader",
-            HeaderId = "popularStocksHeader",
+            Header = header,
+            ContentId = contentId,
+            HeaderId = headerId,
+            FloatingHeaderId = floatingHeaderId,
             IsPinned = true,
             AllowMaximize = false,
             AllowPinning = false,
             AllowClose = false
         };
 
-        var topMoversPane = new IgbContentPane()
-            {
-                PaneType = DockManagerPaneType.ContentPane,
-                Header = "TODAY'S TOP MOVERS",
-                ContentId = "content2",
-                HeaderId = "todayTopMovers",
-                FloatingHeaderId = "todayTopMoversFloatingHeader",
-                IsPinned = true,
-                AllowMaximize = false,
-                AllowClose = false,
-                AllowPinning = false
-            };
+        return pane;
+    }
+
+    public IgbDockManagerLayout GetLayout1()
+    {
+        var accountPane = this.GetContentPane("ACCOUNTS", "content1", "accountHeader", "accountFloatingHeader");
+        var topMoversPane = this.GetContentPane("TODAY'S TOP MOVERS", "content2", "todayTopMovers", "todayTopMoversFloatingHeader");        
+        var transactionsPane = this.GetContentPane("TRANSACTIONS", "content3", "transactionsHeader", "transactionsFloatingHeader");
+        var popularStocksPane = this.GetContentPane("POPULAR STOCKS", "content4", "popularStocksHeader", "popularStocksFloatingHeader");
+        var cardsPane = this.GetContentPane("PHYSICAL CARDS", "content5", "cardsHeader", "cardsFloatingHeader");        
 
         var splitPane1 = new IgbSplitPane()
         {
@@ -700,7 +729,132 @@ igc-card-content {
         IgbDockManagerLayout layout = new IgbDockManagerLayout();
         layout.RootPane = splitPane1;
 
-        this.Layout = layout;
+        return layout;
     }
 
+    public IgbDockManagerLayout GetLayout2()
+    {
+        var accountPane = this.GetContentPane("ACCOUNTS", "content1", "accountHeader", "accountFloatingHeader");
+        var topMoversPane = this.GetContentPane("TODAY'S TOP MOVERS", "content2", "todayTopMovers", "todayTopMoversFloatingHeader");        
+        var transactionsPane = this.GetContentPane("TRANSACTIONS", "content3", "transactionsHeader", "transactionsFloatingHeader");
+        var popularStocksPane = this.GetContentPane("POPULAR STOCKS", "content4", "popularStocksHeader", "popularStocksFloatingHeader");
+        var cardsPane = this.GetContentPane("PHYSICAL CARDS", "content5", "cardsHeader", "cardsFloatingHeader");        
+
+
+        IgbSplitPane splitPane1 = new IgbSplitPane()
+        {
+            PaneType = DockManagerPaneType.SplitPane,
+            Orientation = SplitPaneOrientation.Horizontal
+        };
+
+        IgbSplitPane splitPane2 = new IgbSplitPane()
+        {
+            PaneType = DockManagerPaneType.SplitPane,
+            Orientation = SplitPaneOrientation.Vertical,
+            Size = 300
+        };
+
+        IgbSplitPane splitPane3 = new IgbSplitPane()
+        {
+            PaneType = DockManagerPaneType.SplitPane,
+            Orientation = SplitPaneOrientation.Horizontal,
+            Size = 300
+        };
+
+        //Transactions Pane, TGP1
+        IgbSplitPane splitPane4 = new IgbSplitPane()
+        {
+            PaneType = DockManagerPaneType.SplitPane,
+            Orientation = SplitPaneOrientation.Vertical,
+            Size = 300
+        };
+
+        //Popular Stocks Pane
+        IgbSplitPane splitPane5 = new IgbSplitPane()
+        {
+            PaneType = DockManagerPaneType.SplitPane,
+            Orientation = SplitPaneOrientation.Vertical,
+            Size = 300
+        };
+
+        //Top Movers
+        IgbSplitPane splitPane6 = new IgbSplitPane()
+        {
+            PaneType = DockManagerPaneType.SplitPane,
+            Orientation = SplitPaneOrientation.Horizontal,
+            Size = 130
+        };
+
+        //AccountPane, CardsPane
+        IgbTabGroupPane tabGroupPane1 = new IgbTabGroupPane()
+        {
+                PaneType = DockManagerPaneType.TabGroupPane,
+                Size = 100
+        };
+
+        tabGroupPane1.Panes.Add(accountPane);
+        tabGroupPane1.Panes.Add(cardsPane);
+
+        splitPane4.Panes.Add(tabGroupPane1);
+        splitPane4.Panes.Add(transactionsPane);
+
+        splitPane5.Panes.Add(popularStocksPane);
+
+        splitPane6.Panes.Add(topMoversPane);
+
+        splitPane3.Panes.Add(splitPane4);
+        splitPane3.Panes.Add(splitPane5);
+
+        splitPane2.Panes.Add(splitPane3);
+        splitPane2.Panes.Add(splitPane6);
+
+        splitPane1.Panes.Add(splitPane2);
+
+        IgbDockManagerLayout layout = new IgbDockManagerLayout();
+        layout.RootPane = splitPane1;
+
+        return layout;
+    }
+
+    public IgbDockManagerLayout GetLayout3()
+    {
+        var accountPane = this.GetContentPane("ACCOUNTS", "content1", "accountHeader", "accountFloatingHeader");
+        var topMoversPane = this.GetContentPane("TODAY'S TOP MOVERS", "content2", "todayTopMovers", "todayTopMoversFloatingHeader");
+        var transactionsPane = this.GetContentPane("TRANSACTIONS", "content3", "transactionsHeader", "transactionsFloatingHeader");
+        var popularStocksPane = this.GetContentPane("POPULAR STOCKS", "content4", "popularStocksHeader", "popularStocksFloatingHeader");
+        var cardsPane = this.GetContentPane("PHYSICAL CARDS", "content5", "cardsHeader", "cardsFloatingHeader");
+
+        IgbSplitPane splitPane1 = new IgbSplitPane()
+        {
+            PaneType = DockManagerPaneType.SplitPane,
+            Orientation = SplitPaneOrientation.Vertical
+        };
+
+        IgbTabGroupPane tabGroupPane1 = new IgbTabGroupPane()
+        {
+            PaneType = DockManagerPaneType.TabGroupPane,
+            Size = 200
+        };
+
+        IgbTabGroupPane tabGroupPane2 = new IgbTabGroupPane()
+        {
+            PaneType = DockManagerPaneType.TabGroupPane,
+            Size = 300
+        };
+
+        tabGroupPane1.Panes.Add(accountPane);
+        tabGroupPane1.Panes.Add(cardsPane);
+        tabGroupPane1.Panes.Add(transactionsPane);
+
+        tabGroupPane2.Panes.Add(popularStocksPane);
+        tabGroupPane2.Panes.Add(topMoversPane);
+
+        splitPane1.Panes.Add(tabGroupPane1);
+        splitPane1.Panes.Add(tabGroupPane2);
+
+        IgbDockManagerLayout layout = new IgbDockManagerLayout();
+        layout.RootPane = splitPane1;
+
+        return layout;
+    }
 }
