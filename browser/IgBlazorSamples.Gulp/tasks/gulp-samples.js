@@ -400,7 +400,7 @@ function copySampleScripts(cb, outputPath, indexName) {
                         if (file.Name.indexOf("3") >= 0) fileRequiresLoading = false;
                     }
                     if (fileRequiresLoading) {
-                        insertScriptFiles.push('<script type="module" src="sb/' + fileName + '"></script>');
+                        insertScriptFiles.push('<script src="sb/' + fileName + '"></script>');
                     }
                 } else {
                     insertScriptFiles.push('<script src="sb/' + fileName + '"></script>');
