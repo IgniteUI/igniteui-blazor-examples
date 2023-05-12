@@ -1,11 +1,17 @@
 @using IgniteUI.Blazor.Controls
-
+<style>
+    .grid {
+        --igx-grid-summary-background-color: #e0f3ff;
+        --igx-grid-summary-focus-background-color: rgba( #94d1f7, .3 );
+        --igx-grid-summary-label-color: rgb(228, 27, 117);
+        --igx-grid-summary-result-color: black;
+    }
+</style>
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
         Name="PropertyEditor"
         @ref="propertyEditor"
-
         DescriptionType="WebGrid"
         IsHorizontal="true"
         IsWrappingEnabled="true">
@@ -30,6 +36,7 @@
         AutoGenerate="false"
         Name="grid"
         @ref="grid"
+        Class="grid"
         Data="InvoicesData"
         GroupingExpressions="GroupingExpression1">
             <IgbColumn
