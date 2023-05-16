@@ -21,7 +21,7 @@ function inputChange() {
 }
 
 
-igRegisterScript("WebGridClipboardOperationsColumnInit", (e) => {
+igRegisterScript("WebGridClipboardCustomOperationsColumnInit", (e) => {
     var column = e.detail;
     column.formatter = (e) => { return "** " + e + " **" };
     column.header = "🎉" + column.field;
