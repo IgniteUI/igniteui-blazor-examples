@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Infragistics.Samples
 {
-    public class CardModel
+    public class StepperCardModel
     {
         public int ID { get; set; }
         public string Img { get; set; }
@@ -13,10 +13,10 @@ namespace Infragistics.Samples
         public string Offer { get; set; }
         public string Type { get; set; }
         public string Description { get; set; }
-        public static CardModel[] getCards()
+        public static StepperCardModel[] getCards()
         {
-            return new CardModel[] {
-                        new CardModel() {
+            return new StepperCardModel[] {
+                        new StepperCardModel() {
                             ID = 1,
                             Img = "https://www.infragistics.com/angular-demos/assets/images/stepper/card-blue.png",
                             Price = 400,
@@ -24,7 +24,7 @@ namespace Infragistics.Samples
                             Type = "Business Customized Advanced",
                             Description = "Cash Mastercard"
                         },
-                        new CardModel() {
+                        new StepperCardModel() {
                             ID = 2,
                             Img = "https://www.infragistics.com/angular-demos/assets/images/stepper/card-red.png",
                             Price = 600,
@@ -32,7 +32,7 @@ namespace Infragistics.Samples
                             Type = "Business Travel Advanced",
                             Description = "World Mastercard"
                         },
-                        new CardModel() {
+                        new StepperCardModel() {
                             ID = 3,
                             Img = "https://www.infragistics.com/angular-demos/assets/images/stepper/card-gold.png",
                             Price = 500,

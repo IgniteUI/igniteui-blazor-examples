@@ -23,8 +23,8 @@
             <span slot="title">Billing address</span>
             <span slot="subtitle">(optional)</span>            
             
-            <IgbInput DisplayType=InputType.Text Label="City"></IgbInput>
-            <IgbInput DisplayType=InputType.Text Label="Street"></IgbInput>
+            <IgbInput DisplayType=InputType.Text Label="City" @bind-Value="@user.City2" @oninput="@(e => { user.City2 = e.Value.ToString(); })"></IgbInput>
+            <IgbInput DisplayType=InputType.Text Label="Street" @bind-Value="@user.Street2" @oninput="@(e => { user.Street2 = e.Value.ToString(); })"></IgbInput>
             <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Previous">PREVIOUS</IgbButton>
             <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Next">NEXT</IgbButton>
         </IgbStep>
@@ -53,7 +53,7 @@
     public bool IsValid = false;
 
     private IgbStepper stepper;
-    private UserModel user = new UserModel();
+    private StepperUserModel user = new StepperUserModel();
 
 
     public void OnSwitchChange(IgbComponentBoolValueChangedEventArgs args)
