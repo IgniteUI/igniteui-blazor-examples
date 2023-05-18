@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Infragistics.Samples
 {
-    public class UserModel
+    public class StepperUserModel
     {
         public string FullName { get; set; }
         public string Email { get; set; }

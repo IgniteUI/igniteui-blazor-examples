@@ -43,6 +43,7 @@ var sampleSource = [
     igConfig.SamplesCopyPath + '/charts/sparkline/**/App.razor',
     igConfig.SamplesCopyPath + '/charts/tree-map/**/App.razor',
     igConfig.SamplesCopyPath + '/charts/zoomslider/**/App.razor',
+
     igConfig.SamplesCopyPath + '/maps/geo-map/**/App.razor',
     igConfig.SamplesCopyPath + '/gauges/bullet-graph/**/App.razor',
     igConfig.SamplesCopyPath + '/gauges/linear-gauge/**/App.razor',
@@ -74,12 +75,13 @@ var sampleSource = [
     igConfig.SamplesCopyPath + '/inputs/switches/**/App.razor',
 
     igConfig.SamplesCopyPath + '/layouts/accordion/**/App.razor',
-    igConfig.SamplesCopyPath + '/layouts/expansion-panel/**/App.razor',
     igConfig.SamplesCopyPath + '/layouts/avatar/**/App.razor',
     igConfig.SamplesCopyPath + '/layouts/card/**/App.razor',
-    igConfig.SamplesCopyPath + '/layouts/icon/**/App.razor',
-    igConfig.SamplesCopyPath + '/layouts/tabs/**/App.razor',
+    igConfig.SamplesCopyPath + '/layouts/expansion-panel/**/App.razor',
     igConfig.SamplesCopyPath + '/layouts/dock-manager/**/App.razor',
+    igConfig.SamplesCopyPath + '/layouts/icon/**/App.razor',
+    igConfig.SamplesCopyPath + '/layouts/stepper/**/App.razor',
+    igConfig.SamplesCopyPath + '/layouts/tabs/**/App.razor',
 
     igConfig.SamplesCopyPath + '/menus/**/App.razor',
     igConfig.SamplesCopyPath + '/scheduling/**/App.razor',
@@ -400,7 +402,7 @@ function copySampleScripts(cb, outputPath, indexName) {
                         if (file.Name.indexOf("3") >= 0) fileRequiresLoading = false;
                     }
                     if (fileRequiresLoading) {
-                        insertScriptFiles.push('<script type="module" src="sb/' + fileName + '"></script>');
+                        insertScriptFiles.push('<script src="sb/' + fileName + '"></script>');
                     }
                 } else {
                     insertScriptFiles.push('<script src="sb/' + fileName + '"></script>');
