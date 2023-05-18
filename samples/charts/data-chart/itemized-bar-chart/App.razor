@@ -1,0 +1,153 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="legend-title">
+        Market Capitalization of Technology Companies
+    </div>
+    <div class="legend">
+        <IgbLegend
+        Name="Legend"
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
+        </IgbLegend>
+
+    </div>
+
+    <div class="container vertical fill">
+        <IgbDataChart
+        Name="chart"
+        @ref="chart"
+        ChartTitle="Market Capitalization of Technology Companies"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false">
+            <IgbCategoryYAxis
+            Name="yAxis"
+            @ref="yAxis"
+            DataSource="LocalData"
+            Label="Category"
+            IsInverted="true"
+            Gap="0.75"
+            Overlap="1">
+            </IgbCategoryYAxis>
+
+            <IgbNumericXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            MinimumValue="0"
+            MaximumValue="220">
+            </IgbNumericXAxis>
+
+            <IgbBarSeries
+            Name="BarSeries1"
+            @ref="barSeries1"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            ValueMemberPath="V1"
+            Title="Apple"
+            DataSource="LocalData"
+            ShowDefaultTooltip="true">
+            </IgbBarSeries>
+
+            <IgbBarSeries
+            Name="BarSeries2"
+            @ref="barSeries2"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            ValueMemberPath="V2"
+            Title="Microsoft"
+            DataSource="LocalData"
+            ShowDefaultTooltip="true">
+            </IgbBarSeries>
+
+            <IgbBarSeries
+            Name="BarSeries3"
+            @ref="barSeries3"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            ValueMemberPath="V3"
+            Title="Google"
+            DataSource="LocalData"
+            ShowDefaultTooltip="true">
+            </IgbBarSeries>
+
+            <IgbBarSeries
+            Name="BarSeries4"
+            @ref="barSeries4"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            ValueMemberPath="V4"
+            Title="NVidia"
+            DataSource="LocalData"
+            ShowDefaultTooltip="true">
+            </IgbBarSeries>
+
+            <IgbBarSeries
+            Name="BarSeries5"
+            @ref="barSeries5"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            ValueMemberPath="V5"
+            Title="Tesla"
+            DataSource="LocalData"
+            ShowDefaultTooltip="true">
+            </IgbBarSeries>
+
+            <IgbDataToolTipLayer
+            Name="DataToolTipLayer"
+            @ref="dataToolTipLayer">
+            </IgbDataToolTipLayer>
+
+        </IgbDataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var chart = this.chart;
+        var yAxis = this.yAxis;
+        var xAxis = this.xAxis;
+        var barSeries1 = this.barSeries1;
+        var barSeries2 = this.barSeries2;
+        var barSeries3 = this.barSeries3;
+        var barSeries4 = this.barSeries4;
+        var barSeries5 = this.barSeries5;
+        var dataToolTipLayer = this.dataToolTipLayer;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbLegend legend;
+    private IgbDataChart chart;
+    private IgbCategoryYAxis yAxis;
+    private IgbNumericXAxis xAxis;
+    private IgbBarSeries barSeries1;
+    private IgbBarSeries barSeries2;
+    private IgbBarSeries barSeries3;
+    private IgbBarSeries barSeries4;
+    private IgbBarSeries barSeries5;
+    private IgbDataToolTipLayer dataToolTipLayer;
+
+    private LocalData _localData = null;
+    public LocalData LocalData
+    {
+        get
+        {
+            if (_localData == null)
+            {
+                _localData = new LocalData();
+            }
+            return _localData;
+        }
+    }
+
+}
