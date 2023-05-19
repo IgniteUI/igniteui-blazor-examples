@@ -1,6 +1,213 @@
 @using IgniteUI.Blazor.Controls
 @using System.Text.RegularExpressions;
 
+<style>
+    .cards-wrapper,
+    .flex-form,
+    .sample-row,
+    .form-row,
+    .success-message,
+    .card-content-wrapper {
+        display: flex;
+    }
+
+        .flex-form,
+        .form-row igc-input,
+        .form-row igc-mask-input,
+        .form-row igc-select {
+            flex: 1;
+        }
+
+    .card-content-wrapper {
+        flex-direction: column;
+    }
+
+    .sample-row {
+        gap: 2rem;
+    }
+
+    .flex-form {
+        flex-direction: column;
+    }
+
+    .form-row {
+        gap: 1rem;
+    }
+
+    .first-step-content {
+        width: fit-content;
+        margin: 0 auto;
+    }
+
+    .sample-step-title {
+        font-size: 1.2rem;
+        letter-spacing: 0;
+        font-weight: 500;
+        line-height: normal;
+        margin-bottom: 1.5rem;
+    }
+
+    .cards-wrapper {
+        gap: 1.8rem;
+        justify-content: center;
+    }
+
+    .card-wrapper {
+        max-width: 320px;
+        min-width: 220px;
+        position: relative;
+        z-index: 12;
+    }
+
+        .card-wrapper igc-card {
+            height: 100%;
+        }
+
+    igc-card {
+        padding: 1rem;
+    }
+
+    .card-wrapper.card-first-step {
+        cursor: pointer;
+    }
+
+    igc-card-content {
+        text-align: center;
+        padding: 1.8rem;
+    }
+
+        igc-card-content p {
+            font-size: 1rem;
+            line-height: 1.5rem;
+        }
+
+    .card-price {
+        display: block;
+        font-size: 3rem;
+        color: #e41c77;
+        margin-bottom: 0.5rem;
+    }
+
+        .card-price::before {
+            content: "$";
+            font-size: 2rem;
+            margin-right: 0.4rem;
+            position: relative;
+            top: -0.8rem;
+        }
+
+    .card-offer {
+        display: block;
+        font-size: rem(14px);
+        font-weight: 500;
+        margin: 0 rem(8px);
+        color: #e41c77;
+    }
+
+    .selected-card igc-card {
+        border: 2px solid rgb(0, 153, 255);
+        position: relative;
+        overflow: initial;
+    }
+
+    igc-badge {
+        position: absolute;
+        z-index: 1;
+        top: -0.7rem;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        width: fit-content;
+    }
+
+    igc-checkbox,
+    label {
+        margin-top: 0.5rem;
+    }
+
+    .error-message {
+        margin: 0.2rem;
+        font-size: 0.8rem;
+        color: #ff144b;
+    }
+
+    .success-message {
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+        .success-message igc-icon {
+            --size: 48px;
+            color: #309331;
+        }
+
+        .success-message p {
+            margin: 0;
+        }
+
+    .success-text {
+        flex-direction: column;
+    }
+
+        .success-text .sample-step-title {
+            margin: 0;
+        }
+
+    .card-horizontal .card-wrapper {
+        width: fit-content;
+        max-width: none;
+    }
+
+    .card-horizontal igc-card {
+        height: 230px;
+        width: 600px;
+        justify-content: center;
+    }
+
+    .card-horizontal-small igc-card {
+        width: 500px;
+    }
+
+    .card-horizontal .card-content-wrapper {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .card-horizontal igc-card-media {
+        height: 150px;
+        width: 100%;
+    }
+
+    .card-horizontal-small igc-card-media {
+        height: 100px;
+        width: 100%;
+    }
+
+    .card-horizontal igc-card-media img {
+        object-fit: contain;
+    }
+
+    .card-horizontal-small igc-card-content {
+        padding: 1rem;
+    }
+
+    .card-horizontal igc-card div:first-child {
+        padding-left: 1rem;
+    }
+
+    .required {
+        margin-left: 0.5rem;
+        color: #ff144b;
+    }
+
+    .terms-and-conditions {
+        margin-left: 0.5rem;
+        color: #09f;
+        text-decoration: none;
+    }
+</style>
+
 <div class="container vertical">
     <IgbStepper Name="stepper" @ref="stepper" Linear="true">
         <IgbStep Invalid="@(selectedCard.ID == 0)" Complete="@(selectedCard.ID != 0)">
