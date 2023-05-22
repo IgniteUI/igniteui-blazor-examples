@@ -610,7 +610,7 @@ class Transformer {
                 // }
 
             } else if (file.isPublicCSS()) {
-                console.log("got PublicFiles_CSS=" + file.Path);
+                // console.log("got PublicFiles_CSS=" + file.Path);
                 info.PublicFiles_CSS.push(file);
 
             } else if (file.isPublicJS()) {
@@ -1028,8 +1028,8 @@ class Transformer {
                     }
 
                     if (cssContent !== defaultCSS) {
-                        // console.log("lintRazor injecting \n" + cssContent)
-                        console.log("lintRazor injecting " + css.Path)
+                        // console.log("GULP injecting \n" + cssContent)
+                        console.log("GULP injecting CSS from " + css.Path)
                         stylingLines.push('<style>');
                         stylingLines.push(cssContent);
                         stylingLines.push('</style>');
