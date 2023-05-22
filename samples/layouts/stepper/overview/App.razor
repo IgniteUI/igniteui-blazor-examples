@@ -1,0 +1,263 @@
+@using IgniteUI.Blazor.Controls
+@using System.Text.RegularExpressions;
+
+<div class="container vertical">
+    <IgbStepper Name="stepper" @ref="stepper" Linear="true">
+        <IgbStep Invalid="@(selectedCard.ID == 0)" Complete="@(selectedCard.ID != 0)">
+            <span slot="title">Card Type</span>
+
+            <div class="first-step-content">
+                <h2 class="sample-step-title">Choose your business credit card</h2>
+                <div class="cards-wrapper">
+                    @foreach (var card in this.cards)
+                    {
+                       <div class="card-wrapper card-first-step @selectedCardCss(card.ID)">
+                           <IgbCard @onclick="() => selectCard(card.ID)">
+                                @if(selectedCard.ID == card.ID)
+                                {                                    
+                                  <IgbBadge>Your current choice</IgbBadge>
+                                }
+                               <div class="card-content-wrapper">
+                                    <IgbCardMedia Height="10rem">
+                                        <img class="card-img" src="@card.Img">
+                                    </IgbCardMedia>
+                       
+                                    <IgbCardContent>
+                                        <span class="card-price">@(card.Price)</span>
+                                        <span class="card-offer">@(card.Offer)</span>
+                                        <p class="card-type">@(card.Type)</p>
+                                        <p class="card-description">@card.Description)</p>              
+                                    </IgbCardContent>   
+                                </div>
+                            </IgbCard>   
+                        </div>
+                    }
+                </div>
+            </div>
+            
+        </IgbStep>
+        <IgbStep Invalid="@(!Validate(1))" Complete="@Validate(1)" >
+            <span slot="title">Business Information</span>
+            <div class="sample-row">
+                <div class="flex-form">
+                    <IgbInput Required="true" DisplayType=InputType.Text Label="Name" @bind-Value="@businessInformation.Name" @oninput="@(e => { businessInformation.Name = e.Value.ToString(); })"></IgbInput>
+                    <IgbInput Required="true" DisplayType=InputType.Text Label="Physical Address" @bind-Value="@businessInformation.PhysicalAddress" @oninput="@(e => { businessInformation.PhysicalAddress = e.Value.ToString(); })"></IgbInput>
+                    <div class="form-row">
+                        <IgbInput Required="true" DisplayType=InputType.Text Label="City" @bind-Value="@businessInformation.City" @oninput="@(e => { businessInformation.City = e.Value.ToString(); })"></IgbInput>
+                        <IgbSelect Label="State" Required="true" Change="e => {  businessInformation.State = (e.Detail as IgbSelectItem).Value.ToString(); }">
+                            <IgbSelectItem Value="Nevada">Nevada</IgbSelectItem>
+                            <IgbSelectItem Value="NewYork">New York</IgbSelectItem>
+                            <IgbSelectItem Value="NewJersey">New Jersey</IgbSelectItem>
+                            <IgbSelectItem Value="Ohio">Ohio</IgbSelectItem>
+                            <IgbSelectItem Value="Texas">Texas</IgbSelectItem>
+                        </IgbSelect>
+                        <IgbMaskInput Required="true" Label="ZIP Code" Placeholder="#####" Mask="00000" @bind-Value="@businessInformation.Zip" @oninput="@(e => { businessInformation.Zip = e.Value.ToString(); })"></IgbMaskInput>
+                    </div>
+                    <IgbCheckbox Change="@(e => { businessInformation.DifferentAddress = e.Detail; })">The mailing address is different than the business physical address</IgbCheckbox>
+                    <IgbMaskInput Required="true" Label="Federal Tax Id Number" Placeholder="9##-##-####" Mask="\900-00-0000" @bind-Value="@businessInformation.TaxIDNumber" @oninput="@(e => checkTaxIDNumberValidity('9' + e.Value.ToString()))"></IgbMaskInput>
+                    @if (!IsValidTaxIDNumber)
+                    {
+                        <p class="error-message">The Federal Tax ID Number should begin with 9</p>  
+                    }
+                    <label>Does this business operate outside the United States?<span class="required">*</span></label>
+                    <IgbRadioGroup>
+                        <IgbRadio Required="true" Value="yes" Change="OnBusinessRadioChange">Yes.</IgbRadio>
+                        <IgbRadio Required="true" Value="no" Change="OnBusinessRadioChange">No.</IgbRadio>                
+                    </IgbRadioGroup>
+                </div>
+                <div class="selected-card-wrapper">
+                    @if(selectedCard.ID != 0)
+                    {
+                        @CardTemplate(selectedCard)
+                    }
+                </div>
+            </div>
+            <IgbButton DisplayType="ButtonBaseType.Button" @onclick="@(() => {stepper.Prev();})">PREVIOUS</IgbButton>
+            <IgbButton DisplayType="ButtonBaseType.Button" @onclick="@(() => {stepper.Next();})" Disabled="@(!Validate(1))">NEXT</IgbButton>
+        </IgbStep>
+        <IgbStep Invalid="@(!Validate(2))" Complete="@Validate(2)">
+            <span slot="title">Personal Information</span>
+             <div class="sample-row">
+                <div class="flex-form">
+                    <IgbInput Required="true" DisplayType=InputType.Text Label="First Name" @bind-Value="@personalInformation.FirstName" @oninput="@(e => { personalInformation.FirstName = e.Value.ToString(); })"></IgbInput>
+                    <IgbInput Required="true" DisplayType=InputType.Text Label="Last Name" @bind-Value="@personalInformation.LastName" @oninput="@(e => { personalInformation.LastName = e.Value.ToString(); })"></IgbInput>
+                    <IgbInput Required="true" DisplayType=InputType.Text Label="Job Title" @bind-Value="@personalInformation.JobTitle" @oninput="@(e => { personalInformation.JobTitle = e.Value.ToString(); })"></IgbInput>
+                    <IgbInput Required="true" DisplayType=InputType.Text Label="Phone Number" @bind-Value="@personalInformation.PhoneNumber" @oninput="@(e => { personalInformation.PhoneNumber = e.Value.ToString(); })"></IgbInput>
+                    <IgbInput Required="true" DisplayType=InputType.Email Label="Email" @bind-Value="@personalInformation.Email" @oninput="@(e => { personalInformation.Email = e.Value.ToString(); })"></IgbInput>
+                    <IgbCheckbox Required="true" Change="@(e => { personalInformation.Authorization = e.Detail; })"> I confirm that I am authorized to borrow on behalf of this business.<span class="required">*</span> </IgbCheckbox>
+                    <IgbCheckbox Required="true" Change="@(e => { personalInformation.AgreementAccepted = e.Detail; })"> I agree with the<span class="required">*</span><a class="terms-and-conditions">Terms and Conditions</a> </IgbCheckbox>
+                </div>
+                 <div class="selected-card-wrapper">
+                    @if(selectedCard.ID != 0)
+                    {
+                        @CardTemplate(selectedCard)
+                    }
+                </div>
+            </div>
+
+            <IgbButton DisplayType="ButtonBaseType.Button" @onclick="@(() => {stepper.Prev();})">PREVIOUS</IgbButton>
+            <IgbButton DisplayType="ButtonBaseType.Button" @onclick="@(() => {stepper.Next();})" Disabled="@(!Validate(2))">NEXT</IgbButton>
+        </IgbStep>
+        <IgbStep Invalid="@(!Validate(3))" Complete="@((!businessInformation.DifferentAddress && Validate(3)) || @Validate(2))" Disabled="@(!businessInformation.DifferentAddress)">
+            <span slot="title">Shipping Details</span>
+            <div class="sample-row">
+                <div class="flex-form">
+                    <IgbInput Required="true" DisplayType=InputType.Text Label="First Name" @bind-Value="@shippingDetails.FirstName" @oninput="@(e => { shippingDetails.FirstName = e.Value.ToString(); })"></IgbInput>
+                    <IgbInput Required="true" DisplayType=InputType.Text Label="Last Name" @bind-Value="@shippingDetails.LastName" @oninput="@(e => { shippingDetails.LastName = e.Value.ToString(); })"></IgbInput>
+                    <IgbInput Required="true" DisplayType=InputType.Text Label="Mailing Address" @bind-Value="@shippingDetails.MailingAddress" @oninput="@(e => { shippingDetails.MailingAddress = e.Value.ToString(); })"></IgbInput>
+                    <div class="form-row">
+                        <IgbInput Required="true" DisplayType=InputType.Text Label="City" @bind-Value="@shippingDetails.City" @oninput="@(e => { shippingDetails.City = e.Value.ToString(); })"></IgbInput>
+                        <IgbSelect Label="State" Required="true" Change="e => { shippingDetails.State = (e.Detail as IgbSelectItem).Value.ToString(); }">
+                            <IgbSelectItem Value="Nevada">Nevada</IgbSelectItem>
+                            <IgbSelectItem Value="NewYork">New York</IgbSelectItem>
+                            <IgbSelectItem Value="NewJersey">New Jersey</IgbSelectItem>
+                            <IgbSelectItem Value="Ohio">Ohio</IgbSelectItem>
+                            <IgbSelectItem Value="Texas">Texas</IgbSelectItem>
+                        </IgbSelect>
+                        <IgbMaskInput Required="true" Label="ZIP Code" Placeholder="#####" Mask="00000" @bind-Value="@shippingDetails.Zip" @oninput="@(e => { shippingDetails.Zip = e.Value.ToString(); })"></IgbMaskInput>
+                    </div>
+                </div>
+                 <div class="selected-card-wrapper card-horizontal card-horizontal-small">
+                    @if(selectedCard.ID != 0)
+                    {
+                         @CardTemplate(selectedCard)
+                    }
+                </div>
+            </div>
+
+            <IgbButton DisplayType="ButtonBaseType.Button" @onclick="@(() => {stepper.Prev();})">PREVIOUS</IgbButton>
+            <IgbButton DisplayType="ButtonBaseType.Button" @onclick="@(() => {stepper.Next();})" Disabled="@(!Validate(3))">NEXT</IgbButton>
+        </IgbStep>
+        <IgbStep>
+            <span slot="title">Confirmation</span>
+
+            <div class="success-message">
+                <div class="success-marker">
+                    <IgbIcon @ref="IconRef" Size="SizableComponentSize.Large" Name="check" Collection="material"></IgbIcon>
+                </div>
+                <div class="success-text">
+                    <h2 class="sample-step-title">Your application for a business credit card has been sent successfully!</h2>
+                    <p>We will contact you within a few days.</p>
+                </div>
+             </div>
+             <div class="selected-card-wrapper card-horizontal card-horizontal-small">
+                    @if(selectedCard.ID != 0)
+                    {
+                         @CardTemplate(selectedCard)
+                    }
+                </div>
+                <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Reset">RESET</IgbButton>
+        </IgbStep>
+    </IgbStepper>
+</div>
+
+@code {
+    public IgbStepper stepper;
+    public IgbForm form1;
+    public IgbIcon IconRef { get; set; }
+    public StepperCardModel selectedCard = new StepperCardModel();
+    public BusinessInformationModel businessInformation = new BusinessInformationModel();
+    public PersonalInformationModel personalInformation = new PersonalInformationModel();
+    public ShippingDetailsModel shippingDetails = new ShippingDetailsModel();
+    public bool IsValidTaxIDNumber = true;
+    const string checkIcon = "<svg xmlns='http://www.w3.org/2000/svg' height='48' width='48'><path d='M21.05 33.1 35.2 18.95l-2.3-2.25-11.85 11.85-6-6-2.25 2.25ZM24 44q-4.1 0-7.75-1.575-3.65-1.575-6.375-4.3-2.725-2.725-4.3-6.375Q4 28.1 4 24q0-4.15 1.575-7.8 1.575-3.65 4.3-6.35 2.725-2.7 6.375-4.275Q19.9 4 24 4q4.15 0 7.8 1.575 3.65 1.575 6.35 4.275 2.7 2.7 4.275 6.35Q44 19.85 44 24q0 4.1-1.575 7.75-1.575 3.65-4.275 6.375t-6.35 4.3Q28.15 44 24 44Z'/></svg>";
+    public string EmailPattern = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|" + @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)" + @"@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$";
+    public StepperCardModel[] cards = StepperCardModel.getCards();
+    public RenderFragment<StepperCardModel> CardTemplate = (selectedCard) => 
+    @<div class="card-wrapper">
+        <IgbCard>
+            <div class="card-content-wrapper">
+                <IgbCardMedia Height="10rem">
+                    <img class="card-img" src="@selectedCard.Img">
+                </IgbCardMedia>
+                       
+                <IgbCardContent>
+                    <span class="card-price">@(selectedCard.Price)</span>
+                    <span class="card-offer">@(selectedCard.Offer)</span>
+                    <p class="card-type">@(selectedCard.Type)</p>
+                    <p class="card-description">@selectedCard.Description)</p>              
+                </IgbCardContent>   
+            </div>
+        </IgbCard>  
+    </div>
+    ;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        if (this.IconRef != null && firstRender)
+        {
+            this.IconRef.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.IconRef.RegisterIconFromText("check", checkIcon, "material");
+            }));
+        }
+    }
+
+    public bool Validate(int stepIndex)
+    {
+        bool isValid = false;
+
+        switch(stepIndex) {
+            case 1:   
+                isValid = !(String.IsNullOrEmpty(businessInformation.Name) || String.IsNullOrEmpty(businessInformation.PhysicalAddress)
+                    || String.IsNullOrEmpty(businessInformation.City) || String.IsNullOrEmpty(businessInformation.State)
+                    || String.IsNullOrEmpty(businessInformation.Zip) || !IsValidTaxIDNumber
+                    || businessInformation.NonUSBusinessActivity == 0);
+                break;
+            case 2 :  
+                isValid = !(String.IsNullOrEmpty(personalInformation.FirstName) || String.IsNullOrEmpty(personalInformation.LastName)
+                    || String.IsNullOrEmpty(personalInformation.JobTitle) || String.IsNullOrEmpty(personalInformation.PhoneNumber)
+                    || String.IsNullOrEmpty(personalInformation.Email) || !Regex.IsMatch(personalInformation.Email, EmailPattern, RegexOptions.IgnoreCase) 
+                    || !personalInformation.AgreementAccepted || !personalInformation.Authorization);
+                break;
+            case 3:
+                isValid = !(String.IsNullOrEmpty(shippingDetails.FirstName) || String.IsNullOrEmpty(shippingDetails.LastName)
+                    || String.IsNullOrEmpty(shippingDetails.MailingAddress) || !Regex.IsMatch(shippingDetails.MailingAddress, EmailPattern, RegexOptions.IgnoreCase) 
+                    || String.IsNullOrEmpty(shippingDetails.City) || String.IsNullOrEmpty(shippingDetails.State)
+                    || String.IsNullOrEmpty(shippingDetails.Zip));
+                break;
+        }
+
+        return isValid;
+    }
+
+    public void selectCard(int cardID)
+    {
+        selectedCard = Array.Find(this.cards, card => card.ID == cardID);
+        stepper.NavigateTo(1);
+    }
+
+    public string selectedCardCss(int cardID){
+        return cardID == selectedCard.ID ? "selected-card" : "";
+    }
+
+    public void OnBusinessRadioChange(IgbComponentBoolValueChangedEventArgs args)
+    {
+        businessInformation.NonUSBusinessActivity = (args.Parent as IgbRadio).Value.ToString() == "yes" ? 2 : 1;
+    }
+
+    public void checkTaxIDNumberValidity(string value)
+    {
+        if (value.StartsWith('9') && value.Length == 9)
+        {
+            businessInformation.TaxIDNumber = value;
+            IsValidTaxIDNumber = true;
+        }
+        else
+        {
+            IsValidTaxIDNumber = false;
+        }
+    }
+
+    public void Reset()
+    {
+        this.stepper.Reset();
+        this.selectedCard = new StepperCardModel();
+        this.businessInformation = new BusinessInformationModel();
+        this.personalInformation = new PersonalInformationModel();
+        this.shippingDetails = new ShippingDetailsModel();
+    }    
+
+}

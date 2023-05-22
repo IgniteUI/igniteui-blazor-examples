@@ -1,0 +1,43 @@
+@using IgniteUI.Blazor.Controls
+
+<style>
+    igc-dialog::part(content) {
+        background: #011627;
+        color: white;
+    }
+
+    igc-dialog::part(title),
+    igc-dialog::part(footer) {
+        background: #011627;
+        color: #ECAA53;
+    }
+</style>
+
+<div class="container vertical">
+    <IgbButton @onclick="OnDialogShow" Variant=@ButtonVariant.Contained>Show Dialog</IgbButton>
+    <IgbDialog @ref="DialogRef" Title="Confirmation">
+        <p>Are you sure you want to delete the Annual_Report_2016.pdf and Annual_Report_2017.pdf files?</p>
+        <IgbButton slot="footer" @onclick="OnDialogHide" Variant=@ButtonVariant.Flat>Cancel</IgbButton>
+        <IgbButton slot="footer" @onclick="OnDialogHide" Variant=@ButtonVariant.Flat>OK</IgbButton>
+    </IgbDialog>
+</div>
+
+@code {
+    public IgbDialog DialogRef;
+
+    public void OnDialogShow()
+    {
+        if (this.DialogRef != null)
+        {
+            this.DialogRef.Show();
+        }
+    }
+
+    public void OnDialogHide()
+    {
+        if (this.DialogRef != null)
+        {
+            this.DialogRef.Hide();
+        }
+    }
+}

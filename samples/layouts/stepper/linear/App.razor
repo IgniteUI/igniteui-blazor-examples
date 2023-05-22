@@ -1,0 +1,93 @@
+@using IgniteUI.Blazor.Controls
+@using System.Text.RegularExpressions;
+
+<div class="container vertical">
+    <IgbSwitch Change="OnSwitchChange">Linear</IgbSwitch>
+    <IgbStepper Name="stepper" @ref="stepper" Linear="@IsLinear">
+        <IgbStep Invalid="@(IsLinear && (String.IsNullOrEmpty(user.FullName) || IsInvalidEmail(user.Email)))">
+            <span slot="title">Personal Info</span>
+            
+            <IgbInput Required="true" DisplayType=InputType.Text Label="Full Name" @bind-Value="@user.FullName" @oninput="@(e => { user.FullName = e.Value.ToString(); })"></IgbInput>
+            <IgbInput Required="true" DisplayType=InputType.Email Label="Email" @bind-Value="user.Email" @oninput="@(e => { user.Email = e.Value.ToString(); })"></IgbInput>
+            <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Next" Disabled="@(IsLinear && (String.IsNullOrEmpty(user.FullName) || IsInvalidEmail(user.Email)))">NEXT</IgbButton>
+        </IgbStep>
+        <IgbStep Invalid="@(IsLinear && (String.IsNullOrEmpty(user.City) || String.IsNullOrEmpty(user.Street)))">
+            <span slot="title">Delivery address</span>
+            
+            <IgbInput Required="true" DisplayType=InputType.Text Label="City" @bind-Value="@user.City" @oninput="@(e => { user.City = e.Value.ToString(); })"></IgbInput>
+            <IgbInput Required="true" DisplayType=InputType.Text Label="Street" @bind-Value="@user.Street" @oninput="@(e => { user.Street = e.Value.ToString(); })"></IgbInput>
+            <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Previous">PREVIOUS</IgbButton>
+            <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Next" Disabled="@(IsLinear && (String.IsNullOrEmpty(user.City) || String.IsNullOrEmpty(user.Street)))">NEXT</IgbButton>
+        </IgbStep>
+        <IgbStep Optional="true">
+            <span slot="title">Billing address</span>
+            <span slot="subtitle">(optional)</span>            
+            
+            <IgbInput DisplayType=InputType.Text Label="City" @bind-Value="@user.City2" @oninput="@(e => { user.City2 = e.Value.ToString(); })"></IgbInput>
+            <IgbInput DisplayType=InputType.Text Label="Street" @bind-Value="@user.Street2" @oninput="@(e => { user.Street2 = e.Value.ToString(); })"></IgbInput>
+            <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Previous">PREVIOUS</IgbButton>
+            <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Next">NEXT</IgbButton>
+        </IgbStep>
+        <IgbStep Invalid="@(IsLinear && !IsValid)">
+            <span slot="title">Payment</span>
+                 
+            <IgbRadioGroup>
+                <IgbRadio Required="true" Value="paypal" Change="OnPaymentChange">PayPal (n@mail.com; 18/02/2021)</IgbRadio>
+                <IgbRadio Required="true" Value="visa" Change="OnPaymentChange">Visa (**** **** **** 1234; 12/23)</IgbRadio>
+                <IgbRadio Required="true" Value="mastercard" Change="OnPaymentChange">MasterCard (**** **** **** 5678; 12/24)</IgbRadio>
+            </IgbRadioGroup>
+            <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Previous">PREVIOUS</IgbButton>
+            <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Next" Disabled="@(IsLinear && !IsValid)">SUBMIT</IgbButton>
+        </IgbStep>
+        <IgbStep>
+            <span slot="title">Delivery status</span>
+            <p>Your order is on its way. Expect delivery on 25th September 2021. Delivery address: San Jose, CA 94243.</p>
+             <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Previous">PREVIOUS</IgbButton>
+             <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Reset">RESET</IgbButton>
+        </IgbStep>       
+    </IgbStepper>
+</div>
+
+@code {
+    public bool IsLinear { get; set; }
+    public bool IsValid = false;
+
+    private IgbStepper stepper;
+    private StepperUserModel user = new StepperUserModel();
+
+
+    public void OnSwitchChange(IgbComponentBoolValueChangedEventArgs args)
+    {
+        IsLinear = args.Detail;
+    }
+
+    public void OnPaymentChange(IgbComponentBoolValueChangedEventArgs args)
+    {
+        IsValid = args.Detail;
+        if (args.Detail)
+        {
+            user.Payment = (args.Parent as IgbRadio).Value.ToString();            
+        }
+    }
+
+    public void Previous()
+    {
+        this.stepper.Prev();
+    }
+
+    public void Next()
+    {
+        this.stepper.Next();
+    }
+
+    public void Reset()
+    {
+        this.stepper.Reset();
+    }    
+
+    public bool IsInvalidEmail(string email)
+    {
+        string EmailPattern = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|" + @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)" + @"@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$"; 
+        return String.IsNullOrEmpty(email) || !Regex.IsMatch(user.Email, EmailPattern, RegexOptions.IgnoreCase);
+    }
+}

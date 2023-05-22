@@ -1,0 +1,72 @@
+@using IgniteUI.Blazor.Controls
+
+<style>
+    .grid {
+        --igx-grid-cell-selected-text-color: #FFFFFF;
+        --igx-grid-cell-active-border-color: #f2c43c;
+        --igx-grid-cell-selected-background: #0062A3;
+    }
+</style>
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbGrid Class="grid"
+        AutoGenerate="false"
+        CellSelection="GridSelectionMode.Multiple"
+        Name="grid"
+        @ref="grid"
+        Data="NwindData">
+            <IgbColumn
+            Field="ProductID"
+            Header="Product ID">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="ProductName"
+            Header="Product Name">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="UnitsInStock"
+            Header="Units In Stock"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="UnitPrice"
+            Header="Units Price"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Discontinued"
+            DataType="GridColumnDataType.Boolean">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="OrderDate"
+            Header="Order Date"
+            DataType="GridColumnDataType.Date">
+            </IgbColumn>
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+    private IgbGrid grid;
+
+    private NwindData _nwindData = null;
+    public NwindData NwindData
+    {
+        get
+        {
+            if (_nwindData == null)
+            {
+                _nwindData = new NwindData();
+            }
+            return _nwindData;
+        }
+    }
+
+}

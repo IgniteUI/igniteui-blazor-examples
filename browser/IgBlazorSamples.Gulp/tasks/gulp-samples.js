@@ -43,6 +43,7 @@ var sampleSource = [
     igConfig.SamplesCopyPath + '/charts/sparkline/**/App.razor',
     igConfig.SamplesCopyPath + '/charts/tree-map/**/App.razor',
     igConfig.SamplesCopyPath + '/charts/zoomslider/**/App.razor',
+
     igConfig.SamplesCopyPath + '/maps/geo-map/**/App.razor',
     igConfig.SamplesCopyPath + '/gauges/bullet-graph/**/App.razor',
     igConfig.SamplesCopyPath + '/gauges/linear-gauge/**/App.razor',
@@ -74,12 +75,13 @@ var sampleSource = [
     igConfig.SamplesCopyPath + '/inputs/switches/**/App.razor',
 
     igConfig.SamplesCopyPath + '/layouts/accordion/**/App.razor',
-    igConfig.SamplesCopyPath + '/layouts/expansion-panel/**/App.razor',
     igConfig.SamplesCopyPath + '/layouts/avatar/**/App.razor',
     igConfig.SamplesCopyPath + '/layouts/card/**/App.razor',
-    igConfig.SamplesCopyPath + '/layouts/icon/**/App.razor',
-    igConfig.SamplesCopyPath + '/layouts/tabs/**/App.razor',
+    igConfig.SamplesCopyPath + '/layouts/expansion-panel/**/App.razor',
     igConfig.SamplesCopyPath + '/layouts/dock-manager/**/App.razor',
+    igConfig.SamplesCopyPath + '/layouts/icon/**/App.razor',
+    igConfig.SamplesCopyPath + '/layouts/stepper/**/App.razor',
+    igConfig.SamplesCopyPath + '/layouts/tabs/**/App.razor',
 
     igConfig.SamplesCopyPath + '/menus/**/App.razor',
     igConfig.SamplesCopyPath + '/scheduling/**/App.razor',
@@ -149,7 +151,6 @@ function getSamples(cb) {
       igConfig.SamplesCopyPath + '/grids/grid/toolbar-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/advanced-filtering-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/binding-nested-data-2/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/cell-selection-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/column-hiding-styles/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/column-moving-styles/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/column-pinning-styles/App.razor',
@@ -164,14 +165,13 @@ function getSamples(cb) {
       igConfig.SamplesCopyPath + '/grids/grid/data-persistence-state/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/data-summary-custom-selection/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/editing-styles/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/excel-style-filtering-sample-1/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/excel-style-filtering-sample-2/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/excel-style-filtering-sample-3/App.razor',
+    //   igConfig.SamplesCopyPath + '/grids/grid/excel-style-filtering-sample-1/App.razor',
+    //   igConfig.SamplesCopyPath + '/grids/grid/excel-style-filtering-sample-2/App.razor',
+    //   igConfig.SamplesCopyPath + '/grids/grid/excel-style-filtering-sample-3/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/excel-style-filtering-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/external-excel-style-filtering/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/filtering-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/filtering-template/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/groupby-styling/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/keyboard-custom-navigation/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/multi-column-headers-styling/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/remote-filtering-data/App.razor',
@@ -407,7 +407,7 @@ function copySampleScripts(cb, outputPath, indexName) {
                         if (file.Name.indexOf("3") >= 0) fileRequiresLoading = false;
                     }
                     if (fileRequiresLoading) {
-                        insertScriptFiles.push('<script type="module" src="sb/' + fileName + '"></script>');
+                        insertScriptFiles.push('<script src="sb/' + fileName + '"></script>');
                     }
                 } else {
                     insertScriptFiles.push('<script src="sb/' + fileName + '"></script>');
