@@ -94,6 +94,8 @@ var sampleSource = [
     // igConfig.SamplesCopyPath + '/grids/**/overview/App.razor',
     // igConfig.SamplesCopyPath + '/grids/**/column-types/App.razor',
 
+    // igConfig.SamplesCopyPath + '/grids/grid/advanced-filtering-options/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/grid/styling-custom-css/App.razor',
     // "!" + igConfig.SamplesCopyPath + '/**/Program.cs',
     "!" + igConfig.SamplesCopyPath + '/**/obj/**',
     "!" + igConfig.SamplesCopyPath + '/**/bin/**',
@@ -294,7 +296,7 @@ function cleanupSampleBrowser(outputPath) {
     log('cleaning up files in ' + outputPath);
     del.sync([
         outputPath + "/wwwroot/code-viewer/**/*.json", // auto-generated code-viewer .json files
-        outputPath + "/wwwroot/*.js", // auto-copied sample's .js files
+        outputPath + "/wwwroot/sb/*.js", // auto-copied sample's .js files
         outputPath + "/Services/*.*", // auto-copied data files
         outputPath + "/Components/**", // auto-copied sample's .razor components
         outputPath + "/Pages/**/*.*", // auto-copied samples
@@ -322,16 +324,19 @@ function copySamplePages(cb, outputPath) {
     log('copying sample to ' + outputPath + '/Pages/*.* from /samples/**/app.razor files:');
     for (const sample of samples) {
 
+        let sampleFolder = sample.ComponentGroup + '/' + sample.ComponentFolder + '/' + sample.SampleFolderName;
+        log("copying sample to " + outputPath + '/Pages/' + sampleFolder + '/App.razor');
+
         // lint and force auto-generation of routing paths (@page) in razor files
         Transformer.lintSample(sample, true);
 
-        let sampleFolder = sample.ComponentGroup + '/' + sample.ComponentFolder
         // outputFolder = Strings.toTitleCase(outputClient);
         // let dataFiles = [];
         for (const file of sample.SourceFiles) {
+            // console.log(" file.Name=" +  file.Path);
             if (file.isRazorFile()) {
                 var copyTarget = outputPath + '/Pages/' + sampleFolder + '/' + file.Parent + '/' + file.Name;
-                log("copying sample to " + copyTarget);
+                // log("copying sample to " + copyTarget);
                 saveFile(copyTarget, file.Content);
             } else if (file.Name.indexOf("Program.cs") >= 0)  {
                 continue;
