@@ -19,5001 +19,5001 @@ public class PivotDataFlat
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 12.8148609366337,
+            ProductUnitPrice = 12.8,
             SellerName = @"Stanley Brooker",
             SellerCity = @"Seattle",
             Date = @"2007-01-01T00:00:00",
-            Value = 94.2652032683907,
+            Value = 94.4,
             NumberOfUnits = 282
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 49.5793751206153,
+            ProductUnitPrice = 49.6,
             SellerName = @"Elisa Longbottom",
             SellerCity = @"Sofia",
             Date = @"2007-01-05T00:00:00",
-            Value = 70.7989226890723,
+            Value = 70.8,
             NumberOfUnits = 296
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 3.56532735916103,
+            ProductUnitPrice = 3.6,
             SellerName = @"Lydia Burson",
             SellerCity = @"Tokyo",
             Date = @"2007-01-06T00:00:00",
-            Value = 35.7993316072036,
+            Value = 35.8,
             NumberOfUnits = 68
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 85.5817581459795,
+            ProductUnitPrice = 85.6,
             SellerName = @"David Haley",
             SellerCity = @"London",
             Date = @"2007-01-07T00:00:00",
-            Value = 41.4113312686846,
+            Value = 41.4,
             NumberOfUnits = 293
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 18.1376258461446,
+            ProductUnitPrice = 18.2,
             SellerName = @"John Smith",
             SellerCity = @"Seattle",
             Date = @"2007-01-08T00:00:00",
-            Value = 60.4743137305949,
+            Value = 60.6,
             NumberOfUnits = 240
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 68.3309731391869,
+            ProductUnitPrice = 68.4,
             SellerName = @"Larry Lieb",
             SellerCity = @"Tokyo",
             Date = @"2007-01-12T00:00:00",
-            Value = 37.9207273190472,
+            Value = 38,
             NumberOfUnits = 456
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 16.0562525112444,
+            ProductUnitPrice = 16.2,
             SellerName = @"Walter Pang",
             SellerCity = @"Sofia",
             Date = @"2007-02-09T00:00:00",
-            Value = 89.1950179306767,
+            Value = 89.2,
             NumberOfUnits = 492
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 35.235206612961,
+            ProductUnitPrice = 35.2,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"Tokyo",
             Date = @"2007-02-16T00:00:00",
-            Value = 1.86110753652691,
+            Value = 2,
             NumberOfUnits = 78
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 73.2154336633233,
+            ProductUnitPrice = 73.2,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"Mellvile",
             Date = @"2007-02-17T00:00:00",
-            Value = 4.61114272689966,
+            Value = 4.6,
             NumberOfUnits = 150
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 73.614934400476,
+            ProductUnitPrice = 73.6,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"London",
             Date = @"2007-02-19T00:00:00",
-            Value = 36.1731772013815,
+            Value = 36.2,
             NumberOfUnits = 262
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 47.0805446836541,
+            ProductUnitPrice = 47.2,
             SellerName = @"Monica Freitag",
             SellerCity = @"Sofia",
             Date = @"2007-02-21T00:00:00",
-            Value = 18.6997407668735,
+            Value = 18.8,
             NumberOfUnits = 125
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 51.2982563820194,
+            ProductUnitPrice = 51.4,
             SellerName = @"Kathe Pettel",
             SellerCity = @"Sofia",
             Date = @"2007-03-04T00:00:00",
-            Value = 11.6007069179792,
+            Value = 11.6,
             NumberOfUnits = 42
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 27.4663443339366,
+            ProductUnitPrice = 27.6,
             SellerName = @"David Haley",
             SellerCity = @"Tokyo",
             Date = @"2007-03-04T00:00:00",
-            Value = 41.2524786038569,
+            Value = 41.4,
             NumberOfUnits = 282
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 22.3741180833309,
+            ProductUnitPrice = 22.4,
             SellerName = @"Antonio Charbonneau",
             SellerCity = @"Berlin",
             Date = @"2007-03-17T00:00:00",
-            Value = 59.8264899849084,
+            Value = 59.8,
             NumberOfUnits = 305
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 85.2928365046591,
+            ProductUnitPrice = 85.4,
             SellerName = @"Glenn Landeros",
             SellerCity = @"Tokyo",
             Date = @"2007-03-23T00:00:00",
-            Value = 31.4309799258741,
+            Value = 31.4,
             NumberOfUnits = 265
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 80.6755640919672,
+            ProductUnitPrice = 80.8,
             SellerName = @"Elisa Longbottom",
             SellerCity = @"Mellvile",
             Date = @"2007-03-25T00:00:00",
-            Value = 90.4250774022309,
+            Value = 90.4,
             NumberOfUnits = 350
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 64.6139196421085,
+            ProductUnitPrice = 64.6,
             SellerName = @"Glenn Landeros",
             SellerCity = @"Mellvile",
             Date = @"2007-03-27T00:00:00",
-            Value = 95.3934391473389,
+            Value = 95.4,
             NumberOfUnits = 82
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 50.0413366360782,
+            ProductUnitPrice = 50,
             SellerName = @"Harry Tyler",
             SellerCity = @"New York",
             Date = @"2007-04-02T00:00:00",
-            Value = 1.27663300432108,
+            Value = 1.4,
             NumberOfUnits = 67
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 16.3115661667248,
+            ProductUnitPrice = 16.4,
             SellerName = @"Brandon Mckim",
             SellerCity = @"Mellvile",
             Date = @"2007-04-04T00:00:00",
-            Value = 25.3546736321201,
+            Value = 25.4,
             NumberOfUnits = 370
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 49.8521715634745,
+            ProductUnitPrice = 50,
             SellerName = @"Monica Freitag",
             SellerCity = @"Berlin",
             Date = @"2007-04-12T00:00:00",
-            Value = 46.315344491189,
+            Value = 46.4,
             NumberOfUnits = 228
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 44.7616020425975,
+            ProductUnitPrice = 44.8,
             SellerName = @"Bryan Culver",
             SellerCity = @"Tokyo",
             Date = @"2007-04-15T00:00:00",
-            Value = 82.1802735245695,
+            Value = 82.2,
             NumberOfUnits = 272
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 44.3954126184785,
+            ProductUnitPrice = 44.4,
             SellerName = @"Russell Shorter",
             SellerCity = @"Berlin",
             Date = @"2007-04-18T00:00:00",
-            Value = 83.9707137010855,
+            Value = 84,
             NumberOfUnits = 227
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 39.28786061671,
+            ProductUnitPrice = 39.4,
             SellerName = @"Stanley Brooker",
             SellerCity = @"Mellvile",
             Date = @"2007-04-18T00:00:00",
-            Value = 94.2611607696215,
+            Value = 94.4,
             NumberOfUnits = 248
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 36.5811833350832,
+            ProductUnitPrice = 36.6,
             SellerName = @"Benjamin Meekins",
             SellerCity = @"Tokyo",
             Date = @"2007-04-21T00:00:00",
-            Value = 45.7412716214272,
+            Value = 45.8,
             NumberOfUnits = 414
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 75.8285212217963,
+            ProductUnitPrice = 75.8,
             SellerName = @"Walter Pang",
             SellerCity = @"London",
             Date = @"2007-04-25T00:00:00",
-            Value = 97.5931729178844,
+            Value = 97.6,
             NumberOfUnits = 43
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 57.7570389293866,
+            ProductUnitPrice = 57.8,
             SellerName = @"Antonio Charbonneau",
             SellerCity = @"Mellvile",
             Date = @"2007-04-26T00:00:00",
-            Value = 20.9361090887972,
+            Value = 21,
             NumberOfUnits = 71
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 40.2318761405683,
+            ProductUnitPrice = 40.2,
             SellerName = @"Stanley Brooker",
             SellerCity = @"New York",
             Date = @"2007-05-14T00:00:00",
-            Value = 71.8626452944533,
+            Value = 72,
             NumberOfUnits = 321
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 49.5251280020574,
+            ProductUnitPrice = 49.6,
             SellerName = @"Elisa Longbottom",
             SellerCity = @"London",
             Date = @"2007-05-17T00:00:00",
-            Value = 49.4513494192862,
+            Value = 49.6,
             NumberOfUnits = 329
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 56.4608257061154,
+            ProductUnitPrice = 56.6,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"London",
             Date = @"2007-05-17T00:00:00",
-            Value = 72.7047810203884,
+            Value = 72.8,
             NumberOfUnits = 88
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 67.1297780085028,
+            ProductUnitPrice = 67.2,
             SellerName = @"Glenn Landeros",
             SellerCity = @"New York",
             Date = @"2007-05-26T00:00:00",
-            Value = 56.169638576065,
+            Value = 56.2,
             NumberOfUnits = 366
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 14.6289204315417,
+            ProductUnitPrice = 14.6,
             SellerName = @"Walter Pang",
             SellerCity = @"Sofia",
             Date = @"2007-06-02T00:00:00",
-            Value = 81.322212508564,
+            Value = 81.4,
             NumberOfUnits = 450
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 89.2609520299644,
+            ProductUnitPrice = 89.4,
             SellerName = @"Howard Sprouse",
             SellerCity = @"Seattle",
             Date = @"2007-06-06T00:00:00",
-            Value = 18.9627218148498,
+            Value = 19,
             NumberOfUnits = 475
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 33.7523688719386,
+            ProductUnitPrice = 33.8,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"Seattle",
             Date = @"2007-06-11T00:00:00",
-            Value = 54.8708499664771,
+            Value = 55,
             NumberOfUnits = 195
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 54.101630511741,
+            ProductUnitPrice = 54.2,
             SellerName = @"Harold Garvin",
             SellerCity = @"Sofia",
             Date = @"2007-06-17T00:00:00",
-            Value = 71.6308470217655,
+            Value = 71.6,
             NumberOfUnits = 458
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 18.4378546282825,
+            ProductUnitPrice = 18.4,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"Sofia",
             Date = @"2007-07-04T00:00:00",
-            Value = 24.1609720625733,
+            Value = 24.2,
             NumberOfUnits = 7
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 96.1428182647297,
+            ProductUnitPrice = 96.2,
             SellerName = @"Elisa Longbottom",
             SellerCity = @"New York",
             Date = @"2007-07-08T00:00:00",
-            Value = 57.4979080620678,
+            Value = 57.6,
             NumberOfUnits = 158
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 22.9904094352342,
+            ProductUnitPrice = 23,
             SellerName = @"Benjamin Meekins",
             SellerCity = @"Tokyo",
             Date = @"2007-07-09T00:00:00",
-            Value = 58.795889168417,
+            Value = 58.8,
             NumberOfUnits = 34
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 52.6640191453807,
+            ProductUnitPrice = 52.8,
             SellerName = @"Larry Lieb",
             SellerCity = @"Seattle",
             Date = @"2007-07-10T00:00:00",
-            Value = 32.3964410612343,
+            Value = 32.4,
             NumberOfUnits = 412
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 62.1277011288925,
+            ProductUnitPrice = 62.2,
             SellerName = @"John Smith",
             SellerCity = @"Sofia",
             Date = @"2007-07-15T00:00:00",
-            Value = 84.9240388185363,
+            Value = 85,
             NumberOfUnits = 10
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 10.722568543033,
+            ProductUnitPrice = 10.8,
             SellerName = @"Antonio Charbonneau",
             SellerCity = @"New York",
             Date = @"2007-07-16T00:00:00",
-            Value = 52.2057482284521,
+            Value = 52.2,
             NumberOfUnits = 466
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 4.6933130848656,
+            ProductUnitPrice = 4.8,
             SellerName = @"Stanley Brooker",
             SellerCity = @"London",
             Date = @"2007-07-20T00:00:00",
-            Value = 34.2249673950602,
+            Value = 34.2,
             NumberOfUnits = 248
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 43.724528301379,
+            ProductUnitPrice = 43.8,
             SellerName = @"Brandon Mckim",
             SellerCity = @"Mellvile",
             Date = @"2007-07-24T00:00:00",
-            Value = 45.4603450118845,
+            Value = 45.6,
             NumberOfUnits = 307
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 76.440263947677,
+            ProductUnitPrice = 76.4,
             SellerName = @"Glenn Landeros",
             SellerCity = @"London",
             Date = @"2007-07-26T00:00:00",
-            Value = 26.06141060873,
+            Value = 26.2,
             NumberOfUnits = 445
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 34.2782921783059,
+            ProductUnitPrice = 34.4,
             SellerName = @"Bryan Culver",
             SellerCity = @"New York",
             Date = @"2007-08-01T00:00:00",
-            Value = 89.2379715522928,
+            Value = 89.2,
             NumberOfUnits = 480
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 68.5733938909012,
+            ProductUnitPrice = 68.6,
             SellerName = @"Howard Sprouse",
             SellerCity = @"Berlin",
             Date = @"2007-08-02T00:00:00",
-            Value = 38.0901299128729,
+            Value = 38.2,
             NumberOfUnits = 390
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 65.0681990036127,
+            ProductUnitPrice = 65.2,
             SellerName = @"Larry Lieb",
             SellerCity = @"Mellvile",
             Date = @"2007-08-05T00:00:00",
-            Value = 23.0472950372134,
+            Value = 23.2,
             NumberOfUnits = 388
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 44.9384800367702,
+            ProductUnitPrice = 45,
             SellerName = @"Russell Shorter",
             SellerCity = @"Seattle",
             Date = @"2007-08-19T00:00:00",
-            Value = 23.370492376094,
+            Value = 23.4,
             NumberOfUnits = 37
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 93.4686846535041,
+            ProductUnitPrice = 93.6,
             SellerName = @"John Smith",
             SellerCity = @"New York",
             Date = @"2007-08-24T00:00:00",
-            Value = 17.3075067891309,
+            Value = 17.4,
             NumberOfUnits = 237
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 94.3650854725228,
+            ProductUnitPrice = 94.4,
             SellerName = @"Harry Tyler",
             SellerCity = @"Seattle",
             Date = @"2007-08-26T00:00:00",
-            Value = 54.6210326043056,
+            Value = 54.6,
             NumberOfUnits = 396
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 72.4087734112557,
+            ProductUnitPrice = 72.4,
             SellerName = @"David Haley",
             SellerCity = @"Tokyo",
             Date = @"2007-08-26T00:00:00",
-            Value = 60.920718014669,
+            Value = 61,
             NumberOfUnits = 3
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 80.5917513932063,
+            ProductUnitPrice = 80.6,
             SellerName = @"Russell Shorter",
             SellerCity = @"New York",
             Date = @"2007-09-02T00:00:00",
-            Value = 85.134478139288,
+            Value = 85.2,
             NumberOfUnits = 330
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 65.4044602836503,
+            ProductUnitPrice = 65.4,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"London",
             Date = @"2007-09-04T00:00:00",
-            Value = 51.2092393595768,
+            Value = 51.2,
             NumberOfUnits = 143
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 30.6386909124622,
+            ProductUnitPrice = 30.6,
             SellerName = @"Bryan Culver",
             SellerCity = @"Seattle",
             Date = @"2007-09-05T00:00:00",
-            Value = 55.2145366348394,
+            Value = 55.2,
             NumberOfUnits = 318
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 7.61671858263049,
+            ProductUnitPrice = 7.6,
             SellerName = @"Alfredo Fetuchini",
             SellerCity = @"Seattle",
             Date = @"2007-09-06T00:00:00",
-            Value = 41.8046680939406,
+            Value = 41.8,
             NumberOfUnits = 393
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 46.9468880197717,
+            ProductUnitPrice = 47,
             SellerName = @"Harold Garvin",
             SellerCity = @"Seattle",
             Date = @"2007-09-10T00:00:00",
-            Value = 9.0849790764437,
+            Value = 9.2,
             NumberOfUnits = 129
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 38.0177154848435,
+            ProductUnitPrice = 38,
             SellerName = @"Glenn Landeros",
             SellerCity = @"London",
             Date = @"2007-09-17T00:00:00",
-            Value = 25.5785515185346,
+            Value = 25.6,
             NumberOfUnits = 426
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 2.48126508783608,
+            ProductUnitPrice = 2.6,
             SellerName = @"Harry Tyler",
             SellerCity = @"London",
             Date = @"2007-09-18T00:00:00",
-            Value = 36.3322401588467,
+            Value = 36.4,
             NumberOfUnits = 217
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 77.5893600087563,
+            ProductUnitPrice = 77.6,
             SellerName = @"John Smith",
             SellerCity = @"New York",
             Date = @"2007-09-20T00:00:00",
-            Value = 27.8859096709108,
+            Value = 28,
             NumberOfUnits = 152
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 97.1454934203743,
+            ProductUnitPrice = 97.2,
             SellerName = @"Benjamin Meekins",
             SellerCity = @"Seattle",
             Date = @"2007-09-25T00:00:00",
-            Value = 21.8342507825393,
+            Value = 21.8,
             NumberOfUnits = 452
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 19.6974413095496,
+            ProductUnitPrice = 19.8,
             SellerName = @"Carl Costello",
             SellerCity = @"Seattle",
             Date = @"2007-10-02T00:00:00",
-            Value = 98.2610602389374,
+            Value = 98.4,
             NumberOfUnits = 499
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 32.7758949868269,
+            ProductUnitPrice = 32.8,
             SellerName = @"Mark Slater",
             SellerCity = @"Seattle",
             Date = @"2007-10-06T00:00:00",
-            Value = 79.6241173891463,
+            Value = 79.6,
             NumberOfUnits = 169
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 21.953632739351,
+            ProductUnitPrice = 22,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"Berlin",
             Date = @"2007-10-14T00:00:00",
-            Value = 69.4971831839053,
+            Value = 69.6,
             NumberOfUnits = 386
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 35.5918120292909,
+            ProductUnitPrice = 35.6,
             SellerName = @"Russell Shorter",
             SellerCity = @"Sofia",
             Date = @"2007-10-14T00:00:00",
-            Value = 27.7759674134552,
+            Value = 27.8,
             NumberOfUnits = 454
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 46.9500885098009,
+            ProductUnitPrice = 47,
             SellerName = @"Elisa Longbottom",
             SellerCity = @"New York",
             Date = @"2007-10-25T00:00:00",
-            Value = 82.1365597574676,
+            Value = 82.2,
             NumberOfUnits = 334
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 41.1349774064193,
+            ProductUnitPrice = 41.2,
             SellerName = @"Lydia Burson",
             SellerCity = @"Tokyo",
             Date = @"2007-10-26T00:00:00",
-            Value = 54.425787531969,
+            Value = 54.4,
             NumberOfUnits = 107
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 13.8370974053801,
+            ProductUnitPrice = 13.8,
             SellerName = @"Mark Slater",
             SellerCity = @"Sofia",
             Date = @"2007-11-07T00:00:00",
-            Value = 86.2122938904037,
+            Value = 86.2,
             NumberOfUnits = 275
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 64.1599938106537,
+            ProductUnitPrice = 64.2,
             SellerName = @"Monica Freitag",
             SellerCity = @"London",
             Date = @"2007-11-09T00:00:00",
-            Value = 37.7203420911545,
+            Value = 37.8,
             NumberOfUnits = 241
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 1.2072517076541,
+            ProductUnitPrice = 1.2,
             SellerName = @"Larry Lieb",
             SellerCity = @"London",
             Date = @"2007-11-11T00:00:00",
-            Value = 75.2273520339408,
+            Value = 75.2,
             NumberOfUnits = 177
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 57.8050364078046,
+            ProductUnitPrice = 57.8,
             SellerName = @"Monica Freitag",
             SellerCity = @"Sofia",
             Date = @"2007-11-13T00:00:00",
-            Value = 58.4452354155692,
+            Value = 58.6,
             NumberOfUnits = 494
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 39.4922345594932,
+            ProductUnitPrice = 39.6,
             SellerName = @"Lydia Burson",
             SellerCity = @"Mellvile",
             Date = @"2007-11-19T00:00:00",
-            Value = 40.7105433944196,
+            Value = 40.8,
             NumberOfUnits = 451
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 5.21720713247415,
+            ProductUnitPrice = 5.2,
             SellerName = @"Stanley Brooker",
             SellerCity = @"Tokyo",
             Date = @"2008-01-01T00:00:00",
-            Value = 91.8200022502895,
+            Value = 91.8,
             NumberOfUnits = 125
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 53.4294414117138,
+            ProductUnitPrice = 53.4,
             SellerName = @"Kathe Pettel",
             SellerCity = @"London",
             Date = @"2008-01-02T00:00:00",
-            Value = 30.892902720204,
+            Value = 31,
             NumberOfUnits = 103
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 52.1573519577074,
+            ProductUnitPrice = 52.2,
             SellerName = @"Larry Lieb",
             SellerCity = @"New York",
             Date = @"2008-01-03T00:00:00",
-            Value = 42.9646973698236,
+            Value = 43,
             NumberOfUnits = 224
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 17.6945806563341,
+            ProductUnitPrice = 17.8,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"Mellvile",
             Date = @"2008-01-07T00:00:00",
-            Value = 47.5734782626729,
+            Value = 47.6,
             NumberOfUnits = 498
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 80.7411119252169,
+            ProductUnitPrice = 80.8,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"London",
             Date = @"2008-01-08T00:00:00",
-            Value = 15.6132638061481,
+            Value = 15.6,
             NumberOfUnits = 142
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 95.439666973166,
+            ProductUnitPrice = 95.4,
             SellerName = @"Larry Lieb",
             SellerCity = @"Berlin",
             Date = @"2008-01-21T00:00:00",
-            Value = 87.2099365513818,
+            Value = 87.2,
             NumberOfUnits = 487
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 21.7789674279182,
+            ProductUnitPrice = 21.8,
             SellerName = @"David Haley",
             SellerCity = @"Mellvile",
             Date = @"2008-01-27T00:00:00",
-            Value = 14.4481097415314,
+            Value = 14.6,
             NumberOfUnits = 331
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 29.9074076255352,
+            ProductUnitPrice = 30,
             SellerName = @"Glenn Landeros",
             SellerCity = @"London",
             Date = @"2008-02-03T00:00:00",
-            Value = 99.2355603255497,
+            Value = 99.2,
             NumberOfUnits = 418
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 39.8397729451953,
+            ProductUnitPrice = 39.8,
             SellerName = @"Benjamin Meekins",
             SellerCity = @"New York",
             Date = @"2008-02-04T00:00:00",
-            Value = 61.0184083976869,
+            Value = 61,
             NumberOfUnits = 214
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 40.3669903708468,
+            ProductUnitPrice = 40.4,
             SellerName = @"Elisa Longbottom",
             SellerCity = @"Mellvile",
             Date = @"2008-02-05T00:00:00",
-            Value = 81.7401586946753,
+            Value = 81.8,
             NumberOfUnits = 229
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 35.1982731536023,
+            ProductUnitPrice = 35.2,
             SellerName = @"Alfredo Fetuchini",
             SellerCity = @"London",
             Date = @"2008-02-05T00:00:00",
-            Value = 54.2465618598492,
+            Value = 54.4,
             NumberOfUnits = 16
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 41.755009648276,
+            ProductUnitPrice = 41.8,
             SellerName = @"Harry Tyler",
             SellerCity = @"Sofia",
             Date = @"2008-02-08T00:00:00",
-            Value = 17.8605546326658,
+            Value = 18,
             NumberOfUnits = 216
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 0.687878998316768,
+            ProductUnitPrice = 0.8,
             SellerName = @"Harry Tyler",
             SellerCity = @"Sofia",
             Date = @"2008-02-09T00:00:00",
-            Value = 84.9205587454702,
+            Value = 85,
             NumberOfUnits = 486
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 37.5560580927674,
+            ProductUnitPrice = 37.6,
             SellerName = @"Elisa Longbottom",
             SellerCity = @"Tokyo",
             Date = @"2008-02-13T00:00:00",
-            Value = 45.0776737858903,
+            Value = 45.2,
             NumberOfUnits = 172
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 20.8045815680197,
+            ProductUnitPrice = 20.8,
             SellerName = @"Antonio Charbonneau",
             SellerCity = @"New York",
             Date = @"2008-02-21T00:00:00",
-            Value = 60.5424861239933,
+            Value = 60.6,
             NumberOfUnits = 102
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 70.6467796911703,
+            ProductUnitPrice = 70.8,
             SellerName = @"Kathe Pettel",
             SellerCity = @"Seattle",
             Date = @"2008-02-24T00:00:00",
-            Value = 42.8966130795407,
+            Value = 43,
             NumberOfUnits = 36
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 53.2905441025694,
+            ProductUnitPrice = 53.4,
             SellerName = @"Alfredo Fetuchini",
             SellerCity = @"Mellvile",
             Date = @"2008-02-25T00:00:00",
-            Value = 11.0177316288546,
+            Value = 11,
             NumberOfUnits = 71
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 24.8542289830997,
+            ProductUnitPrice = 25,
             SellerName = @"Alfredo Fetuchini",
             SellerCity = @"Mellvile",
             Date = @"2008-02-25T00:00:00",
-            Value = 16.9750144784222,
+            Value = 17,
             NumberOfUnits = 53
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 64.6324524025584,
+            ProductUnitPrice = 64.6,
             SellerName = @"Antonio Charbonneau",
             SellerCity = @"Tokyo",
             Date = @"2008-02-25T00:00:00",
-            Value = 98.9615043154738,
+            Value = 99,
             NumberOfUnits = 104
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 9.64383753465667,
+            ProductUnitPrice = 9.6,
             SellerName = @"Brandon Mckim",
             SellerCity = @"Tokyo",
             Date = @"2008-02-26T00:00:00",
-            Value = 96.2342098803419,
+            Value = 96.2,
             NumberOfUnits = 294
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 41.0777905681533,
+            ProductUnitPrice = 41.2,
             SellerName = @"Antonio Charbonneau",
             SellerCity = @"Sofia",
             Date = @"2008-03-03T00:00:00",
-            Value = 93.683674975151,
+            Value = 93.8,
             NumberOfUnits = 454
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 36.9778345511192,
+            ProductUnitPrice = 37,
             SellerName = @"Stanley Brooker",
             SellerCity = @"Berlin",
             Date = @"2008-03-05T00:00:00",
-            Value = 82.8165260063561,
+            Value = 82.8,
             NumberOfUnits = 492
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 16.8308799699093,
+            ProductUnitPrice = 16.8,
             SellerName = @"Harry Tyler",
             SellerCity = @"New York",
             Date = @"2008-03-08T00:00:00",
-            Value = 0.654079998216629,
+            Value = 0.8,
             NumberOfUnits = 132
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 24.7168825123072,
+            ProductUnitPrice = 24.8,
             SellerName = @"Alfredo Fetuchini",
             SellerCity = @"New York",
             Date = @"2008-03-09T00:00:00",
-            Value = 88.5194761625116,
+            Value = 88.6,
             NumberOfUnits = 225
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 65.6444979205935,
+            ProductUnitPrice = 65.6,
             SellerName = @"David Haley",
             SellerCity = @"Tokyo",
             Date = @"2008-03-10T00:00:00",
-            Value = 69.0674314131343,
+            Value = 69.2,
             NumberOfUnits = 422
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 70.4706702709527,
+            ProductUnitPrice = 70.6,
             SellerName = @"Glenn Landeros",
             SellerCity = @"London",
             Date = @"2008-03-12T00:00:00",
-            Value = 97.0884484691026,
+            Value = 97.2,
             NumberOfUnits = 303
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 65.1173483417916,
+            ProductUnitPrice = 65.2,
             SellerName = @"Carl Costello",
             SellerCity = @"London",
             Date = @"2008-03-13T00:00:00",
-            Value = 46.4407860983353,
+            Value = 46.4,
             NumberOfUnits = 319
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 39.5776717642218,
+            ProductUnitPrice = 39.6,
             SellerName = @"Harold Garvin",
             SellerCity = @"London",
             Date = @"2008-03-14T00:00:00",
-            Value = 48.5441537334324,
+            Value = 48.6,
             NumberOfUnits = 262
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 50.7144575709079,
+            ProductUnitPrice = 50.8,
             SellerName = @"Harold Garvin",
             SellerCity = @"Berlin",
             Date = @"2008-03-23T00:00:00",
-            Value = 91.7152666448221,
+            Value = 91.8,
             NumberOfUnits = 345
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 88.2468002793597,
+            ProductUnitPrice = 88.4,
             SellerName = @"David Haley",
             SellerCity = @"Tokyo",
             Date = @"2008-04-03T00:00:00",
-            Value = 87.2755209390426,
+            Value = 87.4,
             NumberOfUnits = 407
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 47.25297454151,
+            ProductUnitPrice = 47.4,
             SellerName = @"Walter Pang",
             SellerCity = @"Berlin",
             Date = @"2008-04-04T00:00:00",
-            Value = 15.1277239039204,
+            Value = 15.2,
             NumberOfUnits = 121
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 30.4275556609163,
+            ProductUnitPrice = 30.4,
             SellerName = @"Larry Lieb",
             SellerCity = @"Seattle",
             Date = @"2008-04-06T00:00:00",
-            Value = 44.4254724050059,
+            Value = 44.4,
             NumberOfUnits = 30
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 88.2431441863268,
+            ProductUnitPrice = 88.2,
             SellerName = @"Harold Garvin",
             SellerCity = @"Berlin",
             Date = @"2008-04-11T00:00:00",
-            Value = 25.2809871105854,
+            Value = 25.4,
             NumberOfUnits = 293
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 16.4635559620632,
+            ProductUnitPrice = 16.6,
             SellerName = @"David Haley",
             SellerCity = @"Sofia",
             Date = @"2008-04-12T00:00:00",
-            Value = 55.0719556189477,
+            Value = 55.2,
             NumberOfUnits = 271
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 95.2082479815969,
+            ProductUnitPrice = 95.2,
             SellerName = @"Howard Sprouse",
             SellerCity = @"Sofia",
             Date = @"2008-04-18T00:00:00",
-            Value = 25.7738580115949,
+            Value = 25.8,
             NumberOfUnits = 107
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 7.7514979558771,
+            ProductUnitPrice = 7.8,
             SellerName = @"Bryan Culver",
             SellerCity = @"Mellvile",
             Date = @"2008-04-18T00:00:00",
-            Value = 54.4845382471031,
+            Value = 54.6,
             NumberOfUnits = 87
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 94.8262768773484,
+            ProductUnitPrice = 94.8,
             SellerName = @"David Haley",
             SellerCity = @"Tokyo",
             Date = @"2008-04-23T00:00:00",
-            Value = 78.9546419768383,
+            Value = 79,
             NumberOfUnits = 319
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 37.2118965430241,
+            ProductUnitPrice = 37.2,
             SellerName = @"Lydia Burson",
             SellerCity = @"New York",
             Date = @"2008-04-24T00:00:00",
-            Value = 21.6129142426014,
+            Value = 21.6,
             NumberOfUnits = 346
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 99.3088581596077,
+            ProductUnitPrice = 99.4,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"London",
             Date = @"2008-05-07T00:00:00",
-            Value = 77.780686075697,
+            Value = 77.8,
             NumberOfUnits = 382
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 96.081492582374,
+            ProductUnitPrice = 96.2,
             SellerName = @"Larry Lieb",
             SellerCity = @"New York",
             Date = @"2008-05-11T00:00:00",
-            Value = 35.3511813261319,
+            Value = 35.4,
             NumberOfUnits = 334
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 26.1522815684566,
+            ProductUnitPrice = 26.2,
             SellerName = @"Harold Garvin",
             SellerCity = @"Tokyo",
             Date = @"2008-05-13T00:00:00",
-            Value = 28.8395709958112,
+            Value = 28.8,
             NumberOfUnits = 176
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 80.8163119856344,
+            ProductUnitPrice = 80.8,
             SellerName = @"Mark Slater",
             SellerCity = @"Berlin",
             Date = @"2008-05-19T00:00:00",
-            Value = 8.38333880919187,
+            Value = 8.4,
             NumberOfUnits = 125
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 78.320334701948,
+            ProductUnitPrice = 78.4,
             SellerName = @"Russell Shorter",
             SellerCity = @"Mellvile",
             Date = @"2008-05-19T00:00:00",
-            Value = 15.0375492940832,
+            Value = 15,
             NumberOfUnits = 458
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 93.9965382190405,
+            ProductUnitPrice = 94,
             SellerName = @"Benjamin Meekins",
             SellerCity = @"Berlin",
             Date = @"2008-05-25T00:00:00",
-            Value = 68.4720673451536,
+            Value = 68.6,
             NumberOfUnits = 331
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 96.6001784413123,
+            ProductUnitPrice = 96.6,
             SellerName = @"Stanley Brooker",
             SellerCity = @"Mellvile",
             Date = @"2008-05-27T00:00:00",
-            Value = 70.9531663316084,
+            Value = 71,
             NumberOfUnits = 39
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 37.6432268124275,
+            ProductUnitPrice = 37.6,
             SellerName = @"Claudia Kobayashi",
             SellerCity = @"London",
             Date = @"2008-06-06T00:00:00",
-            Value = 97.0892499187445,
+            Value = 97.2,
             NumberOfUnits = 238
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 46.9774695797718,
+            ProductUnitPrice = 47,
             SellerName = @"Walter Pang",
             SellerCity = @"London",
             Date = @"2008-06-07T00:00:00",
-            Value = 5.67697128545352,
+            Value = 5.8,
             NumberOfUnits = 84
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 80.1515980531236,
+            ProductUnitPrice = 80.2,
             SellerName = @"Mark Slater",
             SellerCity = @"Tokyo",
             Date = @"2008-06-08T00:00:00",
-            Value = 24.8368413303219,
+            Value = 24.8,
             NumberOfUnits = 363
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 43.5199616679549,
+            ProductUnitPrice = 43.6,
             SellerName = @"Harry Tyler",
             SellerCity = @"New York",
             Date = @"2008-06-08T00:00:00",
-            Value = 58.9737211628695,
+            Value = 59,
             NumberOfUnits = 479
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 56.3160178513806,
+            ProductUnitPrice = 56.4,
             SellerName = @"Kathe Pettel",
             SellerCity = @"Sofia",
             Date = @"2008-06-11T00:00:00",
-            Value = 87.4662861169625,
+            Value = 87.6,
             NumberOfUnits = 404
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 81.6851681944379,
+            ProductUnitPrice = 81.8,
             SellerName = @"Glenn Landeros",
             SellerCity = @"London",
             Date = @"2008-06-18T00:00:00",
-            Value = 80.2834164725074,
+            Value = 80.4,
             NumberOfUnits = 478
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 90.1118466118871,
+            ProductUnitPrice = 90.2,
             SellerName = @"Benjamin Meekins",
             SellerCity = @"Sofia",
             Date = @"2008-06-19T00:00:00",
-            Value = 2.32863645177737,
+            Value = 2.4,
             NumberOfUnits = 285
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 99.342426471106,
+            ProductUnitPrice = 99.4,
             SellerName = @"Kathe Pettel",
             SellerCity = @"Sofia",
             Date = @"2008-06-22T00:00:00",
-            Value = 82.4890294496385,
+            Value = 82.6,
             NumberOfUnits = 15
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 30.8345454422918,
+            ProductUnitPrice = 30.8,
             SellerName = @"Brandon Mckim",
             SellerCity = @"Berlin",
             Date = @"2008-06-26T00:00:00",
-            Value = 77.8251107678866,
+            Value = 77.8,
             NumberOfUnits = 245
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 99.3869583585239,
+            ProductUnitPrice = 99.4,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"Mellvile",
             Date = @"2008-07-01T00:00:00",
-            Value = 8.13976875885379,
+            Value = 8.2,
             NumberOfUnits = 376
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 73.3497729866532,
+            ProductUnitPrice = 73.4,
             SellerName = @"Claudia Kobayashi",
             SellerCity = @"New York",
             Date = @"2008-07-02T00:00:00",
-            Value = 48.4468251692349,
+            Value = 48.6,
             NumberOfUnits = 40
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 43.4966604893546,
+            ProductUnitPrice = 43.6,
             SellerName = @"Larry Lieb",
             SellerCity = @"London",
             Date = @"2008-07-10T00:00:00",
-            Value = 37.8727404577065,
+            Value = 38,
             NumberOfUnits = 112
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 16.3942806499052,
+            ProductUnitPrice = 16.4,
             SellerName = @"Antonio Charbonneau",
             SellerCity = @"New York",
             Date = @"2008-07-15T00:00:00",
-            Value = 9.74060204333654,
+            Value = 9.8,
             NumberOfUnits = 224
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 71.4022993908274,
+            ProductUnitPrice = 71.4,
             SellerName = @"Stanley Brooker",
             SellerCity = @"Tokyo",
             Date = @"2008-07-16T00:00:00",
-            Value = 66.4204306278473,
+            Value = 66.4,
             NumberOfUnits = 145
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 94.6188190926885,
+            ProductUnitPrice = 94.6,
             SellerName = @"Stanley Brooker",
             SellerCity = @"Mellvile",
             Date = @"2008-07-21T00:00:00",
-            Value = 46.4914643887856,
+            Value = 46.6,
             NumberOfUnits = 272
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 50.7532616847908,
+            ProductUnitPrice = 50.8,
             SellerName = @"Claudia Kobayashi",
             SellerCity = @"London",
             Date = @"2008-07-27T00:00:00",
-            Value = 90.1144846762132,
+            Value = 90.2,
             NumberOfUnits = 278
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 12.782123597703,
+            ProductUnitPrice = 12.8,
             SellerName = @"Harry Tyler",
             SellerCity = @"Seattle",
             Date = @"2008-07-27T00:00:00",
-            Value = 89.1373240804008,
+            Value = 89.2,
             NumberOfUnits = 253
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 35.7800310644228,
+            ProductUnitPrice = 35.8,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"New York",
             Date = @"2008-08-01T00:00:00",
-            Value = 28.4064661843732,
+            Value = 28.4,
             NumberOfUnits = 255
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 17.1338880514418,
+            ProductUnitPrice = 17.2,
             SellerName = @"David Haley",
             SellerCity = @"Seattle",
             Date = @"2008-08-02T00:00:00",
-            Value = 0.455726543653629,
+            Value = 0.6,
             NumberOfUnits = 46
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 22.126638806484,
+            ProductUnitPrice = 22.2,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"Tokyo",
             Date = @"2008-08-08T00:00:00",
-            Value = 58.4454098522875,
+            Value = 58.6,
             NumberOfUnits = 279
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 62.986888765817,
+            ProductUnitPrice = 63,
             SellerName = @"Russell Shorter",
             SellerCity = @"Sofia",
             Date = @"2008-08-08T00:00:00",
-            Value = 91.8027585334157,
+            Value = 91.8,
             NumberOfUnits = 89
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 83.8380225858828,
+            ProductUnitPrice = 83.8,
             SellerName = @"Larry Lieb",
             SellerCity = @"Sofia",
             Date = @"2008-08-14T00:00:00",
-            Value = 52.5904764200516,
+            Value = 52.6,
             NumberOfUnits = 17
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 14.0758062778394,
+            ProductUnitPrice = 14.2,
             SellerName = @"Lydia Burson",
             SellerCity = @"Sofia",
             Date = @"2008-08-21T00:00:00",
-            Value = 53.9121391968392,
+            Value = 54,
             NumberOfUnits = 470
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 34.59108692342,
+            ProductUnitPrice = 34.6,
             SellerName = @"Elisa Longbottom",
             SellerCity = @"Mellvile",
             Date = @"2008-08-25T00:00:00",
-            Value = 1.7413051341387,
+            Value = 1.8,
             NumberOfUnits = 195
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 86.7273536914621,
+            ProductUnitPrice = 86.8,
             SellerName = @"Lydia Burson",
             SellerCity = @"New York",
             Date = @"2008-08-27T00:00:00",
-            Value = 23.7829859479251,
+            Value = 23.8,
             NumberOfUnits = 173
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 42.2365329890682,
+            ProductUnitPrice = 42.2,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"New York",
             Date = @"2008-09-01T00:00:00",
-            Value = 51.1229278292148,
+            Value = 51.2,
             NumberOfUnits = 472
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 25.6870714135873,
+            ProductUnitPrice = 25.8,
             SellerName = @"Larry Lieb",
             SellerCity = @"Seattle",
             Date = @"2008-09-06T00:00:00",
-            Value = 88.372170640329,
+            Value = 88.4,
             NumberOfUnits = 148
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 23.2085802700411,
+            ProductUnitPrice = 23.2,
             SellerName = @"Walter Pang",
             SellerCity = @"Mellvile",
             Date = @"2008-09-06T00:00:00",
-            Value = 94.4850076895603,
+            Value = 94.6,
             NumberOfUnits = 314
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 83.7636527529748,
+            ProductUnitPrice = 83.8,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"Seattle",
             Date = @"2008-09-07T00:00:00",
-            Value = 66.7780438283356,
+            Value = 66.8,
             NumberOfUnits = 431
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 84.4142878821186,
+            ProductUnitPrice = 84.4,
             SellerName = @"Walter Pang",
             SellerCity = @"Mellvile",
             Date = @"2008-09-07T00:00:00",
-            Value = 27.6391717733998,
+            Value = 27.6,
             NumberOfUnits = 347
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 7.32913548468106,
+            ProductUnitPrice = 7.4,
             SellerName = @"Harry Tyler",
             SellerCity = @"Berlin",
             Date = @"2008-09-11T00:00:00",
-            Value = 2.77235694358701,
+            Value = 2.8,
             NumberOfUnits = 27
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 9.55349440199951,
+            ProductUnitPrice = 9.6,
             SellerName = @"Elisa Longbottom",
             SellerCity = @"Berlin",
             Date = @"2008-09-12T00:00:00",
-            Value = 11.8511460776679,
+            Value = 12,
             NumberOfUnits = 5
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 50.8208721647136,
+            ProductUnitPrice = 50.8,
             SellerName = @"Larry Lieb",
             SellerCity = @"Mellvile",
             Date = @"2008-09-19T00:00:00",
-            Value = 16.4697507938695,
+            Value = 16.6,
             NumberOfUnits = 191
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 79.8693139012294,
+            ProductUnitPrice = 80,
             SellerName = @"Bryan Culver",
             SellerCity = @"New York",
             Date = @"2008-09-25T00:00:00",
-            Value = 84.2734587305568,
+            Value = 84.4,
             NumberOfUnits = 421
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 62.2384944754832,
+            ProductUnitPrice = 62.2,
             SellerName = @"Carl Costello",
             SellerCity = @"Seattle",
             Date = @"2008-10-03T00:00:00",
-            Value = 28.8573519926785,
+            Value = 29,
             NumberOfUnits = 297
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 96.0947171301091,
+            ProductUnitPrice = 96.2,
             SellerName = @"Glenn Landeros",
             SellerCity = @"New York",
             Date = @"2008-10-04T00:00:00",
-            Value = 15.797333380113,
+            Value = 15.8,
             NumberOfUnits = 128
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 47.0097102443733,
+            ProductUnitPrice = 47,
             SellerName = @"Howard Sprouse",
             SellerCity = @"Mellvile",
             Date = @"2008-10-13T00:00:00",
-            Value = 37.3008439491041,
+            Value = 37.4,
             NumberOfUnits = 210
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 35.7560529074427,
+            ProductUnitPrice = 35.8,
             SellerName = @"Russell Shorter",
             SellerCity = @"London",
             Date = @"2008-10-14T00:00:00",
-            Value = 26.9420826467416,
+            Value = 27,
             NumberOfUnits = 315
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 78.9894324629518,
+            ProductUnitPrice = 79,
             SellerName = @"Benjamin Meekins",
             SellerCity = @"New York",
             Date = @"2008-10-19T00:00:00",
-            Value = 69.8382459906108,
+            Value = 69.8,
             NumberOfUnits = 489
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 84.3203172014655,
+            ProductUnitPrice = 84.4,
             SellerName = @"Walter Pang",
             SellerCity = @"Mellvile",
             Date = @"2008-10-21T00:00:00",
-            Value = 61.3185628137172,
+            Value = 61.4,
             NumberOfUnits = 47
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 25.5284822664822,
+            ProductUnitPrice = 25.6,
             SellerName = @"John Smith",
             SellerCity = @"Mellvile",
             Date = @"2008-10-22T00:00:00",
-            Value = 69.3363781875634,
+            Value = 69.4,
             NumberOfUnits = 92
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 23.8740329276184,
+            ProductUnitPrice = 24,
             SellerName = @"Alfredo Fetuchini",
             SellerCity = @"Mellvile",
             Date = @"2008-11-01T00:00:00",
-            Value = 81.0919242822993,
+            Value = 81.2,
             NumberOfUnits = 30
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 53.634575919078,
+            ProductUnitPrice = 53.6,
             SellerName = @"Stanley Brooker",
             SellerCity = @"Berlin",
             Date = @"2008-11-01T00:00:00",
-            Value = 15.0065147387825,
+            Value = 15,
             NumberOfUnits = 132
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 68.1529020742294,
+            ProductUnitPrice = 68.2,
             SellerName = @"Bryan Culver",
             SellerCity = @"London",
             Date = @"2008-11-10T00:00:00",
-            Value = 6.05394318981745,
+            Value = 6.2,
             NumberOfUnits = 368
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 59.8804712108711,
+            ProductUnitPrice = 60,
             SellerName = @"Kathe Pettel",
             SellerCity = @"New York",
             Date = @"2008-11-11T00:00:00",
-            Value = 39.0912905051798,
+            Value = 39.2,
             NumberOfUnits = 482
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 5.75482128455994,
+            ProductUnitPrice = 5.8,
             SellerName = @"Antonio Charbonneau",
             SellerCity = @"Mellvile",
             Date = @"2008-11-11T00:00:00",
-            Value = 48.6630990862209,
+            Value = 48.8,
             NumberOfUnits = 22
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 95.8492209649874,
+            ProductUnitPrice = 96,
             SellerName = @"Claudia Kobayashi",
             SellerCity = @"London",
             Date = @"2008-11-20T00:00:00",
-            Value = 87.1416628300872,
+            Value = 87.2,
             NumberOfUnits = 159
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 59.0664417292301,
+            ProductUnitPrice = 59.2,
             SellerName = @"Alfredo Fetuchini",
             SellerCity = @"Berlin",
             Date = @"2008-11-25T00:00:00",
-            Value = 88.6371681413786,
+            Value = 88.6,
             NumberOfUnits = 52
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 94.029234626344,
+            ProductUnitPrice = 94,
             SellerName = @"Harry Tyler",
             SellerCity = @"Tokyo",
             Date = @"2009-01-05T00:00:00",
-            Value = 79.8305592405752,
+            Value = 79.8,
             NumberOfUnits = 194
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 12.7948031354671,
+            ProductUnitPrice = 12.8,
             SellerName = @"David Haley",
             SellerCity = @"Berlin",
             Date = @"2009-01-08T00:00:00",
-            Value = 42.8698582774353,
+            Value = 43,
             NumberOfUnits = 100
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 37.8521287058723,
+            ProductUnitPrice = 38,
             SellerName = @"Benjamin Meekins",
             SellerCity = @"Berlin",
             Date = @"2009-01-10T00:00:00",
-            Value = 48.2562405281962,
+            Value = 48.4,
             NumberOfUnits = 252
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 79.4348882415494,
+            ProductUnitPrice = 79.4,
             SellerName = @"Kathe Pettel",
             SellerCity = @"Tokyo",
             Date = @"2009-01-13T00:00:00",
-            Value = 68.5050053375331,
+            Value = 68.6,
             NumberOfUnits = 116
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 90.9181184558748,
+            ProductUnitPrice = 91,
             SellerName = @"Elisa Longbottom",
             SellerCity = @"London",
             Date = @"2009-01-14T00:00:00",
-            Value = 27.4614367761935,
+            Value = 27.6,
             NumberOfUnits = 259
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 99.8486026189516,
+            ProductUnitPrice = 100,
             SellerName = @"Glenn Landeros",
             SellerCity = @"London",
             Date = @"2009-01-19T00:00:00",
-            Value = 56.7253582909356,
+            Value = 56.8,
             NumberOfUnits = 217
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 43.2738462664531,
+            ProductUnitPrice = 43.4,
             SellerName = @"Bryan Culver",
             SellerCity = @"Seattle",
             Date = @"2009-01-22T00:00:00",
-            Value = 36.4720197098665,
+            Value = 36.6,
             NumberOfUnits = 48
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 0.654369267008439,
+            ProductUnitPrice = 0.8,
             SellerName = @"Stanley Brooker",
             SellerCity = @"New York",
             Date = @"2009-02-02T00:00:00",
-            Value = 71.4257425495543,
+            Value = 71.4,
             NumberOfUnits = 445
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 60.4641508592591,
+            ProductUnitPrice = 60.6,
             SellerName = @"Kathe Pettel",
             SellerCity = @"Mellvile",
             Date = @"2009-02-03T00:00:00",
-            Value = 44.6349808688438,
+            Value = 44.6,
             NumberOfUnits = 90
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 13.6591548629381,
+            ProductUnitPrice = 13.8,
             SellerName = @"Harry Tyler",
             SellerCity = @"Sofia",
             Date = @"2009-02-07T00:00:00",
-            Value = 36.1515843943467,
+            Value = 36.2,
             NumberOfUnits = 453
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 44.1607726943496,
+            ProductUnitPrice = 44.2,
             SellerName = @"Harry Tyler",
             SellerCity = @"Mellvile",
             Date = @"2009-02-07T00:00:00",
-            Value = 85.6432799648695,
+            Value = 85.6,
             NumberOfUnits = 450
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 94.3300966147008,
+            ProductUnitPrice = 94.4,
             SellerName = @"Lydia Burson",
             SellerCity = @"Sofia",
             Date = @"2009-02-07T00:00:00",
-            Value = 48.1036364790535,
+            Value = 48.2,
             NumberOfUnits = 152
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 8.7838492862805,
+            ProductUnitPrice = 8.8,
             SellerName = @"Harry Tyler",
             SellerCity = @"Berlin",
             Date = @"2009-02-16T00:00:00",
-            Value = 46.4947271377289,
+            Value = 46.6,
             NumberOfUnits = 119
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 79.235950894298,
+            ProductUnitPrice = 79.2,
             SellerName = @"Kathe Pettel",
             SellerCity = @"Tokyo",
             Date = @"2009-02-16T00:00:00",
-            Value = 29.2403552817369,
+            Value = 29.2,
             NumberOfUnits = 463
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 18.5889242769167,
+            ProductUnitPrice = 18.6,
             SellerName = @"Howard Sprouse",
             SellerCity = @"Tokyo",
             Date = @"2009-02-17T00:00:00",
-            Value = 19.7616056165479,
+            Value = 19.8,
             NumberOfUnits = 150
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 27.9011098332243,
+            ProductUnitPrice = 28,
             SellerName = @"Walter Pang",
             SellerCity = @"Berlin",
             Date = @"2009-02-19T00:00:00",
-            Value = 17.5578246440542,
+            Value = 17.6,
             NumberOfUnits = 210
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 67.1920887973123,
+            ProductUnitPrice = 67.2,
             SellerName = @"Kathe Pettel",
             SellerCity = @"Tokyo",
             Date = @"2009-02-20T00:00:00",
-            Value = 36.3218399865189,
+            Value = 36.4,
             NumberOfUnits = 150
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 35.8494879379168,
+            ProductUnitPrice = 36,
             SellerName = @"Benjamin Meekins",
             SellerCity = @"London",
             Date = @"2009-02-21T00:00:00",
-            Value = 73.8886510831717,
+            Value = 74,
             NumberOfUnits = 97
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 34.0737291304738,
+            ProductUnitPrice = 34.2,
             SellerName = @"Stanley Brooker",
             SellerCity = @"Berlin",
             Date = @"2009-02-22T00:00:00",
-            Value = 86.4171502117147,
+            Value = 86.4,
             NumberOfUnits = 256
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 66.2999107345473,
+            ProductUnitPrice = 66.4,
             SellerName = @"Russell Shorter",
             SellerCity = @"London",
             Date = @"2009-02-24T00:00:00",
-            Value = 52.8479152139499,
+            Value = 53,
             NumberOfUnits = 172
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 14.9018784123016,
+            ProductUnitPrice = 15,
             SellerName = @"Monica Freitag",
             SellerCity = @"Mellvile",
             Date = @"2009-02-24T00:00:00",
-            Value = 5.10816471889064,
+            Value = 5.2,
             NumberOfUnits = 489
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 51.9156207572276,
+            ProductUnitPrice = 52,
             SellerName = @"Claudia Kobayashi",
             SellerCity = @"Sofia",
             Date = @"2009-02-27T00:00:00",
-            Value = 9.09175295806106,
+            Value = 9.2,
             NumberOfUnits = 222
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 98.3082866288294,
+            ProductUnitPrice = 98.4,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"Berlin",
             Date = @"2009-03-03T00:00:00",
-            Value = 81.3140041573504,
+            Value = 81.4,
             NumberOfUnits = 300
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 72.8202512826865,
+            ProductUnitPrice = 72.8,
             SellerName = @"Harry Tyler",
             SellerCity = @"London",
             Date = @"2009-03-03T00:00:00",
-            Value = 1.3068364007896,
+            Value = 1.4,
             NumberOfUnits = 270
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 16.2606138811729,
+            ProductUnitPrice = 16.4,
             SellerName = @"Claudia Kobayashi",
             SellerCity = @"London",
             Date = @"2009-03-07T00:00:00",
-            Value = 81.4439182083327,
+            Value = 81.4,
             NumberOfUnits = 263
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 93.4466885372282,
+            ProductUnitPrice = 93.6,
             SellerName = @"Elisa Longbottom",
             SellerCity = @"Mellvile",
             Date = @"2009-03-10T00:00:00",
-            Value = 22.6618440461633,
+            Value = 22.8,
             NumberOfUnits = 28
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 42.1427614251816,
+            ProductUnitPrice = 42.2,
             SellerName = @"Howard Sprouse",
             SellerCity = @"London",
             Date = @"2009-03-15T00:00:00",
-            Value = 20.3884158844074,
+            Value = 20.4,
             NumberOfUnits = 237
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 54.9838977190591,
+            ProductUnitPrice = 55,
             SellerName = @"Claudia Kobayashi",
             SellerCity = @"Tokyo",
             Date = @"2009-03-16T00:00:00",
-            Value = 64.0434504319185,
+            Value = 64,
             NumberOfUnits = 171
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 97.3112582216557,
+            ProductUnitPrice = 97.4,
             SellerName = @"Kathe Pettel",
             SellerCity = @"New York",
             Date = @"2009-03-27T00:00:00",
-            Value = 23.9032197389301,
+            Value = 24,
             NumberOfUnits = 251
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 50.8898930395441,
+            ProductUnitPrice = 51,
             SellerName = @"Antonio Charbonneau",
             SellerCity = @"London",
             Date = @"2009-04-01T00:00:00",
-            Value = 32.3240410687048,
+            Value = 32.4,
             NumberOfUnits = 275
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 4.71444605137894,
+            ProductUnitPrice = 4.8,
             SellerName = @"Brandon Mckim",
             SellerCity = @"London",
             Date = @"2009-04-06T00:00:00",
-            Value = 41.960918783192,
+            Value = 42,
             NumberOfUnits = 311
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 70.8505471566927,
+            ProductUnitPrice = 71,
             SellerName = @"Monica Freitag",
             SellerCity = @"New York",
             Date = @"2009-04-07T00:00:00",
-            Value = 82.8114936048218,
+            Value = 82.8,
             NumberOfUnits = 217
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 96.7786524895479,
+            ProductUnitPrice = 96.8,
             SellerName = @"Claudia Kobayashi",
             SellerCity = @"London",
             Date = @"2009-04-09T00:00:00",
-            Value = 62.226076034003,
+            Value = 62.2,
             NumberOfUnits = 360
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 83.5057999396258,
+            ProductUnitPrice = 83.6,
             SellerName = @"Howard Sprouse",
             SellerCity = @"Berlin",
             Date = @"2009-04-12T00:00:00",
-            Value = 51.5879595892448,
+            Value = 51.6,
             NumberOfUnits = 35
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 96.4138024469902,
+            ProductUnitPrice = 96.4,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"New York",
             Date = @"2009-04-15T00:00:00",
-            Value = 80.9865561225389,
+            Value = 81,
             NumberOfUnits = 294
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 70.8025897251454,
+            ProductUnitPrice = 70.8,
             SellerName = @"Howard Sprouse",
             SellerCity = @"Seattle",
             Date = @"2009-04-16T00:00:00",
-            Value = 35.8669334258265,
+            Value = 36,
             NumberOfUnits = 436
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 94.524064517824,
+            ProductUnitPrice = 94.6,
             SellerName = @"Kathe Pettel",
             SellerCity = @"London",
             Date = @"2009-04-20T00:00:00",
-            Value = 82.4887134984549,
+            Value = 82.6,
             NumberOfUnits = 78
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 29.6036580249684,
+            ProductUnitPrice = 29.6,
             SellerName = @"David Haley",
             SellerCity = @"Tokyo",
             Date = @"2009-04-22T00:00:00",
-            Value = 94.0230918089035,
+            Value = 94,
             NumberOfUnits = 301
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 70.5979821600942,
+            ProductUnitPrice = 70.6,
             SellerName = @"Mark Slater",
             SellerCity = @"New York",
             Date = @"2009-05-02T00:00:00",
-            Value = 92.5980870111837,
+            Value = 92.6,
             NumberOfUnits = 24
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 71.6669971457063,
+            ProductUnitPrice = 71.8,
             SellerName = @"Howard Sprouse",
             SellerCity = @"Seattle",
             Date = @"2009-05-04T00:00:00",
-            Value = 19.2821136765564,
+            Value = 19.4,
             NumberOfUnits = 332
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 14.5527074181255,
+            ProductUnitPrice = 14.6,
             SellerName = @"Mark Slater",
             SellerCity = @"Berlin",
             Date = @"2009-05-11T00:00:00",
-            Value = 56.4288374299318,
+            Value = 56.4,
             NumberOfUnits = 307
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 36.7129272020948,
+            ProductUnitPrice = 36.8,
             SellerName = @"Harold Garvin",
             SellerCity = @"Seattle",
             Date = @"2009-05-11T00:00:00",
-            Value = 34.2653989020108,
+            Value = 34.4,
             NumberOfUnits = 375
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 62.7458781296135,
+            ProductUnitPrice = 62.8,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"Mellvile",
             Date = @"2009-05-12T00:00:00",
-            Value = 1.97444427850397,
+            Value = 2,
             NumberOfUnits = 499
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 13.699630607711,
+            ProductUnitPrice = 13.8,
             SellerName = @"Russell Shorter",
             SellerCity = @"London",
             Date = @"2009-05-21T00:00:00",
-            Value = 42.5140213419283,
+            Value = 42.6,
             NumberOfUnits = 337
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 46.0902745584446,
+            ProductUnitPrice = 46.2,
             SellerName = @"Larry Lieb",
             SellerCity = @"London",
             Date = @"2009-05-24T00:00:00",
-            Value = 55.2507777489958,
+            Value = 55.4,
             NumberOfUnits = 284
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 95.3368767608594,
+            ProductUnitPrice = 95.4,
             SellerName = @"Howard Sprouse",
             SellerCity = @"Berlin",
             Date = @"2009-05-26T00:00:00",
-            Value = 94.7641316311267,
+            Value = 94.8,
             NumberOfUnits = 292
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 78.0907848282209,
+            ProductUnitPrice = 78.2,
             SellerName = @"Howard Sprouse",
             SellerCity = @"Sofia",
             Date = @"2009-05-26T00:00:00",
-            Value = 60.153313800764,
+            Value = 60.2,
             NumberOfUnits = 424
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 99.3922291320712,
+            ProductUnitPrice = 99.4,
             SellerName = @"Mark Slater",
             SellerCity = @"Mellvile",
             Date = @"2009-06-05T00:00:00",
-            Value = 28.9941448387663,
+            Value = 29,
             NumberOfUnits = 271
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 86.9449185146694,
+            ProductUnitPrice = 87,
             SellerName = @"Howard Sprouse",
             SellerCity = @"Mellvile",
             Date = @"2009-06-10T00:00:00",
-            Value = 94.0419746535094,
+            Value = 94,
             NumberOfUnits = 6
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 13.4957477978877,
+            ProductUnitPrice = 13.6,
             SellerName = @"Elisa Longbottom",
             SellerCity = @"Sofia",
             Date = @"2009-06-12T00:00:00",
-            Value = 94.8922945628372,
+            Value = 95,
             NumberOfUnits = 44
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 99.6485929003212,
+            ProductUnitPrice = 99.8,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"Seattle",
             Date = @"2009-06-12T00:00:00",
-            Value = 74.2049469492421,
+            Value = 74.2,
             NumberOfUnits = 277
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 16.8774421871069,
+            ProductUnitPrice = 17,
             SellerName = @"Brandon Mckim",
             SellerCity = @"Seattle",
             Date = @"2009-06-13T00:00:00",
-            Value = 65.1211143308883,
+            Value = 65.2,
             NumberOfUnits = 98
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 42.3769917070759,
+            ProductUnitPrice = 42.4,
             SellerName = @"Elisa Longbottom",
             SellerCity = @"Mellvile",
             Date = @"2009-06-22T00:00:00",
-            Value = 68.6028470604694,
+            Value = 68.6,
             NumberOfUnits = 443
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 79.5399570742343,
+            ProductUnitPrice = 79.6,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"Seattle",
             Date = @"2009-06-26T00:00:00",
-            Value = 81.434181044546,
+            Value = 81.4,
             NumberOfUnits = 409
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 26.2529126490713,
+            ProductUnitPrice = 26.4,
             SellerName = @"Walter Pang",
             SellerCity = @"New York",
             Date = @"2009-07-02T00:00:00",
-            Value = 68.128146216333,
+            Value = 68.2,
             NumberOfUnits = 240
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 34.0461566271475,
+            ProductUnitPrice = 34.2,
             SellerName = @"Kathe Pettel",
             SellerCity = @"Seattle",
             Date = @"2009-07-10T00:00:00",
-            Value = 95.5703596563872,
+            Value = 95.6,
             NumberOfUnits = 23
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 29.3798175777215,
+            ProductUnitPrice = 29.4,
             SellerName = @"Larry Lieb",
             SellerCity = @"Mellvile",
             Date = @"2009-07-12T00:00:00",
-            Value = 35.8895050994537,
+            Value = 36,
             NumberOfUnits = 109
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 86.6504524306629,
+            ProductUnitPrice = 86.8,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"Berlin",
             Date = @"2009-07-13T00:00:00",
-            Value = 29.8568054241393,
+            Value = 30,
             NumberOfUnits = 117
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 58.3866038165924,
+            ProductUnitPrice = 58.4,
             SellerName = @"Mark Slater",
             SellerCity = @"New York",
             Date = @"2009-07-15T00:00:00",
-            Value = 34.3696922689535,
+            Value = 34.4,
             NumberOfUnits = 336
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 39.7596297970785,
+            ProductUnitPrice = 39.8,
             SellerName = @"Antonio Charbonneau",
             SellerCity = @"Seattle",
             Date = @"2009-07-18T00:00:00",
-            Value = 92.3961012123134,
+            Value = 92.4,
             NumberOfUnits = 372
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 10.1100024814298,
+            ProductUnitPrice = 10.2,
             SellerName = @"Larry Lieb",
             SellerCity = @"Berlin",
             Date = @"2009-07-19T00:00:00",
-            Value = 90.4088654510718,
+            Value = 90.4,
             NumberOfUnits = 403
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 17.7727690980643,
+            ProductUnitPrice = 17.8,
             SellerName = @"Harry Tyler",
             SellerCity = @"Seattle",
             Date = @"2009-07-19T00:00:00",
-            Value = 66.145469558493,
+            Value = 66.2,
             NumberOfUnits = 144
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 21.5434081487094,
+            ProductUnitPrice = 21.6,
             SellerName = @"Lydia Burson",
             SellerCity = @"Seattle",
             Date = @"2009-07-19T00:00:00",
-            Value = 41.7126494654048,
+            Value = 41.8,
             NumberOfUnits = 395
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 33.5612783830433,
+            ProductUnitPrice = 33.6,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"New York",
             Date = @"2009-07-20T00:00:00",
-            Value = 16.6100432707975,
+            Value = 16.6,
             NumberOfUnits = 236
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 48.7630817800588,
+            ProductUnitPrice = 48.8,
             SellerName = @"Larry Lieb",
             SellerCity = @"Seattle",
             Date = @"2009-07-20T00:00:00",
-            Value = 86.7044968934285,
+            Value = 86.8,
             NumberOfUnits = 160
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 81.7970517938012,
+            ProductUnitPrice = 81.8,
             SellerName = @"David Haley",
             SellerCity = @"Sofia",
             Date = @"2009-07-20T00:00:00",
-            Value = 65.782062134604,
+            Value = 65.8,
             NumberOfUnits = 157
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 9.67370104495143,
+            ProductUnitPrice = 9.8,
             SellerName = @"Glenn Landeros",
             SellerCity = @"Sofia",
             Date = @"2009-07-25T00:00:00",
-            Value = 0.0625649467401975,
+            Value = 0.2,
             NumberOfUnits = 255
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 88.5755474625973,
+            ProductUnitPrice = 88.6,
             SellerName = @"Mark Slater",
             SellerCity = @"London",
             Date = @"2009-08-16T00:00:00",
-            Value = 42.9738638657023,
+            Value = 43,
             NumberOfUnits = 284
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 89.3357426344118,
+            ProductUnitPrice = 89.4,
             SellerName = @"Walter Pang",
             SellerCity = @"Tokyo",
             Date = @"2009-08-17T00:00:00",
-            Value = 15.7312968353421,
+            Value = 15.8,
             NumberOfUnits = 333
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 23.9876511618437,
+            ProductUnitPrice = 24,
             SellerName = @"Monica Freitag",
             SellerCity = @"Seattle",
             Date = @"2009-08-17T00:00:00",
-            Value = 51.5363990569191,
+            Value = 51.6,
             NumberOfUnits = 48
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 19.3597302396594,
+            ProductUnitPrice = 19.4,
             SellerName = @"Kathe Pettel",
             SellerCity = @"New York",
             Date = @"2009-08-18T00:00:00",
-            Value = 82.5479551602844,
+            Value = 82.6,
             NumberOfUnits = 399
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 9.30053084590497,
+            ProductUnitPrice = 9.4,
             SellerName = @"Mark Slater",
             SellerCity = @"Berlin",
             Date = @"2009-08-24T00:00:00",
-            Value = 68.6077507532238,
+            Value = 68.6,
             NumberOfUnits = 413
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 1.14898169466713,
+            ProductUnitPrice = 1.2,
             SellerName = @"Monica Freitag",
             SellerCity = @"Sofia",
             Date = @"2009-09-06T00:00:00",
-            Value = 71.9099786933092,
+            Value = 72,
             NumberOfUnits = 182
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 76.9795825597735,
+            ProductUnitPrice = 77,
             SellerName = @"Russell Shorter",
             SellerCity = @"Mellvile",
             Date = @"2009-09-06T00:00:00",
-            Value = 44.8902971320275,
+            Value = 45,
             NumberOfUnits = 156
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 80.6645133442546,
+            ProductUnitPrice = 80.8,
             SellerName = @"Antonio Charbonneau",
             SellerCity = @"Mellvile",
             Date = @"2009-09-09T00:00:00",
-            Value = 92.2680239622798,
+            Value = 92.4,
             NumberOfUnits = 293
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 22.7888861311548,
+            ProductUnitPrice = 22.8,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"Berlin",
             Date = @"2009-10-01T00:00:00",
-            Value = 99.8839278239216,
+            Value = 100,
             NumberOfUnits = 16
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 78.0536102028813,
+            ProductUnitPrice = 78.2,
             SellerName = @"Benjamin Meekins",
             SellerCity = @"Seattle",
             Date = @"2009-10-01T00:00:00",
-            Value = 16.012941820553,
+            Value = 16,
             NumberOfUnits = 106
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 72.9745148089596,
+            ProductUnitPrice = 73,
             SellerName = @"Glenn Landeros",
             SellerCity = @"Tokyo",
             Date = @"2009-10-06T00:00:00",
-            Value = 91.5937769187585,
+            Value = 91.6,
             NumberOfUnits = 16
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 22.0582418712127,
+            ProductUnitPrice = 22.2,
             SellerName = @"John Smith",
             SellerCity = @"Tokyo",
             Date = @"2009-10-07T00:00:00",
-            Value = 1.83085859838447,
+            Value = 1.8,
             NumberOfUnits = 187
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 42.791869790662,
+            ProductUnitPrice = 42.8,
             SellerName = @"Harry Tyler",
             SellerCity = @"Seattle",
             Date = @"2009-10-10T00:00:00",
-            Value = 21.7898646936705,
+            Value = 21.8,
             NumberOfUnits = 137
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 46.2311712774593,
+            ProductUnitPrice = 46.2,
             SellerName = @"Mark Slater",
             SellerCity = @"Seattle",
             Date = @"2009-10-14T00:00:00",
-            Value = 14.979823871972,
+            Value = 15,
             NumberOfUnits = 138
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 14.3501850377536,
+            ProductUnitPrice = 14.4,
             SellerName = @"Mark Slater",
             SellerCity = @"Seattle",
             Date = @"2009-10-24T00:00:00",
-            Value = 65.0446162396318,
+            Value = 65,
             NumberOfUnits = 256
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 40.1009556558453,
+            ProductUnitPrice = 40.2,
             SellerName = @"Antonio Charbonneau",
             SellerCity = @"London",
             Date = @"2009-10-24T00:00:00",
-            Value = 11.0590405813693,
+            Value = 11.2,
             NumberOfUnits = 353
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 17.1890978315794,
+            ProductUnitPrice = 17.2,
             SellerName = @"Lydia Burson",
             SellerCity = @"Tokyo",
             Date = @"2009-11-01T00:00:00",
-            Value = 94.9500347464113,
+            Value = 95,
             NumberOfUnits = 359
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 52.0310281552519,
+            ProductUnitPrice = 52,
             SellerName = @"Walter Pang",
             SellerCity = @"Tokyo",
             Date = @"2009-11-04T00:00:00",
-            Value = 43.1628818359053,
+            Value = 43.2,
             NumberOfUnits = 134
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 90.9938719547325,
+            ProductUnitPrice = 91,
             SellerName = @"Larry Lieb",
             SellerCity = @"Seattle",
             Date = @"2009-11-09T00:00:00",
-            Value = 25.1620659721839,
+            Value = 25.2,
             NumberOfUnits = 263
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 88.538379077119,
+            ProductUnitPrice = 88.6,
             SellerName = @"Monica Freitag",
             SellerCity = @"Seattle",
             Date = @"2009-11-11T00:00:00",
-            Value = 40.9352931850288,
+            Value = 41,
             NumberOfUnits = 313
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 46.481523265355,
+            ProductUnitPrice = 46.6,
             SellerName = @"Stanley Brooker",
             SellerCity = @"Mellvile",
             Date = @"2009-11-16T00:00:00",
-            Value = 20.4300965277618,
+            Value = 20.4,
             NumberOfUnits = 115
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 20.4184623995882,
+            ProductUnitPrice = 20.4,
             SellerName = @"Claudia Kobayashi",
             SellerCity = @"Berlin",
             Date = @"2009-11-17T00:00:00",
-            Value = 33.0386452996352,
+            Value = 33,
             NumberOfUnits = 414
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 70.8301441142476,
+            ProductUnitPrice = 70.8,
             SellerName = @"Kathe Pettel",
             SellerCity = @"New York",
             Date = @"2009-11-21T00:00:00",
-            Value = 2.98972730664058,
+            Value = 3,
             NumberOfUnits = 53
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 81.6288890231535,
+            ProductUnitPrice = 81.6,
             SellerName = @"John Smith",
             SellerCity = @"New York",
             Date = @"2009-11-22T00:00:00",
-            Value = 86.6687795550883,
+            Value = 86.8,
             NumberOfUnits = 472
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 9.71408142229267,
+            ProductUnitPrice = 9.8,
             SellerName = @"Harry Tyler",
             SellerCity = @"Mellvile",
             Date = @"2009-11-23T00:00:00",
-            Value = 53.5911873232532,
+            Value = 53.6,
             NumberOfUnits = 199
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 29.755140482334,
+            ProductUnitPrice = 29.8,
             SellerName = @"Harold Garvin",
             SellerCity = @"Sofia",
             Date = @"2009-11-24T00:00:00",
-            Value = 27.3887979459897,
+            Value = 27.4,
             NumberOfUnits = 241
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 33.1185376891487,
+            ProductUnitPrice = 33.2,
             SellerName = @"Glenn Landeros",
             SellerCity = @"New York",
             Date = @"2009-11-24T00:00:00",
-            Value = 1.21203092914635,
+            Value = 1.2,
             NumberOfUnits = 320
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 65.6359763655979,
+            ProductUnitPrice = 65.6,
             SellerName = @"David Haley",
             SellerCity = @"London",
             Date = @"2010-01-02T00:00:00",
-            Value = 20.5225394202967,
+            Value = 20.6,
             NumberOfUnits = 299
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 62.0852599675233,
+            ProductUnitPrice = 62.2,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"London",
             Date = @"2010-01-08T00:00:00",
-            Value = 35.2569343686369,
+            Value = 35.4,
             NumberOfUnits = 366
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 78.4744620688606,
+            ProductUnitPrice = 78.6,
             SellerName = @"John Smith",
             SellerCity = @"New York",
             Date = @"2010-01-10T00:00:00",
-            Value = 27.7620934079225,
+            Value = 27.8,
             NumberOfUnits = 290
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 11.5871551034912,
+            ProductUnitPrice = 11.6,
             SellerName = @"Lydia Burson",
             SellerCity = @"Sofia",
             Date = @"2010-01-11T00:00:00",
-            Value = 61.7125259068387,
+            Value = 61.8,
             NumberOfUnits = 350
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 33.4278158533516,
+            ProductUnitPrice = 33.4,
             SellerName = @"Russell Shorter",
             SellerCity = @"Sofia",
             Date = @"2010-01-14T00:00:00",
-            Value = 33.6869067203658,
+            Value = 33.8,
             NumberOfUnits = 469
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 96.1412969493034,
+            ProductUnitPrice = 96.2,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"Sofia",
             Date = @"2010-01-21T00:00:00",
-            Value = 75.6077166067472,
+            Value = 75.6,
             NumberOfUnits = 352
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 92.1718476769383,
+            ProductUnitPrice = 92.2,
             SellerName = @"Larry Lieb",
             SellerCity = @"Seattle",
             Date = @"2010-01-25T00:00:00",
-            Value = 38.8220244733719,
+            Value = 38.8,
             NumberOfUnits = 47
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 93.0459558931393,
+            ProductUnitPrice = 93.2,
             SellerName = @"Russell Shorter",
             SellerCity = @"Tokyo",
             Date = @"2010-02-02T00:00:00",
-            Value = 66.3971658639597,
+            Value = 66.4,
             NumberOfUnits = 153
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 38.8884185063133,
+            ProductUnitPrice = 39,
             SellerName = @"Antonio Charbonneau",
             SellerCity = @"Berlin",
             Date = @"2010-02-02T00:00:00",
-            Value = 28.4722165337169,
+            Value = 28.6,
             NumberOfUnits = 211
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 99.2550406601536,
+            ProductUnitPrice = 99.4,
             SellerName = @"Russell Shorter",
             SellerCity = @"Sofia",
             Date = @"2010-02-04T00:00:00",
-            Value = 66.9755095462201,
+            Value = 67,
             NumberOfUnits = 267
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 94.4183600574817,
+            ProductUnitPrice = 94.4,
             SellerName = @"Antonio Charbonneau",
             SellerCity = @"New York",
             Date = @"2010-02-04T00:00:00",
-            Value = 71.2719668034799,
+            Value = 71.4,
             NumberOfUnits = 91
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 19.7701877075109,
+            ProductUnitPrice = 19.8,
             SellerName = @"Claudia Kobayashi",
             SellerCity = @"Tokyo",
             Date = @"2010-02-05T00:00:00",
-            Value = 45.8602490117123,
+            Value = 46,
             NumberOfUnits = 84
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 87.1271086331117,
+            ProductUnitPrice = 87.2,
             SellerName = @"Howard Sprouse",
             SellerCity = @"Mellvile",
             Date = @"2010-02-11T00:00:00",
-            Value = 66.7467462209737,
+            Value = 66.8,
             NumberOfUnits = 270
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 76.21922282326,
+            ProductUnitPrice = 76.2,
             SellerName = @"Alfredo Fetuchini",
             SellerCity = @"Berlin",
             Date = @"2010-02-12T00:00:00",
-            Value = 86.9610477178176,
+            Value = 87,
             NumberOfUnits = 496
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 51.9355321544854,
+            ProductUnitPrice = 52,
             SellerName = @"John Smith",
             SellerCity = @"Seattle",
             Date = @"2010-02-16T00:00:00",
-            Value = 47.3254078753877,
+            Value = 47.4,
             NumberOfUnits = 24
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 21.709201215631,
+            ProductUnitPrice = 21.8,
             SellerName = @"Walter Pang",
             SellerCity = @"Mellvile",
             Date = @"2010-02-17T00:00:00",
-            Value = 72.6563786960469,
+            Value = 72.8,
             NumberOfUnits = 41
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 15.6659258602494,
+            ProductUnitPrice = 15.8,
             SellerName = @"John Smith",
             SellerCity = @"Mellvile",
             Date = @"2010-02-22T00:00:00",
-            Value = 65.6362050984223,
+            Value = 65.6,
             NumberOfUnits = 365
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 2.67735566137235,
+            ProductUnitPrice = 2.8,
             SellerName = @"Brandon Mckim",
             SellerCity = @"Sofia",
             Date = @"2010-03-01T00:00:00",
-            Value = 68.6297503619593,
+            Value = 68.6,
             NumberOfUnits = 202
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 52.2564326190653,
+            ProductUnitPrice = 52.4,
             SellerName = @"Howard Sprouse",
             SellerCity = @"Seattle",
             Date = @"2010-03-01T00:00:00",
-            Value = 79.2489015400637,
+            Value = 79.4,
             NumberOfUnits = 225
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 0.306599866741616,
+            ProductUnitPrice = 0.4,
             SellerName = @"Stanley Brooker",
             SellerCity = @"Mellvile",
             Date = @"2010-03-03T00:00:00",
-            Value = 70.0652126549115,
+            Value = 70.2,
             NumberOfUnits = 206
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 22.3626474488353,
+            ProductUnitPrice = 22.4,
             SellerName = @"Larry Lieb",
             SellerCity = @"Sofia",
             Date = @"2010-03-11T00:00:00",
-            Value = 54.6736846466892,
+            Value = 54.8,
             NumberOfUnits = 158
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 94.7514695090947,
+            ProductUnitPrice = 94.8,
             SellerName = @"Benjamin Meekins",
             SellerCity = @"London",
             Date = @"2010-03-14T00:00:00",
-            Value = 70.4222260836615,
+            Value = 70.4,
             NumberOfUnits = 169
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 1.12442909792272,
+            ProductUnitPrice = 1.2,
             SellerName = @"John Smith",
             SellerCity = @"New York",
             Date = @"2010-03-15T00:00:00",
-            Value = 18.8684402587211,
+            Value = 19,
             NumberOfUnits = 4
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 12.1681971997806,
+            ProductUnitPrice = 12.2,
             SellerName = @"Monica Freitag",
             SellerCity = @"New York",
             Date = @"2010-03-15T00:00:00",
-            Value = 12.6607507060565,
+            Value = 12.8,
             NumberOfUnits = 232
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 58.7548206368251,
+            ProductUnitPrice = 58.8,
             SellerName = @"Mark Slater",
             SellerCity = @"Berlin",
             Date = @"2010-03-16T00:00:00",
-            Value = 78.7513239675906,
+            Value = 78.8,
             NumberOfUnits = 421
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 43.9502779599048,
+            ProductUnitPrice = 44,
             SellerName = @"David Haley",
             SellerCity = @"Seattle",
             Date = @"2010-03-25T00:00:00",
-            Value = 89.6369019009345,
+            Value = 89.6,
             NumberOfUnits = 260
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 54.4511389706522,
+            ProductUnitPrice = 54.6,
             SellerName = @"Brandon Mckim",
             SellerCity = @"Seattle",
             Date = @"2010-04-02T00:00:00",
-            Value = 91.9299451131047,
+            Value = 92,
             NumberOfUnits = 194
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 94.5653737497355,
+            ProductUnitPrice = 94.6,
             SellerName = @"Walter Pang",
             SellerCity = @"Tokyo",
             Date = @"2010-04-05T00:00:00",
-            Value = 35.4152377394099,
+            Value = 35.4,
             NumberOfUnits = 491
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 11.1211000527819,
+            ProductUnitPrice = 11.2,
             SellerName = @"Harold Garvin",
             SellerCity = @"London",
             Date = @"2010-04-14T00:00:00",
-            Value = 29.9869050411447,
+            Value = 30,
             NumberOfUnits = 256
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 18.0924166078178,
+            ProductUnitPrice = 18.2,
             SellerName = @"Alfredo Fetuchini",
             SellerCity = @"Mellvile",
             Date = @"2010-04-15T00:00:00",
-            Value = 84.4573668131872,
+            Value = 84.6,
             NumberOfUnits = 279
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 8.27759965708367,
+            ProductUnitPrice = 8.4,
             SellerName = @"Carl Costello",
             SellerCity = @"Berlin",
             Date = @"2010-04-15T00:00:00",
-            Value = 99.5689766479512,
+            Value = 99.6,
             NumberOfUnits = 287
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 77.894294018808,
+            ProductUnitPrice = 78,
             SellerName = @"Carl Costello",
             SellerCity = @"New York",
             Date = @"2010-04-22T00:00:00",
-            Value = 58.9137158165284,
+            Value = 59,
             NumberOfUnits = 363
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 55.6240158880241,
+            ProductUnitPrice = 55.6,
             SellerName = @"Mark Slater",
             SellerCity = @"Berlin",
             Date = @"2010-04-22T00:00:00",
-            Value = 16.3176310324658,
+            Value = 16.4,
             NumberOfUnits = 499
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 39.3389566053352,
+            ProductUnitPrice = 39.4,
             SellerName = @"Lydia Burson",
             SellerCity = @"Berlin",
             Date = @"2010-04-24T00:00:00",
-            Value = 0.0920804217886554,
+            Value = 0.2,
             NumberOfUnits = 109
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 7.73894568334284,
+            ProductUnitPrice = 7.8,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"Berlin",
             Date = @"2010-05-04T00:00:00",
-            Value = 99.5294287332936,
+            Value = 99.6,
             NumberOfUnits = 25
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 62.4379060056237,
+            ProductUnitPrice = 62.4,
             SellerName = @"Alfredo Fetuchini",
             SellerCity = @"Mellvile",
             Date = @"2010-05-05T00:00:00",
-            Value = 47.9538268167311,
+            Value = 48,
             NumberOfUnits = 64
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 38.6960930371173,
+            ProductUnitPrice = 38.8,
             SellerName = @"Howard Sprouse",
             SellerCity = @"London",
             Date = @"2010-05-06T00:00:00",
-            Value = 57.6676950592863,
+            Value = 57.8,
             NumberOfUnits = 256
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 17.764891412931,
+            ProductUnitPrice = 17.8,
             SellerName = @"Benjamin Meekins",
             SellerCity = @"Mellvile",
             Date = @"2010-05-07T00:00:00",
-            Value = 15.2710798267606,
+            Value = 15.4,
             NumberOfUnits = 50
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 57.7715399012768,
+            ProductUnitPrice = 57.8,
             SellerName = @"Bryan Culver",
             SellerCity = @"Berlin",
             Date = @"2010-05-07T00:00:00",
-            Value = 58.6176938650281,
+            Value = 58.6,
             NumberOfUnits = 437
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 21.4127468976252,
+            ProductUnitPrice = 21.4,
             SellerName = @"Bryan Culver",
             SellerCity = @"Sofia",
             Date = @"2010-05-19T00:00:00",
-            Value = 40.9520166651122,
+            Value = 41,
             NumberOfUnits = 253
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 10.100512257824,
+            ProductUnitPrice = 10.2,
             SellerName = @"Monica Freitag",
             SellerCity = @"London",
             Date = @"2010-05-22T00:00:00",
-            Value = 24.0426371451666,
+            Value = 24,
             NumberOfUnits = 312
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 87.649551167921,
+            ProductUnitPrice = 87.8,
             SellerName = @"Claudia Kobayashi",
             SellerCity = @"London",
             Date = @"2010-05-24T00:00:00",
-            Value = 12.4524083046487,
+            Value = 12.6,
             NumberOfUnits = 82
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 42.5529655267265,
+            ProductUnitPrice = 42.6,
             SellerName = @"Harold Garvin",
             SellerCity = @"New York",
             Date = @"2010-06-01T00:00:00",
-            Value = 32.2188693248755,
+            Value = 32.2,
             NumberOfUnits = 467
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 79.7726707438811,
+            ProductUnitPrice = 79.8,
             SellerName = @"Alfredo Fetuchini",
             SellerCity = @"Sofia",
             Date = @"2010-06-05T00:00:00",
-            Value = 69.4770410980457,
+            Value = 69.6,
             NumberOfUnits = 74
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 1.83547618884383,
+            ProductUnitPrice = 1.8,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"Seattle",
             Date = @"2010-06-10T00:00:00",
-            Value = 14.7115019684245,
+            Value = 14.8,
             NumberOfUnits = 81
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 15.0386840175086,
+            ProductUnitPrice = 15,
             SellerName = @"Kathe Pettel",
             SellerCity = @"Berlin",
             Date = @"2010-06-25T00:00:00",
-            Value = 18.7104082287803,
+            Value = 18.8,
             NumberOfUnits = 88
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 43.3930698518609,
+            ProductUnitPrice = 43.4,
             SellerName = @"Antonio Charbonneau",
             SellerCity = @"Mellvile",
             Date = @"2010-06-26T00:00:00",
-            Value = 44.3231601474449,
+            Value = 44.4,
             NumberOfUnits = 126
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 16.2364924867807,
+            ProductUnitPrice = 16.2,
             SellerName = @"Elisa Longbottom",
             SellerCity = @"Sofia",
             Date = @"2010-06-27T00:00:00",
-            Value = 77.7216357075244,
+            Value = 77.8,
             NumberOfUnits = 112
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 59.1922528851741,
+            ProductUnitPrice = 59.2,
             SellerName = @"Antonio Charbonneau",
             SellerCity = @"Sofia",
             Date = @"2010-06-27T00:00:00",
-            Value = 15.4449518376239,
+            Value = 15.4,
             NumberOfUnits = 47
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 39.8581418394382,
+            ProductUnitPrice = 40,
             SellerName = @"Claudia Kobayashi",
             SellerCity = @"Sofia",
             Date = @"2010-07-05T00:00:00",
-            Value = 29.3091846300797,
+            Value = 29.4,
             NumberOfUnits = 218
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 27.0444256379476,
+            ProductUnitPrice = 27,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"New York",
             Date = @"2010-07-05T00:00:00",
-            Value = 29.8475043987145,
+            Value = 30,
             NumberOfUnits = 34
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 14.2691450725632,
+            ProductUnitPrice = 14.4,
             SellerName = @"Bryan Culver",
             SellerCity = @"Sofia",
             Date = @"2010-07-13T00:00:00",
-            Value = 83.4209680480049,
+            Value = 83.4,
             NumberOfUnits = 492
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 53.3786114553821,
+            ProductUnitPrice = 53.4,
             SellerName = @"Harry Tyler",
             SellerCity = @"Sofia",
             Date = @"2010-07-16T00:00:00",
-            Value = 41.5384453449112,
+            Value = 41.6,
             NumberOfUnits = 464
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 21.4328872139719,
+            ProductUnitPrice = 21.4,
             SellerName = @"Harry Tyler",
             SellerCity = @"Seattle",
             Date = @"2010-07-17T00:00:00",
-            Value = 83.2859072756422,
+            Value = 83.4,
             NumberOfUnits = 118
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 23.970818670453,
+            ProductUnitPrice = 24,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"Seattle",
             Date = @"2010-07-18T00:00:00",
-            Value = 94.1482592346837,
+            Value = 94.2,
             NumberOfUnits = 442
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 37.5230978883445,
+            ProductUnitPrice = 37.6,
             SellerName = @"Benjamin Meekins",
             SellerCity = @"London",
             Date = @"2010-07-23T00:00:00",
-            Value = 59.5941603926914,
+            Value = 59.6,
             NumberOfUnits = 248
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 60.6786810144217,
+            ProductUnitPrice = 60.8,
             SellerName = @"Lydia Burson",
             SellerCity = @"London",
             Date = @"2010-07-23T00:00:00",
-            Value = 83.4996018016243,
+            Value = 83.6,
             NumberOfUnits = 472
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 78.0230887131873,
+            ProductUnitPrice = 78,
             SellerName = @"Alfredo Fetuchini",
             SellerCity = @"New York",
             Date = @"2010-07-24T00:00:00",
-            Value = 83.8676409255097,
+            Value = 84,
             NumberOfUnits = 140
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 47.6352533081711,
+            ProductUnitPrice = 47.6,
             SellerName = @"Lydia Burson",
             SellerCity = @"Tokyo",
             Date = @"2010-07-26T00:00:00",
-            Value = 86.6125727475679,
+            Value = 86.6,
             NumberOfUnits = 118
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 58.2019802919598,
+            ProductUnitPrice = 58.2,
             SellerName = @"Harry Tyler",
             SellerCity = @"Sofia",
             Date = @"2010-07-27T00:00:00",
-            Value = 63.9597797132841,
+            Value = 64,
             NumberOfUnits = 176
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 98.3753316562508,
+            ProductUnitPrice = 98.4,
             SellerName = @"Russell Shorter",
             SellerCity = @"Mellvile",
             Date = @"2010-08-01T00:00:00",
-            Value = 23.2771004658551,
+            Value = 23.4,
             NumberOfUnits = 77
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 2.91859693961153,
+            ProductUnitPrice = 3,
             SellerName = @"Glenn Landeros",
             SellerCity = @"Sofia",
             Date = @"2010-08-08T00:00:00",
-            Value = 74.2696866273273,
+            Value = 74.4,
             NumberOfUnits = 105
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 98.1575848060463,
+            ProductUnitPrice = 98.2,
             SellerName = @"Alfredo Fetuchini",
             SellerCity = @"Tokyo",
             Date = @"2010-08-21T00:00:00",
-            Value = 60.6481732151695,
+            Value = 60.8,
             NumberOfUnits = 160
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 79.0367491445675,
+            ProductUnitPrice = 79,
             SellerName = @"Stanley Brooker",
             SellerCity = @"Seattle",
             Date = @"2010-08-26T00:00:00",
-            Value = 66.9235039348358,
+            Value = 67,
             NumberOfUnits = 186
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 17.7901039914182,
+            ProductUnitPrice = 17.8,
             SellerName = @"Harold Garvin",
             SellerCity = @"Seattle",
             Date = @"2010-09-04T00:00:00",
-            Value = 28.9908316121394,
+            Value = 29,
             NumberOfUnits = 380
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 38.6847079911664,
+            ProductUnitPrice = 38.8,
             SellerName = @"John Smith",
             SellerCity = @"Tokyo",
             Date = @"2010-09-11T00:00:00",
-            Value = 41.4628619986879,
+            Value = 41.6,
             NumberOfUnits = 470
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 75.2331203665739,
+            ProductUnitPrice = 75.2,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"Mellvile",
             Date = @"2010-09-13T00:00:00",
-            Value = 42.6885162678959,
+            Value = 42.8,
             NumberOfUnits = 348
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 55.3015930835631,
+            ProductUnitPrice = 55.4,
             SellerName = @"Carl Costello",
             SellerCity = @"London",
             Date = @"2010-09-14T00:00:00",
-            Value = 29.3834675705915,
+            Value = 29.4,
             NumberOfUnits = 151
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 51.3150495715975,
+            ProductUnitPrice = 51.4,
             SellerName = @"Kathe Pettel",
             SellerCity = @"New York",
             Date = @"2010-09-24T00:00:00",
-            Value = 86.5812376544723,
+            Value = 86.6,
             NumberOfUnits = 7
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 31.307030995985,
+            ProductUnitPrice = 31.4,
             SellerName = @"Monica Freitag",
             SellerCity = @"New York",
             Date = @"2010-10-07T00:00:00",
-            Value = 38.9368724259254,
+            Value = 39,
             NumberOfUnits = 123
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 79.9592423625101,
+            ProductUnitPrice = 80,
             SellerName = @"Mark Slater",
             SellerCity = @"Seattle",
             Date = @"2010-10-08T00:00:00",
-            Value = 8.67633717538618,
+            Value = 8.8,
             NumberOfUnits = 374
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 94.6578224164703,
+            ProductUnitPrice = 94.8,
             SellerName = @"Kathe Pettel",
             SellerCity = @"Mellvile",
             Date = @"2010-10-11T00:00:00",
-            Value = 96.6699889845541,
+            Value = 96.8,
             NumberOfUnits = 178
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 41.9676100099308,
+            ProductUnitPrice = 42,
             SellerName = @"Bryan Culver",
             SellerCity = @"Sofia",
             Date = @"2010-10-22T00:00:00",
-            Value = 31.4126786456502,
+            Value = 31.4,
             NumberOfUnits = 354
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 46.5647290677599,
+            ProductUnitPrice = 46.6,
             SellerName = @"Elisa Longbottom",
             SellerCity = @"New York",
             Date = @"2010-10-25T00:00:00",
-            Value = 85.5404131978473,
+            Value = 85.6,
             NumberOfUnits = 459
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 27.142422565791,
+            ProductUnitPrice = 27.2,
             SellerName = @"Mark Slater",
             SellerCity = @"London",
             Date = @"2010-11-02T00:00:00",
-            Value = 46.4249687951174,
+            Value = 46.4,
             NumberOfUnits = 78
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 30.2323615319246,
+            ProductUnitPrice = 30.2,
             SellerName = @"Walter Pang",
             SellerCity = @"Berlin",
             Date = @"2010-11-03T00:00:00",
-            Value = 52.0832259916157,
+            Value = 52.2,
             NumberOfUnits = 417
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 82.1662157690927,
+            ProductUnitPrice = 82.2,
             SellerName = @"Walter Pang",
             SellerCity = @"Seattle",
             Date = @"2010-11-12T00:00:00",
-            Value = 15.3999604356475,
+            Value = 15.4,
             NumberOfUnits = 208
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 13.240201125499,
+            ProductUnitPrice = 13.2,
             SellerName = @"Harold Garvin",
             SellerCity = @"Seattle",
             Date = @"2010-11-19T00:00:00",
-            Value = 48.6144510789842,
+            Value = 48.6,
             NumberOfUnits = 359
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 8.82965918110202,
+            ProductUnitPrice = 8.8,
             SellerName = @"Russell Shorter",
             SellerCity = @"New York",
             Date = @"2010-11-25T00:00:00",
-            Value = 24.4904398566533,
+            Value = 24.6,
             NumberOfUnits = 392
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 78.4260817702981,
+            ProductUnitPrice = 78.4,
             SellerName = @"John Smith",
             SellerCity = @"London",
             Date = @"2011-01-01T00:00:00",
-            Value = 37.5964090403153,
+            Value = 37.6,
             NumberOfUnits = 241
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 50.5900502906135,
+            ProductUnitPrice = 50.6,
             SellerName = @"Claudia Kobayashi",
             SellerCity = @"Seattle",
             Date = @"2011-01-04T00:00:00",
-            Value = 27.1853911351345,
+            Value = 27.2,
             NumberOfUnits = 62
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 6.3079299900252,
+            ProductUnitPrice = 6.4,
             SellerName = @"Elisa Longbottom",
             SellerCity = @"Tokyo",
             Date = @"2011-01-06T00:00:00",
-            Value = 89.6156176410688,
+            Value = 89.6,
             NumberOfUnits = 485
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 47.4440275446717,
+            ProductUnitPrice = 47.4,
             SellerName = @"Bryan Culver",
             SellerCity = @"Sofia",
             Date = @"2011-01-14T00:00:00",
-            Value = 4.89485562075621,
+            Value = 5,
             NumberOfUnits = 470
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 6.14731172385966,
+            ProductUnitPrice = 6.2,
             SellerName = @"Harry Tyler",
             SellerCity = @"Seattle",
             Date = @"2011-01-23T00:00:00",
-            Value = 78.5233307064154,
+            Value = 78.6,
             NumberOfUnits = 197
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 57.5989394716914,
+            ProductUnitPrice = 57.6,
             SellerName = @"Larry Lieb",
             SellerCity = @"Berlin",
             Date = @"2011-01-26T00:00:00",
-            Value = 59.7489598485404,
+            Value = 59.8,
             NumberOfUnits = 353
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 37.6194079116077,
+            ProductUnitPrice = 37.6,
             SellerName = @"Benjamin Meekins",
             SellerCity = @"Mellvile",
             Date = @"2011-02-01T00:00:00",
-            Value = 39.5911915412132,
+            Value = 39.6,
             NumberOfUnits = 338
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 20.9958269824254,
+            ProductUnitPrice = 21,
             SellerName = @"Claudia Kobayashi",
             SellerCity = @"New York",
             Date = @"2011-02-08T00:00:00",
-            Value = 92.8749361973605,
+            Value = 93,
             NumberOfUnits = 17
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 11.7769003900592,
+            ProductUnitPrice = 11.8,
             SellerName = @"Antonio Charbonneau",
             SellerCity = @"Berlin",
             Date = @"2011-02-12T00:00:00",
-            Value = 61.2888651254069,
+            Value = 61.4,
             NumberOfUnits = 429
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 64.99628464924,
+            ProductUnitPrice = 65,
             SellerName = @"Alfredo Fetuchini",
             SellerCity = @"Tokyo",
             Date = @"2011-02-14T00:00:00",
-            Value = 24.2937369850901,
+            Value = 24.4,
             NumberOfUnits = 385
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 19.8995369113514,
+            ProductUnitPrice = 20,
             SellerName = @"Claudia Kobayashi",
             SellerCity = @"New York",
             Date = @"2011-02-20T00:00:00",
-            Value = 35.2711213916871,
+            Value = 35.4,
             NumberOfUnits = 166
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 3.24316662887259,
+            ProductUnitPrice = 3.2,
             SellerName = @"Lydia Burson",
             SellerCity = @"Seattle",
             Date = @"2011-02-20T00:00:00",
-            Value = 52.5691429397879,
+            Value = 52.6,
             NumberOfUnits = 137
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 18.1803640062829,
+            ProductUnitPrice = 18.2,
             SellerName = @"Russell Shorter",
             SellerCity = @"New York",
             Date = @"2011-02-24T00:00:00",
-            Value = 8.24380023788838,
+            Value = 8.2,
             NumberOfUnits = 443
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 20.4427896628356,
+            ProductUnitPrice = 20.4,
             SellerName = @"Carl Costello",
             SellerCity = @"Seattle",
             Date = @"2011-02-26T00:00:00",
-            Value = 87.3277976584285,
+            Value = 87.4,
             NumberOfUnits = 40
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 20.5473255927429,
+            ProductUnitPrice = 20.6,
             SellerName = @"Glenn Landeros",
             SellerCity = @"London",
             Date = @"2011-03-05T00:00:00",
-            Value = 7.27535193193487,
+            Value = 7.4,
             NumberOfUnits = 138
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 23.7664708047018,
+            ProductUnitPrice = 23.8,
             SellerName = @"Lydia Burson",
             SellerCity = @"Tokyo",
             Date = @"2011-03-09T00:00:00",
-            Value = 18.2431707709297,
+            Value = 18.2,
             NumberOfUnits = 15
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 76.2531758175479,
+            ProductUnitPrice = 76.4,
             SellerName = @"Antonio Charbonneau",
             SellerCity = @"Mellvile",
             Date = @"2011-03-09T00:00:00",
-            Value = 74.4984883696299,
+            Value = 74.6,
             NumberOfUnits = 469
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 93.2519404651839,
+            ProductUnitPrice = 93.4,
             SellerName = @"Russell Shorter",
             SellerCity = @"London",
             Date = @"2011-03-11T00:00:00",
-            Value = 88.9964542766085,
+            Value = 89,
             NumberOfUnits = 426
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 62.9924886687624,
+            ProductUnitPrice = 63,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"Seattle",
             Date = @"2011-03-16T00:00:00",
-            Value = 32.4708369711744,
+            Value = 32.6,
             NumberOfUnits = 208
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 58.4988099795295,
+            ProductUnitPrice = 58.6,
             SellerName = @"Brandon Mckim",
             SellerCity = @"Seattle",
             Date = @"2011-03-21T00:00:00",
-            Value = 50.8492368044561,
+            Value = 51,
             NumberOfUnits = 155
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 82.3833047795963,
+            ProductUnitPrice = 82.4,
             SellerName = @"Stanley Brooker",
             SellerCity = @"Seattle",
             Date = @"2011-03-23T00:00:00",
-            Value = 33.3697168777556,
+            Value = 33.4,
             NumberOfUnits = 381
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 19.1687322310958,
+            ProductUnitPrice = 19.2,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"Tokyo",
             Date = @"2011-04-12T00:00:00",
-            Value = 75.1666108961993,
+            Value = 75.2,
             NumberOfUnits = 5
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 53.5164639602958,
+            ProductUnitPrice = 53.6,
             SellerName = @"Walter Pang",
             SellerCity = @"London",
             Date = @"2011-04-12T00:00:00",
-            Value = 14.5333742324884,
+            Value = 14.6,
             NumberOfUnits = 221
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 97.4074014450458,
+            ProductUnitPrice = 97.4,
             SellerName = @"Howard Sprouse",
             SellerCity = @"Sofia",
             Date = @"2011-04-14T00:00:00",
-            Value = 84.6913678034634,
+            Value = 84.8,
             NumberOfUnits = 39
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 74.0541336005806,
+            ProductUnitPrice = 74.2,
             SellerName = @"Mark Slater",
             SellerCity = @"New York",
             Date = @"2011-04-16T00:00:00",
-            Value = 51.2958985992223,
+            Value = 51.4,
             NumberOfUnits = 468
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 8.1049134061229,
+            ProductUnitPrice = 8.2,
             SellerName = @"Claudia Kobayashi",
             SellerCity = @"Seattle",
             Date = @"2011-04-17T00:00:00",
-            Value = 0.702147512092324,
+            Value = 0.8,
             NumberOfUnits = 44
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 59.0556036490275,
+            ProductUnitPrice = 59.2,
             SellerName = @"John Smith",
             SellerCity = @"Mellvile",
             Date = @"2011-04-22T00:00:00",
-            Value = 47.5329109688908,
+            Value = 47.6,
             NumberOfUnits = 287
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 96.8167277503837,
+            ProductUnitPrice = 96.8,
             SellerName = @"Russell Shorter",
             SellerCity = @"Sofia",
             Date = @"2011-04-24T00:00:00",
-            Value = 78.5457338572227,
+            Value = 78.6,
             NumberOfUnits = 463
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 76.7129123568129,
+            ProductUnitPrice = 76.8,
             SellerName = @"Walter Pang",
             SellerCity = @"Seattle",
             Date = @"2011-04-24T00:00:00",
-            Value = 62.9200352183171,
+            Value = 63,
             NumberOfUnits = 335
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 73.4245368621426,
+            ProductUnitPrice = 73.4,
             SellerName = @"Walter Pang",
             SellerCity = @"Berlin",
             Date = @"2011-04-24T00:00:00",
-            Value = 30.5695361134454,
+            Value = 30.6,
             NumberOfUnits = 211
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 66.398487550392,
+            ProductUnitPrice = 66.4,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"Seattle",
             Date = @"2011-05-03T00:00:00",
-            Value = 87.3747912176767,
+            Value = 87.4,
             NumberOfUnits = 291
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 37.014730059083,
+            ProductUnitPrice = 37,
             SellerName = @"John Smith",
             SellerCity = @"Sofia",
             Date = @"2011-05-05T00:00:00",
-            Value = 40.1370411459995,
+            Value = 40.2,
             NumberOfUnits = 1
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 21.3072483992703,
+            ProductUnitPrice = 21.4,
             SellerName = @"Alfredo Fetuchini",
             SellerCity = @"Seattle",
             Date = @"2011-05-06T00:00:00",
-            Value = 46.0055965213131,
+            Value = 46,
             NumberOfUnits = 120
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 19.8939418047173,
+            ProductUnitPrice = 20,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"Berlin",
             Date = @"2011-05-06T00:00:00",
-            Value = 72.6099307986954,
+            Value = 72.6,
             NumberOfUnits = 382
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 16.4867584204705,
+            ProductUnitPrice = 16.6,
             SellerName = @"Harry Tyler",
             SellerCity = @"Seattle",
             Date = @"2011-05-07T00:00:00",
-            Value = 7.76377297368076,
+            Value = 7.8,
             NumberOfUnits = 63
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 41.6604966584875,
+            ProductUnitPrice = 41.8,
             SellerName = @"Stanley Brooker",
             SellerCity = @"Seattle",
             Date = @"2011-05-12T00:00:00",
-            Value = 94.3181483979887,
+            Value = 94.4,
             NumberOfUnits = 230
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 4.97736600459431,
+            ProductUnitPrice = 5,
             SellerName = @"Larry Lieb",
             SellerCity = @"Tokyo",
             Date = @"2011-05-13T00:00:00",
-            Value = 30.8913420563989,
+            Value = 31,
             NumberOfUnits = 362
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 10.7490869289027,
+            ProductUnitPrice = 10.8,
             SellerName = @"Monica Freitag",
             SellerCity = @"New York",
             Date = @"2011-05-17T00:00:00",
-            Value = 59.668867131541,
+            Value = 59.8,
             NumberOfUnits = 430
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 66.0475761471538,
+            ProductUnitPrice = 66.2,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"Seattle",
             Date = @"2011-05-23T00:00:00",
-            Value = 91.1396276164519,
+            Value = 91.2,
             NumberOfUnits = 204
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 60.848456370108,
+            ProductUnitPrice = 61,
             SellerName = @"Antonio Charbonneau",
             SellerCity = @"Berlin",
             Date = @"2011-05-24T00:00:00",
-            Value = 86.0976055665396,
+            Value = 86.2,
             NumberOfUnits = 118
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 68.7086188088677,
+            ProductUnitPrice = 68.8,
             SellerName = @"Walter Pang",
             SellerCity = @"Sofia",
             Date = @"2011-06-01T00:00:00",
-            Value = 14.5628930602981,
+            Value = 14.6,
             NumberOfUnits = 17
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 40.6808912477833,
+            ProductUnitPrice = 40.8,
             SellerName = @"Walter Pang",
             SellerCity = @"New York",
             Date = @"2011-06-03T00:00:00",
-            Value = 9.04399659905769,
+            Value = 9,
             NumberOfUnits = 312
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 96.9003142774572,
+            ProductUnitPrice = 97,
             SellerName = @"Lydia Burson",
             SellerCity = @"Seattle",
             Date = @"2011-06-12T00:00:00",
-            Value = 95.0383566762499,
+            Value = 95,
             NumberOfUnits = 283
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 67.0312101799209,
+            ProductUnitPrice = 67,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"Seattle",
             Date = @"2011-06-13T00:00:00",
-            Value = 27.5874846743361,
+            Value = 27.6,
             NumberOfUnits = 460
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 67.0923743243759,
+            ProductUnitPrice = 67.2,
             SellerName = @"Howard Sprouse",
             SellerCity = @"New York",
             Date = @"2011-06-14T00:00:00",
-            Value = 66.2305235239819,
+            Value = 66.2,
             NumberOfUnits = 295
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 28.0480402652398,
+            ProductUnitPrice = 28.2,
             SellerName = @"Alfredo Fetuchini",
             SellerCity = @"Mellvile",
             Date = @"2011-06-15T00:00:00",
-            Value = 50.5041706145295,
+            Value = 50.6,
             NumberOfUnits = 49
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 7.38374935806903,
+            ProductUnitPrice = 7.4,
             SellerName = @"Russell Shorter",
             SellerCity = @"Tokyo",
             Date = @"2011-06-24T00:00:00",
-            Value = 7.87160536640864,
+            Value = 8,
             NumberOfUnits = 127
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 39.2197590038272,
+            ProductUnitPrice = 39.2,
             SellerName = @"Mark Slater",
             SellerCity = @"Seattle",
             Date = @"2011-06-27T00:00:00",
-            Value = 98.7102946260526,
+            Value = 98.8,
             NumberOfUnits = 244
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 53.4186711317946,
+            ProductUnitPrice = 53.4,
             SellerName = @"Harold Garvin",
             SellerCity = @"Tokyo",
             Date = @"2011-07-01T00:00:00",
-            Value = 11.2318856228291,
+            Value = 11.2,
             NumberOfUnits = 188
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 25.5238985761646,
+            ProductUnitPrice = 25.6,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"Seattle",
             Date = @"2011-07-06T00:00:00",
-            Value = 56.1265900526785,
+            Value = 56.2,
             NumberOfUnits = 458
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 70.2571991692564,
+            ProductUnitPrice = 70.4,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"Mellvile",
             Date = @"2011-07-08T00:00:00",
-            Value = 82.3391775052711,
+            Value = 82.4,
             NumberOfUnits = 448
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 7.63659435679978,
+            ProductUnitPrice = 7.6,
             SellerName = @"Harold Garvin",
             SellerCity = @"Berlin",
             Date = @"2011-07-27T00:00:00",
-            Value = 30.4619372032871,
+            Value = 30.6,
             NumberOfUnits = 226
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 21.5123230691591,
+            ProductUnitPrice = 21.6,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"London",
             Date = @"2011-08-01T00:00:00",
-            Value = 69.6182714633729,
+            Value = 69.6,
             NumberOfUnits = 474
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 37.5963703438623,
+            ProductUnitPrice = 37.6,
             SellerName = @"David Haley",
             SellerCity = @"Sofia",
             Date = @"2011-08-02T00:00:00",
-            Value = 62.767845142059,
+            Value = 62.8,
             NumberOfUnits = 338
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 99.3647431020461,
+            ProductUnitPrice = 99.4,
             SellerName = @"Benjamin Meekins",
             SellerCity = @"London",
             Date = @"2011-08-02T00:00:00",
-            Value = 75.2439621255007,
+            Value = 75.2,
             NumberOfUnits = 88
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 72.2329456695509,
+            ProductUnitPrice = 72.2,
             SellerName = @"Carl Costello",
             SellerCity = @"Berlin",
             Date = @"2011-08-04T00:00:00",
-            Value = 86.2765017367324,
+            Value = 86.4,
             NumberOfUnits = 436
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 34.253647892854,
+            ProductUnitPrice = 34.4,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"Mellvile",
             Date = @"2011-08-06T00:00:00",
-            Value = 9.21892994512754,
+            Value = 9.2,
             NumberOfUnits = 297
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 46.8859906992344,
+            ProductUnitPrice = 47,
             SellerName = @"Russell Shorter",
             SellerCity = @"London",
             Date = @"2011-08-07T00:00:00",
-            Value = 5.08746817013597,
+            Value = 5.2,
             NumberOfUnits = 240
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 26.3691973529613,
+            ProductUnitPrice = 26.4,
             SellerName = @"Stanley Brooker",
             SellerCity = @"Sofia",
             Date = @"2011-08-07T00:00:00",
-            Value = 80.2413071413717,
+            Value = 80.2,
             NumberOfUnits = 415
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 49.0728411120702,
+            ProductUnitPrice = 49.2,
             SellerName = @"David Haley",
             SellerCity = @"Mellvile",
             Date = @"2011-08-08T00:00:00",
-            Value = 61.2005174444991,
+            Value = 61.2,
             NumberOfUnits = 435
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 95.0586125697282,
+            ProductUnitPrice = 95.2,
             SellerName = @"Monica Freitag",
             SellerCity = @"Berlin",
             Date = @"2011-08-16T00:00:00",
-            Value = 73.751322260942,
+            Value = 73.8,
             NumberOfUnits = 64
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 74.1819833750753,
+            ProductUnitPrice = 74.2,
             SellerName = @"John Smith",
             SellerCity = @"Seattle",
             Date = @"2011-08-23T00:00:00",
-            Value = 40.736002680257,
+            Value = 40.8,
             NumberOfUnits = 21
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 82.506200011124,
+            ProductUnitPrice = 82.6,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"London",
             Date = @"2011-08-25T00:00:00",
-            Value = 54.9079566052686,
+            Value = 55,
             NumberOfUnits = 467
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 42.7733675310264,
+            ProductUnitPrice = 42.8,
             SellerName = @"Lydia Burson",
             SellerCity = @"Sofia",
             Date = @"2011-09-02T00:00:00",
-            Value = 28.2302390915482,
+            Value = 28.2,
             NumberOfUnits = 98
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 83.472341757022,
+            ProductUnitPrice = 83.6,
             SellerName = @"Russell Shorter",
             SellerCity = @"Mellvile",
             Date = @"2011-09-04T00:00:00",
-            Value = 72.4820205347994,
+            Value = 72.6,
             NumberOfUnits = 370
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 41.5529122769613,
+            ProductUnitPrice = 41.6,
             SellerName = @"Walter Pang",
             SellerCity = @"Berlin",
             Date = @"2011-09-05T00:00:00",
-            Value = 80.9870070223636,
+            Value = 81,
             NumberOfUnits = 94
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 74.1184084090024,
+            ProductUnitPrice = 74.2,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"London",
             Date = @"2011-09-09T00:00:00",
-            Value = 94.8475311020611,
+            Value = 95,
             NumberOfUnits = 106
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 75.4044839997797,
+            ProductUnitPrice = 75.4,
             SellerName = @"Claudia Kobayashi",
             SellerCity = @"Sofia",
             Date = @"2011-09-11T00:00:00",
-            Value = 9.88664790517029,
+            Value = 10,
             NumberOfUnits = 261
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 10.2271893574983,
+            ProductUnitPrice = 10.2,
             SellerName = @"Howard Sprouse",
             SellerCity = @"Seattle",
             Date = @"2011-09-17T00:00:00",
-            Value = 29.3933310217193,
+            Value = 29.4,
             NumberOfUnits = 307
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 72.9297495786705,
+            ProductUnitPrice = 73,
             SellerName = @"Harry Tyler",
             SellerCity = @"New York",
             Date = @"2011-09-17T00:00:00",
-            Value = 56.9024039231718,
+            Value = 57,
             NumberOfUnits = 362
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 85.1336930809234,
+            ProductUnitPrice = 85.2,
             SellerName = @"Benjamin Meekins",
             SellerCity = @"Tokyo",
             Date = @"2011-09-24T00:00:00",
-            Value = 23.8634354080369,
+            Value = 24,
             NumberOfUnits = 330
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 77.5958809431623,
+            ProductUnitPrice = 77.6,
             SellerName = @"Walter Pang",
             SellerCity = @"New York",
             Date = @"2011-09-26T00:00:00",
-            Value = 91.8212834241899,
+            Value = 91.8,
             NumberOfUnits = 23
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 50.3629545915699,
+            ProductUnitPrice = 50.4,
             SellerName = @"David Haley",
             SellerCity = @"Berlin",
             Date = @"2011-09-27T00:00:00",
-            Value = 66.7664189668216,
+            Value = 66.8,
             NumberOfUnits = 392
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 32.2904265636068,
+            ProductUnitPrice = 32.4,
             SellerName = @"Larry Lieb",
             SellerCity = @"Seattle",
             Date = @"2011-10-13T00:00:00",
-            Value = 81.5086811229161,
+            Value = 81.6,
             NumberOfUnits = 16
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 62.986913725262,
+            ProductUnitPrice = 63,
             SellerName = @"Lydia Burson",
             SellerCity = @"New York",
             Date = @"2011-10-13T00:00:00",
-            Value = 30.9104030164473,
+            Value = 31,
             NumberOfUnits = 100
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 13.4411500363802,
+            ProductUnitPrice = 13.4,
             SellerName = @"Carl Costello",
             SellerCity = @"Berlin",
             Date = @"2011-10-22T00:00:00",
-            Value = 85.4663283496473,
+            Value = 85.6,
             NumberOfUnits = 132
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 0.361669575963947,
+            ProductUnitPrice = 0.4,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"Seattle",
             Date = @"2011-10-22T00:00:00",
-            Value = 74.401750589908,
+            Value = 74.4,
             NumberOfUnits = 22
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 66.2378396216025,
+            ProductUnitPrice = 66.2,
             SellerName = @"Walter Pang",
             SellerCity = @"New York",
             Date = @"2011-11-02T00:00:00",
-            Value = 88.1351342835162,
+            Value = 88.2,
             NumberOfUnits = 96
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 50.1464152942162,
+            ProductUnitPrice = 50.2,
             SellerName = @"Elisa Longbottom",
             SellerCity = @"Berlin",
             Date = @"2011-11-03T00:00:00",
-            Value = 31.4315148775613,
+            Value = 31.4,
             NumberOfUnits = 76
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 67.8830748274378,
+            ProductUnitPrice = 68,
             SellerName = @"Stanley Brooker",
             SellerCity = @"Mellvile",
             Date = @"2011-11-04T00:00:00",
-            Value = 91.0746185067457,
+            Value = 91.2,
             NumberOfUnits = 492
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 6.55370010368233,
+            ProductUnitPrice = 6.6,
             SellerName = @"Harry Tyler",
             SellerCity = @"Berlin",
             Date = @"2011-11-08T00:00:00",
-            Value = 51.4585359261644,
+            Value = 51.6,
             NumberOfUnits = 49
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 35.5539850124875,
+            ProductUnitPrice = 35.6,
             SellerName = @"Russell Shorter",
             SellerCity = @"Mellvile",
             Date = @"2011-11-12T00:00:00",
-            Value = 20.8498855218524,
+            Value = 21,
             NumberOfUnits = 197
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 59.9273909628053,
+            ProductUnitPrice = 60,
             SellerName = @"Howard Sprouse",
             SellerCity = @"Tokyo",
             Date = @"2011-11-12T00:00:00",
-            Value = 70.3226974095789,
+            Value = 70.4,
             NumberOfUnits = 484
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 67.3557070397566,
+            ProductUnitPrice = 67.4,
             SellerName = @"Russell Shorter",
             SellerCity = @"Tokyo",
             Date = @"2011-11-13T00:00:00",
-            Value = 14.2684653002156,
+            Value = 14.4,
             NumberOfUnits = 182
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 51.9756810050344,
+            ProductUnitPrice = 52,
             SellerName = @"Alfredo Fetuchini",
             SellerCity = @"London",
             Date = @"2011-11-15T00:00:00",
-            Value = 18.3714989192651,
+            Value = 18.4,
             NumberOfUnits = 42
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 66.6745188025173,
+            ProductUnitPrice = 66.8,
             SellerName = @"Brandon Mckim",
             SellerCity = @"New York",
             Date = @"2011-11-19T00:00:00",
-            Value = 52.7554862912537,
+            Value = 52.8,
             NumberOfUnits = 109
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 56.1377222445503,
+            ProductUnitPrice = 56.2,
             SellerName = @"Harold Garvin",
             SellerCity = @"Mellvile",
             Date = @"2011-11-23T00:00:00",
-            Value = 40.1715800353194,
+            Value = 40.2,
             NumberOfUnits = 310
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 93.5307055681621,
+            ProductUnitPrice = 93.6,
             SellerName = @"Monica Freitag",
             SellerCity = @"Sofia",
             Date = @"2012-01-03T00:00:00",
-            Value = 53.3059361173333,
+            Value = 53.4,
             NumberOfUnits = 306
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 9.53391464871071,
+            ProductUnitPrice = 9.6,
             SellerName = @"Harold Garvin",
             SellerCity = @"Seattle",
             Date = @"2012-01-06T00:00:00",
-            Value = 82.9525733752887,
+            Value = 83,
             NumberOfUnits = 290
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 41.1171674454199,
+            ProductUnitPrice = 41.2,
             SellerName = @"Monica Freitag",
             SellerCity = @"Tokyo",
             Date = @"2012-01-10T00:00:00",
-            Value = 29.7652628411377,
+            Value = 29.8,
             NumberOfUnits = 499
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 9.79987862976262,
+            ProductUnitPrice = 9.8,
             SellerName = @"Kathe Pettel",
             SellerCity = @"Berlin",
             Date = @"2012-01-11T00:00:00",
-            Value = 10.7432314710427,
+            Value = 10.8,
             NumberOfUnits = 7
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 64.5805622286073,
+            ProductUnitPrice = 64.6,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"Sofia",
             Date = @"2012-01-14T00:00:00",
-            Value = 34.9494885350342,
+            Value = 35,
             NumberOfUnits = 220
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 47.2827450126795,
+            ProductUnitPrice = 47.4,
             SellerName = @"Elisa Longbottom",
             SellerCity = @"New York",
             Date = @"2012-01-15T00:00:00",
-            Value = 50.1851662761463,
+            Value = 50.2,
             NumberOfUnits = 395
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 14.6093829602978,
+            ProductUnitPrice = 14.6,
             SellerName = @"Lydia Burson",
             SellerCity = @"Sofia",
             Date = @"2012-01-18T00:00:00",
-            Value = 99.9983640853308,
+            Value = 100,
             NumberOfUnits = 219
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 10.6812852484553,
+            ProductUnitPrice = 10.8,
             SellerName = @"Larry Lieb",
             SellerCity = @"Mellvile",
             Date = @"2012-01-18T00:00:00",
-            Value = 91.9284968599344,
+            Value = 92,
             NumberOfUnits = 229
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 64.9146081250695,
+            ProductUnitPrice = 65,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"Mellvile",
             Date = @"2012-01-22T00:00:00",
-            Value = 55.8073452468064,
+            Value = 55.8,
             NumberOfUnits = 111
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 47.9091272446835,
+            ProductUnitPrice = 48,
             SellerName = @"Alfredo Fetuchini",
             SellerCity = @"London",
             Date = @"2012-02-01T00:00:00",
-            Value = 20.4733148778199,
+            Value = 20.6,
             NumberOfUnits = 237
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 87.8157763685173,
+            ProductUnitPrice = 87.8,
             SellerName = @"Claudia Kobayashi",
             SellerCity = @"Berlin",
             Date = @"2012-02-13T00:00:00",
-            Value = 17.1706766901401,
+            Value = 17.2,
             NumberOfUnits = 114
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 55.4040708837118,
+            ProductUnitPrice = 55.4,
             SellerName = @"Bryan Culver",
             SellerCity = @"London",
             Date = @"2012-02-23T00:00:00",
-            Value = 76.7434884220098,
+            Value = 76.8,
             NumberOfUnits = 329
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 40.7557223181965,
+            ProductUnitPrice = 40.8,
             SellerName = @"Howard Sprouse",
             SellerCity = @"Seattle",
             Date = @"2012-02-24T00:00:00",
-            Value = 1.16606745923221,
+            Value = 1.2,
             NumberOfUnits = 135
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 57.8275545303838,
+            ProductUnitPrice = 57.8,
             SellerName = @"Harold Garvin",
             SellerCity = @"New York",
             Date = @"2012-03-02T00:00:00",
-            Value = 46.816691358954,
+            Value = 46.8,
             NumberOfUnits = 187
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 14.7641990402547,
+            ProductUnitPrice = 14.8,
             SellerName = @"David Haley",
             SellerCity = @"Tokyo",
             Date = @"2012-03-10T00:00:00",
-            Value = 17.6293212071198,
+            Value = 17.6,
             NumberOfUnits = 286
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 12.9919173722118,
+            ProductUnitPrice = 13,
             SellerName = @"Antonio Charbonneau",
             SellerCity = @"Mellvile",
             Date = @"2012-03-11T00:00:00",
-            Value = 18.2109362996234,
+            Value = 18.2,
             NumberOfUnits = 468
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 26.0132929896998,
+            ProductUnitPrice = 26,
             SellerName = @"Monica Freitag",
             SellerCity = @"Tokyo",
             Date = @"2012-03-18T00:00:00",
-            Value = 93.2307979526142,
+            Value = 93.2,
             NumberOfUnits = 71
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 72.6239229890629,
+            ProductUnitPrice = 72.6,
             SellerName = @"Bryan Culver",
             SellerCity = @"Mellvile",
             Date = @"2012-03-21T00:00:00",
-            Value = 61.9746424546347,
+            Value = 62,
             NumberOfUnits = 251
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 44.4300027771061,
+            ProductUnitPrice = 44.4,
             SellerName = @"Monica Freitag",
             SellerCity = @"Berlin",
             Date = @"2012-03-25T00:00:00",
-            Value = 57.1378540048086,
+            Value = 57.2,
             NumberOfUnits = 297
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 68.1920563654006,
+            ProductUnitPrice = 68.2,
             SellerName = @"Alfredo Fetuchini",
             SellerCity = @"Berlin",
             Date = @"2012-03-25T00:00:00",
-            Value = 4.19275765502488,
+            Value = 4.2,
             NumberOfUnits = 248
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 35.3010389186912,
+            ProductUnitPrice = 35.4,
             SellerName = @"Elisa Longbottom",
             SellerCity = @"Sofia",
             Date = @"2012-03-26T00:00:00",
-            Value = 45.2345683915702,
+            Value = 45.2,
             NumberOfUnits = 488
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 41.0797411301545,
+            ProductUnitPrice = 41.2,
             SellerName = @"Alfredo Fetuchini",
             SellerCity = @"Sofia",
             Date = @"2012-04-06T00:00:00",
-            Value = 59.4756415856423,
+            Value = 59.6,
             NumberOfUnits = 211
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 29.2873495860432,
+            ProductUnitPrice = 29.4,
             SellerName = @"Stanley Brooker",
             SellerCity = @"Seattle",
             Date = @"2012-04-14T00:00:00",
-            Value = 3.12183979112741,
+            Value = 3.2,
             NumberOfUnits = 149
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 51.9607183299776,
+            ProductUnitPrice = 52,
             SellerName = @"Lydia Burson",
             SellerCity = @"Berlin",
             Date = @"2012-04-14T00:00:00",
-            Value = 9.81095578047026,
+            Value = 9.8,
             NumberOfUnits = 99
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 57.8388750822464,
+            ProductUnitPrice = 57.8,
             SellerName = @"Benjamin Meekins",
             SellerCity = @"Seattle",
             Date = @"2012-04-16T00:00:00",
-            Value = 14.0413360269933,
+            Value = 14,
             NumberOfUnits = 225
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 25.8790903379578,
+            ProductUnitPrice = 26,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"Seattle",
             Date = @"2012-04-27T00:00:00",
-            Value = 95.3933740013248,
+            Value = 95.4,
             NumberOfUnits = 408
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 4.93071782632299,
+            ProductUnitPrice = 5,
             SellerName = @"Benjamin Meekins",
             SellerCity = @"Sofia",
             Date = @"2012-05-09T00:00:00",
-            Value = 40.2401977871732,
+            Value = 40.2,
             NumberOfUnits = 417
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 3.03519638396576,
+            ProductUnitPrice = 3,
             SellerName = @"Alfredo Fetuchini",
             SellerCity = @"London",
             Date = @"2012-05-24T00:00:00",
-            Value = 67.7432567196634,
+            Value = 67.8,
             NumberOfUnits = 221
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 57.5257987983179,
+            ProductUnitPrice = 57.6,
             SellerName = @"Mark Slater",
             SellerCity = @"New York",
             Date = @"2012-06-02T00:00:00",
-            Value = 45.3478405928928,
+            Value = 45.4,
             NumberOfUnits = 288
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 72.2604754717371,
+            ProductUnitPrice = 72.4,
             SellerName = @"Bryan Culver",
             SellerCity = @"Berlin",
             Date = @"2012-06-03T00:00:00",
-            Value = 92.7675708163379,
+            Value = 92.8,
             NumberOfUnits = 372
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 82.5334646657731,
+            ProductUnitPrice = 82.6,
             SellerName = @"Kathe Pettel",
             SellerCity = @"Seattle",
             Date = @"2012-06-03T00:00:00",
-            Value = 51.329370518834,
+            Value = 51.4,
             NumberOfUnits = 408
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 91.5965710261821,
+            ProductUnitPrice = 91.6,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"Mellvile",
             Date = @"2012-06-04T00:00:00",
-            Value = 28.5261072816914,
+            Value = 28.6,
             NumberOfUnits = 13
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 94.6682067563144,
+            ProductUnitPrice = 94.8,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"Mellvile",
             Date = @"2012-06-05T00:00:00",
-            Value = 31.5523860191705,
+            Value = 31.6,
             NumberOfUnits = 487
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 46.2696579034765,
+            ProductUnitPrice = 46.4,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"Sofia",
             Date = @"2012-06-11T00:00:00",
-            Value = 85.9149635703838,
+            Value = 86,
             NumberOfUnits = 276
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 18.243998018207,
+            ProductUnitPrice = 18.2,
             SellerName = @"Howard Sprouse",
             SellerCity = @"New York",
             Date = @"2012-06-16T00:00:00",
-            Value = 40.2414140013239,
+            Value = 40.2,
             NumberOfUnits = 490
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 48.7533504370383,
+            ProductUnitPrice = 48.8,
             SellerName = @"Harold Garvin",
             SellerCity = @"London",
             Date = @"2012-06-18T00:00:00",
-            Value = 55.6163265163155,
+            Value = 55.6,
             NumberOfUnits = 238
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 94.4276411991695,
+            ProductUnitPrice = 94.4,
             SellerName = @"David Haley",
             SellerCity = @"Tokyo",
             Date = @"2012-06-23T00:00:00",
-            Value = 91.9826045129367,
+            Value = 92,
             NumberOfUnits = 170
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 48.6758573673087,
+            ProductUnitPrice = 48.8,
             SellerName = @"Brandon Mckim",
             SellerCity = @"Mellvile",
             Date = @"2012-07-04T00:00:00",
-            Value = 72.7664424910985,
+            Value = 72.8,
             NumberOfUnits = 132
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 82.6803708834017,
+            ProductUnitPrice = 82.8,
             SellerName = @"Mark Slater",
             SellerCity = @"Mellvile",
             Date = @"2012-07-05T00:00:00",
-            Value = 56.7741976849615,
+            Value = 56.8,
             NumberOfUnits = 443
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 38.1921838215516,
+            ProductUnitPrice = 38.2,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"New York",
             Date = @"2012-07-05T00:00:00",
-            Value = 27.4828472768342,
+            Value = 27.6,
             NumberOfUnits = 368
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 24.194019718186,
+            ProductUnitPrice = 24.2,
             SellerName = @"Harold Garvin",
             SellerCity = @"New York",
             Date = @"2012-07-11T00:00:00",
-            Value = 38.5177375928116,
+            Value = 38.6,
             NumberOfUnits = 39
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 3.98980141803147,
+            ProductUnitPrice = 4,
             SellerName = @"Alfredo Fetuchini",
             SellerCity = @"Tokyo",
             Date = @"2012-07-13T00:00:00",
-            Value = 43.2370888736272,
+            Value = 43.2,
             NumberOfUnits = 95
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 81.7707554817995,
+            ProductUnitPrice = 81.8,
             SellerName = @"Benjamin Meekins",
             SellerCity = @"Berlin",
             Date = @"2012-07-14T00:00:00",
-            Value = 42.5551266607619,
+            Value = 42.6,
             NumberOfUnits = 42
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 74.8673559515119,
+            ProductUnitPrice = 75,
             SellerName = @"Brandon Mckim",
             SellerCity = @"Seattle",
             Date = @"2012-07-16T00:00:00",
-            Value = 61.4280205040369,
+            Value = 61.4,
             NumberOfUnits = 200
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 85.4673036306479,
+            ProductUnitPrice = 85.6,
             SellerName = @"Monica Freitag",
             SellerCity = @"Seattle",
             Date = @"2012-07-16T00:00:00",
-            Value = 10.458307625008,
+            Value = 10.6,
             NumberOfUnits = 221
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 96.4154026920048,
+            ProductUnitPrice = 96.4,
             SellerName = @"Larry Lieb",
             SellerCity = @"New York",
             Date = @"2012-07-21T00:00:00",
-            Value = 99.6392156927098,
+            Value = 99.6,
             NumberOfUnits = 54
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 46.1994193709453,
+            ProductUnitPrice = 46.2,
             SellerName = @"Lydia Burson",
             SellerCity = @"Tokyo",
             Date = @"2012-07-21T00:00:00",
-            Value = 55.9585726149187,
+            Value = 56,
             NumberOfUnits = 173
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 99.8439830261487,
+            ProductUnitPrice = 99.8,
             SellerName = @"Lydia Burson",
             SellerCity = @"London",
             Date = @"2012-07-23T00:00:00",
-            Value = 10.8331507122298,
+            Value = 10.8,
             NumberOfUnits = 47
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 42.3546248312828,
+            ProductUnitPrice = 42.4,
             SellerName = @"Kathe Pettel",
             SellerCity = @"Mellvile",
             Date = @"2012-07-26T00:00:00",
-            Value = 91.5450963617978,
+            Value = 91.6,
             NumberOfUnits = 173
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 52.1983850524753,
+            ProductUnitPrice = 52.2,
             SellerName = @"Claudia Kobayashi",
             SellerCity = @"Mellvile",
             Date = @"2012-08-05T00:00:00",
-            Value = 98.8178437570193,
+            Value = 98.8,
             NumberOfUnits = 323
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 45.4567000481564,
+            ProductUnitPrice = 45.6,
             SellerName = @"Russell Shorter",
             SellerCity = @"Sofia",
             Date = @"2012-08-07T00:00:00",
-            Value = 26.0294280601802,
+            Value = 26,
             NumberOfUnits = 264
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 56.771143552275,
+            ProductUnitPrice = 56.8,
             SellerName = @"Mark Slater",
             SellerCity = @"Sofia",
             Date = @"2012-08-09T00:00:00",
-            Value = 11.4886299294832,
+            Value = 11.6,
             NumberOfUnits = 385
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 3.56508372517539,
+            ProductUnitPrice = 3.6,
             SellerName = @"Harry Tyler",
             SellerCity = @"London",
             Date = @"2012-08-10T00:00:00",
-            Value = 25.9519375515878,
+            Value = 26,
             NumberOfUnits = 56
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 34.6018440716908,
+            ProductUnitPrice = 34.6,
             SellerName = @"Benjamin Dupree",
             SellerCity = @"Berlin",
             Date = @"2012-08-12T00:00:00",
-            Value = 96.1509631463098,
+            Value = 96.2,
             NumberOfUnits = 267
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 92.4029229639112,
+            ProductUnitPrice = 92.4,
             SellerName = @"Monica Freitag",
             SellerCity = @"Seattle",
             Date = @"2012-08-14T00:00:00",
-            Value = 94.9122598836721,
+            Value = 95,
             NumberOfUnits = 109
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 34.719441707581,
+            ProductUnitPrice = 34.8,
             SellerName = @"Mark Slater",
             SellerCity = @"Berlin",
             Date = @"2012-08-17T00:00:00",
-            Value = 62.3832190234136,
+            Value = 62.4,
             NumberOfUnits = 478
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 23.3355592579281,
+            ProductUnitPrice = 23.4,
             SellerName = @"Claudia Kobayashi",
             SellerCity = @"Berlin",
             Date = @"2012-08-21T00:00:00",
-            Value = 57.657432163906,
+            Value = 57.8,
             NumberOfUnits = 184
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 79.522237963752,
+            ProductUnitPrice = 79.6,
             SellerName = @"Brandon Mckim",
             SellerCity = @"Seattle",
             Date = @"2012-08-21T00:00:00",
-            Value = 35.3496687185716,
+            Value = 35.4,
             NumberOfUnits = 132
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 30.645626285414,
+            ProductUnitPrice = 30.8,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"Sofia",
             Date = @"2012-08-22T00:00:00",
-            Value = 95.9404697157165,
+            Value = 96,
             NumberOfUnits = 142
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 89.8877651383578,
+            ProductUnitPrice = 90,
             SellerName = @"Carl Costello",
             SellerCity = @"Seattle",
             Date = @"2012-08-27T00:00:00",
-            Value = 27.453476901843,
+            Value = 27.6,
             NumberOfUnits = 46
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 83.1898490354371,
+            ProductUnitPrice = 83.2,
             SellerName = @"Walter Pang",
             SellerCity = @"Seattle",
             Date = @"2012-09-03T00:00:00",
-            Value = 68.6052913165676,
+            Value = 68.6,
             NumberOfUnits = 102
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 0.103541463661725,
+            ProductUnitPrice = 0.2,
             SellerName = @"Russell Shorter",
             SellerCity = @"Berlin",
             Date = @"2012-09-09T00:00:00",
-            Value = 96.5937556683057,
+            Value = 96.6,
             NumberOfUnits = 21
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 36.629343143026,
+            ProductUnitPrice = 36.6,
             SellerName = @"Monica Freitag",
             SellerCity = @"Sofia",
             Date = @"2012-09-10T00:00:00",
-            Value = 4.93063489204768,
+            Value = 5,
             NumberOfUnits = 442
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 92.3085672279394,
+            ProductUnitPrice = 92.4,
             SellerName = @"Harry Tyler",
             SellerCity = @"New York",
             Date = @"2012-09-13T00:00:00",
-            Value = 99.2153110910278,
+            Value = 99.2,
             NumberOfUnits = 254
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 28.0094152912541,
+            ProductUnitPrice = 28,
             SellerName = @"Nicholas Carmona",
             SellerCity = @"Sofia",
             Date = @"2012-09-13T00:00:00",
-            Value = 49.9100303509785,
+            Value = 50,
             NumberOfUnits = 251
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 60.3017789592509,
+            ProductUnitPrice = 60.4,
             SellerName = @"Antonio Charbonneau",
             SellerCity = @"New York",
             Date = @"2012-09-15T00:00:00",
-            Value = 43.9264408982948,
+            Value = 44,
             NumberOfUnits = 119
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Bikes",
-            ProductUnitPrice = 33.0077453204467,
+            ProductUnitPrice = 33,
             SellerName = @"Claudia Kobayashi",
             SellerCity = @"New York",
             Date = @"2012-09-19T00:00:00",
-            Value = 32.4268728645644,
+            Value = 32.4,
             NumberOfUnits = 256
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 99.0029557603425,
+            ProductUnitPrice = 99,
             SellerName = @"John Smith",
             SellerCity = @"New York",
             Date = @"2012-09-23T00:00:00",
-            Value = 35.802955709306,
+            Value = 35.8,
             NumberOfUnits = 456
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 16.1743238177962,
+            ProductUnitPrice = 16.2,
             SellerName = @"Kathe Pettel",
             SellerCity = @"London",
             Date = @"2012-10-01T00:00:00",
-            Value = 16.3581453339933,
+            Value = 16.4,
             NumberOfUnits = 430
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 72.8992714886084,
+            ProductUnitPrice = 73,
             SellerName = @"David Haley",
             SellerCity = @"Berlin",
             Date = @"2012-10-02T00:00:00",
-            Value = 57.0288074934058,
+            Value = 57,
             NumberOfUnits = 248
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 21.6627069849813,
+            ProductUnitPrice = 21.8,
             SellerName = @"Harold Garvin",
             SellerCity = @"Berlin",
             Date = @"2012-10-18T00:00:00",
-            Value = 28.2381287907428,
+            Value = 28.2,
             NumberOfUnits = 440
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 28.3422471156075,
+            ProductUnitPrice = 28.4,
             SellerName = @"Howard Sprouse",
             SellerCity = @"New York",
             Date = @"2012-10-19T00:00:00",
-            Value = 66.6415263743333,
+            Value = 66.6,
             NumberOfUnits = 234
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 80.4687102234311,
+            ProductUnitPrice = 80.6,
             SellerName = @"Benjamin Meekins",
             SellerCity = @"New York",
             Date = @"2012-10-25T00:00:00",
-            Value = 5.25946072547671,
+            Value = 5.4,
             NumberOfUnits = 36
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Accessories",
-            ProductUnitPrice = 97.6860876184358,
+            ProductUnitPrice = 97.8,
             SellerName = @"Harry Tyler",
             SellerCity = @"London",
             Date = @"2012-10-26T00:00:00",
-            Value = 41.23381168639,
+            Value = 41.2,
             NumberOfUnits = 46
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 88.7001933011693,
+            ProductUnitPrice = 88.8,
             SellerName = @"Elisa Longbottom",
             SellerCity = @"London",
             Date = @"2012-11-02T00:00:00",
-            Value = 64.5666572100328,
+            Value = 64.6,
             NumberOfUnits = 211
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Clothing",
-            ProductUnitPrice = 67.2612272050517,
+            ProductUnitPrice = 67.4,
             SellerName = @"Walter Pang",
             SellerCity = @"New York",
             Date = @"2012-11-17T00:00:00",
-            Value = 14.1893965723875,
+            Value = 14.2,
             NumberOfUnits = 408
         });
         this.Add(new PivotDataFlatItem()
         {
             ProductName = @"Components",
-            ProductUnitPrice = 7.14569050220106,
+            ProductUnitPrice = 7.2,
             SellerName = @"Walter Pang",
             SellerCity = @"New York",
             Date = @"2012-11-20T00:00:00",
-            Value = 72.7793859656804,
+            Value = 72.8,
             NumberOfUnits = 376
         });
     }
