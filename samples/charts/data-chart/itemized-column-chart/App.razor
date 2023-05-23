@@ -1,0 +1,140 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="legend-title">
+        Market Capitalization of Technology Companies
+    </div>
+    <div class="legend">
+        <IgbLegend
+        Name="Legend"
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
+        </IgbLegend>
+
+    </div>
+
+    <div class="container vertical fill">
+        <IgbDataChart
+        Name="chart"
+        @ref="chart"
+        ChartTitle="Market Capitalization of Technology Companies"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false">
+            <IgbCategoryXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            DataSource="CompanyMarketCapItemized"
+            Label="Category"
+            IsInverted="true"
+            Gap="0.75"
+            Overlap="1">
+            </IgbCategoryXAxis>
+
+            <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis"
+            MinimumValue="0"
+            MaximumValue="220">
+            </IgbNumericYAxis>
+
+            <IgbColumnSeries
+            Name="ColumnSeries1"
+            @ref="columnSeries1"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            ValueMemberPath="V1"
+            Title="Apple"
+            DataSource="CompanyMarketCapItemized"
+            ShowDefaultTooltip="true">
+            </IgbColumnSeries>
+
+            <IgbColumnSeries
+            Name="ColumnSeries2"
+            @ref="columnSeries2"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            ValueMemberPath="V2"
+            Title="Microsoft"
+            DataSource="CompanyMarketCapItemized"
+            ShowDefaultTooltip="true">
+            </IgbColumnSeries>
+
+            <IgbColumnSeries
+            Name="ColumnSeries3"
+            @ref="columnSeries3"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            ValueMemberPath="V3"
+            Title="Google"
+            DataSource="CompanyMarketCapItemized"
+            ShowDefaultTooltip="true">
+            </IgbColumnSeries>
+
+            <IgbColumnSeries
+            Name="ColumnSeries4"
+            @ref="columnSeries4"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            ValueMemberPath="V4"
+            Title="NVidia"
+            DataSource="CompanyMarketCapItemized"
+            ShowDefaultTooltip="true">
+            </IgbColumnSeries>
+
+            <IgbColumnSeries
+            Name="ColumnSeries5"
+            @ref="columnSeries5"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            ValueMemberPath="V5"
+            Title="Tesla"
+            DataSource="CompanyMarketCapItemized"
+            ShowDefaultTooltip="true">
+            </IgbColumnSeries>
+
+            <IgbDataToolTipLayer
+            Name="DataToolTipLayer"
+            @ref="dataToolTipLayer">
+            </IgbDataToolTipLayer>
+
+        </IgbDataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var columnSeries1 = this.columnSeries1;
+        var columnSeries2 = this.columnSeries2;
+        var columnSeries3 = this.columnSeries3;
+        var columnSeries4 = this.columnSeries4;
+        var columnSeries5 = this.columnSeries5;
+        var dataToolTipLayer = this.dataToolTipLayer;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbLegend legend;
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbColumnSeries columnSeries1;
+    private IgbColumnSeries columnSeries2;
+    private IgbColumnSeries columnSeries3;
+    private IgbColumnSeries columnSeries4;
+    private IgbColumnSeries columnSeries5;
+    private IgbDataToolTipLayer dataToolTipLayer;
+
+}
