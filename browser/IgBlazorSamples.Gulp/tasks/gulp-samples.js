@@ -149,6 +149,10 @@ function saveSamples(cb) {
 function getSamples(cb) {
 
     var deferredSamples = [
+        igConfig.SamplesCopyPath + '/charts/data-chart/itemized-bar-chart/App.razor',
+        igConfig.SamplesCopyPath + '/charts/data-chart/itemized-column-chart/App.razor',
+        igConfig.SamplesCopyPath + '/charts/data-chart/itemized-stacked-bar-chart/App.razor',
+        igConfig.SamplesCopyPath + '/charts/data-chart/itemized-stacked-column-chart/App.razor',
       // excluding deferred gird samples
       igConfig.SamplesCopyPath + '/grids/grid/toolbar-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/advanced-filtering-style/App.razor',
