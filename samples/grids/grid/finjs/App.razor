@@ -1,0 +1,326 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbGrid AutoGenerate="false"
+                 Data="FinancialData"
+                 PrimaryKey="id"
+                 DisplayDensity="DisplayDensity.Compact"
+                 AllowFiltering="true"
+                 FilterMode="FilterMode.ExcelStyleFilter"
+                 Name="grid1"
+                 @ref="grid1">
+
+            <IgbColumn Field="id"
+                       Header="id"
+                       DataType="GridColumnDataType.Number"
+                       Sortable="true"
+                       Editable="true"
+                       Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="category"
+                       Header="Category"
+                       Width="120px"
+                       DataType="GridColumnDataType.String"
+                       Sortable="true"
+                       Editable="true"
+                       Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="type"
+                       Header="Type"
+                       Width="100px"
+                       DataType="GridColumnDataType.String"
+                       Sortable="true"
+                       Editable="true"
+                       Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="contract"
+                       Header="Contract"
+                       Width="110px"
+                       DataType="GridColumnDataType.String"
+                       Sortable="true"
+                       Groupable="true"
+                       Editable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="settlement"
+                       Width="100px"
+                       Header="Settlement"
+                       DataType="GridColumnDataType.String"
+                       Sortable="true"
+                       Editable="true"
+                       Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="country"
+                       Width="100px"
+                       Header="Country"
+                       DataType="GridColumnDataType.String"
+                       Sortable="true"
+                       Editable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="region"
+                       Width="100px"
+                       Header="Region"
+                       DataType="GridColumnDataType.String"
+                       Sortable="true"
+                       Editable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="lastUpdated"
+                       Width="120px"
+                       Header="Last Updated"
+                       DataType="GridColumnDataType.Date"
+                       Sortable="true"
+                       Filterable="true"
+                       Editable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="openPrice"
+                       Width="120px"
+                       Header="Open Price"
+                       DataType="GridColumnDataType.Currency"
+                       Sortable="true"
+                       Filterable="true"
+                       Editable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="price"
+                       Width="120px"
+                       Header="Price"
+                       DataType="GridColumnDataType.Currency"
+                       Sortable="true"
+                       Filterable="true"
+                       Editable="true">
+            </IgbColumn>
+
+
+            <IgbColumn Field="Chart"
+                       Width="60px"
+                       Header="Chart">
+            </IgbColumn>
+
+            <IgbColumn Field="change"
+                       Width="120px"
+                       Header="Change"
+                       DataType="GridColumnDataType.Number"
+                       Sortable="true"
+                       Filterable="true"
+                       Editable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="changeP"
+                       Width="120px"
+                       Header="Change"
+                       DataType="GridColumnDataType.Percent"
+                       Sortable="true"
+                       Filterable="true"
+                       Editable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="buy"
+                       Width="110px"
+                       Header="Buy"
+                       DataType="GridColumnDataType.Currency"
+                       Sortable="true"
+                       Filterable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="sell"
+                       Width="110px"
+                       Header="Sell"
+                       DataType="GridColumnDataType.Currency"
+                       Sortable="true"
+                       Filterable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="spread"
+                       Width="110px"
+                       Header="Spread"
+                       DataType="GridColumnDataType.Number"
+                       Sortable="true"
+                       Filterable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="volume"
+                       Width="110px"
+                       Header="Volume"
+                       DataType="GridColumnDataType.Number"
+                       Sortable="true"
+                       Filterable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="highD"
+                       Width="110px"
+                       DataType="GridColumnDataType.Currency"
+                       Sortable="true"
+                       Filterable="true">
+            </IgbColumn>
+            <IgbColumn Field="lowD"
+                       Width="110px"
+                       DataType="GridColumnDataType.Currency"
+                       Sortable="true"
+                       Filterable="true">
+            </IgbColumn>
+            <IgbColumn Field="highY"
+                       Width="110px"
+                       DataType="GridColumnDataType.Currency"
+                       Sortable="true"
+                       Filterable="true">
+            </IgbColumn>
+            <IgbColumn Field="lowY"
+                       Width="110px"
+                       DataType="GridColumnDataType.Currency"
+                       Sortable="true"
+                       Filterable="true">
+            </IgbColumn>
+            <IgbColumn Field="indGrou"
+                       Width="110px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="indSect"
+                       Width="100px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="indSubg"
+                       Width="100px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="secType"
+                       Width="90px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="issuerN"
+                       Width="60px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="moodys"
+                       Width="60px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="fitch"
+                       Width="60px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="dbrs"
+                       Width="60px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="collatT"
+                       Width="90px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="curncy"
+                       Width="60px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="security"
+                       Width="120px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="sector"
+                       Width="80px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="cusip"
+                       Width="100px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="ticker"
+                       Width="60px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="cpn"
+                       Width="80px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="maturity"
+                       Width="120px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="krD_3YR"
+                       Width="110px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="zV_SPREAD"
+                       Width="90px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="kRD_5YR"
+                       Width="50px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="kRD_1YR"
+                       Width="80px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="indGrou"
+                       Width="110px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="indSect"
+                       Width="100px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="indSubg"
+                       Width="100px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="secType"
+                       Width="90px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="issuerN"
+                       Width="60px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="moodys"
+                       Width="60px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="fitch"
+                       Width="60px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="dbrs"
+                       Width="60px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="collatT"
+                       Width="90px"
+                       Filterable="false">
+            </IgbColumn>
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid1 = this.grid1;
+
+    }
+
+    private IgbGrid grid1;
+
+    private List<Stock> _data = null;
+    public List<Stock> FinancialData
+    {
+        get
+        {
+            if (_data == null)
+            {
+                _data = new FinancialData().GenerateData(1000);
+            }
+            return _data;
+        }
+    }
+
+}
