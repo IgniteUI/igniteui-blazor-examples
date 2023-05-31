@@ -174,6 +174,19 @@ namespace Infragistics.Samples
             return stocks;
         }
 
+        public List<Stock> UpdateRandomPrices(List<Stock> originalData) {
+            var random = new Random();
+            var newStocks = new List<Stock>();
+            for (int i = 0; i < originalData.Count; i++)
+            {
+                Stock data = originalData.ElementAt(i).Clone();
+                this.RandomizeStockObject(data, random);
+                newStocks.Add(data);
+            }
+            return newStocks;
+
+        }
+
         public void RandomizeStockObject(Stock stock, Random rand)
         {
             Stock res = this.GenerateNewPrice(stock.price, rand);
