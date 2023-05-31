@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Security.AccessControl;
@@ -75,7 +76,7 @@ namespace Infragistics.Samples
         }
     }
 
-    public class Region
+    public class FinancialRegion
     {
         public string Name { get; set; }
         public List<string> Countries { get; set; }
@@ -87,27 +88,27 @@ namespace Infragistics.Samples
     {
         public List<string> Settlement = new List<string>() { "Deliverable", "Cash" };
         public List<string> Contract = new List<string>() { "Forwards", "Futures", "Options", "Swap", "CFD" };
-        public List<Region> Regions = new List<Region> { new Region() {
+        public List<FinancialRegion> Regions = new List<FinancialRegion> { new FinancialRegion() {
             Name = "North America",
             Countries= new List<string>() { "Canada", "US", "Mexico"}
         },
-            new Region() {
+            new FinancialRegion() {
             Name = "Middle East",
             Countries= new List<string>() { "Turkey", "Iraq", "Saudi Arabia", "Syria", "UAE", "Israel", "Jordan", "Lebanon", "Oman", "Kuwait", "Qatar", "Bahrain", "Iran" }
         },
-            new Region() {
+            new FinancialRegion() {
             Name = "Europe",
             Countries= new List<string>() { "Russia", "Germany", "France", "UK", "Italy", "Spain", "Poland", "Romania", "Netherlands", "Belgium", "Greece", "Portugal", "Czech Republic", "Hungary", "Sweden", "Austria", "Switzerland", "Bulgaria", "Denmark", "Finland", "Slovakia", "Norway", "Ireland", "Croatia", "Slovenia", "Estonia", "Iceland" }
         },
-            new Region() {
+            new FinancialRegion() {
             Name = "Africa",
             Countries= new List<string>() { "Nigeria", "Ethiopia", "Egypt", "South Africa", "Algeria", "Morocco", "Cameroon", "Niger", "Senegal", "Tunisia", "Libya" }
         },
-            new Region() {
+            new FinancialRegion() {
             Name = "Asia Pacific",
             Countries= new List<string>() { "Afghanistan", "Australia", "Azerbaijan", "China", "Hong Kong", "India", "Indonesia", "Japan", "Malaysia", "New Zealand", "Pakistan", "Philippines", "Korea", "Singapore", "Taiwan", "Thailand" }
         },
-            new Region() {
+            new FinancialRegion() {
             Name = "South America",
             Countries= new List<string>() { "Argentina", "Bolivia", "Brazil", "Chile", "Colombia", "Ecuador", "Guyana", "Paraguay", "Peru", "Suriname", "Uruguay", "Venezuela" }
         }};

@@ -346,7 +346,7 @@
     <IgbDialog @ref="Dialog">
         <IgbCategoryChart ChartType="CategoryChartType.Column" Width="500px" Height="400px" @ref=Chart></IgbCategoryChart>
     </IgbDialog>
-    <IgbToast Class="toast" @ref="Toast">Please select some rows first!</IgbToast>
+    <IgbToast Class="FinJSToast" @ref="Toast">Please select some rows first!</IgbToast>
 </div>
 
 @code {
@@ -460,7 +460,7 @@
     public async void ShowChart()
     {
         this.SelectedRows = this.grid1.SelectedRows;
-        if (this.SelectedRows == null)
+        if (this.SelectedRows == null || this.SelectedRows.Length == 0)
         {
             await this.Toast.ShowAsync();
             return;
