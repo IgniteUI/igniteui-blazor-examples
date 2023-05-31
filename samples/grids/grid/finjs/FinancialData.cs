@@ -46,9 +46,9 @@ namespace Infragistics.Samples
         public double sell { get; set; }
         public double change { get; set; }
         public double changeP { get; set; }
-        public double intvolume { get; set; }
+        public double volume { get; set; }
         public double highD { get; set; }
-        public double intlowD { get; set; }
+        public double lowD { get; set; }
         public double highY { get; set; }
         public double lowY { get; set; }
         public double startY { get; set; }
@@ -67,7 +67,6 @@ namespace Infragistics.Samples
         public double? lowYDiff { get; set; }
         public double? highDDiff { get; set; }
         public double? lowDDiff { get; set; }
-        public double? lowD { get; set; }
         public double changePercent { get; set; }
 
         public Stock Clone()
@@ -114,9 +113,9 @@ namespace Infragistics.Samples
         }};
         public DateTime RandomDate(Random gen)
         {
-            var start = new DateTime(1995, 1, 1);
+            var start = new DateTime(2000, 1, 1);
             var range = (DateTime.Today - start).Days;
-            return DateTime.Today.AddDays(gen.Next(range)).AddHours(gen.Next(0, 24)).AddMinutes(gen.Next(0, 60)).AddSeconds(gen.Next(0, 60));
+            return start.AddDays(gen.Next(range)).AddHours(gen.Next(0, 24)).AddMinutes(gen.Next(0, 60)).AddSeconds(gen.Next(0, 60));
         }
 
         public List<Stock> GenerateData(int count)
@@ -186,7 +185,7 @@ namespace Infragistics.Samples
         public Stock GenerateNewPrice(double oldPrice, Random rand)
         {
             Stock stock = new Stock();
-            int rnd = rand.Next();
+            double rnd = rand.NextDouble();
             int volatility = 2;
             double changePercent = 2 * volatility * rnd;
             if (changePercent > volatility)
