@@ -13,11 +13,11 @@
             </div>
             <div class="control-item">
                 <label>Records: @RecordsCount</label>
-                <IgbSlider Class="finjs-slider" Change=OnRecordsChange Value="@RecordsCount" Min="0" Max="10000" Step="100"></IgbSlider>
+                <IgbSlider @ref=slider1 Class="finjs-slider" Change=OnRecordsChange Max="10000" Step="100"></IgbSlider>
             </div>
             <div class="control-item">
                 <label>Frequency: @Frequency</label>
-                <IgbSlider Class="finjs-slider" Change="OnFrequencyChange" Value="@Frequency" Min="100" Max="3000" Step="10"></IgbSlider>
+                <IgbSlider @ref=slider2 Class="finjs-slider" Change="OnFrequencyChange" LowerBound="100" Min="100" Max="3000" Step="10"></IgbSlider>
             </div>
         </div>
         <div class="control-item finjs-play-controls">
@@ -373,6 +373,8 @@
     private IgbButton StartButton;
     private IgbButton StopButton;
     private IgbButton ShowChartButton;
+    private IgbSlider slider1;
+    private IgbSlider slider2;
     public int RecordsCount = 1000;
     public int Frequency = 500;
     public System.Threading.Timer Timer;
@@ -405,6 +407,18 @@
         if (StopButton != null && firstRender)
         {
             this.StopButton.Disabled = true;
+        }
+
+        if (slider1 != null && firstRender)
+        {
+            await slider1.EnsureReady();
+            slider1.StepUp(10);
+        }
+
+        if (slider2 != null && firstRender)
+        {
+            await slider2.EnsureReady();
+            slider2.StepUp(40);
         }
 
     }
