@@ -490,14 +490,15 @@
     {
         if (e.Detail.Cell.Column.Field == "Chart")
         {
-            int index = e.Detail.Cell.Id.RowIndex;
-            this.ShowChartForRowIndex(index);
+            string key = e.Detail.Cell.Id.RowID;
+            this.ShowChartForRowIndex(key);
         }
     }
 
-    public async void ShowChartForRowIndex(int index)
+    public async void ShowChartForRowIndex(string key)
     {
-        Stock rowData = (Stock)(await this.grid1.GetRowDataAsync(index));
+        int pk = Convert.ToInt32(key);
+        Stock rowData = (Stock)(await this.grid1.GetRowDataAsync(pk));
         var rows = this.CurrentStocks.Where(item => item.region == rowData.region && item.category == rowData.category);
         this.SelectedRows = rows.ToArray();
         this.Chart.DataSource = this.SelectedRows;
