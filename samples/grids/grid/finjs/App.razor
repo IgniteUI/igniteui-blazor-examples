@@ -491,11 +491,11 @@
         if (e.Detail.Cell.Column.Field == "Chart")
         {
             string key = e.Detail.Cell.Id.RowID;
-            this.ShowChartForRowIndex(key);
+            this.ShowChartForRow(key);
         }
     }
 
-    public async void ShowChartForRowIndex(string key)
+    public async void ShowChartForRow(string key)
     {
         int pk = Convert.ToInt32(key);
         Stock rowData = (Stock)(await this.grid1.GetRowDataAsync(pk));
