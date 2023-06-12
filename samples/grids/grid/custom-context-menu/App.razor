@@ -1,7 +1,7 @@
 @using IgniteUI.Blazor.Controls
 @using Newtonsoft.Json;
 <div class="container vertical">
-    <div class="wrapper" oncontextmenu="event.preventDefault()">
+    <div class="wrapper" oncontextmenu="event.preventDefault()" @onclick="CloseMenu">
         <IgbGrid AutoGenerate="false"
                  CellSelection="GridSelectionMode.Multiple"
                  ContextMenu="onMenuShow"
@@ -50,10 +50,10 @@
             <span id="copyRow" class="item" @onclick="CopyRowData">
                     <IgbIcon IconName="content_copy" Collection="material"></IgbIcon>Copy Row Data
                 </span>
-            <span id="copyMultiCells" class="item" @onclick="CopyCellsData">
+                <span id="copyMultiCells" class="item" @onclick="CopyCellsData">
                     <IgbIcon IconName="content_copy" Collection="material"></IgbIcon>Copy Cells Data
                 </span>
-            </div>
+        </div>
         }
     </div>
 
@@ -105,6 +105,7 @@
     private IgbGrid grid;
     public IgbIcon icon;
     public bool ShowMenu = false;
+    public bool? ShowCopyCells = false;
     public string MenuX;
     public string MenuY;
     public IgbCellType ClickedCell;
@@ -141,8 +142,17 @@
         this.MenuY = e.ClientY + "px";
     }
 
+    public void CloseMenu(MouseEventArgs e)
+    {
+        if (e.Button == 0)
+        {
+            this.ShowMenu = false;
+            StateHasChanged();
+        }
+    }
 
-    public void onMenuShow(IgbGridCellEventArgs e)
+
+    public async void onMenuShow(IgbGridCellEventArgs e)
     {
         IgbGridCellEventArgsDetail detail = e.Detail;
         this.ShowMenu = true;
@@ -168,8 +178,21 @@
     public async void CopyCellsData()
     {
         this.ShowMenu = false;
-        var selectedData = await this.grid.GetSelectedDataAsync(true, false);
-        this.SelectedData = JsonConvert.SerializeObject(selectedData);
+        var selectedData = await this.grid.GetSelectedDataAsync(false, false);
+        List<object> newList = new List<object>();
+        //Map to simpler dictionary
+        foreach (Dictionary<string, object> item in selectedData)
+        {
+            Dictionary<string, string> values = new Dictionary<string, string>();
+            foreach (var key in item.Keys)
+            {
+                object value = item[key];
+                string rawText = ((System.Text.Json.JsonElement)value).GetRawText().Trim('"');
+                values.Add(key, rawText);
+            }
+            newList.Add(values);
+        }
+        this.SelectedData = JsonConvert.SerializeObject(newList);
         StateHasChanged();
     }
 }
