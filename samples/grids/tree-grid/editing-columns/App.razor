@@ -5,63 +5,56 @@
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
-        Data="NwindData"
-        PrimaryKey="ProductID"
-        DisplayDensity="DisplayDensity.Cosy"
+        Name="treeGrid"
+        @ref="treeGrid"
+        Id="treeGrid"
+        Data="EmployeesNestedTreeData"
+        PrimaryKey="ID"
+        DisplayDensity="DisplayDensity.Comfortable"
         AllowFiltering="true"
-        Name="treeGrid1"
-        @ref="treeGrid1">
+        Paging="true"
+        ForeignKey="ParentID">
             <IgbPaginator
             PerPage="10">
             </IgbPaginator>
 
             <IgbColumn
-            Field="ProductName"
-            Header="Product Name"
+            Field="Name"
             DataType="GridColumnDataType.String"
-            Sortable="true"
-            HasSummary="true"
             Editable="true"
-            Resizable="true">
+            HasSummary="true">
             </IgbColumn>
 
             <IgbColumn
-            Field="UnitsInStock"
-            Header="Units in Stock"
+            Field="Title"
+            DataType="GridColumnDataType.String"
+            Editable="true"
+            HasSummary="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Age"
             DataType="GridColumnDataType.Number"
-            Sortable="true"
-            HasSummary="true"
             Editable="true"
-            Resizable="true">
+            HasSummary="true"
+            SummaryTemplate="WebTreeGridCustomNumberSummary"
+            Name="column1"
+            @ref="column1">
             </IgbColumn>
 
             <IgbColumn
-            Field="OrderDate"
-            Header="Order Date"
+            Field="HireDate"
             DataType="GridColumnDataType.Date"
-            Sortable="true"
-            HasSummary="true"
             Editable="true"
-            Resizable="true">
+            HasSummary="true">
             </IgbColumn>
 
             <IgbColumn
-            Field="Discontinued"
-            Header="Discontinued"
+            Field="OnPTO"
             DataType="GridColumnDataType.Boolean"
-            Sortable="true"
-            HasSummary="true"
-            Editable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="ReorderLevel"
-            Header="Reorder Level"
-            DataType="GridColumnDataType.Number"
-            Sortable="true"
-            HasSummary="true"
             Editable="true"
-            Filterable="false">
+            HasSummary="true"
+            Width="130px">
             </IgbColumn>
 
         </IgbTreeGrid>
@@ -73,23 +66,12 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var treeGrid1 = this.treeGrid1;
+        var treeGrid = this.treeGrid;
+        var column1 = this.column1;
 
     }
 
-    private IgbTreeGrid treeGrid1;
-
-    private NwindData _nwindData = null;
-    public NwindData NwindData
-    {
-        get
-        {
-            if (_nwindData == null)
-            {
-                _nwindData = new NwindData();
-            }
-            return _nwindData;
-        }
-    }
+    private IgbTreeGrid treeGrid;
+    private IgbColumn column1;
 
 }

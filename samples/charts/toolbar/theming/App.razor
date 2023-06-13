@@ -1,0 +1,107 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+
+        DescriptionType="Toolbar"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="BaseTheme"
+            Label="Theme"
+            ShouldOverrideDefaultEditor="true"
+            ValueType="PropertyEditorValueType.EnumValue"
+            PrimitiveValue="@("SlingshotDark")">
+            </IgbPropertyEditorPropertyDescription>
+
+        </IgbPropertyEditorPanel>
+
+    </div>
+    <div class="aboveContent">
+        <IgbToolbar
+        Name="Toolbar"
+        @ref="toolbar"
+        Orientation="ToolbarOrientation.Horizontal"
+        BaseTheme="BaseControlTheme.SlingshotDark">
+        </IgbToolbar>
+
+    </div>
+
+    <div class="container vertical fill">
+        <IgbDataChart
+        IsHorizontalZoomEnabled="true"
+        Name="chart"
+        @ref="chart">
+            <IgbCategoryXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            DataSource="CountryRenewableElectricity"
+            Label="Year">
+            </IgbCategoryXAxis>
+
+            <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis"
+            Title="TWh">
+            </IgbNumericYAxis>
+
+            <IgbLineSeries
+            Name="LineSeries1"
+            @ref="lineSeries1"
+            Title="Electricity"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="CountryRenewableElectricity"
+            ValueMemberPath="America">
+            </IgbLineSeries>
+
+        </IgbDataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var toolbar = this.toolbar;
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var lineSeries1 = this.lineSeries1;
+
+        this.BindElements = () => {
+            propertyEditorPanel1.Target = this.toolbar;
+            toolbar.Target = this.chart;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbToolbar toolbar;
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbLineSeries lineSeries1;
+
+    private CountryRenewableElectricity _countryRenewableElectricity = null;
+    public CountryRenewableElectricity CountryRenewableElectricity
+    {
+        get
+        {
+            if (_countryRenewableElectricity == null)
+            {
+                _countryRenewableElectricity = new CountryRenewableElectricity();
+            }
+            return _countryRenewableElectricity;
+        }
+    }
+
+}

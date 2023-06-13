@@ -1,0 +1,72 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        Name="treeGrid"
+        @ref="treeGrid"
+        Id="treeGrid"
+        Data="EmployeesNestedTreeData"
+        PrimaryKey="ID"
+        DisplayDensity="DisplayDensity.Comfortable"
+        AllowFiltering="true"
+        Paging="true"
+        ForeignKey="ParentID">
+            <IgbPaginator
+            PerPage="10">
+            </IgbPaginator>
+
+            <IgbColumn
+            Field="Name"
+            DataType="GridColumnDataType.String"
+            Editable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Title"
+            DataType="GridColumnDataType.String"
+            Editable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Age"
+            DataType="GridColumnDataType.Number"
+            Editable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="HireDate"
+            DataType="GridColumnDataType.Date"
+            Editable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="OnPTO"
+            DataType="GridColumnDataType.Boolean"
+            Editable="true"
+            Width="130px"
+            BodyTemplate="WebTreeGridIconCellTemplate"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+
+        </IgbTreeGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var treeGrid = this.treeGrid;
+        var column1 = this.column1;
+
+    }
+
+    private IgbTreeGrid treeGrid;
+    private IgbColumn column1;
+
+}
