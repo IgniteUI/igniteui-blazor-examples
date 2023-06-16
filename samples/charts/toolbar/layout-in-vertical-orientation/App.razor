@@ -1,0 +1,84 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="aboveContent">
+        <IgbToolbar
+        Name="Toolbar"
+        @ref="toolbar"
+        Orientation="ToolbarOrientation.Vertical">
+        </IgbToolbar>
+
+    </div>
+
+    <div class="container vertical fill">
+        <IgbDataChart
+        IsHorizontalZoomEnabled="true"
+        Name="chart"
+        @ref="chart">
+            <IgbCategoryXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            DataSource="CountryRenewableElectricity"
+            Label="Year">
+            </IgbCategoryXAxis>
+
+            <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis"
+            Title="TWh">
+            </IgbNumericYAxis>
+
+            <IgbLineSeries
+            Name="LineSeries1"
+            @ref="lineSeries1"
+            Title="Electricity"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="CountryRenewableElectricity"
+            ValueMemberPath="America">
+            </IgbLineSeries>
+
+        </IgbDataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var toolbar = this.toolbar;
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var lineSeries1 = this.lineSeries1;
+
+        this.BindElements = () => {
+            toolbar.Target = this.chart;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbToolbar toolbar;
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbLineSeries lineSeries1;
+
+    private CountryRenewableElectricity _countryRenewableElectricity = null;
+    public CountryRenewableElectricity CountryRenewableElectricity
+    {
+        get
+        {
+            if (_countryRenewableElectricity == null)
+            {
+                _countryRenewableElectricity = new CountryRenewableElectricity();
+            }
+            return _countryRenewableElectricity;
+        }
+    }
+
+}
