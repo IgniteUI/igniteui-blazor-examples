@@ -1,5 +1,7 @@
 @using IgniteUI.Blazor.Controls
 
+@inject IJSRuntime JS
+
 <div class="container vertical">
 
     <div class="container vertical fill">
@@ -10,7 +12,7 @@
         Id="treeGrid"
         Data="EmployeesNestedTreeData"
         PrimaryKey="ID"
-        CellEdit="WebTreeGridCellEdit"
+        CellEditScript="WebTreeGridCellEdit"
         ForeignKey="ParentID">
             <IgbColumn
             Field="Name"
@@ -48,5 +50,18 @@
     }
 
     private IgbTreeGrid treeGrid;
+
+    private EmployeesNestedTreeData _employeesNestedTreeData = null;
+    public EmployeesNestedTreeData EmployeesNestedTreeData
+    {
+        get
+        {
+            if (_employeesNestedTreeData == null)
+            {
+                _employeesNestedTreeData = new EmployeesNestedTreeData();
+            }
+            return _employeesNestedTreeData;
+        }
+    }
 
 }
