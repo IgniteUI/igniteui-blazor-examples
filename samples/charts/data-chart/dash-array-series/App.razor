@@ -1,0 +1,119 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="legend-title">
+        Renewable Electricity Generated
+    </div>
+    <div class="legend">
+        <IgbLegend
+        Name="Legend"
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
+        </IgbLegend>
+
+    </div>
+
+    <div class="container vertical fill">
+        <IgbDataChart
+        Name="chart"
+        @ref="chart"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series">
+            <IgbCategoryXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            DataSource="CountryRenewableElectricity"
+            Label="Year">
+            </IgbCategoryXAxis>
+
+            <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis">
+            </IgbNumericYAxis>
+
+            <IgbLineSeries
+            Name="LineSeries1"
+            @ref="lineSeries1"
+            Title="Europe"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            MarkerType="MarkerType.Circle"
+            DataSource="CountryRenewableElectricity"
+            ValueMemberPath="Europe"
+            ShowDefaultTooltip="true"
+            DashArray="@(new double[] { 2, 2 })">
+            </IgbLineSeries>
+
+            <IgbLineSeries
+            Name="LineSeries2"
+            @ref="lineSeries2"
+            Title="China"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            MarkerType="MarkerType.Circle"
+            DataSource="CountryRenewableElectricity"
+            ValueMemberPath="China"
+            ShowDefaultTooltip="true"
+            DashArray="@(new double[] { 5, 5 })">
+            </IgbLineSeries>
+
+            <IgbLineSeries
+            Name="LineSeries3"
+            @ref="lineSeries3"
+            Title="America"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            MarkerType="MarkerType.Circle"
+            DataSource="CountryRenewableElectricity"
+            ValueMemberPath="America"
+            ShowDefaultTooltip="true"
+            DashArray="@(new double[] { 10, 10 })">
+            </IgbLineSeries>
+
+        </IgbDataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var lineSeries1 = this.lineSeries1;
+        var lineSeries2 = this.lineSeries2;
+        var lineSeries3 = this.lineSeries3;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbLegend legend;
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbLineSeries lineSeries1;
+    private IgbLineSeries lineSeries2;
+    private IgbLineSeries lineSeries3;
+
+    private CountryRenewableElectricity _countryRenewableElectricity = null;
+    public CountryRenewableElectricity CountryRenewableElectricity
+    {
+        get
+        {
+            if (_countryRenewableElectricity == null)
+            {
+                _countryRenewableElectricity = new CountryRenewableElectricity();
+            }
+            return _countryRenewableElectricity;
+        }
+    }
+
+}

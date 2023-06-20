@@ -1,7 +1,5 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IJSRuntime JS
-
 <div class="container vertical">
 
     <div class="container vertical fill">
@@ -10,43 +8,30 @@
         Name="treeGrid"
         @ref="treeGrid"
         Id="treeGrid"
-        Data="EmployeesFlatDetails"
+        Data="EmployeesNestedTreeData"
         PrimaryKey="ID"
-        ForeignKey="ParentID"
-        CellEditScript="WebTreeGridEditingEventsCellEdit">
-            <IgbColumn
-            Field="ID"
-            DataType="GridColumnDataType.Number"
-            Sortable="true">
-            </IgbColumn>
-
+        CellEdit="WebTreeGridCellEdit"
+        ForeignKey="ParentID">
             <IgbColumn
             Field="Name"
-            DataType="GridColumnDataType.String"
-            Sortable="true"
-            Editable="true"
-            DisableHiding="true">
+            DataType="GridColumnDataType.String">
             </IgbColumn>
 
             <IgbColumn
             Field="Title"
-            DataType="GridColumnDataType.String"
-            Sortable="true"
-            Editable="true"
-            DisableHiding="true">
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Age"
+            DataType="GridColumnDataType.Number"
+            Editable="true">
             </IgbColumn>
 
             <IgbColumn
             Field="HireDate"
             DataType="GridColumnDataType.Date"
-            Sortable="true"
-            Hidden="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Address"
-            DataType="GridColumnDataType.String"
-            Sortable="true">
+            Editable="true">
             </IgbColumn>
 
         </IgbTreeGrid>
@@ -63,18 +48,5 @@
     }
 
     private IgbTreeGrid treeGrid;
-
-    private EmployeesFlatDetails _employeesFlatDetails = null;
-    public EmployeesFlatDetails EmployeesFlatDetails
-    {
-        get
-        {
-            if (_employeesFlatDetails == null)
-            {
-                _employeesFlatDetails = new EmployeesFlatDetails();
-            }
-            return _employeesFlatDetails;
-        }
-    }
 
 }

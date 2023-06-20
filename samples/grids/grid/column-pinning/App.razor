@@ -1,0 +1,117 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="CustomersData"
+        Name="grid"
+        @ref="grid">
+            <IgbGridToolbar
+            >
+                <IgbGridToolbarTitle
+                >
+                </IgbGridToolbarTitle>
+
+                <IgbGridToolbarActions
+                >
+                    <IgbGridToolbarPinning
+                    >
+                    </IgbGridToolbarPinning>
+
+                </IgbGridToolbarActions>
+
+            </IgbGridToolbar>
+
+            <IgbColumn
+            Field="ID"
+            Header="ID"
+            Hidden="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="CompanyName"
+            Header="Company Name"
+            Width="300px">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="ContactName"
+            Header="Contact Name"
+            Width="200px"
+            Pinned="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="ContactTitle"
+            Header="Contact Title"
+            Width="200px"
+            Pinned="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Address"
+            Header="Address"
+            Width="300px">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="City"
+            Header="City"
+            Width="120px">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Region"
+            Header="Region"
+            Width="120px">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="PostalCode"
+            Header="Postal Code"
+            Width="150px">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Phone"
+            Header="Phone"
+            Width="150px">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Fax"
+            Header="Fax"
+            Width="150px">
+            </IgbColumn>
+
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+
+    }
+
+    private IgbGrid grid;
+
+    private CustomersData _customersData = null;
+    public CustomersData CustomersData
+    {
+        get
+        {
+            if (_customersData == null)
+            {
+                _customersData = new CustomersData();
+            }
+            return _customersData;
+        }
+    }
+
+}
