@@ -398,7 +398,7 @@
 
         if (grid1 != null && firstRender)
         {
-            this.CurrentData = FinancialData.Generate(RecordsCount);
+            this.CurrentData = FinancialLiveData.Generate(RecordsCount);
             grid1.Data = this.CurrentData;
             grid1.GroupingExpressions = this.GroupingExpressions;
         }
@@ -431,7 +431,7 @@
         if (e != null)
         {
             RecordsCount = Convert.ToInt32(e.Detail);
-            this.CurrentData = FinancialData.Generate(RecordsCount);
+            this.CurrentData = FinancialLiveData.Generate(RecordsCount);
             grid1.Data = this.CurrentData;
         }
     }
@@ -463,7 +463,7 @@
 
         this.Timer = new System.Threading.Timer((e) =>
         {
-            grid1.Data = FinancialData.UpdatePrices(this.CurrentData);
+            grid1.Data = FinancialLiveData.UpdatePrices(this.CurrentData);
         }, null, startTimeSpan, periodTimeSpan);
     }
 
