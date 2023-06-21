@@ -3,7 +3,7 @@
     var cell = ctx.cell;
     var rowData = grid1.getRowData(cell.id.rowID);
     var icon = this.trends.positive(rowData) ? "trending_up" : "trending_down";
-    var value = cell.value.toFixed(4);
+    var value = cell.value.toFixed(2);
     return html`
         <div class="finjs-icons">
         <span>$${value}</span>
