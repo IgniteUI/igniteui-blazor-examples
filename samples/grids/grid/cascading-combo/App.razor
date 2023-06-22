@@ -1,0 +1,79 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="WorldCitiesAbove500K"
+        PrimaryKey="ID"
+        RenderedScript="WebGridWithComboRendered"
+        Name="grid1"
+        @ref="grid1">
+            <IgbColumn
+            Field="ID"
+            Header="ID"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Country"
+            Header="Country"
+            BodyTemplateScript="WebGridCountryDropDownTemplate"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Region"
+            Header="Region"
+            BodyTemplateScript="WebGridRegionDropDownTemplate"
+            Name="column2"
+            @ref="column2">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="City"
+            Header="City"
+            BodyTemplateScript="WebGridCityDropDownTemplate"
+            Name="column3"
+            @ref="column3">
+            </IgbColumn>
+
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid1 = this.grid1;
+        var column1 = this.column1;
+        var column2 = this.column2;
+        var column3 = this.column3;
+
+    }
+
+    private IgbGrid grid1;
+    private IgbColumn column1;
+    private IgbColumn column2;
+    private IgbColumn column3;
+
+    private WorldCitiesAbove500K _worldCitiesAbove500K = null;
+    public WorldCitiesAbove500K WorldCitiesAbove500K
+    {
+        get
+        {
+            if (_worldCitiesAbove500K == null)
+            {
+                _worldCitiesAbove500K = new WorldCitiesAbove500K();
+            }
+            return _worldCitiesAbove500K;
+        }
+    }
+
+}
