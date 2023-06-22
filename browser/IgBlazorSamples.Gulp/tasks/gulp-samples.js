@@ -163,6 +163,7 @@ function getSamples(cb) {
       igConfig.SamplesCopyPath + '/grids/grid/column-resize-styling/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/column-selection-styles/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/conditional-cell-style-2/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/custom-context-menu/App.razor', // BUG https://github.com/IgniteUI/igniteui-blazor-examples/issues/420
       igConfig.SamplesCopyPath + '/grids/grid/data-exporting-indicator/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/data-performance-infinite-scroll/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/data-performance-operations/App.razor',
