@@ -153,7 +153,10 @@ function getSamples(cb) {
         igConfig.SamplesCopyPath + '/charts/data-chart/itemized-column-chart/App.razor',
         igConfig.SamplesCopyPath + '/charts/data-chart/itemized-stacked-bar-chart/App.razor',
         igConfig.SamplesCopyPath + '/charts/data-chart/itemized-stacked-column-chart/App.razor',
-      // excluding deferred gird samples
+        // excluding bugged samples:
+        igConfig.SamplesCopyPath + '/grids/tree-grid/editing-columns/App.razor', // BUG https://github.com/IgniteUI/igniteui-blazor-examples/issues/423
+        igConfig.SamplesCopyPath + '/grids/grid/custom-context-menu/App.razor', // BUG https://github.com/IgniteUI/igniteui-blazor-examples/issues/420
+        // excluding deferred gird samples
       igConfig.SamplesCopyPath + '/grids/grid/toolbar-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/advanced-filtering-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/binding-nested-data-2/App.razor',
@@ -163,7 +166,6 @@ function getSamples(cb) {
       igConfig.SamplesCopyPath + '/grids/grid/column-resize-styling/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/column-selection-styles/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/conditional-cell-style-2/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/custom-context-menu/App.razor', // BUG https://github.com/IgniteUI/igniteui-blazor-examples/issues/420
       igConfig.SamplesCopyPath + '/grids/grid/data-exporting-indicator/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/data-performance-infinite-scroll/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/data-performance-operations/App.razor',
