@@ -23,6 +23,7 @@ namespace Infragistics.Samples
                 typeof(IgbDataChartCoreModule),
                 typeof(IgbDataChartCategoryModule),
                 typeof(IgbDataChartCategoryCoreModule),
+                typeof(IgbDataChartCategoryTrendLineModule),
                 typeof(IgbDataChartFinancialCoreModule),
                 typeof(IgbDataChartFinancialModule),
                 typeof(IgbDataChartFinancialOverlaysModule),
