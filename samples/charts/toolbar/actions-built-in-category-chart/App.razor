@@ -4,36 +4,38 @@
     <div class="legend-title">
         Renewable Electricity Generated
     </div>
-    <div class="legend">
-        <IgbLegend
-        Name="Legend"
-        @ref="legend"
-        Orientation="LegendOrientation.Horizontal">
-        </IgbLegend>
+    <div id="aboveContentSplit">
+        <div id="aboveContentLeftContainer">
+            <IgbToolbar
+            Name="Toolbar"
+            @ref="toolbar"
+            Orientation="ToolbarOrientation.Horizontal">
+            </IgbToolbar>
 
-    </div>
-    <div class="aboveContent">
-        <IgbToolbar
-        Name="Toolbar"
-        @ref="toolbar"
-        Orientation="ToolbarOrientation.Horizontal">
-        </IgbToolbar>
+        </div>
+        <div id="aboveContentRightContainer">
+            <IgbLegend
+            Name="Legend"
+            @ref="legend"
+            Orientation="LegendOrientation.Horizontal">
+            </IgbLegend>
 
+        </div>
     </div>
     <div class="container vertical fill">
         <IgbCategoryChart
         Name="chart"
         @ref="chart"
         ChartType="CategoryChartType.Line"
-        IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
+        IsHorizontalZoomEnabled="true"
+        IsVerticalZoomEnabled="true"
         DataSource="CountryRenewableElectricity"
         IncludedProperties="@(new string[] { "Year", "Europe", "China", "America" })"
         YAxisTitle="TWh"
         YAxisTitleLeftMargin="10"
         YAxisTitleRightMargin="5"
         YAxisLabelLeftMargin="0"
-        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series">
+        IsTransitionInEnabled="true">
         </IgbCategoryChart>
 
     </div>

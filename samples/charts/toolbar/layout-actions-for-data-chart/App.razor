@@ -1,35 +1,52 @@
 @using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
+@using System;
 
 <div class="container vertical">
-    <div class="aboveContent">
-        <IgbToolbar
-        Name="Toolbar"
-        @ref="toolbar"
-        Orientation="ToolbarOrientation.Horizontal">
-            <IgbToolActionLabel
-            OverlayId="ZoomReset"
-            Visibility="Visibility.Collapsed">
-            </IgbToolActionLabel>
+    <div id="aboveContentSplit">
+        <div id="aboveContentLeftContainer">
+            <IgbToolbar
+            Name="Toolbar"
+            @ref="toolbar"
+            Orientation="ToolbarOrientation.Horizontal"
+            OnCommand="ToolbarToggleTooltip">
+                <IgbToolActionCheckbox
+                Title="Enable Tooltips"
+                BeforeId="ZoomReset"
+                CommandId="EnableTooltips">
+                </IgbToolActionCheckbox>
 
-            <IgbToolActionLabel
-            Title="Reset"
-            AfterId="ZoomOut"
-            IconName="reset"
-            IconCollectionName="ChartToolbarIcons"
-            CommandId="ZoomReset">
-            </IgbToolActionLabel>
+                <IgbToolActionLabel
+                OverlayId="ZoomReset"
+                Visibility="Visibility.Collapsed">
+                </IgbToolActionLabel>
 
-            <IgbToolActionIconMenu
-            OverlayId="AnalyzeMenu"
-            Visibility="Visibility.Collapsed">
-            </IgbToolActionIconMenu>
+                <IgbToolActionLabel
+                Title="Reset"
+                AfterId="ZoomOut"
+                IconName="reset"
+                IconCollectionName="ChartToolbarIcons"
+                CommandId="ZoomReset">
+                </IgbToolActionLabel>
 
-        </IgbToolbar>
+                <IgbToolActionIconMenu
+                OverlayId="AnalyzeMenu"
+                Visibility="Visibility.Collapsed">
+                </IgbToolActionIconMenu>
 
+            </IgbToolbar>
+
+        </div>
+        <div id="aboveContentRightContainer">
+            <!-- insert aboveContentRight -->
+            <!-- end aboveContentRight -->
+        </div>
     </div>
     <div class="container vertical fill">
         <IgbDataChart
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
         IsHorizontalZoomEnabled="true"
+        IsVerticalZoomEnabled="true"
         Name="chart"
         @ref="chart">
             <IgbCategoryXAxis
@@ -108,6 +125,30 @@
     private IgbLineSeries lineSeries1;
     private IgbLineSeries lineSeries2;
     private IgbLineSeries lineSeries3;
+
+    public void ToolbarToggleTooltip(IgbToolCommandEventArgs args)
+    {
+        var target = this.chart;
+        switch (args.Command.CommandId)
+    	{
+    		case "EnableTooltips":
+                IgbSeries toRemove = null;
+                foreach (var s in target.Series)
+                {
+                    if (s is IgbDataToolTipLayer)
+                    {
+                        toRemove = s;
+                    }
+                }
+
+                if (toRemove == null) {
+                    target.Series.Add(new IgbDataToolTipLayer());
+                } else {
+                    target.Series.Remove(toRemove);
+                }
+    			break;
+    	}
+    }
 
     private CountryRenewableElectricity _countryRenewableElectricity = null;
     public CountryRenewableElectricity CountryRenewableElectricity

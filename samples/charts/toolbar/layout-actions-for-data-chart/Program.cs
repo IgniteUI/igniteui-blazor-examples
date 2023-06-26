@@ -26,7 +26,6 @@ namespace Infragistics.Samples
                 typeof(IgbDataChartCategoryModule),
                 typeof(IgbDataChartAnnotationModule),
                 typeof(IgbDataChartInteractivityModule),
-                typeof(IgbAnnotationLayerProxyModule),
                 typeof(IgbDataChartCategoryTrendLineModule)
             );
             await builder.Build().RunAsync();
