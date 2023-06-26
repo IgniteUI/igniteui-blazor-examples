@@ -1,17 +1,25 @@
 @using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
-    <div class="aboveContent">
-        <IgbToolbar
-        Name="Toolbar"
-        @ref="toolbar"
-        Orientation="ToolbarOrientation.Horizontal">
-        </IgbToolbar>
+    <div id="aboveContentSplit">
+        <div id="aboveContentLeftContainer">
+            <IgbToolbar
+            Name="Toolbar"
+            @ref="toolbar"
+            Orientation="ToolbarOrientation.Horizontal">
+            </IgbToolbar>
 
+        </div>
+        <div id="aboveContentRightContainer">
+            <!-- insert aboveContentRight -->
+            <!-- end aboveContentRight -->
+        </div>
     </div>
     <div class="container vertical fill">
         <IgbDataChart
         IsHorizontalZoomEnabled="true"
+        IsVerticalZoomEnabled="true"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
         Name="chart"
         @ref="chart">
             <IgbCategoryXAxis
@@ -56,6 +64,10 @@
             DataSource="CountryRenewableElectricity"
             ValueMemberPath="China">
             </IgbLineSeries>
+
+            <IgbDataToolTipLayer
+            >
+            </IgbDataToolTipLayer>
 
         </IgbDataChart>
 
