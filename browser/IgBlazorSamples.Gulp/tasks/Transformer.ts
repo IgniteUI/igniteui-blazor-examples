@@ -67,7 +67,7 @@ class SampleSourceFile extends SampleFile {
 
         // remove lines with old Register(IgniteUIBlazor)
         var oldLines = this.Content.split("\r\n");
-        var newLines = [];
+        var newLines: string [] = [];
         for (const line of oldLines) {
             if (line.indexOf(".Register(IgniteUIBlazor)") < 0){
                 newLines.push(line);
@@ -631,7 +631,7 @@ class Transformer {
     public static getRelative(path: string): string {
         // let path = filePath;
         if (path.indexOf(igConfig.RepositoryName) > -1) {
-            path = path.split(igConfig.RepositoryName)[1];
+            path = path.split(igConfig.RepositoryName).pop() as string;
             path = path.split("\\").join("/");
             // return "." + path;
             return "../.." + path;

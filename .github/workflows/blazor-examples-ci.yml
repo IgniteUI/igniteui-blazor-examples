@@ -1,0 +1,33 @@
+name: Build Blazor Examples CI
+
+on:
+  push:
+    branches: [ master, vnext ]
+  pull_request:
+    branches: [ master, vnext ]
+
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    
+    - uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '6.0.x'
+
+    - name: Copy Samples to IgBlazorSamples.Client
+      working-directory: ./browser/IgBlazorSamples.Gulp
+      run: |
+        npm ci
+        gulp copySamplesToClient
+
+    - name: Build IgBlazorSamples.Client
+      run: dotnet build browser/IgBlazorSamples.Client
