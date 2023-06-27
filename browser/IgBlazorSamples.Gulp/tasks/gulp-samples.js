@@ -22,7 +22,7 @@ eval(require('typescript')
 .readFileSync("./tasks/Transformer.ts").toString()));
 
 function log(msg) {
-    console.log('GULP ' + msg);
+    console.log('- ' + msg);
 }
 log('loaded gulp scripts');
 
@@ -341,7 +341,8 @@ function copySamplePages(cb, outputPath) {
         for (const file of sample.SourceFiles) {
             // console.log(" file.Name=" +  file.Path);
             if (file.isRazorFile()) {
-                var copyTarget = outputPath + '/Pages/' + sampleFolder + '/' + file.Parent + '/' + file.Name;
+                // var copyTarget = outputPath + '/Pages/' + sampleFolder + '/' + file.Parent + '/' + file.Name;
+                var copyTarget = outputPath + '/Pages/' + sampleFolder + '/' + file.Name;
                 // log("copying sample to " + copyTarget);
                 saveFile(copyTarget, file.Content);
             } else if (file.Name.indexOf("Program.cs") >= 0)  {

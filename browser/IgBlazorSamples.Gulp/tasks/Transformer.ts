@@ -1029,7 +1029,7 @@ class Transformer {
 
                     if (cssContent !== defaultCSS) {
                         // console.log("GULP injecting \n" + cssContent)
-                        console.log("GULP injecting CSS from " + css.Path)
+                        console.log("- injecting CSS from " + css.Path)
                         stylingLines.push('<style>');
                         stylingLines.push(cssContent);
                         stylingLines.push('</style>');
