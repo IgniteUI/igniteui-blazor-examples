@@ -11,17 +11,23 @@
             Orientation="ToolbarOrientation.Horizontal"
             OnCommand="ToolbarToggleTooltip">
                 <IgbToolActionCheckbox
+                Name="EnableTooltipsLabel"
+                @ref="enableTooltipsLabel"
                 Title="Enable Tooltips"
                 BeforeId="ZoomReset"
                 CommandId="EnableTooltips">
                 </IgbToolActionCheckbox>
 
                 <IgbToolActionLabel
+                Name="ZoomResetHidden"
+                @ref="zoomResetHidden"
                 OverlayId="ZoomReset"
                 Visibility="Visibility.Collapsed">
                 </IgbToolActionLabel>
 
                 <IgbToolActionLabel
+                Name="ZoomResetLabel"
+                @ref="zoomResetLabel"
                 Title="Reset"
                 AfterId="ZoomOut"
                 IconName="reset"
@@ -30,6 +36,8 @@
                 </IgbToolActionLabel>
 
                 <IgbToolActionIconMenu
+                Name="AnalyzeMenu"
+                @ref="analyzeMenu"
                 OverlayId="AnalyzeMenu"
                 Visibility="Visibility.Collapsed">
                 </IgbToolActionIconMenu>
@@ -104,6 +112,10 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var toolbar = this.toolbar;
+        var enableTooltipsLabel = this.enableTooltipsLabel;
+        var zoomResetHidden = this.zoomResetHidden;
+        var zoomResetLabel = this.zoomResetLabel;
+        var analyzeMenu = this.analyzeMenu;
         var chart = this.chart;
         var xAxis = this.xAxis;
         var yAxis = this.yAxis;
@@ -119,6 +131,10 @@
     }
 
     private IgbToolbar toolbar;
+    private IgbToolActionCheckbox enableTooltipsLabel;
+    private IgbToolActionLabel zoomResetHidden;
+    private IgbToolActionLabel zoomResetLabel;
+    private IgbToolActionIconMenu analyzeMenu;
     private IgbDataChart chart;
     private IgbCategoryXAxis xAxis;
     private IgbNumericYAxis yAxis;
