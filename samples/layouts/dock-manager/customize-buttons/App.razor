@@ -1,0 +1,265 @@
+﻿@inject IJSRuntime JSRuntime;
+@using IgniteUI.Blazor.Controls
+
+
+<div class="container vertical">
+    <div class="container vertical">
+
+        <style>
+            .dockManagerContent {
+                padding: 0.5rem;
+                height: calc(100% - 1rem);
+                width: calc(100% - 1rem);
+                display: flex;
+                flex-direction: column;
+                /* background: orange; */
+            }
+
+            igc-dockmanager::part(unpinned-tab-area) {
+                background: #bee9ec;
+            }
+
+            igc-dockmanager::part(unpinned-tab-area--left) {
+                border-right: 1px dashed #004d7a;
+            }
+
+            igc-dockmanager::part(unpinned-tab-area--bottom) {
+                border-top: 1px dashed #004d7a;
+            }
+
+            igc-dockmanager::part(tab-header-close-button),
+            igc-dockmanager::part(pane-header-close-button) {
+                background-color: #e73c7e;
+            }
+
+            igc-dockmanager::part(context-menu-unpin-button),
+            igc-dockmanager::part(pane-header-pin-button),
+            igc-dockmanager::part(pane-header-unpin-button) {
+                background: rgb(218, 218, 218);
+                border: none;
+                width: 24px;
+                height: 24px;
+                color: #fff;
+            }
+
+            igc-dockmanager::part(tabs-maximize-button),
+            igc-dockmanager::part(tabs-minimize-button),
+            igc-dockmanager::part(pane-header-minimize-button),
+            igc-dockmanager::part(pane-header-maximize-button) {
+                width: 24px;
+                height: 24px;
+                border: none;
+                transition: opacity 250ms ease-in-out;
+                opacity: 0.3;
+                margin-right: 15px;
+                margin-top: -5px;
+                margin-left: 0px;
+            }
+        </style>
+
+
+        <IgbDockManager @ref="dockManager" Layout="Layout" Height="100%" Width="100%">
+
+            <button slot="closeButton">x</button>
+
+            <button slot="maximizeButton">
+                <img src="https://www.svgrepo.com/show/419558/arrow-top-chevron-chevron-top.svg" width="17" height="17" alt="" />
+            </button>
+
+            <button slot="minimizeButton">
+                <img src="https://www.svgrepo.com/show/419557/bottom-chevron-chevron-down.svg" width="17" height="17" alt="" />
+            </button>
+
+            <button slot="pinButton">
+                <img src="https://www.svgrepo.com/show/154123/pin.svg" width="17" height="17" alt="" />
+            </button>
+
+            <button slot="unpinButton">
+                <img src="https://www.svgrepo.com/show/154123/pin.svg" width="17" height="17" alt="" />
+            </button>
+
+            <div slot="content1">Content 1 - pane docked to left side</div>
+            <div slot="content2">Content 2 - pane pinned to left side</div>
+            <div slot="content3">Content 3 - document pane</div>
+            <div slot="content4">Content 4 - document pane</div>
+            <div slot="content5">Content 5</div>
+            <div slot="content6">Content 6 - tab pane 1</div>
+            <div slot="content7">Content 7 - tab pane 2</div>
+            <div slot="content8">Content 8 - pane docked bottom right</div>
+            <div slot="content9">Content 9 - floating pane</div>
+        </IgbDockManager>
+    </div>
+</div>
+
+@code {
+
+    public IgbDockManager dockManager { get; set; }
+    public IgbDockManagerLayout Layout { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Layout = new IgbDockManagerLayout();
+        Layout.RootPane = new IgbSplitPane();
+        Layout.RootPane.PaneType = DockManagerPaneType.SplitPane;
+        Layout.RootPane.Orientation = SplitPaneOrientation.Horizontal;
+
+        IgbSplitPane rootsplitPane1 = new IgbSplitPane
+            {
+                PaneType = DockManagerPaneType.SplitPane,
+                Orientation = SplitPaneOrientation.Vertical,
+            };
+
+        IgbContentPane contentPane1 = new IgbContentPane
+            {
+                PaneType = DockManagerPaneType.ContentPane,
+                Header = "Content Pane 1",
+                ContentId = "content1"
+            };
+
+        IgbContentPane contentPane2 = new IgbContentPane
+            {
+                PaneType = DockManagerPaneType.ContentPane,
+                Header = "Unpinned Pane 1",
+                ContentId = "content2",
+                IsPinned = false
+            };
+
+        IgbSplitPane splitPane2 = new IgbSplitPane
+            {
+                PaneType = DockManagerPaneType.SplitPane,
+                Orientation = SplitPaneOrientation.Vertical,
+                Size = 200,
+            };
+
+        IgbDocumentHost documentHost1 = new IgbDocumentHost
+            {
+                PaneType = DockManagerPaneType.DocumentHost,
+                Size = 200,
+            };
+
+        IgbSplitPane documentHost1RootSplitPane = new IgbSplitPane
+            {
+                PaneType = DockManagerPaneType.SplitPane,
+                Orientation = SplitPaneOrientation.Horizontal,
+            };
+
+        IgbTabGroupPane tabGroupPane1 = new IgbTabGroupPane
+            {
+                PaneType = DockManagerPaneType.TabGroupPane,
+
+            };
+
+        IgbContentPane documentContentPane1 = new IgbContentPane
+            {
+                PaneType = DockManagerPaneType.ContentPane,
+                Header = "Document 1",
+                ContentId = "content3"
+            };
+
+        IgbContentPane documentContentPane2 = new IgbContentPane
+            {
+                PaneType = DockManagerPaneType.ContentPane,
+                Header = "Document 2",
+                ContentId = "content4"
+            };
+
+        IgbContentPane contentPane5 = new IgbContentPane
+            {
+                PaneType = DockManagerPaneType.ContentPane,
+                ContentId = "content5",
+                Header = "Unpinned Pane 2",
+                IsPinned = false
+            };
+
+
+        IgbSplitPane rootsplitPane2 = new IgbSplitPane
+        {
+            PaneType = DockManagerPaneType.SplitPane,
+            Orientation = SplitPaneOrientation.Vertical,
+
+        };
+
+        IgbTabGroupPane tabGroupPane2 = new IgbTabGroupPane
+            {
+                PaneType = DockManagerPaneType.TabGroupPane,
+                Size = 200,
+
+            };
+
+        IgbContentPane tabGroupContentPane1 = new IgbContentPane
+            {
+                PaneType = DockManagerPaneType.ContentPane,
+                ContentId = "content6",
+                Header = "Tab 1"
+            };
+        IgbContentPane tabGroupContentPane2 = new IgbContentPane
+            {
+                PaneType = DockManagerPaneType.ContentPane,
+                ContentId = "content7",
+                Header = "Tab 2"
+            };
+        IgbContentPane tabGroupContentPane3 = new IgbContentPane
+            {
+                PaneType = DockManagerPaneType.ContentPane,
+                ContentId = "content8",
+                Header = "Tab 3"
+            };
+        IgbContentPane tabGroupContentPane4 = new IgbContentPane
+            {
+                PaneType = DockManagerPaneType.ContentPane,
+                ContentId = "content9",
+                Header = "Tab 4"
+            };
+        IgbContentPane tabGroupContentPane5 = new IgbContentPane
+            {
+                PaneType = DockManagerPaneType.ContentPane,
+                ContentId = "content10",
+                Header = "Tab 5"
+            };
+
+        IgbContentPane contentPane6 = new IgbContentPane
+        {
+            PaneType = DockManagerPaneType.ContentPane,
+            ContentId = "content11",
+            Header = "Content Pane 2"
+        };
+
+        IgbSplitPane floatingSplitPane = new IgbSplitPane
+        {
+            PaneType = DockManagerPaneType.SplitPane,
+            Orientation = SplitPaneOrientation.Horizontal,
+            FloatingHeight = 150,
+            FloatingWidth = 250,
+            FloatingLocation = new IgbDockManagerPoint { X = 300, Y = 200 },
+
+        };
+        IgbContentPane contentPane7 = new IgbContentPane
+        {
+            PaneType = DockManagerPaneType.ContentPane,
+            ContentId = "content12",
+            Header = "Floating Pane"
+        };
+
+
+        rootsplitPane1.Panes.Add(contentPane1);
+        rootsplitPane1.Panes.Add(contentPane2);
+        splitPane2.Panes.Add(documentHost1);
+        splitPane2.Panes.Add(contentPane5);
+        documentHost1.RootPane = documentHost1RootSplitPane;
+        documentHost1RootSplitPane.Panes.Add(tabGroupPane1);
+        tabGroupPane1.Panes.Add(documentContentPane1);
+        tabGroupPane1.Panes.Add(documentContentPane2);
+        rootsplitPane2.Panes.Add(tabGroupPane2);
+        tabGroupPane2.Panes.Add(tabGroupContentPane1);
+        tabGroupPane2.Panes.Add(tabGroupContentPane2);
+        tabGroupPane2.Panes.Add(tabGroupContentPane3);
+        tabGroupPane2.Panes.Add(tabGroupContentPane4);
+        tabGroupPane2.Panes.Add(tabGroupContentPane5);
+        rootsplitPane2.Panes.Add(contentPane6);
+        floatingSplitPane.Panes.Add(contentPane7);
+        Layout.RootPane.Panes.Add(rootsplitPane1);
+        Layout.RootPane.Panes.Add(rootsplitPane2);
+        Layout.FloatingPanes.Add(floatingSplitPane);
+    }
+
+}

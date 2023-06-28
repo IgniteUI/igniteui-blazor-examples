@@ -1,0 +1,81 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="container vertical fill">
+        <IgbDataChart
+        Name="chart"
+        @ref="chart"
+        ShouldAutoExpandMarginForInitialLabels="true"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+        IsVerticalZoomEnabled="true"
+        IsHorizontalZoomEnabled="true">
+            <IgbCategoryXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            DataSource="Stock2Years"
+            LabelLocation="AxisLabelsLocation.OutsideBottom"
+            Label="Month"
+            Interval="1"
+            LabelExtent="30">
+            </IgbCategoryXAxis>
+
+            <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis"
+            LabelLocation="AxisLabelsLocation.OutsideRight">
+            </IgbNumericYAxis>
+
+            <IgbFinancialPriceSeries
+            Name="Series1"
+            @ref="series1"
+            Title="Stock Price"
+            DisplayType="PriceDisplayType.Candlestick"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="Stock2Years"
+            OpenMemberPath="Open"
+            HighMemberPath="High"
+            LowMemberPath="Low"
+            CloseMemberPath="Close"
+            VolumeMemberPath="Volume"
+            ShowDefaultTooltip="true"
+            TrendLineType="TrendLineType.QuarticFit"
+            TrendLineBrush="dodgerblue"
+            TrendLineDashArray="@(new double[] { 5, 5 })">
+            </IgbFinancialPriceSeries>
+
+        </IgbDataChart>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var series1 = this.series1;
+
+    }
+
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbFinancialPriceSeries series1;
+
+    private Stock2Years _stock2Years = null;
+    public Stock2Years Stock2Years
+    {
+        get
+        {
+            if (_stock2Years == null)
+            {
+                _stock2Years = new Stock2Years();
+            }
+            return _stock2Years;
+        }
+    }
+
+}

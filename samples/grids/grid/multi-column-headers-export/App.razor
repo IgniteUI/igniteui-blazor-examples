@@ -1,6 +1,6 @@
 @using IgniteUI.Blazor.Controls
-@using IgniteUI.Blazor.Controls;
-@using System;
+
+@inject IJSRuntime JS
 
 <div class="container vertical">
     <div class="options vertical">
@@ -23,7 +23,6 @@
         </IgbPropertyEditorPanel>
 
     </div>
-
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
@@ -48,7 +47,7 @@
                     <IgbGridToolbarExporter
                     ExportCSV="false"
                     ExportExcel="true"
-                    ExportStarted="WebGridExportEventMultiColumnHeaders"
+                    ExportStartedScript="WebGridExportEventMultiColumnHeaders"
                     Name="gridToolbarExporter1"
                     @ref="gridToolbarExporter1">
                     </IgbGridToolbarExporter>
@@ -231,12 +230,6 @@
     private IgbColumn phone;
     private IgbColumn fax;
     private IgbColumn postalCode;
-
-    public void WebGridExportEventMultiColumnHeaders(IgbExporterEventEventArgs args)
-    {
-        bool exportMultiHeaders = (bool)exportHeaders.GetCurrentPrimitiveValue();
-        args.Detail.Options.IgnoreMultiColumnHeaders = !exportMultiHeaders;
-    }
 
     private CustomersData _customersData = null;
     public CustomersData CustomersData

@@ -19,7 +19,7 @@ let config = {
     // SamplesCopyPath: "../samples",
     SamplesCopyPath: "../../samples",
     SamplesCopyFiles: [".razor", ".cs", ".csv", ".png", ".svg" ],
-    SamplesFileExclusions: ["Home.razor", "index.html", "index.css"],
+    SamplesFileExclusions: ["Home.razor", "index.html"],
     SamplesFileExtension: ".razor",
     SamplesFolderName: "Pages",
 
