@@ -1,23 +1,22 @@
 @using IgniteUI.Blazor.Controls
-@inject IDataSource1Service dataSource1Service
+@inject IProductDataService productDataService
 
 <div class="container vertical">
 
     <div class="container vertical fill">
-        <IgbGrid Height="800px"
-                 Width="100%"
-                 AutoGenerate="false"
-                 Data="dataSource1Table1"
-                 PrimaryKey="ID"
-                 DisplayDensity="DisplayDensity.Cosy"
-                 AllowFiltering="true"
-                 FilterMode="FilterMode.ExcelStyleFilter"
-                 PagingMode="GridPagingMode.Remote"
-                 IsLoading="loading"
-                 PagingDone="OnPagingDone"
-                 Name="grid1"
-                 @ref="grid1">
-            <IgbPaginator PerPage="PerPage" Page="Page" TotalRecords="TotalRecords">
+        <IgbGrid 
+            AutoGenerate="false"
+            Data="dataProductItems"
+            PrimaryKey="ID"
+            DisplayDensity="DisplayDensity.Cosy"
+            AllowFiltering="true"
+            FilterMode="FilterMode.ExcelStyleFilter"
+            PagingMode="GridPagingMode.Remote"
+            IsLoading="loading"
+            PagingDone="OnPagingDone"
+            Name="grid"
+            @ref="grid">
+            <IgbPaginator PerPage="ProductsPerPage" Page="PageNumber" TotalRecords="TotalRecords">
             </IgbPaginator>
             <IgbColumn Field="ID"
                        Header="Product ID"
@@ -72,33 +71,33 @@
 </div>
 
 @code {
-    protected List<NwindDataItem> dataSource1Table1 { get; set; }
-    protected List<NwindDataItem[]> partitionedProducts { get; set; }
-    private IgbGrid grid1;
+    protected List<NwindDataItem> dataProductItems { get; set; }
+    protected List<NwindDataItem[]> dataProductsPerPage { get; set; }
+    private IgbGrid grid;
     Random random = new Random();
-    protected int Page { get; set; } = 0;
-    protected int PerPage { get; set; } = 5;
+    protected int PageNumber { get; set; } = 0;
+    protected int ProductsPerPage { get; set; } = 5;
     protected int TotalRecords { get; set; } = 77;
     protected bool loading = false;
 
     protected override async Task OnInitializedAsync()
     {
-        dataSource1Table1 = await dataSource1Service.GetTable1();
-        partitionedProducts = (from product in dataSource1Table1 select product)
-                                 .Chunk(PerPage)
+        dataProductItems = await productDataService.GetTable();
+        dataProductsPerPage = (from product in dataProductItems select product)
+                                 .Chunk(ProductsPerPage)
                                  .ToList();
-        dataSource1Table1 = partitionedProducts.FirstOrDefault().ToList();
+        dataProductItems = dataProductsPerPage.FirstOrDefault().ToList();
     }
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var grid1 = this.grid1;
-        await grid1.EnsureReady();
+        var grid = this.grid;
+        await grid.EnsureReady();
     }
 
     public async void OnPagingDone(IgbPageEventArgs e)
     {
-        Console.WriteLine($"Page: {e.Detail.Current}");
-        this.Page = (int)e.Detail.Current;
+        Console.WriteLine($"PageNumber: {e.Detail.Current}");
+        this.PageNumber = (int)e.Detail.Current;
         this.loading = true;
         await PopulateData();
     }
@@ -109,7 +108,7 @@
         {
             await foreach (var item in FetchItems())
             {
-                dataSource1Table1 = partitionedProducts[Page].ToList();
+                dataProductItems = dataProductsPerPage[PageNumber].ToList();
                 StateHasChanged();
             }
             loading = false;
@@ -123,36 +122,9 @@
 
     public async IAsyncEnumerable<int> FetchItems()
     {
-        for (int i = 1; i <= PerPage; i++)
+        for (int i = 1; i <= ProductsPerPage; i++)
         {
-            yield return (Page) * PerPage + i;
+            yield return (PageNumber) * ProductsPerPage + i;
         }
-    }
-
-    public class DataSource1Service : IDataSource1Service
-    {
-        private readonly HttpClient _http;
-
-        public DataSource1Service(HttpClient http)
-        {
-            _http = http;
-        }
-
-        public async Task<List<NwindDataItem>> GetTable1()
-        {
-            using HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, new Uri("https://www.igniteui.com/api/products", UriKind.RelativeOrAbsolute));
-            using HttpResponseMessage response = await _http.SendAsync(request).ConfigureAwait(false);
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadFromJsonAsync<List<NwindDataItem>>().ConfigureAwait(false);
-            }
-
-            return new List<NwindDataItem>();
-        }
-    }
-
-    public interface IDataSource1Service
-    {
-        Task<List<NwindDataItem>> GetTable1();
     }
 }
