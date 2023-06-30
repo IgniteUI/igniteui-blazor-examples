@@ -8,7 +8,7 @@ igRegisterScript("WebGridPinHeaderTemplate", (ctx) => {
         grid.markForCheck();
     }
     return html`<div>
-    <span style="float:left">${ctx.column.header}</span>
+    <span style="float:left">${ctx.column.field}</span>
     <span style="float:right" onpointerdown='toggleColumnPin("${ctx.column.field}")'>📌</span>
 </div>`;
 }, false);

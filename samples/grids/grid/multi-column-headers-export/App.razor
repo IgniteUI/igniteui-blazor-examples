@@ -1,6 +1,6 @@
 @using IgniteUI.Blazor.Controls
-@using IgniteUI.Blazor.Controls;
-@using System;
+
+@inject IJSRuntime JS
 
 <div class="container vertical">
     <div class="options vertical">
@@ -23,7 +23,6 @@
         </IgbPropertyEditorPanel>
 
     </div>
-
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
@@ -48,7 +47,7 @@
                     <IgbGridToolbarExporter
                     ExportCSV="false"
                     ExportExcel="true"
-                    ExportStarted="WebGridExportEventMultiColumnHeaders"
+                    ExportStartedScript="WebGridExportEventMultiColumnHeaders"
                     Name="gridToolbarExporter1"
                     @ref="gridToolbarExporter1">
                     </IgbGridToolbarExporter>
@@ -69,9 +68,7 @@
             <IgbColumnGroup
             Name="GeneralInformation"
             @ref="generalInformation"
-            Header="General Information"
-            Collapsible="true"
-            Expanded="true">
+            Header="General Information">
                 <IgbColumn
                 Name="CompanyName"
                 @ref="companyName"
@@ -82,8 +79,6 @@
                 Name="PersonalDetails"
                 @ref="personalDetails"
                 Header="Personal Details"
-                Collapsible="true"
-                Expanded="true"
                 VisibleWhenCollapsed="true">
                     <IgbColumn
                     Name="ContactName"
@@ -109,8 +104,6 @@
                 Name="Location"
                 @ref="location"
                 Header="Location"
-                Collapsible="true"
-                Expanded="false"
                 VisibleWhenCollapsed="true">
                     <IgbColumn
                     Name="Country"
@@ -231,12 +224,6 @@
     private IgbColumn phone;
     private IgbColumn fax;
     private IgbColumn postalCode;
-
-    public void WebGridExportEventMultiColumnHeaders(IgbExporterEventEventArgs args)
-    {
-        bool exportMultiHeaders = (bool)exportHeaders.GetCurrentPrimitiveValue();
-        args.Detail.Options.IgnoreMultiColumnHeaders = !exportMultiHeaders;
-    }
 
     private CustomersData _customersData = null;
     public CustomersData CustomersData
