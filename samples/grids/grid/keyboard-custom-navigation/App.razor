@@ -1,5 +1,7 @@
 @using IgniteUI.Blazor.Controls
 
+@inject IJSRuntime JS
+
 <div class="container vertical">
     <div class="container vertical fill">
         <IgbGrid
@@ -8,8 +10,25 @@
         @ref="grid"
         Data="NwindData"
         Moving="true"
-        AllowFiltering="true"
-        FilterMode="FilterMode.QuickFilter">
+        PrimaryKey="ProductID"
+        DisplayDensity="DisplayDensity.Cosy"
+        RowEditable="true"
+        GridKeydownScript="WebGridCustomKBNav">
+            <IgbColumn
+            Name="ProductID"
+            @ref="productID"
+            Field="ProductID"
+            Header="Product ID">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="ReorderLevel"
+            @ref="reorderLevel"
+            Field="ReorderLevel"
+            Header="Reorder Level"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+
             <IgbColumn
             Name="ProductName"
             @ref="productName"
@@ -18,34 +37,25 @@
             </IgbColumn>
 
             <IgbColumn
-            Name="QuantityPerUnit"
-            @ref="quantityPerUnit"
-            Field="QuantityPerUnit"
-            Header="Quantity Per Unit">
-            </IgbColumn>
-
-            <IgbColumn
-            Name="UnitPrice"
-            @ref="unitPrice"
-            Field="UnitPrice"
-            Header="Unit Price"
-            DataType="GridColumnDataType.Currency">
+            Name="UnitsInStock"
+            @ref="unitsInStock"
+            Field="UnitsInStock"
+            Header="Units In Stock"
+            DataType="GridColumnDataType.Number">
             </IgbColumn>
 
             <IgbColumn
             Name="OrderDate"
             @ref="orderDate"
             Field="OrderDate"
-            Header="Order Date"
-            DataType="GridColumnDataType.Date">
+            Header="Order Date">
             </IgbColumn>
 
             <IgbColumn
             Name="Discontinued"
             @ref="discontinued"
             Field="Discontinued"
-            Header="Discontinued"
-            DataType="GridColumnDataType.Boolean">
+            Header="Discontinued">
             </IgbColumn>
 
         </IgbGrid>
@@ -58,18 +68,20 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
+        var productID = this.productID;
+        var reorderLevel = this.reorderLevel;
         var productName = this.productName;
-        var quantityPerUnit = this.quantityPerUnit;
-        var unitPrice = this.unitPrice;
+        var unitsInStock = this.unitsInStock;
         var orderDate = this.orderDate;
         var discontinued = this.discontinued;
 
     }
 
     private IgbGrid grid;
+    private IgbColumn productID;
+    private IgbColumn reorderLevel;
     private IgbColumn productName;
-    private IgbColumn quantityPerUnit;
-    private IgbColumn unitPrice;
+    private IgbColumn unitsInStock;
     private IgbColumn orderDate;
     private IgbColumn discontinued;
 

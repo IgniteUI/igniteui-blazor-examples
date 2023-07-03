@@ -1,23 +1,8 @@
 @using IgniteUI.Blazor.Controls
 
+@inject IJSRuntime JS
+
 <div class="container vertical">
-    <div class="options vertical">
-        <IgbPropertyEditorPanel
-        Name="PropertyEditor"
-        @ref="propertyEditor"
-
-        DescriptionType="WebGrid"
-        IsHorizontal="true"
-        IsWrappingEnabled="true">
-            <IgbPropertyEditorPropertyDescription
-            Name="selectionType"
-            @ref="selectionType"
-            PropertyPath="RowSelection">
-            </IgbPropertyEditorPropertyDescription>
-
-        </IgbPropertyEditorPanel>
-
-    </div>
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
@@ -25,7 +10,10 @@
         Name="grid"
         @ref="grid"
         Id="grid"
-        DisplayDensity="DisplayDensity.Cosy">
+        DisplayDensity="DisplayDensity.Cosy"
+        RowSelection="GridSelectionMode.Multiple"
+        RowSelectorTemplateScript="WebGridRowSelectorExcelTemplate"
+        HeadSelectorTemplateScript="WebGridHeaderRowSelectorExcelTemplate">
             <IgbPaginator
             Name="paginator"
             @ref="paginator"
@@ -70,26 +58,15 @@
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
         var paginator = this.paginator;
-        var propertyEditor = this.propertyEditor;
-        var selectionType = this.selectionType;
-
-        this.BindElements = () => {
-            propertyEditor.Target = this.grid;
-        };
-        this.BindElements();
 
     }
 
     private IgbGrid grid;
     private IgbPaginator paginator;
-    private IgbPropertyEditorPanel propertyEditor;
-    private IgbPropertyEditorPropertyDescription selectionType;
 
     private CustomersData _customersData = null;
     public CustomersData CustomersData
