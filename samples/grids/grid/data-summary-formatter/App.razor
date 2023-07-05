@@ -1,5 +1,7 @@
 @using IgniteUI.Blazor.Controls
 
+@inject IJSRuntime JS
+
 <div class="container vertical">
     <div class="container vertical fill">
         <IgbGrid
@@ -36,7 +38,7 @@
             Sortable="true"
             HasSummary="true"
             DataType="GridColumnDataType.Date"
-            PipeArgs="ColumnPipeArgs1"
+            SummaryFormatterScript="WebGridSummaryFormatter"
             Name="column1"
             @ref="column1">
             </IgbColumn>
@@ -64,20 +66,6 @@
 
     private IgbGrid grid;
     private IgbColumn column1;
-    private IgbColumnPipeArgs _columnPipeArgs1 = null;
-    public IgbColumnPipeArgs ColumnPipeArgs1
-    {
-        get
-        {
-            if (this._columnPipeArgs1 == null)
-            {
-                var columnPipeArgs1 = new IgbColumnPipeArgs();
-                columnPipeArgs1.Format = "MMM YYYY";
-                this._columnPipeArgs1 = columnPipeArgs1;
-            }
-            return this._columnPipeArgs1;
-        }
-    }
 
     private NwindData _nwindData = null;
     public NwindData NwindData

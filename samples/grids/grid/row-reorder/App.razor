@@ -1,5 +1,7 @@
 @using IgniteUI.Blazor.Controls
 
+@inject IJSRuntime JS
+
 <div class="container vertical">
     <div class="container vertical fill">
         <IgbGrid
@@ -7,7 +9,8 @@
         @ref="grid"
         Data="CustomersData"
         RowDraggable="true"
-        PrimaryKey="ID">
+        PrimaryKey="ID"
+        RowDragEndScript="WebGridReorderRowHandler">
             <IgbColumn
             Field="ID"
             Header="ID">
