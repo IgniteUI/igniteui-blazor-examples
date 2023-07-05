@@ -1,17 +1,22 @@
 @using IgniteUI.Blazor.Controls
 
+@inject IJSRuntime JS
+
 <div class="container vertical">
     <div class="container vertical fill">
         <IgbGrid
         Name="grid"
         @ref="grid"
-        Data="CustomersData"
+        Data="CustomersDataLocal"
         PrimaryKey="ID"
         CellSelection="GridSelectionMode.None">
             <IgbColumn
             Width="70px"
             Filterable="false"
-            Pinned="true">
+            Pinned="true"
+            BodyTemplateScript="WebGridRowPinCellTemplate"
+            Name="column1"
+            @ref="column1">
             </IgbColumn>
 
             <IgbColumn
@@ -67,21 +72,23 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
+        var column1 = this.column1;
 
     }
 
     private IgbGrid grid;
+    private IgbColumn column1;
 
-    private CustomersData _customersData = null;
-    public CustomersData CustomersData
+    private CustomersDataLocal _customersDataLocal = null;
+    public CustomersDataLocal CustomersDataLocal
     {
         get
         {
-            if (_customersData == null)
+            if (_customersDataLocal == null)
             {
-                _customersData = new CustomersData();
+                _customersDataLocal = new CustomersDataLocal();
             }
-            return _customersData;
+            return _customersDataLocal;
         }
     }
 

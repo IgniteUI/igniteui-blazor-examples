@@ -1,19 +1,17 @@
 @using IgniteUI.Blazor.Controls
 
-
 @inject IJSRuntime JS
 
 <div class="container vertical">
-
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Id="grid"
         Data="FinancialDataAll"
-        RowStylesScript="WebGridRowStylesHandler"
-        AllowFiltering="true"
         Name="grid"
-        @ref="grid">
+        @ref="grid"
+        Id="grid"
+        AllowFiltering="true"
+        RowStylesScript="WebGridRowStylesHandler">
             <IgbColumn
             Field="Category"
             Width="120px">
@@ -21,14 +19,14 @@
 
             <IgbColumn
             Field="Type"
-            Width="120px"
-            Filterable="false">
+            Filterable="false"
+            Width="120px">
             </IgbColumn>
 
             <IgbColumn
             Field="Open"
-            Width="120px"
             Header="Open Price"
+            Width="120px"
             DataType="GridColumnDataType.Currency">
             </IgbColumn>
 
@@ -41,20 +39,26 @@
             <IgbColumn
             Field="Change"
             Width="120px"
-            DataType="GridColumnDataType.Number">
+            DataType="GridColumnDataType.Number"
+            BodyTemplateScript="WebGridCurrencyCellTemplate"
+            Name="column1"
+            @ref="column1">
             </IgbColumn>
 
             <IgbColumn
             Field="ChangePercent"
-            Width="120px"
             Header="Change(%)"
-            DataType="GridColumnDataType.Number">
+            Width="120px"
+            DataType="GridColumnDataType.Percent"
+            BodyTemplateScript="WebGridCurrencyCellTemplate"
+            Name="column2"
+            @ref="column2">
             </IgbColumn>
 
             <IgbColumn
             Field="AnnualChange"
-            Width="150px"
             Header="Change On Year(%)"
+            Width="150px"
             DataType="GridColumnDataType.Number">
             </IgbColumn>
 
@@ -84,61 +88,57 @@
 
             <IgbColumn
             Field="High"
-            Width="130px"
             Header="High(D)"
+            Width="130px"
             DataType="GridColumnDataType.Currency">
             </IgbColumn>
 
             <IgbColumn
             Field="Low"
-            Width="130px"
             Header="Low(D)"
+            Width="130px"
             DataType="GridColumnDataType.Currency">
             </IgbColumn>
 
             <IgbColumn
             Field="AnnualHigh"
-            Width="130px"
             Header="High(Y)"
+            Width="130px"
             DataType="GridColumnDataType.Currency">
             </IgbColumn>
 
             <IgbColumn
             Field="AnnualLow"
-            Width="130px"
             Header="Low(Y)"
+            Width="130px"
             DataType="GridColumnDataType.Currency">
             </IgbColumn>
 
             <IgbColumn
             Field="AnnualStart"
-            Width="130px"
             Header="Start(Y)"
+            Width="130px"
             DataType="GridColumnDataType.Currency">
             </IgbColumn>
 
         </IgbGrid>
 
     </div>
-
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-
-    }
-
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
+        var column1 = this.column1;
+        var column2 = this.column2;
 
     }
 
     private IgbGrid grid;
+    private IgbColumn column1;
+    private IgbColumn column2;
 
     private FinancialDataAll _financialDataAll = null;
     public FinancialDataAll FinancialDataAll

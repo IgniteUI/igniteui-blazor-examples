@@ -155,7 +155,6 @@ function getSamples(cb) {
         igConfig.SamplesCopyPath + '/charts/data-chart/itemized-stacked-column-chart/App.razor',
         // excluding bugged samples:
         igConfig.SamplesCopyPath + '/grids/tree-grid/editing-columns/App.razor', // BUG https://github.com/IgniteUI/igniteui-blazor-examples/issues/423
-        igConfig.SamplesCopyPath + '/grids/grid/custom-context-menu/App.razor', // BUG https://github.com/IgniteUI/igniteui-blazor-examples/issues/420
         // excluding deferred gird samples
       igConfig.SamplesCopyPath + '/grids/grid/toolbar-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/advanced-filtering-style/App.razor',
