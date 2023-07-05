@@ -2,7 +2,7 @@
 igRegisterScript("WebGridOrderDateSummaryTemplate", (ctx) => {
     var html = window.igTemplating.html;
 
-    var summaryArray = ctx.$implicit;
+    var summaryArray = ctx.implicit;
 
     console.log(ctx);
 

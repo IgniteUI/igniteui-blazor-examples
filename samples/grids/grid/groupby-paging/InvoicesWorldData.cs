@@ -63,6 +63,7 @@ public class InvoicesWorldData
         this.Add(new InvoicesWorldDataItem()
         {
             ShipName = @"Alfred's Futterkiste",
+            ShipAddress = @"Obere Str. 57",
             ShipCity = @"Berlin",
             ShipRegion = null,
             ShipPostalCode = @"12209",

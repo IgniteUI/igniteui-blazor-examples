@@ -1,7 +1,7 @@
 
 igRegisterScript("WebGridMasterDetailTemplate", (ctx) => {
     var html = window.igTemplating.html;
-    var data = ctx["$implicit"];
+    var data = ctx.implicit;
     return html` <div class="contact-container">
         <span><strong>Name:</strong> ${data.ContactName}</span>
         <br />

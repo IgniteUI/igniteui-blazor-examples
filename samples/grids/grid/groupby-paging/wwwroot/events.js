@@ -1,7 +1,7 @@
 
 igRegisterScript("WebGridGroupByRowTemplate", (ctx) => {
     var html = window.igTemplating.html;
-    var groupRow = ctx.$implicit;
+    var groupRow = ctx.implicit;
     window.calc2017 = function calc2017(values) {
         const startDate = new Date('1/1/2017');
         const endDate = new Date('12/31/2017');
