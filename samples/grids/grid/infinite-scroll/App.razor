@@ -1,0 +1,111 @@
+@using IgniteUI.Blazor.Controls
+
+        <IgbGrid
+        AutoGenerate="false"
+        Height="480px"
+        Name="grid"
+        Id="grid"
+        @ref="grid"
+        DataPreLoad="OnDataPreLoad">
+            <IgbColumn
+            Name="ID"
+            Field="ProductID"
+            Header="ID">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="ProductName"
+            Field="ProductName"
+            Header="Product Name">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="QuantityPerUnit"
+            Field="QuantityPerUnit"
+            Header="Quantity Per Unit">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="UnitPrice"
+            Field="UnitPrice"
+            Header="Unit Price">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="OrderDate"
+            Field="OrderDate"
+            Header="Order Date">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="Discontinued"
+            Field="Discontinued"
+            Header="Discontinued">
+            </IgbColumn>
+
+        </IgbGrid>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var grid = this.grid;
+            grid.IsLoading = true;
+            StateHasChanged();
+            //await Task.Delay(1000);
+            double dataViewSize = 480.0 / 50.0;
+            this.PageSize = Convert.ToInt32(Math.Floor(dataViewSize * 1.5));
+            this.CacheData = NwindData.Take(this.PageSize).ToList();
+            grid.Data = CacheData;
+            grid.TotalItemCount = this.PageSize * this.Page;
+            double pageCount = this.TotalItems / this.PageSize;
+            this.TotalPageCount = Convert.ToInt32(pageCount);
+          
+            StateHasChanged();
+            grid.IsLoading = false;
+        }
+
+    }
+
+    public async void OnDataPreLoad(IgbForOfStateEventArgs e)
+    {
+        bool isLastChunk = this.grid.TotalItemCount == e.Detail.StartIndex + e.Detail.ChunkSize;
+        // when last chunk reached load another page of data
+        if (isLastChunk)
+        {
+            if (this.TotalPageCount == this.Page)
+            {
+                this.grid.Data = this.CacheData.Skip(Convert.ToInt32(e.Detail.StartIndex)).Take(Convert.ToInt32(e.Detail.ChunkSize));
+                return;
+            }
+            this.CacheData.AddRange(NwindData.Skip(this.Page * this.PageSize).Take(this.PageSize));
+            this.Page++;
+
+            this.grid.IsLoading = true;
+
+            //await Task.Delay(1000);
+           
+            this.grid.Data = this.CacheData.Skip(Convert.ToInt32(e.Detail.StartIndex)).Take(Convert.ToInt32(e.Detail.ChunkSize));
+            this.grid.TotalItemCount = Math.Min(this.Page * this.PageSize, this.TotalItems);
+            StateHasChanged();
+            this.grid.IsLoading = false;
+        }
+        else
+        {
+            this.grid.Data = this.CacheData.Skip(Convert.ToInt32(e.Detail.StartIndex)).Take(Convert.ToInt32(e.Detail.ChunkSize));
+            StateHasChanged();
+        }
+    }
+
+    private IgbGrid grid;
+    private int Page = 1;
+    private int PageSize = 10;
+    private int TotalPageCount = 0;
+    private int TotalItems = NwindData.Count;
+
+    private static NwindData NwindData = new NwindData();
+
+    public List<NwindDataItem> CacheData = new List<NwindDataItem>();
+
+}
