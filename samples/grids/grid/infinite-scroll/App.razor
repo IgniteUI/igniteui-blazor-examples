@@ -1,111 +1,131 @@
 @using IgniteUI.Blazor.Controls
+@using System.Net.Http;
+@using Newtonsoft.Json;
 
-        <IgbGrid
-        AutoGenerate="false"
-        Height="480px"
-        Name="grid"
-        Id="grid"
-        @ref="grid"
-        DataPreLoad="OnDataPreLoad">
-            <IgbColumn
-            Name="ID"
-            Field="ProductID"
-            Header="ID">
-            </IgbColumn>
+<IgbGrid AutoGenerate="false"
+         Height="480px"
+         Name="grid"
+         Id="grid"
+         Data="LocalData"
+         @ref="grid"
+         DataPreLoad="OnDataPreLoad">
+    <IgbColumn Name="ID"
+               Field="ProductID"
+               Header="ID">
+    </IgbColumn>
 
-            <IgbColumn
-            Name="ProductName"
-            Field="ProductName"
-            Header="Product Name">
-            </IgbColumn>
+    <IgbColumn Name="ProductName"
+               Field="ProductName"
+               Header="Product Name">
+    </IgbColumn>
 
-            <IgbColumn
-            Name="QuantityPerUnit"
-            Field="QuantityPerUnit"
-            Header="Quantity Per Unit">
-            </IgbColumn>
+    <IgbColumn Name="QuantityPerUnit"
+               Field="QuantityPerUnit"
+               Header="Quantity Per Unit">
+    </IgbColumn>
 
-            <IgbColumn
-            Name="UnitPrice"
-            Field="UnitPrice"
-            Header="Unit Price">
-            </IgbColumn>
+    <IgbColumn Name="UnitPrice"
+               Field="UnitPrice"
+               Header="Unit Price">
+    </IgbColumn>
 
-            <IgbColumn
-            Name="OrderDate"
-            Field="OrderDate"
-            Header="Order Date">
-            </IgbColumn>
+    <IgbColumn Name="OrderDate"
+               Field="OrderDate"
+               Header="Order Date">
+    </IgbColumn>
 
-            <IgbColumn
-            Name="Discontinued"
-            Field="Discontinued"
-            Header="Discontinued">
-            </IgbColumn>
+    <IgbColumn Name="Discontinued"
+               Field="Discontinued"
+               Header="Discontinued">
+    </IgbColumn>
 
-        </IgbGrid>
+</IgbGrid>
 
 @code {
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
+    @code {
+        protected readonly HttpClient Http = new HttpClient();
+        protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            var grid = this.grid;
-            grid.IsLoading = true;
-            StateHasChanged();
-            //await Task.Delay(1000);
-            double dataViewSize = 480.0 / 50.0;
-            this.PageSize = Convert.ToInt32(Math.Floor(dataViewSize * 1.5));
-            this.CacheData = NwindData.Take(this.PageSize).ToList();
-            grid.Data = CacheData;
-            grid.TotalItemCount = this.PageSize * this.Page;
-            double pageCount = this.TotalItems / this.PageSize;
-            this.TotalPageCount = Convert.ToInt32(pageCount);
-          
-            StateHasChanged();
-            grid.IsLoading = false;
-        }
-
-    }
-
-    public async void OnDataPreLoad(IgbForOfStateEventArgs e)
-    {
-        bool isLastChunk = this.grid.TotalItemCount == e.Detail.StartIndex + e.Detail.ChunkSize;
-        // when last chunk reached load another page of data
-        if (isLastChunk)
-        {
-            if (this.TotalPageCount == this.Page)
+            if (firstRender)
             {
-                this.grid.Data = this.CacheData.Skip(Convert.ToInt32(e.Detail.StartIndex)).Take(Convert.ToInt32(e.Detail.ChunkSize));
-                return;
+                var grid = this.grid;
+                grid.IsLoading = true;
+                double dataViewSize = 480.0 / 50.0;
+                this.PageSize = Convert.ToInt32(Math.Floor(dataViewSize * 1.5));
+                // additional delay for TotalItemCount setter.
+                await Task.Delay(500);
+                var data = await GetDataRemote(1, this.PageSize);
+
+
+                this.CachedData = data;
+                this.LocalData = this.CachedData;
+
+                // for some reason if TotalItemCount is the same as the loaded records count it does not trigger loading events.
+                // so setting it to number of records + 1
+                grid.TotalItemCount = (this.PageSize * this.Page) + 1;
+                double pageCount = Math.Ceiling((double)this.TotalItems / (double)this.PageSize);
+                this.TotalPageCount = (int)pageCount;
+                grid.IsLoading = false;
+                StateHasChanged();
             }
-            this.CacheData.AddRange(NwindData.Skip(this.Page * this.PageSize).Take(this.PageSize));
-            this.Page++;
 
-            this.grid.IsLoading = true;
-
-            //await Task.Delay(1000);
-           
-            this.grid.Data = this.CacheData.Skip(Convert.ToInt32(e.Detail.StartIndex)).Take(Convert.ToInt32(e.Detail.ChunkSize));
-            this.grid.TotalItemCount = Math.Min(this.Page * this.PageSize, this.TotalItems);
-            StateHasChanged();
-            this.grid.IsLoading = false;
         }
-        else
+
+        public async Task<List<NwindDataItem>> GetDataRemote(int page, int pageSize)
         {
-            this.grid.Data = this.CacheData.Skip(Convert.ToInt32(e.Detail.StartIndex)).Take(Convert.ToInt32(e.Detail.ChunkSize));
-            StateHasChanged();
+            var url = "https://services.odata.org/V4/Northwind/Northwind.svc/Products";
+            int skip = (page - 1) * pageSize;
+            string query = String.Format("{0}?$count=true&$skip={1}&$top={2}", url, skip, pageSize);
+            NwindModel res = await Http.GetFromJsonAsync<NwindModel>(query);
+            this.TotalItems = res.Count;
+            return res.Value;
+
         }
+
+        public async void OnDataPreLoad(IgbForOfStateEventArgs e)
+        {
+            int chunkSize = (int)e.Detail.ChunkSize;
+            int startIndex = (int)e.Detail.StartIndex;
+            int totalCount = (int)this.grid.TotalItemCount;
+
+            bool isLastChunk = totalCount == startIndex + chunkSize;
+            // when last chunk reached load another page of data
+            if (isLastChunk)
+            {
+                if (this.TotalPageCount == this.Page)
+                {
+                    this.LocalData = this.CachedData.Skip(startIndex).Take(chunkSize).ToList();
+                    return;
+                }
+
+                // add next page of remote data to cache
+                this.grid.IsLoading = true;
+                this.Page++;
+                var remoteData = await GetDataRemote(this.Page, this.PageSize);
+                this.CachedData.AddRange(remoteData);
+
+                var data = this.CachedData.Skip(startIndex).Take(chunkSize);
+                this.LocalData = data.ToList();
+                this.grid.IsLoading = false;
+                this.grid.TotalItemCount = Math.Min(this.Page * this.PageSize, this.TotalItems);
+            }
+            else
+            {
+                var data = this.CachedData.Skip(startIndex).Take(chunkSize).ToList();
+                this.LocalData = data;
+            }
+        }
+
+        private IgbGrid grid;
+        private int Page = 1;
+        private int PageSize = 0;
+        private int ChunkSize = 10;
+        private int TotalPageCount = 0;
+        private int TotalItems = 0;
+        public List<NwindDataItem> CachedData = new List<NwindDataItem>();
+
+        public List<NwindDataItem> LocalData = new List<NwindDataItem>();
+
     }
-
-    private IgbGrid grid;
-    private int Page = 1;
-    private int PageSize = 10;
-    private int TotalPageCount = 0;
-    private int TotalItems = NwindData.Count;
-
-    private static NwindData NwindData = new NwindData();
-
-    public List<NwindDataItem> CacheData = new List<NwindDataItem>();
 
 }
