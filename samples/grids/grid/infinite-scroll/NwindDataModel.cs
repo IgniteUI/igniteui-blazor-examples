@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-public class NwindDataItem
+public class NwinCustomdDataItem
 {
     public double ProductID { get; set; }
     public string ProductName { get; set; }
@@ -15,9 +15,9 @@ public class NwindDataItem
     public bool Discontinued { get; set; }
     public string OrderDate { get; set; }
     public double Rating { get; set; }
-    public List<NwindDataItem_LocationsItem> Locations { get; set; }
+    public List<NwinCustomdDataItem_LocationsItem> Locations { get; set; }
 }
-public class NwindDataItem_LocationsItem
+public class NwinCustomdDataItem_LocationsItem
 {
     public string Shop { get; set; }
     public string LastInventory { get; set; }
@@ -29,5 +29,5 @@ public class NwindModel
     public int Count { get; set; } = 77;
 
     [JsonProperty("value")]
-    public List<NwindDataItem> Value { get; set; }
+    public List<NwinCustomdDataItem> Value { get; set; }
 }

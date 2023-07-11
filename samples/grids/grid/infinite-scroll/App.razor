@@ -71,7 +71,7 @@
 
         }
 
-        public async Task<List<NwindDataItem>> GetDataRemote(int page, int pageSize)
+        public async Task<List<NwinCustomdDataItem>> GetDataRemote(int page, int pageSize)
         {
             var url = "https://services.odata.org/V4/Northwind/Northwind.svc/Products";
             int skip = (page - 1) * pageSize;
@@ -122,9 +122,9 @@
         private int ChunkSize = 10;
         private int TotalPageCount = 0;
         private int TotalItems = 0;
-        public List<NwindDataItem> CachedData = new List<NwindDataItem>();
+        public List<NwinCustomdDataItem> CachedData = new List<NwinCustomdDataItem>();
 
-        public List<NwindDataItem> LocalData = new List<NwindDataItem>();
+        public List<NwinCustomdDataItem> LocalData = new List<NwinCustomdDataItem>();
 
     }
 
