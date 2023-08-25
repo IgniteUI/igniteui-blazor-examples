@@ -30,21 +30,22 @@
             XAxisName="xAxis"
             YAxisName="yAxis"
             DataSource="CountryRenewableElectricity"
-            ValueMemberPath="America">
+            ValueMemberPath="America"
+            Brush="#8961a9"
+            MarkerOutline="#8961a9"
+            ShouldHideAutoCallouts="false">
             </IgbLineSeries>
 
             <IgbCalloutLayer
             Name="CalloutLayer1"
             @ref="calloutLayer1"
-            DataSource="CountryRenewableCallouts"
-            XMemberPath="Index"
-            YMemberPath="Value"
-            LabelMemberPath="Label"
-            CalloutLeaderBrush="black"
-            CalloutOutline="black"
-            CalloutBackground="orange"
-            CalloutTextColor="black"
-            CalloutStrokeThickness="2">
+            IsAutoCalloutBehaviorEnabled="true"
+            CalloutLeaderBrush="#8961a9"
+            CalloutOutline="#8961a9"
+            CalloutBackground="white"
+            CalloutTextColor="#8961a9"
+            CalloutStrokeThickness="1"
+            CalloutCollisionMode="CalloutCollisionMode.Greedy">
             </IgbCalloutLayer>
 
         </IgbDataChart>
@@ -80,19 +81,6 @@
                 _countryRenewableElectricity = new CountryRenewableElectricity();
             }
             return _countryRenewableElectricity;
-        }
-    }
-
-    private CountryRenewableCallouts _countryRenewableCallouts = null;
-    public CountryRenewableCallouts CountryRenewableCallouts
-    {
-        get
-        {
-            if (_countryRenewableCallouts == null)
-            {
-                _countryRenewableCallouts = new CountryRenewableCallouts();
-            }
-            return _countryRenewableCallouts;
         }
     }
 

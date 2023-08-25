@@ -17,8 +17,7 @@
 
             <IgbNumericYAxis
             Name="yAxis"
-            @ref="yAxis"
-            Title="TWh">
+            @ref="yAxis">
             </IgbNumericYAxis>
 
             <IgbLineSeries
@@ -34,7 +33,10 @@
             <IgbCalloutLayer
             Name="CalloutLayer1"
             @ref="calloutLayer1"
-            IsAutoCalloutBehaviorEnabled="true"
+            DataSource="CountryRenewableCallouts"
+            XMemberPath="Index"
+            YMemberPath="Value"
+            LabelMemberPath="Label"
             CalloutPaddingLeft="20"
             CalloutPaddingRight="20"
             CalloutPaddingBottom="10"
@@ -105,6 +107,19 @@
                 _countryRenewableElectricity = new CountryRenewableElectricity();
             }
             return _countryRenewableElectricity;
+        }
+    }
+
+    private CountryRenewableCallouts _countryRenewableCallouts = null;
+    public CountryRenewableCallouts CountryRenewableCallouts
+    {
+        get
+        {
+            if (_countryRenewableCallouts == null)
+            {
+                _countryRenewableCallouts = new CountryRenewableCallouts();
+            }
+            return _countryRenewableCallouts;
         }
     }
 
