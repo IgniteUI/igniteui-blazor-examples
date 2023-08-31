@@ -1,0 +1,225 @@
+﻿@using IgniteUI.Blazor.Controls
+
+
+<div class="container vertical">
+    <div class="container vertical" style="padding: 1rem">
+        @if (LineDataSource != null)
+        {             
+            <div class="legend-title">
+                Line Chart with Editable Values by Dragging Markers Up/Down Directions
+            </div>
+
+            <IgbDataChart Height="50%" Width="100%" Name="Chart" @ref="LineChart"
+            PlotAreaMarginLeft="5" PlotAreaMarginRight="5"
+            DefaultInteraction="InteractionState.None"
+            PlotAreaMouseOver="@OnLineSeriesMouseMove"  
+            PlotAreaMouseLeftButtonUp="@OnLineSeriesMouseUp"  
+            SeriesMouseLeftButtonDown="OnLineSeriesMouseDown"
+            
+            IsWindowSyncedToVisibleRange="true"
+            IsHorizontalZoomEnabled="true"
+            IsVerticalZoomEnabled="false">
+
+                <IgbCategoryXAxis @ref="LineXAxis" Name="LineXAxis" Label="Category" DataSource="LineDataSource"
+                LabelAngle="0" Interval="1" />
+
+                <IgbNumericYAxis  @ref="LineYAxis" Name="LineYAxis" LabelExtent="30"
+                MinimumValue="10" MaximumValue="90" 
+                LabelHorizontalAlignment="HorizontalAlignment.Left"
+                LabelLocation="AxisLabelsLocation.OutsideRight"   />
+                 
+                <IgbLineSeries 
+                MarkerType="MarkerType.Circle"
+                DataSource="LineDataSource"
+                ValueMemberPath="DataValue"
+                XAxisName="LineXAxis"  
+                YAxisName="LineYAxis" 
+                Title="Data Points"  /> 
+
+                <IgbPointSeries 
+                MarkerBrush="White" 
+                MarkerOutline="DodgerBlue"
+                MarkerType="MarkerType.Circle"
+                DataSource="LineDataSource"
+                ValueMemberPath="EditingValue"
+                XAxisName="LineXAxis"  
+                YAxisName="LineYAxis" 
+                Title="Editing Point"  /> 
+            
+                <IgbDataToolTipLayer Name="Tooltips" ValueFormatMaxFractions="1"
+                SummaryType="DataLegendSummaryType.None"/>
+            </IgbDataChart> 
+        }
+         
+        @if (ScatterDataSource != null)
+        {  
+            <div class="legend-title">
+                Scatter Chart with Editable Values by Dragging Markers In All Directions
+            </div>
+
+            <IgbDataChart Height="50%" Width="100%" @ref="ScatterChart" 
+            PlotAreaMarginLeft="5" PlotAreaMarginRight="5"
+            DefaultInteraction="InteractionState.None"
+            PlotAreaMouseOver="@OnScatterSeriesMouseMove"  
+            PlotAreaMouseLeftButtonUp="@OnScatterSeriesMouseUp"  
+            SeriesMouseLeftButtonDown="OnScatterSeriesMouseDown"
+            
+            IsWindowSyncedToVisibleRange="true"
+            IsHorizontalZoomEnabled="true"
+            IsVerticalZoomEnabled="false">
+
+                <IgbNumericXAxis @ref="ScatterXAxis" Name="ScatterXAxis" 
+                LabelAngle="0" />
+
+                <IgbNumericYAxis  @ref="ScatterYAxis" Name="ScatterYAxis" LabelExtent="30"
+                MinimumValue="10" MaximumValue="90"  Stroke="transparent" StrokeThickness="0"
+                LabelHorizontalAlignment="HorizontalAlignment.Left"
+                LabelLocation="AxisLabelsLocation.OutsideRight"   />
+                 
+                <IgbScatterLineSeries 
+                MarkerType="MarkerType.Circle"
+                DataSource="ScatterDataSource"
+                XMemberPath="X"
+                YMemberPath="Y"
+                XAxisName="ScatterXAxis"  
+                YAxisName="ScatterYAxis" 
+                Title="Data Points"  /> 
+
+                <IgbScatterSeries 
+                MarkerBrush="White" 
+                MarkerOutline="DodgerBlue"
+                MarkerType="MarkerType.Circle"
+                DataSource="ScatterDataSource" 
+                XMemberPath="EditingX"
+                YMemberPath="EditingY"
+                XAxisName="ScatterXAxis"  
+                YAxisName="ScatterYAxis" 
+                Title="Editing Point"  /> 
+             
+                <IgbDataToolTipLayer Name="Tooltips" ValueFormatMaxFractions="1"/>
+            </IgbDataChart> 
+        }
+    </div>
+</div>
+
+@code {
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        this.LineDataSource = new EditableLineDataSource();   
+        this.ScatterDataSource = new EditableScattereDataSource();   
+    }
+
+
+    #region Editing - LineSeries
+    protected IgbDataChart LineChart;
+    protected IgbCategoryXAxis LineXAxis;
+    protected IgbNumericYAxis LineYAxis; 
+    protected IgbLineSeries LineSeries;  
+    protected List<EditableLineDataItem> LineDataSource; 
+
+    protected int LineSeriesEditingIndex = -1; 
+    protected bool LineSeriesEditingActive = false;
+    protected void OnLineSeriesMouseUp(IgbPlotAreaMouseButtonEventArgs args)
+    {
+        LineSeriesEditingActive = false; 
+    }
+    protected void OnLineSeriesMouseDown(IgbDataChartMouseButtonEventArgs args)
+    { 
+        LineSeriesEditingActive = true;
+        LineSeriesEditingIndex = -1;
+        var itemData = args.Item as EditableLineDataItem;
+        for (var i = 0; i < LineDataSource.Count; i++)
+        {
+            LineDataSource[i].EditingValue = double.NaN;
+            if (LineDataSource[i].Category == itemData.Category)
+            {
+                LineSeriesEditingIndex = i; 
+            }
+
+            LineChart.NotifyUpdateItem(this.LineDataSource, i, LineDataSource[i], false);
+        } 
+    }
+
+    protected void OnLineSeriesMouseMove(IgbPlotAreaMouseEventArgs args)
+    {
+        var index = LineSeriesEditingIndex;
+        
+        if (!LineSeriesEditingActive) 
+        { 
+            LineDataSource[index].EditingValue = double.NaN; 
+            LineChart.NotifyUpdateItem(this.LineDataSource, index, LineDataSource[index], false);
+        } 
+        else
+        {    
+            var y = LineYAxis.UnscaleValue(args.ChartPosition.Y); 
+
+            this.LineDataSource[index].DataValue = y;
+            this.LineDataSource[index].EditingValue = y;
+
+            LineChart.NotifyUpdateItem(this.LineDataSource, index, this.LineDataSource[index], false);
+        } 
+    }
+    #endregion
+
+    #region Editing - ScatterSeries
+    private IgbDataChart     ScatterChart;
+    private IgbNumericXAxis  ScatterXAxis;
+    private IgbNumericYAxis  ScatterYAxis; 
+    protected List<EditableScatterDataItem> ScatterDataSource;
+
+    protected int  ScatterSeriesEditingIndex = -1; 
+    protected bool ScatterSeriesEditingActive = false;
+    protected void OnScatterSeriesMouseUp(IgbPlotAreaMouseButtonEventArgs args)
+    {
+        ScatterSeriesEditingActive = false; 
+    }
+    protected void OnScatterSeriesMouseDown(IgbDataChartMouseButtonEventArgs args)
+    { 
+        ScatterSeriesEditingActive = true;
+        ScatterSeriesEditingIndex = -1;
+        var itemData = args.Item as EditableScatterDataItem;
+
+        Console.WriteLine("itemData " + itemData.X.ToString("0") + " " + itemData.Y.ToString("0"));
+
+        for (var i = 0; i < ScatterDataSource.Count; i++)
+        {
+            ScatterDataSource[i].EditingX = double.NaN;
+            ScatterDataSource[i].EditingY = double.NaN;
+            if (ScatterDataSource[i].X == itemData.X &&
+                ScatterDataSource[i].Y == itemData.Y)
+            {
+                ScatterSeriesEditingIndex = i; 
+            }
+
+            ScatterChart.NotifyUpdateItem(this.ScatterDataSource, i, ScatterDataSource[i], false);
+        } 
+    }  
+
+    protected void OnScatterSeriesMouseMove(IgbPlotAreaMouseEventArgs args)
+    {
+        var index = ScatterSeriesEditingIndex; 
+
+        if (!ScatterSeriesEditingActive) {
+            ScatterDataSource[index].EditingX = double.NaN;
+            ScatterDataSource[index].EditingY = double.NaN; 
+            ScatterChart.NotifyUpdateItem(this.ScatterDataSource, index, ScatterDataSource[index], false);
+        } 
+        else
+        {   
+            var x = ScatterXAxis.UnscaleValue(args.ChartPosition.X);
+            var y = ScatterYAxis.UnscaleValue(args.ChartPosition.Y); 
+
+            ScatterDataSource[index].X = x;
+            ScatterDataSource[index].Y = y;
+            ScatterDataSource[index].EditingX = x;
+            ScatterDataSource[index].EditingY = y; 
+            Console.WriteLine("i=" + index.ToString("0") + " x=" + x.ToString("0") + " y=" + y.ToString("0"));
+
+            ScatterChart.NotifyUpdateItem(this.ScatterDataSource, index, ScatterDataSource[index], false);
+        }
+
+    }
+    #endregion
+}
