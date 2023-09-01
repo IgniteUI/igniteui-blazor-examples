@@ -21,7 +21,8 @@ namespace Infragistics.Samples
             // registering Ignite UI modules
             builder.Services.AddIgniteUIBlazor(
                 typeof(IgbDataLegendModule),
-                typeof(IgbCategoryChartModule)
+                typeof(IgbCategoryChartModule),
+                typeof(IgbDataChartInteractivityModule)
             );
             await builder.Build().RunAsync();
         }

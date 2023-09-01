@@ -1,44 +1,42 @@
 @using IgniteUI.Blazor.Controls
-@using System.Collections.ObjectModel
+@using IgniteUI.Blazor.Controls;
+@using System;
 
-<div class="container vertical" style="padding: 1rem">
-    
+<div class="container vertical">
     <div class="legend-title">
         Chart with Multiple Selectable Data Columns
     </div>
     <div class="legend">
-        <IgbDataLegend Name="Legend" @ref="legend"
-         SummaryType="DataLegendSummaryType.None" 
-         ValueFormatMaxFractions="0" >
+        <IgbDataLegend
+        Name="Legend"
+        @ref="legend"
+        SummaryType="DataLegendSummaryType.None"
+        ValueFormatMaxFractions="0">
         </IgbDataLegend>
-    </div> 
 
-    <div class="container vertical">
-         <IgbCategoryChart @ref="chart"
-         Height="100%" Width="100%" 
-         DataSource="@Data"
-         XAxisOverlap="1"
-         ChartType="CategoryChartType.Column" 
-         YAxisMinimumValue="0"         
-         IsHorizontalZoomEnabled="false"
-         IsVerticalZoomEnabled="false"
-         IsSeriesHighlightingEnabled="true" 
-         FinalValueAnnotationsVisible="false"
-         CrosshairsAnnotationEnabled="false"
-         CrosshairsDisplayMode="CrosshairsDisplayMode.None"
-         DataToolTipSummaryType="DataLegendSummaryType.None" 
-         DataToolTipValueFormatMaxFractions="0"
-         SeriesPointerDown="OnSeriesPointerDown" /> 
-         
+    </div>
+    <div class="container vertical fill">
+        <IgbCategoryChart
+        Name="chart"
+        @ref="chart"
+        DataSource="SelectableData"
+        ChartType="CategoryChartType.Column"
+        XAxisOverlap="1"
+        YAxisMinimumValue="0"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        IsSeriesHighlightingEnabled="true"
+        FinalValueAnnotationsVisible="false"
+        CrosshairsAnnotationEnabled="false"
+        DataToolTipSummaryType="DataLegendSummaryType.None"
+        DataToolTipValueFormatMaxFractions="0"
+        SeriesPointerDown="CategoryChartCustomSelectionPointerDown">
+        </IgbCategoryChart>
+
     </div>
 </div>
 
 @code {
-
-    private IgbDataLegend legend;
-    private IgbCategoryChart chart;
-
-    private List<SelectedableItem> Data;
 
     private Action BindElements { get; set; }
 
@@ -51,33 +49,45 @@
             legend.Target = this.chart;
         };
         this.BindElements();
+
     }
 
-    protected override void OnInitialized()
-    {
-        Data = new SelectedableData();
-    }
+    private IgbDataLegend legend;
+    private IgbCategoryChart chart;
 
-    private void OnSeriesPointerDown(IgbDomainChartSeriesPointerEventArgs args)
+    public void CategoryChartCustomSelectionPointerDown(IgbDomainChartSeriesPointerEventArgs args)
     {
-        var selectedItem = args.Item as SelectedableItem;
+        var selectedItem = args.Item as SelectableDataItem;
         if (selectedItem == null) return;
 
         var selectedIndex = -1;
-        for (var i = 0; i < Data.Count; i++)
+        for (var i = 0; i < this.SelectableData.Count; i++)
         {
-            if (selectedItem.Category == Data[i].Category)
-            { 
-                selectedIndex = i; break; 
+            if (selectedItem.Category == this.SelectableData[i].Category)
+            {
+                selectedIndex = i; break;
             }
-        }  
+        }
 
         if (selectedItem.SelectedValue == selectedItem.DataValue)
             selectedItem.SelectedValue = double.NaN;
-        else 
+        else
             selectedItem.SelectedValue = selectedItem.DataValue;
 
-        chart.NotifyUpdateItem(this.Data, selectedIndex, selectedItem, false);
+        chart.NotifyUpdateItem(this.SelectableData, selectedIndex, selectedItem, false);
     }
-      
+
+    private SelectableData _selectableData = null;
+    public SelectableData SelectableData
+    {
+        get
+        {
+            if (_selectableData == null)
+            {
+                _selectableData = new SelectableData();
+            }
+            return _selectableData;
+        }
+    }
+
 }
