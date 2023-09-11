@@ -1,0 +1,74 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="legend-title">
+        Highest Grossing Movie Franchises
+    </div>
+    <div class="legend">
+        <IgbDataLegend
+
+        ValueFormatMode="DataLegendValueMode.Currency"
+        ValueFormatString="${0} Billion"
+        Name="Legend"
+        @ref="legend">
+        </IgbDataLegend>
+
+    </div>
+    <div class="container vertical fill">
+        <IgbCategoryChart
+
+        Name="chart"
+        @ref="chart"
+        DataSource="HighestGrossingMovies"
+        ChartType="CategoryChartType.Column"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        DataToolTipValueFormatMode="DataLegendValueMode.Currency"
+        DataToolTipValueFormatString="${0} Billion"
+        YAxisLabelFormat="{0}B">
+            <IgbNumberFormatSpecifier
+            Style="currency"
+            Currency="USD"
+            CurrencyDisplay="symbol"
+            MinimumFractionDigits="0">
+            </IgbNumberFormatSpecifier>
+
+        </IgbCategoryChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var chart = this.chart;
+
+        this.BindElements = () => {
+            legend.Target = this.chart;
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbDataLegend legend;
+    private IgbCategoryChart chart;
+
+    private HighestGrossingMovies _highestGrossingMovies = null;
+    public HighestGrossingMovies HighestGrossingMovies
+    {
+        get
+        {
+            if (_highestGrossingMovies == null)
+            {
+                _highestGrossingMovies = new HighestGrossingMovies();
+            }
+            return _highestGrossingMovies;
+        }
+    }
+
+}
