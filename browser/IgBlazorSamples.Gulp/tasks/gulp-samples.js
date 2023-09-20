@@ -507,21 +507,34 @@ function copySamplesToClient(cb) {
 
 function updateReadme(cb) {
 
-    // log('updating readme files... ');
+    var changeFilesCount = 0;
     var template = fs.readFileSync("../../templates/sample/ReadMe.md", "utf8");
     for (const sample of samples) {
 
         if (sample.SourceFiles !== undefined &&
             sample.SourceFiles.length > 0) {
-            // let outputPath = sampleOutputFolder + '/' + sample.SampleFolderPath;
-            let outputPath = sampleOutputFolder + sample.SampleFolderPath + "/ReadMe.md";
-            makeDirectoryFor(outputPath);
-            log("updating " + outputPath);
-            let readmeFile = Transformer.updateReadme(sample, template);
-            fs.writeFileSync(outputPath, readmeFile);
-            // break;
+                
+            let readmePath = sampleOutputFolder + sample.SampleFolderPath + "/ReadMe.md";
+            makeDirectoryFor(readmePath);
+            
+            let readmeNewFile = Transformer.updateReadme(sample, template);
+            let readmeOldFile = ""; 
+            if (fs.existsSync(readmePath)) {
+                readmeOldFile = fs.readFileSync(readmePath).toString(); 
+            }
+
+            if (readmeNewFile !== readmeOldFile) {
+                console.log('UPDATED: ' + readmePath)
+                changeFilesCount++;
+                fs.writeFileSync(readmePath, readmeNewFile);
+            }  
         }
     }
+    
+    if (changeFilesCount > 0) {
+        console.log('WARNING: you must commit above ' + changeFilesCount + ' readme files in a pull request')
+    }
+
     cb();
 } exports.updateReadme = updateReadme;
 
