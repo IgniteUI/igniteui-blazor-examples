@@ -19,11 +19,8 @@
             @ref="paginator"
             PerPage="15"
             DisplayDensity="DisplayDensity.Cosy"
-            SelectOptions="@(new double[] { 5, 10, 15, 25, 50 })">
-                <IgbPaginatorResourceStrings
-                Igx_paginator_label="Items per page">
-                </IgbPaginatorResourceStrings>
-
+            SelectOptions="@(new double[] { 5, 10, 15, 25, 50 })"
+            ResourceStrings="PaginatorResourceStrings1">
             </IgbPaginator>
 
             <IgbColumn
@@ -67,6 +64,20 @@
 
     private IgbGrid grid;
     private IgbPaginator paginator;
+    private IgbPaginatorResourceStrings _paginatorResourceStrings1 = null;
+    public IgbPaginatorResourceStrings PaginatorResourceStrings1
+    {
+        get
+        {
+            if (this._paginatorResourceStrings1 == null)
+            {
+                var paginatorResourceStrings1 = new IgbPaginatorResourceStrings();
+                paginatorResourceStrings1.Igx_paginator_label = "Items per page";
+                this._paginatorResourceStrings1 = paginatorResourceStrings1;
+            }
+            return this._paginatorResourceStrings1;
+        }
+    }
 
     private CustomersData _customersData = null;
     public CustomersData CustomersData
