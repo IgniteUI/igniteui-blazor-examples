@@ -1,0 +1,90 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical">
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="WebGridCellEditSampleRoleplay"
+        PrimaryKey="Name"
+        Name="grid1"
+        @ref="grid1">
+            <IgbColumn
+            Field="Name"
+            Header="Character Name"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Race"
+            Header="Race"
+            DataType="GridColumnDataType.String"
+            InlineEditorTemplateScript="WebGridCellEditCellTemplate"
+            Editable="true"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Class"
+            Header="Class"
+            InlineEditorTemplateScript="WebGridCellEditCellTemplate"
+            Editable="true"
+            DataType="GridColumnDataType.String"
+            Name="column2"
+            @ref="column2">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Age"
+            Header="Age"
+            DataType="GridColumnDataType.String"
+            Editable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Alignment"
+            Header="Alignment"
+            InlineEditorTemplateScript="WebGridCellEditCellTemplate"
+            Editable="true"
+            DataType="GridColumnDataType.String"
+            Name="column3"
+            @ref="column3">
+            </IgbColumn>
+
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid1 = this.grid1;
+        var column1 = this.column1;
+        var column2 = this.column2;
+        var column3 = this.column3;
+
+    }
+
+    private IgbGrid grid1;
+    private IgbColumn column1;
+    private IgbColumn column2;
+    private IgbColumn column3;
+
+    private WebGridCellEditSampleRoleplay _webGridCellEditSampleRoleplay = null;
+    public WebGridCellEditSampleRoleplay WebGridCellEditSampleRoleplay
+    {
+        get
+        {
+            if (_webGridCellEditSampleRoleplay == null)
+            {
+                _webGridCellEditSampleRoleplay = new WebGridCellEditSampleRoleplay();
+            }
+            return _webGridCellEditSampleRoleplay;
+        }
+    }
+
+}
