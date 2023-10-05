@@ -9,11 +9,8 @@
         Data="AthletesDataExtended"
         Name="grid"
         @ref="grid"
-        Id="grid">
-            <IgbPinningConfig
-            Columns="ColumnPinningPosition.End">
-            </IgbPinningConfig>
-
+        Id="grid"
+        Pinning="PinningConfig1">
             <IgbGridToolbar
             >
                 <IgbGridToolbarTitle
@@ -128,6 +125,20 @@
     }
 
     private IgbGrid grid;
+    private IgbPinningConfig _pinningConfig1 = null;
+    public IgbPinningConfig PinningConfig1
+    {
+        get
+        {
+            if (this._pinningConfig1 == null)
+            {
+                var pinningConfig1 = new IgbPinningConfig();
+                pinningConfig1.Columns = ColumnPinningPosition.End;
+                this._pinningConfig1 = pinningConfig1;
+            }
+            return this._pinningConfig1;
+        }
+    }
     private IgbColumn column1;
     private IgbColumn column2;
 
