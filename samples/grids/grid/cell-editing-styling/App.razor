@@ -1,0 +1,95 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Id="grid"
+        Name="grid"
+        @ref="grid"
+        Data="NwindData"
+        PrimaryKey="ProductID"
+        DisplayDensity="DisplayDensity.Cosy"
+        AllowFiltering="true">
+            <IgbPaginator
+            PerPage="10">
+            </IgbPaginator>
+
+            <IgbColumn
+            Field="ProductName"
+            Header="Product Name"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            HasSummary="true"
+            Editable="true"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="UnitsInStock"
+            Header="Units in Stock"
+            DataType="GridColumnDataType.Number"
+            Sortable="true"
+            HasSummary="true"
+            Editable="true"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="OrderDate"
+            Header="Order Date"
+            DataType="GridColumnDataType.Date"
+            Sortable="true"
+            HasSummary="true"
+            Editable="true"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Discontinued"
+            Header="Discontinued"
+            DataType="GridColumnDataType.Boolean"
+            Sortable="true"
+            HasSummary="true"
+            Editable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="ReorderLevel"
+            Header="Reorder Level"
+            DataType="GridColumnDataType.Number"
+            Sortable="true"
+            HasSummary="true"
+            Editable="true"
+            Filterable="false">
+            </IgbColumn>
+
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+
+    }
+
+    private IgbGrid grid;
+
+    private NwindData _nwindData = null;
+    public NwindData NwindData
+    {
+        get
+        {
+            if (_nwindData == null)
+            {
+                _nwindData = new NwindData();
+            }
+            return _nwindData;
+        }
+    }
+
+}
