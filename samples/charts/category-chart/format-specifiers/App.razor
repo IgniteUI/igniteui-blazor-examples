@@ -24,14 +24,8 @@
         IsVerticalZoomEnabled="false"
         DataToolTipValueFormatMode="DataLegendValueMode.Currency"
         DataToolTipValueFormatString="${0} Billion"
-        YAxisLabelFormat="{0}B">
-            <IgbNumberFormatSpecifier
-            Style="currency"
-            Currency="USD"
-            CurrencyDisplay="symbol"
-            MinimumFractionDigits="0">
-            </IgbNumberFormatSpecifier>
-
+        YAxisLabelFormat="{0}B"
+        YAxisLabelFormatSpecifiers="NumberFormatSpecifier1">
         </IgbCategoryChart>
 
     </div>
@@ -55,6 +49,25 @@
 
     private IgbDataLegend legend;
     private IgbCategoryChart chart;
+    private IgbNumberFormatSpecifier[] _numberFormatSpecifier1 = null;
+    public IgbNumberFormatSpecifier[] NumberFormatSpecifier1
+    {
+        get
+        {
+            if (this._numberFormatSpecifier1 == null)
+            {
+                var numberFormatSpecifier1 = new IgbNumberFormatSpecifier[1];
+                var numberFormatSpecifier2 = new IgbNumberFormatSpecifier();
+                numberFormatSpecifier2.Style = "currency";
+                numberFormatSpecifier2.Currency = "USD";
+                numberFormatSpecifier2.CurrencyDisplay = "symbol";
+                numberFormatSpecifier2.MinimumFractionDigits = 0;
+                numberFormatSpecifier1[0] = numberFormatSpecifier2;
+                this._numberFormatSpecifier1 = numberFormatSpecifier1;
+            }
+            return this._numberFormatSpecifier1;
+        }
+    }
 
     private HighestGrossingMovies _highestGrossingMovies = null;
     public HighestGrossingMovies HighestGrossingMovies
