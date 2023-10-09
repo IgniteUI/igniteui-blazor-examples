@@ -1,79 +1,116 @@
 @using IgniteUI.Blazor.Controls
 
-<style>
-    .grid {
-        --igx-grid-group-row-background: #969799;
-        --igx-grid-group-row-selected-background: #969799;
-        --igx-grid-group-label-column-name-text: #f8f8f8;
-        --igx-grid-group-label-text: #f8f8f8;
-        --igx-grid-group-count-text-color: #222;
-        --igx-grid-expand-icon-color: #f8f8f8;
-        --igx-grid-expand-icon-hover-color: #f8f8f8;
-    }
-</style>
+@inject IJSRuntime JS
 
-<div class="container vertical">
-
+<div class="container vertical ig-typography">
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Class="grid"
-        Name="grid"        
-        GroupingExpressions="GroupingExpression"
-        Data="InvoicesData">
+        Name="grid"
+        @ref="grid"
+        Id="grid"
+        Data="InvoicesData"
+        GroupingExpressions="GroupingExpression1">
+            <IgbColumn
+            Name="OrderID"
+            @ref="orderID"
+            Field="OrderID"
+            Header="Order ID"
+            Hidden="true">
+            </IgbColumn>
 
             <IgbColumn
             Name="ShipCountry"
+            @ref="shipCountry"
             Field="ShipCountry"
-            Header="Ship Country">
+            Header="Ship Country"
+            Width="200px"
+            Groupable="true">
             </IgbColumn>
 
             <IgbColumn
             Name="OrderDate"
+            @ref="orderDate"
             Field="OrderDate"
-            Header="Order Date">
+            Header="Order Date"
+            Width="200px"
+            Groupable="true">
             </IgbColumn>
 
             <IgbColumn
             Name="PostalCode"
+            @ref="postalCode"
             Field="PostalCode"
-            Header="Postal Code">
+            Header="Postal Code"
+            Width="200px"
+            Groupable="true">
             </IgbColumn>
 
             <IgbColumn
             Name="Discontinued"
+            @ref="discontinued"
             Field="Discontinued"
-            Header="Discontinued">
+            Header="Discontinued"
+            Width="200px"
+            Groupable="true"
+            BodyTemplateScript="WebGridBooleanCellTemplate">
             </IgbColumn>
 
             <IgbColumn
             Name="ShipName"
+            @ref="shipName"
             Field="ShipName"
-            Header="Ship Name">
+            Header="Ship Name"
+            Width="250px"
+            Groupable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="ShipCity"
+            @ref="shipCity"
+            Field="ShipCity"
+            Header="Ship City"
+            Width="250px"
+            Groupable="true">
             </IgbColumn>
 
             <IgbColumn
             Name="ShipperName"
+            @ref="shipperName"
             Field="ShipperName"
-            Header="Shipper Name">
+            Header="Shipper Name"
+            Width="250px"
+            Groupable="true">
             </IgbColumn>
 
             <IgbColumn
-            Name="SalesPerson"
-            Field="SalesPerson"
-            Header="Sales Person">
+            Name="Salesperson"
+            @ref="salesperson"
+            Field="Salesperson"
+            Header="Sales Person"
+            Width="250px"
+            Groupable="true">
             </IgbColumn>
 
             <IgbColumn
             Name="UnitPrice"
+            @ref="unitPrice"
             Field="UnitPrice"
-            Header="Unit Price">
+            Header="Unit Price"
+            Width="150px"
+            DataType="GridColumnDataType.Currency"
+            PipeArgs="ColumnPipeArgs1"
+            Groupable="true">
             </IgbColumn>
 
             <IgbColumn
             Name="Quantity"
+            @ref="quantity"
             Field="Quantity"
-            Header="Quantity">
+            Header="Quantity"
+            Width="150px"
+            DataType="GridColumnDataType.Number"
+            Groupable="true">
             </IgbColumn>
 
         </IgbGrid>
@@ -82,11 +119,74 @@
 </div>
 
 @code {
-    public IgbGroupingExpression[] GroupingExpression = new IgbGroupingExpression[2]
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        new IgbGroupingExpression(){ FieldName = "ShipCountry", Dir= SortingDirection.Desc },
-        new IgbGroupingExpression() { FieldName = "PostalCode", Dir= SortingDirection.Desc  }
-    };
+        var grid = this.grid;
+        var orderID = this.orderID;
+        var shipCountry = this.shipCountry;
+        var orderDate = this.orderDate;
+        var postalCode = this.postalCode;
+        var discontinued = this.discontinued;
+        var shipName = this.shipName;
+        var shipCity = this.shipCity;
+        var shipperName = this.shipperName;
+        var salesperson = this.salesperson;
+        var unitPrice = this.unitPrice;
+        var quantity = this.quantity;
+
+    }
+
+    private IgbGrid grid;
+    private IgbGroupingExpression[] _groupingExpression1 = null;
+    public IgbGroupingExpression[] GroupingExpression1
+    {
+        get
+        {
+            if (this._groupingExpression1 == null)
+            {
+                var groupingExpression1 = new IgbGroupingExpression[2];
+                var groupingExpression2 = new IgbGroupingExpression();
+                groupingExpression2.Dir = SortingDirection.Asc;
+                groupingExpression2.FieldName = "ShipCountry";
+                groupingExpression2.IgnoreCase = false;
+                groupingExpression1[0] = groupingExpression2;
+                var groupingExpression3 = new IgbGroupingExpression();
+                groupingExpression3.Dir = SortingDirection.Asc;
+                groupingExpression3.FieldName = "ShipCity";
+                groupingExpression3.IgnoreCase = false;
+                groupingExpression1[1] = groupingExpression3;
+                this._groupingExpression1 = groupingExpression1;
+            }
+            return this._groupingExpression1;
+        }
+    }
+    private IgbColumn orderID;
+    private IgbColumn shipCountry;
+    private IgbColumn orderDate;
+    private IgbColumn postalCode;
+    private IgbColumn discontinued;
+    private IgbColumn shipName;
+    private IgbColumn shipCity;
+    private IgbColumn shipperName;
+    private IgbColumn salesperson;
+    private IgbColumn unitPrice;
+    private IgbColumnPipeArgs _columnPipeArgs1 = null;
+    public IgbColumnPipeArgs ColumnPipeArgs1
+    {
+        get
+        {
+            if (this._columnPipeArgs1 == null)
+            {
+                var columnPipeArgs1 = new IgbColumnPipeArgs();
+                columnPipeArgs1.DigitsInfo = "1.2-2";
+                this._columnPipeArgs1 = columnPipeArgs1;
+            }
+            return this._columnPipeArgs1;
+        }
+    }
+    private IgbColumn quantity;
+
     private InvoicesData _invoicesData = null;
     public InvoicesData InvoicesData
     {
