@@ -26,19 +26,9 @@
         DataToolTipHeaderFormatTime="DataLegendHeaderTimeMode.None"
         ZoomSliderType="FinancialChartZoomSliderType.None"
         YAxisLabelFormat="{0}"
-        XAxisLabelFormat="{0}">
-            <IgbNumberFormatSpecifier
-            Currency="EUR"
-            Style="currency"
-            Locale="en-GB"
-            MinimumFractionDigits="0">
-            </IgbNumberFormatSpecifier>
-
-            <IgbDateTimeFormatSpecifier
-            Locale="en-GB"
-            DateStyle="long">
-            </IgbDateTimeFormatSpecifier>
-
+        YAxisLabelFormatSpecifiers="NumberFormatSpecifier1"
+        XAxisLabelFormat="{0}"
+        XAxisLabelFormatSpecifiers="DateTimeFormatSpecifier1">
         </IgbFinancialChart>
 
     </div>
@@ -62,6 +52,42 @@
 
     private IgbDataLegend legend;
     private IgbFinancialChart chart;
+    private IgbNumberFormatSpecifier[] _numberFormatSpecifier1 = null;
+    public IgbNumberFormatSpecifier[] NumberFormatSpecifier1
+    {
+        get
+        {
+            if (this._numberFormatSpecifier1 == null)
+            {
+                var numberFormatSpecifier1 = new IgbNumberFormatSpecifier[1];
+                var numberFormatSpecifier2 = new IgbNumberFormatSpecifier();
+                numberFormatSpecifier2.Currency = "EUR";
+                numberFormatSpecifier2.Style = "currency";
+                numberFormatSpecifier2.Locale = "en-GB";
+                numberFormatSpecifier2.MinimumFractionDigits = 0;
+                numberFormatSpecifier1[0] = numberFormatSpecifier2;
+                this._numberFormatSpecifier1 = numberFormatSpecifier1;
+            }
+            return this._numberFormatSpecifier1;
+        }
+    }
+    private IgbDateTimeFormatSpecifier[] _dateTimeFormatSpecifier1 = null;
+    public IgbDateTimeFormatSpecifier[] DateTimeFormatSpecifier1
+    {
+        get
+        {
+            if (this._dateTimeFormatSpecifier1 == null)
+            {
+                var dateTimeFormatSpecifier1 = new IgbDateTimeFormatSpecifier[1];
+                var dateTimeFormatSpecifier2 = new IgbDateTimeFormatSpecifier();
+                dateTimeFormatSpecifier2.Locale = "en-GB";
+                dateTimeFormatSpecifier2.DateStyle = "long";
+                dateTimeFormatSpecifier1[0] = dateTimeFormatSpecifier2;
+                this._dateTimeFormatSpecifier1 = dateTimeFormatSpecifier1;
+            }
+            return this._dateTimeFormatSpecifier1;
+        }
+    }
 
     private MultipleStocks _multipleStocks = null;
     public MultipleStocks MultipleStocks
