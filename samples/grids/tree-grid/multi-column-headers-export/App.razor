@@ -1,0 +1,169 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        Name="treeGrid"
+        @ref="treeGrid"
+        Id="treeGrid"
+        Data="EmployeesFlatDetails"
+        ForeignKey="ParentID"
+        PrimaryKey="ID">
+            <IgbGridToolbar
+            >
+                <IgbGridToolbarActions
+                >
+                    <IgbGridToolbarPinning
+                    >
+                    </IgbGridToolbarPinning>
+
+                    <IgbGridToolbarHiding
+                    >
+                    </IgbGridToolbarHiding>
+
+                    <IgbGridToolbarExporter
+                    ExportCSV="false"
+                    ExportExcel="true"
+                    ExportStartedScript="WebGridExportEventMultiColumnHeaders"
+                    Name="gridToolbarExporter1"
+                    @ref="gridToolbarExporter1">
+                    </IgbGridToolbarExporter>
+
+                </IgbGridToolbarActions>
+
+            </IgbGridToolbar>
+
+            <IgbColumn
+            Field="ID"
+            Header="ID"
+            Resizable="true"
+            Filterable="false">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Name"
+            Header="Name"
+            Resizable="true"
+            Sortable="true"
+            Width="200px">
+            </IgbColumn>
+
+            <IgbColumnGroup
+            Header="General Information">
+                <IgbColumn
+                Field="HireDate"
+                Header="HireDate"
+                DataType="GridColumnDataType.Date"
+                Resizable="true"
+                Sortable="true">
+                </IgbColumn>
+
+                <IgbColumnGroup
+                Header="Personal Details">
+                    <IgbColumn
+                    Header="Title"
+                    Field="Title"
+                    Resizable="true"
+                    Sortable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Header="Age"
+                    Field="Age"
+                    DataType="GridColumnDataType.Number"
+                    Resizable="true"
+                    Sortable="true">
+                    </IgbColumn>
+
+                </IgbColumnGroup>
+
+            </IgbColumnGroup>
+
+            <IgbColumnGroup
+            Header="Address Information">
+                <IgbColumnGroup
+                Header="Location">
+                    <IgbColumn
+                    Header="Country"
+                    Field="Country"
+                    Resizable="true"
+                    Sortable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="City"
+                    Header="City"
+                    Resizable="true"
+                    Sortable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Header="Address"
+                    Field="Address"
+                    Resizable="true"
+                    Sortable="true">
+                    </IgbColumn>
+
+                </IgbColumnGroup>
+
+                <IgbColumnGroup
+                Header="Contact Information">
+                    <IgbColumn
+                    Header="Phone"
+                    Field="Phone"
+                    Resizable="true"
+                    Sortable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Header="Fax"
+                    Field="Fax"
+                    Resizable="true"
+                    Sortable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Header="PostalCode"
+                    Field="PostalCode"
+                    Resizable="true"
+                    Sortable="true">
+                    </IgbColumn>
+
+                </IgbColumnGroup>
+
+            </IgbColumnGroup>
+
+        </IgbTreeGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var treeGrid = this.treeGrid;
+        var gridToolbarExporter1 = this.gridToolbarExporter1;
+
+    }
+
+    private IgbTreeGrid treeGrid;
+    private IgbGridToolbarExporter gridToolbarExporter1;
+
+    private EmployeesFlatDetails _employeesFlatDetails = null;
+    public EmployeesFlatDetails EmployeesFlatDetails
+    {
+        get
+        {
+            if (_employeesFlatDetails == null)
+            {
+                _employeesFlatDetails = new EmployeesFlatDetails();
+            }
+            return _employeesFlatDetails;
+        }
+    }
+
+}
