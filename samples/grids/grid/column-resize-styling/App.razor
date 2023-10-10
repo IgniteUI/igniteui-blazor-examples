@@ -1,0 +1,69 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Name="grid"
+        @ref="grid"
+        Id="grid"
+        Data="AthletesData">
+            <IgbColumn
+            Field="Id"
+            Header="Rank"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Name"
+            Header="Athlete"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="BeatsPerMinute"
+            Header="Beats per Minute"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="TopSpeed"
+            Header="Top Speed"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="TrackProgress"
+            Header="Track Progress"
+            Resizable="true">
+            </IgbColumn>
+
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+
+    }
+
+    private IgbGrid grid;
+
+    private AthletesData _athletesData = null;
+    public AthletesData AthletesData
+    {
+        get
+        {
+            if (_athletesData == null)
+            {
+                _athletesData = new AthletesData();
+            }
+            return _athletesData;
+        }
+    }
+
+}
