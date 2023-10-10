@@ -1,0 +1,132 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Name="grid"
+        @ref="grid"
+        Id="grid"
+        Data="CustomersDataLocal"
+        PrimaryKey="ID"
+        CellSelection="GridSelectionMode.None"
+        RenderedScript="WebGridPinRowOnRendered"
+        Pinning="PinningConfig1">
+            <IgbColumn
+            Name="CompanyName"
+            @ref="companyName"
+            Field="CompanyName"
+            Header="Company"
+            Width="300px">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="ContactName"
+            @ref="contactName"
+            Field="ContactName"
+            Header="Name">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="ContactTitle"
+            @ref="contactTitle"
+            Field="ContactTitle"
+            Header="Title">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="Address"
+            @ref="address"
+            Field="Address"
+            Header="Address">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="City"
+            @ref="city"
+            Field="City"
+            Header="City">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="PostalCode"
+            @ref="postalCode"
+            Field="PostalCode"
+            Header="Postal Code">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="Phone"
+            @ref="phone"
+            Field="Phone"
+            Header="Phone">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="Fax"
+            @ref="fax"
+            Field="Fax"
+            Header="Fax">
+            </IgbColumn>
+
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+        var companyName = this.companyName;
+        var contactName = this.contactName;
+        var contactTitle = this.contactTitle;
+        var address = this.address;
+        var city = this.city;
+        var postalCode = this.postalCode;
+        var phone = this.phone;
+        var fax = this.fax;
+
+    }
+
+    private IgbGrid grid;
+    private IgbPinningConfig _pinningConfig1 = null;
+    public IgbPinningConfig PinningConfig1
+    {
+        get
+        {
+            if (this._pinningConfig1 == null)
+            {
+                var pinningConfig1 = new IgbPinningConfig();
+                pinningConfig1.Rows = RowPinningPosition.Top;
+                this._pinningConfig1 = pinningConfig1;
+            }
+            return this._pinningConfig1;
+        }
+    }
+    private IgbColumn companyName;
+    private IgbColumn contactName;
+    private IgbColumn contactTitle;
+    private IgbColumn address;
+    private IgbColumn city;
+    private IgbColumn postalCode;
+    private IgbColumn phone;
+    private IgbColumn fax;
+
+    private CustomersDataLocal _customersDataLocal = null;
+    public CustomersDataLocal CustomersDataLocal
+    {
+        get
+        {
+            if (_customersDataLocal == null)
+            {
+                _customersDataLocal = new CustomersDataLocal();
+            }
+            return _customersDataLocal;
+        }
+    }
+
+}
