@@ -1,0 +1,131 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Id="grid"
+        Name="grid"
+        @ref="grid"
+        Data="NwindData"
+        Moving="true"
+        AllowFiltering="true"
+        FilterMode="FilterMode.ExcelStyleFilter">
+            <IgbColumn
+            Name="ProductName"
+            @ref="productName"
+            Field="ProductName"
+            Header="Product Name"
+            Sortable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="QuantityPerUnit"
+            @ref="quantityPerUnit"
+            Field="QuantityPerUnit"
+            Header="Quantity Per Unit"
+            Sortable="false"
+            DisablePinning="true"
+            DisableHiding="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="UnitPrice"
+            @ref="unitPrice"
+            Field="UnitPrice"
+            Header="Unit Price"
+            DataType="GridColumnDataType.Currency"
+            Sortable="true"
+            DisablePinning="true"
+            DisableHiding="true"
+            PipeArgs="ColumnPipeArgs1">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="OrderDate"
+            @ref="orderDate"
+            Field="OrderDate"
+            Header="Order Date"
+            DataType="GridColumnDataType.Date"
+            Sortable="false"
+            PipeArgs="ColumnPipeArgs2">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="Discontinued"
+            @ref="discontinued"
+            Field="Discontinued"
+            Header="Discontinued"
+            Sortable="true"
+            BodyTemplateScript="WebGridBooleanCellTemplate">
+            </IgbColumn>
+
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+        var productName = this.productName;
+        var quantityPerUnit = this.quantityPerUnit;
+        var unitPrice = this.unitPrice;
+        var orderDate = this.orderDate;
+        var discontinued = this.discontinued;
+
+    }
+
+    private IgbGrid grid;
+    private IgbColumn productName;
+    private IgbColumn quantityPerUnit;
+    private IgbColumn unitPrice;
+    private IgbColumnPipeArgs _columnPipeArgs1 = null;
+    public IgbColumnPipeArgs ColumnPipeArgs1
+    {
+        get
+        {
+            if (this._columnPipeArgs1 == null)
+            {
+                var columnPipeArgs1 = new IgbColumnPipeArgs();
+                columnPipeArgs1.DigitsInfo = "1.2-2";
+                this._columnPipeArgs1 = columnPipeArgs1;
+            }
+            return this._columnPipeArgs1;
+        }
+    }
+    private IgbColumn orderDate;
+    private IgbColumnPipeArgs _columnPipeArgs2 = null;
+    public IgbColumnPipeArgs ColumnPipeArgs2
+    {
+        get
+        {
+            if (this._columnPipeArgs2 == null)
+            {
+                var columnPipeArgs2 = new IgbColumnPipeArgs();
+                columnPipeArgs2.Format = "MM/dd/YYYY";
+                this._columnPipeArgs2 = columnPipeArgs2;
+            }
+            return this._columnPipeArgs2;
+        }
+    }
+    private IgbColumn discontinued;
+
+    private NwindData _nwindData = null;
+    public NwindData NwindData
+    {
+        get
+        {
+            if (_nwindData == null)
+            {
+                _nwindData = new NwindData();
+            }
+            return _nwindData;
+        }
+    }
+
+}

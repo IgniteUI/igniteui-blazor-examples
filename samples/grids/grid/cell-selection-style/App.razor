@@ -1,71 +1,57 @@
 @using IgniteUI.Blazor.Controls
 
-<style>
-    .grid {
-        --igx-grid-cell-selected-text-color: #FFFFFF;
-        --igx-grid-cell-active-border-color: #f2c43c;
-        --igx-grid-cell-selected-background: #0062A3;
-    }
-</style>
-<div class="container vertical">
-
+<div class="container vertical ig-typography">
     <div class="container vertical fill">
-        <IgbGrid Class="grid"
-        AutoGenerate="false"
-        CellSelection="GridSelectionMode.Multiple"
+        <IgbGrid
         Name="grid"
         @ref="grid"
-        Data="NwindData">
+        Id="grid"
+        Data="CustomersData"
+        ColumnSelection="GridSelectionMode.Single">
             <IgbColumn
-            Field="ProductID"
-            Header="Product ID">
+            Field="ID">
             </IgbColumn>
 
             <IgbColumn
-            Field="ProductName"
-            Header="Product Name">
+            Field="CompanyName"
+            Header="Company">
             </IgbColumn>
 
             <IgbColumn
-            Field="UnitsInStock"
-            Header="Units In Stock"
-            DataType="GridColumnDataType.Number">
+            Field="Address"
+            Header="Address">
             </IgbColumn>
 
             <IgbColumn
-            Field="UnitPrice"
-            Header="Units Price"
-            DataType="GridColumnDataType.Number">
+            Field="PostalCode"
+            Header="Postal Code">
             </IgbColumn>
 
-            <IgbColumn
-            Field="Discontinued"
-            DataType="GridColumnDataType.Boolean">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="OrderDate"
-            Header="Order Date"
-            DataType="GridColumnDataType.Date">
-            </IgbColumn>
         </IgbGrid>
 
     </div>
 </div>
 
 @code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+
+    }
+
     private IgbGrid grid;
 
-    private NwindData _nwindData = null;
-    public NwindData NwindData
+    private CustomersData _customersData = null;
+    public CustomersData CustomersData
     {
         get
         {
-            if (_nwindData == null)
+            if (_customersData == null)
             {
-                _nwindData = new NwindData();
+                _customersData = new CustomersData();
             }
-            return _nwindData;
+            return _customersData;
         }
     }
 
