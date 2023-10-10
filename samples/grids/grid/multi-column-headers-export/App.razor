@@ -3,26 +3,6 @@
 @inject IJSRuntime JS
 
 <div class="container vertical ig-typography">
-    <div class="options vertical">
-        <IgbPropertyEditorPanel
-        Name="PropertyEditor"
-        @ref="propertyEditor"
-
-        DescriptionType="WebGrid"
-        IsHorizontal="true"
-        IsWrappingEnabled="true">
-            <IgbPropertyEditorPropertyDescription
-            ValueType="PropertyEditorValueType.Boolean1"
-            ShouldOverrideDefaultEditor="true"
-            Label="Export Multi-Column Headers"
-            PrimitiveValue="true"
-            Name="exportHeaders"
-            @ref="exportHeaders">
-            </IgbPropertyEditorPropertyDescription>
-
-        </IgbPropertyEditorPanel>
-
-    </div>
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
@@ -72,6 +52,7 @@
                 <IgbColumn
                 Name="CompanyName"
                 @ref="companyName"
+                Field="CompanyName"
                 VisibleWhenCollapsed="true">
                 </IgbColumn>
 
@@ -79,7 +60,7 @@
                 Name="PersonalDetails"
                 @ref="personalDetails"
                 Header="Personal Details"
-                VisibleWhenCollapsed="true">
+                VisibleWhenCollapsed="false">
                     <IgbColumn
                     Name="ContactName"
                     @ref="contactName"
@@ -172,12 +153,8 @@
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var propertyEditor = this.propertyEditor;
-        var exportHeaders = this.exportHeaders;
         var grid = this.grid;
         var gridToolbarExporter1 = this.gridToolbarExporter1;
         var iD = this.iD;
@@ -197,15 +174,8 @@
         var fax = this.fax;
         var postalCode = this.postalCode;
 
-        this.BindElements = () => {
-            propertyEditor.Target = this.grid;
-        };
-        this.BindElements();
-
     }
 
-    private IgbPropertyEditorPanel propertyEditor;
-    private IgbPropertyEditorPropertyDescription exportHeaders;
     private IgbGrid grid;
     private IgbGridToolbarExporter gridToolbarExporter1;
     private IgbColumn iD;
