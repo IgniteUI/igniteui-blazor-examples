@@ -1,0 +1,76 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        Name="grid"
+        @ref="grid"
+        Id="grid"
+        Data="OrdersTreeData"
+        PrimaryKey="ID"
+        ForeignKey="ParentID">
+            <IgbColumn
+            Field="ID"
+            Header="Order ID"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Name"
+            DataType="GridColumnDataType.String"
+            Header="Order Product">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Units"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="UnitPrice"
+            Header="Unit Price"
+            DataType="GridColumnDataType.Currency">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Price"
+            Header="Price"
+            DataType="GridColumnDataType.Currency">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="OrderDate"
+            Header="Order Date"
+            DataType="GridColumnDataType.Date">
+            </IgbColumn>
+
+        </IgbTreeGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+
+    }
+
+    private IgbTreeGrid grid;
+
+    private OrdersTreeData _ordersTreeData = null;
+    public OrdersTreeData OrdersTreeData
+    {
+        get
+        {
+            if (_ordersTreeData == null)
+            {
+                _ordersTreeData = new OrdersTreeData();
+            }
+            return _ordersTreeData;
+        }
+    }
+
+}
