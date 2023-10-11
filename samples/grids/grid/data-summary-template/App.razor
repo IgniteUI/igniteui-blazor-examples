@@ -1,7 +1,47 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IJSRuntime JS
-
+<style>
+    .summary-temp {
+        display: flex;
+        flex-direction: column;
+        margin: 0 1px;
+        font-size: 14px;
+        line-height: 24px;
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        > * {
+            padding: 8px 0;
+            line-height: 18px;
+            border-bottom: 1px dashed hsla(var(--igx-gray-400));
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+    .summary-temp span {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 4px;
+        justify-content: space-between;
+        color: hsla(var(--ig-gray-900));
+    }
+    .summary-temp span span {
+        user-select: all;
+        max-width: 300px;
+        padding-right: 8px;
+    }
+    .summary-temp span strong {
+        font-size: 12px;
+        text-transform: uppercase;
+        min-width: 70px;
+        justify-self: flex-start;
+        text-align: left;
+        color: hsla(var(--ig-secondary-600));
+        user-select: none;
+    }
+</style>
 <div class="container vertical ig-typography">
     <div class="options vertical">
         <IgbPropertyEditorPanel
@@ -14,7 +54,9 @@
             <IgbPropertyEditorPropertyDescription
             PropertyPath="SummaryRowHeight"
             Label="Summary Row Height"
-            ValueType="PropertyEditorValueType.Number">
+            ValueType="PropertyEditorValueType.Number"
+            Name="SummaryHeightEditor"
+            @ref="summaryHeightEditor">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
@@ -22,8 +64,8 @@
             ValueType="PropertyEditorValueType.Boolean1"
             PrimitiveValue="true"
             Changed="WebGridHasSummariesChange"
-            Name="propertyEditorPropertyDescription1"
-            @ref="propertyEditorPropertyDescription1">
+            Name="ToggleSummaryEditor"
+            @ref="toggleSummaryEditor">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
@@ -90,7 +132,7 @@
             DataType="GridColumnDataType.Date"
             Groupable="true"
             HasSummary="true"
-            SummaryTemplateScript="WebGridOrderDateSummaryTemplate"
+            SummaryTemplate="WebGridOrderDateSummaryTemplate"
             Name="column1"
             @ref="column1">
             </IgbColumn>
@@ -107,7 +149,8 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var propertyEditorPanel1 = this.propertyEditorPanel1;
-        var propertyEditorPropertyDescription1 = this.propertyEditorPropertyDescription1;
+        var summaryHeightEditor = this.summaryHeightEditor;
+        var toggleSummaryEditor = this.toggleSummaryEditor;
         var displayDensityEditor = this.displayDensityEditor;
         var grid = this.grid;
         var column1 = this.column1;
@@ -120,7 +163,8 @@
     }
 
     private IgbPropertyEditorPanel propertyEditorPanel1;
-    private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
+    private IgbPropertyEditorPropertyDescription summaryHeightEditor;
+    private IgbPropertyEditorPropertyDescription toggleSummaryEditor;
     private IgbPropertyEditorPropertyDescription displayDensityEditor;
     private IgbGrid grid;
     private IgbColumn column1;
@@ -136,6 +180,56 @@
         column2.HasSummary = newValue;
     }
 
+    public RenderFragment<IgbSummaryTemplateContext> WebGridOrderDateSummaryTemplate = (ctx) => {
+        var summaryResults = ctx.Implicit;
+        return @<div class="summary-temp">
+            <span><strong>@(summaryResults[0].Label)</strong><span>@(summaryResults[0].Result)</span></span>
+            <span><strong>@(summaryResults[1].Label)</strong><span>@(summaryResults[1].Result)</span></span>
+        </div>;
+    };
+
+        private object DiscontinuedSummary = new
+        {
+            operate = new Func<object[], object[], string, IgbSummaryResult[]>((data, allData, fieldName) =>
+            {
+                var sum = (object[] data) =>
+                {
+                    return data.Length > 0 && data.Select(el => (double)el).Where((el) => el != null).Count() > 0 ?
+                        data.Select(el => (double)el).Where((el) => el != null).Aggregate((a, b) => a + b) :
+                        0;
+                };
+                var result = new IgbSummaryResult[] { };
+                result.Append(new IgbSummaryResult
+                {
+                    Key = "products",
+                    Label = "Producs",
+                    Result = data?.Length
+                });
+                result.Append(new IgbSummaryResult
+                {
+                    Key = "total",
+                    Label = "Total Items",
+                    Result = sum(data)
+                });
+                result.Append(new IgbSummaryResult
+                {
+                    Key = "discontinued",
+                    Label = "Discontinued Producs",
+                    Result = allData.Select(r => r.GetType().GetProperty("Discontinued")?.GetValue(r)).Where((rec) => rec != null).Count()
+                });
+                result.Append(new IgbSummaryResult
+                {
+                    Key = "totalDiscontinued",
+                    Label = "Total Discontinued Items",
+                    Result = sum(
+                        allData
+                        .Where((rec) => rec.GetType().GetProperty("Discontinued")?.GetValue(rec) != null)
+                        .Select(r => r.GetType().GetProperty(fieldName)?.GetValue(r)).ToArray()
+                    )
+                });
+                return result;
+            })
+        };
     private NwindData _nwindData = null;
     public NwindData NwindData
     {
