@@ -48,6 +48,7 @@ var sampleSource = [
     // igConfig.SamplesCopyPath + '/charts/sparkline/**/App.razor',
     // igConfig.SamplesCopyPath + '/charts/tree-map/**/App.razor',
     // igConfig.SamplesCopyPath + '/charts/zoomslider/**/App.razor',
+    // igConfig.SamplesCopyPath + '/charts/toolbar/**/App.razor',    
     // igConfig.SamplesCopyPath + '/maps/geo-map/**/App.razor',
     // igConfig.SamplesCopyPath + '/gauges/bullet-graph/**/App.razor',
     // igConfig.SamplesCopyPath + '/gauges/linear-gauge/**/App.razor',
@@ -59,6 +60,7 @@ var sampleSource = [
     // igConfig.SamplesCopyPath + '/grids/tree/**/App.razor',
     // igConfig.SamplesCopyPath + '/grids/pivot-grid/**/App.razor',
     // igConfig.SamplesCopyPath + '/editors/**/App.razor',
+    // igConfig.SamplesCopyPath + '/editors/date-picker/**/App.razor',
     // igConfig.SamplesCopyPath + '/inputs/badge/**/App.razor',
     // igConfig.SamplesCopyPath + '/inputs/button/**/App.razor',
     // igConfig.SamplesCopyPath + '/inputs/checkbox/**/App.razor',
@@ -590,17 +592,17 @@ function updateIG(cb) {
 
     let packageUpgrades = [
         // update version of IG packages and change to Trial or non-trial
-        { name: "IgniteUI.Blazor",                 version: "23.2.14" },
-        { name: "IgniteUI.Blazor.Documents.Core",  version: "23.2.14" },
-        { name: "IgniteUI.Blazor.Documents.Excel", version: "23.2.14" },
+        { name: "IgniteUI.Blazor.Trial",                 version: "23.2.38" },
+        { name: "IgniteUI.Blazor.Documents.Core.Trial",  version: "23.2.38" },
+        { name: "IgniteUI.Blazor.Documents.Excel.Trial", version: "23.2.38" },
         // these IG packages are sometimes updated:
-        { name: "Microsoft.AspNetCore.Components",                       version: "6.0.0" },
-        { name: "Microsoft.AspNetCore.Components.Web",                   version: "6.0.0" },
-        { name: "Microsoft.AspNetCore.Components.WebAssembly",           version: "6.0.0" },
-        { name: "Microsoft.AspNetCore.Components.WebAssembly.DevServer", version: "6.0.0" }, // suffix: 'PrivateAssets="all" ' },
+        { name: "Microsoft.AspNetCore.Components",                       version: "7.0.12" },
+        { name: "Microsoft.AspNetCore.Components.Web",                   version: "7.0.0" },
+        { name: "Microsoft.AspNetCore.Components.WebAssembly",           version: "7.0.0" },
+        { name: "Microsoft.AspNetCore.Components.WebAssembly.DevServer", version: "7.0.0" }, // suffix: 'PrivateAssets="all" ' },
         { name: "Microsoft.AspNetCore.Cors",                             version: "2.2.0" },
         { name: "Microsoft.AspNetCore.Http.Abstractions",                version: "2.2.0" },
-        { name: "System.Net.Http.Json", version:"6.0.0" },
+        { name: "System.Net.Http.Json", version:"7.0.1" }, 
     ];
 
     // creating package mapping for quick lookup
