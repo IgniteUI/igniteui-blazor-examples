@@ -596,13 +596,13 @@ function updateIG(cb) {
         { name: "IgniteUI.Blazor.Documents.Core.Trial",  version: "23.2.38" },
         { name: "IgniteUI.Blazor.Documents.Excel.Trial", version: "23.2.38" },
         // these IG packages are sometimes updated:
-        { name: "Microsoft.AspNetCore.Components",                       version: "7.0.12" },
-        { name: "Microsoft.AspNetCore.Components.Web",                   version: "7.0.0" },
-        { name: "Microsoft.AspNetCore.Components.WebAssembly",           version: "7.0.0" },
-        { name: "Microsoft.AspNetCore.Components.WebAssembly.DevServer", version: "7.0.0" }, // suffix: 'PrivateAssets="all" ' },
+        { name: "Microsoft.AspNetCore.Components",                       version: "6.0.0" },
+        { name: "Microsoft.AspNetCore.Components.Web",                   version: "6.0.0" },
+        { name: "Microsoft.AspNetCore.Components.WebAssembly",           version: "6.0.0" },
+        { name: "Microsoft.AspNetCore.Components.WebAssembly.DevServer", version: "6.0.0" }, // suffix: 'PrivateAssets="all" ' },
         { name: "Microsoft.AspNetCore.Cors",                             version: "2.2.0" },
         { name: "Microsoft.AspNetCore.Http.Abstractions",                version: "2.2.0" },
-        { name: "System.Net.Http.Json", version:"7.0.1" }, 
+        { name: "System.Net.Http.Json", version:"6.0.0" },
     ];
 
     // creating package mapping for quick lookup
