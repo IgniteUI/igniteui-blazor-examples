@@ -72,7 +72,10 @@
             DataType="GridColumnDataType.Number"
             Editable="true"
             Groupable="true"
-            HasSummary="true">
+            HasSummary="true"
+            Summaries="DiscontinuedSummary"
+            Name="column1"
+            @ref="column1">
             </IgbColumn>
 
             <IgbColumn
@@ -91,8 +94,8 @@
             Groupable="true"
             HasSummary="true"
             SummaryTemplate="WebGridOrderDateSummaryTemplate"
-            Name="column1"
-            @ref="column1">
+            Name="column2"
+            @ref="column2">
             </IgbColumn>
 
         </IgbGrid>
@@ -112,6 +115,7 @@
         var displayDensityEditor = this.displayDensityEditor;
         var grid = this.grid;
         var column1 = this.column1;
+        var column2 = this.column2;
 
         this.BindElements = () => {
             propertyEditorPanel1.Target = this.grid;
@@ -126,6 +130,7 @@
     private IgbPropertyEditorPropertyDescription displayDensityEditor;
     private IgbGrid grid;
     private IgbColumn column1;
+    private IgbColumn column2;
 
     public void WebGridHasSummariesChange(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
     {

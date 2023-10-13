@@ -11,6 +11,20 @@
         AllowFiltering="true"
         Pinning="PinningConfig1"
         PrimaryKey="ProductID">
+            <IgbActionStrip
+            Name="actionStrip"
+            @ref="actionStrip">
+                <IgbGridPinningActions
+                >
+                </IgbGridPinningActions>
+
+                <IgbGridEditingActions
+                EditRow="true"
+                DeleteRow="false">
+                </IgbGridEditingActions>
+
+            </IgbActionStrip>
+
             <IgbColumn
             Name="ProductName"
             @ref="productName"
@@ -70,6 +84,7 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
+        var actionStrip = this.actionStrip;
         var productName = this.productName;
         var unitPrice = this.unitPrice;
         var unitsOnOrder = this.unitsOnOrder;
@@ -95,6 +110,7 @@
             return this._pinningConfig1;
         }
     }
+    private IgbActionStrip actionStrip;
     private IgbColumn productName;
     private IgbColumn unitPrice;
     private IgbColumn unitsOnOrder;
