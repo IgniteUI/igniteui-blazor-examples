@@ -70,6 +70,15 @@
             Header="Fax">
             </IgbColumn>
 
+            <IgbActionStrip
+            Name="actionStrip"
+            @ref="actionStrip">
+                <IgbGridPinningActions
+                >
+                </IgbGridPinningActions>
+
+            </IgbActionStrip>
+
         </IgbGrid>
 
     </div>
@@ -84,6 +93,7 @@
         var propertyEditorPanel1 = this.propertyEditorPanel1;
         var rowPinningEditor = this.rowPinningEditor;
         var grid = this.grid;
+        var actionStrip = this.actionStrip;
 
         this.BindElements = () => {
             propertyEditorPanel1.Target = this.grid;
@@ -109,6 +119,7 @@
             return this._pinningConfig1;
         }
     }
+    private IgbActionStrip actionStrip;
 
     private CustomersDataLocal _customersDataLocal = null;
     public CustomersDataLocal CustomersDataLocal
