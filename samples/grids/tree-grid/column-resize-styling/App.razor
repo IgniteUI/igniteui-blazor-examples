@@ -4,93 +4,75 @@
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
-        Name="treeGrid"
-        @ref="treeGrid"
-        Id="treeGrid"
+        Name="grid"
+        @ref="grid"
+        Id="grid"
         Data="EmployeesFlatDetails"
         PrimaryKey="ID"
-        ForeignKey="ParentID"
-        RowEditable="true"
-        BatchEditing="true"
-        AllowFiltering="true">
-            <IgbActionStrip
-            Name="actionStrip"
-            @ref="actionStrip">
-                <IgbGridEditingActions
-                >
-                </IgbGridEditingActions>
-
-            </IgbActionStrip>
-
+        ForeignKey="ParentID">
             <IgbColumn
             Field="Name"
             DataType="GridColumnDataType.String"
-            Sortable="true"
-            DisableHiding="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="ID"
-            DataType="GridColumnDataType.Number"
-            Sortable="true">
+            Resizable="true"
+            MinWidth="60"
+            MaxWidth="250"
+            Width="220">
             </IgbColumn>
 
             <IgbColumn
             Field="Title"
             DataType="GridColumnDataType.String"
-            Sortable="true"
-            DisableHiding="true">
+            Resizable="true">
             </IgbColumn>
 
             <IgbColumn
             Field="HireDate"
+            Header="Hire Date"
             DataType="GridColumnDataType.Date"
-            Sortable="true"
-            Hidden="true">
+            Resizable="true">
             </IgbColumn>
 
             <IgbColumn
             Field="Age"
             DataType="GridColumnDataType.Number"
-            Sortable="true"
-            Hidden="true">
+            Resizable="true">
             </IgbColumn>
 
             <IgbColumn
             Field="Address"
             DataType="GridColumnDataType.String"
-            Sortable="true">
+            Resizable="true">
             </IgbColumn>
 
             <IgbColumn
             Field="City"
             DataType="GridColumnDataType.String"
-            Sortable="true">
+            Resizable="true">
             </IgbColumn>
 
             <IgbColumn
             Field="Country"
             DataType="GridColumnDataType.String"
-            Sortable="true">
+            Resizable="true">
             </IgbColumn>
 
             <IgbColumn
             Field="Fax"
             DataType="GridColumnDataType.String"
-            Sortable="true">
+            Resizable="true">
             </IgbColumn>
 
             <IgbColumn
             Field="PostalCode"
             Header="Postal Code"
             DataType="GridColumnDataType.String"
-            Sortable="true">
+            Resizable="true">
             </IgbColumn>
 
             <IgbColumn
             Field="Phone"
             DataType="GridColumnDataType.String"
-            Sortable="true">
+            Resizable="true">
             </IgbColumn>
 
         </IgbTreeGrid>
@@ -102,13 +84,11 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var treeGrid = this.treeGrid;
-        var actionStrip = this.actionStrip;
+        var grid = this.grid;
 
     }
 
-    private IgbTreeGrid treeGrid;
-    private IgbActionStrip actionStrip;
+    private IgbTreeGrid grid;
 
     private EmployeesFlatDetails _employeesFlatDetails = null;
     public EmployeesFlatDetails EmployeesFlatDetails
