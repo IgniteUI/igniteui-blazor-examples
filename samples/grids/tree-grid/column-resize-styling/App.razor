@@ -1,0 +1,106 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        Name="grid"
+        @ref="grid"
+        Id="grid"
+        Data="EmployeesFlatDetails"
+        PrimaryKey="ID"
+        ForeignKey="ParentID">
+            <IgbColumn
+            Field="Name"
+            DataType="GridColumnDataType.String"
+            Resizable="true"
+            MinWidth="60"
+            MaxWidth="250"
+            Width="220">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Title"
+            DataType="GridColumnDataType.String"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="HireDate"
+            Header="Hire Date"
+            DataType="GridColumnDataType.Date"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Age"
+            DataType="GridColumnDataType.Number"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Address"
+            DataType="GridColumnDataType.String"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="City"
+            DataType="GridColumnDataType.String"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Country"
+            DataType="GridColumnDataType.String"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Fax"
+            DataType="GridColumnDataType.String"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="PostalCode"
+            Header="Postal Code"
+            DataType="GridColumnDataType.String"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Phone"
+            DataType="GridColumnDataType.String"
+            Resizable="true">
+            </IgbColumn>
+
+        </IgbTreeGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+
+    }
+
+    private IgbTreeGrid grid;
+
+    private EmployeesFlatDetails _employeesFlatDetails = null;
+    public EmployeesFlatDetails EmployeesFlatDetails
+    {
+        get
+        {
+            if (_employeesFlatDetails == null)
+            {
+                _employeesFlatDetails = new EmployeesFlatDetails();
+            }
+            return _employeesFlatDetails;
+        }
+    }
+
+}

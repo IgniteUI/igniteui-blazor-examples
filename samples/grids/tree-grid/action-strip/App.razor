@@ -13,6 +13,15 @@
         RowEditable="true"
         BatchEditing="true"
         AllowFiltering="true">
+            <IgbActionStrip
+            Name="actionStrip"
+            @ref="actionStrip">
+                <IgbGridEditingActions
+                >
+                </IgbGridEditingActions>
+
+            </IgbActionStrip>
+
             <IgbColumn
             Field="Name"
             DataType="GridColumnDataType.String"
@@ -94,10 +103,12 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var treeGrid = this.treeGrid;
+        var actionStrip = this.actionStrip;
 
     }
 
     private IgbTreeGrid treeGrid;
+    private IgbActionStrip actionStrip;
 
     private EmployeesFlatDetails _employeesFlatDetails = null;
     public EmployeesFlatDetails EmployeesFlatDetails
