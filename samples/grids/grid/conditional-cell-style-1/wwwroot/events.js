@@ -1,30 +1,4 @@
 
-igRegisterScript("WebGridBeatsPerMinuteTemplate", (ctx) => {
-    var html = window.igTemplating.html;
-
-    var value = ctx.cell.value;
-
-    if (value > 95) {
-        return html`<span style="color: red">${value}</span>`;
-    }
-    else {
-        return html`<span style="color: green">${value}</span>`;
-    }
-}, false);
-
-igRegisterScript("WebGridTopSpeedTemplate", (ctx) => {
-    var html = window.igTemplating.html;
-
-    var value = ctx.cell.value;
-
-    if (value < 5) {
-        return html`<span style="color: royalblue">${value}</span>`;
-    }
-    else {
-        return html`<span>${value}</span>`;
-    }
-}, false);
-
 igRegisterScript("WebGridImageCellTemplate", (ctx) => {
     var html = window.igTemplating.html;
     return html`<div>
@@ -35,4 +9,17 @@ igRegisterScript("WebGridImageCellTemplate", (ctx) => {
     width: 3rem;"/>
  </div>`;
 }, false);
+
+igRegisterScript("WebGridBeatsPerMinuteCellClassesHandler", () => {
+    return {
+        upFont: (rowData, columnKey) => rowData[columnKey] > 95,
+        downFont: (rowData, columnKey) => rowData[columnKey] <= 95
+    };
+}, true);
+
+igRegisterScript("WebGridTopSpeedCellClassesHandler", () => {
+    return {
+        topSpeed: (rowData, columnKey) => rowData[columnKey] < 5
+    };
+}, true);
 
