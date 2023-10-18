@@ -1,0 +1,151 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="CustomersData"
+        Name="grid"
+        @ref="grid"
+        Id="grid">
+            <IgbColumn
+            Field="ID"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumnGroup
+            Header="General Information"
+            HeaderTemplateScript="WebGridColumnGroupHeaderTemplate"
+            Name="columnGroup1"
+            @ref="columnGroup1">
+                <IgbColumn
+                Field="CompanyName"
+                Sortable="true"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumnGroup
+                Header="Personal Details">
+                    <IgbColumn
+                    Field="ContactName"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="ContactTitle"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                </IgbColumnGroup>
+
+            </IgbColumnGroup>
+
+            <IgbColumnGroup
+            Header="Address Information"
+            HeaderTemplateScript="WebGridColumnGroupHeaderTemplate"
+            Name="columnGroup2"
+            @ref="columnGroup2">
+                <IgbColumn
+                Header="Location"
+                Field="Address"
+                Hidden="true"
+                Sortable="true"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="Phone"
+                Hidden="true"
+                Sortable="true"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumnGroup
+                Header="Location">
+                    <IgbColumn
+                    Field="Country"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Region"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="City"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Address"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                </IgbColumnGroup>
+
+                <IgbColumnGroup
+                Header="Contact Information">
+                    <IgbColumn
+                    Field="Phone"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Fax"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="PostalCode"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                </IgbColumnGroup>
+
+            </IgbColumnGroup>
+
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+        var columnGroup1 = this.columnGroup1;
+        var columnGroup2 = this.columnGroup2;
+
+    }
+
+    private IgbGrid grid;
+    private IgbColumnGroup columnGroup1;
+    private IgbColumnGroup columnGroup2;
+
+    private CustomersData _customersData = null;
+    public CustomersData CustomersData
+    {
+        get
+        {
+            if (_customersData == null)
+            {
+                _customersData = new CustomersData();
+            }
+            return _customersData;
+        }
+    }
+
+}

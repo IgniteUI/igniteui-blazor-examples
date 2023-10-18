@@ -1,0 +1,126 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        Data="EmployeesFlatDetails"
+        Name="treeGrid"
+        @ref="treeGrid"
+        Id="treeGrid"
+        PrimaryKey="ID"
+        ForeignKey="ParentID">
+            <IgbColumn
+            Field="Name"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumnGroup
+            Header="General Information">
+                <IgbColumn
+                Field="HireDate"
+                Sortable="true"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumnGroup
+                Header="Personal Details">
+                    <IgbColumn
+                    Field="ID"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Title"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Age"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                </IgbColumnGroup>
+
+            </IgbColumnGroup>
+
+            <IgbColumnGroup
+            Header="Address Information">
+                <IgbColumnGroup
+                Header="Location">
+                    <IgbColumn
+                    Field="Country"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="City"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Address"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                </IgbColumnGroup>
+
+                <IgbColumnGroup
+                Header="Contact Information">
+                    <IgbColumn
+                    Field="Phone"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Fax"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="PostalCode"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                </IgbColumnGroup>
+
+            </IgbColumnGroup>
+
+        </IgbTreeGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var treeGrid = this.treeGrid;
+
+    }
+
+    private IgbTreeGrid treeGrid;
+
+    private EmployeesFlatDetails _employeesFlatDetails = null;
+    public EmployeesFlatDetails EmployeesFlatDetails
+    {
+        get
+        {
+            if (_employeesFlatDetails == null)
+            {
+                _employeesFlatDetails = new EmployeesFlatDetails();
+            }
+            return _employeesFlatDetails;
+        }
+    }
+
+}

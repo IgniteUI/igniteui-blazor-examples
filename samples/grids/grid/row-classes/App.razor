@@ -1,0 +1,99 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="NwindData"
+        RowClassesScript="WebGridRowClassesHandler"
+        Name="grid1"
+        @ref="grid1">
+            <IgbColumn
+            Name="ProductID"
+            @ref="productID"
+            Field="ProductID"
+            Header="Product ID">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="ProductName"
+            @ref="productName"
+            Field="ProductName"
+            Header="Product Name">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="UnitsInStock"
+            @ref="unitsInStock"
+            Field="UnitsInStock"
+            Header="Units In Stock"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="UnitPrice"
+            @ref="unitPrice"
+            Field="UnitPrice"
+            Header="Unit Price"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="Discontinued"
+            @ref="discontinued"
+            Field="Discontinued"
+            Header="Discontinued"
+            DataType="GridColumnDataType.Boolean">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="OrderDate"
+            @ref="orderDate"
+            Field="OrderDate"
+            Header="Order Date"
+            DataType="GridColumnDataType.Date">
+            </IgbColumn>
+
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid1 = this.grid1;
+        var productID = this.productID;
+        var productName = this.productName;
+        var unitsInStock = this.unitsInStock;
+        var unitPrice = this.unitPrice;
+        var discontinued = this.discontinued;
+        var orderDate = this.orderDate;
+
+    }
+
+    private IgbGrid grid1;
+    private IgbColumn productID;
+    private IgbColumn productName;
+    private IgbColumn unitsInStock;
+    private IgbColumn unitPrice;
+    private IgbColumn discontinued;
+    private IgbColumn orderDate;
+
+    private NwindData _nwindData = null;
+    public NwindData NwindData
+    {
+        get
+        {
+            if (_nwindData == null)
+            {
+                _nwindData = new NwindData();
+            }
+            return _nwindData;
+        }
+    }
+
+}
