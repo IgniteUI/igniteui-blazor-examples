@@ -8,10 +8,8 @@ trigger:
     exclude:
     - browser/IgBlazorSamples.Server/
 
-pr:
-  branches:
-    exclude:
-    - '*'  # must quote since "*" is a YAML reserved character; we want a string
+# This pipeline is meant to build specific branches for deployment. It's not meant to be a part of PR validation.
+pr: none
 
 parameters:
 - name: isVerbose
