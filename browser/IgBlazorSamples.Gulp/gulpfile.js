@@ -121,3 +121,5 @@ var gt = require('./tasks/gulp-tests.js')
 exports.testSampleFiles = testSampleFiles = gulp.series(
     gt.testSampleFiles,
 );
+
+exports.cleanupSamples = cleanupSamples = sb.cleanupSamples;
