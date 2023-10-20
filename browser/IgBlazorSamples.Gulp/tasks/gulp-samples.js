@@ -111,13 +111,13 @@ var samples = [];
 
 var sampleOutputFolder = '';
 
-function cleanSamples() {
-    // cleaning up obsolete files in individual samples
-    // del.sync("../../samples/**/src/sandbox.config.json", {force:true});
-    // del.sync("../../samples/**/manifest.json", {force:true});
+// cleanup individual samples if they have bin/obj folders
+function cleanupSamples(cb) {
+    del.sync("../../samples/**/bin/**/*.*", {force:true});
+    del.sync("../../samples/**/obj/**/*.*", {force:true});
+    cb();
+} exports.cleanupSamples = cleanupSamples;
 
-    del.sync("../../samples/**/css/open-iconic/README.md", {force:true});
-}
 // lints all source files in ./samples folder and remove any routing paths (@page)
 // since they are auto-generated when samples are copied to browsers
 function lintSamples(cb) {
