@@ -1,15 +1,12 @@
 ﻿<!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
     <title>Samples Browser | IgniteUI for Blazor | Infragistics</title>
     <meta name="description" content="Explore samples of IgniteUI for Blazor controls running on client-side.">
     <meta name="keywords" content="Examples, Blazor, Client-Side, WebAssembly, IgniteUI for Blazor, Controls, Infragistics">
     <meta name="author" content="Infragistics">
-
     <!-- NOTE <base> reference path is updated in gulp-samples.js -->
     <base href="/" />
     <script>
@@ -25,25 +22,35 @@
         //     window.location.replace(window.location.origin + window.location.pathname + '/' + window.location.search);
         // }
     </script>
+    <script>
+        window.preventScrollHandler = (event) => {
+            if (event.target.outerHTML.toLowerCase().includes('igx')) {
+                event.preventDefault();
+            }
+        };
+        window.attachPreventScroll = () => {
+            const container = document.getElementsByClassName('sb-container')[0];
+            container.addEventListener('wheel', preventScrollHandler, { passive: false });
+        }
+        window.removePreventScroll = () => {
+            const container = document.getElementsByClassName('sb-container')[0];
+            container.removeEventListener('wheel', preventScrollHandler);
+        }
+    </script>
     <link href="_content/Infragistics.Samples.Core/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="_content/Infragistics.Samples.Core/css/browser.css" rel="stylesheet" />
     <!-- <link href="_content/Infragistics.Samples.Core/css/index.css" rel="stylesheet" /> -->
     <link href="_content/Infragistics.Samples.Shared/css/switch.css" rel="stylesheet" />
     <link href="_content/Infragistics.Samples.Shared/css/toggle.css" rel="stylesheet" />
-
     <link href="https://static.infragistics.com/xplatform/css/samples/custom-legend.css" rel="stylesheet" type="text/css" />
     <link href="https://static.infragistics.com/xplatform/css/samples/shared.v6.css" rel="stylesheet" />
     <link href="https://static.infragistics.com/xplatform/css/samples/blazor.css" rel="stylesheet" />
     <link href="https://static.infragistics.com/xplatform/images/browsers/blazor.ico" rel="icon" type="image/x-icon">
     <link href="_content/IgniteUI.Blazor/themes/light/bootstrap.css" rel="stylesheet" />
-
     <link href="_content/IgniteUI.Blazor/themes/grid/light/bootstrap.css" rel="stylesheet" />
-
 </head>
-
 <body>
     <app class="sb-app"><img class="sb-loading" src="https://static.infragistics.com/xplatform/images/browsers/loading.gif" /></app>
-
     <div class="sb-error-ui">
         An unhandled error has occurred.
         <a href="" class="reload">Reload</a>
@@ -55,7 +62,6 @@
     <script src="_content/IgniteUI.Blazor.Documents.excel/excel.js"></script>
     <!-- importing blazor scripts for webassembly: -->
     <script src="_framework/blazor.webassembly.js"></script>
-
     <!-- <script src="test/browser.js"></script> -->
     <!--AutoInsertJavaScriptsForSamples Start-->
 <script src="sb/category-chart-high-volume.js"></script>
@@ -91,6 +97,7 @@
 <script src="sb/grid-binding-crud-data.js"></script>
 <script src="sb/grid-binding-nested-data-1.js"></script>
 <script src="sb/grid-cascading-combo.js"></script>
+<script src="sb/grid-cell-editing-sample.js"></script>
 <script src="sb/grid-clipboard-operations.js"></script>
 <script src="sb/grid-column-moving-options.js"></script>
 <script src="sb/grid-column-pinning-options.js"></script>
@@ -103,7 +110,6 @@
 <script src="sb/grid-data-performance-virtualization.js"></script>
 <script src="sb/grid-data-summary-formatter.js"></script>
 <script src="sb/grid-data-summary-options.js"></script>
-<script src="sb/grid-data-summary-template.js"></script>
 <script src="sb/grid-data-validator-service.js"></script>
 <script src="sb/grid-data-validator-service-extended.js"></script>
 <script src="sb/grid-editing-events.js"></script>
@@ -116,17 +122,20 @@
 <script src="sb/grid-finjs.js"></script>
 <script src="sb/grid-groupby-expressions.js"></script>
 <script src="sb/grid-groupby-paging.js"></script>
+<script src="sb/grid-groupby-styling.js"></script>
 <script src="sb/grid-keyboard-mrl-navigation.js"></script>
 <script src="sb/grid-master-detail.js"></script>
 <script src="sb/grid-multi-cell-selection-mode.js"></script>
 <script src="sb/grid-multi-column-header-template.js"></script>
 <script src="sb/grid-multi-column-headers-export.js"></script>
+<script src="sb/grid-multi-column-headers-template.js"></script>
 <script src="sb/grid-multi-row-dragging.js"></script>
 <script src="sb/grid-overview.js"></script>
 <script src="sb/grid-row-drag-base.js"></script>
 <script src="sb/grid-row-drag-to-grid.js"></script>
 <script src="sb/grid-row-paging-basic.js"></script>
 <script src="sb/grid-row-pinning-extra-column.js"></script>
+<script src="sb/grid-row-pinning-style.js"></script>
 <script src="sb/grid-row-reorder.js"></script>
 <script src="sb/grid-row-selection-mode.js"></script>
 <script src="sb/grid-row-selection-template-excel.js"></script>
@@ -138,10 +147,18 @@
 <script src="sb/pivot-grid-features.js"></script>
 <script src="sb/tree-grid-clipboard-operations.js"></script>
 <script src="sb/tree-grid-column-moving-options.js"></script>
+<script src="sb/tree-grid-column-moving-styles.js"></script>
 <script src="sb/tree-grid-column-pinning-options.js"></script>
+<script src="sb/tree-grid-column-pinning-styles.js"></script>
 <script src="sb/tree-grid-conditional-cell-style-1.js"></script>
 <script src="sb/tree-grid-editing-events.js"></script>
 <script src="sb/tree-grid-editing-lifecycle.js"></script>
+<script src="sb/tree-grid-excel-style-filtering-sample-1.js"></script>
+<script src="sb/tree-grid-excel-style-filtering-sample-2.js"></script>
+<script src="sb/tree-grid-excel-style-filtering-sample-3.js"></script>
+<script src="sb/tree-grid-excel-style-filtering-style.js"></script>
+<script src="sb/tree-grid-multi-column-headers-export.js"></script>
+<script src="sb/tree-grid-multi-column-headers-template.js"></script>
 <script src="sb/tree-grid-row-selection-template-numbers.js"></script>
 <script src="sb/tree-grid-row-styles.js"></script>
 <script src="sb/combo-templates.js"></script>
@@ -149,7 +166,5 @@
 <script src="sb/geo-map-marker-template.js"></script>
 <script src="sb/geo-map-type-shape-polygon-series.js"></script>
     <!--AutoInsertJavaScriptsForSamples End-->
-
 </body>
-
 </html>
