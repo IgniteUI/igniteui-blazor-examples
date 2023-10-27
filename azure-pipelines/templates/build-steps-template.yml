@@ -32,7 +32,7 @@ steps:
     displayName: 'Install dotnet if not already present'
     inputs:
       packageType: 'sdk'
-      version: '6.0.415'
+      version: '6.*' #'6.0.415'
       performMultiLevelLookup: true
 
   - task: PowerShell@2
@@ -41,11 +41,9 @@ steps:
       targetType: 'inline'
       script: |
         dotnet new nugetconfig --force
-        Write-Host AAAAAAAAAAAAAAAAAAAAAAAAAAAA ${{ parameters.igNuGetFeedUrl }}
         dotnet nuget add source ${{ parameters.igNuGetFeedUrl }} --name "IG ProGet NuGet" 
-        Write-Host BBBBBBBBBBBBBBBBBBBB
 
-        $xml = [XML](gc '.\IgBlazorSamples.${{ parameters.projectToBuild }}.csproj');
+        $xml = [XML](Get-Content '.\IgBlazorSamples.${{ parameters.projectToBuild }}.csproj');
 
         $nodes = $xml.SelectNodes("//PackageReference[starts-with(@Include,'IgniteUI')]") | 
           ForEach-Object { 
@@ -72,6 +70,7 @@ steps:
       feedsToUse: 'config'
       nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\NuGet.Config'
       verbosityRestore: 'Diagnostic'
+      arguments: "--ignore-failed-sources"
 
   - task: DotNetCoreCLI@2
     displayName: 'dotnet build'
