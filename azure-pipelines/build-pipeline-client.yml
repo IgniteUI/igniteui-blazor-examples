@@ -23,7 +23,8 @@ stages:
 - stage: Build
   pool:
     name: BuildAgentOnPrem
-    demands: npm
+    demands:
+    - Agent.ComputerName -equals IGBGSOFBUILD90
   jobs:
   - job: BuildSamples
     steps:
