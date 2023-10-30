@@ -6,14 +6,13 @@
         Name="PropertyEditor"
         @ref="propertyEditor"
 
-        Target="Treegrid"
         DescriptionType="WebTreeGrid"
         IsHorizontal="true"
         IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
             ValueType="PropertyEditorValueType.Button"
             PrimitiveValue="@("Toggle First Group Pinned")"
-            ButtonClicked="WebGridPinFirstGroupToggle"
+            ButtonClicked="WebTreeGridPinFirstGroupToggle"
             Name="propertyEditorPropertyDescription1"
             @ref="propertyEditorPropertyDescription1">
             </IgbPropertyEditorPropertyDescription>
@@ -21,7 +20,7 @@
             <IgbPropertyEditorPropertyDescription
             ValueType="PropertyEditorValueType.Button"
             PrimitiveValue="@("Toggle First Group Hidden")"
-            ButtonClicked="WebGridHideFirstGroupToggle"
+            ButtonClicked="WebTreeGridHideFirstGroupToggle"
             Name="propertyEditorPropertyDescription2"
             @ref="propertyEditorPropertyDescription2">
             </IgbPropertyEditorPropertyDescription>
@@ -130,12 +129,19 @@
 
 @code {
 
+    private Action BindElements { get; set; }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var propertyEditor = this.propertyEditor;
         var propertyEditorPropertyDescription1 = this.propertyEditorPropertyDescription1;
         var propertyEditorPropertyDescription2 = this.propertyEditorPropertyDescription2;
         var treeGrid = this.treeGrid;
+
+        this.BindElements = () => {
+            propertyEditor.Target = this.treeGrid;
+        };
+        this.BindElements();
 
     }
 
@@ -144,15 +150,15 @@
     private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription2;
     private IgbTreeGrid treeGrid;
 
-    public void WebGridPinFirstGroupToggle(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
+    public void WebTreeGridPinFirstGroupToggle(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
     {
-        var columnGroup = this.grid.ActualColumns[1];
+        var columnGroup = this.treeGrid.ActualColumns[1];
         columnGroup.Pinned = !columnGroup.Pinned;
     }
 
-    public void WebGridHideFirstGroupToggle(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
+    public void WebTreeGridHideFirstGroupToggle(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
     {
-        var columnGroup = this.grid.ActualColumns[1];
+        var columnGroup = this.treeGrid.ActualColumns[1];
         columnGroup.Hidden = !columnGroup.Hidden;
     }
 
