@@ -1,5 +1,7 @@
 @using IgniteUI.Blazor.Controls
 
+@inject IJSRuntime JS
+
 <div class="container vertical ig-typography">
     <div class="container vertical fill">
         <IgbTreeGrid
@@ -12,36 +14,10 @@
         RowSelection="GridSelectionMode.Multiple"
         Moving="true"
         AllowFiltering="true"
-        FilterMode="FilterMode.ExcelStyleFilter">
+        GridKeydownScript="WebGridCustomKBNav">
             <IgbPaginator
-            >
+            PerPage="15">
             </IgbPaginator>
-
-            <IgbGridToolbar
-            >
-                <IgbGridToolbarTitle
-                Name="Employees"
-                @ref="employees">
-                </IgbGridToolbarTitle>
-
-                <IgbGridToolbarActions
-                >
-                    <IgbGridToolbarHiding
-                    >
-                    </IgbGridToolbarHiding>
-
-                    <IgbGridToolbarPinning
-                    >
-                    </IgbGridToolbarPinning>
-
-                    <IgbGridToolbarExporter
-                    ExportCSV="true"
-                    ExportExcel="true">
-                    </IgbGridToolbarExporter>
-
-                </IgbGridToolbarActions>
-
-            </IgbGridToolbar>
 
             <IgbColumn
             Field="Name"
@@ -49,8 +25,7 @@
             DataType="GridColumnDataType.String"
             Sortable="true"
             Editable="true"
-            Resizable="true"
-            HasSummary="true">
+            Resizable="true">
             </IgbColumn>
 
             <IgbColumn
@@ -81,12 +56,10 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var treeGrid = this.treeGrid;
-        var employees = this.employees;
 
     }
 
     private IgbTreeGrid treeGrid;
-    private IgbGridToolbarTitle employees;
 
     private EmployeesNestedData _employeesNestedData = null;
     public EmployeesNestedData EmployeesNestedData
