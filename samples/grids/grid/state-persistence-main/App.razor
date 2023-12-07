@@ -164,7 +164,7 @@
 
     async void SaveGridState()
     {
-        string state = gridState.ExtractStateAsString(new string[0]);
+        string state = await gridState.GetStateAsStringAsync(new string[0]);
         await JS.InvokeVoidAsync("window.localStorage.setItem", stateKey, state);
     }
 
@@ -173,7 +173,7 @@
         string state = await JS.InvokeAsync<string>("window.localStorage.getItem", stateKey);
         if (state != null)
         {
-            gridState.ApplyStateFromString(state, new string[0]);
+            await gridState.ApplyStateFromStringAsync(state, new string[0]);
         }
     }
 
