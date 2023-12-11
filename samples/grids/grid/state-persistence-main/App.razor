@@ -55,8 +55,20 @@
             <IgbCheckbox Change="@((evt) => OnChange(evt, "Sorting"))" Checked="options.Sorting">Sorting</IgbCheckbox>
             <IgbCheckbox Change="@((evt) => OnChange(evt, "GroupBy"))" Checked="options.GroupBy">Group By</IgbCheckbox>
         </div>
-        <IgbGrid @ref="grid" Width="95%" Height="500px" AutoGenerate="false" Data="CustomersData" Rendered="OnGridRendered"
-            Moving="true" AllowFiltering="true" AllowAdvancedFiltering="true" FilterMode="FilterMode.ExcelStyleFilter">
+        <IgbGrid
+            @ref="grid"
+            Width="95%"
+            Height="500px"
+            PrimaryKey="ID"
+            AutoGenerate="false"
+            Data="CustomersData"
+            Rendered="OnGridRendered"
+            Moving="true"
+            AllowFiltering="true"
+            AllowAdvancedFiltering="true"
+            FilterMode="FilterMode.ExcelStyleFilter"
+            ColumnSelection="GridSelectionMode.Multiple"
+            RowSelection="GridSelectionMode.Multiple">
             <IgbGridState @ref="gridState"></IgbGridState>
             <IgbGridToolbar>
                 <IgbGridToolbarHiding></IgbGridToolbarHiding>
