@@ -190,7 +190,6 @@ function getSamples(cb) {
       igConfig.SamplesCopyPath + '/grids/grid/row-drop-indicator/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/row-editing-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/row-paging-style/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/row-pinning-style/App.razor/App.razor',
     ];
 
     samples = [];
