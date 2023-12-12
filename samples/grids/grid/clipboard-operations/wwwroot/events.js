@@ -1,12 +1,28 @@
 
+function toggleClipboardOperations() {
+    grid.clipboardOptions.enabled = copyEnable.checked;
+}
 
-igRegisterScript("WebGridClearSelection", (event) => {
-    console.log("TODO WebGridClearSelection");
-}, false);
+function toggleHeaderCopy() {
+    grid.clipboardOptions.copyHeaders = headerCopy.checked;
+}
 
-igRegisterScript("WebGridClipboardOperationsColumnInit", (e) => {
+function toggleFormatterCopy() {
+    grid.clipboardOptions.copyFormatters = formatterCopy.checked;
+}
+
+function clearSelection() {
+    grid.cellSelection = 'none';
+    grid.cellSelection = 'multiple';
+}
+
+function inputChange() {
+    grid.clipboardOptions.separator = input.value;
+}
+
+
+igRegisterScript("WebGridClipboardCustomOperationsColumnInit", (e) => {
     var column = e.detail;
-    column.formatter = columnFormatter;
+    column.formatter = (e) => { return "** " + e + " **" };
     column.header = "🎉" + column.field;
 }, false);
-
