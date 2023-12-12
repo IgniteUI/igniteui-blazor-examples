@@ -588,7 +588,7 @@ function updateIG(cb) {
 
     // NOTE: change this array with new version of IG packages, e.g.
     // { name: "IgniteUI.Blazor.Trial", version: "23.1.72" }, // use trial packages before the volume release - PUBLIC NUGET https://www.nuget.org/packages/IgniteUI.Blazor.Trial
-    // { name: "IgniteUI.Blazor",       version: "23.2.14" }, // use non-trial packages while working on release - LOCAL PROGET http://proget.infragistics.local:81/packages?Count=500&FeedId=13
+    // { name: "IgniteUI.Blazor",       version: "23.2.96" }, // use non-trial packages while working on release - LOCAL PROGET http://proget.infragistics.local:81/packages?Count=500&FeedId=13
 
     let packageUpgrades = [
         // update version of IG packages and change to Trial or non-trial
