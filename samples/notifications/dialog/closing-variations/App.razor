@@ -4,15 +4,16 @@
     <IgbSwitch Change="OnKeepOpenOnEscapeSwitchChange" LabelPosition=CheckboxBaseLabelPosition.Before>KeepOpenOnEscape</IgbSwitch>
     <IgbSwitch Change="OnCloseOnOutsideClickSwitchChange" LabelPosition=CheckboxBaseLabelPosition.Before>CloseOnOutsideClick</IgbSwitch>
 
-    <IgbButton onclick="dialog.show()" Variant=@ButtonVariant.Contained>Show Dialog</IgbButton>
-    <IgbDialog id="dialog" KeepOpenOnEscape="@KeepOpenOnEscape" CloseOnOutsideClick="@CloseOnOutsideClick" Title="Confirmation">
+    <IgbButton @onclick="OnDialogShow" Variant=@ButtonVariant.Contained>Show Dialog</IgbButton>
+    <IgbDialog @ref="DialogRef" KeepOpenOnEscape="@KeepOpenOnEscape" CloseOnOutsideClick="@CloseOnOutsideClick" Title="Confirmation">
         <p>Are you sure you want to delete the Annual_Report_2016.pdf and Annual_Report_2017.pdf files?</p>
-        <IgbButton slot="footer" onclick="dialog.hide()" Variant=@ButtonVariant.Flat>Cancel</IgbButton>
-        <IgbButton slot="footer" onclick="dialog.hide()" Variant=@ButtonVariant.Flat>OK</IgbButton>
+        <IgbButton slot="footer" @onclick="OnDialogHide" Variant=@ButtonVariant.Flat>Cancel</IgbButton>
+        <IgbButton slot="footer" @onclick="OnDialogHide" Variant=@ButtonVariant.Flat>OK</IgbButton>
     </IgbDialog>
 </div>
 
 @code {
+    public IgbDialog DialogRef;
     public bool KeepOpenOnEscape { get; set; }
     public bool CloseOnOutsideClick { get; set; }
 
@@ -24,5 +25,21 @@
     public void OnCloseOnOutsideClickSwitchChange(IgbComponentBoolValueChangedEventArgs args)
     {
         CloseOnOutsideClick = args.Detail;
+    }
+
+    public async Task OnDialogShow()
+    {
+        if (this.DialogRef != null)
+        {
+            await this.DialogRef.ShowAsync();
+        }
+    }
+
+    public async Task OnDialogHide()
+    {
+        if (this.DialogRef != null)
+        {
+            await this.DialogRef.HideAsync();
+        }
     }
 }

@@ -1,0 +1,94 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        Name="grid"
+        @ref="grid"
+        Data="FoodsData"
+        PrimaryKey="ID"
+        ForeignKey="ParentID"
+        Moving="true"
+        AllowFiltering="true"
+        FilterMode="FilterMode.ExcelStyleFilter"
+        ExcelStyleHeaderIconTemplateScript="WebGridFilterAltIconTemplate">
+            <IgbGridToolbar
+            >
+                <IgbGridToolbarActions
+                >
+                    <IgbGridToolbarHiding
+                    >
+                    </IgbGridToolbarHiding>
+
+                </IgbGridToolbarActions>
+
+            </IgbGridToolbar>
+
+            <IgbColumn
+            Field="ID"
+            Header="ID"
+            Sortable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Name"
+            Header="Product Name"
+            Sortable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="UnitPrice"
+            Header="Unit Price"
+            Sortable="true"
+            DataType="GridColumnDataType.Currency">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="AddedDate"
+            Header="Added Date"
+            Sortable="true"
+            DataType="GridColumnDataType.Date">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Discontinued"
+            DataType="GridColumnDataType.Boolean"
+            BodyTemplateScript="WebGridBooleanCellTemplate"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+
+        </IgbTreeGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+        var column1 = this.column1;
+
+    }
+
+    private IgbTreeGrid grid;
+    private IgbColumn column1;
+
+    private FoodsData _foodsData = null;
+    public FoodsData FoodsData
+    {
+        get
+        {
+            if (_foodsData == null)
+            {
+                _foodsData = new FoodsData();
+            }
+            return _foodsData;
+        }
+    }
+
+}

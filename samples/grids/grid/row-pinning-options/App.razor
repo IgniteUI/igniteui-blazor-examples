@@ -1,6 +1,6 @@
 @using IgniteUI.Blazor.Controls
 
-<div class="container vertical">
+<div class="container vertical ig-typography">
     <div class="options vertical">
         <IgbPropertyEditorPanel
 
@@ -19,20 +19,16 @@
         </IgbPropertyEditorPanel>
 
     </div>
-
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
         Name="grid"
         @ref="grid"
-        Data="CustomersData"
+        Data="CustomersDataLocal"
+        Pinning="PinningConfig1"
         PrimaryKey="ID"
         CellSelection="GridSelectionMode.None"
         RowEditable="true">
-            <IgbPinningConfig
-            Rows="RowPinningPosition.Top">
-            </IgbPinningConfig>
-
             <IgbColumn
             Field="CompanyName"
             Header="Company"
@@ -109,18 +105,32 @@
     private IgbPropertyEditorPanel propertyEditorPanel1;
     private IgbPropertyEditorPropertyDescription rowPinningEditor;
     private IgbGrid grid;
-    private IgbActionStrip actionStrip;
-
-    private CustomersData _customersData = null;
-    public CustomersData CustomersData
+    private IgbPinningConfig _pinningConfig1 = null;
+    public IgbPinningConfig PinningConfig1
     {
         get
         {
-            if (_customersData == null)
+            if (this._pinningConfig1 == null)
             {
-                _customersData = new CustomersData();
+                var pinningConfig1 = new IgbPinningConfig();
+                pinningConfig1.Rows = RowPinningPosition.Top;
+                this._pinningConfig1 = pinningConfig1;
             }
-            return _customersData;
+            return this._pinningConfig1;
+        }
+    }
+    private IgbActionStrip actionStrip;
+
+    private CustomersDataLocal _customersDataLocal = null;
+    public CustomersDataLocal CustomersDataLocal
+    {
+        get
+        {
+            if (_customersDataLocal == null)
+            {
+                _customersDataLocal = new CustomersDataLocal();
+            }
+            return _customersDataLocal;
         }
     }
 

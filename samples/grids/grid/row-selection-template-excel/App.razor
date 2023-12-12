@@ -1,24 +1,8 @@
 @using IgniteUI.Blazor.Controls
 
-<div class="container vertical">
-    <div class="options vertical">
-        <IgbPropertyEditorPanel
-        Name="PropertyEditor"
-        @ref="propertyEditor"
+@inject IJSRuntime JS
 
-        DescriptionType="WebGrid"
-        IsHorizontal="true"
-        IsWrappingEnabled="true">
-            <IgbPropertyEditorPropertyDescription
-            Name="selectionType"
-            @ref="selectionType"
-            PropertyPath="RowSelection">
-            </IgbPropertyEditorPropertyDescription>
-
-        </IgbPropertyEditorPanel>
-
-    </div>
-
+<div class="container vertical ig-typography">
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
@@ -26,17 +10,17 @@
         Name="grid"
         @ref="grid"
         Id="grid"
-        DisplayDensity="DisplayDensity.Cosy">
+        DisplayDensity="DisplayDensity.Cosy"
+        RowSelection="GridSelectionMode.Multiple"
+        RowSelectorTemplateScript="WebGridRowSelectorExcelTemplate"
+        HeadSelectorTemplateScript="WebGridHeaderRowSelectorExcelTemplate">
             <IgbPaginator
             Name="paginator"
             @ref="paginator"
             PerPage="15"
             DisplayDensity="DisplayDensity.Cosy"
-            SelectOptions="@(new double[] { 5, 10, 15, 25, 50 })">
-                <IgbPaginatorResourceStrings
-                Igx_paginator_label="Items per page">
-                </IgbPaginatorResourceStrings>
-
+            SelectOptions="@(new double[] { 5, 10, 15, 25, 50 })"
+            ResourceStrings="PaginatorResourceStrings1">
             </IgbPaginator>
 
             <IgbColumn
@@ -71,26 +55,29 @@
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
         var paginator = this.paginator;
-        var propertyEditor = this.propertyEditor;
-        var selectionType = this.selectionType;
-
-        this.BindElements = () => {
-            propertyEditor.Target = this.grid;
-        };
-        this.BindElements();
 
     }
 
     private IgbGrid grid;
     private IgbPaginator paginator;
-    private IgbPropertyEditorPanel propertyEditor;
-    private IgbPropertyEditorPropertyDescription selectionType;
+    private IgbPaginatorResourceStrings _paginatorResourceStrings1 = null;
+    public IgbPaginatorResourceStrings PaginatorResourceStrings1
+    {
+        get
+        {
+            if (this._paginatorResourceStrings1 == null)
+            {
+                var paginatorResourceStrings1 = new IgbPaginatorResourceStrings();
+                paginatorResourceStrings1.Igx_paginator_label = "Items per page";
+                this._paginatorResourceStrings1 = paginatorResourceStrings1;
+            }
+            return this._paginatorResourceStrings1;
+        }
+    }
 
     private CustomersData _customersData = null;
     public CustomersData CustomersData

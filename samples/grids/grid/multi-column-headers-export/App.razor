@@ -1,29 +1,8 @@
 @using IgniteUI.Blazor.Controls
-@using IgniteUI.Blazor.Controls;
-@using System;
 
-<div class="container vertical">
-    <div class="options vertical">
-        <IgbPropertyEditorPanel
-        Name="PropertyEditor"
-        @ref="propertyEditor"
+@inject IJSRuntime JS
 
-        DescriptionType="WebGrid"
-        IsHorizontal="true"
-        IsWrappingEnabled="true">
-            <IgbPropertyEditorPropertyDescription
-            ValueType="PropertyEditorValueType.Boolean1"
-            ShouldOverrideDefaultEditor="true"
-            Label="Export Multi-Column Headers"
-            PrimitiveValue="true"
-            Name="exportHeaders"
-            @ref="exportHeaders">
-            </IgbPropertyEditorPropertyDescription>
-
-        </IgbPropertyEditorPanel>
-
-    </div>
-
+<div class="container vertical ig-typography">
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
@@ -48,7 +27,7 @@
                     <IgbGridToolbarExporter
                     ExportCSV="false"
                     ExportExcel="true"
-                    ExportStarted="WebGridExportEventMultiColumnHeaders"
+                    ExportStartedScript="WebGridExportEventMultiColumnHeaders"
                     Name="gridToolbarExporter1"
                     @ref="gridToolbarExporter1">
                     </IgbGridToolbarExporter>
@@ -70,11 +49,11 @@
             Name="GeneralInformation"
             @ref="generalInformation"
             Header="General Information"
-            Collapsible="true"
-            Expanded="true">
+            Collapsible="true">
                 <IgbColumn
                 Name="CompanyName"
                 @ref="companyName"
+                Field="CompanyName"
                 VisibleWhenCollapsed="true">
                 </IgbColumn>
 
@@ -83,8 +62,7 @@
                 @ref="personalDetails"
                 Header="Personal Details"
                 Collapsible="true"
-                Expanded="true"
-                VisibleWhenCollapsed="true">
+                VisibleWhenCollapsed="false">
                     <IgbColumn
                     Name="ContactName"
                     @ref="contactName"
@@ -110,7 +88,6 @@
                 @ref="location"
                 Header="Location"
                 Collapsible="true"
-                Expanded="false"
                 VisibleWhenCollapsed="true">
                     <IgbColumn
                     Name="Country"
@@ -179,12 +156,8 @@
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var propertyEditor = this.propertyEditor;
-        var exportHeaders = this.exportHeaders;
         var grid = this.grid;
         var gridToolbarExporter1 = this.gridToolbarExporter1;
         var iD = this.iD;
@@ -204,15 +177,8 @@
         var fax = this.fax;
         var postalCode = this.postalCode;
 
-        this.BindElements = () => {
-            propertyEditor.Target = this.grid;
-        };
-        this.BindElements();
-
     }
 
-    private IgbPropertyEditorPanel propertyEditor;
-    private IgbPropertyEditorPropertyDescription exportHeaders;
     private IgbGrid grid;
     private IgbGridToolbarExporter gridToolbarExporter1;
     private IgbColumn iD;
@@ -231,12 +197,6 @@
     private IgbColumn phone;
     private IgbColumn fax;
     private IgbColumn postalCode;
-
-    public void WebGridExportEventMultiColumnHeaders(IgbExporterEventEventArgs args)
-    {
-        bool exportMultiHeaders = (bool)exportHeaders.GetCurrentPrimitiveValue();
-        args.Detail.Options.IgnoreMultiColumnHeaders = !exportMultiHeaders;
-    }
 
     private CustomersData _customersData = null;
     public CustomersData CustomersData

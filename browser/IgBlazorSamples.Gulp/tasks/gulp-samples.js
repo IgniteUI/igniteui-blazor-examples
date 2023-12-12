@@ -22,12 +22,13 @@ eval(require('typescript')
 .readFileSync("./tasks/Transformer.ts").toString()));
 
 function log(msg) {
-    console.log('GULP ' + msg);
+    console.log('- ' + msg);
 }
 log('loaded gulp scripts');
 
 // NOTE you can comment out strings in this array to run subset of samples
 var sampleSource = [
+    // including specific samples:
     // igConfig.SamplesCopyPath + '/charts/category-chart/axis-gap/App.razor',
     // igConfig.SamplesCopyPath + '/grids/grid/multi-row-dragging/App.razor',
     // igConfig.SamplesCopyPath + '/grids/grid/action-strip/App.razor',
@@ -35,63 +36,68 @@ var sampleSource = [
     // igConfig.SamplesCopyPath + '/grids/grid/editing-events/App.razor',
     // igConfig.SamplesCopyPath + '/grids/grid/**/App.razor',
 
-    igConfig.SamplesCopyPath + '/charts/category-chart/**/App.razor',
-    igConfig.SamplesCopyPath + '/charts/data-chart/**/App.razor',
-    igConfig.SamplesCopyPath + '/charts/doughnut-chart/**/App.razor',
-    igConfig.SamplesCopyPath + '/charts/financial-chart/**/App.razor',
-    igConfig.SamplesCopyPath + '/charts/pie-chart/**/App.razor',
-    igConfig.SamplesCopyPath + '/charts/sparkline/**/App.razor',
-    igConfig.SamplesCopyPath + '/charts/tree-map/**/App.razor',
-    igConfig.SamplesCopyPath + '/charts/zoomslider/**/App.razor',
-    igConfig.SamplesCopyPath + '/maps/geo-map/**/App.razor',
-    igConfig.SamplesCopyPath + '/gauges/bullet-graph/**/App.razor',
-    igConfig.SamplesCopyPath + '/gauges/linear-gauge/**/App.razor',
-    igConfig.SamplesCopyPath + '/gauges/radial-gauge/**/App.razor',
-    igConfig.SamplesCopyPath + '/grids/data-grid/**/App.razor',
-    igConfig.SamplesCopyPath + '/grids/list/**/App.razor',
-    igConfig.SamplesCopyPath + '/grids/grid/**/App.razor',
-    igConfig.SamplesCopyPath + '/grids/tree-grid/**/App.razor',
-    igConfig.SamplesCopyPath + '/grids/tree/**/App.razor',
-    igConfig.SamplesCopyPath + '/grids/pivot-grid/**/App.razor',
-    igConfig.SamplesCopyPath + '/editors/**/App.razor',
+    // including samples for all components:
+    igConfig.SamplesCopyPath + '/**/App.razor',
 
-    igConfig.SamplesCopyPath + '/inputs/badge/**/App.razor',
-    igConfig.SamplesCopyPath + '/inputs/button/**/App.razor',
-    igConfig.SamplesCopyPath + '/inputs/checkbox/**/App.razor',
-    igConfig.SamplesCopyPath + '/inputs/chip/**/App.razor',
-    igConfig.SamplesCopyPath + '/inputs/circular-progress-indicator/**/App.razor',
-    igConfig.SamplesCopyPath + '/inputs/combo/**/App.razor',
-    igConfig.SamplesCopyPath + '/inputs/date-time-input/**/App.razor',
-    igConfig.SamplesCopyPath + '/inputs/dropdown/**/App.razor',
-    igConfig.SamplesCopyPath + '/inputs/form/**/App.razor',
-    igConfig.SamplesCopyPath + '/inputs/icon-button/**/App.razor',
-    igConfig.SamplesCopyPath + '/inputs/input/**/App.razor',
-    igConfig.SamplesCopyPath + '/inputs/linear-progress-indicator/**/App.razor',
-    igConfig.SamplesCopyPath + '/inputs/radio/**/App.razor',
-    igConfig.SamplesCopyPath + '/inputs/ripple/**/App.razor',
-    igConfig.SamplesCopyPath + '/inputs/select/**/App.razor',
-    igConfig.SamplesCopyPath + '/inputs/slider/**/App.razor',
-    igConfig.SamplesCopyPath + '/inputs/switches/**/App.razor',
-
-    igConfig.SamplesCopyPath + '/layouts/accordion/**/App.razor',
-    igConfig.SamplesCopyPath + '/layouts/expansion-panel/**/App.razor',
-    igConfig.SamplesCopyPath + '/layouts/avatar/**/App.razor',
-    igConfig.SamplesCopyPath + '/layouts/card/**/App.razor',
-    igConfig.SamplesCopyPath + '/layouts/icon/**/App.razor',
-    igConfig.SamplesCopyPath + '/layouts/tabs/**/App.razor',
-    igConfig.SamplesCopyPath + '/layouts/dock-manager/**/App.razor',
-
-    igConfig.SamplesCopyPath + '/menus/**/App.razor',
-    igConfig.SamplesCopyPath + '/scheduling/**/App.razor',
-    igConfig.SamplesCopyPath + '/notifications/**/App.razor',
-    igConfig.SamplesCopyPath + '/excel/excel-library/**/App.razor',
+    // including samples for specific components:
+    // igConfig.SamplesCopyPath + '/charts/category-chart/**/App.razor',
+    // igConfig.SamplesCopyPath + '/charts/data-chart/**/App.razor',
+    // igConfig.SamplesCopyPath + '/charts/doughnut-chart/**/App.razor',
+    // igConfig.SamplesCopyPath + '/charts/financial-chart/**/App.razor',
+    // igConfig.SamplesCopyPath + '/charts/pie-chart/**/App.razor',
+    // igConfig.SamplesCopyPath + '/charts/sparkline/**/App.razor',
+    // igConfig.SamplesCopyPath + '/charts/tree-map/**/App.razor',
+    // igConfig.SamplesCopyPath + '/charts/zoomslider/**/App.razor',
+    // igConfig.SamplesCopyPath + '/charts/toolbar/**/App.razor',    
+    // igConfig.SamplesCopyPath + '/maps/geo-map/**/App.razor',
+    // igConfig.SamplesCopyPath + '/gauges/bullet-graph/**/App.razor',
+    // igConfig.SamplesCopyPath + '/gauges/linear-gauge/**/App.razor',
+    // igConfig.SamplesCopyPath + '/gauges/radial-gauge/**/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/data-grid/**/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/list/**/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/grid/**/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/tree-grid/**/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/tree/**/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/pivot-grid/**/App.razor',
+    // igConfig.SamplesCopyPath + '/editors/**/App.razor',
+    // igConfig.SamplesCopyPath + '/editors/date-picker/**/App.razor',
+    // igConfig.SamplesCopyPath + '/inputs/badge/**/App.razor',
+    // igConfig.SamplesCopyPath + '/inputs/button/**/App.razor',
+    // igConfig.SamplesCopyPath + '/inputs/checkbox/**/App.razor',
+    // igConfig.SamplesCopyPath + '/inputs/chip/**/App.razor',
+    // igConfig.SamplesCopyPath + '/inputs/circular-progress-indicator/**/App.razor',
+    // igConfig.SamplesCopyPath + '/inputs/combo/**/App.razor',
+    // igConfig.SamplesCopyPath + '/inputs/date-time-input/**/App.razor',
+    // igConfig.SamplesCopyPath + '/inputs/dropdown/**/App.razor',
+    // igConfig.SamplesCopyPath + '/inputs/form/**/App.razor',
+    // igConfig.SamplesCopyPath + '/inputs/icon-button/**/App.razor',
+    // igConfig.SamplesCopyPath + '/inputs/input/**/App.razor',
+    // igConfig.SamplesCopyPath + '/inputs/linear-progress-indicator/**/App.razor',
+    // igConfig.SamplesCopyPath + '/inputs/radio/**/App.razor',
+    // igConfig.SamplesCopyPath + '/inputs/ripple/**/App.razor',
+    // igConfig.SamplesCopyPath + '/inputs/select/**/App.razor',
+    // igConfig.SamplesCopyPath + '/inputs/slider/**/App.razor',
+    // igConfig.SamplesCopyPath + '/inputs/switches/**/App.razor',
+    // igConfig.SamplesCopyPath + '/layouts/accordion/**/App.razor',
+    // igConfig.SamplesCopyPath + '/layouts/avatar/**/App.razor',
+    // igConfig.SamplesCopyPath + '/layouts/card/**/App.razor',
+    // igConfig.SamplesCopyPath + '/layouts/expansion-panel/**/App.razor',
+    // igConfig.SamplesCopyPath + '/layouts/dock-manager/**/App.razor',
+    // igConfig.SamplesCopyPath + '/layouts/icon/**/App.razor',
+    // igConfig.SamplesCopyPath + '/layouts/stepper/**/App.razor',
+    // igConfig.SamplesCopyPath + '/layouts/tabs/**/App.razor',
+    // igConfig.SamplesCopyPath + '/menus/**/App.razor',
+    // igConfig.SamplesCopyPath + '/scheduling/**/App.razor',
+    // igConfig.SamplesCopyPath + '/notifications/**/App.razor',
+    // igConfig.SamplesCopyPath + '/excel/excel-library/**/App.razor',
 
     // igConfig.SamplesCopyPath + '/excel/spreadsheet/**/App.razor',
     // igConfig.SamplesCopyPath + '/gauges/bullet-graph/animation/App.razor',
     // igConfig.SamplesCopyPath + '/grids/**/binding-live-data/App.razor',
     // igConfig.SamplesCopyPath + '/grids/**/overview/App.razor',
     // igConfig.SamplesCopyPath + '/grids/**/column-types/App.razor',
-
+    // igConfig.SamplesCopyPath + '/grids/grid/advanced-filtering-options/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/grid/styling-custom-css/App.razor',
     // "!" + igConfig.SamplesCopyPath + '/**/Program.cs',
     "!" + igConfig.SamplesCopyPath + '/**/obj/**',
     "!" + igConfig.SamplesCopyPath + '/**/bin/**',
@@ -105,13 +111,13 @@ var samples = [];
 
 var sampleOutputFolder = '';
 
-function cleanSamples() {
-    // cleaning up obsolete files in individual samples
-    // del.sync("../../samples/**/src/sandbox.config.json", {force:true});
-    // del.sync("../../samples/**/manifest.json", {force:true});
+// cleanup individual samples if they have bin/obj folders
+function cleanupSamples(cb) {
+    del.sync("../../samples/**/bin/**/*.*", {force:true});
+    del.sync("../../samples/**/obj/**/*.*", {force:true});
+    cb();
+} exports.cleanupSamples = cleanupSamples;
 
-    del.sync("../../samples/**/css/open-iconic/README.md", {force:true});
-}
 // lints all source files in ./samples folder and remove any routing paths (@page)
 // since they are auto-generated when samples are copied to browsers
 function lintSamples(cb) {
@@ -145,7 +151,13 @@ function saveSamples(cb) {
 function getSamples(cb) {
 
     var deferredSamples = [
-      // excluding deferred gird samples
+        igConfig.SamplesCopyPath + '/charts/data-chart/itemized-bar-chart/App.razor',
+        igConfig.SamplesCopyPath + '/charts/data-chart/itemized-column-chart/App.razor',
+        igConfig.SamplesCopyPath + '/charts/data-chart/itemized-stacked-bar-chart/App.razor',
+        igConfig.SamplesCopyPath + '/charts/data-chart/itemized-stacked-column-chart/App.razor',
+        // excluding bugged samples:
+        igConfig.SamplesCopyPath + '/grids/tree-grid/editing-columns/App.razor', // BUG https://github.com/IgniteUI/igniteui-blazor-examples/issues/423
+        // excluding deferred gird samples
       igConfig.SamplesCopyPath + '/grids/grid/toolbar-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/advanced-filtering-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/binding-nested-data-2/App.razor',
@@ -155,7 +167,6 @@ function getSamples(cb) {
       igConfig.SamplesCopyPath + '/grids/grid/column-resize-styling/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/column-selection-styles/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/conditional-cell-style-2/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/custom-context-menu/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/data-exporting-indicator/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/data-performance-infinite-scroll/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/data-performance-operations/App.razor',
@@ -291,7 +302,7 @@ function cleanupSampleBrowser(outputPath) {
     log('cleaning up files in ' + outputPath);
     del.sync([
         outputPath + "/wwwroot/code-viewer/**/*.json", // auto-generated code-viewer .json files
-        outputPath + "/wwwroot/*.js", // auto-copied sample's .js files
+        outputPath + "/wwwroot/sb/*.js", // auto-copied sample's .js files
         outputPath + "/Services/*.*", // auto-copied data files
         outputPath + "/Components/**", // auto-copied sample's .razor components
         outputPath + "/Pages/**/*.*", // auto-copied samples
@@ -319,16 +330,20 @@ function copySamplePages(cb, outputPath) {
     log('copying sample to ' + outputPath + '/Pages/*.* from /samples/**/app.razor files:');
     for (const sample of samples) {
 
+        let sampleFolder = sample.ComponentGroup + '/' + sample.ComponentFolder + '/' + sample.SampleFolderName;
+        log("copying sample to " + outputPath + '/Pages/' + sampleFolder + '/App.razor');
+
         // lint and force auto-generation of routing paths (@page) in razor files
         Transformer.lintSample(sample, true);
 
-        let sampleFolder = sample.ComponentGroup + '/' + sample.ComponentFolder
         // outputFolder = Strings.toTitleCase(outputClient);
         // let dataFiles = [];
         for (const file of sample.SourceFiles) {
+            // console.log(" file.Name=" +  file.Path);
             if (file.isRazorFile()) {
-                var copyTarget = outputPath + '/Pages/' + sampleFolder + '/' + file.Parent + '/' + file.Name;
-                log("copying sample to " + copyTarget);
+                // var copyTarget = outputPath + '/Pages/' + sampleFolder + '/' + file.Parent + '/' + file.Name;
+                var copyTarget = outputPath + '/Pages/' + sampleFolder + '/' + file.Name;
+                // log("copying sample to " + copyTarget);
                 saveFile(copyTarget, file.Content);
             } else if (file.Name.indexOf("Program.cs") >= 0)  {
                 continue;
@@ -399,7 +414,7 @@ function copySampleScripts(cb, outputPath, indexName) {
                         if (file.Name.indexOf("3") >= 0) fileRequiresLoading = false;
                     }
                     if (fileRequiresLoading) {
-                        insertScriptFiles.push('<script type="module" src="sb/' + fileName + '"></script>');
+                        insertScriptFiles.push('<script src="sb/' + fileName + '"></script>');
                     }
                 } else {
                     insertScriptFiles.push('<script src="sb/' + fileName + '"></script>');
@@ -493,21 +508,34 @@ function copySamplesToClient(cb) {
 
 function updateReadme(cb) {
 
-    // log('updating readme files... ');
+    var changeFilesCount = 0;
     var template = fs.readFileSync("../../templates/sample/ReadMe.md", "utf8");
     for (const sample of samples) {
 
         if (sample.SourceFiles !== undefined &&
             sample.SourceFiles.length > 0) {
-            // let outputPath = sampleOutputFolder + '/' + sample.SampleFolderPath;
-            let outputPath = sampleOutputFolder + sample.SampleFolderPath + "/ReadMe.md";
-            makeDirectoryFor(outputPath);
-            log("updating " + outputPath);
-            let readmeFile = Transformer.updateReadme(sample, template);
-            fs.writeFileSync(outputPath, readmeFile);
-            // break;
+                
+            let readmePath = sampleOutputFolder + sample.SampleFolderPath + "/ReadMe.md";
+            makeDirectoryFor(readmePath);
+            
+            let readmeNewFile = Transformer.updateReadme(sample, template);
+            let readmeOldFile = ""; 
+            if (fs.existsSync(readmePath)) {
+                readmeOldFile = fs.readFileSync(readmePath).toString(); 
+            }
+
+            if (readmeNewFile !== readmeOldFile) {
+                console.log('UPDATED: ' + readmePath)
+                changeFilesCount++;
+                fs.writeFileSync(readmePath, readmeNewFile);
+            }  
         }
     }
+    
+    if (changeFilesCount > 0) {
+        console.log('WARNING: you must commit above ' + changeFilesCount + ' readme files in a pull request')
+    }
+
     cb();
 } exports.updateReadme = updateReadme;
 
@@ -557,17 +585,20 @@ function updateProjects(cb) {
 // updating IG blazor versions in .csproj files for all samples
 function updateIG(cb) {
 
-    // NOTE: change this array with new version of packages
+    // NOTE: change this array with new version of IG packages, e.g.
+    // { name: "IgniteUI.Blazor.Trial", version: "23.1.72" }, // use trial packages before the volume release - PUBLIC NUGET https://www.nuget.org/packages/IgniteUI.Blazor.Trial
+    // { name: "IgniteUI.Blazor",       version: "23.2.14" }, // use non-trial packages while working on release - LOCAL PROGET http://proget.infragistics.local:81/packages?Count=500&FeedId=13
+
     let packageUpgrades = [
-        // these IG packages are often updated:
-        { name: "IgniteUI.Blazor.Trial"                , version: "22.2.65" },
-        { name: "IgniteUI.Blazor.Documents.Core.Trial",  version: "22.2.65" },
-        { name: "IgniteUI.Blazor.Documents.Excel.Trial", version: "22.2.65" },
+        // update version of IG packages and change to Trial or non-trial
+        { name: "IgniteUI.Blazor",                 version: "23.2.96" },
+        { name: "IgniteUI.Blazor.Documents.Core",  version: "23.2.96" },
+        { name: "IgniteUI.Blazor.Documents.Excel", version: "23.2.96" },
         // these IG packages are sometimes updated:
-        { name: "Microsoft.AspNetCore.Components",                       version: "6.0.0" },
-        { name: "Microsoft.AspNetCore.Components.Web",                   version: "6.0.0" },
-        { name: "Microsoft.AspNetCore.Components.WebAssembly",           version: "6.0.0" },
-        { name: "Microsoft.AspNetCore.Components.WebAssembly.DevServer", version: "6.0.0" }, // suffix: 'PrivateAssets="all" ' },
+        { name: "Microsoft.AspNetCore.Components",                       version: "6.0.25" },
+        { name: "Microsoft.AspNetCore.Components.Web",                   version: "6.0.25" },
+        { name: "Microsoft.AspNetCore.Components.WebAssembly",           version: "6.0.25" },
+        { name: "Microsoft.AspNetCore.Components.WebAssembly.DevServer", version: "6.0.25" }, // suffix: 'PrivateAssets="all" ' },
         { name: "Microsoft.AspNetCore.Cors",                             version: "2.2.0" },
         { name: "Microsoft.AspNetCore.Http.Abstractions",                version: "2.2.0" },
         { name: "System.Net.Http.Json", version:"6.0.0" },
@@ -575,51 +606,42 @@ function updateIG(cb) {
 
     // creating package mapping for quick lookup
     let packageMappings = {};
-    for (const item of packageUpgrades) {
-        item.id = item.name;
-        let name = item.name;
-        packageMappings[name] = item;
+    for (let item of packageUpgrades) {
+        // make sure mapping works with any licensee of IG packages
+        item.id = item.name.replace(".Trial","");
+        packageMappings[item.id] = item;
     }
 
-    let updatedPackages = 0; // NOTE you can comment out strings in this array to run these function only on a subset of samples
+    let updatedPackages = 0; 
     var packagePaths = [
         '../../browser/**/*.csproj', // browser
-        '../../samples/**/*.csproj',
+        '../../samples/**/*.csproj', // all samples
+        // NOTE comment out above line and uncomment below line(s) to update only a subset of samples
         // '../../samples/charts/**/*.csproj',
-        // '../../samples/editors/**/*.csproj',
-        // '../../samples/excel/**/*.csproj',
         // '../../samples/gauges/**/*.csproj',
-        // '../../samples/grids/**/*.csproj',
-        // '../../samples/inputs/**/*.csproj',
-        // '../../samples/layouts/**/*.csproj',
-        // '../../samples/maps/**/*.csproj',
-        // '../../samples/menus/**/*.csproj',
-        // '../../samples/notifications/**/*.csproj',
-        // '../../samples/scheduling/**/*.csproj',
+        // '../../samples/gauges/bullet-graph/**/*.csproj',
 
-        // '../samples/charts/category-chart/**/*.csproj',
-        // '../samples/maps/geo-map/type-scatter-bubble-series/*.csproj',
+        // excluding node modules
         '!../../samples/**/node_modules/**/*.csproj',
+        '!../../samples/**/node_modules/**',
+        '!../../samples/**/node_modules',
     ];
     gulp.src(packagePaths)
-    // .pipe(flatten({ "includeParents": -1 }))
     .pipe(es.map(function(file, fileCallback) {
         let filePath = file.dirname + "/" + file.basename;
         var fileContent = file.contents.toString();
         var fileLines = fileContent.split('\n');
-        // log("updating: " + filePath);
 
         var fileChanged = false;
         for (let i = 0; i < fileLines.length; i++) {
             const line = fileLines[i];
-            //   <PackageReference Include="IgniteUI.Blazor.Documents.Excel.Trial" Version="22.1.46" />
             let words = line.split("Version=");
             if (words.length === 2 && words[0].indexOf('PackageReference') > 0) {
                 // matching packages
-                let packageName = words[0].replace("<PackageReference", "").replace("Include=", "").split('"').join('').trim();
-                let packageInfo = packageMappings[packageName];
+                let packageID = words[0].replace("<PackageReference", "").replace("Include=", "").replace(".Trial", "").split('"').join('').trim();
+                let packageInfo = packageMappings[packageID];
                 if (packageInfo !== undefined) {
-                    let tabString = line.indexOf('      ') >= 0 ? '      ': '    ';
+                    let tabString = line.indexOf('      ') >= 0 ? '      ' : '    ';
                     let newLine = tabString + '<PackageReference Include="' + packageInfo.name + '" Version="' + packageInfo.version + '" ';
                     if (packageInfo.suffix) {
                         newLine += packageInfo.suffix;
@@ -634,21 +656,11 @@ function updateIG(cb) {
             }
         }
         if (fileChanged) {
-            let newContent = fileLines.join('\n'); // newContent !== fileContent
+            let newContent = fileLines.join('\n');
             updatedPackages++;
             fs.writeFileSync(filePath, newContent);
             log("updated: " + filePath);
         }
-            // let filePath = fileDir + "/" + file.basename;
-            // // let filePath = file.dirname + "/" + file.basename;
-            // let oldContent = file.contents.toString();
-            // var newContent = templateProject + '';
-            // if (newContent !== oldContent) {
-            //     fs.writeFileSync(filePath, newContent);
-            //     log('updated project: ' + filePath);
-            //     // file.contents = new Buffer(newContent);
-            // }
-        // cb();
         // send the updated file down the pipe
         fileCallback(null, file);
     }))

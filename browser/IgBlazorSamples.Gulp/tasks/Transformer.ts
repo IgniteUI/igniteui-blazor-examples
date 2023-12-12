@@ -426,6 +426,7 @@ class Transformer {
 
         let comparedFiles: string[] = [];
 
+        let foundErrors = 0;
         for (const sampleA of samples) {
 
             for (const fileA of sampleA.SourceFiles) {
@@ -443,14 +444,17 @@ class Transformer {
                         let contentB = transFS.readFileSync(fileB.Path).toString().trim();
 
                         if (contentA !== contentB) {
-                            console.log('WARNING: File "' + fileA.Name + '" has different content in these locations: \n' + fileA.Path + '\n' + fileB.Path)
+                            console.log('ERROR: File "' + fileA.Name + '" has different content in these locations: \n' + fileA.Path + '\n' + fileB.Path)
+                            foundErrors++;
                         }
 
                     }
                 }
                 comparedFiles.push(fileA.Name);
             }
-
+        }
+        if (foundErrors > 0) {
+            throw new Error('You must fixed above ' + foundErrors + ' errors before the Blazor Sample Browser can combine individual samples')
         }
     }
 
@@ -610,6 +614,7 @@ class Transformer {
                 // }
 
             } else if (file.isPublicCSS()) {
+                // console.log("got PublicFiles_CSS=" + file.Path);
                 info.PublicFiles_CSS.push(file);
 
             } else if (file.isPublicJS()) {
@@ -1001,7 +1006,9 @@ class Transformer {
         //     console.log("WARNING: lintRazor() found no @using/@inject statements in " + sample.SourceRazorFile.Path);
         // }
 
+        let stylingLines: string[] = [];
         if (generateRoutingPath) {
+            // console.log("lintRazor generateRoutingPath")
             // generating routing paths (@page) for a sample with and without SB navigation
             importLines.splice(0, 0, '@page "/samples' + sample.SampleRouteNew + '"');
             importLines.splice(1, 0, '@page "/samples' + sample.SampleRouteOld + '"');
@@ -1009,17 +1016,38 @@ class Transformer {
             importLines.splice(3, 0, '@page         "' + sample.SampleRouteOld + '"');
             importLines.splice(4, 0, '');
             // console.log("NOTE: lintRazor() importLines \n" + importLines.join('\n'));
+
+            var defaultCSS: string = "/*\n";
+            defaultCSS += "CSS styles are loaded from the shared CSS file located at:\n"
+            defaultCSS += "https://static.infragistics.com/xplatform/css/samples/\n"
+            defaultCSS += "*/";
+
+            if (sample.PublicFiles_CSS && sample.PublicFiles_CSS.length > 0) {
+                // injecting CSS files as inline styles
+                for (const css of sample.PublicFiles_CSS) {
+                    let cssContent = css.Content.split('\n\n').join('\n').trim();
+                    let cssLines = cssContent.split('\n');
+                    if (cssLines.length <= 5 && cssContent.includes("CSS styles are loaded from the shared")) {
+                        continue;
+                    }
+
+                    if (cssContent !== defaultCSS) {
+                        // console.log("GULP injecting \n" + cssContent)
+                        console.log("- injecting CSS from " + css.Path)
+                        stylingLines.push('<style>');
+                        stylingLines.push(cssContent);
+                        stylingLines.push('</style>');
+                    }
+                }
+            }
         }
 
-        let newContent =
-            importLines.join('\n') + '\n' +
-            htmlCodeLines.join('\n') + '\n' +
-            csharpCodeLines.join('\n') + '\n';
-
-            // for (const file of sample.SourceFiles) {
-            //    console.log("NOTE: lintRazor() SourceFile " + file.Path);
-            // }
-            // console.log("NOTE: lintRazor() RazorFile " + sample.SourceRazorFile.Path);
+        let newContent = importLines.join('\n') + '\n';
+        if (stylingLines.length > 0)  {
+            newContent += stylingLines.join('\n') + '\n';
+        }
+        newContent += htmlCodeLines.join('\n') + '\n';
+        newContent += csharpCodeLines.join('\n') + '\n';
 
         sample.SourceFiles[0].Content = newContent;
         sample.SourceRazorFile.Content = newContent;

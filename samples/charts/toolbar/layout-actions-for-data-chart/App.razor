@@ -1,0 +1,183 @@
+@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
+@using System;
+
+<div class="container vertical">
+    <div id="aboveContentSplit">
+        <div id="aboveContentLeftContainer">
+            <IgbToolbar
+            Name="Toolbar"
+            @ref="toolbar"
+            Orientation="ToolbarOrientation.Horizontal"
+            OnCommand="ToolbarToggleTooltip">
+                <IgbToolActionCheckbox
+                Name="EnableTooltipsLabel"
+                @ref="enableTooltipsLabel"
+                Title="Enable Tooltips"
+                BeforeId="ZoomReset"
+                CommandId="EnableTooltips">
+                </IgbToolActionCheckbox>
+
+                <IgbToolActionLabel
+                Name="ZoomResetHidden"
+                @ref="zoomResetHidden"
+                OverlayId="ZoomReset"
+                Visibility="Visibility.Collapsed">
+                </IgbToolActionLabel>
+
+                <IgbToolActionLabel
+                Name="ZoomResetLabel"
+                @ref="zoomResetLabel"
+                Title="Reset"
+                AfterId="ZoomOut"
+                IconName="reset"
+                IconCollectionName="ChartToolbarIcons"
+                CommandId="ZoomReset">
+                </IgbToolActionLabel>
+
+                <IgbToolActionIconMenu
+                Name="AnalyzeMenu"
+                @ref="analyzeMenu"
+                OverlayId="AnalyzeMenu"
+                Visibility="Visibility.Collapsed">
+                </IgbToolActionIconMenu>
+
+            </IgbToolbar>
+
+        </div>
+        <div id="aboveContentRightContainer">
+            <!-- insert aboveContentRight -->
+            <!-- end aboveContentRight -->
+        </div>
+    </div>
+    <div class="container vertical fill">
+        <IgbDataChart
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+        IsHorizontalZoomEnabled="true"
+        IsVerticalZoomEnabled="true"
+        Name="chart"
+        @ref="chart">
+            <IgbCategoryXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            DataSource="CountryRenewableElectricity"
+            Label="Year">
+            </IgbCategoryXAxis>
+
+            <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis"
+            Title="TWh"
+            LabelLocation="AxisLabelsLocation.OutsideRight">
+            </IgbNumericYAxis>
+
+            <IgbLineSeries
+            Name="LineSeries1"
+            @ref="lineSeries1"
+            Title="Electricity"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="CountryRenewableElectricity"
+            ValueMemberPath="America">
+            </IgbLineSeries>
+
+            <IgbLineSeries
+            Name="LineSeries2"
+            @ref="lineSeries2"
+            Title="Electricity"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="CountryRenewableElectricity"
+            ValueMemberPath="Europe">
+            </IgbLineSeries>
+
+            <IgbLineSeries
+            Name="LineSeries3"
+            @ref="lineSeries3"
+            Title="Electricity"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="CountryRenewableElectricity"
+            ValueMemberPath="China">
+            </IgbLineSeries>
+
+        </IgbDataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var toolbar = this.toolbar;
+        var enableTooltipsLabel = this.enableTooltipsLabel;
+        var zoomResetHidden = this.zoomResetHidden;
+        var zoomResetLabel = this.zoomResetLabel;
+        var analyzeMenu = this.analyzeMenu;
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var lineSeries1 = this.lineSeries1;
+        var lineSeries2 = this.lineSeries2;
+        var lineSeries3 = this.lineSeries3;
+
+        this.BindElements = () => {
+            toolbar.Target = this.chart;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbToolbar toolbar;
+    private IgbToolActionCheckbox enableTooltipsLabel;
+    private IgbToolActionLabel zoomResetHidden;
+    private IgbToolActionLabel zoomResetLabel;
+    private IgbToolActionIconMenu analyzeMenu;
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbLineSeries lineSeries1;
+    private IgbLineSeries lineSeries2;
+    private IgbLineSeries lineSeries3;
+
+    public void ToolbarToggleTooltip(IgbToolCommandEventArgs args)
+    {
+        var target = this.chart;
+        switch (args.Command.CommandId)
+    	{
+    		case "EnableTooltips":
+                IgbSeries toRemove = null;
+                foreach (var s in target.Series)
+                {
+                    if (s is IgbDataToolTipLayer)
+                    {
+                        toRemove = s;
+                    }
+                }
+
+                if (toRemove == null) {
+                    target.Series.Add(new IgbDataToolTipLayer());
+                } else {
+                    target.Series.Remove(toRemove);
+                }
+    			break;
+    	}
+    }
+
+    private CountryRenewableElectricity _countryRenewableElectricity = null;
+    public CountryRenewableElectricity CountryRenewableElectricity
+    {
+        get
+        {
+            if (_countryRenewableElectricity == null)
+            {
+                _countryRenewableElectricity = new CountryRenewableElectricity();
+            }
+            return _countryRenewableElectricity;
+        }
+    }
+
+}

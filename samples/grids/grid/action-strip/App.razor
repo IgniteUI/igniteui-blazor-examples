@@ -1,7 +1,6 @@
 @using IgniteUI.Blazor.Controls
 
-<div class="container vertical">
-
+<div class="container vertical ig-typography">
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
@@ -10,11 +9,8 @@
         Data="NwindData"
         RowEditable="true"
         AllowFiltering="true"
+        Pinning="PinningConfig1"
         PrimaryKey="ProductID">
-            <IgbPinningConfig
-            Rows="RowPinningPosition.Top">
-            </IgbPinningConfig>
-
             <IgbActionStrip
             Name="actionStrip"
             @ref="actionStrip">
@@ -24,7 +20,8 @@
 
                 <IgbGridEditingActions
                 EditRow="true"
-                DeleteRow="false">
+                DeleteRow="true"
+                AddRow="true">
                 </IgbGridEditingActions>
 
             </IgbActionStrip>
@@ -100,6 +97,20 @@
     }
 
     private IgbGrid grid;
+    private IgbPinningConfig _pinningConfig1 = null;
+    public IgbPinningConfig PinningConfig1
+    {
+        get
+        {
+            if (this._pinningConfig1 == null)
+            {
+                var pinningConfig1 = new IgbPinningConfig();
+                pinningConfig1.Rows = RowPinningPosition.Top;
+                this._pinningConfig1 = pinningConfig1;
+            }
+            return this._pinningConfig1;
+        }
+    }
     private IgbActionStrip actionStrip;
     private IgbColumn productName;
     private IgbColumn unitPrice;

@@ -1,0 +1,77 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="CustomersData"
+        PrimaryKey="ID"
+        DetailTemplateScript="WebGridMasterDetailTemplate"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="ContactName"
+            Header="Contact"
+            Width="250px"
+            Resizable="false">
+            </IgbColumn>
+
+            <IgbColumn
+            Header="Address"
+            Field="Address"
+            Editable="true"
+            Width="250px"
+            Resizable="false">
+            </IgbColumn>
+
+            <IgbColumn
+            Header="Country"
+            Field="Country">
+            </IgbColumn>
+
+            <IgbColumn
+            Header="Region"
+            Field="Region">
+            </IgbColumn>
+
+            <IgbColumn
+            Header="Phone"
+            Field="Phone">
+            </IgbColumn>
+
+            <IgbColumn
+            Header="Fax"
+            Field="Fax">
+            </IgbColumn>
+
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+
+    }
+
+    private IgbGrid grid;
+
+    private CustomersData _customersData = null;
+    public CustomersData CustomersData
+    {
+        get
+        {
+            if (_customersData == null)
+            {
+                _customersData = new CustomersData();
+            }
+            return _customersData;
+        }
+    }
+
+}

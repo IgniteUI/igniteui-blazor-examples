@@ -10,7 +10,7 @@
         IsHorizontal="true"
         IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="CalloutsVisible"
+            PropertyPath="AutoCalloutsVisible"
             Name="CalloutsVisibleEditor"
             @ref="calloutsVisibleEditor"
             Label="Callouts Visible"
@@ -24,7 +24,6 @@
     <div class="legend-title">
         Average Temperature in Sydney
     </div>
-
     <div class="container vertical fill">
         <IgbCategoryChart
         Name="chart"
@@ -35,13 +34,10 @@
         IsVerticalZoomEnabled="false"
         IncludedProperties="@(new string[] { "Month", "Temperature" })"
         DataSource="TemperatureAnnotatedData"
-        CalloutsDataSource="TemperatureAnnotatedData"
-        CalloutsVisible="true"
-        CalloutsXMemberPath="Index"
-        CalloutsYMemberPath="Temperature"
-        CalloutsLabelMemberPath="TempInfo"
+        AutoCalloutsVisible="true"
         CrosshairsAnnotationYAxisPrecision="0"
         YAxisMaximumValue="35"
+        YAxisTitle="Degrees Celsius"
         YAxisLabelLocation="YAxisLabelLocation.OutsideRight">
         </IgbCategoryChart>
 

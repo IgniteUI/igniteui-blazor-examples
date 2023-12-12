@@ -1,0 +1,196 @@
+@using IgniteUI.Blazor.Controls
+
+
+<div class="container vertical">
+    <div class="legend">
+        <IgbLegend
+        Name="Legend"
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
+        </IgbLegend>
+        
+    </div>
+    <div class="container vertical fill">
+        <IgbDataChart
+        Name="chart"
+        @ref="chart"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false">
+            <IgbCategoryXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            DataSource="CompanyFinancialData"
+            Label="Year"
+            LabelFontSize="15"
+            Gap="0.7"
+            Interval="1">
+            </IgbCategoryXAxis>
+            
+            <IgbNumericYAxis
+            Name="yAxis1"
+            @ref="yAxis1"
+            Title="Income"
+            TitleAngle="-90"
+            MinimumValue="0"
+            MaximumValue="10"
+            Stroke="dodgerblue"
+            StrokeThickness="5"
+            TickLength="5"
+            TickStrokeThickness="2"
+            TickStroke="dodgerblue"
+            TitleFontSize="15"
+            TitleLeftMargin="10"
+            TitleTextColor="dodgerblue"
+            LabelTextColor="dodgerblue"
+            LabelFontSize="15"
+            LabelRightMargin="5"
+            LabelHorizontalAlignment="HorizontalAlignment.Right"
+            LabelLocation="AxisLabelsLocation.OutsideLeft">
+            </IgbNumericYAxis>
+            
+            <IgbNumericYAxis
+            Name="yAxis3"
+            @ref="yAxis3"
+            Title="Revenue"
+            TitleAngle="90"
+            MinimumValue="0"
+            MaximumValue="100"
+            Stroke="orange"
+            StrokeThickness="5"
+            TickLength="5"
+            TickStrokeThickness="2"
+            TickStroke="orange"
+            TitleFontSize="15"
+            TitleRightMargin="10"
+            TitleTextColor="orange"
+            LabelTextColor="orange"
+            LabelFontSize="15"
+            LabelLeftMargin="5"
+            LabelHorizontalAlignment="HorizontalAlignment.Left"
+            LabelLocation="AxisLabelsLocation.OutsideRight">
+            </IgbNumericYAxis>
+            
+            <IgbNumericYAxis
+            Name="yAxis2"
+            @ref="yAxis2"
+            Title="Operating Cashflow"
+            TitleAngle="90"
+            MinimumValue="0"
+            MaximumValue="10"
+            Stroke="green"
+            StrokeThickness="5"
+            TickLength="5"
+            TickStrokeThickness="2"
+            TickStroke="green"
+            TitleFontSize="15"
+            TitleTextColor="green"
+            LabelTextColor="green"
+            LabelFontSize="15"
+            LabelLeftMargin="5"
+            LabelHorizontalAlignment="HorizontalAlignment.Left"
+            LabelLocation="AxisLabelsLocation.OutsideRight">
+            </IgbNumericYAxis>
+            
+            <IgbColumnSeries
+            Name="ColumnSeries1"
+            @ref="columnSeries1"
+            DataSource="CompanyFinancialData"
+            XAxisName="xAxis"
+            YAxisName="yAxis1"
+            ShowDefaultTooltip="true"
+            ValueMemberPath="Income"
+            Title="Income"
+            Brush="dodgerblue"
+            Outline="dodgerblue">
+            </IgbColumnSeries>
+            
+            <IgbColumnSeries
+            Name="ColumnSeries2"
+            @ref="columnSeries2"
+            DataSource="CompanyFinancialData"
+            XAxisName="xAxis"
+            YAxisName="yAxis2"
+            ShowDefaultTooltip="true"
+            ValueMemberPath="Cashflow"
+            Title="Cashflow"
+            Brush="green"
+            Outline="green">
+            </IgbColumnSeries>
+            
+            <IgbLineSeries
+            Name="LineSeries2"
+            @ref="lineSeries2"
+            DataSource="CompanyFinancialData"
+            XAxisName="xAxis"
+            YAxisName="yAxis3"
+            ShowDefaultTooltip="true"
+            ValueMemberPath="Revenue"
+            Thickness="5"
+            Title="Revenue"
+            Brush="orange"
+            Outline="orange"
+            MarkerOutline="orange"
+            MarkerBrush="white"
+            MarkerThickness="2"
+            LegendItemBadgeShape="LegendItemBadgeShape.Circle">
+            </IgbLineSeries>
+            
+            <IgbDataToolTipLayer
+            Name="DataToolTipLayer"
+            @ref="dataToolTipLayer">
+            </IgbDataToolTipLayer>
+            
+        </IgbDataChart>
+        
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis1 = this.yAxis1;
+        var yAxis3 = this.yAxis3;
+        var yAxis2 = this.yAxis2;
+        var columnSeries1 = this.columnSeries1;
+        var columnSeries2 = this.columnSeries2;
+        var lineSeries2 = this.lineSeries2;
+        var dataToolTipLayer = this.dataToolTipLayer;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbLegend legend;
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis1;
+    private IgbNumericYAxis yAxis3;
+    private IgbNumericYAxis yAxis2;
+    private IgbColumnSeries columnSeries1;
+    private IgbColumnSeries columnSeries2;
+    private IgbLineSeries lineSeries2;
+    private IgbDataToolTipLayer dataToolTipLayer;
+
+    private CompanyFinancialData _companyFinancialData = null;
+    public CompanyFinancialData CompanyFinancialData
+    {
+        get
+        {
+            if (_companyFinancialData == null)
+            {
+                _companyFinancialData = new CompanyFinancialData(); 
+            }
+            return _companyFinancialData;
+        }
+    }
+    
+}

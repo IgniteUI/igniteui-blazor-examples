@@ -1,0 +1,77 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        Name="treeGrid"
+        @ref="treeGrid"
+        Id="treeGrid"
+        Data="EmployeesNestedData"
+        ChildDataKey="Employees"
+        RowSelection="GridSelectionMode.Multiple"
+        Moving="true"
+        AllowFiltering="true"
+        GridKeydownScript="WebGridCustomKBNav">
+            <IgbPaginator
+            PerPage="15">
+            </IgbPaginator>
+
+            <IgbColumn
+            Field="Name"
+            Header="Name"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            Editable="true"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="HireDate"
+            Header="Hire Date"
+            DataType="GridColumnDataType.Date"
+            Sortable="true"
+            Editable="true"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Age"
+            Header="Age"
+            DataType="GridColumnDataType.Number"
+            Sortable="true"
+            Editable="true"
+            Resizable="true">
+            </IgbColumn>
+
+        </IgbTreeGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var treeGrid = this.treeGrid;
+
+    }
+
+    private IgbTreeGrid treeGrid;
+
+    private EmployeesNestedData _employeesNestedData = null;
+    public EmployeesNestedData EmployeesNestedData
+    {
+        get
+        {
+            if (_employeesNestedData == null)
+            {
+                _employeesNestedData = new EmployeesNestedData();
+            }
+            return _employeesNestedData;
+        }
+    }
+
+}

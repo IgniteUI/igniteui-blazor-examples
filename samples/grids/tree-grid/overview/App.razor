@@ -1,7 +1,6 @@
 @using IgniteUI.Blazor.Controls
 
-<div class="container vertical">
-
+<div class="container vertical ig-typography">
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
@@ -13,8 +12,11 @@
         RowSelection="GridSelectionMode.Multiple"
         Moving="true"
         AllowFiltering="true"
-        FilterMode="FilterMode.ExcelStyleFilter"
-        Paging="true">
+        FilterMode="FilterMode.ExcelStyleFilter">
+            <IgbPaginator
+            >
+            </IgbPaginator>
+
             <IgbGridToolbar
             >
                 <IgbGridToolbarTitle
@@ -42,16 +44,6 @@
             </IgbGridToolbar>
 
             <IgbColumn
-            Field="iD"
-            Header="ID"
-            DataType="GridColumnDataType.Number"
-            Sortable="true"
-            Editable="true"
-            Resizable="true"
-            HasSummary="true">
-            </IgbColumn>
-
-            <IgbColumn
             Field="Name"
             Header="Name"
             DataType="GridColumnDataType.String"
@@ -73,24 +65,6 @@
             <IgbColumn
             Field="Age"
             Header="Age"
-            DataType="GridColumnDataType.Number"
-            Sortable="true"
-            Editable="true"
-            Resizable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="salary"
-            Header="Salary"
-            DataType="GridColumnDataType.Number"
-            Sortable="true"
-            Editable="true"
-            Resizable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="productivity"
-            Header="Productivity"
             DataType="GridColumnDataType.Number"
             Sortable="true"
             Editable="true"

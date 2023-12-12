@@ -13,7 +13,7 @@ This folder contains implementation of Blazor application with example of Marker
         <a target="_blank" href="./App.razor" rel="noopener noreferrer">
             <img height="40px" style="border-radius: 0rem; max-width: 100%;" alt="View Code" src="https://github.com/IgniteUI/igniteui-blazor-examples/raw/vnext/templates/sample/images/button-code.png"/>
         </a>
-        <a target="_blank" href="https://infragistics.com/blazor-client/samples/maps/geo-map-marker-type" rel="noopener noreferrer">
+        <a target="_blank" href="https://infragistics.com/blazor-client/samples/maps/geo-map/marker-type" rel="noopener noreferrer">
             <img height="40px" style="border-radius: 0rem; max-width: 100%;" alt="Run Sample" src="https://github.com/IgniteUI/igniteui-blazor-examples/raw/vnext/templates/sample/images/button-run.png"/>
         </a>
         <!-- <a target="_blank" href="https://codesandbox.io/s/github/IgniteUI/igniteui-blazor-examples/tree/master/samples/maps/geo-map/marker-type?fontsize=14&hidenavigation=1&theme=dark&view=preview&file=/src/App.razor" rel="noopener noreferrer">

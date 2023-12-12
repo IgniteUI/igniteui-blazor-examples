@@ -1,4 +1,5 @@
 
+
 igRegisterScript("PivotSalesDataAggregateMaxSales", (members, data) => {
     if (!data) {
         return [];

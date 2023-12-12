@@ -7,10 +7,9 @@ trigger:
   paths:
     exclude:
     - browser/IgBlazorSamples.Client/
-pr:
-  branches:
-    exclude:
-    - '*'  # must quote since "*" is a YAML reserved character; we want a string
+
+# This pipeline is meant to build specific branches for deployment. It's not meant to be a part of PR validation.
+pr: none
 
 parameters:
 - name: isVerbose
@@ -29,12 +28,12 @@ stages:
   - job: BuildSamples
     steps:
       # This specific checkout is necessary for custom logic in the gulp processes. Once we retire them, this custom behavior can be deleted.
-      - checkout: 'self' 
+      - checkout: 'self'
         path: $(Build.Repository.Name)
 
       - template: templates/build-steps-template.yml
         parameters:
-          igVersion: '22.2.65'
+          igVersion: '23.2.14'
           igNuGetFeedUrl: $(IG_Nuget_Feed_URL)
           projectToBuild: Server
           isVerbose: ${{ parameters.isVerbose }}

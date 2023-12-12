@@ -1,0 +1,86 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="AthletesData"
+        PrimaryKey="Id"
+        Name="grid1"
+        @ref="grid1">
+            <IgbColumn
+            Field="Id"
+            CellStylesScript="WebGridCellStylesHandler"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Position"
+            CellStylesScript="WebGridCellStylesHandler"
+            Name="column2"
+            @ref="column2">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Name"
+            CellStylesScript="WebGridCellStylesHandler"
+            Name="column3"
+            @ref="column3">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="AthleteNumber"
+            CellStylesScript="WebGridCellStylesHandler"
+            Name="column4"
+            @ref="column4">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="CountryName"
+            CellStylesScript="WebGridCellStylesHandler"
+            Name="column5"
+            @ref="column5">
+            </IgbColumn>
+
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid1 = this.grid1;
+        var column1 = this.column1;
+        var column2 = this.column2;
+        var column3 = this.column3;
+        var column4 = this.column4;
+        var column5 = this.column5;
+
+    }
+
+    private IgbGrid grid1;
+    private IgbColumn column1;
+    private IgbColumn column2;
+    private IgbColumn column3;
+    private IgbColumn column4;
+    private IgbColumn column5;
+
+    private AthletesData _athletesData = null;
+    public AthletesData AthletesData
+    {
+        get
+        {
+            if (_athletesData == null)
+            {
+                _athletesData = new AthletesData();
+            }
+            return _athletesData;
+        }
+    }
+
+}

@@ -14,7 +14,11 @@
             Name="InitialGroups"
             @ref="initialGroups"
             Label="Initial Groups"
-            ValueType="PropertyEditorValueType.StringValue">
+            ValueType="PropertyEditorValueType.EnumValue"
+            ShouldOverrideDefaultEditor="true"
+            DropDownNames="@(new string[] { "Country", "Product", "MonthName", "Year" })"
+            DropDownValues="@(new string[] { "Country", "Product", "MonthName", "Year" })"
+            PrimitiveValue="@("Country")">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
@@ -22,7 +26,11 @@
             Name="InitialSummaries"
             @ref="initialSummaries"
             Label="Initial Summaries"
-            ValueType="PropertyEditorValueType.StringValue">
+            ValueType="PropertyEditorValueType.EnumValue"
+            ShouldOverrideDefaultEditor="true"
+            DropDownNames="@(new string[] { "Sum(Sales)", "Avg(Sales)", "Min(Sales)", "Max(Sales)", "Count(Sales)" })"
+            DropDownValues="@(new string[] { "Sum(Sales) as Sales", "Avg(Sales) as Sales", "Min(Sales) as Sales", "Max(Sales) as Sales", "Count(Sales) as Sales" })"
+            PrimitiveValue="@("Sum(Sales) as Sales")">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
@@ -30,7 +38,11 @@
             Name="GroupSorts"
             @ref="groupSorts"
             Label="Sort Groups"
-            ValueType="PropertyEditorValueType.StringValue">
+            ValueType="PropertyEditorValueType.EnumValue"
+            ShouldOverrideDefaultEditor="true"
+            DropDownNames="@(new string[] { "Sales Desc", "Sales Asc" })"
+            DropDownValues="@(new string[] { "Sales Desc", "Sales Asc" })"
+            PrimitiveValue="@("Sales Desc")">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -39,7 +51,6 @@
     <div class="legend-title">
         Renewable Electricity Generated
     </div>
-
     <div class="container vertical fill">
         <IgbCategoryChart
         Name="chart"

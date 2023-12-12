@@ -1,0 +1,136 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="legend-title">
+        Highest Grossing Movie Franchises
+    </div>
+    <div class="legend">
+        <IgbDataLegend
+        Name="Legend"
+        @ref="legend"
+        ValueFormatMode="DataLegendValueMode.Currency"
+        ValueFormatString="${0} Billion">
+        </IgbDataLegend>
+
+    </div>
+    <div class="container vertical fill">
+        <IgbDataChart
+        Name="chart"
+        @ref="chart">
+            <IgbCategoryYAxis
+            Name="yAxis"
+            @ref="yAxis"
+            Label="Franchise"
+            UseEnhancedIntervalManagement="true"
+            EnhancedIntervalPreferMoreCategoryLabels="true"
+            DataSource="HighestGrossingMovies"
+            IsInverted="true"
+            Gap="0.5"
+            Overlap="-0.1">
+            </IgbCategoryYAxis>
+
+            <IgbNumericXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            Title="Billions of U.S. Dollars"
+            LabelFormat="{0}B"
+            AbbreviateLargeNumbers="false"
+            LabelFormatSpecifiers="NumberFormatSpecifier1">
+            </IgbNumericXAxis>
+
+            <IgbBarSeries
+            Name="BarSeries1"
+            @ref="barSeries1"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            Title="Total Revenue of Franchise"
+            ValueMemberPath="TotalRevenue"
+            DataSource="HighestGrossingMovies"
+            ShowDefaultTooltip="true">
+            </IgbBarSeries>
+
+            <IgbBarSeries
+            Name="BarSeries2"
+            @ref="barSeries2"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            Title="Highest Grossing Movie in Series"
+            ValueMemberPath="HighestGrossing"
+            DataSource="HighestGrossingMovies"
+            ShowDefaultTooltip="true">
+            </IgbBarSeries>
+
+            <IgbDataToolTipLayer
+            Name="Tooltips"
+            @ref="tooltips"
+            ValueFormatMode="DataLegendValueMode.Currency"
+            ValueFormatString="${0} Billion">
+            </IgbDataToolTipLayer>
+
+        </IgbDataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var chart = this.chart;
+        var yAxis = this.yAxis;
+        var xAxis = this.xAxis;
+        var barSeries1 = this.barSeries1;
+        var barSeries2 = this.barSeries2;
+        var tooltips = this.tooltips;
+
+        this.BindElements = () => {
+            legend.Target = this.chart;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbDataLegend legend;
+    private IgbDataChart chart;
+    private IgbCategoryYAxis yAxis;
+    private IgbNumericXAxis xAxis;
+    private IgbNumberFormatSpecifier[] _numberFormatSpecifier1 = null;
+    public IgbNumberFormatSpecifier[] NumberFormatSpecifier1
+    {
+        get
+        {
+            if (this._numberFormatSpecifier1 == null)
+            {
+                var numberFormatSpecifier1 = new IgbNumberFormatSpecifier[1];
+                var numberFormatSpecifier2 = new IgbNumberFormatSpecifier();
+                numberFormatSpecifier2.Style = "currency";
+                numberFormatSpecifier2.Currency = "USD";
+                numberFormatSpecifier2.CurrencyDisplay = "symbol";
+                numberFormatSpecifier2.MinimumFractionDigits = 0;
+                numberFormatSpecifier1[0] = numberFormatSpecifier2;
+                this._numberFormatSpecifier1 = numberFormatSpecifier1;
+            }
+            return this._numberFormatSpecifier1;
+        }
+    }
+    private IgbBarSeries barSeries1;
+    private IgbBarSeries barSeries2;
+    private IgbDataToolTipLayer tooltips;
+
+    private HighestGrossingMovies _highestGrossingMovies = null;
+    public HighestGrossingMovies HighestGrossingMovies
+    {
+        get
+        {
+            if (_highestGrossingMovies == null)
+            {
+                _highestGrossingMovies = new HighestGrossingMovies();
+            }
+            return _highestGrossingMovies;
+        }
+    }
+
+}

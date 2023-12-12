@@ -1,0 +1,85 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        Id="treeGrid"
+        Name="treeGrid"
+        @ref="treeGrid"
+        Data="OrdersTreeData"
+        PrimaryKey="ID"
+        ForeignKey="ParentID">
+            <IgbColumn
+            Field="Name"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Category"
+            DataType="GridColumnDataType.String"
+            Editable="true"
+            InlineEditorTemplateScript="WebTreeGridCellEditCellTemplate"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Units"
+            DataType="GridColumnDataType.Number"
+            Editable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="UnitPrice"
+            Header="Unit Price"
+            DataType="GridColumnDataType.Number"
+            Editable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="OrderDate"
+            Header="Order Date"
+            DataType="GridColumnDataType.Date"
+            Editable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Delivered"
+            DataType="GridColumnDataType.Boolean"
+            Editable="true">
+            </IgbColumn>
+
+        </IgbTreeGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var treeGrid = this.treeGrid;
+        var column1 = this.column1;
+
+    }
+
+    private IgbTreeGrid treeGrid;
+    private IgbColumn column1;
+
+    private OrdersTreeData _ordersTreeData = null;
+    public OrdersTreeData OrdersTreeData
+    {
+        get
+        {
+            if (_ordersTreeData == null)
+            {
+                _ordersTreeData = new OrdersTreeData();
+            }
+            return _ordersTreeData;
+        }
+    }
+
+}

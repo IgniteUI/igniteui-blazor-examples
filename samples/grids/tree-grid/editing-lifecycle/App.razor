@@ -2,17 +2,17 @@
 
 @inject IJSRuntime JS
 
-<div class="container vertical">
-
+<div class="container vertical ig-typography">
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
-        Data="NwindData"
+        Data="EmployeesFlatData"
         Name="grid"
         @ref="grid"
         Id="grid"
         RowEditable="true"
-        PrimaryKey="ProductID"
+        PrimaryKey="ID"
+        ForeignKey="ParentID"
         RenderedScript="WebTreeGridRendered"
         RowEditEnterScript="WebGridRowEditEnter"
         RowEditScript="WebGridRowEdit"
@@ -23,22 +23,22 @@
         CellEditDoneScript="WebGridCellEditDone"
         CellEditExitScript="WebGridCellEditExit">
             <IgbColumn
-            Field="ProductName"
-            Header="Product Name">
+            Field="Name"
+            DataType="GridColumnDataType.String"
+            Editable="true">
             </IgbColumn>
 
             <IgbColumn
-            Field="UnitPrice"
-            Header="Unit Price">
+            Field="Title"
+            Header="Job Title"
+            DataType="GridColumnDataType.String"
+            Editable="true">
             </IgbColumn>
 
             <IgbColumn
-            Field="UnitsInStock"
-            Header="Units In Stock">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Ordered">
+            Field="Age"
+            DataType="GridColumnDataType.Number"
+            Editable="true">
             </IgbColumn>
 
         </IgbTreeGrid>
@@ -56,16 +56,16 @@
 
     private IgbTreeGrid grid;
 
-    private NwindData _nwindData = null;
-    public NwindData NwindData
+    private EmployeesFlatData _employeesFlatData = null;
+    public EmployeesFlatData EmployeesFlatData
     {
         get
         {
-            if (_nwindData == null)
+            if (_employeesFlatData == null)
             {
-                _nwindData = new NwindData();
+                _employeesFlatData = new EmployeesFlatData();
             }
-            return _nwindData;
+            return _employeesFlatData;
         }
     }
 

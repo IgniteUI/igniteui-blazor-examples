@@ -1,7 +1,6 @@
 @using IgniteUI.Blazor.Controls
 
-<div class="container vertical">
-
+<div class="container vertical ig-typography">
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
@@ -10,11 +9,8 @@
         Id="treeGrid"
         Data="EmployeesFlatDetails"
         PrimaryKey="ID"
-        ForeignKey="ParentID">
-            <IgbPinningConfig
-            Columns="ColumnPinningPosition.End">
-            </IgbPinningConfig>
-
+        ForeignKey="ParentID"
+        Pinning="PinningConfig1">
             <IgbGridToolbar
             >
                 <IgbGridToolbarActions
@@ -104,6 +100,20 @@
     }
 
     private IgbTreeGrid treeGrid;
+    private IgbPinningConfig _pinningConfig1 = null;
+    public IgbPinningConfig PinningConfig1
+    {
+        get
+        {
+            if (this._pinningConfig1 == null)
+            {
+                var pinningConfig1 = new IgbPinningConfig();
+                pinningConfig1.Columns = ColumnPinningPosition.End;
+                this._pinningConfig1 = pinningConfig1;
+            }
+            return this._pinningConfig1;
+        }
+    }
 
     private EmployeesFlatDetails _employeesFlatDetails = null;
     public EmployeesFlatDetails EmployeesFlatDetails

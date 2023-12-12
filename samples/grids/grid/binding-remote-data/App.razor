@@ -1,0 +1,130 @@
+@using IgniteUI.Blazor.Controls
+@inject IProductDataService productDataService
+
+<div class="container vertical">
+
+    <div class="container vertical fill">
+        <IgbGrid 
+            AutoGenerate="false"
+            Data="dataProductItems"
+            PrimaryKey="ID"
+            DisplayDensity="DisplayDensity.Cosy"
+            AllowFiltering="true"
+            FilterMode="FilterMode.ExcelStyleFilter"
+            PagingMode="GridPagingMode.Remote"
+            IsLoading="loading"
+            Name="grid"
+            @ref="grid">
+            <IgbPaginator PerPage="ProductsPerPage" Page="PageNumber" TotalRecords="TotalRecords" 
+                PagingDone="OnPagingDone">
+            </IgbPaginator>
+            <IgbColumn Field="ID"
+                       Header="Product ID"
+                       DataType="GridColumnDataType.Number"
+                       Editable="true"
+                       Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="ProductName"
+                       Header="Product Name"
+                       DataType="GridColumnDataType.String"
+                       Editable="true"
+                       Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="UnitPrice"
+                       Header="Unit Price"
+                       DataType="GridColumnDataType.Number"
+                       Editable="true"
+                       Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="UnitsInStock"
+                       Header="Units in Stock"
+                       DataType="GridColumnDataType.Number"
+                       Editable="true"
+                       Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="OrderDate"
+                       Header="Order Date"
+                       DataType="GridColumnDataType.Date"
+                       Editable="true"
+                       Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="Discontinued"
+                       Header="Discontinued"
+                       DataType="GridColumnDataType.Boolean"
+                       Editable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="ReorderLevel"
+                       Header="Reorder Level"
+                       DataType="GridColumnDataType.Number"
+                       Editable="true"
+                       Filterable="true">
+            </IgbColumn>
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+    protected List<ProductDataItem> dataProductItems { get; set; }
+    protected List<ProductDataItem[]> dataProductsPerPage { get; set; }
+    private IgbGrid grid;
+    Random random = new Random();
+    protected int PageNumber { get; set; } = 0;
+    protected int ProductsPerPage { get; set; } = 5;
+    protected int TotalRecords { get; set; } = 77;
+    protected bool loading = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        dataProductItems = await productDataService.GetTable();
+        dataProductsPerPage = (from product in dataProductItems select product)
+                                 .Chunk(ProductsPerPage)
+                                 .ToList();
+        dataProductItems = dataProductsPerPage.FirstOrDefault().ToList();
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+        await grid.EnsureReady();
+    }
+
+    public async void OnPagingDone(IgbPageEventArgs e)
+    {
+        Console.WriteLine($"PageNumber: {e.Detail.Current}");
+        this.PageNumber = (int)e.Detail.Current;
+        this.loading = true;
+        await PopulateData();
+    }
+
+    public async Task PopulateData()
+    {
+        try
+        {
+            await foreach (var item in FetchItems())
+            {
+                dataProductItems = dataProductsPerPage[PageNumber].ToList();
+                StateHasChanged();
+            }
+            loading = false;
+
+        }
+        catch (Exception _ex)
+        {
+
+        }
+    }
+
+    public async IAsyncEnumerable<int> FetchItems()
+    {
+        for (int i = 1; i <= ProductsPerPage; i++)
+        {
+            yield return (PageNumber) * ProductsPerPage + i;
+        }
+    }
+}
