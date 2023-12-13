@@ -1,0 +1,553 @@
+@using IgniteUI.Blazor.Controls
+@inject IJSRuntime JS
+
+<div class="container vertical">
+    <div class="controls-holder">
+        <div class="switches">
+            <div class="switch-control-item">
+                <IgbSwitch Checked=true CheckedChanged="ToggleToolbar">Toolbar</IgbSwitch>
+            </div>
+            <div class="control-item">
+                <label>Records: @RecordsCount</label>
+                <IgbSlider @ref=slider1 Class="finjs-slider" Change=OnRecordsChange Max="10000" Step="100"></IgbSlider>
+            </div>
+            <div class="control-item">
+                <label>Frequency: @Frequency</label>
+                <IgbSlider @ref=slider2 Class="finjs-slider" Change="OnFrequencyChange" LowerBound="100" Min="100" Max="3000" Step="10"></IgbSlider>
+            </div>
+        </div>
+        <div class="control-item finjs-play-controls">
+            <IgbButton @ref=StartButton Variant="ButtonVariant.Outlined" @onclick=OnToggleLiveFeed>
+                <IgbIcon @ref="icon" IconName="update" Collection="material"></IgbIcon>@CurrentPriceStatus
+            </IgbButton>
+
+            <IgbButton @ref=ShowChartButton Variant="ButtonVariant.Outlined" @onclick="ShowChart">
+                <IgbIcon IconName="insert_chart" Collection="material"></IgbIcon>Chart
+            </IgbButton>
+        </div>
+    </div>
+    <div class="container vertical fill">
+
+        <IgbTreeGrid AutoGenerate="false"
+                 ChildDataKey="childDataKey"
+                 RowSelection="GridSelectionMode.Multiple"
+                 PrimaryKey="id"
+                 DisplayDensity="DisplayDensity.Compact"
+                 AllowFiltering="true"
+                 FilterMode="FilterMode.ExcelStyleFilter"
+                 CellClick="OnCellClick"
+                 Name="grid1"
+                 Id="grid1"
+                 @ref="grid1">
+            <IgbGridToolbar>
+                <IgbGridToolbarActions>
+                    <IgbGridToolbarHiding></IgbGridToolbarHiding>
+                    <IgbGridToolbarPinning></IgbGridToolbarPinning>
+                    <IgbGridToolbarExporter></IgbGridToolbarExporter>
+                </IgbGridToolbarActions>
+            </IgbGridToolbar>
+
+           @*<IgbColumn Field="id"
+                       Header="id"
+                       DataType="GridColumnDataType.Number"
+                       Sortable="true"
+                       Editable="true"
+                       Resizable="true">
+            </IgbColumn>*@
+
+            <IgbColumn Field="category"
+                       Header="Category"
+                       Width="120px"
+                       DataType="GridColumnDataType.String"
+                       Sortable="true"
+                       Editable="true"
+                       Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="type"
+                       Header="Type"
+                       Width="100px"
+                       DataType="GridColumnDataType.String"
+                       Sortable="true"
+                       Editable="true"
+                       Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="contract"
+                       Header="Contract"
+                       Width="110px"
+                       DataType="GridColumnDataType.String"
+                       Sortable="true"
+                       Groupable="true"
+                       Editable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="country"
+                       Width="100px"
+                       Header="Country"
+                       DataType="GridColumnDataType.String"
+                       Sortable="true"
+                       Editable="true">
+            </IgbColumn>
+
+            @*<IgbColumn Field="region"
+                       Width="100px"
+                       Header="Region"
+                       DataType="GridColumnDataType.String"
+                       Sortable="true"
+                       Editable="true">
+            </IgbColumn>*@            
+
+            <IgbColumn Field="open"
+                       Width="100px"
+                       Header="Open"
+                       DataType="GridColumnDataType.Currency"
+                       Sortable="true"
+                       Filterable="true"
+                       Editable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="price"
+                       Width="100px"
+                       Header="Price"
+                       BodyTemplateScript="PriceTemplate"
+                       CellClassesScript="trends"
+                       DataType="GridColumnDataType.Currency"
+                       Sortable="true"
+                       Filterable="true"
+                       Editable="true">
+            </IgbColumn>
+
+
+            <IgbColumn Field="Chart"
+                       BodyTemplate="ChartButtonTemplate"
+                       Width="100px"
+                       Header="Chart">
+            </IgbColumn>
+
+            <IgbColumn Field="change"
+                       Width="120px"
+                       Header="Change"
+                       CellClassesScript="trendsChange"
+                       DataType="GridColumnDataType.Number"
+                       Sortable="true"
+                       Filterable="true"
+                       Editable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="changeP"
+                       CellClassesScript="trendsChange"
+                       Width="120px"
+                       Header="Change %"
+                       DataType="GridColumnDataType.Percent"
+                       Sortable="true"
+                       Filterable="true"
+                       Editable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="buy"
+                       Width="110px"
+                       Header="Buy"
+                       DataType="GridColumnDataType.Currency"
+                       Sortable="true"
+                       Filterable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="sell"
+                       Width="110px"
+                       Header="Sell"
+                       DataType="GridColumnDataType.Currency"
+                       Sortable="true"
+                       Filterable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="spread"
+                       Width="110px"
+                       Header="Spread"
+                       DataType="GridColumnDataType.Number"
+                       Sortable="true"
+                       Filterable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="volume"
+                       Width="110px"
+                       Header="Volume"
+                       DataType="GridColumnDataType.Number"
+                       Sortable="true"
+                       Filterable="true">
+            </IgbColumn>
+            
+            <IgbColumn Field="settlement"
+                       Width="100px"
+                       Header="Settlement"
+                       DataType="GridColumnDataType.String"
+                       Sortable="true"
+                       Editable="true"
+                       Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="lastUpdated"
+                       Width="120px"
+                       Header="Last Updated"
+                       DataType="GridColumnDataType.Date"
+                       Sortable="true"
+                       Filterable="true"
+                       Editable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="high"
+                       Width="110px"
+                       DataType="GridColumnDataType.Currency"
+                       Sortable="true"
+                       Filterable="true">
+            </IgbColumn>
+            <IgbColumn Field="low"
+                       Width="110px"
+                       DataType="GridColumnDataType.Currency"
+                       Sortable="true"
+                       Filterable="true">
+            </IgbColumn>
+            <IgbColumn Field="annaulHigh"
+                       Width="110px"
+                       DataType="GridColumnDataType.Currency"
+                       Sortable="true"
+                       Filterable="true">
+            </IgbColumn>
+            <IgbColumn Field="annaulLow"
+                       Width="110px"
+                       DataType="GridColumnDataType.Currency"
+                       Sortable="true"
+                       Filterable="true">
+            </IgbColumn>
+            <IgbColumn Field="indGrou"
+                       Width="110px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="indSect"
+                       Width="100px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="indSubg"
+                       Width="100px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="secType"
+                       Width="90px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="issuerN"
+                       Width="60px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="moodys"
+                       Width="60px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="fitch"
+                       Width="60px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="dbrs"
+                       Width="60px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="collatT"
+                       Width="90px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="curncy"
+                       Width="60px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="security"
+                       Width="120px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="sector"
+                       Width="80px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="cusip"
+                       Width="100px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="ticker"
+                       Width="60px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="cpn"
+                       Width="80px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="maturity"
+                       Width="120px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="krD_3YR"
+                       Width="110px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="zV_SPREAD"
+                       Width="90px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="kRD_5YR"
+                       Width="50px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="kRD_1YR"
+                       Width="80px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="indGrou"
+                       Width="110px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="indSect"
+                       Width="100px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="indSubg"
+                       Width="100px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="secType"
+                       Width="90px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="issuerN"
+                       Width="60px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="moodys"
+                       Width="60px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="fitch"
+                       Width="60px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="dbrs"
+                       Width="60px"
+                       Filterable="false">
+            </IgbColumn>
+            <IgbColumn Field="collatT"
+                       Width="90px"
+                       Filterable="false">
+            </IgbColumn>
+        </IgbTreeGrid>
+
+    </div>
+    <IgbDialog @ref="Dialog">
+        <IgbCategoryChart ChartType="CategoryChartType.Column" Width="500px" Height="400px" @ref=Chart></IgbCategoryChart>
+    </IgbDialog>
+    <IgbToast Class="FinJSToast" @ref="Toast">Please select some rows first!</IgbToast>
+</div>
+
+@code {
+    private string trendUp = @"<svg xmlns=""http://www.w3.org/2000/svg"" height=""48"" viewBox=""0 -960 960 960"" width=""48""><path d=""m123-240-43-43 292-291 167 167 241-241H653v-60h227v227h-59v-123L538-321 371-488 123-240Z""/></svg>";
+    private string trendDown = @"<svg xmlns =""http://www.w3.org/2000/svg"" height=""48"" viewBox=""0 -960 960 960"" width=""48""><path d=""M653-240v-60h127L539-541 372-374 80-665l43-43 248 248 167-167 283 283v-123h59v227H653Z""/></svg>";
+    private string chartIcon = @"<svg xmlns=""http://www.w3.org/2000/svg"" height=""48"" viewBox=""0 -960 960 960"" width=""48""><path d=""M284-277h60v-275h-60v275Zm166 0h60v-406h-60v406Zm166 0h60v-148h-60v148ZM180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h600q24 0 42 18t18 42v600q0 24-18 42t-42 18H180Zm0-60h600v-600H180v600Zm0-600v600-600Z""/></svg>";
+    private string stopIcon = @"<svg xmlns=""http://www.w3.org/2000/svg"" height=""48"" viewBox=""0 -960 960 960"" width=""48""><path d=""M300-660v360-360Zm-60 420v-480h480v480H240Zm60-60h360v-360H300v360Z""/></svg >";
+    private string updateIcon = @"<svg xmlns=""http://www.w3.org/2000/svg"" height=""48"" viewBox=""0 -960 960 960"" width=""48""><path d=""M483-120q-75 0-141-28.5T226.5-226q-49.5-49-78-115T120-482q0-75 28.5-140t78-113.5Q276-784 342-812t141-28q80 0 151.5 35T758-709v-106h60v208H609v-60h105q-44-51-103.5-82T483-780q-125 0-214 85.5T180-485q0 127 88 216t215 89q125 0 211-88t86-213h60q0 150-104 255.5T483-120Zm122-197L451-469v-214h60v189l137 134-43 43Z""/></svg>";
+
+    private List<FinancialLiveStock> CurrentData;
+    private IgbTreeGrid grid1;
+    private IgbIcon icon;
+    private IgbButton StartButton;
+
+    private IgbButton ShowChartButton;
+    private IgbSlider slider1;
+    private IgbSlider slider2;
+    public int RecordsCount = 1000;
+    public int Frequency = 500;
+    public System.Threading.Timer Timer;
+    public IgbCategoryChart Chart;
+    public IgbDialog Dialog;
+    public IgbToast Toast;
+    public object[] SelectedRows;
+    
+    public string CurrentPriceStatus = "START PRICES";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid1 = this.grid1;
+        var icon = this.icon;
+        if (icon != null && firstRender)
+        {
+            await icon.EnsureReady();
+            await icon.RegisterIconFromTextAsync("trending_up", this.trendUp, "material");
+            await icon.RegisterIconFromTextAsync("trending_down", this.trendDown, "material");
+            await icon.RegisterIconFromTextAsync("insert_chart", this.chartIcon, "material");
+            await icon.RegisterIconFromTextAsync("stop", this.stopIcon, "material");
+            await icon.RegisterIconFromTextAsync("update", this.updateIcon, "material");
+        }
+
+        if (grid1 != null && firstRender)
+        {
+            this.CurrentData = FinancialLiveData.Generate(RecordsCount);
+            grid1.Data = this.CurrentData;
+        }
+
+        if (slider1 != null && firstRender)
+        {
+            await slider1.EnsureReady();
+            slider1.StepUp(10);
+        }
+
+        if (slider2 != null && firstRender)
+        {
+            await slider2.EnsureReady();
+            slider2.StepUp(40);
+        }
+
+    }
+
+    public RenderFragment<IgbCellTemplateContext> ChartButtonTemplate = (context) =>
+    {
+        return
+        @<IgbButton Variant="ButtonVariant.Contained" Size="SizableComponentSize.Small">
+            <IgbIcon IconName="insert_chart" Collection="material"></IgbIcon>
+    </IgbButton>
+    ;
+    };
+
+    private void OnRecordsChange(IgbNumberEventArgs e)
+    {
+        if (e != null)
+        {
+            RecordsCount = Convert.ToInt32(e.Detail);
+            this.CurrentData = FinancialLiveData.Generate(RecordsCount);
+            grid1.Data = this.CurrentData;
+        }
+    }
+
+    private void OnFrequencyChange(IgbNumberEventArgs e)
+    {
+        if (e != null)
+        {
+            Frequency = Convert.ToInt32(e.Detail);
+        }
+    }
+
+    public bool IsFeedDisabled = false;
+    public void OnToggleLiveFeed()
+    {
+        IsFeedDisabled = !IsFeedDisabled;
+        if (IsFeedDisabled)
+            OnStart();
+        else
+            OnStop();
+    }
+
+    public void OnStart()
+    {
+        this.ShowChartButton.Disabled = true;
+        this.CurrentPriceStatus = "STOP PRICES";
+        var startTimeSpan = TimeSpan.Zero;
+        var periodTimeSpan = TimeSpan.FromMilliseconds(Frequency);
+
+        this.Timer = new System.Threading.Timer((e) =>
+        {
+            grid1.Data = FinancialLiveData.UpdatePrices(this.CurrentData);
+        }, null, startTimeSpan, periodTimeSpan);
+    }
+
+    public void OnStop()
+    {
+        this.Timer.Dispose();
+        this.ShowChartButton.Disabled = false;
+        this.CurrentPriceStatus = "START PRICES";
+    }
+
+    public async void ShowChart()
+    {
+        this.SelectedRows = this.grid1.SelectedRows;
+        if (this.SelectedRows == null || this.SelectedRows.Length == 0)
+        {
+            await this.Toast.ShowAsync();
+            return;
+        }
+        this.Chart.DataSource = this.SelectedRows;
+        this.Chart.IncludedProperties = new string[2] { "price", "country" };
+        this.SetChartConfig("Countries", "Prices (USD)", "Data Chart with prices by Category and Country");
+        await this.Dialog.ShowAsync();
+    }
+
+    public void OnCellClick(IgbGridCellEventArgs e)
+    {
+        if (e.Detail.Cell.Column.Field == "Chart")
+        {
+            string key = e.Detail.Cell.Id.RowID;
+            this.ShowChartForRow(key);
+        }
+    }
+
+    public async void ShowChartForRow(string key)
+    {
+        int pk = Convert.ToInt32(key);
+        FinancialLiveStock rowData = (FinancialLiveStock)(await this.grid1.GetRowDataAsync(pk));
+        var rows = this.CurrentData.Where(item => item.region == rowData.region && item.category == rowData.category);
+        this.SelectedRows = rows.ToArray();
+        this.Chart.DataSource = this.SelectedRows;
+        this.Chart.IncludedProperties = new string[2] { "price", "country" };
+        this.SetChartConfig("Countries", "Prices (USD)", "Data Chart with prices of " + rowData.category + " in " + rowData.region + " Region");
+        await this.Dialog.ShowAsync();
+    }
+
+    public void SetChartConfig(string xAsis, string yAxis, string title)
+    {
+        this.SetLabelIntervalAndAngle();
+        this.Chart.XAxisTitle = xAsis;
+        this.Chart.YAxisTitle = yAxis;
+        this.Chart.ChartTitle = title;
+    }
+
+    public void SetLabelIntervalAndAngle()
+    {
+        int intervalSet = this.SelectedRows.Count();
+        if (intervalSet < 10)
+        {
+            this.Chart.XAxisLabelAngle = 0;
+            this.Chart.XAxisInterval = 1;
+        }
+        else if (intervalSet < 15)
+        {
+            this.Chart.XAxisLabelAngle = 30;
+            this.Chart.XAxisInterval = 1;
+        }
+        else if (intervalSet < 40)
+        {
+            this.Chart.XAxisLabelAngle = 90;
+            this.Chart.XAxisInterval = 1;
+        }
+        else if (intervalSet < 100)
+        {
+            this.Chart.XAxisLabelAngle = 90;
+            this.Chart.XAxisInterval = 3;
+        }
+        else if (intervalSet < 200)
+        {
+            this.Chart.XAxisLabelAngle = 90;
+            this.Chart.XAxisInterval = 5;
+        }
+        else if (intervalSet < 400)
+        {
+            this.Chart.XAxisLabelAngle = 90;
+            this.Chart.XAxisInterval = 7;
+        }
+        else if (intervalSet > 400)
+        {
+            this.Chart.XAxisLabelAngle = 90;
+            this.Chart.XAxisInterval = 10;
+        }
+        this.Chart.YAxisAbbreviateLargeNumbers = true;
+    }
+
+
+    public async void ToggleToolbar(bool isChecked)
+    {
+        await JS.InvokeAsync<string>("ToobarToggle");
+    }
+
+}
