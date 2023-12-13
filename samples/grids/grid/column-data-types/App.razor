@@ -1,29 +1,25 @@
-@using IgniteUI.Blazor.Controls
 
 
-@inject IJSRuntime JS
-
-<div class="container vertical">
-
+<div class="container vertical ig-typography">
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
-        Id="grid"
         Data="InvoicesDataExtendedDates"
-        Locale="EN"
+        Name="grid"
+        @ref="grid"
+        Id="grid"
         AllowFiltering="true"
         FilterMode="FilterMode.ExcelStyleFilter"
         DisplayDensity="DisplayDensity.Compact"
-        Name="grid"
-        @ref="grid">
+        Locale="EN">
             <IgbColumn
             Field="ProductName"
             Header="Prod. Name"
+            Width="120px"
             Sortable="true"
+            HasSummary="true"
             Editable="true"
             Resizable="true"
-            HasSummary="true"
-            Width="120px"
             DataType="GridColumnDataType.String">
             </IgbColumn>
 
@@ -125,17 +121,9 @@
         </IgbGrid>
 
     </div>
-
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-
-    }
-
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -146,6 +134,7 @@
         var column4 = this.column4;
         var column5 = this.column5;
         var column6 = this.column6;
+
     }
 
     private IgbGrid grid;
@@ -158,8 +147,8 @@
             if (this._columnPipeArgs1 == null)
             {
                 var columnPipeArgs1 = new IgbColumnPipeArgs();
-                columnPipeArgs1.DigitsInfo = "1.4-4";
                 columnPipeArgs1.CurrencyCode = "";
+                columnPipeArgs1.DigitsInfo = "1.4-4";
                 this._columnPipeArgs1 = columnPipeArgs1;
             }
             return this._columnPipeArgs1;

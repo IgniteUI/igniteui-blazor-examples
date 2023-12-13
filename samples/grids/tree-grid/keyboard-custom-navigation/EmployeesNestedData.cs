@@ -42,7 +42,7 @@ public class EmployeesNestedData
             City = @"Berlin",
             Country = @"Germany",
             Phone = @"609-202-505",
-            HireDate = @"2008, 3, 20",
+            HireDate = @"2008-03-20",
             Name = @"John Winchester",
             Title = @"Development Manager",
             Employees = new List<EmployeesNestedDataItem_EmployeesItem>()
@@ -55,7 +55,7 @@ public class EmployeesNestedData
                     City = @"Hamburg",
                     Country = @"Germany",
                     Phone = @"609-444-555",
-                    HireDate = @"2011, 6, 3",
+                    HireDate = @"2011-06-03",
                     ID = 3,
                     Name = @"Michael Burke",
                     Title = @"Senior Software Developer"
@@ -68,7 +68,7 @@ public class EmployeesNestedData
                     City = @"Munich",
                     Country = @"Germany",
                     Phone = @"609-333-444",
-                    HireDate = @"2009, 6, 19",
+                    HireDate = @"2009-06-19",
                     ID = 2,
                     Name = @"Thomas Anderson",
                     Title = @"Senior Software Developer"
@@ -81,7 +81,7 @@ public class EmployeesNestedData
                     City = @"Warasw",
                     Country = @"Poland",
                     Phone = @"609-222-205",
-                    HireDate = @"2014, 8, 18",
+                    HireDate = @"2014-08-18",
                     ID = 11,
                     Name = @"Monica Reyes",
                     Title = @"Software Development Team Lead"
@@ -94,7 +94,7 @@ public class EmployeesNestedData
                     City = @"Koln",
                     Country = @"Germany",
                     Phone = @"609-502-525",
-                    HireDate = @"2015, 9, 17",
+                    HireDate = @"2015-09-17",
                     ID = 6,
                     Name = @"Roland Mendel",
                     Title = @"Senior Software Developer"
@@ -110,7 +110,7 @@ public class EmployeesNestedData
             City = @"Kielce",
             Country = @"Poland",
             Phone = @"609-202-505",
-            HireDate = @"2014, 1, 22",
+            HireDate = @"2014-01-22",
             Name = @"Ana Sanders",
             Title = @"CEO",
             Employees = new List<EmployeesNestedDataItem_EmployeesItem>()
@@ -123,7 +123,7 @@ public class EmployeesNestedData
                     City = @"Warasw",
                     Country = @"Poland",
                     Phone = @"609-202-505",
-                    HireDate = @"2014, 4, 4",
+                    HireDate = @"2014-04-04",
                     ID = 14,
                     Name = @"Laurence Johnson",
                     Title = @"Director"
@@ -136,7 +136,7 @@ public class EmployeesNestedData
                     City = @"Paris",
                     Country = @"France",
                     Phone = @"609-202-505",
-                    HireDate = @"2017, 11, 9",
+                    HireDate = @"2017-11-09",
                     ID = 5,
                     Name = @"Elizabeth Richards",
                     Title = @"Vice President"
@@ -149,7 +149,7 @@ public class EmployeesNestedData
                     City = @"London",
                     Country = @"UK",
                     Phone = @"609-202-505",
-                    HireDate = @"2010, 3, 22",
+                    HireDate = @"2010-03-22",
                     ID = 13,
                     Name = @"Trevor Ashworth",
                     Title = @"Director"
@@ -165,7 +165,7 @@ public class EmployeesNestedData
             City = @"Manchester",
             Country = @"UK",
             Phone = @"222-555-577",
-            HireDate = @"2014, 1, 22",
+            HireDate = @"2014-01-22",
             Name = @"Victoria Lincoln",
             Title = @"Senior Accountant",
             Employees = new List<EmployeesNestedDataItem_EmployeesItem>()
@@ -178,7 +178,7 @@ public class EmployeesNestedData
                     City = @"Hamburg",
                     Country = @"Germany",
                     Phone = @"609-444-555",
-                    HireDate = @"2011, 6, 3",
+                    HireDate = @"2011-06-03",
                     ID = 23,
                     Name = @"Thomas Burke",
                     Title = @"Senior Accountant"
@@ -191,7 +191,7 @@ public class EmployeesNestedData
                     City = @"Munich",
                     Country = @"Germany",
                     Phone = @"609-333-444",
-                    HireDate = @"2009, 6, 19",
+                    HireDate = @"2009-06-19",
                     ID = 22,
                     Name = @"Michael Anderson",
                     Title = @"Junior Accountant"
@@ -204,7 +204,7 @@ public class EmployeesNestedData
                     City = @"Warasw",
                     Country = @"Poland",
                     Phone = @"609-222-205",
-                    HireDate = @"2014, 8, 18",
+                    HireDate = @"2014-08-18",
                     ID = 21,
                     Name = @"Roland Reyes",
                     Title = @"Accountant Team Lead"
@@ -217,7 +217,7 @@ public class EmployeesNestedData
                     City = @"Koln",
                     Country = @"Germany",
                     Phone = @"609-502-525",
-                    HireDate = @"2015, 9, 17",
+                    HireDate = @"2015-09-17",
                     ID = 24,
                     Name = @"Monica Mendel",
                     Title = @"Senior Software Developer"
@@ -233,7 +233,7 @@ public class EmployeesNestedData
             City = @"Lyon",
             Country = @"France",
             Phone = @"259-266-887",
-            HireDate = @"2010, 1, 1",
+            HireDate = @"2010-01-01",
             Name = @"Yang Wang",
             Title = @"Localization Developer",
             Employees = new List<EmployeesNestedDataItem_EmployeesItem>()
@@ -246,7 +246,7 @@ public class EmployeesNestedData
                     City = @"Warasw",
                     Country = @"Poland",
                     Phone = @"609-222-205",
-                    HireDate = @"2014, 8, 18",
+                    HireDate = @"2014-08-18",
                     ID = 11,
                     Name = @"Monica Reyes",
                     Title = @"Software Development Team Lead"
@@ -259,7 +259,7 @@ public class EmployeesNestedData
                     City = @"Koln",
                     Country = @"Germany",
                     Phone = @"609-502-525",
-                    HireDate = @"2015, 9, 17",
+                    HireDate = @"2015-09-17",
                     ID = 6,
                     Name = @"Roland Mendel",
                     Title = @"Senior Software Developer"
@@ -275,7 +275,7 @@ public class EmployeesNestedData
             City = @"Warasw",
             Country = @"Poland",
             Phone = @"688-244-844",
-            HireDate = @"2014, 1, 22",
+            HireDate = @"2014-01-22",
             Name = @"Janine Munoz",
             Title = @"HR",
             Employees = new List<EmployeesNestedDataItem_EmployeesItem>()
@@ -288,7 +288,7 @@ public class EmployeesNestedData
                     City = @"Hamburg",
                     Country = @"Germany",
                     Phone = @"609-444-555",
-                    HireDate = @"2011, 6, 3",
+                    HireDate = @"2011-06-03",
                     ID = 3,
                     Name = @"Michael Burke",
                     Title = @"Senior Software Developer"
@@ -301,7 +301,7 @@ public class EmployeesNestedData
                     City = @"Warasw",
                     Country = @"Poland",
                     Phone = @"609-222-205",
-                    HireDate = @"2014, 8, 18",
+                    HireDate = @"2014-08-18",
                     ID = 11,
                     Name = @"Monica Reyes",
                     Title = @"Software Development Team Lead"
@@ -317,7 +317,7 @@ public class EmployeesNestedData
             City = @"Krakow",
             Country = @"Poland",
             Phone = @"677-266-555",
-            HireDate = @"2010, 1, 1",
+            HireDate = @"2010-01-01",
             Name = @"Yang Wang",
             Title = @"Sales Manager",
             Employees = new List<EmployeesNestedDataItem_EmployeesItem>()
@@ -330,7 +330,7 @@ public class EmployeesNestedData
                     City = @"Munich",
                     Country = @"Germany",
                     Phone = @"609-333-444",
-                    HireDate = @"2009, 6, 19",
+                    HireDate = @"2009-06-19",
                     ID = 2,
                     Name = @"Thomas Anderson",
                     Title = @"Senior Software Developer"
@@ -343,7 +343,7 @@ public class EmployeesNestedData
                     City = @"Koln",
                     Country = @"Germany",
                     Phone = @"609-502-525",
-                    HireDate = @"2015, 9, 17",
+                    HireDate = @"2015-09-17",
                     ID = 6,
                     Name = @"Roland Mendel",
                     Title = @"Senior Software Developer"
