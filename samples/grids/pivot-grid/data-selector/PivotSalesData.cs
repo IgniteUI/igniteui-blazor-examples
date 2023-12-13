@@ -34,7 +34,7 @@ public class PivotSalesData
             Sales = 26440,
             COGS = 16185,
             Profit = 11255,
-            Date = @"1/1/20",
+            Date = @"2020-01-01",
             MonthName = @"January",
             Year = 2020
         });
@@ -50,7 +50,7 @@ public class PivotSalesData
             Sales = 27440,
             COGS = 16185,
             Profit = 11255,
-            Date = @"1/1/20",
+            Date = @"2020-01-01",
             MonthName = @"January",
             Year = 2020
         });
@@ -66,7 +66,7 @@ public class PivotSalesData
             Sales = 55240,
             COGS = 13210,
             Profit = 42030,
-            Date = @"1/1/20",
+            Date = @"2020-01-01",
             MonthName = @"January",
             Year = 2020
         });
@@ -82,7 +82,7 @@ public class PivotSalesData
             Sales = 21960,
             COGS = 21780,
             Profit = 180,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -98,7 +98,7 @@ public class PivotSalesData
             Sales = 10785,
             COGS = 8880,
             Profit = 1905,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -114,7 +114,7 @@ public class PivotSalesData
             Sales = 53640,
             COGS = 24700,
             Profit = 28940,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -130,7 +130,7 @@ public class PivotSalesData
             Sales = 1547700,
             COGS = 393380,
             Profit = 1154320,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -146,7 +146,7 @@ public class PivotSalesData
             Sales = 54735,
             COGS = 9210,
             Profit = 45525,
-            Date = @"3/1/20",
+            Date = @"2020-03-01",
             MonthName = @"March",
             Year = 2020
         });
@@ -162,7 +162,7 @@ public class PivotSalesData
             Sales = 50064,
             COGS = 7554,
             Profit = 42510,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -178,7 +178,7 @@ public class PivotSalesData
             Sales = 76820,
             COGS = 18990,
             Profit = 57830,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -194,7 +194,7 @@ public class PivotSalesData
             Sales = 44712,
             COGS = 4635,
             Profit = 40077,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -210,7 +210,7 @@ public class PivotSalesData
             Sales = 39375,
             COGS = 24700,
             Profit = 14675,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -226,7 +226,7 @@ public class PivotSalesData
             Sales = 244750,
             COGS = 319860,
             Profit = 75110,
-            Date = @"7/1/20",
+            Date = @"2020-07-01",
             MonthName = @"July",
             Year = 2020
         });
@@ -242,7 +242,7 @@ public class PivotSalesData
             Sales = 981300,
             COGS = 239500,
             Profit = 741800,
-            Date = @"8/1/20",
+            Date = @"2020-08-01",
             MonthName = @"August",
             Year = 2020
         });
@@ -258,7 +258,7 @@ public class PivotSalesData
             Sales = 14637,
             COGS = 10730,
             Profit = 3907,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -274,7 +274,7 @@ public class PivotSalesData
             Sales = 42375,
             COGS = 6150,
             Profit = 36225,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -290,7 +290,7 @@ public class PivotSalesData
             Sales = 50260,
             COGS = 2920,
             Profit = 47340,
-            Date = @"2/1/20",
+            Date = @"2020-02-01",
             MonthName = @"February",
             Year = 2020
         });
@@ -306,7 +306,7 @@ public class PivotSalesData
             Sales = 13245,
             COGS = 9740,
             Profit = 3505,
-            Date = @"2/1/20",
+            Date = @"2020-02-01",
             MonthName = @"February",
             Year = 2020
         });
@@ -322,7 +322,7 @@ public class PivotSalesData
             Sales = 25044,
             COGS = 7554,
             Profit = 17490,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -338,7 +338,7 @@ public class PivotSalesData
             Sales = 897050,
             COGS = 261560,
             Profit = 635490,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -354,7 +354,7 @@ public class PivotSalesData
             Sales = 34152,
             COGS = 1101,
             Profit = 33051,
-            Date = @"7/1/20",
+            Date = @"2020-07-01",
             MonthName = @"July",
             Year = 2020
         });
@@ -370,7 +370,7 @@ public class PivotSalesData
             Sales = 6979,
             COGS = 4415,
             Profit = 2564,
-            Date = @"8/1/20",
+            Date = @"2020-08-01",
             MonthName = @"August",
             Year = 2020
         });
@@ -386,7 +386,7 @@ public class PivotSalesData
             Sales = 34350,
             COGS = 24720,
             Profit = 9630,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -402,7 +402,7 @@ public class PivotSalesData
             Sales = 14931,
             COGS = 5715,
             Profit = 9216,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -418,7 +418,7 @@ public class PivotSalesData
             Sales = 72340,
             COGS = 18170,
             Profit = 54170,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -434,7 +434,7 @@ public class PivotSalesData
             Sales = 443100,
             COGS = 393380,
             Profit = 49720,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -450,7 +450,7 @@ public class PivotSalesData
             Sales = 6258,
             COGS = 7465,
             Profit = 1207,
-            Date = @"1/1/20",
+            Date = @"2020-01-01",
             MonthName = @"January",
             Year = 2020
         });
@@ -466,7 +466,7 @@ public class PivotSalesData
             Sales = 340625,
             COGS = 216480,
             Profit = 124145,
-            Date = @"2/1/20",
+            Date = @"2020-02-01",
             MonthName = @"February",
             Year = 2020
         });
@@ -482,7 +482,7 @@ public class PivotSalesData
             Sales = 36732,
             COGS = 6483,
             Profit = 30249,
-            Date = @"3/1/20",
+            Date = @"2020-03-01",
             MonthName = @"March",
             Year = 2020
         });
@@ -498,7 +498,7 @@ public class PivotSalesData
             Sales = 1385300,
             COGS = 261560,
             Profit = 1123740,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -514,7 +514,7 @@ public class PivotSalesData
             Sales = 47040,
             COGS = 4635,
             Profit = 42405,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -530,7 +530,7 @@ public class PivotSalesData
             Sales = 422625,
             COGS = 338520,
             Profit = 84105,
-            Date = @"8/1/20",
+            Date = @"2020-08-01",
             MonthName = @"August",
             Year = 2020
         });
@@ -546,7 +546,7 @@ public class PivotSalesData
             Sales = 1292100,
             COGS = 500250,
             Profit = 791850,
-            Date = @"2/1/20",
+            Date = @"2020-02-01",
             MonthName = @"February",
             Year = 2020
         });
@@ -562,7 +562,7 @@ public class PivotSalesData
             Sales = 10536,
             COGS = 8514,
             Profit = 2022,
-            Date = @"4/1/20",
+            Date = @"2020-04-01",
             MonthName = @"April",
             Year = 2020
         });
@@ -578,7 +578,7 @@ public class PivotSalesData
             Sales = 7440,
             COGS = 21780,
             Profit = 14340,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -594,7 +594,7 @@ public class PivotSalesData
             Sales = 50505,
             COGS = 8880,
             Profit = 41625,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -610,7 +610,7 @@ public class PivotSalesData
             Sales = 616500,
             COGS = 537750,
             Profit = 78750,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -626,7 +626,7 @@ public class PivotSalesData
             Sales = 80820,
             COGS = 18170,
             Profit = 62650,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -642,7 +642,7 @@ public class PivotSalesData
             Sales = 1132950,
             COGS = 715000,
             Profit = 417950,
-            Date = @"2/1/20",
+            Date = @"2020-02-01",
             MonthName = @"February",
             Year = 2020
         });
@@ -658,7 +658,7 @@ public class PivotSalesData
             Sales = 7560,
             COGS = 5859,
             Profit = 1701,
-            Date = @"4/1/20",
+            Date = @"2020-04-01",
             MonthName = @"April",
             Year = 2020
         });
@@ -674,7 +674,7 @@ public class PivotSalesData
             Sales = 526250,
             COGS = 506340,
             Profit = 19910,
-            Date = @"4/1/20",
+            Date = @"2020-04-01",
             MonthName = @"April",
             Year = 2020
         });
@@ -690,7 +690,7 @@ public class PivotSalesData
             Sales = 22540,
             COGS = 18990,
             Profit = 3550,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -706,7 +706,7 @@ public class PivotSalesData
             Sales = 24066,
             COGS = 8430,
             Profit = 15636,
-            Date = @"7/1/20",
+            Date = @"2020-07-01",
             MonthName = @"July",
             Year = 2020
         });
@@ -722,7 +722,7 @@ public class PivotSalesData
             Sales = 24180,
             COGS = 6423,
             Profit = 17757,
-            Date = @"8/1/20",
+            Date = @"2020-08-01",
             MonthName = @"August",
             Year = 2020
         });
@@ -738,7 +738,7 @@ public class PivotSalesData
             Sales = 17738,
             COGS = 5715,
             Profit = 12023,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -754,7 +754,7 @@ public class PivotSalesData
             Sales = 20760,
             COGS = 6150,
             Profit = 14610,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -770,7 +770,7 @@ public class PivotSalesData
             Sales = 24650.85,
             COGS = 19725,
             Profit = 4925.85,
-            Date = @"1/1/20",
+            Date = @"2020-01-01",
             MonthName = @"January",
             Year = 2020
         });
@@ -786,7 +786,7 @@ public class PivotSalesData
             Sales = 27000.6,
             COGS = 22960,
             Profit = 4040.6,
-            Date = @"2/1/20",
+            Date = @"2020-02-01",
             MonthName = @"February",
             Year = 2020
         });
@@ -802,7 +802,7 @@ public class PivotSalesData
             Sales = 19492.9,
             COGS = 5150,
             Profit = 14342.9,
-            Date = @"5/1/20",
+            Date = @"2020-05-01",
             MonthName = @"May",
             Year = 2020
         });
@@ -818,7 +818,7 @@ public class PivotSalesData
             Sales = 3154.27,
             COGS = 3195,
             Profit = 40.73,
-            Date = @"11/1/20",
+            Date = @"2020-11-01",
             MonthName = @"November",
             Year = 2020
         });
@@ -834,7 +834,7 @@ public class PivotSalesData
             Sales = 26402.18,
             COGS = 6630,
             Profit = 19772.18,
-            Date = @"3/1/20",
+            Date = @"2020-03-01",
             MonthName = @"March",
             Year = 2020
         });
@@ -850,7 +850,7 @@ public class PivotSalesData
             Sales = 8753.04,
             COGS = 5574,
             Profit = 3179.04,
-            Date = @"2/1/20",
+            Date = @"2020-02-01",
             MonthName = @"February",
             Year = 2020
         });
@@ -866,7 +866,7 @@ public class PivotSalesData
             Sales = 353115,
             COGS = 314600,
             Profit = 38515,
-            Date = @"3/1/20",
+            Date = @"2020-03-01",
             MonthName = @"March",
             Year = 2020
         });
@@ -882,7 +882,7 @@ public class PivotSalesData
             Sales = 14354.97,
             COGS = 12645,
             Profit = 1709.97,
-            Date = @"7/1/20",
+            Date = @"2020-07-01",
             MonthName = @"July",
             Year = 2020
         });
@@ -898,7 +898,7 @@ public class PivotSalesData
             Sales = 51618.6,
             COGS = 4335,
             Profit = 47283.6,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -914,7 +914,7 @@ public class PivotSalesData
             Sales = 49767.48,
             COGS = 8013,
             Profit = 41754.48,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -930,7 +930,7 @@ public class PivotSalesData
             Sales = 1302710.5,
             COGS = 363220,
             Profit = 939490.5,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -946,7 +946,7 @@ public class PivotSalesData
             Sales = 662357.5,
             COGS = 560300,
             Profit = 102057.5,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -962,7 +962,7 @@ public class PivotSalesData
             Sales = 40797.9,
             COGS = 22140,
             Profit = 18657.9,
-            Date = @"3/1/20",
+            Date = @"2020-03-01",
             MonthName = @"March",
             Year = 2020
         });
@@ -978,7 +978,7 @@ public class PivotSalesData
             Sales = 442797,
             COGS = 575250,
             Profit = 132453,
-            Date = @"4/1/20",
+            Date = @"2020-04-01",
             MonthName = @"April",
             Year = 2020
         });
@@ -994,7 +994,7 @@ public class PivotSalesData
             Sales = 75164.9,
             COGS = 13755,
             Profit = 61409.9,
-            Date = @"7/1/20",
+            Date = @"2020-07-01",
             MonthName = @"July",
             Year = 2020
         });
@@ -1010,7 +1010,7 @@ public class PivotSalesData
             Sales = 7655.9,
             COGS = 9150,
             Profit = 1494.1,
-            Date = @"8/1/20",
+            Date = @"2020-08-01",
             MonthName = @"August",
             Year = 2020
         });
@@ -1026,7 +1026,7 @@ public class PivotSalesData
             Sales = 35292.9,
             COGS = 15140,
             Profit = 20152.9,
-            Date = @"2/1/20",
+            Date = @"2020-02-01",
             MonthName = @"February",
             Year = 2020
         });
@@ -1042,7 +1042,7 @@ public class PivotSalesData
             Sales = 10787.52,
             COGS = 22462.5,
             Profit = 11674.98,
-            Date = @"4/1/20",
+            Date = @"2020-04-01",
             MonthName = @"April",
             Year = 2020
         });
@@ -1058,7 +1058,7 @@ public class PivotSalesData
             Sales = 422341.25,
             COGS = 87240,
             Profit = 335101.25,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -1074,7 +1074,7 @@ public class PivotSalesData
             Sales = 105516.25,
             COGS = 94440,
             Profit = 11076.25,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -1090,7 +1090,7 @@ public class PivotSalesData
             Sales = 345596.25,
             COGS = 218760,
             Profit = 126836.25,
-            Date = @"7/1/20",
+            Date = @"2020-07-01",
             MonthName = @"July",
             Year = 2020
         });
@@ -1106,7 +1106,7 @@ public class PivotSalesData
             Sales = 40147.95,
             COGS = 7470,
             Profit = 32677.95,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -1122,7 +1122,7 @@ public class PivotSalesData
             Sales = 1216185,
             COGS = 726250,
             Profit = 489935,
-            Date = @"11/1/20",
+            Date = @"2020-11-01",
             MonthName = @"November",
             Year = 2020
         });
@@ -1138,7 +1138,7 @@ public class PivotSalesData
             Sales = 978057.5,
             COGS = 560300,
             Profit = 417757.5,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -1154,7 +1154,7 @@ public class PivotSalesData
             Sales = 85107.2,
             COGS = 38640,
             Profit = 46467.2,
-            Date = @"4/1/20",
+            Date = @"2020-04-01",
             MonthName = @"April",
             Year = 2020
         });
@@ -1170,7 +1170,7 @@ public class PivotSalesData
             Sales = 19966.66,
             COGS = 1810,
             Profit = 18156.66,
-            Date = @"5/1/20",
+            Date = @"2020-05-01",
             MonthName = @"May",
             Year = 2020
         });
@@ -1186,7 +1186,7 @@ public class PivotSalesData
             Sales = 174721.25,
             COGS = 110760,
             Profit = 63961.25,
-            Date = @"8/1/20",
+            Date = @"2020-08-01",
             MonthName = @"August",
             Year = 2020
         });
@@ -1202,7 +1202,7 @@ public class PivotSalesData
             Sales = 8836.59,
             COGS = 1315,
             Profit = 7521.59,
-            Date = @"3/1/20",
+            Date = @"2020-03-01",
             MonthName = @"March",
             Year = 2020
         });
@@ -1218,7 +1218,7 @@ public class PivotSalesData
             Sales = 1358897.75,
             COGS = 245310,
             Profit = 1113587.75,
-            Date = @"4/1/20",
+            Date = @"2020-04-01",
             MonthName = @"April",
             Year = 2020
         });
@@ -1234,7 +1234,7 @@ public class PivotSalesData
             Sales = 382591.25,
             COGS = 87240,
             Profit = 295351.25,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -1250,7 +1250,7 @@ public class PivotSalesData
             Sales = 271641.25,
             COGS = 94440,
             Profit = 177201.25,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -1266,7 +1266,7 @@ public class PivotSalesData
             Sales = 403842,
             COGS = 246500,
             Profit = 177201.25,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -1282,7 +1282,7 @@ public class PivotSalesData
             Sales = 630010.5,
             COGS = 363220,
             Profit = 266790.5,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -1298,7 +1298,7 @@ public class PivotSalesData
             Sales = 184695,
             COGS = 209280,
             Profit = 24585,
-            Date = @"11/1/20",
+            Date = @"2020-11-01",
             MonthName = @"November",
             Year = 2020
         });
@@ -1314,7 +1314,7 @@ public class PivotSalesData
             Sales = 181018.75,
             COGS = 89100,
             Profit = 91918.75,
-            Date = @"4/1/20",
+            Date = @"2020-04-01",
             MonthName = @"April",
             Year = 2020
         });
@@ -1330,7 +1330,7 @@ public class PivotSalesData
             Sales = 2269.2,
             COGS = 3885,
             Profit = 1615.8,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -1346,7 +1346,7 @@ public class PivotSalesData
             Sales = 178136,
             COGS = 741520,
             Profit = 563384,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -1362,7 +1362,7 @@ public class PivotSalesData
             Sales = 38785.92,
             COGS = 3426,
             Profit = 35359.92,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -1378,7 +1378,7 @@ public class PivotSalesData
             Sales = 14813.6,
             COGS = 15660,
             Profit = 846.4,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -1394,7 +1394,7 @@ public class PivotSalesData
             Sales = 13454.4,
             COGS = 2070,
             Profit = 11384.4,
-            Date = @"11/1/20",
+            Date = @"2020-11-01",
             MonthName = @"November",
             Year = 2020
         });
@@ -1410,7 +1410,7 @@ public class PivotSalesData
             Sales = 17186.1,
             COGS = 23630,
             Profit = 6443.9,
-            Date = @"2/1/20",
+            Date = @"2020-02-01",
             MonthName = @"February",
             Year = 2020
         });
@@ -1426,7 +1426,7 @@ public class PivotSalesData
             Sales = 753492,
             COGS = 229500,
             Profit = 523992,
-            Date = @"5/1/20",
+            Date = @"2020-05-01",
             MonthName = @"May",
             Year = 2020
         });
@@ -1442,7 +1442,7 @@ public class PivotSalesData
             Sales = 1024932,
             COGS = 432000,
             Profit = 592932,
-            Date = @"5/1/20",
+            Date = @"2020-05-01",
             MonthName = @"May",
             Year = 2020
         });
@@ -1458,7 +1458,7 @@ public class PivotSalesData
             Sales = 36433.92,
             COGS = 3426,
             Profit = 33007.92,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -1474,7 +1474,7 @@ public class PivotSalesData
             Sales = 492970,
             COGS = 79440,
             Profit = 413530,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -1490,7 +1490,7 @@ public class PivotSalesData
             Sales = 41017.2,
             COGS = 3885,
             Profit = 37132.2,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -1506,7 +1506,7 @@ public class PivotSalesData
             Sales = 934704,
             COGS = 479000,
             Profit = 455704,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -1522,7 +1522,7 @@ public class PivotSalesData
             Sales = 1417836,
             COGS = 741520,
             Profit = 676316,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -1538,7 +1538,7 @@ public class PivotSalesData
             Sales = 463177.5,
             COGS = 327480,
             Profit = 135697.5,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -1554,7 +1554,7 @@ public class PivotSalesData
             Sales = 27754.8,
             COGS = 3165,
             Profit = 24589.8,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -1570,7 +1570,7 @@ public class PivotSalesData
             Sales = 6699.84,
             COGS = 3252,
             Profit = 3447.84,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -1586,7 +1586,7 @@ public class PivotSalesData
             Sales = 51573.6,
             COGS = 15660,
             Profit = 35913.6,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -1602,7 +1602,7 @@ public class PivotSalesData
             Sales = 490511,
             COGS = 748020,
             Profit = 257509,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -1618,7 +1618,7 @@ public class PivotSalesData
             Sales = 45034.8,
             COGS = 3165,
             Profit = 41869.8,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -1634,7 +1634,7 @@ public class PivotSalesData
             Sales = 30603.84,
             COGS = 3252,
             Profit = 27351.84,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -1650,7 +1650,7 @@ public class PivotSalesData
             Sales = 38345,
             COGS = 79440,
             Profit = 41095,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -1666,7 +1666,7 @@ public class PivotSalesData
             Sales = 1126111,
             COGS = 748020,
             Profit = 378091,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -1682,7 +1682,7 @@ public class PivotSalesData
             Sales = 440927.5,
             COGS = 327480,
             Profit = 113447.5,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -1698,7 +1698,7 @@ public class PivotSalesData
             Sales = 1215246,
             COGS = 64750,
             Profit = 1150496,
-            Date = @"3/1/20",
+            Date = @"2020-03-01",
             MonthName = @"March",
             Year = 2020
         });
@@ -1714,7 +1714,7 @@ public class PivotSalesData
             Sales = 636594,
             COGS = 275250,
             Profit = 361344,
-            Date = @"3/1/20",
+            Date = @"2020-03-01",
             MonthName = @"March",
             Year = 2020
         });
@@ -1730,7 +1730,7 @@ public class PivotSalesData
             Sales = 432060,
             COGS = 273120,
             Profit = 158940,
-            Date = @"5/1/20",
+            Date = @"2020-05-01",
             MonthName = @"May",
             Year = 2020
         });
@@ -1746,7 +1746,7 @@ public class PivotSalesData
             Sales = 13085.6,
             COGS = 12360,
             Profit = 725.6,
-            Date = @"11/1/20",
+            Date = @"2020-11-01",
             MonthName = @"November",
             Year = 2020
         });
@@ -1762,7 +1762,7 @@ public class PivotSalesData
             Sales = 46643.6,
             COGS = 9410,
             Profit = 37233.6,
-            Date = @"11/1/20",
+            Date = @"2020-11-01",
             MonthName = @"November",
             Year = 2020
         });
@@ -1778,7 +1778,7 @@ public class PivotSalesData
             Sales = 601404,
             COGS = 479000,
             Profit = 122404,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -1794,7 +1794,7 @@ public class PivotSalesData
             Sales = 429711.88,
             COGS = 509220,
             Profit = 79508.13,
-            Date = @"4/1/20",
+            Date = @"2020-04-01",
             MonthName = @"April",
             Year = 2020
         });
@@ -1810,7 +1810,7 @@ public class PivotSalesData
             Sales = 26472,
             COGS = 25800,
             Profit = 672,
-            Date = @"4/1/20",
+            Date = @"2020-04-01",
             MonthName = @"April",
             Year = 2020
         });
@@ -1826,7 +1826,7 @@ public class PivotSalesData
             Sales = 616899,
             COGS = 172250,
             Profit = 444649,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -1842,7 +1842,7 @@ public class PivotSalesData
             Sales = 43015.08,
             COGS = 5841,
             Profit = 37174.08,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -1858,7 +1858,7 @@ public class PivotSalesData
             Sales = 20308.82,
             COGS = 9790,
             Profit = 10518.82,
-            Date = @"2/1/20",
+            Date = @"2020-02-01",
             MonthName = @"February",
             Year = 2020
         });
@@ -1874,7 +1874,7 @@ public class PivotSalesData
             Sales = 13727.64,
             COGS = 5703,
             Profit = 8024.64,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -1890,7 +1890,7 @@ public class PivotSalesData
             Sales = 16132.76,
             COGS = 2720,
             Profit = 13412.76,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -1906,7 +1906,7 @@ public class PivotSalesData
             Sales = 491673.75,
             COGS = 154440,
             Profit = 337233.75,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -1922,7 +1922,7 @@ public class PivotSalesData
             Sales = 478352.5,
             COGS = 204720,
             Profit = 273632.5,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -1938,7 +1938,7 @@ public class PivotSalesData
             Sales = 661489.5,
             COGS = 608625,
             Profit = 52864.5,
-            Date = @"1/1/20",
+            Date = @"2020-01-01",
             MonthName = @"January",
             Year = 2020
         });
@@ -1954,7 +1954,7 @@ public class PivotSalesData
             Sales = 127722.5,
             COGS = 212880,
             Profit = 85157.5,
-            Date = @"3/1/20",
+            Date = @"2020-03-01",
             MonthName = @"March",
             Year = 2020
         });
@@ -1970,7 +1970,7 @@ public class PivotSalesData
             Sales = 47915.64,
             COGS = 5703,
             Profit = 42212.64,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -1986,7 +1986,7 @@ public class PivotSalesData
             Sales = 904299,
             COGS = 172250,
             Profit = 732049,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -2002,7 +2002,7 @@ public class PivotSalesData
             Sales = 448612.5,
             COGS = 188400,
             Profit = 260212.5,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -2018,7 +2018,7 @@ public class PivotSalesData
             Sales = 16054.98,
             COGS = 4108.5,
             Profit = 11946.48,
-            Date = @"7/1/20",
+            Date = @"2020-07-01",
             MonthName = @"July",
             Year = 2020
         });
@@ -2034,7 +2034,7 @@ public class PivotSalesData
             Sales = 553966.25,
             COGS = 241080,
             Profit = 312886.25,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -2050,7 +2050,7 @@ public class PivotSalesData
             Sales = 213173.75,
             COGS = 154440,
             Profit = 58733.75,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -2066,7 +2066,7 @@ public class PivotSalesData
             Sales = 286227.5,
             COGS = 204720,
             Profit = 81507.5,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -2082,7 +2082,7 @@ public class PivotSalesData
             Sales = 471841.25,
             COGS = 241080,
             Profit = 230761.25,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -2098,7 +2098,7 @@ public class PivotSalesData
             Sales = 322704,
             COGS = 711000,
             Profit = 388296,
-            Date = @"2/1/20",
+            Date = @"2020-02-01",
             MonthName = @"February",
             Year = 2020
         });
@@ -2114,7 +2114,7 @@ public class PivotSalesData
             Sales = 9822.24,
             COGS = 5748,
             Profit = 4074.24,
-            Date = @"4/1/20",
+            Date = @"2020-04-01",
             MonthName = @"April",
             Year = 2020
         });
@@ -2130,7 +2130,7 @@ public class PivotSalesData
             Sales = 207237.5,
             COGS = 188400,
             Profit = 18837.5,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -2146,7 +2146,7 @@ public class PivotSalesData
             Sales = 524634,
             COGS = 468500,
             Profit = 56134,
-            Date = @"8/1/20",
+            Date = @"2020-08-01",
             MonthName = @"August",
             Year = 2020
         });
@@ -2162,7 +2162,7 @@ public class PivotSalesData
             Sales = 118909,
             COGS = 426920,
             Profit = 308011,
-            Date = @"8/1/20",
+            Date = @"2020-08-01",
             MonthName = @"August",
             Year = 2020
         });
@@ -2178,7 +2178,7 @@ public class PivotSalesData
             Sales = 28681.4,
             COGS = 8310,
             Profit = 20371.4,
-            Date = @"5/1/20",
+            Date = @"2020-05-01",
             MonthName = @"May",
             Year = 2020
         });
@@ -2194,7 +2194,7 @@ public class PivotSalesData
             Sales = 82409.7,
             COGS = 38505,
             Profit = 43904.7,
-            Date = @"4/1/20",
+            Date = @"2020-04-01",
             MonthName = @"April",
             Year = 2020
         });
@@ -2210,7 +2210,7 @@ public class PivotSalesData
             Sales = 42631.56,
             COGS = 7437,
             Profit = 35194.56,
-            Date = @"1/1/20",
+            Date = @"2020-01-01",
             MonthName = @"January",
             Year = 2020
         });
@@ -2226,7 +2226,7 @@ public class PivotSalesData
             Sales = 25121.4,
             COGS = 20310,
             Profit = 4811.4,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -2242,7 +2242,7 @@ public class PivotSalesData
             Sales = 3386.4,
             COGS = 20310,
             Profit = 16923.6,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -2258,7 +2258,7 @@ public class PivotSalesData
             Sales = 342348,
             COGS = 505250,
             Profit = 162902,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -2274,7 +2274,7 @@ public class PivotSalesData
             Sales = 167314,
             COGS = 71240,
             Profit = 96074,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -2290,7 +2290,7 @@ public class PivotSalesData
             Sales = 60814.8,
             COGS = 19670,
             Profit = 41144.8,
-            Date = @"3/1/20",
+            Date = @"2020-03-01",
             MonthName = @"March",
             Year = 2020
         });
@@ -2306,7 +2306,7 @@ public class PivotSalesData
             Sales = 800592,
             COGS = 464750,
             Profit = 335842,
-            Date = @"8/1/20",
+            Date = @"2020-08-01",
             MonthName = @"August",
             Year = 2020
         });
@@ -2322,7 +2322,7 @@ public class PivotSalesData
             Sales = 1313748,
             COGS = 505250,
             Profit = 808498,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -2338,7 +2338,7 @@ public class PivotSalesData
             Sales = 148310,
             COGS = 136560,
             Profit = 11750,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -2354,7 +2354,7 @@ public class PivotSalesData
             Sales = 16911.72,
             COGS = 21255,
             Profit = 4343.28,
-            Date = @"1/1/20",
+            Date = @"2020-01-01",
             MonthName = @"January",
             Year = 2020
         });
@@ -2370,7 +2370,7 @@ public class PivotSalesData
             Sales = 162525,
             COGS = 95400,
             Profit = 67125,
-            Date = @"3/1/20",
+            Date = @"2020-03-01",
             MonthName = @"March",
             Year = 2020
         });
@@ -2386,7 +2386,7 @@ public class PivotSalesData
             Sales = 1329126,
             COGS = 353625,
             Profit = 975501,
-            Date = @"4/1/20",
+            Date = @"2020-04-01",
             MonthName = @"April",
             Year = 2020
         });
@@ -2402,7 +2402,7 @@ public class PivotSalesData
             Sales = 1123584,
             COGS = 729500,
             Profit = 394084,
-            Date = @"5/1/20",
+            Date = @"2020-05-01",
             MonthName = @"May",
             Year = 2020
         });
@@ -2418,7 +2418,7 @@ public class PivotSalesData
             Sales = 569450,
             COGS = 897000,
             Profit = 327550,
-            Date = @"7/1/20",
+            Date = @"2020-07-01",
             MonthName = @"July",
             Year = 2020
         });
@@ -2434,7 +2434,7 @@ public class PivotSalesData
             Sales = 426685,
             COGS = 358560,
             Profit = 68125,
-            Date = @"7/1/20",
+            Date = @"2020-07-01",
             MonthName = @"July",
             Year = 2020
         });
@@ -2450,7 +2450,7 @@ public class PivotSalesData
             Sales = 30109.2,
             COGS = 2180,
             Profit = 27929.2,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -2466,7 +2466,7 @@ public class PivotSalesData
             Sales = 57100.8,
             COGS = 20740,
             Profit = 36360.8,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -2482,7 +2482,7 @@ public class PivotSalesData
             Sales = 66195.2,
             COGS = 10560,
             Profit = 55635.2,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -2498,7 +2498,7 @@ public class PivotSalesData
             Sales = 846664,
             COGS = 71240,
             Profit = 775424,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -2514,7 +2514,7 @@ public class PivotSalesData
             Sales = 61185,
             COGS = 136560,
             Profit = 75375,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -2530,7 +2530,7 @@ public class PivotSalesData
             Sales = 17572.8,
             COGS = 4395,
             Profit = 13177.8,
-            Date = @"3/1/20",
+            Date = @"2020-03-01",
             MonthName = @"March",
             Year = 2020
         });
@@ -2546,7 +2546,7 @@ public class PivotSalesData
             Sales = 593222,
             COGS = 566020,
             Profit = 27202,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -2562,7 +2562,7 @@ public class PivotSalesData
             Sales = 3748.32,
             COGS = 2598,
             Profit = 1150.32,
-            Date = @"5/1/20",
+            Date = @"2020-05-01",
             MonthName = @"May",
             Year = 2020
         });
@@ -2578,7 +2578,7 @@ public class PivotSalesData
             Sales = 1197672,
             COGS = 566020,
             Profit = 631652,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -2594,7 +2594,7 @@ public class PivotSalesData
             Sales = 1003940,
             COGS = 484900,
             Profit = 519040,
-            Date = @"2/1/20",
+            Date = @"2020-02-01",
             MonthName = @"February",
             Year = 2020
         });
@@ -2610,7 +2610,7 @@ public class PivotSalesData
             Sales = 499255,
             COGS = 128880,
             Profit = 370375,
-            Date = @"4/1/20",
+            Date = @"2020-04-01",
             MonthName = @"April",
             Year = 2020
         });
@@ -2626,7 +2626,7 @@ public class PivotSalesData
             Sales = 1424402,
             COGS = 495820,
             Profit = 928582,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -2642,7 +2642,7 @@ public class PivotSalesData
             Sales = 4594.8,
             COGS = 6860,
             Profit = 2265.2,
-            Date = @"1/1/20",
+            Date = @"2020-01-01",
             MonthName = @"January",
             Year = 2020
         });
@@ -2658,7 +2658,7 @@ public class PivotSalesData
             Sales = 15333.85,
             COGS = 13445,
             Profit = 1888.85,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -2674,7 +2674,7 @@ public class PivotSalesData
             Sales = 6641.4,
             COGS = 7293,
             Profit = 651.6,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -2690,7 +2690,7 @@ public class PivotSalesData
             Sales = 34421.4,
             COGS = 7293,
             Profit = 27128.4,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -2706,7 +2706,7 @@ public class PivotSalesData
             Sales = 6562.85,
             COGS = 13445,
             Profit = 6882.15,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -2722,7 +2722,7 @@ public class PivotSalesData
             Sales = 6746.95,
             COGS = 8415,
             Profit = 1668.05,
-            Date = @"7/1/20",
+            Date = @"2020-07-01",
             MonthName = @"July",
             Year = 2020
         });
@@ -2738,7 +2738,7 @@ public class PivotSalesData
             Sales = 4954.2,
             COGS = 3369,
             Profit = 1585.2,
-            Date = @"8/1/20",
+            Date = @"2020-08-01",
             MonthName = @"August",
             Year = 2020
         });
@@ -2754,7 +2754,7 @@ public class PivotSalesData
             Sales = 49761,
             COGS = 5595,
             Profit = 44166,
-            Date = @"2/1/20",
+            Date = @"2020-02-01",
             MonthName = @"February",
             Year = 2020
         });
@@ -2770,7 +2770,7 @@ public class PivotSalesData
             Sales = 23042.4,
             COGS = 3348,
             Profit = 19694.4,
-            Date = @"2/1/20",
+            Date = @"2020-02-01",
             MonthName = @"February",
             Year = 2020
         });
@@ -2786,7 +2786,7 @@ public class PivotSalesData
             Sales = 38117,
             COGS = 15630,
             Profit = 22487,
-            Date = @"5/1/20",
+            Date = @"2020-05-01",
             MonthName = @"May",
             Year = 2020
         });
@@ -2802,7 +2802,7 @@ public class PivotSalesData
             Sales = 129135,
             COGS = 247750,
             Profit = 118615,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -2818,7 +2818,7 @@ public class PivotSalesData
             Sales = 15981.75,
             COGS = 27910,
             Profit = 11928.25,
-            Date = @"11/1/20",
+            Date = @"2020-11-01",
             MonthName = @"November",
             Year = 2020
         });
@@ -2834,7 +2834,7 @@ public class PivotSalesData
             Sales = 17160.5,
             COGS = 2850,
             Profit = 14310.5,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -2850,7 +2850,7 @@ public class PivotSalesData
             Sales = 19611.55,
             COGS = 12435,
             Profit = 7176.55,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -2866,7 +2866,7 @@ public class PivotSalesData
             Sales = 1099271.25,
             COGS = 359970,
             Profit = 739301.25,
-            Date = @"1/1/20",
+            Date = @"2020-01-01",
             MonthName = @"January",
             Year = 2020
         });
@@ -2882,7 +2882,7 @@ public class PivotSalesData
             Sales = 379956.25,
             COGS = 435240,
             Profit = 55283.75,
-            Date = @"7/1/20",
+            Date = @"2020-07-01",
             MonthName = @"July",
             Year = 2020
         });
@@ -2898,7 +2898,7 @@ public class PivotSalesData
             Sales = 12118.8,
             COGS = 7026,
             Profit = 5092.8,
-            Date = @"11/1/20",
+            Date = @"2020-11-01",
             MonthName = @"November",
             Year = 2020
         });
@@ -2914,7 +2914,7 @@ public class PivotSalesData
             Sales = 30897,
             COGS = 13030,
             Profit = 17867,
-            Date = @"2/1/20",
+            Date = @"2020-02-01",
             MonthName = @"February",
             Year = 2020
         });
@@ -2930,7 +2930,7 @@ public class PivotSalesData
             Sales = 493800,
             COGS = 359040,
             Profit = 134760,
-            Date = @"3/1/20",
+            Date = @"2020-03-01",
             MonthName = @"March",
             Year = 2020
         });
@@ -2946,7 +2946,7 @@ public class PivotSalesData
             Sales = 111593.75,
             COGS = 286200,
             Profit = 174606.25,
-            Date = @"3/1/20",
+            Date = @"2020-03-01",
             MonthName = @"March",
             Year = 2020
         });
@@ -2962,7 +2962,7 @@ public class PivotSalesData
             Sales = 976995,
             COGS = 401750,
             Profit = 575245,
-            Date = @"4/1/20",
+            Date = @"2020-04-01",
             MonthName = @"April",
             Year = 2020
         });
@@ -2978,7 +2978,7 @@ public class PivotSalesData
             Sales = 26870.55,
             COGS = 11635,
             Profit = 15235.55,
-            Date = @"5/1/20",
+            Date = @"2020-05-01",
             MonthName = @"May",
             Year = 2020
         });
@@ -2994,7 +2994,7 @@ public class PivotSalesData
             Sales = 1289235,
             COGS = 247750,
             Profit = 1041485,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -3010,7 +3010,7 @@ public class PivotSalesData
             Sales = 531265,
             COGS = 156520,
             Profit = 374745,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -3026,7 +3026,7 @@ public class PivotSalesData
             Sales = 30330,
             COGS = 26200,
             Profit = 4130,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -3042,7 +3042,7 @@ public class PivotSalesData
             Sales = 510368.75,
             COGS = 103320,
             Profit = 407048.75,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -3058,7 +3058,7 @@ public class PivotSalesData
             Sales = 64857,
             COGS = 26630,
             Profit = 38227,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -3074,7 +3074,7 @@ public class PivotSalesData
             Sales = 33243.75,
             COGS = 5550,
             Profit = 27693.75,
-            Date = @"1/1/20",
+            Date = @"2020-01-01",
             MonthName = @"January",
             Year = 2020
         });
@@ -3090,7 +3090,7 @@ public class PivotSalesData
             Sales = 18254.25,
             COGS = 28610,
             Profit = 10355.75,
-            Date = @"1/1/20",
+            Date = @"2020-01-01",
             MonthName = @"January",
             Year = 2020
         });
@@ -3106,7 +3106,7 @@ public class PivotSalesData
             Sales = 29831.25,
             COGS = 96840,
             Profit = 67008.75,
-            Date = @"2/1/20",
+            Date = @"2020-02-01",
             MonthName = @"February",
             Year = 2020
         });
@@ -3122,7 +3122,7 @@ public class PivotSalesData
             Sales = 871815,
             COGS = 156520,
             Profit = 715295,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -3138,7 +3138,7 @@ public class PivotSalesData
             Sales = 45828,
             COGS = 28320,
             Profit = 17508,
-            Date = @"8/1/20",
+            Date = @"2020-08-01",
             MonthName = @"August",
             Year = 2020
         });
@@ -3154,7 +3154,7 @@ public class PivotSalesData
             Sales = 33181,
             COGS = 15790,
             Profit = 17391,
-            Date = @"8/1/20",
+            Date = @"2020-08-01",
             MonthName = @"August",
             Year = 2020
         });
@@ -3170,7 +3170,7 @@ public class PivotSalesData
             Sales = 132868.75,
             COGS = 103320,
             Profit = 29548.75,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -3186,7 +3186,7 @@ public class PivotSalesData
             Sales = 45150,
             COGS = 312500,
             Profit = 267350,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -3202,7 +3202,7 @@ public class PivotSalesData
             Sales = 55917,
             COGS = 26630,
             Profit = 29287,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -3218,7 +3218,7 @@ public class PivotSalesData
             Sales = 16523.5,
             COGS = 2850,
             Profit = 13673.5,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -3234,7 +3234,7 @@ public class PivotSalesData
             Sales = 20731.55,
             COGS = 12435,
             Profit = 8296.55,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -3250,7 +3250,7 @@ public class PivotSalesData
             Sales = 237125,
             COGS = 351000,
             Profit = 113875,
-            Date = @"2/1/20",
+            Date = @"2020-02-01",
             MonthName = @"February",
             Year = 2020
         });
@@ -3266,7 +3266,7 @@ public class PivotSalesData
             Sales = 433440,
             COGS = 143520,
             Profit = 289920,
-            Date = @"8/1/20",
+            Date = @"2020-08-01",
             MonthName = @"August",
             Year = 2020
         });
@@ -3282,7 +3282,7 @@ public class PivotSalesData
             Sales = 1267350,
             COGS = 312500,
             Profit = 954850,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -3298,7 +3298,7 @@ public class PivotSalesData
             Sales = 44474.1,
             COGS = 38010,
             Profit = 6464.1,
-            Date = @"4/1/20",
+            Date = @"2020-04-01",
             MonthName = @"April",
             Year = 2020
         });
@@ -3314,7 +3314,7 @@ public class PivotSalesData
             Sales = 37999,
             COGS = 11175,
             Profit = 26824,
-            Date = @"1/1/20",
+            Date = @"2020-01-01",
             MonthName = @"January",
             Year = 2020
         });
@@ -3330,7 +3330,7 @@ public class PivotSalesData
             Sales = 6905.4,
             COGS = 28440,
             Profit = 21534.6,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -3346,7 +3346,7 @@ public class PivotSalesData
             Sales = 41223.36,
             COGS = 1686,
             Profit = 39537.36,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -3362,7 +3362,7 @@ public class PivotSalesData
             Sales = 46398,
             COGS = 20300,
             Profit = 26098,
-            Date = @"11/1/20",
+            Date = @"2020-11-01",
             MonthName = @"November",
             Year = 2020
         });
@@ -3378,7 +3378,7 @@ public class PivotSalesData
             Sales = 665070,
             COGS = 254800,
             Profit = 410270,
-            Date = @"4/1/20",
+            Date = @"2020-04-01",
             MonthName = @"April",
             Year = 2020
         });
@@ -3394,7 +3394,7 @@ public class PivotSalesData
             Sales = 732690,
             COGS = 379600,
             Profit = 353090,
-            Date = @"5/1/20",
+            Date = @"2020-05-01",
             MonthName = @"May",
             Year = 2020
         });
@@ -3410,7 +3410,7 @@ public class PivotSalesData
             Sales = 24499.44,
             COGS = 8169,
             Profit = 16330.44,
-            Date = @"11/1/20",
+            Date = @"2020-11-01",
             MonthName = @"November",
             Year = 2020
         });
@@ -3426,7 +3426,7 @@ public class PivotSalesData
             Sales = 630084,
             COGS = 388960,
             Profit = 241124,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -3442,7 +3442,7 @@ public class PivotSalesData
             Sales = 294985,
             COGS = 114240,
             Profit = 180745,
-            Date = @"2/1/20",
+            Date = @"2020-02-01",
             MonthName = @"February",
             Year = 2020
         });
@@ -3458,7 +3458,7 @@ public class PivotSalesData
             Sales = 124087.5,
             COGS = 330600,
             Profit = 206512.5,
-            Date = @"2/1/20",
+            Date = @"2020-02-01",
             MonthName = @"February",
             Year = 2020
         });
@@ -3474,7 +3474,7 @@ public class PivotSalesData
             Sales = 10668,
             COGS = 15300,
             Profit = 4632,
-            Date = @"5/1/20",
+            Date = @"2020-05-01",
             MonthName = @"May",
             Year = 2020
         });
@@ -3490,7 +3490,7 @@ public class PivotSalesData
             Sales = 1265334,
             COGS = 388960,
             Profit = 876374,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -3506,7 +3506,7 @@ public class PivotSalesData
             Sales = 3493.84,
             COGS = 7490,
             Profit = 3996.16,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -3522,7 +3522,7 @@ public class PivotSalesData
             Sales = 57425.4,
             COGS = 28440,
             Profit = 28985.4,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -3538,7 +3538,7 @@ public class PivotSalesData
             Sales = 29162.84,
             COGS = 7490,
             Profit = 21672.84,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -3554,7 +3554,7 @@ public class PivotSalesData
             Sales = 255093.75,
             COGS = 238500,
             Profit = 16593.75,
-            Date = @"1/1/20",
+            Date = @"2020-01-01",
             MonthName = @"January",
             Year = 2020
         });
@@ -3570,7 +3570,7 @@ public class PivotSalesData
             Sales = 127841,
             COGS = 436540,
             Profit = 308699,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -3586,7 +3586,7 @@ public class PivotSalesData
             Sales = 20191.8,
             COGS = 21980,
             Profit = 1788.2,
-            Date = @"8/1/20",
+            Date = @"2020-08-01",
             MonthName = @"August",
             Year = 2020
         });
@@ -3602,7 +3602,7 @@ public class PivotSalesData
             Sales = 55401.3,
             COGS = 17430,
             Profit = 37971.3,
-            Date = @"8/1/20",
+            Date = @"2020-08-01",
             MonthName = @"August",
             Year = 2020
         });
@@ -3618,7 +3618,7 @@ public class PivotSalesData
             Sales = 5667.3,
             COGS = 11530,
             Profit = 5862.7,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -3634,7 +3634,7 @@ public class PivotSalesData
             Sales = 13698.8,
             COGS = 10010,
             Profit = 3688.8,
-            Date = @"8/1/20",
+            Date = @"2020-08-01",
             MonthName = @"August",
             Year = 2020
         });
@@ -3650,7 +3650,7 @@ public class PivotSalesData
             Sales = 11564.14,
             COGS = 6665,
             Profit = 4899.14,
-            Date = @"11/1/20",
+            Date = @"2020-11-01",
             MonthName = @"November",
             Year = 2020
         });
@@ -3666,7 +3666,7 @@ public class PivotSalesData
             Sales = 25347.3,
             COGS = 11530,
             Profit = 13817.3,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -3682,7 +3682,7 @@ public class PivotSalesData
             Sales = 3445.32,
             COGS = 2181,
             Profit = 1264.32,
-            Date = @"2/1/20",
+            Date = @"2020-02-01",
             MonthName = @"February",
             Year = 2020
         });
@@ -3698,7 +3698,7 @@ public class PivotSalesData
             Sales = 45349.44,
             COGS = 5652,
             Profit = 39697.44,
-            Date = @"8/1/20",
+            Date = @"2020-08-01",
             MonthName = @"August",
             Year = 2020
         });
@@ -3714,7 +3714,7 @@ public class PivotSalesData
             Sales = 51710.4,
             COGS = 7020,
             Profit = 44690.4,
-            Date = @"1/1/20",
+            Date = @"2020-01-01",
             MonthName = @"January",
             Year = 2020
         });
@@ -3730,7 +3730,7 @@ public class PivotSalesData
             Sales = 2628.72,
             COGS = 7026,
             Profit = 4397.28,
-            Date = @"11/1/20",
+            Date = @"2020-11-01",
             MonthName = @"November",
             Year = 2020
         });
@@ -3746,7 +3746,7 @@ public class PivotSalesData
             Sales = 14604.9,
             COGS = 12620,
             Profit = 1984.9,
-            Date = @"5/1/20",
+            Date = @"2020-05-01",
             MonthName = @"May",
             Year = 2020
         });
@@ -3762,7 +3762,7 @@ public class PivotSalesData
             Sales = 28024.85,
             COGS = 5675,
             Profit = 22349.85,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -3778,7 +3778,7 @@ public class PivotSalesData
             Sales = 27549.97,
             COGS = 2735,
             Profit = 24814.97,
-            Date = @"11/1/20",
+            Date = @"2020-11-01",
             MonthName = @"November",
             Year = 2020
         });
@@ -3794,7 +3794,7 @@ public class PivotSalesData
             Sales = 25285.82,
             COGS = 7910,
             Profit = 17375.82,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -3810,7 +3810,7 @@ public class PivotSalesData
             Sales = 27759.66,
             COGS = 5215.5,
             Profit = 22544.16,
-            Date = @"4/1/20",
+            Date = @"2020-04-01",
             MonthName = @"April",
             Year = 2020
         });
@@ -3826,7 +3826,7 @@ public class PivotSalesData
             Sales = 11565.82,
             COGS = 7910,
             Profit = 3655.82,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -3842,7 +3842,7 @@ public class PivotSalesData
             Sales = 30754.85,
             COGS = 5675,
             Profit = 25079.85,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -3858,7 +3858,7 @@ public class PivotSalesData
             Sales = 392955.5,
             COGS = 457860,
             Profit = 64904.5,
-            Date = @"3/1/20",
+            Date = @"2020-03-01",
             MonthName = @"March",
             Year = 2020
         });
@@ -3874,7 +3874,7 @@ public class PivotSalesData
             Sales = 475092,
             COGS = 112000,
             Profit = 363092,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -3890,7 +3890,7 @@ public class PivotSalesData
             Sales = 178899,
             COGS = 545250,
             Profit = 366351,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -3906,7 +3906,7 @@ public class PivotSalesData
             Sales = 23593.6,
             COGS = 19760,
             Profit = 3833.6,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -3922,7 +3922,7 @@ public class PivotSalesData
             Sales = 818799,
             COGS = 545250,
             Profit = 273549,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -3938,7 +3938,7 @@ public class PivotSalesData
             Sales = 709458,
             COGS = 425500,
             Profit = 283958,
-            Date = @"5/1/20",
+            Date = @"2020-05-01",
             MonthName = @"May",
             Year = 2020
         });
@@ -3954,7 +3954,7 @@ public class PivotSalesData
             Sales = 941292,
             COGS = 112000,
             Profit = 829292,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -3970,7 +3970,7 @@ public class PivotSalesData
             Sales = 479261.25,
             COGS = 421560,
             Profit = 57701.25,
-            Date = @"7/1/20",
+            Date = @"2020-07-01",
             MonthName = @"July",
             Year = 2020
         });
@@ -3986,7 +3986,7 @@ public class PivotSalesData
             Sales = 56938.95,
             COGS = 21010,
             Profit = 35928.95,
-            Date = @"8/1/20",
+            Date = @"2020-08-01",
             MonthName = @"August",
             Year = 2020
         });
@@ -4002,7 +4002,7 @@ public class PivotSalesData
             Sales = 2911,
             COGS = 15350,
             Profit = 12439,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -4018,7 +4018,7 @@ public class PivotSalesData
             Sales = 204861,
             COGS = 414750,
             Profit = 209889,
-            Date = @"7/1/20",
+            Date = @"2020-07-01",
             MonthName = @"July",
             Year = 2020
         });
@@ -4034,7 +4034,7 @@ public class PivotSalesData
             Sales = 77987.4,
             COGS = 6090,
             Profit = 71897.4,
-            Date = @"8/1/20",
+            Date = @"2020-08-01",
             MonthName = @"August",
             Year = 2020
         });
@@ -4050,7 +4050,7 @@ public class PivotSalesData
             Sales = 293988.75,
             COGS = 250440,
             Profit = 43548.75,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -4066,7 +4066,7 @@ public class PivotSalesData
             Sales = 47573.6,
             COGS = 19760,
             Profit = 27813.6,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -4082,7 +4082,7 @@ public class PivotSalesData
             Sales = 314688,
             COGS = 343000,
             Profit = 28312,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -4098,7 +4098,7 @@ public class PivotSalesData
             Sales = 43042.62,
             COGS = 9733.5,
             Profit = 33309.12,
-            Date = @"1/1/20",
+            Date = @"2020-01-01",
             MonthName = @"January",
             Year = 2020
         });
@@ -4114,7 +4114,7 @@ public class PivotSalesData
             Sales = 336261,
             COGS = 239750,
             Profit = 96511,
-            Date = @"2/1/20",
+            Date = @"2020-02-01",
             MonthName = @"February",
             Year = 2020
         });
@@ -4130,7 +4130,7 @@ public class PivotSalesData
             Sales = 612213,
             COGS = 686750,
             Profit = 74537,
-            Date = @"2/1/20",
+            Date = @"2020-02-01",
             MonthName = @"February",
             Year = 2020
         });
@@ -4146,7 +4146,7 @@ public class PivotSalesData
             Sales = 38231.25,
             COGS = 197400,
             Profit = 159168.75,
-            Date = @"5/1/20",
+            Date = @"2020-05-01",
             MonthName = @"May",
             Year = 2020
         });
@@ -4162,7 +4162,7 @@ public class PivotSalesData
             Sales = 23688,
             COGS = 747760,
             Profit = 724072,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -4178,7 +4178,7 @@ public class PivotSalesData
             Sales = 17474.8,
             COGS = 11180,
             Profit = 6294.8,
-            Date = @"11/1/20",
+            Date = @"2020-11-01",
             MonthName = @"November",
             Year = 2020
         });
@@ -4194,7 +4194,7 @@ public class PivotSalesData
             Sales = 860388,
             COGS = 343000,
             Profit = 517388,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -4210,7 +4210,7 @@ public class PivotSalesData
             Sales = 10261.72,
             COGS = 2440,
             Profit = 7821.72,
-            Date = @"2/1/20",
+            Date = @"2020-02-01",
             MonthName = @"February",
             Year = 2020
         });
@@ -4226,7 +4226,7 @@ public class PivotSalesData
             Sales = 31508.8,
             COGS = 12820,
             Profit = 18688.8,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -4242,7 +4242,7 @@ public class PivotSalesData
             Sales = 29599.08,
             COGS = 1285,
             Profit = 28314.08,
-            Date = @"5/1/20",
+            Date = @"2020-05-01",
             MonthName = @"May",
             Year = 2020
         });
@@ -4258,7 +4258,7 @@ public class PivotSalesData
             Sales = 31488.8,
             COGS = 12820,
             Profit = 18668.8,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -4274,7 +4274,7 @@ public class PivotSalesData
             Sales = 365975,
             COGS = 184800,
             Profit = 181175,
-            Date = @"8/1/20",
+            Date = @"2020-08-01",
             MonthName = @"August",
             Year = 2020
         });
@@ -4290,7 +4290,7 @@ public class PivotSalesData
             Sales = 49992,
             COGS = 4900,
             Profit = 45092,
-            Date = @"11/1/20",
+            Date = @"2020-11-01",
             MonthName = @"November",
             Year = 2020
         });
@@ -4306,7 +4306,7 @@ public class PivotSalesData
             Sales = 551964,
             COGS = 354120,
             Profit = 197844,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -4322,7 +4322,7 @@ public class PivotSalesData
             Sales = 43288.8,
             COGS = 25010,
             Profit = 18278.8,
-            Date = @"3/1/20",
+            Date = @"2020-03-01",
             MonthName = @"March",
             Year = 2020
         });
@@ -4338,7 +4338,7 @@ public class PivotSalesData
             Sales = 81867.2,
             COGS = 7080,
             Profit = 74787.2,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -4354,7 +4354,7 @@ public class PivotSalesData
             Sales = 59508,
             COGS = 6450,
             Profit = 53058,
-            Date = @"7/1/20",
+            Date = @"2020-07-01",
             MonthName = @"July",
             Year = 2020
         });
@@ -4370,7 +4370,7 @@ public class PivotSalesData
             Sales = 1270212,
             COGS = 390500,
             Profit = 879712,
-            Date = @"8/1/20",
+            Date = @"2020-08-01",
             MonthName = @"August",
             Year = 2020
         });
@@ -4386,7 +4386,7 @@ public class PivotSalesData
             Sales = 22981.8,
             COGS = 7110,
             Profit = 15871.8,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -4402,7 +4402,7 @@ public class PivotSalesData
             Sales = 323735,
             COGS = 133680,
             Profit = 190055,
-            Date = @"3/1/20",
+            Date = @"2020-03-01",
             MonthName = @"March",
             Year = 2020
         });
@@ -4418,7 +4418,7 @@ public class PivotSalesData
             Sales = 23101.96,
             COGS = 6295,
             Profit = 16806.96,
-            Date = @"4/1/20",
+            Date = @"2020-04-01",
             MonthName = @"April",
             Year = 2020
         });
@@ -4434,7 +4434,7 @@ public class PivotSalesData
             Sales = 19091.8,
             COGS = 5475,
             Profit = 13616.8,
-            Date = @"5/1/20",
+            Date = @"2020-05-01",
             MonthName = @"May",
             Year = 2020
         });
@@ -4450,7 +4450,7 @@ public class PivotSalesData
             Sales = 57094.4,
             COGS = 13660,
             Profit = 43434.4,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -4466,7 +4466,7 @@ public class PivotSalesData
             Sales = 1192860,
             COGS = 615000,
             Profit = 577860,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -4482,7 +4482,7 @@ public class PivotSalesData
             Sales = 7719.32,
             COGS = 3390,
             Profit = 4329.32,
-            Date = @"8/1/20",
+            Date = @"2020-08-01",
             MonthName = @"August",
             Year = 2020
         });
@@ -4498,7 +4498,7 @@ public class PivotSalesData
             Sales = 20560.12,
             COGS = 7990,
             Profit = 12570.12,
-            Date = @"8/1/20",
+            Date = @"2020-08-01",
             MonthName = @"August",
             Year = 2020
         });
@@ -4514,7 +4514,7 @@ public class PivotSalesData
             Sales = 78505.6,
             COGS = 19340,
             Profit = 59165.6,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -4530,7 +4530,7 @@ public class PivotSalesData
             Sales = 29471.2,
             COGS = 29930,
             Profit = 458.8,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -4546,7 +4546,7 @@ public class PivotSalesData
             Sales = 553714,
             COGS = 354120,
             Profit = 199594,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -4562,7 +4562,7 @@ public class PivotSalesData
             Sales = 27085.92,
             COGS = 1794,
             Profit = 25291.92,
-            Date = @"3/1/20",
+            Date = @"2020-03-01",
             MonthName = @"March",
             Year = 2020
         });
@@ -4578,7 +4578,7 @@ public class PivotSalesData
             Sales = 22179.08,
             COGS = 14535,
             Profit = 7644.08,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -4594,7 +4594,7 @@ public class PivotSalesData
             Sales = 14706.72,
             COGS = 11690,
             Profit = 3016.72,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -4610,7 +4610,7 @@ public class PivotSalesData
             Sales = 1210560,
             COGS = 158750,
             Profit = 1051810,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -4626,7 +4626,7 @@ public class PivotSalesData
             Sales = 911764,
             COGS = 149370,
             Profit = 762394,
-            Date = @"4/1/20",
+            Date = @"2020-04-01",
             MonthName = @"April",
             Year = 2020
         });
@@ -4642,7 +4642,7 @@ public class PivotSalesData
             Sales = 26487.72,
             COGS = 11690,
             Profit = 14797.72,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -4658,7 +4658,7 @@ public class PivotSalesData
             Sales = 868532,
             COGS = 99060,
             Profit = 769472,
-            Date = @"8/1/20",
+            Date = @"2020-08-01",
             MonthName = @"August",
             Year = 2020
         });
@@ -4674,7 +4674,7 @@ public class PivotSalesData
             Sales = 948934,
             COGS = 109720,
             Profit = 839214,
-            Date = @"8/1/20",
+            Date = @"2020-08-01",
             MonthName = @"August",
             Year = 2020
         });
@@ -4690,7 +4690,7 @@ public class PivotSalesData
             Sales = 519684,
             COGS = 533500,
             Profit = 13816,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -4706,7 +4706,7 @@ public class PivotSalesData
             Sales = 57147.2,
             COGS = 7080,
             Profit = 50067.2,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -4722,7 +4722,7 @@ public class PivotSalesData
             Sales = 11595.08,
             COGS = 14535,
             Profit = 2939.92,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -4738,7 +4738,7 @@ public class PivotSalesData
             Sales = 27134.4,
             COGS = 13660,
             Profit = 13474.4,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -4754,7 +4754,7 @@ public class PivotSalesData
             Sales = 207060,
             COGS = 615000,
             Profit = 407940,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -4770,7 +4770,7 @@ public class PivotSalesData
             Sales = 5468,
             COGS = 15200,
             Profit = 9732,
-            Date = @"11/1/20",
+            Date = @"2020-11-01",
             MonthName = @"November",
             Year = 2020
         });
@@ -4786,7 +4786,7 @@ public class PivotSalesData
             Sales = 24541.8,
             COGS = 7110,
             Profit = 17431.8,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -4802,7 +4802,7 @@ public class PivotSalesData
             Sales = 779460,
             COGS = 158750,
             Profit = 620710,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -4818,7 +4818,7 @@ public class PivotSalesData
             Sales = 71461.6,
             COGS = 4365,
             Profit = 67096.6,
-            Date = @"7/1/20",
+            Date = @"2020-07-01",
             MonthName = @"July",
             Year = 2020
         });
@@ -4834,7 +4834,7 @@ public class PivotSalesData
             Sales = 292362,
             COGS = 273500,
             Profit = 18862,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -4850,7 +4850,7 @@ public class PivotSalesData
             Sales = 547432.5,
             COGS = 950625,
             Profit = 403192.5,
-            Date = @"4/1/20",
+            Date = @"2020-04-01",
             MonthName = @"April",
             Year = 2020
         });
@@ -4866,7 +4866,7 @@ public class PivotSalesData
             Sales = 409171,
             COGS = 433160,
             Profit = 23989,
-            Date = @"5/1/20",
+            Date = @"2020-05-01",
             MonthName = @"May",
             Year = 2020
         });
@@ -4882,7 +4882,7 @@ public class PivotSalesData
             Sales = 12517.32,
             COGS = 6963,
             Profit = 5554.32,
-            Date = @"11/1/20",
+            Date = @"2020-11-01",
             MonthName = @"November",
             Year = 2020
         });
@@ -4898,7 +4898,7 @@ public class PivotSalesData
             Sales = 113033.75,
             COGS = 335640,
             Profit = 222606.25,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -4914,7 +4914,7 @@ public class PivotSalesData
             Sales = 276645,
             COGS = 641250,
             Profit = 364605,
-            Date = @"1/1/20",
+            Date = @"2020-01-01",
             MonthName = @"January",
             Year = 2020
         });
@@ -4930,7 +4930,7 @@ public class PivotSalesData
             Sales = 875864.5,
             COGS = 628420,
             Profit = 247444.5,
-            Date = @"1/1/20",
+            Date = @"2020-01-01",
             MonthName = @"January",
             Year = 2020
         });
@@ -4946,7 +4946,7 @@ public class PivotSalesData
             Sales = 49908.75,
             COGS = 36750,
             Profit = 13158.75,
-            Date = @"4/1/20",
+            Date = @"2020-04-01",
             MonthName = @"April",
             Year = 2020
         });
@@ -4962,7 +4962,7 @@ public class PivotSalesData
             Sales = 855462,
             COGS = 273500,
             Profit = 581962,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -4978,7 +4978,7 @@ public class PivotSalesData
             Sales = 25658.55,
             COGS = 12270,
             Profit = 13388.55,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -4994,7 +4994,7 @@ public class PivotSalesData
             Sales = 302352,
             COGS = 331000,
             Profit = 28648,
-            Date = @"11/1/20",
+            Date = @"2020-11-01",
             MonthName = @"November",
             Year = 2020
         });
@@ -5010,7 +5010,7 @@ public class PivotSalesData
             Sales = 76283.75,
             COGS = 335640,
             Profit = 259356.25,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -5026,7 +5026,7 @@ public class PivotSalesData
             Sales = 56744.25,
             COGS = 2450,
             Profit = 54294.25,
-            Date = @"5/1/20",
+            Date = @"2020-05-01",
             MonthName = @"May",
             Year = 2020
         });
@@ -5042,7 +5042,7 @@ public class PivotSalesData
             Sales = 322075.5,
             COGS = 948375,
             Profit = 626299.5,
-            Date = @"7/1/20",
+            Date = @"2020-07-01",
             MonthName = @"July",
             Year = 2020
         });
@@ -5058,7 +5058,7 @@ public class PivotSalesData
             Sales = 739679.5,
             COGS = 339820,
             Profit = 399859.5,
-            Date = @"7/1/20",
+            Date = @"2020-07-01",
             MonthName = @"July",
             Year = 2020
         });
@@ -5074,7 +5074,7 @@ public class PivotSalesData
             Sales = 449746.25,
             COGS = 68040,
             Profit = 381706.25,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -5090,7 +5090,7 @@ public class PivotSalesData
             Sales = 344762.5,
             COGS = 253200,
             Profit = 91562.5,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -5106,7 +5106,7 @@ public class PivotSalesData
             Sales = 1148276.5,
             COGS = 329940,
             Profit = 818336.5,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -5122,7 +5122,7 @@ public class PivotSalesData
             Sales = 29687.52,
             COGS = 5868,
             Profit = 23819.52,
-            Date = @"1/1/20",
+            Date = @"2020-01-01",
             MonthName = @"January",
             Year = 2020
         });
@@ -5138,7 +5138,7 @@ public class PivotSalesData
             Sales = 103707,
             COGS = 664750,
             Profit = 561043,
-            Date = @"2/1/20",
+            Date = @"2020-02-01",
             MonthName = @"February",
             Year = 2020
         });
@@ -5154,7 +5154,7 @@ public class PivotSalesData
             Sales = 418027.75,
             COGS = 351390,
             Profit = 66637.75,
-            Date = @"4/1/20",
+            Date = @"2020-04-01",
             MonthName = @"April",
             Year = 2020
         });
@@ -5170,7 +5170,7 @@ public class PivotSalesData
             Sales = 52557.6,
             COGS = 2640,
             Profit = 49917.6,
-            Date = @"5/1/20",
+            Date = @"2020-05-01",
             MonthName = @"May",
             Year = 2020
         });
@@ -5186,7 +5186,7 @@ public class PivotSalesData
             Sales = 762891,
             COGS = 466750,
             Profit = 296141,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -5202,7 +5202,7 @@ public class PivotSalesData
             Sales = 52538.55,
             COGS = 12270,
             Profit = 40268.55,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -5218,7 +5218,7 @@ public class PivotSalesData
             Sales = 221008.75,
             COGS = 105240,
             Profit = 115768.75,
-            Date = @"11/1/20",
+            Date = @"2020-11-01",
             MonthName = @"November",
             Year = 2020
         });
@@ -5234,7 +5234,7 @@ public class PivotSalesData
             Sales = 983363.5,
             COGS = 538460,
             Profit = 444903.5,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -5250,7 +5250,7 @@ public class PivotSalesData
             Sales = 953326.5,
             COGS = 329940,
             Profit = 623386.5,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -5266,7 +5266,7 @@ public class PivotSalesData
             Sales = 27670.8,
             COGS = 16940,
             Profit = 10730.8,
-            Date = @"11/1/20",
+            Date = @"2020-11-01",
             MonthName = @"November",
             Year = 2020
         });
@@ -5282,7 +5282,7 @@ public class PivotSalesData
             Sales = 24626.6,
             COGS = 6630,
             Profit = 17996.6,
-            Date = @"5/1/20",
+            Date = @"2020-05-01",
             MonthName = @"May",
             Year = 2020
         });
@@ -5298,7 +5298,7 @@ public class PivotSalesData
             Sales = 7975.03,
             COGS = 4095,
             Profit = 3880.03,
-            Date = @"7/1/20",
+            Date = @"2020-07-01",
             MonthName = @"July",
             Year = 2020
         });
@@ -5314,7 +5314,7 @@ public class PivotSalesData
             Sales = 26733.6,
             COGS = 4740,
             Profit = 21993.6,
-            Date = @"9/1/20",
+            Date = @"2020-09-01",
             MonthName = @"September",
             Year = 2020
         });
@@ -5330,7 +5330,7 @@ public class PivotSalesData
             Sales = 13524.77,
             COGS = 2605,
             Profit = 10919.77,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -5346,7 +5346,7 @@ public class PivotSalesData
             Sales = 55828.6,
             COGS = 9730,
             Profit = 46098.6,
-            Date = @"3/1/20",
+            Date = @"2020-03-01",
             MonthName = @"March",
             Year = 2020
         });
@@ -5362,7 +5362,7 @@ public class PivotSalesData
             Sales = 32271.6,
             COGS = 10380,
             Profit = 21891.6,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -5378,7 +5378,7 @@ public class PivotSalesData
             Sales = 20304.2,
             COGS = 1800,
             Profit = 18504.2,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -5394,7 +5394,7 @@ public class PivotSalesData
             Sales = 10043.64,
             COGS = 5901,
             Profit = 4142.64,
-            Date = @"3/1/20",
+            Date = @"2020-03-01",
             MonthName = @"March",
             Year = 2020
         });
@@ -5410,7 +5410,7 @@ public class PivotSalesData
             Sales = 6847.2,
             COGS = 26280,
             Profit = 19432.8,
-            Date = @"4/1/20",
+            Date = @"2020-04-01",
             MonthName = @"April",
             Year = 2020
         });
@@ -5426,7 +5426,7 @@ public class PivotSalesData
             Sales = 25960.2,
             COGS = 1800,
             Profit = 24160.2,
-            Date = @"10/1/20",
+            Date = @"2020-10-01",
             MonthName = @"October",
             Year = 2020
         });
@@ -5442,7 +5442,7 @@ public class PivotSalesData
             Sales = 27636.77,
             COGS = 2605,
             Profit = 25031.77,
-            Date = @"12/1/20",
+            Date = @"2020-12-01",
             MonthName = @"December",
             Year = 2020
         });
@@ -5458,7 +5458,7 @@ public class PivotSalesData
             Sales = 17191.6,
             COGS = 10380,
             Profit = 6811.6,
-            Date = @"6/1/20",
+            Date = @"2020-06-01",
             MonthName = @"June",
             Year = 2020
         });
@@ -5474,7 +5474,7 @@ public class PivotSalesData
             Sales = 35748.82,
             COGS = 16305,
             Profit = 19443.82,
-            Date = @"7/1/20",
+            Date = @"2020-07-01",
             MonthName = @"July",
             Year = 2020
         });
@@ -5490,7 +5490,7 @@ public class PivotSalesData
             Sales = 27440,
             COGS = 16185,
             Profit = 11255,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -5506,7 +5506,7 @@ public class PivotSalesData
             Sales = 55240,
             COGS = 13210,
             Profit = 42030,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -5522,7 +5522,7 @@ public class PivotSalesData
             Sales = 21960,
             COGS = 21780,
             Profit = 180,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -5538,7 +5538,7 @@ public class PivotSalesData
             Sales = 10785,
             COGS = 8880,
             Profit = 1905,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -5554,7 +5554,7 @@ public class PivotSalesData
             Sales = 53640,
             COGS = 24700,
             Profit = 28940,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -5570,7 +5570,7 @@ public class PivotSalesData
             Sales = 1547700,
             COGS = 393380,
             Profit = 1154320,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -5586,7 +5586,7 @@ public class PivotSalesData
             Sales = 54735,
             COGS = 9210,
             Profit = 45525,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -5602,7 +5602,7 @@ public class PivotSalesData
             Sales = 50064,
             COGS = 7554,
             Profit = 42510,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -5618,7 +5618,7 @@ public class PivotSalesData
             Sales = 76820,
             COGS = 18990,
             Profit = 57830,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -5634,7 +5634,7 @@ public class PivotSalesData
             Sales = 44712,
             COGS = 4635,
             Profit = 40077,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -5650,7 +5650,7 @@ public class PivotSalesData
             Sales = 39375,
             COGS = 24700,
             Profit = 14675,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -5666,7 +5666,7 @@ public class PivotSalesData
             Sales = 244750,
             COGS = 319860,
             Profit = 75110,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -5682,7 +5682,7 @@ public class PivotSalesData
             Sales = 981300,
             COGS = 239500,
             Profit = 741800,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -5698,7 +5698,7 @@ public class PivotSalesData
             Sales = 14637,
             COGS = 10730,
             Profit = 3907,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -5714,7 +5714,7 @@ public class PivotSalesData
             Sales = 316250,
             COGS = 41400,
             Profit = 274850,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -5730,7 +5730,7 @@ public class PivotSalesData
             Sales = 42375,
             COGS = 6150,
             Profit = 36225,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -5746,7 +5746,7 @@ public class PivotSalesData
             Sales = 50260,
             COGS = 2920,
             Profit = 47340,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -5762,7 +5762,7 @@ public class PivotSalesData
             Sales = 13245,
             COGS = 9740,
             Profit = 3505,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -5778,7 +5778,7 @@ public class PivotSalesData
             Sales = 25044,
             COGS = 7554,
             Profit = 17490,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -5794,7 +5794,7 @@ public class PivotSalesData
             Sales = 897050,
             COGS = 261560,
             Profit = 635490,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -5810,7 +5810,7 @@ public class PivotSalesData
             Sales = 34152,
             COGS = 1101,
             Profit = 33051,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -5826,7 +5826,7 @@ public class PivotSalesData
             Sales = 6979,
             COGS = 4415,
             Profit = 2564,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -5842,7 +5842,7 @@ public class PivotSalesData
             Sales = 51315,
             COGS = 5490,
             Profit = 45825,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -5858,7 +5858,7 @@ public class PivotSalesData
             Sales = 1050000,
             COGS = 5490,
             Profit = 1044510,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -5874,7 +5874,7 @@ public class PivotSalesData
             Sales = 687300,
             COGS = 197000,
             Profit = 490300,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -5890,7 +5890,7 @@ public class PivotSalesData
             Sales = 34350,
             COGS = 24720,
             Profit = 9630,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -5906,7 +5906,7 @@ public class PivotSalesData
             Sales = 14931,
             COGS = 5715,
             Profit = 9216,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -5922,7 +5922,7 @@ public class PivotSalesData
             Sales = 1216250,
             COGS = 448500,
             Profit = 767750,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -5938,7 +5938,7 @@ public class PivotSalesData
             Sales = 44232,
             COGS = 2736,
             Profit = 41496,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -5954,7 +5954,7 @@ public class PivotSalesData
             Sales = 49785,
             COGS = 21520,
             Profit = 28265,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -5970,7 +5970,7 @@ public class PivotSalesData
             Sales = 72340,
             COGS = 18170,
             Profit = 54170,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -5986,7 +5986,7 @@ public class PivotSalesData
             Sales = 443100,
             COGS = 393380,
             Profit = 49720,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -6002,7 +6002,7 @@ public class PivotSalesData
             Sales = 6258,
             COGS = 7465,
             Profit = 1207,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -6018,7 +6018,7 @@ public class PivotSalesData
             Sales = 340625,
             COGS = 216480,
             Profit = 124145,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -6034,7 +6034,7 @@ public class PivotSalesData
             Sales = 36732,
             COGS = 6483,
             Profit = 30249,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -6050,7 +6050,7 @@ public class PivotSalesData
             Sales = 1385300,
             COGS = 261560,
             Profit = 1123740,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -6066,7 +6066,7 @@ public class PivotSalesData
             Sales = 47040,
             COGS = 4635,
             Profit = 42405,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -6082,7 +6082,7 @@ public class PivotSalesData
             Sales = 422625,
             COGS = 338520,
             Profit = 84105,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -6098,7 +6098,7 @@ public class PivotSalesData
             Sales = 136750,
             COGS = 41400,
             Profit = 95350,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -6114,7 +6114,7 @@ public class PivotSalesData
             Sales = 1292100,
             COGS = 500250,
             Profit = 791850,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -6130,7 +6130,7 @@ public class PivotSalesData
             Sales = 10536,
             COGS = 8514,
             Profit = 2022,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -6146,7 +6146,7 @@ public class PivotSalesData
             Sales = 7440,
             COGS = 21780,
             Profit = 14340,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -6162,7 +6162,7 @@ public class PivotSalesData
             Sales = 50505,
             COGS = 8880,
             Profit = 41625,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -6178,7 +6178,7 @@ public class PivotSalesData
             Sales = 1358000,
             COGS = 397020,
             Profit = 960980,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -6194,7 +6194,7 @@ public class PivotSalesData
             Sales = 616500,
             COGS = 537750,
             Profit = 78750,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -6210,7 +6210,7 @@ public class PivotSalesData
             Sales = 80820,
             COGS = 18170,
             Profit = 62650,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -6226,7 +6226,7 @@ public class PivotSalesData
             Sales = 1132950,
             COGS = 715000,
             Profit = 417950,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -6242,7 +6242,7 @@ public class PivotSalesData
             Sales = 7560,
             COGS = 5859,
             Profit = 1701,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -6258,7 +6258,7 @@ public class PivotSalesData
             Sales = 526250,
             COGS = 506340,
             Profit = 19910,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -6274,7 +6274,7 @@ public class PivotSalesData
             Sales = 22540,
             COGS = 18990,
             Profit = 3550,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -6290,7 +6290,7 @@ public class PivotSalesData
             Sales = 24066,
             COGS = 8430,
             Profit = 15636,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -6306,7 +6306,7 @@ public class PivotSalesData
             Sales = 24180,
             COGS = 6423,
             Profit = 17757,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -6322,7 +6322,7 @@ public class PivotSalesData
             Sales = 17738,
             COGS = 5715,
             Profit = 12023,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -6338,7 +6338,7 @@ public class PivotSalesData
             Sales = 20760,
             COGS = 6150,
             Profit = 14610,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -6354,7 +6354,7 @@ public class PivotSalesData
             Sales = 24650.85,
             COGS = 19725,
             Profit = 4925.85,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -6370,7 +6370,7 @@ public class PivotSalesData
             Sales = 27000.6,
             COGS = 22960,
             Profit = 4040.6,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -6386,7 +6386,7 @@ public class PivotSalesData
             Sales = 19492.9,
             COGS = 5150,
             Profit = 14342.9,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -6402,7 +6402,7 @@ public class PivotSalesData
             Sales = 3154.27,
             COGS = 3195,
             Profit = 40.73,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -6418,7 +6418,7 @@ public class PivotSalesData
             Sales = 26402.18,
             COGS = 6630,
             Profit = 19772.18,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -6434,7 +6434,7 @@ public class PivotSalesData
             Sales = 8753.04,
             COGS = 5574,
             Profit = 3179.04,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -6450,7 +6450,7 @@ public class PivotSalesData
             Sales = 353115,
             COGS = 314600,
             Profit = 38515,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -6466,7 +6466,7 @@ public class PivotSalesData
             Sales = 14354.97,
             COGS = 12645,
             Profit = 1709.97,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -6482,7 +6482,7 @@ public class PivotSalesData
             Sales = 51618.6,
             COGS = 4335,
             Profit = 47283.6,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -6498,7 +6498,7 @@ public class PivotSalesData
             Sales = 331337.5,
             COGS = 39600,
             Profit = 291737.5,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -6514,7 +6514,7 @@ public class PivotSalesData
             Sales = 49767.48,
             COGS = 8013,
             Profit = 41754.48,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -6530,7 +6530,7 @@ public class PivotSalesData
             Sales = 20008.08,
             COGS = 2298,
             Profit = 17710.08,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -6546,7 +6546,7 @@ public class PivotSalesData
             Sales = 470118,
             COGS = 123500,
             Profit = 346618,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -6562,7 +6562,7 @@ public class PivotSalesData
             Sales = 1302710.5,
             COGS = 363220,
             Profit = 939490.5,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -6578,7 +6578,7 @@ public class PivotSalesData
             Sales = 662357.5,
             COGS = 560300,
             Profit = 102057.5,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -6594,7 +6594,7 @@ public class PivotSalesData
             Sales = 40797.9,
             COGS = 22140,
             Profit = 18657.9,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -6610,7 +6610,7 @@ public class PivotSalesData
             Sales = 442797,
             COGS = 575250,
             Profit = 132453,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -6626,7 +6626,7 @@ public class PivotSalesData
             Sales = 75164.9,
             COGS = 13755,
             Profit = 61409.9,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -6642,7 +6642,7 @@ public class PivotSalesData
             Sales = 7655.9,
             COGS = 9150,
             Profit = 1494.1,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -6658,7 +6658,7 @@ public class PivotSalesData
             Sales = 509406,
             COGS = 624500,
             Profit = 115094,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -6674,7 +6674,7 @@ public class PivotSalesData
             Sales = 52046.25,
             COGS = 79560,
             Profit = 27513.75,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -6690,7 +6690,7 @@ public class PivotSalesData
             Sales = 35292.9,
             COGS = 15140,
             Profit = 20152.9,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -6706,7 +6706,7 @@ public class PivotSalesData
             Sales = 10787.52,
             COGS = 22462.5,
             Profit = 11674.98,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -6722,7 +6722,7 @@ public class PivotSalesData
             Sales = 422341.25,
             COGS = 87240,
             Profit = 335101.25,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -6738,7 +6738,7 @@ public class PivotSalesData
             Sales = 105516.25,
             COGS = 94440,
             Profit = 11076.25,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -6754,7 +6754,7 @@ public class PivotSalesData
             Sales = 345596.25,
             COGS = 218760,
             Profit = 126836.25,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -6770,7 +6770,7 @@ public class PivotSalesData
             Sales = 40147.95,
             COGS = 7470,
             Profit = 32677.95,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -6786,7 +6786,7 @@ public class PivotSalesData
             Sales = 52624.08,
             COGS = 2298,
             Profit = 50326.08,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -6802,7 +6802,7 @@ public class PivotSalesData
             Sales = 1216185,
             COGS = 726250,
             Profit = 489935,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -6818,7 +6818,7 @@ public class PivotSalesData
             Sales = 978057.5,
             COGS = 560300,
             Profit = 417757.5,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -6834,7 +6834,7 @@ public class PivotSalesData
             Sales = 85107.2,
             COGS = 38640,
             Profit = 46467.2,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -6850,7 +6850,7 @@ public class PivotSalesData
             Sales = 19966.66,
             COGS = 1810,
             Profit = 18156.66,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -6866,7 +6866,7 @@ public class PivotSalesData
             Sales = 174721.25,
             COGS = 110760,
             Profit = 63961.25,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -6882,7 +6882,7 @@ public class PivotSalesData
             Sales = 480421.25,
             COGS = 79560,
             Profit = 400861.25,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -6898,7 +6898,7 @@ public class PivotSalesData
             Sales = 19845.56,
             COGS = 10460,
             Profit = 9385.56,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -6914,7 +6914,7 @@ public class PivotSalesData
             Sales = 8836.59,
             COGS = 1315,
             Profit = 7521.59,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -6930,7 +6930,7 @@ public class PivotSalesData
             Sales = 1358897.75,
             COGS = 245310,
             Profit = 1113587.75,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -6946,7 +6946,7 @@ public class PivotSalesData
             Sales = 382591.25,
             COGS = 87240,
             Profit = 295351.25,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -6962,7 +6962,7 @@ public class PivotSalesData
             Sales = 271641.25,
             COGS = 94440,
             Profit = 177201.25,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -6978,7 +6978,7 @@ public class PivotSalesData
             Sales = 403842,
             COGS = 246500,
             Profit = 157342,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -6994,7 +6994,7 @@ public class PivotSalesData
             Sales = 762018,
             COGS = 123500,
             Profit = 638518,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -7010,7 +7010,7 @@ public class PivotSalesData
             Sales = 630010.5,
             COGS = 363220,
             Profit = 266790.5,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -7026,7 +7026,7 @@ public class PivotSalesData
             Sales = 184695,
             COGS = 209280,
             Profit = 24585,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -7042,7 +7042,7 @@ public class PivotSalesData
             Sales = 13609.32,
             COGS = 5967,
             Profit = 7642.32,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -7058,7 +7058,7 @@ public class PivotSalesData
             Sales = 62651.85,
             COGS = 3210,
             Profit = 59441.85,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -7074,7 +7074,7 @@ public class PivotSalesData
             Sales = 181018.75,
             COGS = 89100,
             Profit = 91918.75,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -7090,7 +7090,7 @@ public class PivotSalesData
             Sales = 2269.2,
             COGS = 3885,
             Profit = 1615.8,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -7106,7 +7106,7 @@ public class PivotSalesData
             Sales = 1228416,
             COGS = 53500,
             Profit = 1174916,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -7122,7 +7122,7 @@ public class PivotSalesData
             Sales = 18319.7,
             COGS = 10725,
             Profit = 7594.7,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -7138,7 +7138,7 @@ public class PivotSalesData
             Sales = 178136,
             COGS = 741520,
             Profit = 563384,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -7154,7 +7154,7 @@ public class PivotSalesData
             Sales = 38785.92,
             COGS = 3426,
             Profit = 35359.92,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -7170,7 +7170,7 @@ public class PivotSalesData
             Sales = 14813.6,
             COGS = 15660,
             Profit = 846.4,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -7186,7 +7186,7 @@ public class PivotSalesData
             Sales = 13454.4,
             COGS = 2070,
             Profit = 11384.4,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -7202,7 +7202,7 @@ public class PivotSalesData
             Sales = 474100,
             COGS = 199200,
             Profit = 274900,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -7218,7 +7218,7 @@ public class PivotSalesData
             Sales = 17186.1,
             COGS = 23630,
             Profit = 6443.9,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -7234,7 +7234,7 @@ public class PivotSalesData
             Sales = 753492,
             COGS = 229500,
             Profit = 523992,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -7250,7 +7250,7 @@ public class PivotSalesData
             Sales = 1024932,
             COGS = 432000,
             Profit = 592932,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -7266,7 +7266,7 @@ public class PivotSalesData
             Sales = 36433.92,
             COGS = 3426,
             Profit = 33007.92,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -7282,7 +7282,7 @@ public class PivotSalesData
             Sales = 492970,
             COGS = 79440,
             Profit = 413530,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -7298,7 +7298,7 @@ public class PivotSalesData
             Sales = 41017.2,
             COGS = 3885,
             Profit = 37132.2,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -7314,7 +7314,7 @@ public class PivotSalesData
             Sales = 546477.5,
             COGS = 97080,
             Profit = 449397.5,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -7330,7 +7330,7 @@ public class PivotSalesData
             Sales = 257887.5,
             COGS = 257400,
             Profit = 487.5,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -7346,7 +7346,7 @@ public class PivotSalesData
             Sales = 9159.6,
             COGS = 5355,
             Profit = 3804.6,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -7362,7 +7362,7 @@ public class PivotSalesData
             Sales = 934704,
             COGS = 479000,
             Profit = 455704,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -7378,7 +7378,7 @@ public class PivotSalesData
             Sales = 1417836,
             COGS = 741520,
             Profit = 676316,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -7394,7 +7394,7 @@ public class PivotSalesData
             Sales = 463177.5,
             COGS = 327480,
             Profit = 135697.5,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -7410,7 +7410,7 @@ public class PivotSalesData
             Sales = 5077.5,
             COGS = 19250,
             Profit = 14172.5,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -7426,7 +7426,7 @@ public class PivotSalesData
             Sales = 14488.18,
             COGS = 10065,
             Profit = 4423.18,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -7442,7 +7442,7 @@ public class PivotSalesData
             Sales = 27754.8,
             COGS = 3165,
             Profit = 24589.8,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -7458,7 +7458,7 @@ public class PivotSalesData
             Sales = 6699.84,
             COGS = 3252,
             Profit = 3447.84,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -7474,7 +7474,7 @@ public class PivotSalesData
             Sales = 51573.6,
             COGS = 15660,
             Profit = 35913.6,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -7490,7 +7490,7 @@ public class PivotSalesData
             Sales = 538538,
             COGS = 771160,
             Profit = 232622,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -7506,7 +7506,7 @@ public class PivotSalesData
             Sales = 490511,
             COGS = 748020,
             Profit = 257509,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -7522,7 +7522,7 @@ public class PivotSalesData
             Sales = 408477.5,
             COGS = 97080,
             Profit = 311397.5,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -7538,7 +7538,7 @@ public class PivotSalesData
             Sales = 144262.5,
             COGS = 257400,
             Profit = 113137.5,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -7554,7 +7554,7 @@ public class PivotSalesData
             Sales = 45034.8,
             COGS = 3165,
             Profit = 41869.8,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -7570,7 +7570,7 @@ public class PivotSalesData
             Sales = 45842.4,
             COGS = 5440,
             Profit = 40402.4,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -7586,7 +7586,7 @@ public class PivotSalesData
             Sales = 30603.84,
             COGS = 3252,
             Profit = 27351.84,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -7602,7 +7602,7 @@ public class PivotSalesData
             Sales = 38345,
             COGS = 79440,
             Profit = 41095,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -7618,7 +7618,7 @@ public class PivotSalesData
             Sales = 636516,
             COGS = 53500,
             Profit = 583016,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -7634,7 +7634,7 @@ public class PivotSalesData
             Sales = 1126111,
             COGS = 748020,
             Profit = 378091,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -7650,7 +7650,7 @@ public class PivotSalesData
             Sales = 440927.5,
             COGS = 327480,
             Profit = 113447.5,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -7666,7 +7666,7 @@ public class PivotSalesData
             Sales = 272188,
             COGS = 69160,
             Profit = 203028,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -7682,7 +7682,7 @@ public class PivotSalesData
             Sales = 407120,
             COGS = 504400,
             Profit = 97280,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -7698,7 +7698,7 @@ public class PivotSalesData
             Sales = 1215246,
             COGS = 64750,
             Profit = 1150496,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -7714,7 +7714,7 @@ public class PivotSalesData
             Sales = 636594,
             COGS = 275250,
             Profit = 361344,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -7730,7 +7730,7 @@ public class PivotSalesData
             Sales = 432060,
             COGS = 273120,
             Profit = 158940,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -7746,7 +7746,7 @@ public class PivotSalesData
             Sales = 468188,
             COGS = 771160,
             Profit = 302972,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -7762,7 +7762,7 @@ public class PivotSalesData
             Sales = 13085.6,
             COGS = 12360,
             Profit = 725.6,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -7778,7 +7778,7 @@ public class PivotSalesData
             Sales = 46643.6,
             COGS = 9410,
             Profit = 37233.6,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -7794,7 +7794,7 @@ public class PivotSalesData
             Sales = 601404,
             COGS = 479000,
             Profit = 122404,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -7810,7 +7810,7 @@ public class PivotSalesData
             Sales = 429711.88,
             COGS = 509220,
             Profit = 79508.13,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -7826,7 +7826,7 @@ public class PivotSalesData
             Sales = 26472,
             COGS = 25800,
             Profit = 672,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -7842,7 +7842,7 @@ public class PivotSalesData
             Sales = 616899,
             COGS = 172250,
             Profit = 444649,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -7858,7 +7858,7 @@ public class PivotSalesData
             Sales = 43015.08,
             COGS = 5841,
             Profit = 37174.08,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -7874,7 +7874,7 @@ public class PivotSalesData
             Sales = 12933.12,
             COGS = 2724,
             Profit = 10209.12,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -7890,7 +7890,7 @@ public class PivotSalesData
             Sales = 20308.82,
             COGS = 9790,
             Profit = 10518.82,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -7906,7 +7906,7 @@ public class PivotSalesData
             Sales = 13727.64,
             COGS = 5703,
             Profit = 8024.64,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -7922,7 +7922,7 @@ public class PivotSalesData
             Sales = 16132.76,
             COGS = 2720,
             Profit = 13412.76,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -7938,7 +7938,7 @@ public class PivotSalesData
             Sales = 1255131.5,
             COGS = 467220,
             Profit = 787911.5,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -7954,7 +7954,7 @@ public class PivotSalesData
             Sales = 491673.75,
             COGS = 154440,
             Profit = 337233.75,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -7970,7 +7970,7 @@ public class PivotSalesData
             Sales = 478352.5,
             COGS = 204720,
             Profit = 273632.5,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -7986,7 +7986,7 @@ public class PivotSalesData
             Sales = 661489.5,
             COGS = 608625,
             Profit = 52864.5,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -8002,7 +8002,7 @@ public class PivotSalesData
             Sales = 127722.5,
             COGS = 212880,
             Profit = 85157.5,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -8018,7 +8018,7 @@ public class PivotSalesData
             Sales = 47915.64,
             COGS = 5703,
             Profit = 42212.64,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -8034,7 +8034,7 @@ public class PivotSalesData
             Sales = 904299,
             COGS = 172250,
             Profit = 732049,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -8050,7 +8050,7 @@ public class PivotSalesData
             Sales = 448612.5,
             COGS = 188400,
             Profit = 260212.5,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -8066,7 +8066,7 @@ public class PivotSalesData
             Sales = 16054.98,
             COGS = 4108.5,
             Profit = 11946.48,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -8082,7 +8082,7 @@ public class PivotSalesData
             Sales = 553966.25,
             COGS = 241080,
             Profit = 312886.25,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -8098,7 +8098,7 @@ public class PivotSalesData
             Sales = 10584.75,
             COGS = 19450,
             Profit = 8865.25,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -8114,7 +8114,7 @@ public class PivotSalesData
             Sales = 213173.75,
             COGS = 154440,
             Profit = 58733.75,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -8130,7 +8130,7 @@ public class PivotSalesData
             Sales = 286227.5,
             COGS = 204720,
             Profit = 81507.5,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -8146,7 +8146,7 @@ public class PivotSalesData
             Sales = 471841.25,
             COGS = 241080,
             Profit = 230761.25,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -8162,7 +8162,7 @@ public class PivotSalesData
             Sales = 322704,
             COGS = 711000,
             Profit = 388296,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -8178,7 +8178,7 @@ public class PivotSalesData
             Sales = 9822.24,
             COGS = 5748,
             Profit = 4074.24,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -8194,7 +8194,7 @@ public class PivotSalesData
             Sales = 207237.5,
             COGS = 188400,
             Profit = 18837.5,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -8210,7 +8210,7 @@ public class PivotSalesData
             Sales = 524634,
             COGS = 468500,
             Profit = 56134,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -8226,7 +8226,7 @@ public class PivotSalesData
             Sales = 118909,
             COGS = 426920,
             Profit = 308011,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -8242,7 +8242,7 @@ public class PivotSalesData
             Sales = 40299.75,
             COGS = 19450,
             Profit = 20849.75,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -8258,7 +8258,7 @@ public class PivotSalesData
             Sales = 28681.4,
             COGS = 8310,
             Profit = 20371.4,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -8274,7 +8274,7 @@ public class PivotSalesData
             Sales = 27196.4,
             COGS = 8800,
             Profit = 18396.4,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -8290,7 +8290,7 @@ public class PivotSalesData
             Sales = 82409.7,
             COGS = 38505,
             Profit = 43904.7,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -8306,7 +8306,7 @@ public class PivotSalesData
             Sales = 42631.56,
             COGS = 7437,
             Profit = 35194.56,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -8322,7 +8322,7 @@ public class PivotSalesData
             Sales = 25121.4,
             COGS = 20310,
             Profit = 4811.4,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -8338,7 +8338,7 @@ public class PivotSalesData
             Sales = 3386.4,
             COGS = 20310,
             Profit = 16923.6,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -8354,7 +8354,7 @@ public class PivotSalesData
             Sales = 65978.4,
             COGS = 22610,
             Profit = 43368.4,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -8370,7 +8370,7 @@ public class PivotSalesData
             Sales = 42751.2,
             COGS = 7360,
             Profit = 35391.2,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -8386,7 +8386,7 @@ public class PivotSalesData
             Sales = 7160.72,
             COGS = 14255,
             Profit = 7094.28,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -8402,7 +8402,7 @@ public class PivotSalesData
             Sales = 342348,
             COGS = 505250,
             Profit = 162902,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -8418,7 +8418,7 @@ public class PivotSalesData
             Sales = 167314,
             COGS = 71240,
             Profit = 96074,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -8434,7 +8434,7 @@ public class PivotSalesData
             Sales = 60814.8,
             COGS = 19670,
             Profit = 41144.8,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -8450,7 +8450,7 @@ public class PivotSalesData
             Sales = 800592,
             COGS = 464750,
             Profit = 335842,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -8466,7 +8466,7 @@ public class PivotSalesData
             Sales = 25094.72,
             COGS = 14255,
             Profit = 10839.72,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -8482,7 +8482,7 @@ public class PivotSalesData
             Sales = 1313748,
             COGS = 505250,
             Profit = 808498,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -8498,7 +8498,7 @@ public class PivotSalesData
             Sales = 148310,
             COGS = 136560,
             Profit = 11750,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -8514,7 +8514,7 @@ public class PivotSalesData
             Sales = 16911.72,
             COGS = 21255,
             Profit = 4343.28,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -8530,7 +8530,7 @@ public class PivotSalesData
             Sales = 162525,
             COGS = 95400,
             Profit = 67125,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -8546,7 +8546,7 @@ public class PivotSalesData
             Sales = 1329126,
             COGS = 353625,
             Profit = 975501,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -8562,7 +8562,7 @@ public class PivotSalesData
             Sales = 1123584,
             COGS = 729500,
             Profit = 394084,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -8578,7 +8578,7 @@ public class PivotSalesData
             Sales = 569450,
             COGS = 897000,
             Profit = 327550,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -8594,7 +8594,7 @@ public class PivotSalesData
             Sales = 426685,
             COGS = 358560,
             Profit = 68125,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -8610,7 +8610,7 @@ public class PivotSalesData
             Sales = 30109.2,
             COGS = 2180,
             Profit = 27929.2,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -8626,7 +8626,7 @@ public class PivotSalesData
             Sales = 57100.8,
             COGS = 20740,
             Profit = 36360.8,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -8642,7 +8642,7 @@ public class PivotSalesData
             Sales = 66195.2,
             COGS = 10560,
             Profit = 55635.2,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -8658,7 +8658,7 @@ public class PivotSalesData
             Sales = 65732.4,
             COGS = 6710,
             Profit = 59022.4,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -8674,7 +8674,7 @@ public class PivotSalesData
             Sales = 48936.6,
             COGS = 15140,
             Profit = 33796.6,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -8690,7 +8690,7 @@ public class PivotSalesData
             Sales = 846664,
             COGS = 71240,
             Profit = 775424,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -8706,7 +8706,7 @@ public class PivotSalesData
             Sales = 61185,
             COGS = 136560,
             Profit = 75375,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -8722,7 +8722,7 @@ public class PivotSalesData
             Sales = 17572.8,
             COGS = 4395,
             Profit = 13177.8,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -8738,7 +8738,7 @@ public class PivotSalesData
             Sales = 70503.2,
             COGS = 26460,
             Profit = 44043.2,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -8754,7 +8754,7 @@ public class PivotSalesData
             Sales = 593222,
             COGS = 566020,
             Profit = 27202,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -8770,7 +8770,7 @@ public class PivotSalesData
             Sales = 3748.32,
             COGS = 2598,
             Profit = 1150.32,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -8786,7 +8786,7 @@ public class PivotSalesData
             Sales = 1446564,
             COGS = 90740,
             Profit = 1355824,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -8802,7 +8802,7 @@ public class PivotSalesData
             Sales = 1197672,
             COGS = 566020,
             Profit = 631652,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -8818,7 +8818,7 @@ public class PivotSalesData
             Sales = 40701.6,
             COGS = 15140,
             Profit = 25561.6,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -8834,7 +8834,7 @@ public class PivotSalesData
             Sales = 1003940,
             COGS = 484900,
             Profit = 519040,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -8850,7 +8850,7 @@ public class PivotSalesData
             Sales = 499255,
             COGS = 128880,
             Profit = 370375,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -8866,7 +8866,7 @@ public class PivotSalesData
             Sales = 1424402,
             COGS = 495820,
             Profit = 928582,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -8882,7 +8882,7 @@ public class PivotSalesData
             Sales = 61442.4,
             COGS = 6710,
             Profit = 54732.4,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -8898,7 +8898,7 @@ public class PivotSalesData
             Sales = 443058,
             COGS = 462280,
             Profit = 19222,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -8914,7 +8914,7 @@ public class PivotSalesData
             Sales = 3787.35,
             COGS = 5795,
             Profit = 2007.65,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -8930,7 +8930,7 @@ public class PivotSalesData
             Sales = 4594.8,
             COGS = 6860,
             Profit = 2265.2,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -8946,7 +8946,7 @@ public class PivotSalesData
             Sales = 2516.85,
             COGS = 11745,
             Profit = 9228.15,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -8962,7 +8962,7 @@ public class PivotSalesData
             Sales = 15333.85,
             COGS = 13445,
             Profit = 1888.85,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -8978,7 +8978,7 @@ public class PivotSalesData
             Sales = 6641.4,
             COGS = 7293,
             Profit = 651.6,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -8994,7 +8994,7 @@ public class PivotSalesData
             Sales = 34421.4,
             COGS = 7293,
             Profit = 27128.4,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -9010,7 +9010,7 @@ public class PivotSalesData
             Sales = 6562.85,
             COGS = 13445,
             Profit = 6882.15,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -9026,7 +9026,7 @@ public class PivotSalesData
             Sales = 6746.95,
             COGS = 8415,
             Profit = 1668.05,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -9042,7 +9042,7 @@ public class PivotSalesData
             Sales = 4954.2,
             COGS = 3369,
             Profit = 1585.2,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -9058,7 +9058,7 @@ public class PivotSalesData
             Sales = 5222.35,
             COGS = 5795,
             Profit = 572.65,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -9074,7 +9074,7 @@ public class PivotSalesData
             Sales = 49761,
             COGS = 5595,
             Profit = 44166,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -9090,7 +9090,7 @@ public class PivotSalesData
             Sales = 23042.4,
             COGS = 3348,
             Profit = 19694.4,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -9106,7 +9106,7 @@ public class PivotSalesData
             Sales = 38117,
             COGS = 15630,
             Profit = 22487,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -9122,7 +9122,7 @@ public class PivotSalesData
             Sales = 129135,
             COGS = 247750,
             Profit = 118615,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -9138,7 +9138,7 @@ public class PivotSalesData
             Sales = 24501.4,
             COGS = 5080,
             Profit = 19421.4,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -9154,7 +9154,7 @@ public class PivotSalesData
             Sales = 15981.75,
             COGS = 27910,
             Profit = 11928.25,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -9170,7 +9170,7 @@ public class PivotSalesData
             Sales = 17160.5,
             COGS = 2850,
             Profit = 14310.5,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -9186,7 +9186,7 @@ public class PivotSalesData
             Sales = 19611.55,
             COGS = 12435,
             Profit = 7176.55,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -9202,7 +9202,7 @@ public class PivotSalesData
             Sales = 1099271.25,
             COGS = 359970,
             Profit = 739301.25,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -9218,7 +9218,7 @@ public class PivotSalesData
             Sales = 379956.25,
             COGS = 435240,
             Profit = 55283.75,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -9234,7 +9234,7 @@ public class PivotSalesData
             Sales = 823550,
             COGS = 187200,
             Profit = 636350,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -9250,7 +9250,7 @@ public class PivotSalesData
             Sales = 12118.8,
             COGS = 7026,
             Profit = 5092.8,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -9266,7 +9266,7 @@ public class PivotSalesData
             Sales = 79200,
             COGS = 275000,
             Profit = 195800,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -9282,7 +9282,7 @@ public class PivotSalesData
             Sales = 30897,
             COGS = 13030,
             Profit = 17867,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -9298,7 +9298,7 @@ public class PivotSalesData
             Sales = 493800,
             COGS = 359040,
             Profit = 134760,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -9314,7 +9314,7 @@ public class PivotSalesData
             Sales = 111593.75,
             COGS = 286200,
             Profit = 174606.25,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -9330,7 +9330,7 @@ public class PivotSalesData
             Sales = 976995,
             COGS = 401750,
             Profit = 575245,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -9346,7 +9346,7 @@ public class PivotSalesData
             Sales = 26870.55,
             COGS = 11635,
             Profit = 15235.55,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -9362,7 +9362,7 @@ public class PivotSalesData
             Sales = 1289235,
             COGS = 247750,
             Profit = 1041485,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -9378,7 +9378,7 @@ public class PivotSalesData
             Sales = 531265,
             COGS = 156520,
             Profit = 374745,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -9394,7 +9394,7 @@ public class PivotSalesData
             Sales = 30330,
             COGS = 26200,
             Profit = 4130,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -9410,7 +9410,7 @@ public class PivotSalesData
             Sales = 1304660,
             COGS = 319280,
             Profit = 985380,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -9426,7 +9426,7 @@ public class PivotSalesData
             Sales = 85891,
             COGS = 13890,
             Profit = 72001,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -9442,7 +9442,7 @@ public class PivotSalesData
             Sales = 510368.75,
             COGS = 103320,
             Profit = 407048.75,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -9458,7 +9458,7 @@ public class PivotSalesData
             Sales = 163475,
             COGS = 84480,
             Profit = 78995,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -9474,7 +9474,7 @@ public class PivotSalesData
             Sales = 3098,
             COGS = 18020,
             Profit = 14922,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -9490,7 +9490,7 @@ public class PivotSalesData
             Sales = 64857,
             COGS = 26630,
             Profit = 38227,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -9506,7 +9506,7 @@ public class PivotSalesData
             Sales = 9059.4,
             COGS = 10680,
             Profit = 1620.6,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -9522,7 +9522,7 @@ public class PivotSalesData
             Sales = 50658,
             COGS = 21160,
             Profit = 29498,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -9538,7 +9538,7 @@ public class PivotSalesData
             Sales = 33243.75,
             COGS = 5550,
             Profit = 27693.75,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -9554,7 +9554,7 @@ public class PivotSalesData
             Sales = 18254.25,
             COGS = 28610,
             Profit = 10355.75,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -9570,7 +9570,7 @@ public class PivotSalesData
             Sales = 29831.25,
             COGS = 96840,
             Profit = 67008.75,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -9586,7 +9586,7 @@ public class PivotSalesData
             Sales = 871815,
             COGS = 156520,
             Profit = 715295,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -9602,7 +9602,7 @@ public class PivotSalesData
             Sales = 45828,
             COGS = 28320,
             Profit = 17508,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -9618,7 +9618,7 @@ public class PivotSalesData
             Sales = 33181,
             COGS = 15790,
             Profit = 17391,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -9634,7 +9634,7 @@ public class PivotSalesData
             Sales = 132868.75,
             COGS = 103320,
             Profit = 29548.75,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -9650,7 +9650,7 @@ public class PivotSalesData
             Sales = 417975,
             COGS = 84480,
             Profit = 333495,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -9666,7 +9666,7 @@ public class PivotSalesData
             Sales = 23387,
             COGS = 10330,
             Profit = 13057,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -9682,7 +9682,7 @@ public class PivotSalesData
             Sales = 45150,
             COGS = 312500,
             Profit = 267350,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -9698,7 +9698,7 @@ public class PivotSalesData
             Sales = 65311,
             COGS = 13890,
             Profit = 51421,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -9714,7 +9714,7 @@ public class PivotSalesData
             Sales = 23935,
             COGS = 12650,
             Profit = 11285,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -9730,7 +9730,7 @@ public class PivotSalesData
             Sales = 58383,
             COGS = 22970,
             Profit = 35413,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -9746,7 +9746,7 @@ public class PivotSalesData
             Sales = 55917,
             COGS = 26630,
             Profit = 29287,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -9762,7 +9762,7 @@ public class PivotSalesData
             Sales = 16523.5,
             COGS = 2850,
             Profit = 13673.5,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -9778,7 +9778,7 @@ public class PivotSalesData
             Sales = 20731.55,
             COGS = 12435,
             Profit = 8296.55,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -9794,7 +9794,7 @@ public class PivotSalesData
             Sales = 237125,
             COGS = 351000,
             Profit = 113875,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -9810,7 +9810,7 @@ public class PivotSalesData
             Sales = 433440,
             COGS = 143520,
             Profit = 289920,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -9826,7 +9826,7 @@ public class PivotSalesData
             Sales = 1305010,
             COGS = 319280,
             Profit = 985730,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -9842,7 +9842,7 @@ public class PivotSalesData
             Sales = 1267350,
             COGS = 312500,
             Profit = 954850,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -9858,7 +9858,7 @@ public class PivotSalesData
             Sales = 44474.1,
             COGS = 38010,
             Profit = 6464.1,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -9874,7 +9874,7 @@ public class PivotSalesData
             Sales = 37999,
             COGS = 11175,
             Profit = 26824,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -9890,7 +9890,7 @@ public class PivotSalesData
             Sales = 6905.4,
             COGS = 28440,
             Profit = 21534.6,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -9906,7 +9906,7 @@ public class PivotSalesData
             Sales = 41223.36,
             COGS = 1686,
             Profit = 39537.36,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -9922,7 +9922,7 @@ public class PivotSalesData
             Sales = 5184.72,
             COGS = 6897,
             Profit = 1712.28,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -9938,7 +9938,7 @@ public class PivotSalesData
             Sales = 46398,
             COGS = 20300,
             Profit = 26098,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -9954,7 +9954,7 @@ public class PivotSalesData
             Sales = 26167.54,
             COGS = 1315,
             Profit = 24852.54,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -9970,7 +9970,7 @@ public class PivotSalesData
             Sales = 266722.5,
             COGS = 106440,
             Profit = 160282.5,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -9986,7 +9986,7 @@ public class PivotSalesData
             Sales = 665070,
             COGS = 254800,
             Profit = 410270,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -10002,7 +10002,7 @@ public class PivotSalesData
             Sales = 732690,
             COGS = 379600,
             Profit = 353090,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -10018,7 +10018,7 @@ public class PivotSalesData
             Sales = 24323.74,
             COGS = 7015,
             Profit = 17308.74,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -10034,7 +10034,7 @@ public class PivotSalesData
             Sales = 24499.44,
             COGS = 8169,
             Profit = 16330.44,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -10050,7 +10050,7 @@ public class PivotSalesData
             Sales = 630084,
             COGS = 388960,
             Profit = 241124,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -10066,7 +10066,7 @@ public class PivotSalesData
             Sales = 13896.72,
             COGS = 6897,
             Profit = 6999.72,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -10082,7 +10082,7 @@ public class PivotSalesData
             Sales = 255983,
             COGS = 189020,
             Profit = 66963,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -10098,7 +10098,7 @@ public class PivotSalesData
             Sales = 294985,
             COGS = 114240,
             Profit = 180745,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -10114,7 +10114,7 @@ public class PivotSalesData
             Sales = 124087.5,
             COGS = 330600,
             Profit = 206512.5,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -10130,7 +10130,7 @@ public class PivotSalesData
             Sales = 10668,
             COGS = 15300,
             Profit = 4632,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -10146,7 +10146,7 @@ public class PivotSalesData
             Sales = 1265334,
             COGS = 388960,
             Profit = 876374,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -10162,7 +10162,7 @@ public class PivotSalesData
             Sales = 3493.84,
             COGS = 7490,
             Profit = 3996.16,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -10178,7 +10178,7 @@ public class PivotSalesData
             Sales = 1117122,
             COGS = 305250,
             Profit = 811872,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -10194,7 +10194,7 @@ public class PivotSalesData
             Sales = 418754,
             COGS = 539760,
             Profit = 121006,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -10210,7 +10210,7 @@ public class PivotSalesData
             Sales = 57425.4,
             COGS = 28440,
             Profit = 28985.4,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -10226,7 +10226,7 @@ public class PivotSalesData
             Sales = 29162.84,
             COGS = 7490,
             Profit = 21672.84,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -10242,7 +10242,7 @@ public class PivotSalesData
             Sales = 470922,
             COGS = 305250,
             Profit = 165672,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -10258,7 +10258,7 @@ public class PivotSalesData
             Sales = 36892.4,
             COGS = 11230,
             Profit = 25662.4,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -10274,7 +10274,7 @@ public class PivotSalesData
             Sales = 439152,
             COGS = 609000,
             Profit = 169848,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -10290,7 +10290,7 @@ public class PivotSalesData
             Sales = 255093.75,
             COGS = 238500,
             Profit = 16593.75,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -10306,7 +10306,7 @@ public class PivotSalesData
             Sales = 127841,
             COGS = 436540,
             Profit = 308699,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -10322,7 +10322,7 @@ public class PivotSalesData
             Sales = 99533,
             COGS = 189020,
             Profit = 89487,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -10338,7 +10338,7 @@ public class PivotSalesData
             Sales = 28103.74,
             COGS = 7015,
             Profit = 21088.74,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -10354,7 +10354,7 @@ public class PivotSalesData
             Sales = 302904,
             COGS = 539760,
             Profit = 236856,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -10370,7 +10370,7 @@ public class PivotSalesData
             Sales = 26551.6,
             COGS = 17570,
             Profit = 8981.6,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -10386,7 +10386,7 @@ public class PivotSalesData
             Sales = 20191.8,
             COGS = 21980,
             Profit = 1788.2,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -10402,7 +10402,7 @@ public class PivotSalesData
             Sales = 55401.3,
             COGS = 17430,
             Profit = 37971.3,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -10418,7 +10418,7 @@ public class PivotSalesData
             Sales = 5667.3,
             COGS = 11530,
             Profit = 5862.7,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -10434,7 +10434,7 @@ public class PivotSalesData
             Sales = 32111.6,
             COGS = 17570,
             Profit = 14541.6,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -10450,7 +10450,7 @@ public class PivotSalesData
             Sales = 13698.8,
             COGS = 10010,
             Profit = 3688.8,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -10466,7 +10466,7 @@ public class PivotSalesData
             Sales = 11564.14,
             COGS = 6665,
             Profit = 4899.14,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -10482,7 +10482,7 @@ public class PivotSalesData
             Sales = 25347.3,
             COGS = 11530,
             Profit = 13817.3,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -10498,7 +10498,7 @@ public class PivotSalesData
             Sales = 3445.32,
             COGS = 2181,
             Profit = 1264.32,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -10514,7 +10514,7 @@ public class PivotSalesData
             Sales = 45349.44,
             COGS = 5652,
             Profit = 39697.44,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -10530,7 +10530,7 @@ public class PivotSalesData
             Sales = 71252.4,
             COGS = 18340,
             Profit = 52912.4,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -10546,7 +10546,7 @@ public class PivotSalesData
             Sales = 51710.4,
             COGS = 7020,
             Profit = 44690.4,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -10562,7 +10562,7 @@ public class PivotSalesData
             Sales = 2628.72,
             COGS = 7026,
             Profit = 4397.28,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -10578,7 +10578,7 @@ public class PivotSalesData
             Sales = 21229.81,
             COGS = 5155,
             Profit = 16074.81,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -10594,7 +10594,7 @@ public class PivotSalesData
             Sales = 14604.9,
             COGS = 12620,
             Profit = 1984.9,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -10610,7 +10610,7 @@ public class PivotSalesData
             Sales = 28024.85,
             COGS = 5675,
             Profit = 22349.85,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -10626,7 +10626,7 @@ public class PivotSalesData
             Sales = 27549.97,
             COGS = 2735,
             Profit = 24814.97,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -10642,7 +10642,7 @@ public class PivotSalesData
             Sales = 25285.82,
             COGS = 7910,
             Profit = 17375.82,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -10658,7 +10658,7 @@ public class PivotSalesData
             Sales = 27759.66,
             COGS = 5215.5,
             Profit = 22544.16,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -10674,7 +10674,7 @@ public class PivotSalesData
             Sales = 18275.4,
             COGS = 6645,
             Profit = 11630.4,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -10690,7 +10690,7 @@ public class PivotSalesData
             Sales = 11565.82,
             COGS = 7910,
             Profit = 3655.82,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -10706,7 +10706,7 @@ public class PivotSalesData
             Sales = 30754.85,
             COGS = 5675,
             Profit = 25079.85,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -10722,7 +10722,7 @@ public class PivotSalesData
             Sales = 392955.5,
             COGS = 457860,
             Profit = 64904.5,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -10738,7 +10738,7 @@ public class PivotSalesData
             Sales = 475092,
             COGS = 112000,
             Profit = 363092,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -10754,7 +10754,7 @@ public class PivotSalesData
             Sales = 178899,
             COGS = 545250,
             Profit = 366351,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -10770,7 +10770,7 @@ public class PivotSalesData
             Sales = 23593.6,
             COGS = 19760,
             Profit = 3833.6,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -10786,7 +10786,7 @@ public class PivotSalesData
             Sales = 818799,
             COGS = 545250,
             Profit = 273549,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -10802,7 +10802,7 @@ public class PivotSalesData
             Sales = 358000,
             COGS = 300000,
             Profit = 58000,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -10818,7 +10818,7 @@ public class PivotSalesData
             Sales = 709458,
             COGS = 425500,
             Profit = 283958,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -10834,7 +10834,7 @@ public class PivotSalesData
             Sales = 941292,
             COGS = 112000,
             Profit = 829292,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -10850,7 +10850,7 @@ public class PivotSalesData
             Sales = 479261.25,
             COGS = 421560,
             Profit = 57701.25,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -10866,7 +10866,7 @@ public class PivotSalesData
             Sales = 56938.95,
             COGS = 21010,
             Profit = 35928.95,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -10882,7 +10882,7 @@ public class PivotSalesData
             Sales = 8682.45,
             COGS = 29310,
             Profit = 20627.55,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -10898,7 +10898,7 @@ public class PivotSalesData
             Sales = 2911,
             COGS = 15350,
             Profit = 12439,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -10914,7 +10914,7 @@ public class PivotSalesData
             Sales = 371217,
             COGS = 280750,
             Profit = 90467,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -10930,7 +10930,7 @@ public class PivotSalesData
             Sales = 212916,
             COGS = 351000,
             Profit = 138084,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -10946,7 +10946,7 @@ public class PivotSalesData
             Sales = 37219.08,
             COGS = 8289,
             Profit = 28930.08,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -10962,7 +10962,7 @@ public class PivotSalesData
             Sales = 2598.75,
             COGS = 10625,
             Profit = 8026.25,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -10978,7 +10978,7 @@ public class PivotSalesData
             Sales = 204861,
             COGS = 414750,
             Profit = 209889,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -10994,7 +10994,7 @@ public class PivotSalesData
             Sales = 77987.4,
             COGS = 6090,
             Profit = 71897.4,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -11010,7 +11010,7 @@ public class PivotSalesData
             Sales = 293988.75,
             COGS = 250440,
             Profit = 43548.75,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -11026,7 +11026,7 @@ public class PivotSalesData
             Sales = 47573.6,
             COGS = 19760,
             Profit = 27813.6,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -11042,7 +11042,7 @@ public class PivotSalesData
             Sales = 61650.6,
             COGS = 14210,
             Profit = 47440.6,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -11058,7 +11058,7 @@ public class PivotSalesData
             Sales = 314688,
             COGS = 343000,
             Profit = 28312,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -11074,7 +11074,7 @@ public class PivotSalesData
             Sales = 17076.8,
             COGS = 5880,
             Profit = 11196.8,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -11090,7 +11090,7 @@ public class PivotSalesData
             Sales = 43042.62,
             COGS = 9733.5,
             Profit = 33309.12,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -11106,7 +11106,7 @@ public class PivotSalesData
             Sales = 336261,
             COGS = 239750,
             Profit = 96511,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -11122,7 +11122,7 @@ public class PivotSalesData
             Sales = 612213,
             COGS = 686750,
             Profit = 74537,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -11138,7 +11138,7 @@ public class PivotSalesData
             Sales = 38231.25,
             COGS = 197400,
             Profit = 159168.75,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -11154,7 +11154,7 @@ public class PivotSalesData
             Sales = 23688,
             COGS = 747760,
             Profit = 724072,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -11170,7 +11170,7 @@ public class PivotSalesData
             Sales = 462052.5,
             COGS = 119280,
             Profit = 342772.5,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -11186,7 +11186,7 @@ public class PivotSalesData
             Sales = 17474.8,
             COGS = 11180,
             Profit = 6294.8,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -11202,7 +11202,7 @@ public class PivotSalesData
             Sales = 860388,
             COGS = 343000,
             Profit = 517388,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -11218,7 +11218,7 @@ public class PivotSalesData
             Sales = 10261.72,
             COGS = 2440,
             Profit = 7821.72,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -11234,7 +11234,7 @@ public class PivotSalesData
             Sales = 31508.8,
             COGS = 12820,
             Profit = 18688.8,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -11250,7 +11250,7 @@ public class PivotSalesData
             Sales = 29599.08,
             COGS = 1285,
             Profit = 28314.08,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -11266,7 +11266,7 @@ public class PivotSalesData
             Sales = 31488.8,
             COGS = 12820,
             Profit = 18668.8,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -11282,7 +11282,7 @@ public class PivotSalesData
             Sales = 365975,
             COGS = 184800,
             Profit = 181175,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -11298,7 +11298,7 @@ public class PivotSalesData
             Sales = 49992,
             COGS = 4900,
             Profit = 45092,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -11314,7 +11314,7 @@ public class PivotSalesData
             Sales = 551964,
             COGS = 354120,
             Profit = 197844,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -11330,7 +11330,7 @@ public class PivotSalesData
             Sales = 43288.8,
             COGS = 25010,
             Profit = 18278.8,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -11346,7 +11346,7 @@ public class PivotSalesData
             Sales = 81867.2,
             COGS = 7080,
             Profit = 74787.2,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -11362,7 +11362,7 @@ public class PivotSalesData
             Sales = 59508,
             COGS = 6450,
             Profit = 53058,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -11378,7 +11378,7 @@ public class PivotSalesData
             Sales = 1270212,
             COGS = 390500,
             Profit = 879712,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -11394,7 +11394,7 @@ public class PivotSalesData
             Sales = 1057608,
             COGS = 320750,
             Profit = 736858,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -11410,7 +11410,7 @@ public class PivotSalesData
             Sales = 22981.8,
             COGS = 7110,
             Profit = 15871.8,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -11426,7 +11426,7 @@ public class PivotSalesData
             Sales = 323735,
             COGS = 133680,
             Profit = 190055,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -11442,7 +11442,7 @@ public class PivotSalesData
             Sales = 23101.96,
             COGS = 6295,
             Profit = 16806.96,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -11458,7 +11458,7 @@ public class PivotSalesData
             Sales = 19091.8,
             COGS = 5475,
             Profit = 13616.8,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -11474,7 +11474,7 @@ public class PivotSalesData
             Sales = 57094.4,
             COGS = 13660,
             Profit = 43434.4,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -11490,7 +11490,7 @@ public class PivotSalesData
             Sales = 1192860,
             COGS = 615000,
             Profit = 577860,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -11506,7 +11506,7 @@ public class PivotSalesData
             Sales = 7719.32,
             COGS = 3390,
             Profit = 4329.32,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -11522,7 +11522,7 @@ public class PivotSalesData
             Sales = 20560.12,
             COGS = 7990,
             Profit = 12570.12,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -11538,7 +11538,7 @@ public class PivotSalesData
             Sales = 12384.96,
             COGS = 12045,
             Profit = 339.96,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -11554,7 +11554,7 @@ public class PivotSalesData
             Sales = 78505.6,
             COGS = 19340,
             Profit = 59165.6,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -11570,7 +11570,7 @@ public class PivotSalesData
             Sales = 29471.2,
             COGS = 29930,
             Profit = 458.8,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -11586,7 +11586,7 @@ public class PivotSalesData
             Sales = 918162,
             COGS = 557960,
             Profit = 360202,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -11602,7 +11602,7 @@ public class PivotSalesData
             Sales = 27484.24,
             COGS = 9730,
             Profit = 17754.24,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -11618,7 +11618,7 @@ public class PivotSalesData
             Sales = 553714,
             COGS = 354120,
             Profit = 199594,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -11634,7 +11634,7 @@ public class PivotSalesData
             Sales = 27085.92,
             COGS = 1794,
             Profit = 25291.92,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -11650,7 +11650,7 @@ public class PivotSalesData
             Sales = 22179.08,
             COGS = 14535,
             Profit = 7644.08,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -11666,7 +11666,7 @@ public class PivotSalesData
             Sales = 14706.72,
             COGS = 11690,
             Profit = 3016.72,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -11682,7 +11682,7 @@ public class PivotSalesData
             Sales = 710436,
             COGS = 96500,
             Profit = 613936,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -11698,7 +11698,7 @@ public class PivotSalesData
             Sales = 1210560,
             COGS = 158750,
             Profit = 1051810,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -11714,7 +11714,7 @@ public class PivotSalesData
             Sales = 911764,
             COGS = 149370,
             Profit = 762394,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -11730,7 +11730,7 @@ public class PivotSalesData
             Sales = 26487.72,
             COGS = 11690,
             Profit = 14797.72,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -11746,7 +11746,7 @@ public class PivotSalesData
             Sales = 868532,
             COGS = 99060,
             Profit = 769472,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -11762,7 +11762,7 @@ public class PivotSalesData
             Sales = 948934,
             COGS = 109720,
             Profit = 839214,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -11778,7 +11778,7 @@ public class PivotSalesData
             Sales = 519684,
             COGS = 533500,
             Profit = 13816,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -11794,7 +11794,7 @@ public class PivotSalesData
             Sales = 174708,
             COGS = 202000,
             Profit = 27292,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -11810,7 +11810,7 @@ public class PivotSalesData
             Sales = 57147.2,
             COGS = 7080,
             Profit = 50067.2,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -11826,7 +11826,7 @@ public class PivotSalesData
             Sales = 11595.08,
             COGS = 14535,
             Profit = 2939.92,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -11842,7 +11842,7 @@ public class PivotSalesData
             Sales = 27134.4,
             COGS = 13660,
             Profit = 13474.4,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -11858,7 +11858,7 @@ public class PivotSalesData
             Sales = 207060,
             COGS = 615000,
             Profit = 407940,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -11874,7 +11874,7 @@ public class PivotSalesData
             Sales = 5468,
             COGS = 15200,
             Profit = 9732,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -11890,7 +11890,7 @@ public class PivotSalesData
             Sales = 24541.8,
             COGS = 7110,
             Profit = 17431.8,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -11906,7 +11906,7 @@ public class PivotSalesData
             Sales = 28188,
             COGS = 4125,
             Profit = 24063,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -11922,7 +11922,7 @@ public class PivotSalesData
             Sales = 779460,
             COGS = 158750,
             Profit = 620710,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -11938,7 +11938,7 @@ public class PivotSalesData
             Sales = 71461.6,
             COGS = 4365,
             Profit = 67096.6,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -11954,7 +11954,7 @@ public class PivotSalesData
             Sales = 292362,
             COGS = 273500,
             Profit = 18862,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -11970,7 +11970,7 @@ public class PivotSalesData
             Sales = 20651.64,
             COGS = 1101,
             Profit = 19550.64,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -11986,7 +11986,7 @@ public class PivotSalesData
             Sales = 547432.5,
             COGS = 950625,
             Profit = 403192.5,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -12002,7 +12002,7 @@ public class PivotSalesData
             Sales = 409171,
             COGS = 433160,
             Profit = 23989,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -12018,7 +12018,7 @@ public class PivotSalesData
             Sales = 495006,
             COGS = 80500,
             Profit = 414506,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -12034,7 +12034,7 @@ public class PivotSalesData
             Sales = 12517.32,
             COGS = 6963,
             Profit = 5554.32,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -12050,7 +12050,7 @@ public class PivotSalesData
             Sales = 415733.75,
             COGS = 222840,
             Profit = 192893.75,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -12066,7 +12066,7 @@ public class PivotSalesData
             Sales = 10864.07,
             COGS = 8055,
             Profit = 2809.07,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -12082,7 +12082,7 @@ public class PivotSalesData
             Sales = 113033.75,
             COGS = 335640,
             Profit = 222606.25,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -12098,7 +12098,7 @@ public class PivotSalesData
             Sales = 208782,
             COGS = 83500,
             Profit = 125282,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -12114,7 +12114,7 @@ public class PivotSalesData
             Sales = 276645,
             COGS = 641250,
             Profit = 364605,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -12130,7 +12130,7 @@ public class PivotSalesData
             Sales = 875864.5,
             COGS = 628420,
             Profit = 247444.5,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -12146,7 +12146,7 @@ public class PivotSalesData
             Sales = 49908.75,
             COGS = 36750,
             Profit = 13158.75,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -12162,7 +12162,7 @@ public class PivotSalesData
             Sales = 855462,
             COGS = 273500,
             Profit = 581962,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -12178,7 +12178,7 @@ public class PivotSalesData
             Sales = 25658.55,
             COGS = 12270,
             Profit = 13388.55,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -12194,7 +12194,7 @@ public class PivotSalesData
             Sales = 49691.64,
             COGS = 1101,
             Profit = 48590.64,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -12210,7 +12210,7 @@ public class PivotSalesData
             Sales = 302352,
             COGS = 331000,
             Profit = 28648,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -12226,7 +12226,7 @@ public class PivotSalesData
             Sales = 24591,
             COGS = 5325,
             Profit = 19266,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -12242,7 +12242,7 @@ public class PivotSalesData
             Sales = 76283.75,
             COGS = 335640,
             Profit = 259356.25,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -12258,7 +12258,7 @@ public class PivotSalesData
             Sales = 56744.25,
             COGS = 2450,
             Profit = 54294.25,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -12274,7 +12274,7 @@ public class PivotSalesData
             Sales = 322075.5,
             COGS = 948375,
             Profit = 626299.5,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -12290,7 +12290,7 @@ public class PivotSalesData
             Sales = 739679.5,
             COGS = 339820,
             Profit = 399859.5,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -12306,7 +12306,7 @@ public class PivotSalesData
             Sales = 449746.25,
             COGS = 68040,
             Profit = 381706.25,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -12322,7 +12322,7 @@ public class PivotSalesData
             Sales = 344762.5,
             COGS = 253200,
             Profit = 91562.5,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -12338,7 +12338,7 @@ public class PivotSalesData
             Sales = 1148276.5,
             COGS = 329940,
             Profit = 818336.5,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -12354,7 +12354,7 @@ public class PivotSalesData
             Sales = 29687.52,
             COGS = 5868,
             Profit = 23819.52,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -12370,7 +12370,7 @@ public class PivotSalesData
             Sales = 103707,
             COGS = 664750,
             Profit = 561043,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -12386,7 +12386,7 @@ public class PivotSalesData
             Sales = 418027.75,
             COGS = 351390,
             Profit = 66637.75,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -12402,7 +12402,7 @@ public class PivotSalesData
             Sales = 52557.6,
             COGS = 2640,
             Profit = 49917.6,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -12418,7 +12418,7 @@ public class PivotSalesData
             Sales = 762891,
             COGS = 466750,
             Profit = 296141,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -12434,7 +12434,7 @@ public class PivotSalesData
             Sales = 29039.28,
             COGS = 6702,
             Profit = 22337.28,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -12450,7 +12450,7 @@ public class PivotSalesData
             Sales = 52538.55,
             COGS = 12270,
             Profit = 40268.55,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -12466,7 +12466,7 @@ public class PivotSalesData
             Sales = 221008.75,
             COGS = 105240,
             Profit = 115768.75,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -12482,7 +12482,7 @@ public class PivotSalesData
             Sales = 983363.5,
             COGS = 538460,
             Profit = 444903.5,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -12498,7 +12498,7 @@ public class PivotSalesData
             Sales = 953326.5,
             COGS = 329940,
             Profit = 623386.5,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -12514,7 +12514,7 @@ public class PivotSalesData
             Sales = 18220.5,
             COGS = 9700,
             Profit = 8520.5,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -12530,7 +12530,7 @@ public class PivotSalesData
             Sales = 27670.8,
             COGS = 16940,
             Profit = 10730.8,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -12546,7 +12546,7 @@ public class PivotSalesData
             Sales = 24626.6,
             COGS = 6630,
             Profit = 17996.6,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -12562,7 +12562,7 @@ public class PivotSalesData
             Sales = 7975.03,
             COGS = 4095,
             Profit = 3880.03,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -12578,7 +12578,7 @@ public class PivotSalesData
             Sales = 26733.6,
             COGS = 4740,
             Profit = 21993.6,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -12594,7 +12594,7 @@ public class PivotSalesData
             Sales = 13524.77,
             COGS = 2605,
             Profit = 10919.77,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -12610,7 +12610,7 @@ public class PivotSalesData
             Sales = 55828.6,
             COGS = 9730,
             Profit = 46098.6,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -12626,7 +12626,7 @@ public class PivotSalesData
             Sales = 32271.6,
             COGS = 10380,
             Profit = 21891.6,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -12642,7 +12642,7 @@ public class PivotSalesData
             Sales = 20304.2,
             COGS = 1800,
             Profit = 18504.2,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -12658,7 +12658,7 @@ public class PivotSalesData
             Sales = 10043.64,
             COGS = 5901,
             Profit = 4142.64,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -12674,7 +12674,7 @@ public class PivotSalesData
             Sales = 6847.2,
             COGS = 26280,
             Profit = 19432.8,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -12690,7 +12690,7 @@ public class PivotSalesData
             Sales = 25960.2,
             COGS = 1800,
             Profit = 24160.2,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -12706,7 +12706,7 @@ public class PivotSalesData
             Sales = 57492.4,
             COGS = 26820,
             Profit = 30672.4,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -12722,7 +12722,7 @@ public class PivotSalesData
             Sales = 27636.77,
             COGS = 2605,
             Profit = 25031.77,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -12738,7 +12738,7 @@ public class PivotSalesData
             Sales = 17191.6,
             COGS = 10380,
             Profit = 6811.6,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -12754,7 +12754,7 @@ public class PivotSalesData
             Sales = 35748.82,
             COGS = 16305,
             Profit = 19443.82,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -12770,7 +12770,7 @@ public class PivotSalesData
             Sales = 30449.52,
             COGS = 918,
             Profit = 29531.52,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -12786,7 +12786,7 @@ public class PivotSalesData
             Sales = 51100.8,
             COGS = 1158,
             Profit = 49942.8,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -12802,7 +12802,7 @@ public class PivotSalesData
             Sales = 18467.4,
             COGS = 11640,
             Profit = 6827.4,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -12818,7 +12818,7 @@ public class PivotSalesData
             Sales = 41980.8,
             COGS = 1158,
             Profit = 40822.8,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -12834,7 +12834,7 @@ public class PivotSalesData
             Sales = 156681.25,
             COGS = 413460,
             Profit = 256778.75,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -12850,7 +12850,7 @@ public class PivotSalesData
             Sales = 308475,
             COGS = 177840,
             Profit = 130635,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -12866,7 +12866,7 @@ public class PivotSalesData
             Sales = 911645,
             COGS = 601380,
             Profit = 310265,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -12882,7 +12882,7 @@ public class PivotSalesData
             Sales = 480325,
             COGS = 216480,
             Profit = 263845,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -12898,7 +12898,7 @@ public class PivotSalesData
             Sales = 56802,
             COGS = 20720,
             Profit = 36082,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -12914,7 +12914,7 @@ public class PivotSalesData
             Sales = 54652,
             COGS = 19540,
             Profit = 35112,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -12930,7 +12930,7 @@ public class PivotSalesData
             Sales = 855870,
             COGS = 147750,
             Profit = 708120,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -12946,7 +12946,7 @@ public class PivotSalesData
             Sales = 51814.5,
             COGS = 21670,
             Profit = 30144.5,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -12962,7 +12962,7 @@ public class PivotSalesData
             Sales = 55078,
             COGS = 2410,
             Profit = 52668,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -12978,7 +12978,7 @@ public class PivotSalesData
             Sales = 5053.5,
             COGS = 6810,
             Profit = 1756.5,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -12994,7 +12994,7 @@ public class PivotSalesData
             Sales = 29430,
             COGS = 5100,
             Profit = 24330,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -13010,7 +13010,7 @@ public class PivotSalesData
             Sales = 38325,
             COGS = 7900,
             Profit = 30425,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -13026,7 +13026,7 @@ public class PivotSalesData
             Sales = 1435735,
             COGS = 166140,
             Profit = 1269595,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -13042,7 +13042,7 @@ public class PivotSalesData
             Sales = 24425,
             COGS = 191520,
             Profit = 167095,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -13058,7 +13058,7 @@ public class PivotSalesData
             Sales = 645780,
             COGS = 573500,
             Profit = 72280,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -13074,7 +13074,7 @@ public class PivotSalesData
             Sales = 82918,
             COGS = 2410,
             Profit = 80508,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -13090,7 +13090,7 @@ public class PivotSalesData
             Sales = 4378.5,
             COGS = 13325,
             Profit = 8946.5,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -13106,7 +13106,7 @@ public class PivotSalesData
             Sales = 251050,
             COGS = 229920,
             Profit = 21130,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -13122,7 +13122,7 @@ public class PivotSalesData
             Sales = 991110,
             COGS = 213250,
             Profit = 777860,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -13138,7 +13138,7 @@ public class PivotSalesData
             Sales = 369487.5,
             COGS = 40920,
             Profit = 328567.5,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -13154,7 +13154,7 @@ public class PivotSalesData
             Sales = 59233.5,
             COGS = 6410,
             Profit = 52823.5,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -13170,7 +13170,7 @@ public class PivotSalesData
             Sales = 160405,
             COGS = 729820,
             Profit = 569415,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -13186,7 +13186,7 @@ public class PivotSalesData
             Sales = 583740,
             COGS = 108000,
             Profit = 475740,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -13202,7 +13202,7 @@ public class PivotSalesData
             Sales = 828480,
             COGS = 573500,
             Profit = 254980,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -13218,7 +13218,7 @@ public class PivotSalesData
             Sales = 60304.5,
             COGS = 21670,
             Profit = 38634.5,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -13234,7 +13234,7 @@ public class PivotSalesData
             Sales = 148637.5,
             COGS = 303480,
             Profit = 154842.5,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -13250,7 +13250,7 @@ public class PivotSalesData
             Sales = 883750,
             COGS = 486200,
             Profit = 397550,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -13266,7 +13266,7 @@ public class PivotSalesData
             Sales = 181262.5,
             COGS = 69480,
             Profit = 111782.5,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -13282,7 +13282,7 @@ public class PivotSalesData
             Sales = 1407350,
             COGS = 582400,
             Profit = 824950,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -13298,7 +13298,7 @@ public class PivotSalesData
             Sales = 699210,
             COGS = 748250,
             Profit = 49040,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -13314,7 +13314,7 @@ public class PivotSalesData
             Sales = 9959.4,
             COGS = 10561.5,
             Profit = 602.1,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -13330,7 +13330,7 @@ public class PivotSalesData
             Sales = 20342,
             COGS = 20390,
             Profit = 48,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -13346,7 +13346,7 @@ public class PivotSalesData
             Sales = 8467.2,
             COGS = 7722,
             Profit = 745.2,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -13362,7 +13362,7 @@ public class PivotSalesData
             Sales = 1110305,
             COGS = 183820,
             Profit = 926485,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -13378,7 +13378,7 @@ public class PivotSalesData
             Sales = 13692,
             COGS = 20720,
             Profit = 7028,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -13394,7 +13394,7 @@ public class PivotSalesData
             Sales = 326610,
             COGS = 213250,
             Profit = 113360,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -13410,7 +13410,7 @@ public class PivotSalesData
             Sales = 28910.64,
             COGS = 3594,
             Profit = 25316.64,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -13426,7 +13426,7 @@ public class PivotSalesData
             Sales = 20772.36,
             COGS = 12660,
             Profit = 8112.36,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -13442,7 +13442,7 @@ public class PivotSalesData
             Sales = 16790.64,
             COGS = 3594,
             Profit = 13196.64,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -13458,7 +13458,7 @@ public class PivotSalesData
             Sales = 37256.4,
             COGS = 3840,
             Profit = 33416.4,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -13474,7 +13474,7 @@ public class PivotSalesData
             Sales = 13008.96,
             COGS = 1416,
             Profit = 11592.96,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -13490,7 +13490,7 @@ public class PivotSalesData
             Sales = 12665.17,
             COGS = 7895,
             Profit = 4770.17,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -13506,7 +13506,7 @@ public class PivotSalesData
             Sales = 37781.4,
             COGS = 3015,
             Profit = 34766.4,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -13522,7 +13522,7 @@ public class PivotSalesData
             Sales = 43725.82,
             COGS = 31995,
             Profit = 11730.82,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -13538,7 +13538,7 @@ public class PivotSalesData
             Sales = 28824.96,
             COGS = 1416,
             Profit = 27408.96,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -13554,7 +13554,7 @@ public class PivotSalesData
             Sales = 29159.16,
             COGS = 5811,
             Profit = 23348.16,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -13570,7 +13570,7 @@ public class PivotSalesData
             Sales = 103558,
             COGS = 205920,
             Profit = 102362,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -13586,7 +13586,7 @@ public class PivotSalesData
             Sales = 747537,
             COGS = 702750,
             Profit = 44787,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -13602,7 +13602,7 @@ public class PivotSalesData
             Sales = 174811.25,
             COGS = 292920,
             Profit = 118108.75,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -13618,7 +13618,7 @@ public class PivotSalesData
             Sales = 50511,
             COGS = 15600,
             Profit = 34911,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -13634,7 +13634,7 @@ public class PivotSalesData
             Sales = 27498.38,
             COGS = 13530,
             Profit = 13968.38,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -13650,7 +13650,7 @@ public class PivotSalesData
             Sales = 747509,
             COGS = 199160,
             Profit = 548349,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -13666,7 +13666,7 @@ public class PivotSalesData
             Sales = 8937.6,
             COGS = 29920,
             Profit = 20982.4,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -13682,7 +13682,7 @@ public class PivotSalesData
             Sales = 4735.95,
             COGS = 21570,
             Profit = 16834.05,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -13698,7 +13698,7 @@ public class PivotSalesData
             Sales = 603291,
             COGS = 218250,
             Profit = 385041,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -13714,7 +13714,7 @@ public class PivotSalesData
             Sales = 46891.6,
             COGS = 11220,
             Profit = 35671.6,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -13730,7 +13730,7 @@ public class PivotSalesData
             Sales = 585726.75,
             COGS = 547170,
             Profit = 38556.75,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -13746,7 +13746,7 @@ public class PivotSalesData
             Sales = 38581.68,
             COGS = 12078,
             Profit = 26503.68,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -13762,7 +13762,7 @@ public class PivotSalesData
             Sales = 48410.34,
             COGS = 7276.5,
             Profit = 41133.84,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -13778,7 +13778,7 @@ public class PivotSalesData
             Sales = 43653.2,
             COGS = 23940,
             Profit = 19713.2,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -13794,7 +13794,7 @@ public class PivotSalesData
             Sales = 59861.4,
             COGS = 19840,
             Profit = 40021.4,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -13810,7 +13810,7 @@ public class PivotSalesData
             Sales = 385561.25,
             COGS = 292920,
             Profit = 92641.25,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -13826,7 +13826,7 @@ public class PivotSalesData
             Sales = 21437.6,
             COGS = 29920,
             Profit = 8482.4,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -13842,7 +13842,7 @@ public class PivotSalesData
             Sales = 514422,
             COGS = 341500,
             Profit = 172922,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -13858,7 +13858,7 @@ public class PivotSalesData
             Sales = 3089,
             COGS = 28050,
             Profit = 24961,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -13874,7 +13874,7 @@ public class PivotSalesData
             Sales = 61574.25,
             COGS = 6550,
             Profit = 55024.25,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -13890,7 +13890,7 @@ public class PivotSalesData
             Sales = 869806,
             COGS = 89440,
             Profit = 780366,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -13906,7 +13906,7 @@ public class PivotSalesData
             Sales = 12117.84,
             COGS = 9040,
             Profit = 3077.84,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -13922,7 +13922,7 @@ public class PivotSalesData
             Sales = 13323.12,
             COGS = 5202,
             Profit = 8121.12,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -13938,7 +13938,7 @@ public class PivotSalesData
             Sales = 508007.5,
             COGS = 66480,
             Profit = 441527.5,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -13954,7 +13954,7 @@ public class PivotSalesData
             Sales = 5683,
             COGS = 29350,
             Profit = 23667,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -13970,7 +13970,7 @@ public class PivotSalesData
             Sales = 16231.25,
             COGS = 379800,
             Profit = 363568.75,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -13986,7 +13986,7 @@ public class PivotSalesData
             Sales = 83996.2,
             COGS = 26290,
             Profit = 57706.2,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -14002,7 +14002,7 @@ public class PivotSalesData
             Sales = 168296.25,
             COGS = 171960,
             Profit = 3663.75,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -14018,7 +14018,7 @@ public class PivotSalesData
             Sales = 457353.75,
             COGS = 113640,
             Profit = 343713.75,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -14034,7 +14034,7 @@ public class PivotSalesData
             Sales = 830956,
             COGS = 89440,
             Profit = 741516,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -14050,7 +14050,7 @@ public class PivotSalesData
             Sales = 31570.95,
             COGS = 21570,
             Profit = 10000.95,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -14066,7 +14066,7 @@ public class PivotSalesData
             Sales = 30864.4,
             COGS = 1900,
             Profit = 28964.4,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -14082,7 +14082,7 @@ public class PivotSalesData
             Sales = 1291388,
             COGS = 230360,
             Profit = 1061028,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -14098,7 +14098,7 @@ public class PivotSalesData
             Sales = 249510,
             COGS = 289920,
             Profit = 40410,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -14114,7 +14114,7 @@ public class PivotSalesData
             Sales = 419410,
             COGS = 258720,
             Profit = 160690,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -14130,7 +14130,7 @@ public class PivotSalesData
             Sales = 20899.8,
             COGS = 26890,
             Profit = 5990.2,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -14146,7 +14146,7 @@ public class PivotSalesData
             Sales = 18296.4,
             COGS = 6770,
             Profit = 11526.4,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -14162,7 +14162,7 @@ public class PivotSalesData
             Sales = 1188672,
             COGS = 443250,
             Profit = 745422,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -14178,7 +14178,7 @@ public class PivotSalesData
             Sales = 4792.2,
             COGS = 12100,
             Profit = 7307.8,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -14194,7 +14194,7 @@ public class PivotSalesData
             Sales = 5781.44,
             COGS = 13670,
             Profit = 7888.56,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -14210,7 +14210,7 @@ public class PivotSalesData
             Sales = 33344,
             COGS = 17150,
             Profit = 16194,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -14226,7 +14226,7 @@ public class PivotSalesData
             Sales = 1087104,
             COGS = 296500,
             Profit = 790604,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -14242,7 +14242,7 @@ public class PivotSalesData
             Sales = 941580,
             COGS = 873750,
             Profit = 67830,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -14258,7 +14258,7 @@ public class PivotSalesData
             Sales = 1067388,
             COGS = 230360,
             Profit = 837028,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -14274,7 +14274,7 @@ public class PivotSalesData
             Sales = 341910,
             COGS = 258720,
             Profit = 83190,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -14290,7 +14290,7 @@ public class PivotSalesData
             Sales = 39568,
             COGS = 9050,
             Profit = 30518,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -14306,7 +14306,7 @@ public class PivotSalesData
             Sales = 17004,
             COGS = 17150,
             Profit = 146,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -14322,7 +14322,7 @@ public class PivotSalesData
             Sales = 406602,
             COGS = 414440,
             Profit = 7838,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -14338,7 +14338,7 @@ public class PivotSalesData
             Sales = 75876,
             COGS = 339750,
             Profit = 263874,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -14354,7 +14354,7 @@ public class PivotSalesData
             Sales = 1086600,
             COGS = 537500,
             Profit = 549100,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -14370,7 +14370,7 @@ public class PivotSalesData
             Sales = 232876,
             COGS = 311220,
             Profit = 78344,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -14386,7 +14386,7 @@ public class PivotSalesData
             Sales = 27696,
             COGS = 3800,
             Profit = 23896,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -14402,7 +14402,7 @@ public class PivotSalesData
             Sales = 38480.8,
             COGS = 12330,
             Profit = 26150.8,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -14418,7 +14418,7 @@ public class PivotSalesData
             Sales = 1009610,
             COGS = 362700,
             Profit = 646910,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -14434,7 +14434,7 @@ public class PivotSalesData
             Sales = 1050938,
             COGS = 256360,
             Profit = 794578,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -14450,7 +14450,7 @@ public class PivotSalesData
             Sales = 39008,
             COGS = 9050,
             Profit = 29958,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -14466,7 +14466,7 @@ public class PivotSalesData
             Sales = 48011.04,
             COGS = 6327,
             Profit = 41684.04,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -14482,7 +14482,7 @@ public class PivotSalesData
             Sales = 12420.9,
             COGS = 38745,
             Profit = 26324.1,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -14498,7 +14498,7 @@ public class PivotSalesData
             Sales = 426384,
             COGS = 161980,
             Profit = 264404,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -14514,7 +14514,7 @@ public class PivotSalesData
             Sales = 39088,
             COGS = 256360,
             Profit = 217272,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -14530,7 +14530,7 @@ public class PivotSalesData
             Sales = 179570,
             COGS = 286440,
             Profit = 106870,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -14546,7 +14546,7 @@ public class PivotSalesData
             Sales = 1840.8,
             COGS = 12330,
             Profit = 10489.2,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -14562,7 +14562,7 @@ public class PivotSalesData
             Sales = 888510,
             COGS = 70200,
             Profit = 818310,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -14578,7 +14578,7 @@ public class PivotSalesData
             Sales = 8752.94,
             COGS = 17107.5,
             Profit = 8354.56,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -14594,7 +14594,7 @@ public class PivotSalesData
             Sales = 29021.44,
             COGS = 13670,
             Profit = 15351.44,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -14610,7 +14610,7 @@ public class PivotSalesData
             Sales = 7908.6,
             COGS = 25480,
             Profit = 17571.4,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -14626,7 +14626,7 @@ public class PivotSalesData
             Sales = 7428.4,
             COGS = 25215,
             Profit = 17786.6,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -14642,7 +14642,7 @@ public class PivotSalesData
             Sales = 5504.16,
             COGS = 7983,
             Profit = 2478.84,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -14658,7 +14658,7 @@ public class PivotSalesData
             Sales = 25465.6,
             COGS = 15310,
             Profit = 10155.6,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -14674,7 +14674,7 @@ public class PivotSalesData
             Sales = 20853.56,
             COGS = 7455,
             Profit = 13398.56,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -14690,7 +14690,7 @@ public class PivotSalesData
             Sales = 78225.6,
             COGS = 15310,
             Profit = 62915.6,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -14706,7 +14706,7 @@ public class PivotSalesData
             Sales = 34064.16,
             COGS = 8283,
             Profit = 25781.16,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -14722,7 +14722,7 @@ public class PivotSalesData
             Sales = 2389.35,
             COGS = 25670,
             Profit = 23280.65,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -14738,7 +14738,7 @@ public class PivotSalesData
             Sales = 44284.35,
             COGS = 25670,
             Profit = 18614.35,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -14754,7 +14754,7 @@ public class PivotSalesData
             Sales = 1205053.5,
             COGS = 239980,
             Profit = 965073.5,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -14770,7 +14770,7 @@ public class PivotSalesData
             Sales = 1356705,
             COGS = 465400,
             Profit = 891305,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -14786,7 +14786,7 @@ public class PivotSalesData
             Sales = 71910.8,
             COGS = 4420,
             Profit = 67490.8,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -14802,7 +14802,7 @@ public class PivotSalesData
             Sales = 726346.25,
             COGS = 255450,
             Profit = 470896.25,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -14818,7 +14818,7 @@ public class PivotSalesData
             Sales = 19286.82,
             COGS = 6490,
             Profit = 12796.82,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -14834,7 +14834,7 @@ public class PivotSalesData
             Sales = 30857.76,
             COGS = 1812,
             Profit = 29045.76,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -14850,7 +14850,7 @@ public class PivotSalesData
             Sales = 18017,
             COGS = 22550,
             Profit = 4533,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -14866,7 +14866,7 @@ public class PivotSalesData
             Sales = 64072.6,
             COGS = 12490,
             Profit = 51582.6,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -14882,7 +14882,7 @@ public class PivotSalesData
             Sales = 7965.97,
             COGS = 7192.5,
             Profit = 773.47,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -14898,7 +14898,7 @@ public class PivotSalesData
             Sales = 1241427,
             COGS = 201750,
             Profit = 1039677,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -14914,7 +14914,7 @@ public class PivotSalesData
             Sales = 50873.4,
             COGS = 26410,
             Profit = 24463.4,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -14930,7 +14930,7 @@ public class PivotSalesData
             Sales = 69739.2,
             COGS = 27080,
             Profit = 42659.2,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -14946,7 +14946,7 @@ public class PivotSalesData
             Sales = 532294,
             COGS = 684320,
             Profit = 152026,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -14962,7 +14962,7 @@ public class PivotSalesData
             Sales = 331526.25,
             COGS = 189960,
             Profit = 141566.25,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -14978,7 +14978,7 @@ public class PivotSalesData
             Sales = 33525.24,
             COGS = 1713,
             Profit = 31812.24,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -14994,7 +14994,7 @@ public class PivotSalesData
             Sales = 24181.64,
             COGS = 13480,
             Profit = 10701.64,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -15010,7 +15010,7 @@ public class PivotSalesData
             Sales = 55658.25,
             COGS = 15650,
             Profit = 40008.25,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -15026,7 +15026,7 @@ public class PivotSalesData
             Sales = 7232.6,
             COGS = 12490,
             Profit = 5257.4,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -15042,7 +15042,7 @@ public class PivotSalesData
             Sales = 1067006.5,
             COGS = 92820,
             Profit = 974186.5,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -15058,7 +15058,7 @@ public class PivotSalesData
             Sales = 27339.72,
             COGS = 3039,
             Profit = 24300.72,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -15074,7 +15074,7 @@ public class PivotSalesData
             Sales = 56149.88,
             COGS = 39975,
             Profit = 16174.88,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -15090,7 +15090,7 @@ public class PivotSalesData
             Sales = 663894,
             COGS = 684320,
             Profit = 20426,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -15106,7 +15106,7 @@ public class PivotSalesData
             Sales = 2900.1,
             COGS = 5950,
             Profit = 3049.9,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -15122,7 +15122,7 @@ public class PivotSalesData
             Sales = 45725.76,
             COGS = 1812,
             Profit = 43913.76,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -15138,7 +15138,7 @@ public class PivotSalesData
             Sales = 19383,
             COGS = 6600,
             Profit = 12783,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -15154,7 +15154,7 @@ public class PivotSalesData
             Sales = 26396.4,
             COGS = 1230,
             Profit = 25166.4,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -15170,7 +15170,7 @@ public class PivotSalesData
             Sales = 859005,
             COGS = 651250,
             Profit = 207755,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -15186,7 +15186,7 @@ public class PivotSalesData
             Sales = 44439.72,
             COGS = 3039,
             Profit = 41400.72,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -15202,7 +15202,7 @@ public class PivotSalesData
             Sales = 285151.25,
             COGS = 189960,
             Profit = 95191.25,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -15218,7 +15218,7 @@ public class PivotSalesData
             Sales = 63368.25,
             COGS = 15650,
             Profit = 47718.25,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -15234,7 +15234,7 @@ public class PivotSalesData
             Sales = 123041.25,
             COGS = 199080,
             Profit = 76038.75,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -15250,7 +15250,7 @@ public class PivotSalesData
             Sales = 19588.1,
             COGS = 5950,
             Profit = 13638.1,
-            Date = @"6/1/19",
+            Date = @"2019-06-01",
             MonthName = @"June",
             Year = 2019
         });
@@ -15266,7 +15266,7 @@ public class PivotSalesData
             Sales = 16796.4,
             COGS = 1230,
             Profit = 15566.4,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -15282,7 +15282,7 @@ public class PivotSalesData
             Sales = 7618.8,
             COGS = 5310,
             Profit = 2308.8,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -15298,7 +15298,7 @@ public class PivotSalesData
             Sales = 14218.8,
             COGS = 25790,
             Profit = 11571.2,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -15314,7 +15314,7 @@ public class PivotSalesData
             Sales = 29859.6,
             COGS = 17430,
             Profit = 12429.6,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -15330,7 +15330,7 @@ public class PivotSalesData
             Sales = 7808.92,
             COGS = 14980,
             Profit = 7171.08,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -15346,7 +15346,7 @@ public class PivotSalesData
             Sales = 17449.6,
             COGS = 1400,
             Profit = 16049.6,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -15362,7 +15362,7 @@ public class PivotSalesData
             Sales = 12067.86,
             COGS = 1465,
             Profit = 10602.86,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -15378,7 +15378,7 @@ public class PivotSalesData
             Sales = 8032.92,
             COGS = 14980,
             Profit = 6947.08,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -15394,7 +15394,7 @@ public class PivotSalesData
             Sales = 39016.2,
             COGS = 2780,
             Profit = 36236.2,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -15410,7 +15410,7 @@ public class PivotSalesData
             Sales = 54781.6,
             COGS = 24280,
             Profit = 30501.6,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -15426,7 +15426,7 @@ public class PivotSalesData
             Sales = 58239.3,
             COGS = 17670,
             Profit = 40569.3,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -15442,7 +15442,7 @@ public class PivotSalesData
             Sales = 32915.76,
             COGS = 4179,
             Profit = 28736.76,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -15458,7 +15458,7 @@ public class PivotSalesData
             Sales = 21285.6,
             COGS = 1400,
             Profit = 19885.6,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -15474,7 +15474,7 @@ public class PivotSalesData
             Sales = 16019.76,
             COGS = 4179,
             Profit = 11840.76,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -15490,7 +15490,7 @@ public class PivotSalesData
             Sales = 39058.8,
             COGS = 6045,
             Profit = 33013.8,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -15506,7 +15506,7 @@ public class PivotSalesData
             Sales = 572658,
             COGS = 200250,
             Profit = 372408,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -15522,7 +15522,7 @@ public class PivotSalesData
             Sales = 207597.5,
             COGS = 122760,
             Profit = 84837.5,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -15538,7 +15538,7 @@ public class PivotSalesData
             Sales = 241368,
             COGS = 374000,
             Profit = 132632,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -15554,7 +15554,7 @@ public class PivotSalesData
             Sales = 831480,
             COGS = 252500,
             Profit = 578980,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -15570,7 +15570,7 @@ public class PivotSalesData
             Sales = 8267.7,
             COGS = 15130,
             Profit = 6862.3,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -15586,7 +15586,7 @@ public class PivotSalesData
             Sales = 16545,
             COGS = 23000,
             Profit = 6455,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -15602,7 +15602,7 @@ public class PivotSalesData
             Sales = 495257.5,
             COGS = 338520,
             Profit = 156737.5,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -15618,7 +15618,7 @@ public class PivotSalesData
             Sales = 639152.5,
             COGS = 579150,
             Profit = 60002.5,
-            Date = @"1/1/19",
+            Date = @"2019-01-01",
             MonthName = @"January",
             Year = 2019
         });
@@ -15634,7 +15634,7 @@ public class PivotSalesData
             Sales = 1279999,
             COGS = 311740,
             Profit = 968259,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -15650,7 +15650,7 @@ public class PivotSalesData
             Sales = 1177750,
             COGS = 52000,
             Profit = 1125750,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -15666,7 +15666,7 @@ public class PivotSalesData
             Sales = 15124.76,
             COGS = 1940,
             Profit = 13184.76,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -15682,7 +15682,7 @@ public class PivotSalesData
             Sales = 14253.54,
             COGS = 8635,
             Profit = 5618.54,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -15698,7 +15698,7 @@ public class PivotSalesData
             Sales = 1215,
             COGS = 23000,
             Profit = 21785,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -15714,7 +15714,7 @@ public class PivotSalesData
             Sales = 5052,
             COGS = 2600,
             Profit = 2452,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -15730,7 +15730,7 @@ public class PivotSalesData
             Sales = 6048,
             COGS = 24700,
             Profit = 18652,
-            Date = @"9/1/18",
+            Date = @"2018-09-01",
             MonthName = @"September",
             Year = 2018
         });
@@ -15746,7 +15746,7 @@ public class PivotSalesData
             Sales = 1919.7,
             COGS = 17430,
             Profit = 15510.3,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -15762,7 +15762,7 @@ public class PivotSalesData
             Sales = 40476.48,
             COGS = 8742,
             Profit = 31734.48,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -15778,7 +15778,7 @@ public class PivotSalesData
             Sales = 10798.62,
             COGS = 8655,
             Profit = 2143.62,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -15794,7 +15794,7 @@ public class PivotSalesData
             Sales = 1375850,
             COGS = 182000,
             Profit = 1193850,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -15810,7 +15810,7 @@ public class PivotSalesData
             Sales = 30023.04,
             COGS = 6666,
             Profit = 23357.04,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -15826,7 +15826,7 @@ public class PivotSalesData
             Sales = 694827,
             COGS = 306020,
             Profit = 388807,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -15842,7 +15842,7 @@ public class PivotSalesData
             Sales = 638372,
             COGS = 499720,
             Profit = 138652,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -15858,7 +15858,7 @@ public class PivotSalesData
             Sales = 521312.5,
             COGS = 189000,
             Profit = 332312.5,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -15874,7 +15874,7 @@ public class PivotSalesData
             Sales = 52203.2,
             COGS = 6060,
             Profit = 46143.2,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -15890,7 +15890,7 @@ public class PivotSalesData
             Sales = 297780,
             COGS = 615000,
             Profit = 317220,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -15906,7 +15906,7 @@ public class PivotSalesData
             Sales = 775002,
             COGS = 67250,
             Profit = 707752,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -15922,7 +15922,7 @@ public class PivotSalesData
             Sales = 1013988,
             COGS = 634000,
             Profit = 379988,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -15938,7 +15938,7 @@ public class PivotSalesData
             Sales = 27395.06,
             COGS = 14515,
             Profit = 12880.06,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -15954,7 +15954,7 @@ public class PivotSalesData
             Sales = 741678,
             COGS = 635250,
             Profit = 106428,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -15970,7 +15970,7 @@ public class PivotSalesData
             Sales = 764502,
             COGS = 67250,
             Profit = 697252,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -15986,7 +15986,7 @@ public class PivotSalesData
             Sales = 311568,
             COGS = 374000,
             Profit = 62432,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -16002,7 +16002,7 @@ public class PivotSalesData
             Sales = 1168080,
             COGS = 252500,
             Profit = 915580,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -16018,7 +16018,7 @@ public class PivotSalesData
             Sales = 62881,
             COGS = 333060,
             Profit = 270179,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -16034,7 +16034,7 @@ public class PivotSalesData
             Sales = 1140504,
             COGS = 222000,
             Profit = 918504,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -16050,7 +16050,7 @@ public class PivotSalesData
             Sales = 481105,
             COGS = 341280,
             Profit = 139825,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -16066,7 +16066,7 @@ public class PivotSalesData
             Sales = 28182,
             COGS = 7425,
             Profit = 20757,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -16082,7 +16082,7 @@ public class PivotSalesData
             Sales = 12899.7,
             COGS = 17430,
             Profit = 4530.3,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -16098,7 +16098,7 @@ public class PivotSalesData
             Sales = 12492.48,
             COGS = 8742,
             Profit = 3750.48,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -16114,7 +16114,7 @@ public class PivotSalesData
             Sales = 6220.62,
             COGS = 8655,
             Profit = 2434.38,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -16130,7 +16130,7 @@ public class PivotSalesData
             Sales = 8583.54,
             COGS = 8635,
             Profit = 51.46,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -16146,7 +16146,7 @@ public class PivotSalesData
             Sales = 15153,
             COGS = 18700,
             Profit = 3547,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -16162,7 +16162,7 @@ public class PivotSalesData
             Sales = 153362.5,
             COGS = 140880,
             Profit = 12482.5,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -16178,7 +16178,7 @@ public class PivotSalesData
             Sales = 218243.75,
             COGS = 332040,
             Profit = 113796.25,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -16194,7 +16194,7 @@ public class PivotSalesData
             Sales = 221781.25,
             COGS = 130200,
             Profit = 91581.25,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -16210,7 +16210,7 @@ public class PivotSalesData
             Sales = 839130,
             COGS = 136500,
             Profit = 702630,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -16226,7 +16226,7 @@ public class PivotSalesData
             Sales = 23126,
             COGS = 11580,
             Profit = 11546,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -16242,7 +16242,7 @@ public class PivotSalesData
             Sales = 32758.5,
             COGS = 16140,
             Profit = 16618.5,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -16258,7 +16258,7 @@ public class PivotSalesData
             Sales = 11569.25,
             COGS = 12675,
             Profit = 1105.75,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -16274,7 +16274,7 @@ public class PivotSalesData
             Sales = 560472.5,
             COGS = 741260,
             Profit = 180787.5,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -16290,7 +16290,7 @@ public class PivotSalesData
             Sales = 9977.25,
             COGS = 25590,
             Profit = 15612.75,
-            Date = @"8/1/19",
+            Date = @"2019-08-01",
             MonthName = @"August",
             Year = 2019
         });
@@ -16306,7 +16306,7 @@ public class PivotSalesData
             Sales = 20439,
             COGS = 2670,
             Profit = 17769,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -16322,7 +16322,7 @@ public class PivotSalesData
             Sales = 293281.25,
             COGS = 130200,
             Profit = 163081.25,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -16338,7 +16338,7 @@ public class PivotSalesData
             Sales = 23501.25,
             COGS = 11750,
             Profit = 11751.25,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -16354,7 +16354,7 @@ public class PivotSalesData
             Sales = 1090932.5,
             COGS = 521820,
             Profit = 569112.5,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -16370,7 +16370,7 @@ public class PivotSalesData
             Sales = 499922.5,
             COGS = 559260,
             Profit = 59337.5,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -16386,7 +16386,7 @@ public class PivotSalesData
             Sales = 37090.8,
             COGS = 2742,
             Profit = 34348.8,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -16402,7 +16402,7 @@ public class PivotSalesData
             Sales = 21221,
             COGS = 2930,
             Profit = 18291,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -16418,7 +16418,7 @@ public class PivotSalesData
             Sales = 32436,
             COGS = 1500,
             Profit = 30936,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -16434,7 +16434,7 @@ public class PivotSalesData
             Sales = 11236.5,
             COGS = 28260,
             Profit = 17023.5,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
@@ -16450,7 +16450,7 @@ public class PivotSalesData
             Sales = 382568.75,
             COGS = 79560,
             Profit = 303008.75,
-            Date = @"9/1/19",
+            Date = @"2019-09-01",
             MonthName = @"September",
             Year = 2019
         });
@@ -16466,7 +16466,7 @@ public class PivotSalesData
             Sales = 1180770,
             COGS = 643500,
             Profit = 537270,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -16482,7 +16482,7 @@ public class PivotSalesData
             Sales = 191912.5,
             COGS = 292560,
             Profit = 100647.5,
-            Date = @"12/1/18",
+            Date = @"2018-12-01",
             MonthName = @"December",
             Year = 2018
         });
@@ -16498,7 +16498,7 @@ public class PivotSalesData
             Sales = 34114.8,
             COGS = 2742,
             Profit = 31372.8,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -16514,7 +16514,7 @@ public class PivotSalesData
             Sales = 78763.5,
             COGS = 8655,
             Profit = 70108.5,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -16530,7 +16530,7 @@ public class PivotSalesData
             Sales = 30468,
             COGS = 4920,
             Profit = 25548,
-            Date = @"7/1/19",
+            Date = @"2019-07-01",
             MonthName = @"July",
             Year = 2019
         });
@@ -16546,7 +16546,7 @@ public class PivotSalesData
             Sales = 32139,
             COGS = 2670,
             Profit = 29469,
-            Date = @"10/1/18",
+            Date = @"2018-10-01",
             MonthName = @"October",
             Year = 2018
         });
@@ -16562,7 +16562,7 @@ public class PivotSalesData
             Sales = 881.25,
             COGS = 11750,
             Profit = 10868.75,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -16578,7 +16578,7 @@ public class PivotSalesData
             Sales = 396737.5,
             COGS = 354480,
             Profit = 42257.5,
-            Date = @"11/1/18",
+            Date = @"2018-11-01",
             MonthName = @"November",
             Year = 2018
         });
@@ -16594,7 +16594,7 @@ public class PivotSalesData
             Sales = 252900,
             COGS = 66240,
             Profit = 186660,
-            Date = @"11/1/19",
+            Date = @"2019-11-01",
             MonthName = @"November",
             Year = 2019
         });
@@ -16610,7 +16610,7 @@ public class PivotSalesData
             Sales = 46141,
             COGS = 2930,
             Profit = 43211,
-            Date = @"12/1/19",
+            Date = @"2019-12-01",
             MonthName = @"December",
             Year = 2019
         });
@@ -16626,7 +16626,7 @@ public class PivotSalesData
             Sales = 457725,
             COGS = 618750,
             Profit = 161025,
-            Date = @"3/1/19",
+            Date = @"2019-03-01",
             MonthName = @"March",
             Year = 2019
         });
@@ -16642,7 +16642,7 @@ public class PivotSalesData
             Sales = 169530,
             COGS = 136500,
             Profit = 33030,
-            Date = @"10/1/19",
+            Date = @"2019-10-01",
             MonthName = @"October",
             Year = 2019
         });
@@ -16658,7 +16658,7 @@ public class PivotSalesData
             Sales = 23910.6,
             COGS = 6840,
             Profit = 17070.6,
-            Date = @"2/1/19",
+            Date = @"2019-02-01",
             MonthName = @"February",
             Year = 2019
         });
@@ -16674,7 +16674,7 @@ public class PivotSalesData
             Sales = 21787.85,
             COGS = 3615,
             Profit = 18172.85,
-            Date = @"4/1/19",
+            Date = @"2019-04-01",
             MonthName = @"April",
             Year = 2019
         });
@@ -16690,7 +16690,7 @@ public class PivotSalesData
             Sales = 2665.2,
             COGS = 5418,
             Profit = 2752.8,
-            Date = @"5/1/19",
+            Date = @"2019-05-01",
             MonthName = @"May",
             Year = 2019
         });
