@@ -48,6 +48,7 @@ var sampleSource = [
     // igConfig.SamplesCopyPath + '/charts/sparkline/**/App.razor',
     // igConfig.SamplesCopyPath + '/charts/tree-map/**/App.razor',
     // igConfig.SamplesCopyPath + '/charts/zoomslider/**/App.razor',
+    // igConfig.SamplesCopyPath + '/charts/toolbar/**/App.razor',    
     // igConfig.SamplesCopyPath + '/maps/geo-map/**/App.razor',
     // igConfig.SamplesCopyPath + '/gauges/bullet-graph/**/App.razor',
     // igConfig.SamplesCopyPath + '/gauges/linear-gauge/**/App.razor',
@@ -59,6 +60,7 @@ var sampleSource = [
     // igConfig.SamplesCopyPath + '/grids/tree/**/App.razor',
     // igConfig.SamplesCopyPath + '/grids/pivot-grid/**/App.razor',
     // igConfig.SamplesCopyPath + '/editors/**/App.razor',
+    // igConfig.SamplesCopyPath + '/editors/date-picker/**/App.razor',
     // igConfig.SamplesCopyPath + '/inputs/badge/**/App.razor',
     // igConfig.SamplesCopyPath + '/inputs/button/**/App.razor',
     // igConfig.SamplesCopyPath + '/inputs/checkbox/**/App.razor',
@@ -109,13 +111,13 @@ var samples = [];
 
 var sampleOutputFolder = '';
 
-function cleanSamples() {
-    // cleaning up obsolete files in individual samples
-    // del.sync("../../samples/**/src/sandbox.config.json", {force:true});
-    // del.sync("../../samples/**/manifest.json", {force:true});
+// cleanup individual samples if they have bin/obj folders
+function cleanupSamples(cb) {
+    del.sync("../../samples/**/bin/**/*.*", {force:true});
+    del.sync("../../samples/**/obj/**/*.*", {force:true});
+    cb();
+} exports.cleanupSamples = cleanupSamples;
 
-    del.sync("../../samples/**/css/open-iconic/README.md", {force:true});
-}
 // lints all source files in ./samples folder and remove any routing paths (@page)
 // since they are auto-generated when samples are copied to browsers
 function lintSamples(cb) {
@@ -180,7 +182,6 @@ function getSamples(cb) {
       igConfig.SamplesCopyPath + '/grids/grid/filtering-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/filtering-template/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/keyboard-custom-navigation/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/multi-column-headers-styling/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/remote-filtering-data/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/remote-paging-batch-editing/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/remote-paging-custom/App.razor',
@@ -189,7 +190,6 @@ function getSamples(cb) {
       igConfig.SamplesCopyPath + '/grids/grid/row-drop-indicator/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/row-editing-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/row-paging-style/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/row-pinning-style/App.razor/App.razor',
     ];
 
     samples = [];
@@ -507,21 +507,34 @@ function copySamplesToClient(cb) {
 
 function updateReadme(cb) {
 
-    // log('updating readme files... ');
+    var changeFilesCount = 0;
     var template = fs.readFileSync("../../templates/sample/ReadMe.md", "utf8");
     for (const sample of samples) {
 
         if (sample.SourceFiles !== undefined &&
             sample.SourceFiles.length > 0) {
-            // let outputPath = sampleOutputFolder + '/' + sample.SampleFolderPath;
-            let outputPath = sampleOutputFolder + sample.SampleFolderPath + "/ReadMe.md";
-            makeDirectoryFor(outputPath);
-            log("updating " + outputPath);
-            let readmeFile = Transformer.updateReadme(sample, template);
-            fs.writeFileSync(outputPath, readmeFile);
-            // break;
+                
+            let readmePath = sampleOutputFolder + sample.SampleFolderPath + "/ReadMe.md";
+            makeDirectoryFor(readmePath);
+            
+            let readmeNewFile = Transformer.updateReadme(sample, template);
+            let readmeOldFile = ""; 
+            if (fs.existsSync(readmePath)) {
+                readmeOldFile = fs.readFileSync(readmePath).toString(); 
+            }
+
+            if (readmeNewFile !== readmeOldFile) {
+                console.log('UPDATED: ' + readmePath)
+                changeFilesCount++;
+                fs.writeFileSync(readmePath, readmeNewFile);
+            }  
         }
     }
+    
+    if (changeFilesCount > 0) {
+        console.log('WARNING: you must commit above ' + changeFilesCount + ' readme files in a pull request')
+    }
+
     cb();
 } exports.updateReadme = updateReadme;
 
@@ -571,17 +584,20 @@ function updateProjects(cb) {
 // updating IG blazor versions in .csproj files for all samples
 function updateIG(cb) {
 
-    // NOTE: change this array with new version of packages
+    // NOTE: change this array with new version of IG packages, e.g.
+    // { name: "IgniteUI.Blazor.Trial", version: "23.1.72" }, // use trial packages before the volume release - PUBLIC NUGET https://www.nuget.org/packages/IgniteUI.Blazor.Trial
+    // { name: "IgniteUI.Blazor",       version: "23.2.97" }, // use non-trial packages while working on release - LOCAL PROGET http://proget.infragistics.local:81/packages?Count=500&FeedId=13
+
     let packageUpgrades = [
-        // these IG packages are often updated:
-        { name: "IgniteUI.Blazor.Trial"                , version: "23.1.37" },
-        { name: "IgniteUI.Blazor.Documents.Core.Trial",  version: "23.1.37" },
-        { name: "IgniteUI.Blazor.Documents.Excel.Trial", version: "23.1.37" },
+        // update version of IG packages and change to Trial or non-trial
+        { name: "IgniteUI.Blazor",                 version: "23.2.97" },
+        { name: "IgniteUI.Blazor.Documents.Core",  version: "23.2.97" },
+        { name: "IgniteUI.Blazor.Documents.Excel", version: "23.2.97" },
         // these IG packages are sometimes updated:
-        { name: "Microsoft.AspNetCore.Components",                       version: "6.0.0" },
-        { name: "Microsoft.AspNetCore.Components.Web",                   version: "6.0.0" },
-        { name: "Microsoft.AspNetCore.Components.WebAssembly",           version: "6.0.0" },
-        { name: "Microsoft.AspNetCore.Components.WebAssembly.DevServer", version: "6.0.0" }, // suffix: 'PrivateAssets="all" ' },
+        { name: "Microsoft.AspNetCore.Components",                       version: "6.0.25" },
+        { name: "Microsoft.AspNetCore.Components.Web",                   version: "6.0.25" },
+        { name: "Microsoft.AspNetCore.Components.WebAssembly",           version: "6.0.25" },
+        { name: "Microsoft.AspNetCore.Components.WebAssembly.DevServer", version: "6.0.25" }, // suffix: 'PrivateAssets="all" ' },
         { name: "Microsoft.AspNetCore.Cors",                             version: "2.2.0" },
         { name: "Microsoft.AspNetCore.Http.Abstractions",                version: "2.2.0" },
         { name: "System.Net.Http.Json", version:"6.0.0" },
@@ -589,51 +605,42 @@ function updateIG(cb) {
 
     // creating package mapping for quick lookup
     let packageMappings = {};
-    for (const item of packageUpgrades) {
-        item.id = item.name;
-        let name = item.name;
-        packageMappings[name] = item;
+    for (let item of packageUpgrades) {
+        // make sure mapping works with any licensee of IG packages
+        item.id = item.name.replace(".Trial","");
+        packageMappings[item.id] = item;
     }
 
-    let updatedPackages = 0; // NOTE you can comment out strings in this array to run these function only on a subset of samples
+    let updatedPackages = 0; 
     var packagePaths = [
         '../../browser/**/*.csproj', // browser
-        '../../samples/**/*.csproj',
+        '../../samples/**/*.csproj', // all samples
+        // NOTE comment out above line and uncomment below line(s) to update only a subset of samples
         // '../../samples/charts/**/*.csproj',
-        // '../../samples/editors/**/*.csproj',
-        // '../../samples/excel/**/*.csproj',
         // '../../samples/gauges/**/*.csproj',
-        // '../../samples/grids/**/*.csproj',
-        // '../../samples/inputs/**/*.csproj',
-        // '../../samples/layouts/**/*.csproj',
-        // '../../samples/maps/**/*.csproj',
-        // '../../samples/menus/**/*.csproj',
-        // '../../samples/notifications/**/*.csproj',
-        // '../../samples/scheduling/**/*.csproj',
+        // '../../samples/gauges/bullet-graph/**/*.csproj',
 
-        // '../samples/charts/category-chart/**/*.csproj',
-        // '../samples/maps/geo-map/type-scatter-bubble-series/*.csproj',
+        // excluding node modules
         '!../../samples/**/node_modules/**/*.csproj',
+        '!../../samples/**/node_modules/**',
+        '!../../samples/**/node_modules',
     ];
     gulp.src(packagePaths)
-    // .pipe(flatten({ "includeParents": -1 }))
     .pipe(es.map(function(file, fileCallback) {
         let filePath = file.dirname + "/" + file.basename;
         var fileContent = file.contents.toString();
         var fileLines = fileContent.split('\n');
-        // log("updating: " + filePath);
 
         var fileChanged = false;
         for (let i = 0; i < fileLines.length; i++) {
             const line = fileLines[i];
-            //   <PackageReference Include="IgniteUI.Blazor.Documents.Excel.Trial" Version="22.1.46" />
             let words = line.split("Version=");
             if (words.length === 2 && words[0].indexOf('PackageReference') > 0) {
                 // matching packages
-                let packageName = words[0].replace("<PackageReference", "").replace("Include=", "").split('"').join('').trim();
-                let packageInfo = packageMappings[packageName];
+                let packageID = words[0].replace("<PackageReference", "").replace("Include=", "").replace(".Trial", "").split('"').join('').trim();
+                let packageInfo = packageMappings[packageID];
                 if (packageInfo !== undefined) {
-                    let tabString = line.indexOf('      ') >= 0 ? '      ': '    ';
+                    let tabString = line.indexOf('      ') >= 0 ? '      ' : '    ';
                     let newLine = tabString + '<PackageReference Include="' + packageInfo.name + '" Version="' + packageInfo.version + '" ';
                     if (packageInfo.suffix) {
                         newLine += packageInfo.suffix;
@@ -648,21 +655,11 @@ function updateIG(cb) {
             }
         }
         if (fileChanged) {
-            let newContent = fileLines.join('\n'); // newContent !== fileContent
+            let newContent = fileLines.join('\n');
             updatedPackages++;
             fs.writeFileSync(filePath, newContent);
             log("updated: " + filePath);
         }
-            // let filePath = fileDir + "/" + file.basename;
-            // // let filePath = file.dirname + "/" + file.basename;
-            // let oldContent = file.contents.toString();
-            // var newContent = templateProject + '';
-            // if (newContent !== oldContent) {
-            //     fs.writeFileSync(filePath, newContent);
-            //     log('updated project: ' + filePath);
-            //     // file.contents = new Buffer(newContent);
-            // }
-        // cb();
         // send the updated file down the pipe
         fileCallback(null, file);
     }))

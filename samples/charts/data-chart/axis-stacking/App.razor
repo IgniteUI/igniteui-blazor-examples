@@ -19,7 +19,7 @@
             <IgbCategoryXAxis
             Name="xAxis"
             @ref="xAxis"
-            DataSource="LocalData"
+            DataSource="CompanyFinancialData"
             Label="Year"
             LabelFontSize="15"
             Gap="0.7"
@@ -94,7 +94,7 @@
             <IgbColumnSeries
             Name="ColumnSeries1"
             @ref="columnSeries1"
-            DataSource="LocalData"
+            DataSource="CompanyFinancialData"
             XAxisName="xAxis"
             YAxisName="yAxis1"
             ShowDefaultTooltip="true"
@@ -107,7 +107,7 @@
             <IgbColumnSeries
             Name="ColumnSeries2"
             @ref="columnSeries2"
-            DataSource="LocalData"
+            DataSource="CompanyFinancialData"
             XAxisName="xAxis"
             YAxisName="yAxis2"
             ShowDefaultTooltip="true"
@@ -120,7 +120,7 @@
             <IgbLineSeries
             Name="LineSeries2"
             @ref="lineSeries2"
-            DataSource="LocalData"
+            DataSource="CompanyFinancialData"
             XAxisName="xAxis"
             YAxisName="yAxis3"
             ShowDefaultTooltip="true"
@@ -180,16 +180,17 @@
     private IgbLineSeries lineSeries2;
     private IgbDataToolTipLayer dataToolTipLayer;
 
-    private LocalData _localData = null;
-    public LocalData LocalData
+    private CompanyFinancialData _companyFinancialData = null;
+    public CompanyFinancialData CompanyFinancialData
     {
         get
         {
-            if (_localData == null)
+            if (_companyFinancialData == null)
             {
-                _localData = new LocalData(); 
+                _companyFinancialData = new CompanyFinancialData(); 
             }
-            return _localData;
+            return _companyFinancialData;
+
         }
     }
     

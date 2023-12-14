@@ -7,10 +7,9 @@ trigger:
   paths:
     exclude:
     - browser/IgBlazorSamples.Client/
-pr:
-  branches:
-    exclude:
-    - '*'  # must quote since "*" is a YAML reserved character; we want a string
+
+# This pipeline is meant to build specific branches for deployment. It's not meant to be a part of PR validation.
+pr: none
 
 parameters:
 - name: isVerbose
@@ -34,7 +33,7 @@ stages:
 
       - template: templates/build-steps-template.yml
         parameters:
-          igVersion: '23.1.37'
+          igVersion: '23.2.96'
           igNuGetFeedUrl: $(IG_Nuget_Feed_URL)
           projectToBuild: Server
           isVerbose: ${{ parameters.isVerbose }}

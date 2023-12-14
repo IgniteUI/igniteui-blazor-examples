@@ -77,6 +77,7 @@ exports.copySamplesToClient = copySamplesToClient = gulp.series(
     sb.getSamples,
     sb.copySamplesToClient,
     sb.updateCodeViewer,
+    sb.updateReadme,
 );
 exports.updateBrowser = updateBrowser = copySamplesToClient;
 
@@ -120,3 +121,5 @@ var gt = require('./tasks/gulp-tests.js')
 exports.testSampleFiles = testSampleFiles = gulp.series(
     gt.testSampleFiles,
 );
+
+exports.cleanupSamples = cleanupSamples = sb.cleanupSamples;

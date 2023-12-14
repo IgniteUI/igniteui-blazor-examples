@@ -1,0 +1,105 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="legend">
+        <IgbDataLegend
+        Name="Legend"
+        @ref="legend"
+        IncludedColumns="@(new string[] { "Close", "Change", "Value" })"
+        ExcludedColumns="@(new string[] { "High", "Low", "Open", "Volume" })"
+        LabelDisplayMode="DataLegendLabelMode.Hidden"
+        ValueFormatMode="DataLegendValueMode.Currency"
+        ValueFormatCulture="en-GB">
+        </IgbDataLegend>
+
+    </div>
+    <div class="container vertical fill">
+        <IgbFinancialChart
+        Name="chart"
+        @ref="chart"
+        ChartType="FinancialChartType.Candle"
+        DataSource="MultipleStocks"
+        DataToolTipValueFormatMode="DataLegendValueMode.Currency"
+        DataToolTipValueFormatCulture="en-GB"
+        DataToolTipLabelDisplayMode="DataLegendLabelMode.Hidden"
+        DataToolTipIncludedColumns="@(new string[] { "Close", "Change", "Value" })"
+        DataToolTipHeaderFormatTime="DataLegendHeaderTimeMode.None"
+        ZoomSliderType="FinancialChartZoomSliderType.None"
+        YAxisLabelFormat="{0}"
+        YAxisLabelFormatSpecifiers="NumberFormatSpecifier1"
+        XAxisLabelFormat="{0}"
+        XAxisLabelFormatSpecifiers="DateTimeFormatSpecifier1">
+        </IgbFinancialChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var chart = this.chart;
+
+        this.BindElements = () => {
+            legend.Target = this.chart;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbDataLegend legend;
+    private IgbFinancialChart chart;
+    private IgbNumberFormatSpecifier[] _numberFormatSpecifier1 = null;
+    public IgbNumberFormatSpecifier[] NumberFormatSpecifier1
+    {
+        get
+        {
+            if (this._numberFormatSpecifier1 == null)
+            {
+                var numberFormatSpecifier1 = new IgbNumberFormatSpecifier[1];
+                var numberFormatSpecifier2 = new IgbNumberFormatSpecifier();
+                numberFormatSpecifier2.Currency = "EUR";
+                numberFormatSpecifier2.Style = "currency";
+                numberFormatSpecifier2.Locale = "en-GB";
+                numberFormatSpecifier2.MinimumFractionDigits = 0;
+                numberFormatSpecifier1[0] = numberFormatSpecifier2;
+                this._numberFormatSpecifier1 = numberFormatSpecifier1;
+            }
+            return this._numberFormatSpecifier1;
+        }
+    }
+    private IgbDateTimeFormatSpecifier[] _dateTimeFormatSpecifier1 = null;
+    public IgbDateTimeFormatSpecifier[] DateTimeFormatSpecifier1
+    {
+        get
+        {
+            if (this._dateTimeFormatSpecifier1 == null)
+            {
+                var dateTimeFormatSpecifier1 = new IgbDateTimeFormatSpecifier[1];
+                var dateTimeFormatSpecifier2 = new IgbDateTimeFormatSpecifier();
+                dateTimeFormatSpecifier2.Locale = "en-GB";
+                dateTimeFormatSpecifier2.DateStyle = "long";
+                dateTimeFormatSpecifier1[0] = dateTimeFormatSpecifier2;
+                this._dateTimeFormatSpecifier1 = dateTimeFormatSpecifier1;
+            }
+            return this._dateTimeFormatSpecifier1;
+        }
+    }
+
+    private MultipleStocks _multipleStocks = null;
+    public MultipleStocks MultipleStocks
+    {
+        get
+        {
+            if (_multipleStocks == null)
+            {
+                MultipleStocks.Fetch().ContinueWith((t) => {_multipleStocks = t.Result;  StateHasChanged(); });
+            }
+            return _multipleStocks;
+        }
+    }
+
+}

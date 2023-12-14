@@ -1,0 +1,93 @@
+@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
+@using System;
+
+<div class="container vertical">
+    <div class="legend-title">
+        Chart with Multiple Selectable Data Columns
+    </div>
+    <div class="legend">
+        <IgbDataLegend
+        Name="Legend"
+        @ref="legend"
+        SummaryType="DataLegendSummaryType.None"
+        ValueFormatMaxFractions="0">
+        </IgbDataLegend>
+
+    </div>
+    <div class="container vertical fill">
+        <IgbCategoryChart
+        Name="chart"
+        @ref="chart"
+        DataSource="SelectableData"
+        ChartType="CategoryChartType.Column"
+        XAxisOverlap="1"
+        YAxisMinimumValue="0"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        IsSeriesHighlightingEnabled="true"
+        FinalValueAnnotationsVisible="false"
+        CrosshairsAnnotationEnabled="false"
+        DataToolTipSummaryType="DataLegendSummaryType.None"
+        DataToolTipValueFormatMaxFractions="0"
+        SeriesPointerDown="CategoryChartCustomSelectionPointerDown">
+        </IgbCategoryChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var chart = this.chart;
+
+        this.BindElements = () => {
+            legend.Target = this.chart;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbDataLegend legend;
+    private IgbCategoryChart chart;
+
+    public void CategoryChartCustomSelectionPointerDown(IgbDomainChartSeriesPointerEventArgs args)
+    {
+        var selectedItem = args.Item as SelectableDataItem;
+        if (selectedItem == null) return;
+
+        var selectedIndex = -1;
+        for (var i = 0; i < this.SelectableData.Count; i++)
+        {
+            if (selectedItem.Category == this.SelectableData[i].Category)
+            {
+                selectedIndex = i; break;
+            }
+        }
+
+        if (selectedItem.SelectedValue == selectedItem.DataValue)
+            selectedItem.SelectedValue = double.NaN;
+        else
+            selectedItem.SelectedValue = selectedItem.DataValue;
+
+        chart.NotifyUpdateItem(this.SelectableData, selectedIndex, selectedItem, false);
+    }
+
+    private SelectableData _selectableData = null;
+    public SelectableData SelectableData
+    {
+        get
+        {
+            if (_selectableData == null)
+            {
+                _selectableData = new SelectableData();
+            }
+            return _selectableData;
+        }
+    }
+
+}

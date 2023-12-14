@@ -1,0 +1,369 @@
+﻿@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="container vertical" style="padding-left: 0.5rem">
+        @if (Data != null)
+        {            
+            <div class="legend-title">
+                Chart with Custom Drawing Annotations
+            </div>
+            <div class="legend"  style="padding-left: 0rem">
+                <IgbLegend Name="Legend" @ref="Legend" Orientation="LegendOrientation.Horizontal">
+                </IgbLegend>
+            </div>  
+
+            <div style="padding-left: 0rem">
+                <IgbToolbar Name="Toolbar" @ref="Toolbar" OnCommand="OnToolbarCommandChanged">
+                    
+                    <IgbToolActionLabel 
+                    BeforeId="ZoomReset"
+                    Name="Draw" Title="Draw Modes:" >
+                    </IgbToolActionLabel>
+                
+                    <IgbToolActionLabel 
+                    Name="DrawRangeAreaToolAction"
+                    @ref="DrawRangeAreaToolAction"
+                    Title="Range Area"  
+                    BeforeId="ZoomReset"
+                    CommandId="DrawRangeArea">
+                    </IgbToolActionLabel>
+                    <IgbToolActionSeparator />
+
+                    <IgbToolActionLabel  
+                    Name="DrawSlopeLineToolAction"
+                    @ref="DrawSlopeLineToolAction"
+                    Title="Slope Line"  
+                    BeforeId="ZoomReset"
+                    CommandId="DrawSlopeLine">
+                    </IgbToolActionLabel>
+                 
+                    <IgbToolActionLabel  
+                    Name="DrawHorizontalLineToolAction"
+                    @ref="DrawHorizontalLineToolAction"
+                    Title="Horizontal Line"  
+                    BeforeId="ZoomReset"
+                    CommandId="DrawHorizontalLine">
+                    </IgbToolActionLabel>
+
+                    <IgbToolActionSeparator />
+                </IgbToolbar>
+            </div>
+              
+            <IgbDataChart Height="100%" Width="100%" Name="Chart" @ref="Chart"
+            DefaultInteraction="InteractionState.None"
+            PlotAreaMouseOver="@OnChartMouseOver"
+            PlotAreaMouseLeftButtonUp="@OnChartMouseUp" 
+            PlotAreaMouseLeftButtonDown="@OnChartMouseDown"
+            IsWindowSyncedToVisibleRange="true"
+            IsHorizontalZoomEnabled="true"
+            IsVerticalZoomEnabled="false">
+
+                <IgbCategoryXAxis @ref="xAxis" Name="xAxis" Label="Date" Gap="0.25" DataSource="Data"
+                UseClusteringMode="true" LabelAngle="45" />
+                <IgbNumericYAxis  @ref="yAxis" Name="yAxis" LabelExtent="70"
+                LabelHorizontalAlignment="HorizontalAlignment.Left"
+                LabelLocation="AxisLabelsLocation.OutsideRight" Title="Stock Price ($)" />
+
+                <IgbFinancialPriceSeries 
+                XAxisName="xAxis" @ref="FinancialSeries"
+                YAxisName="yAxis"
+                DisplayType="PriceDisplayType.Candlestick"
+                DataSource="Data"
+                HighMemberPath="High" 
+                LowMemberPath="Low" 
+                CloseMemberPath="Close" 
+                OpenMemberPath="Open"
+                VolumeMemberPath="Volume"
+                ShowDefaultTooltip="true"
+                Title="Stock Price" />
+                
+                @*DataSource="DataRangePoints"*@
+                <IgbRangeAreaSeries
+                Name="RangeAreaSeries"
+                @ref="DrawRangeSeries"
+                Title="Range Area"
+                AreaFillOpacity="0.25"
+                XAxisName="xAxis"
+                YAxisName="yAxis" 
+                LowMemberPath="Low"
+                HighMemberPath="High"
+                ShowDefaultTooltip="false" 
+                DashArray="@(new double[] { 5, 5 })"/>
+                
+                <IgbLineSeries 
+                @ref="DrawSlopeSeries"
+                Name="DrawSlopeSeries"
+                Title="Slope Line"
+                MarkerType="MarkerType.None"
+                XAxisName="xAxis"  
+                YAxisName="yAxis" 
+                ValueMemberPath="Y" 
+                Thickness="4"
+                DashArray="@(new double[] { 5, 5 })"/>
+                 
+                <IgbLineSeries 
+                @ref="DrawHoirzontalSeries"
+                Name="DrawHoirzontalSeries"
+                Title="Hoirzontal Line"
+                MarkerType="MarkerType.None"
+                XAxisName="xAxis"  
+                YAxisName="yAxis" 
+                ValueMemberPath="Y" 
+                Thickness="4" Brush="Red"
+                DashArray="@(new double[] { 5, 5 })"/>
+                                
+                <IgbFinalValueLayer Name="FinalValue" AxisAnnotationInterpolatedValuePrecision="0"/>
+            
+                <IgbDataToolTipLayer Name="Tooltips" ValueFormatMaxFractions="1"/>
+            </IgbDataChart>
+        }
+
+    </div>
+</div>
+
+@code {
+
+    private IgbToolbar Toolbar;
+    private IgbToolActionLabel DrawSlopeLineToolAction; 
+    private IgbToolActionLabel DrawRangeAreaToolAction; 
+    private IgbToolActionLabel DrawHorizontalLineToolAction; 
+
+    private IgbLegend Legend;
+    private IgbDataChart Chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+
+    private IgbLineSeries DrawSlopeSeries;
+    private IgbLineSeries DrawHoirzontalSeries;
+    private IgbRangeAreaSeries DrawRangeSeries;
+    private IgbFinancialPriceSeries FinancialSeries;
+
+    protected List<StockPrice> Data; 
+    protected List<StockPrice> DataRangePoints; 
+    protected List<Point> DataSlopePoints; 
+    protected List<Point> DataHorizontaPoints; 
+
+    protected override async Task OnInitializedAsync()
+    {
+        var dataArray = await StocksHistory.GetMicrosoftStock();
+        this.Data = new List<StockPrice>();
+        foreach (var item in dataArray)
+        {
+            this.Data.Add(item);
+        } 
+
+        PlotHorizontalLine(38, true);
+        PlotRangeArea(50, 60, true);
+        PlotSlopeLine(new Point(0, 45), new Point(this.Data.Count - 1, 80), true);
+    } 
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {  
+        if (DrawSlopeSeries != null && DrawSlopeSeries.DataSource == null)
+            DrawSlopeSeries.DataSource = DataSlopePoints; 
+
+        if (DrawHoirzontalSeries != null && DrawHoirzontalSeries.DataSource == null)
+            DrawHoirzontalSeries.DataSource = DataHorizontaPoints; 
+
+        if (DrawRangeSeries != null && DrawRangeSeries.DataSource == null)
+            DrawRangeSeries.DataSource = DataRangePoints; 
+
+        if (this.Toolbar != null && this.Chart != null && this.Toolbar.Target == null && !firstRender)
+        { 
+            this.Toolbar.Target = this.Chart;  
+            UpdateDrawMode("DrawHorizontalLine");
+            Console.WriteLine("OnAfterRenderAsync Toolbar");
+        }  
+        if (this.Chart != null && this.Legend != null && this.Chart.Legend == null && !firstRender)
+        { 
+            this.Chart.Legend = this.Legend;
+            Console.WriteLine("OnAfterRenderAsync Legend");
+        } 
+    }
+
+    protected Point GetDataLocation(Point chartPixel)
+    {
+        if (xAxis == null) Console.WriteLine("no xAxis");
+        if (yAxis == null) Console.WriteLine("no yAxis ");
+
+        var x = xAxis.UnscaleValue(chartPixel.X);
+        var y = yAxis.UnscaleValue(chartPixel.Y);
+
+        return new Point(x, y);
+    }
+
+    protected bool IsDrawingRangeArea = false;
+    protected bool IsDrawingSlopeLine = false;
+    protected bool IsDrawingHorizontalLine = false;
+
+    protected Point ChartMouseDownLocation = new Point();
+    protected void OnChartMouseDown(IgbPlotAreaMouseButtonEventArgs args)
+    {
+        InitializeAxisRange();
+        if (!isAxisRangeInitalized) return;    
+
+        Console.WriteLine("DrawMode " + DrawMode);
+
+        if (DrawMode == "DrawHorizontalLine") IsDrawingHorizontalLine = true; 
+        if (DrawMode == "DrawSlopeLine") IsDrawingSlopeLine = true; 
+        if (DrawMode == "DrawRangeArea") IsDrawingRangeArea = true; 
+
+        ChartMouseDownLocation = GetDataLocation(args.PlotAreaPosition); 
+        ChartMouseMoveLocation = GetDataLocation(args.PlotAreaPosition); 
+
+        this.PlotRangeArea(ChartMouseDownLocation.Y, ChartMouseMoveLocation.Y); 
+        this.PlotSlopeLine(ChartMouseDownLocation, ChartMouseMoveLocation); 
+        this.PlotHorizontalLine(this.ChartMouseMoveLocation.Y); 
+    }
+
+    protected Point ChartMouseMoveLocation = new Point();
+    protected void OnChartMouseOver(IgbPlotAreaMouseEventArgs args)
+    {
+        if (!isAxisRangeInitalized) return; 
+
+        ChartMouseMoveLocation = GetDataLocation(args.PlotAreaPosition);
+        //  Console.WriteLine("OnChartMouseOver Plot " + ChartMouseMoveLocation.Y);
+
+        this.PlotRangeArea(ChartMouseDownLocation.Y, ChartMouseMoveLocation.Y); 
+        this.PlotSlopeLine(ChartMouseDownLocation, ChartMouseMoveLocation); 
+        this.PlotHorizontalLine(this.ChartMouseMoveLocation.Y); 
+        // Console.WriteLine("OnChartMouseOver Plot done " );
+    }
+
+    protected void OnChartMouseUp(IgbPlotAreaMouseButtonEventArgs args)
+    {
+        IsDrawingSlopeLine = false;
+        IsDrawingRangeArea = false;
+        IsDrawingHorizontalLine = false;   
+    }
+
+    protected void PlotHorizontalLine(double Value, bool forceRender = false)
+    {    
+        if (!forceRender)
+        {
+            if (!isAxisRangeInitalized) return;        
+            if (!IsDrawingHorizontalLine) return; 
+        } 
+
+        var dataPoints = new List<Point>(); 
+        for (var x = 0; x < this.Data.Count; x++)
+        { 
+            var point = new Point(x, Value); 
+            dataPoints.Add(point); 
+        }
+        this.DataHorizontaPoints = dataPoints;
+
+        if (this.DrawHoirzontalSeries != null)
+            this.DrawHoirzontalSeries.DataSource = DataHorizontaPoints;
+    }
+
+    protected void PlotSlopeLine(Point start, Point end, bool forceRender = false)
+    {
+        if (!forceRender)
+        {
+            if (!isAxisRangeInitalized) return;        
+            if (!IsDrawingSlopeLine) return; 
+        }
+
+        var slope = 0.0;
+        var offset = end.Y;
+        if (Math.Abs(end.X - start.X) > 0.01)
+        {
+            slope = (end.Y - start.Y) / (end.X - start.X);
+            offset = end.Y - (end.X * slope);
+        }   
+
+        var dataPoints = new List<Point>(); 
+        for (var x = 0; x < this.Data.Count; x++)
+        { 
+            var y = (slope * x) + offset; 
+            var point = new Point(x, y); 
+            dataPoints.Add(point); 
+        } 
+        this.DataSlopePoints = dataPoints;
+
+        if (this.DrawSlopeSeries != null)
+            this.DrawSlopeSeries.DataSource = DataSlopePoints;
+
+        // DrawSlopeSeries.Title = "Slope Line (" + slope.ToString("0.0") + ")";
+    }
+
+    protected void PlotRangeArea(double start, double end, bool forceRender = false)
+    {
+        if (!forceRender)
+        {
+            if (!isAxisRangeInitalized) return;        
+            if (!IsDrawingRangeArea) return; 
+        }
+
+        var low  = Math.Min(end, start);
+        var high = Math.Max(end, start);
+
+        var dataPoints = new List<StockPrice>();
+        for (var x = 0; x < this.Data.Count; x++)
+        { 
+            var point = new StockPrice() { Low = low, High = high }; 
+            dataPoints.Add(point); 
+        } 
+
+        this.DataRangePoints = dataPoints;
+
+        if (this.DrawRangeSeries != null)
+            this.DrawRangeSeries.DataSource = DataRangePoints;
+        //DrawRangeSeries.Title = "Range Area (" + low.ToString("0.0") + "-" + high.ToString("0.0") + ")";
+    }
+
+    double AxisMaxValue = double.NaN;
+    double AxisMinValue = double.NaN;
+    bool isAxisRangeInitalized = false;
+
+    private void InitializeAxisRange()
+    {
+        if (isAxisRangeInitalized) return;
+        isAxisRangeInitalized = true;
+
+        AxisMaxValue =  this.yAxis.GetCurrentActualMaximumValue();
+        AxisMinValue =  this.yAxis.GetCurrentActualMinimumValue();
+
+        Console.WriteLine("axis range " + AxisMaxValue + " " + AxisMinValue) ;
+
+        this.yAxis.MaximumValue = AxisMaxValue;
+        this.yAxis.MinimumValue = AxisMinValue;
+    }
+
+    public string DrawMode = "";
+    
+    public void OnToolbarCommandChanged(IgbToolCommandEventArgs args)
+    {
+        UpdateDrawMode(args.Command.CommandId);
+    }
+
+    public void UpdateDrawMode(string selectedDrawMode)
+    { 
+        switch (selectedDrawMode)
+        {
+            case "DrawRangeArea":
+                DrawMode = "DrawRangeArea";
+                DrawHorizontalLineToolAction.FontWeight = "normal";
+                DrawSlopeLineToolAction.FontWeight = "normal";
+                DrawRangeAreaToolAction.FontWeight = "800";
+                break;
+
+            case "DrawSlopeLine":
+                DrawMode = "DrawSlopeLine";
+                DrawHorizontalLineToolAction.FontWeight = "normal";
+                DrawSlopeLineToolAction.FontWeight = "800";
+                DrawRangeAreaToolAction.FontWeight = "normal";
+                break;
+
+            case "DrawHorizontalLine":
+                DrawMode = "DrawHorizontalLine";
+                DrawHorizontalLineToolAction.FontWeight = "800";
+                DrawSlopeLineToolAction.FontWeight = "normal";
+                DrawRangeAreaToolAction.FontWeight = "normal";
+                break;
+        }       
+    }
+
+
+}

@@ -1,0 +1,85 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="legend-title">
+        Highest Grossing Movie Franchises
+    </div>
+    <div class="legend">
+        <IgbDataLegend
+
+        ValueFormatMode="DataLegendValueMode.Currency"
+        ValueFormatString="${0} Billion"
+        Name="Legend"
+        @ref="legend">
+        </IgbDataLegend>
+
+    </div>
+    <div class="container vertical fill">
+        <IgbCategoryChart
+        Name="chart"
+        @ref="chart"
+        DataSource="HighestGrossingMovies"
+        ChartType="CategoryChartType.Column"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        DataToolTipValueFormatMode="DataLegendValueMode.Currency"
+        DataToolTipValueFormatString="${0} Billion"
+        YAxisLabelFormat="{0}B"
+        YAxisLabelFormatSpecifiers="NumberFormatSpecifier1">
+        </IgbCategoryChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var chart = this.chart;
+
+        this.BindElements = () => {
+            legend.Target = this.chart;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbDataLegend legend;
+    private IgbCategoryChart chart;
+    private IgbNumberFormatSpecifier[] _numberFormatSpecifier1 = null;
+    public IgbNumberFormatSpecifier[] NumberFormatSpecifier1
+    {
+        get
+        {
+            if (this._numberFormatSpecifier1 == null)
+            {
+                var numberFormatSpecifier1 = new IgbNumberFormatSpecifier[1];
+                var numberFormatSpecifier2 = new IgbNumberFormatSpecifier();
+                numberFormatSpecifier2.Style = "currency";
+                numberFormatSpecifier2.Currency = "USD";
+                numberFormatSpecifier2.CurrencyDisplay = "symbol";
+                numberFormatSpecifier2.MinimumFractionDigits = 0;
+                numberFormatSpecifier1[0] = numberFormatSpecifier2;
+                this._numberFormatSpecifier1 = numberFormatSpecifier1;
+            }
+            return this._numberFormatSpecifier1;
+        }
+    }
+
+    private HighestGrossingMovies _highestGrossingMovies = null;
+    public HighestGrossingMovies HighestGrossingMovies
+    {
+        get
+        {
+            if (_highestGrossingMovies == null)
+            {
+                _highestGrossingMovies = new HighestGrossingMovies();
+            }
+            return _highestGrossingMovies;
+        }
+    }
+
+}

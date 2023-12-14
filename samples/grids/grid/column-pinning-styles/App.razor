@@ -1,0 +1,92 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbGrid
+        Name="grid"
+        @ref="grid"
+        Id="grid"
+        Data="CustomersData"
+        ColumnSelection="GridSelectionMode.Single">
+            <IgbGridToolbar
+            >
+                <IgbGridToolbarActions
+                >
+                    <IgbGridToolbarPinning
+                    >
+                    </IgbGridToolbarPinning>
+
+                </IgbGridToolbarActions>
+
+            </IgbGridToolbar>
+
+            <IgbColumn
+            Field="ID"
+            Hidden="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="CompanyName"
+            Header="Company"
+            Pinned="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="ContactName"
+            Header="Contact Name">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="ContactTitle"
+            Header="Contact Title">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Address">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="City">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Region">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Phone">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Fax">
+            </IgbColumn>
+
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+
+    }
+
+    private IgbGrid grid;
+
+    private CustomersData _customersData = null;
+    public CustomersData CustomersData
+    {
+        get
+        {
+            if (_customersData == null)
+            {
+                _customersData = new CustomersData();
+            }
+            return _customersData;
+        }
+    }
+
+}

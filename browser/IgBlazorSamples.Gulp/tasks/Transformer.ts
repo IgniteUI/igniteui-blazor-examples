@@ -426,6 +426,7 @@ class Transformer {
 
         let comparedFiles: string[] = [];
 
+        let foundErrors = 0;
         for (const sampleA of samples) {
 
             for (const fileA of sampleA.SourceFiles) {
@@ -443,14 +444,17 @@ class Transformer {
                         let contentB = transFS.readFileSync(fileB.Path).toString().trim();
 
                         if (contentA !== contentB) {
-                            console.log('WARNING: File "' + fileA.Name + '" has different content in these locations: \n' + fileA.Path + '\n' + fileB.Path)
+                            console.log('ERROR: File "' + fileA.Name + '" has different content in these locations: \n' + fileA.Path + '\n' + fileB.Path)
+                            foundErrors++;
                         }
 
                     }
                 }
                 comparedFiles.push(fileA.Name);
             }
-
+        }
+        if (foundErrors > 0) {
+            throw new Error('You must fixed above ' + foundErrors + ' errors before the Blazor Sample Browser can combine individual samples')
         }
     }
 

@@ -26,7 +26,8 @@ namespace Infragistics.Samples
         }
 
         /** gets Amazon stock OHLC prices from a .JSON file */
-        public static async Task<StockPrice[]> GetAmazonStock() {
+        public static async Task<StockPrice[]> GetAmazonStock()
+        {
             var url = "https://static.infragistics.com/xplatform/data/stocks/stockAmazon.json";
 
             //TODO
