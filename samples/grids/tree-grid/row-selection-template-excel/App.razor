@@ -1,0 +1,109 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        Data="EmployeesFlatData"
+        Name="treeGrid"
+        @ref="treeGrid"
+        Id="treeGrid"
+        PrimaryKey="ID"
+        ForeignKey="ParentID"
+        RowSelection="GridSelectionMode.Multiple"
+        DisplayDensity="DisplayDensity.Cosy"
+        RowSelectorTemplateScript="WebGridRowSelectorExcelTemplate"
+        HeadSelectorTemplateScript="WebGridHeaderRowSelectorExcelTemplate">
+            <IgbPaginator
+            Name="paginator"
+            @ref="paginator"
+            PerPage="15"
+            DisplayDensity="DisplayDensity.Cosy"
+            SelectOptions="@(new double[] { 5, 10, 15, 25, 50 })"
+            ResourceStrings="PaginatorResourceStrings1">
+            </IgbPaginator>
+
+            <IgbColumn
+            Field="Name"
+            DataType="GridColumnDataType.String"
+            Sortable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Title"
+            Header="Job Title"
+            DataType="GridColumnDataType.String"
+            Sortable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="HireDate"
+            DataType="GridColumnDataType.Date"
+            Sortable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="ID"
+            DataType="GridColumnDataType.Number"
+            Sortable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Age"
+            DataType="GridColumnDataType.Number"
+            Sortable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="OnPTO"
+            DataType="GridColumnDataType.Boolean"
+            Sortable="true">
+            </IgbColumn>
+
+        </IgbTreeGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var treeGrid = this.treeGrid;
+        var paginator = this.paginator;
+
+    }
+
+    private IgbTreeGrid treeGrid;
+    private IgbPaginator paginator;
+    private IgbPaginatorResourceStrings _paginatorResourceStrings1 = null;
+    public IgbPaginatorResourceStrings PaginatorResourceStrings1
+    {
+        get
+        {
+            if (this._paginatorResourceStrings1 == null)
+            {
+                var paginatorResourceStrings1 = new IgbPaginatorResourceStrings();
+                paginatorResourceStrings1.Igx_paginator_label = "Items per page";
+                this._paginatorResourceStrings1 = paginatorResourceStrings1;
+            }
+            return this._paginatorResourceStrings1;
+        }
+    }
+
+    private EmployeesFlatData _employeesFlatData = null;
+    public EmployeesFlatData EmployeesFlatData
+    {
+        get
+        {
+            if (_employeesFlatData == null)
+            {
+                _employeesFlatData = new EmployeesFlatData();
+            }
+            return _employeesFlatData;
+        }
+    }
+
+}
