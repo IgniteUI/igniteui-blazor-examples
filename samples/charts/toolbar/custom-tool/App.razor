@@ -1,5 +1,4 @@
 @using IgniteUI.Blazor.Controls
-@using IgniteUI.Blazor.Controls;
 @using System;
 
 <div class="container vertical">
@@ -20,15 +19,14 @@
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-        this.ToolbarCustomIconOnViewInit();
-    }
-
+    
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var toolbar = this.toolbar;
-
+        if (firstRender)
+        {
+            this.ToolbarCustomIconOnViewInit();
+        }
     }
 
     private IgbToolbar toolbar;
