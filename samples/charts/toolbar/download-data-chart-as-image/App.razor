@@ -9,13 +9,13 @@
             Name="Toolbar"
             @ref="toolbar"
             Orientation="ToolbarOrientation.Horizontal"
-            OnCommand="ToolbarToggleTooltip">
+            OnCommand="ToolbarDownloadChart">
                 <IgbToolActionIconButton
-                Name="DownloadChartImage"
-                @ref="downloadChartImage"
-                Title="Download as Image"
-                OverlayId="CopyAsImage"
-                CommandId="DownloadAsImage">
+                    Name="DownloadChartImage"
+                    @ref="downloadChartImage"
+                    Title="Download as Image"
+                    OverlayId="CopyAsImage"
+                    CommandId="DownloadAsImage">
                 </IgbToolActionIconButton>
             </IgbToolbar>
         </div>
@@ -107,15 +107,13 @@
     private IgbLineSeries lineSeries2;
     private IgbLineSeries lineSeries3;
 
-    public void ToolbarToggleTooltip(IgbToolCommandEventArgs args)
+    public void ToolbarDownloadChart(IgbToolCommandEventArgs args)
     {
         var target = this.chart;
         switch (args.Command.CommandId)
         {
             case "DownloadAsImage":
-                Console.WriteLine("Saved");
                 JS.InvokeVoidAsync("renderChartToImage", null);
-
     			break;
     	}
     }
