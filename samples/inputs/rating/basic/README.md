@@ -4,7 +4,6 @@
 This folder contains implementation of Blazor application with example of Basic feature using [Rating](https://www.infragistics.com/products/ignite-ui-blazor/blazor/components/general-getting-started.html) component.
 
 
-
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <body>
         <!-- https://static.infragistics.com/xplatform/images/browsers -->

@@ -1,5 +1,5 @@
 
-const columnGroupStates = new Map();
+let columnGroupStates = new Map();
 function toggleColumnGroup(name) {
     var columnGroup = grid.columns.find((col) => col.header === name)
     const columns = columnGroup.children.toArray();
