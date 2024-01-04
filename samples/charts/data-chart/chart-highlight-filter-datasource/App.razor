@@ -24,6 +24,7 @@
         <IgbDataChart
         ShouldAutoExpandMarginForInitialLabels="true"
         ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+        HighlightedValuesDisplayMode="SeriesHighlightedValuesDisplayMode.Hidden"
         Name="chart"
         @ref="chart">
             <IgbCategoryXAxis
@@ -46,7 +47,8 @@
             XAxisName="xAxis"
             YAxisName="yAxis"
             DataSource="OnlineTrafficHighlightTotals"
-            ValueMemberPath="Value">
+            ValueMemberPath="Value"
+            HighlightedDataSource="OnlineTrafficHighlightDesktopOnly">
             </IgbColumnSeries>
 
         </IgbDataChart>
@@ -91,6 +93,19 @@
                 _onlineTrafficHighlightTotals = new OnlineTrafficHighlightTotals();
             }
             return _onlineTrafficHighlightTotals;
+        }
+    }
+
+    private OnlineTrafficHighlightDesktopOnly _onlineTrafficHighlightDesktopOnly = null;
+    public OnlineTrafficHighlightDesktopOnly OnlineTrafficHighlightDesktopOnly
+    {
+        get
+        {
+            if (_onlineTrafficHighlightDesktopOnly == null)
+            {
+                _onlineTrafficHighlightDesktopOnly = new OnlineTrafficHighlightDesktopOnly();
+            }
+            return _onlineTrafficHighlightDesktopOnly;
         }
     }
 

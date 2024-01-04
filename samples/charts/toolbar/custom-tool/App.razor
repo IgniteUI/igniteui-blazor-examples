@@ -20,15 +20,14 @@
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-        this.ToolbarCustomIconOnViewInit();
-    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var toolbar = this.toolbar;
 
+        if (firstRender) {
+            this.ToolbarCustomIconOnViewInit();
+        }
     }
 
     private IgbToolbar toolbar;

@@ -25,7 +25,8 @@
         ShouldAutoExpandMarginForInitialLabels="true"
         ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        HighlightedValuesDisplayMode="SeriesHighlightedValuesDisplayMode.Hidden">
             <IgbCategoryXAxis
             Name="xAxis"
             @ref="xAxis"
@@ -44,7 +45,8 @@
             XAxisName="xAxis"
             YAxisName="yAxis"
             DataSource="CountryRenewableElectricity"
-            ValueMemberPath="Europe">
+            ValueMemberPath="Europe"
+            HighlightedDataSource="CountryRenewableElectricityFiltered">
             </IgbColumnSeries>
 
             <IgbColumnSeries
@@ -53,7 +55,8 @@
             XAxisName="xAxis"
             YAxisName="yAxis"
             DataSource="CountryRenewableElectricity"
-            ValueMemberPath="China">
+            ValueMemberPath="China"
+            HighlightedDataSource="CountryRenewableElectricityFiltered">
             </IgbColumnSeries>
 
             <IgbColumnSeries
@@ -62,7 +65,8 @@
             XAxisName="xAxis"
             YAxisName="yAxis"
             DataSource="CountryRenewableElectricity"
-            ValueMemberPath="America">
+            ValueMemberPath="America"
+            HighlightedDataSource="CountryRenewableElectricityFiltered">
             </IgbColumnSeries>
 
         </IgbDataChart>
@@ -111,6 +115,19 @@
                 _countryRenewableElectricity = new CountryRenewableElectricity();
             }
             return _countryRenewableElectricity;
+        }
+    }
+
+    private CountryRenewableElectricityFiltered _countryRenewableElectricityFiltered = null;
+    public CountryRenewableElectricityFiltered CountryRenewableElectricityFiltered
+    {
+        get
+        {
+            if (_countryRenewableElectricityFiltered == null)
+            {
+                _countryRenewableElectricityFiltered = new CountryRenewableElectricityFiltered();
+            }
+            return _countryRenewableElectricityFiltered;
         }
     }
 
