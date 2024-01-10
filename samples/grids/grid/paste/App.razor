@@ -1,0 +1,123 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+
+        DescriptionType="WebGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="false"
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
+            <IgbPropertyEditorPropertyDescription
+            Name="PasteModeEditor"
+            @ref="pasteModeEditor"
+            ValueType="PropertyEditorValueType.EnumValue"
+            Label="Paste as:"
+            DropDownNames="@(new string[] { "NewRecords", "FromActiveCell" })"
+            DropDownValues="@(new string[] { "NewRecords", "FromActiveCell" })"
+            ChangedScript="WebGridPasteModeChange">
+            </IgbPropertyEditorPropertyDescription>
+
+        </IgbPropertyEditorPanel>
+
+    </div>
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="InvoicesData"
+        RenderedScript="WebGridPasteFromExcel"
+        Name="grid"
+        @ref="grid"
+        Id="grid"
+        PrimaryKey="OrderID">
+            <IgbGridToolbar
+            >
+                <IgbGridToolbarActions
+                >
+                    <IgbGridToolbarExporter
+                    ExportExcel="true"
+                    ExportCSV="false">
+                    </IgbGridToolbarExporter>
+
+                </IgbGridToolbarActions>
+
+            </IgbGridToolbar>
+
+            <IgbColumn
+            Field="OrderID"
+            Hidden="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Salesperson"
+            Header="Name"
+            Width="200px">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="ShipName"
+            Header="Ship Name"
+            Width="200px">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Country"
+            Header="Country"
+            Width="200px">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="ShipCity"
+            Header="Ship City"
+            Width="200px">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="PostalCode"
+            Header="Postal Code"
+            Width="200px">
+            </IgbColumn>
+
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var pasteModeEditor = this.pasteModeEditor;
+        var grid = this.grid;
+
+        this.BindElements = () => {
+            propertyEditorPanel1.Target = this.grid;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription pasteModeEditor;
+    private IgbGrid grid;
+
+    private InvoicesData _invoicesData = null;
+    public InvoicesData InvoicesData
+    {
+        get
+        {
+            if (_invoicesData == null)
+            {
+                _invoicesData = new InvoicesData();
+            }
+            return _invoicesData;
+        }
+    }
+
+}
