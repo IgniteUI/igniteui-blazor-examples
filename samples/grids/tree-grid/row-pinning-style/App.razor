@@ -1,0 +1,91 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        Id="grid"
+        Name="grid"
+        @ref="grid"
+        Data="EmployeesNestedTreeData"
+        RenderedScript="WebTreeGridPinRowOnRendered"
+        RowEditable="true"
+        PrimaryKey="ID"
+        ForeignKey="ParentID"
+        CellSelection="GridSelectionMode.None"
+        Pinning="PinningConfig1">
+            <IgbColumn
+            Field="Name"
+            Header="Full Name">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Age"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Title">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="HireDate"
+            DataType="GridColumnDataType.Date">
+            </IgbColumn>
+
+            <IgbActionStrip
+            Name="actionStrip"
+            @ref="actionStrip">
+                <IgbGridPinningActions
+                >
+                </IgbGridPinningActions>
+
+            </IgbActionStrip>
+
+        </IgbTreeGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+        var actionStrip = this.actionStrip;
+
+    }
+
+    private IgbTreeGrid grid;
+    private IgbPinningConfig _pinningConfig1 = null;
+    public IgbPinningConfig PinningConfig1
+    {
+        get
+        {
+            if (this._pinningConfig1 == null)
+            {
+                var pinningConfig1 = new IgbPinningConfig();
+                pinningConfig1.Rows = RowPinningPosition.Top;
+                this._pinningConfig1 = pinningConfig1;
+            }
+            return this._pinningConfig1;
+        }
+    }
+    private IgbActionStrip actionStrip;
+
+    private EmployeesNestedTreeData _employeesNestedTreeData = null;
+    public EmployeesNestedTreeData EmployeesNestedTreeData
+    {
+        get
+        {
+            if (_employeesNestedTreeData == null)
+            {
+                _employeesNestedTreeData = new EmployeesNestedTreeData();
+            }
+            return _employeesNestedTreeData;
+        }
+    }
+
+}
