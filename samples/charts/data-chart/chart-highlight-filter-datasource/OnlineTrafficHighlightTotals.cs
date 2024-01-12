@@ -14,37 +14,37 @@ public class OnlineTrafficHighlightTotals
         this.Add(new OnlineTrafficHighlightTotalsItem()
         {
             Category = @"Apparel",
-            Value = 100
+            Value = 56
         });
         this.Add(new OnlineTrafficHighlightTotalsItem()
         {
             Category = @"Beauty",
-            Value = 100
+            Value = 67
         });
         this.Add(new OnlineTrafficHighlightTotalsItem()
         {
             Category = @"Travel",
-            Value = 100
+            Value = 80
         });
         this.Add(new OnlineTrafficHighlightTotalsItem()
         {
             Category = @"Grocery",
-            Value = 100
+            Value = 62
         });
         this.Add(new OnlineTrafficHighlightTotalsItem()
         {
             Category = @"Energy",
-            Value = 100
+            Value = 74
         });
         this.Add(new OnlineTrafficHighlightTotalsItem()
         {
             Category = @"Home Supply",
-            Value = 100
+            Value = 65
         });
         this.Add(new OnlineTrafficHighlightTotalsItem()
         {
             Category = @"Financial",
-            Value = 100
+            Value = 88
         });
     }
 }
