@@ -82,13 +82,18 @@ protected override async Task OnInitializedAsync()
     @* await SB.CheckUIAsync(NavManager.Uri);
         StateHasChanged(); *@
     await Task.Delay(1);
-    await JSRuntime.InvokeVoidAsync("attachPreventScroll");
+    if (!NavManager.Uri.Contains("/blazor-server"))
+    {
+        await JSRuntime.InvokeVoidAsync("attachPreventScroll");
+    }
 }
 
 public async ValueTask DisposeAsync()
 {
-    await JSRuntime.InvokeVoidAsync("removePreventScroll");
-
+    if (!NavManager.Uri.Contains("/blazor-server"))
+    {
+        await JSRuntime.InvokeVoidAsync("removePreventScroll");
+    }
 }
 
 protected bool IsSampleWithNavigation() {
