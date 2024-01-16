@@ -22,10 +22,13 @@ This folder contains implementation of Blazor application with example of Row Re
     </body>
 </html>
 
+## Branches
+
+> **_NOTE:_** You should use [master](https://github.com/IgniteUI/igniteui-blazor-examples/tree/master) branch of this repository if you want to run samples on your computer. Use the [vnext](https://github.com/IgniteUI/igniteui-blazor-examples/tree/vnext) branch only when you want to contribute new samples to this repository.
+
 ## Setup
 
 - instal **.NET SDK** from this [website](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install)
-
 
 ## Running App in Visual Studio 2019
 
