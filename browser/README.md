@@ -18,7 +18,13 @@ This browser application will allows you to browse all samples of the [IgniteUI 
 - and many more
 
 
+## Branches
+
+> **_NOTE:_** You should use [master](https://github.com/IgniteUI/igniteui-blazor-examples/tree/master) branch of this repository if you want to run samples on your computer. Use the [vnext](https://github.com/IgniteUI/igniteui-blazor-examples/tree/vnext) branch only when you want to contribute new samples to this repository.
+
 # Instructions
+
+- check out the **master** branch
 
 - open VS Code as Administrator
 

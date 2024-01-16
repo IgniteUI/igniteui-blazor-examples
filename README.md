@@ -56,9 +56,13 @@ To set up this project locally, clone this repository:
 git clone https://github.com/IgniteUI/igniteui-blazor-examples.git
 ```
 
+> **_NOTE:_** You should use [master](https://github.com/IgniteUI/igniteui-blazor-examples/tree/master) branch of this repository if you want to run samples on your computer. Use the [vnext](https://github.com/IgniteUI/igniteui-blazor-examples/tree/vnext) branch only when you want to contribute new samples to this repository.
+
 ## Running Individual Sample
 
 Note, as of 2022, this repo is targeting .NET 6.0 and Visual Studio 2022. VS 2019 does not support .NET 6.0.
+
+- check out the **master** branch
 
 - in VS 2022, open a solution file from the [./samples](./samples) folder, e.g.
 
@@ -74,6 +78,8 @@ At this point, you should see a website with a single example of [Ignite UI for 
 
 
 ## Running All Samples
+
+- check out the **master** branch
 
 - open VS Code as Administrator
 
