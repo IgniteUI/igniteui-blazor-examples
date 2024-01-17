@@ -8,8 +8,8 @@
         IncludedColumns="@(new string[] { "Close", "Change", "Value" })"
         ExcludedColumns="@(new string[] { "High", "Low", "Open", "Volume" })"
         LabelDisplayMode="DataLegendLabelMode.Hidden"
-        ValueFormatMode="DataLegendValueMode.Currency"
-        ValueFormatCulture="en-GB">
+        ValueFormatString="{0}"
+        ValueFormatSpecifiers="NumberFormatSpecifier1">
         </IgbDataLegend>
 
     </div>
@@ -19,14 +19,14 @@
         @ref="chart"
         ChartType="FinancialChartType.Candle"
         DataSource="MultipleStocks"
-        DataToolTipValueFormatMode="DataLegendValueMode.Currency"
-        DataToolTipValueFormatCulture="en-GB"
-        DataToolTipLabelDisplayMode="DataLegendLabelMode.Hidden"
+        DataToolTipValueFormatString="{0}"
+        DataToolTipValueFormatSpecifiers="NumberFormatSpecifier3"
         DataToolTipIncludedColumns="@(new string[] { "Close", "Change", "Value" })"
         DataToolTipHeaderFormatTime="DataLegendHeaderTimeMode.None"
         ZoomSliderType="FinancialChartZoomSliderType.None"
+        YAxisAbbreviateLargeNumbers="false"
         YAxisLabelFormat="{0}"
-        YAxisLabelFormatSpecifiers="NumberFormatSpecifier1"
+        YAxisLabelFormatSpecifiers="NumberFormatSpecifier5"
         XAxisLabelFormat="{0}"
         XAxisLabelFormatSpecifiers="DateTimeFormatSpecifier1">
         </IgbFinancialChart>
@@ -51,7 +51,6 @@
     }
 
     private IgbDataLegend legend;
-    private IgbFinancialChart chart;
     private IgbNumberFormatSpecifier[] _numberFormatSpecifier1 = null;
     public IgbNumberFormatSpecifier[] NumberFormatSpecifier1
     {
@@ -64,11 +63,52 @@
                 numberFormatSpecifier2.Currency = "EUR";
                 numberFormatSpecifier2.Style = "currency";
                 numberFormatSpecifier2.Locale = "en-GB";
-                numberFormatSpecifier2.MinimumFractionDigits = 0;
+                numberFormatSpecifier2.MinimumFractionDigits = 2;
+                numberFormatSpecifier2.MaximumFractionDigits = 2;
                 numberFormatSpecifier1[0] = numberFormatSpecifier2;
                 this._numberFormatSpecifier1 = numberFormatSpecifier1;
             }
             return this._numberFormatSpecifier1;
+        }
+    }
+    private IgbFinancialChart chart;
+    private IgbNumberFormatSpecifier[] _numberFormatSpecifier3 = null;
+    public IgbNumberFormatSpecifier[] NumberFormatSpecifier3
+    {
+        get
+        {
+            if (this._numberFormatSpecifier3 == null)
+            {
+                var numberFormatSpecifier3 = new IgbNumberFormatSpecifier[1];
+                var numberFormatSpecifier4 = new IgbNumberFormatSpecifier();
+                numberFormatSpecifier4.Currency = "EUR";
+                numberFormatSpecifier4.Style = "currency";
+                numberFormatSpecifier4.Locale = "en-GB";
+                numberFormatSpecifier4.MinimumFractionDigits = 2;
+                numberFormatSpecifier4.MaximumFractionDigits = 2;
+                numberFormatSpecifier3[0] = numberFormatSpecifier4;
+                this._numberFormatSpecifier3 = numberFormatSpecifier3;
+            }
+            return this._numberFormatSpecifier3;
+        }
+    }
+    private IgbNumberFormatSpecifier[] _numberFormatSpecifier5 = null;
+    public IgbNumberFormatSpecifier[] NumberFormatSpecifier5
+    {
+        get
+        {
+            if (this._numberFormatSpecifier5 == null)
+            {
+                var numberFormatSpecifier5 = new IgbNumberFormatSpecifier[1];
+                var numberFormatSpecifier6 = new IgbNumberFormatSpecifier();
+                numberFormatSpecifier6.Currency = "EUR";
+                numberFormatSpecifier6.Style = "currency";
+                numberFormatSpecifier6.Locale = "en-GB";
+                numberFormatSpecifier6.MinimumFractionDigits = 0;
+                numberFormatSpecifier5[0] = numberFormatSpecifier6;
+                this._numberFormatSpecifier5 = numberFormatSpecifier5;
+            }
+            return this._numberFormatSpecifier5;
         }
     }
     private IgbDateTimeFormatSpecifier[] _dateTimeFormatSpecifier1 = null;
