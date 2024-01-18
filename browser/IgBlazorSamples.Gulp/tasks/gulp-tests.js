@@ -75,8 +75,8 @@ function testProjectFiles(cb) {
         '<TargetFramework>net8.0</TargetFramework>',
         '<RazorLangVersion>3.0</RazorLangVersion>',
         '<PackageReference Include="IgniteUI.Blazor.Trial" Version',
-        '<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0" />',
-        '<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" />',
+        '<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0" />',
+        '<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0" />',
         '</Project>',
     ];
     gulp.src([
