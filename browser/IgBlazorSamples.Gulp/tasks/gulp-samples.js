@@ -590,17 +590,17 @@ function updateIG(cb) {
 
     let packageUpgrades = [
         // update version of IG packages and change to Trial or non-trial
-        { name: "IgniteUI.Blazor",                 version: "23.2.110" },
-        { name: "IgniteUI.Blazor.Documents.Core",  version: "23.2.110" },
-        { name: "IgniteUI.Blazor.Documents.Excel", version: "23.2.110" },
+        { name: "IgniteUI.Blazor",                 version: "23.2.120" },
+        { name: "IgniteUI.Blazor.Documents.Core",  version: "23.2.120" },
+        { name: "IgniteUI.Blazor.Documents.Excel", version: "23.2.120" },
         // these IG packages are sometimes updated:
-        { name: "Microsoft.AspNetCore.Components",                       version: "6.0.25" },
-        { name: "Microsoft.AspNetCore.Components.Web",                   version: "6.0.25" },
-        { name: "Microsoft.AspNetCore.Components.WebAssembly",           version: "6.0.25" },
-        { name: "Microsoft.AspNetCore.Components.WebAssembly.DevServer", version: "6.0.25" }, // suffix: 'PrivateAssets="all" ' },
+        { name: "Microsoft.AspNetCore.Components",                       version: "8.0.0" },
+        { name: "Microsoft.AspNetCore.Components.Web",                   version: "8.0.0" },
+        { name: "Microsoft.AspNetCore.Components.WebAssembly",           version: "8.0.0" },
+        { name: "Microsoft.AspNetCore.Components.WebAssembly.DevServer", version: "8.0.0" }, // suffix: 'PrivateAssets="all" ' },
         { name: "Microsoft.AspNetCore.Cors",                             version: "2.2.0" },
         { name: "Microsoft.AspNetCore.Http.Abstractions",                version: "2.2.0" },
-        { name: "System.Net.Http.Json", version:"6.0.0" },
+        { name: "System.Net.Http.Json", version:"8.0.0" },
     ];
 
     // creating package mapping for quick lookup
