@@ -1,0 +1,101 @@
+@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
+@using System;
+@using System.Linq;
+
+<div class="container vertical">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        Name="editor"
+        @ref="editor"
+
+        DescriptionType="CategoryChart"
+        IsHorizontal="true"
+        IsWrappingEnabled="true">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="InitialFilterHandler"
+            EditorWidth="800"
+            Name="InitialFilter"
+            @ref="initialFilter"
+            Label="Modify Chart Filter"
+            ValueType="PropertyEditorValueType.StringValue"
+            ShouldOverrideDefaultEditor="true"
+            Changed="EditorChangeUpdateInitialFilter">
+            </IgbPropertyEditorPropertyDescription>
+
+        </IgbPropertyEditorPanel>
+
+    </div>
+    <div class="legend-title">
+        Sales Filtered by Country, Product, and Dates
+    </div>
+    <div class="legend">
+        <IgbLegend
+        Name="Legend"
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
+        </IgbLegend>
+
+    </div>
+    <div class="container vertical fill">
+        <IgbCategoryChart
+        Name="chart"
+        @ref="chart"
+        DataSource="SalesData"
+        ChartType="CategoryChartType.Column"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        CrosshairsDisplayMode="CrosshairsDisplayMode.None"
+        IncludedProperties="@(new string[] { "Date", "GrossSales", "Profit", "Sales" })"
+        InitialFilter="(startswith(Country, 'B') and endswith(Country, 'l') and contains(Product, 'Royal Oak') and contains(Date, '3/1/20'))">
+        </IgbCategoryChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var editor = this.editor;
+        var initialFilter = this.initialFilter;
+        var chart = this.chart;
+
+        this.BindElements = () => {
+            editor.Target = this.chart;
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbLegend legend;
+    private IgbPropertyEditorPanel editor;
+    private IgbPropertyEditorPropertyDescription initialFilter;
+    private IgbCategoryChart chart;
+
+    public void EditorChangeUpdateInitialFilter(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
+    {
+        var chart = this.chart;
+        var intialFilterVal = args.NewValue.ToString();
+        chart.InitialFilter = null;
+        chart.InitialFilter = intialFilterVal;
+    }
+
+    private SalesData _salesData = null;
+    public SalesData SalesData
+    {
+        get
+        {
+            if (_salesData == null)
+            {
+                _salesData = new SalesData();
+            }
+            return _salesData;
+        }
+    }
+
+}
