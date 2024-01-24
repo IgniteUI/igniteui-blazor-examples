@@ -1,6 +1,11 @@
 
 @using IgniteUI.Blazor.Controls
 
+<style>
+    .container{
+        padding: 16px;
+    }
+</style>
 
 <div class="container vertical">
     <div id="nav-drawer-container" style="display: flex;">
@@ -9,22 +14,22 @@
                 Sample Drawer
             </IgbNavDrawerHeaderItem>
 
-            <IgbNavDrawerItem>
-                <IgbIcon @ref="@HomeIcon" slot="icon" Collection="material" IconName="home" />
+            <IgbNavDrawerItem @ref="HomeItemRef" @onclick='(args) => NavDrawerItemClick(args, "home")'>
+                <IgbIcon @ref="@IconRef" slot="icon" Collection="material" IconName="home" />
                 <span slot="content">Home</span>
             </IgbNavDrawerItem>
 
-            <IgbNavDrawerItem>
-                <IgbIcon @ref="@SearchIcon" slot="icon" Collection="material" IconName="search" />
+            <IgbNavDrawerItem @ref="SearchItemRef" @onclick='(args) => NavDrawerItemClick(args, "search")'>
+                <IgbIcon @ref="@IconRef" slot="icon" Collection="material" IconName="search" />
                 <span slot="content">Search</span>
             </IgbNavDrawerItem>
 
             <div slot="mini">
-                <IgbNavDrawerItem>
+                <IgbNavDrawerItem @ref="HomeMiniRef" @onclick='(args) => NavDrawerItemClick(args, "home")'>
                     <IgbIcon slot="icon" Collection="material" IconName="home" />
                 </IgbNavDrawerItem>
 
-                <IgbNavDrawerItem>
+                <IgbNavDrawerItem @ref="SearchMiniRef" @onclick='(args) => NavDrawerItemClick(args, "search")'>
                     <IgbIcon slot="icon" Collection="material" IconName="search" />
                 </IgbNavDrawerItem>
             </div>
@@ -38,44 +43,66 @@
 
 @code {
 
-    public IgbIcon HomeIcon { get; set; }
-    public IgbIcon SearchIcon { get; set; }
+    public IgbIcon IconRef { get; set; }
 
     public IgbNavDrawer NavDrawerRef { get; set; }
+    public IgbNavDrawerItem HomeItemRef { get; set; }
+    public IgbNavDrawerItem HomeMiniRef { get; set; }
+    public IgbNavDrawerItem SearchItemRef { get; set; }
+    public IgbNavDrawerItem SearchMiniRef { get; set; }
 
-    protected override void OnAfterRender(bool firstRender)
+    public Dictionary<IgbNavDrawerItem, string> NavDrawerItemsIcons { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (this.NavDrawerRef != null && firstRender)
+        if (firstRender && this.IconRef != null)
         {
-            this.NavDrawerRef.EnsureReady().ContinueWith(new Action<Task>((e) =>
-            {
-                this.NavDrawerRef.Toggle();
-            }));
-        }
-
-        if (this.HomeIcon != null && firstRender)
-        {
-            this.HomeIcon.EnsureReady().ContinueWith(new Action<Task>((e) =>
-            {
-                this.HomeIcon.RegisterIcon("home",
+            await this.IconRef.EnsureReady();
+            await this.IconRef.RegisterIconAsync("home",
                     "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg",
                     "material");
-            }));
-        }
-
-        if (this.SearchIcon != null && firstRender)
-        {
-            this.SearchIcon.EnsureReady().ContinueWith(new Action<Task>((e) =>
-            {
-                this.SearchIcon.RegisterIcon("search",
+            await this.IconRef.RegisterIconAsync("search",
                     "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_search_24px.svg",
                     "material");
-            }));
+        }
+
+        if (firstRender)
+        {
+            NavDrawerItemsIcons = new Dictionary<IgbNavDrawerItem, string>();
+            await this.HomeItemRef.EnsureReady();
+            await this.HomeMiniRef.EnsureReady();
+            NavDrawerItemsIcons.Add(HomeItemRef, "home");
+            NavDrawerItemsIcons.Add(HomeMiniRef, "home");
+            await this.SearchItemRef.EnsureReady();
+            await this.SearchMiniRef.EnsureReady();
+            NavDrawerItemsIcons.Add(SearchItemRef, "search");
+            NavDrawerItemsIcons.Add(SearchMiniRef, "search");
         }
     }
 
     public void OnButtonClick()
     {
         this.NavDrawerRef.Toggle();
+    }
+
+    public void NavDrawerItemClick(MouseEventArgs args, string icon)
+    {
+        IEnumerable<IgbNavDrawerItem> itemsToBeActive = NavDrawerItemsIcons
+                                                           .Where(pair => pair.Value == icon)
+                                                           .Select(pair => pair.Key);
+
+        foreach (IgbNavDrawerItem item in itemsToBeActive)
+        {
+            item.Active = true;
+        }
+
+        IEnumerable<IgbNavDrawerItem> itemsToBeInactive = NavDrawerItemsIcons
+                                                            .Where(pair => pair.Value != icon)
+                                                            .Select(pair => pair.Key);
+
+        foreach (IgbNavDrawerItem item in itemsToBeInactive)
+        {
+            item.Active = false;
+        }
     }
 }

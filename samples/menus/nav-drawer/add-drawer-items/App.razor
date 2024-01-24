@@ -1,20 +1,30 @@
 
 @using IgniteUI.Blazor.Controls
 
+<style>
+    igc-icon-button::part(base):hover {
+        background-color: lightgray;
+    }
+
+    .container{
+        padding: 16px;
+    }
+</style>
 
 <div class="container vertical">
-    <IgbNavDrawer Open="true">
+    <IgbIconButton @ref="MenuIconButton" @onclick="ToggleNavDrawer" IconName="menu" Collection="material" Variant="@IconButtonVariant.Flat" />
+    <IgbNavDrawer Open="true" @ref="NavDrawerRef">
         <IgbNavDrawerHeaderItem>
             Sample Drawer
         </IgbNavDrawerHeaderItem>
 
-        <IgbNavDrawerItem>
-            <IgbIcon @ref="@HomeIcon" slot="icon" IconName="home" Collection="material"></IgbIcon>
+        <IgbNavDrawerItem @ref="HomeItemRef" @onclick="(args) => NavDrawerItemClick(args, HomeItemRef)">
+            <IgbIcon @ref="@IconRef" slot="icon" IconName="home" Collection="material"></IgbIcon>
             <span slot="content">Home</span>
         </IgbNavDrawerItem>
 
-        <IgbNavDrawerItem>
-            <IgbIcon @ref="@SearchIcon" slot="icon" IconName="search" Collection="material"></IgbIcon>
+        <IgbNavDrawerItem @ref="SearchItemRef" @onclick="(args) => NavDrawerItemClick(args, SearchItemRef)">
+            <IgbIcon @ref="@IconRef" slot="icon" IconName="search" Collection="material"></IgbIcon>
             <span slot="content">Search</span>
         </IgbNavDrawerItem>
     </IgbNavDrawer>
@@ -22,29 +32,54 @@
 
 @code {
 
-    public IgbIcon HomeIcon { get; set; }
-    public IgbIcon SearchIcon { get; set; }
+    public IgbIconButton MenuIconButton { get; set; }
+    public IgbIcon IconRef { get; set; }
 
-    protected override void OnAfterRender(bool firstRender)
+    public IgbNavDrawer NavDrawerRef { get; set; }
+    public IgbNavDrawerItem HomeItemRef { get; set; }
+    public IgbNavDrawerItem SearchItemRef { get; set; }
+
+    public List<IgbNavDrawerItem> NavDrawerItemRefs { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (this.HomeIcon != null && firstRender)
+        if (firstRender && this.MenuIconButton != null)
         {
-            this.HomeIcon.EnsureReady().ContinueWith(new Action<Task>((e) =>
-            {
-                this.HomeIcon.RegisterIcon("home",
-                    "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg",
-                    "material");
-            }));
+            await this.MenuIconButton.EnsureReady();
+            await this.MenuIconButton.RegisterIconAsync("menu", "https://unpkg.com/material-design-icons@3.0.1/navigation/svg/production/ic_menu_24px.svg", "material");
         }
 
-        if (this.SearchIcon != null && firstRender)
+        if (firstRender && this.IconRef != null)
         {
-            this.SearchIcon.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            await this.IconRef.EnsureReady();
+            await this.IconRef.RegisterIconAsync("home", "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg", "material");
+            await this.IconRef.RegisterIconAsync("search", "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_search_24px.svg", "material");
+        }
+
+        if (firstRender)
+        {
+            NavDrawerItemRefs = new List<IgbNavDrawerItem>();
+            await this.HomeItemRef.EnsureReady();
+            NavDrawerItemRefs.Add(HomeItemRef);
+            await this.SearchItemRef.EnsureReady();
+            NavDrawerItemRefs.Add(SearchItemRef);
+        }
+    }
+
+    public void ToggleNavDrawer(MouseEventArgs args)
+    {
+        NavDrawerRef.Toggle();
+    }
+
+    public void NavDrawerItemClick(MouseEventArgs args, IgbNavDrawerItem item)
+    {
+        item.Active = true;
+        foreach (IgbNavDrawerItem i in NavDrawerItemRefs)
+        {
+            if(i != item)
             {
-                this.SearchIcon.RegisterIcon("search",
-                    "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_search_24px.svg",
-                    "material");
-            }));
+                i.Active = false;
+            }
         }
     }
 }
