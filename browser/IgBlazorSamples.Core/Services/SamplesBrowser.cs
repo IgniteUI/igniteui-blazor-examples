@@ -22,7 +22,7 @@ namespace Infragistics.Samples.Core
             this.JSRuntime = jsRuntime;
 
             // Console.WriteLine("SB Const()");
-            Console.WriteLine("SB URL: " + navManager.Uri);
+            Console.WriteLine("SB.APP URL: " + navManager.Uri);
             // NavManager = NavigationManager();
             // NavManager.LocationChanged += this.OnLocationChanged;
             // NavManager.LocationChanged += new EventHandler<LocationChangedEventArgs>(this.OnLocationChanged);

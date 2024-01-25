@@ -1,0 +1,89 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        Name="treeGrid"
+        @ref="treeGrid"
+        Data="EmployeesNestedTreeData"
+        RowEditable="true"
+        PrimaryKey="ID"
+        ForeignKey="ParentID"
+        CellSelection="GridSelectionMode.None"
+        Pinning="PinningConfig1">
+            <IgbColumn
+            Width="150px"
+            Filterable="false"
+            Pinned="true"
+            BodyTemplateScript="WebTreeGridRowPinCellTemplate"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Name"
+            Header="Full Name">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Age"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Title">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="HireDate"
+            DataType="GridColumnDataType.Date">
+            </IgbColumn>
+
+        </IgbTreeGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var treeGrid = this.treeGrid;
+        var column1 = this.column1;
+
+    }
+
+    private IgbTreeGrid treeGrid;
+    private IgbPinningConfig _pinningConfig1 = null;
+    public IgbPinningConfig PinningConfig1
+    {
+        get
+        {
+            if (this._pinningConfig1 == null)
+            {
+                var pinningConfig1 = new IgbPinningConfig();
+                pinningConfig1.Rows = RowPinningPosition.Top;
+                this._pinningConfig1 = pinningConfig1;
+            }
+            return this._pinningConfig1;
+        }
+    }
+    private IgbColumn column1;
+
+    private EmployeesNestedTreeData _employeesNestedTreeData = null;
+    public EmployeesNestedTreeData EmployeesNestedTreeData
+    {
+        get
+        {
+            if (_employeesNestedTreeData == null)
+            {
+                _employeesNestedTreeData = new EmployeesNestedTreeData();
+            }
+            return _employeesNestedTreeData;
+        }
+    }
+
+}

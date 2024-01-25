@@ -1,0 +1,141 @@
+@using IgniteUI.Blazor.Controls
+@using System;
+@inject IJSRuntime JS
+
+<div class="container vertical">
+    <div id="aboveContentSplit">
+        <div id="aboveContentLeftContainer">
+            <IgbToolbar
+            Name="Toolbar"
+            @ref="toolbar"
+            Orientation="ToolbarOrientation.Horizontal"
+            OnCommand="ToolbarDownloadChart">
+                <IgbToolActionIconButton
+                Name="DownloadChartImage"
+                @ref="downloadChartImage"
+                Title="Download as Image"
+                OverlayId="CopyAsImage"
+                CommandId="DownloadAsImage">
+                </IgbToolActionIconButton>
+                
+            </IgbToolbar>
+            
+        </div>
+        <div id="aboveContentRightContainer">
+            <!-- insert aboveContentRight -->
+            <!-- end aboveContentRight -->
+        </div>
+    </div>
+    <div class="container vertical fill">
+        <IgbDataChart
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+        IsHorizontalZoomEnabled="true"
+        IsVerticalZoomEnabled="true"
+        Name="chart"
+        @ref="chart">
+            <IgbCategoryXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            DataSource="CountryRenewableElectricity"
+            Label="Year">
+            </IgbCategoryXAxis>
+            
+            <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis"
+            Title="TWh"
+            LabelLocation="AxisLabelsLocation.OutsideRight">
+            </IgbNumericYAxis>
+            
+            <IgbLineSeries
+            Name="LineSeries1"
+            @ref="lineSeries1"
+            Title="Electricity"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="CountryRenewableElectricity"
+            ValueMemberPath="America">
+            </IgbLineSeries>
+            
+            <IgbLineSeries
+            Name="LineSeries2"
+            @ref="lineSeries2"
+            Title="Electricity"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="CountryRenewableElectricity"
+            ValueMemberPath="Europe">
+            </IgbLineSeries>
+            
+            <IgbLineSeries
+            Name="LineSeries3"
+            @ref="lineSeries3"
+            Title="Electricity"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="CountryRenewableElectricity"
+            ValueMemberPath="China">
+            </IgbLineSeries>
+            
+        </IgbDataChart>
+        
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var toolbar = this.toolbar;
+        var downloadChartImage = this.downloadChartImage;
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var lineSeries1 = this.lineSeries1;
+        var lineSeries2 = this.lineSeries2;
+        var lineSeries3 = this.lineSeries3;
+
+        this.BindElements = () => {
+            toolbar.Target = this.chart;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbToolbar toolbar;
+    private IgbToolActionIconButton downloadChartImage;
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbLineSeries lineSeries1;
+    private IgbLineSeries lineSeries2;
+    private IgbLineSeries lineSeries3;
+
+    
+    public void ToolbarDownloadChart(IgbToolCommandEventArgs args)
+    {
+    	var target = this.chart;
+    	switch (args.Command.CommandId)
+    	{
+    		case "DownloadAsImage":
+    			JS.InvokeVoidAsync("renderChartToImage", null);
+    				break;
+    	}
+    }
+        
+    private CountryRenewableElectricity _countryRenewableElectricity = null;
+    public CountryRenewableElectricity CountryRenewableElectricity
+    {
+        get
+        {
+            if (_countryRenewableElectricity == null)
+            {
+                _countryRenewableElectricity = new CountryRenewableElectricity(); 
+            }
+            return _countryRenewableElectricity;
+        }
+    }
+    
+}

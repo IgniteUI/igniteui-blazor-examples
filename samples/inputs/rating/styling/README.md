@@ -3,6 +3,7 @@
 
 This folder contains implementation of Blazor application with example of Styling feature using [Rating](https://www.infragistics.com/products/ignite-ui-blazor/blazor/components/general-getting-started.html) component.
 
+
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <body>
         <!-- https://static.infragistics.com/xplatform/images/browsers -->
@@ -21,10 +22,13 @@ This folder contains implementation of Blazor application with example of Stylin
     </body>
 </html>
 
+## Branches
+
+> **_NOTE:_** You should use [master](https://github.com/IgniteUI/igniteui-blazor-examples/tree/master) branch of this repository if you want to run samples on your computer. Use the [vnext](https://github.com/IgniteUI/igniteui-blazor-examples/tree/vnext) branch only when you want to contribute new samples to this repository.
+
 ## Setup
 
 - instal **.NET SDK** from this [website](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install)
-
 
 ## Running App in Visual Studio 2019
 

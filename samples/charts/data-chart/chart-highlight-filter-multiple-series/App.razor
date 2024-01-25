@@ -1,0 +1,134 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        Name="PropertyEditor"
+        @ref="propertyEditor"
+
+        DescriptionType="DataChart"
+        IsHorizontal="true"
+        IsWrappingEnabled="true">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="HighlightedValuesDisplayMode"
+            Name="HighlightedValuesDisplayModeEditor"
+            @ref="highlightedValuesDisplayModeEditor"
+            Label="Highlight Display Mode: "
+            PrimitiveValue="@("Hidden")">
+            </IgbPropertyEditorPropertyDescription>
+
+        </IgbPropertyEditorPanel>
+
+    </div>
+    <div class="container vertical fill">
+        <IgbDataChart
+        ShouldAutoExpandMarginForInitialLabels="true"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+        Name="chart"
+        @ref="chart"
+        HighlightedValuesDisplayMode="SeriesHighlightedValuesDisplayMode.Hidden">
+            <IgbCategoryXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            DataSource="CountryRenewableElectricity"
+            Label="Year">
+            </IgbCategoryXAxis>
+
+            <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis">
+            </IgbNumericYAxis>
+
+            <IgbColumnSeries
+            Name="ColumnSeries1"
+            @ref="columnSeries1"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="CountryRenewableElectricity"
+            ValueMemberPath="Europe"
+            HighlightedDataSource="CountryRenewableElectricityFiltered">
+            </IgbColumnSeries>
+
+            <IgbColumnSeries
+            Name="ColumnSeries2"
+            @ref="columnSeries2"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="CountryRenewableElectricity"
+            ValueMemberPath="China"
+            HighlightedDataSource="CountryRenewableElectricityFiltered">
+            </IgbColumnSeries>
+
+            <IgbColumnSeries
+            Name="ColumnSeries3"
+            @ref="columnSeries3"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="CountryRenewableElectricity"
+            ValueMemberPath="America"
+            HighlightedDataSource="CountryRenewableElectricityFiltered">
+            </IgbColumnSeries>
+
+        </IgbDataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditor = this.propertyEditor;
+        var highlightedValuesDisplayModeEditor = this.highlightedValuesDisplayModeEditor;
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var columnSeries1 = this.columnSeries1;
+        var columnSeries2 = this.columnSeries2;
+        var columnSeries3 = this.columnSeries3;
+
+        this.BindElements = () => {
+            propertyEditor.Target = this.chart;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription highlightedValuesDisplayModeEditor;
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbColumnSeries columnSeries1;
+    private IgbColumnSeries columnSeries2;
+    private IgbColumnSeries columnSeries3;
+
+    private CountryRenewableElectricity _countryRenewableElectricity = null;
+    public CountryRenewableElectricity CountryRenewableElectricity
+    {
+        get
+        {
+            if (_countryRenewableElectricity == null)
+            {
+                _countryRenewableElectricity = new CountryRenewableElectricity();
+            }
+            return _countryRenewableElectricity;
+        }
+    }
+
+    private CountryRenewableElectricityFiltered _countryRenewableElectricityFiltered = null;
+    public CountryRenewableElectricityFiltered CountryRenewableElectricityFiltered
+    {
+        get
+        {
+            if (_countryRenewableElectricityFiltered == null)
+            {
+                _countryRenewableElectricityFiltered = new CountryRenewableElectricityFiltered();
+            }
+            return _countryRenewableElectricityFiltered;
+        }
+    }
+
+}
