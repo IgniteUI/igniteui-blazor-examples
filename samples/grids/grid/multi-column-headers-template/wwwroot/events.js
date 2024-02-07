@@ -1,6 +1,7 @@
 
 const columnGroupStates = new Map();
 function toggleColumnGroup(name) {
+    const grid = document.getElementsByTagName("igc-grid")[0];
     var columnGroup = grid.columns.find((col) => col.header === name)
     const columns = columnGroup.children.toArray();
     if (columnGroup.header === 'General Information') {
@@ -17,7 +18,7 @@ igRegisterScript("WebGridColumnGroupHeaderTemplate", (ctx) => {
     var html = window.igTemplating.html;
     var iconName = columnGroupStates.get(ctx.column.header) ? '🔽' : '🔼';
     return html`<div>
-    <igc-icon name="${iconName}" collection="material" onclick='toggleColumnGroup("${ctx.column.header}")' ></igc-icon>
+    <span draggable="false" onclick='toggleColumnGroup("${ctx.column.header}")'>${iconName}</span>
     <span>${ctx.column.header}</span>
 </div>`;
 }, false);
