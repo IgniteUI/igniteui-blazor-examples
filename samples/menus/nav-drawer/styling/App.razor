@@ -24,20 +24,37 @@
             igc-nav-drawer-header-item {
                 color: #f3c03e
             }
-        </style>
 
-        <IgbNavDrawer id="navDrawer" Open="true" style="position: relative">
+            igc-icon-button::part(icon) {
+                --size: 32px;
+                color: #f3c03e
+            }
+
+            igc-icon-button::part(base) {
+                background-color: #2c2c2c;
+            }
+
+            igc-icon-button::part(base):hover {
+                background-color: #3D4149;
+            }
+
+            .container {
+                padding: 16px;
+            }
+        </style>
+        <IgbIconButton @ref="MenuIconButton" @onclick="ToggleNavDrawer" IconName="menu" Collection="material" Variant="@IconButtonVariant.Flat" />
+        <IgbNavDrawer @ref="NavDrawerRef" id="navDrawer" Open="true" style="position: relative">
             <IgbNavDrawerHeaderItem>
                 Sample Drawer
             </IgbNavDrawerHeaderItem>
 
-            <IgbNavDrawerItem>
-                <IgbIcon @ref="@HomeIcon" slot="icon" Collection="material" IconName="home" />
+            <IgbNavDrawerItem @ref="HomeItemRef" @onclick="(args) => NavDrawerItemClick(args, HomeItemRef)">
+                <IgbIcon @ref="@IconRef" slot="icon" Collection="material" IconName="home" />
                 <span slot="content">Home</span>
             </IgbNavDrawerItem>
 
-            <IgbNavDrawerItem>
-                <IgbIcon slot="icon" Collection="material" IconName="search" />
+            <IgbNavDrawerItem @ref="SearchItemRef" @onclick="(args) => NavDrawerItemClick(args, SearchItemRef)">
+                <IgbIcon @ref="IconRef" slot="icon" Collection="material" IconName="search" />
                 <span slot="content">Search</span>
             </IgbNavDrawerItem>
         </IgbNavDrawer>
@@ -45,16 +62,53 @@
 </div>
 
 @code {
+    public IgbIconButton MenuIconButton { get; set; }
+    public IgbIcon IconRef { get; set; }
 
-    public IgbIcon HomeIcon { get; set; }
+    public IgbNavDrawer NavDrawerRef { get; set; }
+    public IgbNavDrawerItem HomeItemRef { get; set; }
+    public IgbNavDrawerItem SearchItemRef { get; set; }
+    public List<IgbNavDrawerItem> NavDrawerItemRefs { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender && this.HomeIcon != null)
+        if (firstRender && this.MenuIconButton != null)
         {
-            await this.HomeIcon.EnsureReady();
-            await this.HomeIcon.RegisterIconAsync("home", "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg", "material");
-            await this.HomeIcon.RegisterIconAsync("search", "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_search_24px.svg", "material");
+            await this.MenuIconButton.EnsureReady();
+            await this.MenuIconButton.RegisterIconAsync("menu", "https://unpkg.com/material-design-icons@3.0.1/navigation/svg/production/ic_menu_24px.svg", "material");
+        }
+
+        if (firstRender && this.IconRef != null)
+        {
+            await this.IconRef.EnsureReady();
+            await this.IconRef.RegisterIconAsync("home", "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg", "material");
+            await this.IconRef.RegisterIconAsync("search", "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_search_24px.svg", "material");
+        }
+
+        if (firstRender)
+        {
+            NavDrawerItemRefs = new List<IgbNavDrawerItem>();
+            await this.HomeItemRef.EnsureReady();
+            NavDrawerItemRefs.Add(HomeItemRef);
+            await this.SearchItemRef.EnsureReady();
+            NavDrawerItemRefs.Add(SearchItemRef);
+        }
+    }
+
+    public void ToggleNavDrawer(MouseEventArgs args)
+    {
+        NavDrawerRef.Toggle();
+    }
+
+    public void NavDrawerItemClick(MouseEventArgs args, IgbNavDrawerItem item)
+    {
+        item.Active = true;
+        foreach (IgbNavDrawerItem i in NavDrawerItemRefs)
+        {
+            if (i != item)
+            {
+                i.Active = false;
+            }
         }
     }
 }
