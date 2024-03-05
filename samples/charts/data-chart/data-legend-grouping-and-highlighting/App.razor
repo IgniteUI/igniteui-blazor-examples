@@ -1,0 +1,85 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="legend">
+        <IgbDataLegend
+        Name="Legend"
+        @ref="legend">
+        </IgbDataLegend>
+
+    </div>
+    <div class="container vertical fill">
+        <IgbDataChart
+        ShouldAutoExpandMarginForInitialLabels="true"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+        Name="chart"
+        @ref="chart"
+        HighlightedValuesDisplayMode="SeriesHighlightedValuesDisplayMode.Overlay">
+            <IgbCategoryXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            DataSource="OlympicMedalsTopCountriesWithTotals"
+            Label="Year">
+            </IgbCategoryXAxis>
+
+            <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis">
+            </IgbNumericYAxis>
+
+            <IgbColumnSeries
+            Name="ColumnSeries1"
+            @ref="columnSeries1"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="OlympicMedalsTopCountriesWithTotals"
+            Title=""
+            ValueMemberPath="Total"
+            HighlightedValueMemberPath="America"
+            HighlightedTitleSuffix="America">
+            </IgbColumnSeries>
+
+        </IgbDataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var columnSeries1 = this.columnSeries1;
+
+        this.BindElements = () => {
+            legend.Target = this.chart;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbDataLegend legend;
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbColumnSeries columnSeries1;
+
+    private OlympicMedalsTopCountriesWithTotals _olympicMedalsTopCountriesWithTotals = null;
+    public OlympicMedalsTopCountriesWithTotals OlympicMedalsTopCountriesWithTotals
+    {
+        get
+        {
+            if (_olympicMedalsTopCountriesWithTotals == null)
+            {
+                _olympicMedalsTopCountriesWithTotals = new OlympicMedalsTopCountriesWithTotals();
+            }
+            return _olympicMedalsTopCountriesWithTotals;
+        }
+    }
+
+}
