@@ -1,0 +1,183 @@
+@page "/samples/grids/hierarchical-grid/overview"
+@page "/samples/grids/hierarchical-grid-overview"
+@page "/grids/hierarchical-grid/overview"
+@page "/grids/hierarchical-grid-overview"
+
+
+@using IgniteUI.Blazor.Controls
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbHierarchicalGrid
+        AutoGenerate="false"
+        Data="SingersData"
+        PrimaryKey="ID"
+        Name="hierarchicalGrid1"
+        @ref="hierarchicalGrid1">
+            <IgbColumn
+            Field="Artist"
+            Header="Artist"
+            DataType="GridColumnDataType.String"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Photo"
+            Header="Photo"
+            DataType="GridColumnDataType.Image"
+            MinWidth="115px"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Debut"
+            Header="Debut"
+            DataType="GridColumnDataType.Number"
+            MinWidth="88px"
+            MaxWidth="230px"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="GrammyNominations"
+            Header="Grammy Nominations"
+            DataType="GridColumnDataType.String"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="GrammyAwards"
+            Header="Grammy Awards"
+            DataType="GridColumnDataType.String"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbRowIsland
+            ChildDataKey="Albums"
+            AutoGenerate="false">
+                <IgbColumn
+                Field="Album"
+                Header="Album"
+                DataType="GridColumnDataType.String"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="LaunchDate"
+                Header="Launch Date"
+                DataType="GridColumnDataType.Date"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="BillboardReview"
+                Header="Billboard Review"
+                DataType="GridColumnDataType.String"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="USBillboard200"
+                Header="US Billboard 200"
+                DataType="GridColumnDataType.String"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbRowIsland
+                ChildDataKey="Songs"
+                AutoGenerate="false">
+                    <IgbColumn
+                    Field="Number"
+                    Header="No."
+                    DataType="GridColumnDataType.String"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Title"
+                    Header="Title"
+                    DataType="GridColumnDataType.String"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Released"
+                    Header="Released"
+                    DataType="GridColumnDataType.String"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Genre"
+                    Header="Genre"
+                    DataType="GridColumnDataType.String"
+                    Resizable="true">
+                    </IgbColumn>
+
+                </IgbRowIsland>
+
+            </IgbRowIsland>
+
+            <IgbRowIsland
+            ChildDataKey="Tours"
+            AutoGenerate="false">
+                <IgbColumn
+                Field="Tour"
+                Header="Tour"
+                DataType="GridColumnDataType.String"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="StartedOn"
+                Header="Started on"
+                DataType="GridColumnDataType.String"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="Location"
+                Header="Location"
+                DataType="GridColumnDataType.String"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="Headliner"
+                Header="Headliner"
+                DataType="GridColumnDataType.String"
+                Resizable="true">
+                </IgbColumn>
+
+            </IgbRowIsland>
+
+        </IgbHierarchicalGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var hierarchicalGrid1 = this.hierarchicalGrid1;
+
+    }
+
+    private IgbHierarchicalGrid hierarchicalGrid1;
+
+    private SingersData _singersData = null;
+    public SingersData SingersData
+    {
+        get
+        {
+            if (_singersData == null)
+            {
+                _singersData = new SingersData();
+            }
+            return _singersData;
+        }
+    }
+
+}
