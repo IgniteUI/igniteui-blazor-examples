@@ -1,0 +1,207 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbHierarchicalGrid
+        AutoGenerate="false"
+        Data="HierarchicalCustomers"
+        Name="hierarchicalGrid1"
+        @ref="hierarchicalGrid1">
+            <IgbColumn
+            Field="CustomerID"
+            Width="auto"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="CompanyName"
+            Width="auto"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="ContactName"
+            Width="auto"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="ContactTitle"
+            Width="auto"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Address"
+            Width="auto"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="City"
+            Width="auto"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="PostalCode"
+            Width="auto"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Country"
+            Width="auto"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Phone"
+            Width="auto"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Fax"
+            Width="auto"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbRowIsland
+            ChildDataKey="Orders"
+            AutoGenerate="false">
+                <IgbColumn
+                Field="OrderID"
+                Width="auto"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="EmployeeID"
+                Width="auto"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="OrderDate"
+                Width="auto"
+                DataType="GridColumnDataType.Date"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="RequiredDate"
+                Width="auto"
+                DataType="GridColumnDataType.Date"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="ShippedDate"
+                Width="auto"
+                DataType="GridColumnDataType.Date"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="ShipVia"
+                Width="auto"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="Freight"
+                Width="auto"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="ShipName"
+                Width="auto"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="ShipAddress"
+                Width="auto"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="ShipCity"
+                Width="auto"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="ShipPostalCode"
+                Width="auto"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="ShipCountry"
+                Width="auto"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbRowIsland
+                ChildDataKey="OrderDetails"
+                AutoGenerate="false">
+                    <IgbColumn
+                    Field="ProductID"
+                    Width="auto"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="UnitPrice"
+                    Width="auto"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Quantity"
+                    Width="auto"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Discount"
+                    Width="auto"
+                    Resizable="true">
+                    </IgbColumn>
+
+                </IgbRowIsland>
+
+            </IgbRowIsland>
+
+        </IgbHierarchicalGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var hierarchicalGrid1 = this.hierarchicalGrid1;
+
+    }
+
+    private IgbHierarchicalGrid hierarchicalGrid1;
+
+    private HierarchicalCustomers _hierarchicalCustomers = null;
+    public HierarchicalCustomers HierarchicalCustomers
+    {
+        get
+        {
+            if (_hierarchicalCustomers == null)
+            {
+                _hierarchicalCustomers = new HierarchicalCustomers();
+            }
+            return _hierarchicalCustomers;
+        }
+    }
+
+}
