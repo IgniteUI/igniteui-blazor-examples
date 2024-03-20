@@ -52,7 +52,7 @@ public class CountryStatsEurope
             Population = 3429000,
             WorkedHours = 46.5,
             GDP = 10932,
-            Name = @"Bosnia and Herzegovina"
+            Name = @"Bosnia"
         });
         this.Add(new CountryStatsEuropeItem()
         {
@@ -253,6 +253,94 @@ public class CountryStatsEurope
             WorkedHours = 36.06,
             GDP = 26608,
             Name = @"Portugal"
+        });
+        this.Add(new CountryStatsEuropeItem()
+        {
+            Code = @"ROU",
+            Population = 19925000,
+            WorkedHours = 34.34,
+            GDP = 20556,
+            Name = @"Romania"
+        });
+        this.Add(new CountryStatsEuropeItem()
+        {
+            Code = @"RUS",
+            Population = 145000000,
+            WorkedHours = 38.04,
+            GDP = 24517,
+            Name = @"Russia"
+        });
+        this.Add(new CountryStatsEuropeItem()
+        {
+            Code = @"SMR",
+            Population = 33000,
+            WorkedHours = 40.1,
+            GDP = 56372,
+            Name = @"San Marino"
+        });
+        this.Add(new CountryStatsEuropeItem()
+        {
+            Code = @"SRB",
+            Population = 8877000,
+            WorkedHours = 46.5,
+            GDP = 13278,
+            Name = @"Serbia"
+        });
+        this.Add(new CountryStatsEuropeItem()
+        {
+            Code = @"SVK",
+            Population = 5436000,
+            WorkedHours = 33.73,
+            GDP = 28309,
+            Name = @"Slovakia"
+        });
+        this.Add(new CountryStatsEuropeItem()
+        {
+            Code = @"SVN",
+            Population = 2071000,
+            WorkedHours = 32.46,
+            GDP = 29038,
+            Name = @"Slovenia"
+        });
+        this.Add(new CountryStatsEuropeItem()
+        {
+            Code = @"ESP",
+            Population = 46672000,
+            WorkedHours = 32.68,
+            GDP = 32291,
+            Name = @"Spain"
+        });
+        this.Add(new CountryStatsEuropeItem()
+        {
+            Code = @"SWE",
+            Population = 9765000,
+            WorkedHours = 30.96,
+            GDP = 45679,
+            Name = @"Sweden"
+        });
+        this.Add(new CountryStatsEuropeItem()
+        {
+            Code = @"CHE",
+            Population = 8297000,
+            WorkedHours = 30.57,
+            GDP = 57264,
+            Name = @"Switzerland"
+        });
+        this.Add(new CountryStatsEuropeItem()
+        {
+            Code = @"UKR",
+            Population = 44922000,
+            WorkedHours = 38.6,
+            GDP = 7465,
+            Name = @"Ukraine"
+        });
+        this.Add(new CountryStatsEuropeItem()
+        {
+            Code = @"GBR",
+            Population = 65860000,
+            WorkedHours = 32.1,
+            GDP = 38839,
+            Name = @"United Kingdom"
         });
     }
 }
