@@ -84,7 +84,7 @@ public class CountryStatsAfrica
             Population = 4493000,
             WorkedHours = 38,
             GDP = 622,
-            Name = @"C.A.R"
+            Name = @"Central African Republic"
         });
         this.Add(new CountryStatsAfricaItem()
         {
@@ -124,7 +124,7 @@ public class CountryStatsAfrica
             Population = 76245000,
             WorkedHours = 44,
             GDP = 812,
-            Name = @"DRC"
+            Name = @"Democratic Republic of Congo"
         });
         this.Add(new CountryStatsAfricaItem()
         {
@@ -253,6 +253,174 @@ public class CountryStatsAfrica
             WorkedHours = 40.6,
             GDP = 1919,
             Name = @"Mali"
+        });
+        this.Add(new CountryStatsAfricaItem()
+        {
+            Code = @"MRT",
+            Population = 4046000,
+            WorkedHours = 45.9,
+            GDP = 3602,
+            Name = @"Mauritania"
+        });
+        this.Add(new CountryStatsAfricaItem()
+        {
+            Code = @"MUS",
+            Population = 1259000,
+            WorkedHours = 44.4,
+            GDP = 18864,
+            Name = @"Mauritius"
+        });
+        this.Add(new CountryStatsAfricaItem()
+        {
+            Code = @"MAR",
+            Population = 34664000,
+            WorkedHours = 39.6,
+            GDP = 7297,
+            Name = @"Morocco"
+        });
+        this.Add(new CountryStatsAfricaItem()
+        {
+            Code = @"MOZ",
+            Population = 27042000,
+            WorkedHours = 46.7,
+            GDP = 1118,
+            Name = @"Mozambique"
+        });
+        this.Add(new CountryStatsAfricaItem()
+        {
+            Code = @"NAM",
+            Population = 2315000,
+            WorkedHours = 43.1,
+            GDP = 9975,
+            Name = @"Namibia"
+        });
+        this.Add(new CountryStatsAfricaItem()
+        {
+            Code = @"NER",
+            Population = 20002000,
+            WorkedHours = 45,
+            GDP = 908,
+            Name = @"Niger"
+        });
+        this.Add(new CountryStatsAfricaItem()
+        {
+            Code = @"NGA",
+            Population = 181000000,
+            WorkedHours = 32.76,
+            GDP = 5671,
+            Name = @"Nigeria"
+        });
+        this.Add(new CountryStatsAfricaItem()
+        {
+            Code = @"RWA",
+            Population = 11369000,
+            WorkedHours = 46.3,
+            GDP = 1731,
+            Name = @"Rwanda"
+        });
+        this.Add(new CountryStatsAfricaItem()
+        {
+            Code = @"STP",
+            Population = 199000,
+            WorkedHours = 38.2,
+            GDP = 2948,
+            Name = @"Sao Tome"
+        });
+        this.Add(new CountryStatsAfricaItem()
+        {
+            Code = @"SEN",
+            Population = 14578000,
+            WorkedHours = 46.8,
+            GDP = 2294,
+            Name = @"Senegal"
+        });
+        this.Add(new CountryStatsAfricaItem()
+        {
+            Code = @"SYC",
+            Population = 95000,
+            WorkedHours = 39.8,
+            GDP = 24857,
+            Name = @"Seychelles"
+        });
+        this.Add(new CountryStatsAfricaItem()
+        {
+            Code = @"SLE",
+            Population = 7172000,
+            WorkedHours = 35.4,
+            GDP = 1314,
+            Name = @"Sierra Leone"
+        });
+        this.Add(new CountryStatsAfricaItem()
+        {
+            Code = @"ZAF",
+            Population = 55386000,
+            WorkedHours = 42.48,
+            GDP = 12378,
+            Name = @"South Africa"
+        });
+        this.Add(new CountryStatsAfricaItem()
+        {
+            Code = @"SSD",
+            Population = 10716000,
+            WorkedHours = 39.3,
+            GDP = 1875,
+            Name = @"South Sudan"
+        });
+        this.Add(new CountryStatsAfricaItem()
+        {
+            Code = @"SDN",
+            Population = 38903000,
+            WorkedHours = 36.3,
+            GDP = 4290,
+            Name = @"Sudan"
+        });
+        this.Add(new CountryStatsAfricaItem()
+        {
+            Code = @"TZA",
+            Population = 51483000,
+            WorkedHours = 38,
+            GDP = 2491,
+            Name = @"Tanzania"
+        });
+        this.Add(new CountryStatsAfricaItem()
+        {
+            Code = @"TGO",
+            Population = 7323000,
+            WorkedHours = 38.8,
+            GDP = 1351,
+            Name = @"Togo"
+        });
+        this.Add(new CountryStatsAfricaItem()
+        {
+            Code = @"TUN",
+            Population = 11180000,
+            WorkedHours = 35.2,
+            GDP = 10766,
+            Name = @"Tunisia"
+        });
+        this.Add(new CountryStatsAfricaItem()
+        {
+            Code = @"UGA",
+            Population = 38225000,
+            WorkedHours = 38.6,
+            GDP = 1666,
+            Name = @"Uganda"
+        });
+        this.Add(new CountryStatsAfricaItem()
+        {
+            Code = @"ZMB",
+            Population = 15879000,
+            WorkedHours = 46.6,
+            GDP = 3627,
+            Name = @"Zambia"
+        });
+        this.Add(new CountryStatsAfricaItem()
+        {
+            Code = @"ZWE",
+            Population = 13815000,
+            WorkedHours = 41.4,
+            GDP = 1912,
+            Name = @"Zimbabwe"
         });
     }
 }
