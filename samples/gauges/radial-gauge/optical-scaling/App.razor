@@ -1,0 +1,71 @@
+
+@using IgniteUI.Blazor.Controls
+
+<style>
+    igc-slider
+    {
+        padding: 30px 30px 0px 30px;
+        flex-grow: 1;
+    }
+
+    .slider-container {
+        display: flex;
+        width:50%;
+        align-items: baseline;
+    }
+
+    .slider-label {
+        width: 100px;
+        text-align: end;
+    }
+</style>
+
+<div class="container vertical">
+    <div class="container sample center">
+        <div class="switches">
+            <div class="switch-control-item">
+                <span class="slider-label">Toggle Optical Scaling:
+                </span>
+                <IgbSwitch Checked=true CheckedChanged="ToggleOpticalScaling"></IgbSwitch>
+
+            </div>
+            <div class="slider-container">               
+                <span class="slider-label">Resize Gauge:</span>
+
+                <IgbSlider @ref=slider1 Change="OnGaugeSizeChanged" Max="100" Min="50" Step="10" Value="100"></IgbSlider>
+            </div>
+        </div>
+        <IgbRadialGauge @ref=gauge1 Height="@gaugeHeight" Width="@gaugeWidth"
+                OpticalScalingEnabled=@OpticalScalingToggle
+                OpticalScalingSize="500"
+                SubtitleText="MPH"
+                TitleDisplaysValue=true
+                MinimumValue="0"
+                MaximumValue="80"
+                Value="50"
+                Interval="10">
+        </IgbRadialGauge>
+    </div>
+</div>
+
+@code {
+    private IgbRadialGauge gauge1 { get; set; }
+    private IgbSlider slider1 { get; set; }
+    private bool OpticalScalingToggle { get; set; } = true;
+    private string gaugeWidth { get; set; } = "100%";
+    private string gaugeHeight { get; set; } = "100%";
+
+    private void ToggleOpticalScaling(bool isChecked)
+    {
+        this.OpticalScalingToggle = isChecked;
+    }
+
+    private void OnGaugeSizeChanged(IgbNumberEventArgs e)
+    {
+        if (e != null)
+        {
+            gaugeWidth = e.Detail.ToString() + "%";
+            gaugeHeight = e.Detail.ToString() + "%";
+        }
+    }
+}
