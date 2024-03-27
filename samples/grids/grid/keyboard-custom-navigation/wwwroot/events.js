@@ -5,7 +5,7 @@ igRegisterScript("WebGridCustomKBNav", (evtArgs) => {
     const target = args.target;
     const evt = args.event;
     const type = args.targetType;
-    var grid = args.target.grid;
+    var grid = document.getElementsByTagName("igc-grid")[0];
 
     if (type === 'dataCell' && target.editMode && evt.key.toLowerCase() === 'tab') {
         // Value validation for number column.

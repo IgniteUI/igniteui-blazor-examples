@@ -46,12 +46,12 @@ public class NwindData
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Fun-Tasty Co.",
-                    LastInventory = @"2018-06-12"
+                    LastInventory = @"06/12/2018"
                 },
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
-                    LastInventory = @"2018-04-04"
+                    LastInventory = @"04/04/2018"
                 }}
 
         });
@@ -74,7 +74,7 @@ public class NwindData
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
-                    LastInventory = @"2018-09-09"
+                    LastInventory = @"09/09/2018"
                 }}
 
         });
@@ -97,17 +97,17 @@ public class NwindData
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
-                    LastInventory = @"2018-04-04"
+                    LastInventory = @"04/04/2018"
                 },
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Street Market",
-                    LastInventory = @"2018-12-12"
+                    LastInventory = @"12/12/2018"
                 },
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"24/7 Market",
-                    LastInventory = @"2018-11-11"
+                    LastInventory = @"11/11/2018"
                 }}
 
         });
@@ -130,17 +130,17 @@ public class NwindData
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Fun-Tasty Co.",
-                    LastInventory = @"2018-06-12"
+                    LastInventory = @"06/12/2018"
                 },
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
-                    LastInventory = @"2018-04-04"
+                    LastInventory = @"04/04/2018"
                 },
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Street Market",
-                    LastInventory = @"2018-12-12"
+                    LastInventory = @"12/12/2018"
                 }}
 
         });
@@ -163,7 +163,7 @@ public class NwindData
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
-                    LastInventory = @"2018-09-09"
+                    LastInventory = @"09/09/2018"
                 }}
 
         });
@@ -186,7 +186,7 @@ public class NwindData
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
-                    LastInventory = @"2018-09-09"
+                    LastInventory = @"09/09/2018"
                 }}
 
         });
@@ -209,17 +209,17 @@ public class NwindData
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Fun-Tasty Co.",
-                    LastInventory = @"2018-06-12"
+                    LastInventory = @"06/12/2018"
                 },
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
-                    LastInventory = @"2018-04-04"
+                    LastInventory = @"04/04/2018"
                 },
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Street Market",
-                    LastInventory = @"2018-12-12"
+                    LastInventory = @"12/12/2018"
                 }}
 
         });
@@ -242,12 +242,12 @@ public class NwindData
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Fun-Tasty Co.",
-                    LastInventory = @"2018-06-12"
+                    LastInventory = @"06/12/2018"
                 },
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
-                    LastInventory = @"2018-04-04"
+                    LastInventory = @"04/04/2018"
                 }}
 
         });
@@ -270,7 +270,7 @@ public class NwindData
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
-                    LastInventory = @"2018-04-04"
+                    LastInventory = @"04/04/2018"
                 }}
 
         });
@@ -293,7 +293,7 @@ public class NwindData
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Wall Market",
-                    LastInventory = @"2018-12-06"
+                    LastInventory = @"12/06/2018"
                 }}
 
         });
@@ -316,12 +316,12 @@ public class NwindData
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Fun-Tasty Co.",
-                    LastInventory = @"2018-06-12"
+                    LastInventory = @"06/12/2018"
                 },
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
-                    LastInventory = @"2018-04-04"
+                    LastInventory = @"04/04/2018"
                 }}
 
         });
@@ -344,7 +344,7 @@ public class NwindData
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
-                    LastInventory = @"2018-04-04"
+                    LastInventory = @"04/04/2018"
                 }}
 
         });
@@ -367,7 +367,7 @@ public class NwindData
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
-                    LastInventory = @"2018-09-09"
+                    LastInventory = @"09/09/2018"
                 }}
 
         });
@@ -390,12 +390,12 @@ public class NwindData
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
-                    LastInventory = @"2018-04-04"
+                    LastInventory = @"04/04/2018"
                 },
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Street Market",
-                    LastInventory = @"2018-12-12"
+                    LastInventory = @"12/12/2018"
                 }}
 
         });
@@ -418,12 +418,12 @@ public class NwindData
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Local Market",
-                    LastInventory = @"2018-07-03"
+                    LastInventory = @"07/03/2018"
                 },
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Wall Market",
-                    LastInventory = @"2018-12-06"
+                    LastInventory = @"12/06/2018"
                 }}
 
         });
@@ -446,17 +446,17 @@ public class NwindData
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
-                    LastInventory = @"2018-04-04"
+                    LastInventory = @"04/04/2018"
                 },
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Street Market",
-                    LastInventory = @"2018-12-12"
+                    LastInventory = @"12/12/2018"
                 },
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"24/7 Market",
-                    LastInventory = @"2018-11-11"
+                    LastInventory = @"11/11/2018"
                 }}
 
         });
@@ -479,7 +479,7 @@ public class NwindData
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
-                    LastInventory = @"2018-04-04"
+                    LastInventory = @"04/04/2018"
                 }}
 
         });
@@ -502,12 +502,12 @@ public class NwindData
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"24/7 Market",
-                    LastInventory = @"2018-11-11"
+                    LastInventory = @"11/11/2018"
                 },
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
-                    LastInventory = @"2018-09-09"
+                    LastInventory = @"09/09/2018"
                 }}
 
         });
@@ -530,7 +530,7 @@ public class NwindData
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Local Market",
-                    LastInventory = @"2018-07-03"
+                    LastInventory = @"07/03/2018"
                 }}
 
         });
@@ -553,7 +553,7 @@ public class NwindData
                 new NwindDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
-                    LastInventory = @"2018-09-09"
+                    LastInventory = @"09/09/2018"
                 }}
 
         });

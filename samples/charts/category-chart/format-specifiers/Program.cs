@@ -23,8 +23,7 @@ namespace Infragistics.Samples
                 typeof(IgbInputModule),
                 typeof(IgbPropertyEditorPanelModule),
                 typeof(IgbDataLegendModule),
-                typeof(IgbCategoryChartModule),
-                typeof(IgbNumberFormatSpecifierModule)
+                typeof(IgbCategoryChartModule)
             );
             await builder.Build().RunAsync();
         }

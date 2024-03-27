@@ -1,7 +1,4 @@
 @using IgniteUI.Blazor.Controls
-@using IgniteUI.Blazor.Controls;
-@using System;
-@using System.Linq;
 
 <div class="container vertical">
     <div class="options vertical">
@@ -13,7 +10,7 @@
         Name="propertyEditorPanel1"
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="YAxisMinimumValueHandler"
+            PropertyPath="YAxisMinimumValue"
             Name="YAxisMinimumValue"
             @ref="yAxisMinimumValue"
             Label="Y Axis Minimum Value"
@@ -21,12 +18,11 @@
             ValueType="PropertyEditorValueType.EnumValue"
             DropDownNames="@(new string[] { "0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100" })"
             DropDownValues="@(new string[] { "0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100" })"
-            PrimitiveValue="0"
-            Changed="EditorChangeUpdateYAxisMinimumValue">
+            PrimitiveValue="0">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="YAxisMaximumValueHandler"
+            PropertyPath="YAxisMaximumValue"
             Name="YAxisMaximumValue"
             @ref="yAxisMaximumValue"
             Label="Y Axis Maximum Value"
@@ -34,8 +30,7 @@
             ValueType="PropertyEditorValueType.EnumValue"
             DropDownNames="@(new string[] { "100", "110", "120", "130", "140", "150", "160", "170", "180", "190", "200" })"
             DropDownValues="@(new string[] { "100", "110", "120", "130", "140", "150", "160", "170", "180", "190", "200" })"
-            PrimitiveValue="150"
-            Changed="EditorChangeUpdateYAxisMaximumValue">
+            PrimitiveValue="150">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -94,18 +89,6 @@
     private IgbPropertyEditorPropertyDescription yAxisMinimumValue;
     private IgbPropertyEditorPropertyDescription yAxisMaximumValue;
     private IgbCategoryChart chart;
-
-    public void EditorChangeUpdateYAxisMinimumValue(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
-    {
-        var yAxisMinimumVal = args.NewValue;
-        chart.YAxisMinimumValue = Convert.ToDouble(yAxisMinimumVal);
-    }
-
-    public void EditorChangeUpdateYAxisMaximumValue(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
-    {
-        var yAxisMaximumVal = args.NewValue;
-        chart.YAxisMaximumValue = Convert.ToDouble(yAxisMaximumVal);
-    }
 
     private CountryRenewableElectricity _countryRenewableElectricity = null;
     public CountryRenewableElectricity CountryRenewableElectricity

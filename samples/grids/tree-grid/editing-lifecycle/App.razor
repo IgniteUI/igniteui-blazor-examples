@@ -2,17 +2,16 @@
 
 @inject IJSRuntime JS
 
-<div class="container vertical ig-typography">
+<div class="container vertical">
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
-        Data="EmployeesFlatData"
+        Data="NwindData"
         Name="grid"
         @ref="grid"
         Id="grid"
         RowEditable="true"
-        PrimaryKey="ID"
-        ForeignKey="ParentID"
+        PrimaryKey="ProductID"
         RenderedScript="WebTreeGridRendered"
         RowEditEnterScript="WebGridRowEditEnter"
         RowEditScript="WebGridRowEdit"
@@ -23,22 +22,22 @@
         CellEditDoneScript="WebGridCellEditDone"
         CellEditExitScript="WebGridCellEditExit">
             <IgbColumn
-            Field="Name"
-            DataType="GridColumnDataType.String"
-            Editable="true">
+            Field="ProductName"
+            Header="Product Name">
             </IgbColumn>
 
             <IgbColumn
-            Field="Title"
-            Header="Job Title"
-            DataType="GridColumnDataType.String"
-            Editable="true">
+            Field="UnitPrice"
+            Header="Unit Price">
             </IgbColumn>
 
             <IgbColumn
-            Field="Age"
-            DataType="GridColumnDataType.Number"
-            Editable="true">
+            Field="UnitsInStock"
+            Header="Units In Stock">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Ordered">
             </IgbColumn>
 
         </IgbTreeGrid>
@@ -56,16 +55,16 @@
 
     private IgbTreeGrid grid;
 
-    private EmployeesFlatData _employeesFlatData = null;
-    public EmployeesFlatData EmployeesFlatData
+    private NwindData _nwindData = null;
+    public NwindData NwindData
     {
         get
         {
-            if (_employeesFlatData == null)
+            if (_nwindData == null)
             {
-                _employeesFlatData = new EmployeesFlatData();
+                _nwindData = new NwindData();
             }
-            return _employeesFlatData;
+            return _nwindData;
         }
     }
 

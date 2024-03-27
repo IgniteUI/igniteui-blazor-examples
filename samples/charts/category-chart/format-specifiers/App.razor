@@ -6,10 +6,11 @@
     </div>
     <div class="legend">
         <IgbDataLegend
+
+        ValueFormatMode="DataLegendValueMode.Currency"
+        ValueFormatString="${0} Billion"
         Name="Legend"
-        @ref="legend"
-        ValueFormatString="{0} Billion"
-        ValueFormatSpecifiers="NumberFormatSpecifier1">
+        @ref="legend">
         </IgbDataLegend>
 
     </div>
@@ -21,11 +22,16 @@
         ChartType="CategoryChartType.Column"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
-        FinalValueAnnotationsPrecision="2"
-        DataToolTipValueFormatString="{0} Billion"
-        DataToolTipValueFormatSpecifiers="NumberFormatSpecifier3"
-        YAxisLabelFormat="{0}B"
-        YAxisLabelFormatSpecifiers="NumberFormatSpecifier5">
+        DataToolTipValueFormatMode="DataLegendValueMode.Currency"
+        DataToolTipValueFormatString="${0} Billion"
+        YAxisLabelFormat="{0}B">
+            <IgbNumberFormatSpecifier
+            Style="currency"
+            Currency="USD"
+            CurrencyDisplay="symbol"
+            MinimumFractionDigits="0">
+            </IgbNumberFormatSpecifier>
+
         </IgbCategoryChart>
 
     </div>
@@ -48,66 +54,7 @@
     }
 
     private IgbDataLegend legend;
-    private IgbNumberFormatSpecifier[] _numberFormatSpecifier1 = null;
-    public IgbNumberFormatSpecifier[] NumberFormatSpecifier1
-    {
-        get
-        {
-            if (this._numberFormatSpecifier1 == null)
-            {
-                var numberFormatSpecifier1 = new IgbNumberFormatSpecifier[1];
-                var numberFormatSpecifier2 = new IgbNumberFormatSpecifier();
-                numberFormatSpecifier2.Style = "currency";
-                numberFormatSpecifier2.Currency = "USD";
-                numberFormatSpecifier2.CurrencyDisplay = "symbol";
-                numberFormatSpecifier2.MaximumFractionDigits = 2;
-                numberFormatSpecifier2.MinimumFractionDigits = 2;
-                numberFormatSpecifier1[0] = numberFormatSpecifier2;
-                this._numberFormatSpecifier1 = numberFormatSpecifier1;
-            }
-            return this._numberFormatSpecifier1;
-        }
-    }
     private IgbCategoryChart chart;
-    private IgbNumberFormatSpecifier[] _numberFormatSpecifier3 = null;
-    public IgbNumberFormatSpecifier[] NumberFormatSpecifier3
-    {
-        get
-        {
-            if (this._numberFormatSpecifier3 == null)
-            {
-                var numberFormatSpecifier3 = new IgbNumberFormatSpecifier[1];
-                var numberFormatSpecifier4 = new IgbNumberFormatSpecifier();
-                numberFormatSpecifier4.Style = "currency";
-                numberFormatSpecifier4.Currency = "USD";
-                numberFormatSpecifier4.CurrencyDisplay = "symbol";
-                numberFormatSpecifier4.MaximumFractionDigits = 2;
-                numberFormatSpecifier4.MinimumFractionDigits = 2;
-                numberFormatSpecifier3[0] = numberFormatSpecifier4;
-                this._numberFormatSpecifier3 = numberFormatSpecifier3;
-            }
-            return this._numberFormatSpecifier3;
-        }
-    }
-    private IgbNumberFormatSpecifier[] _numberFormatSpecifier5 = null;
-    public IgbNumberFormatSpecifier[] NumberFormatSpecifier5
-    {
-        get
-        {
-            if (this._numberFormatSpecifier5 == null)
-            {
-                var numberFormatSpecifier5 = new IgbNumberFormatSpecifier[1];
-                var numberFormatSpecifier6 = new IgbNumberFormatSpecifier();
-                numberFormatSpecifier6.Style = "currency";
-                numberFormatSpecifier6.Currency = "USD";
-                numberFormatSpecifier6.CurrencyDisplay = "symbol";
-                numberFormatSpecifier6.MinimumFractionDigits = 0;
-                numberFormatSpecifier5[0] = numberFormatSpecifier6;
-                this._numberFormatSpecifier5 = numberFormatSpecifier5;
-            }
-            return this._numberFormatSpecifier5;
-        }
-    }
 
     private HighestGrossingMovies _highestGrossingMovies = null;
     public HighestGrossingMovies HighestGrossingMovies

@@ -1,19 +1,16 @@
 @using IgniteUI.Blazor.Controls
-@using IgniteUI.Blazor.Controls;
-@using System;
-@using System.Linq;
 
 <div class="container vertical">
     <div class="options vertical">
         <IgbPropertyEditorPanel
-        Name="editor"
-        @ref="editor"
 
         DescriptionType="CategoryChart"
         IsHorizontal="true"
-        IsWrappingEnabled="true">
+        IsWrappingEnabled="true"
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="InitialGroupsHandler"
+            PropertyPath="InitialGroups"
             Name="InitialGroups"
             @ref="initialGroups"
             Label="Initial Groups"
@@ -21,15 +18,38 @@
             ShouldOverrideDefaultEditor="true"
             DropDownNames="@(new string[] { "Country", "Product", "MonthName", "Year" })"
             DropDownValues="@(new string[] { "Country", "Product", "MonthName", "Year" })"
-            PrimitiveValue="@("Country")"
-            Changed="EditorChangeUpdateInitialGroups">
+            PrimitiveValue="@("Country")">
+            </IgbPropertyEditorPropertyDescription>
+
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="InitialSummaries"
+            Name="InitialSummaries"
+            @ref="initialSummaries"
+            Label="Initial Summaries"
+            ValueType="PropertyEditorValueType.EnumValue"
+            ShouldOverrideDefaultEditor="true"
+            DropDownNames="@(new string[] { "Sum(Sales)", "Avg(Sales)", "Min(Sales)", "Max(Sales)", "Count(Sales)" })"
+            DropDownValues="@(new string[] { "Sum(Sales) as Sales", "Avg(Sales) as Sales", "Min(Sales) as Sales", "Max(Sales) as Sales", "Count(Sales) as Sales" })"
+            PrimitiveValue="@("Sum(Sales) as Sales")">
+            </IgbPropertyEditorPropertyDescription>
+
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="GroupSorts"
+            Name="GroupSorts"
+            @ref="groupSorts"
+            Label="Sort Groups"
+            ValueType="PropertyEditorValueType.EnumValue"
+            ShouldOverrideDefaultEditor="true"
+            DropDownNames="@(new string[] { "Sales Desc", "Sales Asc" })"
+            DropDownValues="@(new string[] { "Sales Desc", "Sales Asc" })"
+            PrimitiveValue="@("Sales Desc")">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
 
     </div>
     <div class="legend-title">
-        Sales Aggregated by Country and Product
+        Renewable Electricity Generated
     </div>
     <div class="container vertical fill">
         <IgbCategoryChart
@@ -54,74 +74,24 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var editor = this.editor;
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
         var initialGroups = this.initialGroups;
+        var initialSummaries = this.initialSummaries;
+        var groupSorts = this.groupSorts;
         var chart = this.chart;
 
         this.BindElements = () => {
-            editor.Target = this.chart;
+            propertyEditorPanel1.Target = this.chart;
         };
         this.BindElements();
 
-        if (firstRender) {
-            this.PropertyEditorInitAggregationsOnViewInit();
-        }
     }
 
-    private IgbPropertyEditorPanel editor;
+    private IgbPropertyEditorPanel propertyEditorPanel1;
     private IgbPropertyEditorPropertyDescription initialGroups;
+    private IgbPropertyEditorPropertyDescription initialSummaries;
+    private IgbPropertyEditorPropertyDescription groupSorts;
     private IgbCategoryChart chart;
-
-    public void PropertyEditorInitAggregationsOnViewInit()
-    {
-
-    	this.editor.EnsureReady().ContinueWith(new Action<Task>((e) =>
-    	{
-    		var editor = this.editor;
-
-    		var initialSummariesDropdown = new IgbPropertyEditorPropertyDescription();
-    		var sortGroupsDropdown = new IgbPropertyEditorPropertyDescription();
-    		initialSummariesDropdown.Label = "Initial Summaries";
-    		initialSummariesDropdown.ValueType = PropertyEditorValueType.EnumValue;
-    		initialSummariesDropdown.ShouldOverrideDefaultEditor = true;
-    		initialSummariesDropdown.DropDownNames = ["Sum(Sales) as Sales", "Avg(Sales) as Sales", "Min(Sales) as Sales", "Max(Sales) as Sales", "Count(Sales) as Sales"];
-    		initialSummariesDropdown.DropDownValues = ["Sum(Sales) as Sales", "Avg(Sales) as Sales", "Min(Sales) as Sales", "Max(Sales) as Sales", "Count(Sales) as Sales"];
-    		sortGroupsDropdown.Label = "Sort Groups";
-    		sortGroupsDropdown.ValueType = PropertyEditorValueType.EnumValue;
-    		sortGroupsDropdown.ShouldOverrideDefaultEditor = true;
-    		sortGroupsDropdown.DropDownNames = ["Sales Asc", "Sales Desc"];
-    		sortGroupsDropdown.DropDownValues = ["Sales Asc", "Sales Desc"];
-
-    		editor.Properties.Add(initialSummariesDropdown);
-    		editor.Properties.Add(sortGroupsDropdown);
-
-    		initialSummariesDropdown.Changed += this.EditorChangeUpdateInitialSummaries;
-    		sortGroupsDropdown.Changed += this.EditorChangeUpdateGroupSorts;
-    	}));
-
-    }
-
-    public void EditorChangeUpdateInitialSummaries(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
-    {
-    	var chart = this.chart;
-    	var intialSummaryVal = args.NewValue.ToString();
-    	chart.InitialSummaries = intialSummaryVal;
-    }
-
-    public void EditorChangeUpdateGroupSorts(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
-    {
-    	var chart = this.chart;
-    	var groupSortsVal = args.NewValue.ToString();
-    	chart.GroupSorts = groupSortsVal;
-    }
-
-    public void EditorChangeUpdateInitialGroups(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
-    {
-        var chart = this.chart;
-        var initialGroupVal = args.NewValue.ToString();
-        chart.InitialGroups = null;
-        chart.InitialGroups = initialGroupVal;
-    }
 
     private SalesData _salesData = null;
     public SalesData SalesData

@@ -22,9 +22,7 @@ namespace Infragistics.Samples
             builder.Services.AddIgniteUIBlazor(
                 typeof(IgbFinancialChartModule),
                 typeof(IgbDataChartInteractivityModule),
-                typeof(IgbDataLegendModule),
-                typeof(IgbNumberFormatSpecifierModule),
-                typeof(IgbDateTimeFormatSpecifierModule)
+                typeof(IgbDataLegendModule)
             );
             await builder.Build().RunAsync();
         }
