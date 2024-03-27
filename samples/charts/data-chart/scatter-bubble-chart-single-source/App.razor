@@ -1,43 +1,43 @@
 @using IgniteUI.Blazor.Controls
 
-
 <div class="container vertical">
     <div class="legend-title">
-        GDP per Capita vs Population
+        Total Population of Selected Countries
     </div>
-
     <div class="container vertical fill">
         <IgbDataChart
         Name="chart"
         @ref="chart">
             <IgbNumericXAxis
-            IsLogarithmic="true"
-            AbbreviateLargeNumbers="true"
-            Title="Population"
             Name="xAxis"
-            @ref="xAxis">
+            @ref="xAxis"
+            Title="Population"
+            IsLogarithmic="true"
+            AbbreviateLargeNumbers="true">
             </IgbNumericXAxis>
 
             <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis"
+            Title="Public Debt"
             IsLogarithmic="false"
             AbbreviateLargeNumbers="true"
-            Title="GDP per Capita"
-            Name="yAxis"
-            @ref="yAxis">
+            MaximumValue="120">
             </IgbNumericYAxis>
 
             <IgbBubbleSeries
-            RadiusMemberPath="Population"
+            Name="BubbleSeries1"
+            @ref="bubbleSeries1"
+            XMemberPath="Population"
+            YMemberPath="PublicDebt"
+            RadiusMemberPath="GdpPerCapita"
+            RadiusScale="SizeScale1"
+            FillMemberPath="GdpPerCapita"
             XAxisName="xAxis"
             YAxisName="yAxis"
-            XMemberPath="Population"
-            YMemberPath="GDP"
+            DataSource="WorldDebtAndPopulation"
             MarkerType="MarkerType.Circle"
-            DataSource="CountryStatsEurope"
-            ShowDefaultTooltip="true"
-            Title="European Countries"
-            Name="BubbleSeries1"
-            @ref="bubbleSeries1">
+            ShowDefaultTooltip="true">
             </IgbBubbleSeries>
 
             <IgbDataToolTipLayer
@@ -48,12 +48,9 @@
         </IgbDataChart>
 
     </div>
-
 </div>
 
 @code {
-
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -62,24 +59,41 @@
         var yAxis = this.yAxis;
         var bubbleSeries1 = this.bubbleSeries1;
         var dataToolTipLayer = this.dataToolTipLayer;
+
     }
 
     private IgbDataChart chart;
     private IgbNumericXAxis xAxis;
     private IgbNumericYAxis yAxis;
     private IgbBubbleSeries bubbleSeries1;
-    private IgbDataToolTipLayer dataToolTipLayer;
-
-    private CountryStatsEurope _countryStatsEurope = null;
-    public CountryStatsEurope CountryStatsEurope
+    private IgbSizeScale _sizeScale1 = null;
+    public IgbSizeScale SizeScale1
     {
         get
         {
-            if (_countryStatsEurope == null)
+            if (this._sizeScale1 == null)
             {
-                _countryStatsEurope = new CountryStatsEurope();
+                var sizeScale1 = new IgbSizeScale();
+                sizeScale1.IsLogarithmic = false;
+                sizeScale1.MinimumValue = 10;
+                sizeScale1.MaximumValue = 50;
+                this._sizeScale1 = sizeScale1;
             }
-            return _countryStatsEurope;
+            return this._sizeScale1;
+        }
+    }
+    private IgbDataToolTipLayer dataToolTipLayer;
+
+    private WorldDebtAndPopulation _worldDebtAndPopulation = null;
+    public WorldDebtAndPopulation WorldDebtAndPopulation
+    {
+        get
+        {
+            if (_worldDebtAndPopulation == null)
+            {
+                _worldDebtAndPopulation = new WorldDebtAndPopulation();
+            }
+            return _worldDebtAndPopulation;
         }
     }
 

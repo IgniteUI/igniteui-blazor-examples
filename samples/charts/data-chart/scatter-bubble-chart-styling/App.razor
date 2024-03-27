@@ -1,59 +1,59 @@
 @using IgniteUI.Blazor.Controls
 
-
 <div class="container vertical">
     <div class="legend-title">
         Total Population of Selected Countries
     </div>
     <div class="legend">
         <IgbLegend
-        Orientation="LegendOrientation.Horizontal"
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
 
     </div>
-
     <div class="container vertical fill">
         <IgbDataChart
-
         Name="chart"
         @ref="chart">
             <IgbNumericXAxis
-            IsLogarithmic="true"
-            AbbreviateLargeNumbers="true"
-            Title="Population"
             Name="xAxis"
-            @ref="xAxis">
+            @ref="xAxis"
+            Title="Population"
+            IsLogarithmic="true"
+            AbbreviateLargeNumbers="true">
             </IgbNumericXAxis>
 
             <IgbNumericYAxis
-            IsLogarithmic="true"
-            AbbreviateLargeNumbers="true"
-            Title="GDP per Capita"
             Name="yAxis"
-            @ref="yAxis">
+            @ref="yAxis"
+            Title="GDP per Capita"
+            IsLogarithmic="true"
+            AbbreviateLargeNumbers="true">
             </IgbNumericYAxis>
 
             <IgbBubbleSeries
-            RadiusMemberPath="Population"
+            Name="BubbleSeries1"
+            @ref="bubbleSeries1"
+            Title="African Countries"
             XAxisName="xAxis"
             YAxisName="yAxis"
             XMemberPath="Population"
             YMemberPath="GDP"
-            MarkerType="MarkerType.Circle"
-            MarkerThickness="2"
-            MarkerBrush="#3eca3e"
-            MarkerOutline="#3eca3e"
+            RadiusMemberPath="Population"
             DataSource="CountryStatsAfrica"
+            MarkerType="MarkerType.Circle"
+            MarkerOutline="#3eca3e"
+            MarkerBrush="#45b3e0"
             MarkerFillOpacity="0.5"
+            MarkerThickness="2"
             ShowDefaultTooltip="true"
-            Title="African Countries"
-            Name="BubbleSeries1"
-            @ref="bubbleSeries1">
+            RadiusScale="SizeScale1">
             </IgbBubbleSeries>
 
             <IgbBubbleSeries
+            Name="BubbleSeries2"
+            @ref="bubbleSeries2"
             Title="European Countries"
             XAxisName="xAxis"
             YAxisName="yAxis"
@@ -63,12 +63,11 @@
             DataSource="CountryStatsEurope"
             MarkerType="MarkerType.Circle"
             MarkerOutline="#ab06dd"
-            MarkerBrush="#ab06dd"
+            MarkerBrush="#879ceb"
             MarkerFillOpacity="0.5"
             MarkerThickness="2"
             ShowDefaultTooltip="true"
-            Name="BubbleSeries2"
-            @ref="bubbleSeries2">
+            RadiusScale="SizeScale2">
             </IgbBubbleSeries>
 
             <IgbDataToolTipLayer
@@ -79,15 +78,9 @@
         </IgbDataChart>
 
     </div>
-
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
-    {
-
-
-    }
 
     private Action BindElements { get; set; }
 
@@ -105,6 +98,7 @@
             chart.Legend = this.legend;
         };
         this.BindElements();
+
     }
 
     private IgbLegend legend;
@@ -112,7 +106,39 @@
     private IgbNumericXAxis xAxis;
     private IgbNumericYAxis yAxis;
     private IgbBubbleSeries bubbleSeries1;
+    private IgbSizeScale _sizeScale1 = null;
+    public IgbSizeScale SizeScale1
+    {
+        get
+        {
+            if (this._sizeScale1 == null)
+            {
+                var sizeScale1 = new IgbSizeScale();
+                sizeScale1.IsLogarithmic = false;
+                sizeScale1.MinimumValue = 10;
+                sizeScale1.MaximumValue = 50;
+                this._sizeScale1 = sizeScale1;
+            }
+            return this._sizeScale1;
+        }
+    }
     private IgbBubbleSeries bubbleSeries2;
+    private IgbSizeScale _sizeScale2 = null;
+    public IgbSizeScale SizeScale2
+    {
+        get
+        {
+            if (this._sizeScale2 == null)
+            {
+                var sizeScale2 = new IgbSizeScale();
+                sizeScale2.IsLogarithmic = false;
+                sizeScale2.MinimumValue = 10;
+                sizeScale2.MaximumValue = 50;
+                this._sizeScale2 = sizeScale2;
+            }
+            return this._sizeScale2;
+        }
+    }
     private IgbDataToolTipLayer dataToolTipLayer;
 
     private CountryStatsAfrica _countryStatsAfrica = null;

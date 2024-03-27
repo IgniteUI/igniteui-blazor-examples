@@ -1,19 +1,19 @@
 @using IgniteUI.Blazor.Controls
 
 
-<div class="container vertical" @onclick="OnContainerClick">
+<div class="container vertical" >
     <IgbNavDrawer @ref="@NavDrawerRef" style="position: relative">
         <IgbNavDrawerHeaderItem>
             Sample Drawer
         </IgbNavDrawerHeaderItem>
 
-        <IgbNavDrawerItem>
-            <IgbIcon @ref="@HomeIcon" slot="icon" IconName="home" Collection="material" />
+        <IgbNavDrawerItem @ref="HomeItemRef" @onclick="(args) => NavDrawerItemClick(args, HomeItemRef)">
+            <IgbIcon @ref="@IconRef" slot="icon" IconName="home" Collection="material" />
             <span slot="content">Home</span>
         </IgbNavDrawerItem>
 
-        <IgbNavDrawerItem>
-            <IgbIcon slot="icon" IconName="search" Collection="material" />
+        <IgbNavDrawerItem @ref="SearchItemRef" @onclick="(args) => NavDrawerItemClick(args, SearchItemRef)">
+            <IgbIcon @ref="@IconRef" slot="icon" IconName="search" Collection="material" />
             <span slot="content">Search</span>
         </IgbNavDrawerItem>
     </IgbNavDrawer>
@@ -27,25 +27,42 @@
         </IgbRadioGroup>
 
         <IgbNavbar>
-            <IgbIcon slot="start" IconName="menu" Collection="material" @onclick="OnMenuIconClick" />
-            <h2>Home</h2>
+            <IgbIcon @ref="@IconRef" slot="start" IconName="menu" Collection="material" @onclick="OnMenuIconClick" />
+            <h2>@Title</h2>
         </IgbNavbar>
     </div>
 </div>
 
 @code {
 
-    public IgbIcon HomeIcon { get; set; }
+    public IgbIcon IconRef { get; set; }
+
     public IgbNavDrawer NavDrawerRef { get; set; }
+    public IgbNavDrawerItem HomeItemRef { get; set; }
+    public IgbNavDrawerItem SearchItemRef { get; set; }
+
+    public Dictionary<string, IgbNavDrawerItem> NavDrawerTitlesItemRefs { get; set; }
+
+    public string Title { get; set; } = "Home";
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if(firstRender && this.HomeIcon != null)
+        if (firstRender && this.IconRef != null)
         {
-            await this.HomeIcon.EnsureReady();
-            await this.HomeIcon.RegisterIconAsync("home", "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg", "material");
-            await this.HomeIcon.RegisterIconAsync("search", "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_search_24px.svg", "material");
-            await this.HomeIcon.RegisterIconAsync("menu", "https://unpkg.com/material-design-icons@3.0.1/navigation/svg/production/ic_menu_24px.svg", "material");
+            await this.IconRef.EnsureReady();
+            await this.IconRef.RegisterIconAsync("menu", "https://unpkg.com/material-design-icons@3.0.1/navigation/svg/production/ic_menu_24px.svg", "material");
+            await this.IconRef.RegisterIconAsync("home", "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_home_24px.svg", "material");
+            await this.IconRef.RegisterIconAsync("search", "https://unpkg.com/material-design-icons@3.0.1/action/svg/production/ic_search_24px.svg", "material");
+        }
+
+        if (firstRender)
+        {
+            NavDrawerTitlesItemRefs = new Dictionary<string, IgbNavDrawerItem>();
+            await this.HomeItemRef.EnsureReady();
+            NavDrawerTitlesItemRefs.Add("Home", HomeItemRef);
+            HomeItemRef.Active = true;
+            await this.SearchItemRef.EnsureReady();
+            NavDrawerTitlesItemRefs.Add("Search", SearchItemRef);
         }
     }
 
@@ -81,26 +98,24 @@
         }
     }
 
-    bool isNavDrawerOpen = false;
-    bool hitMenuIconFirst = false;
     public void OnMenuIconClick()
     {
         if(this.NavDrawerRef != null)
         {
             this.NavDrawerRef.Show();
-            hitMenuIconFirst = true;
-            isNavDrawerOpen = true;
         }
     }
 
-    public void OnContainerClick(MouseEventArgs args)
+    public void NavDrawerItemClick(MouseEventArgs args, IgbNavDrawerItem item)
     {
-        if (isNavDrawerOpen && !hitMenuIconFirst)
+        item.Active = true;
+        Title = NavDrawerTitlesItemRefs.Where(pair => pair.Value == item).Select(pair => pair.Key).ToList()[0];
+        foreach (IgbNavDrawerItem i in NavDrawerTitlesItemRefs.Values)
         {
-            this.NavDrawerRef.Hide();
-            isNavDrawerOpen = false;
+            if (i != item)
+            {
+                i.Active = false;
+            }
         }
-
-        hitMenuIconFirst = false;
     }
 }
