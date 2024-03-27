@@ -1,12 +1,13 @@
 @using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
+    <div class="legend-title">
+        Total Population of Selected Countries
+    </div>
     <div class="container vertical fill">
         <IgbDataChart
         Name="chart"
-        @ref="chart"
-        ChartTitle="Public Debt vs. Population"
-        Subtitle="GDP per Capita">
+        @ref="chart">
             <IgbNumericXAxis
             Name="xAxis"
             @ref="xAxis"
@@ -30,6 +31,7 @@
             XMemberPath="Population"
             YMemberPath="PublicDebt"
             RadiusMemberPath="GdpPerCapita"
+            RadiusScale="SizeScale1"
             FillMemberPath="GdpPerCapita"
             XAxisName="xAxis"
             YAxisName="yAxis"
@@ -64,6 +66,22 @@
     private IgbNumericXAxis xAxis;
     private IgbNumericYAxis yAxis;
     private IgbBubbleSeries bubbleSeries1;
+    private IgbSizeScale _sizeScale1 = null;
+    public IgbSizeScale SizeScale1
+    {
+        get
+        {
+            if (this._sizeScale1 == null)
+            {
+                var sizeScale1 = new IgbSizeScale();
+                sizeScale1.IsLogarithmic = false;
+                sizeScale1.MinimumValue = 10;
+                sizeScale1.MaximumValue = 50;
+                this._sizeScale1 = sizeScale1;
+            }
+            return this._sizeScale1;
+        }
+    }
     private IgbDataToolTipLayer dataToolTipLayer;
 
     private WorldDebtAndPopulation _worldDebtAndPopulation = null;
