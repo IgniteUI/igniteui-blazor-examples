@@ -42,6 +42,7 @@
             XMemberPath="DeathRate"
             YMemberPath="BirthRate"
             RadiusMemberPath="Population"
+            RadiusScale="SizeScale1"
             Title="Africa"
             RadiusMemberAsLegendLabel="Population: "
             XMemberAsLegendLabel="Death Rate: "
@@ -57,6 +58,7 @@
             XMemberPath="DeathRate"
             YMemberPath="BirthRate"
             RadiusMemberPath="Population"
+            RadiusScale="SizeScale2"
             Title="Europe"
             RadiusMemberAsLegendLabel="Population: "
             XMemberAsLegendLabel="Death Rate: "
@@ -99,7 +101,39 @@
     private IgbNumericXAxis xAxis;
     private IgbNumericYAxis yAxis;
     private IgbBubbleSeries bubbleSeries1;
+    private IgbSizeScale _sizeScale1 = null;
+    public IgbSizeScale SizeScale1
+    {
+        get
+        {
+            if (this._sizeScale1 == null)
+            {
+                var SizeScale1 = new IgbSizeScale();
+                SizeScale1.Name = "SizeScale1";
+                SizeScale1.MinimumValue = 10;
+                SizeScale1.MaximumValue = 50;
+                this._sizeScale1 = SizeScale1;
+            }
+            return this._sizeScale1;
+        }
+    }
     private IgbBubbleSeries bubbleSeries2;
+    private IgbSizeScale _sizeScale2 = null;
+    public IgbSizeScale SizeScale2
+    {
+        get
+        {
+            if (this._sizeScale2 == null)
+            {
+                var SizeScale2 = new IgbSizeScale();
+                SizeScale2.Name = "SizeScale2";
+                SizeScale2.MinimumValue = 10;
+                SizeScale2.MaximumValue = 50;
+                this._sizeScale2 = SizeScale2;
+            }
+            return this._sizeScale2;
+        }
+    }
     private IgbCrosshairLayer crosshairLayer;
 
     private CountryDemographicAfrican _countryDemographicAfrican = null;
