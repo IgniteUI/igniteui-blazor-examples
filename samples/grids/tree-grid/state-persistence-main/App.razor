@@ -36,7 +36,7 @@
         </div>
         <div class="container horizontal">
             <ul>
-                <li>Clicking the SAVE button or leaving the page <a id="leaveLink" href="./grids/grid/state-persistence-about"><strong>here</strong></a> will save grid state to localStorage.</li>
+                <li>Clicking the SAVE button or leaving the page <a id="leaveLink" href="./grids/tree-grid/state-persistence-about"><strong>here</strong></a> will save grid state to localStorage.</li>
                 <li>Use the control buttons to SAVE / RESTORE / RESET / DELETE / grid state or LEAVE the page.</li>
                 <li>Select/Deselect checkboxes to control saving / restoring feature state.</li>
             </ul>
@@ -54,14 +54,16 @@
             <IgbCheckbox Change="@((evt) => OnChange(evt, "RowSelection"))" Checked="options.RowSelection">Row Selection</IgbCheckbox>
             <IgbCheckbox Change="@((evt) => OnChange(evt, "Sorting"))" Checked="options.Sorting">Sorting</IgbCheckbox>
             <IgbCheckbox Change="@((evt) => OnChange(evt, "GroupBy"))" Checked="options.GroupBy">Group By</IgbCheckbox>
+            <IgbCheckbox Change="@((evt) => OnChange(evt, "Moving"))" Checked="options.Moving">Moving</IgbCheckbox>
         </div>
         <IgbGrid
             @ref="grid"
             Width="95%"
             Height="500px"
             PrimaryKey="ID"
+            ForeignKey="ParentID"
             AutoGenerate="false"
-            Data="CustomersData"
+            Data="EmployeesNestedTreeData"
             Rendered="OnGridRendered"
             Moving="true"
             AllowFiltering="true"
@@ -81,16 +83,13 @@
             </IgbActionStrip>
             <IgbPaginator @ref="paginator"></IgbPaginator>
 
-            <IgbColumn Field="ID" Header="ID" Sortable="true" Filterable="true" Pinned="true"></IgbColumn>
-            <IgbColumn Field="ContactName" Header="Name" MinWidth="200px" Pinned="true"></IgbColumn>
-            <IgbColumn Field="ContactTitle" Header="Title" MinWidth="200px" Pinned="true" Groupable="true"></IgbColumn>
-            <IgbColumn Field="CompanyName" Header="Company" MinWidth="200px" Sortable="true" Filterable="true" Groupable="true"></IgbColumn>
-            <IgbColumn Field="Country" Header="Country" MinWidth="200px" Sortable="true" Filterable="true" Groupable="true"></IgbColumn>
-            <IgbColumn Field="City" Header="City" MinWidth="120px" Sortable="true" Filterable="true" Groupable="true"></IgbColumn>
-            <IgbColumn Field="Address" Header="Address" MinWidth="300px" Sortable="true" Filterable="true" Groupable="true"></IgbColumn>
-            <IgbColumn Field="Region" Header="Region" MinWidth="120px" Sortable="true" Filterable="true" Groupable="true"></IgbColumn>
-            <IgbColumn Field="PostalCode" Header="Postal Code" MinWidth="150px" Sortable="true" Filterable="true" Groupable="true"></IgbColumn>
-            <IgbColumn Field="Phone" Header="Phone" MinWidth="150px" Sortable="true" Filterable="true"></IgbColumn>
+            <IgbColumn Field="ID" Header="ID" Sortable="true" Filterable="true" Hidden="true"></IgbColumn>
+            <IgbColumn Field="Name" Header="Name" MinWidth="200px" Pinned="true"></IgbColumn>
+            <IgbColumn Field="Title" Header="Title" MinWidth="200px" Groupable="true"></IgbColumn>
+            <IgbColumn Field="Age" Header="Age" MinWidth="200px" Sortable="true" Filterable="true" Groupable="true"></IgbColumn>
+            <IgbColumn Field="HireDate" Header="Hire Date" MinWidth="200px" Sortable="true" Filterable="true" Groupable="true"></IgbColumn>
+            <IgbColumn Field="OnPTO" Header="On PTO" MinWidth="120px" Sortable="true" Filterable="true" Groupable="true"></IgbColumn>
+            <IgbColumn Field="Phone" Header="Phone" MinWidth="300px" Sortable="true" Filterable="true" Groupable="true"></IgbColumn>
         </IgbGrid>
     </div>
 </div>
@@ -123,19 +122,19 @@
         ColumnSelection= true,
         Moving = true
     };
-    private string stateKey = "grid-state";
+    private string stateKey = "tree-grid-state";
     private IgbIcon IconRef;
 
-    private CustomersData _customersData = null;
-    public CustomersData CustomersData
+    private EmployeesNestedTreeData _employeesNestedTreeData = null;
+    public EmployeesNestedTreeData EmployeesNestedTreeData
     {
         get
         {
-            if (_customersData == null)
+            if (_employeesNestedTreeData == null)
             {
-                _customersData = new CustomersData();
+                _employeesNestedTreeData = new EmployeesNestedTreeData();
             }
-            return _customersData;
+            return _employeesNestedTreeData;
         }
     }
 
@@ -195,7 +194,7 @@
     void ResetGridState()
     {
         paginator.PerPage = 15;
-        paginator.TotalRecords = CustomersData.Count;
+        paginator.TotalRecords = EmployeesNestedTreeData.Count;
         paginator.Paginate(0);
         grid.ClearFilter("");
         grid.SortingExpressions = new IgbSortingExpression[0];
@@ -267,7 +266,7 @@
     async void LeavePage()
     {
         SaveGridState();
-        await JS.InvokeVoidAsync("window.location.replace", "./grids/grid/state-persistence-about");
+        await JS.InvokeVoidAsync("window.location.replace", "./grids/tree-grid/state-persistence-about");
     }
 
     async void ClearStorage()
