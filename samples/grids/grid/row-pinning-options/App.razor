@@ -1,5 +1,7 @@
 @using IgniteUI.Blazor.Controls
 
+@inject IJSRuntime JS
+
 <div class="container vertical ig-typography">
     <div class="options vertical">
         <IgbPropertyEditorPanel
@@ -10,10 +12,13 @@
         Name="propertyEditorPanel1"
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="Pinning.Rows"
             Name="rowPinningEditor"
             @ref="rowPinningEditor"
-            Label="Row Pinning toggle">
+            ValueType="PropertyEditorValueType.EnumValue"
+            Label="Row Pinning toggle"
+            DropDownNames="@(new string[] { "Top", "Bottom" })"
+            DropDownValues="@(new string[] { "Top", "Bottom" })"
+            ChangedScript="WebGridSetRowPinning">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -24,6 +29,7 @@
         AutoGenerate="false"
         Name="grid"
         @ref="grid"
+        Id="grid"
         Data="CustomersDataLocal"
         Pinning="PinningConfig1"
         PrimaryKey="ID"
