@@ -22,10 +22,8 @@
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
         FinalValueAnnotationsPrecision="2"
-        DataToolTipValueFormatString="{0} Billion"
-        DataToolTipValueFormatSpecifiers="NumberFormatSpecifier3"
-        YAxisLabelFormat="{0}B"
-        YAxisLabelFormatSpecifiers="NumberFormatSpecifier5">
+        DataToolTipValueFormatString="{0} Billion"        
+        YAxisLabelFormat="{0}B">
         </IgbCategoryChart>
 
     </div>
@@ -42,6 +40,9 @@
 
         this.BindElements = () => {
             legend.Target = this.chart;
+            this.legend.ValueFormatSpecifiers.Add(this.NumberFormatSpecifier1[0]);
+            this.chart.DataToolTipValueFormatSpecifiers.Add(this.NumberFormatSpecifier3[0]);
+            this.chart.YAxisLabelFormatSpecifiers.Add(this.NumberFormatSpecifier5[0]);
         };
         this.BindElements();
 
