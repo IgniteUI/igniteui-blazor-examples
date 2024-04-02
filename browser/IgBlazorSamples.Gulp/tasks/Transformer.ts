@@ -454,7 +454,7 @@ class Transformer {
             }
         }
         if (foundErrors > 0) {
-            throw new Error('You must fixed above ' + foundErrors + ' errors before the Blazor Sample Browser can combine individual samples')
+            throw new Error('You must fix above errors before the Blazor Sample Browser can combine individual samples')
         }
     }
 
