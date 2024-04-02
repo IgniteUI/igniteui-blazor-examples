@@ -24,7 +24,7 @@ public class SalesData
 {
     public SalesData()
     {
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -40,7 +40,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -56,7 +56,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -72,7 +72,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -88,7 +88,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -104,7 +104,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -120,7 +120,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -136,7 +136,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -152,7 +152,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -168,7 +168,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -184,7 +184,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -200,7 +200,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -216,7 +216,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -232,7 +232,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -248,7 +248,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -264,7 +264,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Royal Oak",
@@ -280,7 +280,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -296,7 +296,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -312,7 +312,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -328,7 +328,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -344,7 +344,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -360,7 +360,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -376,7 +376,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -392,7 +392,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -408,7 +408,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -424,7 +424,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -440,7 +440,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -456,7 +456,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -472,7 +472,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -488,7 +488,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -504,7 +504,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -520,7 +520,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -536,7 +536,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -552,7 +552,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -568,7 +568,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -584,7 +584,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -600,7 +600,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -616,7 +616,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -632,7 +632,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Luxe",
@@ -648,7 +648,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -664,7 +664,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -680,7 +680,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Luxe",
@@ -696,7 +696,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -712,7 +712,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -728,7 +728,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -744,7 +744,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -760,7 +760,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -776,7 +776,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -792,7 +792,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -808,7 +808,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -824,7 +824,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -840,7 +840,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -856,7 +856,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -872,7 +872,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -888,7 +888,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -904,7 +904,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -920,7 +920,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -936,7 +936,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -952,7 +952,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -968,7 +968,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Royal Oak",
@@ -984,7 +984,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -1000,7 +1000,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -1016,7 +1016,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -1032,7 +1032,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -1048,7 +1048,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -1064,7 +1064,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -1080,7 +1080,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -1096,7 +1096,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -1112,7 +1112,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -1128,7 +1128,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -1144,7 +1144,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -1160,7 +1160,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -1176,7 +1176,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -1192,7 +1192,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -1208,7 +1208,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -1224,7 +1224,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -1240,7 +1240,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -1256,7 +1256,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -1272,7 +1272,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -1288,7 +1288,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -1304,7 +1304,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -1320,7 +1320,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -1336,7 +1336,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -1352,7 +1352,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Royal Oak",
@@ -1368,7 +1368,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Royal Oak",
@@ -1384,7 +1384,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -1400,7 +1400,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -1416,7 +1416,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -1432,7 +1432,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -1448,7 +1448,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -1464,7 +1464,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -1480,7 +1480,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -1496,7 +1496,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -1512,7 +1512,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -1528,7 +1528,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -1544,7 +1544,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -1560,7 +1560,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -1576,7 +1576,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -1592,7 +1592,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -1608,7 +1608,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -1624,7 +1624,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -1640,7 +1640,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -1656,7 +1656,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -1672,7 +1672,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -1688,7 +1688,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -1704,7 +1704,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -1720,7 +1720,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -1736,7 +1736,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -1752,7 +1752,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Luxe",
@@ -1768,7 +1768,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -1784,7 +1784,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -1800,7 +1800,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -1816,7 +1816,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -1832,7 +1832,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -1848,7 +1848,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -1864,7 +1864,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -1880,7 +1880,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -1896,7 +1896,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -1912,7 +1912,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -1928,7 +1928,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -1944,7 +1944,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -1960,7 +1960,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -1976,7 +1976,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -1992,7 +1992,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -2008,7 +2008,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -2024,7 +2024,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -2040,7 +2040,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -2056,7 +2056,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -2072,7 +2072,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -2088,7 +2088,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -2104,7 +2104,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -2120,7 +2120,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -2136,7 +2136,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -2152,7 +2152,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -2168,7 +2168,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -2184,7 +2184,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -2200,7 +2200,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -2216,7 +2216,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -2232,7 +2232,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -2248,7 +2248,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -2264,7 +2264,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -2280,7 +2280,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -2296,7 +2296,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -2312,7 +2312,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -2328,7 +2328,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -2344,7 +2344,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -2360,7 +2360,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -2376,7 +2376,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -2392,7 +2392,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -2408,7 +2408,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -2424,7 +2424,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -2440,7 +2440,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -2456,7 +2456,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -2472,7 +2472,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -2488,7 +2488,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -2504,7 +2504,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -2520,7 +2520,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -2536,7 +2536,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -2552,7 +2552,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -2568,7 +2568,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -2584,7 +2584,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -2600,7 +2600,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -2616,7 +2616,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -2632,7 +2632,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -2648,7 +2648,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -2664,7 +2664,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -2680,7 +2680,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -2696,7 +2696,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -2712,7 +2712,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -2728,7 +2728,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -2744,7 +2744,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -2760,7 +2760,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -2776,7 +2776,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -2792,7 +2792,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -2808,7 +2808,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -2824,7 +2824,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -2840,7 +2840,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -2856,7 +2856,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -2872,7 +2872,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Royal Oak",
@@ -2888,7 +2888,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -2904,7 +2904,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -2920,7 +2920,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -2936,7 +2936,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -2952,7 +2952,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -2968,7 +2968,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -2984,7 +2984,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -3000,7 +3000,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -3016,7 +3016,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -3032,7 +3032,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -3048,7 +3048,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -3064,7 +3064,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -3080,7 +3080,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -3096,7 +3096,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -3112,7 +3112,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -3128,7 +3128,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -3144,7 +3144,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -3160,7 +3160,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -3176,7 +3176,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -3192,7 +3192,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -3208,7 +3208,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -3224,7 +3224,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -3240,7 +3240,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -3256,7 +3256,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -3272,7 +3272,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -3288,7 +3288,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -3304,7 +3304,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -3320,7 +3320,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -3336,7 +3336,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -3352,7 +3352,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -3368,7 +3368,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -3384,7 +3384,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -3400,7 +3400,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Royal Oak",
@@ -3416,7 +3416,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -3432,7 +3432,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -3448,7 +3448,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -3464,7 +3464,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -3480,7 +3480,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -3496,7 +3496,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -3512,7 +3512,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -3528,7 +3528,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -3544,7 +3544,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Luxe",
@@ -3560,7 +3560,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -3576,7 +3576,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -3592,7 +3592,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -3608,7 +3608,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -3624,7 +3624,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -3640,7 +3640,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -3656,7 +3656,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -3672,7 +3672,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -3688,7 +3688,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -3704,7 +3704,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -3720,7 +3720,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -3736,7 +3736,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -3752,7 +3752,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -3768,7 +3768,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -3784,7 +3784,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -3800,7 +3800,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -3816,7 +3816,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -3832,7 +3832,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -3848,7 +3848,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -3864,7 +3864,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -3880,7 +3880,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -3896,7 +3896,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -3912,7 +3912,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -3928,7 +3928,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -3944,7 +3944,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -3960,7 +3960,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -3976,7 +3976,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -3992,7 +3992,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -4008,7 +4008,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -4024,7 +4024,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -4040,7 +4040,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -4056,7 +4056,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -4072,7 +4072,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -4088,7 +4088,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -4104,7 +4104,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -4120,7 +4120,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -4136,7 +4136,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -4152,7 +4152,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Luxe",
@@ -4168,7 +4168,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -4184,7 +4184,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -4200,7 +4200,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -4216,7 +4216,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Royal Oak",
@@ -4232,7 +4232,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -4248,7 +4248,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -4264,7 +4264,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -4280,7 +4280,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -4296,7 +4296,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -4312,7 +4312,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -4328,7 +4328,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -4344,7 +4344,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -4360,7 +4360,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -4376,7 +4376,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -4392,7 +4392,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -4408,7 +4408,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -4424,7 +4424,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -4440,7 +4440,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -4456,7 +4456,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -4472,7 +4472,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -4488,7 +4488,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -4504,7 +4504,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -4520,7 +4520,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -4536,7 +4536,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -4552,7 +4552,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -4568,7 +4568,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -4584,7 +4584,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -4600,7 +4600,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -4616,7 +4616,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -4632,7 +4632,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -4648,7 +4648,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -4664,7 +4664,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -4680,7 +4680,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -4696,7 +4696,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -4712,7 +4712,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -4728,7 +4728,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -4744,7 +4744,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -4760,7 +4760,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -4776,7 +4776,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -4792,7 +4792,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -4808,7 +4808,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -4824,7 +4824,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -4840,7 +4840,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -4856,7 +4856,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -4872,7 +4872,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -4888,7 +4888,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Royal Oak",
@@ -4904,7 +4904,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -4920,7 +4920,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -4936,7 +4936,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -4952,7 +4952,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -4968,7 +4968,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -4984,7 +4984,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -5000,7 +5000,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -5016,7 +5016,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -5032,7 +5032,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -5048,7 +5048,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -5064,7 +5064,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -5080,7 +5080,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -5096,7 +5096,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -5112,7 +5112,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -5128,7 +5128,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -5144,7 +5144,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -5160,7 +5160,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -5176,7 +5176,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -5192,7 +5192,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -5208,7 +5208,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -5224,7 +5224,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -5240,7 +5240,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -5256,7 +5256,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -5272,7 +5272,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -5288,7 +5288,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -5304,7 +5304,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -5320,7 +5320,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -5336,7 +5336,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -5352,7 +5352,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -5368,7 +5368,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -5384,7 +5384,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -5400,7 +5400,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -5416,7 +5416,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -5432,7 +5432,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -5448,7 +5448,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -5464,7 +5464,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -5480,7 +5480,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2020"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -5496,7 +5496,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -5512,7 +5512,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -5528,7 +5528,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -5544,7 +5544,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -5560,7 +5560,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -5576,7 +5576,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -5592,7 +5592,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -5608,7 +5608,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -5624,7 +5624,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -5640,7 +5640,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -5656,7 +5656,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -5672,7 +5672,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -5688,7 +5688,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -5704,7 +5704,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -5720,7 +5720,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Royal Oak",
@@ -5736,7 +5736,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -5752,7 +5752,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -5768,7 +5768,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -5784,7 +5784,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -5800,7 +5800,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -5816,7 +5816,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -5832,7 +5832,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -5848,7 +5848,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Marchesa",
@@ -5864,7 +5864,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -5880,7 +5880,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -5896,7 +5896,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -5912,7 +5912,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -5928,7 +5928,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -5944,7 +5944,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -5960,7 +5960,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -5976,7 +5976,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -5992,7 +5992,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -6008,7 +6008,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -6024,7 +6024,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -6040,7 +6040,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -6056,7 +6056,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -6072,7 +6072,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -6088,7 +6088,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -6104,7 +6104,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -6120,7 +6120,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -6136,7 +6136,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -6152,7 +6152,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -6168,7 +6168,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -6184,7 +6184,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -6200,7 +6200,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -6216,7 +6216,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Luxe",
@@ -6232,7 +6232,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -6248,7 +6248,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -6264,7 +6264,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Luxe",
@@ -6280,7 +6280,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -6296,7 +6296,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -6312,7 +6312,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -6328,7 +6328,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -6344,7 +6344,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -6360,7 +6360,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -6376,7 +6376,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -6392,7 +6392,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -6408,7 +6408,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -6424,7 +6424,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -6440,7 +6440,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -6456,7 +6456,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -6472,7 +6472,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -6488,7 +6488,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -6504,7 +6504,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -6520,7 +6520,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -6536,7 +6536,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -6552,7 +6552,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -6568,7 +6568,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -6584,7 +6584,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -6600,7 +6600,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Royal Oak",
@@ -6616,7 +6616,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -6632,7 +6632,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -6648,7 +6648,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Royal Oak",
@@ -6664,7 +6664,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Royal Oak",
@@ -6680,7 +6680,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -6696,7 +6696,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -6712,7 +6712,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -6728,7 +6728,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -6744,7 +6744,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -6760,7 +6760,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -6776,7 +6776,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -6792,7 +6792,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -6808,7 +6808,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -6824,7 +6824,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -6840,7 +6840,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -6856,7 +6856,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -6872,7 +6872,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -6888,7 +6888,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -6904,7 +6904,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -6920,7 +6920,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -6936,7 +6936,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -6952,7 +6952,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -6968,7 +6968,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -6984,7 +6984,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -7000,7 +7000,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -7016,7 +7016,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -7032,7 +7032,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -7048,7 +7048,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Luxe",
@@ -7064,7 +7064,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -7080,7 +7080,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -7096,7 +7096,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -7112,7 +7112,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -7128,7 +7128,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -7144,7 +7144,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Royal Oak",
@@ -7160,7 +7160,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Royal Oak",
@@ -7176,7 +7176,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -7192,7 +7192,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -7208,7 +7208,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -7224,7 +7224,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -7240,7 +7240,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -7256,7 +7256,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -7272,7 +7272,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -7288,7 +7288,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -7304,7 +7304,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -7320,7 +7320,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -7336,7 +7336,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -7352,7 +7352,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -7368,7 +7368,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -7384,7 +7384,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -7400,7 +7400,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -7416,7 +7416,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -7432,7 +7432,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -7448,7 +7448,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -7464,7 +7464,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -7480,7 +7480,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -7496,7 +7496,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -7512,7 +7512,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -7528,7 +7528,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -7544,7 +7544,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -7560,7 +7560,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -7576,7 +7576,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -7592,7 +7592,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -7608,7 +7608,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -7624,7 +7624,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -7640,7 +7640,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -7656,7 +7656,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -7672,7 +7672,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -7688,7 +7688,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -7704,7 +7704,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -7720,7 +7720,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -7736,7 +7736,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -7752,7 +7752,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -7768,7 +7768,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Luxe",
@@ -7784,7 +7784,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -7800,7 +7800,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -7816,7 +7816,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -7832,7 +7832,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -7848,7 +7848,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -7864,7 +7864,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -7880,7 +7880,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -7896,7 +7896,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -7912,7 +7912,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -7928,7 +7928,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -7944,7 +7944,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -7960,7 +7960,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -7976,7 +7976,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -7992,7 +7992,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -8008,7 +8008,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -8024,7 +8024,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -8040,7 +8040,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -8056,7 +8056,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -8072,7 +8072,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -8088,7 +8088,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -8104,7 +8104,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -8120,7 +8120,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -8136,7 +8136,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -8152,7 +8152,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -8168,7 +8168,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -8184,7 +8184,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -8200,7 +8200,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -8216,7 +8216,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -8232,7 +8232,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -8248,7 +8248,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -8264,7 +8264,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -8280,7 +8280,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -8296,7 +8296,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -8312,7 +8312,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -8328,7 +8328,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -8344,7 +8344,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -8360,7 +8360,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -8376,7 +8376,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -8392,7 +8392,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -8408,7 +8408,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -8424,7 +8424,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -8440,7 +8440,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -8456,7 +8456,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -8472,7 +8472,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -8488,7 +8488,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -8504,7 +8504,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -8520,7 +8520,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -8536,7 +8536,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -8552,7 +8552,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -8568,7 +8568,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -8584,7 +8584,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -8600,7 +8600,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -8616,7 +8616,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -8632,7 +8632,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -8648,7 +8648,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -8664,7 +8664,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -8680,7 +8680,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -8696,7 +8696,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -8712,7 +8712,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -8728,7 +8728,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -8744,7 +8744,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -8760,7 +8760,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -8776,7 +8776,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -8792,7 +8792,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -8808,7 +8808,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -8824,7 +8824,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -8840,7 +8840,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -8856,7 +8856,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -8872,7 +8872,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -8888,7 +8888,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -8904,7 +8904,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -8920,7 +8920,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -8936,7 +8936,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -8952,7 +8952,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -8968,7 +8968,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -8984,7 +8984,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -9000,7 +9000,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -9016,7 +9016,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -9032,7 +9032,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -9048,7 +9048,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -9064,7 +9064,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -9080,7 +9080,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -9096,7 +9096,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -9112,7 +9112,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -9128,7 +9128,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -9144,7 +9144,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -9160,7 +9160,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -9176,7 +9176,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -9192,7 +9192,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -9208,7 +9208,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Royal Oak",
@@ -9224,7 +9224,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -9240,7 +9240,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -9256,7 +9256,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -9272,7 +9272,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -9288,7 +9288,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -9304,7 +9304,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -9320,7 +9320,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -9336,7 +9336,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -9352,7 +9352,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -9368,7 +9368,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -9384,7 +9384,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -9400,7 +9400,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -9416,7 +9416,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -9432,7 +9432,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -9448,7 +9448,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -9464,7 +9464,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -9480,7 +9480,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -9496,7 +9496,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -9512,7 +9512,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -9528,7 +9528,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -9544,7 +9544,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -9560,7 +9560,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -9576,7 +9576,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -9592,7 +9592,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -9608,7 +9608,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -9624,7 +9624,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -9640,7 +9640,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -9656,7 +9656,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -9672,7 +9672,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -9688,7 +9688,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -9704,7 +9704,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -9720,7 +9720,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -9736,7 +9736,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -9752,7 +9752,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -9768,7 +9768,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -9784,7 +9784,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -9800,7 +9800,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -9816,7 +9816,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -9832,7 +9832,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -9848,7 +9848,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -9864,7 +9864,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -9880,7 +9880,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -9896,7 +9896,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -9912,7 +9912,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -9928,7 +9928,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -9944,7 +9944,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -9960,7 +9960,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -9976,7 +9976,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -9992,7 +9992,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -10008,7 +10008,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -10024,7 +10024,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Royal Oak",
@@ -10040,7 +10040,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -10056,7 +10056,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -10072,7 +10072,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -10088,7 +10088,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -10104,7 +10104,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -10120,7 +10120,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -10136,7 +10136,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -10152,7 +10152,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -10168,7 +10168,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -10184,7 +10184,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -10200,7 +10200,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -10216,7 +10216,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -10232,7 +10232,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -10248,7 +10248,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -10264,7 +10264,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -10280,7 +10280,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Luxe",
@@ -10296,7 +10296,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -10312,7 +10312,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -10328,7 +10328,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Luxe",
@@ -10344,7 +10344,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Luxe",
@@ -10360,7 +10360,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -10376,7 +10376,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -10392,7 +10392,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -10408,7 +10408,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -10424,7 +10424,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -10440,7 +10440,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -10456,7 +10456,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -10472,7 +10472,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -10488,7 +10488,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -10504,7 +10504,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -10520,7 +10520,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -10536,7 +10536,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -10552,7 +10552,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -10568,7 +10568,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -10584,7 +10584,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -10600,7 +10600,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -10616,7 +10616,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -10632,7 +10632,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -10648,7 +10648,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -10664,7 +10664,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -10680,7 +10680,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -10696,7 +10696,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -10712,7 +10712,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -10728,7 +10728,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -10744,7 +10744,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -10760,7 +10760,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -10776,7 +10776,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -10792,7 +10792,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -10808,7 +10808,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -10824,7 +10824,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -10840,7 +10840,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -10856,7 +10856,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -10872,7 +10872,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -10888,7 +10888,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -10904,7 +10904,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -10920,7 +10920,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -10936,7 +10936,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -10952,7 +10952,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -10968,7 +10968,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -10984,7 +10984,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -11000,7 +11000,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -11016,7 +11016,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -11032,7 +11032,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -11048,7 +11048,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -11064,7 +11064,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -11080,7 +11080,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -11096,7 +11096,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -11112,7 +11112,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -11128,7 +11128,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -11144,7 +11144,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Luxe",
@@ -11160,7 +11160,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -11176,7 +11176,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -11192,7 +11192,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -11208,7 +11208,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -11224,7 +11224,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Royal Oak",
@@ -11240,7 +11240,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -11256,7 +11256,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -11272,7 +11272,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -11288,7 +11288,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -11304,7 +11304,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -11320,7 +11320,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -11336,7 +11336,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -11352,7 +11352,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -11368,7 +11368,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -11384,7 +11384,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -11400,7 +11400,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -11416,7 +11416,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -11432,7 +11432,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -11448,7 +11448,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -11464,7 +11464,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -11480,7 +11480,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -11496,7 +11496,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -11512,7 +11512,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -11528,7 +11528,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -11544,7 +11544,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -11560,7 +11560,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -11576,7 +11576,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -11592,7 +11592,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -11608,7 +11608,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -11624,7 +11624,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -11640,7 +11640,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -11656,7 +11656,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -11672,7 +11672,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -11688,7 +11688,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -11704,7 +11704,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -11720,7 +11720,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -11736,7 +11736,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -11752,7 +11752,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -11768,7 +11768,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -11784,7 +11784,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -11800,7 +11800,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -11816,7 +11816,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -11832,7 +11832,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -11848,7 +11848,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -11864,7 +11864,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -11880,7 +11880,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -11896,7 +11896,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -11912,7 +11912,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -11928,7 +11928,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -11944,7 +11944,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -11960,7 +11960,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -11976,7 +11976,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -11992,7 +11992,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -12008,7 +12008,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -12024,7 +12024,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -12040,7 +12040,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -12056,7 +12056,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -12072,7 +12072,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Royal Oak",
@@ -12088,7 +12088,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -12104,7 +12104,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -12120,7 +12120,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -12136,7 +12136,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -12152,7 +12152,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -12168,7 +12168,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -12184,7 +12184,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -12200,7 +12200,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -12216,7 +12216,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -12232,7 +12232,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -12248,7 +12248,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -12264,7 +12264,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -12280,7 +12280,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -12296,7 +12296,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -12312,7 +12312,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -12328,7 +12328,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -12344,7 +12344,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -12360,7 +12360,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -12376,7 +12376,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -12392,7 +12392,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -12408,7 +12408,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -12424,7 +12424,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -12440,7 +12440,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -12456,7 +12456,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -12472,7 +12472,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -12488,7 +12488,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -12504,7 +12504,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -12520,7 +12520,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -12536,7 +12536,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -12552,7 +12552,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -12568,7 +12568,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -12584,7 +12584,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -12600,7 +12600,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -12616,7 +12616,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -12632,7 +12632,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -12648,7 +12648,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -12664,7 +12664,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -12680,7 +12680,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -12696,7 +12696,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -12712,7 +12712,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -12728,7 +12728,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -12744,7 +12744,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -12760,7 +12760,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Luxe",
@@ -12776,7 +12776,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -12792,7 +12792,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Royal Oak",
@@ -12808,7 +12808,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -12824,7 +12824,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -12840,7 +12840,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -12856,7 +12856,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Royal Oak",
@@ -12872,7 +12872,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Royal Oak",
@@ -12888,7 +12888,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -12904,7 +12904,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -12920,7 +12920,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -12936,7 +12936,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -12952,7 +12952,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -12968,7 +12968,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -12984,7 +12984,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -13000,7 +13000,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -13016,7 +13016,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -13032,7 +13032,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -13048,7 +13048,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -13064,7 +13064,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -13080,7 +13080,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -13096,7 +13096,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -13112,7 +13112,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -13128,7 +13128,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -13144,7 +13144,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -13160,7 +13160,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -13176,7 +13176,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -13192,7 +13192,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -13208,7 +13208,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -13224,7 +13224,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -13240,7 +13240,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -13256,7 +13256,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -13272,7 +13272,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -13288,7 +13288,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -13304,7 +13304,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -13320,7 +13320,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -13336,7 +13336,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -13352,7 +13352,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -13368,7 +13368,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Luxe",
@@ -13384,7 +13384,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Luxe",
@@ -13400,7 +13400,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -13416,7 +13416,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -13432,7 +13432,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -13448,7 +13448,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -13464,7 +13464,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -13480,7 +13480,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -13496,7 +13496,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -13512,7 +13512,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -13528,7 +13528,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -13544,7 +13544,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -13560,7 +13560,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -13576,7 +13576,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -13592,7 +13592,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -13608,7 +13608,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -13624,7 +13624,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -13640,7 +13640,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -13656,7 +13656,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -13672,7 +13672,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -13688,7 +13688,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -13704,7 +13704,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -13720,7 +13720,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -13736,7 +13736,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -13752,7 +13752,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -13768,7 +13768,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -13784,7 +13784,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -13800,7 +13800,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -13816,7 +13816,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -13832,7 +13832,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -13848,7 +13848,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -13864,7 +13864,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -13880,7 +13880,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -13896,7 +13896,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -13912,7 +13912,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -13928,7 +13928,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -13944,7 +13944,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -13960,7 +13960,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -13976,7 +13976,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -13992,7 +13992,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Luxe",
@@ -14008,7 +14008,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -14024,7 +14024,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -14040,7 +14040,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -14056,7 +14056,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -14072,7 +14072,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -14088,7 +14088,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -14104,7 +14104,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -14120,7 +14120,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -14136,7 +14136,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Royal Oak",
@@ -14152,7 +14152,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -14168,7 +14168,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -14184,7 +14184,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -14200,7 +14200,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -14216,7 +14216,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -14232,7 +14232,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -14248,7 +14248,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -14264,7 +14264,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -14280,7 +14280,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -14296,7 +14296,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -14312,7 +14312,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -14328,7 +14328,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -14344,7 +14344,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -14360,7 +14360,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -14376,7 +14376,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -14392,7 +14392,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -14408,7 +14408,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -14424,7 +14424,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -14440,7 +14440,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -14456,7 +14456,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -14472,7 +14472,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -14488,7 +14488,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -14504,7 +14504,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -14520,7 +14520,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -14536,7 +14536,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -14552,7 +14552,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -14568,7 +14568,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Luxe",
@@ -14584,7 +14584,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -14600,7 +14600,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -14616,7 +14616,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -14632,7 +14632,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -14648,7 +14648,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -14664,7 +14664,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -14680,7 +14680,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -14696,7 +14696,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -14712,7 +14712,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -14728,7 +14728,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -14744,7 +14744,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -14760,7 +14760,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -14776,7 +14776,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -14792,7 +14792,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Royal Oak",
@@ -14808,7 +14808,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Royal Oak",
@@ -14824,7 +14824,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -14840,7 +14840,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -14856,7 +14856,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -14872,7 +14872,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -14888,7 +14888,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -14904,7 +14904,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -14920,7 +14920,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -14936,7 +14936,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -14952,7 +14952,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -14968,7 +14968,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -14984,7 +14984,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -15000,7 +15000,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -15016,7 +15016,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -15032,7 +15032,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -15048,7 +15048,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -15064,7 +15064,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -15080,7 +15080,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -15096,7 +15096,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -15112,7 +15112,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -15128,7 +15128,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -15144,7 +15144,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -15160,7 +15160,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -15176,7 +15176,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -15192,7 +15192,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -15208,7 +15208,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -15224,7 +15224,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -15240,7 +15240,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Luxe",
@@ -15256,7 +15256,7 @@ public class SalesData
             MonthName = @"June",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -15272,7 +15272,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Luxe",
@@ -15288,7 +15288,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -15304,7 +15304,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -15320,7 +15320,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -15336,7 +15336,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -15352,7 +15352,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Royal Oak",
@@ -15368,7 +15368,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Royal Oak",
@@ -15384,7 +15384,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -15400,7 +15400,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -15416,7 +15416,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -15432,7 +15432,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -15448,7 +15448,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -15464,7 +15464,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Luxe",
@@ -15480,7 +15480,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -15496,7 +15496,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -15512,7 +15512,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -15528,7 +15528,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -15544,7 +15544,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Kensington",
@@ -15560,7 +15560,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -15576,7 +15576,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Kensington",
@@ -15592,7 +15592,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Kensington",
@@ -15608,7 +15608,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -15624,7 +15624,7 @@ public class SalesData
             MonthName = @"January",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Royal Oak",
@@ -15640,7 +15640,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -15656,7 +15656,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -15672,7 +15672,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -15688,7 +15688,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Royal Oak",
@@ -15704,7 +15704,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -15720,7 +15720,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -15736,7 +15736,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -15752,7 +15752,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -15768,7 +15768,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -15784,7 +15784,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -15800,7 +15800,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -15816,7 +15816,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -15832,7 +15832,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -15848,7 +15848,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -15864,7 +15864,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -15880,7 +15880,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -15896,7 +15896,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Burlington",
@@ -15912,7 +15912,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Burlington",
@@ -15928,7 +15928,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Mandarin",
@@ -15944,7 +15944,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -15960,7 +15960,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -15976,7 +15976,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -15992,7 +15992,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -16008,7 +16008,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -16024,7 +16024,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -16040,7 +16040,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -16056,7 +16056,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Luxe",
@@ -16072,7 +16072,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Luxe",
@@ -16088,7 +16088,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Luxe",
@@ -16104,7 +16104,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Luxe",
@@ -16120,7 +16120,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -16136,7 +16136,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -16152,7 +16152,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Kensington",
@@ -16168,7 +16168,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -16184,7 +16184,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Kensington",
@@ -16200,7 +16200,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -16216,7 +16216,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -16232,7 +16232,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -16248,7 +16248,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -16264,7 +16264,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -16280,7 +16280,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -16296,7 +16296,7 @@ public class SalesData
             MonthName = @"August",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -16312,7 +16312,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -16328,7 +16328,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Vermont",
@@ -16344,7 +16344,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -16360,7 +16360,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Vermont",
@@ -16376,7 +16376,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Vermont",
@@ -16392,7 +16392,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Vermont",
@@ -16408,7 +16408,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Burlington",
@@ -16424,7 +16424,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -16440,7 +16440,7 @@ public class SalesData
             MonthName = @"May",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Burlington",
@@ -16456,7 +16456,7 @@ public class SalesData
             MonthName = @"September",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -16472,7 +16472,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -16488,7 +16488,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Burlington",
@@ -16504,7 +16504,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -16520,7 +16520,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -16536,7 +16536,7 @@ public class SalesData
             MonthName = @"July",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
@@ -16552,7 +16552,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -16568,7 +16568,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Mandarin",
@@ -16584,7 +16584,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2018"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"India",
             Product = @"Mandarin",
@@ -16600,7 +16600,7 @@ public class SalesData
             MonthName = @"November",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Mandarin",
@@ -16616,7 +16616,7 @@ public class SalesData
             MonthName = @"December",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"UK",
             Product = @"Luxe",
@@ -16632,7 +16632,7 @@ public class SalesData
             MonthName = @"March",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Luxe",
@@ -16648,7 +16648,7 @@ public class SalesData
             MonthName = @"October",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
@@ -16664,7 +16664,7 @@ public class SalesData
             MonthName = @"February",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"Japan",
             Product = @"Vermont",
@@ -16680,7 +16680,7 @@ public class SalesData
             MonthName = @"April",
             Year = @"2019"
         });
-        this.Add(new SalesDataItem()
+        Add(new SalesDataItem
         {
             Country = @"USA",
             Product = @"Mandarin",
