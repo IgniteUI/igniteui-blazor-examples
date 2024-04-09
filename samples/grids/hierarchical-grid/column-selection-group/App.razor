@@ -1,0 +1,202 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbHierarchicalGrid
+        Data="HierarchicalCustomers"
+        ColumnSelection="GridSelectionMode.Multiple"
+        Name="hierarchicalGrid1"
+        @ref="hierarchicalGrid1">
+            <IgbColumnGroup
+            Header="General Information">
+                <IgbColumn
+                Field="CompanyName"
+                Header="Company">
+                </IgbColumn>
+
+                <IgbColumnGroup
+                Header="Personal Details">
+                    <IgbColumn
+                    Field="ContactName"
+                    Header="Name">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="ContactTitle"
+                    Header="Title">
+                    </IgbColumn>
+
+                </IgbColumnGroup>
+
+            </IgbColumnGroup>
+
+            <IgbColumnGroup
+            Header="Address Information">
+                <IgbColumnGroup
+                Header="Location">
+                    <IgbColumn
+                    Field="Address"
+                    Header="Address"
+                    Selectable="false">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="City"
+                    Header="City">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="PostalCode"
+                    Header="Postal Code"
+                    Selectable="false">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Country"
+                    Header="Country"
+                    Selectable="false">
+                    </IgbColumn>
+
+                </IgbColumnGroup>
+
+                <IgbColumnGroup
+                Header="Contact Information">
+                    <IgbColumn
+                    Field="Phone">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Fax">
+                    </IgbColumn>
+
+                </IgbColumnGroup>
+
+            </IgbColumnGroup>
+
+            <IgbRowIsland
+            ChildDataKey="Orders"
+            AutoGenerate="false"
+            ColumnSelection="GridSelectionMode.Multiple">
+                <IgbColumnGroup
+                Header="Order Information">
+                    <IgbColumnGroup
+                    Header="Order Details">
+                        <IgbColumn
+                        Field="OrderID">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="EmployeeID">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="OrderDate"
+                        DataType="GridColumnDataType.Date">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="RequiredDate"
+                        DataType="GridColumnDataType.Date">
+                        </IgbColumn>
+
+                    </IgbColumnGroup>
+
+                    <IgbColumnGroup
+                    Header="General Shipping Information">
+                        <IgbColumn
+                        Field="ShippedDate"
+                        DataType="GridColumnDataType.Date">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="ShipVia"
+                        Selectable="false">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="Freight"
+                        Selectable="false">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="ShipName">
+                        </IgbColumn>
+
+                    </IgbColumnGroup>
+
+                    <IgbColumnGroup
+                    Header="Shipping Location">
+                        <IgbColumn
+                        Field="ShipAddress">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="ShipCity">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="ShipPostalCode">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="ShipCountry">
+                        </IgbColumn>
+
+                    </IgbColumnGroup>
+
+                </IgbColumnGroup>
+
+                <IgbRowIsland
+                ChildDataKey="OrderDetails"
+                AutoGenerate="false"
+                ColumnSelection="GridSelectionMode.Single">
+                    <IgbColumn
+                    Field="ProductID">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="UnitPrice">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Quantity"
+                    Selectable="false">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Discount">
+                    </IgbColumn>
+
+                </IgbRowIsland>
+
+            </IgbRowIsland>
+
+        </IgbHierarchicalGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var hierarchicalGrid1 = this.hierarchicalGrid1;
+
+    }
+
+    private IgbHierarchicalGrid hierarchicalGrid1;
+
+    private HierarchicalCustomers _hierarchicalCustomers = null;
+    public HierarchicalCustomers HierarchicalCustomers
+    {
+        get
+        {
+            if (_hierarchicalCustomers == null)
+            {
+                _hierarchicalCustomers = new HierarchicalCustomers();
+            }
+            return _hierarchicalCustomers;
+        }
+    }
+
+}
