@@ -30,25 +30,17 @@ igRegisterScript("OnGridCreated", (args) => {
     });
 }, false)
 
-const DATA_URL = `https://services.odata.org/V4/Northwind/Northwind.svc/`;
-
 function getData(dataState) {
-    return fetch(buildUrl(dataState))
-        .then((result) => result.json())
-        .then((data) => data["value"]);
-}
+    const key = dataState.key;
+    let resultData = DATA[key];
 
-function buildUrl(dataState) {
-    let qS = "";
-    if (dataState) {
-        qS += `${dataState.key}?`;
-        if (!dataState.rootLevel) {
-            if (typeof dataState.parentID === "string") {
-                qS += `$filter=${dataState.parentKey} eq '${dataState.parentID}'`;
-            } else {
-                qS += `$filter=${dataState.parentKey} eq ${dataState.parentID}`;
-            }
-        }
+    if (!dataState.rootLevel) {
+        resultData = resultData.filter((record) => record[dataState.parentKey] === dataState.parentID);
     }
-    return `${DATA_URL}${qS}`;
+
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(resultData);
+        }, 1000);
+    });
 }
