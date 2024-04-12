@@ -1,0 +1,171 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+
+        DescriptionType="WebHierarchicalGrid"
+        IsWrappingEnabled="true"
+        IsHorizontal="true"
+
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
+            <IgbPropertyEditorPropertyDescription
+            Name="selectionType"
+            @ref="selectionType"
+            PropertyPath="RowSelection">
+            </IgbPropertyEditorPropertyDescription>
+
+            <IgbPropertyEditorPropertyDescription
+            Name="hideRowSelectors"
+            @ref="hideRowSelectors"
+            PropertyPath="HideRowSelectors">
+            </IgbPropertyEditorPropertyDescription>
+
+        </IgbPropertyEditorPanel>
+
+    </div>
+    <div class="container vertical fill">
+        <IgbHierarchicalGrid
+        AutoGenerate="false"
+        Data="SingersData"
+        Name="hierarchicalGrid"
+        @ref="hierarchicalGrid"
+        Id="hierarchicalGrid"
+        PrimaryKey="ID"
+        AllowFiltering="true">
+            <IgbColumn
+            Field="Artist">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Photo"
+            DataType="GridColumnDataType.Image">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Debut">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="GrammyNominations"
+            Header="Grammy Nominations">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="GrammyAwards"
+            Header="Grammy Awards">
+            </IgbColumn>
+
+            <IgbRowIsland
+            ChildDataKey="Albums"
+            AutoGenerate="false">
+                <IgbColumn
+                Field="Album">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="LaunchDate"
+                Header="Launch Date"
+                DataType="GridColumnDataType.Date">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="BillboardReview"
+                Header="Billboard Review">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="USBillboard200"
+                Header="US Billboard 200">
+                </IgbColumn>
+
+                <IgbRowIsland
+                ChildDataKey="Songs"
+                AutoGenerate="false">
+                    <IgbColumn
+                    Field="Number"
+                    Header="No.">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Title">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Released"
+                    DataType="GridColumnDataType.Date">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Genre">
+                    </IgbColumn>
+
+                </IgbRowIsland>
+
+            </IgbRowIsland>
+
+            <IgbRowIsland
+            ChildDataKey="Tours"
+            AutoGenerate="false">
+                <IgbColumn
+                Field="Tour">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="StartedOn"
+                Header="Started on">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="Location">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="Headliner">
+                </IgbColumn>
+
+            </IgbRowIsland>
+
+        </IgbHierarchicalGrid>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var selectionType = this.selectionType;
+        var hideRowSelectors = this.hideRowSelectors;
+        var hierarchicalGrid = this.hierarchicalGrid;
+
+        this.BindElements = () => {
+            propertyEditorPanel1.Target = this.hierarchicalGrid;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription selectionType;
+    private IgbPropertyEditorPropertyDescription hideRowSelectors;
+    private IgbHierarchicalGrid hierarchicalGrid;
+
+    private SingersData _singersData = null;
+    public SingersData SingersData
+    {
+        get
+        {
+            if (_singersData == null)
+            {
+                _singersData = new SingersData();
+            }
+            return _singersData;
+        }
+    }
+
+}
