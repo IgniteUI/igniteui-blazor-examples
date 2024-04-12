@@ -67,26 +67,15 @@
             XMemberPath="Population"
             YMemberPath="PublicDebt"
             RadiusMemberPath="GdpPerCapita"
+            RadiusScale="SizeScale1"
             FillMemberPath="GdpPerCapita"
             XAxisName="xAxis"
             YAxisName="yAxis"
             DataSource="WorldDebtAndPopulation"
             MarkerType="MarkerType.Circle"
             MarkerOutline="black"
-            ShowDefaultTooltip="true">
-                <IgbSizeScale
-                IsLogarithmic="false"
-                MinimumValue="10"
-                MaximumValue="120">
-                </IgbSizeScale>
-
-                <IgbValueBrushScale
-                IsLogarithmic="false"
-                MinimumValue="0"
-                MaximumValue="100000"
-                Brushes="#1aa1e2 #189ad9 #1692ce #1385bc #0f79ab #0c6b99 #095e88 #055277 #024669 #003f5e">
-                </IgbValueBrushScale>
-
+            ShowDefaultTooltip="true"
+            FillScale="ValueBrushScale1">
             </IgbBubbleSeries>
 
         </IgbDataChart>
@@ -122,6 +111,39 @@
     private IgbNumericXAxis xAxis;
     private IgbNumericYAxis yAxis;
     private IgbBubbleSeries bubbleSeries1;
+    private IgbSizeScale _sizeScale1 = null;
+    public IgbSizeScale SizeScale1
+    {
+        get
+        {
+            if (this._sizeScale1 == null)
+            {
+                var sizeScale1 = new IgbSizeScale();
+                sizeScale1.IsLogarithmic = false;
+                sizeScale1.MinimumValue = 10;
+                sizeScale1.MaximumValue = 120;
+                this._sizeScale1 = sizeScale1;
+            }
+            return this._sizeScale1;
+        }
+    }
+    private IgbValueBrushScale _valueBrushScale1 = null;
+    public IgbValueBrushScale ValueBrushScale1
+    {
+        get
+        {
+            if (this._valueBrushScale1 == null)
+            {
+                var valueBrushScale1 = new IgbValueBrushScale();
+                valueBrushScale1.IsLogarithmic = false;
+                valueBrushScale1.MinimumValue = 0;
+                valueBrushScale1.MaximumValue = 100000;
+                valueBrushScale1.Brushes = "#1aa1e2 #189ad9 #1692ce #1385bc #0f79ab #0c6b99 #095e88 #055277 #024669 #003f5e";
+                this._valueBrushScale1 = valueBrushScale1;
+            }
+            return this._valueBrushScale1;
+        }
+    }
 
     public void ScatterBubbleSeriesFillScaleSliderChanged(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
     {

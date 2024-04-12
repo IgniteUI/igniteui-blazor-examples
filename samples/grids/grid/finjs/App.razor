@@ -490,7 +490,9 @@
 
     public void OnCellClick(IgbGridCellEventArgs e)
     {
-        if (e.Detail.Cell.Column.Field == "Chart")
+        int colIndex = e.Detail.Cell.Id.ColumnID;
+        IgbColumn column = grid1.ActualColumns.ElementAt(colIndex);
+        if (column.Field == "Chart")
         {
             string key = e.Detail.Cell.Id.RowID;
             this.ShowChartForRow(key);

@@ -1,27 +1,13 @@
 
 @using IgniteUI.Blazor.Controls
 
-<style>
-    igc-slider
-    {
-        padding: 5px 30px 0px 30px;
-        flex-grow: 1;
-    }
-
-    .slider-label {
-        width: 100px;
-        text-align: end;
-    }
-</style>
-
 <div class="container sample center">
-    <div>
-        <span class="slider-label">Optical Scaling</span>
-        <IgbSwitch Checked=true CheckedChanged="ToggleOpticalScaling"></IgbSwitch>
-    </div>
-    <div class="slider-container">
-        <span class="slider-label">Radial Gauge Size:</span>
-        <IgbSlider @ref=slider1 Change="OnGaugeSizeChanged" Max="100" Min="50" Step="10" Value="100"></IgbSlider>
+    <div class="options horizontal">
+        <label class="options-label">Optical Scaling: </label>
+        <label class="options-label">
+        <input type="checkbox" id="checkbox1" checked="true" @onchange="ToggleOpticalScaling" /> Resize Gauge: </label>
+        <input class="options-slider" id="slider" type="range" min="20" max="100" step="10" value="100" @onchange="OnGaugeSizeChanged" />
+ 
     </div>
     <div class="container vertical">
 
@@ -46,17 +32,17 @@
     private string gaugeWidth { get; set; } = "100%";
     private string gaugeHeight { get; set; } = "100%";
 
-    private void ToggleOpticalScaling(bool isChecked)
+    private void ToggleOpticalScaling(ChangeEventArgs e)
     {
-        this.OpticalScalingToggle = isChecked;
+        this.OpticalScalingToggle = (bool)e.Value;
     }
 
-    private void OnGaugeSizeChanged(IgbNumberEventArgs e)
+    private void OnGaugeSizeChanged(ChangeEventArgs e)
     {
         if (e != null)
         {
-            gaugeWidth = e.Detail.ToString() + "%";
-            gaugeHeight = e.Detail.ToString() + "%";
+            gaugeWidth = e.Value.ToString() + "%";
+            gaugeHeight = e.Value.ToString() + "%";
         }
     }
 }

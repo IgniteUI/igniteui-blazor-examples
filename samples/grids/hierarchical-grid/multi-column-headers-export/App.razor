@@ -1,0 +1,322 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbHierarchicalGrid
+        AutoGenerate="false"
+        Data="MultiColumnsExportData"
+        PrimaryKey="ID"
+        Moving="true"
+        AllowFiltering="true"
+        Name="hierarchicalGrid1"
+        @ref="hierarchicalGrid1">
+            <IgbGridToolbar
+            >
+                <IgbGridToolbarActions
+                >
+                    <IgbGridToolbarExporter
+                    ExportCSV="false"
+                    ExportExcel="true"
+                    Name="hGridToolbarExporter"
+                    @ref="hGridToolbarExporter"
+                    ExportStartedScript="WebHierarchicalGridExportMultiColumnHeaders">
+                    </IgbGridToolbarExporter>
+
+                </IgbGridToolbarActions>
+
+            </IgbGridToolbar>
+
+            <IgbColumnGroup
+            Header="General Information">
+                <IgbColumn
+                Field="CompanyName"
+                DataType="GridColumnDataType.String"
+                Sortable="true"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumnGroup
+                Header="Personal Details">
+                    <IgbColumn
+                    Field="ContactName"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="ContactTitle"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                </IgbColumnGroup>
+
+            </IgbColumnGroup>
+
+            <IgbColumnGroup
+            Header="Address Information">
+                <IgbColumnGroup
+                Header="Location">
+                    <IgbColumn
+                    Field="Address"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="City"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="PostalCode"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Country"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                </IgbColumnGroup>
+
+                <IgbColumnGroup
+                Header="Contact Information">
+                    <IgbColumn
+                    Field="Phone"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Fax"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                </IgbColumnGroup>
+
+            </IgbColumnGroup>
+
+            <IgbRowIsland
+            ChildDataKey="ChildCompanies"
+            AutoGenerate="false"
+            Moving="true">
+                <IgbColumnGroup
+                Header="General Information">
+                    <IgbColumn
+                    Field="CompanyName"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumnGroup
+                    Header="Personal Details">
+                        <IgbColumn
+                        Field="ContactName"
+                        DataType="GridColumnDataType.String"
+                        Sortable="true"
+                        Resizable="true">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="ContactTitle"
+                        DataType="GridColumnDataType.String"
+                        Sortable="true"
+                        Resizable="true">
+                        </IgbColumn>
+
+                    </IgbColumnGroup>
+
+                </IgbColumnGroup>
+
+                <IgbColumnGroup
+                Header="Address Information">
+                    <IgbColumnGroup
+                    Header="Location">
+                        <IgbColumn
+                        Field="Address"
+                        DataType="GridColumnDataType.String"
+                        Sortable="true"
+                        Resizable="true">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="City"
+                        DataType="GridColumnDataType.String"
+                        Sortable="true"
+                        Resizable="true">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="PostalCode"
+                        DataType="GridColumnDataType.String"
+                        Sortable="true"
+                        Resizable="true">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="Country"
+                        DataType="GridColumnDataType.String"
+                        Sortable="true"
+                        Resizable="true">
+                        </IgbColumn>
+
+                    </IgbColumnGroup>
+
+                    <IgbColumnGroup
+                    Header="Contact Information">
+                        <IgbColumn
+                        Field="Phone"
+                        DataType="GridColumnDataType.String"
+                        Sortable="true"
+                        Resizable="true">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="Fax"
+                        DataType="GridColumnDataType.String"
+                        Sortable="true"
+                        Resizable="true">
+                        </IgbColumn>
+
+                    </IgbColumnGroup>
+
+                </IgbColumnGroup>
+
+                <IgbRowIsland
+                ChildDataKey="ChildCompanies"
+                AutoGenerate="false"
+                Moving="true">
+                    <IgbColumnGroup
+                    Header="General Information">
+                        <IgbColumn
+                        Field="CompanyName"
+                        DataType="GridColumnDataType.String"
+                        Sortable="true"
+                        Resizable="true">
+                        </IgbColumn>
+
+                        <IgbColumnGroup
+                        Header="Personal Details">
+                            <IgbColumn
+                            Field="ContactName"
+                            DataType="GridColumnDataType.String"
+                            Sortable="true"
+                            Resizable="true">
+                            </IgbColumn>
+
+                            <IgbColumn
+                            Field="ContactTitle"
+                            DataType="GridColumnDataType.String"
+                            Sortable="true"
+                            Resizable="true">
+                            </IgbColumn>
+
+                        </IgbColumnGroup>
+
+                    </IgbColumnGroup>
+
+                    <IgbColumnGroup
+                    Header="Address Information">
+                        <IgbColumnGroup
+                        Header="Location">
+                            <IgbColumn
+                            Field="Address"
+                            DataType="GridColumnDataType.String"
+                            Sortable="true"
+                            Resizable="true">
+                            </IgbColumn>
+
+                            <IgbColumn
+                            Field="City"
+                            DataType="GridColumnDataType.String"
+                            Sortable="true"
+                            Resizable="true">
+                            </IgbColumn>
+
+                            <IgbColumn
+                            Field="PostalCode"
+                            DataType="GridColumnDataType.String"
+                            Sortable="true"
+                            Resizable="true">
+                            </IgbColumn>
+
+                            <IgbColumn
+                            Field="Country"
+                            DataType="GridColumnDataType.String"
+                            Sortable="true"
+                            Resizable="true">
+                            </IgbColumn>
+
+                        </IgbColumnGroup>
+
+                        <IgbColumnGroup
+                        Header="Contact Information">
+                            <IgbColumn
+                            Field="Phone"
+                            DataType="GridColumnDataType.String"
+                            Sortable="true"
+                            Resizable="true">
+                            </IgbColumn>
+
+                            <IgbColumn
+                            Field="Fax"
+                            DataType="GridColumnDataType.String"
+                            Sortable="true"
+                            Resizable="true">
+                            </IgbColumn>
+
+                        </IgbColumnGroup>
+
+                    </IgbColumnGroup>
+
+                </IgbRowIsland>
+
+            </IgbRowIsland>
+
+        </IgbHierarchicalGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var hierarchicalGrid1 = this.hierarchicalGrid1;
+        var hGridToolbarExporter = this.hGridToolbarExporter;
+
+    }
+
+    private IgbHierarchicalGrid hierarchicalGrid1;
+    private IgbGridToolbarExporter hGridToolbarExporter;
+
+    private MultiColumnsExportData _multiColumnsExportData = null;
+    public MultiColumnsExportData MultiColumnsExportData
+    {
+        get
+        {
+            if (_multiColumnsExportData == null)
+            {
+                _multiColumnsExportData = new MultiColumnsExportData();
+            }
+            return _multiColumnsExportData;
+        }
+    }
+
+}

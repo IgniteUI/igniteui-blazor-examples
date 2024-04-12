@@ -1,0 +1,191 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbHierarchicalGrid
+        AutoGenerate="false"
+        Data="SingersExportData"
+        PrimaryKey="ID"
+        AllowFiltering="true"
+        FilterMode="FilterMode.ExcelStyleFilter"
+        Name="hierarchicalGrid1"
+        @ref="hierarchicalGrid1">
+            <IgbGridToolbar
+            >
+                <IgbGridToolbarActions
+                >
+                    <IgbGridToolbarExporter
+                    ExportCSV="false"
+                    ExportExcel="true">
+                    </IgbGridToolbarExporter>
+
+                </IgbGridToolbarActions>
+
+            </IgbGridToolbar>
+
+            <IgbColumn
+            Field="Artist"
+            Header="Artist"
+            DataType="GridColumnDataType.String"
+            Sortable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Debut"
+            Header="Debut"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="GrammyNominations"
+            Header="Grammy Nominations"
+            DataType="GridColumnDataType.Number"
+            Sortable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="GrammyAwards"
+            Header="Grammy Awards"
+            DataType="GridColumnDataType.Number"
+            Sortable="true">
+            </IgbColumn>
+
+            <IgbRowIsland
+            ChildDataKey="Albums"
+            AutoGenerate="false">
+                <IgbColumn
+                Field="Album"
+                Header="Album"
+                DataType="GridColumnDataType.String">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="LaunchDate"
+                Header="Launch Date"
+                DataType="GridColumnDataType.Date">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="BillboardReview"
+                Header="Billboard Review"
+                DataType="GridColumnDataType.String">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="USBillboard200"
+                Header="US Billboard 200"
+                DataType="GridColumnDataType.String">
+                </IgbColumn>
+
+                <IgbRowIsland
+                ChildDataKey="Songs"
+                AutoGenerate="false">
+                    <IgbColumn
+                    Field="Number"
+                    Header="No."
+                    DataType="GridColumnDataType.String">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Title"
+                    Header="Title"
+                    DataType="GridColumnDataType.String">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Released"
+                    Header="Released"
+                    DataType="GridColumnDataType.Date">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Genre"
+                    Header="Genre"
+                    DataType="GridColumnDataType.String">
+                    </IgbColumn>
+
+                </IgbRowIsland>
+
+            </IgbRowIsland>
+
+            <IgbRowIsland
+            ChildDataKey="Tours"
+            AutoGenerate="false">
+                <IgbColumn
+                Field="Tour"
+                Header="Tour"
+                DataType="GridColumnDataType.String">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="StartedOn"
+                Header="Started on"
+                DataType="GridColumnDataType.String">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="Location"
+                Header="Location"
+                DataType="GridColumnDataType.String">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="Headliner"
+                Header="Headliner"
+                DataType="GridColumnDataType.String">
+                </IgbColumn>
+
+                <IgbRowIsland
+                ChildDataKey="TourData"
+                AutoGenerate="false">
+                    <IgbColumn
+                    Field="Country"
+                    Header="Country"
+                    DataType="GridColumnDataType.String">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="TicketsSold"
+                    Header="Tickets Sold"
+                    DataType="GridColumnDataType.Number">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Attendants"
+                    Header="Attendants"
+                    DataType="GridColumnDataType.Number">
+                    </IgbColumn>
+
+                </IgbRowIsland>
+
+            </IgbRowIsland>
+
+        </IgbHierarchicalGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var hierarchicalGrid1 = this.hierarchicalGrid1;
+
+    }
+
+    private IgbHierarchicalGrid hierarchicalGrid1;
+
+    private SingersExportData _singersExportData = null;
+    public SingersExportData SingersExportData
+    {
+        get
+        {
+            if (_singersExportData == null)
+            {
+                _singersExportData = new SingersExportData();
+            }
+            return _singersExportData;
+        }
+    }
+
+}
