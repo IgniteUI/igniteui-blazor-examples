@@ -19,6 +19,7 @@ builder.RootComponents.Add<App>("app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 // registering local browser components
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+builder.Services.AddScoped<IProductDataService, ProductDataService>();
 builder.Services.AddScoped(typeof(Infragistics.Samples.Core.SampleBrowser));
 builder.Services.AddScoped(typeof(Infragistics.Samples.Core.SampleTimer));
 // registering Infragistics Blazor
