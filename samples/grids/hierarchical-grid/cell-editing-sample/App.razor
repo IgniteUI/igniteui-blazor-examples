@@ -1,0 +1,111 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbHierarchicalGrid
+        AutoGenerate="false"
+        Data="HGridDndData"
+        PrimaryKey="Name"
+        Name="hierarchicalGrid1"
+        @ref="hierarchicalGrid1">
+            <IgbColumn
+            Field="Name"
+            Header="Character Name"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Race"
+            Header="Race"
+            DataType="GridColumnDataType.String"
+            InlineEditorTemplateScript="HGridCellEditCellTemplate"
+            Editable="true"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Class"
+            Header="Class"
+            InlineEditorTemplateScript="HGridCellEditCellTemplate"
+            Editable="true"
+            DataType="GridColumnDataType.String"
+            Name="column2"
+            @ref="column2">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Age"
+            Header="Age"
+            DataType="GridColumnDataType.String"
+            Editable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Alignment"
+            Header="Alignment"
+            InlineEditorTemplateScript="HGridCellEditCellTemplate"
+            Editable="true"
+            DataType="GridColumnDataType.String"
+            Name="column3"
+            @ref="column3">
+            </IgbColumn>
+
+            <IgbRowIsland
+            ChildDataKey="Skills"
+            AutoGenerate="false">
+                <IgbColumn
+                Field="Skill"
+                Header="Skill"
+                DataType="GridColumnDataType.String"
+                Editable="true"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="Level"
+                Header="Level"
+                DataType="GridColumnDataType.String"
+                Editable="true"
+                Resizable="true">
+                </IgbColumn>
+
+            </IgbRowIsland>
+
+        </IgbHierarchicalGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var hierarchicalGrid1 = this.hierarchicalGrid1;
+        var column1 = this.column1;
+        var column2 = this.column2;
+        var column3 = this.column3;
+
+    }
+
+    private IgbHierarchicalGrid hierarchicalGrid1;
+    private IgbColumn column1;
+    private IgbColumn column2;
+    private IgbColumn column3;
+
+    private HGridDndData _hGridDndData = null;
+    public HGridDndData HGridDndData
+    {
+        get
+        {
+            if (_hGridDndData == null)
+            {
+                _hGridDndData = new HGridDndData();
+            }
+            return _hGridDndData;
+        }
+    }
+
+}
