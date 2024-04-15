@@ -77,7 +77,7 @@
 
         public async Task<List<NwinCustomdDataItem>> GetDataRemote(int page, int pageSize)
         {
-            var url = "https://services.odata.org/V4/Northwind/Northwind.svc/Products";
+            var url = "https://services.odata.org/northwind/northwind.svc/Products";
             int skip = (page - 1) * pageSize;
             string query = String.Format("{0}?$count=true&$skip={1}&$top={2}", url, skip, pageSize);
             NwindModel res = await Http.GetFromJsonAsync<NwindModel>(query);
