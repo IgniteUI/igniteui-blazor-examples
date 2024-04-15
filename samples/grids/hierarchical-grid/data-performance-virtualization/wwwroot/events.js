@@ -13,7 +13,7 @@ igRegisterScript("OnGridRendered", () => {
 
 igRegisterScript("OnGridCreated", (args) => {
     const context = args.detail;
-    const _parentKey = context.owner.childDataKey === "Orders" ? "CustomerID" : "OrderID";
+    const _parentKey = context.owner.childDataKey === "Orders" ? "Customers" : "Orders";
     const dataState = {
         key: context.owner.childDataKey,
         parentID: context.parentID,
@@ -30,17 +30,21 @@ igRegisterScript("OnGridCreated", (args) => {
     });
 }, false)
 
+const DATA_URL = `https://data-northwind.indigo.design/`;
+
 function getData(dataState) {
-    const key = dataState.key;
-    let resultData = DATA[key];
+    return fetch(buildUrl(dataState))
+        .then((result) => result.json());
+}
 
-    if (!dataState.rootLevel) {
-        resultData = resultData.filter((record) => record[dataState.parentKey] === dataState.parentID);
+function buildUrl(dataState) {
+    let qS = "";
+    if (dataState) {
+        if (dataState.rootLevel) {
+            qS += `${dataState.key}`;
+        } else {
+            qS += `${dataState.parentKey}/${dataState.parentID}/${dataState.key}`;
+        }
     }
-
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve(resultData);
-        }, 1000);
-    });
+    return `${DATA_URL}${qS}`;
 }

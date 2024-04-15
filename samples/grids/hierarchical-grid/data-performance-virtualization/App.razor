@@ -5,29 +5,29 @@
 
         <IgbHierarchicalGrid
             Id="hGrid"
-            PrimaryKey="CustomerID"
+            PrimaryKey="customerId"
             Height="600px"
             RenderedScript="OnGridRendered"
         >
-            <IgbColumn Field="CustomerID" Hidden="true"></IgbColumn>
-            <IgbColumn Field="CompanyName" Header="Company Name"></IgbColumn>
-            <IgbColumn Field="ContactName" Header="Contact Name"></IgbColumn>
-            <IgbColumn Field="ContactTitle" Header="Contact Title"></IgbColumn>
-            <IgbColumn Field="Country"></IgbColumn>
-            <IgbColumn Field="Phone"></IgbColumn>
+            <IgbColumn Field="customerId" Hidden="true"></IgbColumn>
+            <IgbColumn Field="companyName" Header="Company Name"></IgbColumn>
+            <IgbColumn Field="contactName" Header="Contact Name"></IgbColumn>
+            <IgbColumn Field="contactTitle" Header="Contact Title"></IgbColumn>
+            <IgbColumn Field="address.country" Header="Country"></IgbColumn>
+            <IgbColumn Field="address.phone" Header="Phone"></IgbColumn>
 
-            <IgbRowIsland ChildDataKey="Orders" PrimaryKey="OrderID" GridCreatedScript="OnGridCreated">
-                <IgbColumn Field="OrderID" Hidden="true"></IgbColumn>
-                <IgbColumn Field="ShipCountry" Header="Ship Country"></IgbColumn>
-                <IgbColumn Field="ShipCity" Header="Ship City"></IgbColumn>
-                <IgbColumn Field="ShipAddress" Header="Ship Address"></IgbColumn>
-                <IgbColumn Field="OrderDate" Header="Order Date" DataType="GridColumnDataType.Date"></IgbColumn>
+            <IgbRowIsland ChildDataKey="Orders" PrimaryKey="orderId" GridCreatedScript="OnGridCreated">
+                <IgbColumn Field="orderId" Hidden="true"></IgbColumn>
+                <IgbColumn Field="shipAddress.country" Header="Ship Country"></IgbColumn>
+                <IgbColumn Field="shipAddress.city" Header="Ship City"></IgbColumn>
+                <IgbColumn Field="shipAddress.street" Header="Ship Address"></IgbColumn>
+                <IgbColumn Field="orderDate" Header="Order Date" DataType="GridColumnDataType.Date"></IgbColumn>
 
-                <IgbRowIsland ChildDataKey="Order_Details" PrimaryKey="ProductID" GridCreatedScript="OnGridCreated">
-                    <IgbColumn Field="ProductID" Hidden="true"></IgbColumn>
-                    <IgbColumn Field="Quantity"></IgbColumn>
-                    <IgbColumn Field="UnitPrice" Header="Unit Price"></IgbColumn>
-                    <IgbColumn Field="Discount"></IgbColumn>
+                <IgbRowIsland ChildDataKey="Details" PrimaryKey="productId" GridCreatedScript="OnGridCreated">
+                    <IgbColumn Field="productId" Hidden="true"></IgbColumn>
+                    <IgbColumn Field="quantity" Header="Quantity"></IgbColumn>
+                    <IgbColumn Field="unitPrice" Header="Unit Price"></IgbColumn>
+                    <IgbColumn Field="discount" Header="Discount"></IgbColumn>
                 </IgbRowIsland>
             </IgbRowIsland>
         </IgbHierarchicalGrid>
