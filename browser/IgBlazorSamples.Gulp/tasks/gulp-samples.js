@@ -190,6 +190,7 @@ function getSamples(cb) {
       igConfig.SamplesCopyPath + '/grids/grid/row-drop-indicator/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/row-editing-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/row-paging-style/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/infinite-scroll/App.razor', // broken sample - undo when new IG packages deployed
     ];
 
     samples = [];
