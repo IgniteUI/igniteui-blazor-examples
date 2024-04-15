@@ -322,6 +322,7 @@ public class HierarchicalCustomers
             PostalCode = @"3012",
             Country = @"Switzerland",
             Phone = @"0452-076545",
+            Fax = @"0452-076546",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -376,6 +377,7 @@ public class HierarchicalCustomers
             PostalCode = @"1203",
             Country = @"Switzerland",
             Phone = @"0897-034214",
+            Fax = @"0897-034215",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -437,6 +439,7 @@ public class HierarchicalCustomers
             PostalCode = @"08737-363",
             Country = @"Brazil",
             Phone = @"(14) 555-8122",
+            Fax = @"(14) 555-8123",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -869,6 +872,7 @@ public class HierarchicalCustomers
             PostalCode = @"S-844 67",
             Country = @"Sweden",
             Phone = @"0695-34 67 21",
+            Fax = @"0695-34 67 22",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -1300,6 +1304,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -1464,6 +1469,7 @@ public class HierarchicalCustomers
             PostalCode = @"05033",
             Country = @"Mexico",
             Phone = @"(5) 555-2933",
+            Fax = @"(5) 555-2934",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -1511,6 +1517,7 @@ public class HierarchicalCustomers
             PostalCode = @"04179",
             Country = @"Germany",
             Phone = @"0342-023176",
+            Fax = @"0342-023177",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -1927,6 +1934,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -2013,6 +2021,7 @@ public class HierarchicalCustomers
             PostalCode = @"02389-890",
             Country = @"Brazil",
             Phone = @"(21) 555-3412",
+            Fax = @"(21) 555-3413",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -2115,6 +2124,7 @@ public class HierarchicalCustomers
             PostalCode = @"EC2 5NT",
             Country = @"UK",
             Phone = @"(171) 555-1212",
+            Fax = @"(171) 555-1212",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -2162,6 +2172,7 @@ public class HierarchicalCustomers
             PostalCode = @"05432-043",
             Country = @"Brazil",
             Phone = @"(11) 555-7647",
+            Fax = @"(11) 555-7647",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -2319,6 +2330,7 @@ public class HierarchicalCustomers
             PostalCode = @"05033",
             Country = @"Mexico",
             Phone = @"(5) 555-2933",
+            Fax = @"(5) 555-2934",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -2590,6 +2602,7 @@ public class HierarchicalCustomers
             ContactTitle = @"Sales Associate",
             Address = @"8 Johnstown Road",
             City = @"Cork",
+            PostalCode = @"48637",
             Country = @"Ireland",
             Phone = @"2967 542",
             Fax = @"2967 3333",
@@ -2607,6 +2620,7 @@ public class HierarchicalCustomers
                     ShipName = @"Hungry Owl All-Night Grocers",
                     ShipAddress = @"8 Johnstown Road",
                     ShipCity = @"Cork",
+                    ShipPostalCode = @"48637",
                     ShipCountry = @"Ireland",
                     OrderDetails = new List<HierarchicalCustomersItem_OrdersItem_OrderDetailsItem>()
                     {
@@ -2653,6 +2667,7 @@ public class HierarchicalCustomers
             PostalCode = @"02389-890",
             Country = @"Brazil",
             Phone = @"(21) 555-3412",
+            Fax = @"(21) 555-3413",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -2846,11 +2861,12 @@ public class HierarchicalCustomers
             CompanyName = @"Godos Cocina Típica",
             ContactName = @"José Pedro Freyre",
             ContactTitle = @"Sales Manager",
-            Address = @"C\/ Romero, 33",
+            Address = @"C/ Romero, 33",
             City = @"Sevilla",
             PostalCode = @"41101",
             Country = @"Spain",
             Phone = @"(95) 555 82 82",
+            Fax = @"(95) 555 82 82",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -2863,7 +2879,7 @@ public class HierarchicalCustomers
                     ShipVia = 2,
                     Freight = 107.83,
                     ShipName = @"Godos Cocina Típica",
-                    ShipAddress = @"C\/ Romero, 33",
+                    ShipAddress = @"C/ Romero, 33",
                     ShipCity = @"Sevilla",
                     ShipPostalCode = @"41101",
                     ShipCountry = @"Spain",
@@ -2905,6 +2921,7 @@ public class HierarchicalCustomers
             PostalCode = @"05033",
             Country = @"Mexico",
             Phone = @"(5) 555-2933",
+            Fax = @"(5) 555-2934",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -3162,6 +3179,7 @@ public class HierarchicalCustomers
             ContactTitle = @"Sales Associate",
             Address = @"8 Johnstown Road",
             City = @"Cork",
+            PostalCode = @"48637",
             Country = @"Ireland",
             Phone = @"2967 542",
             Fax = @"2967 3333",
@@ -3179,6 +3197,7 @@ public class HierarchicalCustomers
                     ShipName = @"Hungry Owl All-Night Grocers",
                     ShipAddress = @"8 Johnstown Road",
                     ShipCity = @"Cork",
+                    ShipPostalCode = @"48637",
                     ShipCountry = @"Ireland",
                     OrderDetails = new List<HierarchicalCustomersItem_OrdersItem_OrderDetailsItem>()
                     {
@@ -3232,6 +3251,7 @@ public class HierarchicalCustomers
             PostalCode = @"97201",
             Country = @"USA",
             Phone = @"(503) 555-3612",
+            Fax = @"(503) 555-3612",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -3389,6 +3409,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -3484,6 +3505,7 @@ public class HierarchicalCustomers
             PostalCode = @"PO31 7PJ",
             Country = @"UK",
             Phone = @"(198) 555-8888",
+            Fax = @"(198) 555-8888",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -3620,6 +3642,7 @@ public class HierarchicalCustomers
             PostalCode = @"PO31 7PJ",
             Country = @"UK",
             Phone = @"(198) 555-8888",
+            Fax = @"(198) 555-8888",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -3667,6 +3690,7 @@ public class HierarchicalCustomers
             PostalCode = @"05033",
             Country = @"Mexico",
             Phone = @"(5) 555-2933",
+            Fax = @"(5) 555-2934",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -3762,6 +3786,7 @@ public class HierarchicalCustomers
             PostalCode = @"PO31 7PJ",
             Country = @"UK",
             Phone = @"(198) 555-8888",
+            Fax = @"(198) 555-8888",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -3843,6 +3868,7 @@ public class HierarchicalCustomers
             PostalCode = @"14776",
             Country = @"Germany",
             Phone = @"0555-09876",
+            Fax = @"0555-09876",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -3897,6 +3923,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -3965,6 +3992,7 @@ public class HierarchicalCustomers
             PostalCode = @"14776",
             Country = @"Germany",
             Phone = @"0555-09876",
+            Fax = @"0555-09876",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -4028,7 +4056,7 @@ public class HierarchicalCustomers
             CompanyName = @"Bólido Comidas preparadas",
             ContactName = @"Martín Sommer",
             ContactTitle = @"Owner",
-            Address = @"C\/ Araquil, 67",
+            Address = @"C/ Araquil, 67",
             City = @"Madrid",
             PostalCode = @"28023",
             Country = @"Spain",
@@ -4046,7 +4074,7 @@ public class HierarchicalCustomers
                     ShipVia = 2,
                     Freight = 77.92,
                     ShipName = @"Bólido Comidas preparadas",
-                    ShipAddress = @"C\/ Araquil, 67",
+                    ShipAddress = @"C/ Araquil, 67",
                     ShipCity = @"Madrid",
                     ShipPostalCode = @"28023",
                     ShipCountry = @"Spain",
@@ -4088,6 +4116,7 @@ public class HierarchicalCustomers
             PostalCode = @"S-844 67",
             Country = @"Sweden",
             Phone = @"0695-34 67 21",
+            Fax = @"0695-34 67 22",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -4510,6 +4539,7 @@ public class HierarchicalCustomers
             ContactTitle = @"Sales Associate",
             Address = @"8 Johnstown Road",
             City = @"Cork",
+            PostalCode = @"48637",
             Country = @"Ireland",
             Phone = @"2967 542",
             Fax = @"2967 3333",
@@ -4527,6 +4557,7 @@ public class HierarchicalCustomers
                     ShipName = @"Hungry Owl All-Night Grocers",
                     ShipAddress = @"8 Johnstown Road",
                     ShipCity = @"Cork",
+                    ShipPostalCode = @"48637",
                     ShipCountry = @"Ireland",
                     OrderDetails = new List<HierarchicalCustomersItem_OrdersItem_OrderDetailsItem>()
                     {
@@ -4573,6 +4604,7 @@ public class HierarchicalCustomers
             PostalCode = @"1756",
             Country = @"Portugal",
             Phone = @"(1) 356-5634",
+            Fax = @"(1) 356-5634",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -5053,6 +5085,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -5155,6 +5188,7 @@ public class HierarchicalCustomers
             PostalCode = @"05442-030",
             Country = @"Brazil",
             Phone = @"(11) 555-9857",
+            Fax = @"(11) 555-9857",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -5896,6 +5930,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -6101,6 +6136,7 @@ public class HierarchicalCustomers
             PostalCode = @"05023",
             Country = @"Mexico",
             Phone = @"(5) 555-3932",
+            Fax = @"(5) 555-3932",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -6361,6 +6397,7 @@ public class HierarchicalCustomers
             PostalCode = @"3012",
             Country = @"Switzerland",
             Phone = @"0452-076545",
+            Fax = @"0452-076545",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -6456,6 +6493,7 @@ public class HierarchicalCustomers
             PostalCode = @"05487-020",
             Country = @"Brazil",
             Phone = @"(11) 555-1189",
+            Fax = @"(11) 555-1189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -6514,6 +6552,7 @@ public class HierarchicalCustomers
             ContactTitle = @"Sales Associate",
             Address = @"8 Johnstown Road",
             City = @"Cork",
+            PostalCode = @"48637",
             Country = @"Ireland",
             Phone = @"2967 542",
             Fax = @"2967 3333",
@@ -6531,6 +6570,7 @@ public class HierarchicalCustomers
                     ShipName = @"Hungry Owl All-Night Grocers",
                     ShipAddress = @"8 Johnstown Road",
                     ShipCity = @"Cork",
+                    ShipPostalCode = @"48637",
                     ShipCountry = @"Ireland",
                     OrderDetails = new List<HierarchicalCustomersItem_OrdersItem_OrderDetailsItem>()
                     {
@@ -6748,6 +6788,7 @@ public class HierarchicalCustomers
             PostalCode = @"S-844 67",
             Country = @"Sweden",
             Phone = @"0695-34 67 21",
+            Fax = @"0695-34 67 22",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -6840,6 +6881,7 @@ public class HierarchicalCustomers
             ContactTitle = @"Sales Associate",
             Address = @"8 Johnstown Road",
             City = @"Cork",
+            PostalCode = @"48637",
             Country = @"Ireland",
             Phone = @"2967 542",
             Fax = @"2967 3333",
@@ -6857,6 +6899,7 @@ public class HierarchicalCustomers
                     ShipName = @"Hungry Owl All-Night Grocers",
                     ShipAddress = @"8 Johnstown Road",
                     ShipCity = @"Cork",
+                    ShipPostalCode = @"48637",
                     ShipCountry = @"Ireland",
                     OrderDetails = new List<HierarchicalCustomersItem_OrdersItem_OrderDetailsItem>()
                     {
@@ -7171,6 +7214,7 @@ public class HierarchicalCustomers
             PostalCode = @"05442-030",
             Country = @"Brazil",
             Phone = @"(11) 555-9857",
+            Fax = @"(11) 555-9857",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -7541,6 +7585,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -7767,6 +7812,7 @@ public class HierarchicalCustomers
             PostalCode = @"1756",
             Country = @"Portugal",
             Phone = @"(1) 356-5634",
+            Fax = @"(1) 356-5634",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -7814,6 +7860,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -8216,6 +8263,7 @@ public class HierarchicalCustomers
             PostalCode = @"05487-020",
             Country = @"Brazil",
             Phone = @"(11) 555-1189",
+            Fax = @"(11) 555-1189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -8625,6 +8673,7 @@ public class HierarchicalCustomers
             PostalCode = @"05442-030",
             Country = @"Brazil",
             Phone = @"(11) 555-9857",
+            Fax = @"(11) 555-9857",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -8837,6 +8886,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -8898,6 +8948,7 @@ public class HierarchicalCustomers
             PostalCode = @"1203",
             Country = @"Switzerland",
             Phone = @"0897-034214",
+            Fax = @"0897-034215",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -8945,6 +8996,7 @@ public class HierarchicalCustomers
             PostalCode = @"08737-363",
             Country = @"Brazil",
             Phone = @"(14) 555-8122",
+            Fax = @"(14) 555-8123",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -9109,6 +9161,7 @@ public class HierarchicalCustomers
             PostalCode = @"04876-786",
             Country = @"Brazil",
             Phone = @"(11) 555-9482",
+            Fax = @"(11) 555-9482",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -9386,6 +9439,7 @@ public class HierarchicalCustomers
             ContactTitle = @"Sales Associate",
             Address = @"8 Johnstown Road",
             City = @"Cork",
+            PostalCode = @"48637",
             Country = @"Ireland",
             Phone = @"2967 542",
             Fax = @"2967 3333",
@@ -9403,6 +9457,7 @@ public class HierarchicalCustomers
                     ShipName = @"Hungry Owl All-Night Grocers",
                     ShipAddress = @"8 Johnstown Road",
                     ShipCity = @"Cork",
+                    ShipPostalCode = @"48637",
                     ShipCountry = @"Ireland",
                     OrderDetails = new List<HierarchicalCustomersItem_OrdersItem_OrderDetailsItem>()
                     {
@@ -9600,6 +9655,7 @@ public class HierarchicalCustomers
             PostalCode = @"1756",
             Country = @"Portugal",
             Phone = @"(1) 356-5634",
+            Fax = @"(1) 356-5634",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -9640,6 +9696,7 @@ public class HierarchicalCustomers
             PostalCode = @"S-844 67",
             Country = @"Sweden",
             Phone = @"0695-34 67 21",
+            Fax = @"0695-34 67 22",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -9962,6 +10019,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -10323,6 +10381,7 @@ public class HierarchicalCustomers
             PostalCode = @"02389-890",
             Country = @"Brazil",
             Phone = @"(21) 555-3412",
+            Fax = @"(21) 555-3413",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -10528,6 +10587,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -10589,6 +10649,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -10801,6 +10862,7 @@ public class HierarchicalCustomers
             PostalCode = @"14776",
             Country = @"Germany",
             Phone = @"0555-09876",
+            Fax = @"0555-09876",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -10997,6 +11059,7 @@ public class HierarchicalCustomers
             PostalCode = @"S-844 67",
             Country = @"Sweden",
             Phone = @"0695-34 67 21",
+            Fax = @"0695-34 67 22",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -11326,6 +11389,7 @@ public class HierarchicalCustomers
             PostalCode = @"05432-043",
             Country = @"Brazil",
             Phone = @"(11) 555-7647",
+            Fax = @"(11) 555-7647",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -11421,6 +11485,7 @@ public class HierarchicalCustomers
             PostalCode = @"14776",
             Country = @"Germany",
             Phone = @"0555-09876",
+            Fax = @"0555-09876",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -11578,6 +11643,7 @@ public class HierarchicalCustomers
             PostalCode = @"EC2 5NT",
             Country = @"UK",
             Phone = @"(171) 555-1212",
+            Fax = @"(171) 555-1212",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -11673,6 +11739,7 @@ public class HierarchicalCustomers
             PostalCode = @"PO31 7PJ",
             Country = @"UK",
             Phone = @"(198) 555-8888",
+            Fax = @"(198) 555-8888",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -11885,6 +11952,7 @@ public class HierarchicalCustomers
             PostalCode = @"1756",
             Country = @"Portugal",
             Phone = @"(1) 356-5634",
+            Fax = @"(1) 356-5634",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -12090,6 +12158,7 @@ public class HierarchicalCustomers
             PostalCode = @"02389-890",
             Country = @"Brazil",
             Phone = @"(21) 555-3412",
+            Fax = @"(21) 555-3413",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -12226,6 +12295,7 @@ public class HierarchicalCustomers
             PostalCode = @"EC2 5NT",
             Country = @"UK",
             Phone = @"(171) 555-1212",
+            Fax = @"(171) 555-1212",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -12397,6 +12467,7 @@ public class HierarchicalCustomers
             PostalCode = @"05487-020",
             Country = @"Brazil",
             Phone = @"(11) 555-1189",
+            Fax = @"(11) 555-1189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -12753,6 +12824,7 @@ public class HierarchicalCustomers
             PostalCode = @"05432-043",
             Country = @"Brazil",
             Phone = @"(11) 555-7647",
+            Fax = @"(11) 555-7647",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -13188,6 +13260,7 @@ public class HierarchicalCustomers
             ContactTitle = @"Sales Associate",
             Address = @"8 Johnstown Road",
             City = @"Cork",
+            PostalCode = @"48637",
             Country = @"Ireland",
             Phone = @"2967 542",
             Fax = @"2967 3333",
@@ -13205,6 +13278,7 @@ public class HierarchicalCustomers
                     ShipName = @"Hungry Owl All-Night Grocers",
                     ShipAddress = @"8 Johnstown Road",
                     ShipCity = @"Cork",
+                    ShipPostalCode = @"48637",
                     ShipCountry = @"Ireland",
                     OrderDetails = new List<HierarchicalCustomersItem_OrdersItem_OrderDetailsItem>()
                     {
@@ -13340,6 +13414,7 @@ public class HierarchicalCustomers
             PostalCode = @"14776",
             Country = @"Germany",
             Phone = @"0555-09876",
+            Fax = @"0555-09876",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -13387,6 +13462,7 @@ public class HierarchicalCustomers
             PostalCode = @"05023",
             Country = @"Mexico",
             Phone = @"(5) 555-3932",
+            Fax = @"(5) 555-3932",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -13523,6 +13599,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -13625,6 +13702,7 @@ public class HierarchicalCustomers
             PostalCode = @"05442-030",
             Country = @"Brazil",
             Phone = @"(11) 555-9857",
+            Fax = @"(11) 555-9857",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -13810,6 +13888,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -13875,6 +13954,7 @@ public class HierarchicalCustomers
             ContactTitle = @"Sales Associate",
             Address = @"8 Johnstown Road",
             City = @"Cork",
+            PostalCode = @"48637",
             Country = @"Ireland",
             Phone = @"2967 542",
             Fax = @"2967 3333",
@@ -13892,6 +13972,7 @@ public class HierarchicalCustomers
                     ShipName = @"Hungry Owl All-Night Grocers",
                     ShipAddress = @"8 Johnstown Road",
                     ShipCity = @"Cork",
+                    ShipPostalCode = @"48637",
                     ShipCountry = @"Ireland",
                     OrderDetails = new List<HierarchicalCustomersItem_OrdersItem_OrderDetailsItem>()
                     {
@@ -13923,7 +14004,7 @@ public class HierarchicalCustomers
         this.Add(new HierarchicalCustomersItem()
         {
             CustomerID = @"NORTS",
-            CompanyName = @"North\/South",
+            CompanyName = @"North/South",
             ContactName = @"Simon Crowther",
             ContactTitle = @"Sales Associate",
             Address = @"South House 300 Queensbridge",
@@ -13943,7 +14024,7 @@ public class HierarchicalCustomers
                     ShippedDate = @"1997-04-29T00:00:00",
                     ShipVia = 3,
                     Freight = 32.07,
-                    ShipName = @"North\/South",
+                    ShipName = @"North/South",
                     ShipAddress = @"South House 300 Queensbridge",
                     ShipCity = @"London",
                     ShipPostalCode = @"SW7 1RZ",
@@ -13986,6 +14067,7 @@ public class HierarchicalCustomers
             PostalCode = @"05033",
             Country = @"Mexico",
             Phone = @"(5) 555-2933",
+            Fax = @"(5) 555-2934",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -14040,6 +14122,7 @@ public class HierarchicalCustomers
             PostalCode = @"3012",
             Country = @"Switzerland",
             Phone = @"0452-076545",
+            Fax = @"0452-076545",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -14486,6 +14569,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -14533,6 +14617,7 @@ public class HierarchicalCustomers
             PostalCode = @"97403",
             Country = @"USA",
             Phone = @"(503) 555-7555",
+            Fax = @"(503) 555-7555",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -14793,6 +14878,7 @@ public class HierarchicalCustomers
             PostalCode = @"S-844 67",
             Country = @"Sweden",
             Phone = @"0695-34 67 21",
+            Fax = @"0695-34 67 22",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -14902,6 +14988,7 @@ public class HierarchicalCustomers
             PostalCode = @"05023",
             Country = @"Mexico",
             Phone = @"(5) 555-3932",
+            Fax = @"(5) 555-3932",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -15025,6 +15112,7 @@ public class HierarchicalCustomers
             PostalCode = @"1203",
             Country = @"Switzerland",
             Phone = @"0897-034214",
+            Fax = @"0897-034215",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -15093,6 +15181,7 @@ public class HierarchicalCustomers
             PostalCode = @"EC2 5NT",
             Country = @"UK",
             Phone = @"(171) 555-1212",
+            Fax = @"(171) 555-1212",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -15186,6 +15275,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -15309,6 +15399,7 @@ public class HierarchicalCustomers
             PostalCode = @"14776",
             Country = @"Germany",
             Phone = @"0555-09876",
+            Fax = @"0555-09876",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -15644,6 +15735,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -15693,11 +15785,12 @@ public class HierarchicalCustomers
             CompanyName = @"Godos Cocina Típica",
             ContactName = @"José Pedro Freyre",
             ContactTitle = @"Sales Manager",
-            Address = @"C\/ Romero, 33",
+            Address = @"C/ Romero, 33",
             City = @"Sevilla",
             PostalCode = @"41101",
             Country = @"Spain",
             Phone = @"(95) 555 82 82",
+            Fax = @"(95) 555 82 82",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -15710,7 +15803,7 @@ public class HierarchicalCustomers
                     ShipVia = 3,
                     Freight = 4.32,
                     ShipName = @"Godos Cocina Típica",
-                    ShipAddress = @"C\/ Romero, 33",
+                    ShipAddress = @"C/ Romero, 33",
                     ShipCity = @"Sevilla",
                     ShipPostalCode = @"41101",
                     ShipCountry = @"Spain",
@@ -15993,6 +16086,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -16315,6 +16409,7 @@ public class HierarchicalCustomers
             PostalCode = @"S-844 67",
             Country = @"Sweden",
             Phone = @"0695-34 67 21",
+            Fax = @"0695-34 67 22",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -16410,6 +16505,7 @@ public class HierarchicalCustomers
             PostalCode = @"02389-890",
             Country = @"Brazil",
             Phone = @"(21) 555-3412",
+            Fax = @"(21) 555-3413",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -16612,6 +16708,7 @@ public class HierarchicalCustomers
             ContactTitle = @"Sales Associate",
             Address = @"8 Johnstown Road",
             City = @"Cork",
+            PostalCode = @"48637",
             Country = @"Ireland",
             Phone = @"2967 542",
             Fax = @"2967 3333",
@@ -16629,6 +16726,7 @@ public class HierarchicalCustomers
                     ShipName = @"Hungry Owl All-Night Grocers",
                     ShipAddress = @"8 Johnstown Road",
                     ShipCity = @"Cork",
+                    ShipPostalCode = @"48637",
                     ShipCountry = @"Ireland",
                     OrderDetails = new List<HierarchicalCustomersItem_OrdersItem_OrderDetailsItem>()
                     {
@@ -16915,6 +17013,7 @@ public class HierarchicalCustomers
             PostalCode = @"05023",
             Country = @"Mexico",
             Phone = @"(5) 555-3932",
+            Fax = @"(5) 555-3932",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -17031,6 +17130,7 @@ public class HierarchicalCustomers
             PostalCode = @"04179",
             Country = @"Germany",
             Phone = @"0342-023176",
+            Fax = @"0342-023176",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -17092,6 +17192,7 @@ public class HierarchicalCustomers
             PostalCode = @"05033",
             Country = @"Mexico",
             Phone = @"(5) 555-2933",
+            Fax = @"(5) 555-2934",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -17201,6 +17302,7 @@ public class HierarchicalCustomers
             PostalCode = @"EC2 5NT",
             Country = @"UK",
             Phone = @"(171) 555-1212",
+            Fax = @"(171) 555-1212",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -17248,6 +17350,7 @@ public class HierarchicalCustomers
             PostalCode = @"94117",
             Country = @"USA",
             Phone = @"(415) 555-5938",
+            Fax = @"(415) 555-5938",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -17350,6 +17453,7 @@ public class HierarchicalCustomers
             PostalCode = @"05442-030",
             Country = @"Brazil",
             Phone = @"(11) 555-9857",
+            Fax = @"(11) 555-9857",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -17534,6 +17638,7 @@ public class HierarchicalCustomers
             PostalCode = @"08737-363",
             Country = @"Brazil",
             Phone = @"(14) 555-8122",
+            Fax = @"(14) 555-8123",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -17670,6 +17775,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -17717,6 +17823,7 @@ public class HierarchicalCustomers
             PostalCode = @"97403",
             Country = @"USA",
             Phone = @"(503) 555-7555",
+            Fax = @"(503) 555-7555",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -18208,6 +18315,7 @@ public class HierarchicalCustomers
             PostalCode = @"EC2 5NT",
             Country = @"UK",
             Phone = @"(171) 555-1212",
+            Fax = @"(171) 555-1212",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -18385,6 +18493,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -18597,6 +18706,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -18857,6 +18967,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -19022,7 +19133,7 @@ public class HierarchicalCustomers
             CustomerID = @"WILMK",
             CompanyName = @"Wilman Kala",
             ContactName = @"Matti Karttunen",
-            ContactTitle = @"Owner\/Marketing Assistant",
+            ContactTitle = @"Owner/Marketing Assistant",
             Address = @"Keskuskatu 45",
             City = @"Helsinki",
             PostalCode = @"21240",
@@ -19069,6 +19180,7 @@ public class HierarchicalCustomers
             PostalCode = @"97403",
             Country = @"USA",
             Phone = @"(503) 555-7555",
+            Fax = @"(503) 555-7555",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -19290,6 +19402,7 @@ public class HierarchicalCustomers
             PostalCode = @"PO31 7PJ",
             Country = @"UK",
             Phone = @"(198) 555-8888",
+            Fax = @"(198) 555-8888",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -19351,6 +19464,7 @@ public class HierarchicalCustomers
             PostalCode = @"02389-890",
             Country = @"Brazil",
             Phone = @"(21) 555-3412",
+            Fax = @"(21) 555-3413",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -19632,6 +19746,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -19715,11 +19830,12 @@ public class HierarchicalCustomers
             CompanyName = @"Godos Cocina Típica",
             ContactName = @"José Pedro Freyre",
             ContactTitle = @"Sales Manager",
-            Address = @"C\/ Romero, 33",
+            Address = @"C/ Romero, 33",
             City = @"Sevilla",
             PostalCode = @"41101",
             Country = @"Spain",
             Phone = @"(95) 555 82 82",
+            Fax = @"(95) 555 82 82",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -19732,7 +19848,7 @@ public class HierarchicalCustomers
                     ShipVia = 3,
                     Freight = 85.46,
                     ShipName = @"Godos Cocina Típica",
-                    ShipAddress = @"C\/ Romero, 33",
+                    ShipAddress = @"C/ Romero, 33",
                     ShipCity = @"Sevilla",
                     ShipPostalCode = @"41101",
                     ShipCountry = @"Spain",
@@ -19767,6 +19883,7 @@ public class HierarchicalCustomers
             PostalCode = @"14776",
             Country = @"Germany",
             Phone = @"0555-09876",
+            Fax = @"0555-09876",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -20130,6 +20247,7 @@ public class HierarchicalCustomers
             PostalCode = @"05487-020",
             Country = @"Brazil",
             Phone = @"(11) 555-1189",
+            Fax = @"(11) 555-1189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -20479,6 +20597,7 @@ public class HierarchicalCustomers
             PostalCode = @"08737-363",
             Country = @"Brazil",
             Phone = @"(14) 555-8122",
+            Fax = @"(14) 555-8123",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -20578,6 +20697,7 @@ public class HierarchicalCustomers
             ContactTitle = @"Sales Associate",
             Address = @"8 Johnstown Road",
             City = @"Cork",
+            PostalCode = @"48637",
             Country = @"Ireland",
             Phone = @"2967 542",
             Fax = @"2967 3333",
@@ -20595,6 +20715,7 @@ public class HierarchicalCustomers
                     ShipName = @"Hungry Owl All-Night Grocers",
                     ShipAddress = @"8 Johnstown Road",
                     ShipCity = @"Cork",
+                    ShipPostalCode = @"48637",
                     ShipCountry = @"Ireland",
                     OrderDetails = new List<HierarchicalCustomersItem_OrdersItem_OrderDetailsItem>()
                     {
@@ -20689,6 +20810,7 @@ public class HierarchicalCustomers
             PostalCode = @"02389-890",
             Country = @"Brazil",
             Phone = @"(21) 555-3412",
+            Fax = @"(21) 555-3413",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -20784,6 +20906,7 @@ public class HierarchicalCustomers
             PostalCode = @"05442-030",
             Country = @"Brazil",
             Phone = @"(11) 555-9857",
+            Fax = @"(11) 555-9857",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -20886,6 +21009,7 @@ public class HierarchicalCustomers
             PostalCode = @"04876-786",
             Country = @"Brazil",
             Phone = @"(11) 555-9482",
+            Fax = @"(11) 555-9482",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -21077,6 +21201,7 @@ public class HierarchicalCustomers
             PostalCode = @"97403",
             Country = @"USA",
             Phone = @"(503) 555-7555",
+            Fax = @"(503) 555-7555",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -21131,6 +21256,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -21206,6 +21332,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -21267,6 +21394,7 @@ public class HierarchicalCustomers
             PostalCode = @"05487-020",
             Country = @"Brazil",
             Phone = @"(11) 555-1189",
+            Fax = @"(11) 555-1189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -21359,6 +21487,7 @@ public class HierarchicalCustomers
             ContactTitle = @"Sales Associate",
             Address = @"8 Johnstown Road",
             City = @"Cork",
+            PostalCode = @"48637",
             Country = @"Ireland",
             Phone = @"2967 542",
             Fax = @"2967 3333",
@@ -21376,6 +21505,7 @@ public class HierarchicalCustomers
                     ShipName = @"Hungry Owl All-Night Grocers",
                     ShipAddress = @"8 Johnstown Road",
                     ShipCity = @"Cork",
+                    ShipPostalCode = @"48637",
                     ShipCountry = @"Ireland",
                     OrderDetails = new List<HierarchicalCustomersItem_OrdersItem_OrderDetailsItem>()
                     {
@@ -21614,6 +21744,7 @@ public class HierarchicalCustomers
             PostalCode = @"1203",
             Country = @"Switzerland",
             Phone = @"0897-034214",
+            Fax = @"0897-034215",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -21971,7 +22102,7 @@ public class HierarchicalCustomers
             CustomerID = @"WILMK",
             CompanyName = @"Wilman Kala",
             ContactName = @"Matti Karttunen",
-            ContactTitle = @"Owner\/Marketing Assistant",
+            ContactTitle = @"Owner/Marketing Assistant",
             Address = @"Keskuskatu 45",
             City = @"Helsinki",
             PostalCode = @"21240",
@@ -22032,6 +22163,7 @@ public class HierarchicalCustomers
             PostalCode = @"PO31 7PJ",
             Country = @"UK",
             Phone = @"(198) 555-8888",
+            Fax = @"(198) 555-8888",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -22127,6 +22259,7 @@ public class HierarchicalCustomers
             PostalCode = @"05033",
             Country = @"Mexico",
             Phone = @"(5) 555-2933",
+            Fax = @"(5) 555-2934",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -22181,6 +22314,7 @@ public class HierarchicalCustomers
             PostalCode = @"05023",
             Country = @"Mexico",
             Phone = @"(5) 555-3932",
+            Fax = @"(5) 555-3932",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -22228,6 +22362,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -22385,6 +22520,7 @@ public class HierarchicalCustomers
             PostalCode = @"97403",
             Country = @"USA",
             Phone = @"(503) 555-7555",
+            Fax = @"(503) 555-7555",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -22439,6 +22575,7 @@ public class HierarchicalCustomers
             PostalCode = @"05023",
             Country = @"Mexico",
             Phone = @"(5) 555-3932",
+            Fax = @"(5) 555-3932",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -22589,6 +22726,7 @@ public class HierarchicalCustomers
             PostalCode = @"04876-786",
             Country = @"Brazil",
             Phone = @"(11) 555-9482",
+            Fax = @"(11) 555-9482",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -22688,6 +22826,7 @@ public class HierarchicalCustomers
             ContactTitle = @"Sales Associate",
             Address = @"8 Johnstown Road",
             City = @"Cork",
+            PostalCode = @"48637",
             Country = @"Ireland",
             Phone = @"2967 542",
             Fax = @"2967 3333",
@@ -22705,6 +22844,7 @@ public class HierarchicalCustomers
                     ShipName = @"Hungry Owl All-Night Grocers",
                     ShipAddress = @"8 Johnstown Road",
                     ShipCity = @"Cork",
+                    ShipPostalCode = @"48637",
                     ShipCountry = @"Ireland",
                     OrderDetails = new List<HierarchicalCustomersItem_OrdersItem_OrderDetailsItem>()
                     {
@@ -22888,6 +23028,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -23059,6 +23200,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -23107,7 +23249,7 @@ public class HierarchicalCustomers
             CustomerID = @"WILMK",
             CompanyName = @"Wilman Kala",
             ContactName = @"Matti Karttunen",
-            ContactTitle = @"Owner\/Marketing Assistant",
+            ContactTitle = @"Owner/Marketing Assistant",
             Address = @"Keskuskatu 45",
             City = @"Helsinki",
             PostalCode = @"21240",
@@ -23347,6 +23489,7 @@ public class HierarchicalCustomers
             PostalCode = @"04179",
             Country = @"Germany",
             Phone = @"0342-023176",
+            Fax = @"0342-023176",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -23387,6 +23530,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -23445,6 +23589,7 @@ public class HierarchicalCustomers
             ContactTitle = @"Sales Associate",
             Address = @"8 Johnstown Road",
             City = @"Cork",
+            PostalCode = @"48637",
             Country = @"Ireland",
             Phone = @"2967 542",
             Fax = @"2967 3333",
@@ -23462,6 +23607,7 @@ public class HierarchicalCustomers
                     ShipName = @"Hungry Owl All-Night Grocers",
                     ShipAddress = @"8 Johnstown Road",
                     ShipCity = @"Cork",
+                    ShipPostalCode = @"48637",
                     ShipCountry = @"Ireland",
                     OrderDetails = new List<HierarchicalCustomersItem_OrdersItem_OrderDetailsItem>()
                     {
@@ -23549,6 +23695,7 @@ public class HierarchicalCustomers
             PostalCode = @"S-844 67",
             Country = @"Sweden",
             Phone = @"0695-34 67 21",
+            Fax = @"0695-34 67 22",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -23603,6 +23750,7 @@ public class HierarchicalCustomers
             PostalCode = @"05487-020",
             Country = @"Brazil",
             Phone = @"(11) 555-1189",
+            Fax = @"(11) 555-1189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -23815,6 +23963,7 @@ public class HierarchicalCustomers
             PostalCode = @"97201",
             Country = @"USA",
             Phone = @"(503) 555-3612",
+            Fax = @"(503) 555-3612",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -23862,6 +24011,7 @@ public class HierarchicalCustomers
             PostalCode = @"04876-786",
             Country = @"Brazil",
             Phone = @"(11) 555-9482",
+            Fax = @"(11) 555-9482",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -23964,6 +24114,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -24015,6 +24166,7 @@ public class HierarchicalCustomers
             ContactTitle = @"Sales Associate",
             Address = @"8 Johnstown Road",
             City = @"Cork",
+            PostalCode = @"48637",
             Country = @"Ireland",
             Phone = @"2967 542",
             Fax = @"2967 3333",
@@ -24032,6 +24184,7 @@ public class HierarchicalCustomers
                     ShipName = @"Hungry Owl All-Night Grocers",
                     ShipAddress = @"8 Johnstown Road",
                     ShipCity = @"Cork",
+                    ShipPostalCode = @"48637",
                     ShipCountry = @"Ireland",
                     OrderDetails = new List<HierarchicalCustomersItem_OrdersItem_OrderDetailsItem>()
                     {
@@ -24064,6 +24217,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -24336,6 +24490,7 @@ public class HierarchicalCustomers
             PostalCode = @"14776",
             Country = @"Germany",
             Phone = @"0555-09876",
+            Fax = @"0555-09876",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -24397,6 +24552,7 @@ public class HierarchicalCustomers
             PostalCode = @"94117",
             Country = @"USA",
             Phone = @"(415) 555-5938",
+            Fax = @"(415) 555-5938",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -24499,6 +24655,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -24539,6 +24696,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -24689,6 +24847,7 @@ public class HierarchicalCustomers
             PostalCode = @"05442-030",
             Country = @"Brazil",
             Phone = @"(11) 555-9857",
+            Fax = @"(11) 555-9857",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -24846,6 +25005,7 @@ public class HierarchicalCustomers
             PostalCode = @"05487-020",
             Country = @"Brazil",
             Phone = @"(11) 555-1189",
+            Fax = @"(11) 555-1189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -25017,6 +25177,7 @@ public class HierarchicalCustomers
             PostalCode = @"3012",
             Country = @"Switzerland",
             Phone = @"0452-076545",
+            Fax = @"0452-076545",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -25160,6 +25321,7 @@ public class HierarchicalCustomers
             PostalCode = @"04876-786",
             Country = @"Brazil",
             Phone = @"(11) 555-9482",
+            Fax = @"(11) 555-9482",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -25214,6 +25376,7 @@ public class HierarchicalCustomers
             PostalCode = @"94117",
             Country = @"USA",
             Phone = @"(415) 555-5938",
+            Fax = @"(415) 555-5938",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -25258,6 +25421,7 @@ public class HierarchicalCustomers
             ContactTitle = @"Sales Associate",
             Address = @"8 Johnstown Road",
             City = @"Cork",
+            PostalCode = @"48637",
             Country = @"Ireland",
             Phone = @"2967 542",
             Fax = @"2967 3333",
@@ -25275,6 +25439,7 @@ public class HierarchicalCustomers
                     ShipName = @"Hungry Owl All-Night Grocers",
                     ShipAddress = @"8 Johnstown Road",
                     ShipCity = @"Cork",
+                    ShipPostalCode = @"48637",
                     ShipCountry = @"Ireland",
                     OrderDetails = new List<HierarchicalCustomersItem_OrdersItem_OrderDetailsItem>()
                     {
@@ -25684,6 +25849,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -25745,6 +25911,7 @@ public class HierarchicalCustomers
             PostalCode = @"3012",
             Country = @"Switzerland",
             Phone = @"0452-076545",
+            Fax = @"0452-076545",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -25868,6 +26035,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -25922,6 +26090,7 @@ public class HierarchicalCustomers
             PostalCode = @"PO31 7PJ",
             Country = @"UK",
             Phone = @"(198) 555-8888",
+            Fax = @"(198) 555-8888",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -26031,6 +26200,7 @@ public class HierarchicalCustomers
             PostalCode = @"1203",
             Country = @"Switzerland",
             Phone = @"0897-034214",
+            Fax = @"0897-034215",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -26084,7 +26254,7 @@ public class HierarchicalCustomers
         this.Add(new HierarchicalCustomersItem()
         {
             CustomerID = @"NORTS",
-            CompanyName = @"North\/South",
+            CompanyName = @"North/South",
             ContactName = @"Simon Crowther",
             ContactTitle = @"Sales Associate",
             Address = @"South House 300 Queensbridge",
@@ -26104,7 +26274,7 @@ public class HierarchicalCustomers
                     ShippedDate = @"1997-11-28T00:00:00",
                     ShipVia = 3,
                     Freight = 1.39,
-                    ShipName = @"North\/South",
+                    ShipName = @"North/South",
                     ShipAddress = @"South House 300 Queensbridge",
                     ShipCity = @"London",
                     ShipPostalCode = @"SW7 1RZ",
@@ -26353,6 +26523,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -26414,6 +26585,7 @@ public class HierarchicalCustomers
             PostalCode = @"1203",
             Country = @"Switzerland",
             Phone = @"0897-034214",
+            Fax = @"0897-034215",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -26612,6 +26784,7 @@ public class HierarchicalCustomers
             PostalCode = @"S-844 67",
             Country = @"Sweden",
             Phone = @"0695-34 67 21",
+            Fax = @"0695-34 67 22",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -26776,6 +26949,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -27221,6 +27395,7 @@ public class HierarchicalCustomers
             PostalCode = @"S-844 67",
             Country = @"Sweden",
             Phone = @"0695-34 67 21",
+            Fax = @"0695-34 67 22",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -27378,6 +27553,7 @@ public class HierarchicalCustomers
             PostalCode = @"04876-786",
             Country = @"Brazil",
             Phone = @"(11) 555-9482",
+            Fax = @"(11) 555-9482",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -27459,6 +27635,7 @@ public class HierarchicalCustomers
             PostalCode = @"04179",
             Country = @"Germany",
             Phone = @"0342-023176",
+            Fax = @"0342-023176",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -27801,6 +27978,7 @@ public class HierarchicalCustomers
             PostalCode = @"05487-020",
             Country = @"Brazil",
             Phone = @"(11) 555-1189",
+            Fax = @"(11) 555-1189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -27903,6 +28081,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -28012,6 +28191,7 @@ public class HierarchicalCustomers
             PostalCode = @"04876-786",
             Country = @"Brazil",
             Phone = @"(11) 555-9482",
+            Fax = @"(11) 555-9482",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -28409,6 +28589,7 @@ public class HierarchicalCustomers
             PostalCode = @"PO31 7PJ",
             Country = @"UK",
             Phone = @"(198) 555-8888",
+            Fax = @"(198) 555-8888",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -28456,6 +28637,7 @@ public class HierarchicalCustomers
             PostalCode = @"14776",
             Country = @"Germany",
             Phone = @"0555-09876",
+            Fax = @"0555-09876",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -28560,7 +28742,7 @@ public class HierarchicalCustomers
             CompanyName = @"Bólido Comidas preparadas",
             ContactName = @"Martín Sommer",
             ContactTitle = @"Owner",
-            Address = @"C\/ Araquil, 67",
+            Address = @"C/ Araquil, 67",
             City = @"Madrid",
             PostalCode = @"28023",
             Country = @"Spain",
@@ -28578,7 +28760,7 @@ public class HierarchicalCustomers
                     ShipVia = 2,
                     Freight = 97.09,
                     ShipName = @"Bólido Comidas preparadas",
-                    ShipAddress = @"C\/ Araquil, 67",
+                    ShipAddress = @"C/ Araquil, 67",
                     ShipCity = @"Madrid",
                     ShipPostalCode = @"28023",
                     ShipCountry = @"Spain",
@@ -28675,6 +28857,7 @@ public class HierarchicalCustomers
             PostalCode = @"08737-363",
             Country = @"Brazil",
             Phone = @"(14) 555-8122",
+            Fax = @"(14) 555-8123",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -28784,6 +28967,7 @@ public class HierarchicalCustomers
             PostalCode = @"97201",
             Country = @"USA",
             Phone = @"(503) 555-3612",
+            Fax = @"(503) 555-3612",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -28975,6 +29159,7 @@ public class HierarchicalCustomers
             PostalCode = @"08737-363",
             Country = @"Brazil",
             Phone = @"(14) 555-8122",
+            Fax = @"(14) 555-8123",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -29180,6 +29365,7 @@ public class HierarchicalCustomers
             PostalCode = @"02389-890",
             Country = @"Brazil",
             Phone = @"(21) 555-3412",
+            Fax = @"(21) 555-3413",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -29289,6 +29475,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -29329,6 +29516,7 @@ public class HierarchicalCustomers
             PostalCode = @"97403",
             Country = @"USA",
             Phone = @"(503) 555-7555",
+            Fax = @"(503) 555-7555",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -29376,6 +29564,7 @@ public class HierarchicalCustomers
             PostalCode = @"14776",
             Country = @"Germany",
             Phone = @"0555-09876",
+            Fax = @"0555-09876",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -29732,6 +29921,7 @@ public class HierarchicalCustomers
             PostalCode = @"S-844 67",
             Country = @"Sweden",
             Phone = @"0695-34 67 21",
+            Fax = @"0695-34 67 22",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -29971,6 +30161,7 @@ public class HierarchicalCustomers
             PostalCode = @"PO31 7PJ",
             Country = @"UK",
             Phone = @"(198) 555-8888",
+            Fax = @"(198) 555-8888",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -30713,6 +30904,7 @@ public class HierarchicalCustomers
             PostalCode = @"05033",
             Country = @"Mexico",
             Phone = @"(5) 555-2933",
+            Fax = @"(5) 555-2934",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -30856,6 +31048,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -30979,6 +31172,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -31102,6 +31296,7 @@ public class HierarchicalCustomers
             PostalCode = @"14776",
             Country = @"Germany",
             Phone = @"0555-09876",
+            Fax = @"0555-09876",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -31204,6 +31399,7 @@ public class HierarchicalCustomers
             PostalCode = @"02389-890",
             Country = @"Brazil",
             Phone = @"(21) 555-3412",
+            Fax = @"(21) 555-3413",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -31471,6 +31667,7 @@ public class HierarchicalCustomers
             PostalCode = @"05023",
             Country = @"Mexico",
             Phone = @"(5) 555-3932",
+            Fax = @"(5) 555-3932",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -31944,6 +32141,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -32087,6 +32285,7 @@ public class HierarchicalCustomers
             PostalCode = @"05487-020",
             Country = @"Brazil",
             Phone = @"(11) 555-1189",
+            Fax = @"(11) 555-1189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -32301,11 +32500,12 @@ public class HierarchicalCustomers
             CompanyName = @"Godos Cocina Típica",
             ContactName = @"José Pedro Freyre",
             ContactTitle = @"Sales Manager",
-            Address = @"C\/ Romero, 33",
+            Address = @"C/ Romero, 33",
             City = @"Sevilla",
             PostalCode = @"41101",
             Country = @"Spain",
             Phone = @"(95) 555 82 82",
+            Fax = @"(95) 555 82 82",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -32318,7 +32518,7 @@ public class HierarchicalCustomers
                     ShipVia = 2,
                     Freight = 175.32,
                     ShipName = @"Godos Cocina Típica",
-                    ShipAddress = @"C\/ Romero, 33",
+                    ShipAddress = @"C/ Romero, 33",
                     ShipCity = @"Sevilla",
                     ShipPostalCode = @"41101",
                     ShipCountry = @"Spain",
@@ -32361,7 +32561,7 @@ public class HierarchicalCustomers
             CustomerID = @"WILMK",
             CompanyName = @"Wilman Kala",
             ContactName = @"Matti Karttunen",
-            ContactTitle = @"Owner\/Marketing Assistant",
+            ContactTitle = @"Owner/Marketing Assistant",
             Address = @"Keskuskatu 45",
             City = @"Helsinki",
             PostalCode = @"21240",
@@ -32410,11 +32610,12 @@ public class HierarchicalCustomers
             CompanyName = @"Godos Cocina Típica",
             ContactName = @"José Pedro Freyre",
             ContactTitle = @"Sales Manager",
-            Address = @"C\/ Romero, 33",
+            Address = @"C/ Romero, 33",
             City = @"Sevilla",
             PostalCode = @"41101",
             Country = @"Spain",
             Phone = @"(95) 555 82 82",
+            Fax = @"(95) 555 82 82",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -32427,7 +32628,7 @@ public class HierarchicalCustomers
                     ShipVia = 2,
                     Freight = 19.58,
                     ShipName = @"Godos Cocina Típica",
-                    ShipAddress = @"C\/ Romero, 33",
+                    ShipAddress = @"C/ Romero, 33",
                     ShipCity = @"Sevilla",
                     ShipPostalCode = @"41101",
                     ShipCountry = @"Spain",
@@ -32558,6 +32759,7 @@ public class HierarchicalCustomers
             PostalCode = @"02389-890",
             Country = @"Brazil",
             Phone = @"(21) 555-3412",
+            Fax = @"(21) 555-3413",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -32605,6 +32807,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -32639,7 +32842,7 @@ public class HierarchicalCustomers
             CustomerID = @"WILMK",
             CompanyName = @"Wilman Kala",
             ContactName = @"Matti Karttunen",
-            ContactTitle = @"Owner\/Marketing Assistant",
+            ContactTitle = @"Owner/Marketing Assistant",
             Address = @"Keskuskatu 45",
             City = @"Helsinki",
             PostalCode = @"21240",
@@ -32700,6 +32903,7 @@ public class HierarchicalCustomers
             PostalCode = @"S-844 67",
             Country = @"Sweden",
             Phone = @"0695-34 67 21",
+            Fax = @"0695-34 67 22",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -32795,6 +32999,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -32890,6 +33095,7 @@ public class HierarchicalCustomers
             PostalCode = @"94117",
             Country = @"USA",
             Phone = @"(415) 555-5938",
+            Fax = @"(415) 555-5938",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -33097,11 +33303,12 @@ public class HierarchicalCustomers
             CompanyName = @"Godos Cocina Típica",
             ContactName = @"José Pedro Freyre",
             ContactTitle = @"Sales Manager",
-            Address = @"C\/ Romero, 33",
+            Address = @"C/ Romero, 33",
             City = @"Sevilla",
             PostalCode = @"41101",
             Country = @"Spain",
             Phone = @"(95) 555 82 82",
+            Fax = @"(95) 555 82 82",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -33114,7 +33321,7 @@ public class HierarchicalCustomers
                     ShipVia = 2,
                     Freight = 51.87,
                     ShipName = @"Godos Cocina Típica",
-                    ShipAddress = @"C\/ Romero, 33",
+                    ShipAddress = @"C/ Romero, 33",
                     ShipCity = @"Sevilla",
                     ShipPostalCode = @"41101",
                     ShipCountry = @"Spain",
@@ -33334,6 +33541,7 @@ public class HierarchicalCustomers
             PostalCode = @"14776",
             Country = @"Germany",
             Phone = @"0555-09876",
+            Fax = @"0555-09876",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -33402,6 +33610,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -33563,6 +33772,7 @@ public class HierarchicalCustomers
             ContactTitle = @"Sales Associate",
             Address = @"8 Johnstown Road",
             City = @"Cork",
+            PostalCode = @"48637",
             Country = @"Ireland",
             Phone = @"2967 542",
             Fax = @"2967 3333",
@@ -33580,6 +33790,7 @@ public class HierarchicalCustomers
                     ShipName = @"Hungry Owl All-Night Grocers",
                     ShipAddress = @"8 Johnstown Road",
                     ShipCity = @"Cork",
+                    ShipPostalCode = @"48637",
                     ShipCountry = @"Ireland",
                     OrderDetails = new List<HierarchicalCustomersItem_OrdersItem_OrderDetailsItem>()
                     {
@@ -33694,6 +33905,7 @@ public class HierarchicalCustomers
             PostalCode = @"08737-363",
             Country = @"Brazil",
             Phone = @"(14) 555-8122",
+            Fax = @"(14) 555-8123",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -33782,6 +33994,7 @@ public class HierarchicalCustomers
             PostalCode = @"S-844 67",
             Country = @"Sweden",
             Phone = @"0695-34 67 21",
+            Fax = @"0695-34 67 22",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -33932,6 +34145,7 @@ public class HierarchicalCustomers
             PostalCode = @"08737-363",
             Country = @"Brazil",
             Phone = @"(14) 555-8122",
+            Fax = @"(14) 555-8123",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -34151,7 +34365,7 @@ public class HierarchicalCustomers
             CustomerID = @"WILMK",
             CompanyName = @"Wilman Kala",
             ContactName = @"Matti Karttunen",
-            ContactTitle = @"Owner\/Marketing Assistant",
+            ContactTitle = @"Owner/Marketing Assistant",
             Address = @"Keskuskatu 45",
             City = @"Helsinki",
             PostalCode = @"21240",
@@ -34207,11 +34421,12 @@ public class HierarchicalCustomers
             CompanyName = @"Godos Cocina Típica",
             ContactName = @"José Pedro Freyre",
             ContactTitle = @"Sales Manager",
-            Address = @"C\/ Romero, 33",
+            Address = @"C/ Romero, 33",
             City = @"Sevilla",
             PostalCode = @"41101",
             Country = @"Spain",
             Phone = @"(95) 555 82 82",
+            Fax = @"(95) 555 82 82",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -34224,7 +34439,7 @@ public class HierarchicalCustomers
                     ShipVia = 1,
                     Freight = 38.19,
                     ShipName = @"Godos Cocina Típica",
-                    ShipAddress = @"C\/ Romero, 33",
+                    ShipAddress = @"C/ Romero, 33",
                     ShipCity = @"Sevilla",
                     ShipPostalCode = @"41101",
                     ShipCountry = @"Spain",
@@ -34263,6 +34478,7 @@ public class HierarchicalCustomers
             ContactTitle = @"Sales Associate",
             Address = @"8 Johnstown Road",
             City = @"Cork",
+            PostalCode = @"48637",
             Country = @"Ireland",
             Phone = @"2967 542",
             Fax = @"2967 3333",
@@ -34280,6 +34496,7 @@ public class HierarchicalCustomers
                     ShipName = @"Hungry Owl All-Night Grocers",
                     ShipAddress = @"8 Johnstown Road",
                     ShipCity = @"Cork",
+                    ShipPostalCode = @"48637",
                     ShipCountry = @"Ireland",
                     OrderDetails = new List<HierarchicalCustomersItem_OrdersItem_OrderDetailsItem>()
                     {
@@ -34312,6 +34529,7 @@ public class HierarchicalCustomers
             PostalCode = @"05487-020",
             Country = @"Brazil",
             Phone = @"(11) 555-1189",
+            Fax = @"(11) 555-1189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -34391,6 +34609,7 @@ public class HierarchicalCustomers
             PostalCode = @"05033",
             Country = @"Mexico",
             Phone = @"(5) 555-2933",
+            Fax = @"(5) 555-2934",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -35228,6 +35447,7 @@ public class HierarchicalCustomers
             PostalCode = @"1203",
             Country = @"Switzerland",
             Phone = @"0897-034214",
+            Fax = @"0897-034215",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -35337,6 +35557,7 @@ public class HierarchicalCustomers
             PostalCode = @"PO31 7PJ",
             Country = @"UK",
             Phone = @"(198) 555-8888",
+            Fax = @"(198) 555-8888",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -35425,6 +35646,7 @@ public class HierarchicalCustomers
             PostalCode = @"08737-363",
             Country = @"Brazil",
             Phone = @"(14) 555-8122",
+            Fax = @"(14) 555-8123",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -35479,6 +35701,7 @@ public class HierarchicalCustomers
             PostalCode = @"97403",
             Country = @"USA",
             Phone = @"(503) 555-7555",
+            Fax = @"(503) 555-7555",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -35567,6 +35790,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -35724,6 +35948,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -35826,6 +36051,7 @@ public class HierarchicalCustomers
             PostalCode = @"EC2 5NT",
             Country = @"UK",
             Phone = @"(171) 555-1212",
+            Fax = @"(171) 555-1212",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -35935,6 +36161,7 @@ public class HierarchicalCustomers
             PostalCode = @"04179",
             Country = @"Germany",
             Phone = @"0342-023176",
+            Fax = @"0342-023176",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -36037,6 +36264,7 @@ public class HierarchicalCustomers
             PostalCode = @"EC2 5NT",
             Country = @"UK",
             Phone = @"(171) 555-1212",
+            Fax = @"(171) 555-1212",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -36072,11 +36300,12 @@ public class HierarchicalCustomers
             CompanyName = @"Godos Cocina Típica",
             ContactName = @"José Pedro Freyre",
             ContactTitle = @"Sales Manager",
-            Address = @"C\/ Romero, 33",
+            Address = @"C/ Romero, 33",
             City = @"Sevilla",
             PostalCode = @"41101",
             Country = @"Spain",
             Phone = @"(95) 555 82 82",
+            Fax = @"(95) 555 82 82",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -36089,7 +36318,7 @@ public class HierarchicalCustomers
                     ShipVia = 3,
                     Freight = 23.39,
                     ShipName = @"Godos Cocina Típica",
-                    ShipAddress = @"C\/ Romero, 33",
+                    ShipAddress = @"C/ Romero, 33",
                     ShipCity = @"Sevilla",
                     ShipPostalCode = @"41101",
                     ShipCountry = @"Spain",
@@ -36234,6 +36463,7 @@ public class HierarchicalCustomers
             PostalCode = @"1203",
             Country = @"Switzerland",
             Phone = @"0897-034214",
+            Fax = @"0897-034215",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -36446,6 +36676,7 @@ public class HierarchicalCustomers
             PostalCode = @"S-844 67",
             Country = @"Sweden",
             Phone = @"0695-34 67 21",
+            Fax = @"0695-34 67 22",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -36651,6 +36882,7 @@ public class HierarchicalCustomers
             PostalCode = @"04876-786",
             Country = @"Brazil",
             Phone = @"(11) 555-9482",
+            Fax = @"(11) 555-9482",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -36739,6 +36971,7 @@ public class HierarchicalCustomers
             PostalCode = @"05487-020",
             Country = @"Brazil",
             Phone = @"(11) 555-1189",
+            Fax = @"(11) 555-1189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -36786,6 +37019,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -36991,6 +37225,7 @@ public class HierarchicalCustomers
             PostalCode = @"3012",
             Country = @"Switzerland",
             Phone = @"0452-076545",
+            Fax = @"0452-076545",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -37148,6 +37383,7 @@ public class HierarchicalCustomers
             PostalCode = @"05432-043",
             Country = @"Brazil",
             Phone = @"(11) 555-7647",
+            Fax = @"(11) 555-7647",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -37183,7 +37419,7 @@ public class HierarchicalCustomers
             CompanyName = @"Bólido Comidas preparadas",
             ContactName = @"Martín Sommer",
             ContactTitle = @"Owner",
-            Address = @"C\/ Araquil, 67",
+            Address = @"C/ Araquil, 67",
             City = @"Madrid",
             PostalCode = @"28023",
             Country = @"Spain",
@@ -37201,7 +37437,7 @@ public class HierarchicalCustomers
                     ShipVia = 1,
                     Freight = 16.16,
                     ShipName = @"Bólido Comidas preparadas",
-                    ShipAddress = @"C\/ Araquil, 67",
+                    ShipAddress = @"C/ Araquil, 67",
                     ShipCity = @"Madrid",
                     ShipPostalCode = @"28023",
                     ShipCountry = @"Spain",
@@ -37487,6 +37723,7 @@ public class HierarchicalCustomers
             PostalCode = @"S-844 67",
             Country = @"Sweden",
             Phone = @"0695-34 67 21",
+            Fax = @"0695-34 67 22",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -37686,6 +37923,7 @@ public class HierarchicalCustomers
             PostalCode = @"S-844 67",
             Country = @"Sweden",
             Phone = @"0695-34 67 21",
+            Fax = @"0695-34 67 22",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -37815,6 +38053,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -37898,6 +38137,7 @@ public class HierarchicalCustomers
             ContactTitle = @"Sales Associate",
             Address = @"8 Johnstown Road",
             City = @"Cork",
+            PostalCode = @"48637",
             Country = @"Ireland",
             Phone = @"2967 542",
             Fax = @"2967 3333",
@@ -37915,6 +38155,7 @@ public class HierarchicalCustomers
                     ShipName = @"Hungry Owl All-Night Grocers",
                     ShipAddress = @"8 Johnstown Road",
                     ShipCity = @"Cork",
+                    ShipPostalCode = @"48637",
                     ShipCountry = @"Ireland",
                     OrderDetails = new List<HierarchicalCustomersItem_OrdersItem_OrderDetailsItem>()
                     {
@@ -38236,6 +38477,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -38290,6 +38532,7 @@ public class HierarchicalCustomers
             PostalCode = @"97201",
             Country = @"USA",
             Phone = @"(503) 555-3612",
+            Fax = @"(503) 555-3612",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -38330,6 +38573,7 @@ public class HierarchicalCustomers
             PostalCode = @"S-844 67",
             Country = @"Sweden",
             Phone = @"0695-34 67 21",
+            Fax = @"0695-34 67 22",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -38466,6 +38710,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -38733,6 +38978,7 @@ public class HierarchicalCustomers
             PostalCode = @"S-844 67",
             Country = @"Sweden",
             Phone = @"0695-34 67 21",
+            Fax = @"0695-34 67 22",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -38794,6 +39040,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -38952,7 +39199,7 @@ public class HierarchicalCustomers
             CustomerID = @"WILMK",
             CompanyName = @"Wilman Kala",
             ContactName = @"Matti Karttunen",
-            ContactTitle = @"Owner\/Marketing Assistant",
+            ContactTitle = @"Owner/Marketing Assistant",
             Address = @"Keskuskatu 45",
             City = @"Helsinki",
             PostalCode = @"21240",
@@ -39006,6 +39253,7 @@ public class HierarchicalCustomers
             PostalCode = @"97403",
             Country = @"USA",
             Phone = @"(503) 555-7555",
+            Fax = @"(503) 555-7555",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -39053,6 +39301,7 @@ public class HierarchicalCustomers
             PostalCode = @"1756",
             Country = @"Portugal",
             Phone = @"(1) 356-5634",
+            Fax = @"(1) 356-5634",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -39116,6 +39365,7 @@ public class HierarchicalCustomers
                     EmployeeID = 7,
                     OrderDate = @"1998-04-08T00:00:00",
                     RequiredDate = @"1998-05-06T00:00:00",
+                    ShippedDate = @"1998-05-09T00:00:00",
                     ShipVia = 3,
                     Freight = 79.46,
                     ShipName = @"Ernst Handel",
@@ -39156,11 +39406,12 @@ public class HierarchicalCustomers
             CompanyName = @"Godos Cocina Típica",
             ContactName = @"José Pedro Freyre",
             ContactTitle = @"Sales Manager",
-            Address = @"C\/ Romero, 33",
+            Address = @"C/ Romero, 33",
             City = @"Sevilla",
             PostalCode = @"41101",
             Country = @"Spain",
             Phone = @"(95) 555 82 82",
+            Fax = @"(95) 555 82 82",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -39173,7 +39424,7 @@ public class HierarchicalCustomers
                     ShipVia = 1,
                     Freight = 59.11,
                     ShipName = @"Godos Cocina Típica",
-                    ShipAddress = @"C\/ Romero, 33",
+                    ShipAddress = @"C/ Romero, 33",
                     ShipCity = @"Sevilla",
                     ShipPostalCode = @"41101",
                     ShipCountry = @"Spain",
@@ -39684,6 +39935,7 @@ public class HierarchicalCustomers
                     EmployeeID = 6,
                     OrderDate = @"1998-04-13T00:00:00",
                     RequiredDate = @"1998-05-11T00:00:00",
+                    ShippedDate = @"1998-05-11T00:00:00",
                     ShipVia = 3,
                     Freight = 3.17,
                     ShipName = @"Rancho grande",
@@ -39763,6 +40015,7 @@ public class HierarchicalCustomers
             PostalCode = @"01307",
             Country = @"Germany",
             Phone = @"0372-035188",
+            Fax = @"0372-035189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -39879,6 +40132,7 @@ public class HierarchicalCustomers
             PostalCode = @"EC2 5NT",
             Country = @"UK",
             Phone = @"(171) 555-1212",
+            Fax = @"(171) 555-1212",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -40132,6 +40386,7 @@ public class HierarchicalCustomers
             PostalCode = @"14776",
             Country = @"Germany",
             Phone = @"0555-09876",
+            Fax = @"0555-09876",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -40179,6 +40434,7 @@ public class HierarchicalCustomers
             PostalCode = @"3012",
             Country = @"Switzerland",
             Phone = @"0452-076545",
+            Fax = @"0452-076545",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -40226,6 +40482,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -40395,6 +40652,7 @@ public class HierarchicalCustomers
             PostalCode = @"1203",
             Country = @"Switzerland",
             Phone = @"0897-034214",
+            Fax = @"0897-034215",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -40602,11 +40860,12 @@ public class HierarchicalCustomers
             CompanyName = @"Godos Cocina Típica",
             ContactName = @"José Pedro Freyre",
             ContactTitle = @"Sales Manager",
-            Address = @"C\/ Romero, 33",
+            Address = @"C/ Romero, 33",
             City = @"Sevilla",
             PostalCode = @"41101",
             Country = @"Spain",
             Phone = @"(95) 555 82 82",
+            Fax = @"(95) 555 82 82",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -40619,7 +40878,7 @@ public class HierarchicalCustomers
                     ShipVia = 1,
                     Freight = 3.2,
                     ShipName = @"Godos Cocina Típica",
-                    ShipAddress = @"C\/ Romero, 33",
+                    ShipAddress = @"C/ Romero, 33",
                     ShipCity = @"Sevilla",
                     ShipPostalCode = @"41101",
                     ShipCountry = @"Spain",
@@ -40711,6 +40970,7 @@ public class HierarchicalCustomers
                     EmployeeID = 1,
                     OrderDate = @"1998-04-21T00:00:00",
                     RequiredDate = @"1998-05-19T00:00:00",
+                    ShippedDate = @"1998-05-25T00:00:00",
                     ShipVia = 2,
                     Freight = 65,
                     ShipName = @"LINO-Delicateses",
@@ -40763,6 +41023,7 @@ public class HierarchicalCustomers
             PostalCode = @"97403",
             Country = @"USA",
             Phone = @"(503) 555-7555",
+            Fax = @"(503) 555-7555",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -40771,6 +41032,7 @@ public class HierarchicalCustomers
                     EmployeeID = 4,
                     OrderDate = @"1998-04-22T00:00:00",
                     RequiredDate = @"1998-05-20T00:00:00",
+                    ShippedDate = @"1998-05-20T00:00:00",
                     ShipVia = 3,
                     Freight = 18.84,
                     ShipName = @"Great Lakes Food Market",
@@ -40802,6 +41064,7 @@ public class HierarchicalCustomers
             PostalCode = @"3012",
             Country = @"Switzerland",
             Phone = @"0452-076545",
+            Fax = @"0452-076545",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -40849,6 +41112,7 @@ public class HierarchicalCustomers
             PostalCode = @"05432-043",
             Country = @"Brazil",
             Phone = @"(11) 555-7647",
+            Fax = @"(11) 555-7647",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -40987,6 +41251,7 @@ public class HierarchicalCustomers
                     EmployeeID = 6,
                     OrderDate = @"1998-04-23T00:00:00",
                     RequiredDate = @"1998-05-21T00:00:00",
+                    ShippedDate = @"1998-05-23T00:00:00",
                     ShipVia = 2,
                     Freight = 70.58,
                     ShipName = @"Bottom-Dollar Markets",
@@ -41169,6 +41434,7 @@ public class HierarchicalCustomers
             PostalCode = @"04876-786",
             Country = @"Brazil",
             Phone = @"(11) 555-9482",
+            Fax = @"(11) 555-9482",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -41216,6 +41482,7 @@ public class HierarchicalCustomers
             PostalCode = @"S-844 67",
             Country = @"Sweden",
             Phone = @"0695-34 67 21",
+            Fax = @"0695-34 67 22",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -41265,6 +41532,7 @@ public class HierarchicalCustomers
                     EmployeeID = 7,
                     OrderDate = @"1998-04-27T00:00:00",
                     RequiredDate = @"1998-05-25T00:00:00",
+                    ShippedDate = @"1998-09-25T00:00:00",
                     ShipVia = 3,
                     Freight = 2.79,
                     ShipName = @"La maison de Asie",
@@ -41408,6 +41676,7 @@ public class HierarchicalCustomers
                     EmployeeID = 8,
                     OrderDate = @"1998-04-28T00:00:00",
                     RequiredDate = @"1998-05-26T00:00:00",
+                    ShippedDate = @"1998-05-26T00:00:00",
                     ShipVia = 1,
                     Freight = 0.33,
                     ShipName = @"Cactus Comidas para llevar",
@@ -41555,7 +41824,7 @@ public class HierarchicalCustomers
         this.Add(new HierarchicalCustomersItem()
         {
             CustomerID = @"NORTS",
-            CompanyName = @"North\/South",
+            CompanyName = @"North/South",
             ContactName = @"Simon Crowther",
             ContactTitle = @"Sales Associate",
             Address = @"South House 300 Queensbridge",
@@ -41575,7 +41844,7 @@ public class HierarchicalCustomers
                     ShippedDate = @"1998-05-01T00:00:00",
                     ShipVia = 3,
                     Freight = 4.13,
-                    ShipName = @"North\/South",
+                    ShipName = @"North/South",
                     ShipAddress = @"South House 300 Queensbridge",
                     ShipCity = @"London",
                     ShipPostalCode = @"SW7 1RZ",
@@ -41613,6 +41882,7 @@ public class HierarchicalCustomers
                     EmployeeID = 9,
                     OrderDate = @"1998-04-29T00:00:00",
                     RequiredDate = @"1998-05-27T00:00:00",
+                    ShippedDate = @"1998-08-27T00:00:00",
                     ShipVia = 3,
                     Freight = 31.14,
                     ShipName = @"Blauer See Delikatessen",
@@ -41658,6 +41928,7 @@ public class HierarchicalCustomers
             PostalCode = @"02389-890",
             Country = @"Brazil",
             Phone = @"(21) 555-3412",
+            Fax = @"(21) 555-3413",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -41666,6 +41937,7 @@ public class HierarchicalCustomers
                     EmployeeID = 2,
                     OrderDate = @"1998-04-29T00:00:00",
                     RequiredDate = @"1998-06-10T00:00:00",
+                    ShippedDate = @"1998-06-15T00:00:00",
                     ShipVia = 2,
                     Freight = 85.8,
                     ShipName = @"Ricardo Adocicados",
@@ -41759,6 +42031,7 @@ public class HierarchicalCustomers
             PostalCode = @"97403",
             Country = @"USA",
             Phone = @"(503) 555-7555",
+            Fax = @"(503) 555-7555",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -41767,6 +42040,7 @@ public class HierarchicalCustomers
                     EmployeeID = 4,
                     OrderDate = @"1998-04-30T00:00:00",
                     RequiredDate = @"1998-06-11T00:00:00",
+                    ShippedDate = @"1998-06-11T00:00:00",
                     ShipVia = 3,
                     Freight = 14.01,
                     ShipName = @"Great Lakes Food Market",
@@ -41807,6 +42081,7 @@ public class HierarchicalCustomers
                     EmployeeID = 4,
                     OrderDate = @"1998-04-30T00:00:00",
                     RequiredDate = @"1998-05-28T00:00:00",
+                    ShippedDate = @"1998-06-28T00:00:00",
                     ShipVia = 2,
                     Freight = 29.93,
                     ShipName = @"Reggiani Caseifici",
@@ -41842,6 +42117,7 @@ public class HierarchicalCustomers
             ContactTitle = @"Sales Associate",
             Address = @"8 Johnstown Road",
             City = @"Cork",
+            PostalCode = @"48637",
             Country = @"Ireland",
             Phone = @"2967 542",
             Fax = @"2967 3333",
@@ -41859,6 +42135,7 @@ public class HierarchicalCustomers
                     ShipName = @"Hungry Owl All-Night Grocers",
                     ShipAddress = @"8 Johnstown Road",
                     ShipCity = @"Cork",
+                    ShipPostalCode = @"48637",
                     ShipCountry = @"Ireland",
                     OrderDetails = new List<HierarchicalCustomersItem_OrdersItem_OrderDetailsItem>()
                     {
@@ -41898,6 +42175,7 @@ public class HierarchicalCustomers
             PostalCode = @"83720",
             Country = @"USA",
             Phone = @"(208) 555-8097",
+            Fax = @"(208) 555-8097",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -41975,6 +42253,7 @@ public class HierarchicalCustomers
                     EmployeeID = 8,
                     OrderDate = @"1998-05-01T00:00:00",
                     RequiredDate = @"1998-05-29T00:00:00",
+                    ShippedDate = @"1998-05-29T00:00:00",
                     ShipVia = 1,
                     Freight = 12.91,
                     ShipName = @"LILA-Supermercado",
@@ -42109,6 +42388,7 @@ public class HierarchicalCustomers
             PostalCode = @"05487-020",
             Country = @"Brazil",
             Phone = @"(11) 555-1189",
+            Fax = @"(11) 555-1189",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -42117,6 +42397,7 @@ public class HierarchicalCustomers
                     EmployeeID = 8,
                     OrderDate = @"1998-05-04T00:00:00",
                     RequiredDate = @"1998-06-01T00:00:00",
+                    ShippedDate = @"1998-11-01T00:00:00",
                     ShipVia = 2,
                     Freight = 81.75,
                     ShipName = @"Queen Cozinha",
@@ -42162,6 +42443,7 @@ public class HierarchicalCustomers
             PostalCode = @"05033",
             Country = @"Mexico",
             Phone = @"(5) 555-2933",
+            Fax = @"(5) 555-2934",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -42211,6 +42493,7 @@ public class HierarchicalCustomers
                     EmployeeID = 2,
                     OrderDate = @"1998-05-05T00:00:00",
                     RequiredDate = @"1998-06-02T00:00:00",
+                    ShippedDate = @"1998-06-02T00:00:00",
                     ShipVia = 1,
                     Freight = 136,
                     ShipName = @"Lehmanns Marktstand",
@@ -42272,6 +42555,7 @@ public class HierarchicalCustomers
                     EmployeeID = 1,
                     OrderDate = @"1998-05-05T00:00:00",
                     RequiredDate = @"1998-06-02T00:00:00",
+                    ShippedDate = @"1998-06-10T00:00:00",
                     ShipVia = 1,
                     Freight = 0.93,
                     ShipName = @"LILA-Supermercado",
@@ -42319,6 +42603,7 @@ public class HierarchicalCustomers
                     EmployeeID = 4,
                     OrderDate = @"1998-05-05T00:00:00",
                     RequiredDate = @"1998-06-02T00:00:00",
+                    ShippedDate = @"1998-08-02T00:00:00",
                     ShipVia = 2,
                     Freight = 258.64,
                     ShipName = @"Ernst Handel",
@@ -42380,6 +42665,7 @@ public class HierarchicalCustomers
                     EmployeeID = 2,
                     OrderDate = @"1998-05-05T00:00:00",
                     RequiredDate = @"1998-06-02T00:00:00",
+                    ShippedDate = @"1998-06-15T00:00:00",
                     ShipVia = 2,
                     Freight = 24.95,
                     ShipName = @"Pericles Comidas clásicas",
@@ -42427,6 +42713,7 @@ public class HierarchicalCustomers
                     EmployeeID = 7,
                     OrderDate = @"1998-05-06T00:00:00",
                     RequiredDate = @"1998-06-03T00:00:00",
+                    ShippedDate = @"1998-06-03T00:00:00",
                     ShipVia = 2,
                     Freight = 18.44,
                     ShipName = @"Simons bistro",
@@ -42458,6 +42745,7 @@ public class HierarchicalCustomers
             PostalCode = @"1203",
             Country = @"Switzerland",
             Phone = @"0897-034214",
+            Fax = @"0897-034215",
             Orders = new List<HierarchicalCustomersItem_OrdersItem>()
             {
                 new HierarchicalCustomersItem_OrdersItem()
@@ -42466,6 +42754,7 @@ public class HierarchicalCustomers
                     EmployeeID = 8,
                     OrderDate = @"1998-05-06T00:00:00",
                     RequiredDate = @"1998-06-03T00:00:00",
+                    ShippedDate = @"1998-05-03T00:00:00",
                     ShipVia = 2,
                     Freight = 6.19,
                     ShipName = @"Richter Supermarkt",
@@ -42520,6 +42809,7 @@ public class HierarchicalCustomers
                     EmployeeID = 4,
                     OrderDate = @"1998-05-06T00:00:00",
                     RequiredDate = @"1998-06-03T00:00:00",
+                    ShippedDate = @"1998-06-08T00:00:00",
                     ShipVia = 2,
                     Freight = 38.28,
                     ShipName = @"Bon app",
@@ -42574,6 +42864,7 @@ public class HierarchicalCustomers
                     EmployeeID = 1,
                     OrderDate = @"1998-05-06T00:00:00",
                     RequiredDate = @"1998-06-03T00:00:00",
+                    ShippedDate = @"1998-07-03T00:00:00",
                     ShipVia = 2,
                     Freight = 8.53,
                     ShipName = @"Rattlesnake Canyon Grocery",
