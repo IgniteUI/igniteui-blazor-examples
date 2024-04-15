@@ -1,12 +1,12 @@
-﻿
-@using  Microsoft.AspNetCore.Components
+﻿@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Routing
 @using  Infragistics.Samples.Core.Navigation
 @inject Infragistics.Samples.Core.SampleBrowser SB
 
 @using Microsoft.Extensions.Logging;
 @inject ILogger<App> logger;
 
-<Router AppAssembly="@typeof(Program).Assembly">
+<CustomRouter AppAssembly="@typeof(Program).Assembly">
     <Found Context="routeData">
         @*MainLayout*@
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(BrowserLayout)" />
@@ -18,7 +18,7 @@
             @*<p>Sorry, there's nothing at this address.</p>*@
         </LayoutView>
     </NotFound>
-</Router>
+</CustomRouter>
 
 @code {
 
