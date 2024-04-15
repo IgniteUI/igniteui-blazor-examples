@@ -1,0 +1,229 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbHierarchicalGrid
+        AutoGenerate="false"
+        Data="HierarchicalCustomersData"
+        Name="grid"
+        @ref="grid"
+        Id="grid"
+        PrimaryKey="ID">
+            <IgbColumnGroup
+            Header="General Information"
+            Collapsible="true">
+                <IgbColumn
+                Field="ContactName"
+                Header="Contact Name"
+                VisibleWhenCollapsed="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="ContactTitle"
+                Header="Contact Title"
+                VisibleWhenCollapsed="false">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="CustomerID"
+                Header="Customer ID"
+                VisibleWhenCollapsed="false">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="CompanyName"
+                Header="Company Name"
+                VisibleWhenCollapsed="false">
+                </IgbColumn>
+
+                <IgbColumnGroup
+                Header="Address Information"
+                Collapsible="true">
+                    <IgbColumnGroup
+                    Header="Location"
+                    Width="250px"
+                    VisibleWhenCollapsed="true">
+                        <IgbColumn
+                        Field="Country"
+                        Header="Country"
+                        VisibleWhenCollapsed="true">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="City"
+                        Header="City"
+                        VisibleWhenCollapsed="true">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="Address"
+                        Header="Address"
+                        VisibleWhenCollapsed="true">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="PostalCode"
+                        Header="Postal Code"
+                        VisibleWhenCollapsed="true">
+                        </IgbColumn>
+
+                    </IgbColumnGroup>
+
+                </IgbColumnGroup>
+
+            </IgbColumnGroup>
+
+            <IgbRowIsland
+            ChildDataKey="Orders"
+            AutoGenerate="false">
+                <IgbColumnGroup
+                Header="Order Details"
+                Collapsible="true">
+                    <IgbColumn
+                    Field="OrderID"
+                    Header="Order ID"
+                    VisibleWhenCollapsed="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="EmployeeID"
+                    Header="Employee ID"
+                    VisibleWhenCollapsed="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="OrderDate"
+                    Header="Order Date"
+                    VisibleWhenCollapsed="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="RequiredDate"
+                    Header="Required Date"
+                    VisibleWhenCollapsed="true">
+                    </IgbColumn>
+
+                </IgbColumnGroup>
+
+                <IgbColumnGroup
+                Header="General Shipping Information"
+                Collapsible="true">
+                    <IgbColumn
+                    Field="ShippedDate"
+                    Header="Shipped Date"
+                    VisibleWhenCollapsed="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="ShipVia"
+                    Header="Ship Via"
+                    VisibleWhenCollapsed="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Freight"
+                    Header="Freight"
+                    VisibleWhenCollapsed="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="ShipName"
+                    Header="Ship Name"
+                    VisibleWhenCollapsed="true">
+                    </IgbColumn>
+
+                </IgbColumnGroup>
+
+                <IgbColumnGroup
+                Header="Shipping Location"
+                Collapsible="true">
+                    <IgbColumn
+                    Field="ShipAddress"
+                    Header="Ship Address"
+                    VisibleWhenCollapsed="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="ShipCity"
+                    Header="Ship City"
+                    VisibleWhenCollapsed="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="ShipPostalCode"
+                    Header="Ship Postal Code"
+                    VisibleWhenCollapsed="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="ShipCountry"
+                    Header="Ship Country"
+                    VisibleWhenCollapsed="true">
+                    </IgbColumn>
+
+                </IgbColumnGroup>
+
+                <IgbRowIsland
+                ChildDataKey="OrderDetails"
+                AutoGenerate="false">
+                    <IgbColumn
+                    Field="ProductID"
+                    Header="Product ID"
+                    DataType="GridColumnDataType.String"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="UnitPrice"
+                    Header="Unit Price"
+                    DataType="GridColumnDataType.String"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Quantity"
+                    Header="Quantity"
+                    DataType="GridColumnDataType.String"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Discount"
+                    Header="Discount"
+                    DataType="GridColumnDataType.String"
+                    Resizable="true">
+                    </IgbColumn>
+
+                </IgbRowIsland>
+
+            </IgbRowIsland>
+
+        </IgbHierarchicalGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+
+    }
+
+    private IgbHierarchicalGrid grid;
+
+    private HierarchicalCustomersData _hierarchicalCustomersData = null;
+    public HierarchicalCustomersData HierarchicalCustomersData
+    {
+        get
+        {
+            if (_hierarchicalCustomersData == null)
+            {
+                _hierarchicalCustomersData = new HierarchicalCustomersData();
+            }
+            return _hierarchicalCustomersData;
+        }
+    }
+
+}

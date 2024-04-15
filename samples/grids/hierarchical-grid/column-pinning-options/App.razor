@@ -1,0 +1,303 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbHierarchicalGrid
+        Name="grid"
+        @ref="grid"
+        Id="grid"
+        Data="HierarchicalCustomersData"
+        ColumnSelection="GridSelectionMode.Single"
+        PrimaryKey="CustomerID">
+            <IgbGridToolbar
+            >
+                <IgbGridToolbarActions
+                >
+                    <IgbGridToolbarPinning
+                    >
+                    </IgbGridToolbarPinning>
+
+                </IgbGridToolbarActions>
+
+            </IgbGridToolbar>
+
+            <IgbColumn
+            Field="CustomerID"
+            Hidden="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="CompanyName"
+            Header="Company Name"
+            Pinned="true"
+            HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="ContactName"
+            Header="Contact Name"
+            HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+            Name="column2"
+            @ref="column2">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="ContactTitle"
+            Header="Contact Title"
+            HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+            Name="column3"
+            @ref="column3">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Address"
+            Header="Address"
+            HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+            Name="column4"
+            @ref="column4">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="City"
+            Header="City"
+            HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+            Name="column5"
+            @ref="column5">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="PostalCode"
+            Header="Postal Code"
+            HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+            Name="column6"
+            @ref="column6">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Country"
+            Header="Country"
+            HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+            Name="column7"
+            @ref="column7">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Phone"
+            HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+            Name="column8"
+            @ref="column8">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Fax"
+            HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+            Name="column9"
+            @ref="column9">
+            </IgbColumn>
+
+            <IgbRowIsland
+            ChildDataKey="Orders"
+            AutoGenerate="false">
+                <IgbColumn
+                Field="OrderDate"
+                Header="Order Date"
+                DataType="GridColumnDataType.Date"
+                Resizable="true"
+                HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+                Name="column10"
+                @ref="column10">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="RequiredDate"
+                Header="Required Date"
+                DataType="GridColumnDataType.Date"
+                Resizable="true"
+                HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+                Name="column11"
+                @ref="column11">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="ShippedDate"
+                Header="Shipped Date"
+                DataType="GridColumnDataType.Date"
+                Resizable="true"
+                HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+                Name="column12"
+                @ref="column12">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="ShipName"
+                Header="Ship Name"
+                DataType="GridColumnDataType.String"
+                Resizable="true"
+                Pinned="true"
+                HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+                Name="column13"
+                @ref="column13">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="ShippedVia"
+                Header="Shipped Via"
+                DataType="GridColumnDataType.String"
+                Resizable="true"
+                HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+                Name="column14"
+                @ref="column14">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="Freight"
+                Header="Freight"
+                DataType="GridColumnDataType.String"
+                Resizable="true"
+                HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+                Name="column15"
+                @ref="column15">
+                </IgbColumn>
+
+                <IgbRowIsland
+                ChildDataKey="OrderDetails"
+                AutoGenerate="false">
+                    <IgbColumn
+                    Field="UnitPrice"
+                    Header="Unit Price"
+                    DataType="GridColumnDataType.String"
+                    Resizable="true"
+                    HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+                    Name="column16"
+                    @ref="column16">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Quantity"
+                    Header="Quantity"
+                    DataType="GridColumnDataType.String"
+                    Resizable="true"
+                    HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+                    Name="column17"
+                    @ref="column17">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Discount"
+                    Header="Discount"
+                    DataType="GridColumnDataType.String"
+                    Resizable="true"
+                    HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+                    Name="column18"
+                    @ref="column18">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Weight"
+                    Header="Weight"
+                    DataType="GridColumnDataType.String"
+                    Resizable="true"
+                    HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+                    Name="column19"
+                    @ref="column19">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Length"
+                    Header="Length"
+                    DataType="GridColumnDataType.String"
+                    Resizable="true"
+                    HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+                    Name="column20"
+                    @ref="column20">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="TotalPrice"
+                    Header="Total Price"
+                    DataType="GridColumnDataType.String"
+                    Resizable="true"
+                    HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+                    Name="column21"
+                    @ref="column21">
+                    </IgbColumn>
+
+                </IgbRowIsland>
+
+            </IgbRowIsland>
+
+        </IgbHierarchicalGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+        var column1 = this.column1;
+        var column2 = this.column2;
+        var column3 = this.column3;
+        var column4 = this.column4;
+        var column5 = this.column5;
+        var column6 = this.column6;
+        var column7 = this.column7;
+        var column8 = this.column8;
+        var column9 = this.column9;
+        var column10 = this.column10;
+        var column11 = this.column11;
+        var column12 = this.column12;
+        var column13 = this.column13;
+        var column14 = this.column14;
+        var column15 = this.column15;
+        var column16 = this.column16;
+        var column17 = this.column17;
+        var column18 = this.column18;
+        var column19 = this.column19;
+        var column20 = this.column20;
+        var column21 = this.column21;
+
+    }
+
+    private IgbHierarchicalGrid grid;
+    private IgbColumn column1;
+    private IgbColumn column2;
+    private IgbColumn column3;
+    private IgbColumn column4;
+    private IgbColumn column5;
+    private IgbColumn column6;
+    private IgbColumn column7;
+    private IgbColumn column8;
+    private IgbColumn column9;
+    private IgbColumn column10;
+    private IgbColumn column11;
+    private IgbColumn column12;
+    private IgbColumn column13;
+    private IgbColumn column14;
+    private IgbColumn column15;
+    private IgbColumn column16;
+    private IgbColumn column17;
+    private IgbColumn column18;
+    private IgbColumn column19;
+    private IgbColumn column20;
+    private IgbColumn column21;
+
+    private HierarchicalCustomersData _hierarchicalCustomersData = null;
+    public HierarchicalCustomersData HierarchicalCustomersData
+    {
+        get
+        {
+            if (_hierarchicalCustomersData == null)
+            {
+                _hierarchicalCustomersData = new HierarchicalCustomersData();
+            }
+            return _hierarchicalCustomersData;
+        }
+    }
+
+}
