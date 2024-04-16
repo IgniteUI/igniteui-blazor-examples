@@ -1,0 +1,143 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbHierarchicalGrid
+        AutoGenerate="false"
+        Data="SingersData"
+        Name="hierarchicalGrid"
+        @ref="hierarchicalGrid"
+        Id="hierarchicalGrid"
+        PrimaryKey="ID"
+        RowSelection="GridSelectionMode.Multiple"
+        CellSelection="GridSelectionMode.None"
+        RowSelectionChangingScript="WebHierarchicalGridRowSelectionConditional">
+            <IgbPaginator
+            Name="paginator"
+            @ref="paginator">
+            </IgbPaginator>
+
+            <IgbColumn
+            Field="Artist">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Debut">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="GrammyNominations"
+            Header="Grammy Nominations">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="GrammyAwards"
+            Header="Grammy Awards">
+            </IgbColumn>
+
+            <IgbRowIsland
+            ChildDataKey="Albums"
+            AutoGenerate="false"
+            RowSelection="GridSelectionMode.Multiple">
+                <IgbColumn
+                Field="Album">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="LaunchDate"
+                Header="Launch Date"
+                DataType="GridColumnDataType.Date">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="BillboardReview"
+                Header="Billboard Review">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="USBillboard200"
+                Header="US Billboard 200">
+                </IgbColumn>
+
+                <IgbRowIsland
+                ChildDataKey="Songs"
+                AutoGenerate="false"
+                RowSelection="GridSelectionMode.Multiple">
+                    <IgbColumn
+                    Field="Number"
+                    Header="No.">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Title">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Released"
+                    DataType="GridColumnDataType.Date">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Genre">
+                    </IgbColumn>
+
+                </IgbRowIsland>
+
+            </IgbRowIsland>
+
+            <IgbRowIsland
+            ChildDataKey="Tours"
+            AutoGenerate="false"
+            RowSelection="GridSelectionMode.Multiple">
+                <IgbColumn
+                Field="Tour">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="StartedOn"
+                Header="Started on">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="Location">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="Headliner">
+                </IgbColumn>
+
+            </IgbRowIsland>
+
+        </IgbHierarchicalGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var hierarchicalGrid = this.hierarchicalGrid;
+        var paginator = this.paginator;
+
+    }
+
+    private IgbHierarchicalGrid hierarchicalGrid;
+    private IgbPaginator paginator;
+
+    private SingersData _singersData = null;
+    public SingersData SingersData
+    {
+        get
+        {
+            if (_singersData == null)
+            {
+                _singersData = new SingersData();
+            }
+            return _singersData;
+        }
+    }
+
+}

@@ -1,11 +1,12 @@
 @using  IgniteUI.Blazor.Controls
-@using  Microsoft.AspNetCore.Components;
+@using Microsoft.AspNetCore.Components;
+@using Microsoft.AspNetCore.Routing;
 @using  Infragistics.Samples
 @using  Infragistics.Samples.Core.Navigation
 @inject Infragistics.Samples.Core.SampleBrowser SB
 @inject NavigationManager NavManager
 
-<Router AppAssembly="@typeof(App).Assembly">
+<CustomRouter AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(BrowserLayout)" />
     </Found>
@@ -15,7 +16,7 @@
             @*<p class="no-selection">Sorry, there's nothing at this address.</p>*@
         </LayoutView>
     </NotFound>
-</Router>
+</CustomRouter>
 
 @code {
 
