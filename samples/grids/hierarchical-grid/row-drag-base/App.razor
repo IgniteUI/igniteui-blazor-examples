@@ -4,7 +4,7 @@
     <div class="container horizontal fill">
         <div class="container vertical" style="padding: 0.5rem;">
             <IgbHierarchicalGrid AutoGenerate="false"
-                                 Data="SingersData"
+                                 Data="SingersNestedData"
                                  PrimaryKey="ID"
                                  Id="hierarchicalGrid1"
                                  Name="hierarchicalGrid1"
@@ -279,24 +279,24 @@
 
     protected override void OnInitialized()
     {                
-        this.Data2 = new List<SingersDataItem>() { };
+        this.Data2 = new List<SingersNestedItem>() { };
     }
 
     private IgbHierarchicalGrid hierarchicalGrid1;
     private IgbHierarchicalGrid hierarchicalGrid2;
 
-    private List<SingersDataItem> Data2 { get; set; }
+    private List<SingersNestedItem> Data2 { get; set; }
 
-    private SingersData _singersData = null;
-    public SingersData SingersData
+    private SingersNestedData _SingersNestedData = null;
+    public SingersNestedData SingersNestedData
     {
         get
         {
-            if (_singersData == null)
+            if (_SingersNestedData == null)
             {
-                _singersData = new SingersData();
+                _SingersNestedData = new SingersNestedData();
             }
-            return _singersData;
+            return _SingersNestedData;
         }
     }
 
