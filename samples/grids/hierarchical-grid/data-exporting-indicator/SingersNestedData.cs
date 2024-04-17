@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
-public class SingersDataItem
+
+public class SingersNestedItem
 {
     public double ID { get; set; }
     public string Artist { get; set; }
@@ -9,10 +10,11 @@ public class SingersDataItem
     public double GrammyNominations { get; set; }
     public double GrammyAwards { get; set; }
     public bool HasGrammyAward { get; set; }
-    public List<SingersDataItem_ToursItem> Tours { get; set; }
-    public List<SingersDataItem_AlbumsItem> Albums { get; set; }
+    public List<SingersNestedItem_TourInfo> Tours { get; set; }
+    public List<SingersNestedItem_AlbumInfo> Albums { get; set; }
 }
-public class SingersDataItem_ToursItem
+
+public class SingersNestedItem_TourInfo
 {
     public string Tour { get; set; }
     public string StartedOn { get; set; }
@@ -20,16 +22,18 @@ public class SingersDataItem_ToursItem
     public string Headliner { get; set; }
     public string TouredBy { get; set; }
 }
-public class SingersDataItem_AlbumsItem
+
+public class SingersNestedItem_AlbumInfo
 {
     public string Album { get; set; }
     public string LaunchDate { get; set; }
     public double BillboardReview { get; set; }
     public double USBillboard200 { get; set; }
     public string Artist { get; set; }
-    public List<SingersDataItem_AlbumsItem_SongsItem> Songs { get; set; }
+    public List<SingersNestedItem_SongInfo> Songs { get; set; }
 }
-public class SingersDataItem_AlbumsItem_SongsItem
+
+public class SingersNestedItem_SongInfo
 {
     public double Number { get; set; }
     public string Title { get; set; }
@@ -38,12 +42,11 @@ public class SingersDataItem_AlbumsItem_SongsItem
     public string Album { get; set; }
 }
 
-public class SingersData
-    : List<SingersDataItem>
+public class SingersNestedData : List<SingersNestedItem>
 {
-    public SingersData()
+    public SingersNestedData()
     {
-        this.Add(new SingersDataItem()
+        this.Add(new SingersNestedItem
         {
             ID = 0,
             Artist = @"Naomí Yepes",
@@ -52,9 +55,9 @@ public class SingersData
             GrammyNominations = 6,
             GrammyAwards = 0,
             HasGrammyAward = false,
-            Tours = new List<SingersDataItem_ToursItem>()
+            Tours = new List<SingersNestedItem_TourInfo>()
             {
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Faithful Tour",
                     StartedOn = @"Sep 12",
@@ -62,7 +65,7 @@ public class SingersData
                     Headliner = @"NO",
                     TouredBy = @"Naomí Yepes"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"City Jam Sessions",
                     StartedOn = @"Aug 13",
@@ -70,7 +73,7 @@ public class SingersData
                     Headliner = @"YES",
                     TouredBy = @"Naomí Yepes"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Christmas NYC 2013",
                     StartedOn = @"Dec 13",
@@ -78,7 +81,7 @@ public class SingersData
                     Headliner = @"NO",
                     TouredBy = @"Naomí Yepes"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Christmas NYC 2014",
                     StartedOn = @"Dec 14",
@@ -86,7 +89,7 @@ public class SingersData
                     Headliner = @"NO",
                     TouredBy = @"Naomí Yepes"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Watermelon Tour",
                     StartedOn = @"Feb 15",
@@ -94,7 +97,7 @@ public class SingersData
                     Headliner = @"YES",
                     TouredBy = @"Naomí Yepes"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Christmas NYC 2016",
                     StartedOn = @"Dec 16",
@@ -102,7 +105,7 @@ public class SingersData
                     Headliner = @"NO",
                     TouredBy = @"Naomí Yepes"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"The Dragon Tour",
                     StartedOn = @"Feb 17",
@@ -110,7 +113,7 @@ public class SingersData
                     Headliner = @"NO",
                     TouredBy = @"Naomí Yepes"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Organic Sessions",
                     StartedOn = @"Aug 18",
@@ -118,7 +121,7 @@ public class SingersData
                     Headliner = @"YES",
                     TouredBy = @"Naomí Yepes"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Hope World Tour",
                     StartedOn = @"Mar 19",
@@ -127,30 +130,30 @@ public class SingersData
                     TouredBy = @"Naomí Yepes"
                 }}
             ,
-            Albums = new List<SingersDataItem_AlbumsItem>()
+            Albums = new List<SingersNestedItem_AlbumInfo>()
             {
-                new SingersDataItem_AlbumsItem()
+                new SingersNestedItem_AlbumInfo()
                 {
                     Album = @"Initiation",
                     LaunchDate = @"September 3, 2013",
                     BillboardReview = 86,
                     USBillboard200 = 1,
                     Artist = @"Naomí Yepes",
-                    Songs = new List<SingersDataItem_AlbumsItem_SongsItem>()
+                    Songs = new List<SingersNestedItem_SongInfo>()
                     {
                     }
 
                 },
-                new SingersDataItem_AlbumsItem()
+                new SingersNestedItem_AlbumInfo()
                 {
                     Album = @"Dream Driven",
                     LaunchDate = @"August 25, 2014",
                     BillboardReview = 81,
                     USBillboard200 = 1,
                     Artist = @"Naomí Yepes",
-                    Songs = new List<SingersDataItem_AlbumsItem_SongsItem>()
+                    Songs = new List<SingersNestedItem_SongInfo>()
                     {
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 1,
                             Title = @"Intro",
@@ -158,7 +161,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Dream Driven"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 2,
                             Title = @"Ferocious",
@@ -166,7 +169,7 @@ public class SingersData
                             Genre = @"Dance-pop R&B",
                             Album = @"Dream Driven"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 3,
                             Title = @"Going crazy",
@@ -174,7 +177,7 @@ public class SingersData
                             Genre = @"Dance-pop EDM",
                             Album = @"Dream Driven"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 4,
                             Title = @"Future past",
@@ -182,7 +185,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Dream Driven"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 5,
                             Title = @"Roaming like them",
@@ -190,7 +193,7 @@ public class SingersData
                             Genre = @"Electro house Electropop",
                             Album = @"Dream Driven"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 6,
                             Title = @"Last Wishes",
@@ -198,7 +201,7 @@ public class SingersData
                             Genre = @"R&B",
                             Album = @"Dream Driven"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 7,
                             Title = @"Stay where you are",
@@ -206,7 +209,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Dream Driven"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 8,
                             Title = @"Imaginarium",
@@ -214,7 +217,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Dream Driven"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 9,
                             Title = @"Tell me",
@@ -222,7 +225,7 @@ public class SingersData
                             Genre = @"Synth-pop R&B",
                             Album = @"Dream Driven"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 10,
                             Title = @"Shredded into pieces",
@@ -230,7 +233,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Dream Driven"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 11,
                             Title = @"Capture this moment",
@@ -238,7 +241,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Dream Driven"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 12,
                             Title = @"Dream Driven",
@@ -248,28 +251,28 @@ public class SingersData
                         }}
 
                 },
-                new SingersDataItem_AlbumsItem()
+                new SingersNestedItem_AlbumInfo()
                 {
                     Album = @"The dragon journey",
                     LaunchDate = @"May 20, 2016",
                     BillboardReview = 60,
                     USBillboard200 = 2,
                     Artist = @"Naomí Yepes",
-                    Songs = new List<SingersDataItem_AlbumsItem_SongsItem>()
+                    Songs = new List<SingersNestedItem_SongInfo>()
                     {
                     }
 
                 },
-                new SingersDataItem_AlbumsItem()
+                new SingersNestedItem_AlbumInfo()
                 {
                     Album = @"Organic me",
                     LaunchDate = @"August 17, 2018",
                     BillboardReview = 82,
                     USBillboard200 = 1,
                     Artist = @"Naomí Yepes",
-                    Songs = new List<SingersDataItem_AlbumsItem_SongsItem>()
+                    Songs = new List<SingersNestedItem_SongInfo>()
                     {
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 1,
                             Title = @"I Love",
@@ -277,7 +280,7 @@ public class SingersData
                             Genre = @"Crunk reggaeton",
                             Album = @"Organic me"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 2,
                             Title = @"Early Morning Compass",
@@ -285,7 +288,7 @@ public class SingersData
                             Genre = @"mystical parody-bap ",
                             Album = @"Organic me"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 3,
                             Title = @"Key Fields Forever",
@@ -293,7 +296,7 @@ public class SingersData
                             Genre = @"Dance-pop EDM",
                             Album = @"Organic me"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 4,
                             Title = @"Stand by Your Goblins",
@@ -301,7 +304,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Organic me"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 5,
                             Title = @"Mad to Walk",
@@ -309,7 +312,7 @@ public class SingersData
                             Genre = @"Electro house Electropop",
                             Album = @"Organic me"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 6,
                             Title = @"Alice's Waiting",
@@ -317,7 +320,7 @@ public class SingersData
                             Genre = @"R&B",
                             Album = @"Organic me"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 7,
                             Title = @"We Shall Kiss",
@@ -325,7 +328,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Organic me"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 8,
                             Title = @"Behind Single Ants",
@@ -333,7 +336,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Organic me"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 9,
                             Title = @"Soap Autopsy",
@@ -341,7 +344,7 @@ public class SingersData
                             Genre = @"Synth-pop R&B",
                             Album = @"Organic me"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 10,
                             Title = @"Have You Met Rich?",
@@ -349,7 +352,7 @@ public class SingersData
                             Genre = @"ethno-tunes",
                             Album = @"Organic me"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 11,
                             Title = @"Livin' on a Banana",
@@ -359,21 +362,21 @@ public class SingersData
                         }}
 
                 },
-                new SingersDataItem_AlbumsItem()
+                new SingersNestedItem_AlbumInfo()
                 {
                     Album = @"Curiosity",
                     LaunchDate = @"December 7, 2019",
                     BillboardReview = 75,
                     USBillboard200 = 12,
                     Artist = @"Naomí Yepes",
-                    Songs = new List<SingersDataItem_AlbumsItem_SongsItem>()
+                    Songs = new List<SingersNestedItem_SongInfo>()
                     {
                     }
 
                 }}
 
         });
-        this.Add(new SingersDataItem()
+        this.Add(new SingersNestedItem
         {
             ID = 1,
             Artist = @"Babila Ebwélé",
@@ -382,9 +385,9 @@ public class SingersData
             GrammyNominations = 0,
             GrammyAwards = 11,
             HasGrammyAward = true,
-            Tours = new List<SingersDataItem_ToursItem>()
+            Tours = new List<SingersNestedItem_TourInfo>()
             {
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"The last straw",
                     StartedOn = @"May 09",
@@ -392,7 +395,7 @@ public class SingersData
                     Headliner = @"NO",
                     TouredBy = @"Babila Ebwélé"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"No foundations",
                     StartedOn = @"Jun 04",
@@ -400,7 +403,7 @@ public class SingersData
                     Headliner = @"YES",
                     TouredBy = @"Babila Ebwélé"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Crazy eyes",
                     StartedOn = @"Jun 08",
@@ -408,7 +411,7 @@ public class SingersData
                     Headliner = @"NO",
                     TouredBy = @"Babila Ebwélé"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Zero gravity",
                     StartedOn = @"Apr 19",
@@ -416,7 +419,7 @@ public class SingersData
                     Headliner = @"NO",
                     TouredBy = @"Babila Ebwélé"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Battle with myself",
                     StartedOn = @"Mar 08",
@@ -425,18 +428,18 @@ public class SingersData
                     TouredBy = @"Babila Ebwélé"
                 }}
             ,
-            Albums = new List<SingersDataItem_AlbumsItem>()
+            Albums = new List<SingersNestedItem_AlbumInfo>()
             {
-                new SingersDataItem_AlbumsItem()
+                new SingersNestedItem_AlbumInfo()
                 {
                     Album = @"Pushing up daisies",
                     LaunchDate = @"May 31, 2000",
                     BillboardReview = 86,
                     USBillboard200 = 42,
                     Artist = @"Babila Ebwélé",
-                    Songs = new List<SingersDataItem_AlbumsItem_SongsItem>()
+                    Songs = new List<SingersNestedItem_SongInfo>()
                     {
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 1,
                             Title = @"Wood Shavings Forever",
@@ -444,7 +447,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Pushing up daisies"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 2,
                             Title = @"Early Morning Drive",
@@ -452,7 +455,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Pushing up daisies"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 3,
                             Title = @"Don't Natter",
@@ -460,7 +463,7 @@ public class SingersData
                             Genre = @"adult calypso-industrial",
                             Album = @"Pushing up daisies"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 4,
                             Title = @"Stairway to Balloons",
@@ -468,7 +471,7 @@ public class SingersData
                             Genre = @"calypso and mariachi",
                             Album = @"Pushing up daisies"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 5,
                             Title = @"The Number of your Apple",
@@ -476,7 +479,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Pushing up daisies"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 6,
                             Title = @"Your Delightful Heart",
@@ -484,7 +487,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Pushing up daisies"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 7,
                             Title = @"Nice Weather For Balloons",
@@ -492,7 +495,7 @@ public class SingersData
                             Genre = @"rap-hop",
                             Album = @"Pushing up daisies"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 8,
                             Title = @"The Girl From Cornwall",
@@ -500,7 +503,7 @@ public class SingersData
                             Genre = @"enigmatic rock-and-roll",
                             Album = @"Pushing up daisies"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 9,
                             Title = @"Here Without Jack",
@@ -508,7 +511,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Pushing up daisies"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 10,
                             Title = @"Born Rancid",
@@ -518,16 +521,16 @@ public class SingersData
                         }}
 
                 },
-                new SingersDataItem_AlbumsItem()
+                new SingersNestedItem_AlbumInfo()
                 {
                     Album = @"Death's dead",
                     LaunchDate = @"June 8, 2016",
                     BillboardReview = 85,
                     USBillboard200 = 95,
                     Artist = @"Babila Ebwélé",
-                    Songs = new List<SingersDataItem_AlbumsItem_SongsItem>()
+                    Songs = new List<SingersNestedItem_SongInfo>()
                     {
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 1,
                             Title = @"Men Sound Better With You",
@@ -535,7 +538,7 @@ public class SingersData
                             Genre = @"rap-hop",
                             Album = @"Death's dead"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 2,
                             Title = @"Ghost in My Rod",
@@ -543,7 +546,7 @@ public class SingersData
                             Genre = @"enigmatic rock-and-roll",
                             Album = @"Death's dead"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 3,
                             Title = @"Bed of Men",
@@ -551,7 +554,7 @@ public class SingersData
                             Genre = @"whimsical comedy-grass ",
                             Album = @"Death's dead"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 4,
                             Title = @"Don't Push",
@@ -559,7 +562,7 @@ public class SingersData
                             Genre = @"unblack electronic-trip-hop",
                             Album = @"Death's dead"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 5,
                             Title = @"Nice Weather For Men",
@@ -567,7 +570,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Death's dead"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 6,
                             Title = @"Rancid Rhapsody",
@@ -575,7 +578,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Death's dead"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 7,
                             Title = @"Push, Push, Push!",
@@ -583,7 +586,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Death's dead"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 8,
                             Title = @"My Name is Sarah",
@@ -591,7 +594,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Death's dead"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 9,
                             Title = @"The Girl From My Hotel",
@@ -599,7 +602,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Death's dead"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 10,
                             Title = @"Free Box",
@@ -607,7 +610,7 @@ public class SingersData
                             Genre = @"splitter-funk",
                             Album = @"Death's dead"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 11,
                             Title = @"Hotel Cardiff",
@@ -619,7 +622,7 @@ public class SingersData
                 }}
 
         });
-        this.Add(new SingersDataItem()
+        this.Add(new SingersNestedItem
         {
             ID = 2,
             Artist = @"Ahmad Nazeri",
@@ -628,39 +631,39 @@ public class SingersData
             GrammyNominations = 3,
             GrammyAwards = 1,
             HasGrammyAward = true,
-            Tours = new List<SingersDataItem_ToursItem>()
+            Tours = new List<SingersNestedItem_TourInfo>()
             {
             }
             ,
-            Albums = new List<SingersDataItem_AlbumsItem>()
+            Albums = new List<SingersNestedItem_AlbumInfo>()
             {
-                new SingersDataItem_AlbumsItem()
+                new SingersNestedItem_AlbumInfo()
                 {
                     Album = @"Emergency",
                     LaunchDate = @"March 6, 2004",
                     BillboardReview = 98,
                     USBillboard200 = 69,
                     Artist = @"Ahmad Nazeri",
-                    Songs = new List<SingersDataItem_AlbumsItem_SongsItem>()
+                    Songs = new List<SingersNestedItem_SongInfo>()
                     {
                     }
 
                 },
-                new SingersDataItem_AlbumsItem()
+                new SingersNestedItem_AlbumInfo()
                 {
                     Album = @"Bursting bubbles",
                     LaunchDate = @"April 17, 2006",
                     BillboardReview = 69,
                     USBillboard200 = 39,
                     Artist = @"Ahmad Nazeri",
-                    Songs = new List<SingersDataItem_AlbumsItem_SongsItem>()
+                    Songs = new List<SingersNestedItem_SongInfo>()
                     {
                     }
 
                 }}
 
         });
-        this.Add(new SingersDataItem()
+        this.Add(new SingersNestedItem
         {
             ID = 3,
             Artist = @"Kimmy McIlmorie",
@@ -669,27 +672,27 @@ public class SingersData
             GrammyNominations = 21,
             GrammyAwards = 3,
             HasGrammyAward = true,
-            Tours = new List<SingersDataItem_ToursItem>()
+            Tours = new List<SingersNestedItem_TourInfo>()
             {
             }
             ,
-            Albums = new List<SingersDataItem_AlbumsItem>()
+            Albums = new List<SingersNestedItem_AlbumInfo>()
             {
-                new SingersDataItem_AlbumsItem()
+                new SingersNestedItem_AlbumInfo()
                 {
                     Album = @"Here we go again",
                     LaunchDate = @"November 18, 2017",
                     BillboardReview = 68,
                     USBillboard200 = 1,
                     Artist = @"Kimmy McIlmorie",
-                    Songs = new List<SingersDataItem_AlbumsItem_SongsItem>()
+                    Songs = new List<SingersNestedItem_SongInfo>()
                     {
                     }
 
                 }}
 
         });
-        this.Add(new SingersDataItem()
+        this.Add(new SingersNestedItem
         {
             ID = 4,
             Artist = @"Mar Rueda",
@@ -698,16 +701,16 @@ public class SingersData
             GrammyNominations = 14,
             GrammyAwards = 2,
             HasGrammyAward = true,
-            Tours = new List<SingersDataItem_ToursItem>()
+            Tours = new List<SingersNestedItem_TourInfo>()
             {
             }
             ,
-            Albums = new List<SingersDataItem_AlbumsItem>()
+            Albums = new List<SingersNestedItem_AlbumInfo>()
             {
             }
 
         });
-        this.Add(new SingersDataItem()
+        this.Add(new SingersNestedItem
         {
             ID = 5,
             Artist = @"Izabella Tabakova",
@@ -716,9 +719,9 @@ public class SingersData
             GrammyNominations = 7,
             GrammyAwards = 11,
             HasGrammyAward = true,
-            Tours = new List<SingersDataItem_ToursItem>()
+            Tours = new List<SingersNestedItem_TourInfo>()
             {
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Final breath",
                     StartedOn = @"Jun 13",
@@ -726,7 +729,7 @@ public class SingersData
                     Headliner = @"YES",
                     TouredBy = @"Izabella Tabakova"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Once bitten",
                     StartedOn = @"Dec 18",
@@ -734,7 +737,7 @@ public class SingersData
                     Headliner = @"NO",
                     TouredBy = @"Izabella Tabakova"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Code word",
                     StartedOn = @"Sep 19",
@@ -742,7 +745,7 @@ public class SingersData
                     Headliner = @"NO",
                     TouredBy = @"Izabella Tabakova"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Final draft",
                     StartedOn = @"Sep 17",
@@ -751,18 +754,18 @@ public class SingersData
                     TouredBy = @"Izabella Tabakova"
                 }}
             ,
-            Albums = new List<SingersDataItem_AlbumsItem>()
+            Albums = new List<SingersNestedItem_AlbumInfo>()
             {
-                new SingersDataItem_AlbumsItem()
+                new SingersNestedItem_AlbumInfo()
                 {
                     Album = @"Once bitten",
                     LaunchDate = @"July 16, 2007",
                     BillboardReview = 79,
                     USBillboard200 = 53,
                     Artist = @"Izabella Tabakova",
-                    Songs = new List<SingersDataItem_AlbumsItem_SongsItem>()
+                    Songs = new List<SingersNestedItem_SongInfo>()
                     {
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 1,
                             Title = @"Whole Lotta Super Cats",
@@ -770,7 +773,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Once bitten"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 2,
                             Title = @"Enter Becky",
@@ -778,7 +781,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Once bitten"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 3,
                             Title = @"Your Cheatin' Flamingo",
@@ -786,7 +789,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Once bitten"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 4,
                             Title = @"Mad to Kiss",
@@ -794,7 +797,7 @@ public class SingersData
                             Genre = @"Synth-pop R&B",
                             Album = @"Once bitten"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 5,
                             Title = @"Hotel Prague",
@@ -802,7 +805,7 @@ public class SingersData
                             Genre = @"ethno-tunes",
                             Album = @"Once bitten"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 6,
                             Title = @"Jail on My Mind",
@@ -810,7 +813,7 @@ public class SingersData
                             Genre = @"Crunk reggaeton",
                             Album = @"Once bitten"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 7,
                             Title = @"Amazing Blues",
@@ -818,7 +821,7 @@ public class SingersData
                             Genre = @"mystical parody-bap ",
                             Album = @"Once bitten"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 8,
                             Title = @"Goody Two Iron Filings",
@@ -826,7 +829,7 @@ public class SingersData
                             Genre = @"Electro house Electropop",
                             Album = @"Once bitten"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 9,
                             Title = @"I Love in Your Arms",
@@ -834,7 +837,7 @@ public class SingersData
                             Genre = @"R&B",
                             Album = @"Once bitten"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 10,
                             Title = @"Truly Madly Amazing",
@@ -844,16 +847,16 @@ public class SingersData
                         }}
 
                 },
-                new SingersDataItem_AlbumsItem()
+                new SingersNestedItem_AlbumInfo()
                 {
                     Album = @"Your graciousness",
                     LaunchDate = @"November 17, 2004",
                     BillboardReview = 69,
                     USBillboard200 = 30,
                     Artist = @"Izabella Tabakova",
-                    Songs = new List<SingersDataItem_AlbumsItem_SongsItem>()
+                    Songs = new List<SingersNestedItem_SongInfo>()
                     {
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 1,
                             Title = @"We Shall Tickle",
@@ -861,7 +864,7 @@ public class SingersData
                             Genre = @"old emo-garage ",
                             Album = @"Your graciousness"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 2,
                             Title = @"Snail Boogie",
@@ -869,7 +872,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Your graciousness"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 3,
                             Title = @"Amazing Liz",
@@ -877,7 +880,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Your graciousness"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 4,
                             Title = @"When Sexy Aardvarks Cry",
@@ -885,7 +888,7 @@ public class SingersData
                             Genre = @"whimsical comedy-grass ",
                             Album = @"Your graciousness"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 5,
                             Title = @"Stand By Dave",
@@ -893,7 +896,7 @@ public class SingersData
                             Genre = @"unblack electronic-trip-hop",
                             Album = @"Your graciousness"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 6,
                             Title = @"The Golf Course is Your Land",
@@ -901,7 +904,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Your graciousness"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 7,
                             Title = @"Where Have All the Men Gone?",
@@ -909,7 +912,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Your graciousness"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 8,
                             Title = @"Rhythm of the Leg",
@@ -917,7 +920,7 @@ public class SingersData
                             Genre = @"ethno-tunes",
                             Album = @"Your graciousness"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 9,
                             Title = @"Baby, I Need Your Hats",
@@ -925,7 +928,7 @@ public class SingersData
                             Genre = @"neuro-tunes",
                             Album = @"Your graciousness"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 10,
                             Title = @"Stand by Your Cat",
@@ -935,21 +938,21 @@ public class SingersData
                         }}
 
                 },
-                new SingersDataItem_AlbumsItem()
+                new SingersNestedItem_AlbumInfo()
                 {
                     Album = @"Dark matters",
                     LaunchDate = @"November 3, 2002",
                     BillboardReview = 79,
                     USBillboard200 = 85,
                     Artist = @"Izabella Tabakova",
-                    Songs = new List<SingersDataItem_AlbumsItem_SongsItem>()
+                    Songs = new List<SingersNestedItem_SongInfo>()
                     {
                     }
 
                 }}
 
         });
-        this.Add(new SingersDataItem()
+        this.Add(new SingersNestedItem
         {
             ID = 6,
             Artist = @"Nguyễn Diệp Chi",
@@ -958,27 +961,27 @@ public class SingersData
             GrammyNominations = 4,
             GrammyAwards = 2,
             HasGrammyAward = true,
-            Tours = new List<SingersDataItem_ToursItem>()
+            Tours = new List<SingersNestedItem_TourInfo>()
             {
             }
             ,
-            Albums = new List<SingersDataItem_AlbumsItem>()
+            Albums = new List<SingersNestedItem_AlbumInfo>()
             {
-                new SingersDataItem_AlbumsItem()
+                new SingersNestedItem_AlbumInfo()
                 {
                     Album = @"Library of liberty",
                     LaunchDate = @"December 22, 2003",
                     BillboardReview = 93,
                     USBillboard200 = 5,
                     Artist = @"Nguyễn Diệp Chi",
-                    Songs = new List<SingersDataItem_AlbumsItem_SongsItem>()
+                    Songs = new List<SingersNestedItem_SongInfo>()
                     {
                     }
 
                 }}
 
         });
-        this.Add(new SingersDataItem()
+        this.Add(new SingersNestedItem
         {
             ID = 7,
             Artist = @"Eva Lee",
@@ -987,27 +990,27 @@ public class SingersData
             GrammyNominations = 2,
             GrammyAwards = 0,
             HasGrammyAward = false,
-            Tours = new List<SingersDataItem_ToursItem>()
+            Tours = new List<SingersNestedItem_TourInfo>()
             {
             }
             ,
-            Albums = new List<SingersDataItem_AlbumsItem>()
+            Albums = new List<SingersNestedItem_AlbumInfo>()
             {
-                new SingersDataItem_AlbumsItem()
+                new SingersNestedItem_AlbumInfo()
                 {
                     Album = @"Just a tease",
                     LaunchDate = @"May 3, 2001",
                     BillboardReview = 91,
                     USBillboard200 = 29,
                     Artist = @"Eva Lee",
-                    Songs = new List<SingersDataItem_AlbumsItem_SongsItem>()
+                    Songs = new List<SingersNestedItem_SongInfo>()
                     {
                     }
 
                 }}
 
         });
-        this.Add(new SingersDataItem()
+        this.Add(new SingersNestedItem
         {
             ID = 8,
             Artist = @"Siri Jakobsson",
@@ -1016,9 +1019,9 @@ public class SingersData
             GrammyNominations = 2,
             GrammyAwards = 8,
             HasGrammyAward = true,
-            Tours = new List<SingersDataItem_ToursItem>()
+            Tours = new List<SingersNestedItem_TourInfo>()
             {
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Basket case",
                     StartedOn = @"Jan 07",
@@ -1026,7 +1029,7 @@ public class SingersData
                     Headliner = @"NO",
                     TouredBy = @"Siri Jakobsson"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"The bigger fish",
                     StartedOn = @"Dec 07",
@@ -1034,7 +1037,7 @@ public class SingersData
                     Headliner = @"YES",
                     TouredBy = @"Siri Jakobsson"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Missed the boat",
                     StartedOn = @"Jun 09",
@@ -1042,7 +1045,7 @@ public class SingersData
                     Headliner = @"NO",
                     TouredBy = @"Siri Jakobsson"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Equivalent exchange",
                     StartedOn = @"Feb 06",
@@ -1050,7 +1053,7 @@ public class SingersData
                     Headliner = @"YES",
                     TouredBy = @"Siri Jakobsson"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Damage control",
                     StartedOn = @"Oct 11",
@@ -1059,18 +1062,18 @@ public class SingersData
                     TouredBy = @"Siri Jakobsson"
                 }}
             ,
-            Albums = new List<SingersDataItem_AlbumsItem>()
+            Albums = new List<SingersNestedItem_AlbumInfo>()
             {
-                new SingersDataItem_AlbumsItem()
+                new SingersNestedItem_AlbumInfo()
                 {
                     Album = @"Under the bus",
                     LaunchDate = @"May 14, 2000",
                     BillboardReview = 67,
                     USBillboard200 = 67,
                     Artist = @"Siri Jakobsson",
-                    Songs = new List<SingersDataItem_AlbumsItem_SongsItem>()
+                    Songs = new List<SingersNestedItem_SongInfo>()
                     {
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 1,
                             Title = @"Jack Broke My Heart At Tesco's",
@@ -1078,7 +1081,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Under the bus"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 2,
                             Title = @"Cat Deep, Hats High",
@@ -1086,7 +1089,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Under the bus"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 3,
                             Title = @"In Snail We Trust",
@@ -1094,7 +1097,7 @@ public class SingersData
                             Genre = @"hardcore opera",
                             Album = @"Under the bus"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 4,
                             Title = @"Liz's Waiting",
@@ -1102,7 +1105,7 @@ public class SingersData
                             Genre = @"emotional C-jam ",
                             Album = @"Under the bus"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 5,
                             Title = @"Lifeless Blues",
@@ -1110,7 +1113,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Under the bus"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 6,
                             Title = @"I Spin",
@@ -1118,7 +1121,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Under the bus"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 7,
                             Title = @"Ring of Rock",
@@ -1126,7 +1129,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Under the bus"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 8,
                             Title = @"Livin' on a Rock",
@@ -1134,7 +1137,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Under the bus"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 9,
                             Title = @"Your Lifeless Heart",
@@ -1142,7 +1145,7 @@ public class SingersData
                             Genre = @"adult calypso-industrial",
                             Album = @"Under the bus"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 10,
                             Title = @"The High Street on My Mind",
@@ -1150,7 +1153,7 @@ public class SingersData
                             Genre = @"calypso and mariachi",
                             Album = @"Under the bus"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 11,
                             Title = @"Behind Ugly Curtains",
@@ -1158,7 +1161,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Under the bus"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 12,
                             Title = @"Where Have All the Curtains Gone?",
@@ -1166,7 +1169,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Under the bus"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 13,
                             Title = @"Ghost in My Apple",
@@ -1174,7 +1177,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Under the bus"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 14,
                             Title = @"I Chatter",
@@ -1186,7 +1189,7 @@ public class SingersData
                 }}
 
         });
-        this.Add(new SingersDataItem()
+        this.Add(new SingersNestedItem
         {
             ID = 9,
             Artist = @"Pablo Cambeiro",
@@ -1195,9 +1198,9 @@ public class SingersData
             GrammyNominations = 5,
             GrammyAwards = 0,
             HasGrammyAward = false,
-            Tours = new List<SingersDataItem_ToursItem>()
+            Tours = new List<SingersNestedItem_TourInfo>()
             {
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Beads",
                     StartedOn = @"May 11",
@@ -1205,7 +1208,7 @@ public class SingersData
                     Headliner = @"NO",
                     TouredBy = @"Pablo Cambeiro"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Concept art",
                     StartedOn = @"Dec 18",
@@ -1213,7 +1216,7 @@ public class SingersData
                     Headliner = @"YES",
                     TouredBy = @"Pablo Cambeiro"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Glass shoe",
                     StartedOn = @"Jan 20",
@@ -1221,7 +1224,7 @@ public class SingersData
                     Headliner = @"YES",
                     TouredBy = @"Pablo Cambeiro"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Pushing buttons",
                     StartedOn = @"Feb 15",
@@ -1229,7 +1232,7 @@ public class SingersData
                     Headliner = @"NO",
                     TouredBy = @"Pablo Cambeiro"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Dark matters",
                     StartedOn = @"Jan 04",
@@ -1237,7 +1240,7 @@ public class SingersData
                     Headliner = @"YES",
                     TouredBy = @"Pablo Cambeiro"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Greener grass",
                     StartedOn = @"Sep 09",
@@ -1245,7 +1248,7 @@ public class SingersData
                     Headliner = @"NO",
                     TouredBy = @"Pablo Cambeiro"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Apparatus",
                     StartedOn = @"Nov 16",
@@ -1254,30 +1257,30 @@ public class SingersData
                     TouredBy = @"Pablo Cambeiro"
                 }}
             ,
-            Albums = new List<SingersDataItem_AlbumsItem>()
+            Albums = new List<SingersNestedItem_AlbumInfo>()
             {
-                new SingersDataItem_AlbumsItem()
+                new SingersNestedItem_AlbumInfo()
                 {
                     Album = @"Fluke",
                     LaunchDate = @"August 4, 2017",
                     BillboardReview = 93,
                     USBillboard200 = 98,
                     Artist = @"Pablo Cambeiro",
-                    Songs = new List<SingersDataItem_AlbumsItem_SongsItem>()
+                    Songs = new List<SingersNestedItem_SongInfo>()
                     {
                     }
 
                 },
-                new SingersDataItem_AlbumsItem()
+                new SingersNestedItem_AlbumInfo()
                 {
                     Album = @"Crowd control",
                     LaunchDate = @"August 26, 2003",
                     BillboardReview = 68,
                     USBillboard200 = 84,
                     Artist = @"Pablo Cambeiro",
-                    Songs = new List<SingersDataItem_AlbumsItem_SongsItem>()
+                    Songs = new List<SingersNestedItem_SongInfo>()
                     {
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 1,
                             Title = @"My Bed on My Mind",
@@ -1285,7 +1288,7 @@ public class SingersData
                             Genre = @"ethno-tunes",
                             Album = @"Crowd control"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 2,
                             Title = @"Bright Blues",
@@ -1293,7 +1296,7 @@ public class SingersData
                             Genre = @"neuro-tunes",
                             Album = @"Crowd control"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 3,
                             Title = @"Sail, Sail, Sail!",
@@ -1301,7 +1304,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Crowd control"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 4,
                             Title = @"Hotel My Bed",
@@ -1309,7 +1312,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Crowd control"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 5,
                             Title = @"Gonna Make You Mash",
@@ -1317,7 +1320,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Crowd control"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 6,
                             Title = @"Straight Outta America",
@@ -1325,7 +1328,7 @@ public class SingersData
                             Genre = @"hardcore opera",
                             Album = @"Crowd control"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 7,
                             Title = @"I Drive",
@@ -1333,7 +1336,7 @@ public class SingersData
                             Genre = @"emotional C-jam ",
                             Album = @"Crowd control"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 8,
                             Title = @"Like a Teddy",
@@ -1341,7 +1344,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"Crowd control"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 9,
                             Title = @"Teddy Boogie",
@@ -1353,7 +1356,7 @@ public class SingersData
                 }}
 
         });
-        this.Add(new SingersDataItem()
+        this.Add(new SingersNestedItem
         {
             ID = 10,
             Artist = @"Athar Malakooti",
@@ -1362,27 +1365,27 @@ public class SingersData
             GrammyNominations = 0,
             GrammyAwards = 0,
             HasGrammyAward = false,
-            Tours = new List<SingersDataItem_ToursItem>()
+            Tours = new List<SingersNestedItem_TourInfo>()
             {
             }
             ,
-            Albums = new List<SingersDataItem_AlbumsItem>()
+            Albums = new List<SingersNestedItem_AlbumInfo>()
             {
-                new SingersDataItem_AlbumsItem()
+                new SingersNestedItem_AlbumInfo()
                 {
                     Album = @"Pushing up daisies",
                     LaunchDate = @"February 24, 2016",
                     BillboardReview = 74,
                     USBillboard200 = 77,
                     Artist = @"Athar Malakooti",
-                    Songs = new List<SingersDataItem_AlbumsItem_SongsItem>()
+                    Songs = new List<SingersNestedItem_SongInfo>()
                     {
                     }
 
                 }}
 
         });
-        this.Add(new SingersDataItem()
+        this.Add(new SingersNestedItem
         {
             ID = 11,
             Artist = @"Marti Valencia",
@@ -1391,9 +1394,9 @@ public class SingersData
             GrammyNominations = 1,
             GrammyAwards = 1,
             HasGrammyAward = true,
-            Tours = new List<SingersDataItem_ToursItem>()
+            Tours = new List<SingersNestedItem_TourInfo>()
             {
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Cat eat cat world",
                     StartedOn = @"Sep 00",
@@ -1401,7 +1404,7 @@ public class SingersData
                     Headliner = @"YES",
                     TouredBy = @"Marti Valencia"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Final straw",
                     StartedOn = @"Sep 06",
@@ -1410,30 +1413,30 @@ public class SingersData
                     TouredBy = @"Marti Valencia"
                 }}
             ,
-            Albums = new List<SingersDataItem_AlbumsItem>()
+            Albums = new List<SingersNestedItem_AlbumInfo>()
             {
-                new SingersDataItem_AlbumsItem()
+                new SingersNestedItem_AlbumInfo()
                 {
                     Album = @"Nemesis",
                     LaunchDate = @"June 30, 2004",
                     BillboardReview = 94,
                     USBillboard200 = 9,
                     Artist = @"Marti Valencia",
-                    Songs = new List<SingersDataItem_AlbumsItem_SongsItem>()
+                    Songs = new List<SingersNestedItem_SongInfo>()
                     {
                     }
 
                 },
-                new SingersDataItem_AlbumsItem()
+                new SingersNestedItem_AlbumInfo()
                 {
                     Album = @"First chance",
                     LaunchDate = @"January 7, 2019",
                     BillboardReview = 96,
                     USBillboard200 = 19,
                     Artist = @"Marti Valencia",
-                    Songs = new List<SingersDataItem_AlbumsItem_SongsItem>()
+                    Songs = new List<SingersNestedItem_SongInfo>()
                     {
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 1,
                             Title = @"My Name is Jason",
@@ -1441,7 +1444,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"First chance"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 2,
                             Title = @"Amazing Andy",
@@ -1449,7 +1452,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"First chance"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 3,
                             Title = @"The Number of your Knight",
@@ -1457,7 +1460,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"First chance"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 4,
                             Title = @"I Sail",
@@ -1465,7 +1468,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"First chance"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 5,
                             Title = @"Goody Two Hands",
@@ -1473,7 +1476,7 @@ public class SingersData
                             Genre = @"Electro house Electropop",
                             Album = @"First chance"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 6,
                             Title = @"Careful With That Knife",
@@ -1481,7 +1484,7 @@ public class SingersData
                             Genre = @"R&B",
                             Album = @"First chance"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 7,
                             Title = @"Four Single Ants",
@@ -1489,7 +1492,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"First chance"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 8,
                             Title = @"Kiss Forever",
@@ -1497,7 +1500,7 @@ public class SingersData
                             Genre = @"*",
                             Album = @"First chance"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 9,
                             Title = @"Rich's Waiting",
@@ -1505,7 +1508,7 @@ public class SingersData
                             Genre = @"Synth-pop R&B",
                             Album = @"First chance"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 10,
                             Title = @"Japan is Your Land",
@@ -1513,7 +1516,7 @@ public class SingersData
                             Genre = @"ethno-tunes",
                             Album = @"First chance"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 11,
                             Title = @"Pencils in My Banana",
@@ -1521,7 +1524,7 @@ public class SingersData
                             Genre = @"Crunk reggaeton",
                             Album = @"First chance"
                         },
-                        new SingersDataItem_AlbumsItem_SongsItem()
+                        new SingersNestedItem_SongInfo
                         {
                             Number = 12,
                             Title = @"I Sail in Your Arms",
@@ -1531,21 +1534,21 @@ public class SingersData
                         }}
 
                 },
-                new SingersDataItem_AlbumsItem()
+                new SingersNestedItem_AlbumInfo()
                 {
                     Album = @"God's advocate",
                     LaunchDate = @"April 29, 2007",
                     BillboardReview = 66,
                     USBillboard200 = 37,
                     Artist = @"Marti Valencia",
-                    Songs = new List<SingersDataItem_AlbumsItem_SongsItem>()
+                    Songs = new List<SingersNestedItem_SongInfo>()
                     {
                     }
 
                 }}
 
         });
-        this.Add(new SingersDataItem()
+        this.Add(new SingersNestedItem
         {
             ID = 12,
             Artist = @"Alicia Stanger",
@@ -1554,27 +1557,27 @@ public class SingersData
             GrammyNominations = 1,
             GrammyAwards = 0,
             HasGrammyAward = false,
-            Tours = new List<SingersDataItem_ToursItem>()
+            Tours = new List<SingersNestedItem_TourInfo>()
             {
             }
             ,
-            Albums = new List<SingersDataItem_AlbumsItem>()
+            Albums = new List<SingersNestedItem_AlbumInfo>()
             {
-                new SingersDataItem_AlbumsItem()
+                new SingersNestedItem_AlbumInfo()
                 {
                     Album = @"Forever alone",
                     LaunchDate = @"November 3, 2005",
                     BillboardReview = 82,
                     USBillboard200 = 7,
                     Artist = @"Alicia Stanger",
-                    Songs = new List<SingersDataItem_AlbumsItem_SongsItem>()
+                    Songs = new List<SingersNestedItem_SongInfo>()
                     {
                     }
 
                 }}
 
         });
-        this.Add(new SingersDataItem()
+        this.Add(new SingersNestedItem
         {
             ID = 13,
             Artist = @"Peter Taylor",
@@ -1583,9 +1586,9 @@ public class SingersData
             GrammyNominations = 0,
             GrammyAwards = 2,
             HasGrammyAward = true,
-            Tours = new List<SingersDataItem_ToursItem>()
+            Tours = new List<SingersNestedItem_TourInfo>()
             {
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Love",
                     StartedOn = @"Jun 04",
@@ -1593,7 +1596,7 @@ public class SingersData
                     Headliner = @"YES",
                     TouredBy = @"Peter Taylor"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Fault of treasures",
                     StartedOn = @"Oct 13",
@@ -1601,7 +1604,7 @@ public class SingersData
                     Headliner = @"NO",
                     TouredBy = @"Peter Taylor"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"For eternity",
                     StartedOn = @"Mar 05",
@@ -1609,7 +1612,7 @@ public class SingersData
                     Headliner = @"YES",
                     TouredBy = @"Peter Taylor"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Time flies",
                     StartedOn = @"Jun 03",
@@ -1617,7 +1620,7 @@ public class SingersData
                     Headliner = @"NO",
                     TouredBy = @"Peter Taylor"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Highest difficulty",
                     StartedOn = @"Nov 01",
@@ -1625,7 +1628,7 @@ public class SingersData
                     Headliner = @"YES",
                     TouredBy = @"Peter Taylor"
                 },
-                new SingersDataItem_ToursItem()
+                new SingersNestedItem_TourInfo
                 {
                     Tour = @"Sleeping dogs",
                     StartedOn = @"May 04",
@@ -1634,28 +1637,28 @@ public class SingersData
                     TouredBy = @"Peter Taylor"
                 }}
             ,
-            Albums = new List<SingersDataItem_AlbumsItem>()
+            Albums = new List<SingersNestedItem_AlbumInfo>()
             {
-                new SingersDataItem_AlbumsItem()
+                new SingersNestedItem_AlbumInfo()
                 {
                     Album = @"Decisions decisions",
                     LaunchDate = @"April 10, 2008",
                     BillboardReview = 85,
                     USBillboard200 = 35,
                     Artist = @"Peter Taylor",
-                    Songs = new List<SingersDataItem_AlbumsItem_SongsItem>()
+                    Songs = new List<SingersNestedItem_SongInfo>()
                     {
                     }
 
                 },
-                new SingersDataItem_AlbumsItem()
+                new SingersNestedItem_AlbumInfo()
                 {
                     Album = @"Climate changed",
                     LaunchDate = @"June 20, 2015",
                     BillboardReview = 66,
                     USBillboard200 = 89,
                     Artist = @"Peter Taylor",
-                    Songs = new List<SingersDataItem_AlbumsItem_SongsItem>()
+                    Songs = new List<SingersNestedItem_SongInfo>()
                     {
                     }
 
