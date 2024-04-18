@@ -59,6 +59,7 @@ var sampleSource = [
     // igConfig.SamplesCopyPath + '/grids/tree-grid/**/App.razor',
     // igConfig.SamplesCopyPath + '/grids/tree/**/App.razor',
     // igConfig.SamplesCopyPath + '/grids/pivot-grid/**/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/hierarchical-grid/**/App.razor',
     // igConfig.SamplesCopyPath + '/editors/**/App.razor',
     // igConfig.SamplesCopyPath + '/editors/date-picker/**/App.razor',
     // igConfig.SamplesCopyPath + '/inputs/badge/**/App.razor',
@@ -591,9 +592,9 @@ function updateIG(cb) {
 
     let packageUpgrades = [
         // update version of IG packages and change to Trial or non-trial
-        { name: "IgniteUI.Blazor",                 version: "23.2.189" },
-        { name: "IgniteUI.Blazor.Documents.Core",  version: "23.2.189" },
-        { name: "IgniteUI.Blazor.Documents.Excel", version: "23.2.189" },
+        { name: "IgniteUI.Blazor",                 version: "23.2.204" },
+        { name: "IgniteUI.Blazor.Documents.Core",  version: "23.2.204" },
+        { name: "IgniteUI.Blazor.Documents.Excel", version: "23.2.204" },
         // these IG packages are sometimes updated:
         { name: "Microsoft.AspNetCore.Components",                       version: "8.0.0" },
         { name: "Microsoft.AspNetCore.Components.Web",                   version: "8.0.0" },

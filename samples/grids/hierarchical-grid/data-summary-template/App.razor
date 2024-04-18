@@ -1,0 +1,284 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+
+        DescriptionType="WebHierarchicalGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="false"
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="SummaryRowHeight"
+            Label="Summary Row Height"
+            ValueType="PropertyEditorValueType.Number"
+            Name="SummaryRowHeightEditor"
+            @ref="summaryRowHeightEditor">
+            </IgbPropertyEditorPropertyDescription>
+
+            <IgbPropertyEditorPropertyDescription
+            Label="Toggle Summaries"
+            ValueType="PropertyEditorValueType.Boolean1"
+            PrimitiveValue="true"
+            Changed="WebHierarchicalGridHasSummariesChange"
+            Name="ToggleSummariesEditor"
+            @ref="toggleSummariesEditor">
+            </IgbPropertyEditorPropertyDescription>
+
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="DisplayDensity"
+            Name="DisplayDensityEditor"
+            @ref="displayDensityEditor">
+            </IgbPropertyEditorPropertyDescription>
+
+        </IgbPropertyEditorPanel>
+
+    </div>
+    <div class="container vertical fill">
+        <IgbHierarchicalGrid
+        AutoGenerate="false"
+        Data="SingersData"
+        Name="hierarchicalGrid"
+        @ref="hierarchicalGrid"
+        Id="hierarchicalGrid"
+        PrimaryKey="ID">
+            <IgbColumn
+            Field="Artist"
+            Header="Artist"
+            HasSummary="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Photo"
+            Header="Photo"
+            DataType="GridColumnDataType.Image"
+            HasSummary="true"
+            Summaries="SingerSummary"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Debut"
+            Header="Debut">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="GrammyNominations"
+            Header="Grammy Nominations"
+            DataType="GridColumnDataType.Number"
+            HasSummary="true"
+            SummaryTemplate="WebHierarchicalGridSummaryTemplateStyle"
+            Name="column2"
+            @ref="column2">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="GrammyAwards"
+            Header="Grammy Awards"
+            DataType="GridColumnDataType.Number"
+            HasSummary="true"
+            SummaryTemplate="WebHierarchicalGridSummaryTemplate"
+            Name="column3"
+            @ref="column3">
+            </IgbColumn>
+
+            <IgbRowIsland
+            ChildDataKey="Albums"
+            AutoGenerate="false">
+                <IgbColumn
+                Field="Album"
+                Header="Album"
+                DataType="GridColumnDataType.String"
+                HasSummary="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="LaunchDate"
+                Header="Launch Date"
+                DataType="GridColumnDataType.Date"
+                HasSummary="true"
+                SummaryTemplate="WebRowIslandGridSummaryTemplateStyle"
+                Name="column4"
+                @ref="column4">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="BillboardReview"
+                Header="Billboard Review"
+                DataType="GridColumnDataType.Number"
+                HasSummary="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="USBillboard200"
+                Header="US Billboard 200"
+                DataType="GridColumnDataType.Number"
+                HasSummary="true">
+                </IgbColumn>
+
+                <IgbRowIsland
+                ChildDataKey="Songs"
+                AutoGenerate="false">
+                    <IgbColumn
+                    Field="Number"
+                    Header="No."
+                    DataType="GridColumnDataType.String"
+                    HasSummary="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Title"
+                    Header="Title"
+                    DataType="GridColumnDataType.String"
+                    HasSummary="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Released"
+                    Header="Released"
+                    DataType="GridColumnDataType.Date"
+                    HasSummary="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Genre"
+                    Header="Genre"
+                    DataType="GridColumnDataType.String"
+                    HasSummary="true">
+                    </IgbColumn>
+
+                </IgbRowIsland>
+
+            </IgbRowIsland>
+
+        </IgbHierarchicalGrid>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var summaryRowHeightEditor = this.summaryRowHeightEditor;
+        var toggleSummariesEditor = this.toggleSummariesEditor;
+        var displayDensityEditor = this.displayDensityEditor;
+        var hierarchicalGrid = this.hierarchicalGrid;
+        var column1 = this.column1;
+        var column2 = this.column2;
+        var column3 = this.column3;
+        var column4 = this.column4;
+
+        this.BindElements = () => {
+            propertyEditorPanel1.Target = this.hierarchicalGrid;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription summaryRowHeightEditor;
+    private IgbPropertyEditorPropertyDescription toggleSummariesEditor;
+    private IgbPropertyEditorPropertyDescription displayDensityEditor;
+    private IgbHierarchicalGrid hierarchicalGrid;
+    private IgbColumn column1;
+    private IgbColumn column2;
+    private IgbColumn column3;
+    private IgbColumn column4;
+
+    public void WebHierarchicalGridHasSummariesChange(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
+    {
+        bool newValue = bool.Parse(args.NewValue.ToString());
+
+        var column1 = this.hierarchicalGrid.ActualColumns[1];
+        var column2 = this.hierarchicalGrid.ActualColumns[3];
+        var column3 = this.hierarchicalGrid.ActualColumns[4];
+
+        column1.HasSummary = newValue;
+        column2.HasSummary = newValue;
+        column3.HasSummary = newValue;
+    }
+
+    public RenderFragment<IgbSummaryTemplateContext> WebHierarchicalGridSummaryTemplateStyle = (ctx) => {
+        var summaryResults = ctx.Implicit;
+        return @<div class="summary-temp">
+            <span><strong>@(summaryResults[0].Label)</strong><span>@(summaryResults[0].Result)</span></span>
+            <span><strong>@(summaryResults[1].Label)</strong><span>@(summaryResults[1].Result)</span></span>
+            <span><strong>@(summaryResults[2].Label)</strong><span>@(summaryResults[2].Result)</span></span>
+        </div>;
+    };
+
+    public RenderFragment<IgbSummaryTemplateContext> WebHierarchicalGridSummaryTemplate = (ctx) => {
+        var summaryResults = ctx.Implicit;
+        return @<div class="summary-temp">
+            <span>@(summaryResults[0].Label)<span>@(summaryResults[0].Result)</span></span>
+            <span>@(summaryResults[1].Label)<span>@(summaryResults[1].Result)</span></span>
+            <span>@(summaryResults[2].Label)<span>@(summaryResults[2].Result)</span></span>
+        </div>;
+    };
+
+    public RenderFragment<IgbSummaryTemplateContext> WebRowIslandGridSummaryTemplateStyle = (ctx) => {
+        var summaryResults = ctx.Implicit;
+        return @<div class="summary-temp">
+            <span><strong>@(summaryResults[0].Label)</strong><span>@(summaryResults[0].Result)</span></span>
+            <span><strong>@(summaryResults[1].Label)</strong><span>@((DateTime)(summaryResults[1].Result))</span></span>
+        </div>;
+    };
+
+        private object SingerSummary = new
+        {
+            operate = new Func<object[], object[], string, IgbSummaryResult[]>((data, allData, fieldName) =>
+            {
+                var sum = (object[] data) =>
+                {
+                    return data.Length > 0 && data.Select(el => (double)el).Where((el) => el != null).Count() > 0 ?
+                        data.Select(el => (double)el).Where((el) => el != null).Aggregate((a, b) => a + b) :
+                        0;
+                };
+                var result = new IgbSummaryResult[] { };
+                result.Append(new IgbSummaryResult
+                    {
+                        Key = "nominatedSingers",
+                        Label =  "Nominated Singers",
+                        Result = allData.Count(rec => (int)((Dictionary<string, object>)rec)["GrammyNominations"] > 0)
+                    });
+                result.Append(new IgbSummaryResult
+                    {
+                        Key = "singersWithAwards",
+                        Label = "Singers with Awards",
+                        Result = allData.Count(rec => (int)((Dictionary<string, object>)rec)["GrammyAwards"] > 0)
+                    });
+                result.Append(new IgbSummaryResult
+                    {
+                        Key = "nominations",
+                        Label = "Total Nominations",
+                        Result = sum(allData.Select(r => (object)((int)((Dictionary<string, object>)r)["GrammyNominations"])).ToArray())
+                    });
+                result.Append(new IgbSummaryResult
+                    {
+                        Key = "awards",
+                        Label = "Total Awards",
+                        Result = sum(allData.Select(r => (object)((int)((Dictionary<string, object>)r)["GrammyAwards"])).ToArray())
+                    });
+                return result;
+            })
+        };
+    private SingersData _singersData = null;
+    public SingersData SingersData
+    {
+        get
+        {
+            if (_singersData == null)
+            {
+                _singersData = new SingersData();
+            }
+            return _singersData;
+        }
+    }
+
+}
