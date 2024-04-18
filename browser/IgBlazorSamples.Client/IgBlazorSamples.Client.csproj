@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -23,6 +23,14 @@
     <NoWarn>1701;1702;NU1803,IDE0028,BL0005,0219,CS1998,0219l,RSG002,CS8618,CS8612,CS8625,CS8601,CS8602,CS0219,CS8600,CS8622,CS8603,CS8604,CS8605</NoWarn>
   </PropertyGroup>
 
+    <!--<IsAotCompatible>true</IsAotCompatible>-->
+  <PropertyGroup>
+      <IsTrimable>false</IsTrimable>
+      <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+      <PublishTrimmed>true</PublishTrimmed>
+      <TrimMode>partial</TrimMode>
+  </PropertyGroup>
+  
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(NpmRoot)node_modules') ">
         <Exec Command="node --version" ContinueOnError="true">
             <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
