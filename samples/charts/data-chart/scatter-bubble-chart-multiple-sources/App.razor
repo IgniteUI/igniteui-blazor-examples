@@ -43,8 +43,13 @@
             RadiusMemberPath="Population"
             DataSource="CountryStatsAfrica"
             MarkerType="MarkerType.Circle"
-            ShowDefaultTooltip="true"
-            RadiusScale="SizeScale1">
+            ShowDefaultTooltip="true">
+                <IgbSizeScale
+                IsLogarithmic="false"
+                MinimumValue="10"
+                MaximumValue="50">
+                </IgbSizeScale>
+
             </IgbBubbleSeries>
 
             <IgbBubbleSeries
@@ -58,8 +63,13 @@
             RadiusMemberPath="Population"
             DataSource="CountryStatsEurope"
             MarkerType="MarkerType.Circle"
-            ShowDefaultTooltip="true"
-            RadiusScale="SizeScale2">
+            ShowDefaultTooltip="true">
+                <IgbSizeScale
+                IsLogarithmic="false"
+                MinimumValue="10"
+                MaximumValue="50">
+                </IgbSizeScale>
+
             </IgbBubbleSeries>
 
         </IgbDataChart>
@@ -92,39 +102,7 @@
     private IgbNumericXAxis xAxis;
     private IgbNumericYAxis yAxis;
     private IgbBubbleSeries bubbleSeries1;
-    private IgbSizeScale _sizeScale1 = null;
-    public IgbSizeScale SizeScale1
-    {
-        get
-        {
-            if (this._sizeScale1 == null)
-            {
-                var sizeScale1 = new IgbSizeScale();
-                sizeScale1.IsLogarithmic = false;
-                sizeScale1.MinimumValue = 10;
-                sizeScale1.MaximumValue = 50;
-                this._sizeScale1 = sizeScale1;
-            }
-            return this._sizeScale1;
-        }
-    }
     private IgbBubbleSeries bubbleSeries2;
-    private IgbSizeScale _sizeScale2 = null;
-    public IgbSizeScale SizeScale2
-    {
-        get
-        {
-            if (this._sizeScale2 == null)
-            {
-                var sizeScale2 = new IgbSizeScale();
-                sizeScale2.IsLogarithmic = false;
-                sizeScale2.MinimumValue = 10;
-                sizeScale2.MaximumValue = 50;
-                this._sizeScale2 = sizeScale2;
-            }
-            return this._sizeScale2;
-        }
-    }
 
     private CountryStatsAfrica _countryStatsAfrica = null;
     public CountryStatsAfrica CountryStatsAfrica

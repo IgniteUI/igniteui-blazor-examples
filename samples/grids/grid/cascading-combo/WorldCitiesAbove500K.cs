@@ -1403,7 +1403,7 @@ public class WorldCitiesAbove500K
             ID = 10173,
             Name = @"Bucharest",
             Country = @"Romania",
-            Region = @"Bucuresti",
+            Region = @"Bucharest",
             Population = 1877155
         });
         this.Add(new WorldCitiesAbove500KItem()
@@ -2954,7 +2954,7 @@ public class WorldCitiesAbove500K
         {
             ID = 10367,
             Name = @"Prague",
-            Country = @"Czech Republic",
+            Country = @"Czechia",
             Region = @"Hlavni mesto Praha",
             Population = 1165581
         });

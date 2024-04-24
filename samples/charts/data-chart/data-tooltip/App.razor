@@ -35,11 +35,17 @@
             XMemberPath="DeathRate"
             YMemberPath="BirthRate"
             RadiusMemberPath="Population"
-            RadiusScale="SizeScale1"
             Title="Africa"
             RadiusMemberAsLegendLabel="Population: "
             XMemberAsLegendLabel="Death Rate: "
             YMemberAsLegendLabel="Birth Rate: ">
+                <IgbSizeScale
+                Name="SizeScale1"
+                @ref="sizeScale1"
+                MinimumValue="10"
+                MaximumValue="50">
+                </IgbSizeScale>
+
             </IgbBubbleSeries>
 
             <IgbBubbleSeries
@@ -51,11 +57,17 @@
             XMemberPath="DeathRate"
             YMemberPath="BirthRate"
             RadiusMemberPath="Population"
-            RadiusScale="SizeScale2"
             Title="Europe"
             RadiusMemberAsLegendLabel="Population: "
             XMemberAsLegendLabel="Death Rate: "
             YMemberAsLegendLabel="Birth Rate: ">
+                <IgbSizeScale
+                Name="SizeScale2"
+                @ref="sizeScale2"
+                MinimumValue="10"
+                MaximumValue="50">
+                </IgbSizeScale>
+
             </IgbBubbleSeries>
 
             <IgbDataToolTipLayer
@@ -76,7 +88,9 @@
         var xAxis = this.xAxis;
         var yAxis = this.yAxis;
         var bubbleSeries1 = this.bubbleSeries1;
+        var sizeScale1 = this.sizeScale1;
         var bubbleSeries2 = this.bubbleSeries2;
+        var sizeScale2 = this.sizeScale2;
         var dataToolTipLayer = this.dataToolTipLayer;
 
     }
@@ -85,39 +99,9 @@
     private IgbNumericXAxis xAxis;
     private IgbNumericYAxis yAxis;
     private IgbBubbleSeries bubbleSeries1;
-    private IgbSizeScale _sizeScale1 = null;
-    public IgbSizeScale SizeScale1
-    {
-        get
-        {
-            if (this._sizeScale1 == null)
-            {
-                var SizeScale1 = new IgbSizeScale();
-                SizeScale1.Name = "SizeScale1";
-                SizeScale1.MinimumValue = 10;
-                SizeScale1.MaximumValue = 50;
-                this._sizeScale1 = SizeScale1;
-            }
-            return this._sizeScale1;
-        }
-    }
+    private IgbSizeScale sizeScale1;
     private IgbBubbleSeries bubbleSeries2;
-    private IgbSizeScale _sizeScale2 = null;
-    public IgbSizeScale SizeScale2
-    {
-        get
-        {
-            if (this._sizeScale2 == null)
-            {
-                var SizeScale2 = new IgbSizeScale();
-                SizeScale2.Name = "SizeScale2";
-                SizeScale2.MinimumValue = 10;
-                SizeScale2.MaximumValue = 50;
-                this._sizeScale2 = SizeScale2;
-            }
-            return this._sizeScale2;
-        }
-    }
+    private IgbSizeScale sizeScale2;
     private IgbDataToolTipLayer dataToolTipLayer;
 
     private CountryDemographicAfrican _countryDemographicAfrican = null;

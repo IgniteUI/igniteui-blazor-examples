@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-public class WebGridCellEditSampleRoleplayItem
+public class RoleplayDataStatsItem
 {
     public string Name { get; set; }
     public string Age { get; set; }
@@ -9,12 +9,12 @@ public class WebGridCellEditSampleRoleplayItem
     public string Class { get; set; }
 }
 
-public class WebGridCellEditSampleRoleplay
-    : List<WebGridCellEditSampleRoleplayItem>
+public class RoleplayDataStats
+    : List<RoleplayDataStatsItem>
 {
-    public WebGridCellEditSampleRoleplay()
+    public RoleplayDataStats()
     {
-        this.Add(new WebGridCellEditSampleRoleplayItem()
+        this.Add(new RoleplayDataStatsItem()
         {
             Name = @"Stredo",
             Age = @"244",
@@ -22,7 +22,7 @@ public class WebGridCellEditSampleRoleplay
             Race = @"👩 Human",
             Class = @"🎻 Bard"
         });
-        this.Add(new WebGridCellEditSampleRoleplayItem()
+        this.Add(new RoleplayDataStatsItem()
         {
             Name = @"Haluun",
             Age = @"40",
@@ -30,7 +30,7 @@ public class WebGridCellEditSampleRoleplay
             Race = @"🧒🏻 Hafling",
             Class = @"🙏🏻 Monk"
         });
-        this.Add(new WebGridCellEditSampleRoleplayItem()
+        this.Add(new RoleplayDataStatsItem()
         {
             Name = @"Ivellios",
             Age = @"244",
@@ -38,7 +38,7 @@ public class WebGridCellEditSampleRoleplay
             Race = @"👩 Human",
             Class = @"⚔️ Paladin"
         });
-        this.Add(new WebGridCellEditSampleRoleplayItem()
+        this.Add(new RoleplayDataStatsItem()
         {
             Name = @"Tes",
             Age = @"35",
@@ -46,7 +46,7 @@ public class WebGridCellEditSampleRoleplay
             Race = @"🎭 Changeling",
             Class = @"🧙‍♂️ Wizard"
         });
-        this.Add(new WebGridCellEditSampleRoleplayItem()
+        this.Add(new RoleplayDataStatsItem()
         {
             Name = @"Kalla",
             Age = @"47",
@@ -54,7 +54,7 @@ public class WebGridCellEditSampleRoleplay
             Race = @"🤖 Warforged",
             Class = @"🦹‍♂️ Sorcerer"
         });
-        this.Add(new WebGridCellEditSampleRoleplayItem()
+        this.Add(new RoleplayDataStatsItem()
         {
             Name = @"Halimath Dundragon",
             Age = @"149",
@@ -62,7 +62,7 @@ public class WebGridCellEditSampleRoleplay
             Race = @"🐲 Dragonborn",
             Class = @"⚔️ Paladin"
         });
-        this.Add(new WebGridCellEditSampleRoleplayItem()
+        this.Add(new RoleplayDataStatsItem()
         {
             Name = @"Iriphawa",
             Age = @"39",
@@ -70,7 +70,7 @@ public class WebGridCellEditSampleRoleplay
             Race = @"🧝🏻‍♂️ Half-Elf",
             Class = @"🏹 Ranger"
         });
-        this.Add(new WebGridCellEditSampleRoleplayItem()
+        this.Add(new RoleplayDataStatsItem()
         {
             Name = @"Quaf",
             Age = @"25",
@@ -78,7 +78,7 @@ public class WebGridCellEditSampleRoleplay
             Race = @"👩 Human",
             Class = @"🥊 Fighter"
         });
-        this.Add(new WebGridCellEditSampleRoleplayItem()
+        this.Add(new RoleplayDataStatsItem()
         {
             Name = @"Rat Scratch",
             Age = @"15",
@@ -86,7 +86,7 @@ public class WebGridCellEditSampleRoleplay
             Race = @"🐡 Locathah",
             Class = @"🍁 Druid"
         });
-        this.Add(new WebGridCellEditSampleRoleplayItem()
+        this.Add(new RoleplayDataStatsItem()
         {
             Name = @"Slicer",
             Age = @"57",
@@ -94,7 +94,7 @@ public class WebGridCellEditSampleRoleplay
             Race = @"🐡 Locathah",
             Class = @"💪 Barbarian"
         });
-        this.Add(new WebGridCellEditSampleRoleplayItem()
+        this.Add(new RoleplayDataStatsItem()
         {
             Name = @"Nereones Ahlorsath",
             Age = @"95",
@@ -102,7 +102,7 @@ public class WebGridCellEditSampleRoleplay
             Race = @"👩 Human",
             Class = @"🥊 Fighter"
         });
-        this.Add(new WebGridCellEditSampleRoleplayItem()
+        this.Add(new RoleplayDataStatsItem()
         {
             Name = @"Nalvarti Stonecutter",
             Age = @"118",
@@ -110,7 +110,7 @@ public class WebGridCellEditSampleRoleplay
             Race = @"🧝‍♀️ Elf",
             Class = @"❤️‍ Cleric"
         });
-        this.Add(new WebGridCellEditSampleRoleplayItem()
+        this.Add(new RoleplayDataStatsItem()
         {
             Name = @"Errk",
             Age = @"22",
@@ -118,7 +118,7 @@ public class WebGridCellEditSampleRoleplay
             Race = @"🧝🏻‍♂️ Half-Elf",
             Class = @"🎻 Bard"
         });
-        this.Add(new WebGridCellEditSampleRoleplayItem()
+        this.Add(new RoleplayDataStatsItem()
         {
             Name = @"Seven Thundercloud",
             Age = @"43",
@@ -126,7 +126,7 @@ public class WebGridCellEditSampleRoleplay
             Race = @"🐡 Locathah",
             Class = @"⚔️ Paladin"
         });
-        this.Add(new WebGridCellEditSampleRoleplayItem()
+        this.Add(new RoleplayDataStatsItem()
         {
             Name = @"Navarra Chergoba",
             Age = @"16",
@@ -134,7 +134,7 @@ public class WebGridCellEditSampleRoleplay
             Race = @"🐯 Tabaxi",
             Class = @"❤️‍ Cleric"
         });
-        this.Add(new WebGridCellEditSampleRoleplayItem()
+        this.Add(new RoleplayDataStatsItem()
         {
             Name = @"Sail Snap",
             Age = @"56",
@@ -142,7 +142,7 @@ public class WebGridCellEditSampleRoleplay
             Race = @"🌳 Arboren",
             Class = @"💪 Barbarian"
         });
-        this.Add(new WebGridCellEditSampleRoleplayItem()
+        this.Add(new RoleplayDataStatsItem()
         {
             Name = @"Urreek",
             Age = @"17",
@@ -150,7 +150,7 @@ public class WebGridCellEditSampleRoleplay
             Race = @"🧝🏻‍♂️ Half-Elf",
             Class = @"🐉 Warlock"
         });
-        this.Add(new WebGridCellEditSampleRoleplayItem()
+        this.Add(new RoleplayDataStatsItem()
         {
             Name = @"Morkral Firetamer",
             Age = @"24",
@@ -158,7 +158,7 @@ public class WebGridCellEditSampleRoleplay
             Race = @"🐲 Dragonborn",
             Class = @"🙏🏻 Monk"
         });
-        this.Add(new WebGridCellEditSampleRoleplayItem()
+        this.Add(new RoleplayDataStatsItem()
         {
             Name = @"Vithka",
             Age = @"53",
@@ -166,7 +166,7 @@ public class WebGridCellEditSampleRoleplay
             Race = @"🐡 Locathah",
             Class = @"⚔️ Paladin"
         });
-        this.Add(new WebGridCellEditSampleRoleplayItem()
+        this.Add(new RoleplayDataStatsItem()
         {
             Name = @"Sandrue Avhoste",
             Age = @"19",
@@ -174,7 +174,7 @@ public class WebGridCellEditSampleRoleplay
             Race = @"🐲 Dragonborn",
             Class = @"🗡️ Rogue"
         });
-        this.Add(new WebGridCellEditSampleRoleplayItem()
+        this.Add(new RoleplayDataStatsItem()
         {
             Name = @"Hapah Moq",
             Age = @"34",
@@ -182,7 +182,7 @@ public class WebGridCellEditSampleRoleplay
             Race = @"🎅🏽 Dwarf",
             Class = @"🎻 Bard"
         });
-        this.Add(new WebGridCellEditSampleRoleplayItem()
+        this.Add(new RoleplayDataStatsItem()
         {
             Name = @"Kothar ",
             Age = @"55",
@@ -190,7 +190,7 @@ public class WebGridCellEditSampleRoleplay
             Race = @"🧝🏻‍♂️ Half-Elf",
             Class = @"🐉 Warlock"
         });
-        this.Add(new WebGridCellEditSampleRoleplayItem()
+        this.Add(new RoleplayDataStatsItem()
         {
             Name = @"Senen",
             Age = @"40",

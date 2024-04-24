@@ -81,7 +81,7 @@ public class CountryDemographicEurope
             Population = 10601000,
             BirthRate = 10.5,
             DeathRate = 10.5,
-            Name = @"Czech Republic"
+            Name = @"Czechia"
         });
         this.Add(new CountryDemographicEuropeItem()
         {
