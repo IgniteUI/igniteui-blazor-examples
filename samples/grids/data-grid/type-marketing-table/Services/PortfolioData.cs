@@ -105,7 +105,7 @@ namespace Infragistics.Samples
                     Name = "Europe",
                     Countries = new List<string>() {
                         "Russia", "Germany", "France", "United Kingdom", "Italy", "Spain", "Poland", "Romania", "Netherlands", "Belgium", "Greece",
-                        "Portugal", "Czech Republic", "Hungary", "Sweden", "Austria", "Switzerland", "Bulgaria", "Denmark", "Finland", "Slovakia", "Norway",
+                        "Portugal", "Czechia", "Hungary", "Sweden", "Austria", "Switzerland", "Bulgaria", "Denmark", "Finland", "Slovakia", "Norway",
                         "Ireland", "Croatia", "Slovenia", "Estonia", "Iceland"
                     }
                 },
