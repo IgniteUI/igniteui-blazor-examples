@@ -62,7 +62,7 @@ public class CountryTopUrbanPopData
             Code = @"CHI",
             Parent = @"Asia",
             Name = @"China",
-            Population = 1425671352,
+            Population = 1425178792,
             UrbanPopulation = 941865672,
             UrbanPopPercent = "65%"
         });
