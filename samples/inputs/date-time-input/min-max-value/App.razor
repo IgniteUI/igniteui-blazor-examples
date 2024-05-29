@@ -4,6 +4,8 @@
 <div class="container vertical">
     <IgbDateTimeInput @ref="DateTimeInputRef" MinValue="@MinDate" MaxValue="@MaxDate">
         <IgbIcon IconName="clear" Collection="myIcons" slot="prefix" @onclick="OnClear"></IgbIcon>
+        <IgbIcon IconName="up" Collection="myIcons" slot="suffix" @onclick="OnStepUp"></IgbIcon>
+        <IgbIcon IconName="down" Collection="myIcons" slot="suffix" @onclick="OnStepDown"></IgbIcon>
     </IgbDateTimeInput>
     <IgbIcon @ref="RegisterIconRef"/>
 </div>
@@ -20,7 +22,11 @@
         if (firstRender && RegisterIconRef != null)
         {
             await RegisterIconRef.EnsureReady();
+            var upIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path d=\"M7 14l5-5 5 5z\"/></svg>";
+            var downIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path d=\"M7 10l5 5 5-5z\"/></svg>";
             var clearIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path d=\"M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z\"/></svg>";
+            await RegisterIconRef.RegisterIconFromTextAsync("up", upIcon, "myIcons");
+            await RegisterIconRef.RegisterIconFromTextAsync("down", downIcon, "myIcons");
             await RegisterIconRef.RegisterIconFromTextAsync("clear", clearIcon, "myIcons");
         }
     }
@@ -28,5 +34,14 @@
     public async Task OnClear()
     {
         await DateTimeInputRef?.ClearAsync();
+    }
+
+    public async Task OnStepUp()
+    {
+        await DateTimeInputRef?.StepUpAsync();
+    }
+    public async Task OnStepDown()
+    {
+        await DateTimeInputRef?.StepDownAsync();
     }
 }
