@@ -1,25 +1,10 @@
 ﻿@using IgniteUI.Blazor.Controls
 
-<style>
-    .MyDisabledClass {
-        pointer-events: none;
-        background-color: dimgrey;
-        color: linen;
-        opacity: 1;
-    }
-</style>
-
 <div class="container vertical">
-    <button @onclick="ClickMe">Apply Disabled Style</button>
-    <IgbDateTimeInput @ref="DateTimeInputRef" Class="@class1">
+    <IgbDateTimeInput @ref="DateTimeInputRef">
         <IgbIcon IconName="clear" Collection="myIcons" slot="prefix" @onclick="OnClear"></IgbIcon>
         <IgbIcon IconName="up" Collection="myIcons" slot="suffix" @onclick="OnStepUp"></IgbIcon>
         <IgbIcon IconName="down" Collection="myIcons" slot="suffix" @onclick="OnStepDown"></IgbIcon>
-    </IgbDateTimeInput>
-    <IgbDateTimeInput @ref="DateTimeInputRef2" Class="@class2">
-        <IgbIcon IconName="clear" Collection="myIcons" slot="prefix" @onclick="OnClear"></IgbIcon>
-        <IgbIcon IconName="up" Collection="myIcons" slot="suffix" @onclick="OnStepUp2"></IgbIcon>
-        <IgbIcon IconName="down" Collection="myIcons" slot="suffix" @onclick="OnStepDown2"></IgbIcon>
     </IgbDateTimeInput>
     <IgbIcon @ref="RegisterIconRef"></IgbIcon>
 
@@ -28,12 +13,7 @@
 @code {
 
     IgbDateTimeInput? DateTimeInputRef;
-    IgbDateTimeInput? DateTimeInputRef2;
-
     IgbIcon? RegisterIconRef;
-
-    string class1 { get; set; } = "MyDisabledClass";
-    string class2 { get; set; } = "ig-web-date-time-input";
 
     protected async override Task OnAfterRenderAsync(bool firstRender)
     {
@@ -52,8 +32,6 @@
     public async Task OnClear()
     {
         await DateTimeInputRef?.ClearAsync();
-        await DateTimeInputRef2?.ClearAsync();
-
     }
 
     public async Task OnStepUp()
@@ -64,37 +42,5 @@
     public async Task OnStepDown()
     {
         await DateTimeInputRef?.StepDownAsync();
-    }
-
-    public async Task OnStepUp2()
-    {
-        await DateTimeInputRef2?.StepUpAsync();
-    }
-
-    public async Task OnStepDown2()
-    {
-        await DateTimeInputRef2?.StepDownAsync();
-    }
-
-    int count = 0;
-    public void ClickMe(MouseEventArgs e)
-    {
-        this.class1 = "MyDisabledClass";
-        this.class2 = "ig-web-date-time-input";
-
-        if (count % 2 == 0)
-        {
-            this.class1 = "ig-web-date-time-input";
-            this.class2 = "MyDisabledClass";
-            count = 1;
-
-        }
-        else
-        {
-            this.class1 = "MyDisabledClass";
-            this.class2 = "ig-web-date-time-input";
-            count = 0;
-
-        }
     }
 }
