@@ -2,13 +2,13 @@
 using System;
 using System.Collections.Generic;
 
-public class EmployeesData : List<Employee>
+public class WorkersData : List<Worker>
 {
-    public EmployeesData()
+    public WorkersData()
     {
-        List<Employee> data = new List<Employee>()
+        List<Worker> data = new List<Worker>()
         {
-            new Employee()
+            new Worker()
             {
                 Age = 55,
                 HireDate= DateTime.Parse("2008-03-20"),
@@ -23,7 +23,7 @@ public class EmployeesData : List<Employee>
                 CompletedTasks = 0.15,
                 Title = "Development Manager"
             },
-            new Employee()
+            new Worker()
             {
                 Age = 42,
                 HireDate = DateTime.Parse("2014-01-22"),
@@ -38,7 +38,7 @@ public class EmployeesData : List<Employee>
                 CompletedTasks = 0.39,
                 Title = "CEO"
             },
-            new Employee()
+            new Worker()
             {
                 Age = 49,
                 HireDate = DateTime.Parse("2014-01-22"),
@@ -53,7 +53,7 @@ public class EmployeesData : List<Employee>
                 CompletedTasks = 0.52,
                 Title = "Accounting Manager"
             },
-            new Employee()
+            new Worker()
             {
                 Age = 61,
                 HireDate = DateTime.Parse("2010-01-01"),
@@ -68,7 +68,7 @@ public class EmployeesData : List<Employee>
                 CompletedTasks = 0.13,
                 Title = "Localization Manager"
             },
-            new Employee()
+            new Worker()
             {
                 Age = 43,
                 HireDate = DateTime.Parse("2011-06-03"),
@@ -83,7 +83,7 @@ public class EmployeesData : List<Employee>
                 CompletedTasks = 0.22,
                 Title = "Senior Software Developer"
             },
-            new Employee()
+            new Worker()
             {
                 Age = 29,
                 HireDate = DateTime.Parse("2009-06-19"),
@@ -98,7 +98,7 @@ public class EmployeesData : List<Employee>
                 CompletedTasks = 0.3,
                 Title = "Senior Software Developer"
             },
-            new Employee()
+            new Worker()
             {
                 Age = 31,
                 HireDate = DateTime.Parse("2014-08-18"),
@@ -113,7 +113,7 @@ public class EmployeesData : List<Employee>
                 CompletedTasks = 0.45,
                 Title = "Software Development Team Lead"
             },
-            new Employee()
+            new Worker()
             {
                 Age = 35,
                 HireDate = DateTime.Parse("2015-09-17"),
@@ -128,7 +128,7 @@ public class EmployeesData : List<Employee>
                 CompletedTasks = 0.35,
                 Title = "Senior Software Developer"
             },
-            new Employee()
+            new Worker()
             {
                 Age = 44,
                 HireDate = DateTime.Parse("2009-10-11"),
@@ -143,7 +143,7 @@ public class EmployeesData : List<Employee>
                 CompletedTasks = 0.29,
                 Title = "Senior Software Developer"
             },
-            new Employee()
+            new Worker()
             {
                 Age = 44,
                 HireDate = DateTime.Parse("2014-04-04"),
@@ -158,7 +158,7 @@ public class EmployeesData : List<Employee>
                 CompletedTasks = 0.63,
                 Title = "Director"
             },
-            new Employee()
+            new Worker()
             {
                 Age = 25,
                 HireDate = DateTime.Parse("2017-11-09"),
@@ -173,7 +173,7 @@ public class EmployeesData : List<Employee>
                 CompletedTasks = 0.67,
                 Title = "Vice President"
             },
-            new Employee()
+            new Worker()
             {
                 Age = 39,
                 HireDate = DateTime.Parse("2010-03-22"),
@@ -188,7 +188,7 @@ public class EmployeesData : List<Employee>
                 CompletedTasks = 0.7,
                 Title = "Director"
             },
-            new Employee()
+            new Worker()
             {
                 Age = 44,
                 HireDate = DateTime.Parse("2014-04-04"),
@@ -203,7 +203,7 @@ public class EmployeesData : List<Employee>
                 CompletedTasks = 0.52,
                 Title = "Senior Accountant"
             },
-            new Employee()
+            new Worker()
             {
                 Age = 50,
                 HireDate = DateTime.Parse("2007-11-18"),
@@ -218,7 +218,7 @@ public class EmployeesData : List<Employee>
                 CompletedTasks = 0.43,
                 Title = "Senior Localization Developer"
             },
-            new Employee()
+            new Worker()
             {
                 Age = 27,
                 HireDate = DateTime.Parse("2016-02-19"),
@@ -233,7 +233,7 @@ public class EmployeesData : List<Employee>
                 CompletedTasks = 0.35,
                 Title = "Senior Localization"
             },
-            new Employee()
+            new Worker()
             {
                 Age = 25,
                 HireDate = DateTime.Parse("2017-11-09"),
@@ -248,7 +248,7 @@ public class EmployeesData : List<Employee>
                 CompletedTasks = 0.15,
                 Title = "Localization Intern"
             },
-            new Employee()
+            new Worker()
             {
                 Age = 39,
                 HireDate = DateTime.Parse("2010-03-22"),
@@ -263,7 +263,7 @@ public class EmployeesData : List<Employee>
                 CompletedTasks = 0.15,
                 Title = "Localization Intern"
             },
-            new Employee()
+            new Worker()
             {
                Age = 25,
                 HireDate = DateTime.Parse("2018-03-18"),
@@ -284,7 +284,7 @@ public class EmployeesData : List<Employee>
     }
 }
 
-public class Employee
+public class Worker
 {
     public int ID { get; set; }
     public int ParentID { get; set; }
