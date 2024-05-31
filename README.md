@@ -60,7 +60,7 @@ git clone https://github.com/IgniteUI/igniteui-blazor-examples.git
 
 ## Running Individual Sample
 
-Note, as of 2022, this repo is targeting .NET 6.0 and Visual Studio 2022. VS 2019 does not support .NET 6.0.
+Note, this repo is targeting .NET 8.0 and Visual Studio 2022. VS 2019 does not support .NET 8.0.
 
 - check out the **master** branch
 
