@@ -1,0 +1,29 @@
+@using IgniteUI.Blazor.Controls
+
+<style>
+    .controls {
+        margin-top: 1rem;
+    }
+</style>
+
+<div class="container sample center">
+    <form id="form" @onsubmit="Submit">
+        <IgbTextarea Rows="5" Name="user_feedback" Label="Your review" Required="true"></IgbTextarea>
+        <div class="controls">
+            <IgbButton Type="submit">Submit review</IgbButton>
+            <IgbButton Type="reset" Variant="ButtonVariant.Outlined">Reset</IgbButton>
+        </div>
+        <IgbToast Id="submitted" @ref="ToastRef" Position="BaseAlertLikePosition.Top" DisplayTime="1000">Your review was submitted</IgbToast>
+    </form>
+</div>
+
+@code {
+
+    public IgbToast ToastRef { get; set; }
+
+    private void Submit()
+    {
+        this.ToastRef.Show();
+    }
+
+}
