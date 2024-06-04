@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-
 public class CountryTopUrbanPopDataItem
 {
     public string Code { get; set; }
@@ -10,21 +8,6 @@ public class CountryTopUrbanPopDataItem
     public double Population { get; set; }
     public double UrbanPopulation { get; set; }
     public string UrbanPopPercent { get; set; }
-    public string UrbanPopPercentLabel
-    {
-        get
-        {
-            if (UrbanPopulation != 0)
-            {
-                return string.Format("{0}, {1}", Name, UrbanPopPercent);
-
-            }
-            else
-            {
-                return Name;
-            }
-        }
-    }
 }
 
 public class CountryTopUrbanPopData
@@ -32,30 +15,23 @@ public class CountryTopUrbanPopData
 {
     public CountryTopUrbanPopData()
     {
-
-        this.Add(new CountryTopUrbanPopDataItem()
-        {
-            Code = @"NAM",
-            Parent = null,
-            Name = @"North America",
-            Population = double.NaN
-        });
         this.Add(new CountryTopUrbanPopDataItem()
         {
             Code = @"ASA",
             Parent = null,
             Name = @"Asia",
-            Population = double.NaN
+            Population = double.NaN,
+            UrbanPopulation = double.NaN,
+            UrbanPopPercent = null
         });
         this.Add(new CountryTopUrbanPopDataItem()
         {
-            Code = "@IND",
-            Parent = @"Asia",
-            Name = @"India",
-            Population = 1428627663,
-            UrbanPopulation = 530387142,
-            UrbanPopPercent = "36%"
-
+            Code = @"NAM",
+            Parent = null,
+            Name = @"North America",
+            Population = double.NaN,
+            UrbanPopulation = double.NaN,
+            UrbanPopPercent = null
         });
         this.Add(new CountryTopUrbanPopDataItem()
         {
@@ -64,16 +40,25 @@ public class CountryTopUrbanPopData
             Name = @"China",
             Population = 1425178792,
             UrbanPopulation = 941865672,
-            UrbanPopPercent = "65%"
+            UrbanPopPercent = @"65%"
+        });
+        this.Add(new CountryTopUrbanPopDataItem()
+        {
+            Code = @"IND",
+            Parent = @"Asia",
+            Name = @"India",
+            Population = 1428627663,
+            UrbanPopulation = 530387142,
+            UrbanPopPercent = @"36%"
         });
         this.Add(new CountryTopUrbanPopDataItem()
         {
             Code = @"USA",
-            Parent = "North America",
-            Name = @"USA",
+            Parent = @"North America",
+            Name = @"United States",
             Population = 341814420,
             UrbanPopulation = 284698234,
-            UrbanPopPercent = "83%"
+            UrbanPopPercent = @"83%"
         });
         this.Add(new CountryTopUrbanPopDataItem()
         {
@@ -82,10 +67,7 @@ public class CountryTopUrbanPopData
             Name = @"Mexico",
             Population = 129388467,
             UrbanPopulation = 114397383,
-            UrbanPopPercent = "88%"
+            UrbanPopPercent = @"88%"
         });
-       
-
-
     }
 }
