@@ -14,20 +14,21 @@
         IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="InitialFilterHandler"
-            EditorWidth="800"
             Name="InitialFilter"
             @ref="initialFilter"
-            Label="Modify Chart Filter"
-            ValueType="PropertyEditorValueType.StringValue"
+            Label="Modify Filter"
+            ValueType="PropertyEditorValueType.EnumValue"
             ShouldOverrideDefaultEditor="true"
-            Changed="EditorChangeUpdateInitialFilter">
+            DropDownNames="@(new string[] { "1950", "1960", "1970", "1980", "1990", "2000", "2010", "2020" })"
+            DropDownValues="@(new string[] { "1950", "1960", "1970", "1980", "1990", "2000", "2010", "2020" })"
+            Changed="EditorChangeDataFilter">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
 
     </div>
     <div class="legend-title">
-        Sales Filtered by Country, Product, and Dates
+        Annual Birth Rates by World Region
     </div>
     <div class="legend">
         <IgbLegend
@@ -41,13 +42,12 @@
         <IgbCategoryChart
         Name="chart"
         @ref="chart"
-        DataSource="SalesData"
+        DataSource="ContinentsBirthRate"
         ChartType="CategoryChartType.Column"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
         CrosshairsDisplayMode="CrosshairsDisplayMode.None"
-        IncludedProperties="@(new string[] { "Date", "GrossSales", "Profit", "Sales" })"
-        InitialFilter="(startswith(Country, 'B') and endswith(Country, 'l') and contains(Product, 'Royal Oak') and contains(Date, '3/1/20'))">
+        YAxisLabelFormat="{0}M">
         </IgbCategoryChart>
 
     </div>
@@ -77,24 +77,23 @@
     private IgbPropertyEditorPropertyDescription initialFilter;
     private IgbCategoryChart chart;
 
-    public void EditorChangeUpdateInitialFilter(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
+    public void EditorChangeDataFilter(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
     {
         var chart = this.chart;
-        var intialFilterVal = args.NewValue.ToString();
-        chart.InitialFilter = null;
-        chart.InitialFilter = intialFilterVal;
+        var filter = args.NewValue.ToString();
+        chart.InitialFilter = "(contains(Year," + "'" + filter + "'" + "))";
     }
 
-    private SalesData _salesData = null;
-    public SalesData SalesData
+    private ContinentsBirthRate _continentsBirthRate = null;
+    public ContinentsBirthRate ContinentsBirthRate
     {
         get
         {
-            if (_salesData == null)
+            if (_continentsBirthRate == null)
             {
-                _salesData = new SalesData();
+                _continentsBirthRate = new ContinentsBirthRate();
             }
-            return _salesData;
+            return _continentsBirthRate;
         }
     }
 

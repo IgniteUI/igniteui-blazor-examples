@@ -8,23 +8,23 @@
         <IgbTreemap
         Name="treemap"
         @ref="treemap"
-        RootTitle="Continent"
-        LabelVerticalAlignment="VerticalAlignment.Top"
-        LabelTopMargin="10"
         DataSource="CountryTopUrbanPopData"
         ParentIdMemberPath="Parent"
         IdMemberPath="Name"
-        LabelMemberPath="UrbanPopPercentLabel"
+        LabelMemberPath="Name"
         ValueMemberPath="Population"
         HighlightedValueMemberPath="UrbanPopulation"
-        HighlightedValuesDisplayMode=TreemapHighlightedValueDisplayMode.Overlay
+        HighlightedValuesDisplayMode="TreemapHighlightedValueDisplayMode.Overlay"
+        FillBrushes="#fc4100 #ffc55a #00215e #2c4e80"
+        RootTitle="Continents"
         HeaderDisplayMode="TreemapHeaderDisplayMode.Auto"
-        TextColor="Black"
-        FontSize="25"
-        FontWeight="Bold"
-        IsFillScaleLogarithmic=true
+        IsFillScaleLogarithmic="true"
+        LabelVerticalAlignment="VerticalAlignment.Top"
+        ParentNodeTopMargin="10"
         FillScaleMode="TreemapFillScaleMode.Value"
-        FillBrushes="#FC4100 #FFC55A #00215E #2C4E80">
+        TextColor="black"
+        FontSize="25"
+        FontWeight="Bold">
         </IgbTreemap>
 
     </div>
@@ -35,9 +35,10 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var treemap = this.treemap;
+
     }
 
-    private IgbTreemap treemap;    
+    private IgbTreemap treemap;
 
     private CountryTopUrbanPopData _countryTopUrbanPopData = null;
     public CountryTopUrbanPopData CountryTopUrbanPopData

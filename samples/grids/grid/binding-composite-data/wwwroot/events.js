@@ -6,7 +6,7 @@ igRegisterScript("WebGridCompositeContactCellTemplate", (ctx) => {
     <br />
     <span><strong>Title:</strong> ${ctx.cell.row.data.ContactTitle}</span>
     <br />
-    <span><strong>Company:</strong> ${ctx.cell.row.data.CompanyName}</span>
+    <span><strong>Company:</strong> ${ctx.cell.row.data.Company}</span>
     <br />
 </div>`;
 }, false);
@@ -19,7 +19,7 @@ igRegisterScript("WebGridCompositeContactEditCellTemplate", (ctx) => {
     return html`<div class="contact-container--edit" style="padding: 1rem">
                     <igc-input id="ContactName" label='Name' type="text" name="name" value="${ctx.cell.row.data.ContactName}" onkeyup='keyUpHandler()'></igc-input>
                     <igc-input id="ContactTitle" label='Title' type="text" name="name" value="${ctx.cell.row.data.ContactTitle}" onkeyup='keyUpHandler()'></igc-input>
-                    <igc-input id="CompanyName" label='Company' type="text" name="name" value="${ctx.cell.row.data.CompanyName}" onkeyup='keyUpHandler()'></igc-input>
+                    <igc-input id="Company" label='Company' type="text" name="name" value="${ctx.cell.row.data.Company}" onkeyup='keyUpHandler()'></igc-input>
                 </div>
    `;
 }, false);

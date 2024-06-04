@@ -1,5 +1,5 @@
 
-const columnGroupStates = new Map();
+const columnGroupStatesHGrid = new Map();
 function toggleColumnGroup(name) {
     const grid = document.getElementsByTagName("igc-hierarchical-grid")[0];
     var columnGroup = grid.columns.find((col) => col.header === name)
@@ -29,11 +29,11 @@ function toggleColumnGroup(name) {
             c.hidden = !c.hidden;
         }
     }
-    columnGroupStates.set(name, !columnGroupStates.get(name));
+    columnGroupStatesHGrid.set(name, !columnGroupStatesHGrid.get(name));
 }
 igRegisterScript("WebHierarchicalGridColumnGroupHeaderTemplate", (ctx) => {
     var html = window.igTemplating.html;
-    var iconName = columnGroupStates.get(ctx.column.header) ? '🔽' : '🔼';
+    var iconName = columnGroupStatesHGrid.get(ctx.column.header) ? '🔽' : '🔼';
     return html`<div>
     <span draggable="false" onclick='toggleColumnGroup("${ctx.column.header}")'>${iconName}</span>
     <span>${ctx.column.header}</span>
