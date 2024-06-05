@@ -1,27 +1,17 @@
 
-igRegisterScript("WebTreeGridProductNameTemplate", (ctx) => {
-    var html = window.igTemplating.html;
 
-    var value = ctx.cell.value;
+igRegisterScript("WebTreeGridAllergensCellClassesHandler", () => {
+    let allergenItems = ['Frozen Shrimps', 'Wild Salmon Fillets', 'Fresh Cheese', 'Skimmed Milk 1L', 'Butter'];
 
-    if (value == "Grandmas Boysenberry Spread" || value == "Mishi Kobe Niku" || value == "Carnarvon Tigers" || value == "Ikura") {
-        return html`<span style="color: royalblue">${value}</span>`;
-    }
-    else {
-        return html`<span>${value}</span>`;
-    }
-}, false);
+    return {
+        allergensFont: (rowData, columnKey) => allergenItems.indexOf(rowData[columnKey]) >= 0,
+    };
+}, true);
 
-igRegisterScript("WebTreeGridUnitPriceTemplate", (ctx) => {
-    var html = window.igTemplating.html;
-
-    var value = ctx.cell.value;
-
-    if (value <= 25) {
-        return html`<span style="color: green">${value}</span>`;
-    }
-    else {
-        return html`<span style="color: red">${value}</span>`;
-    }
-}, false);
+igRegisterScript("WebTreeGridUnitPriceCellClassesHandler", () => {
+    return {
+        downPrice: (rowData, columnKey) => rowData[columnKey] <= 5,
+        upPrice: (rowData, columnKey) => rowData[columnKey] > 5,
+    };
+}, true);
 
