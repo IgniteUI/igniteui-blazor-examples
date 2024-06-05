@@ -1,0 +1,69 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        Data="EmployeesFlatData"
+        PrimaryKey="ID"
+        ForeignKey="ParentID"
+        Moving="true"
+        RowEditable="true"
+        RowClassesScript="WebGridRowClassesHandler"
+        Name="treeGrid1"
+        @ref="treeGrid1">
+            <IgbColumn
+            Field="Name"
+            Header="Full Name"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Age"
+            Header="Age"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Title"
+            Header="Title"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="HireDate"
+            Header="Hire Date"
+            DataType="GridColumnDataType.Date">
+            </IgbColumn>
+
+        </IgbTreeGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var treeGrid1 = this.treeGrid1;
+
+    }
+
+    private IgbTreeGrid treeGrid1;
+
+    private EmployeesFlatData _employeesFlatData = null;
+    public EmployeesFlatData EmployeesFlatData
+    {
+        get
+        {
+            if (_employeesFlatData == null)
+            {
+                _employeesFlatData = new EmployeesFlatData();
+            }
+            return _employeesFlatData;
+        }
+    }
+
+}
