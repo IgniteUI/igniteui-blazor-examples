@@ -1,0 +1,112 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="container vertical fill">
+        <IgbDataChart
+        ShouldAutoExpandMarginForInitialLabels="true"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+        Name="chart"
+        @ref="chart"
+        HighlightedValuesDisplayMode="SeriesHighlightedValuesDisplayMode.Overlay">
+            <IgbCategoryXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            DataSource="OlympicMedalsTopCountriesWithTotals"
+            Label="Year">
+            </IgbCategoryXAxis>
+
+            <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis">
+            </IgbNumericYAxis>
+
+            <IgbColumnSeries
+            Name="ColumnSeries1"
+            @ref="columnSeries1"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="OlympicMedalsTopCountriesWithTotals"
+            Title="America"
+            ValueMemberPath="America"
+            DataLegendGroup="Olympic Medals"
+            HighlightedValuesDataLegendGroup="Gold Medals"
+            HighlightedValueMemberPath="AmericaGold"
+            HighlightedTitleSuffix="">
+            </IgbColumnSeries>
+
+            <IgbColumnSeries
+            Name="ColumnSeries2"
+            @ref="columnSeries2"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="OlympicMedalsTopCountriesWithTotals"
+            Title="China"
+            ValueMemberPath="China"
+            DataLegendGroup="Olympic Medals"
+            HighlightedValuesDataLegendGroup="Gold Medals"
+            HighlightedValueMemberPath="ChinaGold"
+            HighlightedTitleSuffix="">
+            </IgbColumnSeries>
+
+            <IgbColumnSeries
+            Name="ColumnSeries3"
+            @ref="columnSeries3"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="OlympicMedalsTopCountriesWithTotals"
+            Title="Russia"
+            ValueMemberPath="Russia"
+            DataLegendGroup="Olympic Medals"
+            HighlightedValuesDataLegendGroup="Gold Medals"
+            HighlightedValueMemberPath="RussiaGold"
+            HighlightedTitleSuffix="">
+            </IgbColumnSeries>
+
+            <IgbDataToolTipLayer
+            Name="DataToolTipLayer"
+            @ref="dataToolTipLayer"
+            GroupRowVisible="true"
+            GroupingMode="DataToolTipLayerGroupingMode.Grouped">
+            </IgbDataToolTipLayer>
+
+        </IgbDataChart>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var columnSeries1 = this.columnSeries1;
+        var columnSeries2 = this.columnSeries2;
+        var columnSeries3 = this.columnSeries3;
+        var dataToolTipLayer = this.dataToolTipLayer;
+
+    }
+
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbColumnSeries columnSeries1;
+    private IgbColumnSeries columnSeries2;
+    private IgbColumnSeries columnSeries3;
+    private IgbDataToolTipLayer dataToolTipLayer;
+
+    private OlympicMedalsTopCountriesWithTotals _olympicMedalsTopCountriesWithTotals = null;
+    public OlympicMedalsTopCountriesWithTotals OlympicMedalsTopCountriesWithTotals
+    {
+        get
+        {
+            if (_olympicMedalsTopCountriesWithTotals == null)
+            {
+                _olympicMedalsTopCountriesWithTotals = new OlympicMedalsTopCountriesWithTotals();
+            }
+            return _olympicMedalsTopCountriesWithTotals;
+        }
+    }
+
+}
