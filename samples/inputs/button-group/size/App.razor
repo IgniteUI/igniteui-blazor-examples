@@ -1,0 +1,24 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample">
+    <IgbButtonGroup style="@style" Select="OnSelect">
+        <IgbToggleButton Value="small">
+            Small
+        </IgbToggleButton>
+        <IgbToggleButton Value="medium">
+            Medium
+        </IgbToggleButton>
+        <IgbToggleButton Value="large" Selected="true">
+            Large
+        </IgbToggleButton>
+    </IgbButtonGroup>
+</div>
+
+@code {
+    private string style = "--ig-size: var(--ig-size-large)";
+
+    private void OnSelect(IgbComponentValueChangedEventArgs args)
+    {
+        this.style = $"--ig-size: var(--ig-size-{args.Detail})";
+    }
+}

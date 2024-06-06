@@ -32,12 +32,12 @@
             @ref="bubbleSeries1"
             XMemberPath="Population"
             YMemberPath="PublicDebt"
-            RadiusMemberPath="GdpPerCapita"
+            RadiusMemberPath="GdpPerPerson"
             RadiusScale="SizeScale1"
-            FillMemberPath="GdpPerCapita"
+            FillMemberPath="GdpPerPerson"
             XAxisName="xAxis"
             YAxisName="yAxis"
-            DataSource="WorldDebtAndPopulation"
+            DataSource="WorldStats"
             MarkerType="MarkerType.Circle"
             MarkerOutline="black"
             ShowDefaultTooltip="true"
@@ -98,16 +98,16 @@
         }
     }
 
-    private WorldDebtAndPopulation _worldDebtAndPopulation = null;
-    public WorldDebtAndPopulation WorldDebtAndPopulation
+    private WorldStats _worldStats = null;
+    public WorldStats WorldStats
     {
         get
         {
-            if (_worldDebtAndPopulation == null)
+            if (_worldStats == null)
             {
-                _worldDebtAndPopulation = new WorldDebtAndPopulation();
+                _worldStats = new WorldStats();
             }
-            return _worldDebtAndPopulation;
+            return _worldStats;
         }
     }
 

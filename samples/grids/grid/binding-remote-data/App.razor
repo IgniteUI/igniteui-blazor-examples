@@ -13,9 +13,8 @@
             FilterMode="FilterMode.ExcelStyleFilter"
             PagingMode="GridPagingMode.Remote"
             IsLoading="loading"
-            Name="grid"
             @ref="grid">
-            <IgbPaginator PerPage="ProductsPerPage" Page="PageNumber" TotalRecords="TotalRecords" 
+            <IgbPaginator PerPage="ProductsPerPage" Page="PageNumber" TotalRecords="TotalRecords" PerPageChange="OnPerPageChange"
                 PagingDone="OnPagingDone">
             </IgbPaginator>
             <IgbColumn Field="ID"
@@ -82,12 +81,18 @@
 
     protected override async Task OnInitializedAsync()
     {
+        await InitializeData();
+    }
+
+    public async Task InitializeData()
+    {
         dataProductItems = await productDataService.GetTable();
         dataProductsPerPage = (from product in dataProductItems select product)
                                  .Chunk(ProductsPerPage)
                                  .ToList();
         dataProductItems = dataProductsPerPage.FirstOrDefault().ToList();
     }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
@@ -100,6 +105,13 @@
         this.PageNumber = (int)e.Detail.Current;
         this.loading = true;
         await PopulateData();
+    }
+
+    public async void OnPerPageChange(IgbNumberEventArgs e)
+    {
+        ProductsPerPage = (int)e.Detail;
+        await InitializeData();
+        StateHasChanged();
     }
 
     public async Task PopulateData()

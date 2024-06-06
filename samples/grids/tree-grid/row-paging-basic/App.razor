@@ -1,0 +1,90 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        Data="OrdersTreeData"
+        Name="treeGrid"
+        @ref="treeGrid"
+        Id="treeGrid"
+        PrimaryKey="ID"
+        ForeignKey="ParentID">
+            <IgbPaginator
+            PerPage="10">
+            </IgbPaginator>
+
+            <IgbColumn
+            Field="ID"
+            Header="Order ID">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Name"
+            Header="Order Product">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Category"
+            Header="Category">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Units"
+            Header="Units"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="UnitPrice"
+            Header="Unit Price"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Price"
+            Header="Price"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="OrderDate"
+            Header="Order Date"
+            DataType="GridColumnDataType.Date">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Delivered"
+            Header="Delivered"
+            DataType="GridColumnDataType.Boolean">
+            </IgbColumn>
+
+        </IgbTreeGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var treeGrid = this.treeGrid;
+
+    }
+
+    private IgbTreeGrid treeGrid;
+
+    private OrdersTreeData _ordersTreeData = null;
+    public OrdersTreeData OrdersTreeData
+    {
+        get
+        {
+            if (_ordersTreeData == null)
+            {
+                _ordersTreeData = new OrdersTreeData();
+            }
+            return _ordersTreeData;
+        }
+    }
+
+}

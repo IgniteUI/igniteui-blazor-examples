@@ -444,7 +444,7 @@ class Transformer {
                         let contentB = transFS.readFileSync(fileB.Path).toString().trim();
 
                         if (contentA !== contentB) {
-                            console.log('ERROR: File "' + fileA.Name + '" has different content in these locations: \n' + fileA.Path + '\n' + fileB.Path)
+                            console.log('ERROR: File "' + fileA.Name + '" has different content in: \n' + fileA.Path + '\n' + fileB.Path)
                             foundErrors++;
                         }
 

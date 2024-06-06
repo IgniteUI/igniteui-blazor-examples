@@ -177,7 +177,7 @@ namespace Infragistics.Samples
                 new Country("CUB", 11270957, 0, 1780, 9, "Cuba", "North America"),
                 new Country("CUW", 152056, 0, 0, 138, "Curacao", "North America"),
                 new Country("CYP", 1128994, 26352, 37812, 94, "Cyprus", "Europe"),
-                new Country("CZE", 10510785, 18690, 8260, 123, "Czech Republic", "Europe"),
+                new Country("CZE", 10510785, 18690, 8260, 123, "Czechia", "Europe"),
                 new Country("DNK", 5591572, 56364, 101084, 116, "Denmark", "Europe"),
                 new Country("DJI", 859652, 1575, 573, 20, "Djibouti", "Africa"),
                 new Country("DMA", 71684, 6913, 3000, 148, "Dominica", "North America"),

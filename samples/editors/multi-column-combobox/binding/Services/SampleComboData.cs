@@ -133,7 +133,7 @@ namespace Infragistics.Samples
                 new ComboBoxItem { Continent = "Europe", Country = "Channel Islands", Pop = 153876 },
                 new ComboBoxItem { Continent = "Europe", Country = "Croatia", Pop = 4403000 },
                 new ComboBoxItem { Continent = "Europe", Country = "Cyprus", Pop = 1116564 },
-                new ComboBoxItem { Continent = "Europe", Country = "Czech Republic", Pop = 10496088 },
+                new ComboBoxItem { Continent = "Europe", Country = "Czechia", Pop = 10496088 },
                 new ComboBoxItem { Continent = "Europe", Country = "Denmark", Pop = 5570572 },
                 new ComboBoxItem { Continent = "Europe", Country = "Estonia", Pop = 1339928 },
                 new ComboBoxItem { Continent = "Europe", Country = "Finland", Pop = 5388272 },

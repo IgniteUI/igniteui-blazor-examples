@@ -1,0 +1,127 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+
+        DescriptionType="WebTreeGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="false"
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
+            <IgbPropertyEditorPropertyDescription
+            Name="SummaryCalculationModeEditor"
+            @ref="summaryCalculationModeEditor"
+            Label="Summary Calculation Mode"
+            ValueType="PropertyEditorValueType.EnumValue"
+            DropDownNames="@(new string[] { "rootLevelOnly", "childLevelsOnly", "rootAndChildLevels" })"
+            DropDownValues="@(new string[] { "rootLevelOnly", "childLevelsOnly", "rootAndChildLevels" })"
+            ChangedScript="WebTreeGridChangeSummaryCalculationMode">
+            </IgbPropertyEditorPropertyDescription>
+
+            <IgbPropertyEditorPropertyDescription
+            Name="SummaryPositionEditor"
+            @ref="summaryPositionEditor"
+            Label="Summary Position"
+            ValueType="PropertyEditorValueType.EnumValue"
+            DropDownNames="@(new string[] { "top", "bottom" })"
+            DropDownValues="@(new string[] { "top", "bottom" })"
+            ChangedScript="WebTreeGridChangeSummaryPosition">
+            </IgbPropertyEditorPropertyDescription>
+
+            <IgbPropertyEditorPropertyDescription
+            Label="Show summary row when group row is collapsed:"
+            PropertyPath="ShowSummaryOnCollapse"
+            Name="ShowSummaryOnCollapseEditor"
+            @ref="showSummaryOnCollapseEditor">
+            </IgbPropertyEditorPropertyDescription>
+
+        </IgbPropertyEditorPanel>
+
+    </div>
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        Data="OrdersTreeData"
+        Name="treeGrid"
+        @ref="treeGrid"
+        Id="treeGrid"
+        PrimaryKey="ID"
+        ForeignKey="ParentID">
+            <IgbColumn
+            Field="ID"
+            Header="Order ID"
+            Sortable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Name"
+            Header="Order Product"
+            HasSummary="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="UnitPrice"
+            Header="Price"
+            DataType="GridColumnDataType.Number"
+            HasSummary="true"
+            Editable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Delivered"
+            DataType="GridColumnDataType.Boolean">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="OrderDate"
+            Header="Order Date"
+            DataType="GridColumnDataType.Date">
+            </IgbColumn>
+
+        </IgbTreeGrid>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var summaryCalculationModeEditor = this.summaryCalculationModeEditor;
+        var summaryPositionEditor = this.summaryPositionEditor;
+        var showSummaryOnCollapseEditor = this.showSummaryOnCollapseEditor;
+        var treeGrid = this.treeGrid;
+
+        this.BindElements = () => {
+            propertyEditorPanel1.Target = this.treeGrid;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription summaryCalculationModeEditor;
+    private IgbPropertyEditorPropertyDescription summaryPositionEditor;
+    private IgbPropertyEditorPropertyDescription showSummaryOnCollapseEditor;
+    private IgbTreeGrid treeGrid;
+
+    private OrdersTreeData _ordersTreeData = null;
+    public OrdersTreeData OrdersTreeData
+    {
+        get
+        {
+            if (_ordersTreeData == null)
+            {
+                _ordersTreeData = new OrdersTreeData();
+            }
+            return _ordersTreeData;
+        }
+    }
+
+}

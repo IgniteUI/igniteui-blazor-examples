@@ -3,7 +3,7 @@ using System.Collections.Generic;
 public class MultiColumnsExportDataItem
 {
     public string ID { get; set; }
-    public string CompanyName { get; set; }
+    public string Company { get; set; }
     public string ContactName { get; set; }
     public string ContactTitle { get; set; }
     public string Address { get; set; }
@@ -18,7 +18,7 @@ public class MultiColumnsExportDataItem
 public class MultiColumnsExportDataItem_ChildCompaniesItem
 {
     public string ID { get; set; }
-    public string CompanyName { get; set; }
+    public string Company { get; set; }
     public string ContactName { get; set; }
     public string ContactTitle { get; set; }
     public string Address { get; set; }
@@ -33,7 +33,7 @@ public class MultiColumnsExportDataItem_ChildCompaniesItem
 public class MultiColumnsExportDataItem_ChildCompaniesItem_ChildCompaniesItem
 {
     public string ID { get; set; }
-    public string CompanyName { get; set; }
+    public string Company { get; set; }
     public string ContactName { get; set; }
     public string ContactTitle { get; set; }
     public string Address { get; set; }
@@ -53,7 +53,7 @@ public class MultiColumnsExportData
         this.Add(new MultiColumnsExportDataItem()
         {
             ID = @"ALFKI",
-            CompanyName = @"Alfreds Futterkiste",
+            Company = @"Alfreds Futterkiste",
             ContactName = @"Maria Anders",
             ContactTitle = @"Sales Representative",
             Address = @"Obere Str. 57",
@@ -68,7 +68,7 @@ public class MultiColumnsExportData
                 new MultiColumnsExportDataItem_ChildCompaniesItem()
                 {
                     ID = @"ANATR",
-                    CompanyName = @"Ana Trujillo Emparedados y helados",
+                    Company = @"Ana Trujillo Emparedados y helados",
                     ContactName = @"Ana Trujillo",
                     ContactTitle = @"Owner",
                     Address = @"Avda. de la Constitución 2222",
@@ -83,13 +83,13 @@ public class MultiColumnsExportData
                         new MultiColumnsExportDataItem_ChildCompaniesItem_ChildCompaniesItem()
                         {
                             ID = @"AROUT",
-                            CompanyName = @"Around the Horn",
+                            Company = @"Around the Horn",
                             ContactName = @"Thomas Hardy",
                             ContactTitle = @"Sales Representative",
                             Address = @"120 Hanover Sq.",
                             City = @"London",
                             Region = @"London",
-                            PostalCode = @"WA1 1DP",
+                            PostalCode = @"10000",
                             Country = @"UK",
                             Phone = @"(171) 555-7788",
                             Fax = @"(171) 555-6750"
@@ -97,13 +97,13 @@ public class MultiColumnsExportData
                         new MultiColumnsExportDataItem_ChildCompaniesItem_ChildCompaniesItem()
                         {
                             ID = @"BERGS",
-                            CompanyName = @"Berglunds snabbköp",
+                            Company = @"Berglunds snabbköp",
                             ContactName = @"Christina Berglund",
                             ContactTitle = @"Order Administrator",
                             Address = @"Berguvsvägen 8",
                             City = @"Luleå",
                             Region = @"Luleå",
-                            PostalCode = @"S-958 22",
+                            PostalCode = @"25000",
                             Country = @"Sweden",
                             Phone = @"0921-12 34 65",
                             Fax = @"0921-12 34 67"
@@ -111,7 +111,7 @@ public class MultiColumnsExportData
                         new MultiColumnsExportDataItem_ChildCompaniesItem_ChildCompaniesItem()
                         {
                             ID = @"BLAUS",
-                            CompanyName = @"Blauer See Delikatessen",
+                            Company = @"Blauer See Delikatessen",
                             ContactName = @"Hanna Moos",
                             ContactTitle = @"Sales Representative",
                             Address = @"Forsterstr. 57",
@@ -125,7 +125,7 @@ public class MultiColumnsExportData
                         new MultiColumnsExportDataItem_ChildCompaniesItem_ChildCompaniesItem()
                         {
                             ID = @"BLONP",
-                            CompanyName = @"Blondesddsl père et fils",
+                            Company = @"Blondesddsl père et fils",
                             ContactName = @"Frédérique Citeaux",
                             ContactTitle = @"Marketing Manager",
                             Address = @"24, place Kléber",
@@ -139,7 +139,7 @@ public class MultiColumnsExportData
                         new MultiColumnsExportDataItem_ChildCompaniesItem_ChildCompaniesItem()
                         {
                             ID = @"BOLID",
-                            CompanyName = @"Bólido Comidas preparadas",
+                            Company = @"Bólido Comidas preparadas",
                             ContactName = @"Martín Sommer",
                             ContactTitle = @"Owner",
                             Address = @"C/ Araquil, 67",
@@ -153,7 +153,7 @@ public class MultiColumnsExportData
                         new MultiColumnsExportDataItem_ChildCompaniesItem_ChildCompaniesItem()
                         {
                             ID = @"BONAP",
-                            CompanyName = @"Bon app",
+                            Company = @"Bon app",
                             ContactName = @"Laurence Lebihan",
                             ContactTitle = @"Owner",
                             Address = @"12, rue des Bouchers",
@@ -167,13 +167,13 @@ public class MultiColumnsExportData
                         new MultiColumnsExportDataItem_ChildCompaniesItem_ChildCompaniesItem()
                         {
                             ID = @"BOTTM",
-                            CompanyName = @"Bottom-Dollar Markets",
+                            Company = @"Bottom-Dollar Markets",
                             ContactName = @"Elizabeth Lincoln",
                             ContactTitle = @"Accounting Manager",
                             Address = @"23 Tsawassen Blvd.",
                             City = @"Tsawassen",
                             Region = @"BC",
-                            PostalCode = @"T2F 8M4",
+                            PostalCode = @"13000",
                             Country = @"Canada",
                             Phone = @"(604) 555-4729",
                             Fax = @"(604) 555-3745"
@@ -181,13 +181,13 @@ public class MultiColumnsExportData
                         new MultiColumnsExportDataItem_ChildCompaniesItem_ChildCompaniesItem()
                         {
                             ID = @"BSBEV",
-                            CompanyName = @"Beverages",
+                            Company = @"Beverages",
                             ContactName = @"Victoria Ashworth",
                             ContactTitle = @"Sales Representative",
                             Address = @"Fauntleroy Circus",
                             City = @"London",
                             Region = @"London",
-                            PostalCode = @"EC2 5NT",
+                            PostalCode = @"37000",
                             Country = @"UK",
                             Phone = @"(171) 555-1212",
                             Fax = @"011-4988261"
@@ -197,7 +197,7 @@ public class MultiColumnsExportData
                 new MultiColumnsExportDataItem_ChildCompaniesItem()
                 {
                     ID = @"ANTON",
-                    CompanyName = @"Antonio Moreno Taquería",
+                    Company = @"Antonio Moreno Taquería",
                     ContactName = @"Antonio Moreno",
                     ContactTitle = @"Owner",
                     Address = @"Mataderos 2312",
@@ -212,7 +212,7 @@ public class MultiColumnsExportData
                         new MultiColumnsExportDataItem_ChildCompaniesItem_ChildCompaniesItem()
                         {
                             ID = @"CACTU",
-                            CompanyName = @"Cactus Comidas para llevar",
+                            Company = @"Cactus Comidas para llevar",
                             ContactName = @"Patricio Simpson",
                             ContactTitle = @"Sales Agent",
                             Address = @"Cerrito 333",
@@ -226,7 +226,7 @@ public class MultiColumnsExportData
                         new MultiColumnsExportDataItem_ChildCompaniesItem_ChildCompaniesItem()
                         {
                             ID = @"CENTC",
-                            CompanyName = @"Centro comercial Moctezuma",
+                            Company = @"Centro comercial Moctezuma",
                             ContactName = @"Francisco Chang",
                             ContactTitle = @"Marketing Manager",
                             Address = @"Sierras de Granada 9993",
@@ -240,7 +240,7 @@ public class MultiColumnsExportData
                         new MultiColumnsExportDataItem_ChildCompaniesItem_ChildCompaniesItem()
                         {
                             ID = @"CHOPS",
-                            CompanyName = @"Chop-suey Chinese",
+                            Company = @"Chop-suey Chinese",
                             ContactName = @"Yang Wang",
                             ContactTitle = @"Owner",
                             Address = @"Hauptstr. 29",
@@ -258,13 +258,13 @@ public class MultiColumnsExportData
         this.Add(new MultiColumnsExportDataItem()
         {
             ID = @"COMMI",
-            CompanyName = @"Comércio Mineiro",
+            Company = @"Comércio Mineiro",
             ContactName = @"Pedro Afonso",
             ContactTitle = @"Sales Associate",
             Address = @"Av. dos Lusíadas, 23",
             City = @"Sao Paulo",
             Region = @"SP",
-            PostalCode = @"05432-043",
+            PostalCode = @"16000",
             Country = @"Brazil",
             Phone = @"(11) 555-7647",
             Fax = @"089-0877451",
@@ -273,13 +273,13 @@ public class MultiColumnsExportData
                 new MultiColumnsExportDataItem_ChildCompaniesItem()
                 {
                     ID = @"CONSH",
-                    CompanyName = @"Consolidated Holdings",
+                    Company = @"Consolidated Holdings",
                     ContactName = @"Elizabeth Brown",
                     ContactTitle = @"Sales Representative",
                     Address = @"Berkeley Gardens 12 Brewery",
                     City = @"London",
                     Region = @"London",
-                    PostalCode = @"WX1 6LT",
+                    PostalCode = @"23000",
                     Country = @"UK",
                     Phone = @"(171) 555-2282",
                     Fax = @"(171) 555-9199",
@@ -288,13 +288,13 @@ public class MultiColumnsExportData
                         new MultiColumnsExportDataItem_ChildCompaniesItem_ChildCompaniesItem()
                         {
                             ID = @"EASTC",
-                            CompanyName = @"Eastern Connection",
+                            Company = @"Eastern Connection",
                             ContactName = @"Ann Devon",
                             ContactTitle = @"Sales Agent",
                             Address = @"35 King George",
                             City = @"London",
                             Region = @"London",
-                            PostalCode = @"WX3 6FW",
+                            PostalCode = @"42000",
                             Country = @"UK",
                             Phone = @"(171) 555-0297",
                             Fax = @"(171) 555-3373"
@@ -302,7 +302,7 @@ public class MultiColumnsExportData
                         new MultiColumnsExportDataItem_ChildCompaniesItem_ChildCompaniesItem()
                         {
                             ID = @"ERNSH",
-                            CompanyName = @"Ernst Handel",
+                            Company = @"Ernst Handel",
                             ContactName = @"Roland Mendel",
                             ContactTitle = @"Sales Manager",
                             Address = @"Kirchgasse 6",
@@ -318,7 +318,7 @@ public class MultiColumnsExportData
                 new MultiColumnsExportDataItem_ChildCompaniesItem()
                 {
                     ID = @"DRACD",
-                    CompanyName = @"Drachenblut Delikatessen",
+                    Company = @"Drachenblut Delikatessen",
                     ContactName = @"Sven Ottlieb",
                     ContactTitle = @"Order Administrator",
                     Address = @"Walserweg 21",
@@ -332,7 +332,7 @@ public class MultiColumnsExportData
                 new MultiColumnsExportDataItem_ChildCompaniesItem()
                 {
                     ID = @"DUMON",
-                    CompanyName = @"Du monde entier",
+                    Company = @"Du monde entier",
                     ContactName = @"Janine Labrune",
                     ContactTitle = @"Owner",
                     Address = @"67, rue des Cinquante Otages",
@@ -347,13 +347,13 @@ public class MultiColumnsExportData
                         new MultiColumnsExportDataItem_ChildCompaniesItem_ChildCompaniesItem()
                         {
                             ID = @"FAMIA",
-                            CompanyName = @"Familia Arquibaldo",
+                            Company = @"Familia Arquibaldo",
                             ContactName = @"Aria Cruz",
                             ContactTitle = @"Marketing Assistant",
                             Address = @"Rua Orós, 92",
                             City = @"Sao Paulo",
                             Region = @"SP",
-                            PostalCode = @"05442-030",
+                            PostalCode = @"12000",
                             Country = @"Brazil",
                             Phone = @"(11) 555-9857",
                             Fax = @"089-0877451"
@@ -365,7 +365,7 @@ public class MultiColumnsExportData
         this.Add(new MultiColumnsExportDataItem()
         {
             ID = @"FISSA",
-            CompanyName = @"FISSA Fabrica Inter. Salchichas S.A.",
+            Company = @"FISSA Fabrica Inter. Salchichas S.A.",
             ContactName = @"Diego Roel",
             ContactTitle = @"Accounting Manager",
             Address = @"C/ Moralzarzal, 86",
@@ -380,7 +380,7 @@ public class MultiColumnsExportData
                 new MultiColumnsExportDataItem_ChildCompaniesItem()
                 {
                     ID = @"FOLIG",
-                    CompanyName = @"Folies gourmandes",
+                    Company = @"Folies gourmandes",
                     ContactName = @"Martine Rancé",
                     ContactTitle = @"Assistant Sales Agent",
                     Address = @"184, chaussée de Tournai",
@@ -394,13 +394,13 @@ public class MultiColumnsExportData
                 new MultiColumnsExportDataItem_ChildCompaniesItem()
                 {
                     ID = @"FOLKO",
-                    CompanyName = @"Folk och fä HB",
+                    Company = @"Folk och fä HB",
                     ContactName = @"Maria Larsson",
                     ContactTitle = @"Owner",
                     Address = @"Åkergatan 24",
                     City = @"Bräcke",
                     Region = @"Bräcke",
-                    PostalCode = @"S-844 67",
+                    PostalCode = @"19000",
                     Country = @"Sweden",
                     Phone = @"0695-34 67 21",
                     Fax = @"089-0877451"
@@ -408,7 +408,7 @@ public class MultiColumnsExportData
                 new MultiColumnsExportDataItem_ChildCompaniesItem()
                 {
                     ID = @"FRANK",
-                    CompanyName = @"Frankenversand",
+                    Company = @"Frankenversand",
                     ContactName = @"Peter Franken",
                     ContactTitle = @"Marketing Manager",
                     Address = @"Berliner Platz 43",
@@ -422,7 +422,7 @@ public class MultiColumnsExportData
                 new MultiColumnsExportDataItem_ChildCompaniesItem()
                 {
                     ID = @"FRANR",
-                    CompanyName = @"France restauration",
+                    Company = @"France restauration",
                     ContactName = @"Carine Schmitt",
                     ContactTitle = @"Marketing Manager",
                     Address = @"54, rue Royale",
@@ -438,7 +438,7 @@ public class MultiColumnsExportData
         this.Add(new MultiColumnsExportDataItem()
         {
             ID = @"FRANS",
-            CompanyName = @"Franchi S.p.A.",
+            Company = @"Franchi S.p.A.",
             ContactName = @"Paolo Accorti",
             ContactTitle = @"Sales Representative",
             Address = @"Via Monte Bianco 34",
