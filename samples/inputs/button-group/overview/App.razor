@@ -1,0 +1,55 @@
+@using IgniteUI.Blazor.Controls
+
+<style>
+    igc-button-group {
+        max-width: 400px;
+    }
+
+    igc-ripple {
+        --color: gray;
+    }
+</style>
+
+<div class="container sample">
+    <IgbButtonGroup>
+        <IgbToggleButton Value="left">
+            <IgbIcon @ref="iconRef" IconName="format_align_left" Collection="material"></IgbIcon>
+            <IgbRipple />
+        </IgbToggleButton>
+        <IgbToggleButton Value="center">
+            <IgbIcon IconName="format_align_center" Collection="material"></IgbIcon>
+            <IgbRipple />
+        </IgbToggleButton>
+        <IgbToggleButton Value="right">
+            <IgbIcon IconName="format_align_right" Collection="material"></IgbIcon>
+            <IgbRipple />
+        </IgbToggleButton>
+        <IgbToggleButton Value="justify" Selected="true">
+            <IgbIcon IconName="format_align_justify" Collection="material"></IgbIcon>
+            <IgbRipple />
+        </IgbToggleButton>
+    </IgbButtonGroup>
+</div>
+
+ @code {
+    private string formatAlignLeft = "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M15 15H3v2h12v-2zm0-8H3v2h12V7zM3 13h18v-2H3v2zm0 8h18v-2H3v2zM3 3v2h18V3H3z'/></svg>";
+    private string formatAlignCenter = "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M7 15v2h10v-2H7zm-4 6h18v-2H3v2zm0-8h18v-2H3v2zm4-6v2h10V7H7zM3 3v2h18V3H3z'/></svg>";
+    private string formatAlignRight = "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M3 21h18v-2H3v2zm6-4h12v-2H9v2zm-6-4h18v-2H3v2zm6-4h12V7H9v2zM3 3v2h18V3H3z'/></svg>";
+    private string formatAlignJustify = "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M3 21h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18V7H3v2zm0-6v2h18V3H3z'/></svg>";
+
+    private IgbIcon iconRef;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (this.iconRef != null && firstRender)
+        {
+            this.iconRef.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.iconRef.RegisterIconFromText("format_align_left", formatAlignLeft, "material"); ;
+                this.iconRef.RegisterIconFromText("format_align_center", formatAlignCenter, "material"); ;
+                this.iconRef.RegisterIconFromText("format_align_right", formatAlignRight, "material"); ;
+                this.iconRef.RegisterIconFromText("format_align_justify", formatAlignJustify, "material"); ;
+            }));
+        }
+    }
+}
