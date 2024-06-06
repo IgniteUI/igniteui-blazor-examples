@@ -1,40 +1,6 @@
 @using IgniteUI.Blazor.Controls
-@using IgniteUI.Blazor.Controls;
-@using System;
-@using System.Linq;
 
 <div class="container vertical">
-    <div class="options vertical">
-        <IgbPropertyEditorPanel
-        Name="PropertyEditor"
-        @ref="propertyEditor"
-
-        DescriptionType="DataChart"
-        IsHorizontal="true"
-        IsWrappingEnabled="true">
-            <IgbPropertyEditorPropertyDescription
-            Name="FillScaleMinimumValueEditor"
-            @ref="fillScaleMinimumValueEditor"
-            Label="MinimumValue: "
-            ValueType="PropertyEditorValueType.Slider"
-            Min="0"
-            Max="20000"
-            Changed="ScatterBubbleSeriesFillScaleSliderChanged">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            Name="FillScaleMaximumValueEditor"
-            @ref="fillScaleMaximumValueEditor"
-            Label="MaximumValue: "
-            ValueType="PropertyEditorValueType.Slider"
-            Min="25000"
-            Max="100000"
-            Changed="ScatterBubbleSeriesFillScaleSliderChanged">
-            </IgbPropertyEditorPropertyDescription>
-
-        </IgbPropertyEditorPanel>
-
-    </div>
     <div class="container vertical fill">
         <IgbDataChart
         Name="chart"
@@ -66,27 +32,16 @@
             @ref="bubbleSeries1"
             XMemberPath="Population"
             YMemberPath="PublicDebt"
-            RadiusMemberPath="GdpPerCapita"
-            FillMemberPath="GdpPerCapita"
+            RadiusMemberPath="GdpPerPerson"
+            RadiusScale="SizeScale1"
+            FillMemberPath="GdpPerPerson"
             XAxisName="xAxis"
             YAxisName="yAxis"
-            DataSource="WorldDebtAndPopulation"
+            DataSource="WorldStats"
             MarkerType="MarkerType.Circle"
             MarkerOutline="black"
-            ShowDefaultTooltip="true">
-                <IgbSizeScale
-                IsLogarithmic="false"
-                MinimumValue="10"
-                MaximumValue="120">
-                </IgbSizeScale>
-
-                <IgbValueBrushScale
-                IsLogarithmic="false"
-                MinimumValue="0"
-                MaximumValue="100000"
-                Brushes="#1aa1e2 #189ad9 #1692ce #1385bc #0f79ab #0c6b99 #095e88 #055277 #024669 #003f5e">
-                </IgbValueBrushScale>
-
+            ShowDefaultTooltip="true"
+            FillScale="ValueBrushScale1">
             </IgbBubbleSeries>
 
         </IgbDataChart>
@@ -96,59 +51,63 @@
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var propertyEditor = this.propertyEditor;
-        var fillScaleMinimumValueEditor = this.fillScaleMinimumValueEditor;
-        var fillScaleMaximumValueEditor = this.fillScaleMaximumValueEditor;
         var chart = this.chart;
         var xAxis = this.xAxis;
         var yAxis = this.yAxis;
         var bubbleSeries1 = this.bubbleSeries1;
 
-        this.BindElements = () => {
-            propertyEditor.Target = this.chart;
-        };
-        this.BindElements();
-
     }
 
-    private IgbPropertyEditorPanel propertyEditor;
-    private IgbPropertyEditorPropertyDescription fillScaleMinimumValueEditor;
-    private IgbPropertyEditorPropertyDescription fillScaleMaximumValueEditor;
     private IgbDataChart chart;
     private IgbNumericXAxis xAxis;
     private IgbNumericYAxis yAxis;
     private IgbBubbleSeries bubbleSeries1;
-
-    public void ScatterBubbleSeriesFillScaleSliderChanged(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
-    {
-        var series = this.chart.ActualSeries[0] as IgbBubbleSeries;
-
-    	var fillScale = series.FillScale as IgbValueBrushScale;
-
-    	double newValue = (double)args.NewValue;
-
-    	if(newValue >= 25000){
-            fillScale.MaximumValue = args.NewValue;
-        }
-        else{
-            fillScale.MinimumValue = args.NewValue;
-        }
-    }
-
-    private WorldDebtAndPopulation _worldDebtAndPopulation = null;
-    public WorldDebtAndPopulation WorldDebtAndPopulation
+    private IgbSizeScale _sizeScale1 = null;
+    public IgbSizeScale SizeScale1
     {
         get
         {
-            if (_worldDebtAndPopulation == null)
+            if (this._sizeScale1 == null)
             {
-                _worldDebtAndPopulation = new WorldDebtAndPopulation();
+                var sizeScale1 = new IgbSizeScale();
+                sizeScale1.IsLogarithmic = false;
+                sizeScale1.MinimumValue = 10;
+                sizeScale1.MaximumValue = 120;
+                this._sizeScale1 = sizeScale1;
             }
-            return _worldDebtAndPopulation;
+            return this._sizeScale1;
+        }
+    }
+    private IgbValueBrushScale _valueBrushScale1 = null;
+    public IgbValueBrushScale ValueBrushScale1
+    {
+        get
+        {
+            if (this._valueBrushScale1 == null)
+            {
+                var valueBrushScale1 = new IgbValueBrushScale();
+                valueBrushScale1.IsLogarithmic = false;
+                valueBrushScale1.MinimumValue = 0;
+                valueBrushScale1.MaximumValue = 100000;
+                valueBrushScale1.Brushes = "#1aa1e2 #189ad9 #1692ce #1385bc #0f79ab #0c6b99 #095e88 #055277 #024669 #003f5e";
+                this._valueBrushScale1 = valueBrushScale1;
+            }
+            return this._valueBrushScale1;
+        }
+    }
+
+    private WorldStats _worldStats = null;
+    public WorldStats WorldStats
+    {
+        get
+        {
+            if (_worldStats == null)
+            {
+                _worldStats = new WorldStats();
+            }
+            return _worldStats;
         }
     }
 

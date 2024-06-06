@@ -1,0 +1,122 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        Data="OrdersTreeData"
+        Name="treeGrid"
+        @ref="treeGrid"
+        Id="treeGrid"
+        PrimaryKey="ID"
+        ForeignKey="ParentID">
+            <IgbColumn
+            Field="ID"
+            Header="Order ID">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Name"
+            Header="Order Product"
+            HasSummary="true"
+            HeaderTemplateScript="WebTreeGridSummariesHeaderTemplate"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Units"
+            Header="Units"
+            DataType="GridColumnDataType.Number"
+            HasSummary="true"
+            Editable="true"
+            HeaderTemplateScript="WebTreeGridSummariesHeaderTemplate"
+            Name="column2"
+            @ref="column2">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="UnitPrice"
+            Header="Unit Price"
+            DataType="GridColumnDataType.Number"
+            HasSummary="true"
+            Editable="true"
+            HeaderTemplateScript="WebTreeGridSummariesHeaderTemplate"
+            Name="column3"
+            @ref="column3">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Price"
+            Header="Price"
+            DataType="GridColumnDataType.Number"
+            HasSummary="true"
+            Editable="true"
+            HeaderTemplateScript="WebTreeGridSummariesHeaderTemplate"
+            Name="column4"
+            @ref="column4">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="OrderDate"
+            Header="Order Date"
+            DataType="GridColumnDataType.Date"
+            HasSummary="true"
+            HeaderTemplateScript="WebTreeGridSummariesHeaderTemplate"
+            Name="column5"
+            @ref="column5">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Delivered"
+            Header="Delivered"
+            DataType="GridColumnDataType.Boolean"
+            HasSummary="true"
+            HeaderTemplateScript="WebTreeGridSummariesHeaderTemplate"
+            Name="column6"
+            @ref="column6">
+            </IgbColumn>
+
+        </IgbTreeGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var treeGrid = this.treeGrid;
+        var column1 = this.column1;
+        var column2 = this.column2;
+        var column3 = this.column3;
+        var column4 = this.column4;
+        var column5 = this.column5;
+        var column6 = this.column6;
+
+    }
+
+    private IgbTreeGrid treeGrid;
+    private IgbColumn column1;
+    private IgbColumn column2;
+    private IgbColumn column3;
+    private IgbColumn column4;
+    private IgbColumn column5;
+    private IgbColumn column6;
+
+    private OrdersTreeData _ordersTreeData = null;
+    public OrdersTreeData OrdersTreeData
+    {
+        get
+        {
+            if (_ordersTreeData == null)
+            {
+                _ordersTreeData = new OrdersTreeData();
+            }
+            return _ordersTreeData;
+        }
+    }
+
+}

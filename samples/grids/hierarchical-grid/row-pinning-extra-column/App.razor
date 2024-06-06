@@ -1,0 +1,318 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        Name="PropertyEditorHierarchicalGrid"
+        @ref="propertyEditorHierarchicalGrid"
+
+        DescriptionType="WebHierarchicalGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="true">
+            <IgbPropertyEditorPropertyDescription
+            Name="rowPinningEditor"
+            @ref="rowPinningEditor"
+            Label="Row Pinning toggle"
+            ValueType="PropertyEditorValueType.EnumValue"
+            DropDownNames="@(new string[] { "Top", "Bottom" })"
+            DropDownValues="@(new string[] { "Top", "Bottom" })"
+            ChangedScript="WebHierarchicalGridChangePinningConfig">
+            </IgbPropertyEditorPropertyDescription>
+
+        </IgbPropertyEditorPanel>
+
+    </div>
+    <div class="container vertical fill">
+        <IgbHierarchicalGrid
+        AutoGenerate="false"
+        Data="SingersData"
+        PrimaryKey="Photo"
+        Id="grid"
+        Name="grid"
+        @ref="grid"
+        CellSelection="GridSelectionMode.None"
+        Pinning="PinningConfig1">
+            <IgbColumn
+            Width="70px"
+            Filterable="false"
+            Pinned="true"
+            BodyTemplateScript="WebHierarchicalGridRowPinCellTemplate"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Artist"
+            Header="Artist"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Photo"
+            Header="Photo"
+            DataType="GridColumnDataType.Image">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Debut"
+            Header="Debut"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="GrammyNominations"
+            Header="Grammy Nominations"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="GrammyAwards"
+            Header="Grammy Awards"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+
+            <IgbRowIsland
+            ChildDataKey="Albums"
+            PrimaryKey="Album"
+            CellSelection="GridSelectionMode.None"
+            Pinning="PinningConfig2"
+            AutoGenerate="false"
+            Name="rowIsland1"
+            @ref="rowIsland1">
+                <IgbColumn
+                Width="70px"
+                Filterable="false"
+                Pinned="true"
+                BodyTemplateScript="WebHierarchicalGridRowPinCellTemplate"
+                Name="column2"
+                @ref="column2">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="Album"
+                Header="Album"
+                DataType="GridColumnDataType.String">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="LaunchDate"
+                Header="Launch Date"
+                DataType="GridColumnDataType.Date">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="BillboardReview"
+                Header="Billboard Review"
+                DataType="GridColumnDataType.String">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="USBillboard200"
+                Header="US Billboard 200"
+                DataType="GridColumnDataType.String">
+                </IgbColumn>
+
+                <IgbRowIsland
+                ChildDataKey="Songs"
+                PrimaryKey="Number"
+                CellSelection="GridSelectionMode.None"
+                Pinning="PinningConfig3"
+                AutoGenerate="false"
+                Name="rowIsland2"
+                @ref="rowIsland2">
+                    <IgbColumn
+                    Width="70px"
+                    Filterable="false"
+                    Pinned="true"
+                    BodyTemplateScript="WebHierarchicalGridRowPinCellTemplate"
+                    Name="column3"
+                    @ref="column3">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Number"
+                    Header="No."
+                    DataType="GridColumnDataType.String">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Title"
+                    Header="Title"
+                    DataType="GridColumnDataType.String">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Released"
+                    Header="Released"
+                    DataType="GridColumnDataType.String">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Genre"
+                    Header="Genre"
+                    DataType="GridColumnDataType.String">
+                    </IgbColumn>
+
+                </IgbRowIsland>
+
+            </IgbRowIsland>
+
+            <IgbRowIsland
+            ChildDataKey="Tours"
+            PrimaryKey="Tour"
+            CellSelection="GridSelectionMode.None"
+            Pinning="PinningConfig4"
+            AutoGenerate="false"
+            Name="rowIsland3"
+            @ref="rowIsland3">
+                <IgbColumn
+                Width="70px"
+                Filterable="false"
+                Pinned="true"
+                BodyTemplateScript="WebHierarchicalGridRowPinCellTemplate"
+                Name="column4"
+                @ref="column4">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="Tour"
+                Header="Tour"
+                DataType="GridColumnDataType.String">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="StartedOn"
+                Header="Started on"
+                DataType="GridColumnDataType.String">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="Location"
+                Header="Location"
+                DataType="GridColumnDataType.String">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="Headliner"
+                Header="Headliner"
+                DataType="GridColumnDataType.String">
+                </IgbColumn>
+
+            </IgbRowIsland>
+
+        </IgbHierarchicalGrid>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditorHierarchicalGrid = this.propertyEditorHierarchicalGrid;
+        var rowPinningEditor = this.rowPinningEditor;
+        var grid = this.grid;
+        var column1 = this.column1;
+        var rowIsland1 = this.rowIsland1;
+        var column2 = this.column2;
+        var rowIsland2 = this.rowIsland2;
+        var column3 = this.column3;
+        var rowIsland3 = this.rowIsland3;
+        var column4 = this.column4;
+
+        this.BindElements = () => {
+            propertyEditorHierarchicalGrid.Target = this.grid;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbPropertyEditorPanel propertyEditorHierarchicalGrid;
+    private IgbPropertyEditorPropertyDescription rowPinningEditor;
+    private IgbHierarchicalGrid grid;
+    private IgbPinningConfig _pinningConfig1 = null;
+    public IgbPinningConfig PinningConfig1
+    {
+        get
+        {
+            if (this._pinningConfig1 == null)
+            {
+                var pinningConfig1 = new IgbPinningConfig();
+                pinningConfig1.Rows = RowPinningPosition.Top;
+                pinningConfig1.Columns = ColumnPinningPosition.End;
+                this._pinningConfig1 = pinningConfig1;
+            }
+            return this._pinningConfig1;
+        }
+    }
+    private IgbColumn column1;
+    private IgbRowIsland rowIsland1;
+    private IgbPinningConfig _pinningConfig2 = null;
+    public IgbPinningConfig PinningConfig2
+    {
+        get
+        {
+            if (this._pinningConfig2 == null)
+            {
+                var pinningConfig2 = new IgbPinningConfig();
+                pinningConfig2.Rows = RowPinningPosition.Top;
+                pinningConfig2.Columns = ColumnPinningPosition.End;
+                this._pinningConfig2 = pinningConfig2;
+            }
+            return this._pinningConfig2;
+        }
+    }
+    private IgbColumn column2;
+    private IgbRowIsland rowIsland2;
+    private IgbPinningConfig _pinningConfig3 = null;
+    public IgbPinningConfig PinningConfig3
+    {
+        get
+        {
+            if (this._pinningConfig3 == null)
+            {
+                var pinningConfig3 = new IgbPinningConfig();
+                pinningConfig3.Rows = RowPinningPosition.Top;
+                pinningConfig3.Columns = ColumnPinningPosition.End;
+                this._pinningConfig3 = pinningConfig3;
+            }
+            return this._pinningConfig3;
+        }
+    }
+    private IgbColumn column3;
+    private IgbRowIsland rowIsland3;
+    private IgbPinningConfig _pinningConfig4 = null;
+    public IgbPinningConfig PinningConfig4
+    {
+        get
+        {
+            if (this._pinningConfig4 == null)
+            {
+                var pinningConfig4 = new IgbPinningConfig();
+                pinningConfig4.Rows = RowPinningPosition.Top;
+                pinningConfig4.Columns = ColumnPinningPosition.End;
+                this._pinningConfig4 = pinningConfig4;
+            }
+            return this._pinningConfig4;
+        }
+    }
+    private IgbColumn column4;
+
+    private SingersData _singersData = null;
+    public SingersData SingersData
+    {
+        get
+        {
+            if (_singersData == null)
+            {
+                _singersData = new SingersData();
+            }
+            return _singersData;
+        }
+    }
+
+}

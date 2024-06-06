@@ -1,0 +1,99 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+
+        <IgbTreeGrid
+            AutoGenerate="false"
+            Name="treeGrid"
+            @ref="treeGrid"
+            Id="treeGrid"
+            Data="EmployeesFlatAvatars"
+            PrimaryKey="ID"
+            ForeignKey="ParentID"
+        >
+            <IgbGridToolbar>
+                <IgbGridToolbarTitle>
+                    <span>Tree Grid Toolbar</span>
+                </IgbGridToolbarTitle>
+                <IgbButton @onclick="ClearSort">
+                    <span slot="prefix">
+                        <IgbIcon @ref="iconRef" IconName="clear" Collection="material"></IgbIcon>
+                    </span>
+                    Clear Sort
+                </IgbButton>
+                <IgbGridToolbarActions>
+                    <IgbGridToolbarHiding></IgbGridToolbarHiding>
+                    <IgbGridToolbarPinning></IgbGridToolbarPinning>
+                    <IgbGridToolbarExporter></IgbGridToolbarExporter>
+                </IgbGridToolbarActions>
+            </IgbGridToolbar>
+            
+            <IgbColumn
+                Field="Name"
+                DataType="GridColumnDataType.String"
+                BodyTemplateScript="WebTreeGridAvatarCellTemplate"
+            ></IgbColumn>
+            <IgbColumn
+                Field="Title"
+                DataType="GridColumnDataType.String"
+                Sortable="true"
+            ></IgbColumn>
+            <IgbColumn
+                Field="ID"
+                DataType="GridColumnDataType.Number"
+                Sortable="true"
+            ></IgbColumn>
+            <IgbColumn
+                Field="Age"
+                DataType="GridColumnDataType.Number"
+                Sortable="true"
+            ></IgbColumn>
+            <IgbColumn
+                Field="HireDate"
+                DataType="GridColumnDataType.Date"
+                Sortable="true"
+            ></IgbColumn>
+            
+        </IgbTreeGrid>
+
+    </div>
+</div>
+
+@code {
+
+    private string clearIcon = "<svg xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 -960 960 960' width='24'><path d='m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z'/></svg>";
+
+    private IgbTreeGrid treeGrid;
+    private IgbIcon iconRef;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (this.iconRef != null && firstRender)
+        {
+            this.iconRef.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.iconRef.RegisterIconFromText("clear", clearIcon, "material");
+            }));
+        }
+    }
+
+    private void ClearSort()
+    {
+        this.treeGrid.ClearSort("");
+    }
+
+    private EmployeesFlatAvatars _employeesFlatAvatars = null;
+    public EmployeesFlatAvatars EmployeesFlatAvatars
+    {
+        get
+        {
+            if (_employeesFlatAvatars == null)
+            {
+                _employeesFlatAvatars = new EmployeesFlatAvatars();
+            }
+            return _employeesFlatAvatars;
+        }
+    }
+
+}

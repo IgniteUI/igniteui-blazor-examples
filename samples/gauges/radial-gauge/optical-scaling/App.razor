@@ -1,0 +1,48 @@
+
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample center">
+    <div class="options horizontal">
+        <label class="options-label">Optical Scaling: </label>
+        <label class="options-label">
+        <input type="checkbox" id="checkbox1" checked="true" @onchange="ToggleOpticalScaling" /> Resize Gauge: </label>
+        <input class="options-slider" id="slider" type="range" min="20" max="100" step="10" value="100" @onchange="OnGaugeSizeChanged" />
+ 
+    </div>
+    <div class="container vertical">
+
+        <IgbRadialGauge @ref=gauge1 Height="@gaugeHeight" Width="@gaugeWidth"
+                        OpticalScalingEnabled=@OpticalScalingToggle
+                        OpticalScalingSize="500"
+                        SubtitleText="MPH"
+                        TitleDisplaysValue=true
+                        MinimumValue="0"
+                        MaximumValue="80"
+                        Value="50"
+                        Interval="10">
+        </IgbRadialGauge>
+    </div>
+</div>
+
+
+@code {
+    private IgbRadialGauge gauge1 { get; set; }
+    private IgbSlider slider1 { get; set; }
+    private bool OpticalScalingToggle { get; set; } = true;
+    private string gaugeWidth { get; set; } = "100%";
+    private string gaugeHeight { get; set; } = "100%";
+
+    private void ToggleOpticalScaling(ChangeEventArgs e)
+    {
+        this.OpticalScalingToggle = (bool)e.Value;
+    }
+
+    private void OnGaugeSizeChanged(ChangeEventArgs e)
+    {
+        if (e != null)
+        {
+            gaugeWidth = e.Value.ToString() + "%";
+            gaugeHeight = e.Value.ToString() + "%";
+        }
+    }
+}

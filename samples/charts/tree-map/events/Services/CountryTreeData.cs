@@ -143,7 +143,7 @@ namespace Infragistics.Samples
                 new CountryInfo { Parent = "Europe", Name = "Channel Islands", Pop = 153876 },
                 new CountryInfo { Parent = "Europe", Name = "Croatia", Pop = 4403000 },
                 new CountryInfo { Parent = "Europe", Name = "Cyprus", Pop = 1116564 },
-                new CountryInfo { Parent = "Europe", Name = "Czech Republic", Pop = 10496088 },
+                new CountryInfo { Parent = "Europe", Name = "Czechia", Pop = 10496088 },
                 new CountryInfo { Parent = "Europe", Name = "Denmark", Pop = 5570572 },
                 new CountryInfo { Parent = "Europe", Name = "Estonia", Pop = 1339928 },
                 new CountryInfo { Parent = "Europe", Name = "Finland", Pop = 5388272 },

@@ -7,7 +7,7 @@ igRegisterScript("WebGridMasterDetailTemplate", (ctx) => {
         <br />
         <span><strong>Title:</strong> ${data.ContactTitle}</span>
         <br />
-        <span><strong>Company:</strong> ${data.CompanyName}</span>
+        <span><strong>Company:</strong> ${data.Company}</span>
         <br />
     </div>`;
 }, false);

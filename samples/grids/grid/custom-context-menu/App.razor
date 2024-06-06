@@ -1,5 +1,6 @@
 @using IgniteUI.Blazor.Controls
-@using Newtonsoft.Json;
+@using System.Text.Json
+
 <div class="container vertical">
     <div class="wrapper" oncontextmenu="event.preventDefault()" @onclick="CloseMenu">
         <IgbGrid AutoGenerate="false"
@@ -171,7 +172,7 @@
     {
         this.ShowMenu = false;
         NwindDataItem rowData = this.NwindData.ElementAt(this.ClickedCell.Id.RowIndex);
-        this.SelectedData = JsonConvert.SerializeObject(rowData);
+        this.SelectedData = JsonSerializer.Serialize(rowData);
         StateHasChanged();
 }
 
@@ -192,7 +193,7 @@
             }
             newList.Add(values);
         }
-        this.SelectedData = JsonConvert.SerializeObject(newList);
+        this.SelectedData = JsonSerializer.Serialize(newList);
         StateHasChanged();
     }
 }

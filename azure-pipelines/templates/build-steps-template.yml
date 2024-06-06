@@ -59,7 +59,7 @@ steps:
   - task: NuGetAuthenticate@1
     displayName: 'Authenticate to IG ProGet NuGet feed'
     inputs:
-      nuGetServiceConnections: 'IG ProGet NuGet'
+      nuGetServiceConnections: 'IG ProGet IgniteUINuGet - Staging'
       forceReinstallCredentialProvider: true
 
   - task: DotNetCoreCLI@2
@@ -107,3 +107,6 @@ steps:
     inputs:
       targetPath: '$(Build.ArtifactStagingDirectory)/BlazorSamples${{ parameters.projectToBuild }}.zip'
       artifact: 'BlazorSamples${{ parameters.projectToBuild }}'
+
+  # - ${{ if eq(parameters.shouldCleanPostExectuion, true) }}:
+  #   - task: PostBuildCleanup@4

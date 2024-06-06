@@ -1,0 +1,84 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        Name="treeGrid"
+        @ref="treeGrid"
+        Id="treeGrid"
+        Data="EmployeesNestedTreeData"
+        PrimaryKey="ID"
+        ForeignKey="ParentID"
+        RowDragStartScript="WebTreeGridReorderRowStartHandler"
+        RowDraggable="true"
+        RowDragEndScript="WebTreeGridReorderRowHandler">
+            <IgbColumn
+            Field="Name"
+            Header="Full Name"
+            DataType="GridColumnDataType.String"
+            Resizable="true"
+            Sortable="true"
+            Filterable="true"
+            Editable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Age"
+            DataType="GridColumnDataType.Number"
+            Resizable="false"
+            Sortable="false"
+            Filterable="false"
+            Editable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Title"
+            DataType="GridColumnDataType.String"
+            Resizable="true"
+            Sortable="true"
+            Filterable="true"
+            Editable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="HireDate"
+            Header="Hire Date"
+            DataType="GridColumnDataType.Date"
+            Resizable="true"
+            Sortable="true"
+            Filterable="true"
+            Editable="true">
+            </IgbColumn>
+
+        </IgbTreeGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var treeGrid = this.treeGrid;
+
+    }
+
+    private IgbTreeGrid treeGrid;
+
+    private EmployeesNestedTreeData _employeesNestedTreeData = null;
+    public EmployeesNestedTreeData EmployeesNestedTreeData
+    {
+        get
+        {
+            if (_employeesNestedTreeData == null)
+            {
+                _employeesNestedTreeData = new EmployeesNestedTreeData();
+            }
+            return _employeesNestedTreeData;
+        }
+    }
+
+}

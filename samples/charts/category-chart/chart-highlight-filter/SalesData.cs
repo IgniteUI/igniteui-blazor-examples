@@ -1,12 +1,10 @@
-//begin data
 using System;
 using System.Collections.Generic;
-
 public class SalesDataItem
 {
     public string Country { get; set; }
     public string Product { get; set; }
-    public string UnitsSold { get; set; }
+    public double UnitsSold { get; set; }
     public double ManufacturingPrice { get; set; }
     public double SalePrice { get; set; }
     public double GrossSales { get; set; }
@@ -15,7 +13,7 @@ public class SalesDataItem
     public double COGS { get; set; }
     public double Profit { get; set; }
     public string Date { get; set; }
-    public string MonthName { get; set; }
+    public string Month { get; set; }
     public string Year { get; set; }
 }
 
@@ -28,7 +26,7 @@ public class SalesData
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"501",
+            UnitsSold = 501,
             ManufacturingPrice = 15,
             SalePrice = 23,
             GrossSales = 26440,
@@ -37,14 +35,14 @@ public class SalesData
             COGS = 16185,
             Profit = 11255,
             Date = @"1/1/20",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"1372",
+            UnitsSold = 1372,
             ManufacturingPrice = 3,
             SalePrice = 20,
             GrossSales = 27440,
@@ -53,14 +51,14 @@ public class SalesData
             COGS = 16185,
             Profit = 11255,
             Date = @"1/1/20",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"2762",
+            UnitsSold = 2762,
             ManufacturingPrice = 3,
             SalePrice = 20,
             GrossSales = 55240,
@@ -69,14 +67,14 @@ public class SalesData
             COGS = 13210,
             Profit = 42030,
             Date = @"1/1/20",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"1464",
+            UnitsSold = 1464,
             ManufacturingPrice = 3,
             SalePrice = 15,
             GrossSales = 21960,
@@ -85,14 +83,14 @@ public class SalesData
             COGS = 21780,
             Profit = 180,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"719",
+            UnitsSold = 719,
             ManufacturingPrice = 3,
             SalePrice = 15,
             GrossSales = 10785,
@@ -101,14 +99,14 @@ public class SalesData
             COGS = 8880,
             Profit = 1905,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"3576",
+            UnitsSold = 3576,
             ManufacturingPrice = 3,
             SalePrice = 15,
             GrossSales = 53640,
@@ -117,14 +115,14 @@ public class SalesData
             COGS = 24700,
             Profit = 28940,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"4422",
+            UnitsSold = 4422,
             ManufacturingPrice = 3,
             SalePrice = 350,
             GrossSales = 1547700,
@@ -133,14 +131,14 @@ public class SalesData
             COGS = 393380,
             Profit = 1154320,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"3649",
+            UnitsSold = 3649,
             ManufacturingPrice = 5,
             SalePrice = 15,
             GrossSales = 54735,
@@ -149,14 +147,14 @@ public class SalesData
             COGS = 9210,
             Profit = 45525,
             Date = @"3/1/20",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"4172",
+            UnitsSold = 4172,
             ManufacturingPrice = 5,
             SalePrice = 12,
             GrossSales = 50064,
@@ -165,14 +163,14 @@ public class SalesData
             COGS = 7554,
             Profit = 42510,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"3841",
+            UnitsSold = 3841,
             ManufacturingPrice = 5,
             SalePrice = 20,
             GrossSales = 76820,
@@ -181,14 +179,14 @@ public class SalesData
             COGS = 18990,
             Profit = 57830,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"3726",
+            UnitsSold = 3726,
             ManufacturingPrice = 5,
             SalePrice = 12,
             GrossSales = 44712,
@@ -197,14 +195,14 @@ public class SalesData
             COGS = 4635,
             Profit = 40077,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"2625",
+            UnitsSold = 2625,
             ManufacturingPrice = 5,
             SalePrice = 15,
             GrossSales = 39375,
@@ -213,14 +211,14 @@ public class SalesData
             COGS = 24700,
             Profit = 14675,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"1958",
+            UnitsSold = 1958,
             ManufacturingPrice = 5,
             SalePrice = 125,
             GrossSales = 244750,
@@ -229,14 +227,14 @@ public class SalesData
             COGS = 319860,
             Profit = 75110,
             Date = @"7/1/20",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"3271",
+            UnitsSold = 3271,
             ManufacturingPrice = 5,
             SalePrice = 300,
             GrossSales = 981300,
@@ -245,14 +243,14 @@ public class SalesData
             COGS = 239500,
             Profit = 741800,
             Date = @"8/1/20",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"2091",
+            UnitsSold = 2091,
             ManufacturingPrice = 5,
             SalePrice = 7,
             GrossSales = 14637,
@@ -261,14 +259,14 @@ public class SalesData
             COGS = 10730,
             Profit = 3907,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Royal Oak",
-            UnitsSold = @"2825",
+            UnitsSold = 2825,
             ManufacturingPrice = 5,
             SalePrice = 15,
             GrossSales = 42375,
@@ -277,14 +275,14 @@ public class SalesData
             COGS = 6150,
             Profit = 36225,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"2513",
+            UnitsSold = 2513,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 50260,
@@ -293,14 +291,14 @@ public class SalesData
             COGS = 2920,
             Profit = 47340,
             Date = @"2/1/20",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"883",
+            UnitsSold = 883,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 13245,
@@ -309,14 +307,14 @@ public class SalesData
             COGS = 9740,
             Profit = 3505,
             Date = @"2/1/20",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"2087",
+            UnitsSold = 2087,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 25044,
@@ -325,14 +323,14 @@ public class SalesData
             COGS = 7554,
             Profit = 17490,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"2563",
+            UnitsSold = 2563,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 897050,
@@ -341,14 +339,14 @@ public class SalesData
             COGS = 261560,
             Profit = 635490,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"2846",
+            UnitsSold = 2846,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 34152,
@@ -357,14 +355,14 @@ public class SalesData
             COGS = 1101,
             Profit = 33051,
             Date = @"7/1/20",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"997",
+            UnitsSold = 997,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 6979,
@@ -373,14 +371,14 @@ public class SalesData
             COGS = 4415,
             Profit = 2564,
             Date = @"8/1/20",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"2290",
+            UnitsSold = 2290,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 34350,
@@ -389,14 +387,14 @@ public class SalesData
             COGS = 24720,
             Profit = 9630,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"2133",
+            UnitsSold = 2133,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 14931,
@@ -405,14 +403,14 @@ public class SalesData
             COGS = 5715,
             Profit = 9216,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"3617",
+            UnitsSold = 3617,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 72340,
@@ -421,14 +419,14 @@ public class SalesData
             COGS = 18170,
             Profit = 54170,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"1266",
+            UnitsSold = 1266,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 443100,
@@ -437,14 +435,14 @@ public class SalesData
             COGS = 393380,
             Profit = 49720,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"894",
+            UnitsSold = 894,
             ManufacturingPrice = 120,
             SalePrice = 7,
             GrossSales = 6258,
@@ -453,14 +451,14 @@ public class SalesData
             COGS = 7465,
             Profit = 1207,
             Date = @"1/1/20",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"2725",
+            UnitsSold = 2725,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 340625,
@@ -469,14 +467,14 @@ public class SalesData
             COGS = 216480,
             Profit = 124145,
             Date = @"2/1/20",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"3061",
+            UnitsSold = 3061,
             ManufacturingPrice = 120,
             SalePrice = 12,
             GrossSales = 36732,
@@ -485,14 +483,14 @@ public class SalesData
             COGS = 6483,
             Profit = 30249,
             Date = @"3/1/20",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"3958",
+            UnitsSold = 3958,
             ManufacturingPrice = 120,
             SalePrice = 350,
             GrossSales = 1385300,
@@ -501,14 +499,14 @@ public class SalesData
             COGS = 261560,
             Profit = 1123740,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"3920",
+            UnitsSold = 3920,
             ManufacturingPrice = 120,
             SalePrice = 12,
             GrossSales = 47040,
@@ -517,14 +515,14 @@ public class SalesData
             COGS = 4635,
             Profit = 42405,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"3381",
+            UnitsSold = 3381,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 422625,
@@ -533,14 +531,14 @@ public class SalesData
             COGS = 338520,
             Profit = 84105,
             Date = @"8/1/20",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"4307",
+            UnitsSold = 4307,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 1292100,
@@ -549,14 +547,14 @@ public class SalesData
             COGS = 500250,
             Profit = 791850,
             Date = @"2/1/20",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"878",
+            UnitsSold = 878,
             ManufacturingPrice = 250,
             SalePrice = 12,
             GrossSales = 10536,
@@ -565,14 +563,14 @@ public class SalesData
             COGS = 8514,
             Profit = 2022,
             Date = @"4/1/20",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"496",
+            UnitsSold = 496,
             ManufacturingPrice = 250,
             SalePrice = 15,
             GrossSales = 7440,
@@ -581,14 +579,14 @@ public class SalesData
             COGS = 21780,
             Profit = 14340,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"3367",
+            UnitsSold = 3367,
             ManufacturingPrice = 250,
             SalePrice = 15,
             GrossSales = 50505,
@@ -597,14 +595,14 @@ public class SalesData
             COGS = 8880,
             Profit = 41625,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"2055",
+            UnitsSold = 2055,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 616500,
@@ -613,14 +611,14 @@ public class SalesData
             COGS = 537750,
             Profit = 78750,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"4041",
+            UnitsSold = 4041,
             ManufacturingPrice = 250,
             SalePrice = 20,
             GrossSales = 80820,
@@ -629,14 +627,14 @@ public class SalesData
             COGS = 18170,
             Profit = 62650,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Luxe",
-            UnitsSold = @"3237",
+            UnitsSold = 3237,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 1132950,
@@ -645,14 +643,14 @@ public class SalesData
             COGS = 715000,
             Profit = 417950,
             Date = @"2/1/20",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"630",
+            UnitsSold = 630,
             ManufacturingPrice = 260,
             SalePrice = 12,
             GrossSales = 7560,
@@ -661,14 +659,14 @@ public class SalesData
             COGS = 5859,
             Profit = 1701,
             Date = @"4/1/20",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"4210",
+            UnitsSold = 4210,
             ManufacturingPrice = 260,
             SalePrice = 125,
             GrossSales = 526250,
@@ -677,14 +675,14 @@ public class SalesData
             COGS = 506340,
             Profit = 19910,
             Date = @"4/1/20",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Luxe",
-            UnitsSold = @"1127",
+            UnitsSold = 1127,
             ManufacturingPrice = 260,
             SalePrice = 20,
             GrossSales = 22540,
@@ -693,14 +691,14 @@ public class SalesData
             COGS = 18990,
             Profit = 3550,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"3438",
+            UnitsSold = 3438,
             ManufacturingPrice = 260,
             SalePrice = 7,
             GrossSales = 24066,
@@ -709,14 +707,14 @@ public class SalesData
             COGS = 8430,
             Profit = 15636,
             Date = @"7/1/20",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"2015",
+            UnitsSold = 2015,
             ManufacturingPrice = 260,
             SalePrice = 12,
             GrossSales = 24180,
@@ -725,14 +723,14 @@ public class SalesData
             COGS = 6423,
             Profit = 17757,
             Date = @"8/1/20",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"2534",
+            UnitsSold = 2534,
             ManufacturingPrice = 260,
             SalePrice = 7,
             GrossSales = 17738,
@@ -741,14 +739,14 @@ public class SalesData
             COGS = 5715,
             Profit = 12023,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"1384",
+            UnitsSold = 1384,
             ManufacturingPrice = 260,
             SalePrice = 15,
             GrossSales = 20760,
@@ -757,14 +755,14 @@ public class SalesData
             COGS = 6150,
             Profit = 14610,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"3561",
+            UnitsSold = 3561,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 24927,
@@ -773,14 +771,14 @@ public class SalesData
             COGS = 19725,
             Profit = 4925.85,
             Date = @"1/1/20",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"1823",
+            UnitsSold = 1823,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 27345,
@@ -789,14 +787,14 @@ public class SalesData
             COGS = 22960,
             Profit = 4040.6,
             Date = @"2/1/20",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"2795",
+            UnitsSold = 2795,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 19565,
@@ -805,14 +803,14 @@ public class SalesData
             COGS = 5150,
             Profit = 14342.9,
             Date = @"5/1/20",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"457",
+            UnitsSold = 457,
             ManufacturingPrice = 120,
             SalePrice = 7,
             GrossSales = 3199,
@@ -821,14 +819,14 @@ public class SalesData
             COGS = 3195,
             Profit = 40.73,
             Date = @"11/1/20",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"3785",
+            UnitsSold = 3785,
             ManufacturingPrice = 250,
             SalePrice = 7,
             GrossSales = 26495,
@@ -837,14 +835,14 @@ public class SalesData
             COGS = 6630,
             Profit = 19772.18,
             Date = @"3/1/20",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"748",
+            UnitsSold = 748,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 8976,
@@ -853,14 +851,14 @@ public class SalesData
             COGS = 5574,
             Profit = 3179.04,
             Date = @"2/1/20",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"1021",
+            UnitsSold = 1021,
             ManufacturingPrice = 3,
             SalePrice = 350,
             GrossSales = 357350,
@@ -869,14 +867,14 @@ public class SalesData
             COGS = 314600,
             Profit = 38515,
             Date = @"3/1/20",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"2076",
+            UnitsSold = 2076,
             ManufacturingPrice = 3,
             SalePrice = 7,
             GrossSales = 14532,
@@ -885,14 +883,14 @@ public class SalesData
             COGS = 12645,
             Profit = 1709.97,
             Date = @"7/1/20",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"4316",
+            UnitsSold = 4316,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 51792,
@@ -901,14 +899,14 @@ public class SalesData
             COGS = 4335,
             Profit = 47283.6,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"4174",
+            UnitsSold = 4174,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 50088,
@@ -917,14 +915,14 @@ public class SalesData
             COGS = 8013,
             Profit = 41754.48,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"3736",
+            UnitsSold = 3736,
             ManufacturingPrice = 3,
             SalePrice = 350,
             GrossSales = 1307600,
@@ -933,14 +931,14 @@ public class SalesData
             COGS = 363220,
             Profit = 939490.5,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"1914",
+            UnitsSold = 1914,
             ManufacturingPrice = 3,
             SalePrice = 350,
             GrossSales = 669900,
@@ -949,14 +947,14 @@ public class SalesData
             COGS = 560300,
             Profit = 102057.5,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"2742",
+            UnitsSold = 2742,
             ManufacturingPrice = 5,
             SalePrice = 15,
             GrossSales = 41130,
@@ -965,14 +963,14 @@ public class SalesData
             COGS = 22140,
             Profit = 18657.9,
             Date = @"3/1/20",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Royal Oak",
-            UnitsSold = @"1499",
+            UnitsSold = 1499,
             ManufacturingPrice = 5,
             SalePrice = 300,
             GrossSales = 449700,
@@ -981,14 +979,14 @@ public class SalesData
             COGS = 575250,
             Profit = 132453,
             Date = @"4/1/20",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"3772",
+            UnitsSold = 3772,
             ManufacturingPrice = 5,
             SalePrice = 20,
             GrossSales = 75440,
@@ -997,14 +995,14 @@ public class SalesData
             COGS = 13755,
             Profit = 61409.9,
             Date = @"7/1/20",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"1112",
+            UnitsSold = 1112,
             ManufacturingPrice = 5,
             SalePrice = 7,
             GrossSales = 7784,
@@ -1013,14 +1011,14 @@ public class SalesData
             COGS = 9150,
             Profit = 1494.1,
             Date = @"8/1/20",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"2368",
+            UnitsSold = 2368,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 35520,
@@ -1029,14 +1027,14 @@ public class SalesData
             COGS = 15140,
             Profit = 20152.9,
             Date = @"2/1/20",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"1586",
+            UnitsSold = 1586,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 11102,
@@ -1045,14 +1043,14 @@ public class SalesData
             COGS = 22462.5,
             Profit = 11674.98,
             Date = @"4/1/20",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"3386",
+            UnitsSold = 3386,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 423250,
@@ -1061,14 +1059,14 @@ public class SalesData
             COGS = 87240,
             Profit = 335101.25,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"852",
+            UnitsSold = 852,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 106500,
@@ -1077,14 +1075,14 @@ public class SalesData
             COGS = 94440,
             Profit = 11076.25,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"2783",
+            UnitsSold = 2783,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 347875,
@@ -1093,14 +1091,14 @@ public class SalesData
             COGS = 218760,
             Profit = 126836.25,
             Date = @"7/1/20",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"2684",
+            UnitsSold = 2684,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 40260,
@@ -1109,14 +1107,14 @@ public class SalesData
             COGS = 7470,
             Profit = 32677.95,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"4083",
+            UnitsSold = 4083,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 1224900,
@@ -1125,14 +1123,14 @@ public class SalesData
             COGS = 726250,
             Profit = 489935,
             Date = @"11/1/20",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"2816",
+            UnitsSold = 2816,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 985600,
@@ -1141,14 +1139,14 @@ public class SalesData
             COGS = 560300,
             Profit = 417757.5,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"4294",
+            UnitsSold = 4294,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 85880,
@@ -1157,14 +1155,14 @@ public class SalesData
             COGS = 38640,
             Profit = 46467.2,
             Date = @"4/1/20",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"2856",
+            UnitsSold = 2856,
             ManufacturingPrice = 120,
             SalePrice = 7,
             GrossSales = 19992,
@@ -1173,14 +1171,14 @@ public class SalesData
             COGS = 1810,
             Profit = 18156.66,
             Date = @"5/1/20",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"1407",
+            UnitsSold = 1407,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 175875,
@@ -1189,14 +1187,14 @@ public class SalesData
             COGS = 110760,
             Profit = 63961.25,
             Date = @"8/1/20",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"1265",
+            UnitsSold = 1265,
             ManufacturingPrice = 250,
             SalePrice = 7,
             GrossSales = 8855,
@@ -1205,14 +1203,14 @@ public class SalesData
             COGS = 1315,
             Profit = 7521.59,
             Date = @"3/1/20",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"3892",
+            UnitsSold = 3892,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 1362200,
@@ -1221,14 +1219,14 @@ public class SalesData
             COGS = 245310,
             Profit = 1113587.75,
             Date = @"4/1/20",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"3068",
+            UnitsSold = 3068,
             ManufacturingPrice = 250,
             SalePrice = 125,
             GrossSales = 383500,
@@ -1237,14 +1235,14 @@ public class SalesData
             COGS = 87240,
             Profit = 295351.25,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"2181",
+            UnitsSold = 2181,
             ManufacturingPrice = 250,
             SalePrice = 125,
             GrossSales = 272625,
@@ -1253,14 +1251,14 @@ public class SalesData
             COGS = 94440,
             Profit = 177201.25,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"1356",
+            UnitsSold = 1356,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 406800,
@@ -1269,14 +1267,14 @@ public class SalesData
             COGS = 246500,
             Profit = 177201.25,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"1814",
+            UnitsSold = 1814,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 634900,
@@ -1285,14 +1283,14 @@ public class SalesData
             COGS = 363220,
             Profit = 266790.5,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"1495",
+            UnitsSold = 1495,
             ManufacturingPrice = 250,
             SalePrice = 125,
             GrossSales = 186875,
@@ -1301,14 +1299,14 @@ public class SalesData
             COGS = 209280,
             Profit = 24585,
             Date = @"11/1/20",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"1463",
+            UnitsSold = 1463,
             ManufacturingPrice = 3,
             SalePrice = 125,
             GrossSales = 182875,
@@ -1317,14 +1315,14 @@ public class SalesData
             COGS = 89100,
             Profit = 91918.75,
             Date = @"4/1/20",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"215",
+            UnitsSold = 215,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 2580,
@@ -1333,14 +1331,14 @@ public class SalesData
             COGS = 3885,
             Profit = 1615.8,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"566",
+            UnitsSold = 566,
             ManufacturingPrice = 3,
             SalePrice = 350,
             GrossSales = 198100,
@@ -1349,14 +1347,14 @@ public class SalesData
             COGS = 741520,
             Profit = 563384,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Royal Oak",
-            UnitsSold = @"3255",
+            UnitsSold = 3255,
             ManufacturingPrice = 5,
             SalePrice = 12,
             GrossSales = 39060,
@@ -1365,14 +1363,14 @@ public class SalesData
             COGS = 3426,
             Profit = 35359.92,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Royal Oak",
-            UnitsSold = @"772",
+            UnitsSold = 772,
             ManufacturingPrice = 5,
             SalePrice = 20,
             GrossSales = 15440,
@@ -1381,14 +1379,14 @@ public class SalesData
             COGS = 15660,
             Profit = 846.4,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"1135",
+            UnitsSold = 1135,
             ManufacturingPrice = 5,
             SalePrice = 12,
             GrossSales = 13620,
@@ -1397,14 +1395,14 @@ public class SalesData
             COGS = 2070,
             Profit = 11384.4,
             Date = @"11/1/20",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"1193",
+            UnitsSold = 1193,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 17895,
@@ -1413,14 +1411,14 @@ public class SalesData
             COGS = 23630,
             Profit = 6443.9,
             Date = @"2/1/20",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"2530",
+            UnitsSold = 2530,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 759000,
@@ -1429,14 +1427,14 @@ public class SalesData
             COGS = 229500,
             Profit = 523992,
             Date = @"5/1/20",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"3451",
+            UnitsSold = 3451,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 1035300,
@@ -1445,14 +1443,14 @@ public class SalesData
             COGS = 432000,
             Profit = 592932,
             Date = @"5/1/20",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"3059",
+            UnitsSold = 3059,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 36708,
@@ -1461,14 +1459,14 @@ public class SalesData
             COGS = 3426,
             Profit = 33007.92,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"3957",
+            UnitsSold = 3957,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 494625,
@@ -1477,14 +1475,14 @@ public class SalesData
             COGS = 79440,
             Profit = 413530,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"3444",
+            UnitsSold = 3444,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 41328,
@@ -1493,14 +1491,14 @@ public class SalesData
             COGS = 3885,
             Profit = 37132.2,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"3154",
+            UnitsSold = 3154,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 946200,
@@ -1509,14 +1507,14 @@ public class SalesData
             COGS = 479000,
             Profit = 455704,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"4108",
+            UnitsSold = 4108,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 1437800,
@@ -1525,14 +1523,14 @@ public class SalesData
             COGS = 741520,
             Profit = 676316,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"3760",
+            UnitsSold = 3760,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 470000,
@@ -1541,14 +1539,14 @@ public class SalesData
             COGS = 327480,
             Profit = 135697.5,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"2334",
+            UnitsSold = 2334,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 28008,
@@ -1557,14 +1555,14 @@ public class SalesData
             COGS = 3165,
             Profit = 24589.8,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"580",
+            UnitsSold = 580,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 6960,
@@ -1573,14 +1571,14 @@ public class SalesData
             COGS = 3252,
             Profit = 3447.84,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"2610",
+            UnitsSold = 2610,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 52200,
@@ -1589,14 +1587,14 @@ public class SalesData
             COGS = 15660,
             Profit = 35913.6,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"1459",
+            UnitsSold = 1459,
             ManufacturingPrice = 120,
             SalePrice = 350,
             GrossSales = 510650,
@@ -1605,14 +1603,14 @@ public class SalesData
             COGS = 748020,
             Profit = 257509,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"3774",
+            UnitsSold = 3774,
             ManufacturingPrice = 120,
             SalePrice = 12,
             GrossSales = 45288,
@@ -1621,14 +1619,14 @@ public class SalesData
             COGS = 3165,
             Profit = 41869.8,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"2572",
+            UnitsSold = 2572,
             ManufacturingPrice = 120,
             SalePrice = 12,
             GrossSales = 30864,
@@ -1637,14 +1635,14 @@ public class SalesData
             COGS = 3252,
             Profit = 27351.84,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"320",
+            UnitsSold = 320,
             ManufacturingPrice = 250,
             SalePrice = 125,
             GrossSales = 40000,
@@ -1653,14 +1651,14 @@ public class SalesData
             COGS = 79440,
             Profit = 41095,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"3275",
+            UnitsSold = 3275,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 1146250,
@@ -1669,14 +1667,14 @@ public class SalesData
             COGS = 748020,
             Profit = 378091,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"3582",
+            UnitsSold = 3582,
             ManufacturingPrice = 250,
             SalePrice = 125,
             GrossSales = 447750,
@@ -1685,14 +1683,14 @@ public class SalesData
             COGS = 327480,
             Profit = 113447.5,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"4056",
+            UnitsSold = 4056,
             ManufacturingPrice = 260,
             SalePrice = 300,
             GrossSales = 1216800,
@@ -1701,14 +1699,14 @@ public class SalesData
             COGS = 64750,
             Profit = 1150496,
             Date = @"3/1/20",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"2144",
+            UnitsSold = 2144,
             ManufacturingPrice = 260,
             SalePrice = 300,
             GrossSales = 643200,
@@ -1717,14 +1715,14 @@ public class SalesData
             COGS = 275250,
             Profit = 361344,
             Date = @"3/1/20",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"3502",
+            UnitsSold = 3502,
             ManufacturingPrice = 260,
             SalePrice = 125,
             GrossSales = 437750,
@@ -1733,14 +1731,14 @@ public class SalesData
             COGS = 273120,
             Profit = 158940,
             Date = @"5/1/20",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"679",
+            UnitsSold = 679,
             ManufacturingPrice = 260,
             SalePrice = 20,
             GrossSales = 13580,
@@ -1749,14 +1747,14 @@ public class SalesData
             COGS = 12360,
             Profit = 725.6,
             Date = @"11/1/20",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Luxe",
-            UnitsSold = @"2351",
+            UnitsSold = 2351,
             ManufacturingPrice = 260,
             SalePrice = 20,
             GrossSales = 47020,
@@ -1765,14 +1763,14 @@ public class SalesData
             COGS = 9410,
             Profit = 37233.6,
             Date = @"11/1/20",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"2043",
+            UnitsSold = 2043,
             ManufacturingPrice = 260,
             SalePrice = 300,
             GrossSales = 612900,
@@ -1781,14 +1779,14 @@ public class SalesData
             COGS = 479000,
             Profit = 122404,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"3565",
+            UnitsSold = 3565,
             ManufacturingPrice = 3,
             SalePrice = 125,
             GrossSales = 445625,
@@ -1797,14 +1795,14 @@ public class SalesData
             COGS = 509220,
             Profit = 79508.13,
             Date = @"4/1/20",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"1401",
+            UnitsSold = 1401,
             ManufacturingPrice = 3,
             SalePrice = 20,
             GrossSales = 28020,
@@ -1813,14 +1811,14 @@ public class SalesData
             COGS = 25800,
             Profit = 672,
             Date = @"4/1/20",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"2077",
+            UnitsSold = 2077,
             ManufacturingPrice = 3,
             SalePrice = 300,
             GrossSales = 623100,
@@ -1829,14 +1827,14 @@ public class SalesData
             COGS = 172250,
             Profit = 444649,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"3643",
+            UnitsSold = 3643,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 43716,
@@ -1845,14 +1843,14 @@ public class SalesData
             COGS = 5841,
             Profit = 37174.08,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"2960",
+            UnitsSold = 2960,
             ManufacturingPrice = 5,
             SalePrice = 7,
             GrossSales = 20720,
@@ -1861,14 +1859,14 @@ public class SalesData
             COGS = 9790,
             Profit = 10518.82,
             Date = @"2/1/20",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"1201",
+            UnitsSold = 1201,
             ManufacturingPrice = 5,
             SalePrice = 12,
             GrossSales = 14412,
@@ -1877,14 +1875,14 @@ public class SalesData
             COGS = 5703,
             Profit = 8024.64,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"2321",
+            UnitsSold = 2321,
             ManufacturingPrice = 5,
             SalePrice = 7,
             GrossSales = 16247,
@@ -1893,14 +1891,14 @@ public class SalesData
             COGS = 2720,
             Profit = 13412.76,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"3972",
+            UnitsSold = 3972,
             ManufacturingPrice = 5,
             SalePrice = 125,
             GrossSales = 496500,
@@ -1909,14 +1907,14 @@ public class SalesData
             COGS = 154440,
             Profit = 337233.75,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"3878",
+            UnitsSold = 3878,
             ManufacturingPrice = 5,
             SalePrice = 125,
             GrossSales = 484750,
@@ -1925,14 +1923,14 @@ public class SalesData
             COGS = 204720,
             Profit = 273632.5,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"2278",
+            UnitsSold = 2278,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 683400,
@@ -1941,14 +1939,14 @@ public class SalesData
             COGS = 608625,
             Profit = 52864.5,
             Date = @"1/1/20",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"1075",
+            UnitsSold = 1075,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 134375,
@@ -1957,14 +1955,14 @@ public class SalesData
             COGS = 212880,
             Profit = 85157.5,
             Date = @"3/1/20",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"4050",
+            UnitsSold = 4050,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 48600,
@@ -1973,14 +1971,14 @@ public class SalesData
             COGS = 5703,
             Profit = 42212.64,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"3035",
+            UnitsSold = 3035,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 910500,
@@ -1989,14 +1987,14 @@ public class SalesData
             COGS = 172250,
             Profit = 732049,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"3636",
+            UnitsSold = 3636,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 454500,
@@ -2005,14 +2003,14 @@ public class SalesData
             COGS = 188400,
             Profit = 260212.5,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"1379",
+            UnitsSold = 1379,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 16548,
@@ -2021,14 +2019,14 @@ public class SalesData
             COGS = 4108.5,
             Profit = 11946.48,
             Date = @"7/1/20",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"4492",
+            UnitsSold = 4492,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 561500,
@@ -2037,14 +2035,14 @@ public class SalesData
             COGS = 241080,
             Profit = 312886.25,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"1744",
+            UnitsSold = 1744,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 218000,
@@ -2053,14 +2051,14 @@ public class SalesData
             COGS = 154440,
             Profit = 58733.75,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"2341",
+            UnitsSold = 2341,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 292625,
@@ -2069,14 +2067,14 @@ public class SalesData
             COGS = 204720,
             Profit = 81507.5,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"3835",
+            UnitsSold = 3835,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 479375,
@@ -2085,14 +2083,14 @@ public class SalesData
             COGS = 241080,
             Profit = 230761.25,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"1161",
+            UnitsSold = 1161,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 348300,
@@ -2101,14 +2099,14 @@ public class SalesData
             COGS = 711000,
             Profit = 388296,
             Date = @"2/1/20",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"876",
+            UnitsSold = 876,
             ManufacturingPrice = 250,
             SalePrice = 12,
             GrossSales = 10512,
@@ -2117,14 +2115,14 @@ public class SalesData
             COGS = 5748,
             Profit = 4074.24,
             Date = @"4/1/20",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"1705",
+            UnitsSold = 1705,
             ManufacturingPrice = 250,
             SalePrice = 125,
             GrossSales = 213125,
@@ -2133,14 +2131,14 @@ public class SalesData
             COGS = 188400,
             Profit = 18837.5,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"1805",
+            UnitsSold = 1805,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 541500,
@@ -2149,14 +2147,14 @@ public class SalesData
             COGS = 468500,
             Profit = 56134,
             Date = @"8/1/20",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"389",
+            UnitsSold = 389,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 136150,
@@ -2165,14 +2163,14 @@ public class SalesData
             COGS = 426920,
             Profit = 308011,
             Date = @"8/1/20",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"1459",
+            UnitsSold = 1459,
             ManufacturingPrice = 3,
             SalePrice = 20,
             GrossSales = 29180,
@@ -2181,14 +2179,14 @@ public class SalesData
             COGS = 8310,
             Profit = 20371.4,
             Date = @"5/1/20",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"4236",
+            UnitsSold = 4236,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 84720,
@@ -2197,14 +2195,14 @@ public class SalesData
             COGS = 38505,
             Profit = 43904.7,
             Date = @"4/1/20",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"3627",
+            UnitsSold = 3627,
             ManufacturingPrice = 250,
             SalePrice = 12,
             GrossSales = 43524,
@@ -2213,14 +2211,14 @@ public class SalesData
             COGS = 7437,
             Profit = 35194.56,
             Date = @"1/1/20",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"1756",
+            UnitsSold = 1756,
             ManufacturingPrice = 5,
             SalePrice = 15,
             GrossSales = 26340,
@@ -2229,14 +2227,14 @@ public class SalesData
             COGS = 20310,
             Profit = 4811.4,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"307",
+            UnitsSold = 307,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 4605,
@@ -2245,14 +2243,14 @@ public class SalesData
             COGS = 20310,
             Profit = 16923.6,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"1222",
+            UnitsSold = 1222,
             ManufacturingPrice = 3,
             SalePrice = 300,
             GrossSales = 366600,
@@ -2261,14 +2259,14 @@ public class SalesData
             COGS = 505250,
             Profit = 162902,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"489",
+            UnitsSold = 489,
             ManufacturingPrice = 3,
             SalePrice = 350,
             GrossSales = 171150,
@@ -2277,14 +2275,14 @@ public class SalesData
             COGS = 71240,
             Profit = 96074,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"4133",
+            UnitsSold = 4133,
             ManufacturingPrice = 5,
             SalePrice = 15,
             GrossSales = 61995,
@@ -2293,14 +2291,14 @@ public class SalesData
             COGS = 19670,
             Profit = 41144.8,
             Date = @"3/1/20",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"2743",
+            UnitsSold = 2743,
             ManufacturingPrice = 5,
             SalePrice = 300,
             GrossSales = 822900,
@@ -2309,14 +2307,14 @@ public class SalesData
             COGS = 464750,
             Profit = 335842,
             Date = @"8/1/20",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"4460",
+            UnitsSold = 4460,
             ManufacturingPrice = 5,
             SalePrice = 300,
             GrossSales = 1338000,
@@ -2325,14 +2323,14 @@ public class SalesData
             COGS = 505250,
             Profit = 808498,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"1232",
+            UnitsSold = 1232,
             ManufacturingPrice = 5,
             SalePrice = 125,
             GrossSales = 154000,
@@ -2341,14 +2339,14 @@ public class SalesData
             COGS = 136560,
             Profit = 11750,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"2586",
+            UnitsSold = 2586,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 18102,
@@ -2357,14 +2355,14 @@ public class SalesData
             COGS = 21255,
             Profit = 4343.28,
             Date = @"1/1/20",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"1332",
+            UnitsSold = 1332,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 166500,
@@ -2373,14 +2371,14 @@ public class SalesData
             COGS = 95400,
             Profit = 67125,
             Date = @"3/1/20",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"4487",
+            UnitsSold = 4487,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 1346100,
@@ -2389,14 +2387,14 @@ public class SalesData
             COGS = 353625,
             Profit = 975501,
             Date = @"4/1/20",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"3862",
+            UnitsSold = 3862,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 1158600,
@@ -2405,14 +2403,14 @@ public class SalesData
             COGS = 729500,
             Profit = 394084,
             Date = @"5/1/20",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"1765",
+            UnitsSold = 1765,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 617750,
@@ -2421,14 +2419,14 @@ public class SalesData
             COGS = 897000,
             Profit = 327550,
             Date = @"7/1/20",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"3533",
+            UnitsSold = 3533,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 441625,
@@ -2437,14 +2435,14 @@ public class SalesData
             COGS = 358560,
             Profit = 68125,
             Date = @"7/1/20",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"2016",
+            UnitsSold = 2016,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 30240,
@@ -2453,14 +2451,14 @@ public class SalesData
             COGS = 2180,
             Profit = 27929.2,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"2938",
+            UnitsSold = 2938,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 58760,
@@ -2469,14 +2467,14 @@ public class SalesData
             COGS = 20740,
             Profit = 36360.8,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"3352",
+            UnitsSold = 3352,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 67040,
@@ -2485,14 +2483,14 @@ public class SalesData
             COGS = 10560,
             Profit = 55635.2,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"2430",
+            UnitsSold = 2430,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 850500,
@@ -2501,14 +2499,14 @@ public class SalesData
             COGS = 71240,
             Profit = 775424,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"535",
+            UnitsSold = 535,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 66875,
@@ -2517,14 +2515,14 @@ public class SalesData
             COGS = 136560,
             Profit = 75375,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"1523",
+            UnitsSold = 1523,
             ManufacturingPrice = 120,
             SalePrice = 12,
             GrossSales = 18276,
@@ -2533,14 +2531,14 @@ public class SalesData
             COGS = 4395,
             Profit = 13177.8,
             Date = @"3/1/20",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"1782",
+            UnitsSold = 1782,
             ManufacturingPrice = 120,
             SalePrice = 350,
             GrossSales = 623700,
@@ -2549,14 +2547,14 @@ public class SalesData
             COGS = 566020,
             Profit = 27202,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"347",
+            UnitsSold = 347,
             ManufacturingPrice = 250,
             SalePrice = 12,
             GrossSales = 4164,
@@ -2565,14 +2563,14 @@ public class SalesData
             COGS = 2598,
             Profit = 1150.32,
             Date = @"5/1/20",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"3509",
+            UnitsSold = 3509,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 1228150,
@@ -2581,14 +2579,14 @@ public class SalesData
             COGS = 566020,
             Profit = 631652,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"2943",
+            UnitsSold = 2943,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 1030050,
@@ -2597,14 +2595,14 @@ public class SalesData
             COGS = 484900,
             Profit = 519040,
             Date = @"2/1/20",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"4037",
+            UnitsSold = 4037,
             ManufacturingPrice = 260,
             SalePrice = 125,
             GrossSales = 504625,
@@ -2613,14 +2611,14 @@ public class SalesData
             COGS = 128880,
             Profit = 370375,
             Date = @"4/1/20",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"4146",
+            UnitsSold = 4146,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 1451100,
@@ -2629,14 +2627,14 @@ public class SalesData
             COGS = 495820,
             Profit = 928582,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"725",
+            UnitsSold = 725,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 5075,
@@ -2645,14 +2643,14 @@ public class SalesData
             COGS = 6860,
             Profit = 2265.2,
             Date = @"1/1/20",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"2325",
+            UnitsSold = 2325,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 16275,
@@ -2661,14 +2659,14 @@ public class SalesData
             COGS = 13445,
             Profit = 1888.85,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"675",
+            UnitsSold = 675,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 8100,
@@ -2677,14 +2675,14 @@ public class SalesData
             COGS = 7293,
             Profit = 651.6,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"2990",
+            UnitsSold = 2990,
             ManufacturingPrice = 120,
             SalePrice = 12,
             GrossSales = 35880,
@@ -2693,14 +2691,14 @@ public class SalesData
             COGS = 7293,
             Profit = 27128.4,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"1072",
+            UnitsSold = 1072,
             ManufacturingPrice = 250,
             SalePrice = 7,
             GrossSales = 7504,
@@ -2709,14 +2707,14 @@ public class SalesData
             COGS = 13445,
             Profit = 6882.15,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"1048",
+            UnitsSold = 1048,
             ManufacturingPrice = 260,
             SalePrice = 7,
             GrossSales = 7336,
@@ -2725,14 +2723,14 @@ public class SalesData
             COGS = 8415,
             Profit = 1668.05,
             Date = @"7/1/20",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"469",
+            UnitsSold = 469,
             ManufacturingPrice = 260,
             SalePrice = 12,
             GrossSales = 5628,
@@ -2741,14 +2739,14 @@ public class SalesData
             COGS = 3369,
             Profit = 1585.2,
             Date = @"8/1/20",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"4240",
+            UnitsSold = 4240,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 50880,
@@ -2757,14 +2755,14 @@ public class SalesData
             COGS = 5595,
             Profit = 44166,
             Date = @"2/1/20",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"1976",
+            UnitsSold = 1976,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 23712,
@@ -2773,14 +2771,14 @@ public class SalesData
             COGS = 3348,
             Profit = 19694.4,
             Date = @"2/1/20",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"1984",
+            UnitsSold = 1984,
             ManufacturingPrice = 3,
             SalePrice = 20,
             GrossSales = 39680,
@@ -2789,14 +2787,14 @@ public class SalesData
             COGS = 15630,
             Profit = 22487,
             Date = @"5/1/20",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"480",
+            UnitsSold = 480,
             ManufacturingPrice = 3,
             SalePrice = 300,
             GrossSales = 144000,
@@ -2805,14 +2803,14 @@ public class SalesData
             COGS = 247750,
             Profit = 118615,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"1205",
+            UnitsSold = 1205,
             ManufacturingPrice = 3,
             SalePrice = 15,
             GrossSales = 18075,
@@ -2821,14 +2819,14 @@ public class SalesData
             COGS = 27910,
             Profit = 11928.25,
             Date = @"11/1/20",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"2480",
+            UnitsSold = 2480,
             ManufacturingPrice = 3,
             SalePrice = 7,
             GrossSales = 17360,
@@ -2837,14 +2835,14 @@ public class SalesData
             COGS = 2850,
             Profit = 14310.5,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"2926",
+            UnitsSold = 2926,
             ManufacturingPrice = 3,
             SalePrice = 7,
             GrossSales = 20482,
@@ -2853,14 +2851,14 @@ public class SalesData
             COGS = 12435,
             Profit = 7176.55,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"3210",
+            UnitsSold = 3210,
             ManufacturingPrice = 5,
             SalePrice = 350,
             GrossSales = 1123500,
@@ -2869,14 +2867,14 @@ public class SalesData
             COGS = 359970,
             Profit = 739301.25,
             Date = @"1/1/20",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Royal Oak",
-            UnitsSold = @"3221",
+            UnitsSold = 3221,
             ManufacturingPrice = 5,
             SalePrice = 125,
             GrossSales = 402625,
@@ -2885,14 +2883,14 @@ public class SalesData
             COGS = 435240,
             Profit = 55283.75,
             Date = @"7/1/20",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"1127",
+            UnitsSold = 1127,
             ManufacturingPrice = 5,
             SalePrice = 12,
             GrossSales = 13524,
@@ -2901,14 +2899,14 @@ public class SalesData
             COGS = 7026,
             Profit = 5092.8,
             Date = @"11/1/20",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"1610",
+            UnitsSold = 1610,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 32200,
@@ -2917,14 +2915,14 @@ public class SalesData
             COGS = 13030,
             Profit = 17867,
             Date = @"2/1/20",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"4100",
+            UnitsSold = 4100,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 512500,
@@ -2933,14 +2931,14 @@ public class SalesData
             COGS = 359040,
             Profit = 134760,
             Date = @"3/1/20",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"1012",
+            UnitsSold = 1012,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 126500,
@@ -2949,14 +2947,14 @@ public class SalesData
             COGS = 286200,
             Profit = 174606.25,
             Date = @"3/1/20",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"3337",
+            UnitsSold = 3337,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 1001100,
@@ -2965,14 +2963,14 @@ public class SalesData
             COGS = 401750,
             Profit = 575245,
             Date = @"4/1/20",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"3955",
+            UnitsSold = 3955,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 27685,
@@ -2981,14 +2979,14 @@ public class SalesData
             COGS = 11635,
             Profit = 15235.55,
             Date = @"5/1/20",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"4347",
+            UnitsSold = 4347,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 1304100,
@@ -2997,14 +2995,14 @@ public class SalesData
             COGS = 247750,
             Profit = 1041485,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"1548",
+            UnitsSold = 1548,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 541800,
@@ -3013,14 +3011,14 @@ public class SalesData
             COGS = 156520,
             Profit = 374745,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"2153",
+            UnitsSold = 2153,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 32295,
@@ -3029,14 +3027,14 @@ public class SalesData
             COGS = 26200,
             Profit = 4130,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"4126",
+            UnitsSold = 4126,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 515750,
@@ -3045,14 +3043,14 @@ public class SalesData
             COGS = 103320,
             Profit = 407048.75,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"3376",
+            UnitsSold = 3376,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 67520,
@@ -3061,14 +3059,14 @@ public class SalesData
             COGS = 26630,
             Profit = 38227,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"2244",
+            UnitsSold = 2244,
             ManufacturingPrice = 120,
             SalePrice = 15,
             GrossSales = 33660,
@@ -3077,14 +3075,14 @@ public class SalesData
             COGS = 5550,
             Profit = 27693.75,
             Date = @"1/1/20",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"1360",
+            UnitsSold = 1360,
             ManufacturingPrice = 120,
             SalePrice = 15,
             GrossSales = 20400,
@@ -3093,14 +3091,14 @@ public class SalesData
             COGS = 28610,
             Profit = 10355.75,
             Date = @"1/1/20",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"279",
+            UnitsSold = 279,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 34875,
@@ -3109,14 +3107,14 @@ public class SalesData
             COGS = 96840,
             Profit = 67008.75,
             Date = @"2/1/20",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"2521",
+            UnitsSold = 2521,
             ManufacturingPrice = 120,
             SalePrice = 350,
             GrossSales = 882350,
@@ -3125,14 +3123,14 @@ public class SalesData
             COGS = 156520,
             Profit = 715295,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"2433",
+            UnitsSold = 2433,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 48660,
@@ -3141,14 +3139,14 @@ public class SalesData
             COGS = 28320,
             Profit = 17508,
             Date = @"8/1/20",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"1738",
+            UnitsSold = 1738,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 34760,
@@ -3157,14 +3155,14 @@ public class SalesData
             COGS = 15790,
             Profit = 17391,
             Date = @"8/1/20",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"1106",
+            UnitsSold = 1106,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 138250,
@@ -3173,14 +3171,14 @@ public class SalesData
             COGS = 103320,
             Profit = 29548.75,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"213",
+            UnitsSold = 213,
             ManufacturingPrice = 120,
             SalePrice = 300,
             GrossSales = 63900,
@@ -3189,14 +3187,14 @@ public class SalesData
             COGS = 312500,
             Profit = 267350,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"2929",
+            UnitsSold = 2929,
             ManufacturingPrice = 250,
             SalePrice = 20,
             GrossSales = 58580,
@@ -3205,14 +3203,14 @@ public class SalesData
             COGS = 26630,
             Profit = 29287,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"2389",
+            UnitsSold = 2389,
             ManufacturingPrice = 250,
             SalePrice = 7,
             GrossSales = 16723,
@@ -3221,14 +3219,14 @@ public class SalesData
             COGS = 2850,
             Profit = 13673.5,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"3086",
+            UnitsSold = 3086,
             ManufacturingPrice = 250,
             SalePrice = 7,
             GrossSales = 21602,
@@ -3237,14 +3235,14 @@ public class SalesData
             COGS = 12435,
             Profit = 8296.55,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"745",
+            UnitsSold = 745,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 260750,
@@ -3253,14 +3251,14 @@ public class SalesData
             COGS = 351000,
             Profit = 113875,
             Date = @"2/1/20",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"1266",
+            UnitsSold = 1266,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 443100,
@@ -3269,14 +3267,14 @@ public class SalesData
             COGS = 143520,
             Profit = 289920,
             Date = @"8/1/20",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"4287",
+            UnitsSold = 4287,
             ManufacturingPrice = 260,
             SalePrice = 300,
             GrossSales = 1286100,
@@ -3285,14 +3283,14 @@ public class SalesData
             COGS = 312500,
             Profit = 954850,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"3193",
+            UnitsSold = 3193,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 47895,
@@ -3301,14 +3299,14 @@ public class SalesData
             COGS = 38010,
             Profit = 6464.1,
             Date = @"4/1/20",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"1967",
+            UnitsSold = 1967,
             ManufacturingPrice = 3,
             SalePrice = 20,
             GrossSales = 39340,
@@ -3317,14 +3315,14 @@ public class SalesData
             COGS = 11175,
             Profit = 26824,
             Date = @"1/1/20",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"631",
+            UnitsSold = 631,
             ManufacturingPrice = 3,
             SalePrice = 15,
             GrossSales = 9465,
@@ -3333,14 +3331,14 @@ public class SalesData
             COGS = 28440,
             Profit = 21534.6,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"3469",
+            UnitsSold = 3469,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 41628,
@@ -3349,14 +3347,14 @@ public class SalesData
             COGS = 1686,
             Profit = 39537.36,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"3215",
+            UnitsSold = 3215,
             ManufacturingPrice = 3,
             SalePrice = 15,
             GrossSales = 48225,
@@ -3365,14 +3363,14 @@ public class SalesData
             COGS = 20300,
             Profit = 26098,
             Date = @"11/1/20",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"1959",
+            UnitsSold = 1959,
             ManufacturingPrice = 5,
             SalePrice = 350,
             GrossSales = 685650,
@@ -3381,14 +3379,14 @@ public class SalesData
             COGS = 254800,
             Profit = 410270,
             Date = @"4/1/20",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"2181",
+            UnitsSold = 2181,
             ManufacturingPrice = 5,
             SalePrice = 350,
             GrossSales = 763350,
@@ -3397,14 +3395,14 @@ public class SalesData
             COGS = 379600,
             Profit = 353090,
             Date = @"5/1/20",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Royal Oak",
-            UnitsSold = @"2205",
+            UnitsSold = 2205,
             ManufacturingPrice = 5,
             SalePrice = 12,
             GrossSales = 26460,
@@ -3413,14 +3411,14 @@ public class SalesData
             COGS = 8169,
             Profit = 16330.44,
             Date = @"11/1/20",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"1890",
+            UnitsSold = 1890,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 661500,
@@ -3429,14 +3427,14 @@ public class SalesData
             COGS = 388960,
             Profit = 241124,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"2417",
+            UnitsSold = 2417,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 302125,
@@ -3445,14 +3443,14 @@ public class SalesData
             COGS = 114240,
             Profit = 180745,
             Date = @"2/1/20",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"1158",
+            UnitsSold = 1158,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 144750,
@@ -3461,14 +3459,14 @@ public class SalesData
             COGS = 330600,
             Profit = 206512.5,
             Date = @"2/1/20",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"803",
+            UnitsSold = 803,
             ManufacturingPrice = 120,
             SalePrice = 15,
             GrossSales = 12045,
@@ -3477,14 +3475,14 @@ public class SalesData
             COGS = 15300,
             Profit = 4632,
             Date = @"5/1/20",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"3705",
+            UnitsSold = 3705,
             ManufacturingPrice = 120,
             SalePrice = 350,
             GrossSales = 1296750,
@@ -3493,14 +3491,14 @@ public class SalesData
             COGS = 388960,
             Profit = 876374,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"589",
+            UnitsSold = 589,
             ManufacturingPrice = 120,
             SalePrice = 7,
             GrossSales = 4123,
@@ -3509,14 +3507,14 @@ public class SalesData
             COGS = 7490,
             Profit = 3996.16,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"3999",
+            UnitsSold = 3999,
             ManufacturingPrice = 250,
             SalePrice = 15,
             GrossSales = 59985,
@@ -3525,14 +3523,14 @@ public class SalesData
             COGS = 28440,
             Profit = 28985.4,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"4256",
+            UnitsSold = 4256,
             ManufacturingPrice = 250,
             SalePrice = 7,
             GrossSales = 29792,
@@ -3541,14 +3539,14 @@ public class SalesData
             COGS = 7490,
             Profit = 21672.84,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Luxe",
-            UnitsSold = @"2160",
+            UnitsSold = 2160,
             ManufacturingPrice = 260,
             SalePrice = 125,
             GrossSales = 270000,
@@ -3557,14 +3555,14 @@ public class SalesData
             COGS = 238500,
             Profit = 16593.75,
             Date = @"1/1/20",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"466",
+            UnitsSold = 466,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 163100,
@@ -3573,14 +3571,14 @@ public class SalesData
             COGS = 436540,
             Profit = 308699,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"1478",
+            UnitsSold = 1478,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 22170,
@@ -3589,14 +3587,14 @@ public class SalesData
             COGS = 21980,
             Profit = 1788.2,
             Date = @"8/1/20",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"3798",
+            UnitsSold = 3798,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 56970,
@@ -3605,14 +3603,14 @@ public class SalesData
             COGS = 17430,
             Profit = 37971.3,
             Date = @"8/1/20",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"447",
+            UnitsSold = 447,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 6705,
@@ -3621,14 +3619,14 @@ public class SalesData
             COGS = 11530,
             Profit = 5862.7,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"745",
+            UnitsSold = 745,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 14900,
@@ -3637,14 +3635,14 @@ public class SalesData
             COGS = 10010,
             Profit = 3688.8,
             Date = @"8/1/20",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"1732",
+            UnitsSold = 1732,
             ManufacturingPrice = 120,
             SalePrice = 7,
             GrossSales = 12124,
@@ -3653,14 +3651,14 @@ public class SalesData
             COGS = 6665,
             Profit = 4899.14,
             Date = @"11/1/20",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"1759",
+            UnitsSold = 1759,
             ManufacturingPrice = 250,
             SalePrice = 15,
             GrossSales = 26385,
@@ -3669,14 +3667,14 @@ public class SalesData
             COGS = 11530,
             Profit = 13817.3,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"338",
+            UnitsSold = 338,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 4056,
@@ -3685,14 +3683,14 @@ public class SalesData
             COGS = 2181,
             Profit = 1264.32,
             Date = @"2/1/20",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"3911",
+            UnitsSold = 3911,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 46932,
@@ -3701,14 +3699,14 @@ public class SalesData
             COGS = 5652,
             Profit = 39697.44,
             Date = @"8/1/20",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"4473",
+            UnitsSold = 4473,
             ManufacturingPrice = 5,
             SalePrice = 12,
             GrossSales = 53676,
@@ -3717,14 +3715,14 @@ public class SalesData
             COGS = 7020,
             Profit = 44690.4,
             Date = @"1/1/20",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"383",
+            UnitsSold = 383,
             ManufacturingPrice = 5,
             SalePrice = 12,
             GrossSales = 4596,
@@ -3733,14 +3731,14 @@ public class SalesData
             COGS = 7026,
             Profit = 4397.28,
             Date = @"11/1/20",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"1062",
+            UnitsSold = 1062,
             ManufacturingPrice = 120,
             SalePrice = 15,
             GrossSales = 15930,
@@ -3749,14 +3747,14 @@ public class SalesData
             COGS = 12620,
             Profit = 1984.9,
             Date = @"5/1/20",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"4083",
+            UnitsSold = 4083,
             ManufacturingPrice = 120,
             SalePrice = 7,
             GrossSales = 28581,
@@ -3765,14 +3763,14 @@ public class SalesData
             COGS = 5675,
             Profit = 22349.85,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"3974",
+            UnitsSold = 3974,
             ManufacturingPrice = 120,
             SalePrice = 7,
             GrossSales = 27818,
@@ -3781,14 +3779,14 @@ public class SalesData
             COGS = 2735,
             Profit = 24814.97,
             Date = @"11/1/20",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"3723",
+            UnitsSold = 3723,
             ManufacturingPrice = 120,
             SalePrice = 7,
             GrossSales = 26061,
@@ -3797,14 +3795,14 @@ public class SalesData
             COGS = 7910,
             Profit = 17375.82,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"2435",
+            UnitsSold = 2435,
             ManufacturingPrice = 250,
             SalePrice = 12,
             GrossSales = 29220,
@@ -3813,14 +3811,14 @@ public class SalesData
             COGS = 5215.5,
             Profit = 22544.16,
             Date = @"4/1/20",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"1763",
+            UnitsSold = 1763,
             ManufacturingPrice = 250,
             SalePrice = 7,
             GrossSales = 12341,
@@ -3829,14 +3827,14 @@ public class SalesData
             COGS = 7910,
             Profit = 3655.82,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"4473",
+            UnitsSold = 4473,
             ManufacturingPrice = 260,
             SalePrice = 7,
             GrossSales = 31311,
@@ -3845,14 +3843,14 @@ public class SalesData
             COGS = 5675,
             Profit = 25079.85,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"1246",
+            UnitsSold = 1246,
             ManufacturingPrice = 3,
             SalePrice = 350,
             GrossSales = 436100,
@@ -3861,14 +3859,14 @@ public class SalesData
             COGS = 457860,
             Profit = 64904.5,
             Date = @"3/1/20",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"1615",
+            UnitsSold = 1615,
             ManufacturingPrice = 3,
             SalePrice = 300,
             GrossSales = 484500,
@@ -3877,14 +3875,14 @@ public class SalesData
             COGS = 112000,
             Profit = 363092,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"749",
+            UnitsSold = 749,
             ManufacturingPrice = 3,
             SalePrice = 300,
             GrossSales = 224700,
@@ -3893,14 +3891,14 @@ public class SalesData
             COGS = 545250,
             Profit = 366351,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"1318",
+            UnitsSold = 1318,
             ManufacturingPrice = 5,
             SalePrice = 20,
             GrossSales = 26360,
@@ -3909,14 +3907,14 @@ public class SalesData
             COGS = 19760,
             Profit = 3833.6,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"2882",
+            UnitsSold = 2882,
             ManufacturingPrice = 5,
             SalePrice = 300,
             GrossSales = 864600,
@@ -3925,14 +3923,14 @@ public class SalesData
             COGS = 545250,
             Profit = 273549,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"2484",
+            UnitsSold = 2484,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 745200,
@@ -3941,14 +3939,14 @@ public class SalesData
             COGS = 425500,
             Profit = 283958,
             Date = @"5/1/20",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"3169",
+            UnitsSold = 3169,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 950700,
@@ -3957,14 +3955,14 @@ public class SalesData
             COGS = 112000,
             Profit = 829292,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"4080",
+            UnitsSold = 4080,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 510000,
@@ -3973,14 +3971,14 @@ public class SalesData
             COGS = 421560,
             Profit = 57701.25,
             Date = @"7/1/20",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"3943",
+            UnitsSold = 3943,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 59145,
@@ -3989,14 +3987,14 @@ public class SalesData
             COGS = 21010,
             Profit = 35928.95,
             Date = @"8/1/20",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"253",
+            UnitsSold = 253,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 5060,
@@ -4005,14 +4003,14 @@ public class SalesData
             COGS = 15350,
             Profit = 12439,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"799",
+            UnitsSold = 799,
             ManufacturingPrice = 120,
             SalePrice = 300,
             GrossSales = 239700,
@@ -4021,14 +4019,14 @@ public class SalesData
             COGS = 414750,
             Profit = 209889,
             Date = @"7/1/20",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"3942",
+            UnitsSold = 3942,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 78840,
@@ -4037,14 +4035,14 @@ public class SalesData
             COGS = 6090,
             Profit = 71897.4,
             Date = @"8/1/20",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"2498",
+            UnitsSold = 2498,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 312250,
@@ -4053,14 +4051,14 @@ public class SalesData
             COGS = 250440,
             Profit = 43548.75,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"2517",
+            UnitsSold = 2517,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 50340,
@@ -4069,14 +4067,14 @@ public class SalesData
             COGS = 19760,
             Profit = 27813.6,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"1145",
+            UnitsSold = 1145,
             ManufacturingPrice = 120,
             SalePrice = 300,
             GrossSales = 343500,
@@ -4085,14 +4083,14 @@ public class SalesData
             COGS = 343000,
             Profit = 28312,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"3814",
+            UnitsSold = 3814,
             ManufacturingPrice = 250,
             SalePrice = 12,
             GrossSales = 45768,
@@ -4101,14 +4099,14 @@ public class SalesData
             COGS = 9733.5,
             Profit = 33309.12,
             Date = @"1/1/20",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"1188",
+            UnitsSold = 1188,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 356400,
@@ -4117,14 +4115,14 @@ public class SalesData
             COGS = 239750,
             Profit = 96511,
             Date = @"2/1/20",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"2233",
+            UnitsSold = 2233,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 669900,
@@ -4133,14 +4131,14 @@ public class SalesData
             COGS = 686750,
             Profit = 74537,
             Date = @"2/1/20",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"421",
+            UnitsSold = 421,
             ManufacturingPrice = 260,
             SalePrice = 125,
             GrossSales = 52625,
@@ -4149,14 +4147,14 @@ public class SalesData
             COGS = 197400,
             Profit = 159168.75,
             Date = @"5/1/20",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Luxe",
-            UnitsSold = @"269",
+            UnitsSold = 269,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 94150,
@@ -4165,14 +4163,14 @@ public class SalesData
             COGS = 747760,
             Profit = 724072,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"952",
+            UnitsSold = 952,
             ManufacturingPrice = 260,
             SalePrice = 20,
             GrossSales = 19040,
@@ -4181,14 +4179,14 @@ public class SalesData
             COGS = 11180,
             Profit = 6294.8,
             Date = @"11/1/20",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"2964",
+            UnitsSold = 2964,
             ManufacturingPrice = 260,
             SalePrice = 300,
             GrossSales = 889200,
@@ -4197,14 +4195,14 @@ public class SalesData
             COGS = 343000,
             Profit = 517388,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"1505",
+            UnitsSold = 1505,
             ManufacturingPrice = 5,
             SalePrice = 7,
             GrossSales = 10535,
@@ -4213,14 +4211,14 @@ public class SalesData
             COGS = 2440,
             Profit = 7821.72,
             Date = @"2/1/20",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Royal Oak",
-            UnitsSold = @"1678",
+            UnitsSold = 1678,
             ManufacturingPrice = 5,
             SalePrice = 20,
             GrossSales = 33560,
@@ -4229,14 +4227,14 @@ public class SalesData
             COGS = 12820,
             Profit = 18688.8,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"4249",
+            UnitsSold = 4249,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 29743,
@@ -4245,14 +4243,14 @@ public class SalesData
             COGS = 1285,
             Profit = 28314.08,
             Date = @"5/1/20",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"1677",
+            UnitsSold = 1677,
             ManufacturingPrice = 260,
             SalePrice = 20,
             GrossSales = 33540,
@@ -4261,14 +4259,14 @@ public class SalesData
             COGS = 12820,
             Profit = 18668.8,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"3051",
+            UnitsSold = 3051,
             ManufacturingPrice = 3,
             SalePrice = 125,
             GrossSales = 381375,
@@ -4277,14 +4275,14 @@ public class SalesData
             COGS = 184800,
             Profit = 181175,
             Date = @"8/1/20",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"3372",
+            UnitsSold = 3372,
             ManufacturingPrice = 3,
             SalePrice = 15,
             GrossSales = 50580,
@@ -4293,14 +4291,14 @@ public class SalesData
             COGS = 4900,
             Profit = 45092,
             Date = @"11/1/20",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"1686",
+            UnitsSold = 1686,
             ManufacturingPrice = 3,
             SalePrice = 350,
             GrossSales = 590100,
@@ -4309,14 +4307,14 @@ public class SalesData
             COGS = 354120,
             Profit = 197844,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"3086",
+            UnitsSold = 3086,
             ManufacturingPrice = 5,
             SalePrice = 15,
             GrossSales = 46290,
@@ -4325,14 +4323,14 @@ public class SalesData
             COGS = 25010,
             Profit = 18278.8,
             Date = @"3/1/20",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"4150",
+            UnitsSold = 4150,
             ManufacturingPrice = 5,
             SalePrice = 20,
             GrossSales = 83000,
@@ -4341,14 +4339,14 @@ public class SalesData
             COGS = 7080,
             Profit = 74787.2,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"3027",
+            UnitsSold = 3027,
             ManufacturingPrice = 5,
             SalePrice = 20,
             GrossSales = 60540,
@@ -4357,14 +4355,14 @@ public class SalesData
             COGS = 6450,
             Profit = 53058,
             Date = @"7/1/20",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"4359",
+            UnitsSold = 4359,
             ManufacturingPrice = 5,
             SalePrice = 300,
             GrossSales = 1307700,
@@ -4373,14 +4371,14 @@ public class SalesData
             COGS = 390500,
             Profit = 879712,
             Date = @"8/1/20",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"1589",
+            UnitsSold = 1589,
             ManufacturingPrice = 5,
             SalePrice = 15,
             GrossSales = 23835,
@@ -4389,14 +4387,14 @@ public class SalesData
             COGS = 7110,
             Profit = 15871.8,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"2679",
+            UnitsSold = 2679,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 334875,
@@ -4405,14 +4403,14 @@ public class SalesData
             COGS = 133680,
             Profit = 190055,
             Date = @"3/1/20",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"3401",
+            UnitsSold = 3401,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 23807,
@@ -4421,14 +4419,14 @@ public class SalesData
             COGS = 6295,
             Profit = 16806.96,
             Date = @"4/1/20",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"2815",
+            UnitsSold = 2815,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 19705,
@@ -4437,14 +4435,14 @@ public class SalesData
             COGS = 5475,
             Profit = 13616.8,
             Date = @"5/1/20",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"2964",
+            UnitsSold = 2964,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 59280,
@@ -4453,14 +4451,14 @@ public class SalesData
             COGS = 13660,
             Profit = 43434.4,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"4173",
+            UnitsSold = 4173,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 1251900,
@@ -4469,14 +4467,14 @@ public class SalesData
             COGS = 615000,
             Profit = 577860,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"1157",
+            UnitsSold = 1157,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 8099,
@@ -4485,14 +4483,14 @@ public class SalesData
             COGS = 3390,
             Profit = 4329.32,
             Date = @"8/1/20",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"3065",
+            UnitsSold = 3065,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 21455,
@@ -4501,14 +4499,14 @@ public class SalesData
             COGS = 7990,
             Profit = 12570.12,
             Date = @"8/1/20",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"4080",
+            UnitsSold = 4080,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 81600,
@@ -4517,14 +4515,14 @@ public class SalesData
             COGS = 19340,
             Profit = 59165.6,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"1713",
+            UnitsSold = 1713,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 34260,
@@ -4533,14 +4531,14 @@ public class SalesData
             COGS = 29930,
             Profit = 458.8,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"1691",
+            UnitsSold = 1691,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 591850,
@@ -4549,14 +4547,14 @@ public class SalesData
             COGS = 354120,
             Profit = 199594,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"2305",
+            UnitsSold = 2305,
             ManufacturingPrice = 120,
             SalePrice = 12,
             GrossSales = 27660,
@@ -4565,14 +4563,14 @@ public class SalesData
             COGS = 1794,
             Profit = 25291.92,
             Date = @"3/1/20",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"3401",
+            UnitsSold = 3401,
             ManufacturingPrice = 120,
             SalePrice = 7,
             GrossSales = 23807,
@@ -4581,14 +4579,14 @@ public class SalesData
             COGS = 14535,
             Profit = 7644.08,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"2288",
+            UnitsSold = 2288,
             ManufacturingPrice = 120,
             SalePrice = 7,
             GrossSales = 16016,
@@ -4597,14 +4595,14 @@ public class SalesData
             COGS = 11690,
             Profit = 3016.72,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"4086",
+            UnitsSold = 4086,
             ManufacturingPrice = 120,
             SalePrice = 300,
             GrossSales = 1225800,
@@ -4613,14 +4611,14 @@ public class SalesData
             COGS = 158750,
             Profit = 1051810,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"2651",
+            UnitsSold = 2651,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 927850,
@@ -4629,14 +4627,14 @@ public class SalesData
             COGS = 149370,
             Profit = 762394,
             Date = @"4/1/20",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"3971",
+            UnitsSold = 3971,
             ManufacturingPrice = 250,
             SalePrice = 7,
             GrossSales = 27797,
@@ -4645,14 +4643,14 @@ public class SalesData
             COGS = 11690,
             Profit = 14797.72,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"2512",
+            UnitsSold = 2512,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 879200,
@@ -4661,14 +4659,14 @@ public class SalesData
             COGS = 99060,
             Profit = 769472,
             Date = @"8/1/20",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"2745",
+            UnitsSold = 2745,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 960750,
@@ -4677,14 +4675,14 @@ public class SalesData
             COGS = 109720,
             Profit = 839214,
             Date = @"8/1/20",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"1903",
+            UnitsSold = 1903,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 570900,
@@ -4693,14 +4691,14 @@ public class SalesData
             COGS = 533500,
             Profit = 13816,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"2914",
+            UnitsSold = 2914,
             ManufacturingPrice = 260,
             SalePrice = 20,
             GrossSales = 58280,
@@ -4709,14 +4707,14 @@ public class SalesData
             COGS = 7080,
             Profit = 50067.2,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"1889",
+            UnitsSold = 1889,
             ManufacturingPrice = 260,
             SalePrice = 7,
             GrossSales = 13223,
@@ -4725,14 +4723,14 @@ public class SalesData
             COGS = 14535,
             Profit = 2939.92,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"1466",
+            UnitsSold = 1466,
             ManufacturingPrice = 260,
             SalePrice = 20,
             GrossSales = 29320,
@@ -4741,14 +4739,14 @@ public class SalesData
             COGS = 13660,
             Profit = 13474.4,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"887",
+            UnitsSold = 887,
             ManufacturingPrice = 260,
             SalePrice = 300,
             GrossSales = 266100,
@@ -4757,14 +4755,14 @@ public class SalesData
             COGS = 615000,
             Profit = 407940,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"395",
+            UnitsSold = 395,
             ManufacturingPrice = 260,
             SalePrice = 20,
             GrossSales = 7900,
@@ -4773,14 +4771,14 @@ public class SalesData
             COGS = 15200,
             Profit = 9732,
             Date = @"11/1/20",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"1693",
+            UnitsSold = 1693,
             ManufacturingPrice = 260,
             SalePrice = 15,
             GrossSales = 25395,
@@ -4789,14 +4787,14 @@ public class SalesData
             COGS = 7110,
             Profit = 17431.8,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"2649",
+            UnitsSold = 2649,
             ManufacturingPrice = 260,
             SalePrice = 300,
             GrossSales = 794700,
@@ -4805,14 +4803,14 @@ public class SalesData
             COGS = 158750,
             Profit = 620710,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"3608",
+            UnitsSold = 3608,
             ManufacturingPrice = 250,
             SalePrice = 20,
             GrossSales = 72160,
@@ -4821,14 +4819,14 @@ public class SalesData
             COGS = 4365,
             Profit = 67096.6,
             Date = @"7/1/20",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"1073",
+            UnitsSold = 1073,
             ManufacturingPrice = 3,
             SalePrice = 300,
             GrossSales = 321900,
@@ -4837,14 +4835,14 @@ public class SalesData
             COGS = 273500,
             Profit = 18862,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"2167",
+            UnitsSold = 2167,
             ManufacturingPrice = 5,
             SalePrice = 300,
             GrossSales = 650100,
@@ -4853,14 +4851,14 @@ public class SalesData
             COGS = 950625,
             Profit = 403192.5,
             Date = @"4/1/20",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"1319",
+            UnitsSold = 1319,
             ManufacturingPrice = 5,
             SalePrice = 350,
             GrossSales = 461650,
@@ -4869,14 +4867,14 @@ public class SalesData
             COGS = 433160,
             Profit = 23989,
             Date = @"5/1/20",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"1252",
+            UnitsSold = 1252,
             ManufacturingPrice = 5,
             SalePrice = 12,
             GrossSales = 15024,
@@ -4885,14 +4883,14 @@ public class SalesData
             COGS = 6963,
             Profit = 5554.32,
             Date = @"11/1/20",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Royal Oak",
-            UnitsSold = @"1156",
+            UnitsSold = 1156,
             ManufacturingPrice = 5,
             SalePrice = 125,
             GrossSales = 144500,
@@ -4901,14 +4899,14 @@ public class SalesData
             COGS = 335640,
             Profit = 222606.25,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"1153",
+            UnitsSold = 1153,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 345900,
@@ -4917,14 +4915,14 @@ public class SalesData
             COGS = 641250,
             Profit = 364605,
             Date = @"1/1/20",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"2720",
+            UnitsSold = 2720,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 952000,
@@ -4933,14 +4931,14 @@ public class SalesData
             COGS = 628420,
             Profit = 247444.5,
             Date = @"1/1/20",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"3658",
+            UnitsSold = 3658,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 54870,
@@ -4949,14 +4947,14 @@ public class SalesData
             COGS = 36750,
             Profit = 13158.75,
             Date = @"4/1/20",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"2950",
+            UnitsSold = 2950,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 885000,
@@ -4965,14 +4963,14 @@ public class SalesData
             COGS = 273500,
             Profit = 581962,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"1821",
+            UnitsSold = 1821,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 27315,
@@ -4981,14 +4979,14 @@ public class SalesData
             COGS = 12270,
             Profit = 13388.55,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"1127",
+            UnitsSold = 1127,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 338100,
@@ -4997,14 +4995,14 @@ public class SalesData
             COGS = 331000,
             Profit = 28648,
             Date = @"11/1/20",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"862",
+            UnitsSold = 862,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 107750,
@@ -5013,14 +5011,14 @@ public class SalesData
             COGS = 335640,
             Profit = 259356.25,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"3805",
+            UnitsSold = 3805,
             ManufacturingPrice = 120,
             SalePrice = 15,
             GrossSales = 57075,
@@ -5029,14 +5027,14 @@ public class SalesData
             COGS = 2450,
             Profit = 54294.25,
             Date = @"5/1/20",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"1415",
+            UnitsSold = 1415,
             ManufacturingPrice = 120,
             SalePrice = 300,
             GrossSales = 424500,
@@ -5045,14 +5043,14 @@ public class SalesData
             COGS = 948375,
             Profit = 626299.5,
             Date = @"7/1/20",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"2231",
+            UnitsSold = 2231,
             ManufacturingPrice = 120,
             SalePrice = 350,
             GrossSales = 780850,
@@ -5061,14 +5059,14 @@ public class SalesData
             COGS = 339820,
             Profit = 399859.5,
             Date = @"7/1/20",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"3649",
+            UnitsSold = 3649,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 456125,
@@ -5077,14 +5075,14 @@ public class SalesData
             COGS = 68040,
             Profit = 381706.25,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"2948",
+            UnitsSold = 2948,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 368500,
@@ -5093,14 +5091,14 @@ public class SalesData
             COGS = 253200,
             Profit = 91562.5,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"3395",
+            UnitsSold = 3395,
             ManufacturingPrice = 120,
             SalePrice = 350,
             GrossSales = 1188250,
@@ -5109,14 +5107,14 @@ public class SalesData
             COGS = 329940,
             Profit = 818336.5,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"2650",
+            UnitsSold = 2650,
             ManufacturingPrice = 250,
             SalePrice = 12,
             GrossSales = 31800,
@@ -5125,14 +5123,14 @@ public class SalesData
             COGS = 5868,
             Profit = 23819.52,
             Date = @"1/1/20",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"585",
+            UnitsSold = 585,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 175500,
@@ -5141,14 +5139,14 @@ public class SalesData
             COGS = 664750,
             Profit = 561043,
             Date = @"2/1/20",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"1316",
+            UnitsSold = 1316,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 460600,
@@ -5157,14 +5155,14 @@ public class SalesData
             COGS = 351390,
             Profit = 66637.75,
             Date = @"4/1/20",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"4459",
+            UnitsSold = 4459,
             ManufacturingPrice = 250,
             SalePrice = 12,
             GrossSales = 53508,
@@ -5173,14 +5171,14 @@ public class SalesData
             COGS = 2640,
             Profit = 49917.6,
             Date = @"5/1/20",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"2711",
+            UnitsSold = 2711,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 813300,
@@ -5189,14 +5187,14 @@ public class SalesData
             COGS = 466750,
             Profit = 296141,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"3613",
+            UnitsSold = 3613,
             ManufacturingPrice = 250,
             SalePrice = 15,
             GrossSales = 54195,
@@ -5205,14 +5203,14 @@ public class SalesData
             COGS = 12270,
             Profit = 40268.55,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"1847",
+            UnitsSold = 1847,
             ManufacturingPrice = 250,
             SalePrice = 125,
             GrossSales = 230875,
@@ -5221,14 +5219,14 @@ public class SalesData
             COGS = 105240,
             Profit = 115768.75,
             Date = @"11/1/20",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"2996",
+            UnitsSold = 2996,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 1048600,
@@ -5237,14 +5235,14 @@ public class SalesData
             COGS = 538460,
             Profit = 444903.5,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"2838",
+            UnitsSold = 2838,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 993300,
@@ -5253,14 +5251,14 @@ public class SalesData
             COGS = 329940,
             Profit = 623386.5,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"1536",
+            UnitsSold = 1536,
             ManufacturingPrice = 260,
             SalePrice = 20,
             GrossSales = 30720,
@@ -5269,14 +5267,14 @@ public class SalesData
             COGS = 16940,
             Profit = 10730.8,
             Date = @"11/1/20",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"1291",
+            UnitsSold = 1291,
             ManufacturingPrice = 3,
             SalePrice = 20,
             GrossSales = 25820,
@@ -5285,14 +5283,14 @@ public class SalesData
             COGS = 6630,
             Profit = 17996.6,
             Date = @"5/1/20",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"1213",
+            UnitsSold = 1213,
             ManufacturingPrice = 3,
             SalePrice = 7,
             GrossSales = 8491,
@@ -5301,14 +5299,14 @@ public class SalesData
             COGS = 4095,
             Profit = 3880.03,
             Date = @"7/1/20",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"2370",
+            UnitsSold = 2370,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 28440,
@@ -5317,14 +5315,14 @@ public class SalesData
             COGS = 4740,
             Profit = 21993.6,
             Date = @"9/1/20",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"1979",
+            UnitsSold = 1979,
             ManufacturingPrice = 3,
             SalePrice = 7,
             GrossSales = 13853,
@@ -5333,14 +5331,14 @@ public class SalesData
             COGS = 2605,
             Profit = 10919.77,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"2879",
+            UnitsSold = 2879,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 57580,
@@ -5349,14 +5347,14 @@ public class SalesData
             COGS = 9730,
             Profit = 46098.6,
             Date = @"3/1/20",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"1707",
+            UnitsSold = 1707,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 34140,
@@ -5365,14 +5363,14 @@ public class SalesData
             COGS = 10380,
             Profit = 21891.6,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"2933",
+            UnitsSold = 2933,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 20531,
@@ -5381,14 +5379,14 @@ public class SalesData
             COGS = 1800,
             Profit = 18504.2,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"1014",
+            UnitsSold = 1014,
             ManufacturingPrice = 120,
             SalePrice = 12,
             GrossSales = 12168,
@@ -5397,14 +5395,14 @@ public class SalesData
             COGS = 5901,
             Profit = 4142.64,
             Date = @"3/1/20",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"693",
+            UnitsSold = 693,
             ManufacturingPrice = 120,
             SalePrice = 15,
             GrossSales = 10395,
@@ -5413,14 +5411,14 @@ public class SalesData
             COGS = 26280,
             Profit = 19432.8,
             Date = @"4/1/20",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"3741",
+            UnitsSold = 3741,
             ManufacturingPrice = 250,
             SalePrice = 7,
             GrossSales = 26187,
@@ -5429,14 +5427,14 @@ public class SalesData
             COGS = 1800,
             Profit = 24160.2,
             Date = @"10/1/20",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"3995",
+            UnitsSold = 3995,
             ManufacturingPrice = 250,
             SalePrice = 7,
             GrossSales = 27965,
@@ -5445,14 +5443,14 @@ public class SalesData
             COGS = 2605,
             Profit = 25031.77,
             Date = @"12/1/20",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"953",
+            UnitsSold = 953,
             ManufacturingPrice = 260,
             SalePrice = 20,
             GrossSales = 19060,
@@ -5461,14 +5459,14 @@ public class SalesData
             COGS = 10380,
             Profit = 6811.6,
             Date = @"6/1/20",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"2530",
+            UnitsSold = 2530,
             ManufacturingPrice = 260,
             SalePrice = 15,
             GrossSales = 37950,
@@ -5477,14 +5475,14 @@ public class SalesData
             COGS = 16305,
             Profit = 19443.82,
             Date = @"7/1/20",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2020"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"1372",
+            UnitsSold = 1372,
             ManufacturingPrice = 3,
             SalePrice = 20,
             GrossSales = 27440,
@@ -5493,14 +5491,14 @@ public class SalesData
             COGS = 16185,
             Profit = 11255,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"2762",
+            UnitsSold = 2762,
             ManufacturingPrice = 3,
             SalePrice = 20,
             GrossSales = 55240,
@@ -5509,14 +5507,14 @@ public class SalesData
             COGS = 13210,
             Profit = 42030,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"1464",
+            UnitsSold = 1464,
             ManufacturingPrice = 3,
             SalePrice = 15,
             GrossSales = 21960,
@@ -5525,14 +5523,14 @@ public class SalesData
             COGS = 21780,
             Profit = 180,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"719",
+            UnitsSold = 719,
             ManufacturingPrice = 3,
             SalePrice = 15,
             GrossSales = 10785,
@@ -5541,14 +5539,14 @@ public class SalesData
             COGS = 8880,
             Profit = 1905,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"3576",
+            UnitsSold = 3576,
             ManufacturingPrice = 3,
             SalePrice = 15,
             GrossSales = 53640,
@@ -5557,14 +5555,14 @@ public class SalesData
             COGS = 24700,
             Profit = 28940,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"4422",
+            UnitsSold = 4422,
             ManufacturingPrice = 3,
             SalePrice = 350,
             GrossSales = 1547700,
@@ -5573,14 +5571,14 @@ public class SalesData
             COGS = 393380,
             Profit = 1154320,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"3649",
+            UnitsSold = 3649,
             ManufacturingPrice = 5,
             SalePrice = 15,
             GrossSales = 54735,
@@ -5589,14 +5587,14 @@ public class SalesData
             COGS = 9210,
             Profit = 45525,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"4172",
+            UnitsSold = 4172,
             ManufacturingPrice = 5,
             SalePrice = 12,
             GrossSales = 50064,
@@ -5605,14 +5603,14 @@ public class SalesData
             COGS = 7554,
             Profit = 42510,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"3841",
+            UnitsSold = 3841,
             ManufacturingPrice = 5,
             SalePrice = 20,
             GrossSales = 76820,
@@ -5621,14 +5619,14 @@ public class SalesData
             COGS = 18990,
             Profit = 57830,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"3726",
+            UnitsSold = 3726,
             ManufacturingPrice = 5,
             SalePrice = 12,
             GrossSales = 44712,
@@ -5637,14 +5635,14 @@ public class SalesData
             COGS = 4635,
             Profit = 40077,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"2625",
+            UnitsSold = 2625,
             ManufacturingPrice = 5,
             SalePrice = 15,
             GrossSales = 39375,
@@ -5653,14 +5651,14 @@ public class SalesData
             COGS = 24700,
             Profit = 14675,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"1958",
+            UnitsSold = 1958,
             ManufacturingPrice = 5,
             SalePrice = 125,
             GrossSales = 244750,
@@ -5669,14 +5667,14 @@ public class SalesData
             COGS = 319860,
             Profit = 75110,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"3271",
+            UnitsSold = 3271,
             ManufacturingPrice = 5,
             SalePrice = 300,
             GrossSales = 981300,
@@ -5685,14 +5683,14 @@ public class SalesData
             COGS = 239500,
             Profit = 741800,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"2091",
+            UnitsSold = 2091,
             ManufacturingPrice = 5,
             SalePrice = 7,
             GrossSales = 14637,
@@ -5701,14 +5699,14 @@ public class SalesData
             COGS = 10730,
             Profit = 3907,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"2530",
+            UnitsSold = 2530,
             ManufacturingPrice = 5,
             SalePrice = 125,
             GrossSales = 316250,
@@ -5717,14 +5715,14 @@ public class SalesData
             COGS = 41400,
             Profit = 274850,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Royal Oak",
-            UnitsSold = @"2825",
+            UnitsSold = 2825,
             ManufacturingPrice = 5,
             SalePrice = 15,
             GrossSales = 42375,
@@ -5733,14 +5731,14 @@ public class SalesData
             COGS = 6150,
             Profit = 36225,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"2513",
+            UnitsSold = 2513,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 50260,
@@ -5749,14 +5747,14 @@ public class SalesData
             COGS = 2920,
             Profit = 47340,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"883",
+            UnitsSold = 883,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 13245,
@@ -5765,14 +5763,14 @@ public class SalesData
             COGS = 9740,
             Profit = 3505,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"2087",
+            UnitsSold = 2087,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 25044,
@@ -5781,14 +5779,14 @@ public class SalesData
             COGS = 7554,
             Profit = 17490,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"2563",
+            UnitsSold = 2563,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 897050,
@@ -5797,14 +5795,14 @@ public class SalesData
             COGS = 261560,
             Profit = 635490,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"2846",
+            UnitsSold = 2846,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 34152,
@@ -5813,14 +5811,14 @@ public class SalesData
             COGS = 1101,
             Profit = 33051,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"997",
+            UnitsSold = 997,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 6979,
@@ -5829,14 +5827,14 @@ public class SalesData
             COGS = 4415,
             Profit = 2564,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"3421",
+            UnitsSold = 3421,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 51315,
@@ -5845,14 +5843,14 @@ public class SalesData
             COGS = 5490,
             Profit = 45825,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Marchesa",
-            UnitsSold = @"70000",
+            UnitsSold = 70000,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 1050000,
@@ -5861,14 +5859,14 @@ public class SalesData
             COGS = 5490,
             Profit = 1044510,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"2291",
+            UnitsSold = 2291,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 687300,
@@ -5877,14 +5875,14 @@ public class SalesData
             COGS = 197000,
             Profit = 490300,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"2290",
+            UnitsSold = 2290,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 34350,
@@ -5893,14 +5891,14 @@ public class SalesData
             COGS = 24720,
             Profit = 9630,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"2133",
+            UnitsSold = 2133,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 14931,
@@ -5909,14 +5907,14 @@ public class SalesData
             COGS = 5715,
             Profit = 9216,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"3475",
+            UnitsSold = 3475,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 1216250,
@@ -5925,14 +5923,14 @@ public class SalesData
             COGS = 448500,
             Profit = 767750,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"3686",
+            UnitsSold = 3686,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 44232,
@@ -5941,14 +5939,14 @@ public class SalesData
             COGS = 2736,
             Profit = 41496,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"3319",
+            UnitsSold = 3319,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 49785,
@@ -5957,14 +5955,14 @@ public class SalesData
             COGS = 21520,
             Profit = 28265,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"3617",
+            UnitsSold = 3617,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 72340,
@@ -5973,14 +5971,14 @@ public class SalesData
             COGS = 18170,
             Profit = 54170,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"1266",
+            UnitsSold = 1266,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 443100,
@@ -5989,14 +5987,14 @@ public class SalesData
             COGS = 393380,
             Profit = 49720,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"894",
+            UnitsSold = 894,
             ManufacturingPrice = 120,
             SalePrice = 7,
             GrossSales = 6258,
@@ -6005,14 +6003,14 @@ public class SalesData
             COGS = 7465,
             Profit = 1207,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"2725",
+            UnitsSold = 2725,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 340625,
@@ -6021,14 +6019,14 @@ public class SalesData
             COGS = 216480,
             Profit = 124145,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"3061",
+            UnitsSold = 3061,
             ManufacturingPrice = 120,
             SalePrice = 12,
             GrossSales = 36732,
@@ -6037,14 +6035,14 @@ public class SalesData
             COGS = 6483,
             Profit = 30249,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"3958",
+            UnitsSold = 3958,
             ManufacturingPrice = 120,
             SalePrice = 350,
             GrossSales = 1385300,
@@ -6053,14 +6051,14 @@ public class SalesData
             COGS = 261560,
             Profit = 1123740,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"3920",
+            UnitsSold = 3920,
             ManufacturingPrice = 120,
             SalePrice = 12,
             GrossSales = 47040,
@@ -6069,14 +6067,14 @@ public class SalesData
             COGS = 4635,
             Profit = 42405,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"3381",
+            UnitsSold = 3381,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 422625,
@@ -6085,14 +6083,14 @@ public class SalesData
             COGS = 338520,
             Profit = 84105,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"1094",
+            UnitsSold = 1094,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 136750,
@@ -6101,14 +6099,14 @@ public class SalesData
             COGS = 41400,
             Profit = 95350,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"4307",
+            UnitsSold = 4307,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 1292100,
@@ -6117,14 +6115,14 @@ public class SalesData
             COGS = 500250,
             Profit = 791850,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"878",
+            UnitsSold = 878,
             ManufacturingPrice = 250,
             SalePrice = 12,
             GrossSales = 10536,
@@ -6133,14 +6131,14 @@ public class SalesData
             COGS = 8514,
             Profit = 2022,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"496",
+            UnitsSold = 496,
             ManufacturingPrice = 250,
             SalePrice = 15,
             GrossSales = 7440,
@@ -6149,14 +6147,14 @@ public class SalesData
             COGS = 21780,
             Profit = 14340,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"3367",
+            UnitsSold = 3367,
             ManufacturingPrice = 250,
             SalePrice = 15,
             GrossSales = 50505,
@@ -6165,14 +6163,14 @@ public class SalesData
             COGS = 8880,
             Profit = 41625,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"3880",
+            UnitsSold = 3880,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 1358000,
@@ -6181,14 +6179,14 @@ public class SalesData
             COGS = 397020,
             Profit = 960980,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"2055",
+            UnitsSold = 2055,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 616500,
@@ -6197,14 +6195,14 @@ public class SalesData
             COGS = 537750,
             Profit = 78750,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"4041",
+            UnitsSold = 4041,
             ManufacturingPrice = 250,
             SalePrice = 20,
             GrossSales = 80820,
@@ -6213,14 +6211,14 @@ public class SalesData
             COGS = 18170,
             Profit = 62650,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Luxe",
-            UnitsSold = @"3237",
+            UnitsSold = 3237,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 1132950,
@@ -6229,14 +6227,14 @@ public class SalesData
             COGS = 715000,
             Profit = 417950,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"630",
+            UnitsSold = 630,
             ManufacturingPrice = 260,
             SalePrice = 12,
             GrossSales = 7560,
@@ -6245,14 +6243,14 @@ public class SalesData
             COGS = 5859,
             Profit = 1701,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"4210",
+            UnitsSold = 4210,
             ManufacturingPrice = 260,
             SalePrice = 125,
             GrossSales = 526250,
@@ -6261,14 +6259,14 @@ public class SalesData
             COGS = 506340,
             Profit = 19910,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Luxe",
-            UnitsSold = @"1127",
+            UnitsSold = 1127,
             ManufacturingPrice = 260,
             SalePrice = 20,
             GrossSales = 22540,
@@ -6277,14 +6275,14 @@ public class SalesData
             COGS = 18990,
             Profit = 3550,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"3438",
+            UnitsSold = 3438,
             ManufacturingPrice = 260,
             SalePrice = 7,
             GrossSales = 24066,
@@ -6293,14 +6291,14 @@ public class SalesData
             COGS = 8430,
             Profit = 15636,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"2015",
+            UnitsSold = 2015,
             ManufacturingPrice = 260,
             SalePrice = 12,
             GrossSales = 24180,
@@ -6309,14 +6307,14 @@ public class SalesData
             COGS = 6423,
             Profit = 17757,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"2534",
+            UnitsSold = 2534,
             ManufacturingPrice = 260,
             SalePrice = 7,
             GrossSales = 17738,
@@ -6325,14 +6323,14 @@ public class SalesData
             COGS = 5715,
             Profit = 12023,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"1384",
+            UnitsSold = 1384,
             ManufacturingPrice = 260,
             SalePrice = 15,
             GrossSales = 20760,
@@ -6341,14 +6339,14 @@ public class SalesData
             COGS = 6150,
             Profit = 14610,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"3561",
+            UnitsSold = 3561,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 24927,
@@ -6357,14 +6355,14 @@ public class SalesData
             COGS = 19725,
             Profit = 4925.85,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"1823",
+            UnitsSold = 1823,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 27345,
@@ -6373,14 +6371,14 @@ public class SalesData
             COGS = 22960,
             Profit = 4040.6,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"2795",
+            UnitsSold = 2795,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 19565,
@@ -6389,14 +6387,14 @@ public class SalesData
             COGS = 5150,
             Profit = 14342.9,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"457",
+            UnitsSold = 457,
             ManufacturingPrice = 120,
             SalePrice = 7,
             GrossSales = 3199,
@@ -6405,14 +6403,14 @@ public class SalesData
             COGS = 3195,
             Profit = 40.73,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"3785",
+            UnitsSold = 3785,
             ManufacturingPrice = 250,
             SalePrice = 7,
             GrossSales = 26495,
@@ -6421,14 +6419,14 @@ public class SalesData
             COGS = 6630,
             Profit = 19772.18,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"748",
+            UnitsSold = 748,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 8976,
@@ -6437,14 +6435,14 @@ public class SalesData
             COGS = 5574,
             Profit = 3179.04,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"1021",
+            UnitsSold = 1021,
             ManufacturingPrice = 3,
             SalePrice = 350,
             GrossSales = 357350,
@@ -6453,14 +6451,14 @@ public class SalesData
             COGS = 314600,
             Profit = 38515,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"2076",
+            UnitsSold = 2076,
             ManufacturingPrice = 3,
             SalePrice = 7,
             GrossSales = 14532,
@@ -6469,14 +6467,14 @@ public class SalesData
             COGS = 12645,
             Profit = 1709.97,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"4316",
+            UnitsSold = 4316,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 51792,
@@ -6485,14 +6483,14 @@ public class SalesData
             COGS = 4335,
             Profit = 47283.6,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"2654",
+            UnitsSold = 2654,
             ManufacturingPrice = 3,
             SalePrice = 125,
             GrossSales = 331750,
@@ -6501,14 +6499,14 @@ public class SalesData
             COGS = 39600,
             Profit = 291737.5,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"4174",
+            UnitsSold = 4174,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 50088,
@@ -6517,14 +6515,14 @@ public class SalesData
             COGS = 8013,
             Profit = 41754.48,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"1675",
+            UnitsSold = 1675,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 20100,
@@ -6533,14 +6531,14 @@ public class SalesData
             COGS = 2298,
             Profit = 17710.08,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"1572",
+            UnitsSold = 1572,
             ManufacturingPrice = 3,
             SalePrice = 300,
             GrossSales = 471600,
@@ -6549,14 +6547,14 @@ public class SalesData
             COGS = 123500,
             Profit = 346618,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"3736",
+            UnitsSold = 3736,
             ManufacturingPrice = 3,
             SalePrice = 350,
             GrossSales = 1307600,
@@ -6565,14 +6563,14 @@ public class SalesData
             COGS = 363220,
             Profit = 939490.5,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"1914",
+            UnitsSold = 1914,
             ManufacturingPrice = 3,
             SalePrice = 350,
             GrossSales = 669900,
@@ -6581,14 +6579,14 @@ public class SalesData
             COGS = 560300,
             Profit = 102057.5,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"2742",
+            UnitsSold = 2742,
             ManufacturingPrice = 5,
             SalePrice = 15,
             GrossSales = 41130,
@@ -6597,14 +6595,14 @@ public class SalesData
             COGS = 22140,
             Profit = 18657.9,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Royal Oak",
-            UnitsSold = @"1499",
+            UnitsSold = 1499,
             ManufacturingPrice = 5,
             SalePrice = 300,
             GrossSales = 449700,
@@ -6613,14 +6611,14 @@ public class SalesData
             COGS = 575250,
             Profit = 132453,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"3772",
+            UnitsSold = 3772,
             ManufacturingPrice = 5,
             SalePrice = 20,
             GrossSales = 75440,
@@ -6629,14 +6627,14 @@ public class SalesData
             COGS = 13755,
             Profit = 61409.9,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"1112",
+            UnitsSold = 1112,
             ManufacturingPrice = 5,
             SalePrice = 7,
             GrossSales = 7784,
@@ -6645,14 +6643,14 @@ public class SalesData
             COGS = 9150,
             Profit = 1494.1,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Royal Oak",
-            UnitsSold = @"1723",
+            UnitsSold = 1723,
             ManufacturingPrice = 5,
             SalePrice = 300,
             GrossSales = 516900,
@@ -6661,14 +6659,14 @@ public class SalesData
             COGS = 624500,
             Profit = 115094,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Royal Oak",
-            UnitsSold = @"423",
+            UnitsSold = 423,
             ManufacturingPrice = 5,
             SalePrice = 125,
             GrossSales = 52875,
@@ -6677,14 +6675,14 @@ public class SalesData
             COGS = 79560,
             Profit = 27513.75,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"2368",
+            UnitsSold = 2368,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 35520,
@@ -6693,14 +6691,14 @@ public class SalesData
             COGS = 15140,
             Profit = 20152.9,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"1586",
+            UnitsSold = 1586,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 11102,
@@ -6709,14 +6707,14 @@ public class SalesData
             COGS = 22462.5,
             Profit = 11674.98,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"3386",
+            UnitsSold = 3386,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 423250,
@@ -6725,14 +6723,14 @@ public class SalesData
             COGS = 87240,
             Profit = 335101.25,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"852",
+            UnitsSold = 852,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 106500,
@@ -6741,14 +6739,14 @@ public class SalesData
             COGS = 94440,
             Profit = 11076.25,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"2783",
+            UnitsSold = 2783,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 347875,
@@ -6757,14 +6755,14 @@ public class SalesData
             COGS = 218760,
             Profit = 126836.25,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"2684",
+            UnitsSold = 2684,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 40260,
@@ -6773,14 +6771,14 @@ public class SalesData
             COGS = 7470,
             Profit = 32677.95,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"4393",
+            UnitsSold = 4393,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 52716,
@@ -6789,14 +6787,14 @@ public class SalesData
             COGS = 2298,
             Profit = 50326.08,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"4083",
+            UnitsSold = 4083,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 1224900,
@@ -6805,14 +6803,14 @@ public class SalesData
             COGS = 726250,
             Profit = 489935,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"2816",
+            UnitsSold = 2816,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 985600,
@@ -6821,14 +6819,14 @@ public class SalesData
             COGS = 560300,
             Profit = 417757.5,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"4294",
+            UnitsSold = 4294,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 85880,
@@ -6837,14 +6835,14 @@ public class SalesData
             COGS = 38640,
             Profit = 46467.2,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"2856",
+            UnitsSold = 2856,
             ManufacturingPrice = 120,
             SalePrice = 7,
             GrossSales = 19992,
@@ -6853,14 +6851,14 @@ public class SalesData
             COGS = 1810,
             Profit = 18156.66,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"1407",
+            UnitsSold = 1407,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 175875,
@@ -6869,14 +6867,14 @@ public class SalesData
             COGS = 110760,
             Profit = 63961.25,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"3850",
+            UnitsSold = 3850,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 481250,
@@ -6885,14 +6883,14 @@ public class SalesData
             COGS = 79560,
             Profit = 400861.25,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"2856",
+            UnitsSold = 2856,
             ManufacturingPrice = 120,
             SalePrice = 7,
             GrossSales = 19992,
@@ -6901,14 +6899,14 @@ public class SalesData
             COGS = 10460,
             Profit = 9385.56,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"1265",
+            UnitsSold = 1265,
             ManufacturingPrice = 250,
             SalePrice = 7,
             GrossSales = 8855,
@@ -6917,14 +6915,14 @@ public class SalesData
             COGS = 1315,
             Profit = 7521.59,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"3892",
+            UnitsSold = 3892,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 1362200,
@@ -6933,14 +6931,14 @@ public class SalesData
             COGS = 245310,
             Profit = 1113587.75,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"3068",
+            UnitsSold = 3068,
             ManufacturingPrice = 250,
             SalePrice = 125,
             GrossSales = 383500,
@@ -6949,14 +6947,14 @@ public class SalesData
             COGS = 87240,
             Profit = 295351.25,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"2181",
+            UnitsSold = 2181,
             ManufacturingPrice = 250,
             SalePrice = 125,
             GrossSales = 272625,
@@ -6965,14 +6963,14 @@ public class SalesData
             COGS = 94440,
             Profit = 177201.25,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"1356",
+            UnitsSold = 1356,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 406800,
@@ -6981,14 +6979,14 @@ public class SalesData
             COGS = 246500,
             Profit = 157342,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"2545",
+            UnitsSold = 2545,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 763500,
@@ -6997,14 +6995,14 @@ public class SalesData
             COGS = 123500,
             Profit = 638518,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"1814",
+            UnitsSold = 1814,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 634900,
@@ -7013,14 +7011,14 @@ public class SalesData
             COGS = 363220,
             Profit = 266790.5,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"1495",
+            UnitsSold = 1495,
             ManufacturingPrice = 250,
             SalePrice = 125,
             GrossSales = 186875,
@@ -7029,14 +7027,14 @@ public class SalesData
             COGS = 209280,
             Profit = 24585,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"1154",
+            UnitsSold = 1154,
             ManufacturingPrice = 260,
             SalePrice = 12,
             GrossSales = 13848,
@@ -7045,14 +7043,14 @@ public class SalesData
             COGS = 5967,
             Profit = 7642.32,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Luxe",
-            UnitsSold = @"4180",
+            UnitsSold = 4180,
             ManufacturingPrice = 260,
             SalePrice = 15,
             GrossSales = 62700,
@@ -7061,14 +7059,14 @@ public class SalesData
             COGS = 3210,
             Profit = 59441.85,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"1463",
+            UnitsSold = 1463,
             ManufacturingPrice = 3,
             SalePrice = 125,
             GrossSales = 182875,
@@ -7077,14 +7075,14 @@ public class SalesData
             COGS = 89100,
             Profit = 91918.75,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"215",
+            UnitsSold = 215,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 2580,
@@ -7093,14 +7091,14 @@ public class SalesData
             COGS = 3885,
             Profit = 1615.8,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"4099",
+            UnitsSold = 4099,
             ManufacturingPrice = 3,
             SalePrice = 300,
             GrossSales = 1229700,
@@ -7109,14 +7107,14 @@ public class SalesData
             COGS = 53500,
             Profit = 1174916,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"2660",
+            UnitsSold = 2660,
             ManufacturingPrice = 3,
             SalePrice = 7,
             GrossSales = 18620,
@@ -7125,14 +7123,14 @@ public class SalesData
             COGS = 10725,
             Profit = 7594.7,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"566",
+            UnitsSold = 566,
             ManufacturingPrice = 3,
             SalePrice = 350,
             GrossSales = 198100,
@@ -7141,14 +7139,14 @@ public class SalesData
             COGS = 741520,
             Profit = 563384,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Royal Oak",
-            UnitsSold = @"3255",
+            UnitsSold = 3255,
             ManufacturingPrice = 5,
             SalePrice = 12,
             GrossSales = 39060,
@@ -7157,14 +7155,14 @@ public class SalesData
             COGS = 3426,
             Profit = 35359.92,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Royal Oak",
-            UnitsSold = @"772",
+            UnitsSold = 772,
             ManufacturingPrice = 5,
             SalePrice = 20,
             GrossSales = 15440,
@@ -7173,14 +7171,14 @@ public class SalesData
             COGS = 15660,
             Profit = 846.4,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"1135",
+            UnitsSold = 1135,
             ManufacturingPrice = 5,
             SalePrice = 12,
             GrossSales = 13620,
@@ -7189,14 +7187,14 @@ public class SalesData
             COGS = 2070,
             Profit = 11384.4,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"3826",
+            UnitsSold = 3826,
             ManufacturingPrice = 5,
             SalePrice = 125,
             GrossSales = 478250,
@@ -7205,14 +7203,14 @@ public class SalesData
             COGS = 199200,
             Profit = 274900,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"1193",
+            UnitsSold = 1193,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 17895,
@@ -7221,14 +7219,14 @@ public class SalesData
             COGS = 23630,
             Profit = 6443.9,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"2530",
+            UnitsSold = 2530,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 759000,
@@ -7237,14 +7235,14 @@ public class SalesData
             COGS = 229500,
             Profit = 523992,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"3451",
+            UnitsSold = 3451,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 1035300,
@@ -7253,14 +7251,14 @@ public class SalesData
             COGS = 432000,
             Profit = 592932,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"3059",
+            UnitsSold = 3059,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 36708,
@@ -7269,14 +7267,14 @@ public class SalesData
             COGS = 3426,
             Profit = 33007.92,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"3957",
+            UnitsSold = 3957,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 494625,
@@ -7285,14 +7283,14 @@ public class SalesData
             COGS = 79440,
             Profit = 413530,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"3444",
+            UnitsSold = 3444,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 41328,
@@ -7301,14 +7299,14 @@ public class SalesData
             COGS = 3885,
             Profit = 37132.2,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"4388",
+            UnitsSold = 4388,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 548500,
@@ -7317,14 +7315,14 @@ public class SalesData
             COGS = 97080,
             Profit = 449397.5,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"2106",
+            UnitsSold = 2106,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 263250,
@@ -7333,14 +7331,14 @@ public class SalesData
             COGS = 257400,
             Profit = 487.5,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"799",
+            UnitsSold = 799,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 9588,
@@ -7349,14 +7347,14 @@ public class SalesData
             COGS = 5355,
             Profit = 3804.6,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"3154",
+            UnitsSold = 3154,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 946200,
@@ -7365,14 +7363,14 @@ public class SalesData
             COGS = 479000,
             Profit = 455704,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"4108",
+            UnitsSold = 4108,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 1437800,
@@ -7381,14 +7379,14 @@ public class SalesData
             COGS = 741520,
             Profit = 676316,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"3760",
+            UnitsSold = 3760,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 470000,
@@ -7397,14 +7395,14 @@ public class SalesData
             COGS = 327480,
             Profit = 135697.5,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"377",
+            UnitsSold = 377,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 5655,
@@ -7413,14 +7411,14 @@ public class SalesData
             COGS = 19250,
             Profit = 14172.5,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"2110",
+            UnitsSold = 2110,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 14770,
@@ -7429,14 +7427,14 @@ public class SalesData
             COGS = 10065,
             Profit = 4423.18,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"2334",
+            UnitsSold = 2334,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 28008,
@@ -7445,14 +7443,14 @@ public class SalesData
             COGS = 3165,
             Profit = 24589.8,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"580",
+            UnitsSold = 580,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 6960,
@@ -7461,14 +7459,14 @@ public class SalesData
             COGS = 3252,
             Profit = 3447.84,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"2610",
+            UnitsSold = 2610,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 52200,
@@ -7477,14 +7475,14 @@ public class SalesData
             COGS = 15660,
             Profit = 35913.6,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"1598",
+            UnitsSold = 1598,
             ManufacturingPrice = 120,
             SalePrice = 350,
             GrossSales = 559300,
@@ -7493,14 +7491,14 @@ public class SalesData
             COGS = 771160,
             Profit = 232622,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"1459",
+            UnitsSold = 1459,
             ManufacturingPrice = 120,
             SalePrice = 350,
             GrossSales = 510650,
@@ -7509,14 +7507,14 @@ public class SalesData
             COGS = 748020,
             Profit = 257509,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"3284",
+            UnitsSold = 3284,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 410500,
@@ -7525,14 +7523,14 @@ public class SalesData
             COGS = 97080,
             Profit = 311397.5,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"1197",
+            UnitsSold = 1197,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 149625,
@@ -7541,14 +7539,14 @@ public class SalesData
             COGS = 257400,
             Profit = 113137.5,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"3774",
+            UnitsSold = 3774,
             ManufacturingPrice = 120,
             SalePrice = 12,
             GrossSales = 45288,
@@ -7557,14 +7555,14 @@ public class SalesData
             COGS = 3165,
             Profit = 41869.8,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"2303",
+            UnitsSold = 2303,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 46060,
@@ -7573,14 +7571,14 @@ public class SalesData
             COGS = 5440,
             Profit = 40402.4,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"2572",
+            UnitsSold = 2572,
             ManufacturingPrice = 120,
             SalePrice = 12,
             GrossSales = 30864,
@@ -7589,14 +7587,14 @@ public class SalesData
             COGS = 3252,
             Profit = 27351.84,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"320",
+            UnitsSold = 320,
             ManufacturingPrice = 250,
             SalePrice = 125,
             GrossSales = 40000,
@@ -7605,14 +7603,14 @@ public class SalesData
             COGS = 79440,
             Profit = 41095,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"2126",
+            UnitsSold = 2126,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 637800,
@@ -7621,14 +7619,14 @@ public class SalesData
             COGS = 53500,
             Profit = 583016,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"3275",
+            UnitsSold = 3275,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 1146250,
@@ -7637,14 +7635,14 @@ public class SalesData
             COGS = 748020,
             Profit = 378091,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"3582",
+            UnitsSold = 3582,
             ManufacturingPrice = 250,
             SalePrice = 125,
             GrossSales = 447750,
@@ -7653,14 +7651,14 @@ public class SalesData
             COGS = 327480,
             Profit = 113447.5,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"783",
+            UnitsSold = 783,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 274050,
@@ -7669,14 +7667,14 @@ public class SalesData
             COGS = 69160,
             Profit = 203028,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"1202",
+            UnitsSold = 1202,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 420700,
@@ -7685,14 +7683,14 @@ public class SalesData
             COGS = 504400,
             Profit = 97280,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"4056",
+            UnitsSold = 4056,
             ManufacturingPrice = 260,
             SalePrice = 300,
             GrossSales = 1216800,
@@ -7701,14 +7699,14 @@ public class SalesData
             COGS = 64750,
             Profit = 1150496,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"2144",
+            UnitsSold = 2144,
             ManufacturingPrice = 260,
             SalePrice = 300,
             GrossSales = 643200,
@@ -7717,14 +7715,14 @@ public class SalesData
             COGS = 275250,
             Profit = 361344,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"3502",
+            UnitsSold = 3502,
             ManufacturingPrice = 260,
             SalePrice = 125,
             GrossSales = 437750,
@@ -7733,14 +7731,14 @@ public class SalesData
             COGS = 273120,
             Profit = 158940,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"1397",
+            UnitsSold = 1397,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 488950,
@@ -7749,14 +7747,14 @@ public class SalesData
             COGS = 771160,
             Profit = 302972,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"679",
+            UnitsSold = 679,
             ManufacturingPrice = 260,
             SalePrice = 20,
             GrossSales = 13580,
@@ -7765,14 +7763,14 @@ public class SalesData
             COGS = 12360,
             Profit = 725.6,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Luxe",
-            UnitsSold = @"2351",
+            UnitsSold = 2351,
             ManufacturingPrice = 260,
             SalePrice = 20,
             GrossSales = 47020,
@@ -7781,14 +7779,14 @@ public class SalesData
             COGS = 9410,
             Profit = 37233.6,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"2043",
+            UnitsSold = 2043,
             ManufacturingPrice = 260,
             SalePrice = 300,
             GrossSales = 612900,
@@ -7797,14 +7795,14 @@ public class SalesData
             COGS = 479000,
             Profit = 122404,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"3565",
+            UnitsSold = 3565,
             ManufacturingPrice = 3,
             SalePrice = 125,
             GrossSales = 445625,
@@ -7813,14 +7811,14 @@ public class SalesData
             COGS = 509220,
             Profit = 79508.13,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"1401",
+            UnitsSold = 1401,
             ManufacturingPrice = 3,
             SalePrice = 20,
             GrossSales = 28020,
@@ -7829,14 +7827,14 @@ public class SalesData
             COGS = 25800,
             Profit = 672,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"2077",
+            UnitsSold = 2077,
             ManufacturingPrice = 3,
             SalePrice = 300,
             GrossSales = 623100,
@@ -7845,14 +7843,14 @@ public class SalesData
             COGS = 172250,
             Profit = 444649,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"3643",
+            UnitsSold = 3643,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 43716,
@@ -7861,14 +7859,14 @@ public class SalesData
             COGS = 5841,
             Profit = 37174.08,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"1105",
+            UnitsSold = 1105,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 13260,
@@ -7877,14 +7875,14 @@ public class SalesData
             COGS = 2724,
             Profit = 10209.12,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"2960",
+            UnitsSold = 2960,
             ManufacturingPrice = 5,
             SalePrice = 7,
             GrossSales = 20720,
@@ -7893,14 +7891,14 @@ public class SalesData
             COGS = 9790,
             Profit = 10518.82,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"1201",
+            UnitsSold = 1201,
             ManufacturingPrice = 5,
             SalePrice = 12,
             GrossSales = 14412,
@@ -7909,14 +7907,14 @@ public class SalesData
             COGS = 5703,
             Profit = 8024.64,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"2321",
+            UnitsSold = 2321,
             ManufacturingPrice = 5,
             SalePrice = 7,
             GrossSales = 16247,
@@ -7925,14 +7923,14 @@ public class SalesData
             COGS = 2720,
             Profit = 13412.76,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"3640",
+            UnitsSold = 3640,
             ManufacturingPrice = 5,
             SalePrice = 350,
             GrossSales = 1274000,
@@ -7941,14 +7939,14 @@ public class SalesData
             COGS = 467220,
             Profit = 787911.5,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"3972",
+            UnitsSold = 3972,
             ManufacturingPrice = 5,
             SalePrice = 125,
             GrossSales = 496500,
@@ -7957,14 +7955,14 @@ public class SalesData
             COGS = 154440,
             Profit = 337233.75,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"3878",
+            UnitsSold = 3878,
             ManufacturingPrice = 5,
             SalePrice = 125,
             GrossSales = 484750,
@@ -7973,14 +7971,14 @@ public class SalesData
             COGS = 204720,
             Profit = 273632.5,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"2278",
+            UnitsSold = 2278,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 683400,
@@ -7989,14 +7987,14 @@ public class SalesData
             COGS = 608625,
             Profit = 52864.5,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"1075",
+            UnitsSold = 1075,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 134375,
@@ -8005,14 +8003,14 @@ public class SalesData
             COGS = 212880,
             Profit = 85157.5,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"4050",
+            UnitsSold = 4050,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 48600,
@@ -8021,14 +8019,14 @@ public class SalesData
             COGS = 5703,
             Profit = 42212.64,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"3035",
+            UnitsSold = 3035,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 910500,
@@ -8037,14 +8035,14 @@ public class SalesData
             COGS = 172250,
             Profit = 732049,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"3636",
+            UnitsSold = 3636,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 454500,
@@ -8053,14 +8051,14 @@ public class SalesData
             COGS = 188400,
             Profit = 260212.5,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"1379",
+            UnitsSold = 1379,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 16548,
@@ -8069,14 +8067,14 @@ public class SalesData
             COGS = 4108.5,
             Profit = 11946.48,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"4492",
+            UnitsSold = 4492,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 561500,
@@ -8085,14 +8083,14 @@ public class SalesData
             COGS = 241080,
             Profit = 312886.25,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"764",
+            UnitsSold = 764,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 11460,
@@ -8101,14 +8099,14 @@ public class SalesData
             COGS = 19450,
             Profit = 8865.25,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"1744",
+            UnitsSold = 1744,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 218000,
@@ -8117,14 +8115,14 @@ public class SalesData
             COGS = 154440,
             Profit = 58733.75,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"2341",
+            UnitsSold = 2341,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 292625,
@@ -8133,14 +8131,14 @@ public class SalesData
             COGS = 204720,
             Profit = 81507.5,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"3835",
+            UnitsSold = 3835,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 479375,
@@ -8149,14 +8147,14 @@ public class SalesData
             COGS = 241080,
             Profit = 230761.25,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"1161",
+            UnitsSold = 1161,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 348300,
@@ -8165,14 +8163,14 @@ public class SalesData
             COGS = 711000,
             Profit = 388296,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"876",
+            UnitsSold = 876,
             ManufacturingPrice = 250,
             SalePrice = 12,
             GrossSales = 10512,
@@ -8181,14 +8179,14 @@ public class SalesData
             COGS = 5748,
             Profit = 4074.24,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"1705",
+            UnitsSold = 1705,
             ManufacturingPrice = 250,
             SalePrice = 125,
             GrossSales = 213125,
@@ -8197,14 +8195,14 @@ public class SalesData
             COGS = 188400,
             Profit = 18837.5,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"1805",
+            UnitsSold = 1805,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 541500,
@@ -8213,14 +8211,14 @@ public class SalesData
             COGS = 468500,
             Profit = 56134,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"389",
+            UnitsSold = 389,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 136150,
@@ -8229,14 +8227,14 @@ public class SalesData
             COGS = 426920,
             Profit = 308011,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"2745",
+            UnitsSold = 2745,
             ManufacturingPrice = 250,
             SalePrice = 15,
             GrossSales = 41175,
@@ -8245,14 +8243,14 @@ public class SalesData
             COGS = 19450,
             Profit = 20849.75,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"1459",
+            UnitsSold = 1459,
             ManufacturingPrice = 3,
             SalePrice = 20,
             GrossSales = 29180,
@@ -8261,14 +8259,14 @@ public class SalesData
             COGS = 8310,
             Profit = 20371.4,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"3938",
+            UnitsSold = 3938,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 27566,
@@ -8277,14 +8275,14 @@ public class SalesData
             COGS = 8800,
             Profit = 18396.4,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"4236",
+            UnitsSold = 4236,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 84720,
@@ -8293,14 +8291,14 @@ public class SalesData
             COGS = 38505,
             Profit = 43904.7,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"3627",
+            UnitsSold = 3627,
             ManufacturingPrice = 250,
             SalePrice = 12,
             GrossSales = 43524,
@@ -8309,14 +8307,14 @@ public class SalesData
             COGS = 7437,
             Profit = 35194.56,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"1756",
+            UnitsSold = 1756,
             ManufacturingPrice = 5,
             SalePrice = 15,
             GrossSales = 26340,
@@ -8325,14 +8323,14 @@ public class SalesData
             COGS = 20310,
             Profit = 4811.4,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"307",
+            UnitsSold = 307,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 4605,
@@ -8341,14 +8339,14 @@ public class SalesData
             COGS = 20310,
             Profit = 16923.6,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"4489",
+            UnitsSold = 4489,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 67335,
@@ -8357,14 +8355,14 @@ public class SalesData
             COGS = 22610,
             Profit = 43368.4,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"2167",
+            UnitsSold = 2167,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 43340,
@@ -8373,14 +8371,14 @@ public class SalesData
             COGS = 7360,
             Profit = 35391.2,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"1137",
+            UnitsSold = 1137,
             ManufacturingPrice = 3,
             SalePrice = 7,
             GrossSales = 7959,
@@ -8389,14 +8387,14 @@ public class SalesData
             COGS = 14255,
             Profit = 7094.28,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"1222",
+            UnitsSold = 1222,
             ManufacturingPrice = 3,
             SalePrice = 300,
             GrossSales = 366600,
@@ -8405,14 +8403,14 @@ public class SalesData
             COGS = 505250,
             Profit = 162902,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"489",
+            UnitsSold = 489,
             ManufacturingPrice = 3,
             SalePrice = 350,
             GrossSales = 171150,
@@ -8421,14 +8419,14 @@ public class SalesData
             COGS = 71240,
             Profit = 96074,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"4133",
+            UnitsSold = 4133,
             ManufacturingPrice = 5,
             SalePrice = 15,
             GrossSales = 61995,
@@ -8437,14 +8435,14 @@ public class SalesData
             COGS = 19670,
             Profit = 41144.8,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"2743",
+            UnitsSold = 2743,
             ManufacturingPrice = 5,
             SalePrice = 300,
             GrossSales = 822900,
@@ -8453,14 +8451,14 @@ public class SalesData
             COGS = 464750,
             Profit = 335842,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"3699",
+            UnitsSold = 3699,
             ManufacturingPrice = 5,
             SalePrice = 7,
             GrossSales = 25893,
@@ -8469,14 +8467,14 @@ public class SalesData
             COGS = 14255,
             Profit = 10839.72,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"4460",
+            UnitsSold = 4460,
             ManufacturingPrice = 5,
             SalePrice = 300,
             GrossSales = 1338000,
@@ -8485,14 +8483,14 @@ public class SalesData
             COGS = 505250,
             Profit = 808498,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"1232",
+            UnitsSold = 1232,
             ManufacturingPrice = 5,
             SalePrice = 125,
             GrossSales = 154000,
@@ -8501,14 +8499,14 @@ public class SalesData
             COGS = 136560,
             Profit = 11750,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"2586",
+            UnitsSold = 2586,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 18102,
@@ -8517,14 +8515,14 @@ public class SalesData
             COGS = 21255,
             Profit = 4343.28,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"1332",
+            UnitsSold = 1332,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 166500,
@@ -8533,14 +8531,14 @@ public class SalesData
             COGS = 95400,
             Profit = 67125,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"4487",
+            UnitsSold = 4487,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 1346100,
@@ -8549,14 +8547,14 @@ public class SalesData
             COGS = 353625,
             Profit = 975501,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"3862",
+            UnitsSold = 3862,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 1158600,
@@ -8565,14 +8563,14 @@ public class SalesData
             COGS = 729500,
             Profit = 394084,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"1765",
+            UnitsSold = 1765,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 617750,
@@ -8581,14 +8579,14 @@ public class SalesData
             COGS = 897000,
             Profit = 327550,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"3533",
+            UnitsSold = 3533,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 441625,
@@ -8597,14 +8595,14 @@ public class SalesData
             COGS = 358560,
             Profit = 68125,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"2016",
+            UnitsSold = 2016,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 30240,
@@ -8613,14 +8611,14 @@ public class SalesData
             COGS = 2180,
             Profit = 27929.2,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"2938",
+            UnitsSold = 2938,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 58760,
@@ -8629,14 +8627,14 @@ public class SalesData
             COGS = 20740,
             Profit = 36360.8,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"3352",
+            UnitsSold = 3352,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 67040,
@@ -8645,14 +8643,14 @@ public class SalesData
             COGS = 10560,
             Profit = 55635.2,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"4409",
+            UnitsSold = 4409,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 66135,
@@ -8661,14 +8659,14 @@ public class SalesData
             COGS = 6710,
             Profit = 59022.4,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"3323",
+            UnitsSold = 3323,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 49845,
@@ -8677,14 +8675,14 @@ public class SalesData
             COGS = 15140,
             Profit = 33796.6,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"2430",
+            UnitsSold = 2430,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 850500,
@@ -8693,14 +8691,14 @@ public class SalesData
             COGS = 71240,
             Profit = 775424,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"535",
+            UnitsSold = 535,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 66875,
@@ -8709,14 +8707,14 @@ public class SalesData
             COGS = 136560,
             Profit = 75375,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"1523",
+            UnitsSold = 1523,
             ManufacturingPrice = 120,
             SalePrice = 12,
             GrossSales = 18276,
@@ -8725,14 +8723,14 @@ public class SalesData
             COGS = 4395,
             Profit = 13177.8,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"3631",
+            UnitsSold = 3631,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 72620,
@@ -8741,14 +8739,14 @@ public class SalesData
             COGS = 26460,
             Profit = 44043.2,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"1782",
+            UnitsSold = 1782,
             ManufacturingPrice = 120,
             SalePrice = 350,
             GrossSales = 623700,
@@ -8757,14 +8755,14 @@ public class SalesData
             COGS = 566020,
             Profit = 27202,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"347",
+            UnitsSold = 347,
             ManufacturingPrice = 250,
             SalePrice = 12,
             GrossSales = 4164,
@@ -8773,14 +8771,14 @@ public class SalesData
             COGS = 2598,
             Profit = 1150.32,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"4147",
+            UnitsSold = 4147,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 1451450,
@@ -8789,14 +8787,14 @@ public class SalesData
             COGS = 90740,
             Profit = 1355824,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"3509",
+            UnitsSold = 3509,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 1228150,
@@ -8805,14 +8803,14 @@ public class SalesData
             COGS = 566020,
             Profit = 631652,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"2774",
+            UnitsSold = 2774,
             ManufacturingPrice = 250,
             SalePrice = 15,
             GrossSales = 41610,
@@ -8821,14 +8819,14 @@ public class SalesData
             COGS = 15140,
             Profit = 25561.6,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"2943",
+            UnitsSold = 2943,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 1030050,
@@ -8837,14 +8835,14 @@ public class SalesData
             COGS = 484900,
             Profit = 519040,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"4037",
+            UnitsSold = 4037,
             ManufacturingPrice = 260,
             SalePrice = 125,
             GrossSales = 504625,
@@ -8853,14 +8851,14 @@ public class SalesData
             COGS = 128880,
             Profit = 370375,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"4146",
+            UnitsSold = 4146,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 1451100,
@@ -8869,14 +8867,14 @@ public class SalesData
             COGS = 495820,
             Profit = 928582,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"4123",
+            UnitsSold = 4123,
             ManufacturingPrice = 260,
             SalePrice = 15,
             GrossSales = 61845,
@@ -8885,14 +8883,14 @@ public class SalesData
             COGS = 6710,
             Profit = 54732.4,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"1337",
+            UnitsSold = 1337,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 467950,
@@ -8901,14 +8899,14 @@ public class SalesData
             COGS = 462280,
             Profit = 19222,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"599",
+            UnitsSold = 599,
             ManufacturingPrice = 5,
             SalePrice = 7,
             GrossSales = 4193,
@@ -8917,14 +8915,14 @@ public class SalesData
             COGS = 5795,
             Profit = 2007.65,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"725",
+            UnitsSold = 725,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 5075,
@@ -8933,14 +8931,14 @@ public class SalesData
             COGS = 6860,
             Profit = 2265.2,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"477",
+            UnitsSold = 477,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 3339,
@@ -8949,14 +8947,14 @@ public class SalesData
             COGS = 11745,
             Profit = 9228.15,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"2325",
+            UnitsSold = 2325,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 16275,
@@ -8965,14 +8963,14 @@ public class SalesData
             COGS = 13445,
             Profit = 1888.85,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"675",
+            UnitsSold = 675,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 8100,
@@ -8981,14 +8979,14 @@ public class SalesData
             COGS = 7293,
             Profit = 651.6,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"2990",
+            UnitsSold = 2990,
             ManufacturingPrice = 120,
             SalePrice = 12,
             GrossSales = 35880,
@@ -8997,14 +8995,14 @@ public class SalesData
             COGS = 7293,
             Profit = 27128.4,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"1072",
+            UnitsSold = 1072,
             ManufacturingPrice = 250,
             SalePrice = 7,
             GrossSales = 7504,
@@ -9013,14 +9011,14 @@ public class SalesData
             COGS = 13445,
             Profit = 6882.15,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"1048",
+            UnitsSold = 1048,
             ManufacturingPrice = 260,
             SalePrice = 7,
             GrossSales = 7336,
@@ -9029,14 +9027,14 @@ public class SalesData
             COGS = 8415,
             Profit = 1668.05,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"469",
+            UnitsSold = 469,
             ManufacturingPrice = 260,
             SalePrice = 12,
             GrossSales = 5628,
@@ -9045,14 +9043,14 @@ public class SalesData
             COGS = 3369,
             Profit = 1585.2,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"804",
+            UnitsSold = 804,
             ManufacturingPrice = 260,
             SalePrice = 7,
             GrossSales = 5628,
@@ -9061,14 +9059,14 @@ public class SalesData
             COGS = 5795,
             Profit = 572.65,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"4240",
+            UnitsSold = 4240,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 50880,
@@ -9077,14 +9075,14 @@ public class SalesData
             COGS = 5595,
             Profit = 44166,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"1976",
+            UnitsSold = 1976,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 23712,
@@ -9093,14 +9091,14 @@ public class SalesData
             COGS = 3348,
             Profit = 19694.4,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"1984",
+            UnitsSold = 1984,
             ManufacturingPrice = 3,
             SalePrice = 20,
             GrossSales = 39680,
@@ -9109,14 +9107,14 @@ public class SalesData
             COGS = 15630,
             Profit = 22487,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"480",
+            UnitsSold = 480,
             ManufacturingPrice = 3,
             SalePrice = 300,
             GrossSales = 144000,
@@ -9125,14 +9123,14 @@ public class SalesData
             COGS = 247750,
             Profit = 118615,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"3551",
+            UnitsSold = 3551,
             ManufacturingPrice = 3,
             SalePrice = 7,
             GrossSales = 24857,
@@ -9141,14 +9139,14 @@ public class SalesData
             COGS = 5080,
             Profit = 19421.4,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"1205",
+            UnitsSold = 1205,
             ManufacturingPrice = 3,
             SalePrice = 15,
             GrossSales = 18075,
@@ -9157,14 +9155,14 @@ public class SalesData
             COGS = 27910,
             Profit = 11928.25,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"2480",
+            UnitsSold = 2480,
             ManufacturingPrice = 3,
             SalePrice = 7,
             GrossSales = 17360,
@@ -9173,14 +9171,14 @@ public class SalesData
             COGS = 2850,
             Profit = 14310.5,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"2926",
+            UnitsSold = 2926,
             ManufacturingPrice = 3,
             SalePrice = 7,
             GrossSales = 20482,
@@ -9189,14 +9187,14 @@ public class SalesData
             COGS = 12435,
             Profit = 7176.55,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"3210",
+            UnitsSold = 3210,
             ManufacturingPrice = 5,
             SalePrice = 350,
             GrossSales = 1123500,
@@ -9205,14 +9203,14 @@ public class SalesData
             COGS = 359970,
             Profit = 739301.25,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Royal Oak",
-            UnitsSold = @"3221",
+            UnitsSold = 3221,
             ManufacturingPrice = 5,
             SalePrice = 125,
             GrossSales = 402625,
@@ -9221,14 +9219,14 @@ public class SalesData
             COGS = 435240,
             Profit = 55283.75,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"2389",
+            UnitsSold = 2389,
             ManufacturingPrice = 5,
             SalePrice = 350,
             GrossSales = 836150,
@@ -9237,14 +9235,14 @@ public class SalesData
             COGS = 187200,
             Profit = 636350,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"1127",
+            UnitsSold = 1127,
             ManufacturingPrice = 5,
             SalePrice = 12,
             GrossSales = 13524,
@@ -9253,14 +9251,14 @@ public class SalesData
             COGS = 7026,
             Profit = 5092.8,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"319",
+            UnitsSold = 319,
             ManufacturingPrice = 5,
             SalePrice = 300,
             GrossSales = 95700,
@@ -9269,14 +9267,14 @@ public class SalesData
             COGS = 275000,
             Profit = 195800,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"1610",
+            UnitsSold = 1610,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 32200,
@@ -9285,14 +9283,14 @@ public class SalesData
             COGS = 13030,
             Profit = 17867,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"4100",
+            UnitsSold = 4100,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 512500,
@@ -9301,14 +9299,14 @@ public class SalesData
             COGS = 359040,
             Profit = 134760,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"1012",
+            UnitsSold = 1012,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 126500,
@@ -9317,14 +9315,14 @@ public class SalesData
             COGS = 286200,
             Profit = 174606.25,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"3337",
+            UnitsSold = 3337,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 1001100,
@@ -9333,14 +9331,14 @@ public class SalesData
             COGS = 401750,
             Profit = 575245,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"3955",
+            UnitsSold = 3955,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 27685,
@@ -9349,14 +9347,14 @@ public class SalesData
             COGS = 11635,
             Profit = 15235.55,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"4347",
+            UnitsSold = 4347,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 1304100,
@@ -9365,14 +9363,14 @@ public class SalesData
             COGS = 247750,
             Profit = 1041485,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"1548",
+            UnitsSold = 1548,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 541800,
@@ -9381,14 +9379,14 @@ public class SalesData
             COGS = 156520,
             Profit = 374745,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"2153",
+            UnitsSold = 2153,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 32295,
@@ -9397,14 +9395,14 @@ public class SalesData
             COGS = 26200,
             Profit = 4130,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"3789",
+            UnitsSold = 3789,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 1326150,
@@ -9413,14 +9411,14 @@ public class SalesData
             COGS = 319280,
             Profit = 985380,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"4364",
+            UnitsSold = 4364,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 87280,
@@ -9429,14 +9427,14 @@ public class SalesData
             COGS = 13890,
             Profit = 72001,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"4126",
+            UnitsSold = 4126,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 515750,
@@ -9445,14 +9443,14 @@ public class SalesData
             COGS = 103320,
             Profit = 407048.75,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"1343",
+            UnitsSold = 1343,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 167875,
@@ -9461,14 +9459,14 @@ public class SalesData
             COGS = 84480,
             Profit = 78995,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"245",
+            UnitsSold = 245,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 4900,
@@ -9477,14 +9475,14 @@ public class SalesData
             COGS = 18020,
             Profit = 14922,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"3376",
+            UnitsSold = 3376,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 67520,
@@ -9493,14 +9491,14 @@ public class SalesData
             COGS = 26630,
             Profit = 38227,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"1401",
+            UnitsSold = 1401,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 9807,
@@ -9509,14 +9507,14 @@ public class SalesData
             COGS = 10680,
             Profit = 1620.6,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"3483",
+            UnitsSold = 3483,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 52245,
@@ -9525,14 +9523,14 @@ public class SalesData
             COGS = 21160,
             Profit = 29498,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"2244",
+            UnitsSold = 2244,
             ManufacturingPrice = 120,
             SalePrice = 15,
             GrossSales = 33660,
@@ -9541,14 +9539,14 @@ public class SalesData
             COGS = 5550,
             Profit = 27693.75,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"1360",
+            UnitsSold = 1360,
             ManufacturingPrice = 120,
             SalePrice = 15,
             GrossSales = 20400,
@@ -9557,14 +9555,14 @@ public class SalesData
             COGS = 28610,
             Profit = 10355.75,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"279",
+            UnitsSold = 279,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 34875,
@@ -9573,14 +9571,14 @@ public class SalesData
             COGS = 96840,
             Profit = 67008.75,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"2521",
+            UnitsSold = 2521,
             ManufacturingPrice = 120,
             SalePrice = 350,
             GrossSales = 882350,
@@ -9589,14 +9587,14 @@ public class SalesData
             COGS = 156520,
             Profit = 715295,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"2433",
+            UnitsSold = 2433,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 48660,
@@ -9605,14 +9603,14 @@ public class SalesData
             COGS = 28320,
             Profit = 17508,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"1738",
+            UnitsSold = 1738,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 34760,
@@ -9621,14 +9619,14 @@ public class SalesData
             COGS = 15790,
             Profit = 17391,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"1106",
+            UnitsSold = 1106,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 138250,
@@ -9637,14 +9635,14 @@ public class SalesData
             COGS = 103320,
             Profit = 29548.75,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"3379",
+            UnitsSold = 3379,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 422375,
@@ -9653,14 +9651,14 @@ public class SalesData
             COGS = 84480,
             Profit = 333495,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"1221",
+            UnitsSold = 1221,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 24420,
@@ -9669,14 +9667,14 @@ public class SalesData
             COGS = 10330,
             Profit = 13057,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"213",
+            UnitsSold = 213,
             ManufacturingPrice = 120,
             SalePrice = 300,
             GrossSales = 63900,
@@ -9685,14 +9683,14 @@ public class SalesData
             COGS = 312500,
             Profit = 267350,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"3335",
+            UnitsSold = 3335,
             ManufacturingPrice = 250,
             SalePrice = 20,
             GrossSales = 66700,
@@ -9701,14 +9699,14 @@ public class SalesData
             COGS = 13890,
             Profit = 51421,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"1260",
+            UnitsSold = 1260,
             ManufacturingPrice = 250,
             SalePrice = 20,
             GrossSales = 25200,
@@ -9717,14 +9715,14 @@ public class SalesData
             COGS = 12650,
             Profit = 11285,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"3034",
+            UnitsSold = 3034,
             ManufacturingPrice = 250,
             SalePrice = 20,
             GrossSales = 60680,
@@ -9733,14 +9731,14 @@ public class SalesData
             COGS = 22970,
             Profit = 35413,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"2929",
+            UnitsSold = 2929,
             ManufacturingPrice = 250,
             SalePrice = 20,
             GrossSales = 58580,
@@ -9749,14 +9747,14 @@ public class SalesData
             COGS = 26630,
             Profit = 29287,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"2389",
+            UnitsSold = 2389,
             ManufacturingPrice = 250,
             SalePrice = 7,
             GrossSales = 16723,
@@ -9765,14 +9763,14 @@ public class SalesData
             COGS = 2850,
             Profit = 13673.5,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"3086",
+            UnitsSold = 3086,
             ManufacturingPrice = 250,
             SalePrice = 7,
             GrossSales = 21602,
@@ -9781,14 +9779,14 @@ public class SalesData
             COGS = 12435,
             Profit = 8296.55,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"745",
+            UnitsSold = 745,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 260750,
@@ -9797,14 +9795,14 @@ public class SalesData
             COGS = 351000,
             Profit = 113875,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"1266",
+            UnitsSold = 1266,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 443100,
@@ -9813,14 +9811,14 @@ public class SalesData
             COGS = 143520,
             Profit = 289920,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"3790",
+            UnitsSold = 3790,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 1326500,
@@ -9829,14 +9827,14 @@ public class SalesData
             COGS = 319280,
             Profit = 985730,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"4287",
+            UnitsSold = 4287,
             ManufacturingPrice = 260,
             SalePrice = 300,
             GrossSales = 1286100,
@@ -9845,14 +9843,14 @@ public class SalesData
             COGS = 312500,
             Profit = 954850,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"3193",
+            UnitsSold = 3193,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 47895,
@@ -9861,14 +9859,14 @@ public class SalesData
             COGS = 38010,
             Profit = 6464.1,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"1967",
+            UnitsSold = 1967,
             ManufacturingPrice = 3,
             SalePrice = 20,
             GrossSales = 39340,
@@ -9877,14 +9875,14 @@ public class SalesData
             COGS = 11175,
             Profit = 26824,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"631",
+            UnitsSold = 631,
             ManufacturingPrice = 3,
             SalePrice = 15,
             GrossSales = 9465,
@@ -9893,14 +9891,14 @@ public class SalesData
             COGS = 28440,
             Profit = 21534.6,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"3469",
+            UnitsSold = 3469,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 41628,
@@ -9909,14 +9907,14 @@ public class SalesData
             COGS = 1686,
             Profit = 39537.36,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"570",
+            UnitsSold = 570,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 6840,
@@ -9925,14 +9923,14 @@ public class SalesData
             COGS = 6897,
             Profit = 1712.28,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"3215",
+            UnitsSold = 3215,
             ManufacturingPrice = 3,
             SalePrice = 15,
             GrossSales = 48225,
@@ -9941,14 +9939,14 @@ public class SalesData
             COGS = 20300,
             Profit = 26098,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"3754",
+            UnitsSold = 3754,
             ManufacturingPrice = 3,
             SalePrice = 7,
             GrossSales = 26278,
@@ -9957,14 +9955,14 @@ public class SalesData
             COGS = 1315,
             Profit = 24852.54,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"2187",
+            UnitsSold = 2187,
             ManufacturingPrice = 3,
             SalePrice = 125,
             GrossSales = 273375,
@@ -9973,14 +9971,14 @@ public class SalesData
             COGS = 106440,
             Profit = 160282.5,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"1959",
+            UnitsSold = 1959,
             ManufacturingPrice = 5,
             SalePrice = 350,
             GrossSales = 685650,
@@ -9989,14 +9987,14 @@ public class SalesData
             COGS = 254800,
             Profit = 410270,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"2181",
+            UnitsSold = 2181,
             ManufacturingPrice = 5,
             SalePrice = 350,
             GrossSales = 763350,
@@ -10005,14 +10003,14 @@ public class SalesData
             COGS = 379600,
             Profit = 353090,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"3559",
+            UnitsSold = 3559,
             ManufacturingPrice = 5,
             SalePrice = 7,
             GrossSales = 24913,
@@ -10021,14 +10019,14 @@ public class SalesData
             COGS = 7015,
             Profit = 17308.74,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Royal Oak",
-            UnitsSold = @"2205",
+            UnitsSold = 2205,
             ManufacturingPrice = 5,
             SalePrice = 12,
             GrossSales = 26460,
@@ -10037,14 +10035,14 @@ public class SalesData
             COGS = 8169,
             Profit = 16330.44,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"1890",
+            UnitsSold = 1890,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 661500,
@@ -10053,14 +10051,14 @@ public class SalesData
             COGS = 388960,
             Profit = 241124,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"1296",
+            UnitsSold = 1296,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 15552,
@@ -10069,14 +10067,14 @@ public class SalesData
             COGS = 6897,
             Profit = 6999.72,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"775",
+            UnitsSold = 775,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 271250,
@@ -10085,14 +10083,14 @@ public class SalesData
             COGS = 189020,
             Profit = 66963,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"2417",
+            UnitsSold = 2417,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 302125,
@@ -10101,14 +10099,14 @@ public class SalesData
             COGS = 114240,
             Profit = 180745,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"1158",
+            UnitsSold = 1158,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 144750,
@@ -10117,14 +10115,14 @@ public class SalesData
             COGS = 330600,
             Profit = 206512.5,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"803",
+            UnitsSold = 803,
             ManufacturingPrice = 120,
             SalePrice = 15,
             GrossSales = 12045,
@@ -10133,14 +10131,14 @@ public class SalesData
             COGS = 15300,
             Profit = 4632,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"3705",
+            UnitsSold = 3705,
             ManufacturingPrice = 120,
             SalePrice = 350,
             GrossSales = 1296750,
@@ -10149,14 +10147,14 @@ public class SalesData
             COGS = 388960,
             Profit = 876374,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"589",
+            UnitsSold = 589,
             ManufacturingPrice = 120,
             SalePrice = 7,
             GrossSales = 4123,
@@ -10165,14 +10163,14 @@ public class SalesData
             COGS = 7490,
             Profit = 3996.16,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"3797",
+            UnitsSold = 3797,
             ManufacturingPrice = 120,
             SalePrice = 300,
             GrossSales = 1139100,
@@ -10181,14 +10179,14 @@ public class SalesData
             COGS = 305250,
             Profit = 811872,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"1321",
+            UnitsSold = 1321,
             ManufacturingPrice = 120,
             SalePrice = 350,
             GrossSales = 462350,
@@ -10197,14 +10195,14 @@ public class SalesData
             COGS = 539760,
             Profit = 121006,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"3999",
+            UnitsSold = 3999,
             ManufacturingPrice = 250,
             SalePrice = 15,
             GrossSales = 59985,
@@ -10213,14 +10211,14 @@ public class SalesData
             COGS = 28440,
             Profit = 28985.4,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"4256",
+            UnitsSold = 4256,
             ManufacturingPrice = 250,
             SalePrice = 7,
             GrossSales = 29792,
@@ -10229,14 +10227,14 @@ public class SalesData
             COGS = 7490,
             Profit = 21672.84,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"1643",
+            UnitsSold = 1643,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 492900,
@@ -10245,14 +10243,14 @@ public class SalesData
             COGS = 305250,
             Profit = 165672,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"1912",
+            UnitsSold = 1912,
             ManufacturingPrice = 250,
             SalePrice = 20,
             GrossSales = 38240,
@@ -10261,14 +10259,14 @@ public class SalesData
             COGS = 11230,
             Profit = 25662.4,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"1610",
+            UnitsSold = 1610,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 483000,
@@ -10277,14 +10275,14 @@ public class SalesData
             COGS = 609000,
             Profit = 169848,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Luxe",
-            UnitsSold = @"2160",
+            UnitsSold = 2160,
             ManufacturingPrice = 260,
             SalePrice = 125,
             GrossSales = 270000,
@@ -10293,14 +10291,14 @@ public class SalesData
             COGS = 238500,
             Profit = 16593.75,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"466",
+            UnitsSold = 466,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 163100,
@@ -10309,14 +10307,14 @@ public class SalesData
             COGS = 436540,
             Profit = 308699,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"328",
+            UnitsSold = 328,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 114800,
@@ -10325,14 +10323,14 @@ public class SalesData
             COGS = 189020,
             Profit = 89487,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Luxe",
-            UnitsSold = @"4099",
+            UnitsSold = 4099,
             ManufacturingPrice = 260,
             SalePrice = 7,
             GrossSales = 28693,
@@ -10341,14 +10339,14 @@ public class SalesData
             COGS = 7015,
             Profit = 21088.74,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Luxe",
-            UnitsSold = @"990",
+            UnitsSold = 990,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 346500,
@@ -10357,14 +10355,14 @@ public class SalesData
             COGS = 539760,
             Profit = 236856,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"1433",
+            UnitsSold = 1433,
             ManufacturingPrice = 5,
             SalePrice = 20,
             GrossSales = 28660,
@@ -10373,14 +10371,14 @@ public class SalesData
             COGS = 17570,
             Profit = 8981.6,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"1478",
+            UnitsSold = 1478,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 22170,
@@ -10389,14 +10387,14 @@ public class SalesData
             COGS = 21980,
             Profit = 1788.2,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"3798",
+            UnitsSold = 3798,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 56970,
@@ -10405,14 +10403,14 @@ public class SalesData
             COGS = 17430,
             Profit = 37971.3,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"447",
+            UnitsSold = 447,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 6705,
@@ -10421,14 +10419,14 @@ public class SalesData
             COGS = 11530,
             Profit = 5862.7,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"1711",
+            UnitsSold = 1711,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 34220,
@@ -10437,14 +10435,14 @@ public class SalesData
             COGS = 17570,
             Profit = 14541.6,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"745",
+            UnitsSold = 745,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 14900,
@@ -10453,14 +10451,14 @@ public class SalesData
             COGS = 10010,
             Profit = 3688.8,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"1732",
+            UnitsSold = 1732,
             ManufacturingPrice = 120,
             SalePrice = 7,
             GrossSales = 12124,
@@ -10469,14 +10467,14 @@ public class SalesData
             COGS = 6665,
             Profit = 4899.14,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"1759",
+            UnitsSold = 1759,
             ManufacturingPrice = 250,
             SalePrice = 15,
             GrossSales = 26385,
@@ -10485,14 +10483,14 @@ public class SalesData
             COGS = 11530,
             Profit = 13817.3,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"338",
+            UnitsSold = 338,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 4056,
@@ -10501,14 +10499,14 @@ public class SalesData
             COGS = 2181,
             Profit = 1264.32,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"3911",
+            UnitsSold = 3911,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 46932,
@@ -10517,14 +10515,14 @@ public class SalesData
             COGS = 5652,
             Profit = 39697.44,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"3691",
+            UnitsSold = 3691,
             ManufacturingPrice = 3,
             SalePrice = 20,
             GrossSales = 73820,
@@ -10533,14 +10531,14 @@ public class SalesData
             COGS = 18340,
             Profit = 52912.4,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"4473",
+            UnitsSold = 4473,
             ManufacturingPrice = 5,
             SalePrice = 12,
             GrossSales = 53676,
@@ -10549,14 +10547,14 @@ public class SalesData
             COGS = 7020,
             Profit = 44690.4,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"383",
+            UnitsSold = 383,
             ManufacturingPrice = 5,
             SalePrice = 12,
             GrossSales = 4596,
@@ -10565,14 +10563,14 @@ public class SalesData
             COGS = 7026,
             Profit = 4397.28,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"3105",
+            UnitsSold = 3105,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 21735,
@@ -10581,14 +10579,14 @@ public class SalesData
             COGS = 5155,
             Profit = 16074.81,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"1062",
+            UnitsSold = 1062,
             ManufacturingPrice = 120,
             SalePrice = 15,
             GrossSales = 15930,
@@ -10597,14 +10595,14 @@ public class SalesData
             COGS = 12620,
             Profit = 1984.9,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"4083",
+            UnitsSold = 4083,
             ManufacturingPrice = 120,
             SalePrice = 7,
             GrossSales = 28581,
@@ -10613,14 +10611,14 @@ public class SalesData
             COGS = 5675,
             Profit = 22349.85,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"3974",
+            UnitsSold = 3974,
             ManufacturingPrice = 120,
             SalePrice = 7,
             GrossSales = 27818,
@@ -10629,14 +10627,14 @@ public class SalesData
             COGS = 2735,
             Profit = 24814.97,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"3723",
+            UnitsSold = 3723,
             ManufacturingPrice = 120,
             SalePrice = 7,
             GrossSales = 26061,
@@ -10645,14 +10643,14 @@ public class SalesData
             COGS = 7910,
             Profit = 17375.82,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"2435",
+            UnitsSold = 2435,
             ManufacturingPrice = 250,
             SalePrice = 12,
             GrossSales = 29220,
@@ -10661,14 +10659,14 @@ public class SalesData
             COGS = 5215.5,
             Profit = 22544.16,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"1678",
+            UnitsSold = 1678,
             ManufacturingPrice = 250,
             SalePrice = 12,
             GrossSales = 20136,
@@ -10677,14 +10675,14 @@ public class SalesData
             COGS = 6645,
             Profit = 11630.4,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"1763",
+            UnitsSold = 1763,
             ManufacturingPrice = 250,
             SalePrice = 7,
             GrossSales = 12341,
@@ -10693,14 +10691,14 @@ public class SalesData
             COGS = 7910,
             Profit = 3655.82,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"4473",
+            UnitsSold = 4473,
             ManufacturingPrice = 260,
             SalePrice = 7,
             GrossSales = 31311,
@@ -10709,14 +10707,14 @@ public class SalesData
             COGS = 5675,
             Profit = 25079.85,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"1246",
+            UnitsSold = 1246,
             ManufacturingPrice = 3,
             SalePrice = 350,
             GrossSales = 436100,
@@ -10725,14 +10723,14 @@ public class SalesData
             COGS = 457860,
             Profit = 64904.5,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"1615",
+            UnitsSold = 1615,
             ManufacturingPrice = 3,
             SalePrice = 300,
             GrossSales = 484500,
@@ -10741,14 +10739,14 @@ public class SalesData
             COGS = 112000,
             Profit = 363092,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"749",
+            UnitsSold = 749,
             ManufacturingPrice = 3,
             SalePrice = 300,
             GrossSales = 224700,
@@ -10757,14 +10755,14 @@ public class SalesData
             COGS = 545250,
             Profit = 366351,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"1318",
+            UnitsSold = 1318,
             ManufacturingPrice = 5,
             SalePrice = 20,
             GrossSales = 26360,
@@ -10773,14 +10771,14 @@ public class SalesData
             COGS = 19760,
             Profit = 3833.6,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"2882",
+            UnitsSold = 2882,
             ManufacturingPrice = 5,
             SalePrice = 300,
             GrossSales = 864600,
@@ -10789,14 +10787,14 @@ public class SalesData
             COGS = 545250,
             Profit = 273549,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"3039",
+            UnitsSold = 3039,
             ManufacturingPrice = 5,
             SalePrice = 125,
             GrossSales = 379875,
@@ -10805,14 +10803,14 @@ public class SalesData
             COGS = 300000,
             Profit = 58000,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"2484",
+            UnitsSold = 2484,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 745200,
@@ -10821,14 +10819,14 @@ public class SalesData
             COGS = 425500,
             Profit = 283958,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"3169",
+            UnitsSold = 3169,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 950700,
@@ -10837,14 +10835,14 @@ public class SalesData
             COGS = 112000,
             Profit = 829292,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"4080",
+            UnitsSold = 4080,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 510000,
@@ -10853,14 +10851,14 @@ public class SalesData
             COGS = 421560,
             Profit = 57701.25,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"3943",
+            UnitsSold = 3943,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 59145,
@@ -10869,14 +10867,14 @@ public class SalesData
             COGS = 21010,
             Profit = 35928.95,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"784",
+            UnitsSold = 784,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 11760,
@@ -10885,14 +10883,14 @@ public class SalesData
             COGS = 29310,
             Profit = 20627.55,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"253",
+            UnitsSold = 253,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 5060,
@@ -10901,14 +10899,14 @@ public class SalesData
             COGS = 15350,
             Profit = 12439,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"1316",
+            UnitsSold = 1316,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 394800,
@@ -10917,14 +10915,14 @@ public class SalesData
             COGS = 280750,
             Profit = 90467,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"808",
+            UnitsSold = 808,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 242400,
@@ -10933,14 +10931,14 @@ public class SalesData
             COGS = 351000,
             Profit = 138084,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"3295",
+            UnitsSold = 3295,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 39540,
@@ -10949,14 +10947,14 @@ public class SalesData
             COGS = 8289,
             Profit = 28930.08,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"520",
+            UnitsSold = 520,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 3640,
@@ -10965,14 +10963,14 @@ public class SalesData
             COGS = 10625,
             Profit = 8026.25,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"799",
+            UnitsSold = 799,
             ManufacturingPrice = 120,
             SalePrice = 300,
             GrossSales = 239700,
@@ -10981,14 +10979,14 @@ public class SalesData
             COGS = 414750,
             Profit = 209889,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"3942",
+            UnitsSold = 3942,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 78840,
@@ -10997,14 +10995,14 @@ public class SalesData
             COGS = 6090,
             Profit = 71897.4,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"2498",
+            UnitsSold = 2498,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 312250,
@@ -11013,14 +11011,14 @@ public class SalesData
             COGS = 250440,
             Profit = 43548.75,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"2517",
+            UnitsSold = 2517,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 50340,
@@ -11029,14 +11027,14 @@ public class SalesData
             COGS = 19760,
             Profit = 27813.6,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"3182",
+            UnitsSold = 3182,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 63640,
@@ -11045,14 +11043,14 @@ public class SalesData
             COGS = 14210,
             Profit = 47440.6,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"1145",
+            UnitsSold = 1145,
             ManufacturingPrice = 120,
             SalePrice = 300,
             GrossSales = 343500,
@@ -11061,14 +11059,14 @@ public class SalesData
             COGS = 343000,
             Profit = 28312,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"895",
+            UnitsSold = 895,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 17900,
@@ -11077,14 +11075,14 @@ public class SalesData
             COGS = 5880,
             Profit = 11196.8,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"3814",
+            UnitsSold = 3814,
             ManufacturingPrice = 250,
             SalePrice = 12,
             GrossSales = 45768,
@@ -11093,14 +11091,14 @@ public class SalesData
             COGS = 9733.5,
             Profit = 33309.12,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"1188",
+            UnitsSold = 1188,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 356400,
@@ -11109,14 +11107,14 @@ public class SalesData
             COGS = 239750,
             Profit = 96511,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"2233",
+            UnitsSold = 2233,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 669900,
@@ -11125,14 +11123,14 @@ public class SalesData
             COGS = 686750,
             Profit = 74537,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"421",
+            UnitsSold = 421,
             ManufacturingPrice = 260,
             SalePrice = 125,
             GrossSales = 52625,
@@ -11141,14 +11139,14 @@ public class SalesData
             COGS = 197400,
             Profit = 159168.75,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Luxe",
-            UnitsSold = @"269",
+            UnitsSold = 269,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 94150,
@@ -11157,14 +11155,14 @@ public class SalesData
             COGS = 747760,
             Profit = 724072,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"3766",
+            UnitsSold = 3766,
             ManufacturingPrice = 260,
             SalePrice = 125,
             GrossSales = 470750,
@@ -11173,14 +11171,14 @@ public class SalesData
             COGS = 119280,
             Profit = 342772.5,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"952",
+            UnitsSold = 952,
             ManufacturingPrice = 260,
             SalePrice = 20,
             GrossSales = 19040,
@@ -11189,14 +11187,14 @@ public class SalesData
             COGS = 11180,
             Profit = 6294.8,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"2964",
+            UnitsSold = 2964,
             ManufacturingPrice = 260,
             SalePrice = 300,
             GrossSales = 889200,
@@ -11205,14 +11203,14 @@ public class SalesData
             COGS = 343000,
             Profit = 517388,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"1505",
+            UnitsSold = 1505,
             ManufacturingPrice = 5,
             SalePrice = 7,
             GrossSales = 10535,
@@ -11221,14 +11219,14 @@ public class SalesData
             COGS = 2440,
             Profit = 7821.72,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Royal Oak",
-            UnitsSold = @"1678",
+            UnitsSold = 1678,
             ManufacturingPrice = 5,
             SalePrice = 20,
             GrossSales = 33560,
@@ -11237,14 +11235,14 @@ public class SalesData
             COGS = 12820,
             Profit = 18688.8,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"4249",
+            UnitsSold = 4249,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 29743,
@@ -11253,14 +11251,14 @@ public class SalesData
             COGS = 1285,
             Profit = 28314.08,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"1677",
+            UnitsSold = 1677,
             ManufacturingPrice = 260,
             SalePrice = 20,
             GrossSales = 33540,
@@ -11269,14 +11267,14 @@ public class SalesData
             COGS = 12820,
             Profit = 18668.8,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"3051",
+            UnitsSold = 3051,
             ManufacturingPrice = 3,
             SalePrice = 125,
             GrossSales = 381375,
@@ -11285,14 +11283,14 @@ public class SalesData
             COGS = 184800,
             Profit = 181175,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"3372",
+            UnitsSold = 3372,
             ManufacturingPrice = 3,
             SalePrice = 15,
             GrossSales = 50580,
@@ -11301,14 +11299,14 @@ public class SalesData
             COGS = 4900,
             Profit = 45092,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"1686",
+            UnitsSold = 1686,
             ManufacturingPrice = 3,
             SalePrice = 350,
             GrossSales = 590100,
@@ -11317,14 +11315,14 @@ public class SalesData
             COGS = 354120,
             Profit = 197844,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"3086",
+            UnitsSold = 3086,
             ManufacturingPrice = 5,
             SalePrice = 15,
             GrossSales = 46290,
@@ -11333,14 +11331,14 @@ public class SalesData
             COGS = 25010,
             Profit = 18278.8,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"4150",
+            UnitsSold = 4150,
             ManufacturingPrice = 5,
             SalePrice = 20,
             GrossSales = 83000,
@@ -11349,14 +11347,14 @@ public class SalesData
             COGS = 7080,
             Profit = 74787.2,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"3027",
+            UnitsSold = 3027,
             ManufacturingPrice = 5,
             SalePrice = 20,
             GrossSales = 60540,
@@ -11365,14 +11363,14 @@ public class SalesData
             COGS = 6450,
             Profit = 53058,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"4359",
+            UnitsSold = 4359,
             ManufacturingPrice = 5,
             SalePrice = 300,
             GrossSales = 1307700,
@@ -11381,14 +11379,14 @@ public class SalesData
             COGS = 390500,
             Profit = 879712,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"3628",
+            UnitsSold = 3628,
             ManufacturingPrice = 5,
             SalePrice = 300,
             GrossSales = 1088400,
@@ -11397,14 +11395,14 @@ public class SalesData
             COGS = 320750,
             Profit = 736858,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"1589",
+            UnitsSold = 1589,
             ManufacturingPrice = 5,
             SalePrice = 15,
             GrossSales = 23835,
@@ -11413,14 +11411,14 @@ public class SalesData
             COGS = 7110,
             Profit = 15871.8,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"2679",
+            UnitsSold = 2679,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 334875,
@@ -11429,14 +11427,14 @@ public class SalesData
             COGS = 133680,
             Profit = 190055,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"3401",
+            UnitsSold = 3401,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 23807,
@@ -11445,14 +11443,14 @@ public class SalesData
             COGS = 6295,
             Profit = 16806.96,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"2815",
+            UnitsSold = 2815,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 19705,
@@ -11461,14 +11459,14 @@ public class SalesData
             COGS = 5475,
             Profit = 13616.8,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"2964",
+            UnitsSold = 2964,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 59280,
@@ -11477,14 +11475,14 @@ public class SalesData
             COGS = 13660,
             Profit = 43434.4,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"4173",
+            UnitsSold = 4173,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 1251900,
@@ -11493,14 +11491,14 @@ public class SalesData
             COGS = 615000,
             Profit = 577860,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"1157",
+            UnitsSold = 1157,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 8099,
@@ -11509,14 +11507,14 @@ public class SalesData
             COGS = 3390,
             Profit = 4329.32,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"3065",
+            UnitsSold = 3065,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 21455,
@@ -11525,14 +11523,14 @@ public class SalesData
             COGS = 7990,
             Profit = 12570.12,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"1962",
+            UnitsSold = 1962,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 13734,
@@ -11541,14 +11539,14 @@ public class SalesData
             COGS = 12045,
             Profit = 339.96,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"4080",
+            UnitsSold = 4080,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 81600,
@@ -11557,14 +11555,14 @@ public class SalesData
             COGS = 19340,
             Profit = 59165.6,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"1713",
+            UnitsSold = 1713,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 34260,
@@ -11573,14 +11571,14 @@ public class SalesData
             COGS = 29930,
             Profit = 458.8,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"2795",
+            UnitsSold = 2795,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 978250,
@@ -11589,14 +11587,14 @@ public class SalesData
             COGS = 557960,
             Profit = 360202,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"4082",
+            UnitsSold = 4082,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 28574,
@@ -11605,14 +11603,14 @@ public class SalesData
             COGS = 9730,
             Profit = 17754.24,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"1691",
+            UnitsSold = 1691,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 591850,
@@ -11621,14 +11619,14 @@ public class SalesData
             COGS = 354120,
             Profit = 199594,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"2305",
+            UnitsSold = 2305,
             ManufacturingPrice = 120,
             SalePrice = 12,
             GrossSales = 27660,
@@ -11637,14 +11635,14 @@ public class SalesData
             COGS = 1794,
             Profit = 25291.92,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"3401",
+            UnitsSold = 3401,
             ManufacturingPrice = 120,
             SalePrice = 7,
             GrossSales = 23807,
@@ -11653,14 +11651,14 @@ public class SalesData
             COGS = 14535,
             Profit = 7644.08,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"2288",
+            UnitsSold = 2288,
             ManufacturingPrice = 120,
             SalePrice = 7,
             GrossSales = 16016,
@@ -11669,14 +11667,14 @@ public class SalesData
             COGS = 11690,
             Profit = 3016.72,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"2399",
+            UnitsSold = 2399,
             ManufacturingPrice = 120,
             SalePrice = 300,
             GrossSales = 719700,
@@ -11685,14 +11683,14 @@ public class SalesData
             COGS = 96500,
             Profit = 613936,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"4086",
+            UnitsSold = 4086,
             ManufacturingPrice = 120,
             SalePrice = 300,
             GrossSales = 1225800,
@@ -11701,14 +11699,14 @@ public class SalesData
             COGS = 158750,
             Profit = 1051810,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"2651",
+            UnitsSold = 2651,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 927850,
@@ -11717,14 +11715,14 @@ public class SalesData
             COGS = 149370,
             Profit = 762394,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"3971",
+            UnitsSold = 3971,
             ManufacturingPrice = 250,
             SalePrice = 7,
             GrossSales = 27797,
@@ -11733,14 +11731,14 @@ public class SalesData
             COGS = 11690,
             Profit = 14797.72,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"2512",
+            UnitsSold = 2512,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 879200,
@@ -11749,14 +11747,14 @@ public class SalesData
             COGS = 99060,
             Profit = 769472,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"2745",
+            UnitsSold = 2745,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 960750,
@@ -11765,14 +11763,14 @@ public class SalesData
             COGS = 109720,
             Profit = 839214,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"1903",
+            UnitsSold = 1903,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 570900,
@@ -11781,14 +11779,14 @@ public class SalesData
             COGS = 533500,
             Profit = 13816,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"647",
+            UnitsSold = 647,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 194100,
@@ -11797,14 +11795,14 @@ public class SalesData
             COGS = 202000,
             Profit = 27292,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"2914",
+            UnitsSold = 2914,
             ManufacturingPrice = 260,
             SalePrice = 20,
             GrossSales = 58280,
@@ -11813,14 +11811,14 @@ public class SalesData
             COGS = 7080,
             Profit = 50067.2,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"1889",
+            UnitsSold = 1889,
             ManufacturingPrice = 260,
             SalePrice = 7,
             GrossSales = 13223,
@@ -11829,14 +11827,14 @@ public class SalesData
             COGS = 14535,
             Profit = 2939.92,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"1466",
+            UnitsSold = 1466,
             ManufacturingPrice = 260,
             SalePrice = 20,
             GrossSales = 29320,
@@ -11845,14 +11843,14 @@ public class SalesData
             COGS = 13660,
             Profit = 13474.4,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"887",
+            UnitsSold = 887,
             ManufacturingPrice = 260,
             SalePrice = 300,
             GrossSales = 266100,
@@ -11861,14 +11859,14 @@ public class SalesData
             COGS = 615000,
             Profit = 407940,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"395",
+            UnitsSold = 395,
             ManufacturingPrice = 260,
             SalePrice = 20,
             GrossSales = 7900,
@@ -11877,14 +11875,14 @@ public class SalesData
             COGS = 15200,
             Profit = 9732,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"1693",
+            UnitsSold = 1693,
             ManufacturingPrice = 260,
             SalePrice = 15,
             GrossSales = 25395,
@@ -11893,14 +11891,14 @@ public class SalesData
             COGS = 7110,
             Profit = 17431.8,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"2459",
+            UnitsSold = 2459,
             ManufacturingPrice = 260,
             SalePrice = 12,
             GrossSales = 29508,
@@ -11909,14 +11907,14 @@ public class SalesData
             COGS = 4125,
             Profit = 24063,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"2649",
+            UnitsSold = 2649,
             ManufacturingPrice = 260,
             SalePrice = 300,
             GrossSales = 794700,
@@ -11925,14 +11923,14 @@ public class SalesData
             COGS = 158750,
             Profit = 620710,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"3608",
+            UnitsSold = 3608,
             ManufacturingPrice = 250,
             SalePrice = 20,
             GrossSales = 72160,
@@ -11941,14 +11939,14 @@ public class SalesData
             COGS = 4365,
             Profit = 67096.6,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"1073",
+            UnitsSold = 1073,
             ManufacturingPrice = 3,
             SalePrice = 300,
             GrossSales = 321900,
@@ -11957,14 +11955,14 @@ public class SalesData
             COGS = 273500,
             Profit = 18862,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"1754",
+            UnitsSold = 1754,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 21048,
@@ -11973,14 +11971,14 @@ public class SalesData
             COGS = 1101,
             Profit = 19550.64,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"2167",
+            UnitsSold = 2167,
             ManufacturingPrice = 5,
             SalePrice = 300,
             GrossSales = 650100,
@@ -11989,14 +11987,14 @@ public class SalesData
             COGS = 950625,
             Profit = 403192.5,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"1319",
+            UnitsSold = 1319,
             ManufacturingPrice = 5,
             SalePrice = 350,
             GrossSales = 461650,
@@ -12005,14 +12003,14 @@ public class SalesData
             COGS = 433160,
             Profit = 23989,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"1679",
+            UnitsSold = 1679,
             ManufacturingPrice = 5,
             SalePrice = 300,
             GrossSales = 503700,
@@ -12021,14 +12019,14 @@ public class SalesData
             COGS = 80500,
             Profit = 414506,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"1252",
+            UnitsSold = 1252,
             ManufacturingPrice = 5,
             SalePrice = 12,
             GrossSales = 15024,
@@ -12037,14 +12035,14 @@ public class SalesData
             COGS = 6963,
             Profit = 5554.32,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"3493",
+            UnitsSold = 3493,
             ManufacturingPrice = 5,
             SalePrice = 125,
             GrossSales = 436625,
@@ -12053,14 +12051,14 @@ public class SalesData
             COGS = 222840,
             Profit = 192893.75,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"1697",
+            UnitsSold = 1697,
             ManufacturingPrice = 5,
             SalePrice = 7,
             GrossSales = 11879,
@@ -12069,14 +12067,14 @@ public class SalesData
             COGS = 8055,
             Profit = 2809.07,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Royal Oak",
-            UnitsSold = @"1156",
+            UnitsSold = 1156,
             ManufacturingPrice = 5,
             SalePrice = 125,
             GrossSales = 144500,
@@ -12085,14 +12083,14 @@ public class SalesData
             COGS = 335640,
             Profit = 222606.25,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"726",
+            UnitsSold = 726,
             ManufacturingPrice = 5,
             SalePrice = 300,
             GrossSales = 217800,
@@ -12101,14 +12099,14 @@ public class SalesData
             COGS = 83500,
             Profit = 125282,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"1153",
+            UnitsSold = 1153,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 345900,
@@ -12117,14 +12115,14 @@ public class SalesData
             COGS = 641250,
             Profit = 364605,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"2720",
+            UnitsSold = 2720,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 952000,
@@ -12133,14 +12131,14 @@ public class SalesData
             COGS = 628420,
             Profit = 247444.5,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"3658",
+            UnitsSold = 3658,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 54870,
@@ -12149,14 +12147,14 @@ public class SalesData
             COGS = 36750,
             Profit = 13158.75,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"2950",
+            UnitsSold = 2950,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 885000,
@@ -12165,14 +12163,14 @@ public class SalesData
             COGS = 273500,
             Profit = 581962,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"1821",
+            UnitsSold = 1821,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 27315,
@@ -12181,14 +12179,14 @@ public class SalesData
             COGS = 12270,
             Profit = 13388.55,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"4174",
+            UnitsSold = 4174,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 50088,
@@ -12197,14 +12195,14 @@ public class SalesData
             COGS = 1101,
             Profit = 48590.64,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"1127",
+            UnitsSold = 1127,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 338100,
@@ -12213,14 +12211,14 @@ public class SalesData
             COGS = 331000,
             Profit = 28648,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"2209",
+            UnitsSold = 2209,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 26508,
@@ -12229,14 +12227,14 @@ public class SalesData
             COGS = 5325,
             Profit = 19266,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"862",
+            UnitsSold = 862,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 107750,
@@ -12245,14 +12243,14 @@ public class SalesData
             COGS = 335640,
             Profit = 259356.25,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"3805",
+            UnitsSold = 3805,
             ManufacturingPrice = 120,
             SalePrice = 15,
             GrossSales = 57075,
@@ -12261,14 +12259,14 @@ public class SalesData
             COGS = 2450,
             Profit = 54294.25,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"1415",
+            UnitsSold = 1415,
             ManufacturingPrice = 120,
             SalePrice = 300,
             GrossSales = 424500,
@@ -12277,14 +12275,14 @@ public class SalesData
             COGS = 948375,
             Profit = 626299.5,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"2231",
+            UnitsSold = 2231,
             ManufacturingPrice = 120,
             SalePrice = 350,
             GrossSales = 780850,
@@ -12293,14 +12291,14 @@ public class SalesData
             COGS = 339820,
             Profit = 399859.5,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"3649",
+            UnitsSold = 3649,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 456125,
@@ -12309,14 +12307,14 @@ public class SalesData
             COGS = 68040,
             Profit = 381706.25,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"2948",
+            UnitsSold = 2948,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 368500,
@@ -12325,14 +12323,14 @@ public class SalesData
             COGS = 253200,
             Profit = 91562.5,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"3395",
+            UnitsSold = 3395,
             ManufacturingPrice = 120,
             SalePrice = 350,
             GrossSales = 1188250,
@@ -12341,14 +12339,14 @@ public class SalesData
             COGS = 329940,
             Profit = 818336.5,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"2650",
+            UnitsSold = 2650,
             ManufacturingPrice = 250,
             SalePrice = 12,
             GrossSales = 31800,
@@ -12357,14 +12355,14 @@ public class SalesData
             COGS = 5868,
             Profit = 23819.52,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"585",
+            UnitsSold = 585,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 175500,
@@ -12373,14 +12371,14 @@ public class SalesData
             COGS = 664750,
             Profit = 561043,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"1316",
+            UnitsSold = 1316,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 460600,
@@ -12389,14 +12387,14 @@ public class SalesData
             COGS = 351390,
             Profit = 66637.75,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"4459",
+            UnitsSold = 4459,
             ManufacturingPrice = 250,
             SalePrice = 12,
             GrossSales = 53508,
@@ -12405,14 +12403,14 @@ public class SalesData
             COGS = 2640,
             Profit = 49917.6,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"2711",
+            UnitsSold = 2711,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 813300,
@@ -12421,14 +12419,14 @@ public class SalesData
             COGS = 466750,
             Profit = 296141,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"2621",
+            UnitsSold = 2621,
             ManufacturingPrice = 250,
             SalePrice = 12,
             GrossSales = 31452,
@@ -12437,14 +12435,14 @@ public class SalesData
             COGS = 6702,
             Profit = 22337.28,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"3613",
+            UnitsSold = 3613,
             ManufacturingPrice = 250,
             SalePrice = 15,
             GrossSales = 54195,
@@ -12453,14 +12451,14 @@ public class SalesData
             COGS = 12270,
             Profit = 40268.55,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"1847",
+            UnitsSold = 1847,
             ManufacturingPrice = 250,
             SalePrice = 125,
             GrossSales = 230875,
@@ -12469,14 +12467,14 @@ public class SalesData
             COGS = 105240,
             Profit = 115768.75,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"2996",
+            UnitsSold = 2996,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 1048600,
@@ -12485,14 +12483,14 @@ public class SalesData
             COGS = 538460,
             Profit = 444903.5,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"2838",
+            UnitsSold = 2838,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 993300,
@@ -12501,14 +12499,14 @@ public class SalesData
             COGS = 329940,
             Profit = 623386.5,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"1302",
+            UnitsSold = 1302,
             ManufacturingPrice = 260,
             SalePrice = 15,
             GrossSales = 19530,
@@ -12517,14 +12515,14 @@ public class SalesData
             COGS = 9700,
             Profit = 8520.5,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"1536",
+            UnitsSold = 1536,
             ManufacturingPrice = 260,
             SalePrice = 20,
             GrossSales = 30720,
@@ -12533,14 +12531,14 @@ public class SalesData
             COGS = 16940,
             Profit = 10730.8,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"1291",
+            UnitsSold = 1291,
             ManufacturingPrice = 3,
             SalePrice = 20,
             GrossSales = 25820,
@@ -12549,14 +12547,14 @@ public class SalesData
             COGS = 6630,
             Profit = 17996.6,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"1213",
+            UnitsSold = 1213,
             ManufacturingPrice = 3,
             SalePrice = 7,
             GrossSales = 8491,
@@ -12565,14 +12563,14 @@ public class SalesData
             COGS = 4095,
             Profit = 3880.03,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"2370",
+            UnitsSold = 2370,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 28440,
@@ -12581,14 +12579,14 @@ public class SalesData
             COGS = 4740,
             Profit = 21993.6,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"1979",
+            UnitsSold = 1979,
             ManufacturingPrice = 3,
             SalePrice = 7,
             GrossSales = 13853,
@@ -12597,14 +12595,14 @@ public class SalesData
             COGS = 2605,
             Profit = 10919.77,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"2879",
+            UnitsSold = 2879,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 57580,
@@ -12613,14 +12611,14 @@ public class SalesData
             COGS = 9730,
             Profit = 46098.6,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"1707",
+            UnitsSold = 1707,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 34140,
@@ -12629,14 +12627,14 @@ public class SalesData
             COGS = 10380,
             Profit = 21891.6,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"2933",
+            UnitsSold = 2933,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 20531,
@@ -12645,14 +12643,14 @@ public class SalesData
             COGS = 1800,
             Profit = 18504.2,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"1014",
+            UnitsSold = 1014,
             ManufacturingPrice = 120,
             SalePrice = 12,
             GrossSales = 12168,
@@ -12661,14 +12659,14 @@ public class SalesData
             COGS = 5901,
             Profit = 4142.64,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"693",
+            UnitsSold = 693,
             ManufacturingPrice = 120,
             SalePrice = 15,
             GrossSales = 10395,
@@ -12677,14 +12675,14 @@ public class SalesData
             COGS = 26280,
             Profit = 19432.8,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"3741",
+            UnitsSold = 3741,
             ManufacturingPrice = 250,
             SalePrice = 7,
             GrossSales = 26187,
@@ -12693,14 +12691,14 @@ public class SalesData
             COGS = 1800,
             Profit = 24160.2,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"3116",
+            UnitsSold = 3116,
             ManufacturingPrice = 250,
             SalePrice = 20,
             GrossSales = 62320,
@@ -12709,14 +12707,14 @@ public class SalesData
             COGS = 26820,
             Profit = 30672.4,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"3995",
+            UnitsSold = 3995,
             ManufacturingPrice = 250,
             SalePrice = 7,
             GrossSales = 27965,
@@ -12725,14 +12723,14 @@ public class SalesData
             COGS = 2605,
             Profit = 25031.77,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"953",
+            UnitsSold = 953,
             ManufacturingPrice = 260,
             SalePrice = 20,
             GrossSales = 19060,
@@ -12741,14 +12739,14 @@ public class SalesData
             COGS = 10380,
             Profit = 6811.6,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"2530",
+            UnitsSold = 2530,
             ManufacturingPrice = 260,
             SalePrice = 15,
             GrossSales = 37950,
@@ -12757,14 +12755,14 @@ public class SalesData
             COGS = 16305,
             Profit = 19443.82,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Luxe",
-            UnitsSold = @"2565",
+            UnitsSold = 2565,
             ManufacturingPrice = 260,
             SalePrice = 12,
             GrossSales = 30780,
@@ -12773,14 +12771,14 @@ public class SalesData
             COGS = 918,
             Profit = 29531.52,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"4297",
+            UnitsSold = 4297,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 51564,
@@ -12789,14 +12787,14 @@ public class SalesData
             COGS = 1158,
             Profit = 49942.8,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Royal Oak",
-            UnitsSold = @"2871",
+            UnitsSold = 2871,
             ManufacturingPrice = 5,
             SalePrice = 7,
             GrossSales = 20097,
@@ -12805,14 +12803,14 @@ public class SalesData
             COGS = 11640,
             Profit = 6827.4,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"3537",
+            UnitsSold = 3537,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 42444,
@@ -12821,14 +12819,14 @@ public class SalesData
             COGS = 1158,
             Profit = 40822.8,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"1598",
+            UnitsSold = 1598,
             ManufacturingPrice = 3,
             SalePrice = 125,
             GrossSales = 199750,
@@ -12837,14 +12835,14 @@ public class SalesData
             COGS = 413460,
             Profit = 256778.75,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"2616",
+            UnitsSold = 2616,
             ManufacturingPrice = 3,
             SalePrice = 125,
             GrossSales = 327000,
@@ -12853,14 +12851,14 @@ public class SalesData
             COGS = 177840,
             Profit = 130635,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Royal Oak",
-            UnitsSold = @"2836",
+            UnitsSold = 2836,
             ManufacturingPrice = 5,
             SalePrice = 350,
             GrossSales = 992600,
@@ -12869,14 +12867,14 @@ public class SalesData
             COGS = 601380,
             Profit = 310265,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Royal Oak",
-            UnitsSold = @"4023",
+            UnitsSold = 4023,
             ManufacturingPrice = 5,
             SalePrice = 125,
             GrossSales = 502875,
@@ -12885,14 +12883,14 @@ public class SalesData
             COGS = 216480,
             Profit = 263845,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"3994",
+            UnitsSold = 3994,
             ManufacturingPrice = 5,
             SalePrice = 15,
             GrossSales = 59910,
@@ -12901,14 +12899,14 @@ public class SalesData
             COGS = 20720,
             Profit = 36082,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"2928",
+            UnitsSold = 2928,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 58560,
@@ -12917,14 +12915,14 @@ public class SalesData
             COGS = 19540,
             Profit = 35112,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"2912",
+            UnitsSold = 2912,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 873600,
@@ -12933,14 +12931,14 @@ public class SalesData
             COGS = 147750,
             Profit = 708120,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"3671",
+            UnitsSold = 3671,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 55065,
@@ -12949,14 +12947,14 @@ public class SalesData
             COGS = 21670,
             Profit = 30144.5,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"2778",
+            UnitsSold = 2778,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 55560,
@@ -12965,14 +12963,14 @@ public class SalesData
             COGS = 2410,
             Profit = 52668,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"405",
+            UnitsSold = 405,
             ManufacturingPrice = 120,
             SalePrice = 15,
             GrossSales = 6075,
@@ -12981,14 +12979,14 @@ public class SalesData
             COGS = 6810,
             Profit = 1756.5,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"2013",
+            UnitsSold = 2013,
             ManufacturingPrice = 120,
             SalePrice = 15,
             GrossSales = 30195,
@@ -12997,14 +12995,14 @@ public class SalesData
             COGS = 5100,
             Profit = 24330,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"2634",
+            UnitsSold = 2634,
             ManufacturingPrice = 120,
             SalePrice = 15,
             GrossSales = 39510,
@@ -13013,14 +13011,14 @@ public class SalesData
             COGS = 7900,
             Profit = 30425,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"4166",
+            UnitsSold = 4166,
             ManufacturingPrice = 120,
             SalePrice = 350,
             GrossSales = 1458100,
@@ -13029,14 +13027,14 @@ public class SalesData
             COGS = 166140,
             Profit = 1269595,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"355",
+            UnitsSold = 355,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 44375,
@@ -13045,14 +13043,14 @@ public class SalesData
             COGS = 191520,
             Profit = 167095,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"2382",
+            UnitsSold = 2382,
             ManufacturingPrice = 120,
             SalePrice = 300,
             GrossSales = 714600,
@@ -13061,14 +13059,14 @@ public class SalesData
             COGS = 573500,
             Profit = 72280,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"4170",
+            UnitsSold = 4170,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 83400,
@@ -13077,14 +13075,14 @@ public class SalesData
             COGS = 2410,
             Profit = 80508,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"892",
+            UnitsSold = 892,
             ManufacturingPrice = 120,
             SalePrice = 7,
             GrossSales = 6244,
@@ -13093,14 +13091,14 @@ public class SalesData
             COGS = 13325,
             Profit = 8946.5,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"2200",
+            UnitsSold = 2200,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 275000,
@@ -13109,14 +13107,14 @@ public class SalesData
             COGS = 229920,
             Profit = 21130,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"3389",
+            UnitsSold = 3389,
             ManufacturingPrice = 120,
             SalePrice = 300,
             GrossSales = 1016700,
@@ -13125,14 +13123,14 @@ public class SalesData
             COGS = 213250,
             Profit = 777860,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"2990",
+            UnitsSold = 2990,
             ManufacturingPrice = 250,
             SalePrice = 125,
             GrossSales = 373750,
@@ -13141,14 +13139,14 @@ public class SalesData
             COGS = 40920,
             Profit = 328567.5,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"4013",
+            UnitsSold = 4013,
             ManufacturingPrice = 250,
             SalePrice = 15,
             GrossSales = 60195,
@@ -13157,14 +13155,14 @@ public class SalesData
             COGS = 6410,
             Profit = 52823.5,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"739",
+            UnitsSold = 739,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 258650,
@@ -13173,14 +13171,14 @@ public class SalesData
             COGS = 729820,
             Profit = 569415,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"1989",
+            UnitsSold = 1989,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 596700,
@@ -13189,14 +13187,14 @@ public class SalesData
             COGS = 108000,
             Profit = 475740,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"2991",
+            UnitsSold = 2991,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 897300,
@@ -13205,14 +13203,14 @@ public class SalesData
             COGS = 573500,
             Profit = 254980,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"4237",
+            UnitsSold = 4237,
             ManufacturingPrice = 250,
             SalePrice = 15,
             GrossSales = 63555,
@@ -13221,14 +13219,14 @@ public class SalesData
             COGS = 21670,
             Profit = 38634.5,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"1442",
+            UnitsSold = 1442,
             ManufacturingPrice = 250,
             SalePrice = 125,
             GrossSales = 180250,
@@ -13237,14 +13235,14 @@ public class SalesData
             COGS = 303480,
             Profit = 154842.5,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"2712",
+            UnitsSold = 2712,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 949200,
@@ -13253,14 +13251,14 @@ public class SalesData
             COGS = 486200,
             Profit = 397550,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"1508",
+            UnitsSold = 1508,
             ManufacturingPrice = 260,
             SalePrice = 125,
             GrossSales = 188500,
@@ -13269,14 +13267,14 @@ public class SalesData
             COGS = 69480,
             Profit = 111782.5,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"4245",
+            UnitsSold = 4245,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 1485750,
@@ -13285,14 +13283,14 @@ public class SalesData
             COGS = 582400,
             Profit = 824950,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"2630",
+            UnitsSold = 2630,
             ManufacturingPrice = 260,
             SalePrice = 300,
             GrossSales = 789000,
@@ -13301,14 +13299,14 @@ public class SalesData
             COGS = 748250,
             Profit = 49040,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"1182",
+            UnitsSold = 1182,
             ManufacturingPrice = 260,
             SalePrice = 12,
             GrossSales = 14184,
@@ -13317,14 +13315,14 @@ public class SalesData
             COGS = 10561.5,
             Profit = 602.1,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"1221",
+            UnitsSold = 1221,
             ManufacturingPrice = 260,
             SalePrice = 20,
             GrossSales = 24420,
@@ -13333,14 +13331,14 @@ public class SalesData
             COGS = 20390,
             Profit = 48,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"963",
+            UnitsSold = 963,
             ManufacturingPrice = 260,
             SalePrice = 12,
             GrossSales = 11556,
@@ -13349,14 +13347,14 @@ public class SalesData
             COGS = 7722,
             Profit = 745.2,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"3243",
+            UnitsSold = 3243,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 1135050,
@@ -13365,14 +13363,14 @@ public class SalesData
             COGS = 183820,
             Profit = 926485,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Luxe",
-            UnitsSold = @"1120",
+            UnitsSold = 1120,
             ManufacturingPrice = 260,
             SalePrice = 15,
             GrossSales = 16800,
@@ -13381,14 +13379,14 @@ public class SalesData
             COGS = 20720,
             Profit = 7028,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Luxe",
-            UnitsSold = @"1174",
+            UnitsSold = 1174,
             ManufacturingPrice = 260,
             SalePrice = 300,
             GrossSales = 352200,
@@ -13397,14 +13395,14 @@ public class SalesData
             COGS = 213250,
             Profit = 113360,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"2541",
+            UnitsSold = 2541,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 30492,
@@ -13413,14 +13411,14 @@ public class SalesData
             COGS = 3594,
             Profit = 25316.64,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"3246",
+            UnitsSold = 3246,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 22722,
@@ -13429,14 +13427,14 @@ public class SalesData
             COGS = 12660,
             Profit = 8112.36,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"1531",
+            UnitsSold = 1531,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 18372,
@@ -13445,14 +13443,14 @@ public class SalesData
             COGS = 3594,
             Profit = 13196.64,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"2526",
+            UnitsSold = 2526,
             ManufacturingPrice = 120,
             SalePrice = 15,
             GrossSales = 37890,
@@ -13461,14 +13459,14 @@ public class SalesData
             COGS = 3840,
             Profit = 33416.4,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"1136",
+            UnitsSold = 1136,
             ManufacturingPrice = 120,
             SalePrice = 12,
             GrossSales = 13632,
@@ -13477,14 +13475,14 @@ public class SalesData
             COGS = 1416,
             Profit = 11592.96,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"1983",
+            UnitsSold = 1983,
             ManufacturingPrice = 250,
             SalePrice = 7,
             GrossSales = 13881,
@@ -13493,14 +13491,14 @@ public class SalesData
             COGS = 7895,
             Profit = 4770.17,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"3259",
+            UnitsSold = 3259,
             ManufacturingPrice = 250,
             SalePrice = 12,
             GrossSales = 39108,
@@ -13509,14 +13507,14 @@ public class SalesData
             COGS = 3015,
             Profit = 34766.4,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"3267",
+            UnitsSold = 3267,
             ManufacturingPrice = 260,
             SalePrice = 15,
             GrossSales = 49005,
@@ -13525,14 +13523,14 @@ public class SalesData
             COGS = 31995,
             Profit = 11730.82,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"2454",
+            UnitsSold = 2454,
             ManufacturingPrice = 260,
             SalePrice = 12,
             GrossSales = 29448,
@@ -13541,14 +13539,14 @@ public class SalesData
             COGS = 1416,
             Profit = 27408.96,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"2643",
+            UnitsSold = 2643,
             ManufacturingPrice = 3,
             SalePrice = 12,
             GrossSales = 31716,
@@ -13557,14 +13555,14 @@ public class SalesData
             COGS = 5811,
             Profit = 23348.16,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"383",
+            UnitsSold = 383,
             ManufacturingPrice = 3,
             SalePrice = 350,
             GrossSales = 134050,
@@ -13573,14 +13571,14 @@ public class SalesData
             COGS = 205920,
             Profit = 102362,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"2801",
+            UnitsSold = 2801,
             ManufacturingPrice = 3,
             SalePrice = 300,
             GrossSales = 840300,
@@ -13589,14 +13587,14 @@ public class SalesData
             COGS = 702750,
             Profit = 44787,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"1667",
+            UnitsSold = 1667,
             ManufacturingPrice = 3,
             SalePrice = 125,
             GrossSales = 208375,
@@ -13605,14 +13603,14 @@ public class SalesData
             COGS = 292920,
             Profit = 118108.75,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"3539",
+            UnitsSold = 3539,
             ManufacturingPrice = 3,
             SalePrice = 15,
             GrossSales = 53085,
@@ -13621,14 +13619,14 @@ public class SalesData
             COGS = 15600,
             Profit = 34911,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"4226",
+            UnitsSold = 4226,
             ManufacturingPrice = 3,
             SalePrice = 7,
             GrossSales = 29582,
@@ -13637,14 +13635,14 @@ public class SalesData
             COGS = 13530,
             Profit = 13968.38,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"2220",
+            UnitsSold = 2220,
             ManufacturingPrice = 5,
             SalePrice = 350,
             GrossSales = 777000,
@@ -13653,14 +13651,14 @@ public class SalesData
             COGS = 199160,
             Profit = 548349,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"776",
+            UnitsSold = 776,
             ManufacturingPrice = 5,
             SalePrice = 20,
             GrossSales = 15520,
@@ -13669,14 +13667,14 @@ public class SalesData
             COGS = 29920,
             Profit = 20982.4,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"553",
+            UnitsSold = 553,
             ManufacturingPrice = 5,
             SalePrice = 15,
             GrossSales = 8295,
@@ -13685,14 +13683,14 @@ public class SalesData
             COGS = 21570,
             Profit = 16834.05,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"2107",
+            UnitsSold = 2107,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 632100,
@@ -13701,14 +13699,14 @@ public class SalesData
             COGS = 218250,
             Profit = 385041,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"2468",
+            UnitsSold = 2468,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 49360,
@@ -13717,14 +13715,14 @@ public class SalesData
             COGS = 11220,
             Profit = 35671.6,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"1905",
+            UnitsSold = 1905,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 666750,
@@ -13733,14 +13731,14 @@ public class SalesData
             COGS = 547170,
             Profit = 38556.75,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"3658",
+            UnitsSold = 3658,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 43896,
@@ -13749,14 +13747,14 @@ public class SalesData
             COGS = 12078,
             Profit = 26503.68,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"4301",
+            UnitsSold = 4301,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 51612,
@@ -13765,14 +13763,14 @@ public class SalesData
             COGS = 7276.5,
             Profit = 41133.84,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"2446",
+            UnitsSold = 2446,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 48920,
@@ -13781,14 +13779,14 @@ public class SalesData
             COGS = 23940,
             Profit = 19713.2,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"4209",
+            UnitsSold = 4209,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 63135,
@@ -13797,14 +13795,14 @@ public class SalesData
             COGS = 19840,
             Profit = 40021.4,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"3353",
+            UnitsSold = 3353,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 419125,
@@ -13813,14 +13811,14 @@ public class SalesData
             COGS = 292920,
             Profit = 92641.25,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"1401",
+            UnitsSold = 1401,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 28020,
@@ -13829,14 +13827,14 @@ public class SalesData
             COGS = 29920,
             Profit = 8482.4,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"1865",
+            UnitsSold = 1865,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 559500,
@@ -13845,14 +13843,14 @@ public class SalesData
             COGS = 341500,
             Profit = 172922,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"463",
+            UnitsSold = 463,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 9260,
@@ -13861,14 +13859,14 @@ public class SalesData
             COGS = 28050,
             Profit = 24961,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"4177",
+            UnitsSold = 4177,
             ManufacturingPrice = 120,
             SalePrice = 15,
             GrossSales = 62655,
@@ -13877,14 +13875,14 @@ public class SalesData
             COGS = 6550,
             Profit = 55024.25,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"2523",
+            UnitsSold = 2523,
             ManufacturingPrice = 120,
             SalePrice = 350,
             GrossSales = 883050,
@@ -13893,14 +13891,14 @@ public class SalesData
             COGS = 89440,
             Profit = 780366,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"1930",
+            UnitsSold = 1930,
             ManufacturingPrice = 120,
             SalePrice = 7,
             GrossSales = 13510,
@@ -13909,14 +13907,14 @@ public class SalesData
             COGS = 9040,
             Profit = 3077.84,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"1301",
+            UnitsSold = 1301,
             ManufacturingPrice = 250,
             SalePrice = 12,
             GrossSales = 15612,
@@ -13925,14 +13923,14 @@ public class SalesData
             COGS = 5202,
             Profit = 8121.12,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"4125",
+            UnitsSold = 4125,
             ManufacturingPrice = 250,
             SalePrice = 125,
             GrossSales = 515625,
@@ -13941,14 +13939,14 @@ public class SalesData
             COGS = 66480,
             Profit = 441527.5,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"607",
+            UnitsSold = 607,
             ManufacturingPrice = 250,
             SalePrice = 20,
             GrossSales = 12140,
@@ -13957,14 +13955,14 @@ public class SalesData
             COGS = 29350,
             Profit = 23667,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"478",
+            UnitsSold = 478,
             ManufacturingPrice = 260,
             SalePrice = 125,
             GrossSales = 59750,
@@ -13973,14 +13971,14 @@ public class SalesData
             COGS = 379800,
             Profit = 363568.75,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"4489",
+            UnitsSold = 4489,
             ManufacturingPrice = 260,
             SalePrice = 20,
             GrossSales = 89780,
@@ -13989,14 +13987,14 @@ public class SalesData
             COGS = 26290,
             Profit = 57706.2,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Luxe",
-            UnitsSold = @"1504",
+            UnitsSold = 1504,
             ManufacturingPrice = 260,
             SalePrice = 125,
             GrossSales = 188000,
@@ -14005,14 +14003,14 @@ public class SalesData
             COGS = 171960,
             Profit = 3663.75,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"3763",
+            UnitsSold = 3763,
             ManufacturingPrice = 260,
             SalePrice = 125,
             GrossSales = 470375,
@@ -14021,14 +14019,14 @@ public class SalesData
             COGS = 113640,
             Profit = 343713.75,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"2412",
+            UnitsSold = 2412,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 844200,
@@ -14037,14 +14035,14 @@ public class SalesData
             COGS = 89440,
             Profit = 741516,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"2342",
+            UnitsSold = 2342,
             ManufacturingPrice = 260,
             SalePrice = 15,
             GrossSales = 35130,
@@ -14053,14 +14051,14 @@ public class SalesData
             COGS = 21570,
             Profit = 10000.95,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"4451",
+            UnitsSold = 4451,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 31157,
@@ -14069,14 +14067,14 @@ public class SalesData
             COGS = 1900,
             Profit = 28964.4,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"3796",
+            UnitsSold = 3796,
             ManufacturingPrice = 3,
             SalePrice = 350,
             GrossSales = 1328600,
@@ -14085,14 +14083,14 @@ public class SalesData
             COGS = 230360,
             Profit = 1061028,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"2286",
+            UnitsSold = 2286,
             ManufacturingPrice = 3,
             SalePrice = 125,
             GrossSales = 285750,
@@ -14101,14 +14099,14 @@ public class SalesData
             COGS = 289920,
             Profit = 40410,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"3614",
+            UnitsSold = 3614,
             ManufacturingPrice = 3,
             SalePrice = 125,
             GrossSales = 451750,
@@ -14117,14 +14115,14 @@ public class SalesData
             COGS = 258720,
             Profit = 160690,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"1716",
+            UnitsSold = 1716,
             ManufacturingPrice = 3,
             SalePrice = 15,
             GrossSales = 25740,
@@ -14133,14 +14131,14 @@ public class SalesData
             COGS = 26890,
             Profit = 5990.2,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Royal Oak",
-            UnitsSold = @"1301",
+            UnitsSold = 1301,
             ManufacturingPrice = 5,
             SalePrice = 15,
             GrossSales = 19515,
@@ -14149,14 +14147,14 @@ public class SalesData
             COGS = 6770,
             Profit = 11526.4,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"4175",
+            UnitsSold = 4175,
             ManufacturingPrice = 5,
             SalePrice = 300,
             GrossSales = 1252500,
@@ -14165,14 +14163,14 @@ public class SalesData
             COGS = 443250,
             Profit = 745422,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"975",
+            UnitsSold = 975,
             ManufacturingPrice = 5,
             SalePrice = 7,
             GrossSales = 6825,
@@ -14181,14 +14179,14 @@ public class SalesData
             COGS = 12100,
             Profit = 7307.8,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"1154",
+            UnitsSold = 1154,
             ManufacturingPrice = 5,
             SalePrice = 7,
             GrossSales = 8078,
@@ -14197,14 +14195,14 @@ public class SalesData
             COGS = 13670,
             Profit = 7888.56,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"1873",
+            UnitsSold = 1873,
             ManufacturingPrice = 5,
             SalePrice = 20,
             GrossSales = 37460,
@@ -14213,14 +14211,14 @@ public class SalesData
             COGS = 17150,
             Profit = 16194,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"3766",
+            UnitsSold = 3766,
             ManufacturingPrice = 5,
             SalePrice = 300,
             GrossSales = 1129800,
@@ -14229,14 +14227,14 @@ public class SalesData
             COGS = 296500,
             Profit = 790604,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"3558",
+            UnitsSold = 3558,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 1067400,
@@ -14245,14 +14243,14 @@ public class SalesData
             COGS = 873750,
             Profit = 67830,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"3156",
+            UnitsSold = 3156,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 1104600,
@@ -14261,14 +14259,14 @@ public class SalesData
             COGS = 230360,
             Profit = 837028,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"2994",
+            UnitsSold = 2994,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 374250,
@@ -14277,14 +14275,14 @@ public class SalesData
             COGS = 258720,
             Profit = 83190,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"2087",
+            UnitsSold = 2087,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 41740,
@@ -14293,14 +14291,14 @@ public class SalesData
             COGS = 9050,
             Profit = 30518,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"1056",
+            UnitsSold = 1056,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 21120,
@@ -14309,14 +14307,14 @@ public class SalesData
             COGS = 17150,
             Profit = 146,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"1353",
+            UnitsSold = 1353,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 473550,
@@ -14325,14 +14323,14 @@ public class SalesData
             COGS = 414440,
             Profit = 7838,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"416",
+            UnitsSold = 416,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 124800,
@@ -14341,14 +14339,14 @@ public class SalesData
             COGS = 339750,
             Profit = 263874,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"3880",
+            UnitsSold = 3880,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 1164000,
@@ -14357,14 +14355,14 @@ public class SalesData
             COGS = 537500,
             Profit = 549100,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"809",
+            UnitsSold = 809,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 283150,
@@ -14373,14 +14371,14 @@ public class SalesData
             COGS = 311220,
             Profit = 78344,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"1892",
+            UnitsSold = 1892,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 28380,
@@ -14389,14 +14387,14 @@ public class SalesData
             COGS = 3800,
             Profit = 23896,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"2072",
+            UnitsSold = 2072,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 41440,
@@ -14405,14 +14403,14 @@ public class SalesData
             COGS = 12330,
             Profit = 26150.8,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"3052",
+            UnitsSold = 3052,
             ManufacturingPrice = 120,
             SalePrice = 350,
             GrossSales = 1068200,
@@ -14421,14 +14419,14 @@ public class SalesData
             COGS = 362700,
             Profit = 646910,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"3121",
+            UnitsSold = 3121,
             ManufacturingPrice = 120,
             SalePrice = 350,
             GrossSales = 1092350,
@@ -14437,14 +14435,14 @@ public class SalesData
             COGS = 256360,
             Profit = 794578,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"2059",
+            UnitsSold = 2059,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 41180,
@@ -14453,14 +14451,14 @@ public class SalesData
             COGS = 9050,
             Profit = 29958,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"4254",
+            UnitsSold = 4254,
             ManufacturingPrice = 250,
             SalePrice = 12,
             GrossSales = 51048,
@@ -14469,14 +14467,14 @@ public class SalesData
             COGS = 6327,
             Profit = 41684.04,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"1293",
+            UnitsSold = 1293,
             ManufacturingPrice = 250,
             SalePrice = 15,
             GrossSales = 19395,
@@ -14485,14 +14483,14 @@ public class SalesData
             COGS = 38745,
             Profit = 26324.1,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"1293",
+            UnitsSold = 1293,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 452550,
@@ -14501,14 +14499,14 @@ public class SalesData
             COGS = 161980,
             Profit = 264404,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"230",
+            UnitsSold = 230,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 80500,
@@ -14517,14 +14515,14 @@ public class SalesData
             COGS = 256360,
             Profit = 217272,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"1723",
+            UnitsSold = 1723,
             ManufacturingPrice = 250,
             SalePrice = 125,
             GrossSales = 215375,
@@ -14533,14 +14531,14 @@ public class SalesData
             COGS = 286440,
             Profit = 106870,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"240",
+            UnitsSold = 240,
             ManufacturingPrice = 250,
             SalePrice = 20,
             GrossSales = 4800,
@@ -14549,14 +14547,14 @@ public class SalesData
             COGS = 12330,
             Profit = 10489.2,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"2571",
+            UnitsSold = 2571,
             ManufacturingPrice = 260,
             SalePrice = 350,
             GrossSales = 899850,
@@ -14565,14 +14563,14 @@ public class SalesData
             COGS = 70200,
             Profit = 818310,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Luxe",
-            UnitsSold = @"1661",
+            UnitsSold = 1661,
             ManufacturingPrice = 260,
             SalePrice = 7,
             GrossSales = 11627,
@@ -14581,14 +14579,14 @@ public class SalesData
             COGS = 17107.5,
             Profit = 8354.56,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"4474",
+            UnitsSold = 4474,
             ManufacturingPrice = 260,
             SalePrice = 7,
             GrossSales = 31318,
@@ -14597,14 +14595,14 @@ public class SalesData
             COGS = 13670,
             Profit = 15351.44,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"833",
+            UnitsSold = 833,
             ManufacturingPrice = 260,
             SalePrice = 15,
             GrossSales = 12495,
@@ -14613,14 +14611,14 @@ public class SalesData
             COGS = 25480,
             Profit = 17571.4,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"674",
+            UnitsSold = 674,
             ManufacturingPrice = 3,
             SalePrice = 20,
             GrossSales = 13480,
@@ -14629,14 +14627,14 @@ public class SalesData
             COGS = 25215,
             Profit = 17786.6,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"778",
+            UnitsSold = 778,
             ManufacturingPrice = 5,
             SalePrice = 12,
             GrossSales = 9336,
@@ -14645,14 +14643,14 @@ public class SalesData
             COGS = 7983,
             Profit = 2478.84,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"1457",
+            UnitsSold = 1457,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 29140,
@@ -14661,14 +14659,14 @@ public class SalesData
             COGS = 15310,
             Profit = 10155.6,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"3158",
+            UnitsSold = 3158,
             ManufacturingPrice = 250,
             SalePrice = 7,
             GrossSales = 22106,
@@ -14677,14 +14675,14 @@ public class SalesData
             COGS = 7455,
             Profit = 13398.56,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"4095",
+            UnitsSold = 4095,
             ManufacturingPrice = 250,
             SalePrice = 20,
             GrossSales = 81900,
@@ -14693,14 +14691,14 @@ public class SalesData
             COGS = 15310,
             Profit = 62915.6,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"3170",
+            UnitsSold = 3170,
             ManufacturingPrice = 260,
             SalePrice = 12,
             GrossSales = 38040,
@@ -14709,14 +14707,14 @@ public class SalesData
             COGS = 8283,
             Profit = 25781.16,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"493",
+            UnitsSold = 493,
             ManufacturingPrice = 3,
             SalePrice = 15,
             GrossSales = 7395,
@@ -14725,14 +14723,14 @@ public class SalesData
             COGS = 25670,
             Profit = 23280.65,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"3286",
+            UnitsSold = 3286,
             ManufacturingPrice = 250,
             SalePrice = 15,
             GrossSales = 49290,
@@ -14741,14 +14739,14 @@ public class SalesData
             COGS = 25670,
             Profit = 18614.35,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"3563",
+            UnitsSold = 3563,
             ManufacturingPrice = 3,
             SalePrice = 350,
             GrossSales = 1247050,
@@ -14757,14 +14755,14 @@ public class SalesData
             COGS = 239980,
             Profit = 965073.5,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"4109",
+            UnitsSold = 4109,
             ManufacturingPrice = 3,
             SalePrice = 350,
             GrossSales = 1438150,
@@ -14773,14 +14771,14 @@ public class SalesData
             COGS = 465400,
             Profit = 891305,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"3653",
+            UnitsSold = 3653,
             ManufacturingPrice = 3,
             SalePrice = 20,
             GrossSales = 73060,
@@ -14789,14 +14787,14 @@ public class SalesData
             COGS = 4420,
             Profit = 67490.8,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Royal Oak",
-            UnitsSold = @"2203",
+            UnitsSold = 2203,
             ManufacturingPrice = 5,
             SalePrice = 350,
             GrossSales = 771050,
@@ -14805,14 +14803,14 @@ public class SalesData
             COGS = 255450,
             Profit = 470896.25,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Royal Oak",
-            UnitsSold = @"2924",
+            UnitsSold = 2924,
             ManufacturingPrice = 5,
             SalePrice = 7,
             GrossSales = 20468,
@@ -14821,14 +14819,14 @@ public class SalesData
             COGS = 6490,
             Profit = 12796.82,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"2650",
+            UnitsSold = 2650,
             ManufacturingPrice = 5,
             SalePrice = 12,
             GrossSales = 31800,
@@ -14837,14 +14835,14 @@ public class SalesData
             COGS = 1812,
             Profit = 29045.76,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"1194",
+            UnitsSold = 1194,
             ManufacturingPrice = 5,
             SalePrice = 20,
             GrossSales = 23880,
@@ -14853,14 +14851,14 @@ public class SalesData
             COGS = 22550,
             Profit = 4533,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"3366",
+            UnitsSold = 3366,
             ManufacturingPrice = 5,
             SalePrice = 20,
             GrossSales = 67320,
@@ -14869,14 +14867,14 @@ public class SalesData
             COGS = 12490,
             Profit = 51582.6,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"1325",
+            UnitsSold = 1325,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 9275,
@@ -14885,14 +14883,14 @@ public class SalesData
             COGS = 7192.5,
             Profit = 773.47,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"4243",
+            UnitsSold = 4243,
             ManufacturingPrice = 10,
             SalePrice = 300,
             GrossSales = 1272900,
@@ -14901,14 +14899,14 @@ public class SalesData
             COGS = 201750,
             Profit = 1039677,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"2887",
+            UnitsSold = 2887,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 57740,
@@ -14917,14 +14915,14 @@ public class SalesData
             COGS = 26410,
             Profit = 24463.4,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"3839",
+            UnitsSold = 3839,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 76780,
@@ -14933,14 +14931,14 @@ public class SalesData
             COGS = 27080,
             Profit = 42659.2,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"1863",
+            UnitsSold = 1863,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 652050,
@@ -14949,14 +14947,14 @@ public class SalesData
             COGS = 684320,
             Profit = 152026,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"2858",
+            UnitsSold = 2858,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 357250,
@@ -14965,14 +14963,14 @@ public class SalesData
             COGS = 189960,
             Profit = 141566.25,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"2868",
+            UnitsSold = 2868,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 34416,
@@ -14981,14 +14979,14 @@ public class SalesData
             COGS = 1713,
             Profit = 31812.24,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"3805",
+            UnitsSold = 3805,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 26635,
@@ -14997,14 +14995,14 @@ public class SalesData
             COGS = 13480,
             Profit = 10701.64,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"3914",
+            UnitsSold = 3914,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 58710,
@@ -15013,14 +15011,14 @@ public class SalesData
             COGS = 15650,
             Profit = 40008.25,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"524",
+            UnitsSold = 524,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 10480,
@@ -15029,14 +15027,14 @@ public class SalesData
             COGS = 12490,
             Profit = 5257.4,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"3095",
+            UnitsSold = 3095,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 1083250,
@@ -15045,14 +15043,14 @@ public class SalesData
             COGS = 92820,
             Profit = 974186.5,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"2410",
+            UnitsSold = 2410,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 28920,
@@ -15061,14 +15059,14 @@ public class SalesData
             COGS = 3039,
             Profit = 24300.72,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"4263",
+            UnitsSold = 4263,
             ManufacturingPrice = 120,
             SalePrice = 15,
             GrossSales = 63945,
@@ -15077,14 +15075,14 @@ public class SalesData
             COGS = 39975,
             Profit = 16174.88,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"2239",
+            UnitsSold = 2239,
             ManufacturingPrice = 120,
             SalePrice = 350,
             GrossSales = 783650,
@@ -15093,14 +15091,14 @@ public class SalesData
             COGS = 684320,
             Profit = 20426,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"569",
+            UnitsSold = 569,
             ManufacturingPrice = 120,
             SalePrice = 7,
             GrossSales = 3983,
@@ -15109,14 +15107,14 @@ public class SalesData
             COGS = 5950,
             Profit = 3049.9,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"3889",
+            UnitsSold = 3889,
             ManufacturingPrice = 120,
             SalePrice = 12,
             GrossSales = 46668,
@@ -15125,14 +15123,14 @@ public class SalesData
             COGS = 1812,
             Profit = 43913.76,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"1378",
+            UnitsSold = 1378,
             ManufacturingPrice = 120,
             SalePrice = 15,
             GrossSales = 20670,
@@ -15141,14 +15139,14 @@ public class SalesData
             COGS = 6600,
             Profit = 12783,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"2253",
+            UnitsSold = 2253,
             ManufacturingPrice = 120,
             SalePrice = 12,
             GrossSales = 27036,
@@ -15157,14 +15155,14 @@ public class SalesData
             COGS = 1230,
             Profit = 25166.4,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"3202",
+            UnitsSold = 3202,
             ManufacturingPrice = 120,
             SalePrice = 300,
             GrossSales = 960600,
@@ -15173,14 +15171,14 @@ public class SalesData
             COGS = 651250,
             Profit = 207755,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"3835",
+            UnitsSold = 3835,
             ManufacturingPrice = 120,
             SalePrice = 12,
             GrossSales = 46020,
@@ -15189,14 +15187,14 @@ public class SalesData
             COGS = 3039,
             Profit = 41400.72,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"2487",
+            UnitsSold = 2487,
             ManufacturingPrice = 250,
             SalePrice = 125,
             GrossSales = 310875,
@@ -15205,14 +15203,14 @@ public class SalesData
             COGS = 189960,
             Profit = 95191.25,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"4428",
+            UnitsSold = 4428,
             ManufacturingPrice = 250,
             SalePrice = 15,
             GrossSales = 66420,
@@ -15221,14 +15219,14 @@ public class SalesData
             COGS = 15650,
             Profit = 47718.25,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"1200",
+            UnitsSold = 1200,
             ManufacturingPrice = 260,
             SalePrice = 125,
             GrossSales = 150000,
@@ -15237,14 +15235,14 @@ public class SalesData
             COGS = 199080,
             Profit = 76038.75,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Luxe",
-            UnitsSold = @"2953",
+            UnitsSold = 2953,
             ManufacturingPrice = 260,
             SalePrice = 7,
             GrossSales = 20671,
@@ -15253,14 +15251,14 @@ public class SalesData
             COGS = 5950,
             Profit = 13638.1,
             Date = @"6/1/19",
-            MonthName = @"June",
+            Month = @"June",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"1453",
+            UnitsSold = 1453,
             ManufacturingPrice = 260,
             SalePrice = 12,
             GrossSales = 17436,
@@ -15269,14 +15267,14 @@ public class SalesData
             COGS = 1230,
             Profit = 15566.4,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Luxe",
-            UnitsSold = @"865",
+            UnitsSold = 865,
             ManufacturingPrice = 260,
             SalePrice = 12,
             GrossSales = 10380,
@@ -15285,14 +15283,14 @@ public class SalesData
             COGS = 5310,
             Profit = 2308.8,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"1072",
+            UnitsSold = 1072,
             ManufacturingPrice = 3,
             SalePrice = 20,
             GrossSales = 21440,
@@ -15301,14 +15299,14 @@ public class SalesData
             COGS = 25790,
             Profit = 11571.2,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"1737",
+            UnitsSold = 1737,
             ManufacturingPrice = 3,
             SalePrice = 20,
             GrossSales = 34740,
@@ -15317,14 +15315,14 @@ public class SalesData
             COGS = 17430,
             Profit = 12429.6,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"1535",
+            UnitsSold = 1535,
             ManufacturingPrice = 3,
             SalePrice = 7,
             GrossSales = 10745,
@@ -15333,14 +15331,14 @@ public class SalesData
             COGS = 14980,
             Profit = 7171.08,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"2532",
+            UnitsSold = 2532,
             ManufacturingPrice = 3,
             SalePrice = 7,
             GrossSales = 17724,
@@ -15349,14 +15347,14 @@ public class SalesData
             COGS = 1400,
             Profit = 16049.6,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Royal Oak",
-            UnitsSold = @"1765",
+            UnitsSold = 1765,
             ManufacturingPrice = 5,
             SalePrice = 7,
             GrossSales = 12355,
@@ -15365,14 +15363,14 @@ public class SalesData
             COGS = 1465,
             Profit = 10602.86,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Royal Oak",
-            UnitsSold = @"1567",
+            UnitsSold = 1567,
             ManufacturingPrice = 5,
             SalePrice = 7,
             GrossSales = 10969,
@@ -15381,14 +15379,14 @@ public class SalesData
             COGS = 14980,
             Profit = 6947.08,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"2640",
+            UnitsSold = 2640,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 39600,
@@ -15397,14 +15395,14 @@ public class SalesData
             COGS = 2780,
             Profit = 36236.2,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"3079",
+            UnitsSold = 3079,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 61580,
@@ -15413,14 +15411,14 @@ public class SalesData
             COGS = 24280,
             Profit = 30501.6,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"4130",
+            UnitsSold = 4130,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 61950,
@@ -15429,14 +15427,14 @@ public class SalesData
             COGS = 17670,
             Profit = 40569.3,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"2938",
+            UnitsSold = 2938,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 35256,
@@ -15445,14 +15443,14 @@ public class SalesData
             COGS = 4179,
             Profit = 28736.76,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"3080",
+            UnitsSold = 3080,
             ManufacturingPrice = 250,
             SalePrice = 7,
             GrossSales = 21560,
@@ -15461,14 +15459,14 @@ public class SalesData
             COGS = 1400,
             Profit = 19885.6,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Luxe",
-            UnitsSold = @"1530",
+            UnitsSold = 1530,
             ManufacturingPrice = 260,
             SalePrice = 12,
             GrossSales = 18360,
@@ -15477,14 +15475,14 @@ public class SalesData
             COGS = 4179,
             Profit = 11840.76,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"3537",
+            UnitsSold = 3537,
             ManufacturingPrice = 260,
             SalePrice = 12,
             GrossSales = 42444,
@@ -15493,14 +15491,14 @@ public class SalesData
             COGS = 6045,
             Profit = 33013.8,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"2021",
+            UnitsSold = 2021,
             ManufacturingPrice = 3,
             SalePrice = 300,
             GrossSales = 606300,
@@ -15509,14 +15507,14 @@ public class SalesData
             COGS = 200250,
             Profit = 372408,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"1804",
+            UnitsSold = 1804,
             ManufacturingPrice = 3,
             SalePrice = 125,
             GrossSales = 225500,
@@ -15525,14 +15523,14 @@ public class SalesData
             COGS = 122760,
             Profit = 84837.5,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"1014",
+            UnitsSold = 1014,
             ManufacturingPrice = 3,
             SalePrice = 300,
             GrossSales = 304200,
@@ -15541,14 +15539,14 @@ public class SalesData
             COGS = 374000,
             Profit = 132632,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Kensington",
-            UnitsSold = @"2913",
+            UnitsSold = 2913,
             ManufacturingPrice = 3,
             SalePrice = 300,
             GrossSales = 873900,
@@ -15557,14 +15555,14 @@ public class SalesData
             COGS = 252500,
             Profit = 578980,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"763",
+            UnitsSold = 763,
             ManufacturingPrice = 3,
             SalePrice = 15,
             GrossSales = 11445,
@@ -15573,14 +15571,14 @@ public class SalesData
             COGS = 15130,
             Profit = 6862.3,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Kensington",
-            UnitsSold = @"1425",
+            UnitsSold = 1425,
             ManufacturingPrice = 3,
             SalePrice = 15,
             GrossSales = 21375,
@@ -15589,14 +15587,14 @@ public class SalesData
             COGS = 23000,
             Profit = 6455,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Kensington",
-            UnitsSold = @"4357",
+            UnitsSold = 4357,
             ManufacturingPrice = 3,
             SalePrice = 125,
             GrossSales = 544625,
@@ -15605,14 +15603,14 @@ public class SalesData
             COGS = 338520,
             Profit = 156737.5,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"2138",
+            UnitsSold = 2138,
             ManufacturingPrice = 5,
             SalePrice = 350,
             GrossSales = 748300,
@@ -15621,14 +15619,14 @@ public class SalesData
             COGS = 579150,
             Profit = 60002.5,
             Date = @"1/1/19",
-            MonthName = @"January",
+            Month = @"January",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Royal Oak",
-            UnitsSold = @"3825",
+            UnitsSold = 3825,
             ManufacturingPrice = 5,
             SalePrice = 350,
             GrossSales = 1338750,
@@ -15637,14 +15635,14 @@ public class SalesData
             COGS = 311740,
             Profit = 968259,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"3393",
+            UnitsSold = 3393,
             ManufacturingPrice = 5,
             SalePrice = 350,
             GrossSales = 1187550,
@@ -15653,14 +15651,14 @@ public class SalesData
             COGS = 52000,
             Profit = 1125750,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"2215",
+            UnitsSold = 2215,
             ManufacturingPrice = 5,
             SalePrice = 7,
             GrossSales = 15505,
@@ -15669,14 +15667,14 @@ public class SalesData
             COGS = 1940,
             Profit = 13184.76,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"2278",
+            UnitsSold = 2278,
             ManufacturingPrice = 5,
             SalePrice = 7,
             GrossSales = 15946,
@@ -15685,14 +15683,14 @@ public class SalesData
             COGS = 8635,
             Profit = 5618.54,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Royal Oak",
-            UnitsSold = @"403",
+            UnitsSold = 403,
             ManufacturingPrice = 5,
             SalePrice = 15,
             GrossSales = 6045,
@@ -15701,14 +15699,14 @@ public class SalesData
             COGS = 23000,
             Profit = 21785,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"289",
+            UnitsSold = 289,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 5780,
@@ -15717,14 +15715,14 @@ public class SalesData
             COGS = 2600,
             Profit = 2452,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"749",
+            UnitsSold = 749,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 11235,
@@ -15733,14 +15731,14 @@ public class SalesData
             COGS = 24700,
             Profit = 18652,
             Date = @"9/1/18",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"372",
+            UnitsSold = 372,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 5580,
@@ -15749,14 +15747,14 @@ public class SalesData
             COGS = 17430,
             Profit = 15510.3,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"3781",
+            UnitsSold = 3781,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 45372,
@@ -15765,14 +15763,14 @@ public class SalesData
             COGS = 8742,
             Profit = 31734.48,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"1785",
+            UnitsSold = 1785,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 12495,
@@ -15781,14 +15779,14 @@ public class SalesData
             COGS = 8655,
             Profit = 2143.62,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"4029",
+            UnitsSold = 4029,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 1410150,
@@ -15797,14 +15795,14 @@ public class SalesData
             COGS = 182000,
             Profit = 1193850,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"2813",
+            UnitsSold = 2813,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 33756,
@@ -15813,14 +15811,14 @@ public class SalesData
             COGS = 6666,
             Profit = 23357.04,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"2150",
+            UnitsSold = 2150,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 752500,
@@ -15829,14 +15827,14 @@ public class SalesData
             COGS = 306020,
             Profit = 388807,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"2093",
+            UnitsSold = 2093,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 732550,
@@ -15845,14 +15843,14 @@ public class SalesData
             COGS = 499720,
             Profit = 138652,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"4391",
+            UnitsSold = 4391,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 548875,
@@ -15861,14 +15859,14 @@ public class SalesData
             COGS = 189000,
             Profit = 332312.5,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"2695",
+            UnitsSold = 2695,
             ManufacturingPrice = 120,
             SalePrice = 20,
             GrossSales = 53900,
@@ -15877,14 +15875,14 @@ public class SalesData
             COGS = 6060,
             Profit = 46143.2,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"1337",
+            UnitsSold = 1337,
             ManufacturingPrice = 120,
             SalePrice = 300,
             GrossSales = 401100,
@@ -15893,14 +15891,14 @@ public class SalesData
             COGS = 615000,
             Profit = 317220,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Burlington",
-            UnitsSold = @"2621",
+            UnitsSold = 2621,
             ManufacturingPrice = 120,
             SalePrice = 300,
             GrossSales = 786300,
@@ -15909,14 +15907,14 @@ public class SalesData
             COGS = 67250,
             Profit = 707752,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Burlington",
-            UnitsSold = @"3735",
+            UnitsSold = 3735,
             ManufacturingPrice = 120,
             SalePrice = 300,
             GrossSales = 1120500,
@@ -15925,14 +15923,14 @@ public class SalesData
             COGS = 634000,
             Profit = 379988,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Mandarin",
-            UnitsSold = @"4320",
+            UnitsSold = 4320,
             ManufacturingPrice = 250,
             SalePrice = 7,
             GrossSales = 30240,
@@ -15941,14 +15939,14 @@ public class SalesData
             COGS = 14515,
             Profit = 12880.06,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"2828",
+            UnitsSold = 2828,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 848400,
@@ -15957,14 +15955,14 @@ public class SalesData
             COGS = 635250,
             Profit = 106428,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"2586",
+            UnitsSold = 2586,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 775800,
@@ -15973,14 +15971,14 @@ public class SalesData
             COGS = 67250,
             Profit = 697252,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"1248",
+            UnitsSold = 1248,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 374400,
@@ -15989,14 +15987,14 @@ public class SalesData
             COGS = 374000,
             Profit = 62432,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"4035",
+            UnitsSold = 4035,
             ManufacturingPrice = 250,
             SalePrice = 300,
             GrossSales = 1210500,
@@ -16005,14 +16003,14 @@ public class SalesData
             COGS = 252500,
             Profit = 915580,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"359",
+            UnitsSold = 359,
             ManufacturingPrice = 250,
             SalePrice = 350,
             GrossSales = 125650,
@@ -16021,14 +16019,14 @@ public class SalesData
             COGS = 333060,
             Profit = 270179,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"3926",
+            UnitsSold = 3926,
             ManufacturingPrice = 260,
             SalePrice = 300,
             GrossSales = 1177800,
@@ -16037,14 +16035,14 @@ public class SalesData
             COGS = 222000,
             Profit = 918504,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"4247",
+            UnitsSold = 4247,
             ManufacturingPrice = 260,
             SalePrice = 125,
             GrossSales = 530875,
@@ -16053,14 +16051,14 @@ public class SalesData
             COGS = 341280,
             Profit = 139825,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Luxe",
-            UnitsSold = @"2695",
+            UnitsSold = 2695,
             ManufacturingPrice = 260,
             SalePrice = 12,
             GrossSales = 32340,
@@ -16069,14 +16067,14 @@ public class SalesData
             COGS = 7425,
             Profit = 20757,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Luxe",
-            UnitsSold = @"1104",
+            UnitsSold = 1104,
             ManufacturingPrice = 260,
             SalePrice = 15,
             GrossSales = 16560,
@@ -16085,14 +16083,14 @@ public class SalesData
             COGS = 17430,
             Profit = 4530.3,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Luxe",
-            UnitsSold = @"1449",
+            UnitsSold = 1449,
             ManufacturingPrice = 260,
             SalePrice = 12,
             GrossSales = 17388,
@@ -16101,14 +16099,14 @@ public class SalesData
             COGS = 8742,
             Profit = 3750.48,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Luxe",
-            UnitsSold = @"1131",
+            UnitsSold = 1131,
             ManufacturingPrice = 260,
             SalePrice = 7,
             GrossSales = 7917,
@@ -16117,14 +16115,14 @@ public class SalesData
             COGS = 8655,
             Profit = 2434.38,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"1468",
+            UnitsSold = 1468,
             ManufacturingPrice = 260,
             SalePrice = 7,
             GrossSales = 10276,
@@ -16133,14 +16131,14 @@ public class SalesData
             COGS = 8635,
             Profit = 51.46,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"1272",
+            UnitsSold = 1272,
             ManufacturingPrice = 260,
             SalePrice = 15,
             GrossSales = 19080,
@@ -16149,14 +16147,14 @@ public class SalesData
             COGS = 18700,
             Profit = 3547,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Kensington",
-            UnitsSold = @"1403",
+            UnitsSold = 1403,
             ManufacturingPrice = 3,
             SalePrice = 125,
             GrossSales = 175375,
@@ -16165,14 +16163,14 @@ public class SalesData
             COGS = 140880,
             Profit = 12482.5,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"2161",
+            UnitsSold = 2161,
             ManufacturingPrice = 3,
             SalePrice = 125,
             GrossSales = 270125,
@@ -16181,14 +16179,14 @@ public class SalesData
             COGS = 332040,
             Profit = 113796.25,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Kensington",
-            UnitsSold = @"1937",
+            UnitsSold = 1937,
             ManufacturingPrice = 3,
             SalePrice = 125,
             GrossSales = 242125,
@@ -16197,14 +16195,14 @@ public class SalesData
             COGS = 130200,
             Profit = 91581.25,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"2879",
+            UnitsSold = 2879,
             ManufacturingPrice = 5,
             SalePrice = 300,
             GrossSales = 863700,
@@ -16213,14 +16211,14 @@ public class SalesData
             COGS = 136500,
             Profit = 702630,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"1330",
+            UnitsSold = 1330,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 26600,
@@ -16229,14 +16227,14 @@ public class SalesData
             COGS = 11580,
             Profit = 11546,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"2426",
+            UnitsSold = 2426,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 36390,
@@ -16245,14 +16243,14 @@ public class SalesData
             COGS = 16140,
             Profit = 16618.5,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"2033",
+            UnitsSold = 2033,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 14231,
@@ -16261,14 +16259,14 @@ public class SalesData
             COGS = 12675,
             Profit = 1105.75,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"2029",
+            UnitsSold = 2029,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 710150,
@@ -16277,14 +16275,14 @@ public class SalesData
             COGS = 741260,
             Profit = 180787.5,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"1049",
+            UnitsSold = 1049,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 15735,
@@ -16293,14 +16291,14 @@ public class SalesData
             COGS = 25590,
             Profit = 15612.75,
             Date = @"8/1/19",
-            MonthName = @"August",
+            Month = @"August",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"1062",
+            UnitsSold = 1062,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 21240,
@@ -16309,14 +16307,14 @@ public class SalesData
             COGS = 2670,
             Profit = 17769,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"2509",
+            UnitsSold = 2509,
             ManufacturingPrice = 10,
             SalePrice = 125,
             GrossSales = 313625,
@@ -16325,14 +16323,14 @@ public class SalesData
             COGS = 130200,
             Profit = 163081.25,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Vermont",
-            UnitsSold = @"1743",
+            UnitsSold = 1743,
             ManufacturingPrice = 10,
             SalePrice = 15,
             GrossSales = 26145,
@@ -16341,14 +16339,14 @@ public class SalesData
             COGS = 11750,
             Profit = 11751.25,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"3418",
+            UnitsSold = 3418,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 1196300,
@@ -16357,14 +16355,14 @@ public class SalesData
             COGS = 521820,
             Profit = 569112.5,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Vermont",
-            UnitsSold = @"1751",
+            UnitsSold = 1751,
             ManufacturingPrice = 10,
             SalePrice = 350,
             GrossSales = 612850,
@@ -16373,14 +16371,14 @@ public class SalesData
             COGS = 559260,
             Profit = 59337.5,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Vermont",
-            UnitsSold = @"3228",
+            UnitsSold = 3228,
             ManufacturingPrice = 10,
             SalePrice = 12,
             GrossSales = 38736,
@@ -16389,14 +16387,14 @@ public class SalesData
             COGS = 2742,
             Profit = 34348.8,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Vermont",
-            UnitsSold = @"1105",
+            UnitsSold = 1105,
             ManufacturingPrice = 10,
             SalePrice = 20,
             GrossSales = 22100,
@@ -16405,14 +16403,14 @@ public class SalesData
             COGS = 2930,
             Profit = 18291,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Burlington",
-            UnitsSold = @"2778",
+            UnitsSold = 2778,
             ManufacturingPrice = 120,
             SalePrice = 12,
             GrossSales = 33336,
@@ -16421,14 +16419,14 @@ public class SalesData
             COGS = 1500,
             Profit = 30936,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"1173",
+            UnitsSold = 1173,
             ManufacturingPrice = 120,
             SalePrice = 15,
             GrossSales = 17595,
@@ -16437,14 +16435,14 @@ public class SalesData
             COGS = 28260,
             Profit = 17023.5,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Burlington",
-            UnitsSold = @"3160",
+            UnitsSold = 3160,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 395000,
@@ -16453,14 +16451,14 @@ public class SalesData
             COGS = 79560,
             Profit = 303008.75,
             Date = @"9/1/19",
-            MonthName = @"September",
+            Month = @"September",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"4322",
+            UnitsSold = 4322,
             ManufacturingPrice = 120,
             SalePrice = 300,
             GrossSales = 1296600,
@@ -16469,14 +16467,14 @@ public class SalesData
             COGS = 643500,
             Profit = 537270,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"1901",
+            UnitsSold = 1901,
             ManufacturingPrice = 120,
             SalePrice = 125,
             GrossSales = 237625,
@@ -16485,14 +16483,14 @@ public class SalesData
             COGS = 292560,
             Profit = 100647.5,
             Date = @"12/1/18",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Burlington",
-            UnitsSold = @"2980",
+            UnitsSold = 2980,
             ManufacturingPrice = 120,
             SalePrice = 12,
             GrossSales = 35760,
@@ -16501,14 +16499,14 @@ public class SalesData
             COGS = 2742,
             Profit = 31372.8,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"4068",
+            UnitsSold = 4068,
             ManufacturingPrice = 250,
             SalePrice = 20,
             GrossSales = 81360,
@@ -16517,14 +16515,14 @@ public class SalesData
             COGS = 8655,
             Profit = 70108.5,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"2105",
+            UnitsSold = 2105,
             ManufacturingPrice = 250,
             SalePrice = 15,
             GrossSales = 31575,
@@ -16533,14 +16531,14 @@ public class SalesData
             COGS = 4920,
             Profit = 25548,
             Date = @"7/1/19",
-            MonthName = @"July",
+            Month = @"July",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"1647",
+            UnitsSold = 1647,
             ManufacturingPrice = 250,
             SalePrice = 20,
             GrossSales = 32940,
@@ -16549,14 +16547,14 @@ public class SalesData
             COGS = 2670,
             Profit = 29469,
             Date = @"10/1/18",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"235",
+            UnitsSold = 235,
             ManufacturingPrice = 250,
             SalePrice = 15,
             GrossSales = 3525,
@@ -16565,14 +16563,14 @@ public class SalesData
             COGS = 11750,
             Profit = 10868.75,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Mandarin",
-            UnitsSold = @"3617",
+            UnitsSold = 3617,
             ManufacturingPrice = 250,
             SalePrice = 125,
             GrossSales = 452125,
@@ -16581,14 +16579,14 @@ public class SalesData
             COGS = 354480,
             Profit = 42257.5,
             Date = @"11/1/18",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2018"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"India",
             Product = @"Mandarin",
-            UnitsSold = @"2106",
+            UnitsSold = 2106,
             ManufacturingPrice = 250,
             SalePrice = 125,
             GrossSales = 263250,
@@ -16597,14 +16595,14 @@ public class SalesData
             COGS = 66240,
             Profit = 186660,
             Date = @"11/1/19",
-            MonthName = @"November",
+            Month = @"November",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Mandarin",
-            UnitsSold = @"2351",
+            UnitsSold = 2351,
             ManufacturingPrice = 250,
             SalePrice = 20,
             GrossSales = 47020,
@@ -16613,14 +16611,14 @@ public class SalesData
             COGS = 2930,
             Profit = 43211,
             Date = @"12/1/19",
-            MonthName = @"December",
+            Month = @"December",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"UK",
             Product = @"Luxe",
-            UnitsSold = @"1897",
+            UnitsSold = 1897,
             ManufacturingPrice = 260,
             SalePrice = 300,
             GrossSales = 569100,
@@ -16629,14 +16627,14 @@ public class SalesData
             COGS = 618750,
             Profit = 161025,
             Date = @"3/1/19",
-            MonthName = @"March",
+            Month = @"March",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Luxe",
-            UnitsSold = @"647",
+            UnitsSold = 647,
             ManufacturingPrice = 260,
             SalePrice = 300,
             GrossSales = 194100,
@@ -16645,14 +16643,14 @@ public class SalesData
             COGS = 136500,
             Profit = 33030,
             Date = @"10/1/19",
-            MonthName = @"October",
+            Month = @"October",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Brazil",
             Product = @"Royal Oak",
-            UnitsSold = @"3621",
+            UnitsSold = 3621,
             ManufacturingPrice = 5,
             SalePrice = 7,
             GrossSales = 25347,
@@ -16661,14 +16659,14 @@ public class SalesData
             COGS = 6840,
             Profit = 17070.6,
             Date = @"2/1/19",
-            MonthName = @"February",
+            Month = @"February",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"Japan",
             Product = @"Vermont",
-            UnitsSold = @"3221",
+            UnitsSold = 3221,
             ManufacturingPrice = 10,
             SalePrice = 7,
             GrossSales = 22547,
@@ -16677,14 +16675,14 @@ public class SalesData
             COGS = 3615,
             Profit = 18172.85,
             Date = @"4/1/19",
-            MonthName = @"April",
+            Month = @"April",
             Year = @"2019"
         });
         this.Add(new SalesDataItem()
         {
             Country = @"USA",
             Product = @"Mandarin",
-            UnitsSold = @"493",
+            UnitsSold = 493,
             ManufacturingPrice = 250,
             SalePrice = 12,
             GrossSales = 5916,
@@ -16693,9 +16691,8 @@ public class SalesData
             COGS = 5418,
             Profit = 2752.8,
             Date = @"5/1/19",
-            MonthName = @"May",
+            Month = @"May",
             Year = @"2019"
         });
     }
 }
-//end data

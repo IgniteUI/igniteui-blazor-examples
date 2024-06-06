@@ -1,0 +1,164 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+
+        <IgbTreeGrid
+            AutoGenerate="false"
+            Data="WorkersDataSource"
+            PrimaryKey="ID"
+            ForeignKey="ParentID"
+            AllowFiltering="true"
+            FilterMode="FilterMode.ExcelStyleFilter"
+            Locale="EN"
+            SummaryCalculationMode="GridSummaryCalculationMode.RootLevelOnly"
+        >
+            <IgbColumn
+                Field="Name"
+                Header="Full Name"
+                DataType="GridColumnDataType.String"
+                Width="220px"
+                Sortable="true"
+                HasSummary="true"
+                Editable="true"
+                Resizable="true"
+            ></IgbColumn>
+            <IgbColumn
+                Field="Avatar"
+                Header="Photo"
+                DataType="GridColumnDataType.Image"
+                Width="120px"
+                Resizable="true"
+            ></IgbColumn>
+            <IgbColumn
+                Field="Title"
+                Header="Title"
+                DataType="GridColumnDataType.String"
+                Width="250px"
+                Sortable="true"
+                HasSummary="true"
+                Editable="true"
+                Resizable="true"
+            ></IgbColumn>
+            <IgbColumn
+                Field="Age"
+                Header="Age"
+                DataType="GridColumnDataType.Number"
+                Width="120px"
+                Sortable="true"
+                HasSummary="true"
+                Editable="true"
+                Resizable="true"
+            ></IgbColumn>
+            <IgbColumn
+                Field="HireFullDate"
+                Header="Hire Full Date"
+                DataType="GridColumnDataType.DateTime"
+                Width="300px"
+                Sortable="true"
+                HasSummary="true"
+                Editable="true"
+                Resizable="true"
+                PipeArgs="ColumnPipeArgs1"
+            ></IgbColumn>
+            <IgbColumn
+                Field="HireDate"
+                Header="Hire Date"
+                DataType="GridColumnDataType.Date"
+                Width="160px"
+                Sortable="true"
+                HasSummary="true"
+                Editable="true"
+                Resizable="true"
+                PipeArgs="ColumnPipeArgs2"
+            ></IgbColumn>
+            <IgbColumn
+                Field="HireTime"
+                Header="Hire Time"
+                DataType="GridColumnDataType.Time"
+                Width="160px"
+                Sortable="true"
+                HasSummary="true"
+                Editable="true"
+                Resizable="true"
+                PipeArgs="ColumnPipeArgs3"
+            ></IgbColumn>
+            <IgbColumn
+                Field="Salary"
+                Header="Salary"
+                DataType="GridColumnDataType.Currency"
+                Width="120px"
+                Sortable="true"
+                HasSummary="true"
+                Editable="true"
+                Resizable="true"
+                PipeArgs="ColumnPipeArgs4"
+            ></IgbColumn>
+            <IgbColumn
+                Field="CompletedTasks"
+                Header="Completed Tasks"
+                DataType="GridColumnDataType.Percent"
+                Width="200px"
+                Sortable="true"
+                Editable="true"
+                Resizable="true"
+                PipeArgs="ColumnPipeArgs5"
+            ></IgbColumn>
+            <IgbColumn
+                Field="OnPTO"
+                Header="On PTO"
+                DataType="GridColumnDataType.Boolean"
+                Width="120px"
+                Sortable="true"
+                Editable="true"
+                Resizable="true"
+            ></IgbColumn>
+        </IgbTreeGrid>
+
+    </div>
+</div>
+
+@code {
+
+    public IgbColumnPipeArgs ColumnPipeArgs1 = new IgbColumnPipeArgs()
+    {
+        Format = "long",
+        Timezone = "UTC+0"
+    };
+
+    public IgbColumnPipeArgs ColumnPipeArgs2 = new IgbColumnPipeArgs()
+    {
+        Format = "mediumDate"
+    };
+
+    public IgbColumnPipeArgs ColumnPipeArgs3 = new IgbColumnPipeArgs()
+    {
+        Format = "shortTime",
+        Timezone = "UTC+0"
+    };
+
+    public IgbColumnPipeArgs ColumnPipeArgs4 = new IgbColumnPipeArgs()
+    {
+        CurrencyCode = "",
+        DigitsInfo = "1.3-3"
+    };
+
+    public IgbColumnPipeArgs ColumnPipeArgs5 = new IgbColumnPipeArgs()
+    {
+        DigitsInfo = "2.2-3"
+    };
+
+    private WorkersData _WorkersData = null;
+    public WorkersData WorkersDataSource
+    {
+        get
+        {
+            if (_WorkersData == null)
+            {
+                _WorkersData = new WorkersData();
+            }
+            return _WorkersData;
+        }
+    }
+
+}

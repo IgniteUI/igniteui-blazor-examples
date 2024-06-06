@@ -1,0 +1,85 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbTreeGrid
+            AutoGenerate="false"
+            Data="OrdersTreeData"
+            PrimaryKey="ID"
+            ForeignKey="ParentID"
+        >
+            <IgbGridToolbar @ref="toolbar">
+                <IgbButton @onclick="ShowProgress">
+                  Simulate long running operation
+                </IgbButton>
+                <IgbGridToolbarActions>
+                  <IgbGridToolbarExporter></IgbGridToolbarExporter>
+                </IgbGridToolbarActions>
+            </IgbGridToolbar>
+
+            <IgbColumn
+                Field="ID"
+                Header="Order ID"
+                DataType="GridColumnDataType.String"
+            ></IgbColumn>
+            <IgbColumn
+                Field="Name"
+                Header="Order Product"
+                DataType="GridColumnDataType.String"
+            ></IgbColumn>
+            <IgbColumn
+                Field="Category"
+                Header="Category"
+                DataType="GridColumnDataType.String"
+            ></IgbColumn>
+            <IgbColumn
+                Field="Units"
+                Header="Units"
+                DataType="GridColumnDataType.Number"
+            ></IgbColumn>
+            <IgbColumn
+                Field="UnitPrice"
+                Header="Unit Price"
+                DataType="GridColumnDataType.Currency"
+            ></IgbColumn>
+            <IgbColumn
+                Field="Price"
+                Header="Price"
+                DataType="GridColumnDataType.Currency"
+            ></IgbColumn>
+            <IgbColumn
+                Field="OrderDate"
+                Header="Order Date"
+                DataType="GridColumnDataType.Date"
+            ></IgbColumn>
+        </IgbTreeGrid>
+
+    </div>
+</div>
+
+@code {
+
+    private IgbGridToolbar toolbar;
+
+    private async void ShowProgress()
+    {
+        this.toolbar.ShowProgress = true;
+
+        await Task.Delay(5000);
+
+        this.toolbar.ShowProgress = false;
+    }
+
+    private OrdersTreeData _ordersTreeData = null;
+    public OrdersTreeData OrdersTreeData
+    {
+        get
+        {
+            if (_ordersTreeData == null)
+            {
+                _ordersTreeData = new OrdersTreeData();
+            }
+            return _ordersTreeData;
+        }
+    }
+}

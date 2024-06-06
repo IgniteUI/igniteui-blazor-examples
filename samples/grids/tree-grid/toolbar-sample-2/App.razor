@@ -1,0 +1,103 @@
+@using IgniteUI.Blazor.Controls
+@inject IJSRuntime JS
+
+<div class="container sample ig-typography">
+    <div class="container vertical">
+
+        <div class="control_panel">
+            <IgbInput InputOcurred=ChangeTitle DisplayType=@InputType.Text Label="Toolbar title" Value="Tree grid toolbar" />
+            <IgbSwitch CheckedChanged="EnableFiltering" Checked=true>Advanced Filtering</IgbSwitch>
+            <IgbSwitch CheckedChanged="EnableHiding" Checked=true>Column hiding</IgbSwitch>
+            <IgbSwitch CheckedChanged="EnablePinning" Checked=true>Column pinning</IgbSwitch>
+            <IgbSwitch CheckedChanged="EnableExport" Checked=true>Exporting</IgbSwitch>
+        </div>
+
+        <IgbTreeGrid
+            AutoGenerate="false"
+            Id="treeGrid"
+            Data="EmployeesFlatAvatars"
+            PrimaryKey="ID"
+            ForeignKey="ParentID"
+        >
+            <IgbGridToolbar>
+                <IgbGridToolbarTitle>
+                    <span>@($"{this.title}")</span>
+                </IgbGridToolbarTitle>
+                <IgbGridToolbarActions>
+                    <IgbGridToolbarAdvancedFiltering></IgbGridToolbarAdvancedFiltering>
+                    <IgbGridToolbarHiding></IgbGridToolbarHiding>
+                    <IgbGridToolbarPinning></IgbGridToolbarPinning>
+                    <IgbGridToolbarExporter></IgbGridToolbarExporter>
+                </IgbGridToolbarActions>
+            </IgbGridToolbar>
+            
+            <IgbColumn
+                Field="Name"
+                DataType="GridColumnDataType.String"
+                BodyTemplateScript="WebTreeGridAvatarCellTemplate"
+            ></IgbColumn>
+            <IgbColumn
+                Field="Title"
+                DataType="GridColumnDataType.String"
+            ></IgbColumn>
+            <IgbColumn
+                Field="ID"
+                DataType="GridColumnDataType.Number"
+            ></IgbColumn>
+            <IgbColumn
+                Field="Age"
+                DataType="GridColumnDataType.Number"
+            ></IgbColumn>
+            <IgbColumn
+                Field="HireDate"
+                DataType="GridColumnDataType.Date"
+            ></IgbColumn>
+            
+        </IgbTreeGrid>
+
+    </div>
+</div>
+
+@code {
+
+    public string title = "Tree grid toolbar";
+
+    public void ChangeTitle(IgbComponentValueChangedEventArgs args)
+    {
+        this.title = args.Detail;
+    }
+
+    public async void EnableFiltering(bool isChecked)
+    {
+        await JS.InvokeAsync<string>("EnableFiltering");
+    }
+
+    public async void EnableHiding(bool isChecked)
+    {
+        await JS.InvokeAsync<string>("EnableHiding");
+    }
+
+    public async void EnablePinning(bool isChecked)
+    {
+        await JS.InvokeAsync<string>("EnablePinning");
+    }
+
+    public async void EnableExport(bool isChecked)
+    {
+        await JS.InvokeAsync<string>("EnableExport");
+    }
+
+    private EmployeesFlatAvatars _employeesFlatAvatars = null;
+    public EmployeesFlatAvatars EmployeesFlatAvatars
+    {
+        get
+        {
+            if (_employeesFlatAvatars == null)
+            {
+                _employeesFlatAvatars = new EmployeesFlatAvatars();
+            }
+            return _employeesFlatAvatars;
+        }
+    }
+
+}

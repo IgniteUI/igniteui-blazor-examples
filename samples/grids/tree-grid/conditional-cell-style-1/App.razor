@@ -8,42 +8,56 @@
         Name="treeGrid"
         @ref="treeGrid"
         Id="treeGrid"
-        Data="FoodsData"
+        Data="OrdersTreeData"
         PrimaryKey="ID"
         ForeignKey="ParentID">
             <IgbColumn
             Field="ID"
-            Header="Product ID"
+            Header="Order ID"
             DataType="GridColumnDataType.String">
             </IgbColumn>
 
             <IgbColumn
             Field="Name"
-            Header="Product Name"
+            Header="Order Product"
             DataType="GridColumnDataType.String"
-            BodyTemplateScript="WebTreeGridProductNameTemplate"
+            CellClassesScript="WebTreeGridAllergensCellClassesHandler"
             Name="column1"
             @ref="column1">
             </IgbColumn>
 
             <IgbColumn
+            Field="Category"
+            DataType="GridColumnDataType.String">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Units"
+            DataType="GridColumnDataType.Number">
+            </IgbColumn>
+
+            <IgbColumn
             Field="UnitPrice"
             Header="Unit Price"
-            DataType="GridColumnDataType.Number"
-            BodyTemplateScript="WebTreeGridUnitPriceTemplate"
+            DataType="GridColumnDataType.Currency"
+            CellClassesScript="WebTreeGridUnitPriceCellClassesHandler"
             Name="column2"
             @ref="column2">
             </IgbColumn>
 
             <IgbColumn
-            Field="AddedDate"
-            Header="Added Date"
+            Field="Price"
+            DataType="GridColumnDataType.Currency">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="OrderDate"
+            Header="Order Date"
             DataType="GridColumnDataType.Date">
             </IgbColumn>
 
             <IgbColumn
-            Field="Discontinued"
-            Header="Discontinued"
+            Field="Delivered"
             DataType="GridColumnDataType.Boolean">
             </IgbColumn>
 
@@ -66,16 +80,16 @@
     private IgbColumn column1;
     private IgbColumn column2;
 
-    private FoodsData _foodsData = null;
-    public FoodsData FoodsData
+    private OrdersTreeData _ordersTreeData = null;
+    public OrdersTreeData OrdersTreeData
     {
         get
         {
-            if (_foodsData == null)
+            if (_ordersTreeData == null)
             {
-                _foodsData = new FoodsData();
+                _ordersTreeData = new OrdersTreeData();
             }
-            return _foodsData;
+            return _ordersTreeData;
         }
     }
 

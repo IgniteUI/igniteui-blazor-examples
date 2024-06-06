@@ -4,7 +4,13 @@
     <div class="legend">
         <IgbDataLegend
         Name="Legend"
-        @ref="legend">
+        @ref="legend"
+        GroupRowVisible="true"
+        GroupTextColor="purple"
+        GroupTextFontSize="20"
+        GroupTextFontFamily="Arial"
+        GroupTextFontStyle="Italic"
+        GroupTextFontWeight="Bold">
         </IgbDataLegend>
 
     </div>
@@ -35,6 +41,8 @@
             DataSource="OlympicMedalsTopCountriesWithTotals"
             Title=""
             ValueMemberPath="Total"
+            DataLegendGroup="Total Medals"
+            HighlightedValuesDataLegendGroup="Country"
             HighlightedValueMemberPath="America"
             HighlightedTitleSuffix="America">
             </IgbColumnSeries>
@@ -42,6 +50,7 @@
             <IgbDataToolTipLayer
             Name="DataToolTipLayer"
             @ref="dataToolTipLayer"
+            GroupRowVisible="true"
             GroupingMode="DataToolTipLayerGroupingMode.Grouped">
             </IgbDataToolTipLayer>
 

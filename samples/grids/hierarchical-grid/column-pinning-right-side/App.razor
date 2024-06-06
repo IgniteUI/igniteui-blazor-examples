@@ -1,0 +1,211 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbHierarchicalGrid
+        Name="grid"
+        @ref="grid"
+        Id="grid"
+        Data="HierarchicalCustomersData"
+        ColumnSelection="GridSelectionMode.Single"
+        PrimaryKey="CustomerID"
+        Pinning="PinningConfig1">
+            <IgbGridToolbar
+            >
+                <IgbGridToolbarActions
+                >
+                    <IgbGridToolbarPinning
+                    >
+                    </IgbGridToolbarPinning>
+
+                </IgbGridToolbarActions>
+
+            </IgbGridToolbar>
+
+            <IgbColumn
+            Field="CustomerID"
+            Hidden="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Company"
+            Header="Company Name"
+            Pinned="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="ContactName"
+            Header="Contact Name">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="ContactTitle"
+            Header="Contact Title">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Address"
+            Header="Address">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="City"
+            Header="City">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="PostalCode"
+            Header="Postal Code">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Country"
+            Header="Country">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Phone">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Fax">
+            </IgbColumn>
+
+            <IgbRowIsland
+            ChildDataKey="Orders"
+            AutoGenerate="false">
+                <IgbColumn
+                Field="OrderDate"
+                Header="Order Date"
+                DataType="GridColumnDataType.Date"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="RequiredDate"
+                Header="Required Date"
+                DataType="GridColumnDataType.Date"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="ShippedDate"
+                Header="Shipped Date"
+                DataType="GridColumnDataType.Date"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="ShipName"
+                Header="Ship Name"
+                DataType="GridColumnDataType.String"
+                Resizable="true"
+                Pinned="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="ShippedVia"
+                Header="Shipped Via"
+                DataType="GridColumnDataType.String"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="Freight"
+                Header="Freight"
+                DataType="GridColumnDataType.String"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbRowIsland
+                ChildDataKey="OrderDetails"
+                AutoGenerate="false">
+                    <IgbColumn
+                    Field="UnitPrice"
+                    Header="Unit Price"
+                    DataType="GridColumnDataType.String"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Quantity"
+                    Header="Quantity"
+                    DataType="GridColumnDataType.String"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Discount"
+                    Header="Discount"
+                    DataType="GridColumnDataType.String"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Weight"
+                    Header="Weight"
+                    DataType="GridColumnDataType.String"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Length"
+                    Header="Length"
+                    DataType="GridColumnDataType.String"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="TotalPrice"
+                    Header="Total Price"
+                    DataType="GridColumnDataType.String"
+                    Resizable="true">
+                    </IgbColumn>
+
+                </IgbRowIsland>
+
+            </IgbRowIsland>
+
+        </IgbHierarchicalGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+
+    }
+
+    private IgbHierarchicalGrid grid;
+    private IgbPinningConfig _pinningConfig1 = null;
+    public IgbPinningConfig PinningConfig1
+    {
+        get
+        {
+            if (this._pinningConfig1 == null)
+            {
+                var pinningConfig1 = new IgbPinningConfig();
+                pinningConfig1.Columns = ColumnPinningPosition.End;
+                this._pinningConfig1 = pinningConfig1;
+            }
+            return this._pinningConfig1;
+        }
+    }
+
+    private HierarchicalCustomersData _hierarchicalCustomersData = null;
+    public HierarchicalCustomersData HierarchicalCustomersData
+    {
+        get
+        {
+            if (_hierarchicalCustomersData == null)
+            {
+                _hierarchicalCustomersData = new HierarchicalCustomersData();
+            }
+            return _hierarchicalCustomersData;
+        }
+    }
+
+}

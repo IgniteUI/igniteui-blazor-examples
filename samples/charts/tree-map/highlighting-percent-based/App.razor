@@ -1,0 +1,56 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="legend-title">
+        Comparing Top Urban Population Percentages between North America & Asia
+    </div>
+    <div class="container vertical fill">
+        <IgbTreemap
+        Name="treemap"
+        @ref="treemap"
+        DataSource="CountryTopUrbanPopData"
+        ParentIdMemberPath="Parent"
+        IdMemberPath="Name"
+        LabelMemberPath="Name"
+        ValueMemberPath="Population"
+        HighlightedValueMemberPath="UrbanPopulation"
+        HighlightedValuesDisplayMode="TreemapHighlightedValueDisplayMode.Overlay"
+        FillBrushes="#fc4100 #ffc55a #00215e #2c4e80"
+        RootTitle="Continents"
+        HeaderDisplayMode="TreemapHeaderDisplayMode.Auto"
+        IsFillScaleLogarithmic="true"
+        LabelVerticalAlignment="VerticalAlignment.Top"
+        ParentNodeTopMargin="10"
+        FillScaleMode="TreemapFillScaleMode.Value"
+        TextColor="black"
+        FontSize="25"
+        FontWeight="Bold">
+        </IgbTreemap>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var treemap = this.treemap;
+
+    }
+
+    private IgbTreemap treemap;
+
+    private CountryTopUrbanPopData _countryTopUrbanPopData = null;
+    public CountryTopUrbanPopData CountryTopUrbanPopData
+    {
+        get
+        {
+            if (_countryTopUrbanPopData == null)
+            {
+                _countryTopUrbanPopData = new CountryTopUrbanPopData();
+            }
+            return _countryTopUrbanPopData;
+        }
+    }
+
+}

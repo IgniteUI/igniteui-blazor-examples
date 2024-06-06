@@ -1,0 +1,244 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbHierarchicalGrid
+        AutoGenerate="false"
+        Data="HierarchicalCustomers"
+        Moving="true"
+        Name="hierarchicalGrid1"
+        @ref="hierarchicalGrid1">
+            <IgbPaginator
+            Name="paginator"
+            @ref="paginator"
+            PerPage="15">
+            </IgbPaginator>
+
+            <IgbColumn
+            Field="CustomerID"
+            DataType="GridColumnDataType.String"
+            HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Company"
+            DataType="GridColumnDataType.String"
+            Width="150px"
+            HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+            Name="column2"
+            @ref="column2">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="ContactName"
+            DataType="GridColumnDataType.String"
+            Width="150px"
+            HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+            Name="column3"
+            @ref="column3">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="ContactTitle"
+            DataType="GridColumnDataType.String"
+            Width="150px"
+            HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+            Name="column4"
+            @ref="column4">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Address"
+            DataType="GridColumnDataType.String"
+            HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+            Name="column5"
+            @ref="column5">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="City"
+            DataType="GridColumnDataType.String"
+            HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+            Name="column6"
+            @ref="column6">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="PostalCode"
+            DataType="GridColumnDataType.String"
+            HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+            Name="column7"
+            @ref="column7">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Country"
+            DataType="GridColumnDataType.String"
+            HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+            Name="column8"
+            @ref="column8">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Phone"
+            DataType="GridColumnDataType.String"
+            HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+            Name="column9"
+            @ref="column9">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Fax"
+            DataType="GridColumnDataType.String"
+            HeaderTemplateScript="HierarchicalGridPinHeaderTemplate"
+            Name="column10"
+            @ref="column10">
+            </IgbColumn>
+
+            <IgbRowIsland
+            ChildDataKey="Orders"
+            AutoGenerate="false"
+            Moving="true">
+                <IgbColumn
+                Field="OrderID"
+                DataType="GridColumnDataType.Number">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="EmployeeID"
+                DataType="GridColumnDataType.Number">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="OrderDate"
+                DataType="GridColumnDataType.Date">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="RequiredDate"
+                DataType="GridColumnDataType.Date">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="ShippedDate"
+                DataType="GridColumnDataType.Date">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="ShipVia"
+                DataType="GridColumnDataType.Number">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="Freight"
+                DataType="GridColumnDataType.Number">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="ShipName"
+                DataType="GridColumnDataType.String">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="ShipAddress"
+                DataType="GridColumnDataType.String">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="ShipCity"
+                DataType="GridColumnDataType.String">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="ShipPostalCode"
+                DataType="GridColumnDataType.String">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="ShipCountry"
+                DataType="GridColumnDataType.String">
+                </IgbColumn>
+
+                <IgbRowIsland
+                ChildDataKey="OrderDetails"
+                AutoGenerate="false"
+                Moving="true">
+                    <IgbColumn
+                    Field="ProductID"
+                    DataType="GridColumnDataType.Number">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="UnitPrice"
+                    DataType="GridColumnDataType.Number">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Quantity"
+                    DataType="GridColumnDataType.Number">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Discount"
+                    DataType="GridColumnDataType.Number">
+                    </IgbColumn>
+
+                </IgbRowIsland>
+
+            </IgbRowIsland>
+
+        </IgbHierarchicalGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var hierarchicalGrid1 = this.hierarchicalGrid1;
+        var paginator = this.paginator;
+        var column1 = this.column1;
+        var column2 = this.column2;
+        var column3 = this.column3;
+        var column4 = this.column4;
+        var column5 = this.column5;
+        var column6 = this.column6;
+        var column7 = this.column7;
+        var column8 = this.column8;
+        var column9 = this.column9;
+        var column10 = this.column10;
+
+    }
+
+    private IgbHierarchicalGrid hierarchicalGrid1;
+    private IgbPaginator paginator;
+    private IgbColumn column1;
+    private IgbColumn column2;
+    private IgbColumn column3;
+    private IgbColumn column4;
+    private IgbColumn column5;
+    private IgbColumn column6;
+    private IgbColumn column7;
+    private IgbColumn column8;
+    private IgbColumn column9;
+    private IgbColumn column10;
+
+    private HierarchicalCustomers _hierarchicalCustomers = null;
+    public HierarchicalCustomers HierarchicalCustomers
+    {
+        get
+        {
+            if (_hierarchicalCustomers == null)
+            {
+                _hierarchicalCustomers = new HierarchicalCustomers();
+            }
+            return _hierarchicalCustomers;
+        }
+    }
+
+}

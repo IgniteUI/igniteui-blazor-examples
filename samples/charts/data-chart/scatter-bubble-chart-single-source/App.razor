@@ -1,12 +1,13 @@
 @using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
+    <div class="legend-title">
+        Total Population of Selected Countries
+    </div>
     <div class="container vertical fill">
         <IgbDataChart
         Name="chart"
-        @ref="chart"
-        ChartTitle="Public Debt vs. Population"
-        Subtitle="GDP per Capita">
+        @ref="chart">
             <IgbNumericXAxis
             Name="xAxis"
             @ref="xAxis"
@@ -29,19 +30,14 @@
             @ref="bubbleSeries1"
             XMemberPath="Population"
             YMemberPath="PublicDebt"
-            RadiusMemberPath="GdpPerCapita"
-            FillMemberPath="GdpPerCapita"
+            RadiusMemberPath="GdpPerPerson"
+            RadiusScale="SizeScale1"
+            FillMemberPath="GdpPerPerson"
             XAxisName="xAxis"
             YAxisName="yAxis"
-            DataSource="WorldDebtAndPopulation"
+            DataSource="WorldStats"
             MarkerType="MarkerType.Circle"
             ShowDefaultTooltip="true">
-                <IgbSizeScale
-                IsLogarithmic="false"
-                MinimumValue="5"
-                MaximumValue="40">
-                </IgbSizeScale>
-
             </IgbBubbleSeries>
 
             <IgbDataToolTipLayer
@@ -70,18 +66,34 @@
     private IgbNumericXAxis xAxis;
     private IgbNumericYAxis yAxis;
     private IgbBubbleSeries bubbleSeries1;
-    private IgbDataToolTipLayer dataToolTipLayer;
-
-    private WorldDebtAndPopulation _worldDebtAndPopulation = null;
-    public WorldDebtAndPopulation WorldDebtAndPopulation
+    private IgbSizeScale _sizeScale1 = null;
+    public IgbSizeScale SizeScale1
     {
         get
         {
-            if (_worldDebtAndPopulation == null)
+            if (this._sizeScale1 == null)
             {
-                _worldDebtAndPopulation = new WorldDebtAndPopulation();
+                var sizeScale1 = new IgbSizeScale();
+                sizeScale1.IsLogarithmic = false;
+                sizeScale1.MinimumValue = 10;
+                sizeScale1.MaximumValue = 50;
+                this._sizeScale1 = sizeScale1;
             }
-            return _worldDebtAndPopulation;
+            return this._sizeScale1;
+        }
+    }
+    private IgbDataToolTipLayer dataToolTipLayer;
+
+    private WorldStats _worldStats = null;
+    public WorldStats WorldStats
+    {
+        get
+        {
+            if (_worldStats == null)
+            {
+                _worldStats = new WorldStats();
+            }
+            return _worldStats;
         }
     }
 

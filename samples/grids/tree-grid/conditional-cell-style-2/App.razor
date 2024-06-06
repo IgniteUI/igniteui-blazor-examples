@@ -1,0 +1,85 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        Name="treeGrid"
+        @ref="treeGrid"
+        Id="treeGrid"
+        Data="OrdersTreeData"
+        PrimaryKey="ID"
+        ForeignKey="ParentID">
+            <IgbColumn
+            Field="ID"
+            Header="Order ID"
+            DataType="GridColumnDataType.String"
+            CellStylesScript="WebTreeGridCellStylesHandler"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Name"
+            Header="Order Product"
+            DataType="GridColumnDataType.String"
+            CellStylesScript="WebTreeGridCellStylesHandler"
+            Name="column2"
+            @ref="column2">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="UnitPrice"
+            Header="Unit Price"
+            DataType="GridColumnDataType.Currency"
+            CellStylesScript="WebTreeGridCellStylesHandler"
+            Name="column3"
+            @ref="column3">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="OrderDate"
+            Header="Order Date"
+            CellStylesScript="WebTreeGridCellStylesHandler"
+            Name="column4"
+            @ref="column4">
+            </IgbColumn>
+
+        </IgbTreeGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var treeGrid = this.treeGrid;
+        var column1 = this.column1;
+        var column2 = this.column2;
+        var column3 = this.column3;
+        var column4 = this.column4;
+
+    }
+
+    private IgbTreeGrid treeGrid;
+    private IgbColumn column1;
+    private IgbColumn column2;
+    private IgbColumn column3;
+    private IgbColumn column4;
+
+    private OrdersTreeData _ordersTreeData = null;
+    public OrdersTreeData OrdersTreeData
+    {
+        get
+        {
+            if (_ordersTreeData == null)
+            {
+                _ordersTreeData = new OrdersTreeData();
+            }
+            return _ordersTreeData;
+        }
+    }
+
+}

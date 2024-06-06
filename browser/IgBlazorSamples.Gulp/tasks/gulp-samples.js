@@ -59,6 +59,7 @@ var sampleSource = [
     // igConfig.SamplesCopyPath + '/grids/tree-grid/**/App.razor',
     // igConfig.SamplesCopyPath + '/grids/tree/**/App.razor',
     // igConfig.SamplesCopyPath + '/grids/pivot-grid/**/App.razor',
+    // igConfig.SamplesCopyPath + '/grids/hierarchical-grid/**/App.razor',
     // igConfig.SamplesCopyPath + '/editors/**/App.razor',
     // igConfig.SamplesCopyPath + '/editors/date-picker/**/App.razor',
     // igConfig.SamplesCopyPath + '/inputs/badge/**/App.razor',
@@ -190,6 +191,7 @@ function getSamples(cb) {
       igConfig.SamplesCopyPath + '/grids/grid/row-drop-indicator/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/row-editing-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/row-paging-style/App.razor',
+      igConfig.SamplesCopyPath + '/grids/grid/infinite-scroll/App.razor', // broken sample - undo when new IG packages deployed
     ];
 
     samples = [];
@@ -590,9 +592,9 @@ function updateIG(cb) {
 
     let packageUpgrades = [
         // update version of IG packages and change to Trial or non-trial
-        { name: "IgniteUI.Blazor",                 version: "23.2.182" },
-        { name: "IgniteUI.Blazor.Documents.Core",  version: "23.2.182" },
-        { name: "IgniteUI.Blazor.Documents.Excel", version: "23.2.182" },
+        { name: "IgniteUI.Blazor",                 version: "23.2.218" },
+        { name: "IgniteUI.Blazor.Documents.Core",  version: "23.2.218" },
+        { name: "IgniteUI.Blazor.Documents.Excel", version: "23.2.218" },
         // these IG packages are sometimes updated:
         { name: "Microsoft.AspNetCore.Components",                       version: "8.0.0" },
         { name: "Microsoft.AspNetCore.Components.Web",                   version: "8.0.0" },

@@ -1,0 +1,137 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+
+        DescriptionType="WebTreeGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="false"
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="SummaryRowHeight"
+            Label="Summary Row Height"
+            ValueType="PropertyEditorValueType.Number"
+            Name="SummaryRowHeightEditor"
+            @ref="summaryRowHeightEditor">
+            </IgbPropertyEditorPropertyDescription>
+
+            <IgbPropertyEditorPropertyDescription
+            Label="Toggle Summaries"
+            ValueType="PropertyEditorValueType.Boolean1"
+            PrimitiveValue="true"
+            Changed="WebTreeGridHasSummariesChange"
+            Name="ToggleSummariesEditor"
+            @ref="toggleSummariesEditor">
+            </IgbPropertyEditorPropertyDescription>
+
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="DisplayDensity"
+            Name="DisplayDensityEditor"
+            @ref="displayDensityEditor">
+            </IgbPropertyEditorPropertyDescription>
+
+        </IgbPropertyEditorPanel>
+
+    </div>
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        Data="EmployeesNestedTreeData"
+        Name="treeGrid"
+        @ref="treeGrid"
+        Id="treeGrid"
+        PrimaryKey="ID"
+        ForeignKey="ParentID">
+            <IgbColumn
+            Field="Name">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Age"
+            DataType="GridColumnDataType.Number"
+            HasSummary="true"
+            SummaryTemplateScript="WebTreeGridSummaryTemplate"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Title"
+            HasSummary="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="HireDate"
+            DataType="GridColumnDataType.Date">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="OnPTO"
+            DataType="GridColumnDataType.Boolean"
+            Editable="true"
+            HasSummary="true">
+            </IgbColumn>
+
+        </IgbTreeGrid>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var summaryRowHeightEditor = this.summaryRowHeightEditor;
+        var toggleSummariesEditor = this.toggleSummariesEditor;
+        var displayDensityEditor = this.displayDensityEditor;
+        var treeGrid = this.treeGrid;
+        var column1 = this.column1;
+
+        this.BindElements = () => {
+            propertyEditorPanel1.Target = this.treeGrid;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription summaryRowHeightEditor;
+    private IgbPropertyEditorPropertyDescription toggleSummariesEditor;
+    private IgbPropertyEditorPropertyDescription displayDensityEditor;
+    private IgbTreeGrid treeGrid;
+    private IgbColumn column1;
+
+    public void WebTreeGridHasSummariesChange(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
+    {
+        bool newValue = bool.Parse(args.NewValue.ToString());
+
+        var column1 = this.treeGrid.ActualColumns[1];
+        var column2 = this.treeGrid.ActualColumns[2];
+        var column3 = this.treeGrid.ActualColumns[4];
+
+        column1.HasSummary = newValue;
+        column2.HasSummary = newValue;
+        column3.HasSummary = newValue;
+    }
+
+    private EmployeesNestedTreeData _employeesNestedTreeData = null;
+    public EmployeesNestedTreeData EmployeesNestedTreeData
+    {
+        get
+        {
+            if (_employeesNestedTreeData == null)
+            {
+                _employeesNestedTreeData = new EmployeesNestedTreeData();
+            }
+            return _employeesNestedTreeData;
+        }
+    }
+
+}

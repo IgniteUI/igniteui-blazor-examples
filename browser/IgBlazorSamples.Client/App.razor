@@ -1,11 +1,18 @@
-@using  IgniteUI.Blazor.Controls
-@using  Microsoft.AspNetCore.Components;
-@using  Infragistics.Samples
-@using  Infragistics.Samples.Core.Navigation
+@using IgniteUI.Blazor.Controls
+@using Microsoft.AspNetCore.Components;
+@using Microsoft.AspNetCore.Routing;
+@using Microsoft.AspNetCore.Components.WebAssembly.Services
+@using System.Reflection
+@using Infragistics.Samples
+@using Infragistics.Samples.Core.Navigation
+
 @inject Infragistics.Samples.Core.SampleBrowser SB
 @inject NavigationManager NavManager
+@inject LazyAssemblyLoader AssemblyLoader
 
-<Router AppAssembly="@typeof(App).Assembly">
+<CustomRouter @ref="Router"
+    AppAssembly="@typeof(App).Assembly"
+    OnNavigateChangedAsync="OnNavigateChangedAsync">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(BrowserLayout)" />
     </Found>
@@ -15,19 +22,19 @@
             @*<p class="no-selection">Sorry, there's nothing at this address.</p>*@
         </LayoutView>
     </NotFound>
-</Router>
+</CustomRouter>
 
 @code {
-
+    private CustomRouter Router;
     protected override async Task OnInitializedAsync()
     {
         SB.AppName = "Blazor Client Samples";
-        
+
         if (NavManager.BaseUri.Contains("/blazor-client/"))
             SB.AppBaseUri = "/blazor-client/samples";
         else
             SB.AppBaseUri = "/samples";
-            
+
         Console.WriteLine("SB.APP Base " + SB.AppBaseUri);
         SB.HomeTitle = "Home"; // "Blazor Samples running on Client-Side";
 
@@ -39,5 +46,46 @@
         Console.WriteLine("SB.APP uses IG version: " + SB.IgVersion);
 
         await Task.Delay(1);
+    }
+
+    private List<Assembly> LazyLoadedAssemblies = new List<Assembly>();
+
+    private async Task OnNavigateChangedAsync(string path)
+    { 
+        await LazyLoadAssemblies(path);
+    }
+
+    // private async Task OnNavigateContextAsync(NavigationContext arg)
+    // {
+    //     await LazyLoadAssemblies(arg.Path);
+    // }
+
+    private async Task LazyLoadAssemblies(string navigationPath)
+    { 
+        try
+        {
+            // lazy load Excel assemblies
+            if (navigationPath.Contains("/excel/"))
+            {
+                Router.IsLazyLoading = true;
+             
+                Console.WriteLine("SB.APP lazy loading IgniteUI.Blazor.Documents.Excel...");
+
+                var list = new List<string> {
+                    "IgniteUI.Blazor.Documents.Core.wasm",
+                    "IgniteUI.Blazor.Documents.Excel.wasm"
+                };
+                var assemblies = await AssemblyLoader.LoadAssembliesAsync(list);
+
+                LazyLoadedAssemblies.AddRange(assemblies);
+             
+            }
+            Router.IsLazyLoading = false;
+            Router.NeedsUpdate = true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("SB.APP failed on lazy loading:\n" + ex.Message);
+        }
     }
 }

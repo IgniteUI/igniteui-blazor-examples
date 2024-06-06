@@ -89,7 +89,7 @@ namespace Infragistics.Samples
         },
             new FinancialRegion() {
             Name = "Europe",
-            Countries= new List<string>() { "Russia", "Germany", "France", "UK", "Italy", "Spain", "Poland", "Romania", "Netherlands", "Belgium", "Greece", "Portugal", "Czech Republic", "Hungary", "Sweden", "Austria", "Switzerland", "Bulgaria", "Denmark", "Finland", "Slovakia", "Norway", "Ireland", "Croatia", "Slovenia", "Estonia", "Iceland" }
+            Countries= new List<string>() { "Russia", "Germany", "France", "UK", "Italy", "Spain", "Poland", "Romania", "Netherlands", "Belgium", "Greece", "Portugal", "Czechia", "Hungary", "Sweden", "Austria", "Switzerland", "Bulgaria", "Denmark", "Finland", "Slovakia", "Norway", "Ireland", "Croatia", "Slovenia", "Estonia", "Iceland" }
         },
             new FinancialRegion() {
             Name = "Africa",

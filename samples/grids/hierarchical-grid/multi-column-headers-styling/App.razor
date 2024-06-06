@@ -1,0 +1,270 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbHierarchicalGrid
+        AutoGenerate="false"
+        Data="HierarchicalCustomers"
+        Name="hierarchicalGrid"
+        @ref="hierarchicalGrid"
+        Id="hierarchicalGrid"
+        PrimaryKey="ID"
+        Moving="true"
+        AllowFiltering="true">
+            <IgbColumn
+            Field="CustomerID"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumnGroup
+            Header="General Information">
+                <IgbColumn
+                Field="Company"
+                DataType="GridColumnDataType.String"
+                Sortable="true"
+                Resizable="true">
+                </IgbColumn>
+
+                <IgbColumnGroup
+                Header="Personal Details">
+                    <IgbColumn
+                    Field="ContactName"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="ContactTitle"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                </IgbColumnGroup>
+
+            </IgbColumnGroup>
+
+            <IgbColumnGroup
+            Header="Address Information">
+                <IgbColumnGroup
+                Header="Location">
+                    <IgbColumn
+                    Field="Address"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="City"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="PostalCode"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Country"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                </IgbColumnGroup>
+
+                <IgbColumnGroup
+                Header="Contact Information">
+                    <IgbColumn
+                    Field="Phone"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Fax"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                </IgbColumnGroup>
+
+            </IgbColumnGroup>
+
+            <IgbRowIsland
+            ChildDataKey="Orders"
+            AutoGenerate="false">
+                <IgbColumnGroup
+                Header="Order Information">
+                    <IgbColumnGroup
+                    Header="Order Details">
+                        <IgbColumn
+                        Field="OrderID"
+                        DataType="GridColumnDataType.Number"
+                        Sortable="true"
+                        Resizable="true">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="EmployeeID"
+                        DataType="GridColumnDataType.Number"
+                        Sortable="true"
+                        Resizable="true">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="OrderDate"
+                        DataType="GridColumnDataType.Date"
+                        Sortable="true"
+                        Resizable="true">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="RequiredDate"
+                        DataType="GridColumnDataType.Date"
+                        Sortable="true"
+                        Resizable="true">
+                        </IgbColumn>
+
+                    </IgbColumnGroup>
+
+                    <IgbColumnGroup
+                    Header="General Shipping Information">
+                        <IgbColumn
+                        Field="ShipDate"
+                        DataType="GridColumnDataType.Date"
+                        Sortable="true"
+                        Resizable="true">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="ShipVia"
+                        DataType="GridColumnDataType.Number"
+                        Sortable="true"
+                        Resizable="true">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="Freight"
+                        DataType="GridColumnDataType.Number"
+                        Sortable="true"
+                        Resizable="true">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="ShipName"
+                        DataType="GridColumnDataType.String"
+                        Sortable="true"
+                        Resizable="true">
+                        </IgbColumn>
+
+                    </IgbColumnGroup>
+
+                    <IgbColumnGroup
+                    Header="Shipping Locations">
+                        <IgbColumn
+                        Field="ShipAddress"
+                        DataType="GridColumnDataType.String"
+                        Sortable="true"
+                        Resizable="true">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="ShipCity"
+                        DataType="GridColumnDataType.String"
+                        Sortable="true"
+                        Resizable="true">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="ShipPostalCode"
+                        DataType="GridColumnDataType.String"
+                        Sortable="true"
+                        Resizable="true">
+                        </IgbColumn>
+
+                        <IgbColumn
+                        Field="ShipCountry"
+                        DataType="GridColumnDataType.String"
+                        Sortable="true"
+                        Resizable="true">
+                        </IgbColumn>
+
+                    </IgbColumnGroup>
+
+                </IgbColumnGroup>
+
+                <IgbRowIsland
+                ChildDataKey="OrderDetails"
+                AutoGenerate="false">
+                    <IgbColumn
+                    Field="ProductID"
+                    DataType="GridColumnDataType.Number"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="UnitPrice"
+                    DataType="GridColumnDataType.Number"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Quantity"
+                    DataType="GridColumnDataType.Number"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Discount"
+                    DataType="GridColumnDataType.Number"
+                    Sortable="true"
+                    Resizable="true">
+                    </IgbColumn>
+
+                </IgbRowIsland>
+
+            </IgbRowIsland>
+
+        </IgbHierarchicalGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var hierarchicalGrid = this.hierarchicalGrid;
+
+    }
+
+    private IgbHierarchicalGrid hierarchicalGrid;
+
+    private HierarchicalCustomers _hierarchicalCustomers = null;
+    public HierarchicalCustomers HierarchicalCustomers
+    {
+        get
+        {
+            if (_hierarchicalCustomers == null)
+            {
+                _hierarchicalCustomers = new HierarchicalCustomers();
+            }
+            return _hierarchicalCustomers;
+        }
+    }
+
+}

@@ -1,0 +1,185 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        Name="PropertyEditor"
+        @ref="propertyEditor"
+
+        DescriptionType="WebHierarchicalGrid"
+        IsHorizontal="true"
+        IsWrappingEnabled="true">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="ColumnSelection"
+            Name="columnSelectionEditor"
+            @ref="columnSelectionEditor"
+            Label="Column Selection">
+            </IgbPropertyEditorPropertyDescription>
+
+        </IgbPropertyEditorPanel>
+
+    </div>
+    <div class="container vertical fill">
+        <IgbHierarchicalGrid
+        AutoGenerate="false"
+        Data="SingersData"
+        Name="hierarchicalGrid"
+        @ref="hierarchicalGrid"
+        Id="hierarchicalGrid"
+        PrimaryKey="ID"
+        AllowFiltering="true"
+        ColumnSelection="GridSelectionMode.Single">
+            <IgbColumn
+            Field="Artist"
+            Header="Artist">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Photo"
+            Header="Photo"
+            DataType="GridColumnDataType.Image"
+            Selectable="false">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Debut"
+            Header="Debut"
+            DataType="GridColumnDataType.Number"
+            Selectable="false">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="GrammyNominations"
+            Header="Grammy Nominations">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="GrammyAwards"
+            Header="Grammy Awards">
+            </IgbColumn>
+
+            <IgbRowIsland
+            ChildDataKey="Albums"
+            AutoGenerate="false"
+            ColumnSelection="GridSelectionMode.Single">
+                <IgbColumn
+                Field="Album"
+                Header="Album">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="LaunchDate"
+                Header="Launch Date"
+                DataType="GridColumnDataType.Date"
+                Selectable="false">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="BillboardReview"
+                Header="Billboard Review">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="USBillboard200"
+                Header="US Billboard 200">
+                </IgbColumn>
+
+                <IgbRowIsland
+                ChildDataKey="Songs"
+                AutoGenerate="false"
+                ColumnSelection="GridSelectionMode.Single">
+                    <IgbColumn
+                    Field="Number"
+                    Header="No.">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Title"
+                    Header="Title">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Released"
+                    Header="Released"
+                    DataType="GridColumnDataType.Date"
+                    Selectable="false">
+                    </IgbColumn>
+
+                    <IgbColumn
+                    Field="Genre"
+                    Header="Genre">
+                    </IgbColumn>
+
+                </IgbRowIsland>
+
+            </IgbRowIsland>
+
+            <IgbRowIsland
+            ChildDataKey="Tours"
+            AutoGenerate="false"
+            ColumnSelection="GridSelectionMode.Single">
+                <IgbColumn
+                Field="Tour"
+                Header="Tour"
+                Selectable="false">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="StartedOn"
+                Header="Started on"
+                Selectable="false">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="Location"
+                Header="Location"
+                Selectable="false">
+                </IgbColumn>
+
+                <IgbColumn
+                Field="Headliner"
+                Header="Headliner">
+                </IgbColumn>
+
+            </IgbRowIsland>
+
+        </IgbHierarchicalGrid>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditor = this.propertyEditor;
+        var columnSelectionEditor = this.columnSelectionEditor;
+        var hierarchicalGrid = this.hierarchicalGrid;
+
+        this.BindElements = () => {
+            propertyEditor.Target = this.hierarchicalGrid;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription columnSelectionEditor;
+    private IgbHierarchicalGrid hierarchicalGrid;
+
+    private SingersData _singersData = null;
+    public SingersData SingersData
+    {
+        get
+        {
+            if (_singersData == null)
+            {
+                _singersData = new SingersData();
+            }
+            return _singersData;
+        }
+    }
+
+}
