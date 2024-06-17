@@ -6,19 +6,21 @@
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
-        Id="treeGrid"
-        Name="treeGrid"
-        @ref="treeGrid"
-        Data="OrdersTreeData"
+        Name="treeGrid1"
+        @ref="treeGrid1"
+        Id="treeGrid1"
+        Data="RoleplayTreeGridData"
         PrimaryKey="ID"
         ForeignKey="ParentID">
             <IgbColumn
             Field="Name"
+            Header="Character Name"
             DataType="GridColumnDataType.String">
             </IgbColumn>
 
             <IgbColumn
-            Field="Category"
+            Field="Race"
+            Header="Race"
             DataType="GridColumnDataType.String"
             Editable="true"
             InlineEditorTemplateScript="WebTreeGridCellEditCellTemplate"
@@ -27,29 +29,30 @@
             </IgbColumn>
 
             <IgbColumn
-            Field="Units"
-            DataType="GridColumnDataType.Number"
+            Field="Class"
+            Header="Class"
+            InlineEditorTemplateScript="WebTreeGridCellEditCellTemplate"
+            DataType="GridColumnDataType.String"
+            Editable="true"
+            Name="column2"
+            @ref="column2">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Age"
+            Header="Age"
+            DataType="GridColumnDataType.String"
             Editable="true">
             </IgbColumn>
 
             <IgbColumn
-            Field="UnitPrice"
-            Header="Unit Price"
-            DataType="GridColumnDataType.Number"
-            Editable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="OrderDate"
-            Header="Order Date"
-            DataType="GridColumnDataType.Date"
-            Editable="true">
-            </IgbColumn>
-
-            <IgbColumn
-            Field="Delivered"
-            DataType="GridColumnDataType.Boolean"
-            Editable="true">
+            Field="Alignment"
+            Header="Alignment"
+            InlineEditorTemplateScript="WebTreeGridCellEditCellTemplate"
+            DataType="GridColumnDataType.String"
+            Editable="true"
+            Name="column3"
+            @ref="column3">
             </IgbColumn>
 
         </IgbTreeGrid>
@@ -61,24 +64,28 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var treeGrid = this.treeGrid;
+        var treeGrid1 = this.treeGrid1;
         var column1 = this.column1;
+        var column2 = this.column2;
+        var column3 = this.column3;
 
     }
 
-    private IgbTreeGrid treeGrid;
+    private IgbTreeGrid treeGrid1;
     private IgbColumn column1;
+    private IgbColumn column2;
+    private IgbColumn column3;
 
-    private OrdersTreeData _ordersTreeData = null;
-    public OrdersTreeData OrdersTreeData
+    private RoleplayTreeGridData _roleplayTreeGridData = null;
+    public RoleplayTreeGridData RoleplayTreeGridData
     {
         get
         {
-            if (_ordersTreeData == null)
+            if (_roleplayTreeGridData == null)
             {
-                _ordersTreeData = new OrdersTreeData();
+                _roleplayTreeGridData = new RoleplayTreeGridData();
             }
-            return _ordersTreeData;
+            return _roleplayTreeGridData;
         }
     }
 
