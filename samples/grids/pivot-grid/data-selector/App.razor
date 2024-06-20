@@ -65,10 +65,9 @@
                         Enabled = false
                     };
 
-                pivotConfiguration.Columns.Add(pivotDimension1);
-                pivotConfiguration.Columns.Add(pivotDimension2);
-                pivotConfiguration.Rows.Add(pivotDimension3);
-                pivotConfiguration.Filters.Add(pivotDimension4);
+                pivotConfiguration.Columns = [pivotDimension1, pivotDimension2];
+                pivotConfiguration.Rows = [pivotDimension3];
+                pivotConfiguration.Filters = [pivotDimension4];
 
                 IgbPivotValue pivotValue1 = new IgbPivotValue()
                     {
@@ -84,7 +83,6 @@
                         }
                     };
 
-
                 IgbPivotValue pivotValue2 = new IgbPivotValue()
                     {
 
@@ -99,8 +97,8 @@
                         }
                     };
 
-                pivotConfiguration.Values.Add(pivotValue1);
-                pivotConfiguration.Values.Add(pivotValue2);
+
+                pivotConfiguration.Values = [pivotValue1, pivotValue2];
 
                 this._pivotConfiguration = pivotConfiguration;
             }

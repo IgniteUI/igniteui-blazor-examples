@@ -15,7 +15,6 @@
 </div>
 
 @code {
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
@@ -34,11 +33,11 @@
                 var pivotDimension1 = new IgbPivotDimension();
                 pivotDimension1.MemberName = "Country";
                 pivotDimension1.Enabled = true;
-                pivotDimension1.Name = "pivotDimension1";pivotConfiguration1.Columns.Add(pivotDimension1);
+                pivotDimension1.Name = "pivotDimension1";pivotConfiguration1.Columns = [pivotDimension1];
                 var pivotDimension2 = new IgbPivotDimension();
                 pivotDimension2.MemberName = "Product";
                 pivotDimension2.Enabled = true;
-                pivotDimension2.Name = "pivotDimension2";pivotConfiguration1.Rows.Add(pivotDimension2);
+                pivotDimension2.Name = "pivotDimension2";pivotConfiguration1.Rows = [pivotDimension2];
                 var pivotValue1 = new IgbPivotValue();
                 pivotValue1.Member = "Sales";
                 pivotValue1.Enabled = true;
@@ -47,7 +46,7 @@
                 pivotAggregator1.Label = "SalesValue";
                 pivotAggregator1.AggregatorScript = "PivotSalesDataAggregateUnitsSold";
                 pivotAggregator1.Name = "pivotAggregator1";pivotValue1.Aggregate = pivotAggregator1;
-                pivotConfiguration1.Values.Add(pivotValue1);
+                pivotConfiguration1.Values = [pivotValue1];
 
                 this._pivotConfiguration1 = pivotConfiguration1;
             }
