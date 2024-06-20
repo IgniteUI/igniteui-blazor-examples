@@ -70,7 +70,7 @@ steps:
       feedsToUse: 'config'
       nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\NuGet.Config'
       verbosityRestore: 'Diagnostic'
-      arguments: "--ignore-failed-sources"
+      arguments: "--force --ignore-failed-sources"
 
   - task: DotNetCoreCLI@2
     displayName: 'dotnet build'
