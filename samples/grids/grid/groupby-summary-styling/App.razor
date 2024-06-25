@@ -30,8 +30,7 @@
         Name="grid"
         @ref="grid"
         Id="grid"
-        Data="InvoicesData"
-        GroupingExpressions="GroupingExpression1">
+        Data="InvoicesData">
             <IgbColumn
             Field="ShipCountry"
             Header="Ship Country"
@@ -95,24 +94,6 @@
     private IgbPropertyEditorPropertyDescription summaryCalcModeEditor;
     private IgbPropertyEditorPropertyDescription summaryPositionEditor;
     private IgbGrid grid;
-    private IgbGroupingExpression[] _groupingExpression1 = null;
-    public IgbGroupingExpression[] GroupingExpression1
-    {
-        get
-        {
-            if (this._groupingExpression1 == null)
-            {
-                var groupingExpression1 = new IgbGroupingExpression[1];
-                var groupingExpression2 = new IgbGroupingExpression();
-                groupingExpression2.Dir = SortingDirection.Asc;
-                groupingExpression2.FieldName = "ShipCountry";
-                groupingExpression2.IgnoreCase = false;
-                groupingExpression1[0] = groupingExpression2;
-                this._groupingExpression1 = groupingExpression1;
-            }
-            return this._groupingExpression1;
-        }
-    }
     private IgbColumn column1;
     private IgbColumnPipeArgs _columnPipeArgs1 = null;
     public IgbColumnPipeArgs ColumnPipeArgs1

@@ -8,8 +8,7 @@
         Name="hierarchicalGrid"
         @ref="hierarchicalGrid"
         Id="hierarchicalGrid"
-        PrimaryKey="ID"
-        SortingExpressions="SortingExpression1">
+        PrimaryKey="ID">
             <IgbColumn
             Field="Artist"
             Header="Artist"
@@ -157,24 +156,6 @@
     }
 
     private IgbHierarchicalGrid hierarchicalGrid;
-    private IgbSortingExpression[] _sortingExpression1 = null;
-    public IgbSortingExpression[] SortingExpression1
-    {
-        get
-        {
-            if (this._sortingExpression1 == null)
-            {
-                var sortingExpression1 = new IgbSortingExpression[1];
-                var sortingExpression2 = new IgbSortingExpression();
-                sortingExpression2.FieldName = "Artist";
-                sortingExpression2.Dir = SortingDirection.Asc;
-                sortingExpression2.IgnoreCase = true;
-                sortingExpression1[0] = sortingExpression2;
-                this._sortingExpression1 = sortingExpression1;
-            }
-            return this._sortingExpression1;
-        }
-    }
 
     private SingersData _singersData = null;
     public SingersData SingersData

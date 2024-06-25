@@ -32,7 +32,6 @@
         Data="OrdersTreeData"
         Name="grid"
         @ref="grid"
-        SortingExpressions="SortingExpression1"
         PrimaryKey="ID"
         ForeignKey="ParentID">
             <IgbColumn
@@ -113,24 +112,6 @@
     private IgbPropertyEditorPropertyDescription sortingOptionsEditor;
     private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
     private IgbTreeGrid grid;
-    private IgbSortingExpression[] _sortingExpression1 = null;
-    public IgbSortingExpression[] SortingExpression1
-    {
-        get
-        {
-            if (this._sortingExpression1 == null)
-            {
-                var sortingExpression1 = new IgbSortingExpression[1];
-                var sortingExpression2 = new IgbSortingExpression();
-                sortingExpression2.FieldName = "Category";
-                sortingExpression2.Dir = SortingDirection.Asc;
-                sortingExpression2.IgnoreCase = true;
-                sortingExpression1[0] = sortingExpression2;
-                this._sortingExpression1 = sortingExpression1;
-            }
-            return this._sortingExpression1;
-        }
-    }
     private IgbColumn column1;
     private IgbColumnPipeArgs _columnPipeArgs1 = null;
     public IgbColumnPipeArgs ColumnPipeArgs1

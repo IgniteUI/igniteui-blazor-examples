@@ -9,8 +9,7 @@
         RowEditable="true"
         AllowFiltering="true"
         FilterMode="FilterMode.ExcelStyleFilter"
-        PrimaryKey="Company"
-        GroupingExpressions="GroupingExpression1">
+        PrimaryKey="Company">
             <IgbGridToolbar
             >
                 <IgbGridToolbarTitle
@@ -166,24 +165,6 @@
     }
 
     private IgbGrid grid;
-    private IgbGroupingExpression[] _groupingExpression1 = null;
-    public IgbGroupingExpression[] GroupingExpression1
-    {
-        get
-        {
-            if (this._groupingExpression1 == null)
-            {
-                var groupingExpression1 = new IgbGroupingExpression[1];
-                var groupingExpression2 = new IgbGroupingExpression();
-                groupingExpression2.FieldName = "Country";
-                groupingExpression2.IgnoreCase = false;
-                groupingExpression2.Dir = SortingDirection.Asc;
-                groupingExpression1[0] = groupingExpression2;
-                this._groupingExpression1 = groupingExpression1;
-            }
-            return this._groupingExpression1;
-        }
-    }
 
     private CustomersData _customersData = null;
     public CustomersData CustomersData

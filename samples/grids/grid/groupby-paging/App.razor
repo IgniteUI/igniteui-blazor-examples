@@ -11,7 +11,6 @@
         Id="grid"
         Data="InvoicesWorldData"
         RowSelection="GridSelectionMode.Multiple"
-        GroupingExpressions="GroupingExpression1"
         GroupRowTemplateScript="WebGridGroupByRowTemplate">
             <IgbPaginator
             PerPage="10">
@@ -53,24 +52,6 @@
     }
 
     private IgbGrid grid;
-    private IgbGroupingExpression[] _groupingExpression1 = null;
-    public IgbGroupingExpression[] GroupingExpression1
-    {
-        get
-        {
-            if (this._groupingExpression1 == null)
-            {
-                var groupingExpression1 = new IgbGroupingExpression[1];
-                var groupingExpression2 = new IgbGroupingExpression();
-                groupingExpression2.Dir = SortingDirection.Asc;
-                groupingExpression2.FieldName = "ShipCountry";
-                groupingExpression2.IgnoreCase = false;
-                groupingExpression1[0] = groupingExpression2;
-                this._groupingExpression1 = groupingExpression1;
-            }
-            return this._groupingExpression1;
-        }
-    }
 
     private InvoicesWorldData _invoicesWorldData = null;
     public InvoicesWorldData InvoicesWorldData

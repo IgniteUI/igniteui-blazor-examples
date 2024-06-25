@@ -6,7 +6,6 @@
         AutoGenerate="false"
         Data="SingersData"
         PrimaryKey="ID"
-        SortingExpressions="SortingExpression1"
         Name="hierarchicalGrid1"
         @ref="hierarchicalGrid1">
             <IgbColumn
@@ -156,39 +155,6 @@
     }
 
     private IgbHierarchicalGrid hierarchicalGrid1;
-    private IgbSortingExpression[] _sortingExpression1 = null;
-    public IgbSortingExpression[] SortingExpression1
-    {
-        get
-        {
-            if (this._sortingExpression1 == null)
-            {
-                var sortingExpression1 = new IgbSortingExpression[4];
-                var sortingExpression2 = new IgbSortingExpression();
-                sortingExpression2.Dir = SortingDirection.Asc;
-                sortingExpression2.FieldName = "Artist";
-                sortingExpression2.IgnoreCase = true;
-                sortingExpression1[0] = sortingExpression2;
-                var sortingExpression3 = new IgbSortingExpression();
-                sortingExpression3.Dir = SortingDirection.Desc;
-                sortingExpression3.FieldName = "Debut";
-                sortingExpression3.IgnoreCase = true;
-                sortingExpression1[1] = sortingExpression3;
-                var sortingExpression4 = new IgbSortingExpression();
-                sortingExpression4.Dir = SortingDirection.Asc;
-                sortingExpression4.FieldName = "GrammyNominations";
-                sortingExpression4.IgnoreCase = true;
-                sortingExpression1[2] = sortingExpression4;
-                var sortingExpression5 = new IgbSortingExpression();
-                sortingExpression5.Dir = SortingDirection.Asc;
-                sortingExpression5.FieldName = "GrammyAwards";
-                sortingExpression5.IgnoreCase = true;
-                sortingExpression1[3] = sortingExpression5;
-                this._sortingExpression1 = sortingExpression1;
-            }
-            return this._sortingExpression1;
-        }
-    }
 
     private SingersData _singersData = null;
     public SingersData SingersData

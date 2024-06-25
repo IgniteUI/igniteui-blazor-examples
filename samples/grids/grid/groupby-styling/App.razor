@@ -9,8 +9,7 @@
         Name="grid"
         @ref="grid"
         Id="grid"
-        Data="InvoicesData"
-        GroupingExpressions="GroupingExpression1">
+        Data="InvoicesData">
             <IgbColumn
             Name="OrderID"
             @ref="orderID"
@@ -138,29 +137,6 @@
     }
 
     private IgbGrid grid;
-    private IgbGroupingExpression[] _groupingExpression1 = null;
-    public IgbGroupingExpression[] GroupingExpression1
-    {
-        get
-        {
-            if (this._groupingExpression1 == null)
-            {
-                var groupingExpression1 = new IgbGroupingExpression[2];
-                var groupingExpression2 = new IgbGroupingExpression();
-                groupingExpression2.Dir = SortingDirection.Asc;
-                groupingExpression2.FieldName = "ShipCountry";
-                groupingExpression2.IgnoreCase = false;
-                groupingExpression1[0] = groupingExpression2;
-                var groupingExpression3 = new IgbGroupingExpression();
-                groupingExpression3.Dir = SortingDirection.Asc;
-                groupingExpression3.FieldName = "ShipCity";
-                groupingExpression3.IgnoreCase = false;
-                groupingExpression1[1] = groupingExpression3;
-                this._groupingExpression1 = groupingExpression1;
-            }
-            return this._groupingExpression1;
-        }
-    }
     private IgbColumn orderID;
     private IgbColumn shipCountry;
     private IgbColumn orderDate;
