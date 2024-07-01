@@ -56,11 +56,11 @@ steps:
       showWarnings: true
       workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
 
-#  - task: NuGetAuthenticate@1
-#    displayName: 'Authenticate to IG ProGet NuGet feed'
-#    inputs:
-#      nuGetServiceConnections: 'IG ProGet IgniteUINuGet - Staging'
-#      forceReinstallCredentialProvider: false
+  - task: NuGetAuthenticate@1
+    displayName: 'Authenticate to IG ProGet NuGet feed'
+    inputs:
+      nuGetServiceConnections: 'IGProGetIgniteUINuGet'
+      forceReinstallCredentialProvider: false
 
   - task: PowerShell@2
     displayName: 'Testing'
