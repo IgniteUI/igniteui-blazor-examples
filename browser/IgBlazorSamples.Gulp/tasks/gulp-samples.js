@@ -590,7 +590,7 @@ function updateIG(cb) {
 
     let packageUpgrades = [
         // update version of IG packages and change to Trial or non-trial
-        { name: "IgniteUI.Blazor",                 version: "23.2.257" },
+        { name: "IgniteUI.Blazor",                 version: "23.2.204" },
         { name: "IgniteUI.Blazor.Documents.Core",  version: "23.2.204" },
         { name: "IgniteUI.Blazor.Documents.Excel", version: "23.2.204" },
         // these IG packages are sometimes updated:
