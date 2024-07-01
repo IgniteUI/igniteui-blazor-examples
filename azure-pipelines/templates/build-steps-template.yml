@@ -41,7 +41,7 @@ steps:
       targetType: 'inline'
       script: |
         dotnet new nugetconfig --force
-        dotnet nuget add source ${{ parameters.igNuGetFeedUrl }} --name "IG ProGet NuGet" 
+        dotnet nuget add source ${{ parameters.igNuGetFeedUrl }} --name "IG ProGet IgniteUINuGet - Staging" 
 
         $xml = [XML](Get-Content '.\IgBlazorSamples.${{ parameters.projectToBuild }}.csproj');
 
@@ -59,7 +59,7 @@ steps:
   - task: NuGetAuthenticate@1
     displayName: 'Authenticate to IG ProGet NuGet feed'
     inputs:
-      nuGetServiceConnections: 'IG ProGet NuGet'
+      nuGetServiceConnections: 'IG ProGet IgniteUINuGet - Staging'
       forceReinstallCredentialProvider: false
 
   - task: PowerShell@2
