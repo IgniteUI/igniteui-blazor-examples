@@ -41,7 +41,7 @@ steps:
       targetType: 'inline'
       script: |
         dotnet new nugetconfig --force
-        dotnet nuget add source ${{ parameters.igNuGetFeedUrl }} --name "IG ProGet IgniteUINuGet - Staging" 
+        dotnet nuget add source ${{ parameters.igNuGetFeedUrl }} --name "IGProGetIgniteUINuGet" 
 
         $xml = [XML](Get-Content '.\IgBlazorSamples.${{ parameters.projectToBuild }}.csproj');
 
@@ -80,7 +80,7 @@ steps:
       nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\NuGet.Config'
       verbosityRestore: 'Diagnostic'
       restoreArguments: '--ignore-failed-sources --no-cache --force'
-      externalFeedCredentials: 'IG ProGet IgniteUINuGet - Staging'
+      externalFeedCredentials: 'IGProGetIgniteUINuGet'
 
   - task: DotNetCoreCLI@2
     displayName: 'dotnet build'
