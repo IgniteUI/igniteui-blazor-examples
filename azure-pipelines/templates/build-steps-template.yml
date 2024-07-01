@@ -32,7 +32,7 @@ steps:
     displayName: 'Install dotnet if not already present'
     inputs:
       packageType: 'sdk'
-      version: '6.0.415' #'6.x'
+      version: '8.0.100' #'6.x'
       performMultiLevelLookup: true
 
   - task: PowerShell@2
@@ -56,11 +56,11 @@ steps:
       showWarnings: true
       workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
 
-  - task: NuGetAuthenticate@1
-    displayName: 'Authenticate to IG ProGet NuGet feed'
-    inputs:
-      nuGetServiceConnections: 'IG ProGet IgniteUINuGet - Staging'
-      forceReinstallCredentialProvider: false
+#  - task: NuGetAuthenticate@1
+#    displayName: 'Authenticate to IG ProGet NuGet feed'
+#    inputs:
+#      nuGetServiceConnections: 'IG ProGet IgniteUINuGet - Staging'
+#      forceReinstallCredentialProvider: false
 
   - task: PowerShell@2
     displayName: 'Testing'
@@ -80,6 +80,7 @@ steps:
       nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\NuGet.Config'
       verbosityRestore: 'Diagnostic'
       restoreArguments: '--ignore-failed-sources --no-cache --force'
+      externalFeedCredentials: 'IG ProGet IgniteUINuGet - Staging'
 
   - task: DotNetCoreCLI@2
     displayName: 'dotnet build'
