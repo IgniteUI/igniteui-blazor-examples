@@ -1,4 +1,5 @@
 
+
 igRegisterScript("WebTreeGridRowStylesHandler", () => {
     return {
         'background': (row) => row.data['Title'] === 'CEO' ? '#6c757d' : row.data['Title'].includes('President') ? '#adb5bd' :
