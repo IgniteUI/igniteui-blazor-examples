@@ -1,4 +1,5 @@
 
+
 igRegisterScript("WebGridSummaryFormatter", (summary) => {
     const result = summary.summaryResult;
     if (summaryOperand instanceof IgcDateSummaryOperand && summary.key !== "count" && result !== null && result !== undefined) {
