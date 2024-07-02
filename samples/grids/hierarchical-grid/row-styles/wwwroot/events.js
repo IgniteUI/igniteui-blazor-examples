@@ -1,4 +1,5 @@
 
+
 igRegisterScript("WebHierarchicalGridRowStylesHandler", () => {
     return {
         background:(row) => row.data['HasGrammyAward'] ? '#eeddd3' : '#f0efeb',

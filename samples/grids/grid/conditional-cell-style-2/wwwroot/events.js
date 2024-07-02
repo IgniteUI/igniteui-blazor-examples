@@ -1,4 +1,5 @@
 
+
 igRegisterScript("WebGridCellStylesHandler", () => {
     return {
         background: (rowData, columnKey, cellValue, rowIndex) => rowIndex % 2 === 0 ? "#EFF4FD" : null,

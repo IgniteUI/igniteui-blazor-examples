@@ -74,23 +74,21 @@
 
     public void PropertyEditorInitAggregationsOnViewInit()
     {
-
-    	this.editor.EnsureReady().ContinueWith(new Action<Task>((e) =>
+    	var editor = this.editor;
+    	editor.EnsureReady().ContinueWith(new Action<Task>((e) =>
     	{
-    		var editor = this.editor;
-
     		var initialSummariesDropdown = new IgbPropertyEditorPropertyDescription();
     		var sortGroupsDropdown = new IgbPropertyEditorPropertyDescription();
     		initialSummariesDropdown.Label = "Initial Summaries";
     		initialSummariesDropdown.ValueType = PropertyEditorValueType.EnumValue;
     		initialSummariesDropdown.ShouldOverrideDefaultEditor = true;
-    		initialSummariesDropdown.DropDownNames = ["Sum(Sales) as Sales", "Avg(Sales) as Sales", "Min(Sales) as Sales", "Max(Sales) as Sales", "Count(Sales) as Sales"];
-    		initialSummariesDropdown.DropDownValues = ["Sum(Sales) as Sales", "Avg(Sales) as Sales", "Min(Sales) as Sales", "Max(Sales) as Sales", "Count(Sales) as Sales"];
+    		initialSummariesDropdown.DropDownNames = new string[] { "Sum(Sales) as Sales", "Avg(Sales) as Sales", "Min(Sales) as Sales", "Max(Sales) as Sales", "Count(Sales) as Sales" };
+    		initialSummariesDropdown.DropDownValues = new string[] { "Sum(Sales) as Sales", "Avg(Sales) as Sales", "Min(Sales) as Sales", "Max(Sales) as Sales", "Count(Sales) as Sales" };
     		sortGroupsDropdown.Label = "Sort Groups";
     		sortGroupsDropdown.ValueType = PropertyEditorValueType.EnumValue;
     		sortGroupsDropdown.ShouldOverrideDefaultEditor = true;
-    		sortGroupsDropdown.DropDownNames = ["Sales Asc", "Sales Desc"];
-    		sortGroupsDropdown.DropDownValues = ["Sales Asc", "Sales Desc"];
+    		sortGroupsDropdown.DropDownNames = new string[] { "Sales Asc", "Sales Desc" };
+    		sortGroupsDropdown.DropDownValues = new string[] { "Sales Asc", "Sales Desc" };
 
     		editor.Properties.Add(initialSummariesDropdown);
     		editor.Properties.Add(sortGroupsDropdown);
