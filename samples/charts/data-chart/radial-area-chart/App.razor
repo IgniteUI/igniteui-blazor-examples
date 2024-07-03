@@ -6,7 +6,7 @@
     </div>
     <div class="legend">
         <IgbLegend
-        Name="Legend"
+        Name="legend"
         @ref="legend"
         Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
@@ -16,6 +16,7 @@
         <IgbDataChart
         Name="chart"
         @ref="chart"
+        Legend="Legend"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false">
             <IgbCategoryAngleAxis
@@ -63,7 +64,7 @@
             </IgbRadialAreaSeries>
 
             <IgbDataToolTipLayer
-            Name="DataToolTipLayer"
+            Name="dataToolTipLayer"
             @ref="dataToolTipLayer">
             </IgbDataToolTipLayer>
 
@@ -74,8 +75,6 @@
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var legend = this.legend;
@@ -85,11 +84,6 @@
         var radialAreaSeries1 = this.radialAreaSeries1;
         var radialAreaSeries2 = this.radialAreaSeries2;
         var dataToolTipLayer = this.dataToolTipLayer;
-
-        this.BindElements = () => {
-            chart.Legend = this.legend;
-        };
-        this.BindElements();
 
     }
 

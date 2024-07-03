@@ -25,7 +25,7 @@
     </div>
     <div class="legend">
         <IgbLegend
-        Name="Legend"
+        Name="legend"
         @ref="legend"
         Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
@@ -38,6 +38,7 @@
         ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
         DataSource="CountryRenewableElectricity"
         IncludedProperties="@(new string[] { "Year", "Europe", "China", "America" })"
+        Legend="Legend"
         ChartType="CategoryChartType.Line"
         YAxisTitle="Labels Location"
         IsHorizontalZoomEnabled="false"
@@ -62,7 +63,6 @@
 
         this.BindElements = () => {
             propertyEditorPanel1.Target = this.chart;
-            chart.Legend = this.legend;
         };
         this.BindElements();
 

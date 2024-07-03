@@ -6,7 +6,7 @@
     </div>
     <div class="legend">
         <IgbLegend
-        Name="Legend"
+        Name="legend"
         @ref="legend">
         </IgbLegend>
 
@@ -15,6 +15,7 @@
         <IgbCategoryChart
         Name="chart"
         @ref="chart"
+        Legend="Legend"
         ChartType="CategoryChartType.Column"
         DataSource="HighestGrossingMovies"
         XAxisInterval="1"
@@ -33,17 +34,10 @@
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var legend = this.legend;
         var chart = this.chart;
-
-        this.BindElements = () => {
-            chart.Legend = this.legend;
-        };
-        this.BindElements();
 
     }
 

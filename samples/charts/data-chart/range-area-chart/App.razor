@@ -6,7 +6,7 @@
     </div>
     <div class="legend">
         <IgbLegend
-        Name="Legend"
+        Name="legend"
         @ref="legend"
         Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
@@ -17,7 +17,8 @@
         Name="chart"
         @ref="chart"
         IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false">
+        IsVerticalZoomEnabled="false"
+        Legend="Legend">
             <IgbCategoryXAxis
             Name="xAxis"
             @ref="xAxis"
@@ -35,7 +36,7 @@
             </IgbNumericYAxis>
 
             <IgbRangeAreaSeries
-            Name="RangeAreaSeries1"
+            Name="rangeAreaSeries1"
             @ref="rangeAreaSeries1"
             XAxisName="xAxis"
             YAxisName="yAxis"
@@ -47,7 +48,7 @@
             </IgbRangeAreaSeries>
 
             <IgbRangeAreaSeries
-            Name="RangeAreaSeries2"
+            Name="rangeAreaSeries2"
             @ref="rangeAreaSeries2"
             XAxisName="xAxis"
             YAxisName="yAxis"
@@ -59,7 +60,7 @@
             </IgbRangeAreaSeries>
 
             <IgbDataToolTipLayer
-            Name="DataToolTipLayer"
+            Name="dataToolTipLayer"
             @ref="dataToolTipLayer">
             </IgbDataToolTipLayer>
 
@@ -70,8 +71,6 @@
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var legend = this.legend;
@@ -81,11 +80,6 @@
         var rangeAreaSeries1 = this.rangeAreaSeries1;
         var rangeAreaSeries2 = this.rangeAreaSeries2;
         var dataToolTipLayer = this.dataToolTipLayer;
-
-        this.BindElements = () => {
-            chart.Legend = this.legend;
-        };
-        this.BindElements();
 
     }
 

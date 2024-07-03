@@ -6,7 +6,7 @@
     </div>
     <div class="legend">
         <IgbItemLegend
-        Name="Legend"
+        Name="legend"
         @ref="legend"
         Orientation="LegendOrientation.Horizontal">
         </IgbItemLegend>
@@ -28,7 +28,8 @@
             Outlines="white"
             RadiusFactor="0.6"
             StartAngle="30"
-            DataSource="EnergyGlobalDemand">
+            DataSource="EnergyGlobalDemand"
+            Legend="Legend">
             </IgbRingSeries>
 
         </IgbDoughnutChart>
@@ -38,18 +39,11 @@
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var legend = this.legend;
         var chart = this.chart;
         var series = this.series;
-
-        this.BindElements = () => {
-            series.Legend = this.legend;
-        };
-        this.BindElements();
 
     }
 

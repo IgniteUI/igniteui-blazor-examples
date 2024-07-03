@@ -6,7 +6,7 @@
     </div>
     <div class="legend">
         <IgbLegend
-        Name="Legend"
+        Name="legend"
         @ref="legend"
         Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
@@ -15,7 +15,8 @@
     <div class="container vertical fill">
         <IgbDataChart
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        Legend="Legend">
             <IgbNumericXAxis
             Name="xAxis"
             @ref="xAxis"
@@ -33,7 +34,7 @@
             </IgbNumericYAxis>
 
             <IgbBubbleSeries
-            Name="BubbleSeries1"
+            Name="bubbleSeries1"
             @ref="bubbleSeries1"
             Title="African Countries"
             XAxisName="xAxis"
@@ -52,7 +53,7 @@
             </IgbBubbleSeries>
 
             <IgbBubbleSeries
-            Name="BubbleSeries2"
+            Name="bubbleSeries2"
             @ref="bubbleSeries2"
             Title="European Countries"
             XAxisName="xAxis"
@@ -71,7 +72,7 @@
             </IgbBubbleSeries>
 
             <IgbDataToolTipLayer
-            Name="DataToolTipLayer"
+            Name="dataToolTipLayer"
             @ref="dataToolTipLayer">
             </IgbDataToolTipLayer>
 
@@ -82,8 +83,6 @@
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var legend = this.legend;
@@ -93,11 +92,6 @@
         var bubbleSeries1 = this.bubbleSeries1;
         var bubbleSeries2 = this.bubbleSeries2;
         var dataToolTipLayer = this.dataToolTipLayer;
-
-        this.BindElements = () => {
-            chart.Legend = this.legend;
-        };
-        this.BindElements();
 
     }
 
