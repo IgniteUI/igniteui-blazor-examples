@@ -7,7 +7,7 @@
     <div id="aboveContentSplit">
         <div id="aboveContentLeftContainer">
             <IgbToolbar
-            Name="Toolbar"
+            Name="toolbar"
             @ref="toolbar"
             Orientation="ToolbarOrientation.Horizontal">
             </IgbToolbar>
@@ -15,7 +15,7 @@
         </div>
         <div id="aboveContentRightContainer">
             <IgbLegend
-            Name="Legend"
+            Name="legend"
             @ref="legend"
             Orientation="LegendOrientation.Horizontal">
             </IgbLegend>
@@ -31,6 +31,7 @@
         IsVerticalZoomEnabled="true"
         DataSource="CountryRenewableElectricity"
         IncludedProperties="@(new string[] { "Year", "Europe", "China", "America" })"
+        Legend="Legend"
         YAxisTitle="TWh"
         YAxisTitleLeftMargin="10"
         YAxisTitleRightMargin="5"
@@ -54,7 +55,6 @@
 
         this.BindElements = () => {
             toolbar.Target = this.chart;
-            chart.Legend = this.legend;
         };
         this.BindElements();
 
