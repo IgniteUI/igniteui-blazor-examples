@@ -41,7 +41,7 @@ steps:
       targetType: 'inline'
       script: |
         dotnet new nugetconfig --force
-        dotnet nuget add source ${{ parameters.igNuGetFeedUrl }} --name "IG ProGet NuGet" 
+        dotnet nuget add source ${{ parameters.igNuGetFeedUrl }} --name "IG ProGet NuGet666" 
 
         $xml = [XML](Get-Content '.\IgBlazorSamples.${{ parameters.projectToBuild }}.csproj');
 
@@ -56,12 +56,6 @@ steps:
       showWarnings: true
       workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
 
-#  - task: NuGetAuthenticate@1
-#    displayName: 'Authenticate to IG ProGet NuGet feed'
-#    inputs:
-#      nuGetServiceConnections: 'IG ProGet IgniteUINuGet - Staging'
-#      forceReinstallCredentialProvider: true
-
   - task: DotNetCoreCLI@2
     displayName: 'dotnet restore'
     inputs:
@@ -70,15 +64,9 @@ steps:
       restoreArguments: '--ignore-failed-sources --no-cache --force'
       feedsToUse: 'config'
       nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\NuGet.Config'
-      externalFeedCredentials: 'IG ProGet IgniteUINuGet - Staging'
+      externalFeedCredentials: 'IG ProGet NuGet'
       verbosityRestore: 'Diagnostic'
 
-#  - task: DotNetCoreCLI@2
-#    displayName: 'dotnet build'
-#    inputs:
-#      command: 'build'
-#      projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
-#      arguments: '--configuration Release'
 
   - task: DeleteFiles@1
     displayName: 'Delete NuGet.config file - used only at build time'
