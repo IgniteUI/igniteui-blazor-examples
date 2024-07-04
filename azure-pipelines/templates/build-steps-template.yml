@@ -73,11 +73,11 @@ steps:
       externalFeedCredentials: 'IG ProGet IgniteUINuGet - Staging'
       verbosityRestore: 'Diagnostic'
 
-  - task: DotNetCoreCLI@2
-    displayName: 'dotnet build'
-    inputs:
-      command: 'build'
-      projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
+#  - task: DotNetCoreCLI@2
+#    displayName: 'dotnet build'
+#    inputs:
+#      command: 'build'
+#      projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
 #      arguments: '--configuration Release'
 
   - task: DeleteFiles@1
@@ -90,7 +90,7 @@ steps:
     # Using a CmldLine call for this opeation, because I couldn't get it to work as expected with the DotNetCoreCLI task
     displayName: 'dotnet publish'
     inputs:
-      script: 'dotnet publish -c release -o $(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\publish --no-build'
+      script: 'dotnet publish -c release -o $(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\publish'
       workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
 
   - task: ArchiveFiles@2
