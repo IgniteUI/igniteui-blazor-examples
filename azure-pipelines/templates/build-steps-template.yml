@@ -90,7 +90,7 @@ steps:
     # Using a CmldLine call for this opeation, because I couldn't get it to work as expected with the DotNetCoreCLI task
     displayName: 'dotnet publish'
     inputs:
-      script: 'dotnet publish -c release -o $(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\publish'
+      script: 'dotnet publish --no-restore -c release -o $(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\publish'
       workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
 
   - task: ArchiveFiles@2
