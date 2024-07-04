@@ -56,27 +56,28 @@ steps:
       showWarnings: true
       workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
 
-  - task: NuGetAuthenticate@1
-    displayName: 'Authenticate to IG ProGet NuGet feed'
-    inputs:
-      nuGetServiceConnections: 'IG ProGet IgniteUINuGet - Staging'
-      forceReinstallCredentialProvider: true
+#  - task: NuGetAuthenticate@1
+#    displayName: 'Authenticate to IG ProGet NuGet feed'
+#    inputs:
+#      nuGetServiceConnections: 'IG ProGet IgniteUINuGet - Staging'
+#      forceReinstallCredentialProvider: true
 
   - task: DotNetCoreCLI@2
     displayName: 'dotnet restore'
     inputs:
       command: 'restore'
       projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
+      restoreArguments: '--ignore-failed-sources --no-cache --force'
       feedsToUse: 'config'
       nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\NuGet.Config'
+      externalFeedCredentials: 'IG ProGet IgniteUINuGet - Staging'
       verbosityRestore: 'Diagnostic'
-      arguments: "--ignore-failed-sources"
 
   - task: DotNetCoreCLI@2
     displayName: 'dotnet build'
     inputs:
       command: 'build'
-      projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
+      projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }} --no-restore'
 #      arguments: '--configuration Release'
 
   - task: DeleteFiles@1
@@ -89,7 +90,7 @@ steps:
     # Using a CmldLine call for this opeation, because I couldn't get it to work as expected with the DotNetCoreCLI task
     displayName: 'dotnet publish'
     inputs:
-      script: 'dotnet publish -c release -o $(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\publish'
+      script: 'dotnet publish -c release -o $(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\publish --no-build'
       workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
 
   - task: ArchiveFiles@2
