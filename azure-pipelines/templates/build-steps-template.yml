@@ -33,7 +33,7 @@ steps:
     inputs:
       packageType: 'sdk'
       version: '8.0.100' # we are currently building a 8.0 app. TODO: Try upgrading to 8.x in the future
-      performMultiLevelLookup: true
+      performMultiLevelLookup: false
 
   - task: PowerShell@2
     displayName: 'Generate NuGet.config for IG ProGet NuGet feed'
@@ -67,7 +67,10 @@ steps:
       feedsToUse: 'config'
       nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\NuGet.Config'
       externalFeedCredentials: 'IG ProGet IgniteUINuGet - Staging'
-      verbosityRestore: 'Diagnostic'
+      ${{ if eq(parameters.isVerbose, true) }}:
+        verbosityRestore: 'Diagnostic'
+      ${{ else }}:
+        verbosityRestore: 'Normal'
 
 
   - task: DeleteFiles@1
