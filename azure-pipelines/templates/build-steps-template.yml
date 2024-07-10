@@ -36,16 +36,24 @@ steps:
       performMultiLevelLookup: false
 
   - task: PowerShell@2
-    displayName: 'Generate NuGet.config for IG ProGet NuGet feed'
+    displayName: 'Generate NuGet.config for IG ProGet NuGet feed and u'
     inputs:
       targetType: 'inline'
       script: |
         dotnet new nugetconfig --force
         # The name of the source doesn't currently matter as the credentials are attached thanks to URL matching - according to MS docs
         dotnet nuget add source ${{ parameters.igNuGetFeedUrl }} --name "IG ProGet NuGet" 
+      failOnStderr: true
+      showWarnings: true
+      workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
 
+  - task: PowerShell@2
+    displayName: 'Identify trial packages and use licensed ones instead'
+    inputs:
+      targetType: 'inline'
+      script: |
         $xml = [XML](Get-Content '.\IgBlazorSamples.${{ parameters.projectToBuild }}.csproj');
-
+        
         $nodes = $xml.SelectNodes("//PackageReference[starts-with(@Include,'IgniteUI')]") | 
           ForEach-Object { 
               $_.SetAttribute("Include",$_.Include.Replace(".Trial",""));
