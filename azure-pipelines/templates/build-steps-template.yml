@@ -62,10 +62,11 @@ steps:
     inputs:
       command: 'restore'
       projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
+      # We want the dependency tree to be evaluated each time and to be sure that the dependencies are freshly downloaded
       restoreArguments: '--ignore-failed-sources --no-cache --force'
       feedsToUse: 'config'
       nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\NuGet.Config'
-      externalFeedCredentials: 'IGProGetIgniteUINuGet'
+      externalFeedCredentials: 'IG ProGet IgniteUINuGet - Staging'
       verbosityRestore: 'Diagnostic'
 
 
