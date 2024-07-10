@@ -57,17 +57,16 @@ steps:
       showWarnings: true
       workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
 
-  - task: DotNetCoreCLI@2
-    displayName: 'dotnet restore'
-    inputs:
-      command: 'restore'
-      projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
-      # Below we are intentionally forcing package tree evaluation + ignoring cache. This will give us the best state of the dependency tree from the online sources.
-      restoreArguments: '--ignore-failed-sources --no-cache --force'
-      feedsToUse: 'config'
-      nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\NuGet.Config'
-      externalFeedCredentials: 'IG ProGet NuGet'
-      verbosityRestore: 'Diagnostic'
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet restore'
+      inputs:
+        command: 'restore'
+        projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
+        restoreArguments: '--ignore-failed-sources --no-cache --force'
+        feedsToUse: 'config'
+        nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\NuGet.Config'
+        externalFeedCredentials: 'IG ProGet IgniteUINuGet - Staging'
+        verbosityRestore: 'Diagnostic'
 
 
   - task: DeleteFiles@1
