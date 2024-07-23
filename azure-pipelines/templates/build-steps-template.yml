@@ -20,7 +20,6 @@ steps:
       workingDir: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
       verbose: ${{ parameters.isVerbose }}
       customCommand: ci
-
   
   - task: CmdLine@2
     displayName: 'npx gulp copySamplesTo${{ parameters.projectToBuild }}'
@@ -35,6 +34,7 @@ steps:
       packageType: 'sdk'
       version: '8.0.100' # we are currently building a 8.0 app. TODO: Try upgrading to 8.x in the future
       performMultiLevelLookup: false
+
 
   - task: PowerShell@2
     displayName: 'Generate NuGet.config for IG ProGet NuGet feed and u'

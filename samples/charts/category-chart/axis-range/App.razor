@@ -46,7 +46,7 @@
     </div>
     <div class="legend">
         <IgbLegend
-        Name="Legend"
+        Name="legend"
         @ref="legend"
         Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
@@ -58,6 +58,7 @@
         @ref="chart"
         DataSource="CountryRenewableElectricity"
         IncludedProperties="@(new string[] { "Year", "Europe", "China", "America" })"
+        Legend="Legend"
         ChartType="CategoryChartType.Line"
         ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
         IsHorizontalZoomEnabled="false"
@@ -83,7 +84,6 @@
 
         this.BindElements = () => {
             propertyEditorPanel1.Target = this.chart;
-            chart.Legend = this.legend;
         };
         this.BindElements();
 
@@ -97,12 +97,14 @@
 
     public void EditorChangeUpdateYAxisMinimumValue(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
     {
+        var chart = this.chart;
         var yAxisMinimumVal = args.NewValue;
         chart.YAxisMinimumValue = Convert.ToDouble(yAxisMinimumVal);
     }
 
     public void EditorChangeUpdateYAxisMaximumValue(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
     {
+        var chart = this.chart;
         var yAxisMaximumVal = args.NewValue;
         chart.YAxisMaximumValue = Convert.ToDouble(yAxisMaximumVal);
     }

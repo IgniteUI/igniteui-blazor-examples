@@ -1,0 +1,116 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<head>
+    <link href="_content/IgniteUI.Blazor/themes/grid/dark/bootstrap.css" rel="stylesheet" />
+</head>
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="NwindData"
+        PrimaryKey="ProductID"
+        DisplayDensity="DisplayDensity.Cosy"
+        AllowFiltering="true"
+        FilterMode="FilterMode.ExcelStyleFilter"
+        Name="grid1"
+        @ref="grid1">
+            <IgbPaginator
+            PerPage="10">
+            </IgbPaginator>
+
+            <IgbColumn
+            Field="ProductName"
+            Header="Product Name"
+            DataType="GridColumnDataType.String"
+            Sortable="true"
+            HasSummary="true"
+            Editable="true"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="UnitPrice"
+            Header="Unit Price"
+            DataType="GridColumnDataType.Number"
+            Sortable="true"
+            HasSummary="true"
+            Editable="true"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="UnitsInStock"
+            Header="Units in Stock"
+            DataType="GridColumnDataType.Number"
+            Sortable="true"
+            HasSummary="true"
+            Editable="true"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="OrderDate"
+            Header="Order Date"
+            DataType="GridColumnDataType.Date"
+            Sortable="true"
+            HasSummary="true"
+            Editable="true"
+            Resizable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Discontinued"
+            Header="Discontinued"
+            DataType="GridColumnDataType.Boolean"
+            Sortable="true"
+            HasSummary="true"
+            Editable="true"
+            BodyTemplateScript="WebGridBooleanCellTemplate"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="ReorderLevel"
+            Header="Reorder Level"
+            DataType="GridColumnDataType.Number"
+            Sortable="true"
+            HasSummary="true"
+            Editable="true"
+            Filterable="true">
+            </IgbColumn>
+
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid1 = this.grid1;
+        var column1 = this.column1;
+
+    }
+
+    private IgbGrid grid1;
+    private IgbColumn column1;
+
+    private NwindData _nwindData = null;
+    public NwindData NwindData
+    {
+        get
+        {
+            if (_nwindData == null)
+            {
+                _nwindData = new NwindData();
+            }
+            return _nwindData;
+        }
+    }
+
+}

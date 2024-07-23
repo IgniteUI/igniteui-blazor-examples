@@ -1,4 +1,12 @@
 
+
+igRegisterScript("WebHierarchicalGridRenderedExpand", (event) => {
+    this.hierarchicalGrid.expandAll();
+    setTimeout(() => {
+        this.hierarchicalGrid.getColumnByName("Debut").formatter = (value) => Math.floor(value / 10) * 10 + 's';
+    }, 50);
+}, false);
+
 igRegisterScript("WebHierarchicalGridSummaryFormatter", (summary) => {
     const result = summary.summaryResult;
     if (summaryOperand instanceof IgcDateSummaryOperand && summary.key !== "count" && result !== null && result !== undefined) {
@@ -7,11 +15,4 @@ igRegisterScript("WebHierarchicalGridSummaryFormatter", (summary) => {
     }
     return result;
 }, true);
-
-igRegisterScript("WebHierarchicalGridRenderedExpand", (event) => {
-    this.hierarchicalGrid.expandAll();
-    setTimeout(() => {
-        this.hierarchicalGrid.getColumnByName("Debut").formatter = (value) => Math.floor(value / 10) * 10 + 's';
-    }, 50);
-}, false);
 

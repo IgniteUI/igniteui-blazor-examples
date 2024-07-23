@@ -1,0 +1,113 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="container horizontal fill">
+        <div class="container vertical" style="padding: 0.5rem;">
+            <IgbTreeGrid
+            AutoGenerate="false"
+            Name="treeGrid"
+            @ref="treeGrid"
+            Id="treeGrid"
+            Data="EmployeesNestedData"
+            ChildDataKey="Employees"
+            RowDraggable=true
+            RowDragEndScript="OnRowDragEndHandler"
+            Width="100%"
+            Height="100%"
+           >
+                <IgbColumn
+                Field="Name"
+                Header="Name"
+                DataType="GridColumnDataType.String"
+                Sortable="true"
+                Editable="true"
+                >
+                </IgbColumn>
+
+                <IgbColumn
+                Field="HireDate"
+                Header="Hire Date"
+                DataType="GridColumnDataType.Date"
+                Sortable="true"
+                >
+                </IgbColumn>
+
+                <IgbColumn
+                Field="Age"
+                Header="Age"
+                DataType="GridColumnDataType.Number"
+                Sortable="true"
+                >
+                </IgbColumn>
+            </IgbTreeGrid>
+        </div>
+        <div class="container vertical" style="padding: 0.5rem;">
+            <IgbTreeGrid AutoGenerate="false"
+                         Name="treeGrid2"
+                         @ref="treeGrid2"
+                         Id="treeGrid2"
+                         Data="Data2"
+                         EmptyGridMessage="Drag and Drop a row from the left grid to this grid"
+                         ChildDataKey="Employees"
+                         Width="100%"
+                         Height="100%"
+                         >
+                <IgbColumn Field="Name"
+                           Header="Name"
+                           DataType="GridColumnDataType.String"
+                           Sortable="true"
+                           Editable="true"
+                           >
+                </IgbColumn>
+
+                <IgbColumn Field="HireDate"
+                           Header="Hire Date"
+                           DataType="GridColumnDataType.Date"
+                           Sortable="true"
+                           >
+                </IgbColumn>
+
+                <IgbColumn Field="Age"
+                           Header="Age"
+                           DataType="GridColumnDataType.Number"
+                           Sortable="true"
+                           >
+                </IgbColumn>
+            </IgbTreeGrid>
+        </div> 
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var treeGrid = this.treeGrid;
+        var treeGrid2 = this.treeGrid2;        
+
+    }
+
+    protected override void OnInitialized()
+    {
+        this.Data2 = new List<EmployeesNestedDataItem_EmployeesItem>() { };
+    }
+
+    private IgbTreeGrid treeGrid;
+    private IgbTreeGrid treeGrid2;
+
+    private List<EmployeesNestedDataItem_EmployeesItem> Data2 { get; set; }
+
+    private EmployeesNestedData _employeesNestedData = null;
+    public EmployeesNestedData EmployeesNestedData
+    {
+        get
+        {
+            if (_employeesNestedData == null)
+            {
+                _employeesNestedData = new EmployeesNestedData();
+            }
+            return _employeesNestedData;
+        }
+    }
+
+}

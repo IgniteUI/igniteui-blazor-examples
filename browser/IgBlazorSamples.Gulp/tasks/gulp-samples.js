@@ -156,8 +156,6 @@ function getSamples(cb) {
         igConfig.SamplesCopyPath + '/charts/data-chart/itemized-column-chart/App.razor',
         igConfig.SamplesCopyPath + '/charts/data-chart/itemized-stacked-bar-chart/App.razor',
         igConfig.SamplesCopyPath + '/charts/data-chart/itemized-stacked-column-chart/App.razor',
-        // excluding bugged samples:
-        igConfig.SamplesCopyPath + '/grids/tree-grid/editing-columns/App.razor', // BUG https://github.com/IgniteUI/igniteui-blazor-examples/issues/423
         // excluding deferred gird samples
       igConfig.SamplesCopyPath + '/grids/grid/toolbar-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/advanced-filtering-style/App.razor',
@@ -592,9 +590,9 @@ function updateIG(cb) {
 
     let packageUpgrades = [
         // update version of IG packages and change to Trial or non-trial
-        { name: "IgniteUI.Blazor",                 version: "23.2.218" },
-        { name: "IgniteUI.Blazor.Documents.Core",  version: "23.2.218" },
-        { name: "IgniteUI.Blazor.Documents.Excel", version: "23.2.218" },
+        { name: "IgniteUI.Blazor",                 version: "23.2.257" },
+        { name: "IgniteUI.Blazor.Documents.Core",  version: "23.2.257" },
+        { name: "IgniteUI.Blazor.Documents.Excel", version: "23.2.257" },
         // these IG packages are sometimes updated:
         { name: "Microsoft.AspNetCore.Components",                       version: "8.0.0" },
         { name: "Microsoft.AspNetCore.Components.Web",                   version: "8.0.0" },

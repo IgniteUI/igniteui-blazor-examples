@@ -6,7 +6,7 @@
     </div>
     <div class="legend">
         <IgbLegend
-        Name="Legend"
+        Name="legend"
         @ref="legend"
         Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
@@ -16,6 +16,7 @@
         <IgbDataChart
         Name="chart"
         @ref="chart"
+        Legend="Legend"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false">
             <IgbCategoryXAxis
@@ -35,7 +36,7 @@
             </IgbNumericYAxis>
 
             <IgbStacked100AreaSeries
-            Name="Stacked100AreaSeries"
+            Name="stacked100AreaSeries"
             @ref="stacked100AreaSeries"
             DataSource="ContinentsBirthRate"
             XAxisName="xAxis"
@@ -80,7 +81,7 @@
             </IgbStacked100AreaSeries>
 
             <IgbDataToolTipLayer
-            Name="DataToolTipLayer"
+            Name="dataToolTipLayer"
             @ref="dataToolTipLayer">
             </IgbDataToolTipLayer>
 
@@ -90,8 +91,6 @@
 </div>
 
 @code {
-
-    private Action BindElements { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -106,11 +105,6 @@
         var s4 = this.s4;
         var s5 = this.s5;
         var dataToolTipLayer = this.dataToolTipLayer;
-
-        this.BindElements = () => {
-            chart.Legend = this.legend;
-        };
-        this.BindElements();
 
     }
 

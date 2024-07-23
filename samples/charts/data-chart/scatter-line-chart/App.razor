@@ -6,7 +6,7 @@
     </div>
     <div class="legend">
         <IgbLegend
-        Name="Legend"
+        Name="legend"
         @ref="legend"
         Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
@@ -15,7 +15,8 @@
     <div class="container vertical fill">
         <IgbDataChart
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        Legend="Legend">
             <IgbNumericXAxis
             Name="xAxis"
             @ref="xAxis"
@@ -62,7 +63,7 @@
             </IgbScatterLineSeries>
 
             <IgbDataToolTipLayer
-            Name="DataToolTipLayer"
+            Name="dataToolTipLayer"
             @ref="dataToolTipLayer">
             </IgbDataToolTipLayer>
 
@@ -73,8 +74,6 @@
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var legend = this.legend;
@@ -84,11 +83,6 @@
         var scatterLineSeries1 = this.scatterLineSeries1;
         var scatterLineSeries2 = this.scatterLineSeries2;
         var dataToolTipLayer = this.dataToolTipLayer;
-
-        this.BindElements = () => {
-            chart.Legend = this.legend;
-        };
-        this.BindElements();
 
     }
 
