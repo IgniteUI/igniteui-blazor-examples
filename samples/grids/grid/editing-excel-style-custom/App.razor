@@ -1,0 +1,137 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbGrid AutoGenerate="false"
+                 Data="NwindData"
+                 PrimaryKey="ProductID"
+                 @onkeydown="keyDownHandler"
+                 Name="grid1"
+                 @ref="grid1">
+            <IgbColumn Field="ProductID"
+                       Header="Product ID"
+                       Editable="true"
+                       Groupable="true"
+                       Hidden="true">
+            </IgbColumn>
+
+            <IgbColumn Field="ProductName"
+                       Header="Product Name"
+                       DataType="GridColumnDataType.String"
+                       Editable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="UnitPrice"
+                       Header="Unit Price"
+                       DataType="GridColumnDataType.Number"
+                       Editable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="QuantityPerUnit"
+                       Header="Quantity Per Unit"
+                       Groupable="true"
+                       DataType="GridColumnDataType.String"
+                       Editable="true">
+            </IgbColumn>
+
+            <IgbColumn Field="ReorderLevel"
+                       Header="Reorder Level"
+                       DataType="GridColumnDataType.Number"
+                       Groupable="true"
+                       Editable="true">
+            </IgbColumn>
+
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid1 = this.grid1;
+
+    }
+
+    private IgbGrid grid1;
+
+    private NwindData _nwindData = null;
+    public NwindData NwindData
+    {
+        get
+        {
+            if (_nwindData == null)
+            {
+                _nwindData = new NwindData();
+            }
+            return _nwindData;
+        }
+    }
+
+    public async Task keyDownHandler(KeyboardEventArgs e)
+    {
+        var key = e.Key;
+        var code = e.Code;
+        var activeElem = this.grid1.GetSelectedCells()[0] as IgbCellType;
+
+        if(key == "Escape") {
+            activeElem.SetEditMode(false);
+            return;
+        }   
+
+        if ((key[0] >= '0' && key[0] <= '9') || (key.ToLower()[0] >= 'a' && key.ToLower()[0] <= 'z') && key != "Enter")
+        {
+
+            if (activeElem != null && activeElem.EditMode == false)
+            {
+                activeElem.Value = key;
+
+                activeElem.EditMode = true;
+                grid1.MarkForCheck();
+            }
+            var inputElem = this.grid1.FindByName("input") as inputElementRef;
+            if (inputElem != null)
+            {
+                if (inputElem.type == "number")
+                {
+                    inputElem.type = "text";
+                    inputElem.setSelectionRange(inputElem.value.length, inputElem.value.length);
+                    inputElem.type = "number";
+                }
+                else
+                {
+                    inputElem.selectionStart = inputElem.selectionEnd = inputElem.value.length;
+                }
+            }
+
+            if (key == "Enter")
+            {
+
+                if (activeElem == null)
+                {
+                    return;
+                }
+                var nextRowIndex = activeElem.row.index + 1;
+                if (e.ShiftKey) {
+                    nextRowIndex = activeElem.row.index - 1;
+                }
+                const maxRows = grid1.data.length;
+                if (nextRowIndex >= maxRows) {
+                    nextRowIndex--;
+                }
+                if(nextRowIndex< 0) {
+                    nextRowIndex = 0;
+                }
+
+                grid1.NavigateTo(nextRowIndex, activeElem.Column.ColEnd, (obj) => {
+                    grid1.ClearCellSelection();
+                    obj.target.activate();
+                });
+            }
+        }
+}
+
+}
