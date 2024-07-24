@@ -18,7 +18,7 @@ public class EmployeeBasicInfo
     public string FullAddress { get; set; }
 }
 
-public class EmployeeBasicData
+public class EmployeeBasicData // EmployeesFlatDetails
     : List<EmployeeBasicInfo>
 {
     public EmployeeBasicData()
