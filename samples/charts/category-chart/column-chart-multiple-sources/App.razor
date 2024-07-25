@@ -18,7 +18,6 @@
         @ref="chart"
         ChartType="CategoryChartType.Column"
         DataSource="HighestGrossingMovies"
-        Legend="Legend"
         XAxisInterval="1"
         YAxisTitle="Billions of U.S. Dollars"
         YAxisTitleLeftMargin="10"
@@ -35,10 +34,17 @@
 
 @code {
 
+    private Action BindElements { get; set; }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var legend = this.legend;
         var chart = this.chart;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
 
     }
 

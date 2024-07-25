@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-public class EmployeeBasicInfo
+public class EmployeesFlatDetailsItem
 {
     public string Address { get; set; }
     public double Age { get; set; }
@@ -18,12 +18,12 @@ public class EmployeeBasicInfo
     public string FullAddress { get; set; }
 }
 
-public class EmployeeBasicData // EmployeesFlatDetails
-    : List<EmployeeBasicInfo>
+public class EmployeesFlatDetails
+    : List<EmployeesFlatDetailsItem>
 {
-    public EmployeeBasicData()
+    public EmployeesFlatDetails()
     {
-        this.Add(new EmployeeBasicInfo()
+        this.Add(new EmployeesFlatDetailsItem()
         {
             Address = @"Obere Str. 57",
             Age = 55,
@@ -40,7 +40,7 @@ public class EmployeeBasicData // EmployeesFlatDetails
             LastName = @"Winchester",
             FullAddress = @"Obere Str. 57, Berlin, Germany"
         });
-        this.Add(new EmployeeBasicInfo()
+        this.Add(new EmployeesFlatDetailsItem()
         {
             Address = @"Avda. de la Constitución 2222",
             Age = 42,
@@ -57,7 +57,7 @@ public class EmployeeBasicData // EmployeesFlatDetails
             LastName = @"Sanders",
             FullAddress = @"Avda. de la Constitución 2222, México D.F., Mexico"
         });
-        this.Add(new EmployeeBasicInfo()
+        this.Add(new EmployeesFlatDetailsItem()
         {
             Address = @"Mataderos 2312",
             Age = 49,
@@ -74,7 +74,7 @@ public class EmployeeBasicData // EmployeesFlatDetails
             LastName = @"Lincoln",
             FullAddress = @"Mataderos 2312, México D.F., Mexico"
         });
-        this.Add(new EmployeeBasicInfo()
+        this.Add(new EmployeesFlatDetailsItem()
         {
             Address = @"120 Hanover Sq.",
             Age = 61,
@@ -91,7 +91,7 @@ public class EmployeeBasicData // EmployeesFlatDetails
             LastName = @"Wang",
             FullAddress = @"120 Hanover Sq., London, UK"
         });
-        this.Add(new EmployeeBasicInfo()
+        this.Add(new EmployeesFlatDetailsItem()
         {
             Address = @"Berguvsvägen 8",
             Age = 43,
@@ -108,7 +108,7 @@ public class EmployeeBasicData // EmployeesFlatDetails
             LastName = @"Burke",
             FullAddress = @"Berguvsvägen 8, Luleå, Sweden"
         });
-        this.Add(new EmployeeBasicInfo()
+        this.Add(new EmployeesFlatDetailsItem()
         {
             Address = @"Forsterstr. 57",
             Age = 29,
@@ -125,7 +125,7 @@ public class EmployeeBasicData // EmployeesFlatDetails
             LastName = @"Anderson",
             FullAddress = @"Forsterstr. 57, Mannheim, Germany"
         });
-        this.Add(new EmployeeBasicInfo()
+        this.Add(new EmployeesFlatDetailsItem()
         {
             Address = @"24, place Kléber",
             Age = 31,
@@ -142,7 +142,7 @@ public class EmployeeBasicData // EmployeesFlatDetails
             LastName = @"Reyes",
             FullAddress = @"24, place Kléber, Strasbourg, France"
         });
-        this.Add(new EmployeeBasicInfo()
+        this.Add(new EmployeesFlatDetailsItem()
         {
             Address = @"C/ Araquil, 67",
             Age = 35,
@@ -159,7 +159,7 @@ public class EmployeeBasicData // EmployeesFlatDetails
             LastName = @"Mendel",
             FullAddress = @"C/ Araquil, 67, Madrid, Spain"
         });
-        this.Add(new EmployeeBasicInfo()
+        this.Add(new EmployeesFlatDetailsItem()
         {
             Address = @"12, rue des Bouchers",
             Age = 44,
@@ -176,7 +176,7 @@ public class EmployeeBasicData // EmployeesFlatDetails
             LastName = @"Cooper",
             FullAddress = @"12, rue des Bouchers, Marseille, France"
         });
-        this.Add(new EmployeeBasicInfo()
+        this.Add(new EmployeesFlatDetailsItem()
         {
             Address = @"23 Tsawassen Blvd.",
             Age = 44,
@@ -193,7 +193,7 @@ public class EmployeeBasicData // EmployeesFlatDetails
             LastName = @"Johnson",
             FullAddress = @"23 Tsawassen Blvd., Tsawassen, Canada"
         });
-        this.Add(new EmployeeBasicInfo()
+        this.Add(new EmployeesFlatDetailsItem()
         {
             Address = @"Fauntleroy Circus",
             Age = 25,
@@ -210,7 +210,7 @@ public class EmployeeBasicData // EmployeesFlatDetails
             LastName = @"Richards",
             FullAddress = @"Fauntleroy Circus, London, UK"
         });
-        this.Add(new EmployeeBasicInfo()
+        this.Add(new EmployeesFlatDetailsItem()
         {
             Address = @"Cerrito 333",
             Age = 39,
@@ -227,7 +227,7 @@ public class EmployeeBasicData // EmployeesFlatDetails
             LastName = @"Ashworth",
             FullAddress = @"Cerrito 333, Buenos Aires, Argentina"
         });
-        this.Add(new EmployeeBasicInfo()
+        this.Add(new EmployeesFlatDetailsItem()
         {
             Address = @"Sierras de Granada 9993",
             Age = 44,
@@ -244,7 +244,7 @@ public class EmployeeBasicData // EmployeesFlatDetails
             LastName = @"Moreno",
             FullAddress = @"Sierras de Granada 9993, México D.F., Mexico"
         });
-        this.Add(new EmployeeBasicInfo()
+        this.Add(new EmployeesFlatDetailsItem()
         {
             Address = @"Hauptstr. 29",
             Age = 50,
@@ -261,7 +261,7 @@ public class EmployeeBasicData // EmployeesFlatDetails
             LastName = @"Rodriguez",
             FullAddress = @"Hauptstr. 29, Sao Paulo, Brazil"
         });
-        this.Add(new EmployeeBasicInfo()
+        this.Add(new EmployeesFlatDetailsItem()
         {
             Address = @"Av. dos Lusíadas, 23",
             Age = 27,
@@ -278,7 +278,7 @@ public class EmployeeBasicData // EmployeesFlatDetails
             LastName = @"Harper",
             FullAddress = @"Av. dos Lusíadas, 23, Bern, Switzerland"
         });
-        this.Add(new EmployeeBasicInfo()
+        this.Add(new EmployeesFlatDetailsItem()
         {
             Address = @"Berkeley Gardens 12",
             Age = 25,
@@ -295,7 +295,7 @@ public class EmployeeBasicData // EmployeesFlatDetails
             LastName = @"Simpson",
             FullAddress = @"Berkeley Gardens 12, London, UK"
         });
-        this.Add(new EmployeeBasicInfo()
+        this.Add(new EmployeesFlatDetailsItem()
         {
             Address = @"Walserweg 21",
             Age = 39,
@@ -312,7 +312,7 @@ public class EmployeeBasicData // EmployeesFlatDetails
             LastName = @"Chang",
             FullAddress = @"Walserweg 21, Aachen, Germany"
         });
-        this.Add(new EmployeeBasicInfo()
+        this.Add(new EmployeesFlatDetailsItem()
         {
             Address = @"35 King George",
             Age = 25,

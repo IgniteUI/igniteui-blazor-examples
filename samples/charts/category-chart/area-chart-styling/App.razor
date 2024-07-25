@@ -19,7 +19,6 @@
         DataSource="CountryRenewableElectricity"
         IncludedProperties="@(new string[] { "Year", "Europe", "China", "America" })"
         ChartType="CategoryChartType.Area"
-        Legend="Legend"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
         MarkerBrushes="white"
@@ -39,10 +38,17 @@
 
 @code {
 
+    private Action BindElements { get; set; }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var legend = this.legend;
         var chart = this.chart;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
 
     }
 
