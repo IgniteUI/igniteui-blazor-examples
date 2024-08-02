@@ -4,12 +4,12 @@
     <div class="container vertical fill">
         <IgbHierarchicalGrid
         AutoGenerate="false"
+        Id="grid"
+        Name="grid"
+        @ref="grid"
         Data="NwindData"
         PrimaryKey="ProductID"
-        DisplayDensity="DisplayDensity.Cosy"
-        AllowFiltering="true"
-        Name="hierarchicalGrid1"
-        @ref="hierarchicalGrid1">
+        AllowFiltering="true">
             <IgbPaginator
             PerPage="10">
             </IgbPaginator>
@@ -93,11 +93,11 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var hierarchicalGrid1 = this.hierarchicalGrid1;
+        var grid = this.grid;
 
     }
 
-    private IgbHierarchicalGrid hierarchicalGrid1;
+    private IgbHierarchicalGrid grid;
 
     private NwindData _nwindData = null;
     public NwindData NwindData
