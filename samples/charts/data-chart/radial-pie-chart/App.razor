@@ -16,7 +16,6 @@
         <IgbDataChart
         Name="chart"
         @ref="chart"
-        Legend="Legend"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false">
             <IgbCategoryAngleAxis
@@ -73,6 +72,8 @@
 
 @code {
 
+    private Action BindElements { get; set; }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var legend = this.legend;
@@ -82,6 +83,11 @@
         var radialPieSeries1 = this.radialPieSeries1;
         var radialPieSeries2 = this.radialPieSeries2;
         var dataToolTipLayer = this.dataToolTipLayer;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
 
     }
 

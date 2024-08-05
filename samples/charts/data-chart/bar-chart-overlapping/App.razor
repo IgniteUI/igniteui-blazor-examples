@@ -15,8 +15,7 @@
     <div class="container vertical fill">
         <IgbDataChart
         Name="Chart"
-        @ref="chart"
-        Legend="Legend">
+        @ref="chart">
             <IgbCategoryYAxis
             Name="yAxis1"
             @ref="yAxis1"
@@ -118,6 +117,8 @@
 
 @code {
 
+    private Action BindElements { get; set; }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var legend = this.legend;
@@ -131,6 +132,11 @@
         var calloutLayer1 = this.calloutLayer1;
         var calloutLayer2 = this.calloutLayer2;
         var tooltips = this.tooltips;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
 
     }
 

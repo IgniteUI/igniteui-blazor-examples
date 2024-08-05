@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-public class AthletesDataItem
+public class PlayersDataItem
 {
     public double Id { get; set; }
     public string Avatar { get; set; }
@@ -15,12 +15,12 @@ public class AthletesDataItem
     public string CountryName { get; set; }
 }
 
-public class AthletesData
-    : List<AthletesDataItem>
+public class PlayersData // AthletesData
+    : List<PlayersDataItem>
 {
-    public AthletesData()
+    public PlayersData()
     {
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 100,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/20.jpg",
@@ -34,7 +34,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/gh.png",
             CountryName = @"Ghana"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 101,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/71.jpg",
@@ -48,7 +48,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/no.png",
             CountryName = @"Norway"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 105,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/5.jpg",
@@ -62,7 +62,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/az.png",
             CountryName = @"Azerbaijan"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 107,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/92.jpg",
@@ -76,7 +76,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/mt.png",
             CountryName = @"Malta"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 107,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/33.jpg",
@@ -90,7 +90,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/mw.png",
             CountryName = @"Malawi"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 108,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/31.jpg",
@@ -104,7 +104,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ci.png",
             CountryName = @"Cote DIvoire"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 110,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/15.jpg",
@@ -118,7 +118,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/pg.png",
             CountryName = @"Papua New Guinea"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 110,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/13.jpg",
@@ -132,7 +132,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/lv.png",
             CountryName = @"Latvia"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 110,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/26.jpg",
@@ -146,7 +146,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/kg.png",
             CountryName = @"Kyrgyzstan"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 111,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/23.jpg",
@@ -160,7 +160,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/bb.png",
             CountryName = @"Barbados"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 112,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/53.jpg",
@@ -174,7 +174,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ec.png",
             CountryName = @"Ecuador"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 113,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/36.jpg",
@@ -188,7 +188,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/tn.png",
             CountryName = @"Tunisia"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 113,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/37.jpg",
@@ -202,7 +202,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/sz.png",
             CountryName = @"Swaziland"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 116,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/1.jpg",
@@ -216,7 +216,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/gt.png",
             CountryName = @"Guatemala"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 121,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/48.jpg",
@@ -230,7 +230,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/gw.png",
             CountryName = @"Guinea-Bissau"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 121,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/31.jpg",
@@ -244,7 +244,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/bg.png",
             CountryName = @"Bulgaria"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 121,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/45.jpg",
@@ -258,7 +258,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/bd.png",
             CountryName = @"Bangladesh"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 122,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/71.jpg",
@@ -272,7 +272,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/tt.png",
             CountryName = @"Trinidad and Tobago"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 122,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/57.jpg",
@@ -286,7 +286,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/cm.png",
             CountryName = @"Cameroon"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 123,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/19.jpg",
@@ -300,7 +300,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/pl.png",
             CountryName = @"Poland"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 123,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/12.jpg",
@@ -314,7 +314,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/lb.png",
             CountryName = @"Lebanon"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 123,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/31.jpg",
@@ -328,7 +328,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/fi.png",
             CountryName = @"Finland"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 124,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/98.jpg",
@@ -342,7 +342,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/uz.png",
             CountryName = @"Uzbekistan"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 124,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/19.jpg",
@@ -356,7 +356,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ma.png",
             CountryName = @"Morocco"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 125,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/16.jpg",
@@ -370,7 +370,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/km.png",
             CountryName = @"Comoros"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 127,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/52.jpg",
@@ -384,7 +384,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/co.png",
             CountryName = @"Colombia"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 128,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/52.jpg",
@@ -398,7 +398,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/mc.png",
             CountryName = @"Monaco"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 129,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/34.jpg",
@@ -412,7 +412,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/lk.png",
             CountryName = @"Sri Lanka"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 130,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/94.jpg",
@@ -426,7 +426,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/tm.png",
             CountryName = @"Turkmenistan"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 130,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/24.jpg",
@@ -440,7 +440,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/cn.png",
             CountryName = @"China"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 131,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/61.jpg",
@@ -454,7 +454,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/eh.png",
             CountryName = @"Western Sahara"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 131,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/61.jpg",
@@ -468,7 +468,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/to.png",
             CountryName = @"Tonga"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 134,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/66.jpg",
@@ -482,7 +482,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/do.png",
             CountryName = @"Dominican Republic"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 135,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/84.jpg",
@@ -496,7 +496,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/tr.png",
             CountryName = @"Turkey"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 136,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/10.jpg",
@@ -510,7 +510,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/cv.png",
             CountryName = @"Cape Verde"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 137,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/75.jpg",
@@ -524,7 +524,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/il.png",
             CountryName = @"Israel"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 137,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/80.jpg",
@@ -538,7 +538,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/cy.png",
             CountryName = @"Cyprus"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 138,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/31.jpg",
@@ -552,7 +552,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ls.png",
             CountryName = @"Lesotho"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 138,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/78.jpg",
@@ -566,7 +566,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/cu.png",
             CountryName = @"Cuba"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 138,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/38.jpg",
@@ -580,7 +580,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ar.png",
             CountryName = @"Argentina"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 139,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/28.jpg",
@@ -594,7 +594,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ht.png",
             CountryName = @"Haiti"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 141,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/15.jpg",
@@ -608,7 +608,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/nl.png",
             CountryName = @"Netherlands"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 142,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/63.jpg",
@@ -622,7 +622,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/bj.png",
             CountryName = @"Benin"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 143,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/38.jpg",
@@ -636,7 +636,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/pk.png",
             CountryName = @"Pakistan"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 144,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/57.jpg",
@@ -650,7 +650,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/bf.png",
             CountryName = @"Burkina Faso"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 147,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/8.jpg",
@@ -664,7 +664,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/tg.png",
             CountryName = @"Togo"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 150,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/52.jpg",
@@ -678,7 +678,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/bz.png",
             CountryName = @"Belize"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 151,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/88.jpg",
@@ -692,7 +692,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/mg.png",
             CountryName = @"Madagascar"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 154,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/54.jpg",
@@ -706,7 +706,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/nr.png",
             CountryName = @"Nauru"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 155,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/82.jpg",
@@ -720,7 +720,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/mv.png",
             CountryName = @"Maldives"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 159,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/66.jpg",
@@ -734,7 +734,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/st.png",
             CountryName = @"Sao Tome and Principe"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 161,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/89.jpg",
@@ -748,7 +748,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/tw.png",
             CountryName = @"Taiwan, Province of China"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 161,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/38.jpg",
@@ -762,7 +762,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/eg.png",
             CountryName = @"Egypt"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 162,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/0.jpg",
@@ -776,7 +776,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/sy.png",
             CountryName = @"Syrian Arab Republic"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 162,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/5.jpg",
@@ -790,7 +790,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/sc.png",
             CountryName = @"Seychelles"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 163,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/70.jpg",
@@ -804,7 +804,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ws.png",
             CountryName = @"Samoa"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 163,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/52.jpg",
@@ -818,7 +818,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ni.png",
             CountryName = @"Nicaragua"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 163,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/21.jpg",
@@ -832,7 +832,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/kh.png",
             CountryName = @"Cambodia"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 164,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/51.jpg",
@@ -846,7 +846,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ua.png",
             CountryName = @"Ukraine"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 165,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/79.jpg",
@@ -860,7 +860,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ml.png",
             CountryName = @"Mali"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 166,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/74.jpg",
@@ -874,7 +874,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ki.png",
             CountryName = @"Kiribati"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 167,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/67.jpg",
@@ -888,7 +888,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ae.png",
             CountryName = @"United Arab Emirates"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 167,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/62.jpg",
@@ -902,7 +902,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/tj.png",
             CountryName = @"Tajikistan"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 167,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/32.jpg",
@@ -916,7 +916,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ph.png",
             CountryName = @"Philippines"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 167,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/19.jpg",
@@ -930,7 +930,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/lr.png",
             CountryName = @"Liberia"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 167,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/81.jpg",
@@ -944,7 +944,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/is.png",
             CountryName = @"Iceland"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 168,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/10.jpg",
@@ -958,7 +958,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/at.png",
             CountryName = @"Austria"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 169,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/44.jpg",
@@ -972,7 +972,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/gb.png",
             CountryName = @"United Kingdom"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 169,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/21.jpg",
@@ -986,7 +986,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/gd.png",
             CountryName = @"Grenada"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 170,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/60.jpg",
@@ -1000,7 +1000,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/uz.png",
             CountryName = @"Uruguay"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 173,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/18.jpg",
@@ -1014,7 +1014,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/cz.png",
             CountryName = @"Czechia"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 174,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/29.jpg",
@@ -1028,7 +1028,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/er.png",
             CountryName = @"Eritrea"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 176,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/26.jpg",
@@ -1042,7 +1042,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/pa.png",
             CountryName = @"Panama"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 176,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/35.jpg",
@@ -1056,7 +1056,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/hr.png",
             CountryName = @"Croatia"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 178,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/65.jpg",
@@ -1070,7 +1070,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/sb.png",
             CountryName = @"Solomon Islands"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 180,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/90.jpg",
@@ -1084,7 +1084,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/gy.png",
             CountryName = @"Guyana"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 182,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/14.jpg",
@@ -1098,7 +1098,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/kr.png",
             CountryName = @"South Korea"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 182,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/94.jpg",
@@ -1112,7 +1112,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ge.png",
             CountryName = @"Georgia"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 183,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/74.jpg",
@@ -1126,7 +1126,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ro.png",
             CountryName = @"Romania"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 183,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/53.jpg",
@@ -1140,7 +1140,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/mk.png",
             CountryName = @"Macedonia, The Former Yugoslav Republic of"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 186,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/2.jpg",
@@ -1154,7 +1154,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/nu.png",
             CountryName = @"Niue"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 186,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/42.jpg",
@@ -1168,7 +1168,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/cr.png",
             CountryName = @"Costa Rica"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 188,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/3.jpg",
@@ -1182,7 +1182,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/py.png",
             CountryName = @"Paraguay"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 188,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/81.jpg",
@@ -1196,7 +1196,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/mu.png",
             CountryName = @"Mauritius"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 188,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/45.jpg",
@@ -1210,7 +1210,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/dm.png",
             CountryName = @"Dominica"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 190,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/2.jpg",
@@ -1224,7 +1224,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/hu.png",
             CountryName = @"Hungary"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 190,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/53.jpg",
@@ -1238,7 +1238,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/de.png",
             CountryName = @"Germany"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 190,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/44.jpg",
@@ -1252,7 +1252,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/au.png",
             CountryName = @"Australia"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 191,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/42.jpg",
@@ -1266,7 +1266,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/np.png",
             CountryName = @"Nepal"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 191,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/13.jpg",
@@ -1280,7 +1280,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ke.png",
             CountryName = @"Kenya"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 191,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/72.jpg",
@@ -1294,7 +1294,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ba.png",
             CountryName = @"Bosnia and Herzegovina"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 192,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/44.jpg",
@@ -1308,7 +1308,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/so.png",
             CountryName = @"Somalia"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 193,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/9.jpg",
@@ -1322,7 +1322,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/vu.png",
             CountryName = @"Vanuatu"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 193,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/59.jpg",
@@ -1336,7 +1336,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ee.png",
             CountryName = @"Estonia"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 194,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/62.jpg",
@@ -1350,7 +1350,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/se.png",
             CountryName = @"Sweden"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 194,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/11.jpg",
@@ -1364,7 +1364,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/sn.png",
             CountryName = @"Senegal"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 194,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/71.jpg",
@@ -1378,7 +1378,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/om.png",
             CountryName = @"Oman"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 196,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/17.jpg",
@@ -1392,7 +1392,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/jm.png",
             CountryName = @"Jamaica"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 196,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/30.jpg",
@@ -1406,7 +1406,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/sv.png",
             CountryName = @"El Salvador"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 197,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/93.jpg",
@@ -1420,7 +1420,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/dz.png",
             CountryName = @"Algeria"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 199,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/68.jpg",
@@ -1434,7 +1434,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ca.png",
             CountryName = @"Canada"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 210,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/13.jpg",
@@ -1448,7 +1448,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/mx.png",
             CountryName = @"Mexico"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 212,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/83.jpg",
@@ -1462,7 +1462,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/sa.png",
             CountryName = @"Saudi Arabia"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 214,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/84.jpg",
@@ -1476,7 +1476,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/tv.png",
             CountryName = @"Tuvalu"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 215,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/79.jpg",
@@ -1490,7 +1490,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/mm.png",
             CountryName = @"Myanmar"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 216,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/72.jpg",
@@ -1504,7 +1504,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/fr.png",
             CountryName = @"France"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 219,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/6.jpg",
@@ -1518,7 +1518,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/bt.png",
             CountryName = @"Bhutan"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 221,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/73.jpg",
@@ -1532,7 +1532,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/td.png",
             CountryName = @"Chad"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 223,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/72.jpg",
@@ -1546,7 +1546,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/jp.png",
             CountryName = @"Japan"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 224,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/0.jpg",
@@ -1560,7 +1560,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/gq.png",
             CountryName = @"Equatorial Guinea"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 225,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/42.jpg",
@@ -1574,7 +1574,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ve.png",
             CountryName = @"Venezuela"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 227,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/9.jpg",
@@ -1588,7 +1588,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/sd.png",
             CountryName = @"Sudan"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 227,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/61.jpg",
@@ -1602,7 +1602,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/si.png",
             CountryName = @"Slovenia"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 229,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/29.jpg",
@@ -1616,7 +1616,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ly.png",
             CountryName = @"Libyan Arab Jamahiriya"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 231,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/56.jpg",
@@ -1630,7 +1630,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/la.png",
             CountryName = @"Lao PeopleS Democratic Republic"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 233,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/18.jpg",
@@ -1644,7 +1644,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/bs.png",
             CountryName = @"Bahamas"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 234,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/19.jpg",
@@ -1658,7 +1658,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ye.png",
             CountryName = @"Yemen"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 235,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/42.jpg",
@@ -1672,7 +1672,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/li.png",
             CountryName = @"Liechtenstein"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 237,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/86.jpg",
@@ -1686,7 +1686,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/pw.png",
             CountryName = @"Palau"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 238,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/17.jpg",
@@ -1700,7 +1700,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ck.png",
             CountryName = @"Cook Islands"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 240,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/5.jpg",
@@ -1714,7 +1714,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/lu.png",
             CountryName = @"Luxembourg"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 240,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/33.jpg",
@@ -1728,7 +1728,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ag.png",
             CountryName = @"Antigua and Barbuda"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 241,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/65.jpg",
@@ -1742,7 +1742,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/kn.png",
             CountryName = @"Saint Kitts and Nevis"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 241,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/20.jpg",
@@ -1756,7 +1756,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/fm.png",
             CountryName = @"Micronesia, Federated States of"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 242,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/83.jpg",
@@ -1770,7 +1770,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/mz.png",
             CountryName = @"Mozambique"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 243,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/77.jpg",
@@ -1784,7 +1784,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ug.png",
             CountryName = @"Uganda"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 243,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/94.jpg",
@@ -1798,7 +1798,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/tz.png",
             CountryName = @"Tanzania, United Republic of"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 243,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/42.jpg",
@@ -1812,7 +1812,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/pe.png",
             CountryName = @"Peru"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 246,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/55.jpg",
@@ -1826,7 +1826,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/dk.png",
             CountryName = @"Denmark"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 251,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/34.jpg",
@@ -1840,7 +1840,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/vc.png",
             CountryName = @"Saint Vincent and the Grenadines"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 251,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/74.jpg",
@@ -1854,7 +1854,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/md.png",
             CountryName = @"Moldova, Republic of"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 252,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/94.jpg",
@@ -1868,7 +1868,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/mh.png",
             CountryName = @"Marshall Islands"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 253,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/51.jpg",
@@ -1882,7 +1882,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ne.png",
             CountryName = @"Niger"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 258,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/31.jpg",
@@ -1896,7 +1896,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ng.png",
             CountryName = @"Nigeria"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 258,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/30.jpg",
@@ -1910,7 +1910,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/iq.png",
             CountryName = @"Iraq"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 258,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/60.jpg",
@@ -1924,7 +1924,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ao.png",
             CountryName = @"Angola"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 262,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/9.jpg",
@@ -1938,7 +1938,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/in.png",
             CountryName = @"India"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 262,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/43.jpg",
@@ -1952,7 +1952,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ga.png",
             CountryName = @"Gabon"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 263,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/9.jpg",
@@ -1966,7 +1966,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/na.png",
             CountryName = @"Namibia"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 265,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/47.jpg",
@@ -1980,7 +1980,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ch.png",
             CountryName = @"Switzerland"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 265,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/9.jpg",
@@ -1994,7 +1994,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/my.png",
             CountryName = @"Malaysia"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 265,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/60.jpg",
@@ -2008,7 +2008,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/al.png",
             CountryName = @"Albania"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 266,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/70.jpg",
@@ -2022,7 +2022,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ad.png",
             CountryName = @"Andorra"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 267,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/50.jpg",
@@ -2036,7 +2036,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/kw.png",
             CountryName = @"Kuwait"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 268,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/23.jpg",
@@ -2050,7 +2050,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/be.png",
             CountryName = @"Belgium"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 269,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/17.jpg",
@@ -2064,7 +2064,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/gm.png",
             CountryName = @"Gambia"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 270,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/14.jpg",
@@ -2078,7 +2078,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/cf.png",
             CountryName = @"Central African Republic"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 271,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/81.jpg",
@@ -2092,7 +2092,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/bi.png",
             CountryName = @"Burundi"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 271,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/74.jpg",
@@ -2106,7 +2106,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/bw.png",
             CountryName = @"Botswana"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 272,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/26.jpg",
@@ -2120,7 +2120,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/sm.png",
             CountryName = @"San Marino"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 272,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/31.jpg",
@@ -2134,7 +2134,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/id.png",
             CountryName = @"Indonesia"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 273,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/4.jpg",
@@ -2148,7 +2148,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/nz.png",
             CountryName = @"New Zealand"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 273,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/33.jpg",
@@ -2162,7 +2162,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/kp.png",
             CountryName = @"North Korea"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 274,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/9.jpg",
@@ -2176,7 +2176,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/jo.png",
             CountryName = @"Jordan"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 275,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/2.jpg",
@@ -2190,7 +2190,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/lt.png",
             CountryName = @"Lithuania"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 275,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/88.jpg",
@@ -2204,7 +2204,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/gn.png",
             CountryName = @"Guinea"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 275,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/69.jpg",
@@ -2218,7 +2218,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/by.png",
             CountryName = @"Belarus"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 276,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/1.jpg",
@@ -2232,7 +2232,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/th.png",
             CountryName = @"Thailand"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 276,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/65.jpg",
@@ -2246,7 +2246,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/pt.png",
             CountryName = @"Portugal"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 279,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/39.jpg",
@@ -2260,7 +2260,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/mn.png",
             CountryName = @"Mongolia"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 280,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/90.jpg",
@@ -2274,7 +2274,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/rw.png",
             CountryName = @"RWANDA"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 282,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/55.jpg",
@@ -2288,7 +2288,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/br.png",
             CountryName = @"Brazil"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 283,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/10.jpg",
@@ -2302,7 +2302,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/bh.png",
             CountryName = @"Bahrain"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 284,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/12.jpg",
@@ -2316,7 +2316,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/af.png",
             CountryName = @"Afghanistan"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 285,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/34.jpg",
@@ -2330,7 +2330,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/gr.png",
             CountryName = @"Greece"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 285,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/43.jpg",
@@ -2344,7 +2344,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/et.png",
             CountryName = @"Ethiopia"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 286,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/45.jpg",
@@ -2358,7 +2358,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/es.png",
             CountryName = @"Spain"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 286,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/82.jpg",
@@ -2372,7 +2372,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/cl.png",
             CountryName = @"Chile"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 287,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/72.jpg",
@@ -2386,7 +2386,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/za.png",
             CountryName = @"South Africa"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 287,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/35.jpg",
@@ -2400,7 +2400,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ie.png",
             CountryName = @"Ireland"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 292,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/4.jpg",
@@ -2414,7 +2414,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/kz.png",
             CountryName = @"Kazakhstan"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 293,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/21.jpg",
@@ -2428,7 +2428,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/tl.png",
             CountryName = @"Timor-Leste"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 293,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/90.jpg",
@@ -2442,7 +2442,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/sg.png",
             CountryName = @"Singapore"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 296,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/37.jpg",
@@ -2456,7 +2456,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/sl.png",
             CountryName = @"Sierra Leone"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 299,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/89.jpg",
@@ -2470,7 +2470,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/mr.png",
             CountryName = @"Mauritania"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 301,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/65.jpg",
@@ -2484,7 +2484,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/hn.png",
             CountryName = @"Honduras"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 302,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/14.jpg",
@@ -2498,7 +2498,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ir.png",
             CountryName = @"Iran, Islamic Republic Of"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 304,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/34.jpg",
@@ -2512,7 +2512,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/va.png",
             CountryName = @"Holy See (Vatican City State)"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 305,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/38.jpg",
@@ -2526,7 +2526,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/it.png",
             CountryName = @"Italy"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 306,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/26.jpg",
@@ -2540,7 +2540,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/am.png",
             CountryName = @"Armenia"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 308,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/15.jpg",
@@ -2554,7 +2554,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/ru.png",
             CountryName = @"Russian Federation"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 308,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/14.jpg",
@@ -2568,7 +2568,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/dj.png",
             CountryName = @"Djibouti"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 309,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/73.jpg",
@@ -2582,7 +2582,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/lc.png",
             CountryName = @"Saint Lucia"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 310,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/men/92.jpg",
@@ -2596,7 +2596,7 @@ public class AthletesData
             CountryFlag = @"https://static.infragistics.com/xplatform/images/flags/iso2/fj.png",
             CountryName = @"Fiji"
         });
-        this.Add(new AthletesDataItem()
+        this.Add(new PlayersDataItem()
         {
             Id = 311,
             Avatar = @"https://static.infragistics.com/xplatform/images/people/women/92.jpg",

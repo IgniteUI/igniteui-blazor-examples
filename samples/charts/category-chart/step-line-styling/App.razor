@@ -16,7 +16,6 @@
         <IgbCategoryChart
         Name="chart"
         @ref="chart"
-        Legend="Legend"
         ChartType="CategoryChartType.StepLine"
         DataSource="CountryRenewableElectricity"
         IncludedProperties="@(new string[] { "Year", "Europe", "China", "America" })"
@@ -37,10 +36,17 @@
 
 @code {
 
+    private Action BindElements { get; set; }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var legend = this.legend;
         var chart = this.chart;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
 
     }
 

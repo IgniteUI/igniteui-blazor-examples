@@ -18,7 +18,6 @@
         @ref="chart"
         DataSource="CountryRenewableElectricity"
         ChartType="CategoryChartType.Line"
-        Legend="Legend"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
         MarkerBrushes="#ee5879 #c4c4c4 #9af2e4"
@@ -37,10 +36,17 @@
 
 @code {
 
+    private Action BindElements { get; set; }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var legend = this.legend;
         var chart = this.chart;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
 
     }
 

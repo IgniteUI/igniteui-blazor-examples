@@ -16,7 +16,6 @@
         <IgbDataChart
         Name="chart"
         @ref="chart"
-        Legend="Legend"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
         SelectionMode="SeriesSelectionMode.SelectionColorFill"
@@ -72,6 +71,8 @@
 
 @code {
 
+    private Action BindElements { get; set; }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var legend = this.legend;
@@ -80,6 +81,11 @@
         var radiusAxis = this.radiusAxis;
         var radialColumnSeries1 = this.radialColumnSeries1;
         var radialColumnSeries2 = this.radialColumnSeries2;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
 
     }
 

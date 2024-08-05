@@ -18,7 +18,6 @@
         @ref="chart"
         DataSource="CountryRenewableElectricity"
         ChartType="CategoryChartType.Point"
-        Legend="Legend"
         MarkerOutlines="#8ce7d9 #ee5879 #735656"
         MarkerBrushes="white"
         Brushes="#8ce7d9 #ee5879 #735656"
@@ -38,10 +37,17 @@
 
 @code {
 
+    private Action BindElements { get; set; }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var legend = this.legend;
         var chart = this.chart;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
 
     }
 

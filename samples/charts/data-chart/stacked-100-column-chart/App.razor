@@ -16,7 +16,6 @@
         <IgbDataChart
         Name="chart"
         @ref="chart"
-        Legend="Legend"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false">
             <IgbCategoryXAxis
@@ -76,6 +75,8 @@
 
 @code {
 
+    private Action BindElements { get; set; }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var legend = this.legend;
@@ -87,6 +88,11 @@
         var s2 = this.s2;
         var s3 = this.s3;
         var dataToolTipLayer = this.dataToolTipLayer;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
 
     }
 

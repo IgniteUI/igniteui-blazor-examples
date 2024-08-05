@@ -18,7 +18,6 @@
         @ref="chart"
         DataSource="EnergyRenewableConsumption"
         ChartType="CategoryChartType.Column"
-        Legend="Legend"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
         IsSeriesHighlightingEnabled="true"
@@ -37,10 +36,17 @@
 
 @code {
 
+    private Action BindElements { get; set; }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var legend = this.legend;
         var chart = this.chart;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
 
     }
 
