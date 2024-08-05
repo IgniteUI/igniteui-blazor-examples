@@ -1,5 +1,7 @@
 @using IgniteUI.Blazor.Controls
 
+@inject IJSRuntime JS
+
 <div class="container vertical ig-typography">
     <div class="options vertical">
         <IgbPropertyEditorPanel
@@ -27,9 +29,13 @@
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="DisplayDensity"
-            Name="DisplayDensityEditor"
-            @ref="displayDensityEditor">
+            Name="SizeEditor"
+            @ref="sizeEditor"
+            Label="Grid Size:"
+            ValueType="PropertyEditorValueType.EnumValue"
+            DropDownNames="@(new string[] { "Small", "Medium", "Large" })"
+            DropDownValues="@(new string[] { "Small", "Medium", "Large" })"
+            ChangedScript="WebGridSetGridSize">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -38,6 +44,7 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
+        Id="grid"
         Name="grid"
         @ref="grid"
         Data="NwindData">
@@ -112,7 +119,7 @@
         var propertyEditorPanel1 = this.propertyEditorPanel1;
         var summaryRowHeightEditor = this.summaryRowHeightEditor;
         var toggleSummariesEditor = this.toggleSummariesEditor;
-        var displayDensityEditor = this.displayDensityEditor;
+        var sizeEditor = this.sizeEditor;
         var grid = this.grid;
         var column1 = this.column1;
         var column2 = this.column2;
@@ -127,7 +134,7 @@
     private IgbPropertyEditorPanel propertyEditorPanel1;
     private IgbPropertyEditorPropertyDescription summaryRowHeightEditor;
     private IgbPropertyEditorPropertyDescription toggleSummariesEditor;
-    private IgbPropertyEditorPropertyDescription displayDensityEditor;
+    private IgbPropertyEditorPropertyDescription sizeEditor;
     private IgbGrid grid;
     private IgbColumn column1;
     private IgbColumn column2;

@@ -12,9 +12,13 @@
         IsHorizontal="true"
         IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="DisplayDensity"
-            Name="DisplayDensityEditor"
-            @ref="displayDensityEditor">
+            Name="SizeEditor"
+            @ref="sizeEditor"
+            Label="Grid Size:"
+            ValueType="PropertyEditorValueType.EnumValue"
+            DropDownNames="@(new string[] { "Small", "Medium", "Large" })"
+            DropDownValues="@(new string[] { "Small", "Medium", "Large" })"
+            ChangedScript="WebTreeGridSetGridSize">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -23,8 +27,9 @@
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
-        Name="grid"
-        @ref="grid"
+        Id="treeGrid"
+        Name="treeGrid"
+        @ref="treeGrid"
         Data="FoodsData"
         PrimaryKey="ID"
         ForeignKey="ParentID"
@@ -93,20 +98,20 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var propertyEditor = this.propertyEditor;
-        var displayDensityEditor = this.displayDensityEditor;
-        var grid = this.grid;
+        var sizeEditor = this.sizeEditor;
+        var treeGrid = this.treeGrid;
         var column1 = this.column1;
 
         this.BindElements = () => {
-            propertyEditor.Target = this.grid;
+            propertyEditor.Target = this.treeGrid;
         };
         this.BindElements();
 
     }
 
     private IgbPropertyEditorPanel propertyEditor;
-    private IgbPropertyEditorPropertyDescription displayDensityEditor;
-    private IgbTreeGrid grid;
+    private IgbPropertyEditorPropertyDescription sizeEditor;
+    private IgbTreeGrid treeGrid;
     private IgbColumn column1;
 
     private FoodsData _foodsData = null;
