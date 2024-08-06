@@ -8,6 +8,7 @@
                  Data="NwindData"
                  PrimaryKey="ProductID"
                  @onkeydown="keyDownHandler"
+                 @ActiveNodeChange="nodeChanged"
                  Name="grid1"
                  @ref="grid1">
             <IgbColumn Field="ProductID"
@@ -57,6 +58,7 @@
     }
 
     private IgbGrid grid1;
+    private bool shouldAppendValue = false;
 
     private NwindData _nwindData = null;
     public NwindData NwindData
@@ -71,67 +73,74 @@
         }
     }
 
+    public async Task nodeChanged()
+    {
+        var activeElem = grid1.GetSelectedCells()[0];
+        activeElem.EditMode = false;
+        await JS.invo("getBodyFocus");
+    }
+
     public async Task keyDownHandler(KeyboardEventArgs e)
     {
-        var key = e.Key;
+        var grid1 = this.grid1;
+
         var code = e.Code;
-        var activeElem = this.grid1.GetSelectedCells()[0] as IgbCellType;
+        var activeElem = grid1.GetSelectedCells()[0];
 
-        if(key == "Escape") {
-            activeElem.SetEditMode(false);
-            return;
-        }   
-
-        if ((key[0] >= '0' && key[0] <= '9') || (key.ToLower()[0] >= 'a' && key.ToLower()[0] <= 'z') && key != "Enter")
+        if ((string.Compare(e.Code, "Digit0") >= 0 && string.Compare(e.Code, "Digit9") <= 0) ||
+        (string.Compare(e.Code, "KeyA") >= 0 && string.Compare(e.Code, "KeyZ") <= 0) &&
+        e.Code != "Enter")
         {
-
             if (activeElem != null && activeElem.EditMode == false)
             {
-                activeElem.Value = key;
-
                 activeElem.EditMode = true;
+                activeElem.EditValue = e.Key;
+                this.shouldAppendValue = true;
                 grid1.MarkForCheck();
             }
-            var inputElem = this.grid1.FindByName("input") as inputElementRef;
-            if (inputElem != null)
+            else if (activeElem != null && activeElem.EditMode && this.shouldAppendValue)
             {
-                if (inputElem.type == "number")
-                {
-                    inputElem.type = "text";
-                    inputElem.setSelectionRange(inputElem.value.length, inputElem.value.length);
-                    inputElem.type = "number";
-                }
-                else
-                {
-                    inputElem.selectionStart = inputElem.selectionEnd = inputElem.value.length;
-                }
-            }
-
-            if (key == "Enter")
-            {
-
-                if (activeElem == null)
-                {
-                    return;
-                }
-                var nextRowIndex = activeElem.row.index + 1;
-                if (e.ShiftKey) {
-                    nextRowIndex = activeElem.row.index - 1;
-                }
-                const maxRows = grid1.data.length;
-                if (nextRowIndex >= maxRows) {
-                    nextRowIndex--;
-                }
-                if(nextRowIndex< 0) {
-                    nextRowIndex = 0;
-                }
-
-                grid1.NavigateTo(nextRowIndex, activeElem.Column.ColEnd, (obj) => {
-                    grid1.ClearCellSelection();
-                    obj.target.activate();
-                });
+                await JS.InvokeVoidAsync("preventDefaultForKeyEvent", e);
+                activeElem.EditValue = activeElem.EditValue + e.Key;
+                this.shouldAppendValue = false;
             }
         }
-}
 
+        if (code == "Backspace")
+        {
+            if (activeElem == null)
+            {
+                return;
+            }
+            var rowIndex = (activeElem.Parent as IgbRowType).Index;
+            var columnKey = activeElem.Column.Field;
+
+
+            var item = NwindData[Convert.ToInt32(rowIndex)];
+            var property = item.GetType().GetProperty(columnKey);
+            if (property != null && property.CanWrite)
+            {
+                property.SetValue(item, "");
+            }
+            grid1.MarkForCheck();
+        }
+
+        if (code == "Enter")
+        {
+            if (activeElem == null)
+            {
+                return;
+            }
+
+            var thisRow = (activeElem.Parent as IgbRowType).Index;
+            var dataView = this.grid1.GetDataView();
+            var nextRowIndex = await JS.InvokeAsync<int>("getNextEditableRowIndex", thisRow, dataView, e.ShiftKey);
+
+            grid1.navigateTo(nextRowIndex, activeElem.VisibleColumnIndex, (obj) =>
+            {
+                grid1.clearCellSelection();
+                obj.target.activate();
+            });
+        }
+    }
 }
