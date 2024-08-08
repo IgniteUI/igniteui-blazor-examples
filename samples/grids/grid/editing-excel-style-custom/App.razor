@@ -7,9 +7,10 @@
         <IgbGrid AutoGenerate="false"
                  Data="NwindData"
                  PrimaryKey="ProductID"
-                 @onkeydown="keyDownHandler"
-                 @ActiveNodeChange="nodeChanged"
                  Name="grid1"
+                 Id="grid1"
+                 CellSelection="GridSelectionMode.Single"
+                 Rendered="rendered"
                  @ref="grid1">
             <IgbColumn Field="ProductID"
                        Header="Product ID"
@@ -54,7 +55,11 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid1 = this.grid1;
+    }
 
+    async private void rendered()
+    {
+        await JS.InvokeVoidAsync("attachKeyDownEvent");
     }
 
     private IgbGrid grid1;
@@ -70,77 +75,6 @@
                 _nwindData = new NwindData();
             }
             return _nwindData;
-        }
-    }
-
-    public async Task nodeChanged()
-    {
-        var activeElem = grid1.GetSelectedCells()[0];
-        activeElem.EditMode = false;
-        await JS.invo("getBodyFocus");
-    }
-
-    public async Task keyDownHandler(KeyboardEventArgs e)
-    {
-        var grid1 = this.grid1;
-
-        var code = e.Code;
-        var activeElem = grid1.GetSelectedCells()[0];
-
-        if ((string.Compare(e.Code, "Digit0") >= 0 && string.Compare(e.Code, "Digit9") <= 0) ||
-        (string.Compare(e.Code, "KeyA") >= 0 && string.Compare(e.Code, "KeyZ") <= 0) &&
-        e.Code != "Enter")
-        {
-            if (activeElem != null && activeElem.EditMode == false)
-            {
-                activeElem.EditMode = true;
-                activeElem.EditValue = e.Key;
-                this.shouldAppendValue = true;
-                grid1.MarkForCheck();
-            }
-            else if (activeElem != null && activeElem.EditMode && this.shouldAppendValue)
-            {
-                await JS.InvokeVoidAsync("preventDefaultForKeyEvent", e);
-                activeElem.EditValue = activeElem.EditValue + e.Key;
-                this.shouldAppendValue = false;
-            }
-        }
-
-        if (code == "Backspace")
-        {
-            if (activeElem == null)
-            {
-                return;
-            }
-            var rowIndex = (activeElem.Parent as IgbRowType).Index;
-            var columnKey = activeElem.Column.Field;
-
-
-            var item = NwindData[Convert.ToInt32(rowIndex)];
-            var property = item.GetType().GetProperty(columnKey);
-            if (property != null && property.CanWrite)
-            {
-                property.SetValue(item, "");
-            }
-            grid1.MarkForCheck();
-        }
-
-        if (code == "Enter")
-        {
-            if (activeElem == null)
-            {
-                return;
-            }
-
-            var thisRow = (activeElem.Parent as IgbRowType).Index;
-            var dataView = this.grid1.GetDataView();
-            var nextRowIndex = await JS.InvokeAsync<int>("getNextEditableRowIndex", thisRow, dataView, e.ShiftKey);
-
-            grid1.navigateTo(nextRowIndex, activeElem.VisibleColumnIndex, (obj) =>
-            {
-                grid1.clearCellSelection();
-                obj.target.activate();
-            });
         }
     }
 }
