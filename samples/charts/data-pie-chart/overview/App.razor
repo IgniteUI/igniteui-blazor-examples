@@ -1,0 +1,40 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="legend-title">
+        Global Electricity Demand by Energy Use
+    </div>
+    <div class="container vertical fill">
+        <IgbDataPieChart
+        Name="chart"
+        @ref="chart"
+        DataSource="EnergyGlobalDemand">
+        </IgbDataPieChart>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var chart = this.chart;
+
+    }
+
+    private IgbDataPieChart chart;
+
+    private EnergyGlobalDemand _energyGlobalDemand = null;
+    public EnergyGlobalDemand EnergyGlobalDemand
+    {
+        get
+        {
+            if (_energyGlobalDemand == null)
+            {
+                _energyGlobalDemand = new EnergyGlobalDemand();
+            }
+            return _energyGlobalDemand;
+        }
+    }
+
+}

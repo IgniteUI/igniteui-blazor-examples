@@ -1,0 +1,78 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="container vertical fill">
+        <IgbDataChart
+        Name="chart"
+        @ref="chart"
+        Legend="Legend"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false">
+            <IgbProportionalCategoryAngleAxis
+            Name="angleAxis"
+            @ref="angleAxis"
+            DataSource="RadialProportionalData"
+            Label="Label"
+            ValueMemberPath="Value"
+            Gap="0"
+            OthersCategoryText="Others"
+            OthersCategoryThreshold="55"
+            OthersCategoryType="OthersCategoryType.Number">
+            </IgbProportionalCategoryAngleAxis>
+
+            <IgbNumericRadiusAxis
+            Name="radiusAxis"
+            @ref="radiusAxis"
+            MinimumValue="0"
+            MaximumValue="100">
+            </IgbNumericRadiusAxis>
+
+            <IgbRadialPieSeries
+            Name="RadialPieSeries1"
+            @ref="radialPieSeries1"
+            DataSource="RadialProportionalData"
+            AngleAxisName="angleAxis"
+            ValueAxisName="radiusAxis"
+            ValueMemberPath="Value"
+            ShowDefaultTooltip="false"
+            UseItemWiseColors="true"
+            LegendRadialLabelMode="RadialLabelMode.LabelAndValueAndPercentage"
+            MarkerType="MarkerType.None"
+            Title="Categories">
+            </IgbRadialPieSeries>
+
+        </IgbDataChart>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var chart = this.chart;
+        var angleAxis = this.angleAxis;
+        var radiusAxis = this.radiusAxis;
+        var radialPieSeries1 = this.radialPieSeries1;
+
+    }
+
+    private IgbDataChart chart;
+    private IgbProportionalCategoryAngleAxis angleAxis;
+    private IgbNumericRadiusAxis radiusAxis;
+    private IgbRadialPieSeries radialPieSeries1;
+
+    private RadialProportionalData _radialProportionalData = null;
+    public RadialProportionalData RadialProportionalData
+    {
+        get
+        {
+            if (_radialProportionalData == null)
+            {
+                _radialProportionalData = new RadialProportionalData();
+            }
+            return _radialProportionalData;
+        }
+    }
+
+}
