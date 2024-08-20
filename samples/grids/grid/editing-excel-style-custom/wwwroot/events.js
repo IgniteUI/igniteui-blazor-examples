@@ -25,8 +25,9 @@ window.attachKeyDownEvent = () => {
         var activeElem = grid1.selectedCells[0];
 
         if ((e.code >= 'Digit0' && e.code <= 'Digit9') ||
-            (e.code >= 'KeyA' && e.code <= 'KeyZ') &&
-            e.code !== 'Enter') {
+            (e.code >= 'KeyA' && e.code <= 'KeyZ') ||
+            (e.code >= 'Numpad0' && e.code <= 'Numpad9') &&
+             e.code !== 'Enter' && e.code !== 'NumpadEnter') {
 
             if (activeElem && activeElem.editMode === false) {
                 activeElem.editMode = true;
@@ -54,7 +55,7 @@ window.attachKeyDownEvent = () => {
 
         }
 
-        if (code === 'Enter') {
+        if (code === 'Enter' || code === 'NumpadEnter') {
 
             if (activeElem == null) {
                 return;
