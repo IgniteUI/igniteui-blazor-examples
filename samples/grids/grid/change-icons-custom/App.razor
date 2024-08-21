@@ -2,8 +2,8 @@
 
 <div class="container vertical ig-typography">
     <div class="container vertical fill">
-        <IgbIcon @ref="icon" IconName="filter_list" Collection="fontAwesome"></IgbIcon>
-        <IgbButtonGroup Select="@((evt) => ButtonSelectionChange(evt))">
+        <IgbIcon @ref="icon" IconName="filter_list" Collection="fontAwesome" hidden></IgbIcon>
+        <IgbButtonGroup Select="@((evt) => ButtonSelectionChange(evt))" style="width:fit-content;">
             <IgbToggleButton Value="material" Selected>Material Icons</IgbToggleButton>
             <IgbToggleButton Value="fontAwesome">Font Awesome Icons</IgbToggleButton>
         </IgbButtonGroup>
@@ -115,7 +115,7 @@
         this.icon.RegisterIconFromText("search", magnifyGlass, "fontAwesome");
         this.icon.RegisterIconFromText("chevron_right", chevronRight, "fontAwesome");
         this.icon.RegisterIconFromText("clear", xMark, "fontAwesome");
-        this.icon.RegisterIconFromText("import_export", fileExport, "fontAwesome");
+        this.icon.RegisterIconFromText("file_download", fileExport, "fontAwesome");
         this.icon.RegisterIconFromText("arrow_drop_down", caretDown, "fontAwesome");
     }
 
@@ -126,9 +126,9 @@
                 Name = "arrow_drop_down",
                 Collection = collectionName,
             });
-        await this.icon.SetIconRefAsync("import_export", "default", new IgbIconMeta()
+        await this.icon.SetIconRefAsync("file_download", "default", new IgbIconMeta()
             {
-                Name = "import_export",
+                Name = "file_download",
                 Collection = collectionName,
             });
         await this.icon.SetIconRefAsync("clear", "default", new IgbIconMeta()
