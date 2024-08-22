@@ -1,5 +1,7 @@
 @using IgniteUI.Blazor.Controls
 
+@inject IJSRuntime JS
+
 <div class="container vertical ig-typography">
     <div class="options vertical">
         <IgbPropertyEditorPanel
@@ -10,9 +12,13 @@
         IsHorizontal="true"
         IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="DisplayDensity"
-            Name="DisplayDensityEditor"
-            @ref="displayDensityEditor">
+            Name="SizeEditor"
+            @ref="sizeEditor"
+            Label="Grid Size:"
+            ValueType="PropertyEditorValueType.EnumValue"
+            DropDownNames="@(new string[] { "Small", "Medium", "Large" })"
+            DropDownValues="@(new string[] { "Small", "Medium", "Large" })"
+            ChangedScript="WebGridSetGridSize">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -21,6 +27,7 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
+        Id="grid"
         Name="grid"
         @ref="grid"
         Data="InvoicesData"
@@ -175,7 +182,7 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var propertyEditor = this.propertyEditor;
-        var displayDensityEditor = this.displayDensityEditor;
+        var sizeEditor = this.sizeEditor;
         var grid = this.grid;
 
         this.BindElements = () => {
@@ -186,7 +193,7 @@
     }
 
     private IgbPropertyEditorPanel propertyEditor;
-    private IgbPropertyEditorPropertyDescription displayDensityEditor;
+    private IgbPropertyEditorPropertyDescription sizeEditor;
     private IgbGrid grid;
 
     private InvoicesData _invoicesData = null;
