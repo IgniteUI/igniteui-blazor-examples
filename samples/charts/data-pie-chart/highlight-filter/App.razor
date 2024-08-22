@@ -1,0 +1,52 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="container vertical fill">
+        <IgbDataPieChart
+        Name="chart"
+        @ref="chart"
+        DataSource="OnlineTrafficHighlightTotals"
+        HighlightedDataSource="OnlineTrafficHighlightDesktopOnly"
+        HighlightedValuesDisplayMode="SeriesHighlightedValuesDisplayMode.Overlay">
+        </IgbDataPieChart>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var chart = this.chart;
+
+    }
+
+    private IgbDataPieChart chart;
+
+    private OnlineTrafficHighlightTotals _onlineTrafficHighlightTotals = null;
+    public OnlineTrafficHighlightTotals OnlineTrafficHighlightTotals
+    {
+        get
+        {
+            if (_onlineTrafficHighlightTotals == null)
+            {
+                _onlineTrafficHighlightTotals = new OnlineTrafficHighlightTotals();
+            }
+            return _onlineTrafficHighlightTotals;
+        }
+    }
+
+    private OnlineTrafficHighlightDesktopOnly _onlineTrafficHighlightDesktopOnly = null;
+    public OnlineTrafficHighlightDesktopOnly OnlineTrafficHighlightDesktopOnly
+    {
+        get
+        {
+            if (_onlineTrafficHighlightDesktopOnly == null)
+            {
+                _onlineTrafficHighlightDesktopOnly = new OnlineTrafficHighlightDesktopOnly();
+            }
+            return _onlineTrafficHighlightDesktopOnly;
+        }
+    }
+
+}
