@@ -1,0 +1,87 @@
+@using IgniteUI.Blazor.Controls
+
+<style>
+    .offline-banner {
+        border-bottom: 1px solid rgba(0, 0, 0, .12);
+    }
+    .gallery__wrapper {
+        max-width: 400px;
+        padding-top: 24px;
+        margin: 0 auto;
+    }
+    .gallery__content {
+        display: flex;
+        flex-flow: column;
+        max-height: 430px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+    }
+    .gallery__item {
+        margin: 8px 16px;
+        overflow: visible;
+        border-radius: 0;
+    }
+    .gallery__item div {
+        display: flex;
+        justify-content: center;
+    }
+    img {
+        max-width: 100%;
+    }
+</style>
+
+<div class="gallery__wrapper">
+    <div class="gallery__content">
+        <IgbNavbar>
+            <h1>Gallery</h1>
+            <IgbIcon @ref="iconRef" IconName="refresh" Collection="material" slot="end" @onclick="OnIconClick"></IgbIcon>
+        </IgbNavbar>
+
+        <IgbBanner @ref="bannerRef" class="offline-banner">
+            <span>You are currently offline.</span>
+        </IgbBanner>
+
+        <IgbCard class="gallery__item" Elevated>
+            <div>
+                <img src="https://www.infragistics.com/angular-demos-lob/assets/images/card/media/the_red_ice_forest.jpg" />
+            </div>
+        </IgbCard>
+        <IgbCard class="gallery__item" Elevated>
+            <div>
+                <img src="https://www.infragistics.com/angular-demos-lob/assets/images/card/media/yosemite.jpg" />
+            </div>
+        </IgbCard>
+    </div>
+</div>
+
+@code {
+    private string refreshIcon = "<svg xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 0 24 24' width='24'><path d='M0 0h24v24H0z' fill='none'/><path d='M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z'/></svg>";
+
+    private IgbIcon iconRef;
+    private IgbBanner bannerRef;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (this.iconRef != null && firstRender)
+        {
+            this.iconRef.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.iconRef.RegisterIconFromText("refresh", refreshIcon, "material");
+            }));
+        }
+
+        if (this.bannerRef != null && firstRender)
+        {
+            this.bannerRef.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.bannerRef.ShowAsync();
+            }));
+        }
+
+    }
+
+    private void OnIconClick()
+    {
+        this.bannerRef.ShowAsync();
+    }
+}
