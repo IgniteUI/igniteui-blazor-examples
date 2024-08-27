@@ -4,12 +4,12 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
+        Id="grid"
+        Name="grid"
+        @ref="grid"
         Data="NwindData"
         PrimaryKey="ProductID"
-        DisplayDensity="DisplayDensity.Cosy"
-        AllowFiltering="true"
-        Name="grid1"
-        @ref="grid1">
+        AllowFiltering="true">
             <IgbPaginator
             PerPage="10">
             </IgbPaginator>
@@ -72,11 +72,11 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var grid1 = this.grid1;
+        var grid = this.grid;
 
     }
 
-    private IgbGrid grid1;
+    private IgbGrid grid;
 
     private NwindData _nwindData = null;
     public NwindData NwindData
