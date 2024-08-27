@@ -4,11 +4,11 @@
 <div class="container vertical">
     <IgbRadioGroup Alignment="@RadioGroupAlignment.Horizontal">
         <IgbRadio name="size" Value="Small" label-position="after" Change="OnRadioOptionClick">Small</IgbRadio>
-        <IgbRadio name="size" Value="Medium" label-position="after" Change="OnRadioOptionClick">Medium</IgbRadio>
-        <IgbRadio name="size" Value="Large" label-position="after" Checked="true" Change="OnRadioOptionClick">Large</IgbRadio>
+        <IgbRadio name="size" Value="Medium" label-position="after" Checked="true" Change="OnRadioOptionClick">Medium</IgbRadio>
+        <IgbRadio name="size" Value="Large" label-position="after" Change="OnRadioOptionClick">Large</IgbRadio>
     </IgbRadioGroup>
 
-    <IgbList style="margin-top: 10px;" Size="@ListSize">
+    <IgbList style="margin-top: 10px;" class="@ListSize">
         <IgbListHeader>Contacts</IgbListHeader>
         <IgbListItem>
             <IgbAvatar slot="start" src="https://static.infragistics.com/xplatform/images/avatars/8.jpg" Shape="@AvatarShape.Circle"/>
@@ -36,34 +36,10 @@
 
 @code {
 
-    public SizableComponentSize ListSize { get; set; }
+    public string ListSize { get; set; } = "size-medium";
 
-    protected override void OnInitialized()
+    public void OnRadioOptionClick(IgbRadioChangeEventArgs e)
     {
-        this.ListSize = SizableComponentSize.Large;
-    }
-
-    public void OnRadioOptionClick(IgbComponentBoolValueChangedEventArgs e)
-    {
-        IgbRadio radio = e.Parent as IgbRadio;
-
-        switch (radio.Value)
-        {
-            case "Small":
-                {
-                    this.ListSize = SizableComponentSize.Small;
-                    break;
-                }
-            case "Medium":
-                {
-                    this.ListSize = SizableComponentSize.Medium;
-                    break;
-                }
-            case "Large":
-                {
-                    this.ListSize = SizableComponentSize.Large;
-                    break;
-                }
-        }
+        this.ListSize = $"size-{e.Detail.Value.ToLower()}";
     }
 }

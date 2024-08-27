@@ -27,9 +27,9 @@
 @code {
     public IgbStepper stepper;
 
-    public void onStepTypeChange(IgbComponentBoolValueChangedEventArgs args)
+    public void onStepTypeChange(IgbRadioChangeEventArgs args)
     {
-        if(args.Detail)
+        if(args.Detail.Checked)
         {
             string value = (args.Parent as IgbRadio).Value.ToString();           
             stepper.StepType = (StepperStepType)System.Enum.Parse(typeof(StepperStepType), value, true); 
