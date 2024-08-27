@@ -3,7 +3,7 @@ const columnGroupStatesTreeGrid = new Map();
 function toggleTreeGridColumnGroup(name) {
     const grid = document.getElementsByTagName("igc-tree-grid")[0];
     var columnGroup = grid.columns.find((col) => col.header === name)
-    const columns = columnGroup.children.toArray();
+    const columns = columnGroup.childColumns;
     if (columnGroup.header === 'General Information') {
         const col = columns[1];
         col.hidden = !col.hidden;

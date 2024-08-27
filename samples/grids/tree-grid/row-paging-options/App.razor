@@ -1,5 +1,7 @@
 @using IgniteUI.Blazor.Controls
 
+@inject IJSRuntime JS
+
 <div class="container vertical ig-typography">
     <div class="options vertical">
         <IgbPropertyEditorPanel
@@ -10,10 +12,13 @@
         IsHorizontal="true"
         IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="DisplayDensity"
-            Name="DisplayDensityEditor"
-            @ref="displayDensityEditor"
-            Label="Display Density">
+            Name="SizeEditor"
+            @ref="sizeEditor"
+            Label="Grid Size:"
+            ValueType="PropertyEditorValueType.EnumValue"
+            DropDownNames="@(new string[] { "Small", "Medium", "Large" })"
+            DropDownValues="@(new string[] { "Small", "Medium", "Large" })"
+            ChangedScript="WebTreeGridSetGridSize">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -27,13 +32,11 @@
         @ref="treeGrid"
         Id="treeGrid"
         PrimaryKey="ID"
-        ForeignKey="ParentID"
-        DisplayDensity="DisplayDensity.Cosy">
+        ForeignKey="ParentID">
             <IgbPaginator
             Name="paginator"
             @ref="paginator"
             PerPage="10"
-            DisplayDensity="DisplayDensity.Cosy"
             ResourceStrings="PaginatorResourceStrings1">
             </IgbPaginator>
 
@@ -94,7 +97,7 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var propertyEditor = this.propertyEditor;
-        var displayDensityEditor = this.displayDensityEditor;
+        var sizeEditor = this.sizeEditor;
         var treeGrid = this.treeGrid;
         var paginator = this.paginator;
 
@@ -106,7 +109,7 @@
     }
 
     private IgbPropertyEditorPanel propertyEditor;
-    private IgbPropertyEditorPropertyDescription displayDensityEditor;
+    private IgbPropertyEditorPropertyDescription sizeEditor;
     private IgbTreeGrid treeGrid;
     private IgbPaginator paginator;
     private IgbPaginatorResourceStrings _paginatorResourceStrings1 = null;
