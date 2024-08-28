@@ -17,41 +17,17 @@
         <IgbRadio name="size" Value="Large" LabelPosition="@RadioLabelPosition.After" Change="@OnRadioOptionClick">Large</IgbRadio>
     </IgbRadioGroup>
 
-    <IgbInput DisplayType="@InputType.Text" Size="@InputSize" Label="Required" Value="This input is required" Required="true" />
-    <IgbInput DisplayType="@InputType.Text" Size="@InputSize" Label="Disabled" Value="This input is disabled" Disabled="true" />
-    <IgbInput DisplayType="@InputType.Text" Size="@InputSize" Label="Readonly" Value="This input is readonly" Readonly="true" />
+    <IgbInput class="@InputSize" DisplayType="@InputType.Text" Label="Required" Value="This input is required" Required="true" />
+    <IgbInput class="@InputSize" DisplayType="@InputType.Text" Label="Disabled" Value="This input is disabled" Disabled="true" />
+    <IgbInput class="@InputSize" DisplayType="@InputType.Text" Label="Readonly" Value="This input is readonly" ReadOnly="true" />
 </div>
 
 @code {
 
-    private SizableComponentSize InputSize { get; set; }
+    private string InputSize { get; set; } = "size-medium";
 
-    protected override void OnInitialized()
+    public void OnRadioOptionClick(IgbRadioChangeEventArgs e)
     {
-        this.InputSize = SizableComponentSize.Medium;
-    }
-
-    public void OnRadioOptionClick(IgbComponentBoolValueChangedEventArgs e)
-    {
-        IgbRadio radio = e.Parent as IgbRadio;
-
-        switch (radio.Value)
-        {
-            case "Small":
-                {
-                    this.InputSize = SizableComponentSize.Small;
-                    break;
-                }
-            case "Medium":
-                {
-                    this.InputSize = SizableComponentSize.Medium;
-                    break;
-                }
-            case "Large":
-                {
-                    this.InputSize = SizableComponentSize.Large;
-                    break;
-                }
-        }
+        this.InputSize = $"size-{e.Detail.Value.ToLower()}";
     }
 }

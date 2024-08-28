@@ -53,9 +53,9 @@
 
     private bool IsDefaultTitlePosition;
 
-    public void onTitlePositionChange(IgbComponentBoolValueChangedEventArgs args)
+    public void onTitlePositionChange(IgbRadioChangeEventArgs args)
     {
-        if(args.Detail)
+        if(args.Detail.Checked)
         {
             string value = (args.Parent as IgbRadio).Value.ToString();
             if (String.IsNullOrEmpty(value))
@@ -71,9 +71,9 @@
         }
     }
 
-    public void onOrientationChange(IgbComponentBoolValueChangedEventArgs args)
+    public void onOrientationChange(IgbRadioChangeEventArgs args)
     {
-        if(args.Detail)
+        if(args.Detail.Checked)
         {
             string value = (args.Parent as IgbRadio).Value.ToString();          
             Orientation = (StepperOrientation)System.Enum.Parse(typeof(StepperOrientation), value, true);

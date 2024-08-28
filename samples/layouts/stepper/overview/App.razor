@@ -53,7 +53,7 @@
                         </IgbSelect>
                         <IgbMaskInput Required="true" Label="ZIP Code" Placeholder="#####" Mask="00000" @bind-Value="@businessInformation.Zip" @oninput="@(e => { businessInformation.Zip = e.Value.ToString(); })"></IgbMaskInput>
                     </div>
-                    <IgbCheckbox Change="@(e => { businessInformation.DifferentAddress = e.Detail; })">The mailing address is different than the business physical address</IgbCheckbox>
+                    <IgbCheckbox Change="@(e => { businessInformation.DifferentAddress = e.Detail.Checked; })">The mailing address is different than the business physical address</IgbCheckbox>
                     <IgbMaskInput Required="true" Label="Federal Tax Id Number" Placeholder="9##-##-####" Mask="\900-00-0000" @bind-Value="@businessInformation.TaxIDNumber" @oninput="@(e => checkTaxIDNumberValidity('9' + e.Value.ToString()))"></IgbMaskInput>
                     @if (!IsValidTaxIDNumber)
                     {
@@ -84,8 +84,8 @@
                     <IgbInput Required="true" DisplayType=InputType.Text Label="Job Title" @bind-Value="@personalInformation.JobTitle" @oninput="@(e => { personalInformation.JobTitle = e.Value.ToString(); })"></IgbInput>
                     <IgbInput Required="true" DisplayType=InputType.Text Label="Phone Number" @bind-Value="@personalInformation.PhoneNumber" @oninput="@(e => { personalInformation.PhoneNumber = e.Value.ToString(); })"></IgbInput>
                     <IgbInput Required="true" DisplayType=InputType.Email Label="Email" @bind-Value="@personalInformation.Email" @oninput="@(e => { personalInformation.Email = e.Value.ToString(); })"></IgbInput>
-                    <IgbCheckbox Required="true" Change="@(e => { personalInformation.Authorization = e.Detail; })"> I confirm that I am authorized to borrow on behalf of this business.<span class="required">*</span> </IgbCheckbox>
-                    <IgbCheckbox Required="true" Change="@(e => { personalInformation.AgreementAccepted = e.Detail; })"> I agree with the<span class="required">*</span><a class="terms-and-conditions">Terms and Conditions</a> </IgbCheckbox>
+                    <IgbCheckbox Required="true" Change="@(e => { personalInformation.Authorization = e.Detail.Checked; })"> I confirm that I am authorized to borrow on behalf of this business.<span class="required">*</span> </IgbCheckbox>
+                    <IgbCheckbox Required="true" Change="@(e => { personalInformation.AgreementAccepted = e.Detail.Checked; })"> I agree with the<span class="required">*</span><a class="terms-and-conditions">Terms and Conditions</a> </IgbCheckbox>
                 </div>
                  <div class="selected-card-wrapper">
                     @if(selectedCard.ID != 0)
@@ -133,7 +133,7 @@
 
             <div class="success-message">
                 <div class="success-marker">
-                    <IgbIcon @ref="IconRef" Size="SizableComponentSize.Large" Name="check" Collection="material"></IgbIcon>
+                    <IgbIcon @ref="IconRef" Name="check" Collection="material"></IgbIcon>
                 </div>
                 <div class="success-text">
                     <h2 class="sample-step-title">Your application for a business credit card has been sent successfully!</h2>
@@ -153,7 +153,6 @@
 
 @code {
     public IgbStepper stepper;
-    public IgbForm form1;
     public IgbIcon IconRef { get; set; }
     public StepperCardModel selectedCard = new StepperCardModel();
     public BusinessInformationModel businessInformation = new BusinessInformationModel();
@@ -233,7 +232,7 @@
         return cardID == selectedCard.ID ? "selected-card" : "";
     }
 
-    public void OnBusinessRadioChange(IgbComponentBoolValueChangedEventArgs args)
+    public void OnBusinessRadioChange(IgbRadioChangeEventArgs args)
     {
         businessInformation.NonUSBusinessActivity = (args.Parent as IgbRadio).Value.ToString() == "yes" ? 2 : 1;
     }
