@@ -1,5 +1,7 @@
 @using IgniteUI.Blazor.Controls
 
+@inject IJSRuntime JS
+
 <div class="container vertical ig-typography">
     <div class="options vertical">
         <IgbPropertyEditorPanel
@@ -10,9 +12,13 @@
         IsHorizontal="true"
         IsWrappingEnabled="true">
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="DisplayDensity"
-            Name="DisplayDensityEditor"
-            @ref="displayDensityEditor">
+            Name="SizeEditor"
+            @ref="sizeEditor"
+            Label="Grid Size:"
+            ValueType="PropertyEditorValueType.EnumValue"
+            DropDownNames="@(new string[] { "Small", "Medium", "Large" })"
+            DropDownValues="@(new string[] { "Small", "Medium", "Large" })"
+            ChangedScript="WebGridSetGridSize">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -24,13 +30,11 @@
         Data="AthletesData"
         Name="grid"
         @ref="grid"
-        Id="grid"
-        DisplayDensity="DisplayDensity.Cosy">
+        Id="grid">
             <IgbPaginator
             Name="paginator"
             @ref="paginator"
             PerPage="15"
-            DisplayDensity="DisplayDensity.Cosy"
             ResourceStrings="PaginatorResourceStrings1">
             </IgbPaginator>
 
@@ -74,7 +78,7 @@
         var paginator = this.paginator;
         var column1 = this.column1;
         var propertyEditor = this.propertyEditor;
-        var displayDensityEditor = this.displayDensityEditor;
+        var sizeEditor = this.sizeEditor;
 
         this.BindElements = () => {
             propertyEditor.Target = this.grid;
@@ -115,7 +119,7 @@
         }
     }
     private IgbPropertyEditorPanel propertyEditor;
-    private IgbPropertyEditorPropertyDescription displayDensityEditor;
+    private IgbPropertyEditorPropertyDescription sizeEditor;
 
     private AthletesData _athletesData = null;
     public AthletesData AthletesData
