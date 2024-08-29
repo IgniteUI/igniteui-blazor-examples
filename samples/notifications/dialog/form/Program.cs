@@ -26,7 +26,6 @@ namespace Infragistics.Samples
             builder.Services.AddIgniteUIBlazor(
                 typeof(IgbButtonModule),
                 typeof(IgbDialogModule),
-                typeof(IgbFormModule),
                 typeof(IgbIconModule),
                 typeof(IgbInputModule)
 

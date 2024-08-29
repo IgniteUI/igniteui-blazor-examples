@@ -6,13 +6,13 @@
     <div class="container vertical fill">
         <IgbGrid
         AutoGenerate="false"
+        Id="grid"
+        Name="grid"
+        @ref="grid"
         Data="NwindData"
         PrimaryKey="ProductID"
-        DisplayDensity="DisplayDensity.Cosy"
         AllowFiltering="true"
-        FilterMode="FilterMode.ExcelStyleFilter"
-        Name="grid1"
-        @ref="grid1">
+        FilterMode="FilterMode.ExcelStyleFilter">
             <IgbPaginator
             PerPage="10">
             </IgbPaginator>
@@ -88,12 +88,12 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var grid1 = this.grid1;
+        var grid = this.grid;
         var column1 = this.column1;
 
     }
 
-    private IgbGrid grid1;
+    private IgbGrid grid;
     private IgbColumn column1;
 
     private NwindData _nwindData = null;

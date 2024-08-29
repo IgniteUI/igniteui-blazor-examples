@@ -11,7 +11,7 @@
     </IgbRadioGroup>
 
     <div style="width: 25rem; border: 1px solid gainsboro;">
-        <IgbCalendar FormatOptions="@CalendarFormat" Locale=@CalendarLocale WeekStart="@CalendarBaseWeekStart.Monday" />
+        <IgbCalendar FormatOptions="@CalendarFormat" Locale=@CalendarLocale WeekStart="@WeekDays.Monday" />
     </div>
 </div>
 
@@ -26,7 +26,7 @@
         this.CalendarFormat = new IgbCalendarFormatOptions() { Month = "short", Weekday = "short" };
     }
 
-    public void OnRadioOptionClick(IgbComponentBoolValueChangedEventArgs e)
+    public void OnRadioOptionClick(IgbRadioChangeEventArgs e)
     {
         IgbRadio radio = e.Parent as IgbRadio;
         this.CalendarLocale = radio.Value.ToString();

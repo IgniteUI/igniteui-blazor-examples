@@ -56,14 +56,14 @@
                 @foreach (var rating in Ratings)
                 {
                     <IgbRadio name="rating" Value="@rating.Id" Change="OnRadioChange">
-                        <IgbRating Label="@rating.Label" Value="@rating.Value" Max="5" Size="SizableComponentSize.Small" Readonly="true"></IgbRating>
+                        <IgbRating Label="@rating.Label" Value="@rating.Value" Max="5" class="size-small" ReadOnly="true"></IgbRating>
                     </IgbRadio>
                 }
             </IgbRadioGroup>
         </IgbExpansionPanel>
         <IgbExpansionPanel>
             <h3 slot="title" id="timeTitle">@TimeTitle</h3>
-            <IgbDateTimeInput @ref="DateTimeInputRef" InputFormat="hh:mm tt" Label="Arrive before" Size="SizableComponentSize.Small" Change="OnTimeChange">
+            <IgbDateTimeInput @ref="DateTimeInputRef" InputFormat="hh:mm tt" Label="Arrive before" class="size-small" Change="OnTimeChange">
                 <IgbIcon IconName="clock" Collection="material" slot="prefix"></IgbIcon>
                 <IgbIcon IconName="clear" Collection="material" slot="suffix" @onclick="OnTimeClear"></IgbIcon>
             </IgbDateTimeInput>
@@ -115,12 +115,12 @@
         }
     }
 
-    public void OnCategoryChange(IgbComponentBoolValueChangedEventArgs args)
+    public void OnCategoryChange(IgbCheckboxChangeEventArgs args)
     {
         var id = (args.Parent as IgbCheckbox).Value;
         var category = Categories.Where(x => x.Id == id).FirstOrDefault();
         if (category != null)
-            category.Selected = args.Detail;
+            category.Selected = args.Detail.Checked;
 
         UpdateCheckedCategories();
     }
@@ -149,7 +149,7 @@
         }
     }
 
-    private void OnRadioChange(IgbComponentBoolValueChangedEventArgs args)
+    private void OnRadioChange(IgbRadioChangeEventArgs args)
     {
         var id = (args.Parent as IgbRadio).Value;
         var rating = Ratings.Where(x => x.Id == id).FirstOrDefault();

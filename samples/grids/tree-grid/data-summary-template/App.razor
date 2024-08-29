@@ -29,9 +29,13 @@
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="DisplayDensity"
-            Name="DisplayDensityEditor"
-            @ref="displayDensityEditor">
+            Name="SizeEditor"
+            @ref="sizeEditor"
+            Label="Grid Size:"
+            ValueType="PropertyEditorValueType.EnumValue"
+            DropDownNames="@(new string[] { "Small", "Medium", "Large" })"
+            DropDownValues="@(new string[] { "Small", "Medium", "Large" })"
+            ChangedScript="WebTreeGridSetGridSize">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -90,7 +94,7 @@
         var propertyEditorPanel1 = this.propertyEditorPanel1;
         var summaryRowHeightEditor = this.summaryRowHeightEditor;
         var toggleSummariesEditor = this.toggleSummariesEditor;
-        var displayDensityEditor = this.displayDensityEditor;
+        var sizeEditor = this.sizeEditor;
         var treeGrid = this.treeGrid;
         var column1 = this.column1;
 
@@ -104,7 +108,7 @@
     private IgbPropertyEditorPanel propertyEditorPanel1;
     private IgbPropertyEditorPropertyDescription summaryRowHeightEditor;
     private IgbPropertyEditorPropertyDescription toggleSummariesEditor;
-    private IgbPropertyEditorPropertyDescription displayDensityEditor;
+    private IgbPropertyEditorPropertyDescription sizeEditor;
     private IgbTreeGrid treeGrid;
     private IgbColumn column1;
 
@@ -113,9 +117,9 @@
         bool newValue = bool.Parse(args.NewValue.ToString());
 
         var treeGrid = this.treeGrid;
-        var column1 = treeGrid.ActualColumns[1];
-        var column2 = treeGrid.ActualColumns[2];
-        var column3 = treeGrid.ActualColumns[4];
+        var column1 = treeGrid.ColumnList[1];
+        var column2 = treeGrid.ColumnList[2];
+        var column3 = treeGrid.ColumnList[4];
 
         column1.HasSummary = newValue;
         column2.HasSummary = newValue;
