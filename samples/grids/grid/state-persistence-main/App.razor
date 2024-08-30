@@ -203,30 +203,31 @@
         grid.ClearCellSelection();
     }
 
-    void OnChange(IgbComponentBoolValueChangedEventArgs eventArgs, string action)
+    void OnChange(IgbCheckboxChangeEventArgs eventArgs, string action)
     {
+        bool isChecked = eventArgs.Detail.Checked;
         if (action == "AllFeatures")
         {
             var newOptions = new IgbGridStateOptions()
             {
-                CellSelection = eventArgs.Detail,
-                RowSelection = eventArgs.Detail,
-                Filtering = eventArgs.Detail,
-                AdvancedFiltering = eventArgs.Detail,
-                Paging = eventArgs.Detail,
-                Sorting = eventArgs.Detail,
-                GroupBy = eventArgs.Detail,
-                Columns = eventArgs.Detail,
-                Expansion = eventArgs.Detail,
-                RowPinning = eventArgs.Detail,
-                ColumnSelection = eventArgs.Detail
+                CellSelection = isChecked,
+                RowSelection = isChecked,
+                Filtering = isChecked,
+                AdvancedFiltering = isChecked,
+                Paging = isChecked,
+                Sorting = isChecked,
+                GroupBy = isChecked,
+                Columns = isChecked,
+                Expansion = isChecked,
+                RowPinning = isChecked,
+                ColumnSelection = isChecked
             };
             options = newOptions;
             gridState.Options = newOptions;
         }
         else
         {
-            options.GetType().GetProperty(action).SetValue(options, eventArgs.Detail);
+            options.GetType().GetProperty(action).SetValue(options, isChecked);
             gridState.Options = options; 
         }
     }
