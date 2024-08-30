@@ -3,7 +3,7 @@ const columnGroupStatesHGrid = new Map();
 function toggleColumnGroup(name) {
     const grid = document.getElementsByTagName("igc-hierarchical-grid")[0];
     var columnGroup = grid.columns.find((col) => col.header === name)
-    const columns = columnGroup.children.toArray();
+    const columns = columnGroup.childColumns;
     if (columnGroup.header === 'General Information') {
         const column = columns[1];
         column.hidden = !column.hidden;
@@ -11,7 +11,7 @@ function toggleColumnGroup(name) {
         for (const column of columns) {
             const col = column;
             if (col.header === "Location"){
-                for (const cl of col.columnChildren) {
+                for (const cl of col.childColumns) {
                     const c = cl;
                     if (c.field !== "Address"){
                         c.hidden = !c.hidden;
@@ -19,7 +19,7 @@ function toggleColumnGroup(name) {
                 }
             }
             else if (col.header === "Contact Information"){
-                const c = col.columnChildren[1];
+                const c = col.childColumns[1];
                 c.hidden = !c.hidden;
             }
         }

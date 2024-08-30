@@ -11,6 +11,7 @@
     </style>
 
     <IgbCombo 
+        T="string"
         Label="Cities" 
         Placeholder="Pick a city" 
         Data="Data" 
@@ -41,22 +42,22 @@
         this.Data = SampleData.Cities;
     }
 
-    public void OnDisableFilteringClick(IgbComponentBoolValueChangedEventArgs e) {
+    public void OnDisableFilteringClick(IgbCheckboxChangeEventArgs e) {
         IgbSwitch sw = e.Parent as IgbSwitch;
         this.DisableFiltering = sw.Checked;
     }
 
-    public void OnCaseSensitiveClick(IgbComponentBoolValueChangedEventArgs e) {
+    public void OnCaseSensitiveClick(IgbCheckboxChangeEventArgs e) {
         IgbSwitch sw = e.Parent as IgbSwitch;
         this.CaseSensitiveIcon = sw.Checked;
     }
 
-    public void OnGroupClick(IgbComponentBoolValueChangedEventArgs e) {
+    public void OnGroupClick(IgbCheckboxChangeEventArgs e) {
         IgbSwitch sw = e.Parent as IgbSwitch;
         this.Group = sw.Checked ? "Country" : "";
     }
 
-    public void OnDisableClick(IgbComponentBoolValueChangedEventArgs e) {
+    public void OnDisableClick(IgbCheckboxChangeEventArgs e) {
         IgbSwitch sw = e.Parent as IgbSwitch;
         this.Disabled = sw.Checked;
     }

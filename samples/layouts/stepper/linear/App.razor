@@ -56,15 +56,15 @@
     private StepperUserModel user = new StepperUserModel();
 
 
-    public void OnSwitchChange(IgbComponentBoolValueChangedEventArgs args)
+    public void OnSwitchChange(IgbCheckboxChangeEventArgs args)
     {
-        IsLinear = args.Detail;
+        IsLinear = args.Detail.Checked;
     }
 
-    public void OnPaymentChange(IgbComponentBoolValueChangedEventArgs args)
+    public void OnPaymentChange(IgbRadioChangeEventArgs args)
     {
-        IsValid = args.Detail;
-        if (args.Detail)
+        IsValid = args.Detail.Checked;
+        if (IsValid)
         {
             user.Payment = (args.Parent as IgbRadio).Value.ToString();            
         }

@@ -205,28 +205,29 @@
 
         void OnChange(IgbCheckboxChangeEventArgs eventArgs, string action)
     {
+        bool isChecked = eventArgs.Detail.Checked;
         if (action == "AllFeatures")
         {
             var newOptions = new IgbGridStateOptions()
             {
-                CellSelection = eventArgs.Detail.Checked,
-                RowSelection = eventArgs.Detail.Checked,
-                Filtering = eventArgs.Detail.Checked,
-                AdvancedFiltering = eventArgs.Detail.Checked,
-                Paging = eventArgs.Detail.Checked,
-                Sorting = eventArgs.Detail.Checked,
-                GroupBy = eventArgs.Detail.Checked,
-                Columns = eventArgs.Detail.Checked,
-                Expansion = eventArgs.Detail.Checked,
-                RowPinning = eventArgs.Detail.Checked,
-                ColumnSelection = eventArgs.Detail.Checked
+                CellSelection = isChecked,
+                RowSelection = isChecked,
+                Filtering = isChecked,
+                AdvancedFiltering = isChecked,
+                Paging = isChecked,
+                Sorting = isChecked,
+                GroupBy = isChecked,
+                Columns = isChecked,
+                Expansion = isChecked,
+                RowPinning = isChecked,
+                ColumnSelection = isChecked
             };
             options = newOptions;
             gridState.Options = newOptions;
         }
         else
         {
-            options.GetType().GetProperty(action).SetValue(options, eventArgs.Detail.Checked);
+            options.GetType().GetProperty(action).SetValue(options, isChecked);
             gridState.Options = options; 
         }
     }
