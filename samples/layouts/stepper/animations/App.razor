@@ -89,10 +89,10 @@
         this.stepper.HorizontalAnimation = animation;
     }
 
-    public void AnimationDurationChange(IgbComponentValueChangedEventArgs args)
+    public void AnimationDurationChange(IgbComponentDataValueChangedEventArgs args)
     {
         double duration;
-        double.TryParse(args.Detail, out duration);
+        double.TryParse(args.Detail.ToString(), out duration);
         this.stepper.AnimationDuration = duration;
     }
 }
