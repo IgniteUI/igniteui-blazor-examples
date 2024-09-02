@@ -1,0 +1,69 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="container vertical">
+        <form @ref="Form">
+            <div>
+                <IgbDatePicker 
+                    @ref="DatePicker" 
+                    Min="@MinDate" 
+                    Max="@MaxDate" 
+                    Value="@SelectedDate"
+                    Change="HandleDateChange" />
+                <IgbButton onclick="@HandleReset"><span>Reset</span></IgbButton>
+            </div>
+        </form>
+        <p>Date picker value: @(SelectedDate != default ? SelectedDate.ToString("G") : "None")</p>
+        <p>Form valid: @FormStatus</p>
+    </div>
+</div>
+
+@code {
+    private IgbDatePicker DatePicker { get; set; }
+    private ElementReference Form { get; set; }
+    private DateTime SelectedDate { get; set; } = DateTime.Today;
+    private DateTime MinDate { get; set; }
+    private DateTime MaxDate { get; set; }
+    private String FormStatus { get; set; } = "true";
+
+    protected override void OnInitialized()
+    {
+        var initialDate = DateTime.Today;
+        MinDate = initialDate.AddDays(-10);
+        MaxDate = initialDate.AddDays(15);
+
+        UpdateFormStatus();
+    }
+
+    private void UpdateFormStatus()
+    {
+        FormStatus = "true";
+
+        if (SelectedDate < MinDate || SelectedDate > MaxDate)
+    {
+            FormStatus = "false";
+        }
+    }
+
+    private void HandleDateChange(IgbComponentDateValueChangedEventArgs e)
+    {
+        if (DateTime.TryParse(e.Detail.ToString(), out var newValue))
+        {
+            SelectedDate = newValue;
+        }
+        else
+        {
+            SelectedDate = default;
+        }
+        UpdateFormStatus();
+    }
+
+    private void HandleReset(MouseEventArgs e)
+    {
+        SelectedDate = default;
+        DatePicker.Clear();
+        UpdateFormStatus();
+    }
+
+
+}
