@@ -1,4 +1,4 @@
-﻿function OnRowDragEndHandler(evt) {    
+﻿function OnHierarchicalRowDragEndHandler(evt) {    
     const ghostElement = evt.detail.dragDirective.ghostElement;
     const dragElementPos = ghostElement.getBoundingClientRect();
     const gridPosition = hierarchicalGrid2.getBoundingClientRect();
@@ -9,4 +9,4 @@
     }
 }
 
-igRegisterScript("OnRowDragEndHandler", OnRowDragEndHandler, false);
+igRegisterScript("OnHierarchicalRowDragEndHandler", OnHierarchicalRowDragEndHandler, false);
