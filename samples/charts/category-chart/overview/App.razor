@@ -18,7 +18,6 @@
         @ref="chart"
         ChartType="CategoryChartType.Line"
         DataSource="CountryRenewableElectricity"
-        Legend="Legend"
         YAxisTitle="TWh"
         ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series">
         </IgbCategoryChart>
@@ -28,10 +27,17 @@
 
 @code {
 
+    private Action BindElements { get; set; }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var legend = this.legend;
         var chart = this.chart;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
 
     }
 

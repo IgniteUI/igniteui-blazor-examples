@@ -17,8 +17,7 @@
         Name="chart"
         @ref="chart"
         IsHorizontalZoomEnabled="false"
-        IsVerticalZoomEnabled="false"
-        Legend="Legend">
+        IsVerticalZoomEnabled="false">
             <IgbCategoryXAxis
             Name="xAxis"
             @ref="xAxis"
@@ -71,6 +70,8 @@
 
 @code {
 
+    private Action BindElements { get; set; }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var legend = this.legend;
@@ -80,6 +81,11 @@
         var rangeColumnSeries1 = this.rangeColumnSeries1;
         var rangeColumnSeries2 = this.rangeColumnSeries2;
         var dataToolTipLayer = this.dataToolTipLayer;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
 
     }
 

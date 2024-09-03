@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-public class EmployeesFlatDetailsItem
+public class EmployeeBasicInfo
 {
     public string Address { get; set; }
     public double Age { get; set; }
@@ -18,12 +18,12 @@ public class EmployeesFlatDetailsItem
     public string FullAddress { get; set; }
 }
 
-public class EmployeesFlatDetails
-    : List<EmployeesFlatDetailsItem>
+public class EmployeeBasicData // EmployeesFlatDetails
+    : List<EmployeeBasicInfo>
 {
-    public EmployeesFlatDetails()
+    public EmployeeBasicData()
     {
-        this.Add(new EmployeesFlatDetailsItem()
+        this.Add(new EmployeeBasicInfo()
         {
             Address = @"Obere Str. 57",
             Age = 55,
@@ -40,13 +40,13 @@ public class EmployeesFlatDetails
             LastName = @"Winchester",
             FullAddress = @"Obere Str. 57, Berlin, Germany"
         });
-        this.Add(new EmployeesFlatDetailsItem()
+        this.Add(new EmployeeBasicInfo()
         {
             Address = @"Avda. de la Constitución 2222",
             Age = 42,
             City = @"México D.F.",
             Country = @"Mexico",
-            Fax = @"(5) 555-3745",
+            Fax = @"(51) 555-3745",
             HireDate = @"2014-01-22",
             ID = 4,
             Name = @"Ana Sanders",
@@ -57,7 +57,7 @@ public class EmployeesFlatDetails
             LastName = @"Sanders",
             FullAddress = @"Avda. de la Constitución 2222, México D.F., Mexico"
         });
-        this.Add(new EmployeesFlatDetailsItem()
+        this.Add(new EmployeeBasicInfo()
         {
             Address = @"Mataderos 2312",
             Age = 49,
@@ -74,7 +74,7 @@ public class EmployeesFlatDetails
             LastName = @"Lincoln",
             FullAddress = @"Mataderos 2312, México D.F., Mexico"
         });
-        this.Add(new EmployeesFlatDetailsItem()
+        this.Add(new EmployeeBasicInfo()
         {
             Address = @"120 Hanover Sq.",
             Age = 61,
@@ -91,7 +91,7 @@ public class EmployeesFlatDetails
             LastName = @"Wang",
             FullAddress = @"120 Hanover Sq., London, UK"
         });
-        this.Add(new EmployeesFlatDetailsItem()
+        this.Add(new EmployeeBasicInfo()
         {
             Address = @"Berguvsvägen 8",
             Age = 43,
@@ -108,7 +108,7 @@ public class EmployeesFlatDetails
             LastName = @"Burke",
             FullAddress = @"Berguvsvägen 8, Luleå, Sweden"
         });
-        this.Add(new EmployeesFlatDetailsItem()
+        this.Add(new EmployeeBasicInfo()
         {
             Address = @"Forsterstr. 57",
             Age = 29,
@@ -125,7 +125,7 @@ public class EmployeesFlatDetails
             LastName = @"Anderson",
             FullAddress = @"Forsterstr. 57, Mannheim, Germany"
         });
-        this.Add(new EmployeesFlatDetailsItem()
+        this.Add(new EmployeeBasicInfo()
         {
             Address = @"24, place Kléber",
             Age = 31,
@@ -142,13 +142,13 @@ public class EmployeesFlatDetails
             LastName = @"Reyes",
             FullAddress = @"24, place Kléber, Strasbourg, France"
         });
-        this.Add(new EmployeesFlatDetailsItem()
+        this.Add(new EmployeeBasicInfo()
         {
             Address = @"C/ Araquil, 67",
             Age = 35,
             City = @"Madrid",
             Country = @"Spain",
-            Fax = @"(91) 555 91 99",
+            Fax = @"(911) 555 91 99",
             HireDate = @"2015-09-17",
             ID = 6,
             Name = @"Roland Mendel",
@@ -159,7 +159,7 @@ public class EmployeesFlatDetails
             LastName = @"Mendel",
             FullAddress = @"C/ Araquil, 67, Madrid, Spain"
         });
-        this.Add(new EmployeesFlatDetailsItem()
+        this.Add(new EmployeeBasicInfo()
         {
             Address = @"12, rue des Bouchers",
             Age = 44,
@@ -176,7 +176,7 @@ public class EmployeesFlatDetails
             LastName = @"Cooper",
             FullAddress = @"12, rue des Bouchers, Marseille, France"
         });
-        this.Add(new EmployeesFlatDetailsItem()
+        this.Add(new EmployeeBasicInfo()
         {
             Address = @"23 Tsawassen Blvd.",
             Age = 44,
@@ -193,13 +193,13 @@ public class EmployeesFlatDetails
             LastName = @"Johnson",
             FullAddress = @"23 Tsawassen Blvd., Tsawassen, Canada"
         });
-        this.Add(new EmployeesFlatDetailsItem()
+        this.Add(new EmployeeBasicInfo()
         {
             Address = @"Fauntleroy Circus",
             Age = 25,
             City = @"London",
             Country = @"UK",
-            Fax = @"(5) 555-3798",
+            Fax = @"(125) 555-3798",
             HireDate = @"2017-11-9",
             ID = 5,
             Name = @"Elizabeth Richards",
@@ -210,13 +210,13 @@ public class EmployeesFlatDetails
             LastName = @"Richards",
             FullAddress = @"Fauntleroy Circus, London, UK"
         });
-        this.Add(new EmployeesFlatDetailsItem()
+        this.Add(new EmployeeBasicInfo()
         {
             Address = @"Cerrito 333",
             Age = 39,
             City = @"Buenos Aires",
             Country = @"Argentina",
-            Fax = @"(1) 135-4892",
+            Fax = @"(121) 135-4892",
             HireDate = @"2010-03-22",
             ID = 13,
             Name = @"Trevor Ashworth",
@@ -227,13 +227,13 @@ public class EmployeesFlatDetails
             LastName = @"Ashworth",
             FullAddress = @"Cerrito 333, Buenos Aires, Argentina"
         });
-        this.Add(new EmployeesFlatDetailsItem()
+        this.Add(new EmployeeBasicInfo()
         {
             Address = @"Sierras de Granada 9993",
             Age = 44,
             City = @"México D.F.",
             Country = @"Mexico",
-            Fax = @"(5) 555-7293",
+            Fax = @"(153) 555-7293",
             HireDate = @"2014-04-04",
             ID = 17,
             Name = @"Antonio Moreno",
@@ -244,13 +244,13 @@ public class EmployeesFlatDetails
             LastName = @"Moreno",
             FullAddress = @"Sierras de Granada 9993, México D.F., Mexico"
         });
-        this.Add(new EmployeesFlatDetailsItem()
+        this.Add(new EmployeeBasicInfo()
         {
             Address = @"Hauptstr. 29",
             Age = 50,
             City = @"Sao Paulo",
             Country = @"Brazil",
-            Fax = @"(5) 555-6691",
+            Fax = @"(531) 555-6691",
             HireDate = @"2007-11-18",
             ID = 7,
             Name = @"Pedro Rodriguez",
@@ -261,13 +261,13 @@ public class EmployeesFlatDetails
             LastName = @"Rodriguez",
             FullAddress = @"Hauptstr. 29, Sao Paulo, Brazil"
         });
-        this.Add(new EmployeesFlatDetailsItem()
+        this.Add(new EmployeeBasicInfo()
         {
             Address = @"Av. dos Lusíadas, 23",
             Age = 27,
             City = @"Bern",
             Country = @"Switzerland",
-            Fax = @"",
+            Fax = @"(271) 335-357",
             HireDate = @"2016-02-19",
             ID = 8,
             Name = @"Casey Harper",
@@ -278,7 +278,7 @@ public class EmployeesFlatDetails
             LastName = @"Harper",
             FullAddress = @"Av. dos Lusíadas, 23, Bern, Switzerland"
         });
-        this.Add(new EmployeesFlatDetailsItem()
+        this.Add(new EmployeeBasicInfo()
         {
             Address = @"Berkeley Gardens 12",
             Age = 25,
@@ -295,7 +295,7 @@ public class EmployeesFlatDetails
             LastName = @"Simpson",
             FullAddress = @"Berkeley Gardens 12, London, UK"
         });
-        this.Add(new EmployeesFlatDetailsItem()
+        this.Add(new EmployeeBasicInfo()
         {
             Address = @"Walserweg 21",
             Age = 39,
@@ -312,7 +312,7 @@ public class EmployeesFlatDetails
             LastName = @"Chang",
             FullAddress = @"Walserweg 21, Aachen, Germany"
         });
-        this.Add(new EmployeesFlatDetailsItem()
+        this.Add(new EmployeeBasicInfo()
         {
             Address = @"35 King George",
             Age = 25,
