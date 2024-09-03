@@ -245,8 +245,9 @@
         }
         else
         {
-            options.GetType().GetProperty(action).SetValue(options, eventArgs.Detail.Checked);
-            gridState.Options = options; 
+            var newOptions = new IgbGridStateOptions();
+            options.GetType().GetProperty(action).SetValue(newOptions, eventArgs.Detail.Checked);
+            gridState.Options = newOptions; 
         }
     }
 

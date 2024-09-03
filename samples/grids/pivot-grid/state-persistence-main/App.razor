@@ -55,6 +55,7 @@
             Height="500px"
             Data="PivotDataFlat"
             PivotConfiguration="PivotConfiguration"
+            ColumnSelection="GridSelectionMode.Single"
             ValueInitScript="OnValueInit"
             Rendered="OnGridRendered">
             <IgbGridState @ref="gridState"></IgbGridState>
@@ -267,8 +268,9 @@
         }
         else
         {
-            options.GetType().GetProperty(action).SetValue(options, eventArgs.Detail.Checked);
-            gridState.Options = options; 
+            var newOptions = new IgbGridStateOptions();
+            options.GetType().GetProperty(action).SetValue(newOptions, eventArgs.Detail.Checked);
+            gridState.Options = newOptions; 
         }
     }
 
