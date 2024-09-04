@@ -1,0 +1,22 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical">
+    <div class="container vertical fill">
+        <div style="text-align: center; width: 900px">
+            <br />
+            <span>By default navigating to the previous page, components will reinitialize as per their initial configuration, therefore the IgbTreeGrid will lose its state.</span>
+            <br />
+            <span>What our Sample App does is reading the state from the window.localStorage object and applying the corresponding state on the Grid's Rendered event.</span><br />
+            <IgbButton @onclick="LeavePage" Variant="ButtonVariant.Contained">Go Back</IgbButton>
+        </div>
+    </div>
+</div>
+
+@code {
+    public async void LeavePage()
+    {
+        await JS.InvokeVoidAsync("window.location.replace", "./grids/tree-grid/state-persistence-main");
+    }
+}
