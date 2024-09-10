@@ -21,7 +21,7 @@
         Name="treeGrid"
         @ref="treeGrid"
         Id="grid"
-        Data="EmployeesFlatDetails"
+        Data="EmployeesData"
         PrimaryKey="ID"
         ForeignKey="ParentID"
         ColumnInitScript="WebTreeGridClipboardCustomOperationsColumnInit">
@@ -104,16 +104,16 @@
 @code {
     private IgbTreeGrid treeGrid;
 
-    private EmployeesFlatDetails _employeesFlatDetails = null;
-    public EmployeesFlatDetails EmployeesFlatDetails
+    private EmployeeBasicData _EmployeesData = null;
+    public EmployeeBasicData EmployeesData
     {
         get
         {
-            if (_employeesFlatDetails == null)
+            if (_EmployeesData == null)
             {
-                _employeesFlatDetails = new EmployeesFlatDetails();
+                _EmployeesData = new EmployeeBasicData();
             }
-            return _employeesFlatDetails;
+            return _EmployeesData;
         }
     }
 

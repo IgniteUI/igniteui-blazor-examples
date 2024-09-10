@@ -1,0 +1,20 @@
+@using IgniteUI.Blazor.Controls
+
+
+<div class="container vertical">
+    <div class="container vertical">
+        <IgbXDatePicker @ref="DatePicker" Height="60px" Width="220px"
+                    Value="@SelectedDate"
+                    AllowTextInput="true"/>
+    </div>
+</div>
+
+@code {
+
+    public DateTime SelectedDate { get; set; }
+    public IgbXDatePicker DatePicker { get; set; }
+    protected override void OnInitialized()
+    {
+        this.SelectedDate = DateTime.Today;
+    }
+}

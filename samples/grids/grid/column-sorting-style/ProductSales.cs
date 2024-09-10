@@ -22,7 +22,7 @@ public class ProductSales
             Category = @"Beverages",
             Company = @"Berglunds snabbköp",
             ShipCountry = @"France",
-            ShippedDate = @"1997-05-07T00: 00: 00Z"
+            ShippedDate = @"1997-05-07T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -31,7 +31,7 @@ public class ProductSales
             Category = @"Beverages",
             Company = @"Berglunds snabbköp",
             ShipCountry = @"Germany",
-            ShippedDate = @"1997-09-26T00: 00: 00Z"
+            ShippedDate = @"1997-09-26T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -40,7 +40,7 @@ public class ProductSales
             Category = @"Beverages",
             Company = @"Bólido Comidas preparadas",
             ShipCountry = @"Brazil",
-            ShippedDate = @"1997-12-31T00: 00: 00Z"
+            ShippedDate = @"1997-12-31T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -49,7 +49,7 @@ public class ProductSales
             Category = @"Beverages",
             Company = @"Bon app'",
             ShipCountry = @"France",
-            ShippedDate = @"1997-04-21T00: 00: 00Z"
+            ShippedDate = @"1997-04-21T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -58,7 +58,7 @@ public class ProductSales
             Category = @"Beverages",
             Company = @"Bottom-Dollar Markets",
             ShipCountry = @"Belgium",
-            ShippedDate = @"1997-11-18T00: 00: 00Z"
+            ShippedDate = @"1997-11-18T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -67,7 +67,7 @@ public class ProductSales
             Category = @"Beverages",
             Company = @"Eastern Connection",
             ShipCountry = @"Brazil",
-            ShippedDate = @"1997-01-16T00: 00: 00Z"
+            ShippedDate = @"1997-01-16T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -76,7 +76,7 @@ public class ProductSales
             Category = @"Beverages",
             Company = @"Ernst Handel",
             ShipCountry = @"Switzerland",
-            ShippedDate = @"1997-01-10T00: 00: 00Z"
+            ShippedDate = @"1997-01-10T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -85,7 +85,7 @@ public class ProductSales
             Category = @"Beverages",
             Company = @"Ernst Handel",
             ShipCountry = @"Switzerland",
-            ShippedDate = @"1997-02-03T00: 00: 00Z"
+            ShippedDate = @"1997-02-03T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -94,7 +94,7 @@ public class ProductSales
             Category = @"Beverages",
             Company = @"Ernst Handel",
             ShipCountry = @"Brazil",
-            ShippedDate = @"1997-05-16T00: 00: 00Z"
+            ShippedDate = @"1997-05-16T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -103,7 +103,7 @@ public class ProductSales
             Category = @"Beverages",
             Company = @"Ernst Handel",
             ShipCountry = @"Venezuela",
-            ShippedDate = @"1997-07-14T00: 00: 00Z"
+            ShippedDate = @"1997-07-14T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -112,7 +112,7 @@ public class ProductSales
             Category = @"Beverages",
             Company = @"Ernst Handel",
             ShipCountry = @"Austria",
-            ShippedDate = @"1997-08-18T00: 00: 00Z"
+            ShippedDate = @"1997-08-18T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -121,7 +121,7 @@ public class ProductSales
             Category = @"Beverages",
             Company = @"Ernst Handel",
             ShipCountry = @"Mexico",
-            ShippedDate = @"1997-10-17T00: 00: 00Z"
+            ShippedDate = @"1997-10-17T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -130,7 +130,7 @@ public class ProductSales
             Category = @"Condiments",
             Company = @"Ernst Handel",
             ShipCountry = @"Germany",
-            ShippedDate = @"1997-12-18T00: 00: 00Z"
+            ShippedDate = @"1997-12-18T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -139,7 +139,7 @@ public class ProductSales
             Category = @"Condiments",
             Company = @"Folies gourmandes",
             ShipCountry = @"Brazil",
-            ShippedDate = @"1997-08-21T00: 00: 00Z"
+            ShippedDate = @"1997-08-21T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -148,7 +148,7 @@ public class ProductSales
             Category = @"Condiments",
             Company = @"Folies gourmandes",
             ShipCountry = @"USA",
-            ShippedDate = @"1997-12-31T00: 00: 00Z"
+            ShippedDate = @"1997-12-31T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -157,7 +157,7 @@ public class ProductSales
             Category = @"Condiments",
             Company = @"Folk och fä HB",
             ShipCountry = @"Austria",
-            ShippedDate = @"1997-06-09T00: 00: 00Z"
+            ShippedDate = @"1997-06-09T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -166,7 +166,7 @@ public class ProductSales
             Category = @"Condiments",
             Company = @"Folk och fä HB",
             ShipCountry = @"Sweden",
-            ShippedDate = @"1997-10-20T00: 00: 00Z"
+            ShippedDate = @"1997-10-20T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -175,7 +175,7 @@ public class ProductSales
             Category = @"Condiments",
             Company = @"Folk och fä HB",
             ShipCountry = @"France",
-            ShippedDate = @"1997-12-09T00: 00: 00Z"
+            ShippedDate = @"1997-12-09T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -184,7 +184,7 @@ public class ProductSales
             Category = @"Condiments",
             Company = @"Godos Cocina Típica",
             ShipCountry = @"Finland",
-            ShippedDate = @"1997-08-20T00: 00: 00Z"
+            ShippedDate = @"1997-08-20T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -193,7 +193,7 @@ public class ProductSales
             Category = @"Condiments",
             Company = @"Gourmet Lanchonetes",
             ShipCountry = @"Germany",
-            ShippedDate = @"1997-11-20T00: 00: 00Z"
+            ShippedDate = @"1997-11-20T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -202,7 +202,7 @@ public class ProductSales
             Category = @"Condiments",
             Company = @"Great Lakes Food Market",
             ShipCountry = @"Venezuela",
-            ShippedDate = @"1997-08-05T00: 00: 00Z"
+            ShippedDate = @"1997-08-05T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -211,7 +211,7 @@ public class ProductSales
             Category = @"Condiments",
             Company = @"HILARION-Abastos",
             ShipCountry = @"USA",
-            ShippedDate = @"1997-04-03T00: 00: 00Z"
+            ShippedDate = @"1997-04-03T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -220,7 +220,7 @@ public class ProductSales
             Category = @"Condiments",
             Company = @"Hungry Owl All-Night Grocers",
             ShipCountry = @"Finland",
-            ShippedDate = @"1997-06-17T00: 00: 00Z"
+            ShippedDate = @"1997-06-17T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -229,7 +229,7 @@ public class ProductSales
             Category = @"Condiments",
             Company = @"Hungry Owl All-Night Grocers",
             ShipCountry = @"USA",
-            ShippedDate = @"1997-10-30T00: 00: 00Z"
+            ShippedDate = @"1997-10-30T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -238,7 +238,7 @@ public class ProductSales
             Category = @"Confections",
             Company = @"Hungry Owl All-Night Grocers",
             ShipCountry = @"USA",
-            ShippedDate = @"1997-10-15T00: 00: 00Z"
+            ShippedDate = @"1997-10-15T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -247,7 +247,7 @@ public class ProductSales
             Category = @"Confections",
             Company = @"Königlich Essen",
             ShipCountry = @"Germany",
-            ShippedDate = @"1997-10-29T00: 00: 00Z"
+            ShippedDate = @"1997-10-29T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -256,7 +256,7 @@ public class ProductSales
             Category = @"Confections",
             Company = @"La maison d'Asie",
             ShipCountry = @"France",
-            ShippedDate = @"1997-12-26T00: 00: 00Z"
+            ShippedDate = @"1997-12-26T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -265,7 +265,7 @@ public class ProductSales
             Category = @"Confections",
             Company = @"Lehmanns Marktstand",
             ShipCountry = @"Italy",
-            ShippedDate = @"1997-12-19T00: 00: 00Z"
+            ShippedDate = @"1997-12-19T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -274,7 +274,7 @@ public class ProductSales
             Category = @"Confections",
             Company = @"LINO-Delicateses",
             ShipCountry = @"Mexico",
-            ShippedDate = @"1997-09-01T00: 00: 00Z"
+            ShippedDate = @"1997-09-01T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -283,7 +283,7 @@ public class ProductSales
             Category = @"Confections",
             Company = @"Maison Dewey",
             ShipCountry = @"Germany",
-            ShippedDate = @"1997-12-10T00: 00: 00Z"
+            ShippedDate = @"1997-12-10T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -292,7 +292,7 @@ public class ProductSales
             Category = @"Confections",
             Company = @"Mère Paillarde",
             ShipCountry = @"Sweden",
-            ShippedDate = @"1997-01-27T00: 00: 00Z"
+            ShippedDate = @"1997-01-27T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -301,7 +301,7 @@ public class ProductSales
             Category = @"Confections",
             Company = @"Mère Paillarde",
             ShipCountry = @"Germany",
-            ShippedDate = @"1997-07-29T00: 00: 00Z"
+            ShippedDate = @"1997-07-29T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -310,7 +310,7 @@ public class ProductSales
             Category = @"Confections",
             Company = @"Mère Paillarde",
             ShipCountry = @"Sweden",
-            ShippedDate = @"1997-08-08T00: 00: 00Z"
+            ShippedDate = @"1997-08-08T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -319,7 +319,7 @@ public class ProductSales
             Category = @"Confections",
             Company = @"Piccolo und mehr",
             ShipCountry = @"Spain",
-            ShippedDate = @"1997-05-12T00: 00: 00Z"
+            ShippedDate = @"1997-05-12T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -328,7 +328,7 @@ public class ProductSales
             Category = @"Confections",
             Company = @"Queen Cozinha",
             ShipCountry = @"Spain",
-            ShippedDate = @"1997-08-26T00: 00: 00Z"
+            ShippedDate = @"1997-08-26T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -337,7 +337,7 @@ public class ProductSales
             Category = @"Confections",
             Company = @"QUICK-Stop",
             ShipCountry = @"Venezuela",
-            ShippedDate = @"1997-03-12T00: 00: 00Z"
+            ShippedDate = @"1997-03-12T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -346,7 +346,7 @@ public class ProductSales
             Category = @"Confections",
             Company = @"QUICK-Stop",
             ShipCountry = @"Germany",
-            ShippedDate = @"1997-05-23T00: 00: 00Z"
+            ShippedDate = @"1997-05-23T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -355,7 +355,7 @@ public class ProductSales
             Category = @"Dairy Product",
             Company = @"QUICK-Stop",
             ShipCountry = @"Germany",
-            ShippedDate = @"1997-06-13T00: 00: 00Z"
+            ShippedDate = @"1997-06-13T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -364,7 +364,7 @@ public class ProductSales
             Category = @"Dairy Product",
             Company = @"QUICK-Stop",
             ShipCountry = @"Germany",
-            ShippedDate = @"1997-05-30T00: 00: 00Z"
+            ShippedDate = @"1997-05-30T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -373,7 +373,7 @@ public class ProductSales
             Category = @"Dairy Product",
             Company = @"QUICK-Stop",
             ShipCountry = @"Brazil",
-            ShippedDate = @"1997-07-10T00: 00: 00Z"
+            ShippedDate = @"1997-07-10T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -382,7 +382,7 @@ public class ProductSales
             Category = @"Dairy Product",
             Company = @"QUICK-Stop",
             ShipCountry = @"Italy",
-            ShippedDate = @"1997-09-08T00: 00: 00Z"
+            ShippedDate = @"1997-09-08T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -391,7 +391,7 @@ public class ProductSales
             Category = @"Dairy Product",
             Company = @"QUICK-Stop",
             ShipCountry = @"UK",
-            ShippedDate = @"1997-10-22T00: 00: 00Z"
+            ShippedDate = @"1997-10-22T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -400,7 +400,7 @@ public class ProductSales
             Category = @"Dairy Product",
             Company = @"QUICK-Stop",
             ShipCountry = @"Brazil",
-            ShippedDate = @"1997-10-09T00: 00: 00Z"
+            ShippedDate = @"1997-10-09T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -409,7 +409,7 @@ public class ProductSales
             Category = @"Dairy Product",
             Company = @"QUICK-Stop",
             ShipCountry = @"Brazil",
-            ShippedDate = @"1997-11-27T00: 00: 00Z"
+            ShippedDate = @"1997-11-27T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -418,7 +418,7 @@ public class ProductSales
             Category = @"Dairy Product",
             Company = @"Rattlesnake Canyon Grocery",
             ShipCountry = @"Brazil",
-            ShippedDate = @"1997-01-10T00: 00: 00Z"
+            ShippedDate = @"1997-01-10T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -427,7 +427,7 @@ public class ProductSales
             Category = @"Dairy Product",
             Company = @"Rattlesnake Canyon Grocery",
             ShipCountry = @"Mexico",
-            ShippedDate = @"1997-03-21T00: 00: 00Z"
+            ShippedDate = @"1997-03-21T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -436,7 +436,7 @@ public class ProductSales
             Category = @"Dairy Product",
             Company = @"Richter Supermarkt",
             ShipCountry = @"USA",
-            ShippedDate = @"1997-09-22T00: 00: 00Z"
+            ShippedDate = @"1997-09-22T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -445,7 +445,7 @@ public class ProductSales
             Category = @"Grains/Cereal",
             Company = @"Save-a-lot Markets",
             ShipCountry = @"France",
-            ShippedDate = @"1997-01-03T00: 00: 00Z"
+            ShippedDate = @"1997-01-03T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -454,7 +454,7 @@ public class ProductSales
             Category = @"Grains/Cereal",
             Company = @"Save-a-lot Markets",
             ShipCountry = @"Venezuela",
-            ShippedDate = @"1997-01-09T00: 00: 00Z"
+            ShippedDate = @"1997-01-09T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -463,7 +463,7 @@ public class ProductSales
             Category = @"Grains/Cereal",
             Company = @"Save-a-lot Markets",
             ShipCountry = @"France",
-            ShippedDate = @"1997-02-28T00: 00: 00Z"
+            ShippedDate = @"1997-02-28T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -472,7 +472,7 @@ public class ProductSales
             Category = @"Grains/Cereal",
             Company = @"Save-a-lot Markets",
             ShipCountry = @"Ireland",
-            ShippedDate = @"1997-04-28T00: 00: 00Z"
+            ShippedDate = @"1997-04-28T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -481,7 +481,7 @@ public class ProductSales
             Category = @"Grains/Cereal",
             Company = @"Save-a-lot Markets",
             ShipCountry = @"Brazil",
-            ShippedDate = @"1997-06-04T00: 00: 00Z"
+            ShippedDate = @"1997-06-04T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -490,7 +490,7 @@ public class ProductSales
             Category = @"Grains/Cereal",
             Company = @"Save-a-lot Markets",
             ShipCountry = @"Italy",
-            ShippedDate = @"1997-07-25T00: 00: 00Z"
+            ShippedDate = @"1997-07-25T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -499,7 +499,7 @@ public class ProductSales
             Category = @"Grains/Cereal",
             Company = @"Save-a-lot Markets",
             ShipCountry = @"Germany",
-            ShippedDate = @"1997-08-01T00: 00: 00Z"
+            ShippedDate = @"1997-08-01T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -508,7 +508,7 @@ public class ProductSales
             Category = @"Meat/Poultr",
             Company = @"Save-a-lot Markets",
             ShipCountry = @"Belgium",
-            ShippedDate = @"1997-09-15T00: 00: 00Z"
+            ShippedDate = @"1997-09-15T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -517,7 +517,7 @@ public class ProductSales
             Category = @"Meat/Poultr",
             Company = @"Save-a-lot Markets",
             ShipCountry = @"Spain",
-            ShippedDate = @"1997-10-16T00: 00: 00Z"
+            ShippedDate = @"1997-10-16T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -526,7 +526,7 @@ public class ProductSales
             Category = @"Meat/Poultr",
             Company = @"Save-a-lot Markets",
             ShipCountry = @"Mexico",
-            ShippedDate = @"1997-10-29T00: 00: 00Z"
+            ShippedDate = @"1997-10-29T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -535,7 +535,7 @@ public class ProductSales
             Category = @"Meat/Poultr",
             Company = @"Save-a-lot Markets",
             ShipCountry = @"USA",
-            ShippedDate = @"1997-10-24T00: 00: 00Z"
+            ShippedDate = @"1997-10-24T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -544,7 +544,7 @@ public class ProductSales
             Category = @"Meat/Poultr",
             Company = @"Save-a-lot Markets",
             ShipCountry = @"Spain",
-            ShippedDate = @"1997-12-15T00: 00: 00Z"
+            ShippedDate = @"1997-12-15T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -553,7 +553,7 @@ public class ProductSales
             Category = @"Meat/Poultr",
             Company = @"Simons bistro",
             ShipCountry = @"USA",
-            ShippedDate = @"1997-01-28T00: 00: 00Z"
+            ShippedDate = @"1997-01-28T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -562,7 +562,7 @@ public class ProductSales
             Category = @"Produce",
             Company = @"Suprêmes délices",
             ShipCountry = @"Mexico",
-            ShippedDate = @"1997-03-04T00: 00: 00Z"
+            ShippedDate = @"1997-03-04T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -571,7 +571,7 @@ public class ProductSales
             Category = @"Produce",
             Company = @"Tortuga Restaurante",
             ShipCountry = @"Ireland",
-            ShippedDate = @"1997-05-05T00: 00: 00Z"
+            ShippedDate = @"1997-05-05T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -580,7 +580,7 @@ public class ProductSales
             Category = @"Produce",
             Company = @"Vaffeljernet",
             ShipCountry = @"USA",
-            ShippedDate = @"1997-03-14T00: 00: 00Z"
+            ShippedDate = @"1997-03-14T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -589,7 +589,7 @@ public class ProductSales
             Category = @"Produce",
             Company = @"Vaffeljernet",
             ShipCountry = @"France",
-            ShippedDate = @"1997-10-07T00: 00: 00Z"
+            ShippedDate = @"1997-10-07T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -598,7 +598,7 @@ public class ProductSales
             Category = @"Produce",
             Company = @"Victuailles en stock",
             ShipCountry = @"Germany",
-            ShippedDate = @"1997-05-27T00: 00: 00Z"
+            ShippedDate = @"1997-05-27T00:00:00Z"
         });
         this.Add(new ProductSalesItem()
         {
@@ -607,7 +607,7 @@ public class ProductSales
             Category = @"Seafood",
             Company = @"Wartian Herkku",
             ShipCountry = @"Germany",
-            ShippedDate = @"1997-03-03T00: 00: 00Z"
+            ShippedDate = @"1997-03-03T00:00:00Z"
         });
     }
 }

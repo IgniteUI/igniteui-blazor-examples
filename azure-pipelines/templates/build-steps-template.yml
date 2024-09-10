@@ -4,6 +4,7 @@ parameters:
   - name: projectToBuild
   - name: isVerbose
     default: false
+  - name: shouldCleanPostExectuion
 
 steps:
   - task: NodeTool@0
@@ -19,7 +20,6 @@ steps:
       workingDir: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
       verbose: ${{ parameters.isVerbose }}
       customCommand: ci
-
   
   - task: CmdLine@2
     displayName: 'npx gulp copySamplesTo${{ parameters.projectToBuild }}'
@@ -32,19 +32,29 @@ steps:
     displayName: 'Install dotnet if not already present'
     inputs:
       packageType: 'sdk'
-      version: '6.0.415' #'6.x'
-      performMultiLevelLookup: true
+      version: '8.0.100' # we are currently building a 8.0 app. TODO: Try upgrading to 8.x in the future
+      performMultiLevelLookup: false
+
 
   - task: PowerShell@2
-    displayName: 'Generate NuGet.config for IG ProGet NuGet feed'
+    displayName: 'Generate NuGet.config for IG ProGet NuGet feed and u'
     inputs:
       targetType: 'inline'
       script: |
         dotnet new nugetconfig --force
+        # The name of the source doesn't currently matter as the credentials are attached thanks to URL matching - according to MS docs
         dotnet nuget add source ${{ parameters.igNuGetFeedUrl }} --name "IG ProGet NuGet" 
+      failOnStderr: true
+      showWarnings: true
+      workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
 
+  - task: PowerShell@2
+    displayName: 'Identify trial packages and use licensed ones instead'
+    inputs:
+      targetType: 'inline'
+      script: |
         $xml = [XML](Get-Content '.\IgBlazorSamples.${{ parameters.projectToBuild }}.csproj');
-
+        
         $nodes = $xml.SelectNodes("//PackageReference[starts-with(@Include,'IgniteUI')]") | 
           ForEach-Object { 
               $_.SetAttribute("Include",$_.Include.Replace(".Trial",""));
@@ -56,28 +66,22 @@ steps:
       showWarnings: true
       workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
 
-  - task: NuGetAuthenticate@1
-    displayName: 'Authenticate to IG ProGet NuGet feed'
-    inputs:
-      nuGetServiceConnections: 'IG ProGet IgniteUINuGet - Staging'
-      forceReinstallCredentialProvider: true
-
   - task: DotNetCoreCLI@2
     displayName: 'dotnet restore'
     inputs:
       command: 'restore'
       projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
+      # We want the dependency tree to be evaluated each time and to be sure that the dependencies are freshly downloaded
+      restoreArguments: '--ignore-failed-sources --no-cache --force'
       feedsToUse: 'config'
       nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\NuGet.Config'
-      verbosityRestore: 'Diagnostic'
-      arguments: "--ignore-failed-sources"
+      # This task cannot use an apiKey directly (yet) so use any other service connection not based on an api key
+      externalFeedCredentials: 'IG ProGet IgniteUINuGet - Staging'
+      ${{ if eq(parameters.isVerbose, true) }}:
+        verbosityRestore: 'Diagnostic'
+      ${{ else }}:
+        verbosityRestore: 'Normal'
 
-  - task: DotNetCoreCLI@2
-    displayName: 'dotnet build'
-    inputs:
-      command: 'build'
-      projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
-#      arguments: '--configuration Release'
 
   - task: DeleteFiles@1
     displayName: 'Delete NuGet.config file - used only at build time'
@@ -89,7 +93,8 @@ steps:
     # Using a CmldLine call for this opeation, because I couldn't get it to work as expected with the DotNetCoreCLI task
     displayName: 'dotnet publish'
     inputs:
-      script: 'dotnet publish -c release -o $(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\publish'
+      # Skip the restore process as it is already done. Got an error when I tried skipping the build process (which is already done as well) 
+      script: 'dotnet publish --no-restore -c release -o $(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\publish'
       workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
 
   - task: ArchiveFiles@2
@@ -108,5 +113,5 @@ steps:
       targetPath: '$(Build.ArtifactStagingDirectory)/BlazorSamples${{ parameters.projectToBuild }}.zip'
       artifact: 'BlazorSamples${{ parameters.projectToBuild }}'
 
-  # - ${{ if eq(parameters.shouldCleanPostExectuion, true) }}:
-  #   - task: PostBuildCleanup@4
+  - ${{ if eq(parameters.shouldCleanPostExectuion, true) }}:
+    - task: PostBuildCleanup@4

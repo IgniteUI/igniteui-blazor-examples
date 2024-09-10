@@ -1,0 +1,98 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample">
+    <article class="settings">
+        <IgbSelect Label="Orienation" Change="OrientationChange">
+            <IgbSelectItem Value="Horizontal" Selected="true">Horizontal</IgbSelectItem>
+            <IgbSelectItem Value="Vertical">Vertical</IgbSelectItem>
+        </IgbSelect>
+        <IgbSelect Label="Vertical Animation" Change="VerticalAnimationChange">
+            <IgbSelectItem Value="Grow" Selected="true">Grow</IgbSelectItem>
+            <IgbSelectItem Value="Fade">Fade</IgbSelectItem>
+            <IgbSelectItem Value="None">None</IgbSelectItem>
+        </IgbSelect>
+        <IgbSelect Label="Horizontal Animation" Change="HorizontalAnimationChange">
+            <IgbSelectItem Value="Slide" Selected="true">Slide</IgbSelectItem>
+            <IgbSelectItem Value="Fade">Fade</IgbSelectItem>
+            <IgbSelectItem Value="None">None</IgbSelectItem>
+        </IgbSelect>
+        <IgbInput DisplayType=InputType.Number Value="320" Label="Duration" Change="AnimationDurationChange">
+            <span slot="suffix">ms</span>
+        </IgbInput>
+    </article>
+    <IgbStepper @ref="stepper">
+        <IgbStep>
+            <span slot="title">Personal Info</span>
+            <IgbInput DisplayType=InputType.Text Label="Full Name"></IgbInput>
+            <IgbInput DisplayType=InputType.Email Label="Email"></IgbInput>
+            <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Next">NEXT</IgbButton>
+        </IgbStep>
+        <IgbStep>
+            <span slot="title">Delivery address</span>
+            <IgbInput DisplayType=InputType.Text Label="City"></IgbInput>
+            <IgbInput DisplayType=InputType.Text Label="Street"></IgbInput>
+            <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Previous">PREVIOUS</IgbButton>
+            <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Next">NEXT</IgbButton>
+        </IgbStep>
+        <IgbStep>
+            <span slot="title">Payment</span>
+            <IgbRadioGroup>
+                <IgbRadio name="payment" Value="paypal" Checked="true">PayPal (n@mail.com; 18/02/2021)</IgbRadio>
+                <IgbRadio name="payment" Value="visa">Visa (**** **** **** 1234; 12/23)</IgbRadio>
+                <IgbRadio name="payment" Value="mastercard">MasterCard (**** **** **** 5678; 12/24)</IgbRadio>
+            </IgbRadioGroup>
+            <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Previous">PREVIOUS</IgbButton>
+            <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Next">SUBMIT</IgbButton>
+        </IgbStep>
+        <IgbStep>
+            <span slot="title">Delivery status</span>
+            <p>Your order is on its way. Expect delivery on 25th September 2021. Delivery address: San Jose, CA 94243.</p>
+            <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Previous">PREVIOUS</IgbButton>
+            <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Reset">RESET</IgbButton>
+        </IgbStep>
+    </IgbStepper>
+</div>
+
+@code {
+    private IgbStepper stepper;
+
+    public void Previous()
+    {
+        this.stepper.Prev();
+    }
+
+    public void Next()
+    {
+        this.stepper.Next();
+    }
+
+    public void Reset()
+    {
+        this.stepper.Reset();
+    }
+
+    public void OrientationChange(IgbSelectItemComponentEventArgs args)
+    {
+        StepperOrientation orientation = Enum.Parse<StepperOrientation>(args.Detail.Value);
+        this.stepper.Orientation = orientation;
+    }
+
+    public void VerticalAnimationChange(IgbSelectItemComponentEventArgs args)
+    {
+        StepperVerticalAnimation animation = Enum.Parse<StepperVerticalAnimation>(args.Detail.Value);
+        this.stepper.VerticalAnimation = animation;
+    }
+
+    public void HorizontalAnimationChange(IgbSelectItemComponentEventArgs args)
+    {
+        StepperHorizontalAnimation animation = Enum.Parse<StepperHorizontalAnimation>(args.Detail.Value);
+        this.stepper.HorizontalAnimation = animation;
+    }
+
+    public void AnimationDurationChange(IgbComponentDataValueChangedEventArgs args)
+    {
+        double duration;
+        double.TryParse(args.Detail.ToString(), out duration);
+        this.stepper.AnimationDuration = duration;
+    }
+}

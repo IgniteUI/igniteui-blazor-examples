@@ -1,8 +1,6 @@
 @using IgniteUI.Blazor.Controls
 
-@inject IJSRuntime JS
-
-<div class="container vertical">
+<div class="container vertical ig-typography">
     <div class="container vertical fill">
         <IgbTreeGrid
         AutoGenerate="false"
@@ -11,7 +9,6 @@
         Id="treeGrid"
         Data="EmployeesNestedTreeData"
         PrimaryKey="ID"
-        DisplayDensity="DisplayDensity.Comfortable"
         AllowFiltering="true"
         ForeignKey="ParentID">
             <IgbPaginator
@@ -36,10 +33,7 @@
             Field="Age"
             DataType="GridColumnDataType.Number"
             Editable="true"
-            HasSummary="true"
-            SummaryTemplateScript="WebTreeGridCustomNumberSummary"
-            Name="column1"
-            @ref="column1">
+            HasSummary="true">
             </IgbColumn>
 
             <IgbColumn
@@ -67,12 +61,10 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var treeGrid = this.treeGrid;
-        var column1 = this.column1;
 
     }
 
     private IgbTreeGrid treeGrid;
-    private IgbColumn column1;
 
     private EmployeesNestedTreeData _employeesNestedTreeData = null;
     public EmployeesNestedTreeData EmployeesNestedTreeData

@@ -4,15 +4,15 @@
     <div class="container vertical fill">
         <IgbHierarchicalGrid
         AutoGenerate="false"
+        Id="grid"
+        Name="grid"
+        @ref="grid"
         Data="SingersData"
-        PrimaryKey="ID"
-        Name="hierarchicalGrid1"
-        @ref="hierarchicalGrid1">
+        PrimaryKey="ID">
             <IgbPaginator
             Name="paginator"
             @ref="paginator"
             PerPage="10"
-            DisplayDensity="DisplayDensity.Cosy"
             ResourceStrings="PaginatorResourceStrings1">
             </IgbPaginator>
 
@@ -162,12 +162,12 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var hierarchicalGrid1 = this.hierarchicalGrid1;
+        var grid = this.grid;
         var paginator = this.paginator;
 
     }
 
-    private IgbHierarchicalGrid hierarchicalGrid1;
+    private IgbHierarchicalGrid grid;
     private IgbPaginator paginator;
     private IgbPaginatorResourceStrings _paginatorResourceStrings1 = null;
     public IgbPaginatorResourceStrings PaginatorResourceStrings1

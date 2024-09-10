@@ -37,13 +37,12 @@
 
             <div class="container vertical">
 
-                <IgbGrid @ref=grid Width="100%" Height="100%" AllowFiltering=true
-                         AutoGenerate=false Data=marketData DisplayDensity="DisplayDensity.Compact">
+                <IgbGrid @ref=grid Class="gridSize" Width="100%" Height="100%" AllowFiltering=true AutoGenerate=false Data=marketData>
                     <IgbColumn Field="IndustrySector" Header="Industry Sector" DataType="GridColumnDataType.String" Sortable=true></IgbColumn>
                     <IgbColumn Field="IndustryGroup" Header="Industry Group" DataType="GridColumnDataType.String" Sortable=true></IgbColumn>
                     <IgbColumn Field="SectorType" Header="Sector Type" DataType="GridColumnDataType.String" Sortable=true></IgbColumn>
                     <IgbColumn Field="KRD" DataType="GridColumnDataType.Number" Sortable=true></IgbColumn>
-                    <IgbColumn Field="MarketNotion" Header="Market Notion" SectorType DataType="GridColumnDataType.Number" Sortable=true></IgbColumn>
+                    <IgbColumn Field="MarketNotion" Header="Market Notion" DataType="GridColumnDataType.Number" Sortable=true></IgbColumn>
                 </IgbGrid>
             </div>
         }
@@ -95,6 +94,7 @@
     public void OnValueChanging(string newValue)
     {
         this.searchText = newValue;
+        this.grid.FindNextAsync(this.searchText, this.caseSensitive, this.exactMatch);
     }
 
     public void PrevSearch()

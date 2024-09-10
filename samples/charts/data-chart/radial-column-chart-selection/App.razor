@@ -1,0 +1,112 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="legend-title">
+        Ronaldo vs Messi Player Stats
+    </div>
+    <div class="legend">
+        <IgbLegend
+        Name="legend"
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
+        </IgbLegend>
+
+    </div>
+    <div class="container vertical fill">
+        <IgbDataChart
+        Name="chart"
+        @ref="chart"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        SelectionMode="SeriesSelectionMode.SelectionColorFill"
+        SelectionBehavior="SeriesSelectionBehavior.PerSeriesMultiSelect">
+            <IgbCategoryAngleAxis
+            Name="angleAxis"
+            @ref="angleAxis"
+            DataSource="FootballPlayerStats"
+            Label="Attribute">
+            </IgbCategoryAngleAxis>
+
+            <IgbNumericRadiusAxis
+            Name="radiusAxis"
+            @ref="radiusAxis"
+            InnerRadiusExtentScale="0.1"
+            Interval="2"
+            MinimumValue="0"
+            MaximumValue="10">
+            </IgbNumericRadiusAxis>
+
+            <IgbRadialColumnSeries
+            Name="RadialColumnSeries1"
+            @ref="radialColumnSeries1"
+            DataSource="FootballPlayerStats"
+            AngleAxisName="angleAxis"
+            ValueAxisName="radiusAxis"
+            ValueMemberPath="Ronaldo"
+            ShowDefaultTooltip="false"
+            AreaFillOpacity="0.8"
+            Thickness="3"
+            Title="Ronaldo"
+            SelectionBrush="yellow">
+            </IgbRadialColumnSeries>
+
+            <IgbRadialColumnSeries
+            Name="RadialColumnSeries2"
+            @ref="radialColumnSeries2"
+            DataSource="FootballPlayerStats"
+            AngleAxisName="angleAxis"
+            ValueAxisName="radiusAxis"
+            ValueMemberPath="Messi"
+            ShowDefaultTooltip="false"
+            AreaFillOpacity="0.8"
+            Thickness="3"
+            Title="Messi"
+            SelectionBrush="cyan">
+            </IgbRadialColumnSeries>
+
+        </IgbDataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var chart = this.chart;
+        var angleAxis = this.angleAxis;
+        var radiusAxis = this.radiusAxis;
+        var radialColumnSeries1 = this.radialColumnSeries1;
+        var radialColumnSeries2 = this.radialColumnSeries2;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbLegend legend;
+    private IgbDataChart chart;
+    private IgbCategoryAngleAxis angleAxis;
+    private IgbNumericRadiusAxis radiusAxis;
+    private IgbRadialColumnSeries radialColumnSeries1;
+    private IgbRadialColumnSeries radialColumnSeries2;
+
+    private FootballPlayerStats _footballPlayerStats = null;
+    public FootballPlayerStats FootballPlayerStats
+    {
+        get
+        {
+            if (_footballPlayerStats == null)
+            {
+                _footballPlayerStats = new FootballPlayerStats();
+            }
+            return _footballPlayerStats;
+        }
+    }
+
+}

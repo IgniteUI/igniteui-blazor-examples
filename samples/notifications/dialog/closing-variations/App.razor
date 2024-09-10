@@ -17,14 +17,14 @@
     public bool KeepOpenOnEscape { get; set; }
     public bool CloseOnOutsideClick { get; set; }
 
-    public void OnKeepOpenOnEscapeSwitchChange(IgbComponentBoolValueChangedEventArgs args)
+    public void OnKeepOpenOnEscapeSwitchChange(IgbCheckboxChangeEventArgs args)
     {
-        KeepOpenOnEscape = args.Detail;
+        KeepOpenOnEscape = args.Detail.Checked;
     }
 
-    public void OnCloseOnOutsideClickSwitchChange(IgbComponentBoolValueChangedEventArgs args)
+    public void OnCloseOnOutsideClickSwitchChange(IgbCheckboxChangeEventArgs args)
     {
-        CloseOnOutsideClick = args.Detail;
+        CloseOnOutsideClick = args.Detail.Checked;
     }
 
     public async Task OnDialogShow()

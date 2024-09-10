@@ -1,0 +1,43 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container horizontal">
+    <div class="container">
+        <IgbTreeGrid AutoGenerate="false" Id="leftTreeGrid" Name="treeGrid" @ref="treeGridRef" Height="100%" Data="EmployeesFlatData"
+                     PrimaryKey="ID" ForeignKey="ParentID" SelectionMode="GridSelectionMode.Multiple" 
+                     RangeSelectedScript="TreeGridRangeSelectionChanging">
+            <IgbColumn Field="ID" DataType="GridColumnDataType.Number"></IgbColumn>
+            <IgbColumn Field="Name" DataType="GridColumnDataType.String"></IgbColumn>
+            <IgbColumn Field="Age" DataType="GridColumnDataType.Number"></IgbColumn>
+            <IgbColumn Field="Title" DataType="GridColumnDataType.String"></IgbColumn>
+            <IgbColumn Field="HireDate" DataType="GridColumnDataType.Date"></IgbColumn>
+        </IgbTreeGrid>
+    </div>
+    <div class="container">
+        <IgbGrid Id="rightGrid" Height="100%" Width="100%" AutoGenerate="false">
+            <IgbColumn Field="ID" DataType="GridColumnDataType.Number"></IgbColumn>
+            <IgbColumn Field="Name" DataType="GridColumnDataType.String"></IgbColumn>
+            <IgbColumn Field="Age" DataType="GridColumnDataType.Number"></IgbColumn>
+            <IgbColumn Field="Title" DataType="GridColumnDataType.String"></IgbColumn>
+            <IgbColumn Field="HireDate" DataType="GridColumnDataType.Date"></IgbColumn>
+        </IgbGrid>
+    </div>
+</div>
+
+@code {
+    private IgbTreeGrid treeGridRef;
+
+    private EmployeesFlatData _employeesFlatData = null;
+    public EmployeesFlatData EmployeesFlatData
+    {
+        get
+        {
+            if (_employeesFlatData == null)
+            {
+                _employeesFlatData = new EmployeesFlatData();
+            }
+            return _employeesFlatData;
+        }
+    }
+}

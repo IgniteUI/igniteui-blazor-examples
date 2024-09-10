@@ -46,7 +46,7 @@
     </div>
     <div class="legend">
         <IgbLegend
-        Name="Legend"
+        Name="legend"
         @ref="legend"
         Orientation="LegendOrientation.Horizontal">
         </IgbLegend>
@@ -97,12 +97,14 @@
 
     public void EditorChangeUpdateYAxisMinimumValue(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
     {
+        var chart = this.chart;
         var yAxisMinimumVal = args.NewValue;
         chart.YAxisMinimumValue = Convert.ToDouble(yAxisMinimumVal);
     }
 
     public void EditorChangeUpdateYAxisMaximumValue(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
     {
+        var chart = this.chart;
         var yAxisMaximumVal = args.NewValue;
         chart.YAxisMaximumValue = Convert.ToDouble(yAxisMaximumVal);
     }

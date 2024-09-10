@@ -16,10 +16,10 @@ parameters:
   displayName: 'Get verbose output from steps - where configurable'
   type: boolean
   default: false
-# - name: shouldCleanPostExectuion
-#   displayName: 'Clean all pipeline dirs after the pipeline finishes?'
-#   type: boolean
-#   default: true
+- name: shouldCleanPostExectuion
+  displayName: 'Clean all pipeline dirs after the pipeline finishes?'
+  type: boolean
+  default: true
 
 name: $(BuildDefinitionName)_$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
 
@@ -38,7 +38,8 @@ stages:
 
       - template: templates/build-steps-template.yml
         parameters:
-          igVersion: '23.2.204'
+          igVersion: '24.1.41'
           igNuGetFeedUrl: $(IG_Nuget_Feed_URL)
           projectToBuild: Client
           isVerbose: ${{ parameters.isVerbose }}
+          shouldCleanPostExectuion: ${{ parameters.shouldCleanPostExectuion }}

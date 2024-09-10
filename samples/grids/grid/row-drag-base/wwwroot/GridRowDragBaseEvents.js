@@ -5,7 +5,7 @@
     const withinXBounds = dragElementPos.x >= gridPosition.x && dragElementPos.x <= gridPosition.x + gridPosition.width;
     const withinYBounds = dragElementPos.y >= gridPosition.y && dragElementPos.y <= gridPosition.y + gridPosition.height;
     if (withinXBounds && withinYBounds) {
-        grid1.deleteRow(evt.detail.dragData.index);
+        grid1.deleteRow(evt.detail.dragData.key);
         grid2.addRow(evt.detail.dragData.data);
     }
 }

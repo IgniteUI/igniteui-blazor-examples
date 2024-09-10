@@ -1,0 +1,102 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        Name="PropertyEditor"
+        @ref="propertyEditor"
+
+        DescriptionType="CategoryChart"
+        IsHorizontal="true"
+        IsWrappingEnabled="true">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="SelectionMode"
+            Name="SelectionModeEditor"
+            @ref="selectionModeEditor"
+            Label="Selection Mode: "
+            PrimitiveValue="@("SelectionColorFill")">
+            </IgbPropertyEditorPropertyDescription>
+
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="SelectionBehavior"
+            Name="SelectionBehaviorEditor"
+            @ref="selectionBehaviorEditor"
+            Label="Selection Behavior: "
+            PrimitiveValue="@("PerSeriesAndDataItemGlobalSingleSelect")">
+            </IgbPropertyEditorPropertyDescription>
+
+        </IgbPropertyEditorPanel>
+
+    </div>
+    <div class="legend-title">
+        Highest Grossing Movie Franchises
+    </div>
+    <div class="legend">
+        <IgbLegend
+        Name="legend"
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
+        </IgbLegend>
+
+    </div>
+    <div class="container vertical fill">
+        <IgbCategoryChart
+        Name="chart"
+        @ref="chart"
+        ChartType="CategoryChartType.Column"
+        DataSource="EnergyRenewableConsumption"
+        YAxisTitleLeftMargin="10"
+        YAxisTitleRightMargin="5"
+        YAxisLabelLeftMargin="0"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        CrosshairsDisplayMode="CrosshairsDisplayMode.None"
+        SelectionMode="SeriesSelectionMode.SelectionColorFill"
+        SelectionBehavior="SeriesSelectionBehavior.PerSeriesAndDataItemGlobalSingleSelect"
+        SelectionBrush="orange"
+        FocusBrush="orange">
+        </IgbCategoryChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var propertyEditor = this.propertyEditor;
+        var selectionModeEditor = this.selectionModeEditor;
+        var selectionBehaviorEditor = this.selectionBehaviorEditor;
+        var chart = this.chart;
+
+        this.BindElements = () => {
+            propertyEditor.Target = this.chart;
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbLegend legend;
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription selectionModeEditor;
+    private IgbPropertyEditorPropertyDescription selectionBehaviorEditor;
+    private IgbCategoryChart chart;
+
+    private EnergyRenewableConsumption _energyRenewableConsumption = null;
+    public EnergyRenewableConsumption EnergyRenewableConsumption
+    {
+        get
+        {
+            if (_energyRenewableConsumption == null)
+            {
+                _energyRenewableConsumption = new EnergyRenewableConsumption();
+            }
+            return _energyRenewableConsumption;
+        }
+    }
+
+}
