@@ -1,65 +1,86 @@
 @using IgniteUI.Blazor.Controls
+@inject NwindData NwindDataService
 
 <div class="container vertical ig-typography">
     <div class="container vertical fill">
-        <IgbGrid AutoGenerate="false" Name="grid" Id="grid" Moving="true" PagingMode="GridPagingMode.Remote">
-            <IgbPaginator PerPage="10" Id="paginator" PageChange="pageChangedHandler()" PerPageChange="perPageChangedHandler()"></IgbPaginator>
-            <IgbColumn Name="CategoryName" Id="CategoryName" Field="CategoryName" Header="Category Name"></IgbColumn>
-            <IgbColumn Name="ImageID" Id="ImageID" Field="CategoryImageUrl" DataType="GridColumnDataType.Image" Header="Category Image"></IgbColumn>
-            <IgbColumn Name="ProductName" Id="ProductName" Field="ProductName" Header="Product Name"></IgbColumn>
-            <IgbColumn Name="QuantityPerUnit" Id="QuantityPerUnit" Field="QuantityPerUnit" Header="Quantity Per Unit"></IgbColumn>
-            <IgbColumn Name="UnitPrice" Id="UnitPrice" Field="UnitPrice" Header="Unit Price"></IgbColumn>
-            <IgbColumn Name="SupplierName" Id="SupplierName" Field="SupplierName" Header="Supplier Name"></IgbColumn>
-            <IgbColumn Name="UnitsInStock" Id="UnitsInStock" Field="UnitsInStock" Header="Units In Stock"></IgbColumn>
-            <IgbColumn Name="UnitsOnOrder" Id="UnitsOnOrder" Field="UnitsOnOrder" Header="Units On Order"></IgbColumn>
-</IgbGrid>
-
+        <IgbGrid @ref="grid1" AutoGenerate="false" Moving="true" PagingMode="GridPagingMode.Remote">
+            <IgbPaginator @ref="pager" PageChange="OnPageChange" PerPageChange="OnPerPageChange" TotalRecords="totalRecordsCount"></IgbPaginator>
+            <IgbColumn Name="OrderDate" Field="OrderDate" Header="Order Date"></IgbColumn>
+            <IgbColumn Name="ProductName" Field="ProductName" Header="Product Name"></IgbColumn>
+            <IgbColumn Name="QuantityPerUnit" Field="QuantityPerUnit" Header="Quantity Per Unit"></IgbColumn>
+            <IgbColumn Name="UnitPrice" Field="UnitPrice" Header="Unit Price"></IgbColumn>
+            <IgbColumn Name="SupplierID" Field="SupplierID" Header="Supplier ID"></IgbColumn>
+            <IgbColumn Name="UnitsInStock" Field="UnitsInStock" Header="Units In Stock"></IgbColumn>
+            <IgbColumn Name="UnitsOnOrder" Field="UnitsOnOrder" Header="Units On Order"></IgbColumn>
+        </IgbGrid>
     </div>
 </div>
 
 @code {
+    private List<NwindDataItem> data = new List<NwindDataItem>();
+    private int dataLength = 0;
+    private IgbGrid grid1;
+    private int totalRecordsCount;
+    private double page = 0;
+    private double _perPage = 15;
+    private IgbPaginator pager;
+    private bool isLoading = true;
+
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var grid = this.grid;
-        var iD = this.iD;
-        var productName = this.productName;
-        var quantityPerUnit = this.quantityPerUnit;
-        var unitPrice = this.unitPrice;
-        var orderDate = this.orderDate;
-        var discontinued = this.discontinued;
-
-    }
-
-    private pageChangedHandler()
-    {
-
-    }
-
-    private perPageChangedHandler()
-    {
-        
-    }
-
-    private IgbGrid grid;
-    private IgbColumn iD;
-    private IgbColumn productName;
-    private IgbColumn quantityPerUnit;
-    private IgbColumn unitPrice;
-    private IgbColumn orderDate;
-    private IgbColumn discontinued;
-
-    private NwindData _nwindData = null;
-    public NwindData NwindData
-    {
-        get
+        if (firstRender)
         {
-            if (_nwindData == null)
-            {
-                _nwindData = new NwindData();
-            }
-            return _nwindData;
+            await Paginate(0, PerPage);
+            totalRecordsCount = await NwindDataService.GetDataLength();
+            StateHasChanged();
         }
     }
 
+    private async Task Paginate(double page, double perPage)
+    {
+        this.page = page;
+        double skip = this.page * PerPage;
+        double top = PerPage;
+
+        try
+        {
+            data = await NwindDataService.GetData(Convert.ToInt32(skip), Convert.ToInt32(perPage));
+            isLoading = false;
+            UpdateUI();
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error fetching data: {ex.Message}");
+        }
+    }
+
+    private void UpdateUI()
+    {
+        if (grid1 != null && data != null)
+        {
+            grid1.Data = data;
+        }
+    }
+
+    private double PerPage
+    {
+        get => _perPage;
+        set
+        {
+            _perPage = value;
+            new Task(async () => await Paginate(page, PerPage)).Start();
+        }
+    }
+
+    private async void OnPerPageChange(IgbNumberEventArgs e)
+    {
+        PerPage = e.Detail;
+        await Paginate(0, e.Detail);
+    }
+
+    private async void OnPageChange(IgbNumberEventArgs e)
+    {
+        await Paginate(e.Detail, PerPage);
+    }
 }

@@ -34,13 +34,13 @@ namespace Infragistics.Samples
         : List<NwindDataItem>
     {
 
-        private List<NwindDataItem> items;
+        private readonly List<NwindDataItem> items;
 
         public NwindData()
         {
             items = GenerateSampleData();
         }
-        private List<NwindDataItem> GenerateSampleData()
+        private static List<NwindDataItem> GenerateSampleData()
         {
             var sampleData = new List<NwindDataItem>();
 
@@ -60,12 +60,12 @@ namespace Infragistics.Samples
                 Rating = 5,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
@@ -88,7 +88,7 @@ namespace Infragistics.Samples
                 Rating = 5,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
@@ -111,17 +111,17 @@ namespace Infragistics.Samples
                 Rating = 3,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"24/7 Market",
                     LastInventory = @"2018-11-11"
@@ -144,17 +144,17 @@ namespace Infragistics.Samples
                 Rating = 3,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
@@ -177,7 +177,7 @@ namespace Infragistics.Samples
                 Rating = 5,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
@@ -200,7 +200,7 @@ namespace Infragistics.Samples
                 Rating = 4,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
@@ -223,17 +223,17 @@ namespace Infragistics.Samples
                 Rating = 5,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
@@ -256,12 +256,12 @@ namespace Infragistics.Samples
                 Rating = 4,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
@@ -284,7 +284,7 @@ namespace Infragistics.Samples
                 Rating = 4,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
@@ -307,7 +307,7 @@ namespace Infragistics.Samples
                 Rating = 3,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Wall Market",
                     LastInventory = @"2018-12-06"
@@ -330,12 +330,12 @@ namespace Infragistics.Samples
                 Rating = 5,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
@@ -358,7 +358,7 @@ namespace Infragistics.Samples
                 Rating = 3,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
@@ -381,7 +381,7 @@ namespace Infragistics.Samples
                 Rating = 2,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
@@ -404,12 +404,12 @@ namespace Infragistics.Samples
                 Rating = 4,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
@@ -432,12 +432,12 @@ namespace Infragistics.Samples
                 Rating = 4,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Local Market",
                     LastInventory = @"2018-07-03"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Wall Market",
                     LastInventory = @"2018-12-06"
@@ -460,17 +460,17 @@ namespace Infragistics.Samples
                 Rating = 2,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"24/7 Market",
                     LastInventory = @"2018-11-11"
@@ -493,7 +493,7 @@ namespace Infragistics.Samples
                 Rating = 2,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
@@ -516,12 +516,12 @@ namespace Infragistics.Samples
                 Rating = 2,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"24/7 Market",
                     LastInventory = @"2018-11-11"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
@@ -544,7 +544,7 @@ namespace Infragistics.Samples
                 Rating = 2,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Local Market",
                     LastInventory = @"2018-07-03"
@@ -567,7 +567,7 @@ namespace Infragistics.Samples
                 Rating = 5,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
@@ -590,12 +590,12 @@ namespace Infragistics.Samples
                 Rating = 5,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
@@ -618,7 +618,7 @@ namespace Infragistics.Samples
                 Rating = 5,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
@@ -641,17 +641,17 @@ namespace Infragistics.Samples
                 Rating = 3,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"24/7 Market",
                     LastInventory = @"2018-11-11"
@@ -674,17 +674,17 @@ namespace Infragistics.Samples
                 Rating = 3,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
@@ -707,7 +707,7 @@ namespace Infragistics.Samples
                 Rating = 5,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
@@ -730,7 +730,7 @@ namespace Infragistics.Samples
                 Rating = 4,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
@@ -753,17 +753,17 @@ namespace Infragistics.Samples
                 Rating = 5,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
@@ -786,12 +786,12 @@ namespace Infragistics.Samples
                 Rating = 4,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
@@ -814,7 +814,7 @@ namespace Infragistics.Samples
                 Rating = 4,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
@@ -837,7 +837,7 @@ namespace Infragistics.Samples
                 Rating = 3,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Wall Market",
                     LastInventory = @"2018-12-06"
@@ -860,12 +860,12 @@ namespace Infragistics.Samples
                 Rating = 5,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
@@ -888,7 +888,7 @@ namespace Infragistics.Samples
                 Rating = 3,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
@@ -911,7 +911,7 @@ namespace Infragistics.Samples
                 Rating = 2,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
@@ -934,12 +934,12 @@ namespace Infragistics.Samples
                 Rating = 4,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
@@ -962,12 +962,12 @@ namespace Infragistics.Samples
                 Rating = 4,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Local Market",
                     LastInventory = @"2018-07-03"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Wall Market",
                     LastInventory = @"2018-12-06"
@@ -990,17 +990,17 @@ namespace Infragistics.Samples
                 Rating = 2,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"24/7 Market",
                     LastInventory = @"2018-11-11"
@@ -1023,7 +1023,7 @@ namespace Infragistics.Samples
                 Rating = 2,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
@@ -1046,12 +1046,12 @@ namespace Infragistics.Samples
                 Rating = 2,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"24/7 Market",
                     LastInventory = @"2018-11-11"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
@@ -1074,7 +1074,7 @@ namespace Infragistics.Samples
                 Rating = 2,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Local Market",
                     LastInventory = @"2018-07-03"
@@ -1097,7 +1097,7 @@ namespace Infragistics.Samples
                 Rating = 5,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
@@ -1120,12 +1120,12 @@ namespace Infragistics.Samples
                 Rating = 5,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
@@ -1148,7 +1148,7 @@ namespace Infragistics.Samples
                 Rating = 5,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
@@ -1171,17 +1171,17 @@ namespace Infragistics.Samples
                 Rating = 3,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"24/7 Market",
                     LastInventory = @"2018-11-11"
@@ -1204,17 +1204,17 @@ namespace Infragistics.Samples
                 Rating = 3,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
@@ -1237,7 +1237,7 @@ namespace Infragistics.Samples
                 Rating = 5,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
@@ -1260,7 +1260,7 @@ namespace Infragistics.Samples
                 Rating = 4,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
@@ -1283,17 +1283,17 @@ namespace Infragistics.Samples
                 Rating = 5,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
@@ -1316,12 +1316,12 @@ namespace Infragistics.Samples
                 Rating = 4,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
@@ -1344,7 +1344,7 @@ namespace Infragistics.Samples
                 Rating = 4,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
@@ -1367,7 +1367,7 @@ namespace Infragistics.Samples
                 Rating = 3,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Wall Market",
                     LastInventory = @"2018-12-06"
@@ -1390,12 +1390,12 @@ namespace Infragistics.Samples
                 Rating = 5,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
@@ -1418,7 +1418,7 @@ namespace Infragistics.Samples
                 Rating = 3,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
@@ -1441,7 +1441,7 @@ namespace Infragistics.Samples
                 Rating = 2,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
@@ -1464,12 +1464,12 @@ namespace Infragistics.Samples
                 Rating = 4,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
@@ -1492,12 +1492,12 @@ namespace Infragistics.Samples
                 Rating = 4,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Local Market",
                     LastInventory = @"2018-07-03"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Wall Market",
                     LastInventory = @"2018-12-06"
@@ -1520,17 +1520,17 @@ namespace Infragistics.Samples
                 Rating = 2,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"24/7 Market",
                     LastInventory = @"2018-11-11"
@@ -1553,7 +1553,7 @@ namespace Infragistics.Samples
                 Rating = 2,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
@@ -1576,12 +1576,12 @@ namespace Infragistics.Samples
                 Rating = 2,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"24/7 Market",
                     LastInventory = @"2018-11-11"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
@@ -1604,7 +1604,7 @@ namespace Infragistics.Samples
                 Rating = 2,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Local Market",
                     LastInventory = @"2018-07-03"
@@ -1627,7 +1627,7 @@ namespace Infragistics.Samples
                 Rating = 5,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
@@ -1650,12 +1650,12 @@ namespace Infragistics.Samples
                 Rating = 5,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
@@ -1678,7 +1678,7 @@ namespace Infragistics.Samples
                 Rating = 5,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
@@ -1701,17 +1701,17 @@ namespace Infragistics.Samples
                 Rating = 3,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"24/7 Market",
                     LastInventory = @"2018-11-11"
@@ -1734,17 +1734,17 @@ namespace Infragistics.Samples
                 Rating = 3,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
@@ -1767,7 +1767,7 @@ namespace Infragistics.Samples
                 Rating = 5,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
@@ -1790,7 +1790,7 @@ namespace Infragistics.Samples
                 Rating = 4,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
@@ -1813,17 +1813,17 @@ namespace Infragistics.Samples
                 Rating = 5,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
@@ -1846,12 +1846,12 @@ namespace Infragistics.Samples
                 Rating = 4,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
@@ -1874,7 +1874,7 @@ namespace Infragistics.Samples
                 Rating = 4,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
@@ -1897,7 +1897,7 @@ namespace Infragistics.Samples
                 Rating = 3,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Wall Market",
                     LastInventory = @"2018-12-06"
@@ -1920,12 +1920,12 @@ namespace Infragistics.Samples
                 Rating = 5,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
@@ -1948,7 +1948,7 @@ namespace Infragistics.Samples
                 Rating = 3,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
@@ -1971,7 +1971,7 @@ namespace Infragistics.Samples
                 Rating = 2,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
@@ -1994,12 +1994,12 @@ namespace Infragistics.Samples
                 Rating = 4,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
@@ -2022,12 +2022,12 @@ namespace Infragistics.Samples
                 Rating = 4,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Local Market",
                     LastInventory = @"2018-07-03"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Wall Market",
                     LastInventory = @"2018-12-06"
@@ -2050,17 +2050,17 @@ namespace Infragistics.Samples
                 Rating = 2,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"24/7 Market",
                     LastInventory = @"2018-11-11"
@@ -2083,7 +2083,7 @@ namespace Infragistics.Samples
                 Rating = 2,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
@@ -2106,12 +2106,12 @@ namespace Infragistics.Samples
                 Rating = 2,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"24/7 Market",
                     LastInventory = @"2018-11-11"
                 },
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
@@ -2134,7 +2134,7 @@ namespace Infragistics.Samples
                 Rating = 2,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Local Market",
                     LastInventory = @"2018-07-03"
@@ -2157,7 +2157,7 @@ namespace Infragistics.Samples
                 Rating = 5,
                 Locations = new List<NwindDataItem_LocationsItem>()
             {
-                new NwindDataItem_LocationsItem()
+                new()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
