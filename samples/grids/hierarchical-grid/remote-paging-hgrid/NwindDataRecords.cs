@@ -30,13 +30,13 @@ namespace Infragistics.Samples
         public string LastInventory { get; set; }
     }
 
-    public class NwindData
+    public class NwindDataRecords
         : List<NwindDataItem>
     {
 
         private readonly List<NwindDataItem> items;
 
-        public NwindData()
+        public NwindDataRecords()
         {
             items = GenerateSampleData();
         }
