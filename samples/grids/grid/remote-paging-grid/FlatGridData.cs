@@ -1,14 +1,10 @@
-using System;
 using System.Collections.Generic;
-using System.Net.Http;
-using System.Reactive.Subjects;
 using System.Threading.Tasks;
-using System.Text.Json;
 using System.Linq;
 
 namespace Infragistics.Samples
 {
-    public class NwindDataItem
+    public class FGridDataItem
     {
         public double ProductID { get; set; }
         public string ProductName { get; set; }
@@ -22,29 +18,29 @@ namespace Infragistics.Samples
         public bool Discontinued { get; set; }
         public string OrderDate { get; set; }
         public double Rating { get; set; }
-        public List<NwindDataItem_LocationsItem> Locations { get; set; }
+        public List<FGridDataItem_LocationsItem> Locations { get; set; }
     }
-    public class NwindDataItem_LocationsItem
+    public class FGridDataItem_LocationsItem
     {
         public string Shop { get; set; }
         public string LastInventory { get; set; }
     }
 
-    public class NwindDataRecords
-        : List<NwindDataItem>
+    public class FlatGridData
+        : List<FGridDataItem>
     {
 
-        private readonly List<NwindDataItem> items;
+        private List<FGridDataItem> items;
 
-        public NwindDataRecords()
+        public FlatGridData()
         {
             items = GenerateSampleData();
         }
-        private static List<NwindDataItem> GenerateSampleData()
+        private List<FGridDataItem> GenerateSampleData()
         {
-            var sampleData = new List<NwindDataItem>();
+            var sampleData = new List<FGridDataItem>();
 
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 1,
                 ProductName = @"Chai",
@@ -58,21 +54,21 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2012-02-12",
                 Rating = 5,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 2,
                 ProductName = @"Chang",
@@ -86,16 +82,16 @@ namespace Infragistics.Samples
                 Discontinued = true,
                 OrderDate = @"2003-03-17",
                 Rating = 5,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 3,
                 ProductName = @"Aniseed Syrup",
@@ -109,26 +105,26 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2006-03-17",
                 Rating = 3,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"24/7 Market",
                     LastInventory = @"2018-11-11"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 4,
                 ProductName = @"Chef Antons Cajun Seasoning",
@@ -142,26 +138,26 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2016-03-17",
                 Rating = 3,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 5,
                 ProductName = @"Chef Antons Gumbo Mix",
@@ -175,16 +171,16 @@ namespace Infragistics.Samples
                 Discontinued = true,
                 OrderDate = @"2011-11-11",
                 Rating = 5,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 6,
                 ProductName = @"Grandmas Boysenberry Spread",
@@ -198,16 +194,16 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2017-12-17",
                 Rating = 4,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 7,
                 ProductName = @"Uncle Bobs Organic Dried Pears",
@@ -221,26 +217,26 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2016-07-17",
                 Rating = 5,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 8,
                 ProductName = @"Northwoods Cranberry Sauce",
@@ -254,21 +250,21 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2018-01-17",
                 Rating = 4,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 9,
                 ProductName = @"Mishi Kobe Niku",
@@ -282,16 +278,16 @@ namespace Infragistics.Samples
                 Discontinued = true,
                 OrderDate = @"2010-02-17",
                 Rating = 4,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 10,
                 ProductName = @"Ikura",
@@ -305,16 +301,16 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2008-05-17",
                 Rating = 3,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Wall Market",
                     LastInventory = @"2018-12-06"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 11,
                 ProductName = @"Queso Cabrales",
@@ -328,21 +324,21 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2009-01-17",
                 Rating = 5,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 12,
                 ProductName = @"Queso Manchego La Pastora",
@@ -356,16 +352,16 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2015-11-17",
                 Rating = 3,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 13,
                 ProductName = @"Konbu",
@@ -379,16 +375,16 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2015-03-17",
                 Rating = 2,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 14,
                 ProductName = @"Tofu",
@@ -402,21 +398,21 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2017-06-17",
                 Rating = 4,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 15,
                 ProductName = @"Genen Shouyu",
@@ -430,21 +426,21 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2014-03-17",
                 Rating = 4,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Local Market",
                     LastInventory = @"2018-07-03"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Wall Market",
                     LastInventory = @"2018-12-06"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 16,
                 ProductName = @"Pavlova",
@@ -458,26 +454,26 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2018-03-28",
                 Rating = 2,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"24/7 Market",
                     LastInventory = @"2018-11-11"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 17,
                 ProductName = @"Alice Mutton",
@@ -491,16 +487,16 @@ namespace Infragistics.Samples
                 Discontinued = true,
                 OrderDate = @"2015-08-17",
                 Rating = 2,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 18,
                 ProductName = @"Carnarvon Tigers",
@@ -514,21 +510,21 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2005-09-27",
                 Rating = 2,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"24/7 Market",
                     LastInventory = @"2018-11-11"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 19,
                 ProductName = @"Teatime Chocolate Biscuits",
@@ -542,16 +538,16 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2001-03-17",
                 Rating = 2,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Local Market",
                     LastInventory = @"2018-07-03"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 20,
                 ProductName = @"Sir Rodneys Marmalade",
@@ -565,16 +561,16 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2005-03-17",
                 Rating = 5,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 1,
                 ProductName = @"Chai",
@@ -588,21 +584,21 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2012-02-12",
                 Rating = 5,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 2,
                 ProductName = @"Chang",
@@ -616,16 +612,16 @@ namespace Infragistics.Samples
                 Discontinued = true,
                 OrderDate = @"2003-03-17",
                 Rating = 5,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 3,
                 ProductName = @"Aniseed Syrup",
@@ -639,26 +635,26 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2006-03-17",
                 Rating = 3,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"24/7 Market",
                     LastInventory = @"2018-11-11"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 4,
                 ProductName = @"Chef Antons Cajun Seasoning",
@@ -672,26 +668,26 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2016-03-17",
                 Rating = 3,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 5,
                 ProductName = @"Chef Antons Gumbo Mix",
@@ -705,16 +701,16 @@ namespace Infragistics.Samples
                 Discontinued = true,
                 OrderDate = @"2011-11-11",
                 Rating = 5,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 6,
                 ProductName = @"Grandmas Boysenberry Spread",
@@ -728,16 +724,16 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2017-12-17",
                 Rating = 4,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 7,
                 ProductName = @"Uncle Bobs Organic Dried Pears",
@@ -751,26 +747,26 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2016-07-17",
                 Rating = 5,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 8,
                 ProductName = @"Northwoods Cranberry Sauce",
@@ -784,21 +780,21 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2018-01-17",
                 Rating = 4,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 9,
                 ProductName = @"Mishi Kobe Niku",
@@ -812,16 +808,16 @@ namespace Infragistics.Samples
                 Discontinued = true,
                 OrderDate = @"2010-02-17",
                 Rating = 4,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 10,
                 ProductName = @"Ikura",
@@ -835,16 +831,16 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2008-05-17",
                 Rating = 3,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Wall Market",
                     LastInventory = @"2018-12-06"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 11,
                 ProductName = @"Queso Cabrales",
@@ -858,21 +854,21 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2009-01-17",
                 Rating = 5,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 12,
                 ProductName = @"Queso Manchego La Pastora",
@@ -886,16 +882,16 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2015-11-17",
                 Rating = 3,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 13,
                 ProductName = @"Konbu",
@@ -909,16 +905,16 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2015-03-17",
                 Rating = 2,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 14,
                 ProductName = @"Tofu",
@@ -932,21 +928,21 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2017-06-17",
                 Rating = 4,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 15,
                 ProductName = @"Genen Shouyu",
@@ -960,21 +956,21 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2014-03-17",
                 Rating = 4,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Local Market",
                     LastInventory = @"2018-07-03"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Wall Market",
                     LastInventory = @"2018-12-06"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 16,
                 ProductName = @"Pavlova",
@@ -988,26 +984,26 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2018-03-28",
                 Rating = 2,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"24/7 Market",
                     LastInventory = @"2018-11-11"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 17,
                 ProductName = @"Alice Mutton",
@@ -1021,16 +1017,16 @@ namespace Infragistics.Samples
                 Discontinued = true,
                 OrderDate = @"2015-08-17",
                 Rating = 2,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 18,
                 ProductName = @"Carnarvon Tigers",
@@ -1044,21 +1040,21 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2005-09-27",
                 Rating = 2,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"24/7 Market",
                     LastInventory = @"2018-11-11"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 19,
                 ProductName = @"Teatime Chocolate Biscuits",
@@ -1072,16 +1068,16 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2001-03-17",
                 Rating = 2,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Local Market",
                     LastInventory = @"2018-07-03"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 20,
                 ProductName = @"Sir Rodneys Marmalade",
@@ -1095,16 +1091,16 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2005-03-17",
                 Rating = 5,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 1,
                 ProductName = @"Chai",
@@ -1118,21 +1114,21 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2012-02-12",
                 Rating = 5,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 2,
                 ProductName = @"Chang",
@@ -1146,16 +1142,16 @@ namespace Infragistics.Samples
                 Discontinued = true,
                 OrderDate = @"2003-03-17",
                 Rating = 5,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 3,
                 ProductName = @"Aniseed Syrup",
@@ -1169,26 +1165,26 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2006-03-17",
                 Rating = 3,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"24/7 Market",
                     LastInventory = @"2018-11-11"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 4,
                 ProductName = @"Chef Antons Cajun Seasoning",
@@ -1202,26 +1198,26 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2016-03-17",
                 Rating = 3,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 5,
                 ProductName = @"Chef Antons Gumbo Mix",
@@ -1235,16 +1231,16 @@ namespace Infragistics.Samples
                 Discontinued = true,
                 OrderDate = @"2011-11-11",
                 Rating = 5,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 6,
                 ProductName = @"Grandmas Boysenberry Spread",
@@ -1258,16 +1254,16 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2017-12-17",
                 Rating = 4,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 7,
                 ProductName = @"Uncle Bobs Organic Dried Pears",
@@ -1281,26 +1277,26 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2016-07-17",
                 Rating = 5,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 8,
                 ProductName = @"Northwoods Cranberry Sauce",
@@ -1314,21 +1310,21 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2018-01-17",
                 Rating = 4,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 9,
                 ProductName = @"Mishi Kobe Niku",
@@ -1342,16 +1338,16 @@ namespace Infragistics.Samples
                 Discontinued = true,
                 OrderDate = @"2010-02-17",
                 Rating = 4,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 10,
                 ProductName = @"Ikura",
@@ -1365,16 +1361,16 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2008-05-17",
                 Rating = 3,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Wall Market",
                     LastInventory = @"2018-12-06"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 11,
                 ProductName = @"Queso Cabrales",
@@ -1388,21 +1384,21 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2009-01-17",
                 Rating = 5,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 12,
                 ProductName = @"Queso Manchego La Pastora",
@@ -1416,16 +1412,16 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2015-11-17",
                 Rating = 3,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 13,
                 ProductName = @"Konbu",
@@ -1439,16 +1435,16 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2015-03-17",
                 Rating = 2,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 14,
                 ProductName = @"Tofu",
@@ -1462,21 +1458,21 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2017-06-17",
                 Rating = 4,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 15,
                 ProductName = @"Genen Shouyu",
@@ -1490,21 +1486,21 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2014-03-17",
                 Rating = 4,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Local Market",
                     LastInventory = @"2018-07-03"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Wall Market",
                     LastInventory = @"2018-12-06"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 16,
                 ProductName = @"Pavlova",
@@ -1518,26 +1514,26 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2018-03-28",
                 Rating = 2,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"24/7 Market",
                     LastInventory = @"2018-11-11"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 17,
                 ProductName = @"Alice Mutton",
@@ -1551,16 +1547,16 @@ namespace Infragistics.Samples
                 Discontinued = true,
                 OrderDate = @"2015-08-17",
                 Rating = 2,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 18,
                 ProductName = @"Carnarvon Tigers",
@@ -1574,21 +1570,21 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2005-09-27",
                 Rating = 2,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"24/7 Market",
                     LastInventory = @"2018-11-11"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 19,
                 ProductName = @"Teatime Chocolate Biscuits",
@@ -1602,16 +1598,16 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2001-03-17",
                 Rating = 2,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Local Market",
                     LastInventory = @"2018-07-03"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 20,
                 ProductName = @"Sir Rodneys Marmalade",
@@ -1625,16 +1621,16 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2005-03-17",
                 Rating = 5,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 1,
                 ProductName = @"Chai",
@@ -1648,21 +1644,21 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2012-02-12",
                 Rating = 5,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 2,
                 ProductName = @"Chang",
@@ -1676,16 +1672,16 @@ namespace Infragistics.Samples
                 Discontinued = true,
                 OrderDate = @"2003-03-17",
                 Rating = 5,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 3,
                 ProductName = @"Aniseed Syrup",
@@ -1699,26 +1695,26 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2006-03-17",
                 Rating = 3,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"24/7 Market",
                     LastInventory = @"2018-11-11"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 4,
                 ProductName = @"Chef Antons Cajun Seasoning",
@@ -1732,26 +1728,26 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2016-03-17",
                 Rating = 3,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 5,
                 ProductName = @"Chef Antons Gumbo Mix",
@@ -1765,16 +1761,16 @@ namespace Infragistics.Samples
                 Discontinued = true,
                 OrderDate = @"2011-11-11",
                 Rating = 5,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 6,
                 ProductName = @"Grandmas Boysenberry Spread",
@@ -1788,16 +1784,16 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2017-12-17",
                 Rating = 4,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 7,
                 ProductName = @"Uncle Bobs Organic Dried Pears",
@@ -1811,26 +1807,26 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2016-07-17",
                 Rating = 5,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 8,
                 ProductName = @"Northwoods Cranberry Sauce",
@@ -1844,21 +1840,21 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2018-01-17",
                 Rating = 4,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 9,
                 ProductName = @"Mishi Kobe Niku",
@@ -1872,16 +1868,16 @@ namespace Infragistics.Samples
                 Discontinued = true,
                 OrderDate = @"2010-02-17",
                 Rating = 4,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 10,
                 ProductName = @"Ikura",
@@ -1895,16 +1891,16 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2008-05-17",
                 Rating = 3,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Wall Market",
                     LastInventory = @"2018-12-06"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 11,
                 ProductName = @"Queso Cabrales",
@@ -1918,21 +1914,21 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2009-01-17",
                 Rating = 5,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Fun-Tasty Co.",
                     LastInventory = @"2018-06-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 12,
                 ProductName = @"Queso Manchego La Pastora",
@@ -1946,16 +1942,16 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2015-11-17",
                 Rating = 3,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 13,
                 ProductName = @"Konbu",
@@ -1969,16 +1965,16 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2015-03-17",
                 Rating = 2,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 14,
                 ProductName = @"Tofu",
@@ -1992,21 +1988,21 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2017-06-17",
                 Rating = 4,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 15,
                 ProductName = @"Genen Shouyu",
@@ -2020,21 +2016,21 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2014-03-17",
                 Rating = 4,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Local Market",
                     LastInventory = @"2018-07-03"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Wall Market",
                     LastInventory = @"2018-12-06"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 16,
                 ProductName = @"Pavlova",
@@ -2048,26 +2044,26 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2018-03-28",
                 Rating = 2,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Street Market",
                     LastInventory = @"2018-12-12"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"24/7 Market",
                     LastInventory = @"2018-11-11"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 17,
                 ProductName = @"Alice Mutton",
@@ -2081,16 +2077,16 @@ namespace Infragistics.Samples
                 Discontinued = true,
                 OrderDate = @"2015-08-17",
                 Rating = 2,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Farmer Market",
                     LastInventory = @"2018-04-04"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 18,
                 ProductName = @"Carnarvon Tigers",
@@ -2104,21 +2100,21 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2005-09-27",
                 Rating = 2,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"24/7 Market",
                     LastInventory = @"2018-11-11"
                 },
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 19,
                 ProductName = @"Teatime Chocolate Biscuits",
@@ -2132,16 +2128,16 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2001-03-17",
                 Rating = 2,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Local Market",
                     LastInventory = @"2018-07-03"
                 }}
 
             });
-            sampleData.Add(new NwindDataItem()
+            sampleData.Add(new FGridDataItem()
             {
                 ProductID = 20,
                 ProductName = @"Sir Rodneys Marmalade",
@@ -2155,9 +2151,9 @@ namespace Infragistics.Samples
                 Discontinued = false,
                 OrderDate = @"2005-03-17",
                 Rating = 5,
-                Locations = new List<NwindDataItem_LocationsItem>()
+                Locations = new List<FGridDataItem_LocationsItem>()
             {
-                new()
+                new FGridDataItem_LocationsItem()
                 {
                     Shop = @"Super Market",
                     LastInventory = @"2018-09-09"
@@ -2167,7 +2163,7 @@ namespace Infragistics.Samples
 
             return sampleData;
         }
-        public Task<List<NwindDataItem>> GetData(int index, int perPage)
+        public Task<List<FGridDataItem>> GetData(int index, int perPage)
         {
             var itemsToReturn = items.Skip(index).Take(perPage).ToList();
             return Task.FromResult(itemsToReturn);

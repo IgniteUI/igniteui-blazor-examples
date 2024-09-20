@@ -17,7 +17,7 @@ namespace Infragistics.Samples
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
-            builder.Services.AddSingleton<NwindDataRecords>();
+            builder.Services.AddSingleton<FlatGridData>();
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             // registering Ignite UI modules
             builder.Services.AddIgniteUIBlazor(
