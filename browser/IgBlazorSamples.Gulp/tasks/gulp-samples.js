@@ -157,15 +157,15 @@ function getSamples(cb) {
         igConfig.SamplesCopyPath + '/charts/data-chart/itemized-stacked-bar-chart/App.razor',
         igConfig.SamplesCopyPath + '/charts/data-chart/itemized-stacked-column-chart/App.razor',
         // excluding deferred gird samples
-      igConfig.SamplesCopyPath + '/grids/grid/toolbar-style/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/advanced-filtering-style/App.razor',
+    //   igConfig.SamplesCopyPath + '/grids/grid/toolbar-style/App.razor',
+    //   igConfig.SamplesCopyPath + '/grids/grid/advanced-filtering-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/binding-nested-data-2/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/column-hiding-styles/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/column-moving-styles/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/column-pinning-styles/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/column-resize-styling/App.razor',
+    //   igConfig.SamplesCopyPath + '/grids/grid/column-moving-styles/App.razor',
+    //   igConfig.SamplesCopyPath + '/grids/grid/column-pinning-styles/App.razor',
+    //   igConfig.SamplesCopyPath + '/grids/grid/column-resize-styling/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/column-selection-styles/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/conditional-cell-style-2/App.razor',
+    //   igConfig.SamplesCopyPath + '/grids/grid/conditional-cell-style-2/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/data-exporting-indicator/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/data-performance-infinite-scroll/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/data-performance-operations/App.razor',
@@ -176,7 +176,7 @@ function getSamples(cb) {
     //   igConfig.SamplesCopyPath + '/grids/grid/excel-style-filtering-sample-1/App.razor',
     //   igConfig.SamplesCopyPath + '/grids/grid/excel-style-filtering-sample-2/App.razor',
     //   igConfig.SamplesCopyPath + '/grids/grid/excel-style-filtering-sample-3/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/excel-style-filtering-style/App.razor',
+    //   igConfig.SamplesCopyPath + '/grids/grid/excel-style-filtering-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/external-excel-style-filtering/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/filtering-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/filtering-template/App.razor',
@@ -185,9 +185,9 @@ function getSamples(cb) {
       igConfig.SamplesCopyPath + '/grids/grid/remote-paging-batch-editing/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/remote-paging-custom/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/remote-paging-template/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/row-classes/App.razor',
+    //   igConfig.SamplesCopyPath + '/grids/grid/row-classes/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/row-drop-indicator/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/row-editing-style/App.razor',
+    //   igConfig.SamplesCopyPath + '/grids/grid/row-editing-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/row-paging-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/infinite-scroll/App.razor', // broken sample - undo when new IG packages deployed
     ];
@@ -590,9 +590,9 @@ function updateIG(cb) {
 
     let packageUpgrades = [
         // update version of IG packages and change to Trial or non-trial
-        { name: "IgniteUI.Blazor",                 version: "23.2.257" },
-        { name: "IgniteUI.Blazor.Documents.Core",  version: "23.2.257" },
-        { name: "IgniteUI.Blazor.Documents.Excel", version: "23.2.257" },
+        { name: "IgniteUI.Blazor",                 version: "24.1.46" },
+        { name: "IgniteUI.Blazor.Documents.Core",  version: "24.1.46" },
+        { name: "IgniteUI.Blazor.Documents.Excel", version: "24.1.46" },
         // these IG packages are sometimes updated:
         { name: "Microsoft.AspNetCore.Components",                       version: "8.0.0" },
         { name: "Microsoft.AspNetCore.Components.Web",                   version: "8.0.0" },

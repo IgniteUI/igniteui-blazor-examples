@@ -58,7 +58,6 @@
         @ref="chart"
         DataSource="CountryRenewableElectricity"
         IncludedProperties="@(new string[] { "Year", "Europe", "China", "America" })"
-        Legend="Legend"
         ChartType="CategoryChartType.Line"
         ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
         IsHorizontalZoomEnabled="false"
@@ -84,6 +83,7 @@
 
         this.BindElements = () => {
             propertyEditorPanel1.Target = this.chart;
+            chart.Legend = this.legend;
         };
         this.BindElements();
 

@@ -15,8 +15,7 @@
     <div class="container vertical fill">
         <IgbDataChart
         Name="chart"
-        @ref="chart"
-        Legend="Legend">
+        @ref="chart">
             <IgbNumericXAxis
             Name="xAxis"
             @ref="xAxis"
@@ -67,6 +66,8 @@
 
 @code {
 
+    private Action BindElements { get; set; }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var legend = this.legend;
@@ -75,6 +76,11 @@
         var yAxis = this.yAxis;
         var scatterSeries1 = this.scatterSeries1;
         var scatterSeries2 = this.scatterSeries2;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
 
     }
 

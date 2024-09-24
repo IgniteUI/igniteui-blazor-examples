@@ -67,7 +67,6 @@
         DataSource="CountryRenewableElectricity"
         IncludedProperties="@(new string[] { "Year", "Europe", "China", "America" })"
         ChartType="CategoryChartType.Line"
-        Legend="Legend"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
         XAxisStroke="#919191"
@@ -104,6 +103,7 @@
 
         this.BindElements = () => {
             propertyEditorPanel1.Target = this.chart;
+            chart.Legend = this.legend;
         };
         this.BindElements();
 

@@ -20,7 +20,6 @@
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
         DataSource="CountryRenewableElectricity"
-        Legend="Legend"
         YAxisTitle="TWh"
         YAxisTitleLeftMargin="10"
         YAxisTitleRightMargin="5"
@@ -34,10 +33,17 @@
 
 @code {
 
+    private Action BindElements { get; set; }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var legend = this.legend;
         var chart = this.chart;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
 
     }
 

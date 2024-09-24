@@ -4,40 +4,20 @@
 <div class="container vertical">
     <IgbRadioGroup Alignment="@RadioGroupAlignment.Horizontal">
         <IgbRadio name="size" Value="Small" label-position="after" Change="OnRadioOptionClick">Small</IgbRadio>
-        <IgbRadio name="size" Value="Medium" label-position="after" Change="OnRadioOptionClick">Medium</IgbRadio>
-        <IgbRadio name="size" Value="Large" label-position="after" Checked="true" Change="OnRadioOptionClick">Large</IgbRadio>
+        <IgbRadio name="size" Value="Medium" label-position="after" Checked="true" Change="OnRadioOptionClick">Medium</IgbRadio>
+        <IgbRadio name="size" Value="Large" label-position="after" Change="OnRadioOptionClick">Large</IgbRadio>
     </IgbRadioGroup>
 
     <div style="width: 25rem; border: 1px solid gainsboro;">
-        <IgbCalendar Size="@CalendarSize"/>
+        <IgbCalendar class="@CalendarSize"/>
     </div>
 </div>
 
 @code {
+    private string CalendarSize = "size-medium";
 
-    private SizableComponentSize CalendarSize { get; set; }
-
-    public void OnRadioOptionClick(IgbComponentBoolValueChangedEventArgs e)
+    public void OnRadioOptionClick(IgbRadioChangeEventArgs e)
     {
-        IgbRadio radio = e.Parent as IgbRadio;
-
-        switch (radio.Value)
-        {
-            case "Small":
-                {
-                    this.CalendarSize = SizableComponentSize.Small;
-                    break;
-                }
-            case "Medium":
-                {
-                    this.CalendarSize = SizableComponentSize.Medium;
-                    break;
-                }
-            case "Large":
-                {
-                    this.CalendarSize = SizableComponentSize.Large;
-                    break;
-                }
-        }
+        this.CalendarSize = $"size-{e.Detail.Value.ToLower()}";
     }
 }

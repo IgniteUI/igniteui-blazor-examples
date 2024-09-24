@@ -1,4 +1,4 @@
-function addRowAndChildren(row, newData) {
+function addRowAndChildrenTreeGrid(row, newData) {
     if (newData.includes(row)) {
         return;
     }
@@ -21,7 +21,7 @@ function addRowAndChildren(row, newData) {
 
     newData.push(row);
 }
-function OnRowDragEndHandler(evt) {
+function OnTreeGridRowDragEndHandler(evt) {
     const ghostElement = evt.detail.dragDirective.ghostElement;
     const dragElementPos = ghostElement.getBoundingClientRect();
     const gridPosition = treeGrid2.getBoundingClientRect();
@@ -30,9 +30,9 @@ function OnRowDragEndHandler(evt) {
     if (withinXBounds && withinYBounds) {
         const newData = [...treeGrid2.data];
         const draggedRowData = evt.detail.dragData.data;
-        addRowAndChildren(draggedRowData, newData);
+        addRowAndChildrenTreeGrid(draggedRowData, newData);
         treeGrid2.data = newData;
     }
 }
 
-igRegisterScript("OnRowDragEndHandler", OnRowDragEndHandler, false);
+igRegisterScript("OnTreeGridRowDragEndHandler", OnTreeGridRowDragEndHandler, false);

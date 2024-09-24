@@ -1,4 +1,4 @@
-﻿function OnRowDragEndHandler(evt) {
+﻿function OnMultiRowDragEndHandler(evt) {
     const ghostElement = evt.detail.dragDirective.ghostElement;
     const dragElementPos = ghostElement.getBoundingClientRect();
     const gridPosition = grid2.getBoundingClientRect();
@@ -14,4 +14,4 @@
     }
 }
 
-igRegisterScript("OnRowDragEndHandler", OnRowDragEndHandler, false);
+igRegisterScript("OnMultiRowDragEndHandler", OnMultiRowDragEndHandler, false);

@@ -1,0 +1,104 @@
+@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
+@using System;
+
+<div class="container vertical">
+    <div class="legend-title">
+        Renewable Electricity Generated
+    </div>
+    <div class="legend">
+        <IgbLegend
+        Name="legend"
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
+        </IgbLegend>
+
+    </div>
+    <div class="container vertical fill">
+        <IgbCategoryChart
+        Name="chart"
+        @ref="chart"
+        DataSource="EnergyRenewableConsumption"
+        ChartType="CategoryChartType.Column"
+        CrosshairsDisplayMode="CrosshairsDisplayMode.None"
+        YAxisTitle="TWh"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        SelectionMode="SeriesSelectionMode.SelectionColorFill"
+        SelectionBehavior="SeriesSelectionBehavior.PerSeriesAndDataItemMultiSelect"
+        SelectionBrush="orange">
+        </IgbCategoryChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var chart = this.chart;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+
+        if (firstRender) {
+            this.SelectionMatcherOnViewInit();
+        }
+    }
+
+    private IgbLegend legend;
+    private IgbCategoryChart chart;
+
+    private System.Threading.Timer _timer;
+
+    private void SelectionMatcherOnViewInit()
+    {
+    	_timer = new System.Threading.Timer((_) =>
+    	{
+    		addSelection();
+    	}, null, 100, 0);
+    }
+
+    private void addSelection()
+    {
+    	var chart = this.chart;
+
+    	IgbChartSelection selection = new IgbChartSelection();
+    	selection.Item = EnergyRenewableConsumption[1];
+    	IgbSeriesMatcher matcher = new IgbSeriesMatcher();
+    	matcher.MemberPath = "Solar";
+    	matcher.MemberPathType = "ValueMemberPath";
+    	selection.Matcher = matcher;
+
+    	chart.SelectedSeriesItems.Add(selection);
+
+    	selection = new IgbChartSelection();
+    	selection.Item = EnergyRenewableConsumption[1];
+    	matcher = new IgbSeriesMatcher();
+    	matcher.MemberPath = "Hydro";
+    	matcher.MemberPathType = "ValueMemberPath";
+
+    	selection.Matcher = matcher;
+
+    	chart.SelectedSeriesItems.Add(selection);
+    }
+
+    private EnergyRenewableConsumption _energyRenewableConsumption = null;
+    public EnergyRenewableConsumption EnergyRenewableConsumption
+    {
+        get
+        {
+            if (_energyRenewableConsumption == null)
+            {
+                _energyRenewableConsumption = new EnergyRenewableConsumption();
+            }
+            return _energyRenewableConsumption;
+        }
+    }
+
+}

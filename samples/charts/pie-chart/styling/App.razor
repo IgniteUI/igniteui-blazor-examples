@@ -25,8 +25,7 @@
         Outlines="white"
         RadiusFactor="0.7"
         StartAngle="0"
-        DataSource="EnergyGlobalDemand"
-        Legend="Legend">
+        DataSource="EnergyGlobalDemand">
         </IgbPieChart>
 
     </div>
@@ -34,10 +33,17 @@
 
 @code {
 
+    private Action BindElements { get; set; }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var legend = this.legend;
         var chart = this.chart;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
 
     }
 

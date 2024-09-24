@@ -46,7 +46,6 @@
         DataSource="CountryRenewableElectricity"
         IncludedProperties="@(new string[] { "Year", "America", "Europe" })"
         ChartType="CategoryChartType.Column"
-        Legend="Legend"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
         CrosshairsDisplayMode="CrosshairsDisplayMode.None"
@@ -71,6 +70,7 @@
 
         this.BindElements = () => {
             propertyEditor.Target = this.chart;
+            chart.Legend = this.legend;
         };
         this.BindElements();
 

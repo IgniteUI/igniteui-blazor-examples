@@ -17,35 +17,25 @@
 
 <div class="container vertical">
     <IgbRadioGroup id="radioGroup" Alignment="RadioGroupAlignment.Horizontal" >
-        <IgbRadio name="size" Value="small" LabelPosition="RadioLabelPosition.After" @onclick="OnSmallClick">Small</IgbRadio>
-        <IgbRadio name="size" Value="medium" LabelPosition="RadioLabelPosition.After" @onclick="OnMediumClick">Medium</IgbRadio>
-        <IgbRadio name="size" Value="large" LabelPosition="RadioLabelPosition.After" Checked="true" @onclick="OnLargeClick">Large</IgbRadio>
+        <IgbRadio name="size" Value="small" LabelPosition="RadioLabelPosition.After" Change="OnRadioSizeClick">Small</IgbRadio>
+        <IgbRadio name="size" Value="medium" LabelPosition="RadioLabelPosition.After" Checked="true" Change="OnRadioSizeClick">Medium</IgbRadio>
+        <IgbRadio name="size" Value="large" LabelPosition="RadioLabelPosition.After" Change="OnRadioSizeClick">Large</IgbRadio>
     </IgbRadioGroup>
 
     <div class="buttonContainer">
-        <IgbButton Size="@SizableComponentSize" Variant="ButtonVariant.Flat">Flat</IgbButton>
-        <IgbButton Size="@SizableComponentSize" Variant="ButtonVariant.Contained">Contained</IgbButton>
-        <IgbButton Size="@SizableComponentSize" Variant="ButtonVariant.Outlined">Outlined</IgbButton>
-        <IgbButton Size="@SizableComponentSize" Variant="ButtonVariant.Fab">Like</IgbButton>
+        <IgbButton class="@ButtonsSize" Variant="ButtonVariant.Flat">Flat</IgbButton>
+        <IgbButton class="@ButtonsSize" Variant="ButtonVariant.Contained">Contained</IgbButton>
+        <IgbButton class="@ButtonsSize" Variant="ButtonVariant.Outlined">Outlined</IgbButton>
+        <IgbButton class="@ButtonsSize" Variant="ButtonVariant.Fab">Like</IgbButton>
     </div>
 </div>
 
 @code {
 
-    private SizableComponentSize SizableComponentSize = SizableComponentSize.Large;
+    private string ButtonsSize = "size-medium";
 
-    public void OnSmallClick(EventArgs e)
+    public void OnRadioSizeClick(IgbRadioChangeEventArgs e)
     {
-        SizableComponentSize = SizableComponentSize.Small;
-    }
-
-    public void OnMediumClick(EventArgs e)
-    {
-        SizableComponentSize = SizableComponentSize.Medium;
-    }
-
-    public void OnLargeClick(EventArgs e)
-    {
-        SizableComponentSize = SizableComponentSize.Large;
+        this.ButtonsSize = $"size-{e.Detail.Value.ToLower()}";
     }
 }
