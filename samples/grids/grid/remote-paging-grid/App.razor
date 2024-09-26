@@ -17,7 +17,7 @@
 </div>
 
 @code {
-    private List<FGridDataItem> data = new List<FGridDataItem>();
+    private FlatGridData data = new FlatGridData();
     private int dataLength = 0;
     private IgbGrid grid1;
     private int totalRecordsCount;
@@ -45,7 +45,7 @@
 
         try
         {
-            data = await NwindDataService.GetData(Convert.ToInt32(skip), Convert.ToInt32(perPage));
+            data.items = await NwindDataService.GetData(Convert.ToInt32(skip), Convert.ToInt32(perPage));
             isLoading = false;
             UpdateUI();
         }
@@ -57,9 +57,9 @@
 
     private void UpdateUI()
     {
-        if (grid1 != null && data != null)
+        if (grid1 != null && data.items != null)
         {
-            grid1.Data = data;
+            grid1.Data = data.items;
         }
     }
 

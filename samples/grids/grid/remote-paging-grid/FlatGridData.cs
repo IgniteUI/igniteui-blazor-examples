@@ -30,7 +30,7 @@ namespace Infragistics.Samples
         : List<FGridDataItem>
     {
 
-        private List<FGridDataItem> items;
+        public List<FGridDataItem> items;
 
         public FlatGridData()
         {
