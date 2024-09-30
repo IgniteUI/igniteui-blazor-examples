@@ -1,3 +1,4 @@
+var defaultSeparator;
 
 function toggleClipboardOperations() {
     grid.clipboardOptions.enabled = copyEnable.checked;
@@ -17,9 +18,12 @@ function clearSelection() {
 }
 
 function inputChange() {
-    grid.clipboardOptions.separator = input.value;
+    grid.clipboardOptions.separator = input.value || defaultSeparator;
 }
 
+igRegisterScript("WebGridClipboardCustomOperationsRendered", (e) => {
+    defaultSeparator = grid.clipboardOptions.separator;
+}, false);
 
 igRegisterScript("WebGridClipboardCustomOperationsColumnInit", (e) => {
     var column = e.detail;
