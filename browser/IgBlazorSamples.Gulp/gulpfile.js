@@ -123,9 +123,3 @@ exports.testSampleFiles = testSampleFiles = gulp.series(
 );
 
 exports.cleanupSamples = cleanupSamples = sb.cleanupSamples;
-
-
-var testGen = require('./tasks/gulp-generate-tests.js')
-exports.generateTests = generateTests = gulp.series(
-    testGen.generateTests,
-)

@@ -13,22 +13,20 @@ https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install
 
 - execute `gulp copySamplesToClient` command
 
-NOTE: Above command will copy .razor pages and their .cs files from `./samples/` folder to `./browser/IgBlazorSamples.Client/` and generate require toc file.
+NOTE: Above command will copy .razor pages and their .cs files from `./samples/` folder to `./browser/IgBlazorSamples.Client/` and generate required toc file.
 
 ## 2. Generate generic error tests
 
-- still in `./browser/IgBlazorSamples.Gulp/` folder
+- open the **IgBlazorSamplesBrowser.sln** solution
 
-- execute `gulp generateTests` command
+- run the `./browser/IgBlazorSamples.Test/` project
 
-NOTE: Above command will generate generic tests in the `./browser/IgBlazorSamples.Test/Generated` forder for all grids samples that check for errors on the page.
+NOTE: The project once run will generate all the tests and they should appear in the test explorer
 
 ## 3. Running Tests
 
 - open `./browser/IgBlazorSamples.Client/` folder
 
 - execute `dotnet run` to run the samples client. The tests requre a running app.
-
-- open the **IgBlazorSamplesBrowser.sln** solution
 
 - in the **Test Explorer** you can run all tests or individually.
