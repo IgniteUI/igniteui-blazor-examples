@@ -24,4 +24,13 @@ namespace IgBlazorSamples.Test.Models
 
         public string? Route { get; set; }
     }
+
+    public class SampleTestData
+    {
+        public string? ComponentName { get; set; }
+
+        public string? TestSelector { get; set; }
+
+        public string? Route { get; set; }
+    }
 }

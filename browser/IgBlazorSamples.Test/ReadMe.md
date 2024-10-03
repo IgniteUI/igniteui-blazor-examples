@@ -15,18 +15,16 @@ https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install
 
 NOTE: Above command will copy .razor pages and their .cs files from `./samples/` folder to `./browser/IgBlazorSamples.Client/` and generate required toc file.
 
-## 2. Generate generic error tests
+## 2. Running Tests
 
 - open the **IgBlazorSamplesBrowser.sln** solution
 
-- run the `./browser/IgBlazorSamples.Test/` project
-
-NOTE: The project once run will generate all the tests and they should appear in the test explorer
-
-## 3. Running Tests
+- build the solution. Should successfully build all projects.
 
 - open `./browser/IgBlazorSamples.Client/` folder
 
 - execute `dotnet run` to run the samples client. The tests requre a running app.
 
 - in the **Test Explorer** you can run all tests or individually.
+
+NOTE: The `./browser/IgBlazorSamples.Test/` project once built, will generate all the tests and they should appear in the test explorer
