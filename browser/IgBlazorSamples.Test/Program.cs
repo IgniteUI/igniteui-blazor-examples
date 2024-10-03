@@ -40,23 +40,12 @@ namespace IgBlazorSamples.Test
                         var samples = comp.Samples?.Where(s => s.ShowLink)
                             .Where(s => !excludedSamples.Any(e => e.Name == s.Name && e.Route == s.Route));
                         var componentName = comp.Name.Replace(" ", "");
-
-                        // Add imports
-                        var sb = new StringBuilder();
-                        sb.AppendLine("using System.Text;");
-                        sb.AppendLine("using Microsoft.Playwright.NUnit;");
-                        sb.AppendLine("");
-                        sb.AppendLine($"namespace {componentName};");
-
-                        foreach (var sampleInfo in samples)
-                        {
-                            sb.AppendLine(GenerateTestContent(comp.Name, sampleInfo));
-                        };
-
+                        string fileContent = GenerateFileContent(componentName, samples.ToArray());
                         var filePath = Path.Combine(projectRootpath, outputPath, componentName + "Tests.cs");
+
                         using (StreamWriter outputFile = new StreamWriter(filePath))
                         {
-                            outputFile.WriteLine(sb.ToString());
+                            outputFile.WriteLine(fileContent);
                         }
                     };
                 }
@@ -77,19 +66,50 @@ namespace IgBlazorSamples.Test
 
         }
 
-        public static string GenerateTestContent(string componentName, SampleInfo sampleInfo)
+        public static string GenerateFileContent(string componentName, SampleInfo[] samples)
         {
-            var sampleClassName = sampleInfo.Name.Replace(" ", "");
-            var sampleLink = "http://localhost:4200/samples" + sampleInfo.Route;
+            var sampleUrlsArg = new StringBuilder();
+            sampleUrlsArg.AppendLine("[");
+            for (int i = 0; i < samples.Length; i++)
+            {
+                var sampleUrl = $@"""{samples[i].Route}""" + (i < samples.Length - 1 ? "," : "");
+                sampleUrlsArg.Append("    ").Append("    ").AppendLine(sampleUrl);
+            }
+            sampleUrlsArg.Append("    ").Append("];");
+
             var componentsMaps = config.GetSection("componentsMaps").Get<ComponentMap[]>();
-            var testSelector =  componentsMaps.FirstOrDefault(s => s.Name == componentName)?.InitialSelector;
+            var testSelector =  componentsMaps.FirstOrDefault(s => s.Name.Replace(" ", "") == componentName)?.InitialSelector;
             var testContent = $@"
-[Parallelizable(ParallelScope.Self)]
-[TestFixture]
-public class {sampleClassName} : PageTest
+using System.Text;
+using Microsoft.Playwright.NUnit;
+
+namespace {componentName};
+
+public static class {componentName}Urls
 {{
+    public static string[] SampleUrls = {sampleUrlsArg}
+}}
+
+[Parallelizable(ParallelScope.Self)]
+[TestFixtureSource(typeof({componentName}Urls), nameof({componentName}Urls.SampleUrls))]
+public class {componentName}Tests : PageTest
+{{
+    private string goToUrl;
+
+    public {componentName}Tests(string goToUrl)
+    {{
+        string baseUrl = TestContext.Parameters.Get(""baseUrl"");
+        this.goToUrl = String.Format(""{{0}}/{{1}}"", baseUrl.TrimEnd('/'), goToUrl.TrimStart('/'));
+    }}
+
+    [SetUp]
+    public void InitFixture()
+    {{
+        Context.SetDefaultTimeout(TestContext.Parameters.Get<int>(""defaultTimeout"", 30000));
+    }}
+
     [Test]
-    public async Task {sampleClassName}Test()
+    public async Task {componentName}ErrorTest()
     {{
         int numPageErrors = 0;
         StringBuilder messages = new();
@@ -97,16 +117,15 @@ public class {sampleClassName} : PageTest
         {{
             if (value.Type == ""warning"" && value.Text.Contains(""Error:""))
             {{
-                    messages.AppendLine(value.Text);
-                    numPageErrors++;
+                messages.AppendLine(value.Text);
+                numPageErrors++;
             }}
         }};
-        await Page.GotoAsync(""{sampleLink}"");
+        await Page.GotoAsync(goToUrl);
         await Page.WaitForSelectorAsync(""{testSelector}"");
-            Assert.That(numPageErrors == 0, $""The following errors were thrown: \\n ${{messages}}"");
+        Assert.That(numPageErrors == 0, $""The following errors were thrown: \\n ${{messages}}"");
     }}
-}}
-";
+}}";
 
             return testContent;
         }

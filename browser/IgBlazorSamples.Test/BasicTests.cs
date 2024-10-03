@@ -1,8 +1,57 @@
 using Microsoft.Playwright;
 using Microsoft.Playwright.NUnit;
 using System.Text;
+using System.Threading;
 
 namespace PlaywrightTests;
+
+class GridLinks
+{
+    public static string[] FixtureArgs = {
+        "/samples/grids/grid/action-strip",
+        "/samples/grids/grid/advanced-filtering-options",
+        "/samples/grids/grid/advanced-filtering-style",
+        "/samples/grids/grid/binding-composite-data"
+    };
+}
+
+[Parallelizable(ParallelScope.Self)]
+[TestFixtureSource(typeof(GridLinks), nameof(GridLinks.FixtureArgs))]
+public class ParamTests : PageTest
+{
+    private string goToUrl;
+    public ParamTests(string goToUrl)
+    {
+        this.goToUrl = goToUrl;
+    }
+
+    [SetUp]
+    public void InitFixture()
+    {
+        Context.SetDefaultTimeout(TestContext.Parameters.Get<int>("defaultTimeout", 30000));
+    }
+
+    [Test]
+    public async Task BasicParamTest()
+    {
+        int numPageErrors = 0;
+        StringBuilder messages = new();
+        Page.Console += (_, value) =>
+        {
+            if (value.Type == "warning" && value.Text.Contains("Error:"))
+            {
+                messages.AppendLine(value.Text);
+                numPageErrors++;
+            }
+        };
+
+        await Page.GotoAsync(String.Format("{0}/{1}", "http://localhost:4200/", goToUrl.TrimStart('/')));
+
+        await Page.WaitForSelectorAsync("igx-grid-header");
+
+        Assert.That(numPageErrors == 0, $"The following errors were thrown: \n ${messages}");
+    }
+}
 
 [Parallelizable(ParallelScope.Self)]
 [TestFixture]
