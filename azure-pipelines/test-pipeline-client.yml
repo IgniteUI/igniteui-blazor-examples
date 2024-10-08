@@ -49,12 +49,29 @@ jobs:
       scriptType: inlineScript
       arguments: $(BuildConfiguration)
       inlineScript: >-
-        $configuration = $args[0]
-        $r = $configuration;
-        if ($configuration -eq "Licensed") {
-           $r = "Release";
-        }
-        Write-Host ("##vso[task.setvariable variable=resolvedConfig;]$r")
+          $configuration = $args[0]
+
+          $trial = "false"
+
+          $r = $configuration;
+
+
+          if ($configuration -eq "Debug") {
+            $trial = "true";
+          }
+
+          if ($configuration -eq "Release") {
+            $trial = "true";
+          }
+
+          if ($configuration -eq "Licensed") {
+            $r = "Release";
+          }
+
+
+          Write-Host ("##vso[task.setvariable variable=isTrial;]$trial")
+
+          Write-Host ("##vso[task.setvariable variable=resolvedConfig;]$r")
   - task: DeleteFiles@1
     displayName: Clear the contents of $(Build.BinariesDirectory)
     inputs:
