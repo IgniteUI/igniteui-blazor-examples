@@ -80,12 +80,11 @@ jobs:
   - task: DownloadBuildArtifacts@1
     displayName: 'Fetch Artifact: Blazor NuGet'
     inputs:
-      project: 'edba4b16-462e-42a0-9fa0-254d6d8a0f41'
-      definition: 321 # web-pr
-      buildVersionToDownload: 'latestFromBranch'
-      branchName: '$(Build.SourceBranch)'
-      targetPath: '$(Pipeline.Workspace)'
       artifactName: Blazor_NuGet
+      buildType: 'specific'
+      project: 'edba4b16-462e-42a0-9fa0-254d6d8a0f41'
+      pipeline: 321 # web-pr
+      specificBuildWithTriggering: true
       downloadPath: $(build.sourcesDirectory)\dependencies\blazor
   - task: Npm@0
     name: Npm_1
