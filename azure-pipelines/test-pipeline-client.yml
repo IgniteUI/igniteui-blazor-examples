@@ -1,0 +1,116 @@
+variables:
+  - name: BuildConfiguration
+    value: Release
+  - name: BuildPlatform
+    value: "Any CPU"
+  - name: mainBuildNumber
+    value: 2024.1.x
+  - name: SrcRoot
+    value: $(build.sourcesDirectory)
+  - name: VolumeReleaseNumber
+    value: "2024.1"
+  - name: msbuildLoggingVerbosity
+    value: normal
+  - name: BuildToolsFolder
+    value: D:\Build Tools
+  - name: chromeVersion
+    value: stable  
+  - name: targetBranch
+    ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/') }}:    
+      value: $[ replace(variables['Build.SourceBranch'], 'refs/heads/', '') ]
+    ${{ if startsWith(variables['Build.SourceBranch'], 'refs/pull/') }}:
+      value: $[ replace(variables['System.PullRequest.TargetBranch'], 'refs/heads/', '') ]
+
+trigger: none
+
+resources:
+  pipelines:
+  - pipeline: web-pr
+    source: web-pr
+    trigger: 
+      stages:
+      - Build_Blazor
+
+jobs:
+- job: Test_Blazor
+  displayName: Test Blazor Samples
+  timeoutInMinutes: 120
+  pool:
+    name: DEVTOOLS-XPLATPROD
+  steps:
+  - checkout: self
+    clean: true
+    fetchDepth: 1
+    persistCredentials: True
+
+  - task: PowerShell@1
+    displayName: Gather trial info
+    inputs:
+      scriptType: inlineScript
+      arguments: $(BuildConfiguration)
+      inlineScript: >-
+        $configuration = $args[0]
+        $r = $configuration;
+        if ($configuration -eq "Licensed") {
+           $r = "Release";
+        }
+        Write-Host ("##vso[task.setvariable variable=resolvedConfig;]$r")
+  - task: DeleteFiles@1
+    displayName: Clear the contents of $(Build.BinariesDirectory)
+    inputs:
+      SourceFolder: $(Build.BinariesDirectory)
+      Contents: '**/*'
+  - task: DownloadBuildArtifacts@1
+    displayName: 'Fetch Artifact: Blazor NuGet'
+    inputs:
+      project: 'edba4b16-462e-42a0-9fa0-254d6d8a0f41'
+      definition: 321 # web-pr
+      buildVersionToDownload: 'latestFromBranch'
+      branchName: '$(Build.SourceBranch)'
+      targetPath: '$(Pipeline.Workspace)'
+      artifactName: Blazor_NuGet_$(resolvedConfig)
+      downloadPath: $(build.sourcesDirectory)\dependencies\blazor
+  - task: Npm@0
+    name: Npm_1
+    displayName: Install Samples Browser
+    inputs:
+      cwd: (build.sourcesDirectory)\\browser\IgBlazorSamples.Gulp
+  - task: PowerShell@1
+    displayName: Gulp Samples Browser
+    inputs:
+      scriptType: 'inlineScript'
+      inlineScript: gulp copySamplesToClient
+      failOnStandardError: false
+      workingFolder: $(build.sourcesDirectory)\browser\IgBlazorSamples.Gulp
+  - task: NuGetCommand@2
+    displayName: Restore Samples Browser
+    inputs:
+      command: 'restore'
+      restoreSolution: '$(build.sourcesDirectory)\browser\*.sln'
+      feedsToUse: 'config'
+      nugetConfigPath: '$(build.sourcesDirectory)\NuGet.config'
+  - task: PowerShell@1
+    displayName: Build Samples Browser
+    inputs:
+      scriptType: 'inlineScript'
+      inlineScript: dotnet build IgBlazorSamplesBrowser.sln
+      workingFolder: $(build.sourcesDirectory)\browser\
+      failOnStandardError: false
+  - task: PowerShell@1
+    displayName: Run Samples Browser
+    inputs:
+      scriptType: 'inlineScript'
+      inlineScript: dotnet run
+      workingFolder: $(build.sourcesDirectory)\browser\IgBlazorSamples.Client
+      failOnStandardError: false
+  - task: PowerShell@1
+    displayName: Run Samples Browser
+    inputs:
+      scriptType: 'inlineScript'
+      inlineScript: dotnet test
+      workingFolder: $(build.sourcesDirectory)\browser\IgBlazorSamples.Test
+      failOnStandardError: false
+  - task: PostBuildCleanup@3
+    displayName: Clean Agent Directories
+    condition: always()
+    continueOnError: True
