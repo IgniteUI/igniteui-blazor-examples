@@ -6,7 +6,7 @@ variables:
   - name: mainBuildNumber
     value: 2024.1.x
   - name: SrcRoot
-    value: $(build.sourcesDirectory)
+    value: $(Build.SourcesDirectory)
   - name: VolumeReleaseNumber
     value: "2024.1"
   - name: msbuildLoggingVerbosity
@@ -85,46 +85,46 @@ jobs:
       project: 'edba4b16-462e-42a0-9fa0-254d6d8a0f41'
       pipeline: 321 # web-pr
       specificBuildWithTriggering: true
-      downloadPath: $(build.sourcesDirectory)\dependencies\blazor
+      downloadPath: $(Build.SourcesDirectory)\dependencies\blazor
   - task: Npm@0
     name: Npm_1
     displayName: Install Samples Browser
     inputs:
-      cwd: (build.sourcesDirectory)\\browser\IgBlazorSamples.Gulp
+      cwd: (Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp
   - task: PowerShell@1
     displayName: Gulp Samples Browser
     inputs:
       scriptType: 'inlineScript'
       inlineScript: gulp copySamplesToClient
       failOnStandardError: false
-      workingFolder: $(build.sourcesDirectory)\browser\IgBlazorSamples.Gulp
+      workingFolder: $(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp
   - task: NuGetCommand@2
     displayName: Restore Samples Browser
     inputs:
       command: 'restore'
-      restoreSolution: '$(build.sourcesDirectory)\browser\*.sln'
+      restoreSolution: '$(Build.SourcesDirectory)\browser\*.sln'
       feedsToUse: 'config'
-      nugetConfigPath: '$(build.sourcesDirectory)\NuGet.config'
+      nugetConfigPath: '$(Build.SourcesDirectory)\NuGet.config'
   - task: PowerShell@1
     displayName: Build Samples Browser
     inputs:
       scriptType: 'inlineScript'
       inlineScript: dotnet build IgBlazorSamplesBrowser.sln
-      workingFolder: $(build.sourcesDirectory)\browser\
+      workingFolder: $(Build.SourcesDirectory)\browser\
       failOnStandardError: false
   - task: PowerShell@1
     displayName: Run Samples Browser
     inputs:
       scriptType: 'inlineScript'
       inlineScript: dotnet run
-      workingFolder: $(build.sourcesDirectory)\browser\IgBlazorSamples.Client
+      workingFolder: $(Build.SourcesDirectory)\browser\IgBlazorSamples.Client
       failOnStandardError: false
   - task: PowerShell@1
     displayName: Run Samples Browser
     inputs:
       scriptType: 'inlineScript'
       inlineScript: dotnet test
-      workingFolder: $(build.sourcesDirectory)\browser\IgBlazorSamples.Test
+      workingFolder: $(Build.SourcesDirectory)\browser\IgBlazorSamples.Test
       failOnStandardError: false
   - task: PostBuildCleanup@3
     displayName: Clean Agent Directories
