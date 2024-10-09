@@ -39,7 +39,7 @@ jobs:
     name: DEVTOOLS-XPLATPROD
   steps:
   - checkout: self
-    path: $(Build.SourcesDirectory)/$(Build.Repository.Name)
+    path: $(Pipeline.Workspace)\$(Build.Repository.Name)
     clean: true
     fetchDepth: 1
     persistCredentials: True
@@ -86,46 +86,46 @@ jobs:
       project: 'edba4b16-462e-42a0-9fa0-254d6d8a0f41'
       pipeline: 321 # web-pr
       specificBuildWithTriggering: true
-      downloadPath: $(Build.SourcesDirectory)\dependencies\blazor
+      downloadPath: $(Pipeline.Workspace)\$(Build.Repository.Name)\dependencies\blazor
   - task: Npm@0
     name: Npm_1
     displayName: Install Samples Browser
     inputs:
-      cwd: $(Build.SourcesDirectory)\$(Build.Repository.Name)\browser\IgBlazorSamples.Gulp
+      cwd: $(Pipeline.Workspace)\$(Build.Repository.Name)\browser\IgBlazorSamples.Gulp
   - task: PowerShell@1
     displayName: Gulp Samples Browser
     inputs:
       scriptType: 'inlineScript'
       inlineScript: gulp copySamplesToClient
       failOnStandardError: false
-      workingFolder: $(Build.SourcesDirectory)\$(Build.Repository.Name)\browser\IgBlazorSamples.Gulp
+      workingFolder: $(Pipeline.Workspace)\$(Build.Repository.Name)\browser\IgBlazorSamples.Gulp
   - task: NuGetCommand@2
     displayName: Restore Samples Browser
     inputs:
       command: 'restore'
-      restoreSolution: '$(Build.SourcesDirectory)\$(Build.Repository.Name)\browser\*.sln'
+      restoreSolution: '$(Pipeline.Workspace)\$(Build.Repository.Name)\browser\*.sln'
       feedsToUse: 'config'
-      nugetConfigPath: '$(Build.SourcesDirectory)\$(Build.Repository.Name)\azure-pipelines\NuGet.config'
+      nugetConfigPath: '$(Pipeline.Workspace)\$(Build.Repository.Name)\azure-pipelines\NuGet.config'
   - task: PowerShell@1
     displayName: Build Samples Browser
     inputs:
       scriptType: 'inlineScript'
       inlineScript: dotnet build IgBlazorSamplesBrowser.sln
-      workingFolder: $(Build.SourcesDirectory)\$(Build.Repository.Name)\browser\
+      workingFolder: $(Pipeline.Workspace)\$(Build.Repository.Name)\browser\
       failOnStandardError: false
   - task: PowerShell@1
     displayName: Run Samples Browser
     inputs:
       scriptType: 'inlineScript'
       inlineScript: dotnet run
-      workingFolder: $(Build.SourcesDirectory)\$(Build.Repository.Name)\browser\IgBlazorSamples.Client
+      workingFolder: $(Pipeline.Workspace)\$(Build.Repository.Name)\browser\IgBlazorSamples.Client
       failOnStandardError: false
   - task: PowerShell@1
     displayName: Run Samples Browser
     inputs:
       scriptType: 'inlineScript'
       inlineScript: dotnet test
-      workingFolder: $(Build.SourcesDirectory)\$(Build.Repository.Name)\browser\IgBlazorSamples.Test
+      workingFolder: $(Pipeline.Workspace)\$(Build.Repository.Name)\browser\IgBlazorSamples.Test
       failOnStandardError: false
   - task: PostBuildCleanup@3
     displayName: Clean Agent Directories
