@@ -108,6 +108,8 @@ jobs:
         Write-Host $xml.Project.ItemGroup[1].PackageReference[0].Include
         $xml.Project.ItemGroup[1].PackageReference[0].Include = "IgniteUI.Blazor.Trial.2024.1.2753"
         $xml.Save($path)
+        [xml]$xml1 =(gc $path)
+        Write-Host $xml1.Project.ItemGroup[1].PackageReference[0].Include
   - task: NuGetCommand@2
     displayName: Restore Samples Browser
     inputs:
