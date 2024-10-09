@@ -105,7 +105,6 @@ jobs:
       script: |
         $pathServer = "$(Pipeline.Workspace)/$(Build.Repository.Name)/browser/IgBlazorSamples.Server/IgBlazorSamples.Server.csproj"
         [xml]$xml =(gc $pathServer)
-        Write-Host $xml.Project.ItemGroup[1].PackageReference[0].Include
         $xml.Project.ItemGroup[2].PackageReference[0].Include = "IgniteUI.Blazor.Trial.2024.1.2753"
         $xml.Project.ItemGroup[2].PackageReference[0].Version = "*"
         $xml.Project.ItemGroup[2].PackageReference[1].Include = "IgniteUI.Blazor.Documents.Core.Trial.2024.1.2753"
@@ -115,7 +114,6 @@ jobs:
         $xml.Save($pathServer)
         $pathClient = "$(Pipeline.Workspace)/$(Build.Repository.Name)/browser/IgBlazorSamples.Client/IgBlazorSamples.Client.csproj"
         [xml]$xml =(gc $pathClient)
-        Write-Host $xml.Project.ItemGroup[1].PackageReference[0].Include
         $xml.Project.ItemGroup[1].PackageReference[0].Include = "IgniteUI.Blazor.Trial.2024.1.2753"
         $xml.Project.ItemGroup[1].PackageReference[0].Version = "*"
         $xml.Project.ItemGroup[1].PackageReference[1].Include = "IgniteUI.Blazor.Documents.Core.Trial.2024.1.2753"
