@@ -87,6 +87,13 @@ jobs:
       pipeline: 321 # web-pr
       specificBuildWithTriggering: true
       downloadPath: $(Pipeline.Workspace)\$(Build.Repository.Name)\Dependencies
+  - task: PowerShell@2
+    inputs:
+      targetType: 'inline'
+      script: |
+        cd "$(Pipeline.Workspace)\$(Build.Repository.Name)\Dependencies\Blazor_NuGet"
+        $blazorVersion = (dir | Where-Object {$_.extension -eq ".nuget"})[0].Name.Split("Trial.")[1]
+        Write-Host "##vso[task.setvariable variable=blazorVersion;]$blazorVersion"
   - task: Npm@0
     name: Npm_1
     displayName: Install Samples Browser
@@ -102,24 +109,27 @@ jobs:
   - task: PowerShell@2
     inputs:
       targetType: 'inline'
+      arguments: $(blazorVersion)
       script: |
+        $blazorVersion = $args[0]
+        Write-Host $blazorVersion
         $pathServer = "$(Pipeline.Workspace)/$(Build.Repository.Name)/browser/IgBlazorSamples.Server/IgBlazorSamples.Server.csproj"
         [xml]$xml =(gc $pathServer)
-        $xml.Project.ItemGroup[2].PackageReference[0].Include = "IgniteUI.Blazor.Trial.2024.1.2753"
-        $xml.Project.ItemGroup[2].PackageReference[0].Version = "*"
-        $xml.Project.ItemGroup[2].PackageReference[1].Include = "IgniteUI.Blazor.Documents.Core.Trial.2024.1.2753"
-        $xml.Project.ItemGroup[2].PackageReference[1].Version = "*"
-        $xml.Project.ItemGroup[2].PackageReference[2].Include = "IgniteUI.Blazor.Documents.Excel.Trial.2024.1.2753"
-        $xml.Project.ItemGroup[2].PackageReference[2].Version = "*"
+        $xml.Project.ItemGroup[2].PackageReference[0].Include = "IgniteUI.Blazor.Trial"
+        $xml.Project.ItemGroup[2].PackageReference[0].Version = "$($blazorVersion)"
+        $xml.Project.ItemGroup[2].PackageReference[1].Include = "IgniteUI.Blazor.Documents.Core.Trial"
+        $xml.Project.ItemGroup[2].PackageReference[1].Version = "$($blazorVersion)"
+        $xml.Project.ItemGroup[2].PackageReference[2].Include = "IgniteUI.Blazor.Documents.Excel.Trial"
+        $xml.Project.ItemGroup[2].PackageReference[2].Version = "$($blazorVersion)"
         $xml.Save($pathServer)
         $pathClient = "$(Pipeline.Workspace)/$(Build.Repository.Name)/browser/IgBlazorSamples.Client/IgBlazorSamples.Client.csproj"
         [xml]$xml =(gc $pathClient)
-        $xml.Project.ItemGroup[1].PackageReference[0].Include = "IgniteUI.Blazor.Trial.2024.1.2753"
-        $xml.Project.ItemGroup[1].PackageReference[0].Version = "*"
-        $xml.Project.ItemGroup[1].PackageReference[1].Include = "IgniteUI.Blazor.Documents.Core.Trial.2024.1.2753"
-        $xml.Project.ItemGroup[1].PackageReference[1].Version = "*"
-        $xml.Project.ItemGroup[1].PackageReference[2].Include = "IgniteUI.Blazor.Documents.Excel.Trial.2024.1.2753"
-        $xml.Project.ItemGroup[1].PackageReference[2].Version = "*"
+        $xml.Project.ItemGroup[1].PackageReference[0].Include = "IgniteUI.Blazor.Trial"
+        $xml.Project.ItemGroup[1].PackageReference[0].Version = "$($blazorVersion)"
+        $xml.Project.ItemGroup[1].PackageReference[1].Include = "IgniteUI.Blazor.Documents.Core.Trial"
+        $xml.Project.ItemGroup[1].PackageReference[1].Version = "$($blazorVersion)"
+        $xml.Project.ItemGroup[1].PackageReference[2].Include = "IgniteUI.Blazor.Documents.Excel.Trial"
+        $xml.Project.ItemGroup[1].PackageReference[2].Version = "$($blazorVersion)"
         $xml.Save($pathClient)
   - task: NuGetCommand@2
     displayName: Restore Samples Browser
