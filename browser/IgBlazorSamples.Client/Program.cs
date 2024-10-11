@@ -22,6 +22,8 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddScoped<IProductDataService, ProductDataService>();
 builder.Services.AddScoped(typeof(Infragistics.Samples.Core.SampleBrowser));
 builder.Services.AddScoped(typeof(Infragistics.Samples.Core.SampleTimer));
+builder.Services.AddSingleton<FlatGridData>();
+builder.Services.AddSingleton<HGridData>();
 // registering Infragistics Blazor
 builder.Services.AddScoped(typeof(IIgniteUIBlazor), typeof(IgniteUIBlazor));
 

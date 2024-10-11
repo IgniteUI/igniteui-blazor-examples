@@ -590,9 +590,9 @@ function updateIG(cb) {
 
     let packageUpgrades = [
         // update version of IG packages and change to Trial or non-trial
-        { name: "IgniteUI.Blazor",                 version: "24.1.46" },
-        { name: "IgniteUI.Blazor.Documents.Core",  version: "24.1.46" },
-        { name: "IgniteUI.Blazor.Documents.Excel", version: "24.1.46" },
+        { name: "IgniteUI.Blazor",                 version: "24.1.67" },
+        { name: "IgniteUI.Blazor.Documents.Core",  version: "24.1.67" },
+        { name: "IgniteUI.Blazor.Documents.Excel", version: "24.1.67" },
         // these IG packages are sometimes updated:
         { name: "Microsoft.AspNetCore.Components",                       version: "8.0.0" },
         { name: "Microsoft.AspNetCore.Components.Web",                   version: "8.0.0" },

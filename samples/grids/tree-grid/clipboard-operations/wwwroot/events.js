@@ -1,3 +1,5 @@
+var defaultSeparator;
+
 function toggleClipboardOperations() {
     grid.clipboardOptions.enabled = copyEnable.checked;
 }
@@ -16,9 +18,12 @@ function clearSelection() {
 }
 
 function inputChange() {
-    grid.clipboardOptions.separator = input.value;
+    grid.clipboardOptions.separator = input.value || grid.clipboardOptions.separator;
 }
 
+igRegisterScript("WebTreeGridClipboardCustomOperationsRendered", (e) => {
+    defaultSeparator = grid.clipboardOptions.separator;
+}, false);
 
 igRegisterScript("WebTreeGridClipboardCustomOperationsColumnInit", (e) => {
     var column = e.detail;
