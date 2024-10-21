@@ -7,7 +7,9 @@
     <div class="legend">
         <IgbDataLegend
         Name="legend"
-        @ref="legend">
+        @ref="legend"
+        UnitsText="%"
+        IncludedColumns="@(new string[] { "BirthRate", "DeathRate" })">
         </IgbDataLegend>
 
     </div>
@@ -15,15 +17,6 @@
         <IgbDataChart
         Name="chart"
         @ref="chart">
-            <IgbNumericXAxis
-            Name="xAxis"
-            @ref="xAxis"
-            Title="Death Rate"
-            Interval="1"
-            MinimumValue="4"
-            MaximumValue="16">
-            </IgbNumericXAxis>
-
             <IgbNumericYAxis
             Name="yAxis"
             @ref="yAxis"
@@ -32,6 +25,15 @@
             MinimumValue="0"
             MaximumValue="60">
             </IgbNumericYAxis>
+
+            <IgbNumericXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            Title="Death Rate"
+            Interval="1"
+            MinimumValue="4"
+            MaximumValue="16">
+            </IgbNumericXAxis>
 
             <IgbBubbleSeries
             Name="bubbleSeries1"
@@ -83,8 +85,8 @@
     {
         var legend = this.legend;
         var chart = this.chart;
-        var xAxis = this.xAxis;
         var yAxis = this.yAxis;
+        var xAxis = this.xAxis;
         var bubbleSeries1 = this.bubbleSeries1;
         var bubbleSeries2 = this.bubbleSeries2;
         var crosshairLayer = this.crosshairLayer;
@@ -98,8 +100,8 @@
 
     private IgbDataLegend legend;
     private IgbDataChart chart;
-    private IgbNumericXAxis xAxis;
     private IgbNumericYAxis yAxis;
+    private IgbNumericXAxis xAxis;
     private IgbBubbleSeries bubbleSeries1;
     private IgbSizeScale _sizeScale1 = null;
     public IgbSizeScale SizeScale1
