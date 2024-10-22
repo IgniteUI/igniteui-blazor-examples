@@ -4,49 +4,45 @@
 
 <div class="container vertical ig-typography">
     <div class="container vertical fill">
-        <IgbGrid
-        AutoGenerate="false"
-        Data="NwindData"
-        PrimaryKey="ProductID"
-        GridKeydownScript="WebGridEditingExcelStyle"
-        Name="grid1"
-        @ref="grid1">
-            <IgbColumn
-            Field="ProductID"
-            Header="Product ID"
-            Editable="true"
-            Groupable="true"
-            Hidden="true">
+        <IgbGrid AutoGenerate="false"
+                 Data="NwindData"
+                 PrimaryKey="ProductID"
+                 Name="grid1"
+                 Id="grid1"
+                 CellSelection="GridSelectionMode.Single"
+                 Rendered="rendered"
+                 @ref="grid1">
+            <IgbColumn Field="ProductID"
+                       Header="Product ID"
+                       Editable="true"
+                       Groupable="true"
+                       Hidden="true">
             </IgbColumn>
 
-            <IgbColumn
-            Field="ProductName"
-            Header="Product Name"
-            DataType="GridColumnDataType.String"
-            Editable="true">
+            <IgbColumn Field="ProductName"
+                       Header="Product Name"
+                       DataType="GridColumnDataType.String"
+                       Editable="true">
             </IgbColumn>
 
-            <IgbColumn
-            Field="UnitPrice"
-            Header="Unit Price"
-            DataType="GridColumnDataType.Number"
-            Editable="true">
+            <IgbColumn Field="UnitPrice"
+                       Header="Unit Price"
+                       DataType="GridColumnDataType.Number"
+                       Editable="true">
             </IgbColumn>
 
-            <IgbColumn
-            Field="QuantityPerUnit"
-            Header="Quantity Per Unit"
-            Groupable="true"
-            DataType="GridColumnDataType.String"
-            Editable="true">
+            <IgbColumn Field="QuantityPerUnit"
+                       Header="Quantity Per Unit"
+                       Groupable="true"
+                       DataType="GridColumnDataType.String"
+                       Editable="true">
             </IgbColumn>
 
-            <IgbColumn
-            Field="ReorderLevel"
-            Header="Reorder Level"
-            DataType="GridColumnDataType.Number"
-            Groupable="true"
-            Editable="true">
+            <IgbColumn Field="ReorderLevel"
+                       Header="Reorder Level"
+                       DataType="GridColumnDataType.Number"
+                       Groupable="true"
+                       Editable="true">
             </IgbColumn>
 
         </IgbGrid>
@@ -59,10 +55,15 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid1 = this.grid1;
+    }
 
+    async private void rendered()
+    {
+        await JS.InvokeVoidAsync("attachKeyDownEvent");
     }
 
     private IgbGrid grid1;
+    private bool shouldAppendValue = false;
 
     private NwindData _nwindData = null;
     public NwindData NwindData
@@ -76,5 +77,4 @@
             return _nwindData;
         }
     }
-
 }
