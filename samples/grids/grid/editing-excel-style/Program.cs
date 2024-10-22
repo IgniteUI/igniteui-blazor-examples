@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using IgniteUI.Blazor.Controls; // for registering Ignite UI modules
+using IgniteUI.Blazor.Controls;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Infragistics.Samples
 {
@@ -23,6 +25,12 @@ namespace Infragistics.Samples
                 typeof(IgbInputModule),
                 typeof(IgbGridModule)
             );
+
+            builder.Services.Configure<JsonSerializerOptions>(options =>
+            {
+                options.ReferenceHandler = ReferenceHandler.Preserve;
+                options.MaxDepth = 64; // Increase the maximum depth if needed
+            });
             await builder.Build().RunAsync();
         }
     }
