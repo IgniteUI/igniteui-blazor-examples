@@ -17,14 +17,10 @@ NOTE: Above command will copy .razor pages and their .cs files from `./samples/`
 
 ## 2. Running Tests
 
-- open the **IgBlazorSamplesBrowser.sln** solution
+- open the **IgBlazorSamples.Test.sln** solution
 
 - build the solution. Should successfully build all projects.
 
-- open `./browser/IgBlazorSamples.Client/` folder
-
-- execute `dotnet run` to run the samples client. The tests requre a running app.
-
-- in the **Test Explorer** you can run all tests or individually.
+- in the **Test Explorer** you can run all tests or individually now.
 
 NOTE: The `./browser/IgBlazorSamples.Test/` project once built, will generate all the tests and they should appear in the test explorer

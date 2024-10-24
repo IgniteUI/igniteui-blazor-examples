@@ -44,12 +44,32 @@ public class BlazorTest : PageTest
                 Headers = responseHeaders,
                 Status = (int)response.StatusCode,
             });
+
+            await Context.Tracing.StartAsync(new()
+            {
+                Title = $"{TestContext.CurrentContext.Test.ClassName}.{TestContext.CurrentContext.Test.Name}",
+                Screenshots = true,
+                Snapshots = true,
+                Sources = true
+            });
         });
     }
 
     [TearDown]
-    public void BlazorTearDown()
+    public async Task BlazorTearDown()
     {
         _httpClient?.Dispose();
+
+        var failed = TestContext.CurrentContext.Result.Outcome == NUnit.Framework.Interfaces.ResultState.Error
+            || TestContext.CurrentContext.Result.Outcome == NUnit.Framework.Interfaces.ResultState.Failure;
+
+        await Context.Tracing.StopAsync(new()
+        {
+            Path = failed ? Path.Combine(
+                TestContext.CurrentContext.WorkDirectory,
+                "playwright-traces",
+                $"{TestContext.CurrentContext.Test.ClassName}.{TestContext.CurrentContext.Test.Name}.zip"
+            ) : null,
+        });
     }
 }
