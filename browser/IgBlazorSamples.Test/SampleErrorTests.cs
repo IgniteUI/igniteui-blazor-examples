@@ -33,7 +33,7 @@ public class ErrorTest : BlazorTest
     }
 
     [Test]
-    [Category("BasicTests")]
+    [Category("SampleTest")]
     public async Task BasicErrorTest()
     {
         int numPageErrors = 0;

@@ -4,6 +4,34 @@ using System.Text;
 
 namespace PlaywrightTests;
 
+[Parallelizable(ParallelScope.Self)]
+[TestFixture]
+public class PreflightTests : BlazorTest
+{
+    [Test]
+    [Category("PreflightTest")]
+    public async Task PreflightTest()
+    {
+        int numPageErrors = 0;
+        StringBuilder messages = new();
+        Page.Console += (_, value) =>
+        {
+            if (value.Type == "warning" && value.Text.Contains("Error:"))
+            {
+                messages.AppendLine(value.Text);
+                numPageErrors++;
+            }
+        };
+
+        await Page.GotoAsync(RootUri.AbsoluteUri);
+
+        await Page.WaitForSelectorAsync("text=This web application demonstrates samples for Infragistics Blazor Controls running on client-side");
+
+        Assert.That(numPageErrors == 0, $"The following errors were thrown: \n ${messages}");
+    }
+}
+
+
 class GridLinks
 {
     public static string[] FixtureArgs = {
@@ -60,8 +88,8 @@ public class BasicError : BlazorTest
     public async Task BasicErrorTest()
     {
         int numPageErrors = 0;
-        StringBuilder messages = new ();
-        Page.Console += (_, value) => 
+        StringBuilder messages = new();
+        Page.Console += (_, value) =>
         {
             if (value.Type == "warning" && value.Text.Contains("Error:"))
             {
