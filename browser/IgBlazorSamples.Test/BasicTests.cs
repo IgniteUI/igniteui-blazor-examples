@@ -1,7 +1,6 @@
+using IgBlazorSamples.Test;
 using Microsoft.Playwright;
-using Microsoft.Playwright.NUnit;
 using System.Text;
-using System.Threading;
 
 namespace PlaywrightTests;
 
@@ -17,7 +16,7 @@ class GridLinks
 
 [Parallelizable(ParallelScope.Self)]
 [TestFixtureSource(typeof(GridLinks), nameof(GridLinks.FixtureArgs))]
-public class ParamTests : PageTest
+public class ParamTests : BlazorTest
 {
     private string goToUrl;
     public ParamTests(string goToUrl)
@@ -45,7 +44,7 @@ public class ParamTests : PageTest
             }
         };
 
-        await Page.GotoAsync(String.Format("{0}/{1}", "http://localhost:4200/", goToUrl.TrimStart('/')));
+        await Page.GotoAsync(String.Format("{0}/{1}", RootUri.AbsoluteUri.TrimEnd('/'), goToUrl.TrimStart('/')));
 
         await Page.WaitForSelectorAsync("igx-grid-header");
 
@@ -55,7 +54,7 @@ public class ParamTests : PageTest
 
 [Parallelizable(ParallelScope.Self)]
 [TestFixture]
-public class BasicError : PageTest
+public class BasicError : BlazorTest
 {
     [Test]
     public async Task BasicErrorTest()
@@ -71,7 +70,7 @@ public class BasicError : PageTest
             }
         };
 
-        await Page.GotoAsync("http://localhost:4200/samples/grids/grid/clipboard-operations");
+        await Page.GotoAsync($"{RootUri.AbsoluteUri}samples/grids/grid/clipboard-operations");
 
         await Page.WaitForSelectorAsync("igx-grid-header");
 
@@ -81,12 +80,12 @@ public class BasicError : PageTest
 
 [Parallelizable(ParallelScope.Self)]
 [TestFixture]
-public class BasicPin : PageTest
+public class BasicPin : BlazorTest
 {
     [Test]
     public async Task BasicPinTest()
     {
-        await Page.GotoAsync("http://localhost:4200/samples/grids/grid/column-pinning");
+        await Page.GotoAsync($"{RootUri.AbsoluteUri}samples/grids/grid/column-pinning");
 
         await Page.WaitForSelectorAsync("igx-grid-header");
 
@@ -100,12 +99,12 @@ public class BasicPin : PageTest
 
 [Parallelizable(ParallelScope.Self)]
 [TestFixture]
-public class BasicResize : PageTest
+public class BasicResize : BlazorTest
 {
     [Test]
     public async Task BasicResizeTest()
     {
-        await Page.GotoAsync("http://localhost:4200/samples/grids/grid/column-resizing");
+        await Page.GotoAsync($"{RootUri.AbsoluteUri}samples/grids/grid/column-resizing");
 
         await Page.WaitForSelectorAsync("igx-grid-header");
 
@@ -133,12 +132,12 @@ public class BasicResize : PageTest
 
 [Parallelizable(ParallelScope.Self)]
 [TestFixture]
-public class BasicScroll : PageTest
+public class BasicScroll : BlazorTest
 {
     [Test, Timeout(30000)]
     public async Task BasicScrollTest()
     {
-        await Page.GotoAsync("http://localhost:4200/samples/grids/grid/groupby-summary-options");
+        await Page.GotoAsync($"{RootUri.AbsoluteUri}samples/grids/grid/groupby-summary-options");
 
         await Page.WaitForSelectorAsync("igx-grid-header");
 

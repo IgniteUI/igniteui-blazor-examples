@@ -1,7 +1,4 @@
 using IgBlazorSamples.Test;
-using IgBlazorSamples.Test.Models;
-using Microsoft.Playwright;
-using Microsoft.Playwright.NUnit;
 using System.Text;
 
 namespace SampleErrorTests;
@@ -19,14 +16,13 @@ class ErrorTestsData : System.Collections.IEnumerable
 
 [Parallelizable(ParallelScope.Self)]
 [TestFixtureSource(typeof(ErrorTestsData))]
-public class ErrorTest : PageTest
+public class ErrorTest : BlazorTest
 {
     private string testSelector;
     private string goToUrl;
     public ErrorTest(string componentName, string goToUrl, string testSelector)
     {
-        string baseUrl = TestContext.Parameters.Get("baseUrl");
-        this.goToUrl = String.Format("{0}/{1}", baseUrl.TrimEnd('/'), goToUrl.TrimStart('/'));
+        this.goToUrl = String.Format("{0}/{1}", RootUri.AbsoluteUri.TrimEnd('/'), goToUrl.TrimStart('/'));
         this.testSelector = testSelector;
     }
 
