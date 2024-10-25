@@ -68,7 +68,7 @@ public class BlazorTest : PageTest
             Path = failed ? Path.Combine(
                 TestContext.CurrentContext.WorkDirectory,
                 "playwright-traces",
-                $"{TestContext.CurrentContext.WorkerId}.{TestContext.CurrentContext.Test.Name}.zip"
+                $"{Environment.MachineName}.{TestContext.CurrentContext.Test.Name}.zip"
             ) : null,
         });
     }
