@@ -24,6 +24,7 @@
     </script>
     <script>
         window.preventScrollHandler = (event) => {
+            const eventPath = event.composedPath();
             if (event.target.outerHTML.toLowerCase().includes('igx') && eventPath.filter(x => x.classList?.value === 'igx-grid__tbody').length > 0) {
                 event.preventDefault();
             }
