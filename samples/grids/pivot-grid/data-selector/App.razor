@@ -15,17 +15,21 @@
         </IgbPivotGrid>
     </div>
     <div class="container vertical" style="width: auto;">
-        <IgbPivotDataSelector @ref="selector" Grid=@grid></IgbPivotDataSelector>
+        <IgbPivotDataSelector @ref="selector"></IgbPivotDataSelector>
     </div>
 
 </div>
 
 @code {
-    protected override async Task OnInitializedAsync()
+    protected override void OnAfterRender(bool firstRender)
     {
-
-
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            selector.Grid = grid;
+        }
     }
+
     public IgbPivotGrid grid;
     private IgbPivotDataSelector selector;
     private IgbPivotConfiguration _pivotConfiguration = null;
