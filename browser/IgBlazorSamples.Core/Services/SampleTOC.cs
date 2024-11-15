@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Infragistics.Samples.Core
 {
     public class TOC : ObservableObject
     {
+        [JsonPropertyName("groups")]
         public TocGroup[] Groups { get; set; }
     }
 
     public class TocItem : ObservableObject
     {
+        [JsonPropertyName("name")]
         public string Name { get; set; }
         public bool IsExpanded { get; set; }
 
@@ -25,6 +28,8 @@ namespace Infragistics.Samples.Core
     {
         //public string Name { get; set; }
         //public bool IsExpanded { get; set; }
+
+        [JsonPropertyName("components")]
         public TocComponent[] Components { get; set; }
 
         public TocGroup()
@@ -35,10 +40,12 @@ namespace Infragistics.Samples.Core
 
     public class TocComponent : TocItem
     {
-        public string Group { get; set; }
         //public string Name { get; set; }
         //public bool IsExpanded { get; set; }
 
+        public string Group { get; set; }
+
+        [JsonPropertyName("samples")]
         public TocSample[] Samples { get; set; }
 
         public TocComponent()
@@ -51,10 +58,13 @@ namespace Infragistics.Samples.Core
     public class TocSample : TocItem
     {
         //public string Name { get; set; }
+        //public bool IsExpanded { get; set; }
+
+        [JsonPropertyName("route")]
         public string Route { get; set; }
         public string Component { get; set; }
         public string Group { get; set; }
-        //public bool IsExpanded { get; set; }
+        [JsonPropertyName("showLink")]
         public bool ShowLink { get; set; }
 
         public TocSample()

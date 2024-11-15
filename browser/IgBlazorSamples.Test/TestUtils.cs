@@ -3,24 +3,24 @@ using System.Text.Json;
 using Microsoft.Extensions.Configuration;
 using IgBlazorSamples.Test.Models;
 using System.Reflection;
+using Infragistics.Samples.Core;
 
 namespace IgBlazorSamples.Test
 {
     public class TestUtils
     {
         private static IConfiguration config = new ConfigurationBuilder()
-            .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "Properties"))
-            .AddJsonFile("testGenerationSettings.json", optional: false, reloadOnChange: false)
+            .SetBasePath(Path.Combine(Directory.GetCurrentDirectory()))
+            .AddJsonFile("testsettings.json", optional: false, reloadOnChange: false)
             .Build();
 
         public static List<SampleTestData> GetBrowserSamplesBaseInfo()
         {
             var toc = GetToc();
             var excludedSamples = config.GetSection("excludeSamples").Get<ExcludedSample[]>();
-            var excludedRoutes = config.GetSection("excludedRoutes").Get<ExcludedRoute[]>();
-            var excludedPaths = excludedRoutes.Select(r => r.Route.Replace("\\/", "@slash").Split("/")
+            var excludedGroups = config.GetSection("excludedGroups").Get<ExcludedGroup[]>();
+            var excludedPaths = excludedGroups.Select(r => r.Group.Replace("\\/", "@slash").Split("/", StringSplitOptions.RemoveEmptyEntries)
                 .Select(e => e.Replace("@slash", "/"))
-                .Where(p => p != "")
                 .ToArray()
             );
 
@@ -52,7 +52,7 @@ namespace IgBlazorSamples.Test
             return testsData;
         }
 
-        private static Toc GetToc()
+        private static TOC GetToc()
         {
             string result = string.Empty;
             Assembly assembly = Assembly.GetExecutingAssembly();
@@ -62,7 +62,7 @@ namespace IgBlazorSamples.Test
                 result = reader.ReadToEnd();
             }
 
-            return JsonSerializer.Deserialize<Toc>(result);
+            return JsonSerializer.Deserialize<TOC>(result);
         }
     }
 }

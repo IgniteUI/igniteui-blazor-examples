@@ -13,9 +13,9 @@ namespace IgBlazorSamples.Test.Models
         public string? InitialSelector { get; set; }
     }
 
-    public class ExcludedRoute
+    public class ExcludedGroup
     {
-        public string? Route { get; set; }
+        public string? Group { get; set; }
     }
 
     public class ExcludedSample
