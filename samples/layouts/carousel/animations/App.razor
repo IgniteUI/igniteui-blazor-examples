@@ -1,0 +1,154 @@
+@using IgniteUI.Blazor.Controls
+
+<style>
+.carousel-wrapper {
+    height: 600px;
+    width: 90%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.action-wrapper {
+    height: 40px;
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.action {
+    display: flex;
+    align-items: center;
+}
+
+.slide-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+igc-carousel {
+    border: 0.5px solid #dde0e4;
+}
+
+igc-select {
+    width: 150px;
+    margin-left: 10px;
+    --ig-size: var(--ig-size-small);
+}
+
+igc-card {
+    border: none;
+}
+
+igc-card-header {
+    padding: 8px 16px;
+}
+</style>
+
+<div class="carousel-wrapper">
+    <div class="action-wrapper">
+        <div class="action">
+            <span>Animation type</span>
+            <IgbSelect Change="OnSelectChange">
+                <IgbSelectItem Value="slide" Selected="true">Slide</IgbSelectItem>
+                <IgbSelectItem Value="fade">Fade</IgbSelectItem>
+                <IgbSelectItem Value="none">None</IgbSelectItem>
+            </IgbSelect>
+        </div>
+        <div class="action">
+            <IgbSwitch Change="OnSwitchChange" LabelPosition="@CheckboxBaseLabelPosition.Before">Vertical alignment</IgbSwitch>
+        </div>
+    </div>
+    <IgbCarousel @ref="carouselRef" HideIndicators="true">
+        <IgbCarouselSlide>
+            <div class="slide-wrapper">
+                <IgbCard>
+                    <IgbCardHeader>
+                        <h3 slot="title">Ignite UI for Angular</h3>
+                    </IgbCardHeader>
+                    <IgbCardContent>
+                        <p>30+ Material-based Angular components to code speedy web apps faster.</p>
+                    </IgbCardContent>
+                    <IgbCardMedia>
+                        <img src="https://www.infragistics.com/angular-demos-lob/assets/images/carousel/slide1-angular.png">
+                    </IgbCardMedia>
+                    <IgbCardActions>
+                        <IgbButton slot="start" href="https://www.infragistics.com/products/ignite-ui-angular" Target="@ButtonBaseTarget._blank" Rel="noopener">
+                            Visit Page
+                        </IgbButton>
+                    </IgbCardActions>
+                </IgbCard>
+            </div>
+        </IgbCarouselSlide>
+        <IgbCarouselSlide>
+            <div class="slide-wrapper">
+                <IgbCard>
+                    <IgbCardHeader>
+                        <h3 slot="title">Ignite UI for Javascript</h3>
+                    </IgbCardHeader>
+                    <IgbCardContent>
+                        <p>A complete JavaScript UI library empowering you to build data-rich responsive web apps.</p>
+                    </IgbCardContent>
+                    <IgbCardMedia>
+                        <img src="https://www.infragistics.com/angular-demos-lob/assets/images/carousel/slide2-ignite.png">
+                    </IgbCardMedia>
+                    <IgbCardActions>
+                        <IgbButton slot="start" href="https://www.infragistics.com/products/ignite-ui" Target="@ButtonBaseTarget._blank" Rel="noopener">
+                            Visit Page
+                        </IgbButton>
+                    </IgbCardActions>
+                </IgbCard>
+            </div>
+        </IgbCarouselSlide>
+        <IgbCarouselSlide>
+            <div class="slide-wrapper">
+                <IgbCard>
+                    <IgbCardHeader>
+                        <h3 slot="title">Ultimate UI for ASP.NET</h3>
+                    </IgbCardHeader>
+                    <IgbCardContent>
+                        <p>Build full-featured business apps with the most versatile set of ASP.NET AJAX UI controls.</p>
+                    </IgbCardContent>
+                    <IgbCardMedia>
+                        <img src="https://www.infragistics.com/angular-demos-lob/assets/images/carousel/slide3-aspnet.png">
+                    </IgbCardMedia>
+                    <IgbCardActions>
+                        <IgbButton slot="start" href="https://www.infragistics.com/products/aspnet" Target="@ButtonBaseTarget._blank" Rel="noopener">
+                            Visit Page
+                        </IgbButton>
+                    </IgbCardActions>
+                </IgbCard>
+            </div>
+        </IgbCarouselSlide>
+    </IgbCarousel>
+</div>
+
+@code {
+
+    private IgbCarousel carouselRef;
+
+    private void OnSelectChange(IgbSelectItemComponentEventArgs args)
+    {
+        switch (args.Detail.Value)
+        {
+            case "slide":
+                this.carouselRef.AnimationType = CarouselAnimationType.Slide;
+                break;
+            case "fade":
+                this.carouselRef.AnimationType = CarouselAnimationType.Fade;
+                break;
+            default:
+                this.carouselRef.AnimationType = CarouselAnimationType.None;
+                break;
+        }
+    }
+
+    private void OnSwitchChange(IgbCheckboxChangeEventArgs args)
+    {
+        this.carouselRef.Vertical = args.Detail.Checked;
+    }
+}
