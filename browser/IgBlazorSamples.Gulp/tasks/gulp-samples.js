@@ -463,7 +463,7 @@ function copySampleScripts(cb, outputPath, indexName) {
     }
 
     // indexLines = indexLines.filter((v, i, a) => a.indexOf(v) === i);
-    
+
     var isLocalBuild = __dirname.indexOf('Agent') < 0;
     for (let i = 0; i < indexLines.length; i++) {
         if (indexLines[i].indexOf('<base href') > 0) {
@@ -471,9 +471,8 @@ function copySampleScripts(cb, outputPath, indexName) {
                 log('updating <base href="/" /> ');
                 indexLines[i] = '    <base href="/" />';
             } else {
-                // TODO Refactor this starting with line 467 - this should be a build-time toggle, not a hidden check on a file path dir name
-                // log('updating <base href="/blazor-client/" /> ');
-                // indexLines[i] = '    <base href="/blazor-client/" />';
+                log('updating <base href="/blazor-client/" /> ');
+                indexLines[i] = '    <base href="/blazor-client/" />';
             }
             break;
         }
