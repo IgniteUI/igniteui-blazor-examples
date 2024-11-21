@@ -373,7 +373,7 @@ function copySamplePages(cb, outputPath) {
     cb();
 }
 
-function copySampleScripts(cb, outputPath, indexName) {
+function copySampleScripts(cb, outputPath, indexName, isLocalBuild) {
     var insertScriptFiles = [];
 
     log('deleting scripts in: ' + outputPath + '/wwwroot/sb/*.js');
@@ -464,7 +464,6 @@ function copySampleScripts(cb, outputPath, indexName) {
 
     // indexLines = indexLines.filter((v, i, a) => a.indexOf(v) === i);
 
-    var isLocalBuild = __dirname.indexOf('Agent') < 0;
     for (let i = 0; i < indexLines.length; i++) {
         if (indexLines[i].indexOf('<base href') > 0) {
             if (isLocalBuild) {
@@ -492,7 +491,13 @@ function copySampleScripts(cb, outputPath, indexName) {
 // '../../browser/IgBlazorSamples.Server/wwwroot'
 function copySamplesToServer(cb) {
     cleanupSampleBrowser( "../../browser/IgBlazorSamples.Server");
-    copySampleScripts(cb, "../../browser/IgBlazorSamples.Server", "/Pages/_Host.cshtml");
+    copySampleScripts(cb, "../../browser/IgBlazorSamples.Server", "/Pages/_Host.cshtml", true);
+    copySamplePages(cb,   "../../browser/IgBlazorSamples.Server");
+} exports.copySamplesToServer = copySamplesToServer;
+
+function copySamplesToServerHost(cb) {
+    cleanupSampleBrowser( "../../browser/IgBlazorSamples.Server");
+    copySampleScripts(cb, "../../browser/IgBlazorSamples.Server", "/Pages/_Host.cshtml", false);
     copySamplePages(cb,   "../../browser/IgBlazorSamples.Server");
 } exports.copySamplesToServer = copySamplesToServer;
 
@@ -501,7 +506,13 @@ function copySamplesToServer(cb) {
 // '../../browser/IgBlazorSamples.Client/wwwroot'
 function copySamplesToClient(cb) {
     cleanupSampleBrowser( "../../browser/IgBlazorSamples.Client");
-    copySampleScripts(cb, "../../browser/IgBlazorSamples.Client", "/wwwroot/index.html");
+    copySampleScripts(cb, "../../browser/IgBlazorSamples.Client", "/wwwroot/index.html", true);
+    copySamplePages(cb,   "../../browser/IgBlazorSamples.Client");
+} exports.copySamplesToClient = copySamplesToClient;
+
+function copySamplesToClientHost(cb) {
+    cleanupSampleBrowser( "../../browser/IgBlazorSamples.Client");
+    copySampleScripts(cb, "../../browser/IgBlazorSamples.Client", "/wwwroot/index.html", false);
     copySamplePages(cb,   "../../browser/IgBlazorSamples.Client");
 } exports.copySamplesToClient = copySamplesToClient;
 
