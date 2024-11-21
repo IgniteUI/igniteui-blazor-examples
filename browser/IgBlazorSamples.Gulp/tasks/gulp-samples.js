@@ -189,7 +189,7 @@ function getSamples(cb) {
       igConfig.SamplesCopyPath + '/grids/grid/row-drop-indicator/App.razor',
     //   igConfig.SamplesCopyPath + '/grids/grid/row-editing-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/row-paging-style/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/infinite-scroll/App.razor', // broken sample - undo when new IG packages deployed
+    //   igConfig.SamplesCopyPath + '/grids/grid/infinite-scroll/App.razor', // broken sample - undo when new IG packages deployed
     ];
 
     samples = [];
@@ -590,9 +590,9 @@ function updateIG(cb) {
 
     let packageUpgrades = [
         // update version of IG packages and change to Trial or non-trial
-        { name: "IgniteUI.Blazor",                 version: "24.1.67" },
-        { name: "IgniteUI.Blazor.Documents.Core",  version: "24.1.67" },
-        { name: "IgniteUI.Blazor.Documents.Excel", version: "24.1.67" },
+        { name: "IgniteUI.Blazor",                 version: "24.2.19" },
+        { name: "IgniteUI.Blazor.Documents.Core",  version: "24.2.19" },
+        { name: "IgniteUI.Blazor.Documents.Excel", version: "24.2.19" },
         // these IG packages are sometimes updated:
         { name: "Microsoft.AspNetCore.Components",                       version: "8.0.0" },
         { name: "Microsoft.AspNetCore.Components.Web",                   version: "8.0.0" },
