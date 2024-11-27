@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using IgBlazorSamples.Test.Models;
 using System.Reflection;
 using Infragistics.Samples.Core;
+using System.Text.RegularExpressions;
 
 namespace IgBlazorSamples.Test
 {
@@ -40,6 +41,16 @@ namespace IgBlazorSamples.Test
                         var componentName = comp.Name.Replace(" ", "");
                         var componentsMaps = config.GetSection("componentsMaps").Get<ComponentMap[]>();
                         var testSelector = componentsMaps.FirstOrDefault(s => s.Name.Replace(" ", "") == componentName)?.InitialSelector;
+
+                        if (testSelector == null)
+                        {
+                            Console.WriteLine("Warning: The " + componentName + "does not have test selector defined in testsettings.json. Using a generated one.");
+
+                            // Use the componentName to build a test selector. Split by upper cases and then lower all first letters of words.
+                            string[] splitName = Regex.Split(componentName, @"(?<!^)(?=[A-Z])");
+                            splitName = splitName.Select(subName => subName.Substring(0, 1).ToLower() + subName.Substring(1)).ToArray();
+                            testSelector = "igc-" + string.Join("-", splitName);
+                        }
 
                         foreach (var sample in samples)
                         {
