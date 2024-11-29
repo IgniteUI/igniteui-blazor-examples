@@ -40,3 +40,17 @@ For other specific browsers refer to `./playwright.ps1 install --help`
 - In the **Test Explorer** you can run all tests or individually now.
 
 NOTE: The `./browser/IgBlazorSamples.Test/` project once built, will generate all the tests and they should appear in the test explorer
+
+# Resources
+
+- For general guidance related to Playwright tests - https://playwright.dev/dotnet/docs/
+
+- Generating selectors / tests code using Playwright Codegen - https://playwright.dev/dotnet/docs/codegen-intro
+
+- Disabling headless run for tests locally - uncomment the headless launch option in `./browser/.runsettings` or in the test solution under `Solution Items/.runsettings`.
+
+- Debugging in VS - Right click a test and choose debug. Should have a breakpoint of course in test :P.
+
+- Debugging with Playwright Inspector - https://playwright.dev/dotnet/docs/debug. Pretty much add `await page.PauseAsync();` to the start of a test or elsewhere and the Playwright inspector will start at that point onward.
+
+- Viewing trace of a failed test group(usually artifact from a build) - https://playwright.dev/dotnet/docs/trace-viewer#opening-the-trace
