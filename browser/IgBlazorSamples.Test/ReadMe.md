@@ -41,7 +41,7 @@ For other specific browsers refer to `./playwright.ps1 install --help`
 
 NOTE: The `./browser/IgBlazorSamples.Test/` project once built, will generate all the tests and they should appear in the test explorer
 
-# Resources
+# Resources and guidance
 
 - For general guidance related to Playwright tests - https://playwright.dev/dotnet/docs/
 
@@ -54,3 +54,22 @@ NOTE: The `./browser/IgBlazorSamples.Test/` project once built, will generate al
 - Debugging with Playwright Inspector - https://playwright.dev/dotnet/docs/debug. Pretty much add `await page.PauseAsync();` to the start of a test or elsewhere and the Playwright inspector will start at that point onward.
 
 - Viewing trace of a failed test group(usually artifact from a build) - https://playwright.dev/dotnet/docs/trace-viewer#opening-the-trace
+
+## Generic sample tests
+
+The generic tests that run on all samples use parameter passing to the main `ErrorTest`, that parses the `toc.json` from the `IgSamplesBrowser.Client/wwwroot` and goes through it.
+
+## Test Selector
+
+Each component from the `toc.json` is recommended to have a specified test selector, which is used for the generic tests to wait to be rendered. This is to be ensure that the sample component is fully(mostly) rendered and the test is actually testing correctly.
+
+If such test selector is not specified, such would be generated based on the name of the component.
+
+## Ignoring specific sample
+
+In order to ignore a specific test from the samples browser, you need to specify it in the `excludeSamples` group in the `testsettings.json`.
+
+## Ignoring a whole group of test based on the toc
+
+You will need to specify the group path under `excludedGroups` in the `testsettings.json`. The path is based on the toc group names.
+If the name of a group has the `/` symbol, it needs to be ignore with `\\/` for the path to be read correctly.
