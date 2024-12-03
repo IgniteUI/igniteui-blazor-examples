@@ -3,12 +3,28 @@ using Microsoft.Playwright.NUnit;
 
 namespace IgBlazorSamples.Test;
 
+/// <summary>
+/// Base Playwright PageTest setup with in-memory Test Server application
+/// </summary>
 public class BlazorTest : PageTest
 {
-    // Root Uri that the app can be accessed through and is being intercepted for network requests. Each test connects to it to access the samples browser.
+    /// <summary>
+    /// Root Uri that the app can be accessed through and is being intercepted for network requests.
+    /// Each test connects to it to access the samples browser.
+    /// </summary>
     protected static readonly Uri RootUri = new("http://127.0.0.1");
-    // We use the Program.cs from the IgBlazorSamples.TestServer since WebApplicationFactory is used to create only servers and IgBlazorSamples.Client is only wasm app.
+
+    /// <summary>
+    /// Factory to create in-memory client for the samples test application.
+    /// <remarks>
+    /// We use the Program.cs from IgBlazorSamples.TestServer since the factory creates only servers and IgBlazorSamples.Client is only WASM.
+    /// </remarks>
+    /// </summary>
     private readonly WebApplicationFactory<Program> _webAppFactory = new();
+
+    /// <summary>
+    /// Test Server in-memory client
+    /// </summary>
     private HttpClient? _httpClient;
 
     [SetUp]
