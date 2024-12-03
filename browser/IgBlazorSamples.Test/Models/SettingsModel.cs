@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace IgBlazorSamples.Test.Models
 {
+    /// <summary>
+    /// Model for the test setting <c>componentsMaps</c> section.
+    /// </summary>
     public class ComponentMap
     {
         public string? Name { get; set; }
@@ -13,11 +16,17 @@ namespace IgBlazorSamples.Test.Models
         public string? InitialSelector { get; set; }
     }
 
+    /// <summary>
+    /// Model for the test setting <c>excludedGroups</c> section.
+    /// </summary>
     public class ExcludedGroup
     {
         public string? Group { get; set; }
     }
 
+    /// <summary>
+    /// Model for the test setting <c>excludeSamples</c> section.
+    /// </summary>
     public class ExcludedSample
     {
         public string? Name { get; set; }
