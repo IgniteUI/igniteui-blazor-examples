@@ -15,6 +15,11 @@ namespace IgBlazorSamples.Test
             .AddJsonFile("testsettings.json", optional: false, reloadOnChange: false)
             .Build();
 
+        private static JsonSerializerOptions jsonOptions = new()
+        {
+            PropertyNameCaseInsensitive = true
+        };
+
         public static List<SampleTestData> GetBrowserSamplesBaseInfo()
         {
             var toc = GetToc();
@@ -76,7 +81,7 @@ namespace IgBlazorSamples.Test
                 result = reader.ReadToEnd();
             }
 
-            return JsonSerializer.Deserialize<TOC>(result) ?? new();
+            return JsonSerializer.Deserialize<TOC>(result, jsonOptions) ?? new();
         }
     }
 }
