@@ -18,14 +18,14 @@ namespace IgBlazorSamples.Test
         public static List<SampleTestData> GetBrowserSamplesBaseInfo()
         {
             var toc = GetToc();
-            var excludedSamples = config.GetSection("excludeSamples").Get<ExcludedSample[]>();
-            var excludedGroups = config.GetSection("excludedGroups").Get<ExcludedGroup[]>();
+            var excludedSamples = config.GetSection("excludeSamples").Get<ExcludedSample[]>() ?? [];
+            var excludedGroups = config.GetSection("excludedGroups").Get<ExcludedGroup[]>() ?? [];
             var excludedPaths = excludedGroups.Select(r => r.Group.Replace("\\/", "@slash").Split("/", StringSplitOptions.RemoveEmptyEntries)
                 .Select(e => e.Replace("@slash", "/"))
                 .ToArray()
             );
 
-            List<SampleTestData> testsData = new ();
+            List<SampleTestData> testsData = new();
             foreach (var group in toc.Groups)
             {
                 var exGroups = excludedPaths.Select(p => p.Length == 1 ? p[0] : "").Where(p => p != "");
@@ -39,7 +39,7 @@ namespace IgBlazorSamples.Test
                         var samples = comp.Samples?.Where(s => s.ShowLink)
                             .Where(s => !excludedSamples.Any(e => e.Name == s.Name && e.Route == s.Route));
                         var componentName = comp.Name.Replace(" ", "");
-                        var componentsMaps = config.GetSection("componentsMaps").Get<ComponentMap[]>();
+                        var componentsMaps = config.GetSection("componentsMaps").Get<ComponentMap[]>() ?? [];
                         var testSelector = componentsMaps.FirstOrDefault(s => s.Name.Replace(" ", "") == componentName)?.InitialSelector;
 
                         if (testSelector == null)
@@ -52,7 +52,7 @@ namespace IgBlazorSamples.Test
                             testSelector = "igc-" + string.Join("-", splitName);
                         }
 
-                        foreach (var sample in samples)
+                        foreach (var sample in samples ?? [])
                         {
                             testsData.Add(new() { ComponentName = componentName, TestSelector = testSelector, Route = sample.Route });
                         }
@@ -66,14 +66,17 @@ namespace IgBlazorSamples.Test
         private static TOC GetToc()
         {
             string result = string.Empty;
+            string toc = "IgBlazorSamples.Test.External.toc.json";
             Assembly assembly = Assembly.GetExecutingAssembly();
-            using (Stream stream = assembly.GetManifestResourceStream("IgBlazorSamples.Test.External.toc.json"))
-            using (StreamReader reader = new StreamReader(stream))
+
+            if (assembly.GetManifestResourceNames().Contains(toc))
             {
+                using Stream stream = assembly.GetManifestResourceStream(toc)!;
+                using StreamReader reader = new StreamReader(stream);
                 result = reader.ReadToEnd();
             }
 
-            return JsonSerializer.Deserialize<TOC>(result);
+            return JsonSerializer.Deserialize<TOC>(result) ?? new();
         }
     }
 }

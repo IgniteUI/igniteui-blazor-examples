@@ -147,6 +147,7 @@ public class BasicResize : BlazorTest
         await Page.Mouse.DownAsync();
         await Page.WaitForTimeoutAsync(100);
 
+        Assert.That(companyResizerBoundBox, Is.Not.Null);
         await Page.Mouse.MoveAsync(companyResizerBoundBox.X - 50, 0);
         await Page.WaitForTimeoutAsync(100);
 

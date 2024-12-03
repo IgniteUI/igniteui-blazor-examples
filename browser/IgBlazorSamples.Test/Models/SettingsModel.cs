@@ -11,7 +11,7 @@ namespace IgBlazorSamples.Test.Models
     /// </summary>
     public class ComponentMap
     {
-        public string? Name { get; set; }
+        public required string Name { get; set; }
 
         public string? InitialSelector { get; set; }
     }
@@ -21,7 +21,7 @@ namespace IgBlazorSamples.Test.Models
     /// </summary>
     public class ExcludedGroup
     {
-        public string? Group { get; set; }
+        public required string Group { get; set; }
     }
 
     /// <summary>
@@ -36,10 +36,10 @@ namespace IgBlazorSamples.Test.Models
 
     public class SampleTestData
     {
-        public string? ComponentName { get; set; }
+        public required string ComponentName { get; set; }
 
-        public string? TestSelector { get; set; }
+        public required string TestSelector { get; set; }
 
-        public string? Route { get; set; }
+        public required string Route { get; set; }
     }
 }
