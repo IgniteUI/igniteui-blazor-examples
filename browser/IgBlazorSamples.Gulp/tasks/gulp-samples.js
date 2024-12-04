@@ -495,11 +495,11 @@ function copySamplesToServer(cb) {
     copySamplePages(cb,   "../../browser/IgBlazorSamples.Server");
 } exports.copySamplesToServer = copySamplesToServer;
 
-function copySamplesToServerHost(cb) {
+function copySamplesToServerCI(cb) {
     cleanupSampleBrowser( "../../browser/IgBlazorSamples.Server");
     copySampleScripts(cb, "../../browser/IgBlazorSamples.Server", "/Pages/_Host.cshtml", false);
     copySamplePages(cb,   "../../browser/IgBlazorSamples.Server");
-} exports.copySamplesToServerHost = copySamplesToServerHost;
+} exports.copySamplesToServerCI = copySamplesToServerCI;
 
 // '../../browser/IgBlazorSamples.Client/Pages'
 // '../../browser/IgBlazorSamples.Client/Services'
@@ -510,11 +510,11 @@ function copySamplesToClient(cb) {
     copySamplePages(cb,   "../../browser/IgBlazorSamples.Client");
 } exports.copySamplesToClient = copySamplesToClient;
 
-function copySamplesToClientHost(cb) {
+function copySamplesToClientCI(cb) {
     cleanupSampleBrowser( "../../browser/IgBlazorSamples.Client");
     copySampleScripts(cb, "../../browser/IgBlazorSamples.Client", "/wwwroot/index.html", false);
     copySamplePages(cb,   "../../browser/IgBlazorSamples.Client");
-} exports.copySamplesToClientHost = copySamplesToClientHost;
+} exports.copySamplesToClientCI = copySamplesToClientCI;
 
 function updateReadme(cb) {
 
