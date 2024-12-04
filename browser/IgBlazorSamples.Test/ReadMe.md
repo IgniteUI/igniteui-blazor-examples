@@ -37,21 +37,40 @@ For other specific browsers refer to `./playwright.ps1 install --help`
 
 ## 4. Run tests
 
+### Test settings
+
+The `./browser/IgBlazorSamples.Test/` project once built, will generate all the tests and they should appear in the test explorer.
+Each test once run will start its own instance of the Samples Browser Client, so no need for any other extra steps than just hitting run/debug on the test.
+
+
+- If the tests use too much resource you can decrease number of workers in the  `./browser/.runsettings` or located also in the test solution under `Solution Items/.runsettings`.
+
+- Disabling headless run for tests locally - uncomment the headless launch option in `.runsettings` 
+
+- If you don't want each test using in memory browser server, you can disable it in the `.runsettings` by setting `useInMemoryClient` to `false`. In this case you will need to run your own instance of the `IgBlazorSamples.Client`, either from VS or using `dotnet run` in the project folder.
+You will need to specify the `testUrl` if you use a different the run the `IgBlazorSamples.Client` on.
+
+### Using Visual Studio
+
 - In the **Test Explorer** you can run all tests or individually now.
 
-> NOTE: The `./browser/IgBlazorSamples.Test/` project once built, will generate all the tests and they should appear in the test explorer
+- Debugging from VS - Right click a test and choose debug. Should have a breakpoint of course in test :P.
+
+- Debugging with Playwright Inspector - https://playwright.dev/dotnet/docs/debug. Pretty much add `await page.PauseAsync();` to the start of a test or elsewhere and the Playwright inspector will start at that point onward.
+
+### Using command line
+
+In order to run the samples tests you need to specify its category and point to the settings of the test, other you will need to speficy each setting manually, like `-- NUnit.NumberOfTestWorkers=2` if you want to have 2 workers active.
+
+- Running tests: `dotnet test --filter "ErrorTest" --settings:"../.runsettings"`
+
+- For other methods of running and debugging and all using command line: https://playwright.dev/dotnet/docs/running-tests
 
 # Resources and guidance
 
 - For general guidance related to Playwright tests - https://playwright.dev/dotnet/docs/
 
 - Generating selectors / tests code using Playwright Codegen - https://playwright.dev/dotnet/docs/codegen-intro
-
-- Disabling headless run for tests locally - uncomment the headless launch option in `./browser/.runsettings` or in the test solution under `Solution Items/.runsettings`.
-
-- Debugging in VS - Right click a test and choose debug. Should have a breakpoint of course in test :P.
-
-- Debugging with Playwright Inspector - https://playwright.dev/dotnet/docs/debug. Pretty much add `await page.PauseAsync();` to the start of a test or elsewhere and the Playwright inspector will start at that point onward.
 
 - Viewing trace of a failed test group(usually artifact from a build) - https://playwright.dev/dotnet/docs/trace-viewer#opening-the-trace
 
