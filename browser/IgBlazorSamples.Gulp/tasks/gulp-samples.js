@@ -499,7 +499,7 @@ function copySamplesToServerHost(cb) {
     cleanupSampleBrowser( "../../browser/IgBlazorSamples.Server");
     copySampleScripts(cb, "../../browser/IgBlazorSamples.Server", "/Pages/_Host.cshtml", false);
     copySamplePages(cb,   "../../browser/IgBlazorSamples.Server");
-} exports.copySamplesToServer = copySamplesToServer;
+} exports.copySamplesToServerHost = copySamplesToServerHost;
 
 // '../../browser/IgBlazorSamples.Client/Pages'
 // '../../browser/IgBlazorSamples.Client/Services'
@@ -514,7 +514,7 @@ function copySamplesToClientHost(cb) {
     cleanupSampleBrowser( "../../browser/IgBlazorSamples.Client");
     copySampleScripts(cb, "../../browser/IgBlazorSamples.Client", "/wwwroot/index.html", false);
     copySamplePages(cb,   "../../browser/IgBlazorSamples.Client");
-} exports.copySamplesToClient = copySamplesToClient;
+} exports.copySamplesToClientHost = copySamplesToClientHost;
 
 function updateReadme(cb) {
 
