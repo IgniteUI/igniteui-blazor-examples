@@ -72,11 +72,11 @@ function testProjectFiles(cb) {
     var requiredStrings = [
         '<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">',
         '<NoWarn>1701;1702,IDE0028,BL0005,0219,CS1998</NoWarn>',
-        '<TargetFramework>net8.0</TargetFramework>',
+        '<TargetFramework>net9.0</TargetFramework>',
         '<RazorLangVersion>3.0</RazorLangVersion>',
         '<PackageReference Include="IgniteUI.Blazor.Trial" Version',
         '<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0" />',
-        '<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0" />',
+        '<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.0" />',
         '</Project>',
     ];
     gulp.src([
