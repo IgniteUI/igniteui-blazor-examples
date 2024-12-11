@@ -588,22 +588,23 @@ function updateProjects(cb) {
 function updateIG(cb) {
 
     // NOTE: change this array with new version of IG packages, e.g.
-    // { name: "IgniteUI.Blazor.Trial", version: "23.1.72" }, // use trial packages before the volume release - PUBLIC NUGET https://www.nuget.org/packages/IgniteUI.Blazor.Trial
-    // { name: "IgniteUI.Blazor",       version: "23.2.97" }, // use non-trial packages while working on release - LOCAL PROGET http://proget.infragistics.local:81/packages?Count=500&FeedId=13
+    // { version: "23.1.72", name: "IgniteUI.Blazor.Trial" }, // use trial packages before the volume release - PUBLIC NUGET https://www.nuget.org/packages/IgniteUI.Blazor.Trial
+    // { version: "23.2.97", name: "IgniteUI.Blazor" },       // use non-trial packages while working on release - LOCAL PROGET http://proget.infragistics.local:81/packages?Count=500&FeedId=13
 
     let packageUpgrades = [
         // update version of IG packages and change to Trial or non-trial
-        { name: "IgniteUI.Blazor",                 version: "24.2.40" },
-        { name: "IgniteUI.Blazor.Documents.Core",  version: "24.2.40" },
-        { name: "IgniteUI.Blazor.Documents.Excel", version: "24.2.40" },
+        { version: "24.2.42", name: "IgniteUI.Blazor" },
+        { version: "24.2.42", name: "IgniteUI.Blazor.Documents.Core" },
+        { version: "24.2.42", name: "IgniteUI.Blazor.Documents.Excel" },
         // these IG packages are sometimes updated:
-        { name: "Microsoft.AspNetCore.Components",                       version: "9.0.0" },
-        { name: "Microsoft.AspNetCore.Components.Web",                   version: "9.0.0" },
-        { name: "Microsoft.AspNetCore.Components.WebAssembly",           version: "9.0.0" },
-        { name: "Microsoft.AspNetCore.Components.WebAssembly.DevServer", version: "9.0.0" }, // suffix: 'PrivateAssets="all" ' },
-        { name: "Microsoft.AspNetCore.Cors",                             version: "2.2.0" },
-        { name: "Microsoft.AspNetCore.Http.Abstractions",                version: "2.2.0" },
-        { name: "System.Net.Http.Json", version:"9.0.0" },
+        { version: "9.0.0", name: "Microsoft.AspNetCore.Components" },
+        { version: "9.0.0", name: "Microsoft.AspNetCore.Components.Web" },
+        { version: "9.0.0", name: "Microsoft.AspNetCore.Components.WebAssembly" },
+        { version: "9.0.0", name: "Microsoft.AspNetCore.Components.WebAssembly.DevServer" }, // suffix: 'PrivateAssets="all" ' },
+        { version: "2.2.0", name: "Microsoft.AspNetCore.Cors" },
+        { version: "2.2.0", name: "Microsoft.AspNetCore.Http.Abstractions" },
+        { version: "9.0.0", name: "Microsoft.JSInterop.WebAssembly" },
+        { version: "9.0.0", name: "System.Net.Http.Json" },
     ];
 
     // creating package mapping for quick lookup
