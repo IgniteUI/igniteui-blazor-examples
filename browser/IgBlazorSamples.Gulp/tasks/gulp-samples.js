@@ -213,6 +213,8 @@ function getSamples(cb) {
                     sampleFolder + "/**/*.cs",
                     sampleFolder + "/*.csproj",
                     sampleFolder + "/wwwroot/*.js",
+					// this file has been added to SB since it needs to be in a particular location (directly under wwwroot) for import to work
+					'!' + sampleFolder + "/wwwroot/BlazorFastDownloadFile.js",
                     sampleFolder + "/wwwroot/*.css",
                     sampleFolder + "/wwwroot/index.html",
                  // sampleFolder + "/wwwroot/*",
@@ -226,7 +228,8 @@ function getSamples(cb) {
               '!' + sampleFolder + "/obj/**",
               '!' + sampleFolder + "/obj/*.*",
               '!' + sampleFolder + "/bin/**",
-              '!' + sampleFolder + "/bin/*.*",])
+              '!' + sampleFolder + "/bin/*.*",
+			  ])
             .pipe(flatten({ "includeParents": -1 }))
             .pipe(es.map(function(file, fileCallback) {
                 let fileDir = Transformer.getRelative(file.dirname);
