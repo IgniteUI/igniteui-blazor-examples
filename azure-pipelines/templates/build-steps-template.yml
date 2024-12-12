@@ -43,7 +43,7 @@ steps:
       script: |
         dotnet new nugetconfig --force
         # The name of the source doesn't currently matter as the credentials are attached thanks to URL matching - according to MS docs
-        dotnet nuget add source ${{ parameters.igNuGetFeedUrl }} --name "IG ProGet NuGet" 
+        dotnet nuget add source ${{ parameters.igNuGetFeedUrl }} --name "IG ProGet NuGet" --allow-insecure-connections
       failOnStderr: true
       showWarnings: true
       workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
