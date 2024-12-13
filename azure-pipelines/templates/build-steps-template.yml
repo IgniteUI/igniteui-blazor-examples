@@ -74,7 +74,7 @@ steps:
       # We want the dependency tree to be evaluated each time and to be sure that the dependencies are freshly downloaded
       restoreArguments: '--ignore-failed-sources --no-cache --force --configfile $(Build.SourcesDirectory)\nuget.config'
       feedsToUse: 'config'
-      nugetConfigPath: '$(Build.SourcesDirectory)\Nuget\nuget.config'
+      nugetConfigPath: '$(Build.SourcesDirectory)\nuget.config'
       # This task cannot use an apiKey directly (yet) so use any other service connection not based on an api key
       externalFeedCredentials: 'IG ProGet IgniteUINuGet - Staging'
       ${{ if eq(parameters.isVerbose, true) }}:
