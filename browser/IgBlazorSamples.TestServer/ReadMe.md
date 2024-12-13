@@ -1,0 +1,2 @@
+﻿Test Server project compatible with `WebApplicationFactory` tests used by `IgBlazorSamples.Test` project.
+The reference to the `IgSamplesBrowser.Client` project allows this one to reuse all razor pages with their routing.
