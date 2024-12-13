@@ -46,7 +46,7 @@ steps:
         dotnet nuget add source ${{ parameters.igNuGetFeedUrl }} --name "IG ProGet NuGet" --allow-insecure-connections
       failOnStderr: true
       showWarnings: true
-      workingDirectory: '$(Build.SourcesDirectory)\Nuget'
+      workingDirectory: '$(Build.SourcesDirectory)'
 
   - task: PowerShell@2
     displayName: 'Identify trial packages and use licensed ones instead'
@@ -72,7 +72,7 @@ steps:
       command: 'restore'
       projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
       # We want the dependency tree to be evaluated each time and to be sure that the dependencies are freshly downloaded
-      restoreArguments: '--ignore-failed-sources --no-cache --force --configfile $(Build.SourcesDirectory)\Nuget\nuget.config'
+      restoreArguments: '--ignore-failed-sources --no-cache --force --configfile $(Build.SourcesDirectory)\nuget.config'
       feedsToUse: 'config'
       nugetConfigPath: '$(Build.SourcesDirectory)\Nuget\nuget.config'
       # This task cannot use an apiKey directly (yet) so use any other service connection not based on an api key
@@ -87,8 +87,8 @@ steps:
     displayName: 'Delete NuGet.config file - used only at build time'
     enabled: false
     inputs:
-      SourceFolder: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\'
-      Contents: '**/NuGet.config'
+      SourceFolder: '$(Build.SourcesDirectory)\'
+      Contents: '**/nuget.config'
 
   - task: CmdLine@2
     # Using a CmldLine call for this opeation, because I couldn't get it to work as expected with the DotNetCoreCLI task
