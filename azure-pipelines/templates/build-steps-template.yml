@@ -87,6 +87,7 @@ steps:
       # This task cannot use an apiKey directly (yet) so use any other service connection not based on an api key
       externalFeedCredentials: 'IG ProGet IgniteUINuGet - Staging'
       verbosityRestore: 'Diagnostic'
+  
 
   - task: PowerShell@2
     displayName: 'Generate NuGet.config for IG ProGet NuGet feed'
@@ -114,7 +115,8 @@ steps:
         $addUsername = $nugetConfig.CreateElement("add")
          Write-Host "adding username"
         $addUsername.SetAttribute("key", "Username")
-        $add.SetAttribute("value", "$(username)")
+         $add.SetAttribute("value", "UserName")
+       # $add.SetAttribute("value", "$(username)")
         $source.AppendChild($addUsername)
 
         $addPassword = $nugetConfig.CreateElement("add")
