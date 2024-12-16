@@ -68,6 +68,7 @@ steps:
 
   - task: DotNetCoreCLI@2
     displayName: 'dotnet restore'
+    enabled: false
     inputs:
       command: 'restore'
       projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
@@ -82,6 +83,13 @@ steps:
       ${{ else }}:
         verbosityRestore: 'Normal'
 
+  - task: NuGetCommand@2
+    inputs:
+      command: 'restore'
+      restoreSolution: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
+      feedsToUse: 'config'
+      nugetConfigPath: '$(Build.SourcesDirectory)\nuget.config'
+      externalFeedCredentials: 'IG ProGet IgniteUINuGet - Staging'
 
   - task: DeleteFiles@1
     displayName: 'Delete NuGet.config file - used only at build time'
