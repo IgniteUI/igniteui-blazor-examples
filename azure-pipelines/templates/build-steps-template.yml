@@ -44,6 +44,11 @@ steps:
         dotnet new nugetconfig --force
         # The name of the source doesn't currently matter as the credentials are attached thanks to URL matching - according to MS docs
         dotnet nuget add source ${{ parameters.igNuGetFeedUrl }} --name "IG ProGet NuGet" --allow-insecure-connections
+        # Manually add the allowInsecureConnections attribute to the nuget.config file
+        $nugetConfigPath = "$(Build.SourcesDirectory)\NuGet.config"
+        [xml]$nugetConfig = Get-Content $nugetConfigPath
+        $nugetConfig.configuration.packageSources.add | Where-Object { $_.name -eq "IG ProGet NuGet" } | ForEach-Object { $_.allowInsecureConnections = "true" }
+        $nugetConfig.Save($nugetConfigPath)
       failOnStderr: true
       showWarnings: true
       workingDirectory: '$(Build.SourcesDirectory)'
@@ -82,11 +87,7 @@ steps:
       verbosityRestore: 'Diagnostic'
 
         
-  - task: CmdLine@2
-    displayName: 'DEBUG SHOW NUGET CONFIG'
-    inputs:
-       script: 'type $(Pipeline.Workspace)\Nuget\tempNuGet_$(Build.BuildID).config'
-    condition: always()
+  
 
   - task: DotNetCoreCLI@2
     displayName: 'dotnet restore 2'
