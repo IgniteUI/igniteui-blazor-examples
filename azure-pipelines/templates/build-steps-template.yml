@@ -96,10 +96,14 @@ steps:
         dotnet new nugetconfig --force
         dotnet nuget add source ${{ parameters.igNuGetFeedUrl }} --name "IG ProGet NuGet" --allow-insecure-connections
         # Manually add the allowInsecureConnections attribute to the nuget.config file
+        Write-Host "getting config file"
+        Write-Host "$(Build.SourcesDirectory)\nuget.config"
         $nugetConfigPath = "$(Build.SourcesDirectory)\nuget.config"
+        Write-Host "getting xml content"
         [xml]$nugetConfig = Get-Content $nugetConfigPath
         $nugetConfig.configuration.packageSources.add | Where-Object { $_.name -eq "IG ProGet NuGet" } | ForEach-Object { $_.allowInsecureConnections = "true" }
         # Add credentials to the nuget.config file
+        Write-Host "adding credentials"
         $packageSourceCredentials = $nugetConfig.CreateElement("packageSourceCredentials")
         $source = $nugetConfig.CreateElement("IG_x0020_ProGet_x0020_NuGet")
 
