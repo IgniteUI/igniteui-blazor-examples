@@ -115,11 +115,12 @@ steps:
 
         $addUsername = $nugetConfig.CreateElement("add")
          Write-Host "adding username"
+          $userName = ${{ parameters.username }}
            Write-Host "username is"
-         Write-Host "${{ parameters.userName }}"
+         Write-Host "$userName"
         $addUsername.SetAttribute("key", "Username")
          Write-Host "setting attribute"
-        $add.SetAttribute("value", "${{ parameters.userName }}")        
+        $add.SetAttribute("value", $userName)        
 
         $source.AppendChild($addUsername)
 
