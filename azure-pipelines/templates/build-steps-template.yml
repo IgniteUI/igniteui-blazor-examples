@@ -116,17 +116,17 @@ steps:
         $addUsername = $nugetConfig.CreateElement("add")
          Write-Host "adding username"
            Write-Host "username is"
-         Write-Host ${{ parameters.userName }}
+         Write-Host "${{ parameters.userName }}"
         $addUsername.SetAttribute("key", "Username")
          Write-Host "setting attribute"
-        $add.SetAttribute("value", ${{ parameters.userName }})        
+        $add.SetAttribute("value", "${{ parameters.userName }}")        
 
         $source.AppendChild($addUsername)
 
         $addPassword = $nugetConfig.CreateElement("add")
          Write-Host "adding password"
         $addPassword.SetAttribute("key", "ClearTextPassword")
-        $add.SetAttribute("value", ${{ parameters.password }})
+        $add.SetAttribute("value", "${{ parameters.password }}")
         $source.AppendChild($addPassword)
 
         $packageSourceCredentials.AppendChild($source)
@@ -149,7 +149,6 @@ steps:
       feedsToUse: 'config'
       nugetConfigPath: '$(Build.SourcesDirectory)\nuget.config'
       # This task cannot use an apiKey directly (yet) so use any other service connection not based on an api key
-      externalFeedCredentials: 'IG ProGet IgniteUINuGet - Staging'
       verbosityRestore: 'Diagnostic'      
   
 
