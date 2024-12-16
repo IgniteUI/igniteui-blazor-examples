@@ -120,7 +120,7 @@ steps:
          Write-Host "$userName"
         $addUsername.SetAttribute("key", "Username")
          Write-Host "setting attribute"
-        $add.SetAttribute("value", $userName)        
+        $addUsername.SetAttribute("value", $userName)        
 
         $source.AppendChild($addUsername)
 
@@ -128,7 +128,7 @@ steps:
          Write-Host "adding password"
            $password = ConvertTo-SecureString "${{ parameters.password}}" -asPlainText -Force
         $addPassword.SetAttribute("key", "ClearTextPassword")
-        $add.SetAttribute("value", "$password")
+        $addPassword.SetAttribute("value", "$password")
         $source.AppendChild($addPassword)
 
         $packageSourceCredentials.AppendChild($source)
