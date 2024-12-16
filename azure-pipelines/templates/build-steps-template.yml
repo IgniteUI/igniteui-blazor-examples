@@ -96,23 +96,27 @@ steps:
         dotnet new nugetconfig --force
         dotnet nuget add source ${{ parameters.igNuGetFeedUrl }} --name "IG ProGet NuGet" --allow-insecure-connections
         # Manually add the allowInsecureConnections attribute to the nuget.config file
-        $nugetConfigPath = "$(Build.SourcesDirectory)\NuGet.config"
+        $nugetConfigPath = "NuGet.config"
         [xml]$nugetConfig = Get-Content $nugetConfigPath
         $nugetConfig.configuration.packageSources.add | Where-Object { $_.name -eq "IG ProGet NuGet" } | ForEach-Object { $_.allowInsecureConnections = "true" }
         # Add credentials to the nuget.config file
         $packageSourceCredentials = $nugetConfig.CreateElement("packageSourceCredentials")
-        $source = $packageSourceCredentials.CreateElement("IG ProGet NuGet")
-        $add = $source.CreateElement("add")
-        $add.SetAttribute("key", "Username")
+        $source = $nugetConfig.CreateElement("IG_x0020_ProGet_x0020_NuGet")
+
+        $addUsername = $nugetConfig.CreateElement("add")
+        $addUsername.SetAttribute("key", "Username")
         $add.SetAttribute("value", "$(username)")
-        $source.AppendChild($add)
-        $add = $source.CreateElement("add")
-        $add.SetAttribute("key", "ClearTextPassword")
+        $source.AppendChild($addUsername)
+
+        $addPassword = $nugetConfig.CreateElement("add")
+        $addPassword.SetAttribute("key", "ClearTextPassword")
         $add.SetAttribute("value", "$(password)")
-        $source.AppendChild($add)
+        $source.AppendChild($addPassword)
+
         $packageSourceCredentials.AppendChild($source)
         $nugetConfig.configuration.AppendChild($packageSourceCredentials)
-        $nugetConfig.Save($nugetConfigPath)
+
+        $nugetConfig.OuterXml | Set-Content -Path $nugetConfigPath
       failOnStderr: true
       showWarnings: true
       workingDirectory: '$(Build.SourcesDirectory)' 
