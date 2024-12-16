@@ -90,6 +90,7 @@ steps:
 
   - task: PowerShell@2
     displayName: 'Generate NuGet.config for IG ProGet NuGet feed'
+    continueOnError: true
     inputs:
       targetType: 'inline'
       script: |
@@ -103,23 +104,28 @@ steps:
         [xml]$nugetConfig = Get-Content $nugetConfigPath
         $nugetConfig.configuration.packageSources.add | Where-Object { $_.name -eq "IG ProGet NuGet" } | ForEach-Object { $_.allowInsecureConnections = "true" }
         # Add credentials to the nuget.config file
+         Write-Host "current config"
+        Write-Host $nugetConfig
         Write-Host "adding credentials"
         $packageSourceCredentials = $nugetConfig.CreateElement("packageSourceCredentials")
+         Write-Host "adding source"
         $source = $nugetConfig.CreateElement("IG_x0020_ProGet_x0020_NuGet")
 
         $addUsername = $nugetConfig.CreateElement("add")
+         Write-Host "adding username"
         $addUsername.SetAttribute("key", "Username")
         $add.SetAttribute("value", "$(username)")
         $source.AppendChild($addUsername)
 
         $addPassword = $nugetConfig.CreateElement("add")
+         Write-Host "adding password"
         $addPassword.SetAttribute("key", "ClearTextPassword")
         $add.SetAttribute("value", "$(password)")
         $source.AppendChild($addPassword)
 
         $packageSourceCredentials.AppendChild($source)
         $nugetConfig.configuration.AppendChild($packageSourceCredentials)
-
+        Write-Host "writing contents to file"
         $nugetConfig.OuterXml | Set-Content -Path $nugetConfigPath
       failOnStderr: true
       showWarnings: true
