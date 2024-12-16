@@ -114,17 +114,17 @@ steps:
 
         $addUsername = $nugetConfig.CreateElement("add")
          Write-Host "adding username"
-        $addUsername.SetAttribute("key", "Username")
-         $add.SetAttribute("value", "UserName")
            Write-Host "username is"
-         Write-Host "$(username)"
-        # $add.SetAttribute("value", "$(username)")
+         Write-Host "{{ parameters.userName }}"
+        $addUsername.SetAttribute("key", "Username")
+        $add.SetAttribute("value", "{{ parameters.userName }}")        
+
         $source.AppendChild($addUsername)
 
         $addPassword = $nugetConfig.CreateElement("add")
          Write-Host "adding password"
         $addPassword.SetAttribute("key", "ClearTextPassword")
-        $add.SetAttribute("value", "$(password)")
+        $add.SetAttribute("value", "{{ parameters.password }}")
         $source.AppendChild($addPassword)
 
         $packageSourceCredentials.AppendChild($source)
