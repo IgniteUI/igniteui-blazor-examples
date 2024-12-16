@@ -37,59 +37,6 @@ steps:
       version: '9.0.101' # we are currently building a 8.0 app. TODO: Try upgrading to 8.x in the future
       performMultiLevelLookup: false
 
-
-  - task: PowerShell@2
-    displayName: 'Generate NuGet.config for IG ProGet NuGet feed and u'
-    enabled: false
-    inputs:
-      targetType: 'inline'
-      script: |
-        dotnet new nugetconfig --force
-        # The name of the source doesn't currently matter as the credentials are attached thanks to URL matching - according to MS docs
-        dotnet nuget add source ${{ parameters.igNuGetFeedUrl }} --name "IG ProGet NuGet" --allow-insecure-connections
-        # Manually add the allowInsecureConnections attribute to the nuget.config file
-        $nugetConfigPath = "$(Build.SourcesDirectory)\NuGet.config"
-        [xml]$nugetConfig = Get-Content $nugetConfigPath
-        $nugetConfig.configuration.packageSources.add | Where-Object { $_.name -eq "IG ProGet NuGet" } | ForEach-Object { $_.allowInsecureConnections = "true" }
-        $nugetConfig.Save($nugetConfigPath)
-      failOnStderr: true
-      showWarnings: true
-      workingDirectory: '$(Build.SourcesDirectory)'
-
-  - task: PowerShell@2
-    displayName: 'Identify trial packages and use licensed ones instead'
-    inputs:
-      targetType: 'inline'
-      script: |
-        $xml = [XML](Get-Content '.\IgBlazorSamples.${{ parameters.projectToBuild }}.csproj');
-        
-        $nodes = $xml.SelectNodes("//PackageReference[starts-with(@Include,'IgniteUI')]") | 
-          ForEach-Object { 
-              $_.SetAttribute("Include",$_.Include.Replace(".Trial",""));
-              $_.SetAttribute("Version", "${{ parameters.igVersion }}");
-              Write-Host $_.Version
-          }
-        $xml.Save('.\IgBlazorSamples.${{ parameters.projectToBuild }}.csproj')
-      failOnStderr: true
-      showWarnings: true
-      workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
-
-  - task: DotNetCoreCLI@2
-    displayName: 'dotnet restore'
-    enabled: false
-    continueOnError: true
-    inputs:
-      command: 'restore'
-      projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
-      # We want the dependency tree to be evaluated each time and to be sure that the dependencies are freshly downloaded
-      restoreArguments: '--ignore-failed-sources --no-cache --force'    
-      feedsToUse: 'config'
-      nugetConfigPath: '$(Build.SourcesDirectory)\nuget.config'
-      # This task cannot use an apiKey directly (yet) so use any other service connection not based on an api key
-      externalFeedCredentials: 'IG ProGet IgniteUINuGet - Staging'
-      verbosityRestore: 'Diagnostic'
-  
-
   - task: PowerShell@2
     displayName: 'Generate NuGet.config for IG ProGet NuGet feed'
     continueOnError: true
@@ -139,9 +86,26 @@ steps:
       showWarnings: true
       workingDirectory: '$(Build.SourcesDirectory)' 
 
+  - task: PowerShell@2
+    displayName: 'Identify trial packages and use licensed ones instead'
+    inputs:
+      targetType: 'inline'
+      script: |
+        $xml = [XML](Get-Content '.\IgBlazorSamples.${{ parameters.projectToBuild }}.csproj');
+        
+        $nodes = $xml.SelectNodes("//PackageReference[starts-with(@Include,'IgniteUI')]") | 
+          ForEach-Object { 
+              $_.SetAttribute("Include",$_.Include.Replace(".Trial",""));
+              $_.SetAttribute("Version", "${{ parameters.igVersion }}");
+              Write-Host $_.Version
+          }
+        $xml.Save('.\IgBlazorSamples.${{ parameters.projectToBuild }}.csproj')
+      failOnStderr: true
+      showWarnings: true
+      workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'    
+
   - task: DotNetCoreCLI@2
-    displayName: 'dotnet restore B'
-    continueOnError: true
+    displayName: 'dotnet restore'
     enabled: true
     inputs:
       command: 'restore'
@@ -151,36 +115,11 @@ steps:
       feedsToUse: 'config'
       nugetConfigPath: '$(Build.SourcesDirectory)\nuget.config'
       # This task cannot use an apiKey directly (yet) so use any other service connection not based on an api key
-      verbosityRestore: 'Diagnostic'      
-  
-
-  - task: DotNetCoreCLI@2
-    displayName: 'dotnet restore 2'
-    continueOnError: true
-    enabled: true
-    inputs:
-      command: 'restore'
-      projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
-      # We want the dependency tree to be evaluated each time and to be sure that the dependencies are freshly downloaded
-      restoreArguments: '--ignore-failed-sources --no-cache --force --configfile $(Build.SourcesDirectory)\nuget.config'    
-      # This task cannot use an apiKey directly (yet) so use any other service connection not based on an api key
-      externalFeedCredentials: 'IG ProGet IgniteUINuGet - Staging'
-      verbosityRestore: 'Diagnostic'
-
-  - task: NuGetCommand@2
-    inputs:
-      command: 'restore'
-      restoreSolution: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\IgBlazorSamples.Client.csproj'
-      feedsToUse: 'config'
-      nugetConfigPath: '$(Build.SourcesDirectory)\nuget.config'
-      externalFeedCredentials: 'IG ProGet IgniteUINuGet - Staging'  
-      
-
-  
+      verbosityRestore: 'Diagnostic' 
 
   - task: DeleteFiles@1
     displayName: 'Delete NuGet.config file - used only at build time'
-    enabled: false
+    enabled: true
     inputs:
       SourceFolder: '$(Build.SourcesDirectory)\'
       Contents: '**/nuget.config'
