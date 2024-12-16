@@ -68,7 +68,8 @@ steps:
 
   - task: DotNetCoreCLI@2
     displayName: 'dotnet restore'
-    enabled: false
+    continueOnError: true
+    enabled: true
     inputs:
       command: 'restore'
       projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
@@ -78,18 +79,38 @@ steps:
       nugetConfigPath: '$(Build.SourcesDirectory)\nuget.config'
       # This task cannot use an apiKey directly (yet) so use any other service connection not based on an api key
       externalFeedCredentials: 'IG ProGet IgniteUINuGet - Staging'
-      ${{ if eq(parameters.isVerbose, true) }}:
-        verbosityRestore: 'Diagnostic'
-      ${{ else }}:
-        verbosityRestore: 'Normal'
+      verbosityRestore: 'Diagnostic'
+
+        
+  - task: CmdLine@2
+    displayName: 'DEBUG SHOW NUGET CONFIG'
+    inputs:
+       script: 'type $(Pipeline.Workspace)\Nuget\tempNuGet_$(Build.BuildID).config'
+    condition: always()
+
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet restore 2'
+    continueOnError: true
+    enabled: true
+    inputs:
+      command: 'restore'
+      projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
+      # We want the dependency tree to be evaluated each time and to be sure that the dependencies are freshly downloaded
+      restoreArguments: '--ignore-failed-sources --no-cache --force --configfile $(Build.SourcesDirectory)\nuget.config'    
+      # This task cannot use an apiKey directly (yet) so use any other service connection not based on an api key
+      externalFeedCredentials: 'IG ProGet IgniteUINuGet - Staging'
+      verbosityRestore: 'Diagnostic'
 
   - task: NuGetCommand@2
     inputs:
       command: 'restore'
-      restoreSolution: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
+      restoreSolution: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\IgBlazorSamples.Client.csproj'
       feedsToUse: 'config'
       nugetConfigPath: '$(Build.SourcesDirectory)\nuget.config'
-      externalFeedCredentials: 'IG ProGet IgniteUINuGet - Staging'
+      externalFeedCredentials: 'IG ProGet IgniteUINuGet - Staging'  
+      
+
+  
 
   - task: DeleteFiles@1
     displayName: 'Delete NuGet.config file - used only at build time'
