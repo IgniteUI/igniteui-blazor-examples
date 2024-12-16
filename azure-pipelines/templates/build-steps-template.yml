@@ -5,6 +5,8 @@ parameters:
   - name: isVerbose
     default: false
   - name: shouldCleanPostExectuion
+  - name: username
+  - name: password
 
 steps:
   - task: NodeTool@0
@@ -86,7 +88,49 @@ steps:
       externalFeedCredentials: 'IG ProGet IgniteUINuGet - Staging'
       verbosityRestore: 'Diagnostic'
 
-        
+  - task: PowerShell@2
+    displayName: 'Generate NuGet.config for IG ProGet NuGet feed'
+    inputs:
+      targetType: 'inline'
+      script: |
+        dotnet new nugetconfig --force
+        dotnet nuget add source ${{ parameters.igNuGetFeedUrl }} --name "IG ProGet NuGet" --allow-insecure-connections
+        # Manually add the allowInsecureConnections attribute to the nuget.config file
+        $nugetConfigPath = "$(Build.SourcesDirectory)\NuGet.config"
+        [xml]$nugetConfig = Get-Content $nugetConfigPath
+        $nugetConfig.configuration.packageSources.add | Where-Object { $_.name -eq "IG ProGet NuGet" } | ForEach-Object { $_.allowInsecureConnections = "true" }
+        # Add credentials to the nuget.config file
+        $packageSourceCredentials = $nugetConfig.CreateElement("packageSourceCredentials")
+        $source = $packageSourceCredentials.CreateElement("IG ProGet NuGet")
+        $add = $source.CreateElement("add")
+        $add.SetAttribute("key", "Username")
+        $add.SetAttribute("value", "$(username)")
+        $source.AppendChild($add)
+        $add = $source.CreateElement("add")
+        $add.SetAttribute("key", "ClearTextPassword")
+        $add.SetAttribute("value", "$(password)")
+        $source.AppendChild($add)
+        $packageSourceCredentials.AppendChild($source)
+        $nugetConfig.configuration.AppendChild($packageSourceCredentials)
+        $nugetConfig.Save($nugetConfigPath)
+      failOnStderr: true
+      showWarnings: true
+      workingDirectory: '$(Build.SourcesDirectory)' 
+
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet restore B'
+    continueOnError: true
+    enabled: true
+    inputs:
+      command: 'restore'
+      projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
+      # We want the dependency tree to be evaluated each time and to be sure that the dependencies are freshly downloaded
+      restoreArguments: '--ignore-failed-sources --no-cache --force'    
+      feedsToUse: 'config'
+      nugetConfigPath: '$(Build.SourcesDirectory)\nuget.config'
+      # This task cannot use an apiKey directly (yet) so use any other service connection not based on an api key
+      externalFeedCredentials: 'IG ProGet IgniteUINuGet - Staging'
+      verbosityRestore: 'Diagnostic'      
   
 
   - task: DotNetCoreCLI@2
