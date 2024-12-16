@@ -40,6 +40,7 @@ steps:
 
   - task: PowerShell@2
     displayName: 'Generate NuGet.config for IG ProGet NuGet feed and u'
+    enabled: false
     inputs:
       targetType: 'inline'
       script: |
@@ -75,6 +76,7 @@ steps:
 
   - task: DotNetCoreCLI@2
     displayName: 'dotnet restore'
+    enabled: false
     continueOnError: true
     enabled: true
     inputs:
@@ -115,16 +117,17 @@ steps:
         $addUsername = $nugetConfig.CreateElement("add")
          Write-Host "adding username"
            Write-Host "username is"
-         Write-Host "{{ parameters.userName }}"
+         Write-Host ${{ parameters.userName }}
         $addUsername.SetAttribute("key", "Username")
-        $add.SetAttribute("value", "{{ parameters.userName }}")        
+         Write-Host "setting attribute"
+        $add.SetAttribute("value", ${{ parameters.userName }})        
 
         $source.AppendChild($addUsername)
 
         $addPassword = $nugetConfig.CreateElement("add")
          Write-Host "adding password"
         $addPassword.SetAttribute("key", "ClearTextPassword")
-        $add.SetAttribute("value", "{{ parameters.password }}")
+        $add.SetAttribute("value", ${{ parameters.password }})
         $source.AppendChild($addPassword)
 
         $packageSourceCredentials.AppendChild($source)
