@@ -1,13 +1,13 @@
 ﻿
-igRegisterScript("onEnterDataChartTooltipWorldStats", (o, e) => {
+igRegisterScript("WorldStatsDataChartTooltip", (o, e) => {
     if (e.series.tooltipTemplate === null ||
         e.series.tooltipTemplate === undefined) {
-        e.series.tooltipTemplate = onCreateDataChartTooltipWorldStats;
-        console.log("onEnterDataChartTooltipWorldStats");
+        e.series.tooltipTemplate = worldStatsDataChartTooltipOnCreate;
+        console.log("WorldStatsDataChartTooltip");
     }
 }, false);
 
-function onCreateDataChartTooltipWorldStats(context) {
+function worldStatsDataChartTooltipOnCreate(context) {
     if (!context) return null;
     if (!context.series) return null;
 
