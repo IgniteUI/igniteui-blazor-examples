@@ -32,7 +32,7 @@ steps:
     displayName: 'Install dotnet if not already present'
     inputs:
       packageType: 'sdk'
-      version: '8.x' # we are currently building a 8.0 app. TODO: Try upgrading to 8.x in the future
+      version: '9.x'# because of nuget 6.12 and newer ... super lame
       performMultiLevelLookup: false
 
   - task: NuGetToolInstaller@1
@@ -68,6 +68,13 @@ steps:
       failOnStderr: true
       showWarnings: true
       workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
+
+  - task: UseDotNet@2
+    displayName: 'Install dotnet if not already present'
+    inputs:
+      packageType: 'sdk'
+      version: '8.x' # we are currently building a 8.0 app. TODO: Try upgrading to 8.x in the future
+      performMultiLevelLookup: false
 
   - task: DotNetCoreCLI@2
     displayName: 'dotnet restore'
