@@ -32,9 +32,12 @@ steps:
     displayName: 'Install dotnet if not already present'
     inputs:
       packageType: 'sdk'
-      version: '8.0.100' # we are currently building a 8.0 app. TODO: Try upgrading to 8.x in the future
+      version: '8.x' # we are currently building a 8.0 app. TODO: Try upgrading to 8.x in the future
       performMultiLevelLookup: false
 
+  - task: NuGetToolInstaller@1
+    inputs:
+      versionSpec: 'x'
 
   - task: PowerShell@2
     displayName: 'Generate NuGet.config for IG ProGet NuGet feed and u'
@@ -43,7 +46,7 @@ steps:
       script: |
         dotnet new nugetconfig --force
         # The name of the source doesn't currently matter as the credentials are attached thanks to URL matching - according to MS docs
-        dotnet nuget add source ${{ parameters.igNuGetFeedUrl }} --name "IG ProGet NuGet" 
+        dotnet nuget add source ${{ parameters.igNuGetFeedUrl }} --name "IG ProGet NuGet" --allow-insecure-connections
       failOnStderr: true
       showWarnings: true
       workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
