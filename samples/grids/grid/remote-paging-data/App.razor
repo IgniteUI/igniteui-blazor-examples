@@ -1,0 +1,100 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Name="grid"
+        @ref="grid"
+        Data="NwindData"
+        Moving="true"
+        AllowAdvancedFiltering="true"
+        PagingMode="GridPagingMode.Remote">
+            <IgbPaginator
+            PerPage="10"
+            TotalRecords="20">
+            </IgbPaginator>
+
+            <IgbColumn
+            Name="ID"
+            @ref="iD"
+            Field="ProductID"
+            Header="ID">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="ProductName"
+            @ref="productName"
+            Field="ProductName"
+            Header="Product Name">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="QuantityPerUnit"
+            @ref="quantityPerUnit"
+            Field="QuantityPerUnit"
+            Header="Quantity Per Unit">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="UnitPrice"
+            @ref="unitPrice"
+            Field="UnitPrice"
+            Header="Unit Price">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="OrderDate"
+            @ref="orderDate"
+            Field="OrderDate"
+            Header="Order Date">
+            </IgbColumn>
+
+            <IgbColumn
+            Name="Discontinued"
+            @ref="discontinued"
+            Field="Discontinued"
+            Header="Discontinued">
+            </IgbColumn>
+
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid = this.grid;
+        var iD = this.iD;
+        var productName = this.productName;
+        var quantityPerUnit = this.quantityPerUnit;
+        var unitPrice = this.unitPrice;
+        var orderDate = this.orderDate;
+        var discontinued = this.discontinued;
+
+    }
+
+    private IgbGrid grid;
+    private IgbColumn iD;
+    private IgbColumn productName;
+    private IgbColumn quantityPerUnit;
+    private IgbColumn unitPrice;
+    private IgbColumn orderDate;
+    private IgbColumn discontinued;
+
+    private NwindData _nwindData = null;
+    public NwindData NwindData
+    {
+        get
+        {
+            if (_nwindData == null)
+            {
+                _nwindData = new NwindData();
+            }
+            return _nwindData;
+        }
+    }
+
+}
