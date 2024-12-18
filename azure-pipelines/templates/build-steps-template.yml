@@ -62,6 +62,12 @@ steps:
       nuGetServiceConnections: 'IG ProGet IgniteUINuGet - Staging'
 
   - task: PowerShell@2
+    displayName: 'Diagnostic print'
+    inputs:
+      targetType: 'inline'
+      script: 'Get-Content $(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\NuGet.Config'
+
+  - task: PowerShell@2
     displayName: 'Identify trial packages and use licensed ones instead'
     inputs:
       targetType: 'inline'
