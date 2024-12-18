@@ -87,6 +87,7 @@
     };
     private string stateKey = "pivot-grid-state";
     private IgbIcon IconRef;
+    private IDisposable registration;
 
     private PivotDataFlat _pivotDataFlat = null;
     public PivotDataFlat PivotDataFlat
@@ -194,7 +195,6 @@
     }
     protected override void OnInitialized()
     {
-        Navigation.LocationChanged += OnLocationChanged;
         base.OnInitialized();
     }
 
@@ -213,16 +213,21 @@
                 this.IconRef.RegisterIconFromText("refresh", refreshIcon, "material");
             }));
         }
+        if (firstRender) 
+        {
+            registration = Navigation.RegisterLocationChangingHandler(OnLocationChanged);
+        }
     }
 
-    void OnLocationChanged(object sender, LocationChangedEventArgs e)
+    ValueTask OnLocationChanged(LocationChangingContext arg)
     {
         SaveGridState();
+        return ValueTask.CompletedTask;
     }
 
     public void Dispose()
     {
-        Navigation.LocationChanged -= OnLocationChanged;
+        registration?.Dispose();
     }
 
     async void SaveGridState()
