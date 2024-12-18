@@ -41,7 +41,7 @@ steps:
       checkLatest: true
 
   - task: PowerShell@2
-    displayName: 'Generate NuGet.config for IG ProGet NuGet feed and u'
+    displayName: 'Generate NuGet.config for IG ProGet IgniteUINuGet - Staging feed'
     inputs:
       targetType: 'inline'
       script: |
@@ -51,7 +51,7 @@ steps:
 
         dotnet nuget --version
         # The name of the source doesn't currently matter as the credentials are attached thanks to URL matching - according to MS docs
-        nuget sources Add -Name "IG ProGet NuGet" -Source ${{ parameters.igNuGetFeedUrl }} -AllowInsecureConnections
+        nuget sources Add -Name "IG ProGet IgniteUINuGet - Staging" -Source ${{ parameters.igNuGetFeedUrl }} -AllowInsecureConnections
       failOnStderr: true
       showWarnings: true
       workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
@@ -60,6 +60,7 @@ steps:
     inputs:
       forceReinstallCredentialProvider: true
       nuGetServiceConnections: 'IG ProGet IgniteUINuGet - Staging'
+
 
   - task: PowerShell@2
     displayName: 'Diagnostic print'
