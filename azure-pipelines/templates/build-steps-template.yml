@@ -56,6 +56,11 @@ steps:
       showWarnings: true
       workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
 
+  - task: NuGetAuthenticate@1
+    inputs:
+      forceReinstallCredentialProvider: true
+      nuGetServiceConnections: 'IG ProGet IgniteUINuGet - Staging'
+
   - task: PowerShell@2
     displayName: 'Identify trial packages and use licensed ones instead'
     inputs:
