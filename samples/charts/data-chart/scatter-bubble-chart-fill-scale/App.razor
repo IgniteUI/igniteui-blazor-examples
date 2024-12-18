@@ -7,12 +7,13 @@
         @ref="chart"
         IsHorizontalZoomEnabled="true"
         IsVerticalZoomEnabled="true"
-        ChartTitle="Public Debt vs. Population"
-        Subtitle="GDP per Capita">
+        ChartTitle="Population vs. Public Debt vs. GDP"
+        TitleTopMargin="10"
+        TitleBottomMargin="0">
             <IgbNumericXAxis
             Name="xAxis"
             @ref="xAxis"
-            MinimumValue="10000"
+            MinimumValue="100"
             MaximumValue="10000000000"
             IsLogarithmic="true"
             AbbreviateLargeNumbers="true"
@@ -22,9 +23,11 @@
             <IgbNumericYAxis
             Name="yAxis"
             @ref="yAxis"
+            Title="Public Debt per GDP (%)"
+            TitleLeftMargin="10"
             IsLogarithmic="true"
-            LogarithmBase="10"
-            Title="Public Debt per GDP">
+            MaximumValue="1000"
+            AbbreviateLargeNumbers="true">
             </IgbNumericYAxis>
 
             <IgbBubbleSeries
@@ -35,14 +38,40 @@
             RadiusMemberPath="GdpPerPerson"
             RadiusScale="SizeScale1"
             FillMemberPath="GdpPerPerson"
+            YMemberAsLegendUnit="%"
+            YMemberAsLegendLabel="Debt"
+            XMemberAsLegendLabel="Population"
+            RadiusMemberAsLegendLabel="GDP" 
+            Title="Country" 
             XAxisName="xAxis"
             YAxisName="yAxis"
             DataSource="WorldStats"
             MarkerType="MarkerType.Circle"
             MarkerOutline="black"
+            MarkerThickness="1"
             ShowDefaultTooltip="true"
             FillScale="ValueBrushScale1">
             </IgbBubbleSeries>
+            
+            <IgbDataToolTipLayer
+            Name="dataToolTipLayer"
+            @ref="dataToolTipLayer"
+            ValueRowMarginTop="1"
+            LabelTextMarginTop="1"
+            TitleTextMarginTop="1"
+            UnitsTextMarginTop="1"
+            ValueRowMarginBottom="1"
+            LabelTextMarginBottom="1"
+            TitleTextMarginBottom="1"
+            UnitsTextMarginBottom="1"
+            UnitsTextMarginRight="5"
+            ValueTextMarginLeft="10"
+            LabelTextMarginLeft="1" 
+            LayoutMode="DataLegendLayoutMode.Vertical"
+            BadgeShape="LegendItemBadgeShape.Hidden"
+            HeaderRowVisible="false"
+            IncludedColumns="@(new string[] { "X", "Y", "Radius" })"  >
+            </IgbDataToolTipLayer>
 
         </IgbDataChart>
 
@@ -50,6 +79,8 @@
 </div>
 
 @code {
+
+    private IgbDataToolTipLayer dataToolTipLayer;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -90,8 +121,8 @@
                 var valueBrushScale1 = new IgbValueBrushScale();
                 valueBrushScale1.IsLogarithmic = false;
                 valueBrushScale1.MinimumValue = 0;
-                valueBrushScale1.MaximumValue = 100000;
-                valueBrushScale1.Brushes = "#1aa1e2 #189ad9 #1692ce #1385bc #0f79ab #0c6b99 #095e88 #055277 #024669 #003f5e";
+                valueBrushScale1.MaximumValue = 260000;
+                valueBrushScale1.Brushes = "#89b5fa #146cf7 #5290f2";
                 this._valueBrushScale1 = valueBrushScale1;
             }
             return this._valueBrushScale1;

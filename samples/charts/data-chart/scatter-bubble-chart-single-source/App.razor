@@ -1,28 +1,32 @@
 @using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
-    <div class="legend-title">
-        Total Population of Selected Countries
-    </div>
+
     <div class="container vertical fill">
         <IgbDataChart
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        ChartTitle="Population vs. Public Debt vs. GDP"
+        TitleTopMargin="10"
+        TitleBottomMargin="0">
             <IgbNumericXAxis
             Name="xAxis"
             @ref="xAxis"
-            Title="Population"
+            MinimumValue="100"
+            MaximumValue="10000000000"
             IsLogarithmic="true"
-            AbbreviateLargeNumbers="true">
+            AbbreviateLargeNumbers="true"
+            Title="Population">
             </IgbNumericXAxis>
 
             <IgbNumericYAxis
             Name="yAxis"
             @ref="yAxis"
-            Title="Public Debt"
-            IsLogarithmic="false"
-            AbbreviateLargeNumbers="true"
-            MaximumValue="120">
+            Title="Public Debt per GDP (%)"
+            TitleLeftMargin="10"
+            IsLogarithmic="true"
+            MaximumValue="1000"
+            AbbreviateLargeNumbers="true">
             </IgbNumericYAxis>
 
             <IgbBubbleSeries
@@ -32,7 +36,11 @@
             YMemberPath="PublicDebt"
             RadiusMemberPath="GdpPerPerson"
             RadiusScale="SizeScale1"
-            FillMemberPath="GdpPerPerson"
+            YMemberAsLegendUnit="%"
+            YMemberAsLegendLabel="Debt"
+            XMemberAsLegendLabel="Population"
+            RadiusMemberAsLegendLabel="GDP" 
+            Title="Country" 
             XAxisName="xAxis"
             YAxisName="yAxis"
             DataSource="WorldStats"
@@ -42,7 +50,21 @@
 
             <IgbDataToolTipLayer
             Name="dataToolTipLayer"
-            @ref="dataToolTipLayer">
+            @ref="dataToolTipLayer"
+            ValueRowMarginTop="1"
+            LabelTextMarginTop="1"
+            TitleTextMarginTop="1"
+            UnitsTextMarginTop="1"
+            ValueRowMarginBottom="1"
+            LabelTextMarginBottom="1"
+            TitleTextMarginBottom="1"
+            UnitsTextMarginBottom="1"
+            UnitsTextMarginRight="5"
+            ValueTextMarginLeft="10"
+            LabelTextMarginLeft="1" 
+            LayoutMode="DataLegendLayoutMode.Vertical"
+            BadgeShape="LegendItemBadgeShape.Hidden"
+            HeaderRowVisible="false">
             </IgbDataToolTipLayer>
 
         </IgbDataChart>

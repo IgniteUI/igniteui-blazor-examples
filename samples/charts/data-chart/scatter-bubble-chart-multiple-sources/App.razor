@@ -28,6 +28,7 @@
             Name="yAxis"
             @ref="yAxis"
             Title="GDP per Capita"
+            TitleLeftMargin="5"
             IsLogarithmic="true"
             AbbreviateLargeNumbers="true">
             </IgbNumericYAxis>
@@ -40,7 +41,10 @@
             YAxisName="yAxis"
             XMemberPath="Population"
             YMemberPath="GDP"
-            RadiusMemberPath="Population"
+            RadiusMemberPath="WorkedHours"
+            XMemberAsLegendLabel="Population"
+            YMemberAsLegendLabel="GDP"
+            RadiusMemberAsLegendLabel="Work Hours"
             DataSource="CountryStatsAfrica"
             MarkerType="MarkerType.Circle"
             ShowDefaultTooltip="true"
@@ -55,13 +59,33 @@
             YAxisName="yAxis"
             XMemberPath="Population"
             YMemberPath="GDP"
-            RadiusMemberPath="Population"
+            RadiusMemberPath="WorkedHours"
+            XMemberAsLegendLabel="Population"
+            YMemberAsLegendLabel="GDP"
+            RadiusMemberAsLegendLabel="Work Hours"
             DataSource="CountryStatsEurope"
             MarkerType="MarkerType.Circle"
             ShowDefaultTooltip="true"
             RadiusScale="SizeScale2">
             </IgbBubbleSeries>
-
+            
+            <IgbDataToolTipLayer
+            Name="dataToolTipLayer"
+            @ref="dataToolTipLayer"
+            ValueRowMarginTop="1"
+            LabelTextMarginTop="1"
+            TitleTextMarginTop="1"
+            UnitsTextMarginTop="1"
+            ValueRowMarginBottom="1"
+            LabelTextMarginBottom="1"
+            TitleTextMarginBottom="1"
+            UnitsTextMarginBottom="1"
+            UnitsTextMarginRight="5"
+            ValueTextMarginLeft="10"
+            LabelTextMarginLeft="5"
+            GroupingMode="DataToolTipLayerGroupingMode.Grouped"
+            LayoutMode="DataLegendLayoutMode.Vertical">
+            </IgbDataToolTipLayer>
         </IgbDataChart>
 
     </div>
@@ -71,6 +95,7 @@
 
     private Action BindElements { get; set; }
 
+    private IgbDataToolTipLayer dataToolTipLayer;
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var legend = this.legend;
