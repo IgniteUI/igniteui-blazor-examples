@@ -27,9 +27,10 @@
             <IgbNumericYAxis
             Name="yAxis"
             @ref="yAxis"
-            Title="GDP per Capita"
-            IsLogarithmic="true"
-            AbbreviateLargeNumbers="true">
+            Title="Public Debt per GDP (%)"
+            TitleLeftMargin="5"
+            IsLogarithmic="false"
+            MaximumValue="120">
             </IgbNumericYAxis>
 
             <IgbBubbleSeries
@@ -39,8 +40,11 @@
             XAxisName="xAxis"
             YAxisName="yAxis"
             XMemberPath="Population"
-            YMemberPath="GDP"
-            RadiusMemberPath="Population"
+            YMemberPath="PublicDebt"
+            RadiusMemberPath="GdpPerPerson"
+            XMemberAsLegendLabel="Population"
+            YMemberAsLegendLabel="Debt"
+            RadiusMemberAsLegendLabel="GDP"
             DataSource="CountryStatsAfrica"
             MarkerType="MarkerType.Circle"
             ShowDefaultTooltip="true"
@@ -54,8 +58,11 @@
             XAxisName="xAxis"
             YAxisName="yAxis"
             XMemberPath="Population"
-            YMemberPath="GDP"
-            RadiusMemberPath="Population"
+            YMemberPath="PublicDebt"
+            RadiusMemberPath="GdpPerPerson"
+            XMemberAsLegendLabel="Population"
+            YMemberAsLegendLabel="Debt"
+            RadiusMemberAsLegendLabel="GDP"
             DataSource="CountryStatsEurope"
             MarkerType="MarkerType.Circle"
             ShowDefaultTooltip="true"
