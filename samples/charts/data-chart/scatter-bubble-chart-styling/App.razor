@@ -28,6 +28,7 @@
             Name="yAxis"
             @ref="yAxis"
             Title="GDP per Capita"
+            TitleLeftMargin="5"
             IsLogarithmic="true"
             AbbreviateLargeNumbers="true">
             </IgbNumericYAxis>
@@ -40,13 +41,16 @@
             YAxisName="yAxis"
             XMemberPath="Population"
             YMemberPath="GDP"
-            RadiusMemberPath="Population"
+            YMemberAsLegendLabel="GDP"
+            XMemberAsLegendLabel="Population"
+            RadiusMemberAsLegendLabel="Worked Hours"
+            RadiusMemberPath="WorkedHours"
             DataSource="CountryStatsAfrica"
             MarkerType="MarkerType.Circle"
-            MarkerOutline="#3eca3e"
-            MarkerBrush="#45b3e0"
+            MarkerOutline="#029e1e"
+            MarkerBrush="#029e1e"
             MarkerFillOpacity="0.5"
-            MarkerThickness="2"
+            MarkerThickness="1"
             ShowDefaultTooltip="true"
             RadiusScale="SizeScale1">
             </IgbBubbleSeries>
@@ -59,20 +63,36 @@
             YAxisName="yAxis"
             XMemberPath="Population"
             YMemberPath="GDP"
-            RadiusMemberPath="Population"
+            YMemberAsLegendLabel="GDP"
+            XMemberAsLegendLabel="Population"
+            RadiusMemberAsLegendLabel="Worked Hours"
+            RadiusMemberPath="WorkedHours"
             DataSource="CountryStatsEurope"
             MarkerType="MarkerType.Circle"
-            MarkerOutline="#ab06dd"
-            MarkerBrush="#879ceb"
+            MarkerOutline="#5f02ab"
+            MarkerBrush="#5f02ab"
             MarkerFillOpacity="0.5"
-            MarkerThickness="2"
+            MarkerThickness="1"
             ShowDefaultTooltip="true"
             RadiusScale="SizeScale2">
             </IgbBubbleSeries>
 
-            <IgbDataToolTipLayer
-            Name="dataToolTipLayer"
-            @ref="dataToolTipLayer">
+            <IgbDataToolTipLayer 
+                Name="dataToolTipLayer"
+                GroupingMode="DataToolTipLayerGroupingMode.Grouped"
+                LayoutMode="DataLegendLayoutMode.Vertical"
+                ValueRowMarginTop="2"
+                LabelTextMarginTop="2"
+                TitleTextMarginTop="2"
+                UnitsTextMarginTop="2"
+                ValueRowMarginBottom="2"
+                LabelTextMarginBottom="2"
+                TitleTextMarginBottom="2"
+                UnitsTextMarginBottom="2"
+                UnitsTextMarginRight="5"
+                ValueTextMarginLeft="10"
+                LabelTextMarginLeft="5"
+                @ref="dataToolTipLayer">
             </IgbDataToolTipLayer>
 
         </IgbDataChart>
