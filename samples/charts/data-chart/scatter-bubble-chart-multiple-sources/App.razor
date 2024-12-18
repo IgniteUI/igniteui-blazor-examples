@@ -69,7 +69,7 @@
             ShowDefaultTooltip="true"
             RadiusScale="SizeScale2">
             </IgbBubbleSeries>
-            
+
             <IgbDataToolTipLayer
             Name="dataToolTipLayer"
             @ref="dataToolTipLayer"
@@ -83,10 +83,11 @@
             UnitsTextMarginBottom="1"
             UnitsTextMarginRight="5"
             ValueTextMarginLeft="10"
-            LabelTextMarginLeft="5"
+            LabelTextMarginLeft="1"
             GroupingMode="DataToolTipLayerGroupingMode.Grouped"
             LayoutMode="DataLegendLayoutMode.Vertical">
             </IgbDataToolTipLayer>
+
         </IgbDataChart>
 
     </div>
@@ -96,7 +97,6 @@
 
     private Action BindElements { get; set; }
 
-    private IgbDataToolTipLayer dataToolTipLayer;
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var legend = this.legend;
@@ -105,6 +105,7 @@
         var yAxis = this.yAxis;
         var bubbleSeries1 = this.bubbleSeries1;
         var bubbleSeries2 = this.bubbleSeries2;
+        var dataToolTipLayer = this.dataToolTipLayer;
 
         this.BindElements = () => {
             chart.Legend = this.legend;
@@ -151,6 +152,7 @@
             return this._sizeScale2;
         }
     }
+    private IgbDataToolTipLayer dataToolTipLayer;
 
     private CountryStatsAfrica _countryStatsAfrica = null;
     public CountryStatsAfrica CountryStatsAfrica

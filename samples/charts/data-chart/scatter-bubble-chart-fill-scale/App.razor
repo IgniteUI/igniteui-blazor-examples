@@ -13,11 +13,11 @@
             <IgbNumericXAxis
             Name="xAxis"
             @ref="xAxis"
+            Title="Population"
             MinimumValue="100"
             MaximumValue="10000000000"
             IsLogarithmic="true"
-            AbbreviateLargeNumbers="true"
-            Title="Population">
+            AbbreviateLargeNumbers="true">
             </IgbNumericXAxis>
 
             <IgbNumericYAxis
@@ -26,8 +26,8 @@
             Title="Public Debt per GDP (%)"
             TitleLeftMargin="10"
             IsLogarithmic="true"
-            MaximumValue="1000"
-            AbbreviateLargeNumbers="true">
+            AbbreviateLargeNumbers="true"
+            MaximumValue="1000">
             </IgbNumericYAxis>
 
             <IgbBubbleSeries
@@ -41,8 +41,8 @@
             YMemberAsLegendUnit="%"
             YMemberAsLegendLabel="Debt"
             XMemberAsLegendLabel="Population"
-            RadiusMemberAsLegendLabel="GDP" 
-            Title="Country" 
+            RadiusMemberAsLegendLabel="GDP"
+            Title="Country"
             XAxisName="xAxis"
             YAxisName="yAxis"
             DataSource="WorldStats"
@@ -52,7 +52,7 @@
             ShowDefaultTooltip="true"
             FillScale="ValueBrushScale1">
             </IgbBubbleSeries>
-            
+
             <IgbDataToolTipLayer
             Name="dataToolTipLayer"
             @ref="dataToolTipLayer"
@@ -66,11 +66,12 @@
             UnitsTextMarginBottom="1"
             UnitsTextMarginRight="5"
             ValueTextMarginLeft="10"
-            LabelTextMarginLeft="1" 
+            LabelTextMarginLeft="1"
+            GroupingMode="DataToolTipLayerGroupingMode.Grouped"
             LayoutMode="DataLegendLayoutMode.Vertical"
             BadgeShape="LegendItemBadgeShape.Hidden"
-            HeaderRowVisible="false"
-            IncludedColumns="@(new string[] { "X", "Y", "Radius" })"  >
+            IncludedColumns="@(new string[] { "X", "Y", "Radius" })"
+            HeaderRowVisible="false">
             </IgbDataToolTipLayer>
 
         </IgbDataChart>
@@ -80,14 +81,13 @@
 
 @code {
 
-    private IgbDataToolTipLayer dataToolTipLayer;
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var chart = this.chart;
         var xAxis = this.xAxis;
         var yAxis = this.yAxis;
         var bubbleSeries1 = this.bubbleSeries1;
+        var dataToolTipLayer = this.dataToolTipLayer;
 
     }
 
@@ -128,6 +128,7 @@
             return this._valueBrushScale1;
         }
     }
+    private IgbDataToolTipLayer dataToolTipLayer;
 
     private WorldStats _worldStats = null;
     public WorldStats WorldStats

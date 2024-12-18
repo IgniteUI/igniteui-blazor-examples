@@ -1,7 +1,6 @@
 @using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
- 
     <div class="container vertical fill">
         <IgbDataChart
         Name="chart"
@@ -25,8 +24,8 @@
             Title="Public Debt per GDP (%)"
             TitleLeftMargin="10"
             IsLogarithmic="true"
-            MaximumValue="1000"
-            AbbreviateLargeNumbers="true">
+            AbbreviateLargeNumbers="true"
+            MaximumValue="1000">
             </IgbNumericYAxis>
 
             <IgbBubbleSeries
@@ -51,7 +50,7 @@
             ShowDefaultTooltip="true"
             RadiusScale="SizeScale1">
             </IgbBubbleSeries>
-            
+
             <IgbDataToolTipLayer
             Name="dataToolTipLayer"
             @ref="dataToolTipLayer"
@@ -65,11 +64,12 @@
             UnitsTextMarginBottom="1"
             UnitsTextMarginRight="5"
             ValueTextMarginLeft="10"
-            LabelTextMarginLeft="1" 
+            LabelTextMarginLeft="1"
+            GroupingMode="DataToolTipLayerGroupingMode.Grouped"
             LayoutMode="DataLegendLayoutMode.Vertical"
             BadgeShape="LegendItemBadgeShape.Hidden"
-            HeaderRowVisible="false"
-            IncludedColumns="@(new string[] { "X", "Y", "Radius" })"  >
+            IncludedColumns="@(new string[] { "X", "Y", "Radius" })"
+            HeaderRowVisible="false">
             </IgbDataToolTipLayer>
 
         </IgbDataChart>
@@ -79,23 +79,16 @@
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
-    { 
+    {
         var chart = this.chart;
         var xAxis = this.xAxis;
         var yAxis = this.yAxis;
         var bubbleSeries1 = this.bubbleSeries1;
-        var bubbleSeries2 = this.bubbleSeries2;
         var dataToolTipLayer = this.dataToolTipLayer;
 
-        this.BindElements = () => { 
-        };
-        this.BindElements();
-
     }
-     
+
     private IgbDataChart chart;
     private IgbNumericXAxis xAxis;
     private IgbNumericYAxis yAxis;
@@ -114,23 +107,6 @@
                 this._sizeScale1 = sizeScale1;
             }
             return this._sizeScale1;
-        }
-    }
-    private IgbBubbleSeries bubbleSeries2;
-    private IgbSizeScale _sizeScale2 = null;
-    public IgbSizeScale SizeScale2
-    {
-        get
-        {
-            if (this._sizeScale2 == null)
-            {
-                var sizeScale2 = new IgbSizeScale();
-                sizeScale2.IsLogarithmic = false;
-                sizeScale2.MinimumValue = 10;
-                sizeScale2.MaximumValue = 50;
-                this._sizeScale2 = sizeScale2;
-            }
-            return this._sizeScale2;
         }
     }
     private IgbDataToolTipLayer dataToolTipLayer;
