@@ -1,23 +1,6 @@
 ﻿// these methods are from:
 // https://www.meziantou.net/generating-and-downloading-a-file-in-a-blazor-webassembly-application.htm
-function BlazorDownloadFileFast(name, contentType, content) {
-    // Convert the parameters to actual JS types
-    var nameStr = BINDING.conv_string(name);
-    var contentTypeStr = BINDING.conv_string(contentType);
-    var contentArray = Blazor.platform.toUint8Array(content);
-    // Create the URL
-    var file = new File([contentArray], nameStr, { type: contentTypeStr });
-    var exportUrl = URL.createObjectURL(file);
-    // Create the <a> element and click on it
-    var a = document.createElement("a");
-    document.body.appendChild(a);
-    a.href = exportUrl;
-    a.download = nameStr;
-    a.target = "_self";
-    a.click();
-    // We don't need to keep the url, let's release the memory
-    URL.revokeObjectURL(exportUrl);
-}
+
 function BlazorDownloadFile(filename, contentType, content) {
     // Blazor marshall byte[] to a base64 string, so we first need to convert the string (content) to a Uint8Array to create the File
     var data = base64DecToArr(content);

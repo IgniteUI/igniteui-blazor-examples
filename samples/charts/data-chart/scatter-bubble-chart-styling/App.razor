@@ -1,25 +1,19 @@
 @using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
-    <div class="legend-title">
-        Total Population of Selected Countries
-    </div>
-    <div class="legend">
-        <IgbLegend
-        Name="legend"
-        @ref="legend"
-        Orientation="LegendOrientation.Horizontal">
-        </IgbLegend>
-
-    </div>
     <div class="container vertical fill">
         <IgbDataChart
         Name="chart"
-        @ref="chart">
+        @ref="chart"
+        ChartTitle="Population vs. Public Debt vs. GDP"
+        TitleTopMargin="10"
+        TitleBottomMargin="0">
             <IgbNumericXAxis
             Name="xAxis"
             @ref="xAxis"
             Title="Population"
+            MinimumValue="100"
+            MaximumValue="10000000000"
             IsLogarithmic="true"
             AbbreviateLargeNumbers="true">
             </IgbNumericXAxis>
@@ -27,52 +21,54 @@
             <IgbNumericYAxis
             Name="yAxis"
             @ref="yAxis"
-            Title="GDP per Capita"
+            Title="Public Debt per GDP (%)"
+            TitleLeftMargin="10"
             IsLogarithmic="true"
-            AbbreviateLargeNumbers="true">
+            AbbreviateLargeNumbers="true"
+            MaximumValue="1000">
             </IgbNumericYAxis>
 
             <IgbBubbleSeries
             Name="bubbleSeries1"
             @ref="bubbleSeries1"
-            Title="African Countries"
+            Title="Country"
             XAxisName="xAxis"
             YAxisName="yAxis"
             XMemberPath="Population"
-            YMemberPath="GDP"
-            RadiusMemberPath="Population"
-            DataSource="CountryStatsAfrica"
+            YMemberPath="PublicDebt"
+            RadiusMemberPath="GdpPerPerson"
+            YMemberAsLegendUnit="%"
+            YMemberAsLegendLabel="Debt"
+            XMemberAsLegendLabel="Population"
+            RadiusMemberAsLegendLabel="GDP"
+            DataSource="WorldStats"
             MarkerType="MarkerType.Circle"
-            MarkerOutline="#3eca3e"
-            MarkerBrush="#45b3e0"
+            MarkerOutline="black"
+            MarkerBrush="#43a2fa"
             MarkerFillOpacity="0.5"
-            MarkerThickness="2"
+            MarkerThickness="1"
             ShowDefaultTooltip="true"
             RadiusScale="SizeScale1">
             </IgbBubbleSeries>
 
-            <IgbBubbleSeries
-            Name="bubbleSeries2"
-            @ref="bubbleSeries2"
-            Title="European Countries"
-            XAxisName="xAxis"
-            YAxisName="yAxis"
-            XMemberPath="Population"
-            YMemberPath="GDP"
-            RadiusMemberPath="Population"
-            DataSource="CountryStatsEurope"
-            MarkerType="MarkerType.Circle"
-            MarkerOutline="#ab06dd"
-            MarkerBrush="#879ceb"
-            MarkerFillOpacity="0.5"
-            MarkerThickness="2"
-            ShowDefaultTooltip="true"
-            RadiusScale="SizeScale2">
-            </IgbBubbleSeries>
-
             <IgbDataToolTipLayer
             Name="dataToolTipLayer"
-            @ref="dataToolTipLayer">
+            @ref="dataToolTipLayer"
+            ValueRowMarginTop="1"
+            LabelTextMarginTop="1"
+            TitleTextMarginTop="1"
+            UnitsTextMarginTop="1"
+            ValueRowMarginBottom="1"
+            LabelTextMarginBottom="1"
+            TitleTextMarginBottom="1"
+            UnitsTextMarginBottom="1"
+            UnitsTextMarginRight="5"
+            ValueTextMarginLeft="10"
+            LabelTextMarginLeft="1"
+            LayoutMode="DataLegendLayoutMode.Vertical"
+            BadgeShape="LegendItemBadgeShape.Hidden"
+            IncludedColumns="@(new string[] { "X", "Y", "Radius" })"
+            HeaderRowVisible="false">
             </IgbDataToolTipLayer>
 
         </IgbDataChart>
@@ -82,26 +78,16 @@
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var legend = this.legend;
         var chart = this.chart;
         var xAxis = this.xAxis;
         var yAxis = this.yAxis;
         var bubbleSeries1 = this.bubbleSeries1;
-        var bubbleSeries2 = this.bubbleSeries2;
         var dataToolTipLayer = this.dataToolTipLayer;
-
-        this.BindElements = () => {
-            chart.Legend = this.legend;
-        };
-        this.BindElements();
 
     }
 
-    private IgbLegend legend;
     private IgbDataChart chart;
     private IgbNumericXAxis xAxis;
     private IgbNumericYAxis yAxis;
@@ -116,54 +102,24 @@
                 var sizeScale1 = new IgbSizeScale();
                 sizeScale1.IsLogarithmic = false;
                 sizeScale1.MinimumValue = 10;
-                sizeScale1.MaximumValue = 50;
+                sizeScale1.MaximumValue = 80;
                 this._sizeScale1 = sizeScale1;
             }
             return this._sizeScale1;
         }
     }
-    private IgbBubbleSeries bubbleSeries2;
-    private IgbSizeScale _sizeScale2 = null;
-    public IgbSizeScale SizeScale2
-    {
-        get
-        {
-            if (this._sizeScale2 == null)
-            {
-                var sizeScale2 = new IgbSizeScale();
-                sizeScale2.IsLogarithmic = false;
-                sizeScale2.MinimumValue = 10;
-                sizeScale2.MaximumValue = 50;
-                this._sizeScale2 = sizeScale2;
-            }
-            return this._sizeScale2;
-        }
-    }
     private IgbDataToolTipLayer dataToolTipLayer;
 
-    private CountryStatsAfrica _countryStatsAfrica = null;
-    public CountryStatsAfrica CountryStatsAfrica
+    private WorldStats _worldStats = null;
+    public WorldStats WorldStats
     {
         get
         {
-            if (_countryStatsAfrica == null)
+            if (_worldStats == null)
             {
-                _countryStatsAfrica = new CountryStatsAfrica();
+                _worldStats = new WorldStats();
             }
-            return _countryStatsAfrica;
-        }
-    }
-
-    private CountryStatsEurope _countryStatsEurope = null;
-    public CountryStatsEurope CountryStatsEurope
-    {
-        get
-        {
-            if (_countryStatsEurope == null)
-            {
-                _countryStatsEurope = new CountryStatsEurope();
-            }
-            return _countryStatsEurope;
+            return _worldStats;
         }
     }
 

@@ -1,10 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
     <AssemblyName>Infragistics.Samples</AssemblyName>
     <RootNamespace>Infragistics.Samples</RootNamespace>
+		<!-- this is required for excel WASM samples for fast file download -->
+	 <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -12,14 +14,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-      <PackageReference Include="IgniteUI.Blazor" Version="24.2.19" />
-      <PackageReference Include="IgniteUI.Blazor" Version="24.2.19" />
-      <PackageReference Include="IgniteUI.Blazor.Documents.Excel" Version="24.2.19" />
-      <PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.0" />
-      <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0" />
+      <PackageReference Include="IgniteUI.Blazor" Version="24.2.52" />
+      <PackageReference Include="IgniteUI.Blazor" Version="24.2.52" />
+      <PackageReference Include="IgniteUI.Blazor.Documents.Excel" Version="24.2.52" />
+      <PackageReference Include="Microsoft.AspNetCore.Components" Version="9.0.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.0" />
 
-      <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0" />
-      <PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.0" />
+
+      <PackageReference Include="Microsoft.JSInterop.WebAssembly" Version="9.0.0" />
+      <PackageReference Include="System.Net.Http.Json" Version="9.0.0" />
   </ItemGroup>
 
 </Project>

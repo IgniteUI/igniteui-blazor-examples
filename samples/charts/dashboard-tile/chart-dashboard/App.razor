@@ -1,0 +1,37 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="container vertical fill">
+        <IgbDashboardTile
+        Name="dashboard"
+        @ref="dashboard"
+        DataSource="OlympicMedalsTopCountries">
+        </IgbDashboardTile>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var dashboard = this.dashboard;
+
+    }
+
+    private IgbDashboardTile dashboard;
+
+    private OlympicMedalsTopCountries _olympicMedalsTopCountries = null;
+    public OlympicMedalsTopCountries OlympicMedalsTopCountries
+    {
+        get
+        {
+            if (_olympicMedalsTopCountries == null)
+            {
+                _olympicMedalsTopCountries = new OlympicMedalsTopCountries();
+            }
+            return _olympicMedalsTopCountries;
+        }
+    }
+
+}

@@ -11,6 +11,9 @@
 @using Microsoft.JSInterop
 @using Microsoft.JSInterop.WebAssembly
 @using Infragistics.Documents.Excel
+@using System.Runtime.InteropServices.JavaScript
+
+@implements IDisposable
 
 <div class="container vertical">
 
@@ -228,11 +231,29 @@
         this.SaveFile(bytes, fileName, mime);
     }
 
-    private void SaveFile(byte[] bytes, string fileName, string mime)
+    JSObject module;
+    bool moduleDownloaded = false;
+    public async void SaveFile(byte[] bytes, string fileName, string mime)
     {
-        if (this.Runtime is WebAssemblyJSRuntime wasmRuntime)
-            wasmRuntime.InvokeUnmarshalled<string, string, byte[], bool>("BlazorDownloadFileFast", fileName, mime, bytes);
-        else if (this.Runtime is IJSInProcessRuntime inProc)
+        if (Runtime is WebAssemblyJSRuntime wasmRuntime)
+        {
+            if (!moduleDownloaded)
+            {
+                module = await JSHost.ImportAsync("BlazorFastDownload", "../BlazorFastDownloadFile.js");
+                moduleDownloaded = true;
+            }
+            BlazorFastDownload.DownloadFile(fileName, mime, bytes);
+        }
+        else if (Runtime is IJSInProcessRuntime inProc)
             inProc.InvokeVoid("BlazorDownloadFile", fileName, mime, bytes);
+
+
+    }
+    public void Dispose()
+    {
+        if (moduleDownloaded && module != null)
+        {
+            module.Dispose();
+        }
     }
 }

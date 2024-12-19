@@ -7,24 +7,27 @@
         @ref="chart"
         IsHorizontalZoomEnabled="true"
         IsVerticalZoomEnabled="true"
-        ChartTitle="Public Debt vs. Population"
-        Subtitle="GDP per Capita">
+        ChartTitle="Population vs. Public Debt vs. GDP"
+        TitleTopMargin="10"
+        TitleBottomMargin="0">
             <IgbNumericXAxis
             Name="xAxis"
             @ref="xAxis"
-            MinimumValue="10000"
+            Title="Population"
+            MinimumValue="100"
             MaximumValue="10000000000"
             IsLogarithmic="true"
-            AbbreviateLargeNumbers="true"
-            Title="Population">
+            AbbreviateLargeNumbers="true">
             </IgbNumericXAxis>
 
             <IgbNumericYAxis
             Name="yAxis"
             @ref="yAxis"
+            Title="Public Debt per GDP (%)"
+            TitleLeftMargin="10"
             IsLogarithmic="true"
-            LogarithmBase="10"
-            Title="Public Debt per GDP">
+            AbbreviateLargeNumbers="true"
+            MaximumValue="1000">
             </IgbNumericYAxis>
 
             <IgbBubbleSeries
@@ -35,14 +38,40 @@
             RadiusMemberPath="GdpPerPerson"
             RadiusScale="SizeScale1"
             FillMemberPath="GdpPerPerson"
+            YMemberAsLegendUnit="%"
+            YMemberAsLegendLabel="Debt"
+            XMemberAsLegendLabel="Population"
+            RadiusMemberAsLegendLabel="GDP"
+            Title="Country"
             XAxisName="xAxis"
             YAxisName="yAxis"
             DataSource="WorldStats"
             MarkerType="MarkerType.Circle"
             MarkerOutline="black"
+            MarkerThickness="1"
             ShowDefaultTooltip="true"
             FillScale="ValueBrushScale1">
             </IgbBubbleSeries>
+
+            <IgbDataToolTipLayer
+            Name="dataToolTipLayer"
+            @ref="dataToolTipLayer"
+            ValueRowMarginTop="1"
+            LabelTextMarginTop="1"
+            TitleTextMarginTop="1"
+            UnitsTextMarginTop="1"
+            ValueRowMarginBottom="1"
+            LabelTextMarginBottom="1"
+            TitleTextMarginBottom="1"
+            UnitsTextMarginBottom="1"
+            UnitsTextMarginRight="5"
+            ValueTextMarginLeft="10"
+            LabelTextMarginLeft="1"
+            LayoutMode="DataLegendLayoutMode.Vertical"
+            BadgeShape="LegendItemBadgeShape.Hidden"
+            IncludedColumns="@(new string[] { "X", "Y", "Radius" })"
+            HeaderRowVisible="false">
+            </IgbDataToolTipLayer>
 
         </IgbDataChart>
 
@@ -57,6 +86,7 @@
         var xAxis = this.xAxis;
         var yAxis = this.yAxis;
         var bubbleSeries1 = this.bubbleSeries1;
+        var dataToolTipLayer = this.dataToolTipLayer;
 
     }
 
@@ -74,7 +104,7 @@
                 var sizeScale1 = new IgbSizeScale();
                 sizeScale1.IsLogarithmic = false;
                 sizeScale1.MinimumValue = 10;
-                sizeScale1.MaximumValue = 120;
+                sizeScale1.MaximumValue = 80;
                 this._sizeScale1 = sizeScale1;
             }
             return this._sizeScale1;
@@ -89,14 +119,15 @@
             {
                 var valueBrushScale1 = new IgbValueBrushScale();
                 valueBrushScale1.IsLogarithmic = false;
-                valueBrushScale1.MinimumValue = 0;
-                valueBrushScale1.MaximumValue = 100000;
-                valueBrushScale1.Brushes = "#1aa1e2 #189ad9 #1692ce #1385bc #0f79ab #0c6b99 #095e88 #055277 #024669 #003f5e";
+                valueBrushScale1.MinimumValue = 500;
+                valueBrushScale1.MaximumValue = 260000;
+                valueBrushScale1.Brushes = "#96bdfa #6fa4f7 #5290f2 #135ed4";
                 this._valueBrushScale1 = valueBrushScale1;
             }
             return this._valueBrushScale1;
         }
     }
+    private IgbDataToolTipLayer dataToolTipLayer;
 
     private WorldStats _worldStats = null;
     public WorldStats WorldStats

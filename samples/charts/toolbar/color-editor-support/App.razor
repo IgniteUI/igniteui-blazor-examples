@@ -1,0 +1,116 @@
+@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
+@using System;
+
+<div class="container vertical">
+    <div id="aboveContentSplit">
+        <div id="aboveContentLeftContainer">
+            <IgbToolbar
+            Name="toolbar"
+            @ref="toolbar"
+            OnCommand="ColorEditorToggleSeriesBrush">
+                <IgbToolActionColorEditor
+                Title="Series Brush"
+                Name="colorEditorTool"
+                @ref="colorEditorTool"
+                CommandId="ToggleSeriesBrush">
+                </IgbToolActionColorEditor>
+
+            </IgbToolbar>
+
+        </div>
+        <div id="aboveContentRightContainer">
+            <!-- insert aboveContentRight -->
+            <!-- end aboveContentRight -->
+        </div>
+    </div>
+    <div class="container vertical fill">
+        <IgbDataChart
+        IsHorizontalZoomEnabled="true"
+        Name="chart"
+        @ref="chart">
+            <IgbCategoryXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            DataSource="CountryRenewableElectricity"
+            Label="Year">
+            </IgbCategoryXAxis>
+
+            <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis"
+            Title="TWh"
+            LabelLocation="AxisLabelsLocation.OutsideRight">
+            </IgbNumericYAxis>
+
+            <IgbLineSeries
+            Name="lineSeries1"
+            @ref="lineSeries1"
+            Title="Electricity"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="CountryRenewableElectricity"
+            ValueMemberPath="America"
+            MarkerType="MarkerType.None">
+            </IgbLineSeries>
+
+        </IgbDataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var toolbar = this.toolbar;
+        var colorEditorTool = this.colorEditorTool;
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var lineSeries1 = this.lineSeries1;
+
+        this.BindElements = () => {
+            toolbar.Target = this.chart;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbToolbar toolbar;
+    private IgbToolActionColorEditor colorEditorTool;
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbLineSeries lineSeries1;
+
+    public void ColorEditorToggleSeriesBrush(IgbToolCommandEventArgs args)
+    {
+        var target = this.chart;
+        var color = args.Command.ArgumentsList[0].Value;
+        switch (args.Command.CommandId)
+        {
+            case "ToggleSeriesBrush":
+                IgbSeries series = target.ContentSeries[0];
+                series.Brush = color.ToString();
+            break;
+        }
+
+    }
+
+    private CountryRenewableElectricity _countryRenewableElectricity = null;
+    public CountryRenewableElectricity CountryRenewableElectricity
+    {
+        get
+        {
+            if (_countryRenewableElectricity == null)
+            {
+                _countryRenewableElectricity = new CountryRenewableElectricity();
+            }
+            return _countryRenewableElectricity;
+        }
+    }
+
+}

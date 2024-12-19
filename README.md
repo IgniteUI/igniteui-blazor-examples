@@ -105,6 +105,21 @@ At this point, you should see a website hosted all examples of [Ignite UI for Bl
 
 ![Samples Browser Preview](./browser/IgBlazorSamples.Client/wwwroot/images/preview.PNG)
 
+## Updating Packages in Samples
+
+NOTE Do NOT find replace version of packages in package.json files. 
+
+- open this repo in VS Code
+- open [./browser/IgBlazorSamples.Gulp/tasks/gulp-samples.js](./browser/tasks/gulp-samples.js) file
+- navigate to the `updateIG` function
+- update version of packages in `packageUpgrades` array
+- open terminal window
+- run `cd browser/IgBlazorSamples.Gulp` command
+- run `npm install --legacy-peer-deps` command
+- run the `gulp updateIG` command
+- create AND merge a pull request with changes in all *.csproj files in this repository
+- create 2nd pull request with similar changes in `/editor-templates/Blazor/main-template/BlazorClientApp.csproj` of the [igniteui-xplat-examples](https://github.com/IgniteUI/igniteui-xplat-examples) repository.
+
 
 ## Resources
 

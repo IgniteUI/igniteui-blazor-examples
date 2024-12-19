@@ -28,6 +28,8 @@
             Name="yAxis"
             @ref="yAxis"
             Title="GDP per Capita"
+            MaximumValue="1000000"
+            TitleLeftMargin="10"
             IsLogarithmic="true"
             AbbreviateLargeNumbers="true">
             </IgbNumericYAxis>
@@ -40,7 +42,10 @@
             YAxisName="yAxis"
             XMemberPath="Population"
             YMemberPath="GDP"
-            RadiusMemberPath="Population"
+            RadiusMemberPath="WorkedHours"
+            XMemberAsLegendLabel="Population"
+            YMemberAsLegendLabel="GDP"
+            RadiusMemberAsLegendLabel="Work Hours"
             DataSource="CountryStatsAfrica"
             MarkerType="MarkerType.Circle"
             ShowDefaultTooltip="true"
@@ -55,12 +60,32 @@
             YAxisName="yAxis"
             XMemberPath="Population"
             YMemberPath="GDP"
-            RadiusMemberPath="Population"
+            RadiusMemberPath="WorkedHours"
+            XMemberAsLegendLabel="Population"
+            YMemberAsLegendLabel="GDP"
+            RadiusMemberAsLegendLabel="Work Hours"
             DataSource="CountryStatsEurope"
             MarkerType="MarkerType.Circle"
             ShowDefaultTooltip="true"
             RadiusScale="SizeScale2">
             </IgbBubbleSeries>
+
+            <IgbDataToolTipLayer
+            Name="dataToolTipLayer"
+            @ref="dataToolTipLayer"
+            ValueRowMarginTop="1"
+            LabelTextMarginTop="1"
+            TitleTextMarginTop="1"
+            UnitsTextMarginTop="1"
+            ValueRowMarginBottom="1"
+            LabelTextMarginBottom="1"
+            TitleTextMarginBottom="1"
+            UnitsTextMarginBottom="1"
+            UnitsTextMarginRight="5"
+            ValueTextMarginLeft="10"
+            LabelTextMarginLeft="1"
+            LayoutMode="DataLegendLayoutMode.Vertical">
+            </IgbDataToolTipLayer>
 
         </IgbDataChart>
 
@@ -79,6 +104,7 @@
         var yAxis = this.yAxis;
         var bubbleSeries1 = this.bubbleSeries1;
         var bubbleSeries2 = this.bubbleSeries2;
+        var dataToolTipLayer = this.dataToolTipLayer;
 
         this.BindElements = () => {
             chart.Legend = this.legend;
@@ -102,7 +128,7 @@
                 var sizeScale1 = new IgbSizeScale();
                 sizeScale1.IsLogarithmic = false;
                 sizeScale1.MinimumValue = 10;
-                sizeScale1.MaximumValue = 50;
+                sizeScale1.MaximumValue = 80;
                 this._sizeScale1 = sizeScale1;
             }
             return this._sizeScale1;
@@ -119,12 +145,13 @@
                 var sizeScale2 = new IgbSizeScale();
                 sizeScale2.IsLogarithmic = false;
                 sizeScale2.MinimumValue = 10;
-                sizeScale2.MaximumValue = 50;
+                sizeScale2.MaximumValue = 80;
                 this._sizeScale2 = sizeScale2;
             }
             return this._sizeScale2;
         }
     }
+    private IgbDataToolTipLayer dataToolTipLayer;
 
     private CountryStatsAfrica _countryStatsAfrica = null;
     public CountryStatsAfrica CountryStatsAfrica
