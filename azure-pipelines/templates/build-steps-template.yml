@@ -62,7 +62,8 @@ steps:
 
         $addUsername = $nugetConfig.CreateElement("add")
          Write-Host "adding username"
-          $userName = ConvertTo-SecureString "${{ parameters.username }}" -asPlainText -Force
+         $userName = "${{ parameters.username }}"
+         # $userName = ConvertTo-SecureString "${{ parameters.username }}" -asPlainText -Force
            Write-Host "username is"
          Write-Host "$userName"
         $addUsername.SetAttribute("key", "Username")
@@ -73,7 +74,8 @@ steps:
 
         $addPassword = $nugetConfig.CreateElement("add")
          Write-Host "adding password"
-           $password = ConvertTo-SecureString "${{ parameters.password}}" -asPlainText -Force
+       #    $password = ConvertTo-SecureString "${{ parameters.password}}" -asPlainText -Force
+              $password = "${{ parameters.password}}" 
         $addPassword.SetAttribute("key", "ClearTextPassword")
         $addPassword.SetAttribute("value", "$password")
         $source.AppendChild($addPassword)
