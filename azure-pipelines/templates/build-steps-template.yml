@@ -74,8 +74,8 @@ steps:
 
         $addPassword = $nugetConfig.CreateElement("add")
          Write-Host "adding password"
-       #    $password = ConvertTo-SecureString "${{ parameters.password}}" -asPlainText -Force
-              $password = "${{ parameters.password}}" 
+        #$password = ConvertTo-SecureString "${{ parameters.password}}" -asPlainText -Force
+        $password = "${{ parameters.password}}" 
         $addPassword.SetAttribute("key", "ClearTextPassword")
         $addPassword.SetAttribute("value", "$password")
         $source.AppendChild($addPassword)
