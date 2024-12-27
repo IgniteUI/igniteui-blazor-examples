@@ -10,6 +10,30 @@
         Name="propertyEditorPanel1"
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
+            PropertyPath="XAxisStroke"
+            Name="XAxisStroke"
+            @ref="xAxisStroke"
+            Label="X Axis Stroke"
+            ShouldOverrideDefaultEditor="true"
+            ValueType="PropertyEditorValueType.EnumValue"
+            DropDownNames="@(new string[] { "gray", "darkslategray", "salmon", "cornflowerblue", "darkgreen" })"
+            DropDownValues="@(new string[] { "gray", "darkslategray", "salmon", "cornflowerblue", "darkgreen" })"
+            PrimitiveValue="@("gray")">
+            </IgbPropertyEditorPropertyDescription>
+
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="XAxisMajorStroke"
+            Name="XAxisMajorStroke"
+            @ref="xAxisMajorStroke"
+            Label="X Axis Major Stroke"
+            ShouldOverrideDefaultEditor="true"
+            ValueType="PropertyEditorValueType.EnumValue"
+            DropDownNames="@(new string[] { "gray", "darkslategray", "salmon", "cornflowerblue", "darkgreen" })"
+            DropDownValues="@(new string[] { "gray", "darkslategray", "salmon", "cornflowerblue", "darkgreen" })"
+            PrimitiveValue="@("darkslategray")">
+            </IgbPropertyEditorPropertyDescription>
+
+            <IgbPropertyEditorPropertyDescription
             PropertyPath="YAxisStroke"
             Name="YAxisStroke"
             @ref="yAxisStroke"
@@ -96,6 +120,8 @@
     {
         var legend = this.legend;
         var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var xAxisStroke = this.xAxisStroke;
+        var xAxisMajorStroke = this.xAxisMajorStroke;
         var yAxisStroke = this.yAxisStroke;
         var yAxisMajorStroke = this.yAxisMajorStroke;
         var yAxisMinorStroke = this.yAxisMinorStroke;
@@ -111,6 +137,8 @@
 
     private IgbLegend legend;
     private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription xAxisStroke;
+    private IgbPropertyEditorPropertyDescription xAxisMajorStroke;
     private IgbPropertyEditorPropertyDescription yAxisStroke;
     private IgbPropertyEditorPropertyDescription yAxisMajorStroke;
     private IgbPropertyEditorPropertyDescription yAxisMinorStroke;

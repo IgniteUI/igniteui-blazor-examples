@@ -1,0 +1,34 @@
+@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
+@using System;
+
+<div class="container vertical">
+    <div class="container vertical fill">
+        <IgbDashboardTile
+        TileTitle="Sample Gauge"
+        Name="dashboard"
+        @ref="dashboard">
+        </IgbDashboardTile>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var dashboard = this.dashboard;
+
+        if (firstRender) {
+            this.DashboardTileGaugeOnInit();
+        }
+    }
+
+    private IgbDashboardTile dashboard;
+
+    public void DashboardTileGaugeOnInit()
+    {
+    	this.dashboard.DataSource = 40;
+    }
+
+}

@@ -4158,7 +4158,7 @@ public class WorldStats
             Status = @"Dependency",
             Longitude = -53.13,
             Latitude = 3.893,
-            GdpPerPerson = 4386128,
+            GdpPerPerson = 4386,
             Rank = 180,
             Unemployment = 3,
             OilProduction = 0,
@@ -5318,29 +5318,6 @@ public class WorldStats
             Televisions = 1964,
             PublicDebt = 44,
             Internet = 4009
-        });
-        this.Add(new WorldStatsItem()
-        {
-            Code = @"ATA",
-            Name = @"Antarctica",
-            Continent = @"Antarctica",
-            Population = 4050,
-            GdpTotal = 810,
-            Economy = @"Developing",
-            Region = @"Antarctica",
-            Status = @"Indeterminate",
-            Longitude = 54.592,
-            Latitude = -70.81,
-            GdpPerPerson = 200000,
-            Rank = 231,
-            Unemployment = 9,
-            OilProduction = 2,
-            BirthRate = 18,
-            MedianAge = 42,
-            Electricity = 63975,
-            Televisions = 2439,
-            PublicDebt = 45,
-            Internet = 2190
         });
         this.Add(new WorldStatsItem()
         {
