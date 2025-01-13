@@ -66,12 +66,21 @@ exports.updateIG = updateIG = gulp.series(
     sb.updateIG,
 );
 
+// Copy samples task used only for local run of the Samples Browser Server.
 exports.copySamplesToServer = copySamplesToServer = gulp.series(
     // sb.updateVersion,
     sb.getSamples,
     sb.copySamplesToServer,
 );
 
+// Copy samples task used on host agents. Samples Browser Server from there has added '/blazor-samples' to the base url.
+exports.copySamplesToServerCI = copySamplesToServerCI = gulp.series(
+    // sb.updateVersion,
+    sb.getSamples,
+    sb.copySamplesToServerCI,
+);
+
+// Copy samples task used only for local run of the SB Client.
 exports.copySamplesToClient = copySamplesToClient = gulp.series(
     // sb.updateVersion,
     sb.getSamples,
@@ -80,6 +89,15 @@ exports.copySamplesToClient = copySamplesToClient = gulp.series(
     sb.updateReadme,
 );
 exports.updateBrowser = updateBrowser = copySamplesToClient;
+
+// Copy samples task used on host agents. Samples Browser Client from there has added '/blazor-samples' to the base url.
+exports.copySamplesToClientCI = copySamplesToClientCI = gulp.series(
+    // sb.updateVersion,
+    sb.getSamples,
+    sb.copySamplesToClientCI,
+    sb.updateCodeViewer,
+    sb.updateReadme,
+);
 
 exports.cleanupSampleBrowsers = cleanupSampleBrowsers = gulp.series(
     sb.cleanupSampleBrowsers,
