@@ -144,6 +144,7 @@
     };
     private string stateKey = "tree-grid-state";
     private IgbIcon IconRef;
+    private IDisposable registration;
 
     private EmployeesNestedData _employeesData = null;
     public EmployeesNestedData EmployeesData
@@ -160,7 +161,6 @@
 
     protected override void OnInitialized()
     {
-        Navigation.LocationChanged += OnLocationChanged;
         base.OnInitialized();
     }
 
@@ -179,16 +179,21 @@
                 this.IconRef.RegisterIconFromText("refresh", refreshIcon, "material");
             }));
         }
+        if (firstRender)
+        {
+            registration = Navigation.RegisterLocationChangingHandler(OnLocationChanged);
+        }
     }
 
-    void OnLocationChanged(object sender, LocationChangedEventArgs e)
+    ValueTask OnLocationChanged(LocationChangingContext arg)
     {
         SaveGridState();
+        return ValueTask.CompletedTask;
     }
 
     public void Dispose()
     {
-        Navigation.LocationChanged -= OnLocationChanged;
+        registration?.Dispose();
     }
 
     async void SaveGridState()
