@@ -148,6 +148,7 @@
     };
     private string stateKey = "hierarchical-grid-state";
     private IgbIcon IconRef;
+    private IDisposable registration;
 
     private SingersData _singersData = null;
     public SingersData SingersData
@@ -164,7 +165,6 @@
 
     protected override void OnInitialized()
     {
-        Navigation.LocationChanged += OnLocationChanged;
         base.OnInitialized();
     }
 
@@ -183,16 +183,22 @@
                 this.IconRef.RegisterIconFromText("refresh", refreshIcon, "material");
             }));
         }
+
+        if (firstRender)
+        {
+            registration = Navigation.RegisterLocationChangingHandler(OnLocationChanged);
+        }
     }
 
-    void OnLocationChanged(object sender, LocationChangedEventArgs e)
+    ValueTask OnLocationChanged(LocationChangingContext arg)
     {
         SaveGridState();
+        return ValueTask.CompletedTask;
     }
 
     public void Dispose()
     {
-        Navigation.LocationChanged -= OnLocationChanged;
+        registration?.Dispose();
     }
 
     async void SaveGridState()
