@@ -19,11 +19,11 @@ https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install
 
 ## 2. Install Playwright browsers
 
-- Open a Powershell terminal in the `./browser/IgBlazorSamples.Test/bin/Debug/net8.0` folder.
+- Open a Powershell terminal in the `./browser/IgBlazorSamples.Test/bin/Debug/net9.0` folder.
 
 - Run `./playwright.ps1 install chromium` to instal only chromium for Playwright to run. For all browsers just omit the  `chromium` argument.
 
-You can run it from the `./browser/IgBlazorSamples.Test` folder as well, but you will need to prefix the path to it: `bin/Debug/net8.0/playwright.ps1 install`
+You can run it from the `./browser/IgBlazorSamples.Test` folder as well, but you will need to prefix the path to it: `bin/Debug/net9.0/playwright.ps1 install`
 
 For running from **cmd** you will need to use `pwsh ./playwright.ps1 install`.
 
