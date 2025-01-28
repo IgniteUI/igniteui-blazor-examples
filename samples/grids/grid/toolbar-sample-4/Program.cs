@@ -21,7 +21,8 @@ namespace Infragistics.Samples
             // registering Ignite UI modules
             builder.Services.AddIgniteUIBlazor(
                 typeof(IgbInputModule),
-                typeof(IgbGridModule)
+                typeof(IgbGridModule),
+                typeof(IgbButtonModule)
             );
             await builder.Build().RunAsync();
         }
