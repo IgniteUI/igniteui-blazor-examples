@@ -4,7 +4,7 @@
 
 <div class="container vertical">
     <div class="legend-title">
-        Renewable Electricity Generated
+        Renewable Energy Consumption
     </div>
     <div class="legend">
         <IgbLegend
@@ -15,19 +15,73 @@
 
     </div>
     <div class="container vertical fill">
-        <IgbCategoryChart
+        <IgbDataChart
         Name="chart"
         @ref="chart"
-        DataSource="EnergyRenewableConsumption"
-        ChartType="CategoryChartType.Column"
-        CrosshairsDisplayMode="CrosshairsDisplayMode.None"
-        YAxisTitle="TWh"
         IsHorizontalZoomEnabled="false"
         IsVerticalZoomEnabled="false"
         SelectionMode="SeriesSelectionMode.SelectionColorFill"
         SelectionBehavior="SeriesSelectionBehavior.Auto"
         SelectionBrush="orange">
-        </IgbCategoryChart>
+            <IgbCategoryYAxis
+            Name="yAxis"
+            @ref="yAxis"
+            DataSource="EnergyRenewableConsumption"
+            Label="Location"
+            IsInverted="true">
+            </IgbCategoryYAxis>
+
+            <IgbNumericXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            MinimumValue="0"
+            Title="TWh">
+            </IgbNumericXAxis>
+
+            <IgbStacked100BarSeries
+            Name="stacked100BarSeries"
+            @ref="stacked100BarSeries"
+            DataSource="EnergyRenewableConsumption"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            ShowDefaultTooltip="true"
+            AreaFillOpacity="1">
+                <IgbStackedFragmentSeries
+                Name="s1"
+                @ref="s1"
+                ValueMemberPath="Hydro"
+                Title="@("Hydro")">
+                </IgbStackedFragmentSeries>
+
+                <IgbStackedFragmentSeries
+                Name="s2"
+                @ref="s2"
+                ValueMemberPath="Wind"
+                Title="@("Wind")">
+                </IgbStackedFragmentSeries>
+
+                <IgbStackedFragmentSeries
+                Name="s3"
+                @ref="s3"
+                ValueMemberPath="Solar"
+                Title="@("Solar")">
+                </IgbStackedFragmentSeries>
+
+                <IgbStackedFragmentSeries
+                Name="s4"
+                @ref="s4"
+                ValueMemberPath="Other"
+                Title="@("Other")">
+                </IgbStackedFragmentSeries>
+
+            </IgbStacked100BarSeries>
+
+            <IgbDataToolTipLayer
+            Name="dataToolTipLayer"
+            @ref="dataToolTipLayer">
+            </IgbDataToolTipLayer>
+
+        </IgbDataChart>
 
     </div>
 </div>
@@ -40,6 +94,14 @@
     {
         var legend = this.legend;
         var chart = this.chart;
+        var yAxis = this.yAxis;
+        var xAxis = this.xAxis;
+        var stacked100BarSeries = this.stacked100BarSeries;
+        var s1 = this.s1;
+        var s2 = this.s2;
+        var s3 = this.s3;
+        var s4 = this.s4;
+        var dataToolTipLayer = this.dataToolTipLayer;
 
         this.BindElements = () => {
             chart.Legend = this.legend;
@@ -52,7 +114,15 @@
     }
 
     private IgbLegend legend;
-    private IgbCategoryChart chart;
+    private IgbDataChart chart;
+    private IgbCategoryYAxis yAxis;
+    private IgbNumericXAxis xAxis;
+    private IgbStacked100BarSeries stacked100BarSeries;
+    private IgbStackedFragmentSeries s1;
+    private IgbStackedFragmentSeries s2;
+    private IgbStackedFragmentSeries s3;
+    private IgbStackedFragmentSeries s4;
+    private IgbDataToolTipLayer dataToolTipLayer;
 
     private System.Threading.Timer _timer;
 
