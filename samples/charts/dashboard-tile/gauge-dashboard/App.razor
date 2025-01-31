@@ -1,13 +1,12 @@
 @using IgniteUI.Blazor.Controls
-@using IgniteUI.Blazor.Controls;
-@using System;
 
 <div class="container vertical">
     <div class="container vertical fill">
         <IgbDashboardTile
         TileTitle="Sample Gauge"
         Name="dashboard"
-        @ref="dashboard">
+        @ref="dashboard"
+        DataSource="DashboardGaugeDataSource">
         </IgbDashboardTile>
 
     </div>
@@ -19,16 +18,21 @@
     {
         var dashboard = this.dashboard;
 
-        if (firstRender) {
-            this.DashboardTileGaugeOnInit();
-        }
     }
 
     private IgbDashboardTile dashboard;
 
-    public void DashboardTileGaugeOnInit()
+    private DashboardGaugeDataSource _dashboardGaugeDataSource = null;
+    public DashboardGaugeDataSource DashboardGaugeDataSource
     {
-    	this.dashboard.DataSource = 40;
+        get
+        {
+            if (_dashboardGaugeDataSource == null)
+            {
+                _dashboardGaugeDataSource = new DashboardGaugeDataSource();
+            }
+            return _dashboardGaugeDataSource;
+        }
     }
 
 }
