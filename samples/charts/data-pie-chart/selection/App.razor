@@ -10,8 +10,14 @@
         Name="propertyEditorPanel1"
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="SelectionBehavior"
             Label="Selection Behavior: "
+            ValueType="PropertyEditorValueType.EnumValue"
+            PropertyPath="SelectionBehavior"
+            Name="SelectionBehavior"
+            @ref="selectionBehavior"
+            ShouldOverrideDefaultEditor="true"
+            DropDownNames="@(new string[] { "PerDataItemSingleSelect", "PerDataItemMultiSelect" })"
+            DropDownValues="@(new string[] { "PerDataItemSingleSelect", "PerDataItemMultiSelect" })"
             PrimitiveValue="@("PerDataItemSingleSelect")">
             </IgbPropertyEditorPropertyDescription>
 
@@ -50,6 +56,7 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var selectionBehavior = this.selectionBehavior;
         var chart = this.chart;
 
         this.BindElements = () => {
@@ -60,6 +67,7 @@
     }
 
     private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription selectionBehavior;
     private IgbDataPieChart chart;
 
     private EnergyGlobalDemand _energyGlobalDemand = null;
