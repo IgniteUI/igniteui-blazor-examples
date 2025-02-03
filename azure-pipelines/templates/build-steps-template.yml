@@ -78,7 +78,7 @@ steps:
          # dotnet nuget add source ${{ parameters.igNuGetFeedUrl }} --name "IG ProGet NuGet" 
 
          # (part 2/2) This circumvents the AllowInsecureConnections option's current limitations. Add the temp dir as a local feed
-        dotnet nuget add source $(Build.SourcesDirectory)\tempLocalFeed --name "Local temp feed
+        dotnet nuget add source $(Build.SourcesDirectory)\tempLocalFeed --name "Local temp feed"
       failOnStderr: true
       showWarnings: true
       workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
