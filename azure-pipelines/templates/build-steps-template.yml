@@ -35,7 +35,7 @@ steps:
 
   - task: NuGetAuthenticate@1
     inputs:
-      nuGetServiceConnections: 'IG ProGet NuGet'
+      nuGetServiceConnections: 'IG ProGet IgniteUINuGet - Staging'
 
   - task: UseDotNet@2
     displayName: 'Install dotnet if not already present'
@@ -130,5 +130,5 @@ steps:
       targetPath: '$(Build.ArtifactStagingDirectory)/BlazorSamples${{ parameters.projectToBuild }}.zip'
       artifact: 'BlazorSamples${{ parameters.projectToBuild }}'
 
-  - ${{ if eq(parameters.shouldCleanPostExectuion, true) }}:
-    - task: PostBuildCleanup@4
+  - task: PostBuildCleanup@4
+    condition: ${{ parameters.shouldCleanPostExectuion }}
