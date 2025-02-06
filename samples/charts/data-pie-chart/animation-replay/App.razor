@@ -1,4 +1,6 @@
 @using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
+@using System;
 
 <div class="container vertical">
     <div class="options vertical">
@@ -10,21 +12,13 @@
         Name="propertyEditorPanel1"
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
-            Label="Selection Behavior: "
-            ValueType="PropertyEditorValueType.EnumValue"
-            PropertyPath="SelectionBehavior"
-            Name="SelectionBehavior"
-            @ref="selectionBehavior"
-            ShouldOverrideDefaultEditor="true"
-            DropDownNames="@(new string[] { "PerDataItemSingleSelect", "PerDataItemMultiSelect" })"
-            DropDownValues="@(new string[] { "PerDataItemSingleSelect", "PerDataItemMultiSelect" })"
-            PrimitiveValue="@("PerDataItemSingleSelect")">
-            </IgbPropertyEditorPropertyDescription>
-
-            <IgbPropertyEditorPropertyDescription
-            PropertyPath="SelectionMode"
-            Label="Selection Mode: "
-            PrimitiveValue="@("Brighten")">
+            PropertyPath="ReplayTransitionIn"
+            Label="Replay Animation"
+            PrimitiveValue="@("Replay Animation")"
+            ValueType="PropertyEditorValueType.Button"
+            ButtonClicked="EditorButtonReplayTransitionInDomain"
+            Name="propertyEditorPropertyDescription1"
+            @ref="propertyEditorPropertyDescription1">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -38,12 +32,10 @@
         Name="chart"
         @ref="chart"
         DataSource="EnergyGlobalDemand"
-        HighlightingMode="SeriesHighlightingMode.None"
-        SelectionMode="SeriesSelectionMode.Brighten"
-        SelectionBehavior="SeriesSelectionBehavior.PerDataItemSingleSelect"
-        SelectionBrush="dodgerblue"
-        FocusBrush="black"
-        Thickness="3">
+        TransitionInMode="CategoryTransitionInMode.Auto"
+        TransitionInDuration="1000"
+        TransitionInSpeedType="TransitionInSpeedType.Random"
+        HighlightingMode="SeriesHighlightingMode.None">
         </IgbDataPieChart>
 
     </div>
@@ -56,7 +48,7 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var propertyEditorPanel1 = this.propertyEditorPanel1;
-        var selectionBehavior = this.selectionBehavior;
+        var propertyEditorPropertyDescription1 = this.propertyEditorPropertyDescription1;
         var chart = this.chart;
 
         this.BindElements = () => {
@@ -67,8 +59,15 @@
     }
 
     private IgbPropertyEditorPanel propertyEditorPanel1;
-    private IgbPropertyEditorPropertyDescription selectionBehavior;
+    private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
     private IgbDataPieChart chart;
+
+    public void EditorButtonReplayTransitionInDomain(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
+    {
+        var chart = this.chart;
+        chart.ReplayTransitionIn();
+
+    }
 
     private EnergyGlobalDemand _energyGlobalDemand = null;
     public EnergyGlobalDemand EnergyGlobalDemand

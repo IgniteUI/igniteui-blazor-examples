@@ -4,13 +4,13 @@
     <div class="options vertical">
         <IgbPropertyEditorPanel
 
-        DescriptionType="CategoryAngleAxis"
+        DescriptionType="DataChart"
         IsHorizontal="true"
         IsWrappingEnabled="true"
         Name="propertyEditorPanel1"
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="LabelExtent"
+            PropertyPath="Axes[0 as CategoryAngleAxis].LabelExtent"
             Name="LabelExtent"
             @ref="labelExtent"
             Label="Label Extent"
@@ -23,7 +23,7 @@
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
-            PropertyPath="LabelMode"
+            PropertyPath="Axes[0 as CategoryAngleAxis].LabelMode"
             Name="LabelMode"
             @ref="labelMode"
             Label="LabelMode"
@@ -124,7 +124,7 @@
         var dataToolTipLayer = this.dataToolTipLayer;
 
         this.BindElements = () => {
-            propertyEditorPanel1.Target = this.angleAxis;
+            propertyEditorPanel1.Target = this.chart;
             chart.Legend = this.legend;
         };
         this.BindElements();
