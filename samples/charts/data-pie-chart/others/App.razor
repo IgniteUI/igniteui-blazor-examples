@@ -12,21 +12,23 @@
             <IgbPropertyEditorPropertyDescription
             PropertyPath="OthersCategoryType"
             Label="Others Type: "
-            PrimitiveValue="@("Number")">
+            PrimitiveValue="@("Number")"
+            ValueType="PropertyEditorValueType.EnumValue">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
             PropertyPath="OthersCategoryThreshold"
             Label="Others Threshold: "
-            ShouldOverrideDefaultEditor="true"
             ValueType="PropertyEditorValueType.Slider"
             Min="0"
-            Max="40">
+            Max="50"
+            PrimitiveValue="15">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
             PropertyPath="OthersCategoryText"
-            Label="Others Text: ">
+            Label="Others Text: "
+            ValueType="PropertyEditorValueType.StringValue">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -39,10 +41,9 @@
         <IgbDataPieChart
         Name="chart"
         @ref="chart"
-        DataSource="EnergyGlobalDemand"
-        OthersCategoryText="Others"
+        DataSource="LocalData"
         OthersCategoryType="OthersCategoryType.Number"
-        OthersCategoryThreshold="5">
+        OthersCategoryThreshold="15">
         </IgbDataPieChart>
 
     </div>
@@ -67,16 +68,16 @@
     private IgbPropertyEditorPanel propertyEditorPanel1;
     private IgbDataPieChart chart;
 
-    private EnergyGlobalDemand _energyGlobalDemand = null;
-    public EnergyGlobalDemand EnergyGlobalDemand
+    private LocalData _localData = null;
+    public LocalData LocalData
     {
         get
         {
-            if (_energyGlobalDemand == null)
+            if (_localData == null)
             {
-                _energyGlobalDemand = new EnergyGlobalDemand();
+                _localData = new LocalData();
             }
-            return _energyGlobalDemand;
+            return _localData;
         }
     }
 
