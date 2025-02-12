@@ -14,8 +14,10 @@ class ErrorTestsData : System.Collections.IEnumerable
     }
 }
 
-[Parallelizable(ParallelScope.Self)]
+[TestFixture]
 [TestFixtureSource(typeof(ErrorTestsData))]
+[Parallelizable(ParallelScope.All)]
+[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
 public class ErrorTest : BlazorTest
 {
     private string testSelector;
