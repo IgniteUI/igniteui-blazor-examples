@@ -11,12 +11,16 @@
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="HighlightingMode"
+            Name="HighlightingModeEditor"
+            @ref="highlightingModeEditor"
             Label="Highlighting Mode: "
             PrimitiveValue="@("BrightenSpecific")">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
             PropertyPath="HighlightingBehavior"
+            Name="HighlightingBehaviorEditor"
+            @ref="highlightingBehaviorEditor"
             Label="Highlighting Behavior: "
             PrimitiveValue="@("DirectlyOver")">
             </IgbPropertyEditorPropertyDescription>
@@ -46,6 +50,8 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var highlightingModeEditor = this.highlightingModeEditor;
+        var highlightingBehaviorEditor = this.highlightingBehaviorEditor;
         var chart = this.chart;
 
         this.BindElements = () => {
@@ -56,6 +62,8 @@
     }
 
     private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription highlightingModeEditor;
+    private IgbPropertyEditorPropertyDescription highlightingBehaviorEditor;
     private IgbDataPieChart chart;
 
     private EnergyGlobalDemand _energyGlobalDemand = null;
