@@ -1,0 +1,214 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <div class="wrapper">
+            <span class="summaries-title">Disable Summaries for Column:</span>
+            <div class="summaries-buttons">
+                @if (treeGrid != null && columns?.Length > 0)
+                {
+                    @foreach (IgbColumn column in columns)
+                    {
+                        <IgbButton Variant="ButtonVariant.Contained" class="summary-button"
+                                   @onclick="() => OnDialogShow(column)">@column.Header</IgbButton>
+                    }
+                }
+            </div>
+            <IgbDialog @ref="dialog" Title="@dialogTitle" CloseOnOutsideClick="true">
+                <div class="summaries-dialog-items">
+                    @if (currentColumn != null && currentColumn.HasSummary && summaries.Count() > 0)
+                    {
+                        @foreach (var summary in this.summaries)
+                        {
+                            <IgbCheckbox Value="@summary.Key" Checked="@currentColDisabledSummaries.Contains(summary.Key)"
+                                         Change="@((evt) => ToggleSummary(evt))">@summary.Value</IgbCheckbox>
+                        }
+                    }
+                </div>
+                <IgbButton slot="footer" Variant=@ButtonVariant.Flat Disabled="currentColDisabledSummaries.Count == summaries.Count()"
+                           @onclick="() => ToggleAllSummaries(false)">Disable All</IgbButton>
+                <IgbButton slot="footer" Variant=@ButtonVariant.Flat Disabled="currentColDisabledSummaries.Count == 0"
+                           @onclick="() => ToggleAllSummaries(true)">Enable All</IgbButton>
+            </IgbDialog>
+            <IgbTreeGrid AutoGenerate="false"
+                         Data="OrdersTreeData"
+                         Name="treeGrid"
+                         @ref="treeGrid"
+                         Id="treeGrid"
+                         PrimaryKey="ID"
+                         ForeignKey="ParentID"
+                         ColumnInitScript="ColumnInitScript">
+                <IgbColumn Field="ID"
+                           Header="Order ID"
+                           @ref="orderID"
+                           HasSummary="true">
+                </IgbColumn>
+
+                <IgbColumn Field="Name"
+                           Header="Order Product"
+                           HasSummary="true"
+                           Name="Order Product"
+                           @ref="orderProduct">
+                </IgbColumn>
+
+                <IgbColumn Field="Units"
+                           Header="Units"
+                           DataType="GridColumnDataType.Number"
+                           HasSummary="true"
+                           Editable="true"
+                           HeaderTemplateScript="WebTreeGridSummariesHeaderTemplate"
+                           Name="Units"
+                           @ref="units">
+                </IgbColumn>
+
+                <IgbColumn Field="UnitPrice"
+                           Header="Unit Price"
+                           DataType="GridColumnDataType.Number"
+                           HasSummary="true"
+                           Editable="true"
+                           HeaderTemplateScript="WebTreeGridSummariesHeaderTemplate"
+                           Name="Unit Price"
+                           @ref="unitPrice">
+                </IgbColumn>
+
+                <IgbColumn Field="Price"
+                           Header="Price"
+                           DataType="GridColumnDataType.Number"
+                           HasSummary="true"
+                           Editable="true"
+                           HeaderTemplateScript="WebTreeGridSummariesHeaderTemplate"
+                           Name="Price"
+                           @ref="price">
+                </IgbColumn>
+
+                <IgbColumn Field="Delivered"
+                           Header="Delivered"
+                           DataType="GridColumnDataType.Boolean"
+                           HasSummary="true"
+                           HeaderTemplateScript="WebTreeGridSummariesHeaderTemplate"
+                           Name="Delivered"
+                           @ref="delivered">
+                </IgbColumn>
+
+                <IgbColumn Field="OrderDate"
+                           Header="Order Date"
+                           DataType="GridColumnDataType.Date"
+                           HasSummary="true"
+                           HeaderTemplateScript="WebTreeGridSummariesHeaderTemplate"
+                           Name="Order Date"
+                           @ref="orderDate">
+                </IgbColumn>
+            </IgbTreeGrid>
+        </div>
+    </div>
+</div>
+
+@code {
+    private IgbTreeGrid treeGrid;
+    private IgbColumn orderID;
+    private IgbColumn orderProduct;
+    private IgbColumn units;
+    private IgbColumn unitPrice;
+    private IgbColumn price;
+    private IgbColumn delivered;
+    private IgbColumn orderDate;
+
+    private IgbColumn[] columns { get; set; } = [];
+    private IgbColumn currentColumn;
+
+    private Dictionary<string, string> summaries = [];
+    private List<string> currentColDisabledSummaries { get; set; } = new List<string>();
+
+    private IgbDialog dialog;
+    private string dialogTitle;
+
+    private OrdersTreeData _ordersTreeData = null;
+    public OrdersTreeData OrdersTreeData
+    {
+        get
+        {
+            if (_ordersTreeData == null)
+            {
+                _ordersTreeData = new OrdersTreeData();
+            }
+            return _ordersTreeData;
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (treeGrid != null)
+            {
+                columns = new IgbColumn[] { orderID, orderProduct, unitPrice, price, delivered, orderDate };
+                StateHasChanged();
+            }
+        }
+    }
+
+    public async Task OnDialogShow(IgbColumn column)
+    {
+        if (this.dialog != null)
+        {
+            this.currentColumn = column;
+            this.dialogTitle = "Disable Summaries for: " + column.Header;
+            this.currentColDisabledSummaries.Clear();
+            //this.CurrentColDisabledSummaries = currentColumn.DisabledSummaries.ToList(); //TODO
+            await this.GetSummaryKeysAsync();
+            await this.dialog.ShowAsync();
+        }
+    }
+
+    private async Task GetSummaryKeysAsync()
+    {
+        if (currentColumn != null && currentColumn.HasSummary)
+        {
+            summaries = await JS.InvokeAsync<Dictionary<string, string>>("getSummaries", currentColumn.Field);
+            StateHasChanged();
+        }
+    }
+
+    public async Task ToggleSummary(IgbCheckboxChangeEventArgs eventArgs)
+    {
+        if (currentColumn != null && currentColumn.HasSummary)
+        {
+            string summaryKey = eventArgs.Detail.Value;
+            if (eventArgs.Detail.Checked && !currentColDisabledSummaries.Contains(summaryKey))
+            {
+                currentColDisabledSummaries.Add(summaryKey);
+            }
+            else if (!eventArgs.Detail.Checked && currentColDisabledSummaries.Contains(summaryKey))
+            {
+                currentColDisabledSummaries.Remove(eventArgs.Detail.Value);
+            }
+            foreach (string key in currentColDisabledSummaries)
+            {
+                Console.WriteLine(key);
+            }
+            //currentColumn.DisabledSummaries = CurrentColDisabledSummaries.ToArray(); //TODO
+        }
+    }
+
+    public async Task ToggleAllSummaries(bool enable)
+    {
+        if (currentColumn != null && currentColumn.HasSummary)
+        {
+            if (enable)
+            {
+                currentColDisabledSummaries.Clear();
+            }
+            else
+            {
+                currentColDisabledSummaries = summaries.Keys.ToList();
+            }
+            foreach (string key in currentColDisabledSummaries)
+            {
+                Console.WriteLine(key);
+            }
+            //currentColumn.DisabledSummaries = CurrentColDisabledSummaries.ToArray(); //TODO
+        }
+    }
+}

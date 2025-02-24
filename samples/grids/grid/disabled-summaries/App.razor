@@ -1,0 +1,198 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <div class="wrapper">
+            <span class="summaries-title">Disable Summaries for Column:</span>
+            <div class="summaries-buttons">
+                @if (grid != null && columns?.Length > 0)
+                {
+                    @foreach (IgbColumn column in columns)
+                    {
+                        <IgbButton Variant="ButtonVariant.Contained" class="summary-button"
+                                   @onclick="() => OnDialogShow(column)">@column.Header</IgbButton>
+                    }
+                }
+            </div>
+            <IgbDialog @ref="dialog" Title="@dialogTitle" CloseOnOutsideClick="true">
+                <div class="summaries-dialog-items">
+                    @if (currentColumn != null && currentColumn.HasSummary && summaries.Count() > 0)
+                    {
+                        @foreach (var summary in this.summaries)
+                        {
+                            <IgbCheckbox Value="@summary.Key" Checked="@currentColDisabledSummaries.Contains(summary.Key)"
+                                         Change="@((evt) => ToggleSummary(evt))">@summary.Value</IgbCheckbox>
+                        }
+                    }
+                </div>
+                <IgbButton slot="footer" Variant=@ButtonVariant.Flat Disabled="currentColDisabledSummaries.Count == summaries.Count()"
+                           @onclick="() => ToggleAllSummaries(false)">Disable All</IgbButton>
+                <IgbButton slot="footer" Variant=@ButtonVariant.Flat Disabled="currentColDisabledSummaries.Count == 0"
+                           @onclick="() => ToggleAllSummaries(true)">Enable All</IgbButton>
+            </IgbDialog>
+
+            <IgbGrid AutoGenerate="false"
+                     Name="grid"
+                     Id="grid"
+                     @ref="grid"
+                     Data="NwindData"
+                     PrimaryKey="ProductID"
+                     ColumnInitScript="ColumnInitScript">
+                <IgbColumn Field="ProductID"
+                           Name="ProductID"
+                           Header="Product ID"
+                           HasSummary="true"
+                           @ref="productID">
+                </IgbColumn>
+
+                <IgbColumn Name="ProductName"
+                           @ref="productName"
+                           Field="ProductName"
+                           Header="Product Name"
+                           HasSummary="true">
+                </IgbColumn>
+
+                <IgbColumn Name="UnitPrice"
+                           @ref="unitPrice"
+                           Field="UnitPrice"
+                           Header="Unit Price"
+                           HasSummary="true">
+                </IgbColumn>
+
+                <IgbColumn Name="UnitsInStock"
+                           @ref="unitsInStock"
+                           Field="UnitsInStock"
+                           Header="Units In Stock"
+                           HasSummary="true"
+                           DataType="GridColumnDataType.Number">
+                </IgbColumn>
+
+                <IgbColumn Name="Discontinued"
+                           @ref="discontinued"
+                           Field="Discontinued"
+                           HasSummary="true"
+                           Header="Discontinued">
+                </IgbColumn>
+
+                <IgbColumn Name="OrderDate"
+                           @ref="orderDate"
+                           Field="OrderDate"
+                           Header="Order Date"
+                           HasSummary="true"
+                           DataType="GridColumnDataType.Date">
+                </IgbColumn>
+
+            </IgbGrid>
+        </div>
+
+    </div>
+</div>
+
+@code {
+    private IgbGrid grid;
+    private IgbColumn productID;
+    private IgbColumn productName;
+    private IgbColumn unitPrice;
+    private IgbColumn unitsInStock;
+    private IgbColumn discontinued;
+    private IgbColumn orderDate;
+
+    private IgbColumn[] columns { get; set; } = [];
+    private IgbColumn currentColumn;
+
+    private Dictionary<string, string> summaries = [];
+    private List<string> currentColDisabledSummaries { get; set; } = new List<string>();
+
+    private IgbDialog dialog;
+    private string dialogTitle;
+
+    private NwindData _nwindData = null;
+    public NwindData NwindData
+    {
+        get
+        {
+            if (_nwindData == null)
+            {
+                _nwindData = new NwindData();
+            }
+            return _nwindData;
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (grid != null)
+            {
+                columns = new IgbColumn[] { productID, productName, unitPrice, unitsInStock, discontinued, orderDate };
+                StateHasChanged();
+            }
+        }
+    }
+
+    public async Task OnDialogShow(IgbColumn column)
+    {
+        if (this.dialog != null)
+        {
+            this.currentColumn = column;
+            this.dialogTitle = "Disable Summaries for: " + column.Header;
+            this.currentColDisabledSummaries.Clear();
+            //this.CurrentColDisabledSummaries = currentColumn.DisabledSummaries.ToList(); //TODO
+            await this.GetSummaryKeysAsync();
+            await this.dialog.ShowAsync();
+        }
+    }
+
+    private async Task GetSummaryKeysAsync()
+    {
+        if (currentColumn != null && currentColumn.HasSummary)
+        {
+            summaries = await JS.InvokeAsync<Dictionary<string, string>>("getSummaries", currentColumn.Field);
+            StateHasChanged();
+        }
+    }
+
+    public async Task ToggleSummary(IgbCheckboxChangeEventArgs eventArgs)
+    {
+        if (currentColumn != null && currentColumn.HasSummary)
+        {
+            string summaryKey = eventArgs.Detail.Value;
+            if (eventArgs.Detail.Checked && !currentColDisabledSummaries.Contains(summaryKey))
+            {
+                currentColDisabledSummaries.Add(summaryKey);
+            }
+            else if (!eventArgs.Detail.Checked && currentColDisabledSummaries.Contains(summaryKey))
+            {
+                currentColDisabledSummaries.Remove(eventArgs.Detail.Value);
+            }
+            foreach (string key in currentColDisabledSummaries)
+            {
+                Console.WriteLine(key);
+            }
+            //currentColumn.DisabledSummaries = CurrentColDisabledSummaries.ToArray(); //TODO
+        }
+    }
+
+    public async Task ToggleAllSummaries(bool enable)
+    {
+        if (currentColumn != null && currentColumn.HasSummary)
+        {
+            if (enable)
+            {
+                currentColDisabledSummaries.Clear();
+            }
+            else
+            {
+                currentColDisabledSummaries = summaries.Keys.ToList();
+            }
+            foreach (string key in currentColDisabledSummaries)
+            {
+                Console.WriteLine(key);
+            }
+            //currentColumn.DisabledSummaries = CurrentColDisabledSummaries.ToArray(); //TODO
+        }
+    }
+}

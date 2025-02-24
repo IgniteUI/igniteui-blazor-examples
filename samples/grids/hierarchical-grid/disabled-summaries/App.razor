@@ -1,0 +1,261 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <div class="wrapper">
+            <span class="summaries-title">Disable Summaries for Column:</span>
+            <div class="summaries-buttons">
+                @if (hierarchicalGrid != null && columns?.Length > 0)
+                {
+                    @foreach (IgbColumn column in columns)
+                    {
+                        <IgbButton Variant="ButtonVariant.Contained" class="summary-button"
+                                   @onclick="() => OnDialogShow(column)">@column.Header</IgbButton>
+                    }
+                }
+            </div>
+
+            <IgbDialog @ref="dialog" Title="@dialogTitle" CloseOnOutsideClick="true">
+                <div class="summaries-dialog-items">
+                    @if (currentColumn != null && currentColumn.HasSummary && summaries.Count() > 0)
+                    {
+                        @foreach (var summary in this.summaries)
+                        {
+                            <IgbCheckbox Value="@summary.Key" Checked="@currentColDisabledSummaries.Contains(summary.Key)"
+                                         Change="@((evt) => ToggleSummary(evt))">@summary.Value</IgbCheckbox>
+                        }
+                    }
+                </div>
+                <IgbButton slot="footer" Variant=@ButtonVariant.Flat Disabled="currentColDisabledSummaries.Count == summaries.Count()"
+                           @onclick="() => ToggleAllSummaries(false)">Disable All</IgbButton>
+                <IgbButton slot="footer" Variant=@ButtonVariant.Flat Disabled="currentColDisabledSummaries.Count == 0"
+                           @onclick="() => ToggleAllSummaries(true)">Enable All</IgbButton>
+            </IgbDialog>
+            <IgbHierarchicalGrid AutoGenerate="false"
+                                 Data="SingersData"
+                                 Name="hierarchicalGrid"
+                                 @ref="hierarchicalGrid"
+                                 Id="hierarchicalGrid"
+                                 PrimaryKey="ID"
+                                 ColumnInitScript="ColumnInitScript">
+                <IgbColumn Field="Artist"
+                           Header="Artist"
+                           @ref="artist"
+                           HasSummary="true">
+                </IgbColumn>
+
+                <IgbColumn Field="Photo"
+                           Header="Photo"
+                           @ref="photo"
+                           HasSummary="true"
+                           DataType="GridColumnDataType.Image">
+                </IgbColumn>
+
+                <IgbColumn Field="Debut"
+                           Header="Debut"
+                           @ref="debut"
+                           HasSummary="true">
+                </IgbColumn>
+
+                <IgbColumn Field="GrammyNominations"
+                           Header="Grammy Nominations"
+                           @ref="grammyNominations"
+                           DataType="GridColumnDataType.Number"
+                           HasSummary="true">
+                </IgbColumn>
+
+                <IgbColumn Field="GrammyAwards"
+                           Header="Grammy Awards"
+                           @ref="grammyAwards"
+                           DataType="GridColumnDataType.Number"
+                           HasSummary="true">
+                </IgbColumn>
+
+                <IgbRowIsland ChildDataKey="Albums"
+                              AutoGenerate="false">
+                    <IgbColumn Field="Album"
+                               Header="Album"
+                               DataType="GridColumnDataType.String">
+                    </IgbColumn>
+
+                    <IgbColumn Field="LaunchDate"
+                               Header="Launch Date"
+                               DataType="GridColumnDataType.Date">
+                    </IgbColumn>
+
+                    <IgbColumn Field="BillboardReview"
+                               Header="Billboard Review"
+                               DataType="GridColumnDataType.Number"
+                               HasSummary="true">
+                    </IgbColumn>
+
+                    <IgbColumn Field="USBillboard200"
+                               Header="US Billboard 200"
+                               DataType="GridColumnDataType.Number"
+                               HasSummary="true">
+                    </IgbColumn>
+
+                    <IgbRowIsland ChildDataKey="Songs"
+                                  AutoGenerate="false">
+                        <IgbColumn Field="Number"
+                                   Header="No."
+                                   DataType="GridColumnDataType.String">
+                        </IgbColumn>
+
+                        <IgbColumn Field="Title"
+                                   Header="Title"
+                                   DataType="GridColumnDataType.String"
+                                   HasSummary="true">
+                        </IgbColumn>
+
+                        <IgbColumn Field="Released"
+                                   Header="Released"
+                                   DataType="GridColumnDataType.Date">
+                        </IgbColumn>
+
+                        <IgbColumn Field="Genre"
+                                   Header="Genre"
+                                   DataType="GridColumnDataType.String">
+                        </IgbColumn>
+
+                    </IgbRowIsland>
+
+                </IgbRowIsland>
+
+                <IgbRowIsland ChildDataKey="Tours"
+                              AutoGenerate="false">
+                    <IgbColumn Field="Tour"
+                               Header="Tour"
+                               DataType="GridColumnDataType.String">
+                    </IgbColumn>
+
+                    <IgbColumn Field="StartedOn"
+                               Header="Started on"
+                               DataType="GridColumnDataType.String">
+                    </IgbColumn>
+
+                    <IgbColumn Field="Location"
+                               Header="Location"
+                               DataType="GridColumnDataType.String">
+                    </IgbColumn>
+
+                    <IgbColumn Field="Headliner"
+                               Header="Headliner"
+                               DataType="GridColumnDataType.String">
+                    </IgbColumn>
+
+                </IgbRowIsland>
+
+            </IgbHierarchicalGrid>
+        </div>
+
+    </div>
+</div>
+
+@code {
+    private IgbHierarchicalGrid hierarchicalGrid;
+    private IgbColumn artist;
+    private IgbColumn photo;
+    private IgbColumn debut;
+    private IgbColumn grammyNominations;
+    private IgbColumn grammyAwards;
+
+    private IgbColumn[] columns { get; set; } = [];
+    private IgbColumn currentColumn;
+
+    private Dictionary<string, string> summaries = [];
+    private List<string> currentColDisabledSummaries { get; set; } = new List<string>();
+
+    private IgbDialog dialog;
+    private string dialogTitle;
+
+    private SingersData _singersData = null;
+    public SingersData SingersData
+    {
+        get
+        {
+            if (_singersData == null)
+            {
+                _singersData = new SingersData();
+            }
+            return _singersData;
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (hierarchicalGrid != null)
+            {
+                columns = new IgbColumn[] { artist, photo, debut, grammyNominations, grammyAwards };
+                StateHasChanged();
+            }
+        }
+    }
+
+    public async Task OnDialogShow(IgbColumn column)
+    {
+        if (this.dialog != null)
+        {
+            this.currentColumn = column;
+            this.dialogTitle = "Disable Summaries for: " + column.Header;
+            this.currentColDisabledSummaries.Clear();
+            //this.CurrentColDisabledSummaries = currentColumn.DisabledSummaries.ToList(); //TODO
+            await this.GetSummaryKeysAsync();
+            await this.dialog.ShowAsync();
+        }
+    }
+
+    private async Task GetSummaryKeysAsync()
+    {
+        if (currentColumn != null && currentColumn.HasSummary)
+        {
+            summaries = await JS.InvokeAsync<Dictionary<string, string>>("getSummaries", currentColumn.Field);
+            StateHasChanged();
+        }
+    }
+
+    public async Task ToggleSummary(IgbCheckboxChangeEventArgs eventArgs)
+    {
+        if (currentColumn != null && currentColumn.HasSummary)
+        {
+            string summaryKey = eventArgs.Detail.Value;
+            if (eventArgs.Detail.Checked && !currentColDisabledSummaries.Contains(summaryKey))
+            {
+                currentColDisabledSummaries.Add(summaryKey);
+            }
+            else if (!eventArgs.Detail.Checked && currentColDisabledSummaries.Contains(summaryKey))
+            {
+                currentColDisabledSummaries.Remove(eventArgs.Detail.Value);
+            }
+            foreach (string key in currentColDisabledSummaries)
+            {
+                Console.WriteLine(key);
+            }
+            //currentColumn.DisabledSummaries = CurrentColDisabledSummaries.ToArray(); //TODO
+        }
+    }
+
+    public async Task ToggleAllSummaries(bool enable)
+    {
+        if (currentColumn != null && currentColumn.HasSummary)
+        {
+            if (enable)
+            {
+                currentColDisabledSummaries.Clear();
+            }
+            else
+            {
+                currentColDisabledSummaries = summaries.Keys.ToList();
+            }
+            foreach (string key in currentColDisabledSummaries)
+            {
+                Console.WriteLine(key);
+            }
+            //currentColumn.DisabledSummaries = CurrentColDisabledSummaries.ToArray(); //TODO
+        }
+    }
+}
