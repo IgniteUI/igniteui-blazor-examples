@@ -38,21 +38,23 @@ public class ErrorTest : BlazorTest
     [Category("SampleTest")]
     public async Task BasicErrorTest()
     {
-        int numPageErrors = 0;
-        StringBuilder messages = new();
-        Page.Console += (_, value) =>
+        Page.Console += (test, value) =>
         {
-            if (value.Type == "warning" && value.Text.Contains("Error:"))
+            if (value.Type == "error" || (value.Type == "warning" && value.Text.Contains("Error:")))
             {
-                messages.AppendLine(value.Text);
-                numPageErrors++;
+                throw new Exception(value.Text);
             }
         };
 
         await Page.GotoAsync(goToUrl);
 
-        await Page.WaitForSelectorAsync(testSelector);
-
-        Assert.That(numPageErrors == 0, $"The following errors were thrown: \n ${messages}");
+        try
+        {
+            await Page.WaitForSelectorAsync(testSelector);
+        }
+        catch (Exception ex)
+        {
+            Assert.That(String.IsNullOrEmpty(ex?.Message), $"The following errors were thrown: \n ${ex?.Message}");
+        }
     }
 }
