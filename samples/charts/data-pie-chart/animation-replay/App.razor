@@ -1,0 +1,85 @@
+@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
+@using System;
+
+<div class="container vertical">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+
+        DescriptionType="DataPieChart"
+        IsHorizontal="true"
+        IsWrappingEnabled="true"
+        Name="propertyEditorPanel1"
+        @ref="propertyEditorPanel1">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="ReplayTransitionIn"
+            Label="Replay Animation"
+            PrimitiveValue="@("Replay Animation")"
+            ValueType="PropertyEditorValueType.Button"
+            ButtonClicked="EditorButtonReplayTransitionInDomain"
+            Name="propertyEditorPropertyDescription1"
+            @ref="propertyEditorPropertyDescription1">
+            </IgbPropertyEditorPropertyDescription>
+
+        </IgbPropertyEditorPanel>
+
+    </div>
+    <div class="legend-title">
+        Global Electricity Demand by Energy Use
+    </div>
+    <div class="container vertical fill">
+        <IgbDataPieChart
+        Name="chart"
+        @ref="chart"
+        DataSource="EnergyGlobalDemand"
+        TransitionInMode="CategoryTransitionInMode.Auto"
+        TransitionInDuration="1000"
+        TransitionInSpeedType="TransitionInSpeedType.Random"
+        HighlightingMode="SeriesHighlightingMode.None">
+        </IgbDataPieChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var propertyEditorPropertyDescription1 = this.propertyEditorPropertyDescription1;
+        var chart = this.chart;
+
+        this.BindElements = () => {
+            propertyEditorPanel1.Target = this.chart;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription propertyEditorPropertyDescription1;
+    private IgbDataPieChart chart;
+
+    public void EditorButtonReplayTransitionInDomain(IgbPropertyEditorPropertyDescriptionButtonClickEventArgs args)
+    {
+        var chart = this.chart;
+        chart.ReplayTransitionIn();
+
+    }
+
+    private EnergyGlobalDemand _energyGlobalDemand = null;
+    public EnergyGlobalDemand EnergyGlobalDemand
+    {
+        get
+        {
+            if (_energyGlobalDemand == null)
+            {
+                _energyGlobalDemand = new EnergyGlobalDemand();
+            }
+            return _energyGlobalDemand;
+        }
+    }
+
+}

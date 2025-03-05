@@ -14,8 +14,10 @@ class ErrorTestsData : System.Collections.IEnumerable
     }
 }
 
-[Parallelizable(ParallelScope.Self)]
+[TestFixture]
 [TestFixtureSource(typeof(ErrorTestsData))]
+[Parallelizable(ParallelScope.All)]
+[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
 public class ErrorTest : BlazorTest
 {
     private string testSelector;
@@ -40,17 +42,20 @@ public class ErrorTest : BlazorTest
         StringBuilder messages = new();
         Page.Console += (_, value) =>
         {
-            if (value.Type == "warning" && value.Text.Contains("Error:"))
+            if (value.Type == "error" || (value.Type == "warning" && value.Text.Contains("Error:")))
             {
-                messages.AppendLine(value.Text);
-                numPageErrors++;
+                {
+                    messages.AppendLine(value.Text);
+                    numPageErrors++;
+                }
             }
         };
-
         await Page.GotoAsync(goToUrl);
+
+        Assert.That(numPageErrors == 0, $"The following errors were thrown: \\n ${messages}");
 
         await Page.WaitForSelectorAsync(testSelector);
 
-        Assert.That(numPageErrors == 0, $"The following errors were thrown: \n ${messages}");
+        Assert.That(numPageErrors == 0, $"The following errors were thrown: \\n ${messages}");
     }
 }

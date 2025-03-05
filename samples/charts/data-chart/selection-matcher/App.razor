@@ -1,0 +1,179 @@
+@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
+@using System;
+@using System.Collections.Generic;
+@using System.Collections;
+
+<div class="container vertical">
+    <div class="legend-title">
+        Renewable Energy Consumption
+    </div>
+    <div class="legend">
+        <IgbLegend
+        Name="legend"
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
+        </IgbLegend>
+
+    </div>
+    <div class="container vertical fill">
+        <IgbDataChart
+        Name="chart"
+        @ref="chart"
+        IsHorizontalZoomEnabled="false"
+        IsVerticalZoomEnabled="false"
+        SelectionMode="SeriesSelectionMode.SelectionColorFill"
+        SelectionBehavior="SeriesSelectionBehavior.Auto"
+        SelectionBrush="orange">
+            <IgbCategoryYAxis
+            Name="yAxis"
+            @ref="yAxis"
+            DataSource="EnergyRenewableConsumption"
+            Label="Location"
+            IsInverted="true">
+            </IgbCategoryYAxis>
+
+            <IgbNumericXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            MinimumValue="0"
+            Title="TWh">
+            </IgbNumericXAxis>
+
+            <IgbStacked100BarSeries
+            Name="stacked100BarSeries"
+            @ref="stacked100BarSeries"
+            DataSource="EnergyRenewableConsumption"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            ShowDefaultTooltip="true"
+            AreaFillOpacity="1">
+                <IgbStackedFragmentSeries
+                Name="s1"
+                @ref="s1"
+                ValueMemberPath="Hydro"
+                Title="@("Hydro")">
+                </IgbStackedFragmentSeries>
+
+                <IgbStackedFragmentSeries
+                Name="s2"
+                @ref="s2"
+                ValueMemberPath="Wind"
+                Title="@("Wind")">
+                </IgbStackedFragmentSeries>
+
+                <IgbStackedFragmentSeries
+                Name="s3"
+                @ref="s3"
+                ValueMemberPath="Solar"
+                Title="@("Solar")">
+                </IgbStackedFragmentSeries>
+
+                <IgbStackedFragmentSeries
+                Name="s4"
+                @ref="s4"
+                ValueMemberPath="Other"
+                Title="@("Other")">
+                </IgbStackedFragmentSeries>
+
+            </IgbStacked100BarSeries>
+
+            <IgbDataToolTipLayer
+            Name="dataToolTipLayer"
+            @ref="dataToolTipLayer">
+            </IgbDataToolTipLayer>
+
+        </IgbDataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var chart = this.chart;
+        var yAxis = this.yAxis;
+        var xAxis = this.xAxis;
+        var stacked100BarSeries = this.stacked100BarSeries;
+        var s1 = this.s1;
+        var s2 = this.s2;
+        var s3 = this.s3;
+        var s4 = this.s4;
+        var dataToolTipLayer = this.dataToolTipLayer;
+
+        this.BindElements = () => {
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+
+        if (firstRender) {
+            this.SelectionMatcherOnViewInit();
+        }
+    }
+
+    private IgbLegend legend;
+    private IgbDataChart chart;
+    private IgbCategoryYAxis yAxis;
+    private IgbNumericXAxis xAxis;
+    private IgbStacked100BarSeries stacked100BarSeries;
+    private IgbStackedFragmentSeries s1;
+    private IgbStackedFragmentSeries s2;
+    private IgbStackedFragmentSeries s3;
+    private IgbStackedFragmentSeries s4;
+    private IgbDataToolTipLayer dataToolTipLayer;
+
+    private System.Threading.Timer _timer;
+
+    public void SelectionMatcherOnViewInit()
+    {
+    	_timer = new System.Threading.Timer((_) =>
+    	{
+    		addSelection();
+    	}, null, 1000, 0);
+    	_timer = null;
+    }
+
+    private void addSelection()
+    {
+    	var chart = this.chart;
+    	//var data = (IList)chart.DataSource;
+    	var data = this.EnergyRenewableConsumption;
+    	IgbChartSelection selection = new IgbChartSelection();
+    	selection.Item = data[1];
+    	IgbSeriesMatcher matcher = new IgbSeriesMatcher();
+    	matcher.MemberPath = "Hydro";
+    	matcher.MemberPathType = "ValueMemberPath";
+    	selection.Matcher = matcher;
+
+    	chart.SelectedSeriesItems.Add(selection);
+
+    	IgbChartSelection selection2 = new IgbChartSelection();
+    	selection2 = new IgbChartSelection();
+    	selection2.Item = data[2];
+    	IgbSeriesMatcher matcher2 = new IgbSeriesMatcher();
+    	matcher2 = new IgbSeriesMatcher();
+    	matcher2.MemberPath = "Wind";
+    	matcher2.MemberPathType = "ValueMemberPath";
+    	selection2.Matcher = matcher2;
+
+    	chart.SelectedSeriesItems.Add(selection2);
+    }
+
+    private EnergyRenewableConsumption _energyRenewableConsumption = null;
+    public EnergyRenewableConsumption EnergyRenewableConsumption
+    {
+        get
+        {
+            if (_energyRenewableConsumption == null)
+            {
+                _energyRenewableConsumption = new EnergyRenewableConsumption();
+            }
+            return _energyRenewableConsumption;
+        }
+    }
+
+}
