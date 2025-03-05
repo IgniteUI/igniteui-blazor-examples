@@ -203,7 +203,10 @@
             this.currentColumn = column;
             this.dialogTitle = "Disable Summaries for: " + column.Header;
             this.currentColDisabledSummaries.Clear();
-            //this.CurrentColDisabledSummaries = currentColumn.DisabledSummaries.ToList(); //TODO
+            if (currentColumn.DisabledSummaries != null)
+            {
+                this.currentColDisabledSummaries = currentColumn.DisabledSummaries.ToList();
+            }
             await this.GetSummaryKeysAsync();
             await this.dialog.ShowAsync();
         }
@@ -231,11 +234,7 @@
             {
                 currentColDisabledSummaries.Remove(eventArgs.Detail.Value);
             }
-            foreach (string key in currentColDisabledSummaries)
-            {
-                Console.WriteLine(key);
-            }
-            //currentColumn.DisabledSummaries = CurrentColDisabledSummaries.ToArray(); //TODO
+            currentColumn.DisabledSummaries = currentColDisabledSummaries.ToArray();
         }
     }
 
@@ -251,11 +250,7 @@
             {
                 currentColDisabledSummaries = summaries.Keys.ToList();
             }
-            foreach (string key in currentColDisabledSummaries)
-            {
-                Console.WriteLine(key);
-            }
-            //currentColumn.DisabledSummaries = CurrentColDisabledSummaries.ToArray(); //TODO
+            currentColumn.DisabledSummaries = currentColDisabledSummaries.ToArray();
         }
     }
 }
