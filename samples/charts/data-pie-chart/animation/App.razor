@@ -11,12 +11,16 @@
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="TransitionInMode"
+            Name="TransitionInModeEditor"
+            @ref="transitionInModeEditor"
             Label="Transition In Animation: "
             PrimitiveValue="@("Auto")">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
             PropertyPath="TransitionInSpeedType"
+            Name="TransitionInSpeedTypeEditor"
+            @ref="transitionInSpeedTypeEditor"
             Label="Transition In Speed Type: "
             PrimitiveValue="@("Random")">
             </IgbPropertyEditorPropertyDescription>
@@ -32,9 +36,9 @@
         Name="chart"
         @ref="chart"
         DataSource="EnergyGlobalDemand"
-        TransitionInMode="CategoryTransitionInMode.Auto"
+        TransitionInMode="CategoryTransitionInMode.FromZero"
         TransitionInDuration="1000"
-        TransitionInSpeedType="TransitionInSpeedType.Random">
+        TransitionInSpeedType="TransitionInSpeedType.IndexScaled">
         </IgbDataPieChart>
 
     </div>
@@ -47,6 +51,8 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var transitionInModeEditor = this.transitionInModeEditor;
+        var transitionInSpeedTypeEditor = this.transitionInSpeedTypeEditor;
         var chart = this.chart;
 
         this.BindElements = () => {
@@ -57,6 +63,8 @@
     }
 
     private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription transitionInModeEditor;
+    private IgbPropertyEditorPropertyDescription transitionInSpeedTypeEditor;
     private IgbDataPieChart chart;
 
     private EnergyGlobalDemand _energyGlobalDemand = null;

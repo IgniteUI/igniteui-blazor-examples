@@ -1,6 +1,8 @@
 @using IgniteUI.Blazor.Controls
 @using IgniteUI.Blazor.Controls;
 @using System;
+@using System.Collections.Generic;
+@using System.Collections;
 
 <div class="container vertical">
     <div class="legend-title">
@@ -126,7 +128,7 @@
 
     private System.Threading.Timer _timer;
 
-    private void SelectionMatcherOnViewInit()
+    public void SelectionMatcherOnViewInit()
     {
     	_timer = new System.Threading.Timer((_) =>
     	{
@@ -138,9 +140,10 @@
     private void addSelection()
     {
     	var chart = this.chart;
-
+    	//var data = (IList)chart.DataSource;
+    	var data = this.EnergyRenewableConsumption;
     	IgbChartSelection selection = new IgbChartSelection();
-    	selection.Item = EnergyRenewableConsumption[1];
+    	selection.Item = data[1];
     	IgbSeriesMatcher matcher = new IgbSeriesMatcher();
     	matcher.MemberPath = "Hydro";
     	matcher.MemberPathType = "ValueMemberPath";
@@ -150,11 +153,12 @@
 
     	IgbChartSelection selection2 = new IgbChartSelection();
     	selection2 = new IgbChartSelection();
-    	selection2.Item = EnergyRenewableConsumption[2];
-    	matcher = new IgbSeriesMatcher();
-    	matcher.MemberPath = "Wind";
-    	matcher.MemberPathType = "ValueMemberPath";
-    	selection2.Matcher = matcher;
+    	selection2.Item = data[2];
+    	IgbSeriesMatcher matcher2 = new IgbSeriesMatcher();
+    	matcher2 = new IgbSeriesMatcher();
+    	matcher2.MemberPath = "Wind";
+    	matcher2.MemberPathType = "ValueMemberPath";
+    	selection2.Matcher = matcher2;
 
     	chart.SelectedSeriesItems.Add(selection2);
     }
