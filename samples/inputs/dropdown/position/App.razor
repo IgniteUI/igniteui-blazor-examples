@@ -15,39 +15,71 @@
 <div class="container sample center">
     <IgbDropdown @ref="DropDownRef" Distance="5" Change=OnChange Placement=@placement>
         <IgbButton slot="target">Option</IgbButton>
-        <IgbDropdownItem Value="top">top</IgbDropdownItem>
-        <IgbDropdownItem Value="bottom">bottom</IgbDropdownItem>
-
-        @*<IgbDropdownItem>@DropdownPlacement.Top</IgbDropdownItem>
-        <IgbDropdownItem>@DropdownPlacement.TopStart</IgbDropdownItem>
-        <IgbDropdownItem>@DropdownPlacement.TopEnd</IgbDropdownItem>
-        <IgbDropdownItem>@DropdownPlacement.Bottom</IgbDropdownItem>
-        <IgbDropdownItem>@DropdownPlacement.BottomStart</IgbDropdownItem>
-        <IgbDropdownItem>@DropdownPlacement.BottomEnd</IgbDropdownItem>
-        <IgbDropdownItem>@DropdownPlacement.Left</IgbDropdownItem>
-        <IgbDropdownItem>@DropdownPlacement.LeftStart</IgbDropdownItem>
-        <IgbDropdownItem>@DropdownPlacement.LeftEnd</IgbDropdownItem>
-        <IgbDropdownItem>@DropdownPlacement.Right</IgbDropdownItem>
-        <IgbDropdownItem>@DropdownPlacement.RightStart</IgbDropdownItem>
-        <IgbDropdownItem>@DropdownPlacement.RightEnd</IgbDropdownItem>*@
+            <IgbDropdownItem Value="Top">@DropdownPlacement.Top</IgbDropdownItem>
+            <IgbDropdownItem Value="TopStart">@DropdownPlacement.TopStart</IgbDropdownItem>
+            <IgbDropdownItem Value="TopEnd">@DropdownPlacement.TopEnd</IgbDropdownItem>
+            <IgbDropdownItem Value="Bottom">@DropdownPlacement.Bottom</IgbDropdownItem>
+            <IgbDropdownItem Value="BottomStart">@DropdownPlacement.BottomStart</IgbDropdownItem>
+            <IgbDropdownItem Value="BottomEnd">@DropdownPlacement.BottomEnd</IgbDropdownItem>
+            <IgbDropdownItem Value="Left">@DropdownPlacement.Left</IgbDropdownItem>
+            <IgbDropdownItem Value="LeftStart">@DropdownPlacement.LeftStart</IgbDropdownItem>
+            <IgbDropdownItem Value="LeftEnd">@DropdownPlacement.LeftEnd</IgbDropdownItem>
+            <IgbDropdownItem Value="Right">@DropdownPlacement.Right</IgbDropdownItem>
+            <IgbDropdownItem Value="RightStart">@DropdownPlacement.RightStart</IgbDropdownItem>
+            <IgbDropdownItem Value="RightEnd">@DropdownPlacement.RightEnd</IgbDropdownItem>
     </IgbDropdown>
 </div>
 
-@code {
+    @code {
 
     IgbDropdown DropDownRef { get; set; }
     DropdownPlacement placement { get; set; }
 
     private void OnChange(IgbDropdownItemComponentEventArgs e)
     {
-        //Console.WriteLine(e.Detail.Value);
+        Console.WriteLine(e.Detail.Value);
 
-        //this.placement = e.Detail.Value;
-        if(e.Detail.Value == "top")
+        switch (e.Detail.Value)
         {
-            //TODO
+            case "Top":
+                placement = DropdownPlacement.Top;
+                break;
+            case "TopStart":
+                placement = DropdownPlacement.TopStart;
+                break;
+            case "TopEnd":
+                placement = DropdownPlacement.TopEnd;
+                break;
+            case "Bottom":
+                placement = DropdownPlacement.Bottom;
+                break;
+            case "BottomStart":
+                placement = DropdownPlacement.BottomStart;
+                break;
+            case "BottomEnd":
+                placement = DropdownPlacement.BottomEnd;
+                break;
+            case "Left":
+                placement = DropdownPlacement.Left;
+                break;
+            case "LeftStart":
+                placement = DropdownPlacement.LeftStart;
+                break;
+            case "LeftEnd":
+                placement = DropdownPlacement.LeftEnd;
+                break;
+            case "Right":
+                placement = DropdownPlacement.Right;
+                break;
+            case "RightStart":
+                placement = DropdownPlacement.RightStart;
+                break;
+            case "RightEnd":
+                placement = DropdownPlacement.RightEnd;
+                break;
+            default:
+                Console.WriteLine("Unknown placement value");
+                break;
         }
-
-
     }
 }
