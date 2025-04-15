@@ -1,18 +1,59 @@
-@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls;
+@using System;
+@using System.Collections.Generic;
+@using System.Collections;
 
+@inject IJSRuntime JS
 
 <div class="container vertical">
-    <div class="container vertical">
-        <IgbGeographicMap Height="100%" Width="100%" Zoomable="true">
+    <div class="container vertical fill">
+        <IgbGeographicMap
+        Name="geoMap"
+        @ref="geoMap"
+        Zoomable="true">
+            <IgbGeographicShapeSeries
+            Name="GeographicShapeSeries1"
+            @ref="geographicShapeSeries1"
+            StyleShapeScript="ShapeFileStyling">
+            </IgbGeographicShapeSeries>
+            
         </IgbGeographicMap>
+        
     </div>
 </div>
 
 @code {
 
-    //TODO!!
 
-    protected override void OnInitialized()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        var geoMap = this.geoMap;
+        var geographicShapeSeries1 = this.geographicShapeSeries1;
+
+
+        if (firstRender) {
+            this.ShapeFileOnViewInit();
+        }
     }
+
+    private IgbGeographicMap geoMap;
+    private IgbGeographicShapeSeries geographicShapeSeries1;
+
+    
+    	
+    private IgbShapeDataSource Data;
+    
+    public void ShapeFileOnViewInit()
+    {
+    	var geoMap = this.geoMap;
+    
+    	this.Data = new IgbShapeDataSource()
+    	{
+    		ShapefileSource = "https://static.infragistics.com/xplatform/shapes/world_countries_all.shp",
+    		DatabaseSource  = "https://static.infragistics.com/xplatform/shapes/world_countries_all.dbf"
+    	};
+    	this.geographicShapeSeries1.ShapefileDataSource = Data;
+    	this.geoMap.BackgroundContent = null;
+    }
+        
 }
