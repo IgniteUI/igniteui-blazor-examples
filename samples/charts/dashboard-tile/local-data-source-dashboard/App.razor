@@ -1,0 +1,37 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="container vertical fill">
+        <IgbDashboardTile
+        Name="dashboard"
+        @ref="dashboard"
+        DataSource="RetailSalesPerformanceLocalDataSource">
+        </IgbDashboardTile>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var dashboard = this.dashboard;
+
+    }
+
+    private IgbDashboardTile dashboard;
+
+    private RetailSalesPerformanceLocalDataSource _retailSalesPerformanceLocalDataSource = null;
+    public RetailSalesPerformanceLocalDataSource RetailSalesPerformanceLocalDataSource
+    {
+        get
+        {
+            if (_retailSalesPerformanceLocalDataSource == null)
+            {
+                _retailSalesPerformanceLocalDataSource = new RetailSalesPerformanceLocalDataSource();
+            }
+            return _retailSalesPerformanceLocalDataSource;
+        }
+    }
+
+}
