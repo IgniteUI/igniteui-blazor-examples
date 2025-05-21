@@ -12,16 +12,12 @@
         Data="InvoicesData"
         GroupingExpressions="GroupingExpression1">
             <IgbColumn
-            Name="OrderID"
-            @ref="orderID"
             Field="OrderID"
             Header="Order ID"
             Hidden="true">
             </IgbColumn>
 
             <IgbColumn
-            Name="ShipCountry"
-            @ref="shipCountry"
             Field="ShipCountry"
             Header="Ship Country"
             Width="200px"
@@ -29,8 +25,6 @@
             </IgbColumn>
 
             <IgbColumn
-            Name="OrderDate"
-            @ref="orderDate"
             Field="OrderDate"
             Header="Order Date"
             Width="200px"
@@ -38,8 +32,6 @@
             </IgbColumn>
 
             <IgbColumn
-            Name="PostalCode"
-            @ref="postalCode"
             Field="PostalCode"
             Header="Postal Code"
             Width="200px"
@@ -47,18 +39,16 @@
             </IgbColumn>
 
             <IgbColumn
-            Name="Discontinued"
-            @ref="discontinued"
             Field="Discontinued"
             Header="Discontinued"
             Width="200px"
             Groupable="true"
-            BodyTemplateScript="WebGridBooleanCellTemplate">
+            BodyTemplateScript="WebGridBooleanCellTemplate"
+            Name="column1"
+            @ref="column1">
             </IgbColumn>
 
             <IgbColumn
-            Name="ShipName"
-            @ref="shipName"
             Field="ShipName"
             Header="Ship Name"
             Width="250px"
@@ -66,8 +56,6 @@
             </IgbColumn>
 
             <IgbColumn
-            Name="ShipCity"
-            @ref="shipCity"
             Field="ShipCity"
             Header="Ship City"
             Width="250px"
@@ -75,8 +63,6 @@
             </IgbColumn>
 
             <IgbColumn
-            Name="ShipperName"
-            @ref="shipperName"
             Field="ShipperName"
             Header="Shipper Name"
             Width="250px"
@@ -84,8 +70,6 @@
             </IgbColumn>
 
             <IgbColumn
-            Name="Salesperson"
-            @ref="salesperson"
             Field="Salesperson"
             Header="Sales Person"
             Width="250px"
@@ -93,19 +77,17 @@
             </IgbColumn>
 
             <IgbColumn
-            Name="UnitPrice"
-            @ref="unitPrice"
             Field="UnitPrice"
             Header="Unit Price"
             Width="150px"
             DataType="GridColumnDataType.Currency"
             PipeArgs="ColumnPipeArgs1"
-            Groupable="true">
+            Groupable="true"
+            Name="column2"
+            @ref="column2">
             </IgbColumn>
 
             <IgbColumn
-            Name="Quantity"
-            @ref="quantity"
             Field="Quantity"
             Header="Quantity"
             Width="150px"
@@ -123,17 +105,8 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
-        var orderID = this.orderID;
-        var shipCountry = this.shipCountry;
-        var orderDate = this.orderDate;
-        var postalCode = this.postalCode;
-        var discontinued = this.discontinued;
-        var shipName = this.shipName;
-        var shipCity = this.shipCity;
-        var shipperName = this.shipperName;
-        var salesperson = this.salesperson;
-        var unitPrice = this.unitPrice;
-        var quantity = this.quantity;
+        var column1 = this.column1;
+        var column2 = this.column2;
 
     }
 
@@ -161,16 +134,8 @@
             return this._groupingExpression1;
         }
     }
-    private IgbColumn orderID;
-    private IgbColumn shipCountry;
-    private IgbColumn orderDate;
-    private IgbColumn postalCode;
-    private IgbColumn discontinued;
-    private IgbColumn shipName;
-    private IgbColumn shipCity;
-    private IgbColumn shipperName;
-    private IgbColumn salesperson;
-    private IgbColumn unitPrice;
+    private IgbColumn column1;
+    private IgbColumn column2;
     private IgbColumnPipeArgs _columnPipeArgs1 = null;
     public IgbColumnPipeArgs ColumnPipeArgs1
     {
@@ -185,7 +150,6 @@
             return this._columnPipeArgs1;
         }
     }
-    private IgbColumn quantity;
 
     private InvoicesData _invoicesData = null;
     public InvoicesData InvoicesData
