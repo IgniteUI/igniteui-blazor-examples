@@ -31,35 +31,29 @@
         RowEditable="true"
         PrimaryKey="ID">
             <IgbColumn
-            Name="Avatar"
-            @ref="avatar"
             Field="Avatar"
             Header="Avatar"
             DataType="GridColumnDataType.String"
             Editable="false"
             Width="80px"
-            BodyTemplateScript="WebGridAvatarCellTemplate">
+            BodyTemplateScript="WebGridAvatarCellTemplate"
+            Name="column1"
+            @ref="column1">
             </IgbColumn>
 
             <IgbColumn
-            Name="Name"
-            @ref="name"
             Field="Name"
             Header="Name"
             Editable="true">
             </IgbColumn>
 
             <IgbColumn
-            Name="Company"
-            @ref="company"
             Field="Company"
             Header="Company"
             Editable="true">
             </IgbColumn>
 
             <IgbColumn
-            Name="Email"
-            @ref="email"
             Field="Email"
             Header="Email"
             Width="190px"
@@ -67,27 +61,23 @@
             </IgbColumn>
 
             <IgbColumn
-            Name="Fax"
-            @ref="fax"
             Field="Fax"
             Header="Phone"
             Editable="true">
             </IgbColumn>
 
             <IgbColumn
-            Name="CreatedOn"
-            @ref="createdOn"
             Field="CreatedOn"
             Header="Date of Registration"
             Width="170px"
             DataType="GridColumnDataType.Date"
             Editable="true"
-            PipeArgs="ColumnPipeArgs1">
+            PipeArgs="ColumnPipeArgs1"
+            Name="column2"
+            @ref="column2">
             </IgbColumn>
 
             <IgbColumn
-            Name="LastActivity"
-            @ref="lastActivity"
             Field="LastActivity"
             Header="Last Active"
             Width="170px"
@@ -96,8 +86,6 @@
             </IgbColumn>
 
             <IgbColumn
-            Name="EstimatedSales"
-            @ref="estimatedSales"
             Field="EstimatedSales"
             Header="Estimated Sales"
             DataType="GridColumnDataType.Number"
@@ -105,8 +93,6 @@
             </IgbColumn>
 
             <IgbColumn
-            Name="DealsLost"
-            @ref="dealsLost"
             Field="DealsLost"
             Header="Deals Lost"
             DataType="GridColumnDataType.Number"
@@ -114,8 +100,6 @@
             </IgbColumn>
 
             <IgbColumn
-            Name="DealsWon"
-            @ref="dealsWon"
             Field="DealsWon"
             Header="Deals Won"
             DataType="GridColumnDataType.Number"
@@ -123,8 +107,6 @@
             </IgbColumn>
 
             <IgbColumn
-            Name="DealsPending"
-            @ref="dealsPending"
             Field="DealsPending"
             Header="Deals Pending"
             DataType="GridColumnDataType.Number"
@@ -145,17 +127,8 @@
         var propertyEditor = this.propertyEditor;
         var rowEditableEditor = this.rowEditableEditor;
         var grid = this.grid;
-        var avatar = this.avatar;
-        var name = this.name;
-        var company = this.company;
-        var email = this.email;
-        var fax = this.fax;
-        var createdOn = this.createdOn;
-        var lastActivity = this.lastActivity;
-        var estimatedSales = this.estimatedSales;
-        var dealsLost = this.dealsLost;
-        var dealsWon = this.dealsWon;
-        var dealsPending = this.dealsPending;
+        var column1 = this.column1;
+        var column2 = this.column2;
 
         this.BindElements = () => {
             propertyEditor.Target = this.grid;
@@ -167,12 +140,8 @@
     private IgbPropertyEditorPanel propertyEditor;
     private IgbPropertyEditorPropertyDescription rowEditableEditor;
     private IgbGrid grid;
-    private IgbColumn avatar;
-    private IgbColumn name;
-    private IgbColumn company;
-    private IgbColumn email;
-    private IgbColumn fax;
-    private IgbColumn createdOn;
+    private IgbColumn column1;
+    private IgbColumn column2;
     private IgbColumnPipeArgs _columnPipeArgs1 = null;
     public IgbColumnPipeArgs ColumnPipeArgs1
     {
@@ -187,11 +156,6 @@
             return this._columnPipeArgs1;
         }
     }
-    private IgbColumn lastActivity;
-    private IgbColumn estimatedSales;
-    private IgbColumn dealsLost;
-    private IgbColumn dealsWon;
-    private IgbColumn dealsPending;
 
     private EmployeesData _employeesData = null;
     public EmployeesData EmployeesData
