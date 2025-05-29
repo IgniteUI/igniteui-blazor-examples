@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 
 using IgniteUI.Blazor.Controls; // provides IgniteUIBlazor
 
-// copied from Blazor .NET 6 project:
+// copied from Blazor .NET 6 and later projects:
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
