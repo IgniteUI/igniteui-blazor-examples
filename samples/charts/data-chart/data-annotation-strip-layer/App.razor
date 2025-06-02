@@ -1,0 +1,183 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="container vertical fill">
+        <IgbDataChart
+        Name="chart"
+        @ref="chart"
+        ShouldAutoExpandMarginForInitialLabels="true"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+        IsVerticalZoomEnabled="false"
+        IsHorizontalZoomEnabled="true"
+        Brushes="green red"
+        Outlines="green red"
+        PlotAreaMarginLeft="10"
+        PlotAreaMarginTop="0"
+        PlotAreaMarginRight="20"
+        PlotAreaMarginBottom="0"
+        LeftMargin="10"
+        TopMargin="0"
+        RightMargin="20"
+        BottomMargin="0"
+        IsWindowSyncedToVisibleRange="false"
+        ChartTitle="This Data Chart demonstrates the DataAnnotationStripLayer bound to data that markert events affecting stock prices.">
+            <IgbCategoryXAxis
+            Name="xAxisBottom"
+            @ref="xAxisBottom"
+            DataSource="StockTesla"
+            Label="Date"
+            LabelLeftMargin="10"
+            LabelTopMargin="5"
+            LabelRightMargin="10"
+            LabelBottomMargin="15">
+            </IgbCategoryXAxis>
+
+            <IgbCategoryXAxis
+            Name="xAxisTop"
+            @ref="xAxisTop"
+            DataSource="StockTesla"
+            Label="Date"
+            TickLength="0"
+            LabelTextColor="#00000000"
+            LabelLocation="AxisLabelsLocation.OutsideTop"
+            LabelFontSize="12"
+            LabelExtent="40"
+            LabelLeftMargin="8"
+            LabelTopMargin="3"
+            LabelRightMargin="8"
+            LabelBottomMargin="5">
+            </IgbCategoryXAxis>
+
+            <IgbNumericYAxis
+            Name="yAxisLeft"
+            @ref="yAxisLeft"
+            LabelLocation="AxisLabelsLocation.OutsideLeft"
+            LabelFontSize="12"
+            LabelExtent="80"
+            LabelHorizontalAlignment="HorizontalAlignment.Right"
+            LabelLeftMargin="8"
+            LabelTopMargin="3"
+            LabelRightMargin="8"
+            LabelBottomMargin="5"
+            MinimumValue="0"
+            MaximumValue="550">
+            </IgbNumericYAxis>
+
+            <IgbNumericYAxis
+            Name="yAxisRight"
+            @ref="yAxisRight"
+            LabelLocation="AxisLabelsLocation.OutsideRight"
+            LabelFontSize="12"
+            LabelExtent="80"
+            LabelHorizontalAlignment="HorizontalAlignment.Left"
+            LabelLeftMargin="8"
+            LabelTopMargin="3"
+            LabelRightMargin="8"
+            LabelBottomMargin="5"
+            MinimumValue="0"
+            MaximumValue="550">
+            </IgbNumericYAxis>
+
+            <IgbFinancialPriceSeries
+            Name="series1"
+            @ref="series1"
+            Title="Stock Price"
+            DisplayType="PriceDisplayType.Candlestick"
+            XAxisName="xAxisBottom"
+            YAxisName="yAxisLeft"
+            DataSource="StockTesla"
+            OpenMemberPath="Open"
+            HighMemberPath="High"
+            LowMemberPath="Low"
+            CloseMemberPath="Close"
+            ShowDefaultTooltip="false">
+            </IgbFinancialPriceSeries>
+
+            <IgbDataToolTipLayer
+            Name="Tooltip"
+            @ref="tooltip"
+            IncludedColumns="@(new string[] { "High", "Low", "Open", "Close" })"
+            LayoutMode="DataLegendLayoutMode.Vertical">
+            </IgbDataToolTipLayer>
+
+            <IgbDataAnnotationStripLayer
+            Name="StripLayer"
+            @ref="stripLayer"
+            DataSource="AnnotationStripData"
+            CenterLabelMemberPath="Label"
+            StartValueMemberPath="Start"
+            EndValueMemberPath="End"
+            StartLabelDisplayMode="DataAnnotationDisplayMode.Hidden"
+            EndLabelDisplayMode="DataAnnotationDisplayMode.Hidden"
+            Brush="black"
+            Outline="black"
+            OverlayTextColor="purple"
+            OverlayTextVerticalMargin="20"
+            OverlayTextHorizontalMargin="-50"
+            OverlayTextLocation="OverlayTextLocation.InsideTopCenter"
+            OverlayTextMemberPath="Label">
+            </IgbDataAnnotationStripLayer>
+
+        </IgbDataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var chart = this.chart;
+        var xAxisBottom = this.xAxisBottom;
+        var xAxisTop = this.xAxisTop;
+        var yAxisLeft = this.yAxisLeft;
+        var yAxisRight = this.yAxisRight;
+        var series1 = this.series1;
+        var tooltip = this.tooltip;
+        var stripLayer = this.stripLayer;
+
+        this.BindElements = () => {
+            stripLayer.TargetAxis = this.xAxisTop;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxisBottom;
+    private IgbCategoryXAxis xAxisTop;
+    private IgbNumericYAxis yAxisLeft;
+    private IgbNumericYAxis yAxisRight;
+    private IgbFinancialPriceSeries series1;
+    private IgbDataToolTipLayer tooltip;
+    private IgbDataAnnotationStripLayer stripLayer;
+
+    private StockTesla _stockTesla = null;
+    public StockTesla StockTesla
+    {
+        get
+        {
+            if (_stockTesla == null)
+            {
+                _stockTesla = new StockTesla();
+            }
+            return _stockTesla;
+        }
+    }
+
+    private AnnotationStripData _annotationStripData = null;
+    public AnnotationStripData AnnotationStripData
+    {
+        get
+        {
+            if (_annotationStripData == null)
+            {
+                _annotationStripData = new AnnotationStripData();
+            }
+            return _annotationStripData;
+        }
+    }
+
+}
