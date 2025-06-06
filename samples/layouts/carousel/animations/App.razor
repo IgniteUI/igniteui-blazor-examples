@@ -60,7 +60,7 @@ igc-card-header {
             </IgbSelect>
         </div>
         <div class="action">
-            <IgbSwitch Change="OnSwitchChange" LabelPosition="@CheckboxBaseLabelPosition.Before">Vertical alignment</IgbSwitch>
+            <IgbSwitch Change="OnSwitchChange" LabelPosition="@ToggleLabelPosition.Before">Vertical alignment</IgbSwitch>
         </div>
     </div>
     <IgbCarousel @ref="carouselRef" HideIndicators="true">
@@ -136,13 +136,13 @@ igc-card-header {
         switch (args.Detail.Value)
         {
             case "slide":
-                this.carouselRef.AnimationType = CarouselAnimationType.Slide;
+                this.carouselRef.AnimationType = HorizontalTransitionAnimation.Slide;
                 break;
             case "fade":
-                this.carouselRef.AnimationType = CarouselAnimationType.Fade;
+                this.carouselRef.AnimationType = HorizontalTransitionAnimation.Fade;
                 break;
             default:
-                this.carouselRef.AnimationType = CarouselAnimationType.None;
+                this.carouselRef.AnimationType = HorizontalTransitionAnimation.None;
                 break;
         }
     }
