@@ -1,5 +1,7 @@
 @using IgniteUI.Blazor.Controls
 
+@inject IJSRuntime JS
+
 <div class="container vertical ig-typography">
     <div class="container vertical fill">
         <IgbGrid
@@ -9,7 +11,8 @@
         @ref="grid"
         Data="NwindData"
         PrimaryKey="ProductID"
-        AllowFiltering="true">
+        AllowFiltering="true"
+        CellEditEnterScript="WebGridOnEditEnter">
             <IgbPaginator
             PerPage="10">
             </IgbPaginator>
@@ -59,8 +62,11 @@
             DataType="GridColumnDataType.Number"
             Sortable="true"
             HasSummary="true"
+            InlineEditorTemplateScript="WebGridNumericColEditCellTemplate"
             Editable="true"
-            Filterable="false">
+            Filterable="false"
+            Name="column1"
+            @ref="column1">
             </IgbColumn>
 
         </IgbGrid>
@@ -73,10 +79,12 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var grid = this.grid;
+        var column1 = this.column1;
 
     }
 
     private IgbGrid grid;
+    private IgbColumn column1;
 
     private NwindData _nwindData = null;
     public NwindData NwindData
