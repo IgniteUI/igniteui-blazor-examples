@@ -94,6 +94,7 @@ var sampleSource = [
 
     // igConfig.SamplesCopyPath + '/excel/spreadsheet/**/App.razor',
     // igConfig.SamplesCopyPath + '/gauges/bullet-graph/animation/App.razor',
+    // igConfig.SamplesCopyPath + '/charts/data-chart/data-annotation-multiple-with-stocks/App.razor',
     // igConfig.SamplesCopyPath + '/grids/**/binding-live-data/App.razor',
     // igConfig.SamplesCopyPath + '/grids/**/overview/App.razor',
     // igConfig.SamplesCopyPath + '/grids/**/column-types/App.razor',
@@ -1105,10 +1106,11 @@ function updateCodeViewer(cb) {
         // path = path.replace("/", "-");
 
         var codeViewPath = "../IgBlazorSamples.Client/wwwroot/code-viewer" + path + ".json";
-        // log("generating " + codeViewPath);
+        log("generating " + codeViewPath);
 
         var content = "{\r\n \"sampleFiles\":\r\n";
         var contentItems = [];
+        var dataFiles = [];
 
         for (const file of sample.SourceFiles) {
             // console.log("SourceFiles " + file.Name);
@@ -1131,12 +1133,12 @@ function updateCodeViewer(cb) {
                 //code = code.replace(/\n\n/gm, '\n');
                 var item = new CodeViewer(file.Path, code, "razor", "razor", true);
                 contentItems.push(item);
-            }
-            else if (file.isProgramCS()) {
+
+            } else if (file.isProgramCS()) {
                 var item = new CodeViewer(file.Path, file.Content, "cs", "MODULES", true);
                 contentItems.push(item);
-            }
-            else if (file.isCS()) {
+
+            } else if (file.isCS()) {
                 var name = file.Name.toLowerCase();
                 var header = "DATA";
                 if (sample.DataFilesCount > 1) {
@@ -1144,8 +1146,27 @@ function updateCodeViewer(cb) {
                     header = isGenerator ? "DATA GENERATOR" : "DATA SOURCE";
                 }
                 var item = new CodeViewer(file.Path, file.Content, "cs", header, true);
-                contentItems.push(item);
+                // contentItems.push(item);
+                dataFiles.push(item);
             }
+        }
+
+        if (dataFiles.length === 1) {
+            contentItems.push(dataFiles[0]);
+        } else if (dataFiles.length > 1) {
+            // combining multiple data files into one data source
+            var dataPath = dataFiles[0].path;
+            var dataFolder = dataPath.substring(0, dataPath.lastIndexOf("/"));
+            var dataContent = "// NOTE this file contains multiple data sources:\r\n";
+
+            for (let i = 0; i < dataFiles.length; i++) {
+                const data = dataFiles[i];
+                dataContent += "\r\n\r\n" + "// Data Source #" + (i+1) + "\r\n";
+                dataContent += data.content + "\r\n";
+            }
+
+            var dataItem = new CodeViewer(dataFolder + "/DataSources.cs", dataContent, "cs", "DATA", true);
+            contentItems.push(dataItem);
         }
 
         if (sample.PublicFiles_JS.length > 0) {
