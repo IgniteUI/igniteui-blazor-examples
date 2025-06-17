@@ -1155,14 +1155,17 @@ function updateCodeViewer(cb) {
             contentItems.push(dataFiles[0]);
         } else if (dataFiles.length > 1) {
             // combining multiple data files into one data source
-            var filePath = dataFiles[0].path;
-            var fileFolder = filePath.substring(0, filePath.lastIndexOf("/"));
-            var dataPath = fileFolder + "/" + "DataSources.cs";
-            var dataContent = "// NOTE this file contains multiple data sources:\r\n\r\n";
-            for (const data of dataFiles) {
+            var dataPath = dataFiles[0].path;
+            var dataFolder = dataPath.substring(0, dataPath.lastIndexOf("/"));
+            var dataContent = "// NOTE this file contains multiple data sources:\r\n";
+
+            for (let i = 0; i < dataFiles.length; i++) {
+                const data = dataFiles[i];
+                dataContent += "\r\n\r\n" + "// Data Source #" + (i+1) + "\r\n";
                 dataContent += data.content + "\r\n";
             }
-            var dataItem = new CodeViewer(dataPath, dataContent, "cs", "DATA", true);
+
+            var dataItem = new CodeViewer(dataFolder + "/DataSources.cs", dataContent, "cs", "DATA", true);
             contentItems.push(dataItem);
         }
 
