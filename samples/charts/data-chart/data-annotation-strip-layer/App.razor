@@ -104,6 +104,7 @@
             Name="StripLayer"
             @ref="stripLayer"
             DataSource="AnnotationStripData"
+            TargetAxisName="xAxisTop"
             CenterLabelMemberPath="Label"
             StartValueMemberPath="Start"
             EndValueMemberPath="End"
@@ -125,8 +126,6 @@
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var chart = this.chart;
@@ -137,11 +136,6 @@
         var series1 = this.series1;
         var tooltip = this.tooltip;
         var stripLayer = this.stripLayer;
-
-        this.BindElements = () => {
-            stripLayer.TargetAxis = this.xAxisTop;
-        };
-        this.BindElements();
 
     }
 

@@ -121,6 +121,7 @@
             Name="StripLayer"
             @ref="stripLayer"
             DataSource="AnnotationStripData"
+            TargetAxisName="xAxisTop"
             CenterLabelMemberPath="Label"
             StartValueMemberPath="Start"
             EndValueMemberPath="End"
@@ -137,6 +138,7 @@
             Name="LineLayer52WeekRange"
             @ref="lineLayer52WeekRange"
             DataSource="AnnotationLineData1"
+            TargetAxisName="yAxisRight"
             CenterLabelXDisplayMode="DataAnnotationDisplayMode.Hidden"
             StartLabelXDisplayMode="DataAnnotationDisplayMode.Hidden"
             StartLabelYDisplayMode="DataAnnotationDisplayMode.DataValue"
@@ -161,6 +163,7 @@
             Name="LineLayerGrowthAndDecline"
             @ref="lineLayerGrowthAndDecline"
             DataSource="AnnotationLineData2"
+            TargetAxisName="xAxis"
             CenterLabelXDisplayMode="DataAnnotationDisplayMode.Hidden"
             StartLabelXDisplayMode="DataAnnotationDisplayMode.Hidden"
             EndLabelXDisplayMode="DataAnnotationDisplayMode.Hidden"
@@ -183,6 +186,7 @@
             Name="SliceLayerStockSplit"
             @ref="sliceLayerStockSplit"
             DataSource="AnnotationSliceStockSplitData"
+            TargetAxisName="xAxisBottom"
             Brush="dodgerblue"
             AnnotationTextColor="white"
             AnnotationLabelMemberPath="Label"
@@ -198,6 +202,7 @@
             Name="SliceLayerEarningsMissAnnotations"
             @ref="sliceLayerEarningsMissAnnotations"
             DataSource="AnnotationSliceEarningsMissData"
+            TargetAxisName="xAxisBottom"
             Brush="red"
             AnnotationTextColor="white"
             AnnotationLabelMemberPath="Label"
@@ -213,6 +218,7 @@
             Name="SliceLayerEarningsBeatAnnotations"
             @ref="sliceLayerEarningsBeatAnnotations"
             DataSource="AnnotationSliceEarningsBeatData"
+            TargetAxisName="xAxisBottom"
             Brush="green"
             AnnotationTextColor="white"
             AnnotationLabelMemberPath="Label"
@@ -231,8 +237,6 @@
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var chart = this.chart;
@@ -249,16 +253,6 @@
         var sliceLayerStockSplit = this.sliceLayerStockSplit;
         var sliceLayerEarningsMissAnnotations = this.sliceLayerEarningsMissAnnotations;
         var sliceLayerEarningsBeatAnnotations = this.sliceLayerEarningsBeatAnnotations;
-
-        this.BindElements = () => {
-            stripLayer.TargetAxis = this.xAxisTop;
-            lineLayer52WeekRange.TargetAxis = this.yAxisRight;
-            lineLayerGrowthAndDecline.TargetAxis = this.xAxis;
-            sliceLayerStockSplit.TargetAxis = this.xAxisBottom;
-            sliceLayerEarningsMissAnnotations.TargetAxis = this.xAxisBottom;
-            sliceLayerEarningsBeatAnnotations.TargetAxis = this.xAxisBottom;
-        };
-        this.BindElements();
 
     }
 

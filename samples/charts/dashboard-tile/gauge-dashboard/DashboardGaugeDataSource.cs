@@ -10,9 +10,6 @@ public class DashboardGaugeDataSource
 {
     public DashboardGaugeDataSource()
     {
-        this.Add(new DashboardGaugeDataSourceItem()
-        {
-            Value = 40
-        });
+        this.Add(new DashboardGaugeDataSourceItem() { Value = 40 });
     }
 }

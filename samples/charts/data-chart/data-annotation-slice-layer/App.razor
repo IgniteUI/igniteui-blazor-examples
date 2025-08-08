@@ -102,6 +102,7 @@
             Name="SliceLayerStockSplit"
             @ref="sliceLayerStockSplit"
             DataSource="AnnotationSliceStockSplitData"
+            TargetAxisName="xAxisBottom"
             Brush="dodgerblue"
             AnnotationTextColor="white"
             AnnotationLabelMemberPath="Label"
@@ -117,6 +118,7 @@
             Name="SliceLayerEarningsMissAnnotations"
             @ref="sliceLayerEarningsMissAnnotations"
             DataSource="AnnotationSliceEarningsMissData"
+            TargetAxisName="xAxisBottom"
             Brush="red"
             AnnotationTextColor="white"
             AnnotationLabelMemberPath="Label"
@@ -132,6 +134,7 @@
             Name="SliceLayerEarningsBeatAnnotations"
             @ref="sliceLayerEarningsBeatAnnotations"
             DataSource="AnnotationSliceEarningsBeatData"
+            TargetAxisName="xAxisBottom"
             Brush="green"
             AnnotationTextColor="white"
             AnnotationLabelMemberPath="Label"
@@ -150,8 +153,6 @@
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var chart = this.chart;
@@ -164,13 +165,6 @@
         var sliceLayerStockSplit = this.sliceLayerStockSplit;
         var sliceLayerEarningsMissAnnotations = this.sliceLayerEarningsMissAnnotations;
         var sliceLayerEarningsBeatAnnotations = this.sliceLayerEarningsBeatAnnotations;
-
-        this.BindElements = () => {
-            sliceLayerStockSplit.TargetAxis = this.xAxisBottom;
-            sliceLayerEarningsMissAnnotations.TargetAxis = this.xAxisBottom;
-            sliceLayerEarningsBeatAnnotations.TargetAxis = this.xAxisBottom;
-        };
-        this.BindElements();
 
     }
 

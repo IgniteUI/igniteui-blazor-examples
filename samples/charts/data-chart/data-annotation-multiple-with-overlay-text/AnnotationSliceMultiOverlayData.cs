@@ -10,9 +10,6 @@ public class AnnotationSliceMultiOverlayData
 {
     public AnnotationSliceMultiOverlayData()
     {
-        this.Add(new AnnotationSliceMultiOverlayDataItem()
-        {
-            Value = 50
-        });
+        this.Add(new AnnotationSliceMultiOverlayDataItem() { Value = 50 });
     }
 }

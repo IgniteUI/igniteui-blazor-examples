@@ -12,47 +12,12 @@ public class CompanyIncomeData
 {
     public CompanyIncomeData()
     {
-        this.Add(new CompanyIncomeDataItem()
-        {
-            Costs = 55,
-            NetIncome = double.NaN,
-            Category = @"Revenue"
-        });
-        this.Add(new CompanyIncomeDataItem()
-        {
-            Costs = 45,
-            NetIncome = double.NaN,
-            Category = @"Expenses"
-        });
-        this.Add(new CompanyIncomeDataItem()
-        {
-            Costs = 35,
-            NetIncome = double.NaN,
-            Category = @"Research"
-        });
-        this.Add(new CompanyIncomeDataItem()
-        {
-            Costs = 28,
-            NetIncome = double.NaN,
-            Category = @"Marketing"
-        });
-        this.Add(new CompanyIncomeDataItem()
-        {
-            Costs = 25,
-            NetIncome = double.NaN,
-            Category = @"Administration"
-        });
-        this.Add(new CompanyIncomeDataItem()
-        {
-            Costs = 55,
-            NetIncome = double.NaN,
-            Category = @"Total Costs"
-        });
-        this.Add(new CompanyIncomeDataItem()
-        {
-            Costs = 0,
-            NetIncome = 25,
-            Category = @"Net Income"
-        });
+        this.Add(new CompanyIncomeDataItem() { Costs = 55, NetIncome = double.NaN, Category = @"Revenue" });
+        this.Add(new CompanyIncomeDataItem() { Costs = 45, NetIncome = double.NaN, Category = @"Expenses" });
+        this.Add(new CompanyIncomeDataItem() { Costs = 35, NetIncome = double.NaN, Category = @"Research" });
+        this.Add(new CompanyIncomeDataItem() { Costs = 28, NetIncome = double.NaN, Category = @"Marketing" });
+        this.Add(new CompanyIncomeDataItem() { Costs = 25, NetIncome = double.NaN, Category = @"Administration" });
+        this.Add(new CompanyIncomeDataItem() { Costs = 55, NetIncome = double.NaN, Category = @"Total Costs" });
+        this.Add(new CompanyIncomeDataItem() { Costs = 0, NetIncome = 25, Category = @"Net Income" });
     }
 }

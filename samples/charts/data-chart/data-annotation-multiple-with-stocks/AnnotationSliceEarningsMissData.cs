@@ -11,20 +11,8 @@ public class AnnotationSliceEarningsMissData
 {
     public AnnotationSliceEarningsMissData()
     {
-        this.Add(new AnnotationSliceEarningsMissDataItem()
-        {
-            Value = 9,
-            Label = @"Earnings Miss"
-        });
-        this.Add(new AnnotationSliceEarningsMissDataItem()
-        {
-            Value = 179,
-            Label = @"Earnings Miss"
-        });
-        this.Add(new AnnotationSliceEarningsMissDataItem()
-        {
-            Value = 215,
-            Label = @"Earnings Miss"
-        });
+        this.Add(new AnnotationSliceEarningsMissDataItem() { Value = 9, Label = @"Earnings Miss" });
+        this.Add(new AnnotationSliceEarningsMissDataItem() { Value = 179, Label = @"Earnings Miss" });
+        this.Add(new AnnotationSliceEarningsMissDataItem() { Value = 215, Label = @"Earnings Miss" });
     }
 }

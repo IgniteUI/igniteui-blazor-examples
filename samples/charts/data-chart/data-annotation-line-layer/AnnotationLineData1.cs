@@ -14,21 +14,7 @@ public class AnnotationLineData1
 {
     public AnnotationLineData1()
     {
-        this.Add(new AnnotationLineData1Item()
-        {
-            StartX = 190,
-            StartY = 138,
-            EndX = 230,
-            EndY = 138,
-            Label = @"52-Week Low"
-        });
-        this.Add(new AnnotationLineData1Item()
-        {
-            StartX = 190,
-            StartY = 481,
-            EndX = 230,
-            EndY = 481,
-            Label = @"52-Week High"
-        });
+        this.Add(new AnnotationLineData1Item() { StartX = 190, StartY = 138, EndX = 230, EndY = 138, Label = @"52-Week Low" });
+        this.Add(new AnnotationLineData1Item() { StartX = 190, StartY = 481, EndX = 230, EndY = 481, Label = @"52-Week High" });
     }
 }

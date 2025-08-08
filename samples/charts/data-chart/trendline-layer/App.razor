@@ -1,0 +1,117 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="legend">
+        <IgbDataLegend
+        Name="legend"
+        @ref="legend"
+        HeaderRowVisible="true"
+        SummaryType="DataLegendSummaryType.None"
+        ValueRowVisible="true"
+        ValueTextColor="#00000000"
+        HeaderText="European Renewable Energy (2009-2018)">
+        </IgbDataLegend>
+
+    </div>
+    <div class="container vertical fill">
+        <IgbDataChart
+        Name="chart"
+        @ref="chart"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series">
+            <IgbCategoryXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            DataSource="CountryRenewableElectricity"
+            LabelLocation="AxisLabelsLocation.OutsideBottom"
+            Label="Year">
+            </IgbCategoryXAxis>
+
+            <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis"
+            LabelLocation="AxisLabelsLocation.OutsideLeft">
+            </IgbNumericYAxis>
+
+            <IgbLineSeries
+            Name="lineSeries1"
+            @ref="lineSeries1"
+            Title="EU Energy"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            MarkerType="MarkerType.Circle"
+            DataSource="CountryRenewableElectricity"
+            ValueMemberPath="Europe"
+            ShowDefaultTooltip="true">
+            </IgbLineSeries>
+
+            <IgbTrendLineLayer
+            Name="trendLine1"
+            @ref="trendLine1"
+            Title="Logarithmic Trend"
+            UseIndex="true"
+            TrendLineType="TrendLineType.LogarithmicFit"
+            TrendLinePeriod="10"
+            UseLegend="true"
+            LegendItemBadgeMode="LegendItemBadgeMode.MatchSeries">
+            </IgbTrendLineLayer>
+
+            <IgbTrendLineLayer
+            Name="trendLine2"
+            @ref="trendLine2"
+            Title="Cubic Trend"
+            UseIndex="true"
+            TrendLineType="TrendLineType.CubicFit"
+            TrendLinePeriod="10"
+            UseLegend="true"
+            LegendItemBadgeMode="LegendItemBadgeMode.MatchSeries">
+            </IgbTrendLineLayer>
+
+        </IgbDataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var legend = this.legend;
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var lineSeries1 = this.lineSeries1;
+        var trendLine1 = this.trendLine1;
+        var trendLine2 = this.trendLine2;
+
+        this.BindElements = () => {
+            legend.Target = this.chart;
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbDataLegend legend;
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbLineSeries lineSeries1;
+    private IgbTrendLineLayer trendLine1;
+    private IgbTrendLineLayer trendLine2;
+
+    private CountryRenewableElectricity _countryRenewableElectricity = null;
+    public CountryRenewableElectricity CountryRenewableElectricity
+    {
+        get
+        {
+            if (_countryRenewableElectricity == null)
+            {
+                _countryRenewableElectricity = new CountryRenewableElectricity();
+            }
+            return _countryRenewableElectricity;
+        }
+    }
+
+}

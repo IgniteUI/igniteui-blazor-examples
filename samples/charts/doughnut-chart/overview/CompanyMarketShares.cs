@@ -12,35 +12,10 @@ public class CompanyMarketShares
 {
     public CompanyMarketShares()
     {
-        this.Add(new CompanyMarketSharesItem()
-        {
-            Value = 30,
-            Category = @"Google",
-            Summary = @"Google 30%"
-        });
-        this.Add(new CompanyMarketSharesItem()
-        {
-            Value = 25,
-            Category = @"Apple",
-            Summary = @"Apple 25%"
-        });
-        this.Add(new CompanyMarketSharesItem()
-        {
-            Value = 20,
-            Category = @"Microsoft",
-            Summary = @"Microsoft 20%"
-        });
-        this.Add(new CompanyMarketSharesItem()
-        {
-            Value = 15,
-            Category = @"Samsung",
-            Summary = @"Samsung 15%"
-        });
-        this.Add(new CompanyMarketSharesItem()
-        {
-            Value = 10,
-            Category = @"Other",
-            Summary = @"Other 10%"
-        });
+        this.Add(new CompanyMarketSharesItem() { Value = 30, Category = @"Google", Summary = @"Google 30%" });
+        this.Add(new CompanyMarketSharesItem() { Value = 25, Category = @"Apple", Summary = @"Apple 25%" });
+        this.Add(new CompanyMarketSharesItem() { Value = 20, Category = @"Microsoft", Summary = @"Microsoft 20%" });
+        this.Add(new CompanyMarketSharesItem() { Value = 15, Category = @"Samsung", Summary = @"Samsung 15%" });
+        this.Add(new CompanyMarketSharesItem() { Value = 10, Category = @"Other", Summary = @"Other 10%" });
     }
 }

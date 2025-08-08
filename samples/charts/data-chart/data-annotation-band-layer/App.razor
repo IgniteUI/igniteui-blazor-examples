@@ -101,6 +101,7 @@
             Name="BandLayer"
             @ref="bandLayer"
             DataSource="AnnotationBandData"
+            TargetAxisName="xAxisBottom"
             CenterLabelXDisplayMode="DataAnnotationDisplayMode.Hidden"
             StartLabelXDisplayMode="DataAnnotationDisplayMode.DataLabel"
             EndLabelXDisplayMode="DataAnnotationDisplayMode.DataLabel"
@@ -127,8 +128,6 @@
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var chart = this.chart;
@@ -139,11 +138,6 @@
         var series1 = this.series1;
         var tooltip = this.tooltip;
         var bandLayer = this.bandLayer;
-
-        this.BindElements = () => {
-            bandLayer.TargetAxis = this.xAxisBottom;
-        };
-        this.BindElements();
 
     }
 

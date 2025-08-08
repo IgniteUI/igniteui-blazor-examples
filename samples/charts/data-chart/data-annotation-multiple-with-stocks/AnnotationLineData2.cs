@@ -14,23 +14,9 @@ public class AnnotationLineData2
 {
     public AnnotationLineData2()
     {
-        this.Add(new AnnotationLineData2Item()
-        {
-            StartX = 48,
-            StartY = 25,
-            EndX = 105,
-            EndY = 250,
-            Label = @"Growth &
-Support"
-        });
-        this.Add(new AnnotationLineData2Item()
-        {
-            StartX = 108,
-            StartY = 440,
-            EndX = 155,
-            EndY = 210,
-            Label = @"Decline &
-Resistance"
-        });
+        this.Add(new AnnotationLineData2Item() { StartX = 48, StartY = 25, EndX = 105, EndY = 250, Label = @"Growth &
+Support" });
+        this.Add(new AnnotationLineData2Item() { StartX = 108, StartY = 440, EndX = 155, EndY = 210, Label = @"Decline &
+Resistance" });
     }
 }
