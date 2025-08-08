@@ -65,6 +65,7 @@
             Name="RectLayer"
             @ref="rectLayer"
             DataSource="AnnotationRectData"
+            TargetAxisName="xAxis"
             CenterLabelXDisplayMode="DataAnnotationDisplayMode.Hidden"
             StartLabelXDisplayMode="DataAnnotationDisplayMode.Hidden"
             EndLabelXDisplayMode="DataAnnotationDisplayMode.Hidden"
@@ -93,8 +94,6 @@
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var chart = this.chart;
@@ -103,11 +102,6 @@
         var series1 = this.series1;
         var tooltip = this.tooltip;
         var rectLayer = this.rectLayer;
-
-        this.BindElements = () => {
-            rectLayer.TargetAxis = this.xAxis;
-        };
-        this.BindElements();
 
     }
 

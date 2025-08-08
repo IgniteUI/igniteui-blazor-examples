@@ -11,15 +11,7 @@ public class AnnotationSliceStockSplitData
 {
     public AnnotationSliceStockSplitData()
     {
-        this.Add(new AnnotationSliceStockSplitDataItem()
-        {
-            Value = 126,
-            Label = @"Stock Split 3-1"
-        });
-        this.Add(new AnnotationSliceStockSplitDataItem()
-        {
-            Value = 61,
-            Label = @"Stock Split 5-1"
-        });
+        this.Add(new AnnotationSliceStockSplitDataItem() { Value = 126, Label = @"Stock Split 3-1" });
+        this.Add(new AnnotationSliceStockSplitDataItem() { Value = 61, Label = @"Stock Split 5-1" });
     }
 }

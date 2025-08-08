@@ -64,6 +64,7 @@
             Brush="purple"
             Thickness="2"
             DashArray="@(new double[] { 2, 4 })"
+            TargetAxisName="yAxis"
             IsAxisAnnotationEnabled="true"
             OverlayText="OverlayText on ValueLayer (Average)"
             OverlayTextLocation="OverlayTextLocation.OutsideBottomCenter">
@@ -73,6 +74,7 @@
             Name="AnnoLayer"
             @ref="annoLayer"
             DataSource="AnnotationSliceMultiOverlayData"
+            TargetAxisName="yAxis"
             Brush="green"
             AnnotationTextColor="white"
             AnnotationLabelMemberPath="Label"
@@ -92,8 +94,6 @@
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var chart = this.chart;
@@ -103,12 +103,6 @@
         var valueOverlay = this.valueOverlay;
         var valueLayer = this.valueLayer;
         var annoLayer = this.annoLayer;
-
-        this.BindElements = () => {
-            valueLayer.TargetAxis = this.yAxis;
-            annoLayer.TargetAxis = this.yAxis;
-        };
-        this.BindElements();
 
     }
 

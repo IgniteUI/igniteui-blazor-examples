@@ -17,16 +17,6 @@ public class AnnotationBandData
 {
     public AnnotationBandData()
     {
-        this.Add(new AnnotationBandDataItem()
-        {
-            StartLabel = @"Growth Start",
-            EndLabel = @"Growth Stop",
-            StartX = 48,
-            StartY = 110,
-            EndX = 105,
-            EndY = 335,
-            Value = 170,
-            Label = @"Rapid Growth"
-        });
+        this.Add(new AnnotationBandDataItem() { StartLabel = @"Growth Start", EndLabel = @"Growth Stop", StartX = 48, StartY = 110, EndX = 105, EndY = 335, Value = 170, Label = @"Rapid Growth" });
     }
 }
