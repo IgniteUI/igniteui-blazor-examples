@@ -17,7 +17,7 @@
             {
                 <IgbDoughnutChart Height="100%" Width="100%" @ref="Chart"
                 AllowSliceExplosion="true"
-                SliceClickScript="OnSliceClickScript">
+                SliceClick="OnSliceClick">
                     <IgbRingSeries DataSource="Data"
                                 LabelMemberPath="Summary"
                                 LabelsPosition="LabelsPosition.OutsideEnd"
@@ -40,6 +40,7 @@
 @code {
 
     private List<DataItem> Data;
+    public int[] explodedSlices { get; set; } = new int[0];
     public IgbItemLegend Legend;
     public IgbDoughnutChart Chart;
 
@@ -64,5 +65,15 @@
     {
         if (Chart != null && Legend != null && !firstRender)
             this.Chart.ActualSeries[0].Legend = Legend;
+    }
+
+    protected void OnSliceClick(IgbSliceClickEventArgs e)
+    {
+        //Console.WriteLine("Sample OnButtonClick");
+
+        // TODO
+        // e.IsExploded = !e.IsExploded;
+        //e.IsSelected = false;
+        //explodedSlices = new int[] { e.Index };
     }
 }
