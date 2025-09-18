@@ -1,5 +1,5 @@
 @using IgniteUI.Blazor.Controls
-
+@using Microsoft.AspNetCore.Components.Web
 @inject IJSRuntime JS
 
 <div class="container vertical ig-typography">
@@ -10,71 +10,33 @@
                  Name="grid1"
                  Id="grid1"
                  CellSelection="GridSelectionMode.Single"
-                 Rendered="rendered"
+                 ActiveNodeChangeScript="onActiveNodeChange"
+                 Rendered="onRendered"
+                 @onkeydown="OnKeydown"
                  @ref="grid1">
-            <IgbColumn Field="ProductID"
-                       Header="Product ID"
-                       Editable="true"
-                       Groupable="true"
-                       Hidden="true">
-            </IgbColumn>
 
-            <IgbColumn Field="ProductName"
-                       Header="Product Name"
-                       DataType="GridColumnDataType.String"
-                       Editable="true">
-            </IgbColumn>
-
-            <IgbColumn Field="UnitPrice"
-                       Header="Unit Price"
-                       DataType="GridColumnDataType.Number"
-                       Editable="true">
-            </IgbColumn>
-
-            <IgbColumn Field="QuantityPerUnit"
-                       Header="Quantity Per Unit"
-                       Groupable="true"
-                       DataType="GridColumnDataType.String"
-                       Editable="true">
-            </IgbColumn>
-
-            <IgbColumn Field="ReorderLevel"
-                       Header="Reorder Level"
-                       DataType="GridColumnDataType.Number"
-                       Groupable="true"
-                       Editable="true">
-            </IgbColumn>
-
+            <IgbColumn Field="ProductID" Header="Product ID" Editable="true" Groupable="true" Hidden="true" />
+            <IgbColumn Field="ProductName" Header="Product Name" DataType="GridColumnDataType.String" Editable="true" />
+            <IgbColumn Field="UnitPrice" Header="Unit Price" DataType="GridColumnDataType.Number" Editable="true" />
+            <IgbColumn Field="QuantityPerUnit" Header="Quantity Per Unit" Groupable="true" DataType="GridColumnDataType.String" Editable="true" />
+            <IgbColumn Field="ReorderLevel" Header="Reorder Level" DataType="GridColumnDataType.Number" Groupable="true" Editable="true" />
         </IgbGrid>
-
     </div>
 </div>
 
 @code {
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        var grid1 = this.grid1;
-    }
-
-    async private void rendered()
-    {
-        await JS.InvokeVoidAsync("attachKeyDownEvent");
-    }
-
     private IgbGrid grid1;
-    private bool shouldAppendValue = false;
-
-    private NwindData _nwindData = null;
-    public NwindData NwindData
+    
+    async private void onRendered()
     {
-        get
-        {
-            if (_nwindData == null)
-            {
-                _nwindData = new NwindData();
-            }
-            return _nwindData;
-        }
+        await JS.InvokeVoidAsync("renderedHandler");
     }
+
+    async Task OnKeydown(KeyboardEventArgs e)
+    {
+        await JS.InvokeVoidAsync("keydownHandler", e);
+    }
+
+    private NwindData _nwindData;
+    public NwindData NwindData => _nwindData ??= new NwindData();
 }
