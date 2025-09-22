@@ -22,10 +22,12 @@ namespace Infragistics.Samples
             builder.Services.AddIgniteUIBlazor(
                 typeof(IgbGeographicMapModule),
                 typeof(IgbDataChartInteractivityModule),
-                typeof(IgbAzureMapsMapImageryModule),
+                typeof(IgbAzureMapsImageryModule),
                 typeof(IgbDialogModule),
                 typeof(IgbIconModule),
-                typeof(IgbInputModule)
+                typeof(IgbInputModule),
+                typeof(IgbPropertyEditorPanelModule)
+
             );
             await builder.Build().RunAsync();
         }
