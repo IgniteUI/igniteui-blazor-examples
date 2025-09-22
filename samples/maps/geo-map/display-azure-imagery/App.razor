@@ -8,62 +8,195 @@ igc-dialog::part(content) {
 }
 </style>
 
-<IgbButton @onclick="OnDialogShow" Variant=@ButtonVariant.Contained>Click to enter your Azure key</IgbButton>
+
+<div class="map-controls">
+    <IgbButton @onclick="OnDialogShow" Variant=@ButtonVariant.Contained>Click to enter your Azure key</IgbButton>
+
+
+    <IgbPropertyEditorPanel DescriptionType="CategoryChart"
+                            IsHorizontal="true"
+                            IsWrappingEnabled="false"
+                            Name="editor"
+                            @ref="editor">
+    </IgbPropertyEditorPanel>
+</div>
+
 
 <div class="container horizontal">
     <IgbDialog @ref="DialogRef" Title="Azure Maps" Closed="OnClosed">
         <form id="form" method="dialog">
             <IgbInput Label="Azure Key" @bind-value="AzureKey">
             </IgbInput>
-        </form>       
+        </form>
     </IgbDialog>
 
-    <IgbGeographicMap @ref="AzureAerialMap"
-                      Height="100%" Width="100%" Zoomable="true"
-                      BackgroundContent="@AerialImagery">
-    </IgbGeographicMap>
-    <IgbGeographicMap @ref="AzureRoadMap"
-                      Height="100%" Width="100%" Zoomable="true"
-                      BackgroundContent="@RoadImagery">
-    </IgbGeographicMap>
+    @if (ShowImage)
+    {
+        <img src="@CurrentImage" alt="Map Imagery"
+             style="width:auto;height:auto;display:block;margin:auto;" />
+    }
+    else
+    {
+        <IgbGeographicMap @ref="AzureMap"
+                          Height="100%" Width="100%"
+                          Zoomable="true"
+                          BackgroundContent="@AzureImagery">
+        </IgbGeographicMap>
+    }
 </div>
+
+
 
 @code {
 
-    private IgbAzureMapsMapImagery AerialImagery;
-    private IgbAzureMapsMapImagery RoadImagery;
-    private IgbGeographicMap AzureAerialMap;
+    private IgbAzureMapsImagery AzureImagery { get; set; }
+    private IgbGeographicMap AzureMap;
     private IgbGeographicMap AzureRoadMap;
     public IgbDialog DialogRef;
+    private IgbPropertyEditorPanel editor;
+    private IgbPropertyEditorPropertyDescription azureImageryDropDown;
+    private Action BindElements { get; set; }
+    private string CurrentImage = "images/azure_satellite.png";
+    bool ShowImage = true;
 
     private string AzureKey;
+    public IgbAzureMapsImagery CreateImagery(AzureMapsImageryStyle style)
+    {        
+        var imagery = new IgbAzureMapsImagery();
+        imagery.ApiKey = AzureKey;
+        imagery.ImageryStyle = style;
+        AzureImagery = imagery;
+        return imagery;
+    }
+    private bool _imageryAppliedAfterDialog = false;
+    private string _selectedStyle = "Satellite"; // track current selection
 
     public void OnClosed(IgbVoidEventArgs e)
     {
-        this.RoadImagery = CreateImagery(AzureMapsImageryStyle.Road);
-        this.AerialImagery = CreateImagery(AzureMapsImageryStyle.Imagery);
-    }
+        if (!string.IsNullOrWhiteSpace(AzureKey))
+        {
+            ShowImage = false; // triggers map to render
 
-    public IgbAzureMapsMapImagery CreateImagery(AzureMapsImageryStyle style)
-    {        
-        var imagery = new IgbAzureMapsMapImagery();
-        imagery.ApiKey = AzureKey;
-        imagery.ImageryStyle = style;
-
-        return imagery;
+            // Apply the style that was selected in the dropdown
+            ApplyAzureImagery(_selectedStyle);
+            _imageryAppliedAfterDialog = false; // reset flag
+            StateHasChanged(); // let Blazor render the map
+        }
     }
 
     protected override void OnAfterRender(bool firstRender)
     {
-        
-        if (this.DialogRef != null && firstRender)
+        base.OnAfterRender(firstRender);
+
+        if (firstRender && editor != null)
         {
-            this.DialogRef.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            editor.Target = AzureMap;
+
+            azureImageryDropDown = new IgbPropertyEditorPropertyDescription
             {
-                this.DialogRef.ShowAsync();
-            }));
+                Label = "Azure Imagery",
+                ValueType = PropertyEditorValueType.EnumValue,
+                ShouldOverrideDefaultEditor = true,
+                DropDownNames = new string[]
+                {
+                "Satellite", "Road", "DarkGrey", "HybridRoadOverlay", "HybridDarkGreyOverlay",
+                "LabelsRoadOverlay", "LabelsDarkGreyOverlay", "TrafficDelayOverlay", "TerraOverlay",
+                "TrafficAbsoluteOverlay", "TrafficReducedOverlay", "TrafficRelativeDarkOverlay",
+                "TrafficRelativeOverlay", "WeatherInfraredOverlay", "WeatherRadarOverlay"
+                },
+                DropDownValues = new string[]
+                {
+                "Satellite", "Road", "DarkGrey", "HybridRoadOverlay", "HybridDarkGreyOverlay",
+                "LabelsRoadOverlay", "LabelsDarkGreyOverlay", "TrafficDelayOverlay", "TerraOverlay",
+                "TrafficAbsoluteOverlay", "TrafficReducedOverlay", "TrafficRelativeDarkOverlay",
+                "TrafficRelativeOverlay", "WeatherInfraredOverlay", "WeatherRadarOverlay"
+                },
+                PrimitiveValue = _selectedStyle
+            };
+
+            editor.Properties.Add(azureImageryDropDown);
+            azureImageryDropDown.Changed += EditorChangeAzureImagery;
+
         }
 
+        // Apply imagery after dialog close and map has rendered
+        if (!ShowImage && AzureMap != null && !_imageryAppliedAfterDialog)
+        {
+            ApplyAzureImagery(_selectedStyle); // now uses last selected style
+            _imageryAppliedAfterDialog = true;
+        }
+
+        
+    }
+
+    public void EditorChangeAzureImagery(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
+    {
+        _selectedStyle = args.NewValue as string; // save the selection
+        ApplyAzureImagery(_selectedStyle);
+    }
+
+    private void ApplyAzureImagery(string styleName)
+    {
+        // Update placeholder image for base styles
+        // Then in ApplyAzureImagery:
+        if (_placeholderImages.TryGetValue(styleName, out var image))
+        {
+            CurrentImage = image;
+        }
+
+        // Only create Azure Maps imagery if a key is provided
+        if (!string.IsNullOrWhiteSpace(AzureKey))
+        {
+            AzureImagery = styleName switch
+            {
+                "Satellite" => CreateImagery(AzureMapsImageryStyle.Satellite),
+                "Road" => CreateImagery(AzureMapsImageryStyle.Road),
+                "DarkGrey" => CreateImagery(AzureMapsImageryStyle.DarkGrey),
+                "HybridRoadOverlay" => CreateImagery(AzureMapsImageryStyle.HybridRoadOverlay),
+                "HybridDarkGreyOverlay" => CreateImagery(AzureMapsImageryStyle.HybridDarkGreyOverlay),
+                "LabelsRoadOverlay" => CreateImagery(AzureMapsImageryStyle.LabelsRoadOverlay),
+                "LabelsDarkGreyOverlay" => CreateImagery(AzureMapsImageryStyle.LabelsDarkGreyOverlay),
+                "TrafficDelayOverlay" => CreateImagery(AzureMapsImageryStyle.TrafficDelayOverlay),
+                "TerraOverlay" => CreateImagery(AzureMapsImageryStyle.TerraOverlay),
+                "TrafficAbsoluteOverlay" => CreateImagery(AzureMapsImageryStyle.TrafficAbsoluteOverlay),
+                "TrafficReducedOverlay" => CreateImagery(AzureMapsImageryStyle.TrafficReducedOverlay),
+                "TrafficRelativeDarkOverlay" => CreateImagery(AzureMapsImageryStyle.TrafficRelativeDarkOverlay),
+                "TrafficRelativeOverlay" => CreateImagery(AzureMapsImageryStyle.TrafficRelativeOverlay),
+                "WeatherInfraredOverlay" => CreateImagery(AzureMapsImageryStyle.WeatherInfraredOverlay),
+                "WeatherRadarOverlay" => CreateImagery(AzureMapsImageryStyle.WeatherRadarOverlay),
+                _ => CreateImagery(AzureMapsImageryStyle.Satellite)
+            };
+        }
+
+        // Apply imagery if map exists
+        if (AzureMap != null)
+        {
+            AzureMap.BackgroundContent = AzureImagery;
+
+            // Zoom differently for traffic styles
+            if (styleName.StartsWith("Traffic"))
+            {
+                // NYC coordinates
+                double nycLongitude = -74.0060;
+                double nycLatitude = 40.7128;
+                // Small rectangle around NYC
+                var rect = new Rect(nycLongitude - 0.05, nycLatitude - 0.05, new Size(0.1, 0.1));
+                AzureMap.ZoomToGeographic(rect);
+            }
+            else
+            {
+                // Default zoom for entire US
+                var rect = new Rect(
+                    -124.77, 24.52,
+                    new Size(124.77 - 66.95, 49.38 - 24.52)
+                );
+                AzureMap.ZoomToGeographic(rect);
+            }
+
+            AzureMap.FlushAsync();
+        }
+
+        StateHasChanged();
     }
 
     public async Task OnDialogShow()
@@ -73,5 +206,23 @@ igc-dialog::part(content) {
             await this.DialogRef.ShowAsync();
         }
     }
+
+    private readonly Dictionary<string, string> _placeholderImages = new()
+    {
+        { "Satellite", "images/azure_satellite.png" },
+        { "Road", "images/azure_road.png" },
+        { "DarkGrey", "images/azure_darkgrey.png" },
+        { "HybridRoadOverlay", "images/azurehybridroad.png" },
+        { "HybridDarkGreyOverlay", "images/azurehybriddarkgrey.png" },
+        { "LabelsRoadOverlay", "images/azure_labelsroad.png" },
+        { "LabelsDarkGreyOverlay", "images/azure_labelsdarkgrey.png" },
+        { "TrafficDelayOverlay", "images/azure_trafficdelay.png" },
+        { "TerraOverlay", "images/azure_terra_overlay.png" },
+        { "TrafficAbsoluteOverlay", "images/azure_traffic_absolute.png" },
+        { "TrafficReducedOverlay", "images/azure_traffic_light.png" },
+        { "TrafficRelativeOverlay", "images/azure_traffic_relative.png" },
+        { "WeatherInfraredOverlay", "images/azure_weather_infrared_road.png" },
+        { "WeatherRadarOverlay", "images/azure_weather_radar.png" }
+    };
 
 }
