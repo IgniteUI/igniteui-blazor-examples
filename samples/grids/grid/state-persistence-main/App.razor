@@ -83,7 +83,7 @@
             <IgbColumn Field="ID" Header="ID" Sortable="true" Filterable="true" Pinned="true"></IgbColumn>
             <IgbColumn Field="ContactName" Header="Name" MinWidth="200px" Pinned="true"></IgbColumn>
             <IgbColumn Field="ContactTitle" Header="Title" MinWidth="200px" Pinned="true" Groupable="true"></IgbColumn>
-            <IgbColumn Field="CompanyName" Header="Company" MinWidth="200px" Sortable="true" Filterable="true" Groupable="true"></IgbColumn>
+            <IgbColumn Field="Company" Header="Company" MinWidth="200px" Sortable="true" Filterable="true" Groupable="true"></IgbColumn>
             <IgbColumn Field="Country" Header="Country" MinWidth="200px" Sortable="true" Filterable="true" Groupable="true"></IgbColumn>
             <IgbColumn Field="City" Header="City" MinWidth="120px" Sortable="true" Filterable="true" Groupable="true"></IgbColumn>
             <IgbColumn Field="Address" Header="Address" MinWidth="300px" Sortable="true" Filterable="true" Groupable="true"></IgbColumn>
@@ -123,6 +123,7 @@
     };
     private string stateKey = "grid-state";
     private IgbIcon IconRef;
+    private IDisposable registration;
 
     private CustomersData _customersData = null;
     public CustomersData CustomersData
@@ -139,7 +140,6 @@
 
     protected override void OnInitialized()
     {
-        Navigation.LocationChanged += OnLocationChanged;
         base.OnInitialized();
     }
 
@@ -158,16 +158,21 @@
                 this.IconRef.RegisterIconFromText("refresh", refreshIcon, "material");
             }));
         }
+        if (firstRender)
+        {
+            registration = Navigation.RegisterLocationChangingHandler(OnLocationChanged);
+        }
     }
 
-    void OnLocationChanged(object sender, LocationChangedEventArgs e)
+    ValueTask OnLocationChanged(LocationChangingContext arg)
     {
         SaveGridState();
+        return ValueTask.CompletedTask;
     }
 
     public void Dispose()
     {
-        Navigation.LocationChanged -= OnLocationChanged;
+        registration?.Dispose();
     }
 
     void OnGridRendered()

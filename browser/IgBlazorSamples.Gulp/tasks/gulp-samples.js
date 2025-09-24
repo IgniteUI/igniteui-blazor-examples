@@ -94,6 +94,7 @@ var sampleSource = [
 
     // igConfig.SamplesCopyPath + '/excel/spreadsheet/**/App.razor',
     // igConfig.SamplesCopyPath + '/gauges/bullet-graph/animation/App.razor',
+    // igConfig.SamplesCopyPath + '/charts/data-chart/data-annotation-multiple-with-stocks/App.razor',
     // igConfig.SamplesCopyPath + '/grids/**/binding-live-data/App.razor',
     // igConfig.SamplesCopyPath + '/grids/**/overview/App.razor',
     // igConfig.SamplesCopyPath + '/grids/**/column-types/App.razor',
@@ -189,7 +190,7 @@ function getSamples(cb) {
       igConfig.SamplesCopyPath + '/grids/grid/row-drop-indicator/App.razor',
     //   igConfig.SamplesCopyPath + '/grids/grid/row-editing-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/row-paging-style/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/infinite-scroll/App.razor', // broken sample - undo when new IG packages deployed
+    //   igConfig.SamplesCopyPath + '/grids/grid/infinite-scroll/App.razor', // broken sample - undo when new IG packages deployed
     ];
 
     samples = [];
@@ -213,6 +214,8 @@ function getSamples(cb) {
                     sampleFolder + "/**/*.cs",
                     sampleFolder + "/*.csproj",
                     sampleFolder + "/wwwroot/*.js",
+					// this file has been added to SB since it needs to be in a particular location (directly under wwwroot) for import to work
+					'!' + sampleFolder + "/wwwroot/BlazorFastDownloadFile.js",
                     sampleFolder + "/wwwroot/*.css",
                     sampleFolder + "/wwwroot/index.html",
                  // sampleFolder + "/wwwroot/*",
@@ -226,7 +229,8 @@ function getSamples(cb) {
               '!' + sampleFolder + "/obj/**",
               '!' + sampleFolder + "/obj/*.*",
               '!' + sampleFolder + "/bin/**",
-              '!' + sampleFolder + "/bin/*.*",])
+              '!' + sampleFolder + "/bin/*.*",
+			  ])
             .pipe(flatten({ "includeParents": -1 }))
             .pipe(es.map(function(file, fileCallback) {
                 let fileDir = Transformer.getRelative(file.dirname);
@@ -373,7 +377,7 @@ function copySamplePages(cb, outputPath) {
     cb();
 }
 
-function copySampleScripts(cb, outputPath, indexName) {
+function copySampleScripts(cb, outputPath, indexName, isLocalBuild) {
     var insertScriptFiles = [];
 
     log('deleting scripts in: ' + outputPath + '/wwwroot/sb/*.js');
@@ -464,7 +468,6 @@ function copySampleScripts(cb, outputPath, indexName) {
 
     // indexLines = indexLines.filter((v, i, a) => a.indexOf(v) === i);
 
-    var isLocalBuild = __dirname.indexOf('Agent') < 0;
     for (let i = 0; i < indexLines.length; i++) {
         if (indexLines[i].indexOf('<base href') > 0) {
             if (isLocalBuild) {
@@ -492,18 +495,30 @@ function copySampleScripts(cb, outputPath, indexName) {
 // '../../browser/IgBlazorSamples.Server/wwwroot'
 function copySamplesToServer(cb) {
     cleanupSampleBrowser( "../../browser/IgBlazorSamples.Server");
-    copySampleScripts(cb, "../../browser/IgBlazorSamples.Server", "/Pages/_Host.cshtml");
+    copySampleScripts(cb, "../../browser/IgBlazorSamples.Server", "/Pages/_Host.cshtml", true);
     copySamplePages(cb,   "../../browser/IgBlazorSamples.Server");
 } exports.copySamplesToServer = copySamplesToServer;
+
+function copySamplesToServerCI(cb) {
+    cleanupSampleBrowser( "../../browser/IgBlazorSamples.Server");
+    copySampleScripts(cb, "../../browser/IgBlazorSamples.Server", "/Pages/_Host.cshtml", false);
+    copySamplePages(cb,   "../../browser/IgBlazorSamples.Server");
+} exports.copySamplesToServerCI = copySamplesToServerCI;
 
 // '../../browser/IgBlazorSamples.Client/Pages'
 // '../../browser/IgBlazorSamples.Client/Services'
 // '../../browser/IgBlazorSamples.Client/wwwroot'
 function copySamplesToClient(cb) {
     cleanupSampleBrowser( "../../browser/IgBlazorSamples.Client");
-    copySampleScripts(cb, "../../browser/IgBlazorSamples.Client", "/wwwroot/index.html");
+    copySampleScripts(cb, "../../browser/IgBlazorSamples.Client", "/wwwroot/index.html", true);
     copySamplePages(cb,   "../../browser/IgBlazorSamples.Client");
 } exports.copySamplesToClient = copySamplesToClient;
+
+function copySamplesToClientCI(cb) {
+    cleanupSampleBrowser( "../../browser/IgBlazorSamples.Client");
+    copySampleScripts(cb, "../../browser/IgBlazorSamples.Client", "/wwwroot/index.html", false);
+    copySamplePages(cb,   "../../browser/IgBlazorSamples.Client");
+} exports.copySamplesToClientCI = copySamplesToClientCI;
 
 function updateReadme(cb) {
 
@@ -585,22 +600,23 @@ function updateProjects(cb) {
 function updateIG(cb) {
 
     // NOTE: change this array with new version of IG packages, e.g.
-    // { name: "IgniteUI.Blazor.Trial", version: "23.1.72" }, // use trial packages before the volume release - PUBLIC NUGET https://www.nuget.org/packages/IgniteUI.Blazor.Trial
-    // { name: "IgniteUI.Blazor",       version: "23.2.97" }, // use non-trial packages while working on release - LOCAL PROGET http://proget.infragistics.local:81/packages?Count=500&FeedId=13
+    // { version: "23.1.72", name: "IgniteUI.Blazor.Trial" }, // use trial packages before the volume release - PUBLIC NUGET https://www.nuget.org/packages/IgniteUI.Blazor.Trial
+    // { version: "23.2.97", name: "IgniteUI.Blazor" },       // use non-trial packages while working on release - LOCAL PROGET http://proget.infragistics.local:81/packages?Count=500&FeedId=13
 
     let packageUpgrades = [
         // update version of IG packages and change to Trial or non-trial
-        { name: "IgniteUI.Blazor",                 version: "24.1.67" },
-        { name: "IgniteUI.Blazor.Documents.Core",  version: "24.1.67" },
-        { name: "IgniteUI.Blazor.Documents.Excel", version: "24.1.67" },
+        { version: "25.1.63", name: "IgniteUI.Blazor" },
+        { version: "25.1.63", name: "IgniteUI.Blazor.Documents.Core" },
+        { version: "25.1.63", name: "IgniteUI.Blazor.Documents.Excel" },
         // these IG packages are sometimes updated:
-        { name: "Microsoft.AspNetCore.Components",                       version: "8.0.0" },
-        { name: "Microsoft.AspNetCore.Components.Web",                   version: "8.0.0" },
-        { name: "Microsoft.AspNetCore.Components.WebAssembly",           version: "8.0.0" },
-        { name: "Microsoft.AspNetCore.Components.WebAssembly.DevServer", version: "8.0.0" }, // suffix: 'PrivateAssets="all" ' },
-        { name: "Microsoft.AspNetCore.Cors",                             version: "2.2.0" },
-        { name: "Microsoft.AspNetCore.Http.Abstractions",                version: "2.2.0" },
-        { name: "System.Net.Http.Json", version:"8.0.0" },
+        { version: "9.0.0", name: "Microsoft.AspNetCore.Components" },
+        { version: "9.0.0", name: "Microsoft.AspNetCore.Components.Web" },
+        { version: "9.0.0", name: "Microsoft.AspNetCore.Components.WebAssembly" },
+        { version: "9.0.0", name: "Microsoft.AspNetCore.Components.WebAssembly.DevServer" }, // suffix: 'PrivateAssets="all" ' },
+        { version: "2.2.0", name: "Microsoft.AspNetCore.Cors" },
+        { version: "2.2.0", name: "Microsoft.AspNetCore.Http.Abstractions" },
+        { version: "9.0.0", name: "Microsoft.JSInterop.WebAssembly" },
+        { version: "9.0.0", name: "System.Net.Http.Json" },
     ];
 
     // creating package mapping for quick lookup
@@ -1090,10 +1106,11 @@ function updateCodeViewer(cb) {
         // path = path.replace("/", "-");
 
         var codeViewPath = "../IgBlazorSamples.Client/wwwroot/code-viewer" + path + ".json";
-        // log("generating " + codeViewPath);
+        log("generating " + codeViewPath);
 
         var content = "{\r\n \"sampleFiles\":\r\n";
         var contentItems = [];
+        var dataFiles = [];
 
         for (const file of sample.SourceFiles) {
             // console.log("SourceFiles " + file.Name);
@@ -1116,12 +1133,12 @@ function updateCodeViewer(cb) {
                 //code = code.replace(/\n\n/gm, '\n');
                 var item = new CodeViewer(file.Path, code, "razor", "razor", true);
                 contentItems.push(item);
-            }
-            else if (file.isProgramCS()) {
+
+            } else if (file.isProgramCS()) {
                 var item = new CodeViewer(file.Path, file.Content, "cs", "MODULES", true);
                 contentItems.push(item);
-            }
-            else if (file.isCS()) {
+
+            } else if (file.isCS()) {
                 var name = file.Name.toLowerCase();
                 var header = "DATA";
                 if (sample.DataFilesCount > 1) {
@@ -1129,8 +1146,27 @@ function updateCodeViewer(cb) {
                     header = isGenerator ? "DATA GENERATOR" : "DATA SOURCE";
                 }
                 var item = new CodeViewer(file.Path, file.Content, "cs", header, true);
-                contentItems.push(item);
+                // contentItems.push(item);
+                dataFiles.push(item);
             }
+        }
+
+        if (dataFiles.length === 1) {
+            contentItems.push(dataFiles[0]);
+        } else if (dataFiles.length > 1) {
+            // combining multiple data files into one data source
+            var dataPath = dataFiles[0].path;
+            var dataFolder = dataPath.substring(0, dataPath.lastIndexOf("/"));
+            var dataContent = "// NOTE this file contains multiple data sources:\r\n";
+
+            for (let i = 0; i < dataFiles.length; i++) {
+                const data = dataFiles[i];
+                dataContent += "\r\n\r\n" + "// Data Source #" + (i+1) + "\r\n";
+                dataContent += data.content + "\r\n";
+            }
+
+            var dataItem = new CodeViewer(dataFolder + "/DataSources.cs", dataContent, "cs", "DATA", true);
+            contentItems.push(dataItem);
         }
 
         if (sample.PublicFiles_JS.length > 0) {

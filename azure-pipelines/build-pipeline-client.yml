@@ -38,8 +38,10 @@ stages:
 
       - template: templates/build-steps-template.yml
         parameters:
-          igVersion: '24.1.67'
+          igVersion: '25.1.63'
           igNuGetFeedUrl: $(IG_Nuget_Feed_URL)
           projectToBuild: Client
           isVerbose: ${{ parameters.isVerbose }}
           shouldCleanPostExectuion: ${{ parameters.shouldCleanPostExectuion }}
+          username: $(IG_Nuget_Feed_Username)
+          password: $(IG_Nuget_Feed_Password)

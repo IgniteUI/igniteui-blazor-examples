@@ -1,0 +1,365 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="container vertical fill">
+        <IgbDataChart
+        Name="chart"
+        @ref="chart"
+        ShouldAutoExpandMarginForInitialLabels="true"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+        IsVerticalZoomEnabled="false"
+        IsHorizontalZoomEnabled="true"
+        Brushes="green red"
+        Outlines="green red"
+        PlotAreaMarginLeft="10"
+        PlotAreaMarginTop="0"
+        PlotAreaMarginRight="20"
+        PlotAreaMarginBottom="0"
+        LeftMargin="10"
+        TopMargin="0"
+        RightMargin="20"
+        BottomMargin="0"
+        IsWindowSyncedToVisibleRange="false"
+        ChartTitle="This Data Chart has multiple Data Annotation Layers bound to data that annotates important events and patterns in stock prices.">
+            <IgbCategoryXAxis
+            Name="xAxisBottom"
+            @ref="xAxisBottom"
+            DataSource="StockTesla"
+            Label="Index"
+            TickLength="0"
+            LabelLocation="AxisLabelsLocation.OutsideBottom"
+            LabelTextColor="#00000000"
+            LabelFontSize="12"
+            LabelExtent="140"
+            LabelLeftMargin="0"
+            LabelTopMargin="15"
+            LabelRightMargin="0"
+            LabelBottomMargin="15"
+            LabelAngle="90">
+            </IgbCategoryXAxis>
+
+            <IgbCategoryXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            DataSource="StockTesla"
+            Label="Date"
+            LabelLeftMargin="0"
+            LabelTopMargin="5"
+            LabelRightMargin="0"
+            LabelBottomMargin="5">
+            </IgbCategoryXAxis>
+
+            <IgbCategoryXAxis
+            Name="xAxisTop"
+            @ref="xAxisTop"
+            DataSource="StockTesla"
+            Label="Date"
+            TickLength="0"
+            LabelLocation="AxisLabelsLocation.OutsideTop"
+            LabelFontSize="12"
+            LabelExtent="40"
+            LabelTextColor="#00000000"
+            LabelLeftMargin="8"
+            LabelTopMargin="3"
+            LabelRightMargin="8"
+            LabelBottomMargin="5">
+            </IgbCategoryXAxis>
+
+            <IgbNumericYAxis
+            Name="yAxisLeft"
+            @ref="yAxisLeft"
+            LabelLocation="AxisLabelsLocation.OutsideLeft"
+            LabelFontSize="12"
+            LabelExtent="80"
+            LabelHorizontalAlignment="HorizontalAlignment.Right"
+            LabelLeftMargin="8"
+            LabelTopMargin="3"
+            LabelRightMargin="8"
+            LabelBottomMargin="5"
+            MinimumValue="0"
+            MaximumValue="550">
+            </IgbNumericYAxis>
+
+            <IgbNumericYAxis
+            Name="yAxisRight"
+            @ref="yAxisRight"
+            LabelLocation="AxisLabelsLocation.OutsideRight"
+            LabelFontSize="12"
+            LabelExtent="80"
+            LabelHorizontalAlignment="HorizontalAlignment.Left"
+            LabelLeftMargin="8"
+            LabelTopMargin="3"
+            LabelRightMargin="8"
+            LabelBottomMargin="5"
+            MinimumValue="0"
+            MaximumValue="550">
+            </IgbNumericYAxis>
+
+            <IgbFinancialPriceSeries
+            Name="series1"
+            @ref="series1"
+            Title="Stock Price"
+            DisplayType="PriceDisplayType.Candlestick"
+            XAxisName="xAxis"
+            YAxisName="yAxisLeft"
+            DataSource="StockTesla"
+            OpenMemberPath="Open"
+            HighMemberPath="High"
+            LowMemberPath="Low"
+            CloseMemberPath="Close"
+            ShowDefaultTooltip="false">
+            </IgbFinancialPriceSeries>
+
+            <IgbDataToolTipLayer
+            Name="Tooltip"
+            @ref="tooltip"
+            IncludedColumns="@(new string[] { "High", "Low", "Open", "Close" })"
+            LayoutMode="DataLegendLayoutMode.Vertical">
+            </IgbDataToolTipLayer>
+
+            <IgbDataAnnotationStripLayer
+            Name="StripLayer"
+            @ref="stripLayer"
+            DataSource="AnnotationStripData"
+            TargetAxisName="xAxisTop"
+            CenterLabelMemberPath="Label"
+            StartValueMemberPath="Start"
+            EndValueMemberPath="End"
+            EndLabelDisplayMode="DataAnnotationDisplayMode.Hidden"
+            StartLabelDisplayMode="DataAnnotationDisplayMode.Hidden"
+            Brush="black"
+            Outline="black"
+            OverlayTextColor="purple"
+            OverlayTextLocation="OverlayTextLocation.Hidden"
+            OverlayTextMemberPath="Label">
+            </IgbDataAnnotationStripLayer>
+
+            <IgbDataAnnotationLineLayer
+            Name="LineLayer52WeekRange"
+            @ref="lineLayer52WeekRange"
+            DataSource="AnnotationLineData1"
+            TargetAxisName="yAxisRight"
+            CenterLabelXDisplayMode="DataAnnotationDisplayMode.Hidden"
+            StartLabelXDisplayMode="DataAnnotationDisplayMode.Hidden"
+            StartLabelYDisplayMode="DataAnnotationDisplayMode.DataValue"
+            EndLabelXDisplayMode="DataAnnotationDisplayMode.Hidden"
+            EndLabelYDisplayMode="DataAnnotationDisplayMode.DataValue"
+            Brush="purple"
+            Outline="purple"
+            OverlayTextColor="purple"
+            OverlayTextVerticalMargin="5"
+            OverlayTextHorizontalMargin="5"
+            OverlayTextLocation="OverlayTextLocation.OutsideBottomLeft"
+            OverlayTextMemberPath="Label"
+            StartLabelXMemberPath="StartLabel"
+            EndLabelXMemberPath="EndLabel"
+            StartValueXMemberPath="StartX"
+            StartValueYMemberPath="StartY"
+            EndValueXMemberPath="EndX"
+            EndValueYMemberPath="EndY">
+            </IgbDataAnnotationLineLayer>
+
+            <IgbDataAnnotationLineLayer
+            Name="LineLayerGrowthAndDecline"
+            @ref="lineLayerGrowthAndDecline"
+            DataSource="AnnotationLineData2"
+            TargetAxisName="xAxis"
+            CenterLabelXDisplayMode="DataAnnotationDisplayMode.Hidden"
+            StartLabelXDisplayMode="DataAnnotationDisplayMode.Hidden"
+            EndLabelXDisplayMode="DataAnnotationDisplayMode.Hidden"
+            AnnotationBackgroundMode="AnnotationAppearanceMode.BrightnessShift"
+            Brush="purple"
+            Outline="purple"
+            OverlayTextColor="purple"
+            OverlayTextVerticalMargin="-10"
+            OverlayTextHorizontalMargin="70"
+            OverlayTextMemberPath="Label"
+            StartLabelXMemberPath="StartLabel"
+            EndLabelXMemberPath="EndLabel"
+            StartValueXMemberPath="StartX"
+            StartValueYMemberPath="StartY"
+            EndValueXMemberPath="EndX"
+            EndValueYMemberPath="EndY">
+            </IgbDataAnnotationLineLayer>
+
+            <IgbDataAnnotationSliceLayer
+            Name="SliceLayerStockSplit"
+            @ref="sliceLayerStockSplit"
+            DataSource="AnnotationSliceStockSplitData"
+            TargetAxisName="xAxisBottom"
+            Brush="dodgerblue"
+            AnnotationTextColor="white"
+            AnnotationLabelMemberPath="Label"
+            AnnotationValueMemberPath="Value"
+            OverlayTextMemberPath="Label"
+            OverlayTextAngle="90"
+            OverlayTextVerticalMargin="20"
+            OverlayTextHorizontalMargin="0"
+            OverlayTextLocation="OverlayTextLocation.Hidden">
+            </IgbDataAnnotationSliceLayer>
+
+            <IgbDataAnnotationSliceLayer
+            Name="SliceLayerEarningsMissAnnotations"
+            @ref="sliceLayerEarningsMissAnnotations"
+            DataSource="AnnotationSliceEarningsMissData"
+            TargetAxisName="xAxisBottom"
+            Brush="red"
+            AnnotationTextColor="white"
+            AnnotationLabelMemberPath="Label"
+            AnnotationValueMemberPath="Value"
+            OverlayTextMemberPath="Label"
+            OverlayTextAngle="90"
+            OverlayTextVerticalMargin="20"
+            OverlayTextHorizontalMargin="0"
+            OverlayTextLocation="OverlayTextLocation.Hidden">
+            </IgbDataAnnotationSliceLayer>
+
+            <IgbDataAnnotationSliceLayer
+            Name="SliceLayerEarningsBeatAnnotations"
+            @ref="sliceLayerEarningsBeatAnnotations"
+            DataSource="AnnotationSliceEarningsBeatData"
+            TargetAxisName="xAxisBottom"
+            Brush="green"
+            AnnotationTextColor="white"
+            AnnotationLabelMemberPath="Label"
+            AnnotationValueMemberPath="Value"
+            OverlayTextMemberPath="Label"
+            OverlayTextAngle="90"
+            OverlayTextVerticalMargin="20"
+            OverlayTextHorizontalMargin="0"
+            OverlayTextLocation="OverlayTextLocation.Hidden">
+            </IgbDataAnnotationSliceLayer>
+
+        </IgbDataChart>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var chart = this.chart;
+        var xAxisBottom = this.xAxisBottom;
+        var xAxis = this.xAxis;
+        var xAxisTop = this.xAxisTop;
+        var yAxisLeft = this.yAxisLeft;
+        var yAxisRight = this.yAxisRight;
+        var series1 = this.series1;
+        var tooltip = this.tooltip;
+        var stripLayer = this.stripLayer;
+        var lineLayer52WeekRange = this.lineLayer52WeekRange;
+        var lineLayerGrowthAndDecline = this.lineLayerGrowthAndDecline;
+        var sliceLayerStockSplit = this.sliceLayerStockSplit;
+        var sliceLayerEarningsMissAnnotations = this.sliceLayerEarningsMissAnnotations;
+        var sliceLayerEarningsBeatAnnotations = this.sliceLayerEarningsBeatAnnotations;
+
+    }
+
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxisBottom;
+    private IgbCategoryXAxis xAxis;
+    private IgbCategoryXAxis xAxisTop;
+    private IgbNumericYAxis yAxisLeft;
+    private IgbNumericYAxis yAxisRight;
+    private IgbFinancialPriceSeries series1;
+    private IgbDataToolTipLayer tooltip;
+    private IgbDataAnnotationStripLayer stripLayer;
+    private IgbDataAnnotationLineLayer lineLayer52WeekRange;
+    private IgbDataAnnotationLineLayer lineLayerGrowthAndDecline;
+    private IgbDataAnnotationSliceLayer sliceLayerStockSplit;
+    private IgbDataAnnotationSliceLayer sliceLayerEarningsMissAnnotations;
+    private IgbDataAnnotationSliceLayer sliceLayerEarningsBeatAnnotations;
+
+    private StockTesla _stockTesla = null;
+    public StockTesla StockTesla
+    {
+        get
+        {
+            if (_stockTesla == null)
+            {
+                _stockTesla = new StockTesla();
+            }
+            return _stockTesla;
+        }
+    }
+
+    private AnnotationStripData _annotationStripData = null;
+    public AnnotationStripData AnnotationStripData
+    {
+        get
+        {
+            if (_annotationStripData == null)
+            {
+                _annotationStripData = new AnnotationStripData();
+            }
+            return _annotationStripData;
+        }
+    }
+
+    private AnnotationLineData1 _annotationLineData1 = null;
+    public AnnotationLineData1 AnnotationLineData1
+    {
+        get
+        {
+            if (_annotationLineData1 == null)
+            {
+                _annotationLineData1 = new AnnotationLineData1();
+            }
+            return _annotationLineData1;
+        }
+    }
+
+    private AnnotationLineData2 _annotationLineData2 = null;
+    public AnnotationLineData2 AnnotationLineData2
+    {
+        get
+        {
+            if (_annotationLineData2 == null)
+            {
+                _annotationLineData2 = new AnnotationLineData2();
+            }
+            return _annotationLineData2;
+        }
+    }
+
+    private AnnotationSliceStockSplitData _annotationSliceStockSplitData = null;
+    public AnnotationSliceStockSplitData AnnotationSliceStockSplitData
+    {
+        get
+        {
+            if (_annotationSliceStockSplitData == null)
+            {
+                _annotationSliceStockSplitData = new AnnotationSliceStockSplitData();
+            }
+            return _annotationSliceStockSplitData;
+        }
+    }
+
+    private AnnotationSliceEarningsMissData _annotationSliceEarningsMissData = null;
+    public AnnotationSliceEarningsMissData AnnotationSliceEarningsMissData
+    {
+        get
+        {
+            if (_annotationSliceEarningsMissData == null)
+            {
+                _annotationSliceEarningsMissData = new AnnotationSliceEarningsMissData();
+            }
+            return _annotationSliceEarningsMissData;
+        }
+    }
+
+    private AnnotationSliceEarningsBeatData _annotationSliceEarningsBeatData = null;
+    public AnnotationSliceEarningsBeatData AnnotationSliceEarningsBeatData
+    {
+        get
+        {
+            if (_annotationSliceEarningsBeatData == null)
+            {
+                _annotationSliceEarningsBeatData = new AnnotationSliceEarningsBeatData();
+            }
+            return _annotationSliceEarningsBeatData;
+        }
+    }
+
+}

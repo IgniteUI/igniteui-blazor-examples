@@ -1218,12 +1218,12 @@ class PackageDependency {
 
 // used in updateCodeViewer script to serialize JSON files
 class CodeViewer {
-    public path: string;
     public hasRelativeAssetsUrls: Boolean;
-    public content: string;
     public isMain: Boolean;
     public fileExtension: string;
     public fileHeader: string;
+    public path: string;
+    public content: string;
 
     constructor(filePath: string, content: string, fileExtension: string, fileHeader: string, isMain: Boolean) {
 
@@ -1231,10 +1231,10 @@ class CodeViewer {
         // jsonContent = jsonContent.replace(/\/\//g, "/");
 
         this.hasRelativeAssetsUrls = false;
-        this.path = filePath;
-        this.content = jsonContent;
         this.isMain = isMain;
         this.fileExtension = fileExtension;
         this.fileHeader = fileHeader;
+        this.path = filePath;
+        this.content = jsonContent;
     }
 }

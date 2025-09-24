@@ -23,7 +23,8 @@ namespace Infragistics.Samples
                 typeof(IgbLegendModule),
                 typeof(IgbToolbarModule),
                 typeof(IgbCategoryChartModule),
-                typeof(IgbCategoryChartToolbarModule)
+                typeof(IgbCategoryChartToolbarModule),
+                typeof(IgbCheckboxListModule)
             );
             await builder.Build().RunAsync();
         }

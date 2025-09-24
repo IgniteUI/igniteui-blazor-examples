@@ -24,7 +24,8 @@
     </script>
     <script>
         window.preventScrollHandler = (event) => {
-            if (event.target.outerHTML.toLowerCase().includes('igx')) {
+            const eventPath = event.composedPath();
+            if (event.target.outerHTML.toLowerCase().includes('igx') && eventPath.filter(x => x.classList?.value === 'igx-grid__tbody').length > 0) {
                 event.preventDefault();
             }
         };
@@ -72,10 +73,12 @@
 <script src="sb/data-chart-gantt-chart.js"></script>
 <script src="sb/data-chart-network-polar-chart.js"></script>
 <script src="sb/data-chart-network-scatter-chart.js"></script>
+<script src="sb/data-chart-scatter-bubble-chart-tooltip.js"></script>
 <script src="sb/data-chart-series-marker-template.js"></script>
 <script src="sb/data-chart-tooltip-template.js"></script>
 <script src="sb/data-chart-type-scatter-polygon-series.js"></script>
 <script src="sb/data-chart-type-scatter-polyline-series.js"></script>
+<script src="sb/doughnut-chart-explosion.js"></script>
 <script src="sb/financial-chart-indicator-customization.js"></script>
 <script src="sb/financial-chart-performance.js"></script>
 <script src="sb/toolbar-download-data-chart-as-image.js"></script>
@@ -117,6 +120,8 @@
 <script src="sb/grid-data-summary-template.js"></script>
 <script src="sb/grid-data-validator-service.js"></script>
 <script src="sb/grid-data-validator-service-extended.js"></script>
+<script src="sb/grid-disabled-summaries.js"></script>
+<script src="sb/grid-editing-columns.js"></script>
 <script src="sb/grid-editing-events.js"></script>
 <script src="sb/grid-editing-excel-style.js"></script>
 <script src="sb/grid-editing-lifecycle.js"></script>
@@ -153,6 +158,7 @@
 <script src="sb/grid-row-selection-template-numbers.js"></script>
 <script src="sb/grid-row-styles.js"></script>
 <script src="sb/grid-toolbar-sample-3.js"></script>
+<script src="sb/grid-toolbar-sample-4.js"></script>
 <script src="sb/hierarchical-grid-cell-editing-sample.js"></script>
 <script src="sb/hierarchical-grid-cell-selection-mode.js"></script>
 <script src="sb/hierarchical-grid-column-moving-options.js"></script>
@@ -165,6 +171,7 @@
 <script src="sb/hierarchical-grid-data-performance-virtualization.js"></script>
 <script src="sb/hierarchical-grid-data-summary-formatter.js"></script>
 <script src="sb/hierarchical-grid-data-summary-template.js"></script>
+<script src="sb/hierarchical-grid-disabled-summaries.js"></script>
 <script src="sb/hierarchical-grid-editing-events.js"></script>
 <script src="sb/hierarchical-grid-editing-lifecycle.js"></script>
 <script src="sb/hierarchical-grid-excel-style-filtering-sample-3.js"></script>
@@ -198,6 +205,7 @@
 <script src="sb/tree-grid-data-summary-options.js"></script>
 <script src="sb/tree-grid-data-summary-options-styling.js"></script>
 <script src="sb/tree-grid-data-summary-template.js"></script>
+<script src="sb/tree-grid-disabled-summaries.js"></script>
 <script src="sb/tree-grid-editing-events.js"></script>
 <script src="sb/tree-grid-editing-lifecycle.js"></script>
 <script src="sb/tree-grid-excel-style-filtering-sample-1.js"></script>
@@ -228,6 +236,7 @@
 <script src="sb/combo-templates.js"></script>
 <script src="sb/dock-manager-styling.js"></script>
 <script src="sb/geo-map-marker-template.js"></script>
+<script src="sb/geo-map-shape-styling.js"></script>
 <script src="sb/geo-map-type-shape-polygon-series.js"></script>
     <!--AutoInsertJavaScriptsForSamples End-->
 </body>

@@ -12,35 +12,10 @@ public class LocalData
 {
     public LocalData()
     {
-        this.Add(new LocalDataItem()
-        {
-            MarketShare = 37,
-            Category = @"Cooling",
-            Summary = @"Cooling 37%"
-        });
-        this.Add(new LocalDataItem()
-        {
-            MarketShare = 25,
-            Category = @"Residential",
-            Summary = @"Residential 25%"
-        });
-        this.Add(new LocalDataItem()
-        {
-            MarketShare = 12,
-            Category = @"Heating",
-            Summary = @"Heating 12%"
-        });
-        this.Add(new LocalDataItem()
-        {
-            MarketShare = 11,
-            Category = @"Lighting",
-            Summary = @"Lighting 11%"
-        });
-        this.Add(new LocalDataItem()
-        {
-            MarketShare = 15,
-            Category = @"Other",
-            Summary = @"Other 15%"
-        });
+        this.Add(new LocalDataItem() { MarketShare = 37, Category = @"Cooling", Summary = @"Cooling 37%" });
+        this.Add(new LocalDataItem() { MarketShare = 25, Category = @"Residential", Summary = @"Residential 25%" });
+        this.Add(new LocalDataItem() { MarketShare = 12, Category = @"Heating", Summary = @"Heating 12%" });
+        this.Add(new LocalDataItem() { MarketShare = 11, Category = @"Lighting", Summary = @"Lighting 11%" });
+        this.Add(new LocalDataItem() { MarketShare = 15, Category = @"Other", Summary = @"Other 15%" });
     }
 }

@@ -11,22 +11,30 @@
         @ref="propertyEditorPanel1">
             <IgbPropertyEditorPropertyDescription
             PropertyPath="OthersCategoryType"
+            Name="OthersCategoryTypeEditor"
+            @ref="othersCategoryTypeEditor"
             Label="Others Type: "
-            PrimitiveValue="@("Number")">
+            PrimitiveValue="@("Number")"
+            ValueType="PropertyEditorValueType.EnumValue">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
             PropertyPath="OthersCategoryThreshold"
+            Name="OthersCategoryThresholdEditor"
+            @ref="othersCategoryThresholdEditor"
             Label="Others Threshold: "
-            ShouldOverrideDefaultEditor="true"
             ValueType="PropertyEditorValueType.Slider"
             Min="0"
-            Max="40">
+            Max="50"
+            PrimitiveValue="15">
             </IgbPropertyEditorPropertyDescription>
 
             <IgbPropertyEditorPropertyDescription
             PropertyPath="OthersCategoryText"
-            Label="Others Text: ">
+            Name="OthersCategoryTextEditor"
+            @ref="othersCategoryTextEditor"
+            Label="Others Text: "
+            ValueType="PropertyEditorValueType.StringValue">
             </IgbPropertyEditorPropertyDescription>
 
         </IgbPropertyEditorPanel>
@@ -39,10 +47,9 @@
         <IgbDataPieChart
         Name="chart"
         @ref="chart"
-        DataSource="EnergyGlobalDemand"
-        OthersCategoryText="Others"
+        DataSource="DataPieData"
         OthersCategoryType="OthersCategoryType.Number"
-        OthersCategoryThreshold="5">
+        OthersCategoryThreshold="15">
         </IgbDataPieChart>
 
     </div>
@@ -55,6 +62,9 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var propertyEditorPanel1 = this.propertyEditorPanel1;
+        var othersCategoryTypeEditor = this.othersCategoryTypeEditor;
+        var othersCategoryThresholdEditor = this.othersCategoryThresholdEditor;
+        var othersCategoryTextEditor = this.othersCategoryTextEditor;
         var chart = this.chart;
 
         this.BindElements = () => {
@@ -65,18 +75,21 @@
     }
 
     private IgbPropertyEditorPanel propertyEditorPanel1;
+    private IgbPropertyEditorPropertyDescription othersCategoryTypeEditor;
+    private IgbPropertyEditorPropertyDescription othersCategoryThresholdEditor;
+    private IgbPropertyEditorPropertyDescription othersCategoryTextEditor;
     private IgbDataPieChart chart;
 
-    private EnergyGlobalDemand _energyGlobalDemand = null;
-    public EnergyGlobalDemand EnergyGlobalDemand
+    private DataPieData _dataPieData = null;
+    public DataPieData DataPieData
     {
         get
         {
-            if (_energyGlobalDemand == null)
+            if (_dataPieData == null)
             {
-                _energyGlobalDemand = new EnergyGlobalDemand();
+                _dataPieData = new DataPieData();
             }
-            return _energyGlobalDemand;
+            return _dataPieData;
         }
     }
 

@@ -11,25 +11,9 @@ public class CalendarSeasons
 {
     public CalendarSeasons()
     {
-        this.Add(new CalendarSeasonsItem()
-        {
-            Value = 4,
-            Label = @"Winter"
-        });
-        this.Add(new CalendarSeasonsItem()
-        {
-            Value = 4,
-            Label = @"Spring"
-        });
-        this.Add(new CalendarSeasonsItem()
-        {
-            Value = 4,
-            Label = @"Summer"
-        });
-        this.Add(new CalendarSeasonsItem()
-        {
-            Value = 4,
-            Label = @"Fall"
-        });
+        this.Add(new CalendarSeasonsItem() { Value = 4, Label = @"Winter" });
+        this.Add(new CalendarSeasonsItem() { Value = 4, Label = @"Spring" });
+        this.Add(new CalendarSeasonsItem() { Value = 4, Label = @"Summer" });
+        this.Add(new CalendarSeasonsItem() { Value = 4, Label = @"Fall" });
     }
 }

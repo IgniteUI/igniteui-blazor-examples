@@ -11,40 +11,12 @@ public class OnlineTrafficHighlightTotals
 {
     public OnlineTrafficHighlightTotals()
     {
-        this.Add(new OnlineTrafficHighlightTotalsItem()
-        {
-            Category = @"Apparel",
-            Value = 56
-        });
-        this.Add(new OnlineTrafficHighlightTotalsItem()
-        {
-            Category = @"Beauty",
-            Value = 67
-        });
-        this.Add(new OnlineTrafficHighlightTotalsItem()
-        {
-            Category = @"Travel",
-            Value = 80
-        });
-        this.Add(new OnlineTrafficHighlightTotalsItem()
-        {
-            Category = @"Grocery",
-            Value = 62
-        });
-        this.Add(new OnlineTrafficHighlightTotalsItem()
-        {
-            Category = @"Energy",
-            Value = 74
-        });
-        this.Add(new OnlineTrafficHighlightTotalsItem()
-        {
-            Category = @"Home Supply",
-            Value = 65
-        });
-        this.Add(new OnlineTrafficHighlightTotalsItem()
-        {
-            Category = @"Financial",
-            Value = 88
-        });
+        this.Add(new OnlineTrafficHighlightTotalsItem() { Category = @"Apparel", Value = 56 });
+        this.Add(new OnlineTrafficHighlightTotalsItem() { Category = @"Beauty", Value = 67 });
+        this.Add(new OnlineTrafficHighlightTotalsItem() { Category = @"Travel", Value = 80 });
+        this.Add(new OnlineTrafficHighlightTotalsItem() { Category = @"Grocery", Value = 62 });
+        this.Add(new OnlineTrafficHighlightTotalsItem() { Category = @"Energy", Value = 74 });
+        this.Add(new OnlineTrafficHighlightTotalsItem() { Category = @"Home Supply", Value = 65 });
+        this.Add(new OnlineTrafficHighlightTotalsItem() { Category = @"Financial", Value = 88 });
     }
 }

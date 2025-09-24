@@ -15,39 +15,71 @@
 <div class="container sample center">
     <IgbDropdown @ref="DropDownRef" Distance="5" Change=OnChange Placement=@placement>
         <IgbButton slot="target">Option</IgbButton>
-        <IgbDropdownItem Value="top">top</IgbDropdownItem>
-        <IgbDropdownItem Value="bottom">bottom</IgbDropdownItem>
-
-        @*<IgbDropdownItem>@DropdownPlacement.Top</IgbDropdownItem>
-        <IgbDropdownItem>@DropdownPlacement.TopStart</IgbDropdownItem>
-        <IgbDropdownItem>@DropdownPlacement.TopEnd</IgbDropdownItem>
-        <IgbDropdownItem>@DropdownPlacement.Bottom</IgbDropdownItem>
-        <IgbDropdownItem>@DropdownPlacement.BottomStart</IgbDropdownItem>
-        <IgbDropdownItem>@DropdownPlacement.BottomEnd</IgbDropdownItem>
-        <IgbDropdownItem>@DropdownPlacement.Left</IgbDropdownItem>
-        <IgbDropdownItem>@DropdownPlacement.LeftStart</IgbDropdownItem>
-        <IgbDropdownItem>@DropdownPlacement.LeftEnd</IgbDropdownItem>
-        <IgbDropdownItem>@DropdownPlacement.Right</IgbDropdownItem>
-        <IgbDropdownItem>@DropdownPlacement.RightStart</IgbDropdownItem>
-        <IgbDropdownItem>@DropdownPlacement.RightEnd</IgbDropdownItem>*@
+            <IgbDropdownItem Value="Top">@PopoverPlacement.Top</IgbDropdownItem>
+            <IgbDropdownItem Value="TopStart">@PopoverPlacement.TopStart</IgbDropdownItem>
+            <IgbDropdownItem Value="TopEnd">@PopoverPlacement.TopEnd</IgbDropdownItem>
+            <IgbDropdownItem Value="Bottom">@PopoverPlacement.Bottom</IgbDropdownItem>
+            <IgbDropdownItem Value="BottomStart">@PopoverPlacement.BottomStart</IgbDropdownItem>
+            <IgbDropdownItem Value="BottomEnd">@PopoverPlacement.BottomEnd</IgbDropdownItem>
+            <IgbDropdownItem Value="Left">@PopoverPlacement.Left</IgbDropdownItem>
+            <IgbDropdownItem Value="LeftStart">@PopoverPlacement.LeftStart</IgbDropdownItem>
+            <IgbDropdownItem Value="LeftEnd">@PopoverPlacement.LeftEnd</IgbDropdownItem>
+            <IgbDropdownItem Value="Right">@PopoverPlacement.Right</IgbDropdownItem>
+            <IgbDropdownItem Value="RightStart">@PopoverPlacement.RightStart</IgbDropdownItem>
+            <IgbDropdownItem Value="RightEnd">@PopoverPlacement.RightEnd</IgbDropdownItem>
     </IgbDropdown>
 </div>
 
-@code {
+    @code {
 
     IgbDropdown DropDownRef { get; set; }
-    DropdownPlacement placement { get; set; }
+    PopoverPlacement placement { get; set; }
 
     private void OnChange(IgbDropdownItemComponentEventArgs e)
     {
-        //Console.WriteLine(e.Detail.Value);
+        Console.WriteLine(e.Detail.Value);
 
-        //this.placement = e.Detail.Value;
-        if(e.Detail.Value == "top")
+        switch (e.Detail.Value)
         {
-            //TODO
+            case "Top":
+                placement = PopoverPlacement.Top;
+                break;
+            case "TopStart":
+                placement = PopoverPlacement.TopStart;
+                break;
+            case "TopEnd":
+                placement = PopoverPlacement.TopEnd;
+                break;
+            case "Bottom":
+                placement = PopoverPlacement.Bottom;
+                break;
+            case "BottomStart":
+                placement = PopoverPlacement.BottomStart;
+                break;
+            case "BottomEnd":
+                placement = PopoverPlacement.BottomEnd;
+                break;
+            case "Left":
+                placement = PopoverPlacement.Left;
+                break;
+            case "LeftStart":
+                placement = PopoverPlacement.LeftStart;
+                break;
+            case "LeftEnd":
+                placement = PopoverPlacement.LeftEnd;
+                break;
+            case "Right":
+                placement = PopoverPlacement.Right;
+                break;
+            case "RightStart":
+                placement = PopoverPlacement.RightStart;
+                break;
+            case "RightEnd":
+                placement = PopoverPlacement.RightEnd;
+                break;
+            default:
+                Console.WriteLine("Unknown placement value");
+                break;
         }
-
-
     }
 }

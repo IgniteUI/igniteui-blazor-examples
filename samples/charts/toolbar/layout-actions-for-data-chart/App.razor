@@ -1,6 +1,5 @@
 @using IgniteUI.Blazor.Controls
-@using IgniteUI.Blazor.Controls;
-@using System;
+@using System
 
 <div class="container vertical">
     <div id="aboveContentSplit">
@@ -9,21 +8,47 @@
             Name="toolbar"
             @ref="toolbar"
             Orientation="ToolbarOrientation.Horizontal"
-            OnCommand="ToolbarToggleTooltip">
-                <IgbToolActionCheckbox
-                Name="EnableTooltipsLabel"
-                @ref="enableTooltipsLabel"
-                Title="Enable Tooltips"
-                BeforeId="ZoomReset"
-                CommandId="EnableTooltips">
-                </IgbToolActionCheckbox>
+            OnCommand="ToolbarToggleAnnotations">
+                <IgbToolActionIconMenu
+                Name="MenuForSubPanelTool"
+                @ref="menuForSubPanelTool"
+                IconCollectionName="ChartToolbarIcons"
+                IconName="analyze">
+                    <IgbToolActionGroupHeader
+                    Name="SubPanelGroup"
+                    @ref="subPanelGroup"
+                    CloseOnExecute="true"
+                    Title="Visualizations"
+                    Subtitle="Layers">
+                    </IgbToolActionGroupHeader>
 
-                <IgbToolActionLabel
-                Name="zoomResetHidden"
-                @ref="zoomResetHidden"
-                OverlayId="ZoomReset"
-                Visibility="Visibility.Collapsed">
-                </IgbToolActionLabel>
+                    <IgbToolActionSubPanel
+                    Name="CustomSubPanelTools"
+                    @ref="customSubPanelTools">
+                        <IgbToolActionCheckbox
+                        Name="EnableTooltipsLabel"
+                        @ref="enableTooltipsLabel"
+                        Title="Enable Tooltips"
+                        CommandId="EnableTooltips">
+                        </IgbToolActionCheckbox>
+
+                        <IgbToolActionCheckbox
+                        Name="EnableCrosshairsLabel"
+                        @ref="enableCrosshairsLabel"
+                        Title="Enable Crosshairs"
+                        CommandId="EnableCrosshairs">
+                        </IgbToolActionCheckbox>
+
+                        <IgbToolActionCheckbox
+                        Name="EnableFinalValuesLabel"
+                        @ref="enableFinalValuesLabel"
+                        Title="Enable Final Values"
+                        CommandId="EnableFinalValues">
+                        </IgbToolActionCheckbox>
+
+                    </IgbToolActionSubPanel>
+
+                </IgbToolActionIconMenu>
 
                 <IgbToolActionLabel
                 Name="zoomResetLabel"
@@ -32,7 +57,15 @@
                 AfterId="ZoomOut"
                 IconName="reset"
                 IconCollectionName="ChartToolbarIcons"
-                CommandId="ZoomReset">
+                CommandId="ZoomReset"
+                IsHighlighted="true">
+                </IgbToolActionLabel>
+
+                <IgbToolActionLabel
+                Name="zoomResetHidden"
+                @ref="zoomResetHidden"
+                OverlayId="ZoomReset"
+                Visibility="Visibility.Collapsed">
                 </IgbToolActionLabel>
 
                 <IgbToolActionIconMenu
@@ -41,6 +74,13 @@
                 OverlayId="AnalyzeMenu"
                 Visibility="Visibility.Collapsed">
                 </IgbToolActionIconMenu>
+
+                <IgbToolActionLabel
+                Name="CopyMenu"
+                @ref="copyMenu"
+                OverlayId="CopyMenu"
+                Visibility="Visibility.Collapsed">
+                </IgbToolActionLabel>
 
             </IgbToolbar>
 
@@ -113,10 +153,16 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var toolbar = this.toolbar;
+        var menuForSubPanelTool = this.menuForSubPanelTool;
+        var subPanelGroup = this.subPanelGroup;
+        var customSubPanelTools = this.customSubPanelTools;
         var enableTooltipsLabel = this.enableTooltipsLabel;
-        var zoomResetHidden = this.zoomResetHidden;
+        var enableCrosshairsLabel = this.enableCrosshairsLabel;
+        var enableFinalValuesLabel = this.enableFinalValuesLabel;
         var zoomResetLabel = this.zoomResetLabel;
+        var zoomResetHidden = this.zoomResetHidden;
         var analyzeMenu = this.analyzeMenu;
+        var copyMenu = this.copyMenu;
         var chart = this.chart;
         var xAxis = this.xAxis;
         var yAxis = this.yAxis;
@@ -132,10 +178,16 @@
     }
 
     private IgbToolbar toolbar;
+    private IgbToolActionIconMenu menuForSubPanelTool;
+    private IgbToolActionGroupHeader subPanelGroup;
+    private IgbToolActionSubPanel customSubPanelTools;
     private IgbToolActionCheckbox enableTooltipsLabel;
-    private IgbToolActionLabel zoomResetHidden;
+    private IgbToolActionCheckbox enableCrosshairsLabel;
+    private IgbToolActionCheckbox enableFinalValuesLabel;
     private IgbToolActionLabel zoomResetLabel;
+    private IgbToolActionLabel zoomResetHidden;
     private IgbToolActionIconMenu analyzeMenu;
+    private IgbToolActionLabel copyMenu;
     private IgbDataChart chart;
     private IgbCategoryXAxis xAxis;
     private IgbNumericYAxis yAxis;
@@ -143,27 +195,67 @@
     private IgbLineSeries lineSeries2;
     private IgbLineSeries lineSeries3;
 
-    public void ToolbarToggleTooltip(IgbToolCommandEventArgs args)
+    public void ToolbarToggleAnnotations(IgbToolCommandEventArgs args)
     {
         var target = this.chart;
         switch (args.Command.CommandId)
-    	{
-    		case "EnableTooltips":
-                IgbSeries toRemove = null;
+        {
+            case "EnableTooltips":
+                IgbSeries annotationSeries = null;
                 foreach (var s in target.Series)
                 {
                     if (s is IgbDataToolTipLayer)
                     {
-                        toRemove = s;
+                        annotationSeries = s;
                     }
                 }
 
-                if (toRemove == null) {
+                if (annotationSeries == null) {
                     target.Series.Add(new IgbDataToolTipLayer());
                 } else {
-                    target.Series.Remove(toRemove);
+                    target.Series.Remove(annotationSeries);
                 }
-    			break;
+                break;
+            case "EnableCrosshairs":
+                IgbSeries crosshairSeries = null;
+
+                foreach (var s in target.Series)
+                {
+                    if (s is IgbCrosshairLayer)
+                    {
+                        crosshairSeries = s;
+                    }
+                }
+
+                if (crosshairSeries == null)
+                {
+                    target.Series.Add(new IgbCrosshairLayer());
+                }
+                else
+                {
+                    target.Series.Remove(crosshairSeries);
+                }
+                break;
+            case "EnableFinalValues":
+                IgbSeries finalValuesSeries = null;
+
+                foreach (var s in target.Series)
+                {
+                    if (s is IgbFinalValueLayer)
+                    {
+                        finalValuesSeries = s;
+                    }
+                }
+
+                if (finalValuesSeries == null)
+                {
+                    target.Series.Add(new IgbFinalValueLayer());
+                }
+                else
+                {
+                    target.Series.Remove(finalValuesSeries);
+                }
+                break;
     	}
     }
 

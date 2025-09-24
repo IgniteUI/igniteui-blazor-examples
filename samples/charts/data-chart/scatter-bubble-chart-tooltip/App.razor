@@ -1,0 +1,115 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="container vertical fill">
+        <IgbDataChart
+        Name="chart"
+        @ref="chart"
+        IsHorizontalZoomEnabled="true"
+        IsVerticalZoomEnabled="true"
+        SeriesMouseEnterScript="WorldStatsDataChartTooltip"
+        ChartTitle="Population vs Country Debt per GDP"
+        TitleTopMargin="15">
+            <IgbNumericXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            MinimumValue="100"
+            MaximumValue="10000000000"
+            IsLogarithmic="true"
+            AbbreviateLargeNumbers="true"
+            Title="Population">
+            </IgbNumericXAxis>
+
+            <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis"
+            IsLogarithmic="true"
+            LogarithmBase="10"
+            Title="Country Debt per GDP">
+            </IgbNumericYAxis>
+
+            <IgbBubbleSeries
+            Name="bubbleSeries1"
+            @ref="bubbleSeries1"
+            XMemberPath="Population"
+            YMemberPath="PublicDebt"
+            RadiusMemberPath="GdpPerPerson"
+            RadiusScale="SizeScale1"
+            FillMemberPath="GdpPerPerson"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="WorldStats"
+            MarkerType="MarkerType.Circle"
+            MarkerOutline="black"
+            ShowDefaultTooltip="true"
+            FillScale="ValueBrushScale1">
+            </IgbBubbleSeries>
+
+        </IgbDataChart>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var bubbleSeries1 = this.bubbleSeries1;
+
+    }
+
+    private IgbDataChart chart;
+    private IgbNumericXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbBubbleSeries bubbleSeries1;
+    private IgbSizeScale _sizeScale1 = null;
+    public IgbSizeScale SizeScale1
+    {
+        get
+        {
+            if (this._sizeScale1 == null)
+            {
+                var sizeScale1 = new IgbSizeScale();
+                sizeScale1.IsLogarithmic = false;
+                sizeScale1.MinimumValue = 10;
+                sizeScale1.MaximumValue = 120;
+                this._sizeScale1 = sizeScale1;
+            }
+            return this._sizeScale1;
+        }
+    }
+    private IgbValueBrushScale _valueBrushScale1 = null;
+    public IgbValueBrushScale ValueBrushScale1
+    {
+        get
+        {
+            if (this._valueBrushScale1 == null)
+            {
+                var valueBrushScale1 = new IgbValueBrushScale();
+                valueBrushScale1.IsLogarithmic = false;
+                valueBrushScale1.MinimumValue = 1;
+                valueBrushScale1.MaximumValue = 260000;
+                valueBrushScale1.Brushes = "#89b5fa #146cf7 #5290f2";
+                this._valueBrushScale1 = valueBrushScale1;
+            }
+            return this._valueBrushScale1;
+        }
+    }
+
+    private WorldStats _worldStats = null;
+    public WorldStats WorldStats
+    {
+        get
+        {
+            if (_worldStats == null)
+            {
+                _worldStats = new WorldStats();
+            }
+            return _worldStats;
+        }
+    }
+
+}

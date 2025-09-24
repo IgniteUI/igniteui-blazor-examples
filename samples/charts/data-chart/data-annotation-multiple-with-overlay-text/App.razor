@@ -1,0 +1,143 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical">
+    <div class="container vertical fill">
+        <IgbDataChart
+        Name="chart"
+        @ref="chart"
+        PlotAreaMarginBottom="50"
+        ChartTitle="This sample demonstrates the DataAnnotationSliceLayer with overlay text compared against the value layers in the DataChart.">
+            <IgbCategoryXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            DataSource="StockTesla"
+            Label="Date"
+            LabelLeftMargin="0"
+            LabelTopMargin="5"
+            LabelRightMargin="0"
+            LabelBottomMargin="15">
+            </IgbCategoryXAxis>
+
+            <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis"
+            LabelExtent="60"
+            LabelHorizontalAlignment="HorizontalAlignment.Center"
+            LabelLeftMargin="0"
+            LabelTopMargin="0"
+            LabelRightMargin="5"
+            LabelBottomMargin="0"
+            MinimumValue="0"
+            MaximumValue="550">
+            </IgbNumericYAxis>
+
+            <IgbLineSeries
+            Name="series1"
+            @ref="series1"
+            Title="Stock Price"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="StockTesla"
+            ValueMemberPath="Open"
+            ShowDefaultTooltip="true"
+            MarkerType="MarkerType.None"
+            Brush="black">
+            </IgbLineSeries>
+
+            <IgbValueOverlay
+            Name="valueOverlay"
+            @ref="valueOverlay"
+            Value="435"
+            Brush="green"
+            IsAxisAnnotationEnabled="true"
+            Thickness="2"
+            DashArray="@(new double[] { 2, 4 })"
+            AxisName="yAxis"
+            OverlayText="OverlayText on ValueOverlay"
+            OverlayTextLocation="OverlayTextLocation.OutsideBottomCenter">
+            </IgbValueOverlay>
+
+            <IgbValueLayer
+            Name="valueLayer"
+            @ref="valueLayer"
+            ValueMode="ValueLayerValueMode.Average"
+            Brush="purple"
+            Thickness="2"
+            DashArray="@(new double[] { 2, 4 })"
+            TargetAxisName="yAxis"
+            IsAxisAnnotationEnabled="true"
+            OverlayText="OverlayText on ValueLayer (Average)"
+            OverlayTextLocation="OverlayTextLocation.OutsideBottomCenter">
+            </IgbValueLayer>
+
+            <IgbDataAnnotationSliceLayer
+            Name="AnnoLayer"
+            @ref="annoLayer"
+            DataSource="AnnotationSliceMultiOverlayData"
+            TargetAxisName="yAxis"
+            Brush="green"
+            AnnotationTextColor="white"
+            AnnotationLabelMemberPath="Label"
+            AnnotationValueMemberPath="Value"
+            OverlayTextMemberPath="Label"
+            OverlayTextVerticalMargin="20"
+            OverlayTextHorizontalMargin="0"
+            OverlayTextLocation="OverlayTextLocation.OutsideBottomCenter"
+            OverlayText="OverlayText on DataAnnotationSliceLayer"
+            Thickness="2">
+            </IgbDataAnnotationSliceLayer>
+
+        </IgbDataChart>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var series1 = this.series1;
+        var valueOverlay = this.valueOverlay;
+        var valueLayer = this.valueLayer;
+        var annoLayer = this.annoLayer;
+
+    }
+
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbLineSeries series1;
+    private IgbValueOverlay valueOverlay;
+    private IgbValueLayer valueLayer;
+    private IgbDataAnnotationSliceLayer annoLayer;
+
+    private StockTesla _stockTesla = null;
+    public StockTesla StockTesla
+    {
+        get
+        {
+            if (_stockTesla == null)
+            {
+                _stockTesla = new StockTesla();
+            }
+            return _stockTesla;
+        }
+    }
+
+    private AnnotationSliceMultiOverlayData _annotationSliceMultiOverlayData = null;
+    public AnnotationSliceMultiOverlayData AnnotationSliceMultiOverlayData
+    {
+        get
+        {
+            if (_annotationSliceMultiOverlayData == null)
+            {
+                _annotationSliceMultiOverlayData = new AnnotationSliceMultiOverlayData();
+            }
+            return _annotationSliceMultiOverlayData;
+        }
+    }
+
+}
