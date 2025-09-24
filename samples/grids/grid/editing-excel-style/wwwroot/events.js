@@ -1,12 +1,10 @@
-window.renderedHandler = (e) => {
-    const grid = document.getElementById("grid1");
-    grid.addEventListener('activeNodeChange', (event) => {
-        grid1.endEdit();
-        (grid1.getElementsByClassName("igx-grid__tbody-content")[0]).focus();
-    });
-}
-
 let shouldAppendValue = false;
+
+igRegisterScript("onActiveNodeChange", (ev) => {
+    const grid = ev.target;
+    grid.endEdit();
+    (grid.getElementsByClassName("igx-grid__tbody-content")[0]).focus();
+}, false);
 
 window.keydownHandler = (e) => {
     const grid = document.getElementById("grid1");

@@ -10,8 +10,8 @@
                  Name="grid1"
                  Id="grid1"
                  CellSelection="GridSelectionMode.Single"
-                 Rendered="onRendered"
                  @onkeydown="OnKeydown"
+                 ActiveNodeChangeScript="onActiveNodeChange"
                  @ref="grid1">
 
             <IgbColumn Field="ProductID" Header="Product ID" Editable="true" Groupable="true" Hidden="true" />
@@ -25,11 +25,6 @@
 
 @code {
     private IgbGrid grid1;
-    
-    async private void onRendered()
-    {
-        await JS.InvokeVoidAsync("renderedHandler");
-    }
 
     async Task OnKeydown(KeyboardEventArgs e)
     {
