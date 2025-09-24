@@ -7,7 +7,7 @@ igc-dialog::part(content) {
 }
 </style>
 
-<div class="map-controls" style="display:flex; justify-content:center; align-items:center; gap:1rem; margin-bottom:1rem;">
+<div class="map-controls" style="display:flex; justify-content:center; align-items:center; gap:0.5rem; margin-bottom:0.5rem;">
     <IgbButton @onclick="OnDialogShow" Variant=@ButtonVariant.Contained>
         Click to enter your Azure key
     </IgbButton>
@@ -31,7 +31,7 @@ igc-dialog::part(content) {
     @if (ShowImage)
     {
         <img src="@CurrentImage" alt="Map Imagery"
-             style="width:auto;height:auto;display:block;margin:auto;" />
+             style="width:100%; height:100%; object-fit:contain;" />
     }
     else
     {
@@ -57,6 +57,35 @@ igc-dialog::part(content) {
     private string AzureKey;
     private bool _imageryAppliedAfterDialog = false;
     private string _selectedStyle = "Satellite";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender && editor != null)
+        {
+            editor.Target = AzureMap;
+
+            azureImageryDropDown = new IgbPropertyEditorPropertyDescription
+            {
+                ValueType = PropertyEditorValueType.EnumValue,
+                ShouldOverrideDefaultEditor = true,
+                DropDownNames = _placeholderImages.Keys.ToArray(),
+                DropDownValues = _placeholderImages.Keys.ToArray(),
+                PrimitiveValue = _selectedStyle
+            };
+
+            editor.Properties.Add(azureImageryDropDown);
+            azureImageryDropDown.Changed += EditorChangeAzureImagery;
+        }
+
+        if (!ShowImage && AzureMap != null && !_imageryAppliedAfterDialog)
+        {
+            await ApplyAzureImagery(_selectedStyle);
+            _imageryAppliedAfterDialog = true;
+        }
+    }
+
 
     public async Task OnDialogShow()
     {
@@ -88,38 +117,10 @@ igc-dialog::part(content) {
         }
     }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        await base.OnAfterRenderAsync(firstRender);
-
-        if (firstRender && editor != null)
-        {
-            editor.Target = AzureMap;
-
-            azureImageryDropDown = new IgbPropertyEditorPropertyDescription
-            {
-                ValueType = PropertyEditorValueType.EnumValue,
-                ShouldOverrideDefaultEditor = true,
-                DropDownNames = _placeholderImages.Keys.ToArray(),
-                DropDownValues = _placeholderImages.Keys.ToArray(),
-                PrimitiveValue = _selectedStyle
-            };
-
-            editor.Properties.Add(azureImageryDropDown);
-            azureImageryDropDown.Changed += EditorChangeAzureImagery;
-        }
-
-        if (!ShowImage && AzureMap != null && !_imageryAppliedAfterDialog)
-        {
-            ApplyAzureImagery(_selectedStyle);
-            _imageryAppliedAfterDialog = true;
-        }
-    }
-
-    public void EditorChangeAzureImagery(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
+    public async void EditorChangeAzureImagery(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
     {
         _selectedStyle = args.NewValue as string;
-        ApplyAzureImagery(_selectedStyle);
+        await ApplyAzureImagery(_selectedStyle);
     }
 
     private async Task ApplyAzureImagery(string styleName)
@@ -175,6 +176,9 @@ igc-dialog::part(content) {
                     ImageryStyle = AzureMapsImageryStyle.Satellite
                 };
             }
+
+            // wait a tiny bit to let JS interop initialize
+            await Task.Delay(1);
 
             // Wait until map component is ready
             await InvokeAsync(() =>
