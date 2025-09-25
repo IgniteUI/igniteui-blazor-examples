@@ -1,46 +1,67 @@
+let shouldAppendValue = false;
 
+igRegisterScript("onActiveNodeChange", (ev) => {
+    const grid = ev.target;
+    grid.endEdit();
+    setTimeout(() => {
+        (grid.getElementsByClassName("igx-grid__tbody-content")[0]).focus();
+    }, 0);
+}, false);
 
-igRegisterScript("WebGridEditingExcelStyle", (ev) => {
-    var key = ev.detail.event.keyCode;
-    var grid = ev.detail.target.grid;
-    var activeElem = grid.navigation.activeNode;
+window.keydownHandler = (e) => {
+    const grid = document.getElementById("grid1");
+    if (!grid) return;
 
-    if ((key >= 48 && key <= 57) || (key >= 65 && key <= 90) || (key >= 97 && key <= 122)) {
-        var columnName = grid.getColumnByVisibleIndex(activeElem.column).field;
-        var cell = grid.getCellByColumn(activeElem.row, columnName);
+    const code = e.code;
+    const active = grid.selectedCells?.[0];
 
-        if (cell && !grid.crudService.cellInEditMode) {
-            grid.crudService.enterEditMode(cell);
-            cell.editValue = key;
+    const isAlphaNum =
+        (code >= 'Digit0' && code <= 'Digit9') ||
+        (code >= 'KeyA' && code <= 'KeyZ') ||
+        (code >= 'Numpad0' && code <= 'Numpad9');
+
+    if (isAlphaNum && code !== 'Enter' && code !== 'NumpadEnter') {
+        if (active && active.editMode === false) {
+            active.editMode = true;
+            active.editValue = e.key;
+            shouldAppendValue = true;
+            grid.markForCheck();
+        } else if (active && active.editMode && shouldAppendValue) {
+            active.editValue = `${active.editValue ?? ""}${e.key}`;
+            shouldAppendValue = false;
         }
     }
 
-    if (key == 13) {
-        var thisRow = activeElem.row;
-        var column = activeElem.column;
-        var rowInfo = grid.dataView;
+    if (code === 'Backspace') {
+        if (!active || active.editMode === false) return;
+        const rowIndex = active.row.index;
+        const columnKey = active.column.field;
+        grid.data[rowIndex][columnKey] = '';
+        grid.markForCheck();
+    }
 
-        var nextRow = this.getNextEditableRowIndex(thisRow, rowInfo, ev.detail.event.shiftKey);
+    if (code === 'Enter' || code === 'NumpadEnter') {
+        if (!active) return;
+        const thisRow = active.row.index;
+        const dataView = grid.dataView;
+        const nextIndex = window.getNextEditableRowIndex(thisRow, dataView, !!e.shiftKey);
 
-        grid.navigateTo(nextRow, column, (obj) => {
-            obj.target.activate();
+        grid.navigateTo(nextIndex, active.column.visibleIndex, (obj) => {
             grid.clearCellSelection();
+            obj.target.activate();
         });
     }
-}, false);
+};
 
-function getNextEditableRowIndex(currentRowIndex, dataView, previous) {
-    if (currentRowIndex < 0 || (currentRowIndex === 0 && previous) || (currentRowIndex >= dataView.length - 1 && !previous)) {
+window.getNextEditableRowIndex = (currentRowIndex, dataView, previous) => {
+    if (currentRowIndex < 0 || (currentRowIndex === 0 && previous) || (currentRowIndex >= dataView.length - 1 && !previous))
         return currentRowIndex;
-    }
-    if (previous) {
-        return dataView.findLastIndex((rec, index) => index < currentRowIndex && this.isEditableDataRecordAtIndex(index, dataView));
-    }
-    return dataView.findIndex((rec, index) => index > currentRowIndex && this.isEditableDataRecordAtIndex(index, dataView));
-}
+    if (previous)
+        return dataView.findLastIndex((_, i) => i < currentRowIndex && window.isEditableDataRecordAtIndex(i, dataView));
+    return dataView.findIndex((_, i) => i > currentRowIndex && window.isEditableDataRecordAtIndex(i, dataView));
+};
 
-function isEditableDataRecordAtIndex(dataViewIndex, dataView) {
-    const rec = dataView[dataViewIndex];
+window.isEditableDataRecordAtIndex = (i, dataView) => {
+    const rec = dataView[i];
     return !rec.expression && !rec.summaries && !rec.childGridsData && !rec.detailsData;
-}
-
+};
