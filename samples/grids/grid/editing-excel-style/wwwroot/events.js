@@ -3,7 +3,9 @@ let shouldAppendValue = false;
 igRegisterScript("onActiveNodeChange", (ev) => {
     const grid = ev.target;
     grid.endEdit();
-    (grid.getElementsByClassName("igx-grid__tbody-content")[0]).focus();
+    setTimeout(() => {
+        (grid.getElementsByClassName("igx-grid__tbody-content")[0]).focus();
+    }, 0);
 }, false);
 
 window.keydownHandler = (e) => {
