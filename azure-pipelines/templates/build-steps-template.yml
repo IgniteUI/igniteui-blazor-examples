@@ -5,8 +5,6 @@ parameters:
   - name: isVerbose
     default: false
   - name: shouldCleanPostExectuion
-  - name: username
-  - name: password
 
 steps:
   - task: NodeTool@0
@@ -22,7 +20,7 @@ steps:
       workingDir: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
       verbose: ${{ parameters.isVerbose }}
       customCommand: ci
-  
+
   - task: CmdLine@2
     displayName: 'npx gulp copySamplesTo${{ parameters.projectToBuild }}CI'
     inputs:
@@ -30,64 +28,23 @@ steps:
       workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.Gulp'
       failOnStderr: true
 
+  - task: NuGetToolInstaller@1
+    displayName: 'Use specific version of NuGet cli'
+    inputs:
+      versionSpec: '6.2.x' # we are using a legacy (according to Microsoft) feed so we don't want the newest nuget.exe
+
+  - task: NuGetAuthenticate@1
+    inputs:
+      nuGetServiceConnections: 'IG ProGet IgniteUINuGet - Staging'
+
   - task: UseDotNet@2
     displayName: 'Install dotnet if not already present'
     inputs:
       packageType: 'sdk'
-      version: '9.0.101' # we are currently building a 8.0 app. TODO: Try upgrading to 8.x in the future
+      version: '9.x' # we are currently building a 8.0 app. TODO: Try upgrading to 8.x in the future
       performMultiLevelLookup: false
 
-  - task: PowerShell@2
-    displayName: 'Generate NuGet.config for IG ProGet NuGet feed'
-    continueOnError: true
-    inputs:
-      targetType: 'inline'
-      script: |        
-        dotnet new nugetconfig --force
-        dotnet nuget add source ${{ parameters.igNuGetFeedUrl }} --name "IG ProGet NuGet" --allow-insecure-connections
-        # Manually add the allowInsecureConnections attribute to the nuget.config file
-        Write-Host "getting config file"
-        Write-Host "$(Build.SourcesDirectory)\nuget.config"
-        $nugetConfigPath = "$(Build.SourcesDirectory)\nuget.config"
-        Write-Host "getting xml content"
-        [xml]$nugetConfig = Get-Content $nugetConfigPath
-        $nugetConfig.configuration.packageSources.add | Where-Object { $_.name -eq "IG ProGet NuGet" } | ForEach-Object { $_.allowInsecureConnections = "true" }
-        # Add credentials to the nuget.config file
-         Write-Host "current config"
-        Write-Host $nugetConfig
-        Write-Host "adding credentials"
-        $packageSourceCredentials = $nugetConfig.CreateElement("packageSourceCredentials")
-         Write-Host "adding source"
-        $source = $nugetConfig.CreateElement("IG_x0020_ProGet_x0020_NuGet")
-
-        $addUsername = $nugetConfig.CreateElement("add")
-         Write-Host "adding username"
-         $userName = "${{ parameters.username }}"
-         # $userName = ConvertTo-SecureString "${{ parameters.username }}" -asPlainText -Force
-           Write-Host "username is"
-         Write-Host "$userName"
-        $addUsername.SetAttribute("key", "Username")
-         Write-Host "setting attribute"
-        $addUsername.SetAttribute("value", $userName)        
-
-        $source.AppendChild($addUsername)
-
-        $addPassword = $nugetConfig.CreateElement("add")
-         Write-Host "adding password"
-        #$password = ConvertTo-SecureString "${{ parameters.password}}" -asPlainText -Force
-        $password = "${{ parameters.password}}" 
-        $addPassword.SetAttribute("key", "ClearTextPassword")
-        $addPassword.SetAttribute("value", "$password")
-        $source.AppendChild($addPassword)
-
-        $packageSourceCredentials.AppendChild($source)
-        $nugetConfig.configuration.AppendChild($packageSourceCredentials)
-        Write-Host "writing contents to file"
-        $nugetConfig.OuterXml | Set-Content -Path $nugetConfigPath
-      failOnStderr: true
-      showWarnings: true
-      workingDirectory: '$(Build.SourcesDirectory)' 
-
+  # (part 1/2) This circumvents the AllowInsecureConnections option's current limitations. Install IgniteUI* packages to a temp dir
   - task: PowerShell@2
     displayName: 'Identify trial packages and use licensed ones instead'
     inputs:
@@ -97,34 +54,57 @@ steps:
         
         $nodes = $xml.SelectNodes("//PackageReference[starts-with(@Include,'IgniteUI')]") | 
           ForEach-Object { 
+              Write-Host "Found $($_.Include), version $($_.Version) - using version ${{ parameters.igVersion }}"
               $_.SetAttribute("Include",$_.Include.Replace(".Trial",""));
               $_.SetAttribute("Version", "${{ parameters.igVersion }}");
-              Write-Host $_.Version
+
+              $nugetInstallCommand = "nuget install $($_.Include) -Version $($_.Version) -DependencyVersion Ignore -OutputDirectory $(Build.SourcesDirectory)\tempLocalFeed"
+              Write-Host $nugetInstallCommand
+              Invoke-Expression -Command $nugetInstallCommand
           }
         $xml.Save('.\IgBlazorSamples.${{ parameters.projectToBuild }}.csproj')
       failOnStderr: true
       showWarnings: true
-      workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'    
+      workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
+
+
+  - task: PowerShell@2
+    displayName: 'Generate NuGet.config for IG ProGet NuGet feed an'
+    inputs:
+      targetType: 'inline'
+      script: |
+        dotnet new nugetconfig --force
+         # The name of the source doesn't currently matter as the credentials are attached thanks to URL matching - according to MS docs
+         # dotnet nuget add source ${{ parameters.igNuGetFeedUrl }} --name "IG ProGet NuGet" 
+
+         # (part 2/2) This circumvents the AllowInsecureConnections option's current limitations. Add the temp dir as a local feed
+        dotnet nuget add source $(Build.SourcesDirectory)\tempLocalFeed --name "Local temp feed"
+      failOnStderr: true
+      showWarnings: true
+      workingDirectory: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
 
   - task: DotNetCoreCLI@2
     displayName: 'dotnet restore'
-    enabled: true
     inputs:
       command: 'restore'
       projects: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
       # We want the dependency tree to be evaluated each time and to be sure that the dependencies are freshly downloaded
-      restoreArguments: '--ignore-failed-sources --no-cache --force'    
+      restoreArguments: '--ignore-failed-sources --no-cache --force'
       feedsToUse: 'config'
-      nugetConfigPath: '$(Build.SourcesDirectory)\nuget.config'
+      nugetConfigPath: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\NuGet.Config'
       # This task cannot use an apiKey directly (yet) so use any other service connection not based on an api key
-      verbosityRestore: 'Diagnostic' 
+      externalFeedCredentials: 'IG ProGet IgniteUINuGet - Staging'
+      ${{ if eq(parameters.isVerbose, true) }}:
+        verbosityRestore: 'Diagnostic'
+      ${{ else }}:
+        verbosityRestore: 'Normal'
+
 
   - task: DeleteFiles@1
     displayName: 'Delete NuGet.config file - used only at build time'
-    enabled: true
     inputs:
-      SourceFolder: '$(Build.SourcesDirectory)\'
-      Contents: '**/nuget.config'
+      SourceFolder: '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\'
+      Contents: '**/NuGet.config'
 
   - task: CmdLine@2
     # Using a CmldLine call for this opeation, because I couldn't get it to work as expected with the DotNetCoreCLI task
@@ -150,5 +130,5 @@ steps:
       targetPath: '$(Build.ArtifactStagingDirectory)/BlazorSamples${{ parameters.projectToBuild }}.zip'
       artifact: 'BlazorSamples${{ parameters.projectToBuild }}'
 
-  - ${{ if eq(parameters.shouldCleanPostExectuion, true) }}:
-    - task: PostBuildCleanup@4
+  - task: PostBuildCleanup@4
+    condition: ${{ parameters.shouldCleanPostExectuion }}
