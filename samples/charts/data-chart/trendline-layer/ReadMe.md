@@ -30,11 +30,11 @@ This folder contains implementation of Blazor application with example of Trendl
 
 - instal **.NET SDK** from this [website](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install)
 
-## Running App in Visual Studio 2019
+## Running App in Visual Studio 2022
 
-NOTE: VS 2019 has better code highlighting and error detection than VS Code does.
+NOTE: VS 2022 has better code highlighting and error detection than VS Code does.
 
-- open **Visual Studio 2019** as an administrator
+- open **Visual Studio 2022** as an administrator
 
 - open the **BlazorClientApp.sln** solution
 
