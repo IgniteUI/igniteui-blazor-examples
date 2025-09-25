@@ -419,6 +419,9 @@ function copySampleScripts(cb, outputPath, indexName, isLocalBuild) {
                     if (fileRequiresLoading) {
                         insertScriptFiles.push('<script src="sb/' + fileName + '"></script>');
                     }
+                }
+                else if (file.Name === "grid-disabled-summaries") {
+                    insertScriptFiles.push('<script type="module" src="sb/' + fileName + '"></script>');
                 } else {
                     insertScriptFiles.push('<script src="sb/' + fileName + '"></script>');
                 }
