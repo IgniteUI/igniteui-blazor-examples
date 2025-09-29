@@ -77,6 +77,16 @@ igc-dialog::part(content) {
 
             editor.Properties.Add(azureImageryDropDown);
             azureImageryDropDown.Changed += EditorChangeAzureImagery;
+
+            // Ensure the dialog is rendered before showing
+            await InvokeAsync(async () =>
+            {
+                await Task.Delay(1000); // allow Blazor to complete rendering
+                if (DialogRef != null)
+                {
+                    await DialogRef.ShowAsync();
+                }
+            });
         }
 
         if (!ShowImage && AzureMap != null && !_imageryAppliedAfterDialog)
@@ -109,12 +119,17 @@ igc-dialog::part(content) {
 
     public void OnClosed(IgbVoidEventArgs e)
     {
-        if (!string.IsNullOrWhiteSpace(AzureKey))
+        if (string.IsNullOrWhiteSpace(AzureKey))
+        {
+            ShowImage = true;
+        }
+        else
         {
             ShowImage = false;
             _imageryAppliedAfterDialog = false;
-            StateHasChanged();
         }
+
+        StateHasChanged();
     }
 
     public async void EditorChangeAzureImagery(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
