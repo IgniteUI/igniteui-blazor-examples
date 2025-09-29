@@ -119,12 +119,17 @@ igc-dialog::part(content) {
 
     public void OnClosed(IgbVoidEventArgs e)
     {
-        if (!string.IsNullOrWhiteSpace(AzureKey))
+        if (string.IsNullOrWhiteSpace(AzureKey))
+        {
+            ShowImage = true;
+        }
+        else
         {
             ShowImage = false;
             _imageryAppliedAfterDialog = false;
-            StateHasChanged();
         }
+
+        StateHasChanged();
     }
 
     public async void EditorChangeAzureImagery(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
