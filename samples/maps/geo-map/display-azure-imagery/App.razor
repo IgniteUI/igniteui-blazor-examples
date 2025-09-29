@@ -84,6 +84,16 @@ igc-dialog::part(content) {
             await ApplyAzureImagery(_selectedStyle);
             _imageryAppliedAfterDialog = true;
         }
+
+        // Ensure the dialog is rendered before showing
+        await InvokeAsync(async () =>
+        {
+            await Task.Delay(1000); // allow Blazor to complete rendering
+            if (DialogRef != null)
+            {
+                await DialogRef.ShowAsync();
+            }
+        });
     }
 
 
