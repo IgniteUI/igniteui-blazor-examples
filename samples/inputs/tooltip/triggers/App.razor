@@ -1,0 +1,152 @@
+@using IgniteUI.Blazor.Controls
+
+<style>
+    #triggers-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: space-between;
+        gap: 0.6rem;
+
+        & igc-card {
+            max-width: 320px;
+        }
+
+        & igc-card-header {
+            min-height: 3rem;
+        }
+
+        & igc-card-content {
+            display: flex;
+            height: 100%;
+            flex-direction: column;
+            gap: 0.5rem;
+            justify-content: space-between;
+        }
+    }
+
+    h4 {
+        font-size: 1.25rem;
+    }
+
+    h4, p {
+        margin: 0px;
+    }
+</style>
+
+
+<div id="triggers-container">
+    <IgbCard>
+        <IgbCardHeader>
+            <h4 slot="title">Default triggers</h4>
+        </IgbCardHeader>
+        <IgbCardContent>
+            <p>
+                Hovering over the button below will display the tooltip using
+                its default configuration: it appears on 
+                <strong>pointer enter</strong> and hides on 
+                <strong>pointer leave</strong> or <strong>click</strong>.
+            </p>
+            <IgbButton Variant="ButtonVariant.Outlined" id="triggers-default">
+                Hover over me
+            </IgbButton>
+            <IgbTooltip Anchor="triggers-default" DisableArrow="true">
+                I am show on pointer enter and hidden on pointer leave and/or
+                click.
+            </IgbTooltip>
+        </IgbCardContent>
+    </IgbCard>
+
+    <IgbCard>
+        <IgbCardHeader>
+            <h4 slot="title">Focus based</h4>
+        </IgbCardHeader>
+        <IgbCardContent>
+            <p>
+                In this instance, the tooltip is bound to show on its anchor
+                <strong>focus</strong> and will hide when its anchor is
+                <strong>blurred</strong>.
+            </p>
+            <p>
+                Try to navigate with a Tab key to the anchor to see the effect.
+            </p>
+            <IgbButton Variant="ButtonVariant.Outlined" id="triggers-focus-blur">
+                Focus me
+            </IgbButton>
+            <IgbTooltip Anchor="triggers-focus-blur"
+                        ShowDelay="0"
+                        HideDelay="0"
+                        ShowTriggers="focus"
+                        HideTriggers="blur"
+                        DisableArrow="true">
+                I am shown on focus and hidden on blur.
+            </IgbTooltip>
+        </IgbCardContent>
+    </IgbCard>
+
+    <IgbCard>
+        <IgbCardHeader>
+            <h4 slot="title">Same trigger(s) for showing and hiding</h4>
+        </IgbCardHeader>
+        <IgbCardContent>
+            <p>
+                The same trigger can be bound to both show and hide the tooltip.
+                The button below has its tooltip bound to show/hide on
+                <strong>click</strong>.
+            </p>
+            <IgbButton Variant="ButtonVariant.Outlined" id="triggers-click">
+                Click
+            </IgbButton>
+            <IgbTooltip Anchor="triggers-click"
+                        ShowDelay="0"
+                        HideDelay="0"
+                        ShowTriggers="click"
+                        HideTriggers="click"
+                        DisableArrow="true">
+                I am show on click and will hide on Anchor click.
+            </IgbTooltip>
+        </IgbCardContent>
+    </IgbCard>
+
+    <IgbCard>
+        <IgbCardHeader>
+            <h4 slot="title">Keyboard interactions</h4>
+        </IgbCardHeader>
+        <IgbCardContent>
+            <p>
+                Keyboard interactions are also supported. The button below has
+                its tooltip bound to show on a <strong>keypress</strong> and
+                hide on a <strong>keypress</strong> or <strong>blur</strong>.
+            </p>
+            <p>Try it out by focusing the button and pressing a key.</p>
+            <IgbButton Variant="ButtonVariant.Outlined" id="triggers-keypress">
+                Press a key
+            </IgbButton>
+            <IgbTooltip Anchor="triggers-keypress"
+                        ShowTriggers="keypress"
+                        HideTriggers="keypress blur"
+                        DisableArrow="true">
+                I am shown on a keypress and will hide on a keypress or blur.
+            </IgbTooltip>
+        </IgbCardContent>
+    </IgbCard>
+
+    <IgbCard>
+        <IgbCardHeader>
+            <h4 slot="title">Custom events</h4>
+        </IgbCardHeader>
+        <IgbCardContent>
+            <p>
+                The tooltip supports any DOM event, including custom events. Try
+                entering a value in the input below, then &quot;commit&quot; it
+                by either <strong>blurring</strong> the input or pressing 
+                <strong>Enter</strong>.
+            </p>
+            <IgbInput id="triggers-custom" Label="Username"></IgbInput>
+            <IgbTooltip Anchor="triggers-custom" ShowTriggers="igcChange" DisableArrow="true">
+                Value changed!
+            </IgbTooltip>
+        </IgbCardContent>
+    </IgbCard>
+</div>
+
+@code { }
