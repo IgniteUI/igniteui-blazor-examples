@@ -22,7 +22,8 @@ namespace Infragistics.Samples
             builder.Services.AddIgniteUIBlazor(
                 typeof(IgbInputModule),
                 typeof(IgbGridModule),
-                typeof(IgbPaginatorModule)
+                typeof(IgbPaginatorModule),
+                typeof(IgbInputModule)
             );
             await builder.Build().RunAsync();
         }

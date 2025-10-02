@@ -3,9 +3,9 @@
 - instal **.NET SDK** from this website:
 https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install
 
-## Running App in Visual Studio 2019
+## Running App in Visual Studio 2022
 
-- open **Visual Studio 2019** as an Administrator
+- open **Visual Studio 2022** as an Administrator
 
 - open the **IgBlazorSamplesBrowser.sln** solution
 

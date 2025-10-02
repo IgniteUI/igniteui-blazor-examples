@@ -408,19 +408,49 @@ function copySampleScripts(cb, outputPath, indexName, isLocalBuild) {
                 // console.log("copySampleScripts " + scriptName);
                 saveFile(scriptPath, file.Content);
 
-                if (file.Name.indexOf("DockManager") >= 0) {
+                // ----- robust detection for module files -----
+                // prefer any real name-ish property, fallback to generated fileName
+                var rawName = (file.Name || file.FileName || file.name || file.filename || "").toString();
+                var normalizedRawName = rawName.toLowerCase();
+                var normalizedGenerated = fileName.toLowerCase();
+
+                var shouldBeModule = false;
+
+                // explicit name match (covers "grid-disabled-summaries", "grid-disabled-summaries.js", etc.)
+                if (normalizedRawName.indexOf('grid-disabled-summaries') >= 0 || normalizedGenerated.indexOf('grid-disabled-summaries') >= 0) {
+                    shouldBeModule = true;
+                }
+                // fallback: scan the file content for the problematic identifier
+                else if (file.Content && file.Content.indexOf('WebGridDiscontinuedSummary') >= 0) {
+                    shouldBeModule = true;
+                }
+                // .mjs -> module
+                else if (normalizedGenerated.endsWith('.mjs')) {
+                    shouldBeModule = true;
+                }
+
+                if (shouldBeModule) {
+                    log('-> marking as module: ' + fileName + ' (rawName=' + rawName + ')');
+                }
+
+                // DockManager special handling (keep original behaviour)
+                if ((rawName.indexOf("DockManager") >= 0) || (file.Name && file.Name.indexOf("DockManager") >= 0)) {
                     var fileRequiresLoading = true;
-                    if (file.Name.indexOf("bundle") >= 0) {
-                        // skipping non-entry point bundle files for DockManager
-                        if (file.Name.indexOf("1") >= 0) fileRequiresLoading = false;
-                        if (file.Name.indexOf("2") >= 0) fileRequiresLoading = false;
-                        if (file.Name.indexOf("3") >= 0) fileRequiresLoading = false;
+                    if (rawName.indexOf("bundle") >= 0 || (file.Name && file.Name.indexOf("bundle") >= 0)) {
+                        if (rawName.indexOf("1") >= 0) fileRequiresLoading = false;
+                        if (rawName.indexOf("2") >= 0) fileRequiresLoading = false;
+                        if (rawName.indexOf("3") >= 0) fileRequiresLoading = false;
                     }
                     if (fileRequiresLoading) {
-                        insertScriptFiles.push('<script src="sb/' + fileName + '"></script>');
+                        insertScriptFiles.push(shouldBeModule
+                            ? '<script type="module" src="sb/' + fileName + '"></script>'
+                            : '<script src="sb/' + fileName + '"></script>');
                     }
-                } else {
-                    insertScriptFiles.push('<script src="sb/' + fileName + '"></script>');
+                }
+                else {
+                    insertScriptFiles.push(shouldBeModule
+                        ? '<script type="module" src="sb/' + fileName + '"></script>'
+                        : '<script src="sb/' + fileName + '"></script>');
                 }
             }
         }
@@ -605,9 +635,9 @@ function updateIG(cb) {
 
     let packageUpgrades = [
         // update version of IG packages and change to Trial or non-trial
-        { version: "25.1.19", name: "IgniteUI.Blazor" },
-        { version: "25.1.19", name: "IgniteUI.Blazor.Documents.Core" },
-        { version: "25.1.19", name: "IgniteUI.Blazor.Documents.Excel" },
+        { version: "25.1.82", name: "IgniteUI.Blazor" },
+        { version: "25.1.82", name: "IgniteUI.Blazor.Documents.Core" },
+        { version: "25.1.82", name: "IgniteUI.Blazor.Documents.Excel" },
         // these IG packages are sometimes updated:
         { version: "9.0.0", name: "Microsoft.AspNetCore.Components" },
         { version: "9.0.0", name: "Microsoft.AspNetCore.Components.Web" },

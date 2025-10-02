@@ -14,22 +14,8 @@ public class AnnotationRectData
 {
     public AnnotationRectData()
     {
-        this.Add(new AnnotationRectDataItem()
-        {
-            StartX = 85,
-            StartY = 190,
-            EndX = 140,
-            EndY = 415,
-            Label = @"Head & Shoulders Pattern
-  (Bearish Downtrend)"
-        });
-        this.Add(new AnnotationRectDataItem()
-        {
-            StartX = 53,
-            StartY = 75,
-            EndX = 230,
-            EndY = 80,
-            Label = @"Price Gap (Bearish Target)"
-        });
+        this.Add(new AnnotationRectDataItem() { StartX = 85, StartY = 190, EndX = 140, EndY = 415, Label = @"Head & Shoulders Pattern
+  (Bearish Downtrend)" });
+        this.Add(new AnnotationRectDataItem() { StartX = 53, StartY = 75, EndX = 230, EndY = 80, Label = @"Price Gap (Bearish Target)" });
     }
 }

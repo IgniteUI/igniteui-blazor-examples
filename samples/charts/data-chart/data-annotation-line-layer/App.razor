@@ -88,6 +88,7 @@
             Name="LineLayer52WeekRange"
             @ref="lineLayer52WeekRange"
             DataSource="AnnotationLineData1"
+            TargetAxisName="yAxisRight"
             CenterLabelXDisplayMode="DataAnnotationDisplayMode.Hidden"
             StartLabelXDisplayMode="DataAnnotationDisplayMode.Hidden"
             StartLabelYDisplayMode="DataAnnotationDisplayMode.DataValue"
@@ -112,6 +113,7 @@
             Name="LineLayerGrowthAndDecline"
             @ref="lineLayerGrowthAndDecline"
             DataSource="AnnotationLineData2"
+            TargetAxisName="xAxis"
             CenterLabelXDisplayMode="DataAnnotationDisplayMode.Hidden"
             StartLabelXDisplayMode="DataAnnotationDisplayMode.Hidden"
             EndLabelXDisplayMode="DataAnnotationDisplayMode.Hidden"
@@ -137,8 +139,6 @@
 
 @code {
 
-    private Action BindElements { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var chart = this.chart;
@@ -149,12 +149,6 @@
         var tooltip = this.tooltip;
         var lineLayer52WeekRange = this.lineLayer52WeekRange;
         var lineLayerGrowthAndDecline = this.lineLayerGrowthAndDecline;
-
-        this.BindElements = () => {
-            lineLayer52WeekRange.TargetAxis = this.yAxisRight;
-            lineLayerGrowthAndDecline.TargetAxis = this.xAxis;
-        };
-        this.BindElements();
 
     }
 

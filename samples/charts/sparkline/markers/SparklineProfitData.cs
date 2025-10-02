@@ -11,45 +11,13 @@ public class SparklineProfitData
 {
     public SparklineProfitData()
     {
-        this.Add(new SparklineProfitDataItem()
-        {
-            Value = 30,
-            Label = @"A"
-        });
-        this.Add(new SparklineProfitDataItem()
-        {
-            Value = 40,
-            Label = @"B"
-        });
-        this.Add(new SparklineProfitDataItem()
-        {
-            Value = 50,
-            Label = @"C"
-        });
-        this.Add(new SparklineProfitDataItem()
-        {
-            Value = 40,
-            Label = @"D"
-        });
-        this.Add(new SparklineProfitDataItem()
-        {
-            Value = 30,
-            Label = @"E"
-        });
-        this.Add(new SparklineProfitDataItem()
-        {
-            Value = 20,
-            Label = @"F"
-        });
-        this.Add(new SparklineProfitDataItem()
-        {
-            Value = 30,
-            Label = @"G"
-        });
-        this.Add(new SparklineProfitDataItem()
-        {
-            Value = 40,
-            Label = @"H"
-        });
+        this.Add(new SparklineProfitDataItem() { Value = 30, Label = @"A" });
+        this.Add(new SparklineProfitDataItem() { Value = 40, Label = @"B" });
+        this.Add(new SparklineProfitDataItem() { Value = 50, Label = @"C" });
+        this.Add(new SparklineProfitDataItem() { Value = 40, Label = @"D" });
+        this.Add(new SparklineProfitDataItem() { Value = 30, Label = @"E" });
+        this.Add(new SparklineProfitDataItem() { Value = 20, Label = @"F" });
+        this.Add(new SparklineProfitDataItem() { Value = 30, Label = @"G" });
+        this.Add(new SparklineProfitDataItem() { Value = 40, Label = @"H" });
     }
 }
