@@ -1,0 +1,52 @@
+@using IgniteUI.Blazor.Controls
+
+<style>
+    #tooltip-position {
+        margin: 40px 0 0 120px;
+        width: 400px;
+        height: 120px;
+    }
+
+    igc-button::part(base) {
+        height: 100%;
+        border-radius: 0.5rem;
+    }
+</style>
+
+<div class="container">
+    <IgbButton id="tooltip-position" Variant="ButtonVariant.Outlined">
+        Click to trigger all supported placements
+    </IgbButton>
+
+    @foreach (var pos in Positions)
+    {
+        <IgbTooltip Anchor="tooltip-position"
+                    ShowTriggers="click"
+                    ShowDelay="0"
+                    HideDelay="0"
+                    Sticky="true"
+                    Placement="@pos.Value">
+            <div>
+                <strong>@pos.Key</strong>
+            </div>
+        </IgbTooltip>
+    }
+</div>
+
+@code {
+    private Dictionary<string, PopoverPlacement> Positions = new()
+    {
+        { "top", PopoverPlacement.Top },
+        { "top-start", PopoverPlacement.TopStart },
+        { "top-end", PopoverPlacement.TopEnd },
+        { "bottom", PopoverPlacement.Bottom },
+        { "bottom-start", PopoverPlacement.BottomStart },
+        { "bottom-end", PopoverPlacement.BottomEnd },
+        { "right", PopoverPlacement.Right },
+        { "right-start", PopoverPlacement.RightStart },
+        { "right-end", PopoverPlacement.RightEnd },
+        { "left", PopoverPlacement.Left },
+        { "left-start", PopoverPlacement.LeftStart },
+        { "left-end", PopoverPlacement.LeftEnd }
+    };
+}
