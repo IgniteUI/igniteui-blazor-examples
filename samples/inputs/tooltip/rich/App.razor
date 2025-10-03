@@ -1,0 +1,72 @@
+@using IgniteUI.Blazor.Controls
+
+<style>
+    igc-icon:hover {
+        cursor: pointer;
+        color: var(--ig-primary-500);
+    }
+
+    .map {
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 250px;
+        height: 272px;
+        background-image: url("https://www.infragistics.com/angular-demos-lob/assets/images/card/media/infragisticsMap.png");
+        border: 1px solid var(--ig-gray-300);
+    }
+
+    .locationTooltipContent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .logo {
+        margin-right: 10px;
+        width: 45px;
+    }
+
+    igc-tooltip::part(base) {
+        max-width: 240px;
+    }
+</style>
+
+<div class="container">
+    <div class="map">
+        <IgbIcon @ref="iconRef"
+                 id="location_icon"
+                 slot="actions"
+                 Collection="material"
+                 IconName="location_on"></IgbIcon>
+        <IgbTooltip Anchor="location_icon" class="locationTooltip" Placement="PopoverPlacement.Bottom" DisableArrow="true">
+            <div class="locationTooltipContent">
+                <IgbAvatar class="logo"
+                           Src="https://www.infragistics.com/angular-demos-lob/assets/images/card/avatars/igLogo.png"
+                           Shape="AvatarShape.Square"></IgbAvatar>
+                <div>
+                    <div>Infragistics Inc. HQ</div>
+                    <div>2 Commerce Dr, Cranbury, NJ 08512, USA</div>
+                </div>
+            </div>
+        </IgbTooltip>
+    </div>
+</div>
+
+@code {
+    private string location = "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#e3e3e3'><path d='M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 400Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Z'/></svg>";
+
+    private IgbIcon iconRef;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (this.iconRef != null && firstRender)
+        {
+            this.iconRef.EnsureReady().ContinueWith(new Action<Task>((e) =>
+            {
+                this.iconRef.RegisterIconFromText("location_on", location, "material");
+            }));
+        }
+    }
+}
