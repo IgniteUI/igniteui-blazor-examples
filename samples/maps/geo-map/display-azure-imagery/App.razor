@@ -1,0 +1,235 @@
+@using IgniteUI.Blazor.Controls
+@inject NavigationManager NavManager
+
+<style>
+igc-dialog::part(content) {
+    width: 500px;
+}
+</style>
+
+<div class="map-controls" style="display:flex; justify-content:center; align-items:center; gap:0.5rem; margin-bottom:0.5rem;">
+    <IgbButton @onclick="OnDialogShow" Variant=@ButtonVariant.Contained>
+        Click to enter your Azure key
+    </IgbButton>
+
+    <IgbPropertyEditorPanel DescriptionType="CategoryChart"
+                            IsHorizontal="true"
+                            IsWrappingEnabled="false"
+                            Name="editor"
+                            @ref="editor">
+    </IgbPropertyEditorPanel>
+</div>
+
+<div class="container horizontal">
+    <IgbDialog @ref="DialogRef" Title="Azure Maps" Closed="OnClosed">
+        <form id="form" method="dialog">
+            <IgbInput Label="An image will remain visible when no key is entered." @bind-value="AzureKey">
+            </IgbInput>
+        </form>
+    </IgbDialog>
+
+    @if (ShowImage)
+    {
+        <img src="@CurrentImage" alt="Map Imagery"
+             style="width:100%; height:100%; object-fit:contain;" />
+    }
+    else
+    {
+        <IgbGeographicMap @ref="AzureMap"
+                          Height="100%" Width="100%"
+                          Zoomable="true"
+                          BackgroundContent="@AzureImagery">
+            <IgbGeographicTileSeries @ref="ImagerySeries" />
+        </IgbGeographicMap>
+    }
+</div>
+
+@code {
+    private IgbAzureMapsImagery AzureImagery { get; set; }
+    private IgbGeographicMap AzureMap;
+    private IgbGeographicTileSeries ImagerySeries;
+    public IgbDialog DialogRef;
+    private IgbPropertyEditorPanel editor;
+    private IgbPropertyEditorPropertyDescription azureImageryDropDown;
+
+    private string CurrentImage = "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_satellite.png";
+    private bool ShowImage = true;
+    private string AzureKey;
+    private bool _imageryAppliedAfterDialog = false;
+    private string _selectedStyle = "Satellite";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender && editor != null)
+        {
+            editor.Target = AzureMap;
+
+            azureImageryDropDown = new IgbPropertyEditorPropertyDescription
+            {
+                ValueType = PropertyEditorValueType.EnumValue,
+                ShouldOverrideDefaultEditor = true,
+                DropDownNames = _placeholderImages.Keys.ToArray(),
+                DropDownValues = _placeholderImages.Keys.ToArray(),
+                PrimitiveValue = _selectedStyle
+            };
+
+            editor.Properties.Add(azureImageryDropDown);
+            azureImageryDropDown.Changed += EditorChangeAzureImagery;
+
+            // Ensure the dialog is rendered before showing
+            await InvokeAsync(async () =>
+            {
+                await Task.Delay(1000); // allow Blazor to complete rendering
+                if (DialogRef != null)
+                {
+                    await DialogRef.ShowAsync();
+                }
+            });
+        }
+
+        if (!ShowImage && AzureMap != null && !_imageryAppliedAfterDialog)
+        {
+            await ApplyAzureImagery(_selectedStyle);
+            _imageryAppliedAfterDialog = true;
+        }
+    }
+
+
+    public async Task OnDialogShow()
+    {
+        if (DialogRef != null)
+        {
+            await DialogRef.ShowAsync();
+        }
+    }
+
+    public IgbAzureMapsImagery CreateImagery(AzureMapsImageryStyle style)
+    {
+        var imagery = new IgbAzureMapsImagery
+        {
+            ApiKey = AzureKey,
+            ImageryStyle = style
+        };
+
+        ImagerySeries.TileImagery = imagery;
+        return imagery;
+    }
+
+    public void OnClosed(IgbVoidEventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(AzureKey))
+        {
+            ShowImage = true;
+        }
+        else
+        {
+            ShowImage = false;
+            _imageryAppliedAfterDialog = false;
+        }
+
+        StateHasChanged();
+    }
+
+    public async void EditorChangeAzureImagery(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
+    {
+        _selectedStyle = args.NewValue as string;
+        await ApplyAzureImagery(_selectedStyle);
+    }
+
+    private async Task ApplyAzureImagery(string styleName)
+    {
+        if (_placeholderImages.TryGetValue(styleName, out var image))
+        {
+            CurrentImage = image;
+        }
+
+        if (!string.IsNullOrWhiteSpace(AzureKey) && AzureMap != null)
+        {
+            var style = styleName switch
+            {
+                "Satellite" => AzureMapsImageryStyle.Satellite,
+                "Road" => AzureMapsImageryStyle.Road,
+                "DarkGrey" => AzureMapsImageryStyle.DarkGrey,
+                "TerraOverlay" => AzureMapsImageryStyle.TerraOverlay,
+                "HybridRoadOverlay" => AzureMapsImageryStyle.HybridRoadOverlay,
+                "HybridDarkGreyOverlay" => AzureMapsImageryStyle.HybridDarkGreyOverlay,
+                "LabelsRoadOverlay" => AzureMapsImageryStyle.LabelsRoadOverlay,
+                "LabelsDarkGreyOverlay" => AzureMapsImageryStyle.LabelsDarkGreyOverlay,
+                "TrafficDelayOverlay" => AzureMapsImageryStyle.TrafficDelayOverlay,
+                "TrafficAbsoluteOverlay" => AzureMapsImageryStyle.TrafficAbsoluteOverlay,
+                "TrafficReducedOverlay" => AzureMapsImageryStyle.TrafficReducedOverlay,
+                "TrafficRelativeDarkOverlay" => AzureMapsImageryStyle.TrafficRelativeDarkOverlay,
+                "TrafficRelativeOverlay" => AzureMapsImageryStyle.TrafficRelativeOverlay,
+                "WeatherInfraredOverlay" => AzureMapsImageryStyle.WeatherInfraredOverlay,
+                "WeatherRadarOverlay" => AzureMapsImageryStyle.WeatherRadarOverlay,
+                _ => AzureMapsImageryStyle.Satellite
+            };
+
+            // Create the main tile imagery
+            var overlay = CreateImagery(style);
+
+            // Background handling
+            if (styleName.StartsWith("Traffic") || styleName.StartsWith("Weather"))
+            {
+                AzureImagery = new IgbAzureMapsImagery
+                {
+                    ApiKey = AzureKey,
+                    ImageryStyle = AzureMapsImageryStyle.DarkGrey
+                };
+            }
+            else if (style is AzureMapsImageryStyle.Satellite or AzureMapsImageryStyle.Road or AzureMapsImageryStyle.DarkGrey)
+            {
+                AzureImagery = null; // no background
+            }
+            else
+            {
+                AzureImagery = new IgbAzureMapsImagery
+                {
+                    ApiKey = AzureKey,
+                    ImageryStyle = AzureMapsImageryStyle.Satellite
+                };
+            }
+
+            // wait a tiny bit to let JS interop initialize
+            await Task.Delay(1);
+
+            // Wait until map component is ready
+            await InvokeAsync(() =>
+            {
+                AzureMap.BackgroundContent = AzureImagery;
+
+                // Zoom rules
+                Rect rect = styleName.StartsWith("Traffic")
+                    ? new Rect(-74.05, 40.70, new Size(0.2, 0.2)) // NYC
+                    : new Rect(-124.77, 24.52, new Size(124.77 - 66.95, 49.38 - 24.52)); // US
+
+                AzureMap.ZoomToGeographic(rect);
+                return AzureMap.FlushAsync();
+            });
+        }
+
+        StateHasChanged();
+    }
+
+
+    private readonly Dictionary<string, string> _placeholderImages = new()
+    {
+        { "Satellite", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_satellite.png" },
+        { "Road", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_road.png" },
+        { "DarkGrey", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_darkgrey.png" },
+        { "TerraOverlay", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_terra_overlay.png" },
+        { "HybridRoadOverlay", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/AzureHybridRoad.png" },
+        { "HybridDarkGreyOverlay", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/AzureHybridDarkGrey.png" },
+        { "LabelsRoadOverlay", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_labelsroad.png" },
+        { "LabelsDarkGreyOverlay", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_labelsdarkgrey.png" },
+        { "TrafficDelayOverlay", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_trafficdelay.png" },
+        { "TrafficAbsoluteOverlay", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_traffic_absolute.png" },
+        { "TrafficReducedOverlay", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_traffic_light.png" },
+        { "TrafficRelativeOverlay", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_traffic_relative.png" },
+        { "TrafficRelativeDarkOverlay", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_traffic_relative_dark.png" },
+        { "WeatherInfraredOverlay", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_weather_Infrared_road.png" },
+        { "WeatherRadarOverlay", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_weather_radar.png" }
+    };
+}
