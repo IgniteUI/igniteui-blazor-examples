@@ -7,8 +7,8 @@
 
     <div id="content" style="width: 100%; height: inherit;">
         <IgbRadioGroup Alignment="ContentOrientation.Horizontal" style="margin-bottom: 10px;">
-            <IgbRadio name="mode" Value="raw" LabelPosition="ToggleLabelPosition.After" Checked="true" @onclick="OnRawClick">raw</IgbRadio>
-            <IgbRadio name="mode" Value="withFormatting" LabelPosition="ToggleLabelPosition.After" @onclick="OnFormattingClick">withFormatting</IgbRadio>
+            <IgbRadio name="mode" Value="raw" LabelPosition="ToggleLabelPosition.After" Checked="true" Change="OnRadioButtonClick">raw</IgbRadio>
+            <IgbRadio name="mode" Value="withFormatting" LabelPosition="ToggleLabelPosition.After" Change="OnRadioButtonClick">withFormatting</IgbRadio>
         </IgbRadioGroup>
         <span id="value-span">Value: @SpanValue</span>
     </div>
@@ -34,15 +34,16 @@
         this.SpanValue = this.MaskInputRef.Value;
     }
 
-    public void OnRawClick()
+    public void OnRadioButtonClick(IgbRadioChangeEventArgs e)
     {
-        this.MaskInputRef.ValueMode = MaskInputValueMode.Raw;
-        this.OnInputChange();
-    }
-
-    public void OnFormattingClick()
-    {
-        this.MaskInputRef.ValueMode = MaskInputValueMode.WithFormatting;
+        if (e.Detail.Value == "raw")
+        {
+            this.MaskInputRef.ValueMode = MaskInputValueMode.Raw;
+        } else
+        {
+            this.MaskInputRef.ValueMode = MaskInputValueMode.WithFormatting;      
+        }
+        this.MaskInputRef.Value = null;
         this.OnInputChange();
     }
 }
