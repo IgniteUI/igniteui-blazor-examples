@@ -1,0 +1,73 @@
+@using IgniteUI.Blazor.Controls
+
+<link href="/layout.css" rel="stylesheet" />
+
+<div class="container sample center">
+    <div class="inputWrapper">
+        <IgbRadioGroup Alignment="ContentOrientation.Horizontal">
+            <IgbRadio name="resize" Value="Always" Checked="true" Change="OnRadioButtonClick">Always</IgbRadio>
+            <IgbRadio name="resize" Value="Hover" Change="OnRadioButtonClick">Hover</IgbRadio>
+            <IgbRadio name="resize" Value="None" Change="OnRadioButtonClick">None</IgbRadio>
+        </IgbRadioGroup>
+        <IgbInput Label="Minimum Column Width" Placeholder="200px" DisplayType="InputType.Text" Change="OnInputChangeColumnWidth"></IgbInput>
+        <IgbInput Label="Minimum Row Height" Placeholder="200px" DisplayType="InputType.Text" Change="OnInputChangeRowHeight"></IgbInput>
+    </div>
+    <IgbTileManager @ref="TileManagerRef" ResizeMode="@ResizeMode" Gap="20px">
+        <IgbTile>
+            <span slot="title">Tile 1 header</span>
+            <p>Content for Tile 1</p>
+        </IgbTile>
+        <IgbTile>
+            <span slot="title">Tile 2 header</span>
+            <p>Content for Tile 2</p>
+        </IgbTile>
+        <IgbTile>
+            <span slot="title">Tile 3 header</span>
+            <p>Content for Tile 3</p>
+        </IgbTile>
+        <IgbTile>
+            <span slot="title">Tile 4 header</span>
+            <p>Content for Tile 4</p>
+        </IgbTile>
+    </IgbTileManager>
+</div>  
+
+@code {
+    private IgbTileManager TileManagerRef { get; set; }
+    private TileManagerResizeMode ResizeMode = TileManagerResizeMode.Always;
+
+    public void OnRadioButtonClick(IgbRadioChangeEventArgs e)
+    {
+        if (this.TileManagerRef != null)
+        {
+            switch (e.Detail.Value)
+            {
+                case "Hover":
+                    this.ResizeMode = TileManagerResizeMode.Hover;
+                    break;
+                case "Always":
+                    this.ResizeMode = TileManagerResizeMode.Always;
+                    break;
+                case "None":
+                    this.ResizeMode = TileManagerResizeMode.None;
+                    break;
+            }
+        }
+    }
+
+    public void OnInputChangeColumnWidth(IgbComponentValueChangedEventArgs e)
+    {
+        if (this.TileManagerRef != null)
+        {
+            this.TileManagerRef.MinColumnWidth = e.Detail;
+        }
+    }
+
+    public void OnInputChangeRowHeight(IgbComponentValueChangedEventArgs e)
+    {
+        if (this.TileManagerRef != null)
+        {
+            this.TileManagerRef.MinRowHeight = e.Detail;
+        }
+    }
+}

@@ -1,0 +1,42 @@
+@using IgniteUI.Blazor.Controls
+
+<link href="/layout.css" rel="stylesheet" />
+<link href="/styles.css" rel="stylesheet" />
+
+<div class="container sample center">
+    <IgbTileManager ResizeMode="TileManagerResizeMode.Always" ColumnCount="2" Gap="20px">
+        <IgbTile>
+            <IgbIcon @ref="IconRef" slot="side-adorner" Class="side" IconName="indicator" Collection="material"></IgbIcon>
+            <IgbIcon @ref="IconRef" slot="corner-adorner" Class="corner" IconName="indicator" Collection="material"></IgbIcon>
+            <IgbIcon @ref="IconRef" slot="bottom-adorner" Class="bottom" IconName="indicator" Collection="material"></IgbIcon>
+            <span slot="title">Tile 1 header</span>
+            <p>Content for Tile 1</p>
+        </IgbTile>
+        <IgbTile>
+            <span slot="title">Tile 2 header</span>
+            <p>Content for Tile 2</p>
+        </IgbTile>
+        <IgbTile>
+            <span slot="title">Tile 3 header</span>
+            <p>Content for Tile 3</p>
+        </IgbTile>
+        <IgbTile>
+            <span slot="title">Tile 4 header</span>
+            <p>Content for Tile 4</p>
+        </IgbTile>
+    </IgbTileManager>
+</div>  
+
+@code {
+    private IgbIcon IconRef { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (this.IconRef != null && firstRender)
+        {
+            await this.IconRef.EnsureReady();
+            const string indicatorIcon = "<svg xmlns='http://www.w3.org/2000/svg' fill='none'><path d='M3.993 12.508V.765h-.979v11.743h.979ZM1.54 10.06V3.21H.56v6.85h.98Z' fill='#09F'/></svg>";
+            await this.IconRef.RegisterIconFromTextAsync("indicator", indicatorIcon, "material");
+        }
+    }
+}
