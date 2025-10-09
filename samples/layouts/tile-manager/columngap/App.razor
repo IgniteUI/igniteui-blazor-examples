@@ -1,0 +1,59 @@
+@using IgniteUI.Blazor.Controls
+
+<link href="/layout.css" rel="stylesheet" />
+
+<div class="container sample center">
+    <div class="inputWrapper">
+        <IgbInput Label="Columns Number" DisplayType="InputType.Number" Value="0" Min="0" Change="OnInputChangeColumn"></IgbInput>
+        <IgbInput Label="Gap Size" DisplayType="InputType.Text" Placeholder="10px" Change="OnInputChangeGap"></IgbInput>
+    </div>
+    <IgbTileManager @ref="TileManagerRef" Gap="@GapValue">
+        <IgbTile DisableFullscreen="true" DisableMaximize="true">
+            <div class="picture">
+                <img src="https://picsum.photos/1048/998" alt="picture" />
+            </div>
+        </IgbTile>
+        <IgbTile DisableFullscreen="true" DisableMaximize="true">
+            <div class="picture">
+                <img src="https://picsum.photos/1049/998" alt="picture" />
+            </div>
+        </IgbTile>
+        <IgbTile DisableFullscreen="true" DisableMaximize="true">
+            <div class="picture">
+                <img src="https://picsum.photos/1050/998" alt="picture" />
+            </div>
+        </IgbTile>
+        <IgbTile DisableFullscreen="true" DisableMaximize="true">
+            <div class="picture">
+                <img src="https://picsum.photos/1051/998" alt="picture" />
+            </div>
+        </IgbTile>
+        <IgbTile DisableFullscreen="true" DisableMaximize="true">
+            <div class="picture">
+                <img src="https://picsum.photos/1052/998" alt="picture" />
+            </div>
+        </IgbTile>
+        <IgbTile DisableFullscreen="true" DisableMaximize="true">
+            <div class="picture">
+                <img src="https://picsum.photos/1053/998" alt="picture" />
+            </div>
+        </IgbTile>
+    </IgbTileManager>
+</div>  
+
+@code {
+    private IgbTileManager TileManagerRef { get; set; }
+    private string GapValue = "10px";
+
+    public void OnInputChangeColumn(IgbComponentValueChangedEventArgs e)
+    {
+        double value;
+        double.TryParse(e.Detail, out value);
+        this.TileManagerRef.ColumnCount = value;
+    }
+
+    public void OnInputChangeGap(IgbComponentValueChangedEventArgs e)
+    {
+        GapValue = e.Detail;
+    }
+}
