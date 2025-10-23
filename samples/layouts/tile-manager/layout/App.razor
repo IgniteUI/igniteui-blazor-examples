@@ -1,0 +1,46 @@
+@using IgniteUI.Blazor.Controls
+
+<link href="/layout.css" rel="stylesheet" />
+<script src="/actions.js"></script>
+
+<div class="container sample center">
+    <div class="btnWrapper">
+        <IgbButton @onclick="SaveLayout">Save Layout</IgbButton>
+        <IgbButton @onclick="LoadLayout">Load Layout</IgbButton>
+        <IgbButton onclick="addTile()">Add Tile</IgbButton>
+        <IgbButton onclick="removeTile()">Remove Tile</IgbButton>
+    </div>
+    <IgbTileManager @ref="TileManagerRef" ResizeMode="TileManagerResizeMode.Always" DragMode="TileManagerDragMode.Tile" ColumnCount="2" Gap="20px">
+        <IgbTile>
+            <span slot="title">Tile 1 header</span>
+            <p>Content for Tile 1</p>
+        </IgbTile>
+        <IgbTile>
+            <span slot="title">Tile 2 header</span>
+            <p>Content for Tile 2</p>
+        </IgbTile>
+        <IgbTile>
+            <span slot="title">Tile 3 header</span>
+            <p>Content for Tile 3</p>
+        </IgbTile>
+        <IgbTile>
+            <span slot="title">Tile 4 header</span>
+            <p>Content for Tile 4</p>
+        </IgbTile>
+    </IgbTileManager>
+</div>  
+
+@code {
+    private IgbTileManager TileManagerRef { get; set; }
+    private string SerializeData;
+
+    public void SaveLayout()
+    {
+        this.SerializeData = this.TileManagerRef.SaveLayout();
+    }
+
+    public void LoadLayout()
+    {
+        this.TileManagerRef.LoadLayout(SerializeData);
+    }
+}

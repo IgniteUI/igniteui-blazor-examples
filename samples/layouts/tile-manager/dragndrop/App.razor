@@ -1,0 +1,55 @@
+@using IgniteUI.Blazor.Controls
+
+<link href="/layout.css" rel="stylesheet" />
+
+<div class="container sample center">
+    <div class="radioWrapper">
+        <IgbRadioGroup Alignment="ContentOrientation.Horizontal">
+            <IgbRadio name="dragMode" Value="TileHeader" Checked="true" Change="OnRadioButtonClick">Tile-header</IgbRadio>
+            <IgbRadio name="dragMode" Value="Tile" Change="OnRadioButtonClick">Tile</IgbRadio>
+            <IgbRadio name="dragMode" Value="None" Change="OnRadioButtonClick">None</IgbRadio>
+        </IgbRadioGroup>
+    </div>
+    <IgbTileManager @ref="TileManagerRef" DragMode="@DragMode" ColumnCount="2" Gap="20px">
+        <IgbTile>
+            <span slot="title">Tile 1 header</span>
+            <p>Content for Tile 1</p>
+        </IgbTile>
+        <IgbTile>
+            <span slot="title">Tile 2 header</span>
+            <p>Content for Tile 2</p>
+        </IgbTile>
+        <IgbTile>
+            <span slot="title">Tile 3 header</span>
+            <p>Content for Tile 3</p>
+        </IgbTile>
+        <IgbTile>
+            <span slot="title">Tile 4 header</span>
+            <p>Content for Tile 4</p>
+        </IgbTile>
+    </IgbTileManager>
+</div>  
+
+@code {
+    private IgbTileManager TileManagerRef { get; set; }
+    private TileManagerDragMode DragMode = TileManagerDragMode.TileHeader;
+
+    public void OnRadioButtonClick(IgbRadioChangeEventArgs e)
+    {
+        if (this.TileManagerRef != null)
+        {
+            switch (e.Detail.Value)
+            {
+                case "TileHeader":
+                    this.DragMode = TileManagerDragMode.TileHeader;
+                    break;
+                case "Tile":
+                    this.DragMode = TileManagerDragMode.Tile;
+                    break;
+                case "None":
+                    this.DragMode = TileManagerDragMode.None;
+                    break;
+            }
+        }
+    }
+}
