@@ -1,0 +1,55 @@
+@using IgniteUI.Blazor.Controls
+
+<link href="/layout.css" rel="stylesheet" />
+<script src="/actions.js"></script>
+
+<div class="container sample center">
+    <IgbIcon @ref="@RegisterIconRef" />
+    <IgbTileManager ColumnCount="2" Gap="20px">
+        <IgbTile>
+            <h3 slot="title">Default Actions</h3>
+            <p>This tile has default actions and title.</p>
+        </IgbTile>
+        <IgbTile DisableFullscreen="true">
+            <h3 slot="title">No Fullscreen Action</h3>
+            <p>Fullscreen is disabled via property.</p>
+        </IgbTile>
+        <IgbTile DisableFullscreen="true" DisableMaximize="true">
+            <h3 slot="title">Custom Actions</h3>
+            <IgbIconButton id="customOne" slot="actions" Variant="IconButtonVariant.Flat" Collection="material" onclick="customOneClick(event)"
+            IconName="north_east" aria-label="north_east"></IgbIconButton>
+            <p>Replace the default actions with custom ones, and include extra actions when the tile is maximized.</p>
+        </IgbTile>
+        <IgbTile DisableFullscreen="true" DisableMaximize="true">
+            <IgbIconButton id="customTwo" slot="actions" Variant="IconButtonVariant.Flat" Collection="material" IconName="north_east" onclick="customTwoClick(event)"></IgbIconButton>
+            <p>Display only custom actions in the header.</p>
+        </IgbTile>
+        <IgbTile DisableFullscreen="true" DisableMaximize="true">
+            <h3 slot="title">Only title</h3>
+            <p>Display only title in the header.</p>
+        </IgbTile>
+        <IgbTile DisableFullscreen="true" DisableMaximize="true">
+            <p>Content only.</p>
+        </IgbTile>
+    </IgbTileManager>
+</div>  
+
+@code {
+    private IgbIcon RegisterIconRef { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (this.RegisterIconRef != null && firstRender)
+        {
+            await this.RegisterIconRef.EnsureReady();
+            const string northEast = "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#5f6368'><path d='m216-160-56-56 464-464H360v-80h400v400h-80v-264L216-160Z'/></svg>";
+            await this.RegisterIconRef.RegisterIconFromTextAsync("north_east", northEast, "material");
+            const string southWest = "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#5f6368'><path d='M200-200v-400h80v264l464-464 56 56-464 464h264v80H200Z'/></svg>";
+            await this.RegisterIconRef.RegisterIconFromTextAsync("south_west", southWest, "material");
+            const string more = "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#5f6368'><path d='M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z'/></svg>";
+            await this.RegisterIconRef.RegisterIconFromTextAsync("more", more, "material");
+            const string chart = "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#5f6368'><path d='M640-160v-280h160v280H640Zm-240 0v-640h160v640H400Zm-240 0v-440h160v440H160Z'/></svg>";
+            await this.RegisterIconRef.RegisterIconFromTextAsync("chart", chart, "material");
+        }
+    }
+}
