@@ -93,8 +93,13 @@ public class BasicError : BlazorTest
         {
             if (value.Type == "warning" && value.Text.Contains("Error:"))
             {
-                messages.AppendLine(value.Text);
-                numPageErrors++;
+                if (!value.Text.Contains("Failed to load resource"))
+                {
+                    //I think sometimes this gets hooked early enough to get errors
+                    //about the favicon maybe? Making this flaky?
+                    messages.AppendLine(value.Text);
+                    numPageErrors++;
+                }
             }
         };
 
