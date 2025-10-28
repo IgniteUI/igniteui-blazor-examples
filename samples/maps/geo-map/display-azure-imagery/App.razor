@@ -78,11 +78,13 @@ igc-dialog::part(content) {
             editor.Properties.Add(azureImageryDropDown);
             azureImageryDropDown.Changed += EditorChangeAzureImagery;
 
-            // Ensure the dialog is rendered before showing
-            await InvokeAsync(async () =>
+            // Queue back into Blazor sync context
+            _ = InvokeAsync(async () =>
             {
-                await Task.Delay(1000); // allow Blazor to complete rendering
-                if (DialogRef != null)
+                // shorter delay should be fine
+                await Task.Delay(1000);
+
+                if (DialogRef is not null)
                 {
                     await DialogRef.ShowAsync();
                 }
