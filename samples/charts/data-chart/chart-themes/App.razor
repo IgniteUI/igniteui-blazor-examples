@@ -1,0 +1,213 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical" style="background-color: @AppBackground">
+    <div class="options horizontal">
+        <button @onclick="applyDarkTheme">Apply Dark Theme</button>
+        <button @onclick="applyLightTheme">Apply Light Theme</button>
+    </div>
+
+    <div class="legend" style="padding: 1rem; width: calc(100% - 2rem);">
+        <IgbDataLegend LayoutMode="DataLegendLayoutMode.Table" LabelDisplayMode="DataLegendLabelMode.Visible"
+        Name="legend" IncludedColumns="@IncludedDataColumns" 
+        @ref="legend" ExcludedColumns="@ExcludedDataColumns">
+        </IgbDataLegend>
+
+    </div>
+    <div class="container vertical fill" style="margin: 1rem; width: calc(100% - 2rem); height: calc(100% - 2rem)">
+        <IgbDataChart 
+        Name="chart" ChartTitle="Tesla Stock Performance (2019 - 2024)"
+        @ref="chart" PlotAreaMarginLeft="0" PlotAreaMarginRight="0"
+        IsVerticalZoomEnabled="false"
+        IsHorizontalZoomEnabled="true">
+         
+            <IgbCategoryXAxis
+            Name="xAxis1" Gap="0.5"
+            @ref="xAxis1"
+            DataSource="StockTesla"
+            Label="Date">
+            </IgbCategoryXAxis>
+
+            <IgbNumericYAxis LabelExtent="60" Title="Stock Price"
+            Name="yAxis1" MinimumValue="-300" MaximumValue="500"
+            @ref="yAxis1"  >
+            </IgbNumericYAxis>
+
+            <IgbNumericYAxis LabelExtent="60" Title="Stock Volume" MinimumValue="0" MaximumValue="16000000000"
+            Name="yAxis2" LabelLocation="AxisLabelsLocation.OutsideRight" MajorStrokeThickness="0"
+            @ref="yAxis2" LabelHorizontalAlignment="HorizontalAlignment.Left" AbbreviateLargeNumbers="true" >
+            </IgbNumericYAxis>
+
+            <IgbFinancialPriceSeries
+            Name="series1"
+            @ref="series1"
+            Title="Stock Price"
+            DisplayType="PriceDisplayType.Candlestick"
+            XAxisName="xAxis1"
+            YAxisName="yAxis1"
+            DataSource="StockTesla"
+            OpenMemberPath="Open"
+            HighMemberPath="High"
+            LowMemberPath="Low"
+            CloseMemberPath="Close"
+            ShowDefaultTooltip="true">
+            </IgbFinancialPriceSeries>
+            
+            <IgbColumnSeries
+            Name="series2"
+            @ref="series2"
+            Title="Stock Volume" 
+            XAxisName="xAxis1"
+            YAxisName="yAxis2"
+            DataSource="StockTesla"
+            ValueMemberPath="Volume" 
+            ValueMemberAsLegendLabel="V:"
+            ShowDefaultTooltip="true"
+            MarkerType="MarkerType.None">
+            </IgbColumnSeries>
+            
+            <IgbCrosshairLayer
+            Name="CrosshairLayer"
+            @ref="crosshairLayer"
+            IsAxisAnnotationEnabled="true"
+            YAxisAnnotationInterpolatedValuePrecision="0"
+            XAxisAnnotationBackgroundCornerRadius="10"
+            YAxisAnnotationBackgroundCornerRadius="10">
+            </IgbCrosshairLayer>
+
+            <IgbDataToolTipLayer LayoutMode="DataLegendLayoutMode.Vertical" LabelTextMarginLeft="5"
+            Name="DataTooltip" IncludedColumns="@IncludedDataColumns"  LabelDisplayMode="DataLegendLabelMode.Visible"
+            @ref="dataTooltip" ExcludedColumns="@ExcludedDataColumns">
+            </IgbDataToolTipLayer>
+
+        </IgbDataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private IgbDataLegend legend;
+    private IgbDataChart chart;
+    private IgbCategoryXAxis xAxis1;
+    private IgbNumericYAxis yAxis1;
+    private IgbNumericYAxis yAxis2;
+    private IgbFinancialPriceSeries series1;
+    private IgbColumnSeries series2;
+    private IgbDataToolTipLayer dataTooltip;
+    private IgbCrosshairLayer crosshairLayer;
+
+    public string[] IncludedDataColumns = new string[] { "High", "Low", "Open", "Close", "Volume" };
+    public string[] ExcludedDataColumns = new string[] { "VOL" };
+
+    private Action BindElements { get; set; }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var chart = this.chart;
+        // var xAxis1 = this.xAxis1;
+
+        var yAxis1 = this.yAxis1;
+        var yAxis2 = this.yAxis2;
+        var series1 = this.series1;
+
+        // var dataTooltip = this.dataTooltip;
+        var legend = this.legend;
+
+
+        this.BindElements = () => {
+            legend.Target = this.chart;
+
+            // yAxis1.TitleTextColor = series1.ActualBrush;
+            // yAxis2.TitleTextColor = chart.Series[1].ActualBrush;
+        };
+        this.BindElements();
+
+    }
+
+    private string DarkBackground = "#242323";
+    private string DarkForeground = "white";
+
+    private string LightBackground = "white";
+    private string LightForeground = null;
+
+    private void applyDarkTheme()
+    {
+        applyThemeWith(this.DarkForeground, this.DarkBackground);
+    }
+
+    private void applyLightTheme()
+    {
+        applyThemeWith(this.LightForeground, this.LightBackground);
+    }
+
+    private void applyThemeWith(string foreground, string background)
+    {
+
+        this.AppBackground = background;
+
+        this.yAxis1.MajorStroke = foreground;
+        this.yAxis2.MajorStroke = foreground;
+        this.yAxis1.TickStroke  = foreground;
+        this.yAxis2.TickStroke  = foreground;
+        this.xAxis1.TickStroke  = foreground;
+
+        this.xAxis1.LabelTextColor = foreground;
+        this.yAxis1.LabelTextColor = foreground;
+        this.yAxis2.LabelTextColor = foreground;
+
+        this.xAxis1.Stroke = foreground;
+        this.xAxis1.TitleTextColor = foreground;
+        this.yAxis1.TitleTextColor = foreground;
+        this.yAxis2.TitleTextColor = foreground;
+        
+        this.chart.TitleTextColor = foreground;
+        this.chart.SubtitleTextColor = foreground;
+        this.chart.MarkerBrushes = background;
+
+        if (this.dataTooltip != null)
+        {
+            this.dataTooltip.ToolTipBackground = background; 
+            // this.dataTooltip.ToolTipBorderThickness = 1;
+            this.dataTooltip.ToolTipBorderBrush = foreground;
+            this.dataTooltip.HeaderTextColor = foreground;
+            this.dataTooltip.TitleTextColor  = foreground;
+            this.dataTooltip.ValueTextColor  = foreground;
+            this.dataTooltip.LabelTextColor  = foreground;
+            this.dataTooltip.UnitsTextColor  = foreground;
+        }
+        
+        if (this.legend != null)
+        {
+            this.legend.ContentBackground = background; 
+            // this.legend.ContentBorderThickness = 1;
+            this.legend.ContentBorderBrush = foreground;
+            this.legend.HeaderTextColor = foreground;
+            this.legend.TitleTextColor  = foreground;
+            this.legend.ValueTextColor  = foreground;
+            this.legend.LabelTextColor  = foreground;
+            this.legend.UnitsTextColor  = foreground;
+        }
+    }
+
+    private string _AppBackground = "white";
+    public string AppBackground
+    {
+        get { return _AppBackground; }
+        set { _AppBackground = value; }
+    }
+
+    private StockTesla _stockTesla = null;
+    public StockTesla StockTesla
+    {
+        get
+        {
+            if (_stockTesla == null)
+            {
+                _stockTesla = new StockTesla();
+            }
+            return _stockTesla;
+        }
+    }
+
+     
+
+}
