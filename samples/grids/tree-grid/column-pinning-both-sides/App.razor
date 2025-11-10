@@ -1,0 +1,156 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        Name="treeGrid"
+        @ref="treeGrid"
+        Id="treeGrid"
+        Data="EmployeesFlatDetails"
+        PrimaryKey="ID"
+        ForeignKey="ParentID"
+        AutoGenerate="false"
+        Width="100%"
+        Height="480px"
+        ColumnSelection="GridSelectionMode.Multiple"
+        Pinning="PinningConfig"
+        Moving="true"
+        >
+            <IgbGridToolbar
+            >
+                <IgbGridToolbarActions
+                >
+                    <IgbButton class="pinning-button" Variant="ButtonVariant.Contained" @onclick="() => UnpinColumn()">Unpin Column</IgbButton>
+                    <IgbButton class="pinning-button" Variant="ButtonVariant.Contained" @onclick="() => PinLeft()">Pin Left</IgbButton>
+                    <IgbButton class="pinning-button" Variant="ButtonVariant.Contained" @onclick="() => PinRight()">Pin Right</IgbButton>
+
+                </IgbGridToolbarActions>
+
+            </IgbGridToolbar>
+
+            <IgbColumn
+                Field="Name"
+                DataType="GridColumnDataType.String"
+                Pinned="true"
+                Width="250px"
+                PinningPosition="ColumnPinningPosition.Start"
+            />
+
+            <IgbColumn
+                Field="Title"
+                DataType="GridColumnDataType.String"
+                Width="250px"
+                Pinned="true"
+                PinningPosition="ColumnPinningPosition.End" />
+
+            <IgbColumn Field="ID" DataType="GridColumnDataType.Number" Width="100px" />
+
+            <IgbColumn
+                Field="HireDate"
+                Header="Hire Date"
+                DataType="GridColumnDataType.Date"
+                Width="200px"
+            />
+
+            <IgbColumn 
+                Field="Age"
+                DataType="GridColumnDataType.Number"
+            />
+
+            <IgbColumn
+                Field="Address"
+                DataType="GridColumnDataType.String"
+                Width="200px"
+                DisablePinning="true"
+            />
+
+            <IgbColumn Field="City" DataType="GridColumnDataType.String" Width="200px" />
+            <IgbColumn Field="Country" DataType="GridColumnDataType.String" Width="200px" />
+            <IgbColumn Field="Fax" DataType="GridColumnDataType.String" Width="200px" />
+            <IgbColumn
+            Field="PostalCode"
+            Header="Postal Code"
+            DataType="GridColumnDataType.String"
+            Width="200px"
+            />
+            <IgbColumn Field="Phone" DataType="GridColumnDataType.String" Width="200px" />
+
+        </IgbTreeGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var treeGrid = this.treeGrid;
+
+    }
+
+    private IgbTreeGrid treeGrid;
+
+    private EmployeesFlatDetails _employeesFlatDetails = null;
+    public EmployeesFlatDetails EmployeesFlatDetails
+    {
+        get
+        {
+            if (_employeesFlatDetails == null)
+            {
+                _employeesFlatDetails = new EmployeesFlatDetails();
+            }
+            return _employeesFlatDetails;
+        }
+    }
+
+    private IgbPinningConfig _pinningConfig = null;
+    private IgbPinningConfig PinningConfig
+    {
+        get
+        {
+            if (this._pinningConfig == null)
+            {
+                var pinningConfig1 = new IgbPinningConfig();
+                pinningConfig1.Columns = ColumnPinningPosition.End;
+                this._pinningConfig = pinningConfig1;
+            }
+            return this._pinningConfig;
+        }
+    }
+
+    private void PinLeft()
+    {
+        var selected = this.treeGrid.SelectedColumns();
+        if (selected == null) return;
+
+        foreach (var col in selected)
+        {
+            col.PinningPosition = ColumnPinningPosition.Start;
+            col.Pinned = true;
+        }
+    }
+
+    private void PinRight()
+    {
+
+        var selected = this.treeGrid.SelectedColumns();
+        if (selected == null) return;
+
+        foreach (var col in selected)
+        {
+            col.PinningPosition = ColumnPinningPosition.End;
+            col.Pinned = true;
+        }
+    }
+    private void UnpinColumn()
+    {
+
+        var selected = this.treeGrid.SelectedColumns();
+        if (selected == null) return;
+
+        foreach (var col in selected)
+        {
+            col.Pinned = false;
+        }
+    }
+}
