@@ -59,4 +59,4 @@ from `./samples/` folder to `./browser/IgBlazorSamples.Client/`
 
 - output files will be located in:
 
-`./browser/browser/IgBlazorSamples.Client/bin/Release/net9.0/publish/wwwroot`
+`./browser/browser/IgBlazorSamples.Client/bin/Release/net10.0/publish/wwwroot`
