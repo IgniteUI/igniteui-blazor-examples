@@ -1,0 +1,73 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbTreeGrid
+        AutoGenerate="false"
+        @ref="grid"
+        Data="EmployeesData"
+        PrimaryKey="ID"
+        ForeignKey="ParentID"
+        Width="100%"
+        Height="720px"
+        SortingExpressions="SortExpr"
+        CellMergeMode="@CellMergeMode"
+        >
+            <IgbGridToolbar>
+                <IgbSelect @bind-Value="CellMergeModeString">
+                    <IgbSelectHeader>Select Merge Type</IgbSelectHeader>
+                    @foreach (var type in MergeTypes)
+                    {
+                        <IgbSelectItem Value="@type.Value.ToString()">@type.Name</IgbSelectItem>
+                    }
+				</IgbSelect>
+            </IgbGridToolbar>
+
+            <IgbColumn Field="Name" DataType="GridColumnDataType.String" Width="250px" Editable="true" />
+            <IgbColumn Field="Title" DataType="GridColumnDataType.String" Width="250px" Merge="true" Editable="true" Sortable="true" />
+            <IgbColumn Field="HireDate" DataType="GridColumnDataType.Date" Width="200px" />
+            <IgbColumn Field="Country" DataType="GridColumnDataType.String" Width="200px" Merge="true" Editable="true" Sortable="true" />
+            <IgbColumn Field="City" DataType="GridColumnDataType.String" Width="200px" Merge="true" Editable="true" Sortable="true" />
+            <IgbColumn Field="Age" DataType="GridColumnDataType.Number" Width="200px" Editable="true" />
+            <IgbColumn Field="Address" DataType="GridColumnDataType.String" Width="200px" Editable="true" />
+            <IgbColumn Field="Fax" DataType="GridColumnDataType.String" Width="200px" />
+            <IgbColumn Field="PostalCode" DataType="GridColumnDataType.String" Width="200px" />
+            <IgbColumn Field="Phone" DataType="GridColumnDataType.String" Width="200px" />
+        </IgbTreeGrid>
+
+    </div>
+</div>
+
+@code {
+    private IgbTreeGrid grid;
+
+    private List<EmployeesFlatDetailsItem> EmployeesData { get; } = new EmployeesFlatDetails();
+
+    private GridCellMergeMode CellMergeMode { get; set; } = GridCellMergeMode.Always;
+    private string CellMergeModeString
+    {
+        get => CellMergeMode.ToString();
+        set => CellMergeMode = Enum.TryParse<GridCellMergeMode>(value, out var mode) ? mode : GridCellMergeMode.Always;
+    }
+
+    private IgbSortingExpression[] SortExpr = new IgbSortingExpression[]
+    {
+        new IgbSortingExpression()
+        {
+            FieldName = "Country",
+            Dir = SortingDirection.Asc
+        }
+    };
+
+    private List<MergeType> MergeTypes = new()
+    {
+        new MergeType { Name = "Merge always", Value = GridCellMergeMode.Always },
+        new MergeType { Name = "Merge on sort", Value = GridCellMergeMode.OnSort }
+    };
+
+    private class MergeType
+    {
+        public string Name { get; set; } = string.Empty;
+        public GridCellMergeMode Value { get; set; }
+    }
+}
