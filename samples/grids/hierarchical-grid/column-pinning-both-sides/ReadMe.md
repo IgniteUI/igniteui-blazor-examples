@@ -28,7 +28,7 @@ This folder contains implementation of Blazor application with example of Column
 
 ## Setup
 
-- instal **.NET SDK** from this [website](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install)
+- install **.NET SDK** from this [website](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install)
 
 ## Running App in Visual Studio 2019
 
