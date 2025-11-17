@@ -6,39 +6,51 @@
 
     <button class="btn btn-primary" @onclick="SwitchData">Switch Data: @(showingProducts ? "Show Users" : "Show Products")</button>
 
-    @if (showingProducts)
-    {
-        <IgbGridLite @ref="productGrid"
-                     TItem="ProductInfo" 
-                     Data="@products" 
-                     AutoGenerate="true"
-                     class="grid-lite-sample" />
-    }
-    else
-    {
-        <IgbGridLite @ref="userGrid"
-                     TItem="User" 
-                     Data="@users" 
-                     AutoGenerate="true"
-                     class="grid-lite-sample" />
-    }
+    <IgbGridLite @ref="grid"
+                 Data="data"
+                 AutoGenerate="true"
+                 class="grid-lite-sample" />
 </div>
 
 @code {
     private IgbGridLite<ProductInfo> productGrid;
-    private IgbGridLite<User> userGrid;
-    private List<ProductInfo> products;
+    private IgbGridLite<object> grid;
     private List<User> users;
+    private List<ProductInfo> products;
+    private List<object> data;
     private bool showingProducts = true;
 
     protected override void OnInitialized()
     {
         products = MockDataGenerator.CreateProducts(50);
         users = MockDataGenerator.CreateUsers(50);
+        data = products.ToList<object>();
+
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            grid.Data = data;
+        }
+
+        base.OnAfterRender(firstRender);
     }
 
     private void SwitchData()
     {
         showingProducts = !showingProducts;
+        if (showingProducts)
+        {
+            data = products.ToList<object>();
+            StateHasChanged();
+        }
+        else
+        {
+            data = users.ToList<object>();
+            StateHasChanged();
+        
+        }
     }
 }

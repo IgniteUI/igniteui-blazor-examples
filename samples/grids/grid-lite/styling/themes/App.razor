@@ -1,5 +1,7 @@
 @page "/"
 
+<link href="@currentTheme" rel="stylesheet" />
+
 <div class="container">
     <h3>Styling - Themes</h3>
     <p>Switch between different GridLite themes. Select a theme from the dropdown below.</p>
@@ -7,14 +9,14 @@
     <div class="theme-selector">
         <label>Theme: </label>
         <select @onchange="ChangeTheme" class="theme-dropdown">
-            <option value="light/bootstrap">Light Bootstrap</option>
-            <option value="light/material">Light Material</option>
-            <option value="light/fluent">Light Fluent</option>
-            <option value="light/indigo">Light Indigo</option>
-            <option value="dark/bootstrap">Dark Bootstrap</option>
-            <option value="dark/material">Dark Material</option>
-            <option value="dark/fluent">Dark Fluent</option>
-            <option value="dark/indigo">Dark Indigo</option>
+            <option value="_content/IgniteUI.Blazor.GridLite/css/themes/light/bootstrap.css">Light Bootstrap</option>
+            <option value="_content/IgniteUI.Blazor.GridLite/css/themes/light/material.css">Light Material</option>
+            <option value="_content/IgniteUI.Blazor.GridLite/css/themes/light/fluent.css">Light Fluent</option>
+            <option value="_content/IgniteUI.Blazor.GridLite/css/themes/light/indigo.css">Light Indigo</option>
+            <option value="_content/IgniteUI.Blazor.GridLite/css/themes/dark/bootstrap.css">Dark Bootstrap</option>
+            <option value="_content/IgniteUI.Blazor.GridLite/css/themes/dark/material.css">Dark Material</option>
+            <option value="_content/IgniteUI.Blazor.GridLite/css/themes/dark/fluent.css">Dark Fluent</option>
+            <option value="_content/IgniteUI.Blazor.GridLite/css/themes/dark/indigo.css">Dark Indigo</option>
         </select>
     </div>
 
@@ -30,7 +32,7 @@
 @code {
     private List<ProductInfo> products;
     private List<ColumnConfiguration<ProductInfo>> columns;
-    private string currentTheme = "light/bootstrap";
+    private string currentTheme = "_content/IgniteUI.Blazor.GridLite/css/themes/light/bootstrap.css";
 
     protected override void OnInitialized()
     {
@@ -83,7 +85,5 @@
     private void ChangeTheme(ChangeEventArgs e)
     {
         currentTheme = e.Value?.ToString() ?? "light/bootstrap";
-        // Note: In a real implementation, you would dynamically load the theme CSS
-        // For this sample, the theme would need to be changed via JavaScript
     }
 }

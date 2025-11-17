@@ -68,7 +68,7 @@
 
     private void HandleFiltering(IgbGridLiteFilteringEvent<User> e)
     {
-        var log = $"[{DateTime.Now:HH:mm:ss}] OnFiltering - Column: {e.Expression?.Key}, Condition: {e.Expression?.Condition}, Term: {e.Expression?.SearchTerm}";
+        var log = $"[{DateTime.Now:HH:mm:ss}] OnFiltering - Column: {e.Expressions?.Last().Key}, Condition: {e.Expressions?.Last().Condition}, Term: {e.Expressions?.Last().SearchTerm}";
         eventLogs.Add(log);
         StateHasChanged();
     }
