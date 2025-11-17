@@ -1,0 +1,88 @@
+@page "/"
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Web
+@using IgniteUI.Blazor.Controls
+
+
+<div class="container">
+    <h3>Column Configuration - Dynamic</h3>
+    <p>Dynamically update column configuration at runtime. Click the button to add or remove columns.</p>
+
+    <button class="btn btn-primary" @onclick="ToggleColumn">Toggle Rating Column</button>
+
+
+        <IgbGridLite @ref="grid"
+                     TItem="ProductInfo" 
+                     Data="@products" 
+                     Columns="@columns"
+                     class="grid-lite-sample" />
+
+</div>
+
+@code {
+    private IgbGridLite<ProductInfo> grid;
+    private List<ProductInfo> products;
+    private List<ColumnConfiguration<ProductInfo>> columns;
+    private bool showRating = true;
+
+    protected override void OnInitialized()
+    {
+        products = MockDataGenerator.CreateProducts(50);
+        UpdateColumns();
+    }
+
+    private void UpdateColumns()
+    {
+        columns = new List<ColumnConfiguration<ProductInfo>>
+        {
+            new ColumnConfiguration<ProductInfo>
+            {
+                Key = nameof(ProductInfo.Name),
+                HeaderText = "Product Name",
+                Type = DataType.String
+            },
+            new ColumnConfiguration<ProductInfo>
+            {
+                Key = nameof(ProductInfo.Price),
+                HeaderText = "Price",
+                Type = DataType.Number,
+                Width = "150px"
+            },
+            new ColumnConfiguration<ProductInfo>
+            {
+                Key = nameof(ProductInfo.Sold),
+                HeaderText = "Units sold",
+                Type = DataType.Number,
+                Width = "150px"
+            },
+            new ColumnConfiguration<ProductInfo>
+            {
+                Key = nameof(ProductInfo.Total),
+                HeaderText = "Total sold",
+                Type = DataType.Number,
+                Width = "150px"
+            }
+        };
+
+        if (showRating)
+        {
+            columns.Add(new ColumnConfiguration<ProductInfo>
+            {
+                Key = nameof(ProductInfo.Rating),
+                HeaderText = "Customer rating",
+                Type = DataType.Number,
+                Width = "180px"
+            });
+        }
+    }
+
+    private async Task ToggleColumn()
+    {
+        showRating = !showRating;
+        UpdateColumns();
+        if (grid != null)
+        {
+            await grid.UpdateColumnsAsync(columns);
+        }
+    }
+}

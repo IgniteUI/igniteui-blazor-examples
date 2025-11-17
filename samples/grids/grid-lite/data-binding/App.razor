@@ -1,0 +1,59 @@
+@page "/"
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Web
+@using IgniteUI.Blazor.Controls
+
+<div class="container">
+    <h3>Data Binding - Dynamic</h3>
+    <p>Dynamically switch between different data sources at runtime. Click the button to toggle between Products and Users data.</p>
+
+    <button class="btn btn-primary" @onclick="SwitchData">Switch Data: @(showingProducts ? "Show Users" : "Show Products")</button>
+
+    <IgbGridLite @ref="grid"
+                 Data="data"
+                 AutoGenerate="true"
+                 class="grid-lite-sample" />
+</div>
+
+@code {
+    private IgbGridLite<ProductInfo> productGrid;
+    private IgbGridLite<object> grid;
+    private List<User> users;
+    private List<ProductInfo> products;
+    private List<object> data;
+    private bool showingProducts = true;
+
+    protected override void OnInitialized()
+    {
+        products = MockDataGenerator.CreateProducts(50);
+        users = MockDataGenerator.CreateUsers(50);
+        data = products.ToList<object>();
+
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            grid.Data = data;
+        }
+
+        base.OnAfterRender(firstRender);
+    }
+
+    private void SwitchData()
+    {
+        showingProducts = !showingProducts;
+        if (showingProducts)
+        {
+            data = products.ToList<object>();
+            StateHasChanged();
+        }
+        else
+        {
+            data = users.ToList<object>();
+            StateHasChanged();
+        
+        }
+    }
+}

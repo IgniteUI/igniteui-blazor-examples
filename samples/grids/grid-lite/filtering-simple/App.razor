@@ -1,0 +1,58 @@
+@page "/"
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Web
+@using IgniteUI.Blazor.Controls
+
+<div class="container">
+    <h3>Filtering - Simple</h3>
+    <p>Basic filtering enabled on specific columns demonstrating filter UI interactions.</p>
+
+    @if (users != null && columns != null)
+    {
+        <IgbGridLite TItem="User" 
+                     Data="@users" 
+                     Columns="@columns"
+                     class="grid-lite-sample" />
+    }
+</div>
+
+@code {
+    private List<User> users;
+    private List<ColumnConfiguration<User>> columns;
+
+    protected override void OnInitialized()
+    {
+        // Generate 50 users
+        users = MockDataGenerator.CreateUsers(50);
+
+        columns = new List<ColumnConfiguration<User>>
+        {
+            new ColumnConfiguration<User>
+            {
+                Key = nameof(User.FirstName),
+                HeaderText = "First name",
+                Filter = true
+            },
+            new ColumnConfiguration<User>
+            {
+                Key = nameof(User.LastName),
+                HeaderText = "Last name",
+                Filter = true
+            },
+            new ColumnConfiguration<User>
+            {
+                Key = nameof(User.Age),
+                HeaderText = "Age",
+                Type = DataType.Number,
+                Filter = true
+            },
+            new ColumnConfiguration<User>
+            {
+                Key = nameof(User.Active),
+                HeaderText = "Active",
+                Type = DataType.Boolean,
+                Filter = true
+            }
+        };
+    }
+}
