@@ -1,0 +1,44 @@
+@page "/"
+
+<div class="container">
+    <h3>Data Binding - Dynamic</h3>
+    <p>Dynamically switch between different data sources at runtime. Click the button to toggle between Products and Users data.</p>
+
+    <button class="btn btn-primary" @onclick="SwitchData">Switch Data: @(showingProducts ? "Show Users" : "Show Products")</button>
+
+    @if (showingProducts)
+    {
+        <IgbGridLite @ref="productGrid"
+                     TItem="ProductInfo" 
+                     Data="@products" 
+                     AutoGenerate="true"
+                     class="grid-lite-sample" />
+    }
+    else
+    {
+        <IgbGridLite @ref="userGrid"
+                     TItem="User" 
+                     Data="@users" 
+                     AutoGenerate="true"
+                     class="grid-lite-sample" />
+    }
+</div>
+
+@code {
+    private IgbGridLite<ProductInfo> productGrid;
+    private IgbGridLite<User> userGrid;
+    private List<ProductInfo> products;
+    private List<User> users;
+    private bool showingProducts = true;
+
+    protected override void OnInitialized()
+    {
+        products = MockDataGenerator.CreateProducts(50);
+        users = MockDataGenerator.CreateUsers(50);
+    }
+
+    private void SwitchData()
+    {
+        showingProducts = !showingProducts;
+    }
+}
