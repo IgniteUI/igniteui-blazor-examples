@@ -1,0 +1,64 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="InvoicesData"
+        @ref="grid"
+        RowSelection="GridSelectionMode.Single"
+        CellMergeMode="@CellMergeMode"
+        Width="100%"
+        Height="570px">
+            <IgbGridToolbar>
+                <IgbSelect @bind-Value="GridCellMergeModeString">
+                    <IgbSelectHeader>Select Merge Type</IgbSelectHeader>
+                    @foreach (var type in MergeTypes)
+                    {
+                        <IgbSelectItem Value="@type.Value.ToString()">@type.Name</IgbSelectItem>
+                    }
+                </IgbSelect>
+            </IgbGridToolbar>
+
+            <IgbColumn Field="OrderID" Header="Order ID" Hidden="true" />
+            <IgbColumn Field="ShipperName" Header="Shipper Name" Merge="true" Sortable="true" Width="250px" />
+            <IgbColumn Field="Salesperson" Header="Salesperson" Merge="true" Sortable="true" Width="250px" />
+            <IgbColumn Field="Discontinued" Header="Discontinued" Merge="true" Sortable="true" Width="200px"
+            BodyTemplateScript="DiscontinuedCellTemplate" />
+            <IgbColumn Field="UnitPrice" Header="Unit Price" DataType="GridColumnDataType.Number" Width="150px" />
+            <IgbColumn Field="Quantity" Header="Quantity" DataType="GridColumnDataType.Number" Width="150px" />
+            <IgbColumn Field="ShipCountry" Header="Ship Country" Merge="true" Width="200px" />
+            <IgbColumn Field="ShipCity" Header="Ship City" Merge="true" Width="250px" />
+            <IgbColumn Field="ShipName" Header="Ship Name" Width="250px" />
+            <IgbColumn Field="PostalCode" Header="Postal Code" Width="200px" />
+            <IgbColumn Field="OrderDate" Header="Order Date" DataType="GridColumnDataType.Date" Width="200px" />
+
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+    private IgbGrid grid;
+
+    private List<InvoicesDataItem> InvoicesData { get; } = new InvoicesData();
+
+    private List<MergeType> MergeTypes = new()
+    {
+        new MergeType { Name = "Merge always", Value = GridCellMergeMode.Always },
+        new MergeType { Name = "Merge on sort", Value = GridCellMergeMode.OnSort }
+    };
+
+    private GridCellMergeMode CellMergeMode { get; set; } = GridCellMergeMode.Always;
+    private string GridCellMergeModeString
+    {
+        get => CellMergeMode.ToString();
+        set => CellMergeMode = Enum.TryParse<GridCellMergeMode>(value, out var mode) ? mode : GridCellMergeMode.Always;
+    }
+
+    private class MergeType
+    {
+        public string Name { get; set; } = string.Empty;
+        public GridCellMergeMode Value { get; set; }
+    }
+}
