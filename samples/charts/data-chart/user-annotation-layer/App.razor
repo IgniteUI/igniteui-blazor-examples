@@ -12,6 +12,7 @@
         IsVerticalZoomEnabled="true" UserAnnotationInformationRequested="OnUserAnnotationInfoRequested"
         UserAnnotationToolTipContentUpdatingScript="onUserAnnotationToolTipContentUpdatingScript"
         ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+                      IsUserAnnotationsEnabled="true"
         @ref="chart">
             <IgbCategoryXAxis Name="xAxis" DataSource="CountryRenewableElectricity"
             Interval="1" Label="Year">
@@ -81,11 +82,6 @@
     {
         var toolbar = this.toolbar;
         var chart = this.chart;           
-
-        if(firstRender && chart != null){
-            await Task.Delay(500);
-            await JS.InvokeVoidAsync("turnOnUserAnnotations", null);
-        }
 
         this.BindElements = () => {
             toolbar.Target = this.chart;                

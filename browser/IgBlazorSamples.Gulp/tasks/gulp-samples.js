@@ -639,14 +639,14 @@ function updateIG(cb) {
         { version: "25.2.27", name: "IgniteUI.Blazor.Documents.Core" },
         { version: "25.2.27", name: "IgniteUI.Blazor.Documents.Excel" },
         // these IG packages are sometimes updated:
-        { version: "9.0.0", name: "Microsoft.AspNetCore.Components" },
-        { version: "9.0.0", name: "Microsoft.AspNetCore.Components.Web" },
-        { version: "9.0.0", name: "Microsoft.AspNetCore.Components.WebAssembly" },
-        { version: "9.0.0", name: "Microsoft.AspNetCore.Components.WebAssembly.DevServer" }, // suffix: 'PrivateAssets="all" ' },
-        { version: "2.2.0", name: "Microsoft.AspNetCore.Cors" },
+        { version: "10.0.0", name: "Microsoft.AspNetCore.Components" },
+        { version: "10.0.0", name: "Microsoft.AspNetCore.Components.Web" },
+        { version: "10.0.0", name: "Microsoft.AspNetCore.Components.WebAssembly" },
+        { version: "10.0.0", name: "Microsoft.AspNetCore.Components.WebAssembly.DevServer" }, // suffix: 'PrivateAssets="all" ' },
+       
         { version: "2.2.0", name: "Microsoft.AspNetCore.Http.Abstractions" },
-        { version: "9.0.0", name: "Microsoft.JSInterop.WebAssembly" },
-        { version: "9.0.0", name: "System.Net.Http.Json" },
+        { version: "10.0.0", name: "Microsoft.JSInterop.WebAssembly" },
+        { version: "10.0.0", name: "System.Net.Http.Json" },
     ];
 
     // creating package mapping for quick lookup

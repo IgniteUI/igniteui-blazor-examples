@@ -1,8 +1,4 @@
-﻿function turnOnUserAnnotations() {
-    var x = document.getElementsByClassName("igc-data-chart")[0];
-    x.isUserAnnotationsEnabled = true;
-}
-
+﻿
 function toggleDialogState(open) {
     var dialog = document.getElementsByClassName("annotationPopup")[0];
 
