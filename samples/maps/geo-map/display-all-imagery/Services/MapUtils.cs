@@ -90,7 +90,7 @@ namespace Infragistics.Samples
             return 0;
         }
 
-        public static string GetAzureKey()
+        public static string GetBingKey()
         {
             return "Avlo7qsH1zZZI0XNpTwZ4XwvUJmCbd-mczMeUXVAW9kYYOKdmBIVRe8aoO02Xctq";
         }
