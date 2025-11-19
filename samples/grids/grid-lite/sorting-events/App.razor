@@ -81,14 +81,14 @@
         };
     }
 
-    private void HandleSorting(IgbGridLiteSortingEvent<ProductInfo> e)
+    private void HandleSorting(IgbGridLiteSortingEvent e)
     {
         var log = $"[{DateTime.Now:HH:mm:ss}] OnSorting - Column: {e.Expression?.Key}, Direction: {e.Expression?.Direction}";
         eventLogs.Add(log);
         StateHasChanged();
     }
 
-    private void HandleSorted(IgbGridLiteSortedEvent<ProductInfo> e)
+    private void HandleSorted(IgbGridLiteSortedEvent e)
     {
         var log = $"[{DateTime.Now:HH:mm:ss}] OnSorted - Sort applied successfully";
         eventLogs.Add(log);

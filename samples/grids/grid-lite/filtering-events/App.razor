@@ -69,14 +69,14 @@
         };
     }
 
-    private void HandleFiltering(IgbGridLiteFilteringEvent<User> e)
+    private void HandleFiltering(IgbGridLiteFilteringEvent e)
     {
         var log = $"[{DateTime.Now:HH:mm:ss}] OnFiltering - Column: {e.Expressions?.Last().Key}, Condition: {e.Expressions?.Last().Condition}, Term: {e.Expressions?.Last().SearchTerm}";
         eventLogs.Add(log);
         StateHasChanged();
     }
 
-    private void HandleFiltered(IgbGridLiteFilteredEvent<User> e)
+    private void HandleFiltered(IgbGridLiteFilteredEvent e)
     {
         var log = $"[{DateTime.Now:HH:mm:ss}] OnFiltered - Filter applied successfully";
         eventLogs.Add(log);
