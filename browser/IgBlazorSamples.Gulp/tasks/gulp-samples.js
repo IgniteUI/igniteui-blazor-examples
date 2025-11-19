@@ -643,7 +643,7 @@ function updateIG(cb) {
         { version: "10.0.0", name: "Microsoft.AspNetCore.Components.Web" },
         { version: "10.0.0", name: "Microsoft.AspNetCore.Components.WebAssembly" },
         { version: "10.0.0", name: "Microsoft.AspNetCore.Components.WebAssembly.DevServer" }, // suffix: 'PrivateAssets="all" ' },
-       
+        { version: "2.2.0", name: "Microsoft.AspNetCore.Cors" },
         { version: "2.2.0", name: "Microsoft.AspNetCore.Http.Abstractions" },
         { version: "10.0.0", name: "Microsoft.JSInterop.WebAssembly" },
         { version: "10.0.0", name: "System.Net.Http.Json" },
