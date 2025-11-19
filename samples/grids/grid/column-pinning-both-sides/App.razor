@@ -1,0 +1,148 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="CustomersDataLocal"
+        width="100%"
+        height="480px"
+        ColumnSelection="GridSelectionMode.Multiple"
+        Moving="true"
+        Pinning="PinningConfig"
+        Name="grid"
+        @ref="grid">
+            <IgbGridToolbar
+            >
+
+                <IgbGridToolbarActions
+                >
+                    <IgbButton class="pinning-button" Variant="ButtonVariant.Contained" @onclick="() => UnpinColumn()">Unpin Column</IgbButton>
+                    <IgbButton class="pinning-button" Variant="ButtonVariant.Contained" @onclick="() => PinLeft()">Pin Left</IgbButton>
+                    <IgbButton class="pinning-button" Variant="ButtonVariant.Contained" @onclick="() => PinRight()">Pin Right</IgbButton>
+
+                </IgbGridToolbarActions>
+
+            </IgbGridToolbar>
+
+            <IgbColumn
+                Field="Company"
+                Header="Company Name"
+                Width="300px"
+            />
+            <IgbColumn
+                Field="ContactName"
+                Header="Contact Name"
+                Width="200px"
+                Pinned="true"
+                PinningPosition="ColumnPinningPosition.Start"
+            />
+            <IgbColumn
+                Field="ContactTitle"
+                Header="Contact Title"
+                Width="200px"
+                Pinned="true"
+                PinningPosition="ColumnPinningPosition.End"
+            />
+            <IgbColumn
+                Field="Address"
+                Header="Address"
+                Width="300px">
+            </IgbColumn>
+            <IgbColumn
+                Field="City"
+                Header="City"
+                Width="120px"
+            />
+            <IgbColumn
+                Field="Region"
+                Header="Region"
+                Width="120px"
+            />
+            <IgbColumn
+                Field="PostalCode"
+                Header="Postal Code"
+                Width="150px"
+            />
+            <IgbColumn
+                Field="Phone"
+                Header="Phone"
+                Width="150px"
+            />
+            <IgbColumn
+                Field="Fax"
+                Header="Fax"
+                Width="150px"
+            />
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+    private IgbGrid grid;
+
+    private CustomersDataLocal _customersDataLocal = null;
+    private CustomersDataLocal CustomersDataLocal
+    {
+        get
+        {
+            if (_customersDataLocal == null)
+            {
+                _customersDataLocal = new CustomersDataLocal();
+            }
+            return _customersDataLocal;
+        }
+    }
+
+    private IgbPinningConfig _pinningConfig = null;
+    private IgbPinningConfig PinningConfig
+    {
+        get
+        {
+            if (this._pinningConfig == null)
+            {
+                var pinningConfig1 = new IgbPinningConfig();
+                pinningConfig1.Columns = ColumnPinningPosition.End;
+                this._pinningConfig = pinningConfig1;
+            }
+            return this._pinningConfig;
+        }
+    }
+
+    private void PinLeft()
+    {
+        var selected = this.grid.SelectedColumns();
+        if (selected == null) return;
+
+        foreach (var col in selected)
+        {
+            col.PinningPosition = ColumnPinningPosition.Start;
+            col.Pinned = true;
+        }
+    }
+
+    private void PinRight()
+    {
+
+        var selected = this.grid.SelectedColumns();
+        if (selected == null) return;
+
+        foreach (var col in selected)
+        {
+            col.PinningPosition = ColumnPinningPosition.End;
+            col.Pinned = true;
+        }
+    }
+    private void UnpinColumn()
+    {
+        
+        var selected = this.grid.SelectedColumns();
+        if (selected == null) return;
+
+        foreach (var col in selected)
+        {
+            col.Pinned = false;
+        }
+    }
+}
