@@ -39,19 +39,18 @@
         base.OnAfterRender(firstRender);
     }
 
-    private void SwitchData()
+    private async void SwitchData()
     {
         showingProducts = !showingProducts;
         if (showingProducts)
         {
-            data = products.ToList<object>();
-            StateHasChanged();
+            await grid.UpdateColumnsAsync([]);
+            await grid.UpdateDataAsync(products);
         }
         else
         {
-            data = users.ToList<object>();
-            StateHasChanged();
-        
+            await grid.UpdateColumnsAsync([]);
+            await grid.UpdateDataAsync(users);
         }
     }
 }
