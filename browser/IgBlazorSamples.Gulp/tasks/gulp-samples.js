@@ -443,13 +443,13 @@ function copySampleScripts(cb, outputPath, indexName, isLocalBuild) {
                     }
                     if (fileRequiresLoading) {
                         insertScriptFiles.push(shouldBeModule
-                            ? '<script type="module" src="sb/' + fileName + '"></script>'
+                            ? '<script src="sb/' + fileName + '" type="module"></script>'
                             : '<script src="sb/' + fileName + '"></script>');
                     }
                 }
                 else {
                     insertScriptFiles.push(shouldBeModule
-                        ? '<script type="module" src="sb/' + fileName + '"></script>'
+                        ? '<script src="sb/' + fileName + '" type="module"></script>'
                         : '<script src="sb/' + fileName + '"></script>');
                 }
             }
