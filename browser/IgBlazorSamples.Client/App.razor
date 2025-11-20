@@ -19,7 +19,6 @@
     <NotFound>
         <LayoutView Layout="@typeof(BrowserLayout)">
             <SampleNotFound></SampleNotFound>
-            @*<p class="no-selection">Sorry, there's nothing at this address.</p>*@
         </LayoutView>
     </NotFound>
 </CustomRouter>
@@ -35,6 +34,7 @@
         else
             SB.AppBaseUri = "/samples";
 
+        Console.WriteLine("SB.APP URI  " + NavManager.Uri);
         Console.WriteLine("SB.APP Base " + SB.AppBaseUri);
         SB.HomeTitle = "Home"; // "Blazor Samples running on Client-Side";
 
@@ -45,47 +45,64 @@
             SB.IgVersion = igVersion.Major + "." + igVersion.Minor + "." + igVersion.Build;
         Console.WriteLine("SB.APP uses IG version: " + SB.IgVersion);
 
+        await LazyLoadAssemblies(NavManager.Uri, true);
+
         await Task.Delay(1);
     }
 
     private List<Assembly> LazyLoadedAssemblies = new List<Assembly>();
 
-    private async Task OnNavigateChangedAsync(string path)
+    private async Task OnNavigateChangedAsync(string navigationPath)
     { 
-        await LazyLoadAssemblies(path);
+        await LazyLoadAssemblies(navigationPath, true);
     }
 
-    // private async Task OnNavigateContextAsync(NavigationContext arg)
-    // {
-    //     await LazyLoadAssemblies(arg.Path);
-    // }
+    private bool LazyLoadingCompleted = false;
 
-    private async Task LazyLoadAssemblies(string navigationPath)
+    private async Task LazyLoadAssemblies(string navigationPath, bool needsUpdate)
     { 
+
+        if (LazyLoadingCompleted)
+        {
+            Console.WriteLine("SB.APP LazyLoad Excel assemblies... skipped");
+            return;
+        }
+
         try
         {
             // lazy load Excel assemblies
             if (navigationPath.Contains("/excel/"))
             {
-                Router.IsLazyLoading = true;
-             
-                Console.WriteLine("SB.APP lazy loading IgniteUI.Blazor.Documents.Excel...");
+                if (Router != null) Router.IsLazyLoading = true;
 
+                Console.WriteLine("SB.APP LazyLoad Excel assemblies... ");
                 var list = new List<string> {
                     "IgniteUI.Blazor.Documents.Core.wasm",
                     "IgniteUI.Blazor.Documents.Excel.wasm"
                 };
                 var assemblies = await AssemblyLoader.LoadAssembliesAsync(list);
+                Console.WriteLine("SB.APP LazyLoad Excel assemblies... done:");
+                foreach (var asmb in assemblies)
+                {
+                    var info = asmb.GetName();
+                    Console.WriteLine("- " + info.Name + " v" + info.Version);
+                }
 
                 LazyLoadedAssemblies.AddRange(assemblies);
-             
+                LazyLoadingCompleted = true;
+
+                if (Router != null) Router.IsLazyLoaded = true;
+                if (Router != null) Router.IsLazyLoading = false;
+                if (Router != null) Router.NeedsUpdate = needsUpdate;
             }
-            Router.IsLazyLoading = false;
-            Router.NeedsUpdate = true;
+            else
+            {
+                Console.WriteLine("SB.APP LazyLoad Excel assemblies... postponed");
+            }
         }
         catch (Exception ex)
         {
-            Console.WriteLine("SB.APP failed on lazy loading:\n" + ex.Message);
+            Console.WriteLine("SB.APP LazyLoad Excel assemblies... failed:\n" + ex.Message);
         }
     }
 }

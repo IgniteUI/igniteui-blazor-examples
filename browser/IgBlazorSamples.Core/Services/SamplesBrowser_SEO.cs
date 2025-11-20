@@ -4,6 +4,7 @@ using Microsoft.JSInterop;
 
 namespace Infragistics.Samples.Core
 {
+    // this class provides SEO functionality for the Samples Browser
     public partial class SampleBrowser
     {
         public void SetTitle(string pageTitle) {

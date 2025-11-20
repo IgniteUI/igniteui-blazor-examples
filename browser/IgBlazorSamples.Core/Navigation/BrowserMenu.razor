@@ -68,38 +68,13 @@
 
     protected override async Task OnInitializedAsync()
     {
-        //Console.WriteLine("SB.NAV Menu");
-        //Console.WriteLine("SB.NAV Menu " + NavManager.BaseUri);
-        //var toc = await Http.GetAsync<TOC>("toc.json");
-        //var client = new HttpClient();
-        //var response = await client.GetAsync("toc.json");
-        //// response.EnsureSuccessStatusCode();
-        //TOC toc = null;
-        //if (response != null)
-        //{
-        //    var jsonString = await response.Content.ReadAsStringAsync();
-        //    //toc = JsonConvert.DeserializeObject<TOC>(jsonString);
-        //}
-        try
-        {
-            var toc = await Http.GetFromJsonAsync<TOC>("toc.json");
-            await SB.Load(toc);
-            //Console.WriteLine("SB.NAV toc");
-            //System.Diagnostics.Debug.WriteLine("SB.NAV toc.json found: " + toc.Groups.Length + " groups");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("SB.NAV toc.json - error: \n" + ex.ToString());
-        }
-
-        // Console.WriteLine("SB.NAV loaded");
-
         SB.SamplesLoaded += OnSamplesLoaded;
         await Task.Delay(1);
     }
 
     public void OnSamplesLoaded(object sender, EventArgs arg)
     {
+        Console.WriteLine("SB.App populaiting NAV menu... done");
         StateHasChanged();
     }
 
