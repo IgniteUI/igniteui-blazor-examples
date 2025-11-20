@@ -1,7 +1,7 @@
 <!-- NOTE: do not change this file because it's auto re-generated from template: -->
 <!-- https://github.com/IgniteUI/igniteui-blazor-examples/tree/vnext/templates/sample/ReadMe.md -->
 
-This folder contains implementation of Blazor application with example of Column Pinning feature using [Tree Grid](https://www.infragistics.com/products/ignite-ui-blazor/blazor/components/general-getting-started.html) component.
+This folder contains implementation of Blazor application with example of Column Pinning Both Sides feature using [Tree Grid](https://www.infragistics.com/products/ignite-ui-blazor/blazor/components/general-getting-started.html) component.
 
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -13,10 +13,10 @@ This folder contains implementation of Blazor application with example of Column
         <a target="_blank" href="./App.razor" rel="noopener noreferrer">
             <img height="40px" style="border-radius: 0rem; max-width: 100%;" alt="View Code" src="https://github.com/IgniteUI/igniteui-blazor-examples/raw/vnext/templates/sample/images/button-code.png"/>
         </a>
-        <a target="_blank" href="https://infragistics.com/blazor-client/samples/grids/tree-grid/column-pinning" rel="noopener noreferrer">
+        <a target="_blank" href="https://infragistics.com/blazor-client/samples/grids/tree-grid/column-pinning-both-sides" rel="noopener noreferrer">
             <img height="40px" style="border-radius: 0rem; max-width: 100%;" alt="Run Sample" src="https://github.com/IgniteUI/igniteui-blazor-examples/raw/vnext/templates/sample/images/button-run.png"/>
         </a>
-        <!-- <a target="_blank" href="https://codesandbox.io/s/github/IgniteUI/igniteui-blazor-examples/tree/master/samples/grids/tree-grid/column-pinning?fontsize=14&hidenavigation=1&theme=dark&view=preview&file=/src/App.razor" rel="noopener noreferrer">
+        <!-- <a target="_blank" href="https://codesandbox.io/s/github/IgniteUI/igniteui-blazor-examples/tree/master/samples/grids/tree-grid/column-pinning-both-sides?fontsize=14&hidenavigation=1&theme=dark&view=preview&file=/src/App.razor" rel="noopener noreferrer">
             <img height="40px" style="border-radius: 0rem; max-width: 100%;" alt="Run Sample" src="https://github.com/IgniteUI/igniteui-blazor-examples/raw/vnext/templates/sample/images/button-sandbox.png"/>
         </a> -->
     </body>
@@ -28,13 +28,13 @@ This folder contains implementation of Blazor application with example of Column
 
 ## Setup
 
-- install **.NET SDK** from this [website](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install)
+- instal **.NET SDK** from this [website](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install)
 
-## Running App in Visual Studio 2019
+## Running App in Visual Studio 2022
 
-NOTE: VS 2019 has better code highlighting and error detection than VS Code does.
+NOTE: VS 2022 has better code highlighting and error detection than VS Code does.
 
-- open **Visual Studio 2019** as an administrator
+- open **Visual Studio 2022** as an administrator
 
 - open the **BlazorClientApp.sln** solution
 
