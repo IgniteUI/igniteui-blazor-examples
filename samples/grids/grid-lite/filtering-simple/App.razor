@@ -16,39 +16,39 @@
 
 @code {
     private List<User> users;
-    private List<ColumnConfiguration<User>> columns;
+    private List<IgbColumnConfiguration> columns;
 
     protected override void OnInitialized()
     {
         // Generate 50 users
         users = MockDataGenerator.CreateUsers(50);
 
-        columns = new List<ColumnConfiguration<User>>
+        columns = new List<IgbColumnConfiguration>
         {
-            new ColumnConfiguration<User>
+            new IgbColumnConfiguration
             {
                 Key = nameof(User.FirstName),
                 HeaderText = "First name",
                 Filter = true
             },
-            new ColumnConfiguration<User>
+            new IgbColumnConfiguration
             {
                 Key = nameof(User.LastName),
                 HeaderText = "Last name",
                 Filter = true
             },
-            new ColumnConfiguration<User>
+            new IgbColumnConfiguration
             {
                 Key = nameof(User.Age),
                 HeaderText = "Age",
-                Type = DataType.Number,
+                Type = GridLiteColumnDataType.Number,
                 Filter = true
             },
-            new ColumnConfiguration<User>
+            new IgbColumnConfiguration
             {
                 Key = nameof(User.Active),
                 HeaderText = "Active",
-                Type = DataType.Boolean,
+                Type = GridLiteColumnDataType.Boolean,
                 Filter = true
             }
         };
