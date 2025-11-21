@@ -1,14 +1,39 @@
-@page "/"
+@page "/samples/grids/grid-lite/filtering-config"
+@page "/samples/grids/grid-lite-filtering-config"
+@page         "/grids/grid-lite/filtering-config"
+@page         "/grids/grid-lite-filtering-config"
+
 @using Microsoft.AspNetCore.Components
 @using Microsoft.AspNetCore.Components.Web
 @using IgniteUI.Blazor.Controls
 
+<style>
+.container {
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.container h3 {
+    margin-bottom: 10px;
+}
+
+.container p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.grid-lite-sample {
+    min-height: 600px;
+    width: 100%;
+}
+</style>
 <div class="container">
 
     @if (users != null && columns != null)
     {
-        <IgbGridLite TItem="User" 
-                     Data="@users" 
+        <IgbGridLite TItem="User"
+                     Data="@users"
                      Columns="@columns"
                      class="grid-lite-sample" />
     }
@@ -27,9 +52,12 @@
         {
             new IgbColumnConfiguration
             {
-                Key = nameof(User.FirstName),
+                Key = nameof(User.LastName),
                 HeaderText = "First name",
-                Filter = true
+                Filter = new IgbColumnFilterConfiguration
+                {
+                    CaseSensitive = true
+                }
             },
             new IgbColumnConfiguration
             {
