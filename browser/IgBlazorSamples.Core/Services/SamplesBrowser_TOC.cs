@@ -2,16 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components;
 
 namespace Infragistics.Samples.Core
 {
+    // this class provides TOC loading functionality for the Samples Browser
     public partial class SampleBrowser
     {
         public string IgVersion { get; set; }
 
-        //public bool IsLoading { get; set; }
         private bool _IsLoading = true;
         public bool IsLoading
         {
@@ -40,62 +40,68 @@ namespace Infragistics.Samples.Core
 
         public TOC TOC { get; set; }
 
-        public async Task Load(TOC toc)
+        public async Task LoadTOC()
         {
-            this.IsLoading = true;
-            //Console.WriteLine("SB.TOC parsing ...");
-
-            this.AppHomeUri = this.AppBaseUri + "/home";
-            //this.AppHomeUri = this.AppBaseUri + "samples/home";
-            foreach (var group in toc.Groups)
+            try
             {
-                foreach (var component in group.Components)
-                {
-                    foreach (var sample in component.Samples)
-                    {
-                        //sample.Route = this.AppBaseUri + "samples" + sample.Route;
-                        sample.Route = this.AppBaseUri + sample.Route;
-                        sample.Component = component.Name;
-                        sample.Group = group.Name;
+                Console.WriteLine("SB.TOC fetching...");
+                var toc = await HttpClient.GetFromJsonAsync<TOC>("toc.json");
+                Console.WriteLine("SB.TOC fetching... done");
 
-                        if (this.SampleRoutes.Contains(sample.Route))
-                            Console.WriteLine("SB.TOC duplicate: " + sample.Route.Replace("/samples", ""));
+                Console.WriteLine("SB.TOC parsing...");
+                this.AppHomeUri = this.AppBaseUri + "/home";
+                //this.AppHomeUri = this.AppBaseUri + "samples/home";
+                foreach (var group in toc.Groups)
+                {
+                    foreach (var component in group.Components)
+                    {
+                        foreach (var sample in component.Samples)
+                        {
+                            //sample.Route = this.AppBaseUri + "samples" + sample.Route;
+                            sample.Route = this.AppBaseUri + sample.Route;
+                            sample.Component = component.Name;
+                            sample.Group = group.Name;
+
+                            if (this.SampleRoutes.Contains(sample.Route))
+                                Console.WriteLine("SB.TOC duplicate: " + sample.Route.Replace("/samples", ""));
+                            else
+                                this.SampleRoutes.Add(sample.Route);
+                        }
+
+                        if (this.ComponentNames.Contains(component.Name))
+                        {
+                            Console.WriteLine("SB.TOC duplicate component: " + component.Name);
+                        }
                         else
-                            this.SampleRoutes.Add(sample.Route);
+                        {
+                            this.ComponentNames.Add(component.Name);
+                        }
+                        // comp.IsExpanded = TocFiles.Count == 1;
+                        // comp.Name += " (" + comp.Samples.Length + ")";
+                        // comp.Name += " Samples";
+                        component.Group = group.Name;
                     }
 
-                    if (this.ComponentNames.Contains(component.Name))
+                    if (this.Groups.ContainsKey(group.Name))
                     {
-                        Console.WriteLine("SB.TOC duplicate component: " + component.Name);
+                        Console.WriteLine("SB.TOC duplicate group: " + group.Name);
                     }
                     else
                     {
-                        this.ComponentNames.Add(component.Name);
+                        Groups.Add(group.Name, group);
                     }
-                    // comp.IsExpanded = TocFiles.Count == 1;
-                    // comp.Name += " (" + comp.Samples.Length + ")";
-                    // comp.Name += " Samples";
-                    component.Group = group.Name;
                 }
 
-                if (this.Groups.ContainsKey(group.Name))
-                {
-                    Console.WriteLine("SB.TOC duplicate group " + group.Name);
-                }
-                else
-                {
-                    Groups.Add(group.Name, group);
-                    //Console.WriteLine("SB.TOC added group " + group.Name);
-                }
+                _SamplesCount = this.SampleRoutes.Count;
+                _ComponentsCount = this.ComponentNames.Count;
+                Console.WriteLine("SB.TOC parsing... done: " + _ComponentsCount + " components in " + _SamplesCount + " samples ");
+                this.TOC = toc;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("SB.TOC loading... failed: \n" + ex.ToString());
             }
 
-            this.TOC = toc;
-            _SamplesCount = this.SampleRoutes.Count;
-            _ComponentsCount = this.ComponentNames.Count;
-
-            Console.WriteLine("SB.TOC parsed " + _SamplesCount + " samples");
-
-            this.IsLoading = false;
             OnLoaded();
             await Task.Delay(1);
         }
@@ -103,6 +109,7 @@ namespace Infragistics.Samples.Core
         public event EventHandler<EventArgs> SamplesLoaded;
         public void OnLoaded()
         {
+            this.IsLoading = false;
             this.SamplesLoaded?.Invoke(this, EventArgs.Empty);
         }
 

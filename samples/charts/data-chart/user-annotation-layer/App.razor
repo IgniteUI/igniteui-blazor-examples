@@ -41,26 +41,21 @@
             </IgbLineSeries>
         </IgbDataChart>
 
-        <div class="annotationPopup">
-            <div>
-                <label>Label:</label>
-                <IgbInput @ref=AnnotationInput DisplayType="@InputType.Text" />
-            </div>
+        <div class="container vertical options annotationDialogPopup">
+            
+            <label>Label:</label>
+            <IgbInput @ref=AnnotationInput DisplayType="@InputType.Text" Value="Enter Label"/>
+            
+            <label>Details:</label>
+            <IgbTextarea @ref=AnnotationTextArea Resize="TextareaResize.None" Value="Enter Details"/>
+            
+            <label>Badge Color:</label>
+            <IgbColorEditor id="annotationBadgeColorEditor"  />
 
-            <div>
-                <label>Details:</label>
-                <IgbTextarea @ref=AnnotationTextArea />
-            </div>
+            <label>Main Color:</label>
+            <IgbColorEditor id="annotationMainColorEditor" />
 
-            <div>
-                <label>Badge Color:</label>
-                <IgbColorEditor id="annotationBadgeColorEditor"  />
-
-                <label>Main Color:</label>
-                <IgbColorEditor id="annotationMainColorEditor" />
-            </div>
-
-            <div>
+            <div class="container horizontal annotationDialogButtons">
                 <button @onclick="OnDoneButtonClick">Done</button>
                 <button @onclick="OnCancelButtonClick">Cancel</button>
             </div>
@@ -73,7 +68,7 @@
     private Action BindElements { get; set; }
     private IgbInput AnnotationInput{ get; set; }
     private IgbTextarea AnnotationTextArea{ get; set; }    
-    private IgbUserAnnotationInformation CurrentAnnotationInformation{ get; set; }
+    private IgbUserAnnotationInformation AnnotationInfo{ get; set; }
     private IgbToolbar toolbar;
     private IgbDataChart chart;
 
@@ -84,40 +79,44 @@
 
         if(firstRender && chart != null){
             await Task.Delay(500);
-            await JS.InvokeVoidAsync("turnOnUserAnnotations", null);
+            await JS.InvokeVoidAsync("onUserAnnotationEnable", null);
         }
 
-        this.BindElements = () => {
-            toolbar.Target = this.chart;                
-        };
+        this.BindElements = () => { toolbar.Target = this.chart; };
         this.BindElements();
     }
 
     public void OnUserAnnotationInfoRequested(IgbUserAnnotationInformationEventArgs e){
-        this.CurrentAnnotationInformation = e.AnnotationInfo;
-        JS.InvokeVoidAsync("toggleDialogState", new object[] { true });        
+        this.AnnotationInfo = e.AnnotationInfo;
+        JS.InvokeVoidAsync("onUserAnnotationToggleDialog", new object[] { true });        
     }
 
     public async void OnDoneButtonClick(MouseEventArgs e){
 
-        this.CurrentAnnotationInformation.Label = this.AnnotationInput.GetCurrentValue();
-        this.CurrentAnnotationInformation.AnnotationData = this.AnnotationTextArea.GetCurrentValue();
+        if (this.AnnotationInfo == null) return;
+
+        this.AnnotationInfo.Label = this.AnnotationInput.GetCurrentValue();
+        this.AnnotationInfo.AnnotationData = this.AnnotationTextArea.GetCurrentValue();
 
         string badgeColor = await JS.InvokeAsync<string>("getBadgeColor");
         string mainColor = await JS.InvokeAsync<string>("getMainColor");
 
-        this.CurrentAnnotationInformation.BadgeColor = badgeColor;
-        this.CurrentAnnotationInformation.MainColor = mainColor;
+        this.AnnotationInfo.BadgeColor = badgeColor;
+        this.AnnotationInfo.MainColor = mainColor;
 
-        await this.chart.FinishAnnotationFlowAsync(this.CurrentAnnotationInformation);
+        await this.chart.FinishAnnotationFlowAsync(this.AnnotationInfo);
 
-        await JS.InvokeVoidAsync("toggleDialogState", new object[] { false });                
+        await JS.InvokeVoidAsync("onUserAnnotationToggleDialog", new object[] { false });                
     }
 
     public void OnCancelButtonClick(MouseEventArgs e)
     {
-        this.chart.CancelAnnotationFlow(this.CurrentAnnotationInformation.AnnotationId);
-        JS.InvokeVoidAsync("toggleDialogState", new object[] { false });
+        if (this.AnnotationInfo != null)
+        {
+            this.chart.CancelAnnotationFlow(this.AnnotationInfo.AnnotationId);
+        }
+        
+        JS.InvokeVoidAsync("onUserAnnotationToggleDialog", new object[] { false });
     }    
 
     private CountryRenewableElectricity _countryRenewableElectricity = null;

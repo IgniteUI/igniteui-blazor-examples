@@ -1,10 +1,10 @@
-﻿function turnOnUserAnnotations() {
+﻿function onUserAnnotationEnable() {
     var x = document.getElementsByClassName("igc-data-chart")[0];
     x.isUserAnnotationsEnabled = true;
 }
 
-function toggleDialogState(open) {
-    var dialog = document.getElementsByClassName("annotationPopup")[0];
+function onUserAnnotationToggleDialog(open) {
+    var dialog = document.getElementsByClassName("annotationDialogPopup")[0];
 
     if (open) {
         dialog.style.display = "block";
@@ -18,8 +18,9 @@ function onUserAnnotationToolTipContentUpdatingScript(o, e) {
     var tooltipText = e.annotationInfo.annotationData;
 
     if (e.content.children.length == 0) {
-        var element = document.createElement("div");        
+        var element = document.createElement("div");
         element.textContent = tooltipText;
+        element.style = "color: white";
         e.content.appendChild(element);
     }
     else {

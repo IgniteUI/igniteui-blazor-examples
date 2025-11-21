@@ -54,13 +54,14 @@
 </div>
 
 @code {
+
+// gets whether SB is embeded in docs (no navigation menu)
 protected bool IsSampleEmbedded = false;
+
 protected static bool ToolbarCollapsed = false;
-//protected string ToolbarStyle => ToolbarCollapsed || SB.IsEmbedded ? "display: none" : "display: flex";
 protected string ToolbarStyle => ToolbarCollapsed || IsSampleEmbedded ? "display: none" : "display: flex";
 
 protected static bool SidebarCollapsed = false;
-//protected string SidebarStyle => SidebarCollapsed || SB.IsEmbedded ? "display: none" : "display: flex";
 protected string SidebarStyle => SidebarCollapsed || IsSampleEmbedded ? "display: none" : "display: flex";
 protected string SidebarWidth = "16rem";
 
@@ -96,27 +97,11 @@ public async ValueTask DisposeAsync()
     }
 }
 
-protected bool IsSampleWithNavigation() {
-    if (NavManager.Uri.Contains("/samples")) return true;
-    if (NavManager.Uri.EndsWith("/")) return true;
-    if (NavManager.Uri.EndsWith("/blazor-client")) return true;
-    if (NavManager.Uri.EndsWith("/blazor-client/")) return true;
-    if (NavManager.Uri.EndsWith("/blazor-server")) return true;
-    if (NavManager.Uri.EndsWith("/blazor-server/")) return true;
-    //if (NavManager.Uri.Contains("localhost")) return true; //&&
-    //if (NavManager.Uri + "/" == this.NavManager.BaseUri)  return true;
-
-    return false;
-
-    // return !NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri + "/";
-}
-
 protected override void OnInitialized()
 {
-    //Console.WriteLine("SB.NAV OnInit " + NavManager.BaseUri);
     //Console.WriteLine("SB.NAV OnInit " + NavManager.Uri);
 
-    this.IsSampleEmbedded = !IsSampleWithNavigation(); // NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri + "/";
+    this.IsSampleEmbedded = !SB.IsWithNavigation(); // NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri + "/";
 
     //Console.WriteLine("SB.NAV IsSampleEmbedded " + IsSampleEmbedded);
 
@@ -128,10 +113,9 @@ protected override void OnInitialized()
 
 public void OnSamplesLoaded(object sender, EventArgs arg)
 {
-    // Console.WriteLine("SB.NAV Loaded Base " + NavManager.BaseUri);
     // Console.WriteLine("SB.NAV Loaded " + NavManager.Uri);
 
-    this.IsSampleEmbedded = !IsSampleWithNavigation(); // !NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri;
+    this.IsSampleEmbedded = !SB.IsWithNavigation(); // !NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri;
 
     //Console.WriteLine("SB.NAV IsSampleEmbedded " + IsSampleEmbedded);
 
@@ -141,10 +125,9 @@ public void OnSamplesLoaded(object sender, EventArgs arg)
 
 public async void OnLocationChanged(object sender, LocationChangedEventArgs arg)
 {
-    //Console.WriteLine("SB.NAV Changed Base " + NavManager.BaseUri);
     // Console.WriteLine("SB.NAV " + NavManager.Uri.Replace(NavManager.BaseUri, ""));
 
-    this.IsSampleEmbedded = !IsSampleWithNavigation(); // !NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri;
+    this.IsSampleEmbedded = !SB.IsWithNavigation(); // !NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri;
 
     //Console.WriteLine("SB.NAV IsSampleEmbedded " + IsSampleEmbedded);
 

@@ -16,16 +16,44 @@ namespace Infragistics.Samples.Core
 
         public SampleBrowser(NavigationManager navManager, IJSRuntime jsRuntime, HttpClient httpClient)
         {
+            //Console.WriteLine("SB.APP URL: " + navManager.Uri);
+
             this.IsLoading = true;
             this.NavManager = navManager;
             this.HttpClient = httpClient;
             this.JSRuntime = jsRuntime;
 
-            // Console.WriteLine("SB Const()");
-            Console.WriteLine("SB.APP URL: " + navManager.Uri);
             // NavManager = NavigationManager();
             // NavManager.LocationChanged += this.OnLocationChanged;
             // NavManager.LocationChanged += new EventHandler<LocationChangedEventArgs>(this.OnLocationChanged);
+
+            Task task = Task.Run(() => InitTOC());
+        }
+
+        public async Task InitTOC()
+        {
+            if (IsWithNavigation())
+            {
+                await LoadTOC(); // needed only for navigation menu
+            }
+
+            await Task.Delay(1);
+        }
+
+        public bool IsWithNavigation()
+        {
+            if (NavManager.Uri.Contains("/samples")) return true;
+            if (NavManager.Uri.EndsWith("/")) return true;
+            if (NavManager.Uri.EndsWith("/blazor-client")) return true;
+            if (NavManager.Uri.EndsWith("/blazor-client/")) return true;
+            if (NavManager.Uri.EndsWith("/blazor-server")) return true;
+            if (NavManager.Uri.EndsWith("/blazor-server/")) return true;
+            //if (NavManager.Uri.Contains("localhost")) return true; //&&
+            //if (NavManager.Uri + "/" == this.NavManager.BaseUri)  return true;
+
+            return false;
+
+            // return !NavManager.Uri.Contains("/samples") && NavManager.Uri != this.NavManager.BaseUri + "/";
         }
     }
 

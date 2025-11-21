@@ -20,7 +20,7 @@ namespace Microsoft.AspNetCore.Routing
         public RenderFragment NotFound { get; set; }
 
         [Parameter]
-        public RenderFragment<Microsoft.AspNetCore.Components.RouteData> Found { get; set; }
+        public RenderFragment<RouteData> Found { get; set; }
 
         [Inject] private NavigationManager NavigationManager { get; set; }
 
@@ -36,7 +36,7 @@ namespace Microsoft.AspNetCore.Routing
 
         public void Update(bool fromNavigation)
         {
-            //Console.WriteLine("SB.ROT Update nav=" + fromNavigation + " Lazy=" + IsLazyLoading + " NeedsUpdate=" + NeedsUpdate);
+            //Console.WriteLine("SB.ROT Update nav=" + fromNavigation + " IsLazy=" + IsLazyLoading + " NeedsUpdate=" + NeedsUpdate  + " connected=" + _connected);
 
             _NeedsUpdate = false;
 
@@ -50,22 +50,33 @@ namespace Microsoft.AspNetCore.Routing
             {
                 relativeUri = "/" + relativeUri;
             }
-            var data = FindMatch(relativeUri);
-            if (data != null)
+
+            if (relativeUri.Contains("/excel/") && !IsLazyLoaded)
             {
-                //Console.WriteLine("SB.ROT Update pages=");
-                _renderHandle.Render(Found(data));
+                Console.WriteLine("SB.ROT waiting for LazyLoadAssemblies Excel... ");
             }
             else
             {
-                _renderHandle.Render(NotFound);
+                var data = FindMatch(relativeUri);
+                if (data != null)
+                {
+                    Console.WriteLine("SB.ROT Render Found=" + relativeUri);
+                    _renderHandle.Render(Found(data));
+                }
+                else
+                {
+                    //Console.WriteLine("SB.ROT NotFound=" + relativeUri);
+                    _renderHandle.Render(NotFound);
+                }
             }
+
         }
 
         static readonly IReadOnlyDictionary<string, object> _emptyParameters = new Dictionary<string, object>();
-        private Dictionary<string, Microsoft.AspNetCore.Components.RouteData> _routeMap = null;
+        private Dictionary<string, RouteData> _routeMap = null;
         private void EnsureRouteMap()
         {
+            //Console.WriteLine("SB.ROT EnsureRouteMap...");
             if (_routeMap == null)
             {
                 var pages = AppAssembly
@@ -75,7 +86,7 @@ namespace Microsoft.AspNetCore.Routing
 
                 //Console.WriteLine("SB.ROT Update pages=" + pages.Count());
 
-                _routeMap = new Dictionary<string, Microsoft.AspNetCore.Components.RouteData>();
+                _routeMap = new Dictionary<string, RouteData>();
                 foreach (var page in pages)
                 {
                     var routes = page.GetCustomAttributes(typeof(RouteAttribute), false);
@@ -83,15 +94,16 @@ namespace Microsoft.AspNetCore.Routing
                     {
                         var attribute = (RouteAttribute)routes[i];
                         var template = attribute.Template!;
-                        var data = new Microsoft.AspNetCore.Components.RouteData(page, _emptyParameters);
+                        var data = new RouteData(page, _emptyParameters);
                         _routeMap[template] = data;
                     }
                 }
+                Console.WriteLine("SB.ROT EnsureRouteMap... done routes=" + _routeMap.Count);
                 //Console.WriteLine("SB.ROT Update routes=" + _routeMap.Count);
             }
         }
 
-        private Microsoft.AspNetCore.Components.RouteData FindMatch(string relativeUri)
+        private RouteData FindMatch(string relativeUri)
         {
             if (_routeMap.ContainsKey(relativeUri))
             {
@@ -103,6 +115,7 @@ namespace Microsoft.AspNetCore.Routing
 
         public void Dispose()
         {
+            //Console.WriteLine("SB.ROT Dispose...");
             // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
             Dispose(disposing: true);
             GC.SuppressFinalize(this);
@@ -110,15 +123,17 @@ namespace Microsoft.AspNetCore.Routing
 
         public void Attach(RenderHandle renderHandle)
         {
+            Console.WriteLine("SB.ROT Attach...");
             _renderHandle = renderHandle;
             _currentLocation = NavigationManager.Uri;
           
             EnsureConnected();
+            //Task<int> task = Task.Run(() => AsyncMethod());
         }
 
         public async Task SetParametersAsync(ParameterView parameters)
         {
-            //Console.WriteLine("SB.ROT SetParametersAsync: _onNavigateFirst=" + _onNavigateFirst + " _onNavigateCalled=" + _onNavigateCalled);
+            //Console.WriteLine("SB.ROT SetParametersAsync: IsLazy=" + IsLazyLoading + " NeedsUpdate=" + NeedsUpdate + " connected=" + _connected);
 
             parameters.SetParameterProperties(this);
 
@@ -152,7 +167,8 @@ namespace Microsoft.AspNetCore.Routing
             //    //Update(false);
             //}
 
-            Update(false); 
+            Update(false);
+            await Task.Delay(1);
         }
 
         [Parameter] public EventCallback<string> OnNavigateChangedAsync { get; set; }
@@ -172,8 +188,10 @@ namespace Microsoft.AspNetCore.Routing
 
         private void EnsureDisconnected()
         {
+            Console.WriteLine("SB.ROT EnsureDisconnected...");
             if (_connected)
             {
+                Console.WriteLine("SB.ROT EnsureDisconnected... done");
                 _connected = false;
                 NavigationManager.LocationChanged -= OnNavigationChanged;
             }
@@ -181,8 +199,10 @@ namespace Microsoft.AspNetCore.Routing
 
         private void EnsureConnected()
         {
+            //Console.WriteLine("SB.ROT EnsureConnected...");
             if (!_connected)
             {
+                Console.WriteLine("SB.ROT EnsureConnected... done");
                 _connected = true;
                 NavigationManager.LocationChanged += OnNavigationChanged;
             }
@@ -213,6 +233,7 @@ namespace Microsoft.AspNetCore.Routing
         }
 
         [Parameter] public bool IsLazyLoading { get; set; }
+        [Parameter] public bool IsLazyLoaded { get; set; }
 
         private bool _NeedsUpdate = false;
         [Parameter]
