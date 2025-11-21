@@ -1,0 +1,83 @@
+@page "/"
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Web
+@using IgniteUI.Blazor.Controls
+
+<div class="container">
+
+    @if (users != null && columns != null)
+    {
+        <IgbGridLite TItem="User" 
+                     Data="@users" 
+                     Columns="@columns"
+                     Filtering="@HandleFiltering"
+                     Filtered="@HandleFiltered"
+                     class="grid-lite-sample" />
+    }
+
+    <div class="event-log">
+        <h4>Event Log:</h4>
+        <div class="log-content">
+            @foreach (var log in eventLogs.TakeLast(10))
+            {
+                <div class="log-entry">@log</div>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<User> users;
+    private List<IgbColumnConfiguration> columns;
+    private List<string> eventLogs = new List<string>();
+
+    protected override void OnInitialized()
+    {
+        // Generate 50 users
+        users = MockDataGenerator.CreateUsers(50);
+
+        columns = new List<IgbColumnConfiguration>
+        {
+            new IgbColumnConfiguration
+            {
+                Key = nameof(User.FirstName),
+                HeaderText = "First name",
+                Filter = true
+            },
+            new IgbColumnConfiguration
+            {
+                Key = nameof(User.LastName),
+                HeaderText = "Last name",
+                Filter = true
+            },
+            new IgbColumnConfiguration
+            {
+                Key = nameof(User.Age),
+                HeaderText = "Age",
+                Type = GridLiteColumnDataType.Number,
+                Filter = true
+            },
+            new IgbColumnConfiguration
+            {
+                Key = nameof(User.Active),
+                HeaderText = "Active",
+                Type = GridLiteColumnDataType.Boolean,
+                Filter = true
+            }
+        };
+    }
+
+    private void HandleFiltering(IgbGridLiteFilteringEventArgs e)
+    {
+        var log = $"[{DateTime.Now:HH:mm:ss}] OnFiltering - Column: {e.Expressions?.Last().Key}, Condition: {e.Expressions?.Last().Condition}, Term: {e.Expressions?.Last().SearchTerm}";
+        eventLogs.Add(log);
+        StateHasChanged();
+    }
+
+    private void HandleFiltered(IgbGridLiteFilteredEventArgs e)
+    {
+        var log = $"[{DateTime.Now:HH:mm:ss}] OnFiltered - Filter applied successfully";
+        eventLogs.Add(log);
+        StateHasChanged();
+    }
+}

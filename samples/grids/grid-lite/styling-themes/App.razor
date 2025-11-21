@@ -1,0 +1,90 @@
+@page "/"
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Web
+@using IgniteUI.Blazor.Controls
+
+<link href="@currentTheme" rel="stylesheet" />
+
+<div class="container">
+
+    <div class="theme-selector">
+        <label>Theme: </label>
+        <select @onchange="ChangeTheme" class="theme-dropdown">
+            <option value="_content/IgniteUI.Blazor.GridLite/css/themes/light/bootstrap.css">Light Bootstrap</option>
+            <option value="_content/IgniteUI.Blazor.GridLite/css/themes/light/material.css">Light Material</option>
+            <option value="_content/IgniteUI.Blazor.GridLite/css/themes/light/fluent.css">Light Fluent</option>
+            <option value="_content/IgniteUI.Blazor.GridLite/css/themes/light/indigo.css">Light Indigo</option>
+            <option value="_content/IgniteUI.Blazor.GridLite/css/themes/dark/bootstrap.css">Dark Bootstrap</option>
+            <option value="_content/IgniteUI.Blazor.GridLite/css/themes/dark/material.css">Dark Material</option>
+            <option value="_content/IgniteUI.Blazor.GridLite/css/themes/dark/fluent.css">Dark Fluent</option>
+            <option value="_content/IgniteUI.Blazor.GridLite/css/themes/dark/indigo.css">Dark Indigo</option>
+        </select>
+    </div>
+
+    @if (products != null && columns != null)
+    {
+        <IgbGridLite TItem="ProductInfo" 
+                     Data="@products" 
+                     Columns="@columns"
+                     class="grid-lite-sample" />
+    }
+</div>
+
+@code {
+    private List<ProductInfo> products;
+    private List<IgbColumnConfiguration> columns;
+    private string currentTheme = "_content/IgniteUI.Blazor.GridLite/css/themes/light/bootstrap.css";
+
+    protected override void OnInitialized()
+    {
+        products = MockDataGenerator.CreateProducts(50);
+
+        columns = new List<IgbColumnConfiguration>
+        {
+            new IgbColumnConfiguration
+            {
+                Key = nameof(ProductInfo.Name),
+                HeaderText = "Product Name",
+                Type = GridLiteColumnDataType.String,
+                Sort = true
+            },
+            new IgbColumnConfiguration
+            {
+                Key = nameof(ProductInfo.Price),
+                HeaderText = "Price",
+                Type = GridLiteColumnDataType.Number,
+                Width = "150px",
+                Sort = true
+            },
+            new IgbColumnConfiguration
+            {
+                Key = nameof(ProductInfo.Sold),
+                HeaderText = "Units sold",
+                Type = GridLiteColumnDataType.Number,
+                Width = "150px",
+                Sort = true
+            },
+            new IgbColumnConfiguration
+            {
+                Key = nameof(ProductInfo.Total),
+                HeaderText = "Total sold",
+                Type = GridLiteColumnDataType.Number,
+                Width = "150px",
+                Sort = true
+            },
+            new IgbColumnConfiguration
+            {
+                Key = nameof(ProductInfo.Rating),
+                HeaderText = "Customer rating",
+                Type = GridLiteColumnDataType.Number,
+                Width = "180px",
+                Sort = true
+            }
+        };
+    }
+
+    private void ChangeTheme(ChangeEventArgs e)
+    {
+        currentTheme = e.Value?.ToString() ?? "light/bootstrap";
+    }
+}
