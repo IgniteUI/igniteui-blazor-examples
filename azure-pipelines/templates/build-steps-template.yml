@@ -97,7 +97,8 @@ steps:
         
         $nodes = $xml.SelectNodes("//PackageReference[starts-with(@Include,'IgniteUI') and not(substring(@Include, string-length(@Include) - 3) = 'Lite')]") | 
           ForEach-Object { 
-              $_.SetAttribute("Include",$_.Include.Replace(".Trial",""));
+              # We have stopped using Trial packages in the repo until further notice so the line below is temporarily obsolete
+              # $_.SetAttribute("Include",$_.Include.Replace(".Trial",""));
               $_.SetAttribute("Version", "${{ parameters.igVersion }}");
               Write-Host $_.Version
           }
