@@ -95,7 +95,7 @@ steps:
       script: |
         $xml = [XML](Get-Content '.\IgBlazorSamples.${{ parameters.projectToBuild }}.csproj');
         
-        $nodes = $xml.SelectNodes("//PackageReference[starts-with(@Include,'IgniteUI')]") | 
+        $nodes = $xml.SelectNodes("//PackageReference[starts-with(@Include,'IgniteUI') and not(substring(@Include, string-length(@Include) - 3) = 'Lite')]") | 
           ForEach-Object { 
               $_.SetAttribute("Include",$_.Include.Replace(".Trial",""));
               $_.SetAttribute("Version", "${{ parameters.igVersion }}");
