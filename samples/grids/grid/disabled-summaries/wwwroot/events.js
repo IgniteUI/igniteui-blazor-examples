@@ -54,7 +54,7 @@ igRegisterScript("ColumnInitScript", (event) => {
 }, false);
 
 
-window.getSummaries = (field) => {
+window.getGridSummaries = (field) => {
     const grid = document.getElementById("grid");
     const col = grid.getColumnByName(field);
     const summaryOperand = col?.summaries;
