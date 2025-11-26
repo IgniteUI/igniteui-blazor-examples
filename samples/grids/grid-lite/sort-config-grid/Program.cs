@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using IgniteUI.Blazor.Controls;
 
 namespace Infragistics.Samples
 {
@@ -13,7 +14,7 @@ namespace Infragistics.Samples
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            
+            builder.Services.AddIgniteUIBlazor(typeof(IgbSwitchModule));
             await builder.Build().RunAsync();
         }
     }
