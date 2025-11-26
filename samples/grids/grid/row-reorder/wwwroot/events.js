@@ -2,6 +2,9 @@
 
 igRegisterScript("WebGridReorderRowHandler", (args) => {
     const ghostElement = args.detail.dragDirective.ghostElement;
+    if (!ghostElement) {
+        return;
+    }
     const dragElementPos = ghostElement.getBoundingClientRect();
     const grid = document.getElementsByTagName("igc-grid")[0];
     const rows = Array.prototype.slice.call(document.getElementsByTagName("igx-grid-row"));
