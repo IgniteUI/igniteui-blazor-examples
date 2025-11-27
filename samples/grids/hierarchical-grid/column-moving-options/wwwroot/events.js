@@ -6,7 +6,7 @@ igRegisterScript("HierarchicalGridPinHeaderTemplate", (ctx) => {
     }
     return html`<div>
     <span style="float:left">${ctx.column.field}</span>
-    <span style="float:right" @pointerdown=${() => toggleColumnPin(ctx.column)}>📌</span>
+    <span style="float:right" @click=${() => toggleColumnPin(ctx.column)}>📌</span>
 </div>`;
 }, false);
 
