@@ -1,0 +1,64 @@
+@using IgniteUI.Blazor.Controls
+
+<style>
+    igc-date-range-picker::part(label) {
+        color: var(--ig-gray-600);
+    }
+
+    igc-date-range-picker::part(calendar-icon-start),
+    igc-date-range-picker::part(calendar-icon-end) {
+        background-color: var(--ig-primary-500);
+        color: var(--ig-primary-500-contrast);
+    }
+
+    igc-date-range-picker::part(calendar-icon-open-start),
+    igc-date-range-picker::part(calendar-icon-open-end) {
+        background-color: var(--ig-primary-700);
+        color: var(--ig-primary-700-contrast);
+    }
+
+    igc-date-range-picker::part(clear-icon-start),
+    igc-date-range-picker::part(clear-icon-end) {
+        background-color: var(--ig-error-500);
+        color: var(--ig-error-500-contrast);
+    }
+</style>
+
+<div class="container vertical">
+    <div class="container vertical">
+        <IgbDateRangePicker @ref="DateRangePicker" UseTwoInputs="true" LabelStart="Departure date" LabelEnd="Arrival date">
+            <IgbIcon @ref="UpPlane" slot="calendar-icon-start" IconName="up-plane" Collection="material"></IgbIcon>
+            <IgbIcon @ref="DownPlane" slot="calendar-icon-end" IconName="down-plane" Collection="material"></IgbIcon>
+        </IgbDateRangePicker>
+    </div>
+</div>
+
+@code {
+
+    public IgbDateRangePicker DateRangePicker { get; set; }
+    private IgbIcon UpPlane { get; set; }
+    private IgbIcon DownPlane { get; set; }
+
+    // Register custom icons
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (this.UpPlane != null && firstRender)
+        {
+            string upPlane = "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 -960 960 960\" width=\"24px\" fill=\"#e3e3e3\"><path d=\"M120-120v-80h720v80H120Zm70-200L40-570l96-26 112 94 140-37-207-276 116-31 299 251 170-46q32-9 60.5 7.5T864-585q9 32-7.5 60.5T808-487L190-320Z\"/></svg>";
+            this.UpPlane.EnsureReady().ContinueWith(new Action<Task>((e) =>
+               {
+                   this.UpPlane.RegisterIconFromText("up-plane", upPlane, "material");
+               }));
+        }
+
+        if (this.DownPlane != null && firstRender)
+        {
+            string downPlane = "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 -960 960 960\" width=\"24px\" fill=\"#e3e3e3\"><path d=\"M120-120v-80h720v80H120Zm622-202L120-499v-291l96 27 48 139 138 39-35-343 115 34 128 369 172 49q25 8 41.5 29t16.5 48q0 35-28.5 61.5T742-322Z\"/></svg>";
+            this.DownPlane.EnsureReady().ContinueWith(new Action<Task>((e) =>
+               {
+                   this.DownPlane.RegisterIconFromText("down-plane", downPlane, "material");
+               }));
+        }
+    }
+}

@@ -1,0 +1,34 @@
+@using IgniteUI.Blazor.Controls
+
+
+<div class="container vertical">
+    <div class="container vertical">
+        <IgbDateRangePicker @ref="DateRangePicker" CustomRanges="@CustomRanges" Mode="PickerMode.Dialog" UsePredefinedRanges="true" Label="Custom Ranges" />
+    </div>
+</div>
+
+@code {
+
+    public IgbDateRangePicker DateRangePicker { get; set; }
+
+    public IgbCustomDateRange[] CustomRanges = [
+            new IgbCustomDateRange()
+            {
+                Label = "Previous 7 Days",
+                DateRange = new IgbDateRangeValue()
+                {
+                    Start = DateTime.Today.AddDays(-7),
+                    End = DateTime.Today
+                }
+            },
+            new IgbCustomDateRange()
+            {
+                Label = "Next 7 Days",
+                DateRange = new IgbDateRangeValue()
+                {
+                    Start = DateTime.Today,
+                    End = DateTime.Today.AddDays(7)
+                }
+            }
+    ];
+}
