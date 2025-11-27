@@ -1,27 +1,28 @@
 var defaultSeparator;
+var grid;
 
 function toggleClipboardOperations() {
-    grid.clipboardOptions.enabled = copyEnable.checked;
+    grid.clipboardOptions.enabled = !grid.clipboardOptions.enabled;
 }
 
 function toggleHeaderCopy() {
-    grid.clipboardOptions.copyHeaders = headerCopy.checked;
+    grid.clipboardOptions.copyHeaders = !grid.clipboardOptions.copyHeaders;
 }
 
 function toggleFormatterCopy() {
-    grid.clipboardOptions.copyFormatters = formatterCopy.checked;
+    grid.clipboardOptions.copyFormatters = !grid.clipboardOptions.copyFormatters;
 }
 
 function clearSelection() {
-    grid.cellSelection = 'none';
-    grid.cellSelection = 'multiple';
+    grid.clearCellSelection();
 }
 
 function inputChange() {
-    grid.clipboardOptions.separator = input.value || grid.clipboardOptions.separator;
+    grid.clipboardOptions.separator = input.value || defaultSeparator;
 }
 
 igRegisterScript("WebTreeGridClipboardCustomOperationsRendered", (e) => {
+    grid = e.target;
     defaultSeparator = grid.clipboardOptions.separator;
 }, false);
 
