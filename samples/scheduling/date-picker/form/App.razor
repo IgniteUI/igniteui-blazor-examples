@@ -1,15 +1,24 @@
 @using IgniteUI.Blazor.Controls
 
+<style>
+    .container {
+        padding: 0.5rem;
+    }
+
+    .horizontal {
+        gap: 0.5rem;
+    }
+</style>
+
 <div class="container vertical">
     <div class="container vertical">
         <form @ref="Form">
-            <div>
-                <IgbDatePicker 
-                    @ref="DatePicker" 
-                    Min="@MinDate" 
-                    Max="@MaxDate" 
-                    Value="@SelectedDate"
-                    Change="HandleDateChange" />
+            <div class="horizontal">
+                <IgbDatePicker @ref="DatePicker"
+                               Min="@MinDate"
+                               Max="@MaxDate"
+                               Value="@SelectedDate"
+                               Change="HandleDateChange" />
                 <IgbButton onclick="@HandleReset"><span>Reset</span></IgbButton>
             </div>
         </form>
@@ -40,7 +49,7 @@
         FormStatus = "true";
 
         if (SelectedDate < MinDate || SelectedDate > MaxDate)
-    {
+        {
             FormStatus = "false";
         }
     }
