@@ -1,39 +1,31 @@
 @using IgniteUI.Blazor.Controls
 
 <style>
-    .column {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .row {
-        display: flex;
-        flex-direction: row;
-    }
-
     .buttons {
-        display: flex;
         gap: 5px;
         margin-top: 15px;
-        flex-direction: row;
+    }
+
+    igc-dialog::part(content) {
+        padding: 1rem;
     }
 </style>
 
 <div class="container vertical">
     <div class="container vertical">
-        <form @ref="Form">
-            <fieldset class="column">
+        <form @ref="Form" @onsubmit="@HandleSubmit">
+            <fieldset class="vertical">
                 <IgbDateRangePicker @ref="DateRangePicker" bind-Value="@Range" Label="Date Range" Required="true" Min="@Min" Change="HandleDateRangeChange" />
-                <div class="buttons">
-                    <IgbButton onclick="@HandleSubmit" Variant="ButtonVariant.Outlined"><span>Submit</span></IgbButton>
-                    <IgbButton onclick="@HandleReset" Variant="ButtonVariant.Outlined"><span>Reset</span></IgbButton>
+                <div class="buttons horizontal">
+                    <IgbButton Type="submit" Variant="ButtonVariant.Outlined"><span>Submit</span></IgbButton>
+                    <IgbButton Type="reset" Variant="ButtonVariant.Outlined"><span>Reset</span></IgbButton>
                 </div>
             </fieldset>
         </form>
         <IgbDialog @ref="DialogRef">
-            <div class="column">
-                <span class="row"><b>Start:&emsp;</b> @(Range?.Start.ToString("MM/dd/yyyy") ?? "N/A")</span>
-                <span class="row"><b>End:&emsp; </b> @(Range?.End.ToString("MM/dd/yyyy") ?? "N/A")</span>
+            <div class="vertical">
+                <span class="horizontal"><b>Start:&emsp;</b> @Range?.Start</span>
+                <span class="horizontal"><b>End:&emsp; </b> @Range?.End</span>
             </div>
             <IgbButton slot="footer" @onclick="OnDialogHide" Variant=@ButtonVariant.Flat>OK</IgbButton>
         </IgbDialog>
@@ -56,18 +48,12 @@
         };
     }
 
-    public async void HandleSubmit(MouseEventArgs e)
+    public async void HandleSubmit()
     {
         if (this.DialogRef != null)
         {
             await this.DialogRef.ShowAsync();
         }
-    }
-
-    private void HandleReset(MouseEventArgs e)
-    {
-        this.Range = null;
-        DateRangePicker.Clear();
     }
 
     public async Task OnDialogHide()
