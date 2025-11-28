@@ -1,5 +1,8 @@
 ﻿function OnMultiRowDragEndHandler(evt) {
     const ghostElement = evt.detail.dragDirective.ghostElement;
+    if (!ghostElement) {
+        return;
+    }
     const dragElementPos = ghostElement.getBoundingClientRect();
     const gridPosition = grid2.getBoundingClientRect();
     const withinXBounds = dragElementPos.x >= gridPosition.x && dragElementPos.x <= gridPosition.x + gridPosition.width;

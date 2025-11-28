@@ -23,6 +23,9 @@ function addRowAndChildrenTreeGrid(row, newData) {
 }
 function OnTreeGridRowDragEndHandler(evt) {
     const ghostElement = evt.detail.dragDirective.ghostElement;
+    if (!ghostElement) {
+        return;
+    }
     const dragElementPos = ghostElement.getBoundingClientRect();
     const gridPosition = treeGrid2.getBoundingClientRect();
     const withinXBounds = dragElementPos.x >= gridPosition.x && dragElementPos.x <= gridPosition.x + gridPosition.width;

@@ -7,10 +7,7 @@
 
     <button class="btn btn-primary" @onclick="SwitchData">Switch Data: @(showingProducts ? "Show Users" : "Show Products")</button>
 
-    <IgbGridLite @ref="grid"
-                 Data="data"
-                 AutoGenerate="true"
-                 class="grid-lite-sample" />
+    <IgbGridLite @ref="grid" Data="data" AutoGenerate="true" Columns="columns" class="grid-lite-sample" />
 </div>
 
 @code {
@@ -19,6 +16,7 @@
     private List<User> users;
     private List<ProductInfo> products;
     private List<object> data;
+    private List<IgbColumnConfiguration> columns = new List<IgbColumnConfiguration>();
     private bool showingProducts = true;
 
     protected override void OnInitialized()
@@ -44,13 +42,13 @@
         showingProducts = !showingProducts;
         if (showingProducts)
         {
-            await grid.UpdateColumnsAsync([]);
-            await grid.UpdateDataAsync(products);
+            this.columns = new List<IgbColumnConfiguration>();
+            this.data = products.ToList<object>();
         }
         else
         {
-            await grid.UpdateColumnsAsync([]);
-            await grid.UpdateDataAsync(users);
+            this.columns = new List<IgbColumnConfiguration>();
+            this.data = users.ToList<object>();
         }
     }
 }

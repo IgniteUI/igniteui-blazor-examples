@@ -46,7 +46,7 @@ igRegisterScript("ColumnInitScript", (event) => {
     }
 }, false);
 
-window.getSummaries = (field) => {
+window.getHGridSummaries = (field) => {
     const grid = document.getElementById("hierarchicalGrid");
     const col = grid.getColumnByName(field);
     const summaryOperand = col?.summaries;
