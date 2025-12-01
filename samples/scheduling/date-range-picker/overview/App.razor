@@ -1,0 +1,19 @@
+@using IgniteUI.Blazor.Controls
+
+
+<div class="container vertical">
+    <div class="container vertical">
+        <IgbDateRangePicker @ref="DateRangePicker" Value="@Range" Label="Date Range" />
+    </div>
+</div>
+
+@code {
+
+    public IgbDateRangePicker DateRangePicker { get; set; }
+
+    public IgbDateRangeValue Range = new IgbDateRangeValue()
+    {
+        Start = DateTime.Today,
+        End = DateTime.Today.AddDays(3)
+    };
+}
