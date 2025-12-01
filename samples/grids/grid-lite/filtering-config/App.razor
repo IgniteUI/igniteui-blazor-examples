@@ -1,0 +1,63 @@
+@page "/samples/grids/grid-lite/filtering-config"
+@page "/samples/grids/grid-lite-filtering-config"
+@page         "/grids/grid-lite/filtering-config"
+@page         "/grids/grid-lite-filtering-config"
+
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Web
+@using IgniteUI.Blazor.Controls
+
+<div class="container">
+
+    @if (users != null && columns != null)
+    {
+        <IgbGridLite TItem="User"
+                     Data="@users"
+                     Columns="@columns"
+                     class="grid-lite-sample" />
+    }
+</div>
+
+@code {
+    private List<User> users;
+    private List<IgbColumnConfiguration> columns;
+
+    protected override void OnInitialized()
+    {
+        // Generate 50 users
+        users = MockDataGenerator.CreateUsers(50);
+
+        columns = new List<IgbColumnConfiguration>
+        {
+            new IgbColumnConfiguration
+            {
+                Key = nameof(User.FirstName),
+                HeaderText = "First name",
+                Filter = new IgbColumnFilterConfiguration
+                {
+                    CaseSensitive = true
+                }
+            },
+            new IgbColumnConfiguration
+            {
+                Key = nameof(User.LastName),
+                HeaderText = "Last name",
+                Filter = true
+            },
+            new IgbColumnConfiguration
+            {
+                Key = nameof(User.Age),
+                HeaderText = "Age",
+                Type = GridLiteColumnDataType.Number,
+                Filter = true
+            },
+            new IgbColumnConfiguration
+            {
+                Key = nameof(User.Active),
+                HeaderText = "Active",
+                Type = GridLiteColumnDataType.Boolean,
+                Filter = true
+            }
+        };
+    }
+}

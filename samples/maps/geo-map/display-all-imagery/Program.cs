@@ -21,7 +21,13 @@ namespace Infragistics.Samples
             // registering Ignite UI modules
             builder.Services.AddIgniteUIBlazor(
                 typeof(IgbGeographicMapModule),
-                typeof(IgbDataChartInteractivityModule)
+                typeof(IgbDataChartInteractivityModule),
+                typeof(IgbAzureMapsImageryModule),
+                typeof(IgbDialogModule),
+                typeof(IgbIconModule),
+                typeof(IgbInputModule),
+                typeof(IgbPropertyEditorPanelModule)
+
             );
             await builder.Build().RunAsync();
         }

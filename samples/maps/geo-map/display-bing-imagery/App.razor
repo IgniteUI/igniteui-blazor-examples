@@ -1,68 +1,118 @@
-@using IgniteUI.Blazor.Controls
-
+﻿@using IgniteUI.Blazor.Controls
 @inject NavigationManager NavManager
 
-<div class="container horizontal">
+<style>
+    igc-dialog::part(content) {
+        width: 700px;
+    }
+</style>
 
-    <IgbGeographicMap @ref="BingAerialMap"
-                   Height="100%" Width="100%" Zoomable="true"
-                   BackgroundContent="@AerialImagery">
-    </IgbGeographicMap>
-    <IgbGeographicMap @ref="BingRoadMap"
-                   Height="100%" Width="100%" Zoomable="true"
-                   BackgroundContent="@RoadImagery">
-    </IgbGeographicMap>
+<!-- UI controls -->
+<div class="map-controls" style="display:flex; justify-content:center; align-items:center; gap:0.5rem; margin-bottom:0.5rem;">
+    <IgbButton @onclick="ShowDialog" Variant=@ButtonVariant.Contained>
+        Enter Bing Maps Enterprise Key
+    </IgbButton>
 
+    <IgbPropertyEditorPanel Name="editor" @ref="editor"
+                            IsHorizontal="true"
+                            IsWrappingEnabled="false">
+    </IgbPropertyEditorPanel>
 </div>
 
+
+<!-- DIALOG (always rendered, like Azure) -->
+<IgbDialog @ref="DialogRef"
+           Title="Enterise Key:"
+           CloseOnOutsideClick="false"
+           Closed="OnDialogClosed">
+
+    <form method="dialog">
+        <p style="font-size:0.9rem; margin-bottom:0.75rem;">
+            Bing Maps Basic has been retired, we encourage you to migrate to Azure Maps.  
+            If you have a Bing Maps Enterprise key, you may continue to use Bing Maps.
+            For more information, visit:<br />
+            <a href="https://learn.microsoft.com/en-us/bingmaps/getting-started/bing-maps-dev-center-help/getting-a-bing-maps-key"
+               target="_blank">
+               Bing Maps Key Documentation
+            </a>
+        </p>
+
+        <IgbInput Label="Enterprise Key"
+                  @bind-value="BingKey" />
+    </form>
+</IgbDialog>
+
+
+<!-- MAP (always rendered, like Azure) -->
+<IgbGeographicMap @ref="BingMap"
+                  Height="100%"
+                  Width="100%"
+                  Zoomable="true"
+                  BackgroundContent="@BingBackground">
+
+    <IgbGeographicTileSeries @ref="TileSeries" />
+</IgbGeographicMap>
+
+
 @code {
+    private string BingKey;
+    private bool _dialogShown;
 
-    private IgbBingMapsMapImagery AerialImagery;
-    private IgbBingMapsMapImagery RoadImagery;
-    private IgbGeographicMap BingAerialMap;
-    private IgbGeographicMap BingRoadMap;
+    private IgbDialog DialogRef;
+    private IgbPropertyEditorPanel editor;
 
-    private string BingKey = MapUtils.GetBingKey();
+    private IgbGeographicMap BingMap;
+    private IgbGeographicTileSeries TileSeries;
 
-    protected override void OnInitialized()
+    private IgbBingMapsMapImagery BingBackground;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        this.RoadImagery = CreateImagery(BingMapsImageryStyle.Road);
-        this.AerialImagery = CreateImagery(BingMapsImageryStyle.AerialWithLabels);
-    }
+        await base.OnAfterRenderAsync(firstRender);
 
-    public IgbBingMapsMapImagery CreateImagery(BingMapsImageryStyle style)
-    {
-        var bingUrl = "http://dev.virtualearth.net/REST/v1/Imagery/Metadata/{STYLE}?key={KEY}&include=ImageryProviders";
-        bingUrl = bingUrl.Replace("{STYLE}", style.ToString());
-        bingUrl = bingUrl.Replace("{KEY}", BingKey);
-
-        var isHttpSecured = NavManager.Uri.StartsWith("https");
-        if (isHttpSecured)
-            bingUrl = bingUrl.Replace("http:", "https:");
-
-        var imagery = new IgbBingMapsMapImagery();
-        imagery.ApiKey = BingKey;
-        imagery.ImageryStyle = style;
-        imagery.ActualBingImageryRestUri = bingUrl;
-
-        return imagery;
-    }
-
-    protected override void OnAfterRender(bool firstRender)
-    {
-        if (!firstRender)
+        if (firstRender)
         {
-            //Task.Delay(300).ContinueWith((t) => OnZoomMap(this.BingAerialMap));
-            //Task.Delay(300).ContinueWith((t) => OnZoomMap(this.BingRoadMap));
+            // set editor target
+            editor.Target = BingMap;
+
+            await Task.Delay(1000); // allow Blazor to complete rendering
+
+            // must queue AFTER render
+            await InvokeAsync(async () =>
+            {
+                await DialogRef.ShowAsync();
+            });
         }
     }
 
-    private void OnZoomMap(IgbGeographicMap map)
+    private async Task ShowDialog()
     {
-        var geoBounds = new Rect(-130, 15, new Size(65, 35));
-        if (map != null)
-            map.ZoomToGeographic(geoBounds);
+        await DialogRef.ShowAsync();
     }
 
+    private void OnDialogClosed(IgbVoidEventArgs e)
+    {
+        if (!string.IsNullOrWhiteSpace(BingKey))
+        {
+            ApplyBingImagery();
+        }
+        StateHasChanged();
+    }
 
+    private void ApplyBingImagery()
+    {
+        // Create Bing background imagery for map
+        BingBackground = new IgbBingMapsMapImagery
+        {
+            ApiKey = BingKey,
+            ImageryStyle = BingMapsImageryStyle.Aerial
+        };
+
+        // Set tile series imagery
+        TileSeries.TileImagery = BingBackground;
+
+        // Optional: Zoom to US
+        var rect = new Rect(-124.77, 24.52, new Size(59, 25));
+        BingMap.ZoomToGeographic(rect);
+    }
 }

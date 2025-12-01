@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace Infragistics.Samples.Core
 {
+    // this class provides navigation functionality for the Samples Browser
     public partial class SampleBrowser
     {
         public string AppBaseUri { get; set; }
@@ -74,7 +75,7 @@ namespace Infragistics.Samples.Core
                     if (comp.Name == name) {
                         comp.IsExpanded = !comp.IsExpanded;
                         var toggleState = comp.IsExpanded ? "on" : "off";
-                        //Console.WriteLine("SB.TOC toggle '" + comp.Name + "' " + toggleState);
+                        //Console.WriteLine("SB.NAV toggle '" + comp.Name + "' " + toggleState);
                         return;
                     }
                 }

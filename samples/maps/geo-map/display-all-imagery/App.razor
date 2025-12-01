@@ -1,16 +1,41 @@
-@using IgniteUI.Blazor.Controls
+﻿@using IgniteUI.Blazor.Controls
 @using System.Reflection
 
 @inject NavigationManager NavManager
 
+<style>
+    igc-dialog::part(content) {
+        width: 500px;
+    }
+</style>
+
 <div class="container vertical">
+
+    <!-- IMAGERY DROPDOWN -->
     <div class="options horizontal">
         <span class="options-label">Imagery Source: </span>
+
         <select @onchange="OnImagerySourceChanged">
             <option>OpenStreetMaps (Default)</option>
-            <option>BingMaps Road</option>
-            <option>BingMaps Aerial</option>
-            <option>BingMaps Labels</option>
+
+            <!-- Azure full list -->
+            <option>AzureMaps Satellite</option>
+            <option>AzureMaps Road</option>
+            <option>AzureMaps DarkGrey</option>
+            <option>AzureMaps TerraOverlay</option>
+            <option>AzureMaps HybridRoadOverlay</option>
+            <option>AzureMaps HybridDarkGreyOverlay</option>
+            <option>AzureMaps LabelsRoadOverlay</option>
+            <option>AzureMaps LabelsDarkGreyOverlay</option>
+            <option>AzureMaps WeatherInfraredOverlay</option>
+            <option>AzureMaps WeatherRadarOverlay</option>
+            <option>AzureMaps TrafficDelayOverlay</option>
+            <option>AzureMaps TrafficAbsoluteOverlay</option>
+            <option>AzureMaps TrafficReducedOverlay</option>
+            <option>AzureMaps TrafficRelativeOverlay</option>
+            <option>AzureMaps TrafficRelativeDarkOverlay</option>
+
+            <!-- ESRI options -->
             <option>WorldStreetMap (ESRI)</option>
             <option>WorldTopographicMap (ESRI)</option>
             <option>WorldImageryMap (ESRI)</option>
@@ -47,91 +72,191 @@
             <option>UsaDiversityIndex (ESRI)</option>
             <option>UsaRailNetwork (ESRI)</option>
         </select>
+
+        <IgbButton @onclick="ShowAzureDialog"
+                   Variant="@ButtonVariant.Contained">
+            Enter Azure Key
+        </IgbButton>
     </div>
 
+
+    <!-- AZURE KEY DIALOG -->
+    <IgbDialog @ref="AzureDialog"
+               Title="Enter Azure Maps Key"
+               Closed="OnAzureKeyClosed">
+
+        <form method="dialog">
+            <IgbInput Label="Azure Maps Key"
+                      @bind-value="AzureKey" />
+        </form>
+    </IgbDialog>
+
+
+    <!-- MAP / PLACEHOLDER -->
     <div class="container vertical">
-        <IgbGeographicMap Height="100%" Width="100%" Zoomable="true" BackgroundContent="@MapContent">
-        </IgbGeographicMap>
+        @if (ShowAzurePlaceholder)
+        {
+            <img src="@AzurePlaceholderImage"
+                 alt="Azure Maps Placeholder"
+                 style="width:100%; height:100%; object-fit:contain;" />
+        }
+        else
+        {
+            <IgbGeographicMap Height="100%"
+                              Width="100%"
+                              Zoomable="true"
+                              BackgroundContent="@MapContent">
+            </IgbGeographicMap>
+        }
     </div>
 </div>
+
+
 
 @code {
 
     private IgbGeographicMapImagery MapContent;
     private EsriStyle EsriRef;
 
+    private string AzureKey = "";
+    private bool ShowAzurePlaceholder = false;
+    private string AzurePlaceholderImage = "";
+
+    private IgbDialog AzureDialog;
+
     protected override void OnInitialized()
     {
         EsriRef = new EsriStyle();
-        this.MapContent = new IgbOpenStreetMapImagery();
+        MapContent = new IgbOpenStreetMapImagery();
     }
+
+
+    private async Task ShowAzureDialog()
+    {
+        if (AzureDialog != null)
+            await AzureDialog.ShowAsync();
+    }
+
+    private void OnAzureKeyClosed(IgbVoidEventArgs args)
+    {
+        StateHasChanged();
+    }
+
+
 
     private void OnImagerySourceChanged(ChangeEventArgs args)
     {
-        string str = args.Value.ToString();
+        string name = args.Value.ToString();
 
-        if (str.Contains("ESRI"))
+        // ------------------------------------------------------
+        // AZURE IMAGERY LIST
+        // ------------------------------------------------------
+        if (name.StartsWith("AzureMaps"))
         {
-            str = str.Replace(" (ESRI)", "");
+            string styleName = name.Replace("AzureMaps ", "");
 
-            FieldInfo fieldInfo = typeof(EsriStyle).GetField(str);
+            if (string.IsNullOrWhiteSpace(AzureKey))
+            {
+                // Display style-matching placeholder
+                if (_placeholderImages.TryGetValue(styleName, out var img))
+                    AzurePlaceholderImage = img;
+                else
+                    AzurePlaceholderImage = _placeholderImages["Road"];
 
-            if (fieldInfo != null)
+                ShowAzurePlaceholder = true;
+                return;
+            }
+
+            // Key exists → use map imagery
+            ShowAzurePlaceholder = false;
+
+            MapContent = new IgbAzureMapsImagery()
+            {
+                ApiKey = AzureKey,
+                ImageryStyle = ParseAzureStyle(styleName)
+            };
+
+            return;
+        }
+
+
+        // ------------------------------------------------------
+        // ESRI IMAGERY
+        // ------------------------------------------------------
+        if (name.Contains("ESRI"))
+        {
+            ShowAzurePlaceholder = false;
+
+            name = name.Replace(" (ESRI)", "");
+
+            FieldInfo fi = typeof(EsriStyle).GetField(name);
+            if (fi != null)
             {
                 EsriStyle obj = new EsriStyle();
-                string uri = fieldInfo.GetValue(obj).ToString();
+                string uri = fi.GetValue(obj).ToString();
 
-                IgbArcGISOnlineMapImagery mapImage = new IgbArcGISOnlineMapImagery()
+                MapContent = new IgbArcGISOnlineMapImagery()
                 {
                     MapServerUri = uri
                 };
-
-                this.MapContent = mapImage;
             }
+            return;
         }
-        else if (str.Contains("Bing"))
-        {
-            IgbBingMapsMapImagery mapImage = null;
 
-            if (str.Contains("Aerial"))
-            {
-                mapImage = this.CreateBingMapsImagery(BingMapsImageryStyle.Aerial);
-            }
-            else if (str.Contains("Labels"))
-            {
-                mapImage = this.CreateBingMapsImagery(BingMapsImageryStyle.AerialWithLabels);
-            }
-            else
-            {
-                mapImage = this.CreateBingMapsImagery(BingMapsImageryStyle.Road);
-            }
 
-            this.MapContent = mapImage;
-        }
-        else
-        {
-            this.MapContent = new IgbOpenStreetMapImagery();
-        }
+        // ------------------------------------------------------
+        // OPENSTREETMAP
+        // ------------------------------------------------------
+        ShowAzurePlaceholder = false;
+        MapContent = new IgbOpenStreetMapImagery();
     }
 
-    private IgbBingMapsMapImagery CreateBingMapsImagery(BingMapsImageryStyle style)
-    {
-        string apiKey = MapUtils.GetBingKey();
-        var bingUrl = "http://dev.virtualearth.net/REST/v1/Imagery/Metadata/{STYLE}?key={KEY}&include=ImageryProviders";
-        bingUrl = bingUrl.Replace("{STYLE}", style.ToString());
-        bingUrl = bingUrl.Replace("{KEY}", apiKey);
 
-        var isHttpSecured = NavManager.Uri.StartsWith("https");
-        if (isHttpSecured)
-            bingUrl = bingUrl.Replace("http:", "https:");
 
-        var imagery = new IgbBingMapsMapImagery()
+    // ------------------------------------------------------
+    // Convert string → AzureMapsImageryStyle enum
+    // ------------------------------------------------------
+    private AzureMapsImageryStyle ParseAzureStyle(string name) =>
+        name switch
         {
-             ApiKey = apiKey,
-             ImageryStyle = style,
-             ActualBingImageryRestUri = bingUrl
+            "Satellite" => AzureMapsImageryStyle.Satellite,
+            "Road" => AzureMapsImageryStyle.Road,
+            "DarkGrey" => AzureMapsImageryStyle.DarkGrey,
+            "TerraOverlay" => AzureMapsImageryStyle.TerraOverlay,
+            "HybridRoadOverlay" => AzureMapsImageryStyle.HybridRoadOverlay,
+            "HybridDarkGreyOverlay" => AzureMapsImageryStyle.HybridDarkGreyOverlay,
+            "LabelsRoadOverlay" => AzureMapsImageryStyle.LabelsRoadOverlay,
+            "LabelsDarkGreyOverlay" => AzureMapsImageryStyle.LabelsDarkGreyOverlay,
+            "WeatherInfraredOverlay" => AzureMapsImageryStyle.WeatherInfraredOverlay,
+            "WeatherRadarOverlay" => AzureMapsImageryStyle.WeatherRadarOverlay,
+            "TrafficDelayOverlay" => AzureMapsImageryStyle.TrafficDelayOverlay,
+            "TrafficAbsoluteOverlay" => AzureMapsImageryStyle.TrafficAbsoluteOverlay,
+            "TrafficReducedOverlay" => AzureMapsImageryStyle.TrafficReducedOverlay,
+            "TrafficRelativeOverlay" => AzureMapsImageryStyle.TrafficRelativeOverlay,
+            "TrafficRelativeDarkOverlay" => AzureMapsImageryStyle.TrafficRelativeDarkOverlay,
+            _ => AzureMapsImageryStyle.Road
         };
 
-        return imagery;
-    }
+
+    // ------------------------------------------------------
+    // Placeholder images for each Azure style
+    // ------------------------------------------------------
+    private readonly Dictionary<string, string> _placeholderImages = new()
+    {
+        { "Satellite", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_satellite.png" },
+        { "Road", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_road.png" },
+        { "DarkGrey", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_darkgrey.png" },
+        { "TerraOverlay", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_terra_overlay.png" },
+        { "HybridRoadOverlay", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/AzureHybridRoad.png" },
+        { "HybridDarkGreyOverlay", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/AzureHybridDarkGrey.png" },
+        { "LabelsRoadOverlay", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_labelsroad.png" },
+        { "LabelsDarkGreyOverlay", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_labelsdarkgrey.png" },
+        { "WeatherInfraredOverlay", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_weather_Infrared_road.png" },
+        { "WeatherRadarOverlay", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_weather_radar.png" },
+        { "TrafficDelayOverlay", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_trafficdelay.png" },
+        { "TrafficAbsoluteOverlay", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_traffic_absolute.png" },
+        { "TrafficReducedOverlay", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_traffic_light.png" },
+        { "TrafficRelativeOverlay", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_traffic_relative.png" },
+        { "TrafficRelativeDarkOverlay", "https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure_traffic_relative_dark.png" }
+    };
 }

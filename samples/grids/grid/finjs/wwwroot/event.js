@@ -12,6 +12,15 @@
         `;
 }, false);
 
+igRegisterScript("ChartButtonTemplate", (ctx) => {
+    var html = window.igTemplating.html;
+    return html`
+    <igc-button variant="contained" size="small">
+        <igc-icon name="insert_chart" collection="material"></igc-icon>
+    </igc-button>
+    `;
+}, false);
+
 
 igRegisterScript("trends", () => this.trends, true);
 igRegisterScript("trendsChange", () => this.trendsChange, true);

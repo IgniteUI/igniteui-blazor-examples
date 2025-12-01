@@ -443,13 +443,13 @@ function copySampleScripts(cb, outputPath, indexName, isLocalBuild) {
                     }
                     if (fileRequiresLoading) {
                         insertScriptFiles.push(shouldBeModule
-                            ? '<script type="module" src="sb/' + fileName + '"></script>'
+                            ? '<script src="sb/' + fileName + '" type="module"></script>'
                             : '<script src="sb/' + fileName + '"></script>');
                     }
                 }
                 else {
                     insertScriptFiles.push(shouldBeModule
-                        ? '<script type="module" src="sb/' + fileName + '"></script>'
+                        ? '<script src="sb/' + fileName + '" type="module"></script>'
                         : '<script src="sb/' + fileName + '"></script>');
                 }
             }
@@ -635,9 +635,9 @@ function updateIG(cb) {
 
     let packageUpgrades = [
         // update version of IG packages and change to Trial or non-trial
-        { version: "25.1.82", name: "IgniteUI.Blazor" },
-        { version: "25.1.82", name: "IgniteUI.Blazor.Documents.Core" },
-        { version: "25.1.82", name: "IgniteUI.Blazor.Documents.Excel" },
+        { version: "25.2.32", name: "IgniteUI.Blazor.Trial" },
+        { version: "25.2.32", name: "IgniteUI.Blazor.Documents.Core.Trial" },
+        { version: "25.2.32", name: "IgniteUI.Blazor.Documents.Excel.Trial" },
         // these IG packages are sometimes updated:
         { version: "9.0.0", name: "Microsoft.AspNetCore.Components" },
         { version: "9.0.0", name: "Microsoft.AspNetCore.Components.Web" },

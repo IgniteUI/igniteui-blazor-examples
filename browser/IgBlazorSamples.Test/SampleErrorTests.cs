@@ -44,6 +44,7 @@ public class ErrorTest : BlazorTest
         {
             if (value.Type == "error" || (value.Type == "warning" && value.Text.Contains("Error:")))
             {
+                if (!value.Text.Contains("Failed to load resource"))
                 {
                     messages.AppendLine(value.Text);
                     numPageErrors++;

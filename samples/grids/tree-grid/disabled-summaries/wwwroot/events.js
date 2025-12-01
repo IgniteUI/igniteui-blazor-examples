@@ -87,7 +87,7 @@ igRegisterScript("ColumnInitScript", (event) => {
     }
 }, false);
 
-window.getSummaries = (field) => {
+window.getTreeGridSummaries = (field) => {
     const grid = document.getElementById("treeGrid");
     const col = grid.getColumnByName(field);
     const summaryOperand = col?.summaries;

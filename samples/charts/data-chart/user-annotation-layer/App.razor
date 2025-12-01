@@ -1,0 +1,134 @@
+@using IgniteUI.Blazor.Controls
+@inject IJSRuntime JS;
+
+<div class="container vertical">
+    <div id="aboveContentSplit">
+        <div id="aboveContentLeftContainer">
+            <IgbToolbar @ref="toolbar" Orientation="ToolbarOrientation.Horizontal" />
+        </div>        
+    </div>
+    <div class="container vertical fill">
+        <IgbDataChart IsHorizontalZoomEnabled="true"
+        IsVerticalZoomEnabled="true" UserAnnotationInformationRequested="OnUserAnnotationInfoRequested"
+        UserAnnotationToolTipContentUpdatingScript="onUserAnnotationToolTipContentUpdatingScript"
+        ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
+        @ref="chart">
+            <IgbCategoryXAxis Name="xAxis" DataSource="CountryRenewableElectricity"
+            Interval="1" Label="Year">
+            </IgbCategoryXAxis>
+
+            <IgbNumericYAxis Name="yAxis" Title="TWh" />
+
+            <IgbLineSeries Title="Electricity"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="CountryRenewableElectricity"
+            ValueMemberPath="America">
+            </IgbLineSeries>
+
+            <IgbLineSeries Title="Electricity"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="CountryRenewableElectricity"
+            ValueMemberPath="Europe">
+            </IgbLineSeries>
+
+            <IgbLineSeries Title="Electricity"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            DataSource="CountryRenewableElectricity"
+            ValueMemberPath="China">
+            </IgbLineSeries>
+        </IgbDataChart>
+
+        <div class="container vertical options annotationDialogPopup">
+            
+            <label>Label:</label>
+            <IgbInput @ref=AnnotationInput DisplayType="@InputType.Text" Value="Enter Label"/>
+            
+            <label>Details:</label>
+            <IgbTextarea @ref=AnnotationTextArea Resize="TextareaResize.None" Value="Enter Details"/>
+            
+            <label>Badge Color:</label>
+            <IgbColorEditor id="annotationBadgeColorEditor"  />
+
+            <label>Main Color:</label>
+            <IgbColorEditor id="annotationMainColorEditor" />
+
+            <div class="container horizontal annotationDialogButtons">
+                <button @onclick="OnDoneButtonClick">Done</button>
+                <button @onclick="OnCancelButtonClick">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+    private IgbInput AnnotationInput{ get; set; }
+    private IgbTextarea AnnotationTextArea{ get; set; }    
+    private IgbUserAnnotationInformation AnnotationInfo{ get; set; }
+    private IgbToolbar toolbar;
+    private IgbDataChart chart;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var toolbar = this.toolbar;
+        var chart = this.chart;           
+
+        if(firstRender && chart != null){
+            await Task.Delay(500);
+            await JS.InvokeVoidAsync("onUserAnnotationEnable", null);
+        }
+
+        this.BindElements = () => { toolbar.Target = this.chart; };
+        this.BindElements();
+    }
+
+    public void OnUserAnnotationInfoRequested(IgbUserAnnotationInformationEventArgs e){
+        this.AnnotationInfo = e.AnnotationInfo;
+        JS.InvokeVoidAsync("onUserAnnotationToggleDialog", new object[] { true });        
+    }
+
+    public async void OnDoneButtonClick(MouseEventArgs e){
+
+        if (this.AnnotationInfo == null) return;
+
+        this.AnnotationInfo.Label = this.AnnotationInput.GetCurrentValue();
+        this.AnnotationInfo.AnnotationData = this.AnnotationTextArea.GetCurrentValue();
+
+        string badgeColor = await JS.InvokeAsync<string>("getBadgeColor");
+        string mainColor = await JS.InvokeAsync<string>("getMainColor");
+
+        this.AnnotationInfo.BadgeColor = badgeColor;
+        this.AnnotationInfo.MainColor = mainColor;
+
+        await this.chart.FinishAnnotationFlowAsync(this.AnnotationInfo);
+
+        await JS.InvokeVoidAsync("onUserAnnotationToggleDialog", new object[] { false });                
+    }
+
+    public void OnCancelButtonClick(MouseEventArgs e)
+    {
+        if (this.AnnotationInfo != null)
+        {
+            this.chart.CancelAnnotationFlow(this.AnnotationInfo.AnnotationId);
+        }
+        
+        JS.InvokeVoidAsync("onUserAnnotationToggleDialog", new object[] { false });
+    }    
+
+    private CountryRenewableElectricity _countryRenewableElectricity = null;
+    public CountryRenewableElectricity CountryRenewableElectricity
+    {
+        get
+        {
+            if (_countryRenewableElectricity == null)
+            {
+                _countryRenewableElectricity = new CountryRenewableElectricity();
+            }
+            return _countryRenewableElectricity;
+        }
+    }
+}

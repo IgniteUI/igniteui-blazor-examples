@@ -468,7 +468,7 @@
             await this.Toast.ShowAsync();
             return;
         }
-        this.Chart.DataSource = this.SelectedRows;
+        this.Chart.DataSource = await Task.WhenAll(this.SelectedRows.Select(row => this.grid1.GetRowDataAsync(row)));
         this.Chart.IncludedProperties = new string[2] { "price", "country" };
         this.SetChartConfig("Countries", "Prices (USD)", "Data Chart with prices by Category and Country");
         await this.Dialog.ShowAsync();
