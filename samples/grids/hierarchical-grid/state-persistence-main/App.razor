@@ -64,6 +64,7 @@
             Moving="true"
             AllowFiltering="true"
             Rendered="OnGridRendered"
+            DataChanged="OnGridDataChanged"
             ColumnSelection="GridSelectionMode.Multiple"
             RowSelection="GridSelectionMode.Multiple">
             <IgbGridState @ref="gridState"></IgbGridState>
@@ -132,6 +133,7 @@
     private IgbGridState gridState;
     private IgbPaginator paginator;
     private bool allOptions = true;
+    private bool ready = false;
     private IgbGridStateOptions options = new IgbGridStateOptions()
     {
         CellSelection = true,
@@ -257,10 +259,23 @@
         }
     }
 
+    public void OnGridDataChanged()
+    {
+        ready = true;
+    }
+
     public async void OnGridRendered()
     {
-        await Task.Delay(1000);
+        await WaitForGridReadyAsync();
         RestoreGridState();
+    }
+
+    private async Task WaitForGridReadyAsync()
+    {
+        while (!ready)
+        {
+            await Task.Delay(100); // wait for update
+        }
     }
 
     async void LeavePage()
