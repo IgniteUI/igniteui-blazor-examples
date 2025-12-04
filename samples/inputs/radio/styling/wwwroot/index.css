@@ -4,14 +4,18 @@ https://static.infragistics.com/xplatform/css/samples/
 */
 
 
-igc-radio::part(base checked):focus-within igc-radio::part(control) {
-    background: rgba(128,128,0, .32);
-}
-
-igc-radio::part(control checked)::before {
-    background: olive;
-}
-
-igc-radio::part(control checked)::after {
-    border-color: olive;
-}
+igc-radio::part(control) {
+    --size: 18px;
+  }
+  
+  igc-radio-group {
+    padding: 12px;
+  }
+  
+  igc-radio::part(checked)::after {
+    background-color: var(--ig-success-500);
+  }
+  
+  igc-radio::part(label) {
+    color: var(--ig-secondary-800);
+  }
