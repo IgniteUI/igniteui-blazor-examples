@@ -52,7 +52,7 @@ namespace Infragistics.Samples
                 "Samsung HDD", "WD HDD", "Seagate HDD", "Intel HDD",
                 "Samsung SSD", "WD SSD", "Seagate SSD", "Intel SSD",
                 "Samsung Monitor", "Asus Monitor", "LG Monitor", "HP Monitor" };
-            string[] countries = { "USA", "UK", "France", "Canada", "Poland", "Japan", "Germany" };
+            string[] countries = { "United-States", "United-Kingdom", "France", "Canada", "Poland", "Japan", "Germany" };
             string[] status = { "Packing", "Shipped", "Delivered" };
 
             var products = new List<Product>();

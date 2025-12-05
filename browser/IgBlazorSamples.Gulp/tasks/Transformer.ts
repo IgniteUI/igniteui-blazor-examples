@@ -1019,7 +1019,7 @@ class Transformer {
 
             var defaultCSS: string = "/*\n";
             defaultCSS += "CSS styles are loaded from the shared CSS file located at:\n"
-            defaultCSS += "https://static.infragistics.com/xplatform/css/samples/\n"
+            defaultCSS += "https://dl.infragistics.com/x/css/samples/\n"
             defaultCSS += "*/";
 
             if (sample.PublicFiles_CSS && sample.PublicFiles_CSS.length > 0) {

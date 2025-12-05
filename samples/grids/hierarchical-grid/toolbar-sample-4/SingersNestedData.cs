@@ -50,7 +50,7 @@ public class SingersNestedData : List<SingersNestedItem>
         {
             ID = 0,
             Artist = @"Naomí Yepes",
-            Photo = @"https://static.infragistics.com/xplatform/images/people/names/naomi.jpg",
+            Photo = @"https://dl.infragistics.com/x/img/people/names/naomi.png",
             Debut = 2011,
             GrammyNominations = 6,
             GrammyAwards = 0,
@@ -380,7 +380,7 @@ public class SingersNestedData : List<SingersNestedItem>
         {
             ID = 1,
             Artist = @"Babila Ebwélé",
-            Photo = @"https://static.infragistics.com/xplatform/images/people/names/babila.jpg",
+            Photo = @"https://dl.infragistics.com/x/img/people/names/babila.png",
             Debut = 2009,
             GrammyNominations = 0,
             GrammyAwards = 11,
@@ -626,7 +626,7 @@ public class SingersNestedData : List<SingersNestedItem>
         {
             ID = 2,
             Artist = @"Ahmad Nazeri",
-            Photo = @"https://static.infragistics.com/xplatform/images/people/names/ahmad.jpg",
+            Photo = @"https://dl.infragistics.com/x/img/people/names/ahmad.png",
             Debut = 2004,
             GrammyNominations = 3,
             GrammyAwards = 1,
@@ -667,7 +667,7 @@ public class SingersNestedData : List<SingersNestedItem>
         {
             ID = 3,
             Artist = @"Kimmy McIlmorie",
-            Photo = @"https://static.infragistics.com/xplatform/images/people/names/kimmy.jpg",
+            Photo = @"https://dl.infragistics.com/x/img/people/names/kimmy.png",
             Debut = 2007,
             GrammyNominations = 21,
             GrammyAwards = 3,
@@ -696,7 +696,7 @@ public class SingersNestedData : List<SingersNestedItem>
         {
             ID = 4,
             Artist = @"Mar Rueda",
-            Photo = @"https://static.infragistics.com/xplatform/images/people/names/mar.jpg",
+            Photo = @"https://dl.infragistics.com/x/img/people/names/mar.png",
             Debut = 1996,
             GrammyNominations = 14,
             GrammyAwards = 2,
@@ -714,7 +714,7 @@ public class SingersNestedData : List<SingersNestedItem>
         {
             ID = 5,
             Artist = @"Izabella Tabakova",
-            Photo = @"https://static.infragistics.com/xplatform/images/people/names/izabella.jpg",
+            Photo = @"https://dl.infragistics.com/x/img/people/names/izabella.png",
             Debut = 2017,
             GrammyNominations = 7,
             GrammyAwards = 11,
@@ -956,7 +956,7 @@ public class SingersNestedData : List<SingersNestedItem>
         {
             ID = 6,
             Artist = @"Nguyễn Diệp Chi",
-            Photo = @"https://static.infragistics.com/xplatform/images/people/names/nguyen.jpg",
+            Photo = @"https://dl.infragistics.com/x/img/people/names/nguyen.png",
             Debut = 1992,
             GrammyNominations = 4,
             GrammyAwards = 2,
@@ -985,7 +985,7 @@ public class SingersNestedData : List<SingersNestedItem>
         {
             ID = 7,
             Artist = @"Eva Lee",
-            Photo = @"https://static.infragistics.com/xplatform/images/people/names/eva.jpg",
+            Photo = @"https://dl.infragistics.com/x/img/people/names/eva.png",
             Debut = 2008,
             GrammyNominations = 2,
             GrammyAwards = 0,
@@ -1014,7 +1014,7 @@ public class SingersNestedData : List<SingersNestedItem>
         {
             ID = 8,
             Artist = @"Siri Jakobsson",
-            Photo = @"https://static.infragistics.com/xplatform/images/people/names/siri.jpg",
+            Photo = @"https://dl.infragistics.com/x/img/people/names/siri.png",
             Debut = 1990,
             GrammyNominations = 2,
             GrammyAwards = 8,
@@ -1193,7 +1193,7 @@ public class SingersNestedData : List<SingersNestedItem>
         {
             ID = 9,
             Artist = @"Pablo Cambeiro",
-            Photo = @"https://static.infragistics.com/xplatform/images/people/names/pablo.jpg",
+            Photo = @"https://dl.infragistics.com/x/img/people/names/pablo.png",
             Debut = 2011,
             GrammyNominations = 5,
             GrammyAwards = 0,
@@ -1360,7 +1360,7 @@ public class SingersNestedData : List<SingersNestedItem>
         {
             ID = 10,
             Artist = @"Athar Malakooti",
-            Photo = @"https://static.infragistics.com/xplatform/images/people/names/athar.jpg",
+            Photo = @"https://dl.infragistics.com/x/img/people/names/athar.png",
             Debut = 2017,
             GrammyNominations = 0,
             GrammyAwards = 0,
@@ -1389,7 +1389,7 @@ public class SingersNestedData : List<SingersNestedItem>
         {
             ID = 11,
             Artist = @"Marti Valencia",
-            Photo = @"https://static.infragistics.com/xplatform/images/people/names/marti.jpg",
+            Photo = @"https://dl.infragistics.com/x/img/people/names/marti.png",
             Debut = 2004,
             GrammyNominations = 1,
             GrammyAwards = 1,
@@ -1552,7 +1552,7 @@ public class SingersNestedData : List<SingersNestedItem>
         {
             ID = 12,
             Artist = @"Alicia Stanger",
-            Photo = @"https://static.infragistics.com/xplatform/images/people/names/alicia.jpg",
+            Photo = @"https://dl.infragistics.com/x/img/people/names/alicia.png",
             Debut = 2010,
             GrammyNominations = 1,
             GrammyAwards = 0,
@@ -1581,7 +1581,7 @@ public class SingersNestedData : List<SingersNestedItem>
         {
             ID = 13,
             Artist = @"Peter Taylor",
-            Photo = @"https://static.infragistics.com/xplatform/images/people/names/peter.jpg",
+            Photo = @"https://dl.infragistics.com/x/img/people/names/peter.png",
             Debut = 2005,
             GrammyNominations = 0,
             GrammyAwards = 2,
