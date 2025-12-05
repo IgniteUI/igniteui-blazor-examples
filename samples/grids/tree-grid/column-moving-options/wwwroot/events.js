@@ -7,9 +7,9 @@ igRegisterScript("WebTreeGridPinHeaderTemplate", (ctx) => {
         col.pinned = !col.pinned;
         grid.markForCheck();
     }
-    return html`<div>
-    <span style="float:left">${ctx.column.field}</span>
-    <span style="float:right" onpointerdown='toggleColumnPin("${ctx.column.field}")'>📌</span>
+    return html`<div style="display:flex;">
+    <span>${ctx.column.field}</span>
+    <span style="margin-left: auto;" onpointerdown='toggleColumnPin("${ctx.column.field}")'>📌</span>
 </div>`;
 }, false);
 
