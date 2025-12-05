@@ -182,7 +182,7 @@ namespace Infragistics.Samples
                     value = "0" + value;
                 }
 
-                int imageID = SalesPersonData.GetRandomInt(10, 39);
+                int imageID = Math.Floor(r.NextDouble() * (30)) + 1;
                 var imageGender = genders[firstIndex];
                 item.ImageName = SalesPersonData.CreateUri(imageGender + "/" + imageID + ".png");
                 item.Territory = territories[(int)Math.Round(r.NextDouble() * (territories.Length - 1))];
@@ -208,10 +208,6 @@ namespace Infragistics.Samples
         public static string CreateUri(string name)
         {
             return "https://dl.infragistics.com/x/img/people/" + name;
-        }
-
-        public static int GetRandomInt(int min, int max) {
-            return Math.Floor(Math.Random() * (max - min + 1)) + min;
         }
     }
 }
