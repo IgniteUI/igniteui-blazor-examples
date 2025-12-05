@@ -283,7 +283,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.3,
             Registered = @"2017-11-09T08:50:06-02:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/cm.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/CM.png",
             CountryName = @"Cameroon"
         });
         this.Add(new PlayersDataItem()
@@ -297,7 +297,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.8,
             Registered = @"2017-04-12T04:16:56-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/pl.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/PL.png",
             CountryName = @"Poland"
         });
         this.Add(new PlayersDataItem()
@@ -311,7 +311,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.5,
             Registered = @"2017-07-21T06:42:59-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/lb.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/LB.png",
             CountryName = @"Lebanon"
         });
         this.Add(new PlayersDataItem()
@@ -325,7 +325,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.2,
             Registered = @"2017-01-06T09:58:02-02:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/fi.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/FI.png",
             CountryName = @"Finland"
         });
         this.Add(new PlayersDataItem()
@@ -339,7 +339,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.2,
             Registered = @"2017-01-05T07:28:11-02:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/uz.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/UZ.png",
             CountryName = @"Uzbekistan"
         });
         this.Add(new PlayersDataItem()
@@ -353,7 +353,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.7,
             Registered = @"2017-04-15T10:25:21-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ma.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/MA.png",
             CountryName = @"Morocco"
         });
         this.Add(new PlayersDataItem()
@@ -367,7 +367,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.1,
             Registered = @"2017-11-09T02:43:54-02:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/km.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/KM.png",
             CountryName = @"Comoros"
         });
         this.Add(new PlayersDataItem()
@@ -381,7 +381,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5,
             Registered = @"2017-06-04T12:52:03-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/co.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/CO.png",
             CountryName = @"Colombia"
         });
         this.Add(new PlayersDataItem()
@@ -395,7 +395,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.4,
             Registered = @"2017-02-20T09:42:07-02:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/mc.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/MC.png",
             CountryName = @"Monaco"
         });
         this.Add(new PlayersDataItem()
@@ -409,7 +409,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.1,
             Registered = @"2017-01-05T10:12:42-02:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/lk.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/LK.png",
             CountryName = @"Sri Lanka"
         });
         this.Add(new PlayersDataItem()
@@ -423,7 +423,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.5,
             Registered = @"2017-02-16T07:11:52-02:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/tm.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/TM.png",
             CountryName = @"Turkmenistan"
         });
         this.Add(new PlayersDataItem()
@@ -437,7 +437,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.1,
             Registered = @"2017-06-04T09:04:31-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/cn.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/CN.png",
             CountryName = @"China"
         });
         this.Add(new PlayersDataItem()
@@ -451,7 +451,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.7,
             Registered = @"2017-09-22T11:49:02-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/eh.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/EH.png",
             CountryName = @"Western Sahara"
         });
         this.Add(new PlayersDataItem()
@@ -465,7 +465,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.2,
             Registered = @"2017-07-13T02:23:56-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/to.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/TO.png",
             CountryName = @"Tonga"
         });
         this.Add(new PlayersDataItem()
@@ -479,7 +479,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5,
             Registered = @"2017-08-17T01:35:09-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/do.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/DO.png",
             CountryName = @"Dominican Republic"
         });
         this.Add(new PlayersDataItem()
@@ -493,7 +493,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.6,
             Registered = @"2017-07-20T11:45:52-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/tr.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/TR.png",
             CountryName = @"Turkey"
         });
         this.Add(new PlayersDataItem()
@@ -507,7 +507,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.5,
             Registered = @"2017-01-26T11:50:00-02:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/cv.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/CV.png",
             CountryName = @"Cape Verde"
         });
         this.Add(new PlayersDataItem()
@@ -521,7 +521,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.3,
             Registered = @"2017-08-10T08:27:45-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/il.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/IL.png",
             CountryName = @"Israel"
         });
         this.Add(new PlayersDataItem()
@@ -535,7 +535,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.5,
             Registered = @"2017-03-13T10:51:36-02:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/cy.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/CY.png",
             CountryName = @"Cyprus"
         });
         this.Add(new PlayersDataItem()
@@ -549,7 +549,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5,
             Registered = @"2017-08-22T09:11:37-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ls.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/LS.png",
             CountryName = @"Lesotho"
         });
         this.Add(new PlayersDataItem()
@@ -563,7 +563,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.3,
             Registered = @"2017-06-19T10:57:42-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/cu.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/CU.png",
             CountryName = @"Cuba"
         });
         this.Add(new PlayersDataItem()
@@ -577,7 +577,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.6,
             Registered = @"2017-03-19T01:10:55-02:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ar.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/AR.png",
             CountryName = @"Argentina"
         });
         this.Add(new PlayersDataItem()
@@ -591,7 +591,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5,
             Registered = @"2017-08-24T11:58:56-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ht.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/HT.png",
             CountryName = @"Haiti"
         });
         this.Add(new PlayersDataItem()
@@ -605,7 +605,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.3,
             Registered = @"2017-01-10T07:12:44-02:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/nl.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/NL.png",
             CountryName = @"Netherlands"
         });
         this.Add(new PlayersDataItem()
@@ -619,7 +619,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.5,
             Registered = @"2017-03-26T10:04:29-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/bj.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/BJ.png",
             CountryName = @"Benin"
         });
         this.Add(new PlayersDataItem()
@@ -633,7 +633,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.2,
             Registered = @"2017-04-30T02:34:29-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/pk.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/PK.png",
             CountryName = @"Pakistan"
         });
         this.Add(new PlayersDataItem()
@@ -647,7 +647,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.1,
             Registered = @"2017-11-01T10:34:07-02:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/bf.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/BF.png",
             CountryName = @"Burkina Faso"
         });
         this.Add(new PlayersDataItem()
@@ -661,7 +661,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.2,
             Registered = @"2017-06-10T04:11:01-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/tg.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/TG.png",
             CountryName = @"Togo"
         });
         this.Add(new PlayersDataItem()
@@ -675,7 +675,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.6,
             Registered = @"2017-01-01T07:40:19-02:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/bz.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/BZ.png",
             CountryName = @"Belize"
         });
         this.Add(new PlayersDataItem()
@@ -689,7 +689,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.3,
             Registered = @"2017-05-10T04:33:10-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/mg.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/MG.png",
             CountryName = @"Madagascar"
         });
         this.Add(new PlayersDataItem()
@@ -703,7 +703,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.1,
             Registered = @"2017-07-03T05:39:45-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/nr.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/NR.png",
             CountryName = @"Nauru"
         });
         this.Add(new PlayersDataItem()
@@ -717,7 +717,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.7,
             Registered = @"2017-03-16T02:00:35-02:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/mv.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/MV.png",
             CountryName = @"Maldives"
         });
         this.Add(new PlayersDataItem()
@@ -731,7 +731,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.7,
             Registered = @"2017-03-04T01:58:52-02:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/st.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ST.png",
             CountryName = @"Sao Tome and Principe"
         });
         this.Add(new PlayersDataItem()
@@ -745,7 +745,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.3,
             Registered = @"2017-11-04T11:09:26-02:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/tw.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/TW.png",
             CountryName = @"Taiwan, Province of China"
         });
         this.Add(new PlayersDataItem()
@@ -759,7 +759,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.2,
             Registered = @"2017-10-28T04:06:33-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/eg.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/EG.png",
             CountryName = @"Egypt"
         });
         this.Add(new PlayersDataItem()
@@ -773,7 +773,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.2,
             Registered = @"2017-03-19T10:20:51-02:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/sy.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/SY.png",
             CountryName = @"Syrian Arab Republic"
         });
         this.Add(new PlayersDataItem()
@@ -787,7 +787,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.7,
             Registered = @"2017-01-04T03:04:05-02:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/sc.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/SC.png",
             CountryName = @"Seychelles"
         });
         this.Add(new PlayersDataItem()
@@ -801,7 +801,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.1,
             Registered = @"2017-03-01T07:51:17-02:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ws.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/WS.png",
             CountryName = @"Samoa"
         });
         this.Add(new PlayersDataItem()
@@ -815,7 +815,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.4,
             Registered = @"2017-05-08T09:30:14-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ni.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/NI.png",
             CountryName = @"Nicaragua"
         });
         this.Add(new PlayersDataItem()
@@ -829,7 +829,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.1,
             Registered = @"2017-02-07T10:23:13-02:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/kh.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/KH.png",
             CountryName = @"Cambodia"
         });
         this.Add(new PlayersDataItem()
@@ -843,7 +843,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.1,
             Registered = @"2017-02-13T05:03:04-02:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ua.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/UA.png",
             CountryName = @"Ukraine"
         });
         this.Add(new PlayersDataItem()
@@ -857,7 +857,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.5,
             Registered = @"2017-02-13T11:53:15-02:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ml.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ML.png",
             CountryName = @"Mali"
         });
         this.Add(new PlayersDataItem()
@@ -871,7 +871,7 @@ public class PlayersData // AthletesData
             TopSpeed = 6,
             Registered = @"2017-01-30T09:22:52-02:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ki.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/KI.png",
             CountryName = @"Kiribati"
         });
         this.Add(new PlayersDataItem()
@@ -885,7 +885,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.1,
             Registered = @"2017-07-21T04:22:18-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ae.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/AE.png",
             CountryName = @"United Arab Emirates"
         });
         this.Add(new PlayersDataItem()
@@ -899,7 +899,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.5,
             Registered = @"2017-03-06T09:21:58-02:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/tj.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/TJ.png",
             CountryName = @"Tajikistan"
         });
         this.Add(new PlayersDataItem()
@@ -913,7 +913,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.2,
             Registered = @"2017-06-17T12:34:29-03:00",
             TrackProgress = 75,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ph.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/PH.png",
             CountryName = @"Philippines"
         });
         this.Add(new PlayersDataItem()
@@ -927,7 +927,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.4,
             Registered = @"2017-03-19T08:12:23-02:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/lr.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/LR.png",
             CountryName = @"Liberia"
         });
         this.Add(new PlayersDataItem()
@@ -941,7 +941,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.4,
             Registered = @"2017-07-20T09:00:22-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/is.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/IS.png",
             CountryName = @"Iceland"
         });
         this.Add(new PlayersDataItem()
@@ -955,7 +955,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.5,
             Registered = @"2017-11-07T09:58:42-02:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/at.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/AT.png",
             CountryName = @"Austria"
         });
         this.Add(new PlayersDataItem()
@@ -969,7 +969,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4,
             Registered = @"2017-04-03T02:18:46-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/gb.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/GB.png",
             CountryName = @"United Kingdom"
         });
         this.Add(new PlayersDataItem()
@@ -983,7 +983,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.2,
             Registered = @"2017-04-21T08:08:33-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/gd.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/GD.png",
             CountryName = @"Grenada"
         });
         this.Add(new PlayersDataItem()
@@ -997,7 +997,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.1,
             Registered = @"2017-06-21T06:45:54-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/uz.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/UZ.png",
             CountryName = @"Uruguay"
         });
         this.Add(new PlayersDataItem()
@@ -1011,7 +1011,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.2,
             Registered = @"2017-06-02T12:21:59-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/cz.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/CZ.png",
             CountryName = @"Czechia"
         });
         this.Add(new PlayersDataItem()
@@ -1025,7 +1025,7 @@ public class PlayersData // AthletesData
             TopSpeed = 6,
             Registered = @"2017-11-06T02:14:31-02:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/er.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ER.png",
             CountryName = @"Eritrea"
         });
         this.Add(new PlayersDataItem()
@@ -1039,7 +1039,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.6,
             Registered = @"2017-04-21T04:06:34-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/pa.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/PA.png",
             CountryName = @"Panama"
         });
         this.Add(new PlayersDataItem()
@@ -1053,7 +1053,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.4,
             Registered = @"2017-02-08T04:03:22-02:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/hr.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/HR.png",
             CountryName = @"Croatia"
         });
         this.Add(new PlayersDataItem()
@@ -1067,7 +1067,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.8,
             Registered = @"2017-04-07T09:53:13-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/sb.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/SB.png",
             CountryName = @"Solomon Islands"
         });
         this.Add(new PlayersDataItem()
@@ -1081,7 +1081,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.5,
             Registered = @"2017-08-31T11:55:25-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/gy.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/GY.png",
             CountryName = @"Guyana"
         });
         this.Add(new PlayersDataItem()
@@ -1095,7 +1095,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.6,
             Registered = @"2017-10-22T02:15:39-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/kr.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/KR.png",
             CountryName = @"South Korea"
         });
         this.Add(new PlayersDataItem()
@@ -1109,7 +1109,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.8,
             Registered = @"2017-02-20T11:53:08-02:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ge.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/GE.png",
             CountryName = @"Georgia"
         });
         this.Add(new PlayersDataItem()
@@ -1123,7 +1123,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.1,
             Registered = @"2017-08-26T08:21:22-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ro.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/RO.png",
             CountryName = @"Romania"
         });
         this.Add(new PlayersDataItem()
@@ -1137,7 +1137,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.6,
             Registered = @"2017-08-13T01:05:52-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/mk.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/MK.png",
             CountryName = @"Macedonia, The Former Yugoslav Republic of"
         });
         this.Add(new PlayersDataItem()
@@ -1151,7 +1151,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.4,
             Registered = @"2017-04-16T01:10:37-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/nu.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/NU.png",
             CountryName = @"Niue"
         });
         this.Add(new PlayersDataItem()
@@ -1165,7 +1165,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.7,
             Registered = @"2017-06-30T04:13:42-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/cr.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/CR.png",
             CountryName = @"Costa Rica"
         });
         this.Add(new PlayersDataItem()
@@ -1179,7 +1179,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.1,
             Registered = @"2017-08-05T10:54:56-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/py.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/PY.png",
             CountryName = @"Paraguay"
         });
         this.Add(new PlayersDataItem()
@@ -1193,7 +1193,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.9,
             Registered = @"2017-02-02T11:42:41-02:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/mu.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/MU.png",
             CountryName = @"Mauritius"
         });
         this.Add(new PlayersDataItem()
@@ -1207,7 +1207,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.9,
             Registered = @"2017-07-13T09:06:04-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/dm.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/DM.png",
             CountryName = @"Dominica"
         });
         this.Add(new PlayersDataItem()
@@ -1221,7 +1221,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.1,
             Registered = @"2017-08-22T10:36:38-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/hu.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/HU.png",
             CountryName = @"Hungary"
         });
         this.Add(new PlayersDataItem()
@@ -1235,7 +1235,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.3,
             Registered = @"2017-10-09T02:01:16-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/de.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/DE.png",
             CountryName = @"Germany"
         });
         this.Add(new PlayersDataItem()
@@ -1249,7 +1249,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.6,
             Registered = @"2017-09-28T04:37:56-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/au.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/AU.png",
             CountryName = @"Australia"
         });
         this.Add(new PlayersDataItem()
@@ -1263,7 +1263,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.1,
             Registered = @"2017-09-08T01:22:14-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/np.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/NP.png",
             CountryName = @"Nepal"
         });
         this.Add(new PlayersDataItem()
@@ -1277,7 +1277,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.2,
             Registered = @"2017-03-23T12:54:35-02:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ke.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/KE.png",
             CountryName = @"Kenya"
         });
         this.Add(new PlayersDataItem()
@@ -1291,7 +1291,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.9,
             Registered = @"2017-06-09T08:07:19-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ba.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/BA.png",
             CountryName = @"Bosnia and Herzegovina"
         });
         this.Add(new PlayersDataItem()
@@ -1305,7 +1305,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.1,
             Registered = @"2017-05-03T02:40:05-03:00",
             TrackProgress = 75,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/so.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/SO.png",
             CountryName = @"Somalia"
         });
         this.Add(new PlayersDataItem()
@@ -1319,7 +1319,7 @@ public class PlayersData // AthletesData
             TopSpeed = 6,
             Registered = @"2017-10-04T02:46:46-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/vu.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/VU.png",
             CountryName = @"Vanuatu"
         });
         this.Add(new PlayersDataItem()
@@ -1333,7 +1333,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.1,
             Registered = @"2017-09-04T07:03:19-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ee.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/EE.png",
             CountryName = @"Estonia"
         });
         this.Add(new PlayersDataItem()
@@ -1347,7 +1347,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.1,
             Registered = @"2017-04-10T11:39:46-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/se.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/SE.png",
             CountryName = @"Sweden"
         });
         this.Add(new PlayersDataItem()
@@ -1361,7 +1361,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.7,
             Registered = @"2017-01-30T03:23:36-02:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/sn.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/SN.png",
             CountryName = @"Senegal"
         });
         this.Add(new PlayersDataItem()
@@ -1375,7 +1375,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.3,
             Registered = @"2017-02-03T04:36:54-02:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/om.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/OM.png",
             CountryName = @"Oman"
         });
         this.Add(new PlayersDataItem()
@@ -1389,7 +1389,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5,
             Registered = @"2017-01-21T10:19:56-02:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/jm.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/JM.png",
             CountryName = @"Jamaica"
         });
         this.Add(new PlayersDataItem()
@@ -1403,7 +1403,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.6,
             Registered = @"2017-10-04T03:02:35-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/sv.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/SV.png",
             CountryName = @"El Salvador"
         });
         this.Add(new PlayersDataItem()
@@ -1417,7 +1417,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.8,
             Registered = @"2017-01-23T06:14:22-02:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/dz.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/DZ.png",
             CountryName = @"Algeria"
         });
         this.Add(new PlayersDataItem()
@@ -1431,7 +1431,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4,
             Registered = @"2017-01-08T02:13:29-02:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ca.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/CA.png",
             CountryName = @"Canada"
         });
         this.Add(new PlayersDataItem()
@@ -1445,7 +1445,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.9,
             Registered = @"2017-10-03T09:42:15-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/mx.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/MX.png",
             CountryName = @"Mexico"
         });
         this.Add(new PlayersDataItem()
@@ -1459,7 +1459,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.5,
             Registered = @"2017-04-14T11:48:28-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/sa.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/SA.png",
             CountryName = @"Saudi Arabia"
         });
         this.Add(new PlayersDataItem()
@@ -1473,7 +1473,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.5,
             Registered = @"2017-02-18T05:32:55-02:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/tv.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/TV.png",
             CountryName = @"Tuvalu"
         });
         this.Add(new PlayersDataItem()
@@ -1487,7 +1487,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.2,
             Registered = @"2017-09-28T11:13:00-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/mm.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/MM.png",
             CountryName = @"Myanmar"
         });
         this.Add(new PlayersDataItem()
@@ -1501,7 +1501,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.2,
             Registered = @"2017-09-27T01:17:14-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/fr.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/FR.png",
             CountryName = @"France"
         });
         this.Add(new PlayersDataItem()
@@ -1515,7 +1515,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.6,
             Registered = @"2017-03-29T11:54:15-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/bt.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/BT.png",
             CountryName = @"Bhutan"
         });
         this.Add(new PlayersDataItem()
@@ -1529,7 +1529,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.3,
             Registered = @"2017-09-12T09:14:14-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/td.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/TD.png",
             CountryName = @"Chad"
         });
         this.Add(new PlayersDataItem()
@@ -1543,7 +1543,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.4,
             Registered = @"2017-03-31T06:14:26-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/jp.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/JP.png",
             CountryName = @"Japan"
         });
         this.Add(new PlayersDataItem()
@@ -1557,7 +1557,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.4,
             Registered = @"2017-07-04T03:01:47-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/gq.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/GQ.png",
             CountryName = @"Equatorial Guinea"
         });
         this.Add(new PlayersDataItem()
@@ -1571,7 +1571,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.5,
             Registered = @"2017-08-19T03:02:33-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ve.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/VE.png",
             CountryName = @"Venezuela"
         });
         this.Add(new PlayersDataItem()
@@ -1585,7 +1585,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.3,
             Registered = @"2017-03-10T07:36:56-02:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/sd.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/SD.png",
             CountryName = @"Sudan"
         });
         this.Add(new PlayersDataItem()
@@ -1599,7 +1599,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.4,
             Registered = @"2017-04-19T11:43:38-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/si.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/SI.png",
             CountryName = @"Slovenia"
         });
         this.Add(new PlayersDataItem()
@@ -1613,7 +1613,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.9,
             Registered = @"2017-10-20T03:40:24-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ly.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/LY.png",
             CountryName = @"Libyan Arab Jamahiriya"
         });
         this.Add(new PlayersDataItem()
@@ -1627,7 +1627,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5,
             Registered = @"2017-10-19T11:01:10-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/la.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/LA.png",
             CountryName = @"Lao PeopleS Democratic Republic"
         });
         this.Add(new PlayersDataItem()
@@ -1641,7 +1641,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.9,
             Registered = @"2017-07-07T03:51:26-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/bs.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/BS.png",
             CountryName = @"Bahamas"
         });
         this.Add(new PlayersDataItem()
@@ -1655,7 +1655,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.1,
             Registered = @"2017-01-05T11:41:20-02:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ye.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/YE.png",
             CountryName = @"Yemen"
         });
         this.Add(new PlayersDataItem()
@@ -1669,7 +1669,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4,
             Registered = @"2017-06-11T12:20:41-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/li.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/LI.png",
             CountryName = @"Liechtenstein"
         });
         this.Add(new PlayersDataItem()
@@ -1683,7 +1683,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.2,
             Registered = @"2017-03-02T05:01:02-02:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/pw.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/PW.png",
             CountryName = @"Palau"
         });
         this.Add(new PlayersDataItem()
@@ -1697,7 +1697,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.6,
             Registered = @"2017-10-19T10:38:35-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ck.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/CK.png",
             CountryName = @"Cook Islands"
         });
         this.Add(new PlayersDataItem()
@@ -1711,7 +1711,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.3,
             Registered = @"2017-07-23T02:43:07-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/lu.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/LU.png",
             CountryName = @"Luxembourg"
         });
         this.Add(new PlayersDataItem()
@@ -1725,7 +1725,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.6,
             Registered = @"2017-02-02T03:50:21-02:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ag.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/AG.png",
             CountryName = @"Antigua and Barbuda"
         });
         this.Add(new PlayersDataItem()
@@ -1739,7 +1739,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.5,
             Registered = @"2017-01-20T02:38:39-02:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/kn.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/KN.png",
             CountryName = @"Saint Kitts and Nevis"
         });
         this.Add(new PlayersDataItem()
@@ -1753,7 +1753,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.5,
             Registered = @"2017-05-10T12:45:12-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/fm.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/FM.png",
             CountryName = @"Micronesia, Federated States of"
         });
         this.Add(new PlayersDataItem()
@@ -1767,7 +1767,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.3,
             Registered = @"2017-09-17T09:41:01-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/mz.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/MZ.png",
             CountryName = @"Mozambique"
         });
         this.Add(new PlayersDataItem()
@@ -1781,7 +1781,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.4,
             Registered = @"2017-02-13T05:23:49-02:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ug.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/UG.png",
             CountryName = @"Uganda"
         });
         this.Add(new PlayersDataItem()
@@ -1795,7 +1795,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.7,
             Registered = @"2017-07-30T01:33:14-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/tz.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/TZ.png",
             CountryName = @"Tanzania, United Republic of"
         });
         this.Add(new PlayersDataItem()
@@ -1809,7 +1809,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.7,
             Registered = @"2017-01-24T01:00:15-02:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/pe.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/PE.png",
             CountryName = @"Peru"
         });
         this.Add(new PlayersDataItem()
@@ -1823,7 +1823,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.3,
             Registered = @"2017-04-02T03:33:57-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/dk.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/DK.png",
             CountryName = @"Denmark"
         });
         this.Add(new PlayersDataItem()
@@ -1837,7 +1837,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.7,
             Registered = @"2017-03-30T12:34:24-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/vc.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/VC.png",
             CountryName = @"Saint Vincent and the Grenadines"
         });
         this.Add(new PlayersDataItem()
@@ -1851,7 +1851,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.3,
             Registered = @"2017-08-04T07:05:34-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/md.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/MD.png",
             CountryName = @"Moldova, Republic of"
         });
         this.Add(new PlayersDataItem()
@@ -1865,7 +1865,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.2,
             Registered = @"2017-01-07T06:47:56-02:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/mh.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/MH.png",
             CountryName = @"Marshall Islands"
         });
         this.Add(new PlayersDataItem()
@@ -1879,7 +1879,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.7,
             Registered = @"2017-04-20T09:33:53-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ne.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/NE.png",
             CountryName = @"Niger"
         });
         this.Add(new PlayersDataItem()
@@ -1893,7 +1893,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.6,
             Registered = @"2017-06-11T03:50:43-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ng.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/NG.png",
             CountryName = @"Nigeria"
         });
         this.Add(new PlayersDataItem()
@@ -1907,7 +1907,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.7,
             Registered = @"2017-10-28T10:39:22-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/iq.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/IQ.png",
             CountryName = @"Iraq"
         });
         this.Add(new PlayersDataItem()
@@ -1921,7 +1921,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.7,
             Registered = @"2017-09-07T11:17:40-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ao.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/AO.png",
             CountryName = @"Angola"
         });
         this.Add(new PlayersDataItem()
@@ -1935,7 +1935,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.5,
             Registered = @"2017-06-14T11:10:20-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/in.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/IN.png",
             CountryName = @"India"
         });
         this.Add(new PlayersDataItem()
@@ -1949,7 +1949,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.9,
             Registered = @"2017-06-14T05:12:04-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ga.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/GA.png",
             CountryName = @"Gabon"
         });
         this.Add(new PlayersDataItem()
@@ -1963,7 +1963,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.7,
             Registered = @"2017-05-31T02:56:58-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/na.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/NA.png",
             CountryName = @"Namibia"
         });
         this.Add(new PlayersDataItem()
@@ -1977,7 +1977,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.9,
             Registered = @"2017-01-04T02:54:53-02:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ch.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/CH.png",
             CountryName = @"Switzerland"
         });
         this.Add(new PlayersDataItem()
@@ -1991,7 +1991,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.4,
             Registered = @"2017-09-11T12:20:19-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/my.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/MY.png",
             CountryName = @"Malaysia"
         });
         this.Add(new PlayersDataItem()
@@ -2005,7 +2005,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.8,
             Registered = @"2017-01-09T05:46:07-02:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/al.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/AL.png",
             CountryName = @"Albania"
         });
         this.Add(new PlayersDataItem()
@@ -2019,7 +2019,7 @@ public class PlayersData // AthletesData
             TopSpeed = 6,
             Registered = @"2017-06-13T12:54:56-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ad.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/AD.png",
             CountryName = @"Andorra"
         });
         this.Add(new PlayersDataItem()
@@ -2033,7 +2033,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.7,
             Registered = @"2017-03-25T11:25:30-02:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/kw.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/KW.png",
             CountryName = @"Kuwait"
         });
         this.Add(new PlayersDataItem()
@@ -2047,7 +2047,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.7,
             Registered = @"2017-09-30T01:01:04-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/be.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/BE.png",
             CountryName = @"Belgium"
         });
         this.Add(new PlayersDataItem()
@@ -2061,7 +2061,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4,
             Registered = @"2017-07-15T12:32:30-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/gm.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/GM.png",
             CountryName = @"Gambia"
         });
         this.Add(new PlayersDataItem()
@@ -2075,7 +2075,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.8,
             Registered = @"2017-10-03T08:01:40-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/cf.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/CF.png",
             CountryName = @"Central African Republic"
         });
         this.Add(new PlayersDataItem()
@@ -2089,7 +2089,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.8,
             Registered = @"2017-04-22T04:20:39-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/bi.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/BI.png",
             CountryName = @"Burundi"
         });
         this.Add(new PlayersDataItem()
@@ -2103,7 +2103,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.6,
             Registered = @"2017-10-07T06:08:00-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/bw.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/BW.png",
             CountryName = @"Botswana"
         });
         this.Add(new PlayersDataItem()
@@ -2117,7 +2117,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.8,
             Registered = @"2017-05-10T02:18:02-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/sm.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/SM.png",
             CountryName = @"San Marino"
         });
         this.Add(new PlayersDataItem()
@@ -2131,7 +2131,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.2,
             Registered = @"2017-08-23T09:37:40-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/id.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ID.png",
             CountryName = @"Indonesia"
         });
         this.Add(new PlayersDataItem()
@@ -2145,7 +2145,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.1,
             Registered = @"2017-09-16T07:05:43-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/nz.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/NZ.png",
             CountryName = @"New Zealand"
         });
         this.Add(new PlayersDataItem()
@@ -2159,7 +2159,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.3,
             Registered = @"2017-11-11T02:04:19-02:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/kp.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/KP.png",
             CountryName = @"North Korea"
         });
         this.Add(new PlayersDataItem()
@@ -2173,7 +2173,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5,
             Registered = @"2017-01-24T07:30:43-02:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/jo.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/JO.png",
             CountryName = @"Jordan"
         });
         this.Add(new PlayersDataItem()
@@ -2187,7 +2187,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.6,
             Registered = @"2017-09-29T03:54:57-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/lt.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/LT.png",
             CountryName = @"Lithuania"
         });
         this.Add(new PlayersDataItem()
@@ -2201,7 +2201,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.9,
             Registered = @"2017-02-08T07:50:59-02:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/gn.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/GN.png",
             CountryName = @"Guinea"
         });
         this.Add(new PlayersDataItem()
@@ -2215,7 +2215,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.6,
             Registered = @"2017-08-16T09:46:35-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/by.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/BY.png",
             CountryName = @"Belarus"
         });
         this.Add(new PlayersDataItem()
@@ -2229,7 +2229,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.5,
             Registered = @"2017-01-11T12:52:28-02:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/th.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/TH.png",
             CountryName = @"Thailand"
         });
         this.Add(new PlayersDataItem()
@@ -2243,7 +2243,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.4,
             Registered = @"2017-07-25T09:23:24-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/pt.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/PT.png",
             CountryName = @"Portugal"
         });
         this.Add(new PlayersDataItem()
@@ -2257,7 +2257,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.5,
             Registered = @"2017-02-08T12:45:46-02:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/mn.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/MN.png",
             CountryName = @"Mongolia"
         });
         this.Add(new PlayersDataItem()
@@ -2271,7 +2271,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5,
             Registered = @"2017-04-24T01:20:34-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/rw.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/RW.png",
             CountryName = @"RWANDA"
         });
         this.Add(new PlayersDataItem()
@@ -2285,7 +2285,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.8,
             Registered = @"2017-09-01T04:39:52-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/br.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/BR.png",
             CountryName = @"Brazil"
         });
         this.Add(new PlayersDataItem()
@@ -2299,7 +2299,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.3,
             Registered = @"2017-04-05T05:27:13-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/bh.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/BH.png",
             CountryName = @"Bahrain"
         });
         this.Add(new PlayersDataItem()
@@ -2313,7 +2313,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.1,
             Registered = @"2017-10-05T05:54:31-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/af.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/AF.png",
             CountryName = @"Afghanistan"
         });
         this.Add(new PlayersDataItem()
@@ -2327,7 +2327,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.2,
             Registered = @"2017-09-15T02:11:43-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/gr.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/GR.png",
             CountryName = @"Greece"
         });
         this.Add(new PlayersDataItem()
@@ -2341,7 +2341,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.5,
             Registered = @"2017-04-26T01:26:36-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/et.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ET.png",
             CountryName = @"Ethiopia"
         });
         this.Add(new PlayersDataItem()
@@ -2355,7 +2355,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.4,
             Registered = @"2017-01-31T12:07:48-02:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/es.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ES.png",
             CountryName = @"Spain"
         });
         this.Add(new PlayersDataItem()
@@ -2369,7 +2369,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.2,
             Registered = @"2017-01-02T01:04:04-02:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/cl.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/CL.png",
             CountryName = @"Chile"
         });
         this.Add(new PlayersDataItem()
@@ -2383,7 +2383,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5,
             Registered = @"2017-02-13T05:39:15-02:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/za.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ZA.png",
             CountryName = @"South Africa"
         });
         this.Add(new PlayersDataItem()
@@ -2397,7 +2397,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.4,
             Registered = @"2017-07-28T09:10:43-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ie.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/IE.png",
             CountryName = @"Ireland"
         });
         this.Add(new PlayersDataItem()
@@ -2411,7 +2411,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.3,
             Registered = @"2017-01-08T02:41:56-02:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/kz.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/KZ.png",
             CountryName = @"Kazakhstan"
         });
         this.Add(new PlayersDataItem()
@@ -2425,7 +2425,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.2,
             Registered = @"2017-10-09T11:32:13-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/tl.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/TL.png",
             CountryName = @"Timor-Leste"
         });
         this.Add(new PlayersDataItem()
@@ -2439,7 +2439,7 @@ public class PlayersData // AthletesData
             TopSpeed = 6,
             Registered = @"2017-11-02T02:17:43-02:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/sg.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/SG.png",
             CountryName = @"Singapore"
         });
         this.Add(new PlayersDataItem()
@@ -2453,7 +2453,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.8,
             Registered = @"2017-05-23T05:24:38-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/sl.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/SL.png",
             CountryName = @"Sierra Leone"
         });
         this.Add(new PlayersDataItem()
@@ -2467,7 +2467,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.7,
             Registered = @"2017-11-10T11:31:44-02:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/mr.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/MR.png",
             CountryName = @"Mauritania"
         });
         this.Add(new PlayersDataItem()
@@ -2481,7 +2481,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.7,
             Registered = @"2017-02-26T07:28:02-02:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/hn.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/HN.png",
             CountryName = @"Honduras"
         });
         this.Add(new PlayersDataItem()
@@ -2495,7 +2495,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5,
             Registered = @"2017-10-24T08:25:40-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ir.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/IR.png",
             CountryName = @"Iran, Islamic Republic Of"
         });
         this.Add(new PlayersDataItem()
@@ -2509,7 +2509,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.5,
             Registered = @"2017-05-17T12:51:47-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/va.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/VA.png",
             CountryName = @"Holy See (Vatican City State)"
         });
         this.Add(new PlayersDataItem()
@@ -2523,7 +2523,7 @@ public class PlayersData // AthletesData
             TopSpeed = 4.5,
             Registered = @"2017-03-22T03:23:12-02:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/it.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/IT.png",
             CountryName = @"Italy"
         });
         this.Add(new PlayersDataItem()
@@ -2537,7 +2537,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.9,
             Registered = @"2017-01-11T01:41:31-02:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/am.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/AM.png",
             CountryName = @"Armenia"
         });
         this.Add(new PlayersDataItem()
@@ -2551,7 +2551,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.5,
             Registered = @"2017-05-14T12:30:08-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/ru.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/RU.png",
             CountryName = @"Russian Federation"
         });
         this.Add(new PlayersDataItem()
@@ -2565,7 +2565,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.6,
             Registered = @"2017-06-20T06:02:49-03:00",
             TrackProgress = 25,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/dj.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/DJ.png",
             CountryName = @"Djibouti"
         });
         this.Add(new PlayersDataItem()
@@ -2579,7 +2579,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.3,
             Registered = @"2017-03-31T07:15:46-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/lc.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/LC.png",
             CountryName = @"Saint Lucia"
         });
         this.Add(new PlayersDataItem()
@@ -2593,7 +2593,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.2,
             Registered = @"2017-04-10T09:57:13-03:00",
             TrackProgress = 60,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/fj.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/FJ.png",
             CountryName = @"Fiji"
         });
         this.Add(new PlayersDataItem()
@@ -2607,7 +2607,7 @@ public class PlayersData // AthletesData
             TopSpeed = 5.4,
             Registered = @"2017-07-03T06:19:47-03:00",
             TrackProgress = 45,
-            CountryFlag = @"https://dl.infragistics.com/x/img/flags/bo.png",
+            CountryFlag = @"https://dl.infragistics.com/x/img/flags/BO.png",
             CountryName = @"Bolivia"
         });
     }
