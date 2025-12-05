@@ -185,14 +185,14 @@ namespace Infragistics.Samples
             // readonly static string[] genders = { "男", "女" };
 
             string genderEn = (gender == "男" ? "male" : "female");
-            return "https://static.infragistics.com/xplatform/images/genders/" + genderEn + ".png";
+            return "https://dl.infragistics.com/x/img/genders/" + genderEn + ".png";
         }
 
         public static string GetCountryFlag(string country)
         {
             // Note: Mapping between En and Ja.
             // This comment is for the sake of coding and debugging.
-            // readonly static string[] countriesEn = { "USA", "UK", "France", "Canada", "Poland" };
+            // readonly static string[] countriesEn = { "United-States", "United-Kingdom", "France", "Canada", "Poland" };
             // readonly static string[] countries = { "アメリカ合衆国", "イギリス", "フランス", "カナダ", "ポーランド" };
 
             string countryEn = "";
@@ -224,7 +224,7 @@ namespace Infragistics.Samples
             { // if (country === "United Kingdom") {
                 countryEn = "UK";
             }
-            return "https://static.infragistics.com/xplatform/images/flags/" + countryEn + ".png";
+            return "https://dl.infragistics.com/x/img/flags/" + countryEn + ".png";
         }
 
         public static string GetIncomeRange(double salary)

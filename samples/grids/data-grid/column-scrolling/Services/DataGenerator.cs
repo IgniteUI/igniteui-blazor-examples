@@ -12,7 +12,7 @@ namespace Infragistics.Samples
         readonly static string[] maleNames = { "Kyle", "Oscar", "Ralph", "Mike", "Bill", "Frank", "Howard", "Jack", "Larry", "Pete", "Steve", "Vince", "Mark", "Alex", "Max", "Brian", "Chris", "Andrew", "Martin", "Mike", "Steve", "Glenn", "Bruce" };
         readonly static string[] femaleNames = { "Gina", "Irene", "Katie", "Brenda", "Casey", "Fiona", "Holly", "Kate", "Liz", "Pamela", "Nelly", "Marisa", "Monica", "Anna", "Jessica", "Sofia", "Isabella", "Margo", "Jane", "Audrey", "Sally", "Melanie", "Greta", "Aurora", "Sally" };
         readonly static string[] lastNames = { "Adams", "Crowley", "Ellis", "Martinez", "Irvine", "Maxwell", "Clark", "Owens", "Rooney", "Lincoln", "Thomas", "Spacey", "MOrgan", "King", "Newton", "Fitzgerald", "Holmes", "Jefferson", "Landry", "Berry", "Perez", "Spencer", "Starr", "Carter", "Edwards", "Stark", "Johnson", "Fitz", "Chief", "Blanc", "Perry", "Stone", "Williams", "Lane", "Jobs", "Adams", "Power", "Tesla" };
-        readonly static string[] countries = { "USA", "UK", "France", "Canada", "Poland" };
+        readonly static string[] countries = { "United-States", "United-Kingdom", "France", "Canada", "Poland" };
         readonly static string[] citiesUS = { "New York", "Los Angeles", "Miami", "San Francisco", "San Diego", "Las Vegas" };
         readonly static string[] citiesUK = { "London", "Liverpool", "Manchester" };
         readonly static string[] citiesFR = { "Paris", "Marseille", "Lyon" };
@@ -97,7 +97,7 @@ namespace Infragistics.Samples
             {
                 return GetItem(citiesPL);
             }
-            else if (country == "USA")
+            else if (country == "United-States")
             {
                 return GetItem(citiesUS);
             }
@@ -179,12 +179,12 @@ namespace Infragistics.Samples
 
         public static string GetGenderPhoto(string gender)
         {
-            return "https://static.infragistics.com/xplatform/images/genders/" + gender + ".png";
+            return "https://dl.infragistics.com/x/img/genders/" + gender + ".png";
         }
 
         public static string GetCountryFlag(string country)
         {
-            return "https://static.infragistics.com/xplatform/images/flags/" + country + ".png";
+            return "https://dl.infragistics.com/x/img/flags/" + country + ".png";
         }
 
         public static string GetIncomeRange(double salary)

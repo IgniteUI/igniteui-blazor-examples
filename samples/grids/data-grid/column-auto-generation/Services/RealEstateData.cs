@@ -33,7 +33,7 @@ namespace Infragistics.Samples
 
             string[] property = { "Townhouse", "Single", "Condo", "Villa" };
             string[] emails = { "estates.com", "remax.com", "zillow.com", "realtor.com", "coldwell.com" };
-            string[] countries = { "USA", "UK", "France", "Canada", "Poland", "Japan", "Germany" };
+            string[] countries = { "United-States", "United-Kingdom", "France", "Canada", "Poland", "Japan", "Germany" };
             var houses = new List<RealEstate>();
 
             for (var i = 0; i < count; i++)
