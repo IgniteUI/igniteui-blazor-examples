@@ -6,7 +6,7 @@ This folder contains implementation of Blazor application with example of Groupb
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <body>
-        <!-- https://static.infragistics.com/xplatform/images/browsers -->
+        <!-- https://dl.infragistics.com/x/img/browsers -->
         <a target="_blank" href="https://www.infragistics.com/products/ignite-ui-blazor/blazor/components/general-getting-started.html" rel="noopener noreferrer">
             <img height="40px" style="border-radius: 0rem" alt="View Docs" src="https://github.com/IgniteUI/igniteui-blazor-examples/raw/vnext/templates/sample/images/button-docs.png"/>
         </a>

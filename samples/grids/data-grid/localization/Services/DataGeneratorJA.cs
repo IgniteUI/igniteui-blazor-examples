@@ -151,12 +151,12 @@ namespace Infragistics.Samples
 
         public static string GetPhotoMale(int id)
         {
-            return "https://static.infragistics.com/xplatform/images/people/GUY" + Pad(id, 2) + ".png";
+            return "https://dl.infragistics.com/x/img/people/men/" + Pad(id, 2) + ".png";
         }
 
         public static string GetPhotoFemale(int id)
         {
-            return "https://static.infragistics.com/xplatform/images/people/GIRL" + Pad(id, 2) + ".png";
+            return "https://dl.infragistics.com/x/img/people/women/" + Pad(id, 2) + ".png";
         }
 
         private static int maleCount = 0;

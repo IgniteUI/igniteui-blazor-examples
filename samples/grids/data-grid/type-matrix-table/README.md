@@ -1,6 +1,6 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <body>
-        <!-- https://static.infragistics.com/xplatform/images/browsers -->
+        <!-- https://dl.infragistics.com/x/img/browsers -->
         <a target="_blank" href="https://infragistics.com/blazor-client/samples{SampleRoute}" rel="noopener noreferrer">
             <img height="40px" style="border-radius: 0.5rem; max-width: 100%;" alt="Run Sample" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/vnext/templates/sample/images/blazor-run-sample.png"/>
         </a>

@@ -101,31 +101,31 @@ namespace Infragistics.Samples
             };
 
             string[] genders = new string[] {
-                "GUY",
-                "GIRL",
-                "GIRL",
-                "GIRL",
-                "GUY",
-                "GUY",
-                "GUY",
-                "GUY",
-                "GUY",
-                "GUY",
-                "GUY",
-                "GUY",
-                "GIRL",
-                "GIRL",
-                "GIRL",
-                "GUY",
-                "GUY",
-                "GUY",
-                "GIRL",
-                "GIRL",
-                "GIRL",
-                "GUY",
-                "GUY",
-                "GUY",
-                "GUY"
+                "men",
+                "women",
+                "women",
+                "women",
+                "men",
+                "men",
+                "men",
+                "men",
+                "men",
+                "men",
+                "men",
+                "men",
+                "women",
+                "women",
+                "women",
+                "men",
+                "men",
+                "men",
+                "women",
+                "women",
+                "women",
+                "men",
+                "men",
+                "men",
+                "men"
             };
 
             string[] territories = new string[]{
@@ -182,7 +182,9 @@ namespace Infragistics.Samples
                     value = "0" + value;
                 }
 
-                item.ImageName = SalesPersonData.CreateUri(genders[firstIndex] + value + ".png");
+                int imageID = SalesPersonData.GetRandomInt(10, 39);
+                var imageGender = genders[firstIndex];
+                item.ImageName = SalesPersonData.CreateUri(imageGender + "/" + imageID + ".png");
                 item.Territory = territories[(int)Math.Round(r.NextDouble() * (territories.Length - 1))];
                 item.AvgSale = Math.Round((r.NextDouble() * 800)) + 200.0;
                 item.Change = (r.NextDouble() * 40.0) - 20.0;
@@ -203,9 +205,13 @@ namespace Infragistics.Samples
             return items;
         }
 
-        public static string CreateUri(string value)
+        public static string CreateUri(string name)
         {
-            return "https://static.infragistics.com/xplatform/images/people/" + value;
+            return "https://dl.infragistics.com/x/img/people/" + name;
+        }
+
+        public static int GetRandomInt(int min, int max) {
+            return Math.Floor(Math.Random() * (max - min + 1)) + min;
         }
     }
 }

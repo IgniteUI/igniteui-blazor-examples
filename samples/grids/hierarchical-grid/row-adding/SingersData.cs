@@ -43,7 +43,7 @@ public class SingersData
 {
     public SingersData()
     {
-        this.Add(new SingersDataItem() { ID = 0, Artist = @"Naomí Yepes", Photo = @"https://static.infragistics.com/xplatform/images/people/names/naomi.jpg", Debut = 2011, GrammyNominations = 6, GrammyAwards = 0, HasGrammyAward = false, Tours = new List<SingersDataItem_ToursItem>()
+        this.Add(new SingersDataItem() { ID = 0, Artist = @"Naomí Yepes", Photo = @"https://dl.infragistics.com/x/img/people/names/naomi.png", Debut = 2011, GrammyNominations = 6, GrammyAwards = 0, HasGrammyAward = false, Tours = new List<SingersDataItem_ToursItem>()
         {
             new SingersDataItem_ToursItem() { Tour = @"Faithful Tour", StartedOn = @"Sep 12", Location = @"Worldwide", Headliner = @"NO", TouredBy = @"Naomí Yepes" },
             new SingersDataItem_ToursItem() { Tour = @"City Jam Sessions", StartedOn = @"Aug 13", Location = @"North America", Headliner = @"YES", TouredBy = @"Naomí Yepes" },
@@ -125,7 +125,7 @@ public class SingersData
                 new SingersDataItem_AlbumsItem_SongsItem() { Number = 10, Title = @"Hiding in the Storm", Released = @"27 May 2019", Genre = @"Electro house Electropop", Album = @"Curiosity" }}
              }}
          });
-        this.Add(new SingersDataItem() { ID = 1, Artist = @"Babila Ebwélé", Photo = @"https://static.infragistics.com/xplatform/images/people/names/babila.jpg", Debut = 2009, GrammyNominations = 0, GrammyAwards = 11, HasGrammyAward = true, Tours = new List<SingersDataItem_ToursItem>()
+        this.Add(new SingersDataItem() { ID = 1, Artist = @"Babila Ebwélé", Photo = @"https://dl.infragistics.com/x/img/people/names/babila.png", Debut = 2009, GrammyNominations = 0, GrammyAwards = 11, HasGrammyAward = true, Tours = new List<SingersDataItem_ToursItem>()
         {
             new SingersDataItem_ToursItem() { Tour = @"The last straw", StartedOn = @"May 09", Location = @"Europe, Asia", Headliner = @"NO", TouredBy = @"Babila Ebwélé" },
             new SingersDataItem_ToursItem() { Tour = @"No foundations", StartedOn = @"Jun 04", Location = @"United States, Europe", Headliner = @"YES", TouredBy = @"Babila Ebwélé" },
@@ -162,7 +162,7 @@ public class SingersData
                 new SingersDataItem_AlbumsItem_SongsItem() { Number = 11, Title = @"Hotel Cardiff", Released = @"30 Dec 2019", Genre = @"guilty pleasure ebm", Album = @"Death's dead" }}
              }}
          });
-        this.Add(new SingersDataItem() { ID = 2, Artist = @"Ahmad Nazeri", Photo = @"https://static.infragistics.com/xplatform/images/people/names/ahmad.jpg", Debut = 2004, GrammyNominations = 3, GrammyAwards = 1, HasGrammyAward = true, Tours = new List<SingersDataItem_ToursItem>()
+        this.Add(new SingersDataItem() { ID = 2, Artist = @"Ahmad Nazeri", Photo = @"https://dl.infragistics.com/x/img/people/names/ahmad.png", Debut = 2004, GrammyNominations = 3, GrammyAwards = 1, HasGrammyAward = true, Tours = new List<SingersDataItem_ToursItem>()
         {
         }
         , Albums = new List<SingersDataItem_AlbumsItem>()
@@ -194,7 +194,7 @@ public class SingersData
                 new SingersDataItem_AlbumsItem_SongsItem() { Number = 10, Title = @"Sky of Dream", Released = @"20 Jun 2019", Genre = @"ethno-tunes", Album = @"Bursting bubbles" }}
              }}
          });
-        this.Add(new SingersDataItem() { ID = 3, Artist = @"Kimmy McIlmorie", Photo = @"https://static.infragistics.com/xplatform/images/people/names/kimmy.jpg", Debut = 2007, GrammyNominations = 21, GrammyAwards = 3, HasGrammyAward = true, Tours = new List<SingersDataItem_ToursItem>()
+        this.Add(new SingersDataItem() { ID = 3, Artist = @"Kimmy McIlmorie", Photo = @"https://dl.infragistics.com/x/img/people/names/kimmy.png", Debut = 2007, GrammyNominations = 21, GrammyAwards = 3, HasGrammyAward = true, Tours = new List<SingersDataItem_ToursItem>()
         {
         }
         , Albums = new List<SingersDataItem_AlbumsItem>()
@@ -213,14 +213,14 @@ public class SingersData
                 new SingersDataItem_AlbumsItem_SongsItem() { Number = 10, Title = @"Golden Dancing", Released = @"12 Oct 2019", Genre = @"ethno-tunes", Album = @"Here we go again" }}
              }}
          });
-        this.Add(new SingersDataItem() { ID = 4, Artist = @"Mar Rueda", Photo = @"https://static.infragistics.com/xplatform/images/people/names/mar.jpg", Debut = 1996, GrammyNominations = 14, GrammyAwards = 2, HasGrammyAward = true, Tours = new List<SingersDataItem_ToursItem>()
+        this.Add(new SingersDataItem() { ID = 4, Artist = @"Mar Rueda", Photo = @"https://dl.infragistics.com/x/img/people/names/mar.png", Debut = 1996, GrammyNominations = 14, GrammyAwards = 2, HasGrammyAward = true, Tours = new List<SingersDataItem_ToursItem>()
         {
         }
         , Albums = new List<SingersDataItem_AlbumsItem>()
         {
         }
          });
-        this.Add(new SingersDataItem() { ID = 5, Artist = @"Izabella Tabakova", Photo = @"https://static.infragistics.com/xplatform/images/people/names/izabella.jpg", Debut = 2017, GrammyNominations = 7, GrammyAwards = 11, HasGrammyAward = true, Tours = new List<SingersDataItem_ToursItem>()
+        this.Add(new SingersDataItem() { ID = 5, Artist = @"Izabella Tabakova", Photo = @"https://dl.infragistics.com/x/img/people/names/izabella.png", Debut = 2017, GrammyNominations = 7, GrammyAwards = 11, HasGrammyAward = true, Tours = new List<SingersDataItem_ToursItem>()
         {
             new SingersDataItem_ToursItem() { Tour = @"Final breath", StartedOn = @"Jun 13", Location = @"Europe", Headliner = @"YES", TouredBy = @"Izabella Tabakova" },
             new SingersDataItem_ToursItem() { Tour = @"Once bitten", StartedOn = @"Dec 18", Location = @"Australia, United States", Headliner = @"NO", TouredBy = @"Izabella Tabakova" },
@@ -268,7 +268,7 @@ public class SingersData
                 new SingersDataItem_AlbumsItem_SongsItem() { Number = 10, Title = @"Dancing in the Light", Released = @"28 Nov 2019", Genre = @"Synth-pop R&B", Album = @"Dark matters" }}
              }}
          });
-        this.Add(new SingersDataItem() { ID = 6, Artist = @"Nguyễn Diệp Chi", Photo = @"https://static.infragistics.com/xplatform/images/people/names/nguyen.jpg", Debut = 1992, GrammyNominations = 4, GrammyAwards = 2, HasGrammyAward = true, Tours = new List<SingersDataItem_ToursItem>()
+        this.Add(new SingersDataItem() { ID = 6, Artist = @"Nguyễn Diệp Chi", Photo = @"https://dl.infragistics.com/x/img/people/names/nguyen.png", Debut = 1992, GrammyNominations = 4, GrammyAwards = 2, HasGrammyAward = true, Tours = new List<SingersDataItem_ToursItem>()
         {
         }
         , Albums = new List<SingersDataItem_AlbumsItem>()
@@ -287,7 +287,7 @@ public class SingersData
                 new SingersDataItem_AlbumsItem_SongsItem() { Number = 10, Title = @"Bright Flying", Released = @"24 Jan 2019", Genre = @"*", Album = @"Library of liberty" }}
              }}
          });
-        this.Add(new SingersDataItem() { ID = 7, Artist = @"Eva Lee", Photo = @"https://static.infragistics.com/xplatform/images/people/names/eva.jpg", Debut = 2008, GrammyNominations = 2, GrammyAwards = 0, HasGrammyAward = false, Tours = new List<SingersDataItem_ToursItem>()
+        this.Add(new SingersDataItem() { ID = 7, Artist = @"Eva Lee", Photo = @"https://dl.infragistics.com/x/img/people/names/eva.png", Debut = 2008, GrammyNominations = 2, GrammyAwards = 0, HasGrammyAward = false, Tours = new List<SingersDataItem_ToursItem>()
         {
         }
         , Albums = new List<SingersDataItem_AlbumsItem>()
@@ -306,7 +306,7 @@ public class SingersData
                 new SingersDataItem_AlbumsItem_SongsItem() { Number = 10, Title = @"Heart of Storm", Released = @"07 Jan 2019", Genre = @"Synth-pop R&B", Album = @"Just a tease" }}
              }}
          });
-        this.Add(new SingersDataItem() { ID = 8, Artist = @"Siri Jakobsson", Photo = @"https://static.infragistics.com/xplatform/images/people/names/siri.jpg", Debut = 1990, GrammyNominations = 2, GrammyAwards = 8, HasGrammyAward = true, Tours = new List<SingersDataItem_ToursItem>()
+        this.Add(new SingersDataItem() { ID = 8, Artist = @"Siri Jakobsson", Photo = @"https://dl.infragistics.com/x/img/people/names/siri.png", Debut = 1990, GrammyNominations = 2, GrammyAwards = 8, HasGrammyAward = true, Tours = new List<SingersDataItem_ToursItem>()
         {
             new SingersDataItem_ToursItem() { Tour = @"Basket case", StartedOn = @"Jan 07", Location = @"Europe, Asia", Headliner = @"NO", TouredBy = @"Siri Jakobsson" },
             new SingersDataItem_ToursItem() { Tour = @"The bigger fish", StartedOn = @"Dec 07", Location = @"United States, Europe", Headliner = @"YES", TouredBy = @"Siri Jakobsson" },
@@ -333,7 +333,7 @@ public class SingersData
                 new SingersDataItem_AlbumsItem_SongsItem() { Number = 14, Title = @"I Chatter", Released = @"30 Nov 2019", Genre = @"*", Album = @"Under the bus" }}
              }}
          });
-        this.Add(new SingersDataItem() { ID = 9, Artist = @"Pablo Cambeiro", Photo = @"https://static.infragistics.com/xplatform/images/people/names/pablo.jpg", Debut = 2011, GrammyNominations = 5, GrammyAwards = 0, HasGrammyAward = false, Tours = new List<SingersDataItem_ToursItem>()
+        this.Add(new SingersDataItem() { ID = 9, Artist = @"Pablo Cambeiro", Photo = @"https://dl.infragistics.com/x/img/people/names/pablo.png", Debut = 2011, GrammyNominations = 5, GrammyAwards = 0, HasGrammyAward = false, Tours = new List<SingersDataItem_ToursItem>()
         {
             new SingersDataItem_ToursItem() { Tour = @"Beads", StartedOn = @"May 11", Location = @"Worldwide", Headliner = @"NO", TouredBy = @"Pablo Cambeiro" },
             new SingersDataItem_ToursItem() { Tour = @"Concept art", StartedOn = @"Dec 18", Location = @"United States", Headliner = @"YES", TouredBy = @"Pablo Cambeiro" },
@@ -370,7 +370,7 @@ public class SingersData
                 new SingersDataItem_AlbumsItem_SongsItem() { Number = 9, Title = @"Teddy Boogie", Released = @"30 Nov 2019", Genre = @"*", Album = @"Crowd control" }}
              }}
          });
-        this.Add(new SingersDataItem() { ID = 10, Artist = @"Athar Malakooti", Photo = @"https://static.infragistics.com/xplatform/images/people/names/athar.jpg", Debut = 2017, GrammyNominations = 0, GrammyAwards = 0, HasGrammyAward = false, Tours = new List<SingersDataItem_ToursItem>()
+        this.Add(new SingersDataItem() { ID = 10, Artist = @"Athar Malakooti", Photo = @"https://dl.infragistics.com/x/img/people/names/athar.png", Debut = 2017, GrammyNominations = 0, GrammyAwards = 0, HasGrammyAward = false, Tours = new List<SingersDataItem_ToursItem>()
         {
         }
         , Albums = new List<SingersDataItem_AlbumsItem>()
@@ -389,7 +389,7 @@ public class SingersData
                 new SingersDataItem_AlbumsItem_SongsItem() { Number = 10, Title = @"Whisper of Shadow", Released = @"04 Jan 2019", Genre = @"ethno-tunes", Album = @"Pushing up daisies" }}
              }}
          });
-        this.Add(new SingersDataItem() { ID = 11, Artist = @"Marti Valencia", Photo = @"https://static.infragistics.com/xplatform/images/people/names/marti.jpg", Debut = 2004, GrammyNominations = 1, GrammyAwards = 1, HasGrammyAward = true, Tours = new List<SingersDataItem_ToursItem>()
+        this.Add(new SingersDataItem() { ID = 11, Artist = @"Marti Valencia", Photo = @"https://dl.infragistics.com/x/img/people/names/marti.png", Debut = 2004, GrammyNominations = 1, GrammyAwards = 1, HasGrammyAward = true, Tours = new List<SingersDataItem_ToursItem>()
         {
             new SingersDataItem_ToursItem() { Tour = @"Cat eat cat world", StartedOn = @"Sep 00", Location = @"Worldwide", Headliner = @"YES", TouredBy = @"Marti Valencia" },
             new SingersDataItem_ToursItem() { Tour = @"Final straw", StartedOn = @"Sep 06", Location = @"United States, Europe", Headliner = @"NO", TouredBy = @"Marti Valencia" }}
@@ -437,7 +437,7 @@ public class SingersData
                 new SingersDataItem_AlbumsItem_SongsItem() { Number = 10, Title = @"Whisper of River", Released = @"12 May 2019", Genre = @"*", Album = @"God's advocate" }}
              }}
          });
-        this.Add(new SingersDataItem() { ID = 12, Artist = @"Alicia Stanger", Photo = @"https://static.infragistics.com/xplatform/images/people/names/alicia.jpg", Debut = 2010, GrammyNominations = 1, GrammyAwards = 0, HasGrammyAward = false, Tours = new List<SingersDataItem_ToursItem>()
+        this.Add(new SingersDataItem() { ID = 12, Artist = @"Alicia Stanger", Photo = @"https://dl.infragistics.com/x/img/people/names/alicia.png", Debut = 2010, GrammyNominations = 1, GrammyAwards = 0, HasGrammyAward = false, Tours = new List<SingersDataItem_ToursItem>()
         {
         }
         , Albums = new List<SingersDataItem_AlbumsItem>()
@@ -456,7 +456,7 @@ public class SingersData
                 new SingersDataItem_AlbumsItem_SongsItem() { Number = 10, Title = @"Electric Sky", Released = @"25 Sep 2019", Genre = @"ethno-tunes", Album = @"Forever alone" }}
              }}
          });
-        this.Add(new SingersDataItem() { ID = 13, Artist = @"Peter Taylor", Photo = @"https://static.infragistics.com/xplatform/images/people/names/peter.jpg", Debut = 2005, GrammyNominations = 0, GrammyAwards = 2, HasGrammyAward = true, Tours = new List<SingersDataItem_ToursItem>()
+        this.Add(new SingersDataItem() { ID = 13, Artist = @"Peter Taylor", Photo = @"https://dl.infragistics.com/x/img/people/names/peter.png", Debut = 2005, GrammyNominations = 0, GrammyAwards = 2, HasGrammyAward = true, Tours = new List<SingersDataItem_ToursItem>()
         {
             new SingersDataItem_ToursItem() { Tour = @"Love", StartedOn = @"Jun 04", Location = @"Europe, Asia", Headliner = @"YES", TouredBy = @"Peter Taylor" },
             new SingersDataItem_ToursItem() { Tour = @"Fault of treasures", StartedOn = @"Oct 13", Location = @"North America", Headliner = @"NO", TouredBy = @"Peter Taylor" },
