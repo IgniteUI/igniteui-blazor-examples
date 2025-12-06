@@ -13,6 +13,6 @@ public class AnnotationSliceEarningsBeatData
     {
         this.Add(new AnnotationSliceEarningsBeatDataItem() { Value = 155, Label = @"Earnings Beat" });
         this.Add(new AnnotationSliceEarningsBeatDataItem() { Value = 86, Label = @"Earnings Beat" });
-        this.Add(new AnnotationSliceEarningsBeatDataItem() { Value = 28, Label = @"Earnings Miss" });
+        this.Add(new AnnotationSliceEarningsBeatDataItem() { Value = 28, Label = @"Earnings Beat" });
     }
 }
