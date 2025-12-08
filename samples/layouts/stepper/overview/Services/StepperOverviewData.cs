@@ -18,7 +18,7 @@ namespace Infragistics.Samples
             return new StepperCardModel[] {
                         new StepperCardModel() {
                             ID = 1,
-                            Img = "https://www.infragistics.com/angular-demos/assets/images/stepper/card-blue.png",
+                            Img = "https://dl.infragistics.com/x/img/stepper/card-blue.png",
                             Price = 400,
                             Offer = "STATEMENT CREDIT OFFER",
                             Type = "Business Customized Advanced",
@@ -26,7 +26,7 @@ namespace Infragistics.Samples
                         },
                         new StepperCardModel() {
                             ID = 2,
-                            Img = "https://www.infragistics.com/angular-demos/assets/images/stepper/card-red.png",
+                            Img = "https://dl.infragistics.com/x/img/stepper/card-red.png",
                             Price = 600,
                             Offer = "STATEMENT CREDIT OFFER",
                             Type = "Business Travel Advanced",
@@ -34,7 +34,7 @@ namespace Infragistics.Samples
                         },
                         new StepperCardModel() {
                             ID = 3,
-                            Img = "https://www.infragistics.com/angular-demos/assets/images/stepper/card-gold.png",
+                            Img = "https://dl.infragistics.com/x/img/stepper/card-gold.png",
                             Price = 500,
                             Offer = "STATEMENT CREDIT OFFER",
                             Type = "Business Golden",
