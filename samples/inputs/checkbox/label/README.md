@@ -3,10 +3,8 @@
 
 This folder contains implementation of Blazor application with example of Label feature using [Checkbox](https://www.infragistics.com/products/ignite-ui-blazor/blazor/components/general-getting-started.html) component.
 
-
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <body>
-        <!-- https://dl.infragistics.com/x/img/browsers -->
         <a target="_blank" href="https://www.infragistics.com/products/ignite-ui-blazor/blazor/components/general-getting-started.html" rel="noopener noreferrer">
             <img height="40px" style="border-radius: 0rem" alt="View Docs" src="https://dl.infragistics.com/x/img/browsers/button-docs.png"/>
         </a>
