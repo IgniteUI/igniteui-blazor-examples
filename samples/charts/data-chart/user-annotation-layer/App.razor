@@ -8,8 +8,11 @@
         </div>        
     </div>
     <div class="container vertical fill">
-        <IgbDataChart IsHorizontalZoomEnabled="true"
-        IsVerticalZoomEnabled="true" UserAnnotationInformationRequested="OnUserAnnotationInfoRequested"
+        <IgbDataChart 
+        IsHorizontalZoomEnabled="true"
+        IsVerticalZoomEnabled="true" 
+        IsUserAnnotationsEnabled="true"
+        UserAnnotationInformationRequested="OnUserAnnotationInfoRequested"
         UserAnnotationToolTipContentUpdatingScript="onUserAnnotationToolTipContentUpdatingScript"
         ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series"
         @ref="chart">
@@ -75,12 +78,7 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var toolbar = this.toolbar;
-        var chart = this.chart;           
-
-        if(firstRender && chart != null){
-            await Task.Delay(500);
-            await JS.InvokeVoidAsync("onUserAnnotationEnable", null);
-        }
+        var chart = this.chart;
 
         this.BindElements = () => { toolbar.Target = this.chart; };
         this.BindElements();

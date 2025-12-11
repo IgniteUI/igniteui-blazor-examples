@@ -1,9 +1,4 @@
-﻿function onUserAnnotationEnable() {
-    var x = document.getElementsByClassName("igc-data-chart")[0];
-    x.isUserAnnotationsEnabled = true;
-}
-
-function onUserAnnotationToggleDialog(open) {
+﻿function onUserAnnotationToggleDialog(open) {
     var dialog = document.getElementsByClassName("annotationDialogPopup")[0];
 
     if (open) {
@@ -31,7 +26,6 @@ function onUserAnnotationToolTipContentUpdatingScript(o, e) {
 
 igRegisterScript("onUserAnnotationToolTipContentUpdatingScript", onUserAnnotationToolTipContentUpdatingScript, false);
 
-
 function getBadgeColor() {
     var badgeColorEditor = document.getElementById("annotationBadgeColorEditor").childNodes[0].childNodes[0];
     return badgeColorEditor.value;
@@ -41,6 +35,3 @@ function getMainColor() {
     var mainColorEditor = document.getElementById("annotationMainColorEditor").childNodes[0].childNodes[0];
     return mainColorEditor.value;
 }
-
-
-
