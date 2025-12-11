@@ -629,24 +629,28 @@ function updateProjects(cb) {
 // updating IG blazor versions in .csproj files for all samples
 function updateIG(cb) {
 
-    // NOTE: change this array with new version of IG packages, e.g.
-    // { version: "23.1.72", name: "IgniteUI.Blazor.Trial" }, // use trial packages before the volume release - PUBLIC NUGET https://www.nuget.org/packages/IgniteUI.Blazor.Trial
-    // { version: "23.2.97", name: "IgniteUI.Blazor" },       // use non-trial packages while working on release - LOCAL PROGET http://proget.infragistics.local:81/packages?Count=500&FeedId=13
+    // NOTE: follow these steps to update
+    // 1. change 'igVersion' in this file: ./azure-pipelines/build-pipeline-client.yml
+    // 2. change 'igVersion' in this file: ./azure-pipelines/build-pipeline-server.yml
+    // 3. change the 'packageUpgrades' array with new version of IG packages, e.g.
+    // { version: "25.2.40", name: "IgniteUI.Blazor.Trial" }, // ALWAYS use trial packages
+    // that will be downloaded from - PUBLIC NUGET https://www.nuget.org/packages/IgniteUI.Blazor.Trial
 
+    let dotNetVer = "10.0";
     let packageUpgrades = [
         // update version of IG packages and change to Trial or non-trial
         { version: "25.2.38", name: "IgniteUI.Blazor.Trial" },
         { version: "25.2.38", name: "IgniteUI.Blazor.Documents.Core.Trial" },
         { version: "25.2.38", name: "IgniteUI.Blazor.Documents.Excel.Trial" },
         // these IG packages are sometimes updated:
-        { version: "9.0.0", name: "Microsoft.AspNetCore.Components" },
-        { version: "9.0.0", name: "Microsoft.AspNetCore.Components.Web" },
-        { version: "9.0.0", name: "Microsoft.AspNetCore.Components.WebAssembly" },
-        { version: "9.0.0", name: "Microsoft.AspNetCore.Components.WebAssembly.DevServer" }, // suffix: 'PrivateAssets="all" ' },
-        { version: "2.2.0", name: "Microsoft.AspNetCore.Cors" },
-        { version: "2.2.0", name: "Microsoft.AspNetCore.Http.Abstractions" },
-        { version: "9.0.0", name: "Microsoft.JSInterop.WebAssembly" },
-        { version: "9.0.0", name: "System.Net.Http.Json" },
+        { version:  "2.2.0", name: "Microsoft.AspNetCore.Cors" },
+        { version:  "2.2.0", name: "Microsoft.AspNetCore.Http.Abstractions" },
+        { version: dotNetVer + ".0", name: "Microsoft.AspNetCore.Components" },
+        { version: dotNetVer + ".0", name: "Microsoft.AspNetCore.Components.Web" },
+        { version: dotNetVer + ".0", name: "Microsoft.AspNetCore.Components.WebAssembly" },
+        { version: dotNetVer + ".0", name: "Microsoft.AspNetCore.Components.WebAssembly.DevServer" }, // suffix: 'PrivateAssets="all" ' },
+        { version: dotNetVer + ".0", name: "Microsoft.JSInterop.WebAssembly" },
+        { version: dotNetVer + ".0", name: "System.Net.Http.Json" },
     ];
 
     // creating package mapping for quick lookup
@@ -671,34 +675,47 @@ function updateIG(cb) {
         '!../../samples/**/node_modules/**',
         '!../../samples/**/node_modules',
     ];
+        
+    var expectedTarget = 'net' + dotNetVer;
     gulp.src(packagePaths)
     .pipe(es.map(function(file, fileCallback) {
         let filePath = file.dirname + "/" + file.basename;
         var fileContent = file.contents.toString();
         var fileLines = fileContent.split('\n');
-
         var fileChanged = false;
+
         for (let i = 0; i < fileLines.length; i++) {
             const line = fileLines[i];
-            let words = line.split("Version=");
-            if (words.length === 2 && words[0].indexOf('PackageReference') > 0) {
-                // matching packages
-                let packageID = words[0].replace("<PackageReference", "").replace("Include=", "").replace(".Trial", "").split('"').join('').trim();
-                let packageInfo = packageMappings[packageID];
-                if (packageInfo !== undefined) {
-                    let tabString = line.indexOf('      ') >= 0 ? '      ' : '    ';
-                    let newLine = tabString + '<PackageReference Include="' + packageInfo.name + '" Version="' + packageInfo.version + '" ';
-                    if (packageInfo.suffix) {
-                        newLine += packageInfo.suffix;
-                    }
-                    newLine += '/>';
+            
+            if (line.indexOf('<TargetFramework>') > 0) {
+                let currentTarget = line.trim().replace("<TargetFramework>", "").replace("</TargetFramework>", "");
+                if (currentTarget !== expectedTarget) {
+                    fileLines[i] = line.replace(currentTarget, expectedTarget);
+                    fileChanged = true;
+                }
+            }
+            else if (line.indexOf('PackageReference') > 0) {
+                let words = line.split("Version=");
+                if (words.length === 2 && words[0].indexOf('PackageReference') > 0) {
+                    // matching packages
+                    let packageID = words[0].replace("<PackageReference", "").replace("Include=", "").replace(".Trial", "").split('"').join('').trim();
+                    let packageInfo = packageMappings[packageID];
+                    if (packageInfo !== undefined) {
+                        let tabString = line.indexOf('      ') >= 0 ? '      ' : '    ';
+                        let newLine = tabString + '<PackageReference Include="' + packageInfo.name + '" Version="' + packageInfo.version + '" ';
+                        if (packageInfo.suffix) {
+                            newLine += packageInfo.suffix;
+                        }
+                        newLine += '/>';
 
-                    if (fileLines[i].trim() !== newLine.trim()) {
-                        fileLines[i] = newLine;
-                        fileChanged = true;
+                        if (fileLines[i].trim() !== newLine.trim()) {
+                            fileLines[i] = newLine;
+                            fileChanged = true;
+                        }
                     }
                 }
             }
+
         }
         if (fileChanged) {
             let newContent = fileLines.join('\n');
