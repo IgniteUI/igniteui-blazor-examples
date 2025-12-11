@@ -649,6 +649,7 @@ function updateIG(cb) {
         { version: dotNetVer + ".0", name: "Microsoft.AspNetCore.Components.Web" },
         { version: dotNetVer + ".0", name: "Microsoft.AspNetCore.Components.WebAssembly" },
         { version: dotNetVer + ".0", name: "Microsoft.AspNetCore.Components.WebAssembly.DevServer" }, // suffix: 'PrivateAssets="all" ' },
+        { version: dotNetVer + ".0", name: "Microsoft.AspNetCore.Components.WebAssembly.Server" },
         { version: dotNetVer + ".0", name: "Microsoft.JSInterop.WebAssembly" },
         { version: dotNetVer + ".0", name: "System.Net.Http.Json" },
     ];
