@@ -636,7 +636,8 @@ function updateIG(cb) {
     // { version: "25.2.40", name: "IgniteUI.Blazor.Trial" }, // ALWAYS use trial packages
     // that will be downloaded from - PUBLIC NUGET https://www.nuget.org/packages/IgniteUI.Blazor.Trial
 
-    let dotNetVer = "10.0";
+    let dotNetTarget = "10.0";
+    let dotNetVersion = "10.0.100";
     let packageUpgrades = [
         // update version of IG packages and change to Trial or non-trial
         { version: "25.2.38", name: "IgniteUI.Blazor.Trial" },
@@ -645,13 +646,13 @@ function updateIG(cb) {
         // these IG packages are sometimes updated:
         { version:  "2.2.0", name: "Microsoft.AspNetCore.Cors" },
         { version:  "2.2.0", name: "Microsoft.AspNetCore.Http.Abstractions" },
-        { version: dotNetVer + ".0", name: "Microsoft.AspNetCore.Components" },
-        { version: dotNetVer + ".0", name: "Microsoft.AspNetCore.Components.Web" },
-        { version: dotNetVer + ".0", name: "Microsoft.AspNetCore.Components.WebAssembly" },
-        { version: dotNetVer + ".0", name: "Microsoft.AspNetCore.Components.WebAssembly.DevServer" }, // suffix: 'PrivateAssets="all" ' },
-        { version: dotNetVer + ".0", name: "Microsoft.AspNetCore.Components.WebAssembly.Server" },
-        { version: dotNetVer + ".0", name: "Microsoft.JSInterop.WebAssembly" },
-        { version: dotNetVer + ".0", name: "System.Net.Http.Json" },
+        { version: dotNetVersion, name: "Microsoft.AspNetCore.Components" },
+        { version: dotNetVersion, name: "Microsoft.AspNetCore.Components.Web" },
+        { version: dotNetVersion, name: "Microsoft.AspNetCore.Components.WebAssembly" },
+        { version: dotNetVersion, name: "Microsoft.AspNetCore.Components.WebAssembly.DevServer" }, // suffix: 'PrivateAssets="all" ' },
+        { version: dotNetVersion, name: "Microsoft.AspNetCore.Components.WebAssembly.Server" },
+        { version: dotNetVersion, name: "Microsoft.JSInterop.WebAssembly" },
+        { version: dotNetVersion, name: "System.Net.Http.Json" },
     ];
 
     // creating package mapping for quick lookup
@@ -677,7 +678,7 @@ function updateIG(cb) {
         '!../../samples/**/node_modules',
     ];
         
-    var expectedTarget = 'net' + dotNetVer;
+    var expectedTarget = 'net' + dotNetTarget;
     gulp.src(packagePaths)
     .pipe(es.map(function(file, fileCallback) {
         let filePath = file.dirname + "/" + file.basename;
