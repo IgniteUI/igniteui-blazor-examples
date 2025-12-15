@@ -637,7 +637,7 @@ function updateIG(cb) {
     // that will be downloaded from - PUBLIC NUGET https://www.nuget.org/packages/IgniteUI.Blazor.Trial
 
     let dotNetTarget = "10.0";
-    let dotNetVersion = "10.0.100";
+    let dotNetVersion = "10.0.1";
     let packageUpgrades = [
         // update version of IG packages and change to Trial or non-trial
         { version: "25.2.38", name: "IgniteUI.Blazor.Trial" },
