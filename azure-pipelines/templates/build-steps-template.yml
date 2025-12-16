@@ -131,7 +131,7 @@ steps:
     displayName: 'dotnet publish'
     inputs:
       # Skip the restore process as it is already done. Got an error when I tried skipping the build process (which is already done as well) 
-      script: 'dotnet publish --interactive --no-restore -c release -o $(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\publish'
+      script: 'dotnet publish --verbosity diagnostic --interactive --no-restore -c release -o $(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\publish'
       workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
 
   - task: ArchiveFiles@2
