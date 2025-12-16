@@ -30,29 +30,49 @@ namespace Infragistics.Samples
     public class MockDataGenerator
     {
         private static readonly Random _random = new Random();
-        private static readonly string[] _firstNames = { "Alice", "Bob", "Charlie", "Diana", "Edward", "Fiona", "George", "Hannah", "Ian", "Julia" };
-        private static readonly string[] _lastNames = { "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez" };
-        private static readonly string[] _priorities = { "Low", "Standard", "High" };
-        private static readonly string[] _productNames = { "Laptop", "Mouse", "Keyboard", "Monitor", "Headphones", "Webcam", "Microphone", "Speaker", "Tablet", "Phone" };
+        private static readonly string[] namesMen = ["John", "Bob", "Mark", "Charlie", "Martin", "Bill", "Frank", "Larry", "Henry", "Steve", "Mike", "Andrew"];
+        private static readonly string[] namesWomen = ["Jane", "Alice", "Diana", "Eve", "Grace", "Katie", "Irene", "Liz", "Fiona", "Pam", "Val", "Mindy"];
+        private static readonly string[] lastNames = { "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez" };
+        private static readonly string[] priorities = { "Low", "Standard", "High" };
+        private static readonly string[] productNames = { "Laptop", "Mouse", "Keyboard", "Monitor", "Headphones", "Webcam", "Microphone", "Speaker", "Tablet", "Phone" };
+        private static readonly string[] productModels = ["Pro", "Plus", "Max", "Ultra", "Mini", "Lite"];
+
+        public static string getRandomItem(string[] array)
+        {
+            return array[_random.Next(array.Length)];
+        }
 
         public static List<User> CreateUsers(int count)
         {
+            var counter = 1;
             var users = new List<User>();
             for (int i = 0; i < count; i++)
             {
-                var firstName = _firstNames[_random.Next(_firstNames.Length)];
-                var lastName = _lastNames[_random.Next(_lastNames.Length)];
+                var imagePath = "";
+                var firstName = "";
+                var gender = _random.Next(0, 1);
+                if (gender == 0)
+                {
+                    imagePath = "https://dl.infragistics.com/x/img/people/men/" + _random.Next(10, 40) + ".png";
+                    firstName = getRandomItem(namesMen);
+                }
+                else
+                {
+                    imagePath = "https://dl.infragistics.com/x/img/people/women/" + _random.Next(10, 40) + ".png";
+                    firstName = getRandomItem(namesWomen);
+                }
+                var lastName = getRandomItem(lastNames);
                 
                 users.Add(new User
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "1000-" + (counter++) + "-" + _random.Next(1000, 9999),
                     FirstName = firstName,
                     LastName = lastName,
                     Age = _random.Next(18, 90),
                     Email = $"{firstName.ToLower()}.{lastName.ToLower()}@example.com",
-                    Avatar = $"https://i.pravatar.cc/150?img={_random.Next(1, 70)}",
+                    Avatar = imagePath,
                     Active = _random.Next(2) == 1,
-                    Priority = _priorities[_random.Next(_priorities.Length)],
+                    Priority = getRandomItem(priorities),
                     Satisfaction = _random.Next(0, 6),
                     RegisteredAt = DateTime.Now.AddDays(-_random.Next(1, 1000))
                 });
@@ -62,6 +82,7 @@ namespace Infragistics.Samples
 
         public static List<ProductInfo> CreateProducts(int count)
         {
+            var counter = 1;
             var products = new List<ProductInfo>();
             for (int i = 0; i < count; i++)
             {
@@ -71,8 +92,8 @@ namespace Infragistics.Samples
 
                 products.Add(new ProductInfo
                 {
-                    Id = Guid.NewGuid().ToString(),
-                    Name = $"{_productNames[_random.Next(_productNames.Length)]} {_random.Next(1, 100)}",
+                    Id = "1000-" + (counter++) + "-" + _random.Next(1000, 9999),
+                    Name = getRandomItem(productNames) + " " + getRandomItem(productModels),
                     Price = price,
                     Sold = sold,
                     Rating = Math.Round(_random.NextDouble() * 5, 1),

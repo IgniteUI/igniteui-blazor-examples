@@ -1,0 +1,66 @@
+@using IgniteUI.Blazor.Controls
+
+<style>
+    .buttons {
+        gap: 5px;
+        margin-top: 15px;
+    }
+
+    igc-dialog::part(content) {
+        padding: 1rem;
+    }
+</style>
+
+<div class="container vertical">
+    <div class="container vertical">
+        <form @ref="Form" @onsubmit="@HandleSubmit">
+            <fieldset class="vertical">
+                <IgbDateRangePicker @ref="DateRangePicker" bind-Value="@Range" Label="Date Range" Required="true" Min="@Min" Change="HandleDateRangeChange" />
+                <div class="buttons horizontal">
+                    <IgbButton Type="submit" Variant="ButtonVariant.Outlined"><span>Submit</span></IgbButton>
+                    <IgbButton Type="reset" Variant="ButtonVariant.Outlined"><span>Reset</span></IgbButton>
+                </div>
+            </fieldset>
+        </form>
+        <IgbDialog @ref="DialogRef">
+            <div class="vertical">
+                <span class="horizontal"><b>Start:&emsp;</b> @Range?.Start</span>
+                <span class="horizontal"><b>End:&emsp; </b> @Range?.End</span>
+            </div>
+            <IgbButton slot="footer" @onclick="OnDialogHide" Variant=@ButtonVariant.Flat>OK</IgbButton>
+        </IgbDialog>
+    </div>
+</div>
+
+@code {
+    private ElementReference Form { get; set; }
+    public IgbDateRangePicker DateRangePicker { get; set; }
+    public DateTime Min = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+    public IgbDateRangeValue Range { get; set; }
+    public IgbDialog DialogRef;
+
+    private void HandleDateRangeChange(IgbDateRangeValueEventArgs e)
+    {
+        this.Range = new IgbDateRangeValue
+        {
+            Start = e.Detail.Start,
+            End = e.Detail.End
+        };
+    }
+
+    public async void HandleSubmit()
+    {
+        if (this.DialogRef != null)
+        {
+            await this.DialogRef.ShowAsync();
+        }
+    }
+
+    public async Task OnDialogHide()
+    {
+        if (this.DialogRef != null)
+        {
+            await this.DialogRef.HideAsync();
+        }
+    }
+}
