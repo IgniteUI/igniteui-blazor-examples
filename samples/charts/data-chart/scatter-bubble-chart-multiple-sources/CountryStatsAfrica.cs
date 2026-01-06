@@ -25,9 +25,9 @@ public class CountryStatsAfrica
         this.Add(new CountryStatsAfricaItem() { Code = @"CAF", Population = 4493000, WorkedHours = 38, GDP = 622, Name = @"Central African Republic" });
         this.Add(new CountryStatsAfricaItem() { Code = @"TCD", Population = 14111000, WorkedHours = 40.4, GDP = 2067, Name = @"Chad" });
         this.Add(new CountryStatsAfricaItem() { Code = @"COM", Population = 777000, WorkedHours = 40.1, GDP = 1413, Name = @"Comoros" });
-        this.Add(new CountryStatsAfricaItem() { Code = @"COG", Population = 4856000, WorkedHours = 38.1, GDP = 5543, Name = @"Congo" });
+        this.Add(new CountryStatsAfricaItem() { Code = @"COG", Population = 4856000, WorkedHours = 38.1, GDP = 5543, Name = @"Congo Republic" });
         this.Add(new CountryStatsAfricaItem() { Code = @"CIV", Population = 23226000, WorkedHours = 39.7, GDP = 3242, Name = @"Cote Ivoire" });
-        this.Add(new CountryStatsAfricaItem() { Code = @"COD", Population = 76245000, WorkedHours = 44, GDP = 812, Name = @"Democratic Republic of Congo" });
+        this.Add(new CountryStatsAfricaItem() { Code = @"COD", Population = 76245000, WorkedHours = 44, GDP = 812, Name = @"DR Congo" });
         this.Add(new CountryStatsAfricaItem() { Code = @"EGY", Population = 92443000, WorkedHours = 39.7, GDP = 10096, Name = @"Egypt" });
         this.Add(new CountryStatsAfricaItem() { Code = @"GNQ", Population = 1169000, WorkedHours = 38.8, GDP = 27554, Name = @"Equatorial Guinea" });
         this.Add(new CountryStatsAfricaItem() { Code = @"SWZ", Population = 1104000, WorkedHours = 45.7, GDP = 7759, Name = @"Eswatini" });
