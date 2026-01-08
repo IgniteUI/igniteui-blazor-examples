@@ -1,34 +1,45 @@
+<!-- NOTE: do not change this file because it's auto re-generated from template: -->
+<!-- https://github.com/IgniteUI/igniteui-blazor-examples/tree/vnext/templates/sample/ReadMe.md -->
+
+This folder contains implementation of Blazor application with example of periodic table using [Data Grid](https://www.infragistics.com/products/ignite-ui-blazor/blazor/components/general-getting-started.html) component.
+
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <body>
-        <!-- https://dl.infragistics.com/x/img/browsers -->
-        <a target="_blank" href="https://infragistics.com/blazor-client/samples{SampleRoute}" rel="noopener noreferrer">
-            <img height="40px" style="border-radius: 0.5rem; max-width: 100%;" alt="Run Sample" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/vnext/templates/sample/images/blazor-run-sample.png"/>
+        <a target="_blank" href="https://www.infragistics.com/products/ignite-ui-blazor/blazor/components/general-getting-started.html" rel="noopener noreferrer">
+            <img height="40px" style="border-radius: 0rem" alt="View Docs" src="https://dl.infragistics.com/x/img/browsers/button-docs.png"/>
         </a>
         <a target="_blank" href="./App.razor" rel="noopener noreferrer">
-            <img height="40px" style="border-radius: 0.5rem; max-width: 100%;" alt="View Code" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/vnext/templates/sample/images/blazor-view-code.png"/>
+            <img height="40px" style="border-radius: 0rem; max-width: 100%;" alt="View Code" src="https://dl.infragistics.com/x/img/browsers/button-code.png"/>
         </a>
-        <!-- <a target="_blank" href="{DocsUrl}" rel="noopener noreferrer">
-            <img height="40px" style="border-radius: 0.5rem" alt="View Blazor Docs" src="https://github.com/IgniteUI/igniteui-blazor-examples/blob/master/templates/sample/images/blazor-view-docs.png"/>
+        <a target="_blank" href="https://infragistics.com/blazor-client/samples/grids/data-grid/periodic-table" rel="noopener noreferrer">
+            <img height="40px" style="border-radius: 0rem; max-width: 100%;" alt="Run Sample" src="https://dl.infragistics.com/x/img/browsers/button-run.png"/>
+        </a>
+        <!-- <a target="_blank" href="https://codesandbox.io/s/github/IgniteUI/igniteui-blazor-examples/tree/master/samples/charts/data-chart/bar-chart-multiple-sources?fontsize=14&hidenavigation=1&theme=dark&view=preview&file=/src/App.razor" rel="noopener noreferrer">
+            <img height="40px" style="border-radius: 0rem; max-width: 100%;" alt="Run Sample" src="https://dl.infragistics.com/x/img/browsers/button-sandbox.png"/>
         </a> -->
     </body>
 </html>
 
+## Branches
+
+> **_NOTE:_** You should use [master](https://github.com/IgniteUI/igniteui-blazor-examples/tree/master) branch of this repository if you want to run samples on your computer. Use the [vnext](https://github.com/IgniteUI/igniteui-blazor-examples/tree/vnext) branch only when you want to contribute new samples to this repository.
+
 ## Setup
 
-- instal **.NET SDK** from this website:
-https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install
+- instal **.NET SDK** from this [website](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install)
 
-## Running App in Visual Studio 2019
+## Running App in Visual Studio 2022
 
-NOTE: VS 2019 has better code highlighting and error detection than VS Code does.
+NOTE: VS 2022 has better code highlighting and error detection than VS Code does.
 
-- open **Visual Studio 2019** as an administrator
+- open **Visual Studio 2022** as an administrator
 
 - open the **BlazorClientApp.sln** solution
 
-- right click solution and select **Restore NuGet Packages**
+- right click solution and select **Restore NuGet Packages** menu item
 
 - click **Debug** menu and select **Start Debugging** or press **F5** key
+
 
 ## Running App in VS Code
 
@@ -37,6 +48,7 @@ NOTE: VS 2019 has better code highlighting and error detection than VS Code does
 - open this folder in **VS Code**
 
 - open a terminal window
+
 - to restore assemblies, run this command:
 ```dotnet restore```
 

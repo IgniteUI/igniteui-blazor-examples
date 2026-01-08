@@ -182,7 +182,7 @@ namespace Infragistics.Samples
                     value = "0" + value;
                 }
 
-                int imageID = Math.Floor(r.NextDouble() * (30)) + 1;
+                int imageID = (int)(Math.Floor(r.NextDouble() * (30)) + 1);
                 var imageGender = genders[firstIndex];
                 item.ImageName = SalesPersonData.CreateUri(imageGender + "/" + imageID + ".png");
                 item.Territory = territories[(int)Math.Round(r.NextDouble() * (territories.Length - 1))];
