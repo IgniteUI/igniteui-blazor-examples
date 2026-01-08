@@ -179,7 +179,7 @@ function getSamples(cb) {
     //   igConfig.SamplesCopyPath + '/grids/grid/excel-style-filtering-sample-3/App.razor',
     //   igConfig.SamplesCopyPath + '/grids/grid/excel-style-filtering-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/external-excel-style-filtering/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/filtering-style/App.razor',
+    //   igConfig.SamplesCopyPath + '/grids/grid/filtering-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/filtering-template/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/keyboard-custom-navigation/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/remote-filtering-data/App.razor',
