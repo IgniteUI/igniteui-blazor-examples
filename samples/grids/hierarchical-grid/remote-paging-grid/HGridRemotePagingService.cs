@@ -5,17 +5,17 @@ using System.Text.Json.Serialization;
 
 namespace Infragistics.Samples
 {
-    public class RemotePagingService
+    public class HGridRemotePagingService
     {
         private readonly HttpClient _httpClient;
         private const string ProductsUrl = "https://services.odata.org/V4/Northwind/Northwind.svc/Products";
 
-        public RemotePagingService(HttpClient httpClient)
+        public HGridRemotePagingService(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
 
-        public async Task<ProductsWithPageResponse> GetDataWithPagingAsync(int pageIndex, int pageSize)
+        public async Task<HGridProductsWithPageResponse> GetDataWithPagingAsync(int pageIndex, int pageSize)
         {
             var skip = pageIndex * pageSize;
             var url = $"{ProductsUrl}?$count=true&$top={pageSize}&$skip={skip}&$expand=Order_Details&$orderby=ProductID";
@@ -24,12 +24,12 @@ namespace Infragistics.Samples
             response.EnsureSuccessStatusCode();
 
             var content = await response.Content.ReadAsStringAsync();
-            var odataResponse = JsonSerializer.Deserialize<ODataResponse>(content, new JsonSerializerOptions
+            var odataResponse = JsonSerializer.Deserialize<HGridODataResponse>(content, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
             });
 
-            return new ProductsWithPageResponse
+            return new HGridProductsWithPageResponse
             {
                 Items = odataResponse.Value,
                 TotalRecordsCount = odataResponse.ODataCount,
@@ -38,24 +38,24 @@ namespace Infragistics.Samples
             };
         }
 
-        private class ODataResponse
+        private class HGridODataResponse
         {
             [JsonPropertyName("@odata.count")]
             public int ODataCount { get; set; }
 
-            public ProductData[] Value { get; set; }
+            public HGridProductData[] Value { get; set; }
         }
     }
 
-    public class ProductsWithPageResponse
+    public class HGridProductsWithPageResponse
     {
-        public ProductData[] Items { get; set; }
+        public HGridProductData[] Items { get; set; }
         public int TotalRecordsCount { get; set; }
         public int PageSize { get; set; }
         public int PageNumber { get; set; }
     }
 
-    public class ProductData
+    public class HGridProductData
     {
         public int ProductID { get; set; }
         public string ProductName { get; set; }
@@ -67,10 +67,10 @@ namespace Infragistics.Samples
         public int? UnitsOnOrder { get; set; }
         public int? ReorderLevel { get; set; }
         public bool Discontinued { get; set; }
-        public OrderDetail[] Order_Details { get; set; }
+        public HGridOrderDetail[] Order_Details { get; set; }
     }
 
-    public class OrderDetail
+    public class HGridOrderDetail
     {
         public int OrderID { get; set; }
         public int ProductID { get; set; }

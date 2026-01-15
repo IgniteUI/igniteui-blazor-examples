@@ -1,5 +1,5 @@
 @using IgniteUI.Blazor.Controls
-@inject RemotePagingService RemoteService
+@inject HGridRemotePagingService RemoteService
 
 <div class="container vertical ig-typography">
     <div class="container vertical fill">
@@ -30,7 +30,7 @@
 }
 
 @code {
-    private ProductData[] data = Array.Empty<ProductData>();
+    private HGridProductData[] data = Array.Empty<HGridProductData>();
     private IgbHierarchicalGrid grid1;
     private int totalRecordsCount;
     private int page = 0;
@@ -64,7 +64,7 @@
         catch (HttpRequestException)
         {
             errorMessage = "Network error. Please check your connection.";
-            data = Array.Empty<ProductData>();
+            data = Array.Empty<HGridProductData>();
             grid1.Data = data;
             grid1.IsLoading = false;
             StateHasChanged();
@@ -72,7 +72,7 @@
         catch (Exception ex)
         {
             errorMessage = $"Error loading data: {ex.Message}";
-            data = Array.Empty<ProductData>();
+            data = Array.Empty<HGridProductData>();
             grid1.Data = data;
             grid1.IsLoading = false;
             StateHasChanged();

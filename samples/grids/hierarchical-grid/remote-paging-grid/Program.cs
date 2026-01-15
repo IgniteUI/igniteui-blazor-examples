@@ -15,7 +15,7 @@ namespace Infragistics.Samples
             builder.RootComponents.Add<App>("app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            builder.Services.AddScoped<RemotePagingService>();
+            builder.Services.AddScoped<HGridRemotePagingService>();
 
             builder.Services.AddIgniteUIBlazor(
                 typeof(IgbInputModule),
