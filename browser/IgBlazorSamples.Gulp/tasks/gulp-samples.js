@@ -165,7 +165,6 @@ function getSamples(cb) {
     //   igConfig.SamplesCopyPath + '/grids/grid/column-moving-styles/App.razor',
     //   igConfig.SamplesCopyPath + '/grids/grid/column-pinning-styles/App.razor',
     //   igConfig.SamplesCopyPath + '/grids/grid/column-resize-styling/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/column-selection-styles/App.razor',
     //   igConfig.SamplesCopyPath + '/grids/grid/conditional-cell-style-2/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/data-exporting-indicator/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/data-performance-infinite-scroll/App.razor',
