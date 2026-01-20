@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using IgniteUI.Blazor.Controls; // for registering Ignite UI modules
+using IgniteUI.Blazor.Controls;
 
 namespace Infragistics.Samples
 {
@@ -13,9 +13,10 @@ namespace Infragistics.Samples
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
-            builder.Services.AddSingleton<HGridData>();
+
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            // registering Ignite UI modules
+            builder.Services.AddScoped<HGridRemotePagingService>();
+
             builder.Services.AddIgniteUIBlazor(
                 typeof(IgbInputModule),
                 typeof(IgbPropertyEditorPanelModule),

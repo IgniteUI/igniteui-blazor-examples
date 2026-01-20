@@ -1,17 +1,24 @@
 @using IgniteUI.Blazor.Controls
-@inject RemotePagingService RemoteService
+@inject HGridRemotePagingService RemoteService
 
 <div class="container vertical ig-typography">
     <div class="container vertical fill">
-        <IgbGrid @ref="grid1" AutoGenerate="false" Moving="true" PagingMode="GridPagingMode.Remote" PrimaryKey="CustomerId">
+        <IgbHierarchicalGrid @ref="grid1" AutoGenerate="false" Moving="true" PagingMode="GridPagingMode.Remote" PrimaryKey="ProductID">
             <IgbPaginator @ref="pager" PagingDone="OnPagingDone" PerPageChange="OnPerPageChange" TotalRecords="totalRecordsCount" PerPage="15"></IgbPaginator>
-            <IgbColumn Name="CustomerId" Field="CustomerId" Header="Customer ID" Hidden="true"></IgbColumn>
-            <IgbColumn Name="CompanyName" Field="CompanyName" Header="Company Name"></IgbColumn>
-            <IgbColumn Name="ContactName" Field="ContactName" Header="Contact Name"></IgbColumn>
-            <IgbColumn Name="ContactTitle" Field="ContactTitle" Header="Contact Title"></IgbColumn>
-            <IgbColumn Name="Country" Field="Address.Country" Header="Country"></IgbColumn>
-            <IgbColumn Name="Phone" Field="Address.Phone" Header="Phone"></IgbColumn>
-        </IgbGrid>
+            <IgbColumn Name="ProductID" Field="ProductID" Header="Product ID" Hidden="true"></IgbColumn>
+            <IgbColumn Name="ProductName" Field="ProductName" Header="Product Name"></IgbColumn>
+            <IgbColumn Name="QuantityPerUnit" Field="QuantityPerUnit" Header="Quantity Per Unit"></IgbColumn>
+            <IgbColumn Name="UnitPrice" Field="UnitPrice" Header="Unit Price"></IgbColumn>
+            <IgbColumn Name="UnitsInStock" Field="UnitsInStock" Header="Units In Stock"></IgbColumn>
+            <IgbColumn Name="UnitsOnOrder" Field="UnitsOnOrder" Header="Units On Order"></IgbColumn>
+            <IgbColumn Name="Discontinued" Field="Discontinued" Header="Discontinued"></IgbColumn>
+            <IgbRowIsland ChildDataKey="Order_Details" AutoGenerate="false" PrimaryKey="OrderID">
+                <IgbColumn Name="OrderID" Field="OrderID" Header="Order ID"></IgbColumn>
+                <IgbColumn Name="UnitPrice" Field="UnitPrice" Header="Unit Price"></IgbColumn>
+                <IgbColumn Name="Quantity" Field="Quantity" Header="Quantity"></IgbColumn>
+                <IgbColumn Name="Discount" Field="Discount" Header="Discount"></IgbColumn>
+            </IgbRowIsland>
+        </IgbHierarchicalGrid>
     </div>
 </div>
 
@@ -23,8 +30,8 @@
 }
 
 @code {
-    private CustomerData[] data = Array.Empty<CustomerData>();
-    private IgbGrid grid1;
+    private HGridProductData[] data = Array.Empty<HGridProductData>();
+    private IgbHierarchicalGrid grid1;
     private int totalRecordsCount;
     private int page = 0;
     private int perPage = 15;
@@ -45,19 +52,19 @@
         {
             grid1.IsLoading = true;
             errorMessage = string.Empty;
-            
+
             var response = await RemoteService.GetDataWithPagingAsync(pageIndex, pageSize);
             data = response.Items;
             grid1.Data = data;
             totalRecordsCount = response.TotalRecordsCount;
-            
+
             grid1.IsLoading = false;
             StateHasChanged();
         }
         catch (HttpRequestException)
         {
             errorMessage = "Network error. Please check your connection.";
-            data = Array.Empty<CustomerData>();
+            data = Array.Empty<HGridProductData>();
             grid1.Data = data;
             grid1.IsLoading = false;
             StateHasChanged();
@@ -65,7 +72,7 @@
         catch (Exception ex)
         {
             errorMessage = $"Error loading data: {ex.Message}";
-            data = Array.Empty<CustomerData>();
+            data = Array.Empty<HGridProductData>();
             grid1.Data = data;
             grid1.IsLoading = false;
             StateHasChanged();
