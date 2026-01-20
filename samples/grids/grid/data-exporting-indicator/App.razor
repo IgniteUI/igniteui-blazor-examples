@@ -8,7 +8,7 @@
         Name="grid1"
         @ref="grid1">
             <IgbGridToolbar
-            >
+            @ref="toolbar">
                 <IgbGridToolbarActions
                 >
                     <IgbGridToolbarAdvancedFiltering
@@ -26,6 +26,10 @@
                     <IgbGridToolbarExporter
                     >
                     </IgbGridToolbarExporter>
+
+                    <button disabled="@showProgress" @onclick="LongRunning" class="igx-button">
+                        Simulate long running operation
+                    </button>
 
                 </IgbGridToolbarActions>
 
@@ -77,6 +81,24 @@
     }
 
     private IgbGrid grid1;
+    private IgbGridToolbar toolbar;
+    private bool showProgress = false;
+
+    private async Task LongRunning()
+    {
+        if (toolbar != null)
+        {
+            showProgress = true;
+            toolbar.ShowProgress = true;
+            StateHasChanged();
+
+            await Task.Delay(5000);
+
+            showProgress = false;
+            toolbar.ShowProgress = false;
+            StateHasChanged();
+        }
+    }
 
     private AthletesData _athletesData = null;
     public AthletesData AthletesData
