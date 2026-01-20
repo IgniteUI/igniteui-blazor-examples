@@ -4,7 +4,7 @@
 <div class="container vertical ig-typography">
     <div class="container vertical fill">
         <IgbGrid @ref="grid1" AutoGenerate="false" Moving="true" PagingMode="GridPagingMode.Remote" PrimaryKey="CustomerId">
-            <IgbPaginator @ref="pager" PageChange="OnPageChange" PerPageChange="OnPerPageChange" TotalRecords="totalRecordsCount" PerPage="15"></IgbPaginator>
+            <IgbPaginator @ref="pager" PagingDone="OnPagingDone" PerPageChange="OnPerPageChange" TotalRecords="totalRecordsCount" PerPage="15"></IgbPaginator>
             <IgbColumn Name="CustomerId" Field="CustomerId" Header="Customer ID" Hidden="true"></IgbColumn>
             <IgbColumn Name="CompanyName" Field="CompanyName" Header="Company Name"></IgbColumn>
             <IgbColumn Name="ContactName" Field="ContactName" Header="Contact Name"></IgbColumn>
@@ -78,9 +78,9 @@
         await LoadGridData(0, perPage);
     }
 
-    private async Task OnPageChange(IgbNumberEventArgs e)
+    private async Task OnPagingDone(IgbPageEventArgs e)
     {
-        page = (int)e.Detail;
+        page = (int)e.Detail.Current;
         await LoadGridData(page, perPage);
     }
 }
