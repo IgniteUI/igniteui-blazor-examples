@@ -1,0 +1,110 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    <div class="container vertical fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="AthletesData"
+        Name="grid1"
+        @ref="grid1">
+            <IgbGridToolbar
+                ShowProgress="@showProgress">
+                <IgbGridToolbarActions
+                >
+                    <IgbGridToolbarAdvancedFiltering
+                    >
+                    </IgbGridToolbarAdvancedFiltering>
+
+                    <IgbGridToolbarHiding
+                    >
+                    </IgbGridToolbarHiding>
+
+                    <IgbGridToolbarPinning
+                    >
+                    </IgbGridToolbarPinning>
+
+                    <IgbGridToolbarExporter
+                    >
+                    </IgbGridToolbarExporter>
+
+                    <IgbButton style="margin:5px" Variant="ButtonVariant.Outlined" disabled="@showProgress" @onclick="LongRunning">
+                        Simulate long running operation
+                    </IgbButton>    
+
+                </IgbGridToolbarActions>
+
+            </IgbGridToolbar>
+
+            <IgbColumn
+            Field="Name"
+            Header="Athlete"
+            Width="200px">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="CountryName"
+            Header="Country"
+            Width="200px">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="BeatsPerMinute"
+            Header="Beats Per Minute">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="TopSpeed"
+            Header="Top Speed">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="AthleteNumber"
+            Header="ID">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="TrackProgress"
+            Header="Progress">
+            </IgbColumn>
+
+        </IgbGrid>
+
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var grid1 = this.grid1;
+
+    }
+
+    private IgbGrid grid1;
+    private bool showProgress = false;
+
+    private async Task LongRunning()
+    {
+        showProgress = true;
+        StateHasChanged();
+
+        await Task.Delay(5000);
+
+        showProgress = false;
+        StateHasChanged();
+    }
+
+    private AthletesData _athletesData = null;
+    public AthletesData AthletesData
+    {
+        get
+        {
+            if (_athletesData == null)
+            {
+                _athletesData = new AthletesData();
+            }
+            return _athletesData;
+        }
+    }
+
+}
