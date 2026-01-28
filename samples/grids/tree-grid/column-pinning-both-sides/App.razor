@@ -28,20 +28,16 @@
 
             </IgbGridToolbar>
 
-            <IgbColumn
+            <IgbColumn @ref="col1"
                 Field="Name"
                 DataType="GridColumnDataType.String"
-                Pinned="true"
                 Width="250px"
-                PinningPosition="ColumnPinningPosition.Start"
             />
 
-            <IgbColumn
+            <IgbColumn @ref="col2"
                 Field="Title"
                 DataType="GridColumnDataType.String"
-                Width="250px"
-                Pinned="true"
-                PinningPosition="ColumnPinningPosition.End" />
+                Width="250px" />
 
             <IgbColumn Field="ID" DataType="GridColumnDataType.Number" Width="100px" />
 
@@ -82,6 +78,21 @@
 
 @code {
     private IgbTreeGrid treeGrid;
+    private IgbColumn col1;
+    private IgbColumn col2;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            col1.Pinned = true;
+            col1.PinningPosition = ColumnPinningPosition.End;
+
+            col2.Pinned = true;
+            col2.PinningPosition = ColumnPinningPosition.Start;
+        }
+
+    }
 
     private EmployeesFlatDetails _employeesFlatDetails = null;
     private EmployeesFlatDetails EmployeesFlatDetails
@@ -111,37 +122,62 @@
         }
     }
 
-    private void PinLeft()
+    private async void PinLeft()
     {
         var selected = this.treeGrid.SelectedColumns();
-        if (selected == null) return;
+        var gridColumns = this.treeGrid.ActualColumnList.Where(col => selected.Contains(col)).ToList();
 
-        foreach (var col in selected)
+        if (gridColumns == null) return;
+
+        foreach (var col in gridColumns)
         {
+            if (col.Pinned)
+            {
+                col.Pinned = false;
+                StateHasChanged();
+            }
+
+            await Task.Delay(1);
+
             col.PinningPosition = ColumnPinningPosition.Start;
             col.Pinned = true;
+            StateHasChanged();
         }
     }
 
-    private void PinRight()
+    private async void PinRight()
     {
 
         var selected = this.treeGrid.SelectedColumns();
-        if (selected == null) return;
+        var gridColumns = this.treeGrid.ActualColumnList.Where(col => selected.Contains(col)).ToList();
 
-        foreach (var col in selected)
+        if (gridColumns == null) return;
+
+        foreach (var col in gridColumns)
         {
+            if (col.Pinned)
+            {
+                col.Pinned = false;
+                StateHasChanged();
+            }
+
+            await Task.Delay(1);
+
             col.PinningPosition = ColumnPinningPosition.End;
             col.Pinned = true;
+            StateHasChanged();
         }
     }
+
     private void UnpinColumn()
     {
 
         var selected = this.treeGrid.SelectedColumns();
-        if (selected == null) return;
+        var gridColumns = this.treeGrid.ActualColumnList.Where(col => selected.Contains(col)).ToList();
 
-        foreach (var col in selected)
+        if (gridColumns == null) return;
+
+        foreach (var col in gridColumns)
         {
             col.Pinned = false;
         }
