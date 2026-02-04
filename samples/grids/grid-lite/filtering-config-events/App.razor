@@ -5,14 +5,18 @@
 
 <div class="container">
 
-    @if (users != null && columns != null)
+    @if (users != null)
     {
         <IgbGridLite TItem="User" 
-                     Data="@users" 
-                     Columns="@columns"
+                     Data="@users"
                      Filtering="@HandleFiltering"
                      Filtered="@HandleFiltered"
-                     class="grid-lite-sample" />
+                     class="grid-lite-sample">
+            <IgbGridLiteColumn Field="@nameof(User.FirstName)" Header="First name" Filterable />
+            <IgbGridLiteColumn Field="@nameof(User.LastName)" Header="Last name" Filterable />
+            <IgbGridLiteColumn Field="@nameof(User.Age)" Header="Age" DataType="GridLiteColumnDataType.Number" Filterable />
+            <IgbGridLiteColumn Field="@nameof(User.Active)" Header="Active" DataType="GridLiteColumnDataType.Boolean" Filterable />
+        </IgbGridLite>
     }
 
     <div class="event-log">
@@ -28,43 +32,12 @@
 
 @code {
     private List<User> users;
-    private List<IgbColumnConfiguration> columns;
     private List<string> eventLogs = new List<string>();
 
     protected override void OnInitialized()
     {
         // Generate 50 users
         users = MockDataGenerator.CreateUsers(50);
-
-        columns = new List<IgbColumnConfiguration>
-        {
-            new IgbColumnConfiguration
-            {
-                Key = nameof(User.FirstName),
-                HeaderText = "First name",
-                Filter = true
-            },
-            new IgbColumnConfiguration
-            {
-                Key = nameof(User.LastName),
-                HeaderText = "Last name",
-                Filter = true
-            },
-            new IgbColumnConfiguration
-            {
-                Key = nameof(User.Age),
-                HeaderText = "Age",
-                Type = GridLiteColumnDataType.Number,
-                Filter = true
-            },
-            new IgbColumnConfiguration
-            {
-                Key = nameof(User.Active),
-                HeaderText = "Active",
-                Type = GridLiteColumnDataType.Boolean,
-                Filter = true
-            }
-        };
     }
 
     private void HandleFiltering(IgbGridLiteFilteringEventArgs e)
