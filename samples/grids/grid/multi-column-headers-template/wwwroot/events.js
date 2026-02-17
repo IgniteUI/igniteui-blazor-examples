@@ -18,7 +18,7 @@ igRegisterScript("WebGridColumnGroupHeaderTemplate", (ctx) => {
     var html = window.igTemplating.html;
     var iconName = columnGroupStates.get(ctx.column.header) ? '🔽' : '🔼';
     return html`<div>
-    <span style="cursor: pointer;" draggable="false" onclick='toggleColumnGroup("${ctx.column.header}")'>${iconName}</span>
+    <span draggable="false" onclick='toggleColumnGroup("${ctx.column.header}")'>${iconName}</span>
     <span>${ctx.column.header}</span>
 </div>`;
 }, false);

@@ -9,7 +9,7 @@ igRegisterScript("WebGridPinHeaderTemplate", (ctx) => {
     }
     return html`<div style="display:flex;">
     <span>${ctx.column.field}</span>
-    <span style="margin-left: auto; cursor: pointer;" onpointerdown='toggleColumnPin("${ctx.column.field}")'>📌</span>
+    <span style="margin-left: auto;" onpointerdown='toggleColumnPin("${ctx.column.field}")'>📌</span>
 </div>`;
 }, false);
 
