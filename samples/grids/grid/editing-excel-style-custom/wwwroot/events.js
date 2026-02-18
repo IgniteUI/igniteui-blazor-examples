@@ -66,8 +66,11 @@ window.attachKeyDownEvent = () => {
             const nextRowIndex = this.getNextEditableRowIndex(thisRow, dataView, e.shiftKey);
 
             grid1.navigateTo(nextRowIndex, activeElem.column.visibleIndex, (obj) => {
+
                 grid1.clearCellSelection();
-                obj.target.activate();
+                requestAnimationFrame(() => {
+                    obj.target.activate();
+                })
             });
         }
     });
