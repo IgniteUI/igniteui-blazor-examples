@@ -165,9 +165,7 @@ function getSamples(cb) {
     //   igConfig.SamplesCopyPath + '/grids/grid/column-moving-styles/App.razor',
     //   igConfig.SamplesCopyPath + '/grids/grid/column-pinning-styles/App.razor',
     //   igConfig.SamplesCopyPath + '/grids/grid/column-resize-styling/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/column-selection-styles/App.razor',
     //   igConfig.SamplesCopyPath + '/grids/grid/conditional-cell-style-2/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/data-exporting-indicator/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/data-performance-infinite-scroll/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/data-performance-operations/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/data-performance-summary/App.razor',
@@ -181,7 +179,7 @@ function getSamples(cb) {
       igConfig.SamplesCopyPath + '/grids/grid/external-excel-style-filtering/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/filtering-style/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/filtering-template/App.razor',
-      igConfig.SamplesCopyPath + '/grids/grid/keyboard-custom-navigation/App.razor',
+    //   igConfig.SamplesCopyPath + '/grids/grid/keyboard-custom-navigation/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/remote-filtering-data/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/remote-paging-batch-editing/App.razor',
       igConfig.SamplesCopyPath + '/grids/grid/remote-paging-custom/App.razor',
@@ -640,9 +638,9 @@ function updateIG(cb) {
     let dotNetVersion = "10.0.1";
     let packageUpgrades = [
         // update version of IG packages and change to Trial or non-trial
-        { version: "25.2.38", name: "IgniteUI.Blazor.Trial" },
-        { version: "25.2.38", name: "IgniteUI.Blazor.Documents.Core.Trial" },
-        { version: "25.2.38", name: "IgniteUI.Blazor.Documents.Excel.Trial" },
+        { version: "25.2.77", name: "IgniteUI.Blazor.Trial" },
+        { version: "25.2.77", name: "IgniteUI.Blazor.Documents.Core.Trial" },
+        { version: "25.2.77", name: "IgniteUI.Blazor.Documents.Excel.Trial" },
         // these IG packages are sometimes updated:
         { version:  "2.2.0", name: "Microsoft.AspNetCore.Cors" },
         { version:  "2.2.0", name: "Microsoft.AspNetCore.Http.Abstractions" },

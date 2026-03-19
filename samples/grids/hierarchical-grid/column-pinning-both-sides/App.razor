@@ -28,17 +28,13 @@
                 Field="CustomerID"
                 Hidden="true"
             />       
-            <IgbColumn
+            <IgbColumn @ref="col1"
                 Field="Company"
-                Header="Company Name"
-                Pinned="true"
-                PinningPosition="ColumnPinningPosition.Start" 
+                Header="Company Name" 
             />
-            <IgbColumn
+            <IgbColumn @ref="col2"
                 Field="ContactName"
-                Header="Contact Name"
-                Pinned="true"
-                PinningPosition="ColumnPinningPosition.End" />
+                Header="Contact Name" />
             <IgbColumn
                 Field="ContactTitle"
                 Header="Contact Title"
@@ -163,6 +159,21 @@
 
 @code {
     private IgbHierarchicalGrid grid;
+    private IgbColumn col1;
+    private IgbColumn col2;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            col1.Pinned = true;
+            col1.PinningPosition = ColumnPinningPosition.End;
+
+            col2.Pinned = true;
+            col2.PinningPosition = ColumnPinningPosition.Start;
+        }
+
+    }
 
     private HierarchicalCustomersDataPin _hierarchicalCustomersData = null;
     private HierarchicalCustomersDataPin HierarchicalCustomersData
@@ -192,28 +203,50 @@
         }
     }
 
-    private void PinLeft()
+    private async void PinLeft()
     {
         var selected = this.grid.SelectedColumns();
-        if (selected == null) return;
+        var gridColumns = this.grid.ActualColumnList.Where(col => selected.Contains(col)).ToList();
 
-        foreach (var col in selected)
+        if (gridColumns == null) return;
+
+        foreach (var col in gridColumns)
         {
+            if (col.Pinned)
+            {
+                col.Pinned = false;
+                StateHasChanged();
+            }
+
+            await Task.Delay(1);
+
             col.PinningPosition = ColumnPinningPosition.Start;
             col.Pinned = true;
+            StateHasChanged();
         }
     }
 
-    private void PinRight()
+    private async void PinRight()
     {
 
         var selected = this.grid.SelectedColumns();
-        if (selected == null) return;
+        var gridColumns = this.grid.ActualColumnList.Where(col => selected.Contains(col)).ToList();
 
-        foreach (var col in selected)
+        if (gridColumns == null) return;
+
+        foreach (var col in gridColumns)
         {
+            if (col.Pinned)
+            {
+                col.Pinned = false;
+                StateHasChanged();
+            }
+
+            await Task.Delay(1);
+
             col.PinningPosition = ColumnPinningPosition.End;
             col.Pinned = true;
+            StateHasChanged();
         }
     }
 
@@ -221,9 +254,11 @@
     {
 
         var selected = this.grid.SelectedColumns();
-        if (selected == null) return;
+        var gridColumns = this.grid.ActualColumnList.Where(col => selected.Contains(col)).ToList();
 
-        foreach (var col in selected)
+        if (gridColumns == null) return;
+
+        foreach (var col in gridColumns)
         {
             col.Pinned = false;
         }

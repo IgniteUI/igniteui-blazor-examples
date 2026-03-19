@@ -35,10 +35,10 @@
     }
 </style>
 
-<div class="container vertical">
+<div class="container vertical scrollable">
     <IgbAccordion>
         <IgbExpansionPanel>
-            <h3 slot="title" id="categories">@CategoryTitle</h3>
+            <span slot="title" id="categories">@CategoryTitle</span>
             <div class="categories-container">
                 @foreach (var category in Categories)
                 {
@@ -47,11 +47,11 @@
             </div>
         </IgbExpansionPanel>
         <IgbExpansionPanel>
-            <h3 slot="title">Cost: $<span id="lowerCost">@SliderLower</span> to $<span id="upperCost">@SliderUpper</span></h3>
+            <span slot="title">Cost: $<span id="lowerCost">@SliderLower</span> to $<span id="upperCost">@SliderUpper</span></span>
             <IgbRangeSlider Min="0" Max="1000" Lower="@SliderLower" Upper="@SliderUpper" Change="OnSliderChange"></IgbRangeSlider>
         </IgbExpansionPanel>
         <IgbExpansionPanel>
-            <h3 slot="title" id="rating">@RatingTitle</h3>
+            <span slot="title" id="rating">@RatingTitle</span>
             <IgbRadioGroup>
                 @foreach (var rating in Ratings)
                 {
@@ -62,7 +62,7 @@
             </IgbRadioGroup>
         </IgbExpansionPanel>
         <IgbExpansionPanel>
-            <h3 slot="title" id="timeTitle">@TimeTitle</h3>
+            <span slot="title" id="timeTitle">@TimeTitle</span>
             <IgbDateTimeInput @ref="DateTimeInputRef" InputFormat="hh:mm tt" Label="Arrive before" class="size-small" Change="OnTimeChange">
                 <IgbIcon IconName="clock" Collection="material" slot="prefix"></IgbIcon>
                 <IgbIcon IconName="clear" Collection="material" slot="suffix" @onclick="OnTimeClear"></IgbIcon>
