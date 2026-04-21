@@ -1,16 +1,22 @@
 <!-- NOTE: do not change this file because it's auto re-generated from template: -->
 <!-- https://github.com/IgniteUI/igniteui-blazor-examples/tree/vnext/templates/sample/ReadMe.md -->
 
-This folder contains implementation of Blazor application with example of Template feature using the Query Builder component.
+This folder contains implementation of Blazor application with example of Template feature using [Query Builder](https://www.infragistics.com/products/ignite-ui-blazor/blazor/components/general-getting-started.html) component.
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <body>
+        <a target="_blank" href="https://www.infragistics.com/products/ignite-ui-blazor/blazor/components/general-getting-started.html" rel="noopener noreferrer">
+            <img height="40px" style="border-radius: 0rem" alt="View Docs" src="https://dl.infragistics.com/x/img/browsers/button-docs.png"/>
+        </a>
         <a target="_blank" href="./App.razor" rel="noopener noreferrer">
             <img height="40px" style="border-radius: 0rem; max-width: 100%;" alt="View Code" src="https://dl.infragistics.com/x/img/browsers/button-code.png"/>
         </a>
         <a target="_blank" href="https://infragistics.com/blazor-client/samples/interactions/query-builder/template" rel="noopener noreferrer">
             <img height="40px" style="border-radius: 0rem; max-width: 100%;" alt="Run Sample" src="https://dl.infragistics.com/x/img/browsers/button-run.png"/>
         </a>
+        <!-- <a target="_blank" href="https://codesandbox.io/s/github/IgniteUI/igniteui-blazor-examples/tree/master/samples/interactions/query-builder/template?fontsize=14&hidenavigation=1&theme=dark&view=preview&file=/src/App.razor" rel="noopener noreferrer">
+            <img height="40px" style="border-radius: 0rem; max-width: 100%;" alt="Run Sample" src="https://dl.infragistics.com/x/img/browsers/button-sandbox.png"/>
+        </a> -->
     </body>
 </html>
 
@@ -27,22 +33,33 @@ This folder contains implementation of Blazor application with example of Templa
 NOTE: VS 2022 has better code highlighting and error detection than VS Code does.
 
 - open **Visual Studio 2022** as an administrator
+
 - open the **BlazorClientApp.sln** solution
+
 - right click solution and select **Restore NuGet Packages** menu item
+
 - click **Debug** menu and select **Start Debugging** or press **F5** key
+
 
 ## Running App in VS Code
 
 - open **VS Code** as an administrator
+
 - open this folder in **VS Code**
+
 - open a terminal window
+
 - to restore assemblies, run this command:
 ```dotnet restore```
+
 - to run samples, run this command:
 ```dotnet watch run```
+
 - wait for for message:
 **Now listening on: http://localhost:4200**
+
 - open **http://localhost:4200** in your browser
+
 
 ## Resources
 

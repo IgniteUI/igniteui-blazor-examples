@@ -14,7 +14,7 @@ This folder contains implementation of Blazor application with example of Stylin
         <a target="_blank" href="https://infragistics.com/blazor-client/samples/layouts/tabs/styling" rel="noopener noreferrer">
             <img height="40px" style="border-radius: 0rem; max-width: 100%;" alt="Run Sample" src="https://dl.infragistics.com/x/img/browsers/button-run.png"/>
         </a>
-        <!-- <a target="_blank" href="https://codesandbox.io/s/github/IgniteUI/igniteui-blazor-examples/tree/master/samples/layouts/tabs/prefix-suffix?fontsize=14&hidenavigation=1&theme=dark&view=preview&file=/src/App.razor" rel="noopener noreferrer">
+        <!-- <a target="_blank" href="https://codesandbox.io/s/github/IgniteUI/igniteui-blazor-examples/tree/master/samples/layouts/tabs/styling?fontsize=14&hidenavigation=1&theme=dark&view=preview&file=/src/App.razor" rel="noopener noreferrer">
             <img height="40px" style="border-radius: 0rem; max-width: 100%;" alt="Run Sample" src="https://dl.infragistics.com/x/img/browsers/button-sandbox.png"/>
         </a> -->
     </body>
