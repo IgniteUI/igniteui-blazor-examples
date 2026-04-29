@@ -8,13 +8,11 @@
     <div class="switch-container">
         <IgbSwitch Checked Change="@MultiSortChanged">Enable multi-sort
         </IgbSwitch>
-        <IgbSwitch Checked Change="@TriStateChanged">Enable tri-state sorting
-        </IgbSwitch>
     </div>
 
     @if (products != null)
     {
-        <IgbGridLite TItem="ProductInfo" Data="@products" SortingOptions="@sortingOptions"
+        <IgbGridLite @ref="grid" Data="@products" SortingOptions="@sortingOptions"
             class="grid-lite-sample">
             <IgbGridLiteColumn Field="@nameof(ProductInfo.Name)" Header="Product Name" DataType="GridLiteColumnDataType.String" Sortable />
             <IgbGridLiteColumn Field="@nameof(ProductInfo.Price)" Header="Price" DataType="GridLiteColumnDataType.Number" Width="150px" Sortable />
@@ -27,6 +25,7 @@
 
 @code {
     private List<ProductInfo> products;
+    private IgbGridLite<ProductInfo> grid;
     private IgbGridLiteSortingOptions sortingOptions;
 
     protected override void OnInitialized()
@@ -46,11 +45,6 @@
         {
             Mode = e.Detail.Checked ? GridLiteSortingMode.Multiple : GridLiteSortingMode.Single
         };
-    }
-
-    private void TriStateChanged(IgbCheckboxChangeEventArgs e)
-    {
-        // Tri-state sorting is now always enabled, so this handler can be removed or left as no-op
-        // Keeping it for backwards compatibility with the UI switch
+        grid?.ClearSortAsync(); // Clear existing sorting when changing mode
     }
 }
