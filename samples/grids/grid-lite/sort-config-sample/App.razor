@@ -5,65 +5,26 @@
 
 <div class="container">
 
-    @if (products != null && columns != null)
+    @if (products != null)
     {
         <IgbGridLite TItem="ProductInfo" 
-                     Data="@products" 
-                     Columns="@columns"
-                     class="grid-lite-sample" />
+                     Data="@products"
+                     class="grid-lite-sample">
+            <IgbGridLiteColumn Field="@nameof(ProductInfo.Name)" Header="Product Name" DataType="GridLiteColumnDataType.String" Sortable />
+            <IgbGridLiteColumn Field="@nameof(ProductInfo.Price)" Header="Price" DataType="GridLiteColumnDataType.Number" Width="150px" Sortable />
+            <IgbGridLiteColumn Field="@nameof(ProductInfo.Sold)" Header="Units sold" DataType="GridLiteColumnDataType.Number" Width="150px" Sortable />
+            <IgbGridLiteColumn Field="@nameof(ProductInfo.Total)" Header="Total sold" DataType="GridLiteColumnDataType.Number" Width="150px" Sortable />
+            <IgbGridLiteColumn Field="@nameof(ProductInfo.Rating)" Header="Customer rating" DataType="GridLiteColumnDataType.Number" Width="180px" Sortable />
+        </IgbGridLite>
     }
 </div>
 
 @code {
     private List<ProductInfo> products;
-    private List<IgbColumnConfiguration> columns;
 
     protected override void OnInitialized()
     {
         // Generate 50 products
         products = MockDataGenerator.CreateProducts(50);
-
-        columns = new List<IgbColumnConfiguration>
-        {
-            new IgbColumnConfiguration
-            {
-                Key = nameof(ProductInfo.Name),
-                HeaderText = "Product Name",
-                Type = GridLiteColumnDataType.String,
-                Sort = true
-            },
-            new IgbColumnConfiguration
-            {
-                Key = nameof(ProductInfo.Price),
-                HeaderText = "Price",
-                Type = GridLiteColumnDataType.Number,
-                Width = "150px",
-                Sort = true
-            },
-            new IgbColumnConfiguration
-            {
-                Key = nameof(ProductInfo.Sold),
-                HeaderText = "Units sold",
-                Type = GridLiteColumnDataType.Number,
-                Width = "150px",
-                Sort = true
-            },
-            new IgbColumnConfiguration
-            {
-                Key = nameof(ProductInfo.Total),
-                HeaderText = "Total sold",
-                Type = GridLiteColumnDataType.Number,
-                Width = "150px",
-                Sort = true
-            },
-            new IgbColumnConfiguration
-            {
-                Key = nameof(ProductInfo.Rating),
-                HeaderText = "Customer rating",
-                Type = GridLiteColumnDataType.Number,
-                Width = "180px",
-                Sort = true
-            }
-        };
     }
 }

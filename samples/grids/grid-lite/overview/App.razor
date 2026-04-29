@@ -5,86 +5,29 @@
 
 <div class="container">
 
-    @if (users != null && columns != null)
+    @if (users != null)
     {
         <IgbGridLite TItem="User" 
-                     Data="@users" 
-                     Columns="@columns"
-                     class="grid-lite-sample" />
+                     Data="@users"
+                     class="grid-lite-sample">
+            <IgbGridLiteColumn Field="@nameof(User.Avatar)" Header="Avatar" Width="100px" Hidden />
+            <IgbGridLiteColumn Field="@nameof(User.FirstName)" Header="First name" Sortable Filterable Resizable />
+            <IgbGridLiteColumn Field="@nameof(User.LastName)" Header="Last name" Sortable Filterable Resizable />
+            <IgbGridLiteColumn Field="@nameof(User.Email)" Header="Email Address" DataType="GridLiteColumnDataType.String" />
+            <IgbGridLiteColumn Field="@nameof(User.Priority)" Header="Priority" Width="150px" Sortable />
+            <IgbGridLiteColumn Field="@nameof(User.Satisfaction)" Header="Satisfaction rating" DataType="GridLiteColumnDataType.Number" Sortable Filterable Width="180px" />
+            <IgbGridLiteColumn Field="@nameof(User.RegisteredAt)" Header="Registered @@" DataType="GridLiteColumnDataType.Date" Sortable Width="180px" />
+            <IgbGridLiteColumn Field="@nameof(User.Active)" Header="Active" DataType="GridLiteColumnDataType.Boolean" Width="100px" />
+        </IgbGridLite>
     }
 </div>
 
 @code {
     private List<User> users;
-    private List<IgbColumnConfiguration> columns;
 
     protected override void OnInitialized()
     {
         // Generate 1000 users like in the original sample
         users = MockDataGenerator.CreateUsers(1000);
-
-        columns = new List<IgbColumnConfiguration>
-        {
-            new IgbColumnConfiguration
-            {
-                Key = nameof(User.Avatar),
-                HeaderText = "Avatar",
-                Width = "100px",
-                Hidden = true
-            },
-            new IgbColumnConfiguration
-            {
-                Key = nameof(User.FirstName),
-                HeaderText = "First name",
-                Sort = true,
-                Filter = true,
-                Resizable = true
-            },
-            new IgbColumnConfiguration
-            {
-                Key = nameof(User.LastName),
-                HeaderText = "Last name",
-                Sort = true,
-                Filter = true,
-                Resizable = true
-            },
-            new IgbColumnConfiguration
-            {
-                Key = nameof(User.Email),
-                HeaderText = "Email Address",
-                Type = GridLiteColumnDataType.String
-            },
-            new IgbColumnConfiguration
-            {
-                Key = nameof(User.Priority),
-                HeaderText = "Priority",
-                Width = "150px",
-                Sort = true
-            },
-            new IgbColumnConfiguration
-            {
-                Key = nameof(User.Satisfaction),
-                HeaderText = "Satisfaction rating",
-                Type = GridLiteColumnDataType.Number,
-                Sort = true,
-                Filter = true,
-                Width = "180px"
-            },
-            new IgbColumnConfiguration
-            {
-                Key = nameof(User.RegisteredAt),
-                HeaderText = "Registered @",
-                Type = GridLiteColumnDataType.Date,
-                Sort = true,
-                Width = "180px"
-            },
-            new IgbColumnConfiguration
-            {
-                Key = nameof(User.Active),
-                Type = GridLiteColumnDataType.Boolean,
-                HeaderText = "Active",
-                Width = "100px"
-            }
-        };
     }
 }
