@@ -8,92 +8,43 @@
     <div class="switch-container">
         <IgbSwitch Checked Change="@MultiSortChanged">Enable multi-sort
         </IgbSwitch>
-        <IgbSwitch Checked Change="@TriStateChanged">Enable tri-state sorting
-        </IgbSwitch>
     </div>
 
-    @if (products != null && columns != null)
+    @if (products != null)
     {
-        <IgbGridLite TItem="ProductInfo" Data="@products" Columns="@columns" SortConfiguration="@sortConfig"
-            class="grid-lite-sample" />
+        <IgbGridLite @ref="grid" Data="@products" SortingOptions="@sortingOptions"
+            class="grid-lite-sample">
+            <IgbGridLiteColumn Field="@nameof(ProductInfo.Name)" Header="Product Name" DataType="GridLiteColumnDataType.String" Sortable />
+            <IgbGridLiteColumn Field="@nameof(ProductInfo.Price)" Header="Price" DataType="GridLiteColumnDataType.Number" Width="150px" Sortable />
+            <IgbGridLiteColumn Field="@nameof(ProductInfo.Sold)" Header="Units sold" DataType="GridLiteColumnDataType.Number" Width="150px" Sortable />
+            <IgbGridLiteColumn Field="@nameof(ProductInfo.Total)" Header="Total sold" DataType="GridLiteColumnDataType.Number" Width="150px" Sortable />
+            <IgbGridLiteColumn Field="@nameof(ProductInfo.Rating)" Header="Customer rating" DataType="GridLiteColumnDataType.Number" Width="180px" Sortable />
+        </IgbGridLite>
     }
 </div>
 
 @code {
     private List<ProductInfo> products;
-    private List<IgbColumnConfiguration> columns;
-    private IgbGridLiteSortConfiguration sortConfig;
+    private IgbGridLite<ProductInfo> grid;
+    private IgbGridLiteSortingOptions sortingOptions;
 
     protected override void OnInitialized()
     {
         products = MockDataGenerator.CreateProducts(50);
 
         // Grid-level sort configuration
-        sortConfig = new IgbGridLiteSortConfiguration
+        sortingOptions = new IgbGridLiteSortingOptions
         {
-            Multiple = true, // Enable multi-column sorting
-            TriState = true // Enable tri-state sorting (asc -> desc -> none)
+            Mode = GridLiteSortingMode.Multiple // Enable multi-column sorting
         };
-
-        columns = new List<IgbColumnConfiguration>
-{
-new IgbColumnConfiguration
-{
-Key = nameof(ProductInfo.Name),
-HeaderText = "Product Name",
-Type = GridLiteColumnDataType.String,
-Sort = true
-},
-new IgbColumnConfiguration
-{
-Key = nameof(ProductInfo.Price),
-HeaderText = "Price",
-Type = GridLiteColumnDataType.Number,
-Width = "150px",
-Sort = true
-},
-new IgbColumnConfiguration
-{
-Key = nameof(ProductInfo.Sold),
-HeaderText = "Units sold",
-Type = GridLiteColumnDataType.Number,
-Width = "150px",
-Sort = true
-},
-new IgbColumnConfiguration
-{
-Key = nameof(ProductInfo.Total),
-HeaderText = "Total sold",
-Type = GridLiteColumnDataType.Number,
-Width = "150px",
-Sort = true
-},
-new IgbColumnConfiguration
-{
-Key = nameof(ProductInfo.Rating),
-HeaderText = "Customer rating",
-Type = GridLiteColumnDataType.Number,
-Width = "180px",
-Sort = true
-}
-};
     }
 
     private void MultiSortChanged(IgbCheckboxChangeEventArgs e)
     {
-        sortConfig = new IgbGridLiteSortConfiguration
+        sortingOptions = new IgbGridLiteSortingOptions
         {
-            Multiple = e.Detail.Checked,
-            TriState = sortConfig.TriState
+            Mode = e.Detail.Checked ? GridLiteSortingMode.Multiple : GridLiteSortingMode.Single
         };
-    }
-
-    private void TriStateChanged(IgbCheckboxChangeEventArgs e)
-    {
-        sortConfig = new IgbGridLiteSortConfiguration
-        {
-            Multiple = sortConfig.Multiple,
-            TriState = e.Detail.Checked
-        };
+        grid?.ClearSortAsync(); // Clear existing sorting when changing mode
     }
 }
