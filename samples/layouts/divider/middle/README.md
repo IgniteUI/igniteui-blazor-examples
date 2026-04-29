@@ -3,19 +3,21 @@
 
 This folder contains implementation of Blazor application with example of Middle feature using [Divider](https://www.infragistics.com/products/ignite-ui-blazor/blazor/components/general-getting-started.html) component.
 
+
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <body>
+        <!-- https://static.infragistics.com/xplatform/images/browsers -->
         <a target="_blank" href="https://www.infragistics.com/products/ignite-ui-blazor/blazor/components/general-getting-started.html" rel="noopener noreferrer">
-            <img height="40px" style="border-radius: 0rem" alt="View Docs" src="https://dl.infragistics.com/x/img/browsers/button-docs.png"/>
+            <img height="40px" style="border-radius: 0rem" alt="View Docs" src="https://github.com/IgniteUI/igniteui-blazor-examples/raw/vnext/templates/sample/images/button-docs.png"/>
         </a>
         <a target="_blank" href="./App.razor" rel="noopener noreferrer">
-            <img height="40px" style="border-radius: 0rem; max-width: 100%;" alt="View Code" src="https://dl.infragistics.com/x/img/browsers/button-code.png"/>
+            <img height="40px" style="border-radius: 0rem; max-width: 100%;" alt="View Code" src="https://github.com/IgniteUI/igniteui-blazor-examples/raw/vnext/templates/sample/images/button-code.png"/>
         </a>
         <a target="_blank" href="https://infragistics.com/blazor-client/samples/layouts/divider/middle" rel="noopener noreferrer">
-            <img height="40px" style="border-radius: 0rem; max-width: 100%;" alt="Run Sample" src="https://dl.infragistics.com/x/img/browsers/button-run.png"/>
+            <img height="40px" style="border-radius: 0rem; max-width: 100%;" alt="Run Sample" src="https://github.com/IgniteUI/igniteui-blazor-examples/raw/vnext/templates/sample/images/button-run.png"/>
         </a>
         <!-- <a target="_blank" href="https://codesandbox.io/s/github/IgniteUI/igniteui-blazor-examples/tree/master/samples/layouts/divider/middle?fontsize=14&hidenavigation=1&theme=dark&view=preview&file=/src/App.razor" rel="noopener noreferrer">
-            <img height="40px" style="border-radius: 0rem; max-width: 100%;" alt="Run Sample" src="https://dl.infragistics.com/x/img/browsers/button-sandbox.png"/>
+            <img height="40px" style="border-radius: 0rem; max-width: 100%;" alt="Run Sample" src="https://github.com/IgniteUI/igniteui-blazor-examples/raw/vnext/templates/sample/images/button-sandbox.png"/>
         </a> -->
     </body>
 </html>
@@ -28,11 +30,11 @@ This folder contains implementation of Blazor application with example of Middle
 
 - instal **.NET SDK** from this [website](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install)
 
-## Running App in Visual Studio 2022
+## Running App in Visual Studio 2019
 
-NOTE: VS 2022 has better code highlighting and error detection than VS Code does.
+NOTE: VS 2019 has better code highlighting and error detection than VS Code does.
 
-- open **Visual Studio 2022** as an administrator
+- open **Visual Studio 2019** as an administrator
 
 - open the **BlazorClientApp.sln** solution
 
