@@ -1,0 +1,197 @@
+@using IgniteUI.Blazor.Controls
+@using System
+
+<div class="container vertical">
+    <div class="options vertical">
+        <IgbPropertyEditorPanel
+        Name="PropertyEditor"
+        @ref="propertyEditor"
+
+        DescriptionType="DataChart"
+        IsHorizontal="true"
+        IsWrappingEnabled="true">
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="MarkerSizeHandler"
+            Name="MarkerSizeEditor"
+            @ref="markerSizeEditor"
+            Label="Marker Size"
+            ShouldOverrideDefaultEditor="true"
+            ValueType="PropertyEditorValueType.EnumValue"
+            DropDownNames="@(new string[] { "3", "5", "7", "10", "12", "15", "20", "25", "30" })"
+            DropDownValues="@(new string[] { "3", "5", "7", "10", "12", "15", "20", "25", "30" })"
+            PrimitiveValue="@("10")"
+            Changed="EditorChangeUpdateDataChartMarkerSize">
+            </IgbPropertyEditorPropertyDescription>
+
+            <IgbPropertyEditorPropertyDescription
+            PropertyPath="MarkerTypeHandler"
+            Name="MarkerTypeEditor"
+            @ref="markerTypeEditor"
+            Label="Marker Type"
+            ShouldOverrideDefaultEditor="true"
+            ValueType="PropertyEditorValueType.EnumValue"
+            DropDownValues="@(new string[] { "Circle", "Checkmark", "Triangle", "Pyramid", "Square", "Diamond", "Pentagon", "Hexagon", "Tetragram", "Pentagram", "Hexagram", "Hidden", "Automatic", "None" })"
+            DropDownNames="@(new string[] { "Circle", "Checkmark", "Triangle", "Pyramid", "Square", "Diamond", "Pentagon", "Hexagon", "Tetragram", "Pentagram", "Hexagram", "Hidden", "Automatic", "None" })"
+            PrimitiveValue="@("Circle")"
+            Changed="EditorChangeUpdateDataChartMarkerType">
+            </IgbPropertyEditorPropertyDescription>
+
+        </IgbPropertyEditorPanel>
+
+    </div>
+    <div class="legend-title">
+        Population Statistics for Selected Continents
+    </div>
+    <div class="legend">
+        <IgbLegend
+        Name="legend"
+        @ref="legend"
+        Orientation="LegendOrientation.Horizontal">
+        </IgbLegend>
+
+    </div>
+    <div class="container vertical fill">
+        <IgbDataChart
+        Name="chart"
+        @ref="chart">
+            <IgbNumericXAxis
+            Name="xAxis"
+            @ref="xAxis"
+            Title="Death Rate (per 1,000 people)"
+            MinimumValue="5"
+            MaximumValue="15">
+            </IgbNumericXAxis>
+
+            <IgbNumericYAxis
+            Name="yAxis"
+            @ref="yAxis"
+            Title="Birth Rate (per 1,000 people)"
+            MinimumValue="0"
+            MaximumValue="50"
+            Interval="10">
+            </IgbNumericYAxis>
+
+            <IgbScatterSeries
+            Name="scatterSeries1"
+            @ref="scatterSeries1"
+            Title="Europe"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            XMemberPath="DeathRate"
+            YMemberPath="BirthRate"
+            DataSource="CountryDemographicEurope"
+            MarkerType="MarkerType.Circle"
+            MarkerSize="10"
+            ShowDefaultTooltip="true">
+            </IgbScatterSeries>
+
+            <IgbScatterSeries
+            Name="scatterSeries2"
+            @ref="scatterSeries2"
+            Title="Africa"
+            XAxisName="xAxis"
+            YAxisName="yAxis"
+            XMemberPath="DeathRate"
+            YMemberPath="BirthRate"
+            DataSource="CountryDemographicAfrican"
+            MarkerType="MarkerType.Circle"
+            MarkerSize="10"
+            ShowDefaultTooltip="true">
+            </IgbScatterSeries>
+
+        </IgbDataChart>
+
+    </div>
+</div>
+
+@code {
+
+    private Action BindElements { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var propertyEditor = this.propertyEditor;
+        var markerSizeEditor = this.markerSizeEditor;
+        var markerTypeEditor = this.markerTypeEditor;
+        var legend = this.legend;
+        var chart = this.chart;
+        var xAxis = this.xAxis;
+        var yAxis = this.yAxis;
+        var scatterSeries1 = this.scatterSeries1;
+        var scatterSeries2 = this.scatterSeries2;
+
+        this.BindElements = () => {
+            propertyEditor.Target = this.chart;
+            chart.Legend = this.legend;
+        };
+        this.BindElements();
+
+    }
+
+    private IgbPropertyEditorPanel propertyEditor;
+    private IgbPropertyEditorPropertyDescription markerSizeEditor;
+    private IgbPropertyEditorPropertyDescription markerTypeEditor;
+    private IgbLegend legend;
+    private IgbDataChart chart;
+    private IgbNumericXAxis xAxis;
+    private IgbNumericYAxis yAxis;
+    private IgbScatterSeries scatterSeries1;
+    private IgbScatterSeries scatterSeries2;
+
+    public void EditorChangeUpdateDataChartMarkerSize(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
+    {
+        var chart = this.chart;
+        var markerSizeVal = Convert.ToInt32(args.NewValue);
+        var series = chart.ActualSeries;
+        for (var i = 0; i < series.Count; i++)
+        {
+            var markerSeries = series[i] as IgbMarkerSeries;
+            if (markerSeries != null)
+            {
+                markerSeries.MarkerSize = markerSizeVal;
+            }
+        }
+    }
+
+    public void EditorChangeUpdateDataChartMarkerType(IgbPropertyEditorPropertyDescriptionChangedEventArgs args)
+    {
+        var chart = this.chart;
+        var markerTypeVal = (MarkerType)Enum.Parse(typeof(MarkerType), args.NewValue.ToString());
+        var series = chart.ActualSeries;
+        for (var i = 0; i < series.Count; i++)
+        {
+            var markerSeries = series[i] as IgbMarkerSeries;
+            if (markerSeries != null)
+            {
+                markerSeries.MarkerType = markerTypeVal;
+            }
+        }
+    }
+
+    private CountryDemographicEurope _countryDemographicEurope = null;
+    public CountryDemographicEurope CountryDemographicEurope
+    {
+        get
+        {
+            if (_countryDemographicEurope == null)
+            {
+                _countryDemographicEurope = new CountryDemographicEurope();
+            }
+            return _countryDemographicEurope;
+        }
+    }
+
+    private CountryDemographicAfrican _countryDemographicAfrican = null;
+    public CountryDemographicAfrican CountryDemographicAfrican
+    {
+        get
+        {
+            if (_countryDemographicAfrican == null)
+            {
+                _countryDemographicAfrican = new CountryDemographicAfrican();
+            }
+            return _countryDemographicAfrican;
+        }
+    }
+
+}

@@ -32,6 +32,55 @@ public class PreflightTests : BlazorTest
 }
 
 
+[Parallelizable(ParallelScope.Self)]
+[TestFixture]
+public class ThemeTests : BlazorTest
+{
+    private static readonly string[] ExpectedThemeHrefs =
+    [
+        "_content/IgniteUI.Blazor/themes/light/bootstrap.css",
+        "_content/IgniteUI.Blazor/themes/light/material.css",
+        "_content/IgniteUI.Blazor/themes/light/fluent.css",
+        "_content/IgniteUI.Blazor/themes/light/indigo.css",
+        "_content/IgniteUI.Blazor/themes/dark/bootstrap.css",
+        "_content/IgniteUI.Blazor/themes/dark/material.css",
+        "_content/IgniteUI.Blazor/themes/dark/fluent.css",
+        "_content/IgniteUI.Blazor/themes/dark/indigo.css",
+
+        "_content/IgniteUI.Blazor/themes/grid/light/bootstrap.css",
+        "_content/IgniteUI.Blazor/themes/grid/light/material.css",
+        "_content/IgniteUI.Blazor/themes/grid/light/fluent.css",
+        "_content/IgniteUI.Blazor/themes/grid/light/indigo.css",
+        "_content/IgniteUI.Blazor/themes/grid/dark/bootstrap.css",
+        "_content/IgniteUI.Blazor/themes/grid/dark/material.css",
+        "_content/IgniteUI.Blazor/themes/grid/dark/fluent.css",
+        "_content/IgniteUI.Blazor/themes/grid/dark/indigo.css",
+    ];
+
+    [SetUp]
+    public void InitFixture()
+    {
+        Context.SetDefaultTimeout(TestContext.Parameters.Get<int>("defaultTimeout", 30000));
+    }
+
+    [Test]
+    [Category("ThemeTest")]
+    public async Task ThemeStylesheetsRespondWithSuccess()
+    {
+        await Page.GotoAsync(RootUri.AbsoluteUri);
+        await Page.WaitForSelectorAsync("text=This web application demonstrates samples for Infragistics Blazor Controls running on client-side");
+
+        foreach (var expectedHref in ExpectedThemeHrefs)
+        {
+            var absoluteUrl = new Uri(RootUri, expectedHref).AbsoluteUri;
+            var response = await Page.GotoAsync(absoluteUrl);
+            Assert.That(response.Status, Is.EqualTo(200), $"Theme stylesheet returned non-200 status: {absoluteUrl}");
+            var body = await response.TextAsync();
+            Assert.That(body, Is.Not.Empty, $"Theme stylesheet is empty: {absoluteUrl}");
+        }
+    }
+}
+
 class GridLinks
 {
     public static string[] FixtureArgs = {
