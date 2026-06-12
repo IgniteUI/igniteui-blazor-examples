@@ -1,0 +1,33 @@
+@using IgniteUI.Blazor.Controls
+
+
+<div class="container sample center">
+    <IgbHighlight @ref="HighlightRef" SearchText="@searchText">
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae doloribus
+        odit id excepturi ipsum provident eaque dignissimos beatae!</p>
+    </IgbHighlight>
+</div>
+
+@code {
+    private IgbHighlight HighlightRef { get; set; }
+    private string searchText = "dolor";
+    private bool reapplySearch = true;
+
+    protected override void OnParametersSet()
+    {
+        searchText = "dolor";
+        reapplySearch = true;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (reapplySearch && HighlightRef != null)
+        {
+            reapplySearch = false;
+            await HighlightRef.EnsureReady();
+            HighlightRef.SearchText = searchText;
+            await HighlightRef.SearchAsync();
+        }
+    }
+
+}
