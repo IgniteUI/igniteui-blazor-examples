@@ -1,6 +1,5 @@
 @using IgniteUI.Blazor.Controls
 
-
 <div class="container sample center">
     <style>
         igc-highlight {
@@ -37,13 +36,6 @@
     private string inputText = "";
     private bool reapplySearch = true;
 
-    protected override void OnParametersSet()
-    {
-        searchText = "ipsum";
-        inputText = "";
-        reapplySearch = true;
-    }
-
     private void OnValueChanging(string newValue)
     {
         inputText = newValue;
@@ -53,22 +45,25 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (reapplySearch && HighlightRef != null)
+        if ((firstRender || reapplySearch) && HighlightRef != null)
         {
             reapplySearch = false;
+
             await HighlightRef.EnsureReady();
             HighlightRef.SearchText = searchText;
             await HighlightRef.SearchAsync();
+
+            StateHasChanged();
         }
     }
 
-    private async void Prev()
+    private async Task Prev()
     {
         if (HighlightRef != null)
             await HighlightRef.PreviousAsync(new IgbHighlightNavigation { PreventScroll = true });
     }
 
-    private async void Next()
+    private async Task Next()
     {
         if (HighlightRef != null)
             await HighlightRef.NextAsync(new IgbHighlightNavigation { PreventScroll = true });
