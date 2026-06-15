@@ -26,7 +26,7 @@ This folder contains implementation of Blazor application with example of Stylin
 
 ## Setup
 
-- instal **.NET SDK** from this [website](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install)
+- install **.NET SDK** from this [website](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/install)
 
 ## Running App in Visual Studio 2022
 
@@ -55,7 +55,7 @@ NOTE: VS 2022 has better code highlighting and error detection than VS Code does
 - to run samples, run this command:
 ```dotnet watch run```
 
-- wait for for message:
+- wait for message:
 **Now listening on: http://localhost:4200**
 
 - open **http://localhost:4200** in your browser
