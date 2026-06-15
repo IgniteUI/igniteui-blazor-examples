@@ -1,6 +1,5 @@
 @using IgniteUI.Blazor.Controls
 
-
 <div class="container sample center">
     <div class="search-bar">
         <IgbInput Label="Search" ValueChanging="OnValueChanging">
@@ -49,55 +48,49 @@
 
 @code {
     private IgbHighlight HighlightRef { get; set; }
-
-    private const string SampleText =
-        "Document Object Model " +
-        "The Document Object Model (DOM) is a cross-platform and language-independent interface that treats an HTML or XML document as a tree structure wherein each node is an object representing a part of the document. " +
-        "The DOM represents a document with a logical tree. Each branch of the tree ends in a node, and each node contains objects. " +
-        "DOM methods allow programmatic access to the tree; with them one can change the structure, style or content of a document. " +
-        "Nodes can have event handlers (also known as event listeners) attached to them. Once an event is triggered, the event handlers get executed. " +
-        "The principal standardization of the DOM was handled by the World Wide Web Consortium (W3C), which last developed a recommendation in 2004. " +
-        "WHATWG took over the development of the standard, publishing it as a living document. The W3C now publishes stable snapshots of the WHATWG standard. " +
-        "In HTML DOM (Document Object Model), every element is a node: " +
-        "A document is a document node. All HTML elements are element nodes. All HTML attributes are attribute nodes. " +
-        "Text inserted into HTML elements are text nodes. Comments are comment nodes.";
-
     private string searchText = "";
     private string helperText = "";
-    private int matchCount = 0;
-    private int currentMatch = 0;
+    private bool reapplySearch = false;
 
     private void OnValueChanging(string newValue)
     {
         searchText = newValue;
-        matchCount = CountMatches(newValue);
-        currentMatch = matchCount > 0 ? 1 : 0;
-        UpdateHelperText();
+        reapplySearch = true;
     }
 
-    private void UpdateHelperText()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (string.IsNullOrWhiteSpace(searchText) || matchCount == 0)
+        if (reapplySearch && HighlightRef != null)
+        {
+            reapplySearch = false;
+
+            await HighlightRef.EnsureReady();
+            HighlightRef.SearchText = searchText;
+            await HighlightRef.SearchAsync();
+            await UpdateStatus();
+
+            StateHasChanged();
+        }
+    }
+
+    private async Task UpdateStatus()
+    {
+        if (HighlightRef == null || string.IsNullOrWhiteSpace(searchText))
         {
             helperText = "";
             return;
         }
 
-        helperText = $"{currentMatch} of {matchCount} match{(matchCount == 1 ? "" : "es")}";
-    }
+        var size = (int)await HighlightRef.GetSizeAsync();
 
-    private int CountMatches(string value)
-    {
-        if (string.IsNullOrWhiteSpace(value))
+        if (size == 0)
         {
-            return 0;
+            helperText = "";
+            return;
         }
 
-        return System.Text.RegularExpressions.Regex.Matches(
-            SampleText,
-            System.Text.RegularExpressions.Regex.Escape(value),
-            System.Text.RegularExpressions.RegexOptions.IgnoreCase | System.Text.RegularExpressions.RegexOptions.CultureInvariant
-        ).Count;
+        var current = (int)await HighlightRef.GetCurrentAsync();
+        helperText = $"{current + 1} of {size} match{(size == 1 ? "" : "es")}";
     }
 
     private async Task Prev()
@@ -105,11 +98,7 @@
         if (HighlightRef != null)
         {
             await HighlightRef.PreviousAsync(new IgbHighlightNavigation { PreventScroll = true });
-            if (matchCount > 0)
-            {
-                currentMatch = currentMatch <= 1 ? matchCount : currentMatch - 1;
-            }
-            UpdateHelperText();
+            await UpdateStatus();
             StateHasChanged();
         }
     }
@@ -119,11 +108,7 @@
         if (HighlightRef != null)
         {
             await HighlightRef.NextAsync(new IgbHighlightNavigation { PreventScroll = true });
-            if (matchCount > 0)
-            {
-                currentMatch = currentMatch >= matchCount ? 1 : currentMatch + 1;
-            }
-            UpdateHelperText();
+            await UpdateStatus();
             StateHasChanged();
         }
     }
