@@ -1,7 +1,7 @@
 <!-- NOTE: do not change this file because it's auto re-generated from template: -->
 <!-- https://github.com/IgniteUI/igniteui-blazor-examples/tree/vnext/templates/sample/ReadMe.md -->
 
-This folder contains implementation of Blazor application with example of Base feature using [Splitter](https://www.infragistics.com/products/ignite-ui-blazor/blazor/components/general-getting-started.html) component.
+This folder contains implementation of Blazor application with example of Overview feature using [Splitter](https://www.infragistics.com/products/ignite-ui-blazor/blazor/components/general-getting-started.html) component.
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <body>
@@ -11,10 +11,10 @@ This folder contains implementation of Blazor application with example of Base f
         <a target="_blank" href="./App.razor" rel="noopener noreferrer">
             <img height="40px" style="border-radius: 0rem; max-width: 100%;" alt="View Code" src="https://dl.infragistics.com/x/img/browsers/button-code.png"/>
         </a>
-        <a target="_blank" href="https://infragistics.com/blazor-client/samples/layouts/splitter/base" rel="noopener noreferrer">
+        <a target="_blank" href="https://infragistics.com/blazor-client/samples/layouts/splitter/overview" rel="noopener noreferrer">
             <img height="40px" style="border-radius: 0rem; max-width: 100%;" alt="Run Sample" src="https://dl.infragistics.com/x/img/browsers/button-run.png"/>
         </a>
-        <!-- <a target="_blank" href="https://codesandbox.io/s/github/IgniteUI/igniteui-blazor-examples/tree/master/samples/layouts/splitter/base?fontsize=14&hidenavigation=1&theme=dark&view=preview&file=/src/App.razor" rel="noopener noreferrer">
+        <!-- <a target="_blank" href="https://codesandbox.io/s/github/IgniteUI/igniteui-blazor-examples/tree/master/samples/layouts/splitter/overview?fontsize=14&hidenavigation=1&theme=dark&view=preview&file=/src/App.razor" rel="noopener noreferrer">
             <img height="40px" style="border-radius: 0rem; max-width: 100%;" alt="Run Sample" src="https://dl.infragistics.com/x/img/browsers/button-sandbox.png"/>
         </a> -->
     </body>
