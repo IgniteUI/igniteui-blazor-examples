@@ -1,0 +1,67 @@
+@using IgniteUI.Blazor.Controls
+
+
+<div class="container vertical">
+    <IgbChat @ref="Chat" Options="Options" Messages="Messages" MessageCreated="OnMessageCreated" Height="100%"></IgbChat>
+</div>
+
+@code {
+    public IgbChat Chat;
+    public IgbChatMessage[] Messages = new IgbChatMessage[]
+    {
+        new IgbChatMessage()
+        {
+            Id = "1",
+            Text = "Hi, I have a question about my recent order, #7890.",
+            Sender = "user",
+            Timestamp = (DateTime.Now - TimeSpan.FromMilliseconds(3500000)).ToString()
+        },
+        new IgbChatMessage() {
+          Id = "2",
+          Text = "Hello! I can help with that. What is your question regarding order #7890?",
+          Sender = "support",
+          Timestamp = (DateTime.Now - TimeSpan.FromMilliseconds(3400000)).ToString()
+        },
+        new IgbChatMessage() {
+          Id = "3",
+          Text = "The tracking status shows 'delivered', but I haven't received it yet. Can you confirm the delivery location?",
+          Sender = "user",
+          Timestamp = (DateTime.Now - TimeSpan.FromMilliseconds(3300000)).ToString()
+        },
+        new IgbChatMessage() {
+          Id = "4",
+          Text = "I've reviewed the delivery details. It seems the package was left in a different spot. Here's a photo from our delivery driver showing where it was placed. Please check your porch and side door.",
+          Sender = "support",
+          Timestamp = (DateTime.Now - TimeSpan.FromMilliseconds(3200000)).ToString(),
+          Attachments = new IgbChatMessageAttachment[]
+          {
+                new IgbChatMessageAttachment()
+                {
+                  Id = "delivery-location-image",
+                  Name = "Delivery location",
+                  Url = "https://media.istockphoto.com/id/1207972183/photo/merchandise-delivery-from-online-ordering.jpg?s=612x612&w=0&k=20&c=cGcMqd_8FALv4Tueh7sllYZuDXurkfkqoJf6IAIWhJk=",
+                  AttachmentType = "image"
+                }
+            }
+        }
+    };
+
+    public IgbChatOptions Options = new IgbChatOptions
+    {
+        DisableAutoScroll = false,
+        DisableInputAttachments = false,
+        Suggestions = new string[] { "It's there. Thanks.", "It's not there." },
+        InputPlaceholder = "Type your message here...",
+        HeaderText = "Customer Support",
+        Renderers = new IgbChatRenderers()
+        {
+            MessageHeaderScript = "OnMessageHeaderTemplate"
+        }
+    };
+
+    public void OnMessageCreated(IgbChatMessageEventArgs e)
+    {
+        Messages = Messages.Append(e.Detail).ToArray();
+    }
+
+}
