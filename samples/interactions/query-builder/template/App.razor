@@ -1,0 +1,132 @@
+@using IgniteUI.Blazor.Controls
+@inject IJSRuntime JS
+
+<div class="container vertical">
+    <div class="options horizontal fill">
+        <IgbIcon @ref="RegisterIconRef" IconName="clock" Collection="material" style="display: none;" />
+        <IgbQueryBuilder @ref="queryBuilder"
+                         Entities="Entities"
+                         ExpressionTree="ExpressionTree"
+                         ExpressionTreeChangeScript="WebQueryBuilderTemplateExpressionTreeChange"
+                         SearchValueTemplateScript="SearchValueTemplate">
+                         <IgbQueryBuilderHeader Title="Query Builder Template Sample"></IgbQueryBuilderHeader>
+        </IgbQueryBuilder>
+    </div>
+    <div class="container vertical fill output-area">
+        <pre id="expressionOutput"></pre>
+    </div>
+</div>
+
+@code {
+
+    private IgbQueryBuilder queryBuilder;
+    private IgbIcon RegisterIconRef { get; set; }
+
+    private static readonly IgbFieldType[] OrderFields =
+    [
+        new() { Field = "CompanyID", DataType = GridColumnDataType.String },
+        new() { Field = "OrderID", DataType = GridColumnDataType.Number },
+        new() { Field = "Freight", DataType = GridColumnDataType.Number },
+        new() { Field = "ShipCountry", DataType = GridColumnDataType.String },
+        new() { Field = "IsRushOrder", DataType = GridColumnDataType.Boolean },
+        new()
+        {
+            Field = "RequiredTime",
+            DataType = GridColumnDataType.Time,
+            DefaultTimeFormat = "hh:mm tt"
+        },
+        new()
+        {
+            Field = "OrderDate",
+            DataType = GridColumnDataType.Date,
+            PipeArgs = new IgbFieldPipeArgs { Format = "MMM d, y" }
+        },
+        new() { Field = "Region", DataType = GridColumnDataType.String },
+        new() { Field = "OrderStatus", DataType = GridColumnDataType.String }
+    ];
+
+    private static readonly IgbEntityType[] Entities =
+    [
+        new()
+        {
+            Name = "Orders",
+            Fields = OrderFields
+        }
+    ];
+
+    class QueryBuilderOption
+    {
+        public string Text { get; set; }
+        public string Value { get; set; }
+    }
+
+    private static readonly QueryBuilderOption[] RegionOptions =
+    [
+        new() { Text = "Central North America", Value = "CNA" },
+        new() { Text = "Central Europe", Value = "CEU" },
+        new() { Text = "Mediterranean region", Value = "MED" },
+        new() { Text = "Central Asia", Value = "CAS" },
+        new() { Text = "South Asia", Value = "SAS" },
+        new() { Text = "Western Africa", Value = "WAF" },
+        new() { Text = "Amazonia", Value = "AMZ" },
+        new() { Text = "Southern Africa", Value = "SAF" },
+        new() { Text = "Northern Australia", Value = "NAU" }
+    ];
+
+
+    private static readonly QueryBuilderOption[] StatusOptions =
+    [
+        new() { Text = "New", Value = "New" },
+        new() { Text = "Shipped", Value = "Shipped" },
+        new() { Text = "Done", Value = "Done" }
+    ];
+
+    private static readonly IgbExpressionTree ExpressionTree = new()
+    {
+        Operator = FilteringLogic.And,
+        Entity = "Orders",
+        ReturnFields = ["*"],
+        FilteringOperands =
+        [
+              new IgbFilteringExpression
+              {
+                  FieldName = "Region",
+                  ConditionName = "equals",
+                  SearchVal = RegionOptions[0].Value
+              },
+             new IgbFilteringExpression
+             {
+                 FieldName = "OrderStatus",
+                 ConditionName = "equals",
+                 SearchVal = StatusOptions[0].Value
+             }
+        ]
+    };
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender || queryBuilder is null)
+        {
+            return;
+        }
+
+        await this.RegisterIcons();
+        await queryBuilder.EnsureReady();
+        await JS.InvokeVoidAsync("queryBuilderTemplate.init", RegionOptions, StatusOptions);
+    }
+
+    private async Task RegisterIcons()
+    {
+        if (this.RegisterIconRef is null)
+        {
+            return;
+        }
+
+        await this.RegisterIconRef.EnsureReady();
+
+        const string clockIcon = "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z' /></svg>";
+        await this.RegisterIconRef.RegisterIconFromTextAsync("clock", clockIcon, "material");
+    }
+
+
+}
