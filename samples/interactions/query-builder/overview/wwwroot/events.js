@@ -105,7 +105,7 @@ window.queryBuilderOverview = {
     loadInitialData: syncTreeOnExpressionChange
 };
 
-igRegisterScript("WebQueryBuilderExpressionTreeChange", async (evtArgs) => {
+igRegisterScript("WebQueryBuilderOverviewExpressionTreeChange", async (evtArgs) => {
     const detail = evtArgs?.detail;
     if (!detail) {
         return;

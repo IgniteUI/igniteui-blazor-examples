@@ -252,7 +252,7 @@ igRegisterScript('SearchValueTemplate', (ctx) => {
     return buildDefaultInput(ctx, equalityCondition);
 }, false);
 
-igRegisterScript('WebQueryBuilderExpressionTreeChange', (evtArgs) => {
+igRegisterScript('WebQueryBuilderTemplateExpressionTreeChange', (evtArgs) => {
     const expressionTree = evtArgs?.detail;
     renderExpressionTree(expressionTree);
 }, false);
