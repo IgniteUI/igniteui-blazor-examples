@@ -42,7 +42,7 @@
             PipeArgs = new IgbFieldPipeArgs { Format = "MMM d, y" }
         },
         new() { Field = "Region", DataType = GridColumnDataType.String },
-        new() { Field = "OrderStatus", DataType = GridColumnDataType.Number }
+        new() { Field = "OrderStatus", DataType = GridColumnDataType.String }
     ];
 
     private static readonly IgbEntityType[] Entities =
@@ -54,24 +54,31 @@
         }
     ];
 
-    private static readonly (string Text, string Value)[] RegionOptions =
+    class QueryBuilderOption
+    {
+        public string Text { get; set; }
+        public string Value { get; set; }
+    }
+
+    private static readonly QueryBuilderOption[] RegionOptions =
     [
-        new("Central North America", "CNA"),
-        new("Central Europe", "CEU"),
-        new("Mediterranean region", "MED"),
-        new("Central Asia", "CAS"),
-        new("South Asia", "SAS"),
-        new("Western Africa", "WAF"),
-        new("Amazonia", "AMZ"),
-        new("Southern Africa", "SAF"),
-        new("Northern Australia", "NAU")
+        new() { Text = "Central North America", Value = "CNA" },
+        new() { Text = "Central Europe", Value = "CEU" },
+        new() { Text = "Mediterranean region", Value = "MED" },
+        new() { Text = "Central Asia", Value = "CAS" },
+        new() { Text = "South Asia", Value = "SAS" },
+        new() { Text = "Western Africa", Value = "WAF" },
+        new() { Text = "Amazonia", Value = "AMZ" },
+        new() { Text = "Southern Africa", Value = "SAF" },
+        new() { Text = "Northern Australia", Value = "NAU" }
     ];
 
-    private static readonly (string Text, int Value)[] StatusOptions =
+
+    private static readonly QueryBuilderOption[] StatusOptions =
     [
-        new("New", 1),
-        new("Shipped", 2),
-        new("Done", 3)
+        new() { Text = "New", Value = "New" },
+        new() { Text = "Shipped", Value = "Shipped" },
+        new() { Text = "Done", Value = "Done" }
     ];
 
     private static readonly IgbExpressionTree ExpressionTree = new()
