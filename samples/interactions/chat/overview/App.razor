@@ -62,6 +62,20 @@
     public void OnMessageCreated(IgbChatMessageEventArgs e)
     {
         Messages = Messages.Append(e.Detail).ToArray();
+
+        IgbChatMessage responseMessage = new IgbChatMessage()
+        {
+            Id = DateTime.Now.Ticks.ToString(),
+            Text = "Our support team is currently unavailable. We'll get back to you as soon as possible.",
+            Sender = "support",
+            Timestamp = DateTime.Now.ToString()
+        };
+        Messages = Messages.Append(responseMessage).ToArray();
+        this.Chat.DraftMessage = new IgbChatDraftMessage()
+        {
+            Text = "",
+            Attachments = new IgbChatMessageAttachment[] { }
+        };
     }
 
 }
