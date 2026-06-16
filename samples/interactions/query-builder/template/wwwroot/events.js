@@ -35,77 +35,56 @@ function normalizeTimeValue(value) {
 }
 
 function buildRegionSelect(ctx) {
-    const select = document.createElement('igc-select');
-    const currentValue = ctx && ctx.implicit && ctx.implicit.value
-        ? ctx.implicit.value.value ?? ''
-        : '';
-
-    select.placeholder = 'Region';
-    if (currentValue) {
-        select.value = currentValue;
-    }
-
-    for (const option of regionOptions) {
-        const item = document.createElement('igc-select-item');
-        item.setAttribute('value', option.value);
-        item.textContent = option.text;
-        select.appendChild(item);
-    }
-
-    select.addEventListener('igcChange', (event) => {
+    const currentValue = ctx?.implicit?.value;
+    const changeHandler = (event) => {
         const value = event && event.detail ? event.detail.value : null;
-        const currentKey = ctx && ctx.implicit && ctx.implicit.value
-            ? ctx.implicit.value.value ?? ''
-            : '';
+        ctx.implicit.value = value;
+    };
 
-        if (!value || value === currentKey) {
-            return;
-        }
-
-        ctx.implicit.value = regionOptions.find((option) => option.value === value) ?? null;
-    });
-
-    return select;
+    return html`
+      <igc-select
+        placeholder="Region"
+        .value=${currentValue}
+        @igcChange=${changeHandler}>
+        ${regionOptions.map(option => html`
+          <igc-select-item value=${option.value}>${option.text}</igc-select-item>
+        `)}
+      </igc-select>
+    `;
 }
 
 function buildStatusRadios(ctx) {
-    const group = document.createElement('igc-radio-group');
-    const implicitValue = ctx && ctx.implicit ? ctx.implicit.value : null;
+    const implicitValue = ctx?.implicit?.value;
     const currentValue = implicitValue == null ? '' : implicitValue.toString();
 
-    group.style.gap = '5px';
-    group.alignment = 'horizontal';
-    group.value = currentValue;
-
-    for (const option of statusOptions) {
-        const radio = document.createElement('igc-radio');
-        radio.setAttribute('name', 'status');
-        radio.setAttribute('value', option.value.toString());
-        radio.checked = option.value.toString() === currentValue;
-        radio.textContent = option.text;
-        group.appendChild(radio);
-    }
-
-    group.addEventListener('igcChange', (event) => {
+    const changeHandler = (event) => {
         const value = event && event.detail ? event.detail.value : undefined;
-        if (value === undefined) {
+        if (!value || ctx.implicit.value === value) {
             return;
         }
+        ctx.implicit.value = value;
+    };
 
-        const numericValue = Number(value);
-        if (ctx.implicit.value === numericValue) {
-            return;
-        }
-
-        ctx.implicit.value = numericValue;
-    });
-
-    return group;
+    return html`
+      <igc-radio-group
+        style="gap: 5px;"
+        .alignment=${"horizontal"}
+        .value=${currentValue}
+        @igcChange=${changeHandler}>
+        ${statusOptions.map(option => html`
+          <igc-radio
+            name="status"
+            value=${option.value}
+            ?checked=${option.value.toString() === currentValue}>
+            ${option.text}
+          </igc-radio>
+        `)}
+      </igc-radio-group>
+    `;
 }
 
 function buildDatePicker(ctx) {
-    const picker = document.createElement('igc-date-picker');
-    const implicitValue = ctx && ctx.implicit ? ctx.implicit.value : null;
+    const implicitValue = ctx.implicit?.value;
     const currentValue = implicitValue instanceof Date
         ? implicitValue
         : implicitValue
@@ -115,54 +94,40 @@ function buildDatePicker(ctx) {
     const allowedConditions = ['equals', 'doesNotEqual', 'before', 'after'];
     const isEnabled = allowedConditions.includes(ctx.selectedCondition ?? '');
 
-    picker.disabled = !isEnabled;
-    if (currentValue) {
-        picker.value = currentValue;
-    }
-
-    picker.addEventListener('click', () => {
-        if (typeof picker.show === 'function') {
-            picker.show();
-        }
-    });
-
-    picker.addEventListener('igcChange', (event) => {
-        ctx.implicit.value = event ? event.detail : null;
-    });
-
-    return picker;
+    return html`
+      <igc-date-picker
+        .value=${currentValue}
+        .disabled=${!isEnabled}
+        @click=${(event) => (event.currentTarget).show()}
+        @igcChange=${(event) => {
+            ctx.implicit.value = event.detail;
+        }}>
+      </igc-date-picker>
+    `;
 }
 
 function buildTimeInput(ctx) {
-    const input = document.createElement('igc-date-time-input');
-    const icon = document.createElement('igc-icon');
-    const currentValue = normalizeTimeValue(ctx && ctx.implicit ? ctx.implicit.value : null);
+    const currentValue = this.normalizeTimeValue(ctx.implicit?.value);
     const allowedConditions = ['at', 'not_at', 'at_before', 'at_after', 'before', 'after'];
     const isDisabled = ctx.selectedField == null || !allowedConditions.includes(ctx.selectedCondition ?? '');
 
-    input.inputFormat = 'hh:mm tt';
-    input.disabled = isDisabled;
-    if (currentValue) {
-        input.value = currentValue;
-    }
-
-    icon.slot = 'prefix';
-    icon.setAttribute('name', 'clock');
-    icon.setAttribute('collection', 'material');
-    input.appendChild(icon);
-
-    input.addEventListener('igcChange', (event) => {
-        const picker = event ? event.currentTarget : null;
-        ctx.implicit.value = picker && 'value' in picker ? picker.value : null;
-    });
-
-    return input;
+    return html`
+      <igc-date-time-input
+        .inputFormat=${"hh:mm tt"}
+        .value=${currentValue}
+        .disabled=${isDisabled}
+        @igcChange=${(event) => {
+            const picker = event.currentTarget;
+            ctx.implicit.value = picker.value;
+        }}>
+        <igc-icon slot="prefix" name="clock" collection="material"></igc-icon>
+      </igc-date-time-input>
+    `;
 }
 
 function buildDefaultInput(ctx, equalityCondition) {
-    const input = document.createElement('igc-input');
     const selectedField = ctx.selectedField;
-    const dataType = selectedField ? selectedField.dataType : null;
+    const dataType = selectedField?.dataType;
     const isNumber = dataType === 'number';
     const isBoolean = dataType === 'boolean';
 
@@ -170,29 +135,28 @@ function buildDefaultInput(ctx, equalityCondition) {
         ? 'Sub-query results'
         : 'Value';
 
-    const currentImplicitValue = ctx && ctx.implicit ? ctx.implicit.value : null;
-    const currentValue = typeof currentImplicitValue === 'object' && currentImplicitValue && 'text' in currentImplicitValue
-        ? equalityCondition ? currentImplicitValue.text : ''
-        : currentImplicitValue;
+    const currentValue = typeof ctx.implicit?.value === 'object' && (ctx.implicit.value && 'text' in ctx.implicit.value)
+        ? matchesEqualityCondition ? ctx.implicit.value.text : ''
+        : ctx.implicit?.value;
 
+    const inputValue = currentValue == null ? '' : currentValue;
     const disabledConditions = ['empty', 'notEmpty', 'null', 'notNull', 'inQuery', 'notInQuery'];
     const isDisabled = isBoolean || selectedField == null || disabledConditions.includes(ctx.selectedCondition ?? '');
 
-    input.value = currentValue == null ? '' : currentValue;
-    input.placeholder = placeholder;
-    input.disabled = isDisabled;
-    input.type = isNumber ? 'number' : 'text';
-
-    input.addEventListener('input', (event) => {
-        const target = event ? event.target : null;
-        const value = target && 'value' in target ? target.value : '';
-
-        ctx.implicit.value = isNumber
-            ? value === '' ? null : Number(value)
-            : value;
-    });
-
-    return input;
+    return html`
+      <igc-input 
+        .value=${inputValue}
+        ?disabled=${isDisabled}
+        placeholder=${placeholder}
+        type=${isNumber ? 'number' : 'text'}
+        @input=${(event) => {
+            const target = event.target;
+            ctx.implicit.value = isNumber
+                ? target.value === '' ? null : Number(target.value)
+                : target.value;
+        }}>
+      </igc-input>
+    `;
 }
 
 function renderExpressionTree(expressionTree) {
