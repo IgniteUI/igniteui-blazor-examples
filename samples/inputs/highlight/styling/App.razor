@@ -1,0 +1,59 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample center">
+    <div class="search-bar">
+        <IgbInput Label="Search" ValueChanging="OnValueChanging" Value="@inputText">
+            <IgbIconButton slot="suffix" Variant="IconButtonVariant.Flat" IconName="navigate_before" Collection="internal" @onclick="Prev"></IgbIconButton>
+            <IgbIconButton slot="suffix" Variant="IconButtonVariant.Flat" IconName="navigate_next" Collection="internal" @onclick="Next"></IgbIconButton>
+        </IgbInput>
+    </div>
+    <IgbDivider></IgbDivider>
+    <IgbHighlight @ref="HighlightRef" SearchText="@searchText">
+        <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae doloribus
+            odit id excepturi ipsum provident eaque dignissimos beatae! Rerum vero
+            distinctio libero, quasi magni quod natus nesciunt doloremque temporibus
+            voluptate?
+        </p>
+    </IgbHighlight>
+</div>
+
+@code {
+    private IgbHighlight HighlightRef { get; set; }
+    private string searchText = "ipsum";
+    private string inputText = "";
+    private bool reapplySearch = true;
+
+    private void OnValueChanging(string newValue)
+    {
+        inputText = newValue;
+        searchText = newValue;
+        reapplySearch = true;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if ((firstRender || reapplySearch) && HighlightRef != null)
+        {
+            reapplySearch = false;
+
+            await HighlightRef.EnsureReady();
+            HighlightRef.SearchText = searchText;
+            await HighlightRef.SearchAsync();
+
+            StateHasChanged();
+        }
+    }
+
+    private async Task Prev()
+    {
+        if (HighlightRef != null)
+            await HighlightRef.PreviousAsync(new IgbHighlightNavigation { PreventScroll = true });
+    }
+
+    private async Task Next()
+    {
+        if (HighlightRef != null)
+            await HighlightRef.NextAsync(new IgbHighlightNavigation { PreventScroll = true });
+    }
+}
