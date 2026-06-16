@@ -107,7 +107,7 @@ function buildDatePicker(ctx) {
 }
 
 function buildTimeInput(ctx) {
-    const currentValue = this.normalizeTimeValue(ctx.implicit?.value);
+    const currentValue = normalizeTimeValue(ctx.implicit?.value);
     const allowedConditions = ['at', 'not_at', 'at_before', 'at_after', 'before', 'after'];
     const isDisabled = ctx.selectedField == null || !allowedConditions.includes(ctx.selectedCondition ?? '');
 
@@ -135,9 +135,10 @@ function buildDefaultInput(ctx, equalityCondition) {
         ? 'Sub-query results'
         : 'Value';
 
-    const currentValue = typeof ctx.implicit?.value === 'object' && (ctx.implicit.value && 'text' in ctx.implicit.value)
-        ? matchesEqualityCondition ? ctx.implicit.value.text : ''
-        : ctx.implicit?.value;
+    const currentImplicitValue = ctx && ctx.implicit ? ctx.implicit.value : null;
+    const currentValue = typeof currentImplicitValue === 'object' && currentImplicitValue && 'text' in currentImplicitValue
+        ? equalityCondition ? currentImplicitValue.text : ''
+        : currentImplicitValue;
 
     const inputValue = currentValue == null ? '' : currentValue;
     const disabledConditions = ['empty', 'notEmpty', 'null', 'notNull', 'inQuery', 'notInQuery'];
