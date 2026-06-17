@@ -1,0 +1,108 @@
+@using IgniteUI.Blazor.Controls
+@inject IJSRuntime JS
+
+<div class="container vertical">
+    <div class="options horizontal fill">
+        <IgbQueryBuilder @ref="queryBuilder"
+            Entities="Entities"
+            ExpressionTree="ExpressionTree"
+            ExpressionTreeChangeScript="WebQueryBuilderOverviewExpressionTreeChange">
+        </IgbQueryBuilder>
+    </div>
+
+    <div class="container vertical fill">
+        <IgbGrid @ref="grid"
+            Id="grid"
+            AutoGenerate="false"
+            Width="100%"
+            Height="420px">
+            <IgbColumn Field="orderId" DataType="GridColumnDataType.Number"></IgbColumn>
+            <IgbColumn Field="customerId" DataType="GridColumnDataType.String"></IgbColumn>
+            <IgbColumn Field="companyName" DataType="GridColumnDataType.String"></IgbColumn>
+            <IgbColumn Field="contactName" DataType="GridColumnDataType.String"></IgbColumn>
+            <IgbColumn Field="contactTitle" DataType="GridColumnDataType.String"></IgbColumn>
+            <IgbColumn Field="employeeId" DataType="GridColumnDataType.Number"></IgbColumn>
+            <IgbColumn Field="shipperId" DataType="GridColumnDataType.Number"></IgbColumn>
+            <IgbColumn Field="orderDate" DataType="GridColumnDataType.Date"></IgbColumn>
+            <IgbColumn Field="requiredDate" DataType="GridColumnDataType.Date"></IgbColumn>
+            <IgbColumn Field="shipVia" DataType="GridColumnDataType.String"></IgbColumn>
+            <IgbColumn Field="freight" DataType="GridColumnDataType.Number"></IgbColumn>
+            <IgbColumn Field="shipName" DataType="GridColumnDataType.String"></IgbColumn>
+            <IgbColumn Field="completed" DataType="GridColumnDataType.Boolean"></IgbColumn>
+        </IgbGrid>
+    </div>
+</div>
+
+@code {
+    private static readonly string[] InitialReturnFields =
+    [
+        "orderId",
+        "customerId",
+        "employeeId",
+        "shipperId",
+        "orderDate",
+        "requiredDate",
+        "shipVia",
+        "freight",
+        "shipName",
+        "completed"
+    ];
+
+    private static readonly IgbFieldType[] CustomerFields =
+    [
+        new() { Field = "customerId", DataType = GridColumnDataType.String },
+        new() { Field = "companyName", DataType = GridColumnDataType.String },
+        new() { Field = "contactName", DataType = GridColumnDataType.String },
+        new() { Field = "contactTitle", DataType = GridColumnDataType.String }
+    ];
+
+    private static readonly IgbFieldType[] OrderFields =
+    [
+        new() { Field = "orderId", DataType = GridColumnDataType.Number },
+        new() { Field = "customerId", DataType = GridColumnDataType.String },
+        new() { Field = "employeeId", DataType = GridColumnDataType.Number },
+        new() { Field = "shipperId", DataType = GridColumnDataType.Number },
+        new() { Field = "orderDate", DataType = GridColumnDataType.Date },
+        new() { Field = "requiredDate", DataType = GridColumnDataType.Date },
+        new() { Field = "shipVia", DataType = GridColumnDataType.String },
+        new() { Field = "freight", DataType = GridColumnDataType.Number },
+        new() { Field = "shipName", DataType = GridColumnDataType.String },
+        new() { Field = "completed", DataType = GridColumnDataType.Boolean }
+    ];
+
+    private static readonly IgbEntityType[] Entities =
+    [
+        new() { Name = "Customers", Fields = CustomerFields },
+        new() { Name = "Orders", Fields = OrderFields }
+    ];
+
+    private static readonly IgbExpressionTree ExpressionTree = new()
+    {
+        FilteringOperands = [],
+        Operator = FilteringLogic.And,
+        Entity = "Orders",
+        ReturnFields = InitialReturnFields
+    };
+
+    private IgbQueryBuilder queryBuilder;
+    private IgbGrid grid;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender || queryBuilder is null || grid is null)
+        {
+            return;
+        }
+
+        await queryBuilder.EnsureReady();
+        await grid.EnsureReady();
+
+        await JS.InvokeVoidAsync("queryBuilderOverview.loadInitialData", new
+        {
+            filteringOperands = Array.Empty<object>(),
+            @operator = 0,
+            entity = "Orders",
+            returnFields = InitialReturnFields
+        });
+    }
+}

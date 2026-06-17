@@ -1,0 +1,98 @@
+@using IgniteUI.Blazor.Controls
+
+
+<div class="container vertical">
+    <IgbChat @ref="Chat" Options="Options" Messages="Messages" MessageCreated="OnMessageCreated" Height="100%"></IgbChat>
+</div>
+
+@code {
+    public IgbChat Chat;
+    public IgbChatMessage[] Messages = new IgbChatMessage[]
+    {
+        new IgbChatMessage()
+        {
+              Id = "1",
+              Text = "Hello. How can we assist you today?",
+              Sender = "support",
+              Timestamp = (DateTime.Now - TimeSpan.FromMilliseconds(3500000)).ToString()
+        },
+        new IgbChatMessage()
+        {
+          Id = "2",
+          Text = "Hello. I have problem with styling IgcAvatarComponent. Can you take a look at the attached file and help me?",
+          Sender = "user",
+          Timestamp = (DateTime.Now - TimeSpan.FromMilliseconds(3400000)).ToString(),
+          Attachments = new IgbChatMessageAttachment[]
+          {
+            new IgbChatMessageAttachment()
+            {
+              Id = "AvatarStyles.css",
+              Name = "AvatarStyles.css",
+              Url = "./styles/AvatarStyles.css",
+              AttachmentType = "text/css"
+            }
+          }
+        },
+        new IgbChatMessage()
+        {
+          Id = "3",
+          Text = "Sure, give me a moment to check the file.",
+          Sender = "support",
+          Timestamp = (DateTime.Now - TimeSpan.FromMilliseconds(3300000)).ToString()
+        },
+        new IgbChatMessage()
+        {
+          Id = "4",
+          Text =
+          @"
+            Thank you for your patience. It seems that the issue is the name of the CSS part. Here is the fixed file:
+           ",
+          Sender = "support",
+          Timestamp = (DateTime.Now - TimeSpan.FromMilliseconds(3200000)).ToString(),
+           Attachments = new IgbChatMessageAttachment[]
+          {
+            new IgbChatMessageAttachment()
+            {
+              Id = "AvatarStylesFixed.css",
+              Name = "AvatarStylesFixed.css",
+              Url = "./styles/AvatarStylesFixed.css",
+              AttachmentType = "text/css"
+            }
+          }
+        }
+    };
+
+    public IgbChatOptions Options = new IgbChatOptions
+    {
+        DisableAutoScroll = false,
+        DisableInputAttachments = false,
+        InputPlaceholder = "Type your message here...",
+        HeaderText = "Developer Support",
+        SuggestionsPosition = ChatSuggestionsPosition.BelowInput,
+        Renderers = new IgbChatRenderers()
+        {
+            MessageHeaderScript = "OnMessageHeaderTemplate",
+            SuggestionPrefixScript = "OnSuggestionPrefixTemplate"
+        },
+        Suggestions = new string[] { "Send me an e-mail when support is available." }
+    };
+
+    public void OnMessageCreated(IgbChatMessageEventArgs e)
+    {
+        Messages = Messages.Append(e.Detail).ToArray();
+
+        IgbChatMessage responseMessage = new IgbChatMessage()
+        {
+            Id = DateTime.Now.Ticks.ToString(),
+            Text = "Our support team is currently unavailable. We'll get back to you as soon as possible.",
+            Sender = "support",
+            Timestamp = DateTime.Now.ToString()
+        };
+        Messages = Messages.Append(responseMessage).ToArray();
+        this.Chat.DraftMessage = new IgbChatDraftMessage()
+        {
+            Text = "",
+            Attachments = new IgbChatMessageAttachment[] { }
+        };
+    }
+}
