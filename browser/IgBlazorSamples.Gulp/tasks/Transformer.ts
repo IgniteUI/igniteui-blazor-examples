@@ -1034,8 +1034,10 @@ class Transformer {
                     if (cssContent !== defaultCSS) {
                         // console.log("GULP injecting \n" + cssContent)
                         console.log("- injecting CSS from " + css.Path)
+                        // escape @ as @@ since CSS is inlined into a .razor file where @ is Blazor syntax
+                        let inlineCss = Strings.replaceAll(cssContent, '@', '@@');
                         stylingLines.push('<style>');
-                        stylingLines.push(cssContent);
+                        stylingLines.push(inlineCss);
                         stylingLines.push('</style>');
                     }
                 }
