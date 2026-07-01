@@ -1,0 +1,124 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<div class="container sample ig-typography @(IsDark ? "container--dark" : "")">
+    <div class="options horizontal">
+        <label class="@(IsDark ? "label--dark" : "")">Choose Theme:</label>
+        <select class="theme-select @(IsDark ? "theme-select--dark" : "")"
+                value="@SelectedTheme"
+                @onchange="OnThemeChanged">
+            @foreach (var theme in Themes)
+            {
+                <option value="@theme.Value">@theme.Label</option>
+            }
+        </select>
+    </div>
+    <div class="container fill">
+        <IgbGrid
+        AutoGenerate="false"
+        Data="NwindData"
+        PrimaryKey="ProductID"
+        AllowFiltering="true"
+        Name="grid"
+        @ref="grid">
+            <IgbColumn
+            Field="ProductID"
+            Header="Product ID"
+            Hidden="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="ProductName"
+            Header="Product Name"
+            DataType="GridColumnDataType.String"
+            Sortable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="UnitPrice"
+            Header="Unit Price"
+            DataType="GridColumnDataType.Number"
+            Sortable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="QuantityPerUnit"
+            Header="Quantity Per Unit"
+            DataType="GridColumnDataType.String"
+            Sortable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="ReorderLevel"
+            Header="Reorder Level"
+            DataType="GridColumnDataType.Number"
+            Sortable="true">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="Discontinued"
+            Header="Discontinued"
+            DataType="GridColumnDataType.Boolean"
+            Sortable="true"
+            BodyTemplateScript="WebGridBooleanCellTemplate"
+            Name="column1"
+            @ref="column1">
+            </IgbColumn>
+
+            <IgbColumn
+            Field="OrderDate"
+            Header="Order Date"
+            DataType="GridColumnDataType.Date"
+            Sortable="true">
+            </IgbColumn>
+        </IgbGrid>
+    </div>
+</div>
+
+@code {
+
+    private record ThemeOption(string Value, string Label, string CssPath, bool Dark);
+
+    private static readonly ThemeOption[] Themes = new[]
+    {
+        new ThemeOption("light-bootstrap", "Bootstrap (Light)", "_content/IgniteUI.Blazor/themes/grid/light/bootstrap.css", false),
+        new ThemeOption("light-material", "Material (Light)", "_content/IgniteUI.Blazor/themes/grid/light/material.css", false),
+        new ThemeOption("light-fluent", "Fluent (Light)", "_content/IgniteUI.Blazor/themes/grid/light/fluent.css", false),
+        new ThemeOption("light-indigo", "Indigo (Light)", "_content/IgniteUI.Blazor/themes/grid/light/indigo.css", false),
+        new ThemeOption("dark-bootstrap", "Bootstrap (Dark)", "_content/IgniteUI.Blazor/themes/grid/dark/bootstrap.css", true),
+        new ThemeOption("dark-material", "Material (Dark)", "_content/IgniteUI.Blazor/themes/grid/dark/material.css", true),
+        new ThemeOption("dark-fluent", "Fluent (Dark)", "_content/IgniteUI.Blazor/themes/grid/dark/fluent.css", true),
+        new ThemeOption("dark-indigo", "Indigo (Dark)", "_content/IgniteUI.Blazor/themes/grid/dark/indigo.css", true),
+    };
+
+    private string SelectedTheme = "light-bootstrap";
+    private bool IsDark => Themes.FirstOrDefault(t => t.Value == SelectedTheme)?.Dark ?? false;
+
+    private IgbGrid grid;
+    private IgbColumn column1;
+
+    private async Task OnThemeChanged(ChangeEventArgs e)
+    {
+        SelectedTheme = e.Value?.ToString() ?? "light-bootstrap";
+        var theme = Themes.FirstOrDefault(t => t.Value == SelectedTheme);
+        if (theme != null)
+        {
+            await JS.InvokeVoidAsync("eval", $"document.getElementById('grid-theme').href = '{theme.CssPath}'");
+        }
+    }
+
+    private NwindData _nwindData = null;
+    public NwindData NwindData
+    {
+        get
+        {
+            if (_nwindData == null)
+            {
+                _nwindData = new NwindData();
+            }
+            return _nwindData;
+        }
+    }
+
+}
