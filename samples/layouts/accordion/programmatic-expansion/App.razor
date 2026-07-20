@@ -1,0 +1,36 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical scrollable">
+    <div class="button-group">
+        <IgbButton @onclick="ShowAll" Variant=@ButtonVariant.Contained>Show All</IgbButton>
+        <IgbButton @onclick="HideAll" Variant=@ButtonVariant.Contained>Hide All</IgbButton>
+    </div>
+    <IgbAccordion @ref="Accordion">
+        <IgbExpansionPanel>
+            <span slot="title">Billing</span>
+            <span>Review invoices, update payment methods, and manage billing contacts.</span>
+        </IgbExpansionPanel>
+        <IgbExpansionPanel>
+            <span slot="title">Security</span>
+            <span>Configure password rules, multi-factor authentication, and recovery options.</span>
+        </IgbExpansionPanel>
+        <IgbExpansionPanel>
+            <span slot="title">Notifications</span>
+            <span>Choose which product updates and account alerts are sent to your team.</span>
+        </IgbExpansionPanel>
+    </IgbAccordion>
+</div>
+
+@code {
+    private IgbAccordion Accordion { get; set; }
+
+    private void ShowAll()
+    {
+        Accordion.ShowAll();
+    }
+
+    private void HideAll()
+    {
+        Accordion.HideAll();
+    }
+}
