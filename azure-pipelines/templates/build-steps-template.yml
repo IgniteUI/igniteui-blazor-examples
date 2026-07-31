@@ -13,7 +13,8 @@ steps:
     displayName: 'Install Node'
     inputs:
       versionSource: 'spec'
-      versionSpec: '16.x'
+      versionSpec: '22.x'
+      checkLatest: true
 
   - task: Npm@1
     displayName: 'npm ci'
@@ -34,7 +35,7 @@ steps:
     displayName: 'Install dotnet if not already present'
     inputs:
       packageType: 'sdk'
-      version: '10.0.100' # '9.0.101' - we are currently building a 8.0 app. TODO: Try upgrading to 8.x in the future
+      version: '10.0.100'
       performMultiLevelLookup: false
 
   - task: PowerShell@2
