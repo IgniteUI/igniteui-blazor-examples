@@ -21,7 +21,7 @@ namespace Infragistics.Samples
             // registering Ignite UI modules
             builder.Services.AddIgniteUIBlazor(
                 typeof(IgbAvatarModule),
-                typeof(IgbIconModule)
+                typeof(IgbBadgeModule)
  );
             await builder.Build().RunAsync();
         }
