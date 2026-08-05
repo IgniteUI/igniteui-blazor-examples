@@ -1,10 +1,41 @@
 @using IgniteUI.Blazor.Controls
 
-
-<div class="sample center">
-    <IgbBadge Shape="@BadgeShape.Square" />
+<div class="badge-shape">
+    <div class="badge-shape-row">
+        <span class="row-label">Rounded</span>
+        <IgbBadge Variant="@StyleVariant.Success" Shape="@BadgeShape.Rounded">
+            <IgbIcon @ref="checkIconRef" IconName="check" Collection="material" />
+        </IgbBadge>
+        <IgbBadge Variant="@StyleVariant.Success" Shape="@BadgeShape.Rounded">2</IgbBadge>
+        <IgbBadge Variant="@StyleVariant.Success" Shape="@BadgeShape.Rounded" class="badge-small">
+            <IgbIcon IconName="check" Collection="material" />
+        </IgbBadge>
+    </div>
+    <div class="badge-shape-row">
+        <span class="row-label">Square</span>
+        <IgbBadge Variant="@StyleVariant.Info" Shape="@BadgeShape.Square" class="badge-info-blue">
+            <IgbIcon IconName="check" Collection="material" />
+        </IgbBadge>
+        <IgbBadge Variant="@StyleVariant.Info" Shape="@BadgeShape.Square" class="badge-info-blue">2</IgbBadge>
+        <IgbBadge Variant="@StyleVariant.Info" Shape="@BadgeShape.Square" class="badge-small badge-info-blue">
+            <IgbIcon IconName="check" Collection="material" />
+        </IgbBadge>
+    </div>
 </div>
 
 @code {
+    private const string CheckIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/></svg>";
 
+    private IgbIcon checkIconRef;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender && checkIconRef != null)
+        {
+            checkIconRef.EnsureReady().ContinueWith(_ =>
+            {
+                checkIconRef.RegisterIconFromText("check", CheckIcon, "material");
+            });
+        }
+    }
 }

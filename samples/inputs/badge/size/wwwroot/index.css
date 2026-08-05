@@ -3,40 +3,47 @@ CSS styles are loaded from the shared CSS file located at:
 https://dl.infragistics.com/x/css//samples/
 */
 
-.sample {
-    display: flex;
-    align-items: center;
-    gap: 32px;
-    padding: 16px;
+.badge-size {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 32px;
+  min-height: 7rem;
 }
 
-.sample.center {
-    align-content: flex-start;
-    justify-content: flex-start;
-    min-height: 0;
-    height: auto;
+.badge-size-row {
+  display: grid;
+  grid-template-columns: 80px 32px 40px 40px;
+  align-items: center;
+  justify-items: center;
+  gap: 8px;
 }
 
-.badge-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
+.row-label {
+  justify-self: end;
+  color: var(--ig-gray-700);
+  font-size: 14px;
 }
 
-.badge-wrapper span {
-    color: var(--ig-gray-700);
-    font-size: 14px;
+.badge-info-blue {
+  --ig-badge-background-color: #0057A9;
 }
 
-.size-small {
-    --component-size: 1;
+.badge-info-blue::part(base) {
+  background-color: #0057A9;
 }
 
-.size-medium {
-    --component-size: 2;
+igc-badge::part(base),
+igc-badge igc-icon {
+  color: var(--ig-gray-50);
 }
 
-.size-large {
-    --component-size: 3;
+igc-badge igc-icon {
+  fill: var(--ig-gray-50);
 }
+
+.badge-large { --ig-size: var(--ig-size-large); }
+.badge-medium { --ig-size: var(--ig-size-medium); }
+.badge-small { --ig-size: var(--ig-size-small); }
