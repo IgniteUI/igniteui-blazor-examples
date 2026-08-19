@@ -1,36 +1,27 @@
 @using IgniteUI.Blazor.Controls
 
-<style>
-    igc-button-group {
-        width: 200px;
-    }
+<link href="_content/IgniteUI.Blazor/themes/light/material.css" rel="stylesheet" />
 
-    igc-ripple {
-        --color: gray;
+<div class="button-group-alignment">
+    @foreach (var alignment in Alignments)
+    {
+        <div class="button-group-alignment-item">
+            <span>@(alignment == ContentOrientation.Horizontal ? "Horizontal" : "Vertical")</span>
+            <IgbButtonGroup Alignment="@alignment">
+                @foreach (var city in Cities)
+                {
+                    <IgbToggleButton Value="@city.ToLowerInvariant()">
+                        @city
+                        <IgbRipple />
+                    </IgbToggleButton>
+                }
+            </IgbButtonGroup>
+        </div>
     }
-</style>
-
-<div class="container sample">
-    <IgbButtonGroup Alignment="ContentOrientation.Vertical">
-        <IgbToggleButton Value="sofia">
-            Sofia
-            <IgbRipple />
-        </IgbToggleButton>
-        <IgbToggleButton Value="london">
-            London
-            <IgbRipple />
-        </IgbToggleButton>
-        <IgbToggleButton Value="new york" Selected="true">
-            New York
-            <IgbRipple />
-        </IgbToggleButton>
-        <IgbToggleButton Value="tokyo">
-            Tokyo
-            <IgbRipple />
-        </IgbToggleButton>
-    </IgbButtonGroup>
 </div>
 
- @code {
+@code {
+    private static readonly string[] Cities = { "Sofia", "London", "New York" };
 
+    private static readonly ContentOrientation[] Alignments = { ContentOrientation.Horizontal, ContentOrientation.Vertical };
 }

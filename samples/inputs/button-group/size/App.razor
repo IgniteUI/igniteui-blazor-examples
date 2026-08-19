@@ -1,24 +1,27 @@
 @using IgniteUI.Blazor.Controls
 
-<div class="container sample center">
-    <IgbButtonGroup style="@style" Select="OnSelect">
-        <IgbToggleButton Value="small">
-            Small
-        </IgbToggleButton>
-        <IgbToggleButton Value="medium">
-            Medium
-        </IgbToggleButton>
-        <IgbToggleButton Value="large" Selected="true">
-            Large
-        </IgbToggleButton>
-    </IgbButtonGroup>
+<link href="_content/IgniteUI.Blazor/themes/light/material.css" rel="stylesheet" />
+
+<div class="button-group-size">
+    @foreach (var size in Sizes)
+    {
+        <div class="button-group-size-item">
+            <span>@(char.ToUpperInvariant(size[0]) + size.Substring(1))</span>
+            <IgbButtonGroup style="@($"--ig-size: var(--ig-size-{size})")">
+                @foreach (var city in Cities)
+                {
+                    <IgbToggleButton Value="@city.ToLowerInvariant()">
+                        @city
+                        <IgbRipple />
+                    </IgbToggleButton>
+                }
+            </IgbButtonGroup>
+        </div>
+    }
 </div>
 
 @code {
-    private string style = "--ig-size: var(--ig-size-large)";
+    private static readonly string[] Cities = { "Sofia", "London", "New York" };
 
-    private void OnSelect(IgbComponentValueChangedEventArgs args)
-    {
-        this.style = $"--ig-size: var(--ig-size-{args.Detail})";
-    }
+    private static readonly string[] Sizes = { "small", "medium", "large" };
 }
