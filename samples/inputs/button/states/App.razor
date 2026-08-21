@@ -4,21 +4,31 @@
 
 
 <div class="container sample">
-    <div class="size-grid">
-        @Button("size-large")
-        @Button("size-medium")
-        @Button("size-small")
+    <div class="button-container">
+        <IgbButton Variant="ButtonVariant.Contained" Disabled="true">
+            <IgbIcon @ref="NotificationsIcon" Slot="prefix" Name="notifications" Collection="material" />
+            Contained
+            <IgbIcon Slot="suffix" Name="notifications" Collection="material" />
+        </IgbButton>
+        <IgbButton Variant="ButtonVariant.Outlined" Disabled="true">
+            <IgbIcon Slot="prefix" Name="notifications" Collection="material" />
+            Outlined
+            <IgbIcon Slot="suffix" Name="notifications" Collection="material" />
+        </IgbButton>
+        <IgbButton Variant="ButtonVariant.Flat" Disabled="true">
+            <IgbIcon Slot="prefix" Name="notifications" Collection="material" />
+            Flat
+            <IgbIcon Slot="suffix" Name="notifications" Collection="material" />
+        </IgbButton>
+        <IgbButton Variant="ButtonVariant.Fab" Disabled="true">
+            <IgbIcon @ref="AddIcon" Slot="prefix" Name="add" Collection="material" />
+            Floating Action
+            <IgbIcon Slot="suffix" Name="add" Collection="material" />
+        </IgbButton>
     </div>
 </div>
 
 @code {
-
-    private RenderFragment Button(string size) => @<div class="size-row">
-        <IgbButton class="@size" Variant="ButtonVariant.Contained"><IgbIcon Slot="prefix" Name="notifications" Collection="material" />Contained<IgbIcon Slot="suffix" Name="notifications" Collection="material" /></IgbButton>
-        <IgbButton class="@size" Variant="ButtonVariant.Outlined"><IgbIcon Slot="prefix" Name="notifications" Collection="material" />Outlined<IgbIcon Slot="suffix" Name="notifications" Collection="material" /></IgbButton>
-        <IgbButton class="@size" Variant="ButtonVariant.Flat"><IgbIcon @ref="NotificationsIcon" Slot="prefix" Name="notifications" Collection="material" />Flat<IgbIcon Slot="suffix" Name="notifications" Collection="material" /></IgbButton>
-        <IgbButton class="@size" Variant="ButtonVariant.Fab"><IgbIcon @ref="AddIcon" Slot="prefix" Name="add" Collection="material" />Floating Action<IgbIcon Slot="suffix" Name="add" Collection="material" /></IgbButton>
-    </div>;
 
     private IgbIcon NotificationsIcon { get; set; }
     private IgbIcon AddIcon { get; set; }
@@ -33,4 +43,5 @@
             AddIcon.EnsureReady().ContinueWith(_ => AddIcon.RegisterIconFromText("add", addIcon, "material"));
         }
     }
+
 }

@@ -1,20 +1,26 @@
 
 @using IgniteUI.Blazor.Controls
 
+<link href="_content/IgniteUI.Blazor/themes/light/material.css" rel="stylesheet" />
 
-<div class="container vertical">
-    <style>
-        igc-button {
-            width: 40%;
-            margin: auto;
-        }
-    </style>
+
+<div class="container sample">
     <IgbButton Variant="ButtonVariant.Fab">
-        <span slot="prefix">+</span>
-        Add
+        <IgbIcon @ref="AddIcon" Slot="prefix" Name="add" Collection="material" />
+        Floating Action
+        <IgbIcon Slot="suffix" Name="add" Collection="material" />
     </IgbButton>
 </div>
 
 @code {
+    private IgbIcon AddIcon { get; set; }
 
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender && AddIcon != null)
+        {
+            string addIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path d=\"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z\"/></svg>";
+            AddIcon.EnsureReady().ContinueWith(_ => AddIcon.RegisterIconFromText("add", addIcon, "material"));
+        }
+    }
 }
