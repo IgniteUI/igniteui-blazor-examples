@@ -5,17 +5,19 @@
 
 <div class="container sample">
     <div class="button-container">
-        <label class="variant-selector">
-            <span class="button-label">Button variant</span>
-            <select @bind="variant">
-                <option value="contained">Contained</option>
-                <option value="outlined">Outlined</option>
-                <option value="flat">Flat</option>
-                <option value="fab">Fab</option>
-            </select>
-        </label>
-        <div class="button-group">
-            <span class="button-label">@DisplayVariant</span>
+        <div class="button-item">
+            <IgbButton Variant="ButtonVariant.Outlined"><IgbIcon @ref="AddIcon" Slot="prefix" Name="add" Collection="material" />Add</IgbButton>
+        </div>
+        <div class="button-item"><IgbButton Variant="ButtonVariant.Outlined">Buy Now</IgbButton></div>
+        <div class="button-item">
+            <IgbButton Variant="ButtonVariant.Outlined">Add<IgbIcon Slot="suffix" Name="add" Collection="material" /></IgbButton>
+        </div>
+        <div class="button-item">
+            <IgbButton Variant="ButtonVariant.Outlined"><IgbIcon Slot="prefix" Name="add" Collection="material" />Floating Action</IgbButton>
+        </div>
+        <div class="button-item"><IgbButton Variant="ButtonVariant.Outlined"><IgbIcon Name="add" Collection="material" /></IgbButton></div>
+        <div class="button-item"><IgbButton Variant="ButtonVariant.Outlined">Floating Action</IgbButton></div>
+        @* Legacy selector layout retained below for reference.
             <div class="button-row">
                 <div class="button-item">
                     <span class="button-sublabel">Left</span>
@@ -31,8 +33,7 @@
                         <IgbIcon Slot="suffix" Name="add" Collection="material" />
                     </IgbButton>
                 </div>
-            </div>
-        </div>
+            </div> *@
     </div>
 </div>
 
@@ -49,9 +50,4 @@
         }
     }
 
-    private string variant = "contained";
-
-    private ButtonVariant CurrentVariant => Enum.Parse<ButtonVariant>(variant, true);
-
-    private string DisplayVariant => char.ToUpperInvariant(variant[0]) + variant[1..];
 }

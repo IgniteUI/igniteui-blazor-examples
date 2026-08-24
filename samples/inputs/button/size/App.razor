@@ -5,6 +5,7 @@
 
 <div class="container sample">
     <div class="size-grid">
+        <div class="size-header"><span></span><span>Contained</span><span>Outlined</span><span>Flat</span><span>Fab</span></div>
         @Button("size-large")
         @Button("size-medium")
         @Button("size-small")
@@ -14,6 +15,7 @@
 @code {
 
     private RenderFragment Button(string size) => @<div class="size-row">
+        <span class="size-label @size">@char.ToUpperInvariant(size[5])@size[6..]</span>
         <IgbButton class="@size" Variant="ButtonVariant.Contained"><IgbIcon Slot="prefix" Name="notifications" Collection="material" />Contained<IgbIcon Slot="suffix" Name="notifications" Collection="material" /></IgbButton>
         <IgbButton class="@size" Variant="ButtonVariant.Outlined"><IgbIcon Slot="prefix" Name="notifications" Collection="material" />Outlined<IgbIcon Slot="suffix" Name="notifications" Collection="material" /></IgbButton>
         <IgbButton class="@size" Variant="ButtonVariant.Flat"><IgbIcon @ref="NotificationsIcon" Slot="prefix" Name="notifications" Collection="material" />Flat<IgbIcon Slot="suffix" Name="notifications" Collection="material" /></IgbButton>
