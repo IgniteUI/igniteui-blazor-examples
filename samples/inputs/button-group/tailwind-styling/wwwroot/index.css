@@ -1,23 +1,17 @@
-@layer theme, base, components, utilities;
+@layer theme, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
 
-igc-ripple {
-    --color: gray;
+.states-container {
+    display: grid;
+    place-items: center;
+    height: 100vh;
 }
 
-.button-group-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 6rem;
-    box-sizing: border-box;
+igc-button-group {
+    display: inline-block;
     width: 100%;
-    background: var(--color-violet-50, #f5f3ff);
-}
-
-.button-group-style {
-    width: 420px;
-    max-width: 100%;
-    overflow: hidden;
+    max-width: 25rem;
 }
 
 .button-group-style igc-toggle-button::part(toggle) {

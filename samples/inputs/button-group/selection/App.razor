@@ -2,60 +2,24 @@
 
 <link href="_content/IgniteUI.Blazor/themes/light/material.css" rel="stylesheet" />
 
-<style>
-    .selection-samples {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 32px;
-        padding-left: 32px;
-    }
-
-    .selection-sample {
-        display: flex;
-        align-items: center;
-        gap: 30px;
-    }
-
-    .selection-sample > span {
-        width: 120px;
-        text-align: right;
-        color: #556c86;
-        font-size: 13px;
-        line-height: 20px;
-        letter-spacing: 0.3px;
-    }
-
-    .selection-sample igc-button-group {
-        width: 200px;
-    }
-
-    igc-ripple {
-        --color: gray;
-    }
-</style>
-
-<div class="container sample selection-samples">
+<div class="selection-samples states-container">
     @foreach (var selection in modes)
     {
-    <div class="selection-sample">
-        <span>@(selection == ButtonGroupSelection.SingleRequired ? "Single-Required" : selection.ToString())</span>
+        <span class="sample-label">@(selection == ButtonGroupSelection.SingleRequired ? "Single-Required" : selection.ToString())</span>
         <IgbButtonGroup Selection="@selection">
-        <IgbToggleButton Value="bold" Selected="@(selection != ButtonGroupSelection.Single)">
-            <IgbIcon @ref="iconRef" IconName="bold" Collection="material"></IgbIcon>
-            <IgbRipple />
-        </IgbToggleButton>
-        <IgbToggleButton Value="italic" Selected="@(selection == ButtonGroupSelection.Multiple)">
-            <IgbIcon IconName="italic" Collection="material"></IgbIcon>
-            <IgbRipple />
-        </IgbToggleButton>
-        <IgbToggleButton Value="underlined">
-            <IgbIcon IconName="underlined" Collection="material"></IgbIcon>
-            <IgbRipple />
-        </IgbToggleButton>
+            <IgbToggleButton Value="bold" Selected="@(selection != ButtonGroupSelection.Single)">
+                <IgbIcon @ref="iconRef" IconName="bold" Collection="material" />
+                <IgbRipple />
+            </IgbToggleButton>
+            <IgbToggleButton Value="italic" Selected="@(selection == ButtonGroupSelection.Multiple)">
+                <IgbIcon IconName="italic" Collection="material" />
+                <IgbRipple />
+            </IgbToggleButton>
+            <IgbToggleButton Value="underlined">
+                <IgbIcon IconName="underlined" Collection="material" />
+                <IgbRipple />
+            </IgbToggleButton>
         </IgbButtonGroup>
-    </div>
     }
 </div>
 

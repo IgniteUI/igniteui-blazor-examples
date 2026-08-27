@@ -2,30 +2,33 @@
 
 <link href="_content/IgniteUI.Blazor/themes/light/material.css" rel="stylesheet" />
 
-<div class="button-group-states">
-    <div class="button-group-states-row">
+<div class="states-matrix states-container">
+    <header class="states-row">
         <span class="row-label"></span>
         @foreach (var state in States)
         {
             <span class="column-label">@(char.ToUpperInvariant(state[0]) + state.Substring(1))</span>
         }
-    </div>
+    </header>
     @foreach (var row in Rows)
     {
-        <div class="button-group-states-row">
+        <section class="states-row">
             <span class="row-label">@row.Label</span>
             @foreach (var state in States)
             {
-                <IgbButtonGroup>
+                <div class="state-cell">
+                    <span class="cell-label">@(char.ToUpperInvariant(state[0]) + state.Substring(1))</span>
+                    <IgbButtonGroup>
                     <IgbToggleButton class="@($"state-{state}")" Selected="@row.Selected" Value="button">
                         <IgbIcon @ref="iconRef" IconName="notifications" Collection="material" />
                         Button
                         <IgbIcon IconName="notifications" Collection="material" />
                         <IgbRipple />
                     </IgbToggleButton>
-                </IgbButtonGroup>
+                    </IgbButtonGroup>
+                </div>
             }
-        </div>
+        </section>
     }
 </div>
 
