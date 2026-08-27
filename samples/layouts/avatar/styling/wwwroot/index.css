@@ -1,55 +1,70 @@
-/* 
-CSS styles are loaded from the shared CSS file located at:
-https://dl.infragistics.com/x/css//samples/
-*/
-.sizes .size-small {
+.sample {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.icon-registrar {
+    display: none;
+}
+
+.chat-list {
+    --ig-list-border-width: 0;
+    --ig-list-header-text-color: var(--ig-gray-900);
+    max-width: 20.5rem;
+}
+
+.chat-list * {
+    font-family: "Aktiv Grotesk", Arial, sans-serif;
+}
+
+.chat-list [slot="title"] {
+    font-weight: 600;
+}
+
+.chat-list [slot="end"] {
+    color: var(--ig-gray-600);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.chat-list-item--split {
+    --border-width: 0.0625rem;
+    --border-color: var(--ig-gray-300);
+}
+
+.meeting-list-item {
+    --border-width: 0;
+}
+
+:where(igc-avatar) {
+    --ig-size: var(--ig-size-small);
+    --ig-avatar-background: var(--ig-gray-300);
+    --ig-avatar-color: var(--ig-gray-300-contrast);
+    --ig-avatar-icon-color: var(--ig-gray-300-contrast);
+}
+
+.avatar-icon {
     --ig-size: var(--ig-size-small);
 }
 
-.sizes .size-medium {
-    --ig-size: var(--ig-size-medium);
+.avatar-with-badge {
+    position: relative;
 }
 
-.sizes .size-large,
-.size-large {
-    --ig-size: var(--ig-size-large);
+:where(igc-badge) {
+    --ig-size: var(--ig-size-small);
+    --ig-badge-icon-color: #ffffff;
 }
 
-.container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    gap: 10px;
-    margin-top: 20px;
+.avatar-status {
+    --ig-size: var(--ig-size-small);
+    position: absolute;
+    inset-inline-end: -0.25rem;
+    inset-block-end: -0.25rem;
 }
 
-.sizes {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
+.avatar-muted-badge {
+    --ig-badge-background-color: var(--ig-gray-500);
 }
-
-igc-avatar {
-    --ig-avatar-background: var(--ig-success-100);
-}
-
-igc-avatar::part(base) {
-    border: 2px solid var(--ig-error-500);
-}
-
-igc-avatar::part(initials) {
-    color: var(--ig-success-500-contrast);
-    background: var(--ig-error-500);
-    padding: 5px 10px;
-    margin: 10px;
-    border-radius: 50px;
-    /* border: 1px solid greenyellow; */
-}
-
-igc-avatar::part(image) {
-    border-radius: 20px;
-    padding: 5px;
-    border: 2px solid var(--ig-primary-500);
-}
-
-

@@ -1,0 +1,45 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="badge-size">
+    <div class="badge-size-row badge-small">
+        <span class="row-label">Small</span>
+        <IgbBadge Dot="true" Variant="@StyleVariant.Danger" />
+        <IgbBadge Variant="@StyleVariant.Info" class="badge-info-blue">2</IgbBadge>
+        <IgbBadge Variant="@StyleVariant.Success">
+            <IgbIcon @ref="checkIconRef" IconName="check" Collection="material" />
+        </IgbBadge>
+    </div>
+    <div class="badge-size-row badge-medium">
+        <span class="row-label">Medium</span>
+        <IgbBadge Dot="true" Variant="@StyleVariant.Danger" />
+        <IgbBadge Variant="@StyleVariant.Info" class="badge-info-blue">2</IgbBadge>
+        <IgbBadge Variant="@StyleVariant.Success">
+            <IgbIcon IconName="check" Collection="material" />
+        </IgbBadge>
+    </div>
+    <div class="badge-size-row badge-large">
+        <span class="row-label">Large</span>
+        <IgbBadge Dot="true" Variant="@StyleVariant.Danger" />
+        <IgbBadge Variant="@StyleVariant.Info" class="badge-info-blue">2</IgbBadge>
+        <IgbBadge Variant="@StyleVariant.Success">
+            <IgbIcon IconName="check" Collection="material" />
+        </IgbBadge>
+    </div>
+</div>
+
+@code {
+    private const string CheckIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/></svg>";
+
+    private IgbIcon checkIconRef;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender && checkIconRef != null)
+        {
+            checkIconRef.EnsureReady().ContinueWith(_ =>
+            {
+                checkIconRef.RegisterIconFromText("check", CheckIcon, "material");
+            });
+        }
+    }
+}
