@@ -16,7 +16,8 @@
         Data="Data" 
         ValueKey="Id" 
         DisplayKey="Name"
-        @ref="Combo">
+        @ref="Combo"
+              @bind-value="selectedValue">
     </IgbCombo>
 
     <div class="button-container">
@@ -25,12 +26,24 @@
         <IgbButton @onclick="SelectAll">Select All</IgbButton>
         <IgbButton @onclick="DeselectAll">Deselect All</IgbButton>
     </div>
+
+    <p>Selected Id:
+        @string.Join(", ", selectedValue)</p>
+
+    <p>
+        Selected Names:
+        @string.Join(", ", Data.Where(c => selectedValue.Contains(c.Id))
+                .Select(c => c.Name))
+    </p>
+
 </div>
 
 @code {
     private List<City> Data;
     private IgbCombo<string> Combo;
     private object[] UKCities; 
+    private string[] selectedValue = new string[] {  };
+
 
     protected override void OnInitialized() {
         this.Data = SampleData.Cities;
