@@ -1,12 +1,12 @@
 @using IgniteUI.Blazor.Controls
 
-<div class="container sample flex flex-row flex-nowrap items-center justify-center gap-10">
+<div class='sample font-["Aktiv_Grotesk",Arial,sans-serif]'>
     <IgbIcon class="hidden" @ref="IconRef" IconName="plus" Collection="material" />
 
-    <IgbCard class="box-border h-[479px] w-[344px] [--ig-card-border-radius:30px]">
-        <IgbCardMedia class="h-[189px] overflow-hidden">
+    <IgbCard class="[--ig-card-background:#ffffff] [--ig-card-border-radius:30px] [--ig-card-outline-color:transparent]">
+        <IgbCardMedia class="h-[189px]">
             <img
-                class="h-full w-full object-cover"
+                class="object-cover"
                 src="https://dl.infragistics.com/x/img/avatars/image-bg4.png"
                 alt="Cafe interior" />
         </IgbCardMedia>
@@ -14,23 +14,23 @@
             <IgbAvatar
                 class="[--ig-size:var(--ig-size-medium)]"
                 slot="thumbnail"
-                Shape="AvatarShape.Circle"
+                Shape="@AvatarShape.Circle"
                 Src="https://dl.infragistics.com/x/img/avatars/avatar-profile-09.png"
                 Alt="A profile photo of Kate Thompson." />
             <span slot="title">Kate Thompson</span>
         </IgbCardHeader>
-        <IgbCardContent class="overflow-hidden">
-            <p class="m-0">
-                3D Artist. Turning polygons into worlds and immersive digital realities
-            </p>
-            <div class="mt-4 grid w-full grid-cols-[1fr_auto_1fr_auto_1fr] items-center">
+        <p class="card-sample-custom-subtitle">
+            3D Artist. Turning polygons into worlds and immersive digital realities
+        </p>
+        <IgbCardContent>
+            <div class="grid grid-cols-[1fr_auto_1fr_auto_1fr]">
                 @for (var i = 0; i < ProfileStats.Count; i++)
                 {
                     var stat = ProfileStats[i];
 
                     <div class="flex min-w-0 flex-col items-center gap-1 px-3">
-                        <span class="text-base font-bold leading-tight text-[var(--ig-gray-900)]">@stat.Value</span>
-                        <span class="text-sm leading-tight text-[var(--ig-gray-600)]">@stat.Label</span>
+                        <span class="stats-title">@stat.Value</span>
+                        <span class="stats-subtitle">@stat.Label</span>
                     </div>
 
                     @if (i < ProfileStats.Count - 1)
@@ -41,13 +41,13 @@
             </div>
         </IgbCardContent>
         <IgbCardActions>
-            <IgbButton class="[--ig-contained-button-active-background:var(--ig-gray-400)] [--ig-contained-button-background:var(--ig-gray-200)] [--ig-contained-button-border-radius:16px] [--ig-contained-button-focus-background:var(--ig-gray-300)] [--ig-contained-button-hover-background:var(--ig-gray-300)] [--ig-size:var(--ig-size-small)]">
-                <span class="inline-flex items-center gap-1 text-[#000000]">
-                    FOLLOW
-                    <IgbIcon class="h-4 w-4" IconName="plus" Collection="material" />
+            <IgbButton class="[--ig-contained-button-active-background:var(--ig-gray-400)] [--ig-contained-button-active-foreground:#000000] [--ig-contained-button-background:var(--ig-gray-200)] [--ig-contained-button-border-radius:16px] [--ig-contained-button-focus-background:var(--ig-gray-300)] [--ig-contained-button-focus-foreground:#000000] [--ig-contained-button-foreground:#000000] [--ig-contained-button-hover-background:var(--ig-gray-300)] [--ig-contained-button-hover-foreground:#000000] [--ig-size:var(--ig-size-small)]">
+                <span class="inline-flex items-center gap-1">
+                    <span>FOLLOW</span>
+                    <IgbIcon IconName="plus" Collection="material" />
                 </span>
             </IgbButton>
-            <div slot="end" class="inline-flex items-center gap-1">
+            <div slot="end" class="inline-flex gap-1">
                 <IgbIconButton
                     Variant="IconButtonVariant.Flat"
                     IconName="instagram"
@@ -67,31 +67,31 @@
         </IgbCardActions>
     </IgbCard>
 
-    <IgbCard class="box-border h-[290px] w-[344px] [--ig-card-border-radius:30px]">
+    <IgbCard class="[--ig-card-background:#ffffff] [--ig-card-border-radius:30px] [--ig-card-outline-color:transparent]">
         <IgbCardHeader>
             <span
                 slot="thumbnail"
-                class="inline-flex rounded-full bg-[linear-gradient(135deg,#7dd3fc,#bff47a,#f5c2ff,#93c5fd)] p-[3px]">
+                class="inline-flex rounded-full p-[5px] bg-[linear-gradient(40deg,#D2F586,#A0C9FF)]">
                 <IgbAvatar
                     class="[--ig-size:var(--ig-size-medium)]"
-                    Shape="AvatarShape.Circle"
+                    Shape="@AvatarShape.Circle"
                     Src="https://dl.infragistics.com/x/img/avatars/avatar-profile-09.png"
                     Alt="A profile photo of Kate Thompson." />
             </span>
             <span slot="title">Kate Thompson</span>
         </IgbCardHeader>
-        <IgbCardContent class="overflow-hidden">
-            <p class="m-0">
-                3D Artist. Turning polygons into worlds and immersive digital realities
-            </p>
-            <div class="mt-4 grid w-full grid-cols-[1fr_auto_1fr_auto_1fr] items-center">
+        <p class="card-sample-custom-subtitle">
+            3D Artist. Turning polygons into worlds and immersive digital realities
+        </p>
+        <IgbCardContent>
+            <div class="grid grid-cols-[1fr_auto_1fr_auto_1fr]">
                 @for (var i = 0; i < ProfileStats.Count; i++)
                 {
                     var stat = ProfileStats[i];
 
                     <div class="flex min-w-0 flex-col items-center gap-1 px-3">
-                        <span class="text-base font-bold leading-tight text-[var(--ig-gray-900)]">@stat.Value</span>
-                        <span class="text-sm leading-tight text-[var(--ig-gray-600)]">@stat.Label</span>
+                        <span class="stats-title">@stat.Value</span>
+                        <span class="stats-subtitle">@stat.Label</span>
                     </div>
 
                     @if (i < ProfileStats.Count - 1)
@@ -102,10 +102,10 @@
             </div>
         </IgbCardContent>
         <IgbCardActions>
-            <IgbButton class="[--ig-contained-button-active-background:var(--ig-gray-400)] [--ig-contained-button-background:var(--ig-gray-200)] [--ig-contained-button-border-radius:16px] [--ig-contained-button-focus-background:var(--ig-gray-300)] [--ig-contained-button-hover-background:var(--ig-gray-300)] [--ig-size:var(--ig-size-small)]">
-                <span class="inline-flex items-center gap-1 text-[#000000]">
-                    FOLLOW
-                    <IgbIcon class="h-4 w-4" IconName="plus" Collection="material" />
+            <IgbButton class="[--ig-contained-button-active-background:var(--ig-gray-400)] [--ig-contained-button-active-foreground:#000000] [--ig-contained-button-background:var(--ig-gray-200)] [--ig-contained-button-border-radius:16px] [--ig-contained-button-focus-background:var(--ig-gray-300)] [--ig-contained-button-focus-foreground:#000000] [--ig-contained-button-foreground:#000000] [--ig-contained-button-hover-background:var(--ig-gray-300)] [--ig-contained-button-hover-foreground:#000000] [--ig-size:var(--ig-size-small)]">
+                <span class="inline-flex items-center gap-1">
+                    <span>FOLLOW</span>
+                    <IgbIcon IconName="plus" Collection="material" />
                 </span>
             </IgbButton>
             <div slot="end" class="inline-flex items-center gap-1">
