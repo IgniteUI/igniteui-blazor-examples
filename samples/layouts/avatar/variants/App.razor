@@ -1,55 +1,38 @@
 @using IgniteUI.Blazor.Controls
 
 <div class="avatar-variants-sample">
-    <div class="avatar-variant">
-        <span class="avatar-with-badge">
-            <IgbAvatar
-                class="size-small"
-                Shape=AvatarShape.Circle
-                Src="https://dl.infragistics.com/x/img/avatars/avatar-profile-04.png"
-                Alt="A profile photo of a man." />
-            <IgbBadge
-                class="avatar-status avatar-dot-badge size-small"
-                Dot="true"
-                Outlined="true"
-                Variant="@StyleVariant.Success" />
-        </span>
-        <span class="avatar-label">Image</span>
-    </div>
+    <IgbAvatar
+        Shape="@AvatarShape.Circle"
+        Src="https://dl.infragistics.com/x/img/avatars/avatar-profile-04.png"
+        Alt="A profile photo of a man." />
+    <IgbBadge
+        Dot="true"
+        Outlined="true"
+        Variant="@StyleVariant.Success" />
+    <span>Image</span>
 
-    <div class="avatar-variant">
-        <span class="avatar-with-badge">
-            <IgbAvatar class="size-small" Shape=AvatarShape.Circle>
-                <IgbIcon @ref="MailIconRef" IconName="mail" Collection="material" />
-            </IgbAvatar>
-            <IgbBadge
-                class="avatar-status avatar-count-badge size-small"
-                Outlined="true"
-                Shape="@BadgeShape.Rounded"
-                Variant="@StyleVariant.Info">
-                2
-            </IgbBadge>
-        </span>
-        <span class="avatar-label">Icon</span>
-    </div>
+    <IgbAvatar Shape="@AvatarShape.Circle">
+        <IgbIcon @ref="MailIconRef" IconName="mail" Collection="material" />
+    </IgbAvatar>
+    <IgbBadge
+        Outlined="true"
+        Shape="@BadgeShape.Rounded"
+        Variant="@StyleVariant.Info">
+        2
+    </IgbBadge>
+    <span>Icon</span>
 
-    <div class="avatar-variant">
-        <span class="avatar-with-badge">
-            <IgbAvatar
-                class="size-small"
-                Shape=AvatarShape.Circle
-                Initials="AZ"
-                Alt="Avatar showing the initials AZ." />
-            <IgbBadge
-                class="avatar-status avatar-check-badge size-small"
-                Outlined="true"
-                Shape="@BadgeShape.Rounded"
-                Variant="@StyleVariant.Success">
-                <IgbIcon @ref="CheckIconRef" IconName="check" Collection="material" />
-            </IgbBadge>
-        </span>
-        <span class="avatar-label">Initials</span>
-    </div>
+    <IgbAvatar
+        Shape="@AvatarShape.Circle"
+        Initials="AZ"
+        Alt="Avatar with AZ initials." />
+    <IgbBadge
+        Outlined="true"
+        Shape="@BadgeShape.Rounded"
+        Variant="@StyleVariant.Success">
+        <IgbIcon @ref="CheckIconRef" IconName="check" Collection="material" />
+    </IgbBadge>
+    <span>Initials</span>
 </div>
 
 @code {
