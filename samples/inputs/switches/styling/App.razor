@@ -1,11 +1,36 @@
-
 @using IgniteUI.Blazor.Controls
+<link href="_content/IgniteUI.Blazor/themes/light/material.css" rel="stylesheet" />
 
-
-<div class="container vertical">
-    <IgbSwitch Checked="true">Label</IgbSwitch>
+<div class="container sample">
+    @* a click on the switch bubbles up to the panel header, so only the open state has to be mirrored back *@
+    <IgbExpansionPanel class="security"
+                       IndicatorPosition="ExpansionPanelIndicatorPosition.End"
+                       Open="IsOpen"
+                       Opened="OnOpened"
+                       Closed="OnClosed">
+        <div slot="title" class="option">
+            <span class="option__label">Two-factor authentication</span>
+            <span class="option__hint">Extra sign-in verification</span>
+        </div>
+        <IgbSwitch slot="indicator" Checked="IsOpen" />
+        <IgbRadioGroup Alignment="ContentOrientation.Vertical">
+            <IgbRadio Name="method" Value="app" Checked="true">Authenticator app</IgbRadio>
+            <IgbRadio Name="method" Value="key">Security key</IgbRadio>
+            <IgbRadio Name="method" Value="codes">Backup codes</IgbRadio>
+        </IgbRadioGroup>
+    </IgbExpansionPanel>
 </div>
 
 @code {
+    private bool IsOpen { get; set; } = true;
 
+    private void OnOpened(IgbExpansionPanelComponentEventArgs args)
+    {
+        this.IsOpen = true;
+    }
+
+    private void OnClosed(IgbExpansionPanelComponentEventArgs args)
+    {
+        this.IsOpen = false;
+    }
 }
