@@ -5,6 +5,12 @@ https://dl.infragistics.com/x/css//samples/
 
 igc-badge {
   --ig-size: var(--ig-size-small);
+  --ig-badge-text-color: var(--ig-gray-50);
+}
+
+igc-badge igc-icon {
+  color: var(--ig-gray-50);
+  fill: var(--ig-gray-50);
 }
 
 igc-avatar {
@@ -23,12 +29,6 @@ igc-avatar {
   inset-inline-end: -6px;
 }
 
-.step-marker igc-badge {
-  position: absolute;
-  inset-block-start: -1px;
-  inset-inline-end: -2px;
-}
-
 .outlined-example igc-badge {
   position: absolute;
   inset-block-start: -6px;
@@ -43,9 +43,12 @@ igc-avatar {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 60px;
-  min-height: 6rem;
+  overflow: hidden;
+  padding-block-start: 15px;
+  min-height: 0;
+  box-sizing: border-box;
 }
 
 .outlined-example {
@@ -69,53 +72,67 @@ igc-avatar {
 }
 
 .steps {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
+  width: 316px;
 }
 
-.step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
+.steps,
+.steps igc-step {
+  --indicator-size: 24px;
+  --ig-stepper-step-separator-style: dashed;
+  --ig-stepper-step-separator-color: var(--ig-gray-400);
+  --border-radius-indicator: 50%;
+  --indicator-background: var(--ig-gray-200);
+  --indicator-color: var(--ig-gray-800);
+  --indicator-outline: var(--ig-gray-200);
+  --separator-size: 1px;
+  --separator-type: solid;
+  --step-separator-style: dashed;
+  --complete-indicator-background: var(--ig-gray-900);
+  --complete-indicator-color: var(--ig-gray-50);
+  --complete-step-separator-style: solid;
+  --complete-step-separator-color: var(--ig-gray-900);
 }
 
-.step-marker {
-  position: relative;
-  display: flex;
-}
-
-.step-circle {
-  width: 26px;
-  height: 26px;
-  background: var(--ig-gray-900);
-  color: var(--ig-gray-50);
-  font-size: 12px;
-}
-
-.step-circle.pending {
-  background: var(--ig-gray-200);
+.steps igc-step::part(indicator) {
+  border-radius: 50%;
+  background-color: var(--ig-gray-200);
   color: var(--ig-gray-800);
 }
 
-.step-connector {
-  width: 56px;
-  margin-block-start: 13px;
-  border-block-start: 1px solid var(--ig-gray-900);
+.steps igc-step[complete]::part(indicator) {
+  background-color: var(--ig-gray-900);
+  color: var(--ig-gray-50);
 }
 
-.step-connector.pending {
+.steps igc-step[active]::part(indicator) {
+  background-color: var(--ig-primary-500);
+  color: var(--ig-gray-50);
+}
+
+.steps igc-step::part(separator) {
   border-block-start-style: dashed;
   border-block-start-color: var(--ig-gray-400);
 }
 
-.step-label {
-  color: var(--ig-gray-600);
-  font-family: "Aktiv Grotesk", sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 20px;
-  letter-spacing: 0.3px;
+.steps igc-step[complete]::part(separator) {
+  border-block-start-style: solid;
+  border-block-start-color: var(--ig-gray-900);
+}
+
+.stepper-wrapper {
+  position: relative;
+  align-self: center;
+  top: 18px
+}
+
+.flagged-badge {
+  position: absolute;
+  inset-block-start: 8px;
+  inset-inline-start: calc(50% - 1px);
+  transform: scale(1.20);
+  transform-origin: center;
+}
+
+.steps::part(content) {
+  display: none;
 }
