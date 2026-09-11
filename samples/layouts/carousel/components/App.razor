@@ -210,6 +210,14 @@ igc-carousel-slide.slide-resort {
   height: 180px;
 }
 
+.ticket-stack {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  width: 96px;
+  height: 144px;
+}
+
 .ticket {
   position: absolute;
   display: grid;
@@ -221,15 +229,14 @@ igc-carousel-slide.slide-resort {
 }
 
 .ticket--back {
-  top: 16px;
-  left: 4px;
+  top: 12px;
+  left: -20px;
   opacity: 0.56;
   transform: rotate(-8deg);
 }
 
 .ticket--front {
-  top: 10px;
-  right: 2px;
+  inset: 0;
   grid-template-rows: 1fr auto 1fr;
   padding: 18px;
   transform: rotate(5deg);
@@ -346,7 +353,7 @@ igc-carousel-slide.slide-resort {
                         <p>Browse curated travel ideas and search directly from the active slide.</p>
                     </div>
                     <IgbInput DisplayType="@InputType.Text" Placeholder="City or landmark">
-                        <IgbIcon slot="prefix" IconName="search" Collection="material"></IgbIcon>
+                        <IgbIcon slot="prefix" IconName="search" Collection="material" @ref="iconRef"></IgbIcon>
                     </IgbInput>
                     <div class="chip-row" aria-label="Route highlights">
                         <span>3 stops</span>
@@ -374,8 +381,10 @@ igc-carousel-slide.slide-resort {
                     <IgbButton>Notify Me</IgbButton>
                 </section>
                 <div class="event-visual" aria-hidden="true">
-                    <span class="ticket ticket--back"></span>
-                    <span class="ticket ticket--front"><span></span><span></span><span></span></span>
+                    <span class="ticket-stack">
+                        <span class="ticket ticket--back"></span>
+                        <span class="ticket ticket--front"><span></span><span></span><span></span></span>
+                    </span>
                 </div>
             </article>
         </IgbCarouselSlide>
@@ -402,3 +411,20 @@ igc-carousel-slide.slide-resort {
         </IgbCarouselSlide>
     </IgbCarousel>
 </div>
+
+@code {
+    private const string PasswordIcon = """<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.25 10.0546V8C5.25 4.27208 8.27208 1.25 12 1.25C15.7279 1.25 18.75 4.27208 18.75 8V10.0546C19.8648 10.1379 20.5907 10.348 21.1213 10.8787C22 11.7574 22 13.1716 22 16C22 18.8284 22 20.2426 21.1213 21.1213C20.2426 22 18.8284 22 16 22H8C5.17157 22 3.75736 22 2.87868 21.1213C2 20.2426 2 18.8284 2.87868 10.8787C3.40931 10.348 4.13525 10.1379 5.25 10.0546ZM6.75 8C6.75 5.10051 9.10051 2.75 12 2.75C14.8995 2.75 17.25 5.10051 17.25 8V10.0036C16.867 10 16.4515 10 16 10H8C7.54849 10 7.13301 10 6.75 10.0036V8ZM14 16C14 17.1046 13.1046 18 12 18C10.8954 18 10 17.1046 10 16C10 14.8954 10.8954 14 12 14C13.1046 14 14 14.8954 14 16Z"/></svg>""";
+    private const string SearchIcon = """<svg width="24" height="24" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" /></svg>""";
+
+    private IgbIcon iconRef;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && iconRef != null)
+        {
+            await iconRef.EnsureReady();
+            await iconRef.RegisterIconFromTextAsync("search", SearchIcon, "material");
+            await iconRef.RegisterIconFromTextAsync("password", PasswordIcon, "material");
+        }
+    }
+}

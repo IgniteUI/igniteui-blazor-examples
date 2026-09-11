@@ -4,7 +4,7 @@
 /* https://dl.infragistics.com/x/css/samples/shared.v8.css */
 .carousel-wrapper {
     display: flex;
-    width: min(860px, 100%);
+    width: min(860px, calc(100% - 32px));
     flex-direction: column;
     gap: 16px;
     margin: 16px auto 0;
@@ -82,6 +82,8 @@ igc-carousel[vertical]::part(next) {
 }
 
 .slide-content {
+    position: relative;
+    z-index: 1;
     width: min(460px, calc(100% - 128px));
     max-width: 460px;
     color: var(--ig-gray-900);
@@ -129,6 +131,7 @@ igc-carousel[vertical]::part(next) {
 
 .slide-preview {
     position: absolute;
+    z-index: 0;
     right: 84px;
     top: 50%;
     display: grid;
