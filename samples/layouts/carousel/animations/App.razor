@@ -48,6 +48,13 @@ igc-carousel::part(previous),
 igc-carousel::part(next) {
     width: 40px;
     height: 40px;
+    transition: opacity 120ms ease-in-out;
+}
+
+igc-carousel.is-orientation-changing::part(previous),
+igc-carousel.is-orientation-changing::part(next) {
+    opacity: 0;
+    pointer-events: none;
 }
 
 igc-carousel::part(previous) {
@@ -206,7 +213,7 @@ igc-carousel[vertical]::part(next) {
         </div>
     </div>
 
-    <IgbCarousel @ref="carouselRef" HideIndicators="true">
+    <IgbCarousel @ref="carouselRef" class="@CarouselCssClass" HideIndicators="true" Vertical="@isCarouselVertical">
         <IgbCarouselSlide>
             <article class="slide-wrapper">
                 <div class="slide-content">
@@ -245,6 +252,11 @@ igc-carousel[vertical]::part(next) {
 
 @code {
     private IgbCarousel carouselRef;
+    private bool isCarouselVertical;
+    private bool isOrientationChanging;
+    private int orientationChangeVersion;
+
+    private string CarouselCssClass => isOrientationChanging ? "is-orientation-changing" : string.Empty;
 
     private void OnSelectChange(IgbSelectItemComponentEventArgs args)
     {
@@ -256,8 +268,26 @@ igc-carousel[vertical]::part(next) {
         };
     }
 
-    private void OnSwitchChange(IgbCheckboxChangeEventArgs args)
+    private async Task OnSwitchChange(IgbCheckboxChangeEventArgs args)
     {
-        carouselRef.Vertical = args.Detail.Checked;
+        var changeVersion = ++orientationChangeVersion;
+        isOrientationChanging = true;
+        await InvokeAsync(StateHasChanged);
+
+        await Task.Delay(120);
+        if (changeVersion != orientationChangeVersion)
+        {
+            return;
+        }
+
+        isCarouselVertical = args.Detail.Checked;
+        await InvokeAsync(StateHasChanged);
+
+        await Task.Delay(16);
+        if (changeVersion == orientationChangeVersion)
+        {
+            isOrientationChanging = false;
+            await InvokeAsync(StateHasChanged);
+        }
     }
 }
