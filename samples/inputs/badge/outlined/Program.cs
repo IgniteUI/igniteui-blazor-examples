@@ -22,6 +22,8 @@ namespace Infragistics.Samples
       builder.Services.AddIgniteUIBlazor(typeof(IgbBadgeModule));
       builder.Services.AddIgniteUIBlazor(typeof(IgbAvatarModule));
       builder.Services.AddIgniteUIBlazor(typeof(IgbIconModule));
+      builder.Services.AddIgniteUIBlazor(typeof(IgbStepperModule));
+      builder.Services.AddIgniteUIBlazor(typeof(IgbStepModule));
       await builder.Build().RunAsync();
     }
   }
