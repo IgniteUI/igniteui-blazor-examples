@@ -18,6 +18,12 @@
     var LINK_ATTR = 'data-igd-theme-link';
     var DARK_QUERY = '(prefers-color-scheme: dark)';
 
+    // igniteui-webcomponents' configureTheme() re-adopts each Shadow DOM
+    // component's theme stylesheet; it's just a wrapper around this global
+    // event, which is what we dispatch directly since this script has no
+    // module import into that package.
+    var THEME_CHANGE_EVENT = 'igc-change-theme';
+
     var THEMES = ['material', 'fluent', 'bootstrap', 'indigo'];
 
     // Keyed by the LINK_ATTR value on each stylesheet in index.html. Hrefs stay
@@ -127,6 +133,12 @@
         root.setAttribute('data-igd-theme', theme);
         root.setAttribute('data-igd-mode', resolved);
         root.style.colorScheme = resolved;
+
+        // Tell the Shadow DOM / Lit components to re-adopt their per-theme
+        // stylesheet now that the global CSS is in place.
+        window.dispatchEvent(new CustomEvent(THEME_CHANGE_EVENT, {
+            detail: { theme: theme, themeVariant: resolved }
+        }));
     }
 
     function onMessage(event) {
