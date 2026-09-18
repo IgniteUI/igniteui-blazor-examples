@@ -57,7 +57,7 @@
             return true;
         }
         return hostname === 'infragistics.com' ||
-            hostname.lastIndexOf('.infragistics.com') === hostname.length - '.infragistics.com'.length;
+            hostname.endsWith('.infragistics.com');
     }
 
     function parseMessage(data) {
