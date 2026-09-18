@@ -1,29 +1,33 @@
 @using IgniteUI.Blazor.Controls
 
-<link href="_content/IgniteUI.Blazor/themes/light/material.css" rel="stylesheet" />
-
-<div class="button-group-interaction-states">
-    <div class="button-group-interaction-states-row">
+<div class="states-matrix states-container">
+    <header class="states-row">
         <span class="row-label"></span>
         <span class="column-label">Enabled</span>
         <span class="column-label">Disabled</span>
-    </div>
+    </header>
     @foreach (var row in Rows)
     {
-        <div class="button-group-interaction-states-row">
+        <section class="states-row">
             <span class="row-label">@row.Label</span>
-            <IgbButtonGroup Selection="ButtonGroupSelection.Multiple">
-                <IgbToggleButton Value="device" Selected="@(row.Label == "Selected / On")">
-                    Device
-                    <IgbRipple />
-                </IgbToggleButton>
-            </IgbButtonGroup>
-            <IgbButtonGroup Selection="ButtonGroupSelection.Multiple" Disabled="true">
-                <IgbToggleButton Value="cloud" Selected="@row.Selected">
-                    Cloud
-                </IgbToggleButton>
-            </IgbButtonGroup>
-        </div>
+            <div class="state-cell">
+                <span class="cell-label">Enabled</span>
+                <IgbButtonGroup Selection="ButtonGroupSelection.Multiple">
+                    <IgbToggleButton Value="device" Selected="@row.Selected">
+                        Device
+                        <IgbRipple />
+                    </IgbToggleButton>
+                </IgbButtonGroup>
+            </div>
+            <div class="state-cell">
+                <span class="cell-label">Disabled</span>
+                <IgbButtonGroup Selection="ButtonGroupSelection.Multiple">
+                    <IgbToggleButton Value="cloud" Disabled="true" Selected="@row.Selected">
+                        Cloud
+                    </IgbToggleButton>
+                </IgbButtonGroup>
+            </div>
+        </section>
     }
 </div>
 
