@@ -1,0 +1,81 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample flex h-full items-center justify-center p-4">
+    <div class="filter-panel flex flex-col rounded-2xl border border-[var(--ig-primary-500)] bg-white p-2">
+        <IgbAccordion>
+            @foreach (var section in Sections)
+            {
+                <IgbExpansionPanel class="filter-section"
+                                   IndicatorPosition="ExpansionPanelIndicatorPosition.End"
+                                   Open="section.Open"
+                                   Opened="@(args => section.Open = true)"
+                                   Closed="@(args => section.Open = false)">
+                    <span class="panel-title" slot="title">@section.Title</span>
+                    <div class="section-options flex flex-col">
+                        @foreach (var option in section.Options)
+                        {
+                            <IgbCheckbox class="filter-option"
+                                         Checked="option.Checked"
+                                         Change="@(args => option.Checked = args.Detail.Checked)">
+                                <span>@option.Label</span>
+                            </IgbCheckbox>
+                        }
+                    </div>
+                </IgbExpansionPanel>
+            }
+        </IgbAccordion>
+    </div>
+</div>
+
+@code {
+    private class FilterOption
+    {
+        public string Label { get; set; }
+        public bool Checked { get; set; }
+    }
+
+    private class FilterSection
+    {
+        public string Title { get; set; }
+        public bool Open { get; set; }
+        public List<FilterOption> Options { get; set; }
+    }
+
+    private List<FilterSection> Sections { get; set; } = new List<FilterSection>
+    {
+        new FilterSection
+        {
+            Title = "Brand",
+            Open = true,
+            Options = new List<FilterOption>
+            {
+                new FilterOption { Label = "Nike", Checked = true },
+                new FilterOption { Label = "Roxy", Checked = false },
+                new FilterOption { Label = "Guess", Checked = false },
+            }
+        },
+        new FilterSection
+        {
+            Title = "Color",
+            Open = true,
+            Options = new List<FilterOption>
+            {
+                new FilterOption { Label = "Black", Checked = false },
+                new FilterOption { Label = "White", Checked = true },
+                new FilterOption { Label = "Gray", Checked = false },
+            }
+        },
+        new FilterSection
+        {
+            Title = "Size",
+            Open = true,
+            Options = new List<FilterOption>
+            {
+                new FilterOption { Label = "Small", Checked = false },
+                new FilterOption { Label = "Medium", Checked = true },
+                new FilterOption { Label = "Large", Checked = false },
+                new FilterOption { Label = "Extra large", Checked = false },
+            }
+        }
+    };
+}
