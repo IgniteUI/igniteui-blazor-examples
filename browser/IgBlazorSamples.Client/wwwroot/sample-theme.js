@@ -7,7 +7,8 @@
  * The docs ThemingWidget dispatches `igd-theme-change`; the Sample widget
  * bridges that to `postMessage({ type: 'igd-sample-theme', theme, mode })` on
  * the frame, and re-posts the current selection on every iframe `load`. Here we
- * validate the sender and repoint the Ignite UI theme <link> elements.
+ * validate the sender, repoint the Ignite UI theme <link> elements and hand the
+ * selection to the <igc-theme-provider> App.razor wraps the samples in.
  *
  * Dormant unless a trusted docs host asks for a theme.
  */
@@ -18,11 +19,13 @@
     var LINK_ATTR = 'data-igd-theme-link';
     var DARK_QUERY = '(prefers-color-scheme: dark)';
 
-    // igniteui-webcomponents' configureTheme() re-adopts each Shadow DOM
-    // component's theme stylesheet; it's just a wrapper around this global
-    // event, which is what we dispatch directly since this script has no
-    // module import into that package.
-    var THEME_CHANGE_EVENT = 'igc-change-theme';
+    // The theme stylesheets only carry the palette, typography and other global
+    // variables; each Shadow DOM component adopts its own per-theme styles. Those
+    // follow the nearest <igc-theme-provider>, whose theme/variant attributes we
+    // set. (The `igc-change-theme` event alone would only make the components
+    // re-read the theme igniteui-webcomponents cached on first render, and its
+    // configureTheme(), which updates that cache, isn't exposed by IgniteUI.Blazor.)
+    var PROVIDER_SELECTOR = 'igc-theme-provider';
 
     var THEMES = ['material', 'fluent', 'bootstrap', 'indigo'];
 
@@ -40,6 +43,10 @@
     // Newest <link> per key; swaps chain from here so rapid switching stays ordered.
     var links = {};
     var selected = null;
+    // Bumped per applied selection, so a slow stylesheet from an older one
+    // can't hand the provider a stale theme after a newer selection.
+    var latestRequest = 0;
+    var providerObserver = null;
 
     function isTrustedOrigin(origin) {
         if (origin === window.location.origin) {
@@ -86,6 +93,32 @@
         return window.matchMedia && window.matchMedia(DARK_QUERY).matches ? 'dark' : 'light';
     }
 
+    // Returns whether the provider exists; sets the selection on it if there is one.
+    function syncProvider() {
+        var provider = document.querySelector(PROVIDER_SELECTOR);
+        if (!provider || !selected) {
+            return !!provider;
+        }
+        provider.setAttribute('theme', selected.theme);
+        provider.setAttribute('variant', resolveMode(selected.mode));
+        return true;
+    }
+
+    // The docs post the first selection on iframe `load`, before Blazor has
+    // rendered the provider, so apply it as soon as the element exists.
+    function watchForProvider() {
+        if (syncProvider() || providerObserver) {
+            return;
+        }
+        providerObserver = new MutationObserver(function () {
+            if (syncProvider()) {
+                providerObserver.disconnect();
+                providerObserver = null;
+            }
+        });
+        providerObserver.observe(document.documentElement, { childList: true, subtree: true });
+    }
+
     // Drops every stylesheet for this key except the newest, so an interrupted
     // swap can't leave a stale theme behind.
     function prune(key) {
@@ -97,9 +130,10 @@
         }
     }
 
-    function swap(key, href) {
+    function swap(key, href, onReady) {
         var current = links[key];
         if (!current || current.getAttribute('href') === href) {
+            onReady();
             return;
         }
 
@@ -112,6 +146,7 @@
             next.removeEventListener('load', done);
             next.removeEventListener('error', done);
             prune(key);
+            onReady();
         };
         next.addEventListener('load', done);
         next.addEventListener('error', done);
@@ -122,23 +157,27 @@
 
     function applyTheme(theme, mode) {
         var resolved = resolveMode(mode);
+        var request = ++latestRequest;
+        var pending = Object.keys(HREFS).length;
 
-        for (var key in HREFS) {
-            if (Object.prototype.hasOwnProperty.call(HREFS, key)) {
-                swap(key, HREFS[key](resolved, theme));
+        // Retheme the Shadow DOM components only once the new global CSS is in
+        // place, so they don't switch ahead of the palette they draw from.
+        var onReady = function () {
+            if (--pending === 0 && request === latestRequest) {
+                watchForProvider();
             }
-        }
+        };
 
         var root = document.documentElement;
         root.setAttribute('data-igd-theme', theme);
         root.setAttribute('data-igd-mode', resolved);
         root.style.colorScheme = resolved;
 
-        // Tell the Shadow DOM / Lit components to re-adopt their per-theme
-        // stylesheet now that the global CSS is in place.
-        window.dispatchEvent(new CustomEvent(THEME_CHANGE_EVENT, {
-            detail: { theme: theme, themeVariant: resolved }
-        }));
+        for (var key in HREFS) {
+            if (Object.prototype.hasOwnProperty.call(HREFS, key)) {
+                swap(key, HREFS[key](resolved, theme), onReady);
+            }
+        }
     }
 
     function onMessage(event) {

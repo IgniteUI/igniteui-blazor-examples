@@ -9,22 +9,37 @@
 @inject Infragistics.Samples.Core.SampleBrowser SB
 @inject NavigationManager NavManager
 @inject LazyAssemblyLoader AssemblyLoader
+@inject IIgniteUIBlazor IgniteUIBlazor
 
-<CustomRouter @ref="Router"
-    AppAssembly="@typeof(App).Assembly"
-    OnNavigateChangedAsync="OnNavigateChangedAsync">
-    <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(BrowserLayout)" />
-    </Found>
-    <NotFound>
-        <LayoutView Layout="@typeof(BrowserLayout)">
-            <SampleNotFound></SampleNotFound>
-        </LayoutView>
-    </NotFound>
-</CustomRouter>
+@* Gives the docs theming widget one element to retheme every sample through
+   (see wwwroot/sample-theme.js). No Theme/Variant parameters on purpose: the
+   element's theme/variant attributes are owned by that script, and until it
+   sets them the provider keeps the Bootstrap light default index.html loads. *@
+<IgbThemeProvider>
+    <CustomRouter @ref="Router"
+        AppAssembly="@typeof(App).Assembly"
+        OnNavigateChangedAsync="OnNavigateChangedAsync">
+        <Found Context="routeData">
+            <RouteView RouteData="@routeData" DefaultLayout="@typeof(BrowserLayout)" />
+        </Found>
+        <NotFound>
+            <LayoutView Layout="@typeof(BrowserLayout)">
+                <SampleNotFound></SampleNotFound>
+            </LayoutView>
+        </NotFound>
+    </CustomRouter>
+</IgbThemeProvider>
 
 @code {
     private CustomRouter Router;
+
+    protected override void OnInitialized()
+    {
+        // The provider must be defined before the sample components that
+        // consume its theme connect.
+        IgbThemeProviderModule.Register(IgniteUIBlazor);
+    }
+
     protected override async Task OnInitializedAsync()
     {
         SB.AppName = "Blazor Client Samples";
