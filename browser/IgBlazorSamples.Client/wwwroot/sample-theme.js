@@ -7,7 +7,8 @@
  * The docs ThemingWidget dispatches `igd-theme-change`; the Sample widget
  * bridges that to `postMessage({ type: 'igd-sample-theme', theme, mode })` on
  * the frame, and re-posts the current selection on every iframe `load`. Here we
- * validate the sender and repoint the Ignite UI theme <link> elements.
+ * validate the sender, repoint the Ignite UI theme <link> elements and provide
+ * the selection to the web components as their theme context.
  *
  * Dormant unless a trusted docs host asks for a theme.
  */
@@ -18,11 +19,15 @@
     var LINK_ATTR = 'data-igd-theme-link';
     var DARK_QUERY = '(prefers-color-scheme: dark)';
 
-    // igniteui-webcomponents' configureTheme() re-adopts each Shadow DOM
-    // component's theme stylesheet; it's just a wrapper around this global
-    // event, which is what we dispatch directly since this script has no
-    // module import into that package.
-    var THEME_CHANGE_EVENT = 'igc-change-theme';
+    // The theme stylesheets only carry the palette, typography and other global
+    // variables; each Shadow DOM component adopts its own per-theme styles from
+    // the nearest theme provider, which it looks up with a bubbling, composed
+    // `context-request` event for this key (the Lit context protocol that
+    // <igc-theme-provider> answers). Answering it on the window makes this script
+    // the provider for every component on the page, including ones rendered
+    // outside the app root (tile drag ghosts) and ones from separately bundled
+    // packages (GridLite), with no wrapper element and nothing extra to load.
+    var THEME_CONTEXT = 'ig-theme-context';
 
     var THEMES = ['material', 'fluent', 'bootstrap', 'indigo'];
 
@@ -37,9 +42,20 @@
         }
     };
 
-    // Newest <link> per key; swaps chain from here so rapid switching stays ordered.
-    var links = {};
+    // The <link> in effect per key, and the replacements a pending selection is loading.
+    var activeLinks = {};
+    var stagedLinks = [];
+    // The newest selection, and the one whose stylesheets are in effect.
     var selected = null;
+    var applied = null;
+    // Bumped per applied selection, so only the newest one can take effect.
+    var latestRequest = 0;
+
+    // Handed to the components; undefined until a docs theme is applied, which
+    // they ignore, keeping the global theme they would have without this script.
+    var themeContext;
+    // Each subscribed component's context callback, mapped to its unsubscribe.
+    var subscribers = new Map();
 
     function isTrustedOrigin(origin) {
         if (origin === window.location.origin) {
@@ -86,59 +102,119 @@
         return window.matchMedia && window.matchMedia(DARK_QUERY).matches ? 'dark' : 'light';
     }
 
-    // Drops every stylesheet for this key except the newest, so an interrupted
-    // swap can't leave a stale theme behind.
-    function prune(key) {
-        var all = document.head.querySelectorAll('link[' + LINK_ATTR + '="' + key + '"]');
-        for (var i = 0; i < all.length; i++) {
-            if (all[i] !== links[key] && all[i].parentNode) {
-                all[i].parentNode.removeChild(all[i]);
-            }
-        }
-    }
-
-    function swap(key, href) {
-        var current = links[key];
-        if (!current || current.getAttribute('href') === href) {
+    function onContextRequest(event) {
+        if (event.context !== THEME_CONTEXT) {
             return;
         }
+        event.stopPropagation();
 
-        // The replacement is loaded alongside the outgoing sheet and only takes
-        // over once ready, so the sample never renders unstyled mid-swap.
-        var next = current.cloneNode(false);
-        next.setAttribute('href', href);
+        var callback = event.callback;
+        if (!event.subscribe) {
+            callback(themeContext);
+            return;
+        }
+        // Components unsubscribe when they disconnect, so this only ever holds
+        // the ones on the page.
+        if (!subscribers.has(callback)) {
+            subscribers.set(callback, function () {
+                subscribers.delete(callback);
+            });
+        }
+        callback(themeContext, subscribers.get(callback));
+    }
 
-        var done = function () {
-            next.removeEventListener('load', done);
-            next.removeEventListener('error', done);
-            prune(key);
-        };
-        next.addEventListener('load', done);
-        next.addEventListener('error', done);
+    function provideTheme(theme, variant) {
+        if (themeContext && themeContext.theme === theme && themeContext.variant === variant) {
+            return;
+        }
+        themeContext = { theme: theme, variant: variant };
+        subscribers.forEach(function (unsubscribe, callback) {
+            callback(themeContext, unsubscribe);
+        });
+    }
 
-        current.parentNode.insertBefore(next, current.nextSibling);
-        links[key] = next;
+    // Drops the stylesheets a superseded or failed selection was loading; they
+    // never applied, so this can't leave the page unstyled.
+    function removeStaged() {
+        stagedLinks.forEach(function (link) {
+            if (link.parentNode) {
+                link.parentNode.removeChild(link);
+            }
+        });
+        stagedLinks = [];
     }
 
     function applyTheme(theme, mode) {
         var resolved = resolveMode(mode);
+        var request = ++latestRequest;
+        var selection = { theme: theme, mode: mode };
+        var incoming = {};
+        var pending = 0;
+        var failed = false;
+
+        removeStaged();
+
+        // Everything switches in one step once every new stylesheet is in: the
+        // palette, the root attributes sample CSS keys on, and the components'
+        // own styles, so no frame mixes the old theme with the new one.
+        var commit = function () {
+            for (var key in incoming) {
+                var outgoing = activeLinks[key];
+                incoming[key].removeAttribute('media');
+                outgoing.parentNode.removeChild(outgoing);
+                activeLinks[key] = incoming[key];
+            }
+            stagedLinks = [];
+            applied = selection;
+
+            var root = document.documentElement;
+            root.setAttribute('data-igd-theme', theme);
+            root.setAttribute('data-igd-mode', resolved);
+            root.style.colorScheme = resolved;
+
+            provideTheme(theme, resolved);
+        };
+
+        var onLoad = function () {
+            if (!failed && request === latestRequest && --pending === 0) {
+                commit();
+            }
+        };
+
+        // Keeps the current theme and forgets the failed selection, so choosing
+        // it again retries instead of being skipped as a repeat.
+        var onError = function () {
+            if (!failed && request === latestRequest) {
+                failed = true;
+                removeStaged();
+                selected = applied;
+            }
+        };
 
         for (var key in HREFS) {
-            if (Object.prototype.hasOwnProperty.call(HREFS, key)) {
-                swap(key, HREFS[key](resolved, theme));
+            if (!Object.prototype.hasOwnProperty.call(HREFS, key) || !activeLinks[key]) {
+                continue;
             }
+            var href = HREFS[key](resolved, theme);
+            if (activeLinks[key].getAttribute('href') === href) {
+                continue;
+            }
+
+            // media="print" fetches the stylesheet without applying it before commit.
+            var link = activeLinks[key].cloneNode(false);
+            link.setAttribute('href', href);
+            link.setAttribute('media', 'print');
+            link.addEventListener('load', onLoad);
+            link.addEventListener('error', onError);
+            activeLinks[key].parentNode.insertBefore(link, activeLinks[key].nextSibling);
+            stagedLinks.push(link);
+            incoming[key] = link;
+            pending++;
         }
 
-        var root = document.documentElement;
-        root.setAttribute('data-igd-theme', theme);
-        root.setAttribute('data-igd-mode', resolved);
-        root.style.colorScheme = resolved;
-
-        // Tell the Shadow DOM / Lit components to re-adopt their per-theme
-        // stylesheet now that the global CSS is in place.
-        window.dispatchEvent(new CustomEvent(THEME_CHANGE_EVENT, {
-            detail: { theme: theme, themeVariant: resolved }
-        }));
+        if (pending === 0) {
+            commit();
+        }
     }
 
     function onMessage(event) {
@@ -177,10 +253,13 @@
 
     for (var key in HREFS) {
         if (Object.prototype.hasOwnProperty.call(HREFS, key)) {
-            links[key] = document.head.querySelector('link[' + LINK_ATTR + '="' + key + '"]');
+            activeLinks[key] = document.head.querySelector('link[' + LINK_ATTR + '="' + key + '"]');
         }
     }
 
+    // index.html loads this script before any component bundle, so every
+    // component's theme request reaches this listener.
+    window.addEventListener('context-request', onContextRequest);
     window.addEventListener('message', onMessage);
     watchSystemMode();
 })();
