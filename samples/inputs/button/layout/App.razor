@@ -1,0 +1,51 @@
+@using IgniteUI.Blazor.Controls
+
+
+<div class="container sample">
+    <div class="button-container">
+        <div class="button-item">
+            <IgbButton Variant="ButtonVariant.Outlined"><IgbIcon @ref="AddIcon" Slot="prefix" Name="add" Collection="material" />Add</IgbButton>
+        </div>
+        <div class="button-item"><IgbButton Variant="ButtonVariant.Outlined">Buy Now</IgbButton></div>
+        <div class="button-item">
+            <IgbButton Variant="ButtonVariant.Outlined">Add<IgbIcon Slot="suffix" Name="add" Collection="material" /></IgbButton>
+        </div>
+        <div class="button-item">
+            <IgbButton Variant="ButtonVariant.Outlined"><IgbIcon Slot="prefix" Name="add" Collection="material" />Floating Action</IgbButton>
+        </div>
+        <div class="button-item"><IgbButton Variant="ButtonVariant.Outlined"><IgbIcon Name="add" Collection="material" /></IgbButton></div>
+        <div class="button-item"><IgbButton Variant="ButtonVariant.Outlined">Floating Action</IgbButton></div>
+        @* Legacy selector layout retained below for reference.
+            <div class="button-row">
+                <div class="button-item">
+                    <span class="button-sublabel">Left</span>
+                    <IgbButton Variant="@CurrentVariant">
+                        <IgbIcon @ref="AddIcon" Slot="prefix" Name="add" Collection="material" />
+                        Add
+                    </IgbButton>
+                </div>
+                <div class="button-item">
+                    <span class="button-sublabel">Right</span>
+                    <IgbButton Variant="@CurrentVariant">
+                        Add
+                        <IgbIcon Slot="suffix" Name="add" Collection="material" />
+                    </IgbButton>
+                </div>
+            </div> *@
+    </div>
+</div>
+
+@code {
+
+    private IgbIcon AddIcon { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender && AddIcon != null)
+        {
+            string addIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path d=\"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z\"/></svg>";
+            AddIcon.EnsureReady().ContinueWith(_ => AddIcon.RegisterIconFromText("add", addIcon, "material"));
+        }
+    }
+
+}
