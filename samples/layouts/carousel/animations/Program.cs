@@ -21,8 +21,6 @@ namespace Infragistics.Samples
             // registering Ignite UI modules
             builder.Services.AddIgniteUIBlazor(
                 typeof(IgbCarouselModule),
-                typeof(IgbButtonModule),
-                typeof(IgbCardModule),
                 typeof(IgbSwitchModule),
                 typeof(IgbSelectModule)
             );
