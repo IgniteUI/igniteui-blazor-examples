@@ -1,23 +1,23 @@
 @using IgniteUI.Blazor.Controls
 
-<div class="container sample flex h-full items-center justify-center p-4">
-    <div class="filter-panel flex flex-col rounded-2xl border border-[var(--ig-primary-500)] bg-white p-2">
-        <IgbAccordion>
+<div class="container sample flex items-center justify-center">
+    <div class="flex w-[218px] flex-col rounded-2xl border-[1px] border-solid border-[var(--color-filter-primary)] bg-white p-[7px] [--ig-font-family:aktiv-grotesk,sans-serif]">
+        <IgbAccordion class="flex flex-col divide-y divide-[var(--color-filter-divider)] pb-2">
             @foreach (var section in Sections)
             {
-                <IgbExpansionPanel class="filter-section"
+                <IgbExpansionPanel class="my-0 [--ig-expansion-panel-body-background:transparent] [--ig-expansion-panel-header-background:transparent] [--ig-expansion-panel-header-icon-color:var(--color-filter-ink)]"
                                    IndicatorPosition="ExpansionPanelIndicatorPosition.End"
                                    Open="section.Open"
                                    Opened="@(args => section.Open = true)"
                                    Closed="@(args => section.Open = false)">
-                    <span class="panel-title" slot="title">@section.Title</span>
-                    <div class="section-options flex flex-col">
+                    <span class="pb-2 text-base font-bold leading-5 text-[var(--color-filter-title)]" slot="title">@section.Title</span>
+                    <div class="-mx-2 -my-4 flex flex-col">
                         @foreach (var option in section.Options)
                         {
-                            <IgbCheckbox class="filter-option"
+                            <IgbCheckbox class="filter-option [--ig-checkbox-border-radius:0.125rem] [--ig-checkbox-empty-color-hover:var(--color-filter-primary)] [--ig-checkbox-empty-color:var(--color-filter-empty)] [--ig-checkbox-fill-color-hover:var(--color-filter-primary)] [--ig-checkbox-fill-color:var(--color-filter-primary)] [--ig-checkbox-label-color-hover:var(--color-filter-ink)] [--ig-checkbox-label-color:var(--color-filter-ink)] [--ig-checkbox-tick-color-hover:#fff] [--ig-checkbox-tick-color:#fff]"
                                          Checked="option.Checked"
                                          Change="@(args => option.Checked = args.Detail.Checked)">
-                                <span>@option.Label</span>
+                                <span class="text-sm font-medium leading-6 tracking-[0.1px]">@option.Label</span>
                             </IgbCheckbox>
                         }
                     </div>
