@@ -23,7 +23,8 @@ namespace Infragistics.Samples
                 typeof(IgbCarouselModule),
                 typeof(IgbInputModule),
                 typeof(IgbIconModule),
-                typeof(IgbButtonModule)
+                typeof(IgbButtonModule),
+                typeof(IgbCheckboxModule)
             );
             await builder.Build().RunAsync();
         }
