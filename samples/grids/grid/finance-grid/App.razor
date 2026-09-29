@@ -1,0 +1,553 @@
+@using IgniteUI.Blazor.Controls
+@using System.Globalization
+@using System.Text.Json
+@using System.Text.RegularExpressions
+@using System.Threading
+@implements IAsyncDisposable
+@inject IJSRuntime JS
+
+<div class="container vertical finance-grid-sample ig-typography ig-scrollbar">
+    @* The theme class sits on the shell: both palettes stay inside the sample's subtree, and
+       everything the grid renders (toolbar overlays included) follows it. *@
+    <section class="@ShellClass" aria-label="Financial portfolio">
+        <header class="finance-topbar">
+            <div class="finance-title-wrap">
+                <div class="sample-logo">
+                    <IgbIcon @ref="TitleIcon" Class="finance-title-icon" IconName="account_balance" Collection="@IconCollection" aria-hidden="true"></IgbIcon>
+                </div>
+                <h1>Financial Portfolio</h1>
+            </div>
+
+            <div class="finance-topbar-actions">
+                @* The feed's state in words, for anyone who cannot see the pulsing dot. *@
+                <span class="@FeedStatusClass" role="status">
+                    <span class="finance-feed-dot" aria-hidden="true"></span>
+                    @(IsLive ? "Live" : "Paused")
+                </span>
+                <IgbIconButton Variant="IconButtonVariant.Flat" IconName="@(IsLive ? "pause" : "play_arrow")" Collection="@IconCollection"
+                               title="@LiveButtonLabel" aria-label="@LiveButtonLabel" @onclick="ToggleLive"></IgbIconButton>
+                <IgbIconButton Variant="IconButtonVariant.Flat" IconName="@(IsDark ? "light_mode" : "dark_mode")" Collection="@IconCollection"
+                               title="@ThemeButtonLabel" aria-label="@ThemeButtonLabel" @onclick="ToggleThemeAsync"></IgbIconButton>
+            </div>
+        </header>
+
+        <IgbGrid @ref="Grid"
+                 Id="@GridId"
+                 Class="finance-grid"
+                 Data="GridRows"
+                 AutoGenerate="false"
+                 PrimaryKey="Ticker"
+                 RowSelection="GridSelectionMode.None"
+                 RowHeight="60"
+                 Height="100%"
+                 Width="100%"
+                 ToolbarExportingScript="FinanceGridToolbarExporting">
+            <IgbGridToolbar>
+                <IgbGridToolbarTitle>Holdings</IgbGridToolbarTitle>
+                @* Placeholder rather than a floating label keeps the field one line high; it is also
+                   the input's accessible name (igc-input does not forward aria-label). No Value binding:
+                   the field is the only writer of the filter, and writing the value back would race the
+                   user's typing on Blazor Server. *@
+                <IgbInput id="finance-asset-filter" Class="finance-toolbar-search" DisplayType="InputType.Search"
+                          Placeholder="Filter by asset" InputOcurred="OnFinanceAssetSearch">
+                    <IgbIcon slot="prefix" IconName="search" Collection="@IconCollection" aria-hidden="true"></IgbIcon>
+                </IgbInput>
+                <IgbGridToolbarActions>
+                    <IgbGridToolbarHiding></IgbGridToolbarHiding>
+                    <IgbGridToolbarPinning></IgbGridToolbarPinning>
+                    <IgbGridToolbarExporter ExportExcel="true" ExportCSV="true" ExportPDF="true"></IgbGridToolbarExporter>
+                </IgbGridToolbarActions>
+            </IgbGridToolbar>
+
+            <IgbColumn Field="Ticker" Header="Asset" Sortable="true" Filterable="false" MinWidth="260px"
+                       BodyTemplate="AssetTemplate"></IgbColumn>
+            <IgbColumn Field="PriceTrend" Header="Price Trend" Sortable="false" Filterable="false" MinWidth="200px"
+                       Hidden="@HideMostColumns" BodyTemplate="PriceTrendTemplate"></IgbColumn>
+            <IgbColumn Field="LastPrice" Header="Price (Change)" Sortable="true" Filterable="false" MinWidth="200px"
+                       DataType="GridColumnDataType.Number" BodyTemplate="PriceTemplate"></IgbColumn>
+            <IgbColumn Field="HoldingPeriodDays" Header="Holding Period" Sortable="true" Filterable="false" MinWidth="230px"
+                       Hidden="@HideMostColumns" BodyTemplate="HoldingPeriodTemplate"></IgbColumn>
+            <IgbColumn Field="MarketValue" Header="Market Value" Sortable="true" Filterable="false" MinWidth="180px"
+                       Hidden="@HideMostColumns" DataType="GridColumnDataType.Number" BodyTemplate="MarketValueTemplate"></IgbColumn>
+            <IgbColumn Field="NetProfit" Header="Total Revenue" Sortable="true" Filterable="false" MinWidth="200px"
+                       DataType="GridColumnDataType.Number" BodyTemplate="NetProfitTemplate"></IgbColumn>
+            <IgbColumn Field="AllocationPct" Header="Allocation" Sortable="true" Filterable="false" MinWidth="170px"
+                       BodyTemplate="AllocationTemplate"></IgbColumn>
+        </IgbGrid>
+    </section>
+</div>
+
+@code {
+    private const string GridId = "financeGrid";
+
+    // A collection of the sample's own: another sample in the samples browser registers a
+    // different "dark_mode" under "material".
+    private const string IconCollection = "finance-grid";
+
+    // Year length the elapsed figure is expressed in.
+    private const int DaysPerYear = 365;
+
+    // Held *more* than a year is long-term, so the day after the anniversary is the one that counts.
+    private const int LongTermDays = DaysPerYear + 1;
+
+    // Material Icons (Apache-2.0), 24px viewBox. igc-icon renders registered SVGs, not ligatures.
+    private const string AccountBalanceIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z'/></svg>";
+    private const string PauseIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M6 19h4V5H6v14zm8-14v14h4V5h-4z'/></svg>";
+    private const string PlayArrowIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg>";
+    private const string LightModeIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z'/></svg>";
+    private const string DarkModeIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z'/></svg>";
+    private const string SearchIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/></svg>";
+
+    // Sparkline brushes per appearance. The chart paints to a canvas and cannot read a var().
+    private const string SparkUpLight = "#1a9b62";
+    private const string SparkDownLight = "#d33a75";
+    private const string SparkUpDark = "#34d399";
+    private const string SparkDownDark = "#ff7aae";
+
+    // en-US currency and number formatting built on the invariant culture, so the output does not
+    // depend on the browser's culture or on the ICU data the runtime loads: $1,315.68 and -$310.92.
+    private static readonly NumberFormatInfo UsdNumbers = CreateUsdNumbers();
+
+    private IgbGrid Grid;
+    private IgbIcon TitleIcon;
+
+    private List<FinanceGridRow> Rows;
+    private Dictionary<string, FinanceGridRow> RowsByTicker;
+    private List<FinanceGridRecord> GridRows;
+    private FinanceGridLiveFeed Feed;
+    private double MaxAllocationPct;
+
+    private string FinanceAssetFilter = "";
+    private bool HasNewGridRows;
+    private bool IsLive;
+    private bool IsDark;
+    private bool HideMostColumns;
+
+    private CancellationTokenSource FeedCancellation;
+    private IDisposable NarrowWatchReference;
+
+    // Cell templates are assigned once, so IgbColumn never sees a new delegate on a re-render.
+    private RenderFragment<IgbCellTemplateContext> AssetTemplate;
+    private RenderFragment<IgbCellTemplateContext> PriceTrendTemplate;
+    private RenderFragment<IgbCellTemplateContext> PriceTemplate;
+    private RenderFragment<IgbCellTemplateContext> HoldingPeriodTemplate;
+    private RenderFragment<IgbCellTemplateContext> MarketValueTemplate;
+    private RenderFragment<IgbCellTemplateContext> NetProfitTemplate;
+    private RenderFragment<IgbCellTemplateContext> AllocationTemplate;
+
+    private string ShellClass => IsDark ? "finance-shell dark-theme" : "finance-shell";
+    private string FeedStatusClass => IsLive ? "finance-feed-status" : "finance-feed-status is-paused";
+    private string LiveButtonLabel => IsLive ? "Pause live market updates" : "Resume live market updates";
+    private string ThemeButtonLabel => IsDark ? "Switch to light theme" : "Switch to dark theme";
+
+    protected override void OnInitialized()
+    {
+        Rows = FinanceGridDataService.CreateRows();
+        RowsByTicker = Rows.ToDictionary(row => row.Ticker);
+        MaxAllocationPct = FinanceGridDataService.GetMaxAllocationPct(Rows);
+        Feed = new FinanceGridLiveFeed(Rows);
+        GridRows = CreateGridRows();
+
+        // The feed starts on load. The timer itself starts after the first render, because the
+        // ticks talk to the grid through JavaScript.
+        IsLive = true;
+        CreateCellTemplates();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (HasNewGridRows)
+        {
+            // IgbGrid copies a new Data list as soon as it receives it, but passes the copy to the
+            // grid only with its next update, a moment later; a live tick in between would be
+            // overwritten by the copy's older figures. Any grid method call sends the pending update
+            // first, and GetDefaultRowHeightAsync is simply the cheapest one.
+            HasNewGridRows = false;
+            await Grid.GetDefaultRowHeightAsync();
+        }
+
+        if (!firstRender)
+        {
+            return;
+        }
+
+        await TitleIcon.EnsureReady();
+        await TitleIcon.RegisterIconFromTextAsync("account_balance", AccountBalanceIcon, IconCollection);
+        await TitleIcon.RegisterIconFromTextAsync("pause", PauseIcon, IconCollection);
+        await TitleIcon.RegisterIconFromTextAsync("play_arrow", PlayArrowIcon, IconCollection);
+        await TitleIcon.RegisterIconFromTextAsync("light_mode", LightModeIcon, IconCollection);
+        await TitleIcon.RegisterIconFromTextAsync("dark_mode", DarkModeIcon, IconCollection);
+        await TitleIcon.RegisterIconFromTextAsync("search", SearchIcon, IconCollection);
+
+        var selfReference = DotNetObjectReference.Create(this);
+        NarrowWatchReference = selfReference;
+        try
+        {
+            await JS.InvokeVoidAsync("financeGridWatchNarrow", selfReference);
+        }
+        catch (JSException)
+        {
+            // events.js is not on the page: every column stays visible at any width.
+            NarrowWatchReference = null;
+            selfReference.Dispose();
+        }
+
+        if (IsLive)
+        {
+            StartFeed();
+        }
+    }
+
+    // Called from events.js whenever the viewport crosses 700px (window.innerWidth under 700 hides
+    // Price Trend, Holding Period and Market Value), and once when the watch starts.
+    [JSInvokable]
+    public Task FinanceGridSetNarrow(bool isNarrow)
+    {
+        if (HideMostColumns == isNarrow)
+        {
+            return Task.CompletedTask;
+        }
+
+        HideMostColumns = isNarrow;
+        return InvokeAsync(StateHasChanged);
+    }
+
+    private void ToggleLive()
+    {
+        if (IsLive)
+        {
+            StopFeed();
+        }
+        else
+        {
+            StartFeed();
+        }
+    }
+
+    private async Task ToggleThemeAsync()
+    {
+        IsDark = !IsDark;
+
+        // The shell class follows through this component's own re-render, but cell templates only
+        // re-render when the grid is told to; the sparkline brushes are plain parameters.
+        await Grid.MarkForCheckAsync();
+    }
+
+    private void OnFinanceAssetSearch(IgbComponentValueChangedEventArgs e)
+    {
+        var text = e.Detail ?? "";
+        var queryChanged = FinanceGridTextHighlighter.Normalize(text) != FinanceGridTextHighlighter.Normalize(FinanceAssetFilter);
+        FinanceAssetFilter = text;
+
+        // A new list re-renders every visible cell, which also refreshes the highlight marks. Text
+        // that compares the same (a trailing space, another letter case) keeps the rows and marks.
+        if (queryChanged)
+        {
+            GridRows = CreateGridRows();
+            HasNewGridRows = true;
+        }
+    }
+
+    private List<FinanceGridRecord> CreateGridRows()
+    {
+        var query = FinanceGridTextHighlighter.Normalize(FinanceAssetFilter);
+        return Rows
+            .Where(row => FinanceGridTextHighlighter.Matches(row.Ticker, query) || FinanceGridTextHighlighter.Matches(row.Company, query))
+            .Select(row => row.ToRecord())
+            .ToList();
+    }
+
+    private void StartFeed()
+    {
+        if (FeedCancellation != null)
+        {
+            return;
+        }
+
+        FeedCancellation = new CancellationTokenSource();
+        IsLive = true;
+        _ = RunFeedAsync(FeedCancellation.Token);
+    }
+
+    private void StopFeed()
+    {
+        FeedCancellation?.Cancel();
+        FeedCancellation?.Dispose();
+        FeedCancellation = null;
+        IsLive = false;
+    }
+
+    private async Task RunFeedAsync(CancellationToken token)
+    {
+        using var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(FinanceGridLiveFeed.TickMilliseconds));
+        try
+        {
+            while (await timer.WaitForNextTickAsync(token))
+            {
+                // This loop's own token, not the current FeedCancellation: a tick queued just before
+                // a quick pause and resume must not run on behalf of the new loop.
+                await InvokeAsync(() => ApplyTickAsync(token));
+            }
+        }
+        catch (OperationCanceledException)
+        {
+        }
+        catch (JSDisconnectedException)
+        {
+        }
+        catch (JSException)
+        {
+            // The grid cannot be patched (events.js is not on the page): show the feed as paused
+            // rather than keep claiming it is live.
+            await InvokeAsync(() =>
+            {
+                if (!token.IsCancellationRequested)
+                {
+                    StopFeed();
+                    StateHasChanged();
+                }
+            });
+        }
+    }
+
+    private async Task ApplyTickAsync(CancellationToken token)
+    {
+        if (token.IsCancellationRequested)
+        {
+            return;
+        }
+
+        var repriced = Feed.RepriceBatch();
+        if (repriced.Count == 0)
+        {
+            return;
+        }
+
+        // One interop call per tick. events.js copies these fields onto the grid's own row objects
+        // and hands the grid a new array, so only the cells whose value changed re-render and the
+        // active sort is re-applied. The JSON is serialized here because JS interop would
+        // camel-case the property names.
+        var patch = JsonSerializer.Serialize(repriced.Select(row => row.ToRecord()).ToList());
+        await JS.InvokeVoidAsync("financeGridPatchRows", GridId, patch);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        StopFeed();
+        if (NarrowWatchReference == null)
+        {
+            return;
+        }
+
+        try
+        {
+            await JS.InvokeVoidAsync("financeGridUnwatchNarrow");
+        }
+        catch (JSDisconnectedException)
+        {
+        }
+
+        NarrowWatchReference.Dispose();
+    }
+
+    private void CreateCellTemplates()
+    {
+        AssetTemplate = context =>
+        {
+            var row = RowOf(context);
+            if (row == null) return EmptyCell;
+            return @<div class="ticker-cell">
+                <IgbAvatar Class="@("ticker-logo tone-" + row.Tone)" Shape="AvatarShape.Circle" Initials="@AvatarInitials(row.Ticker)"></IgbAvatar>
+                <div class="ticker-meta">
+                    <span class="ticker-symbol">@Highlighted(row.Ticker)</span>
+                    <span class="ticker-name">@Highlighted(row.Company)</span>
+                </div>
+            </div>;
+        };
+
+        PriceTrendTemplate = context =>
+        {
+            var row = RowOf(context);
+            if (row == null) return EmptyCell;
+            return @<IgbSparkline Class="price-trend-spark" Width="100%" Height="20px" DataSource="@row.PriceTrend" ValueMemberPath="Value"
+                                  DisplayType="SparklineDisplayType.Line" LineThickness="1.8"
+                                  Brush="@SparklineBrush(row.ChangePct)" NegativeBrush="@SparklineNegativeBrush()"></IgbSparkline>;
+        };
+
+        // The delta chips here and in Total Revenue are decorative: aria-hidden, inert and never a
+        // tab stop.
+        PriceTemplate = context =>
+        {
+            var row = RowOf(context);
+            if (row == null) return EmptyCell;
+            return @<div class="price-combined-cell">
+                <IgbChip @key="row.FlashSerial" Class="@DeltaChipClass(row)" Variant="@ChipVariant(row.ChangePct)" Selectable="false" tabindex="-1" aria-hidden="true" inert>@BadgeLabel(row.ChangePct)</IgbChip>
+                <span class="numeric-cell price-combined-price">@FormatCurrency(row.LastPrice)</span>
+            </div>;
+        };
+
+        HoldingPeriodTemplate = context =>
+        {
+            var row = RowOf(context);
+            if (row == null) return EmptyCell;
+            var term = HoldingTerm(row.HoldingPeriodDays);
+            return @<div class="holding-cell">
+                <div class="holding-head">
+                    <IgbChip Class="finance-chip finance-term-chip" Variant="@term.Variant" Selectable="false" tabindex="-1" aria-hidden="true" inert>@term.Label</IgbChip>
+                    <span class="holding-elapsed">@term.Elapsed</span>
+                </div>
+                <IgbLinearProgress Class="holding-bar" Value="@term.ProgressValue" Max="100" Variant="@term.Variant"
+                                   HideLabel="true" Striped="false" AnimationDuration="0" aria-hidden="true"></IgbLinearProgress>
+                <span class="sr-only">@term.Hint</span>
+            </div>;
+        };
+
+        MarketValueTemplate = context =>
+        {
+            var row = RowOf(context);
+            if (row == null) return EmptyCell;
+            return @<span class="numeric-cell">@FormatCurrency(row.MarketValue)</span>;
+        };
+
+        NetProfitTemplate = context =>
+        {
+            var row = RowOf(context);
+            if (row == null) return EmptyCell;
+            return @<div class="net-profit-combined-cell">
+                <IgbChip @key="row.FlashSerial" Class="@DeltaChipClass(row)" Variant="@ChipVariant(row.NetProfitPct)" Selectable="false" tabindex="-1" aria-hidden="true" inert>@BadgeLabel(row.NetProfitPct)</IgbChip>
+                <span tabindex="-1" draggable="false" aria-hidden="true">@FormatCurrency(row.NetProfit)</span>
+            </div>;
+        };
+
+        // The bar is hidden from assistive technology: its value is the share of the *largest*
+        // holding, not the percentage printed above it.
+        AllocationTemplate = context =>
+        {
+            var row = RowOf(context);
+            if (row == null) return EmptyCell;
+            return @<div class="allocation-cell">
+                <span class="allocation-value">@FormatPercent(row.AllocationPct)</span>
+                <IgbLinearProgress Class="allocation-bar" Value="@AllocationBarValue(row.AllocationPct)" Max="100" Variant="StyleVariant.Primary"
+                                   HideLabel="true" Striped="false" AnimationDuration="0" aria-hidden="true"></IgbLinearProgress>
+            </div>;
+        };
+    }
+
+    private static readonly RenderFragment EmptyCell = builder => { };
+
+    // The template context has no row object: Cell.Id.RowID is the primary key (the ticker).
+    private FinanceGridRow RowOf(IgbCellTemplateContext context)
+    {
+        var id = context?.Cell?.Id?.RowID;
+        return id != null && RowsByTicker.TryGetValue(id, out var row) ? row : null;
+    }
+
+    // Text with every occurrence of the filter marked. Built with RenderTreeBuilder so no
+    // whitespace lands between the segments ("Bit", "co", "in" must read as one word).
+    private RenderFragment Highlighted(string text) => builder =>
+    {
+        foreach (var segment in FinanceGridTextHighlighter.SplitOnMatches(text, FinanceAssetFilter))
+        {
+            if (segment.Hit)
+            {
+                builder.OpenElement(0, "mark");
+                builder.AddAttribute(1, "class", "search-hit");
+                builder.AddContent(2, segment.Text);
+                builder.CloseElement();
+            }
+            else
+            {
+                builder.OpenElement(3, "span");
+                builder.AddContent(4, segment.Text);
+                builder.CloseElement();
+            }
+        }
+    };
+
+    private static NumberFormatInfo CreateUsdNumbers()
+    {
+        var usd = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();
+        usd.CurrencySymbol = "$";
+        usd.CurrencyPositivePattern = 0; // $n
+        usd.CurrencyNegativePattern = 1; // -$n
+        return usd;
+    }
+
+    private static string FormatCurrency(double value) => value.ToString("C2", UsdNumbers);
+
+    private static string FormatPercent(double value) => Math.Abs(value).ToString("N2", UsdNumbers) + "%";
+
+    private static StyleVariant ChipVariant(double value) =>
+        value > 0 ? StyleVariant.Success : value < 0 ? StyleVariant.Danger : StyleVariant.Info;
+
+    private static string BadgeLabel(double value) =>
+        (value > 0 ? "\u2191 " : value < 0 ? "\u2193 " : "") + FormatPercent(value);
+
+    // is-up / is-down flash the chip in the tick's direction; is-repeat (same direction as the tick
+    // before) keeps it from flashing again.
+    private static string DeltaChipClass(FinanceGridRow row) =>
+        row.Direction == FinanceGridTickDirection.None ? "finance-chip finance-delta-chip"
+        : (row.Direction == FinanceGridTickDirection.Up ? "finance-chip finance-delta-chip is-up" : "finance-chip finance-delta-chip is-down")
+          + (row.IsRepeatMove ? " is-repeat" : "");
+
+    // Up to two letters or digits of the ticker ("AM" for AMD): igc-avatar renders every character
+    // it is given.
+    private static string AvatarInitials(string ticker)
+    {
+        var normalized = Regex.Replace(ticker ?? "", "[^A-Z0-9]", "", RegexOptions.IgnoreCase).ToUpperInvariant();
+        var initials = normalized.Length > 0 ? normalized : "EQ";
+        return initials.Length > 2 ? initials.Substring(0, 2) : initials;
+    }
+
+    // Allocation as a 0-100 bar value, scaled against the largest holding; floored at 6 because a
+    // narrower fill than its own corner radius renders as a dot.
+    private double AllocationBarValue(double value)
+    {
+        var magnitude = Math.Abs(value);
+        if (magnitude == 0 || MaxAllocationPct <= 0)
+        {
+            return 0;
+        }
+
+        return Math.Min(100, Math.Max(6, (magnitude / MaxAllocationPct) * 100));
+    }
+
+    private string SparklineBrush(double changePct) =>
+        changePct < 0 ? (IsDark ? SparkDownDark : SparkDownLight) : (IsDark ? SparkUpDark : SparkUpLight);
+
+    private string SparklineNegativeBrush() => IsDark ? SparkDownDark : SparkDownLight;
+
+    // One holding's period, resolved once: the tag, the variant that colours both tag and bar, the
+    // figure, the bar value and the spoken description.
+    private static HoldingTermInfo HoldingTerm(int days)
+    {
+        var held = Math.Max(0, days);
+        var isLongTerm = held >= LongTermDays;
+        var years = held / DaysPerYear;
+        var remainder = held % DaysPerYear;
+        var remaining = LongTermDays - held;
+
+        // Short holdings get a visible floor (6), as the Allocation bar does; zero stays zero.
+        var scaled = held > 0 ? Math.Min(100, Math.Max(6, ((double)held / LongTermDays) * 100)) : 0;
+
+        return new HoldingTermInfo
+        {
+            Label = isLongTerm ? "LONG TERM" : "SHORT TERM",
+            Variant = isLongTerm ? StyleVariant.Success : StyleVariant.Info,
+            Elapsed = years > 0 ? (remainder > 0 ? $"{years}y {remainder}d" : $"{years}y") : $"{held}d",
+            ProgressValue = scaled,
+            Hint = isLongTerm
+                ? "Long term \u2014 gains taxed at the long-term rate"
+                : $"Short term \u2014 {remaining} {(remaining == 1 ? "day" : "days")} to long-term treatment"
+        };
+    }
+
+    private sealed class HoldingTermInfo
+    {
+        public string Label { get; set; }
+        public StyleVariant Variant { get; set; }
+        public string Elapsed { get; set; }
+        public double ProgressValue { get; set; }
+        public string Hint { get; set; }
+    }
+}
