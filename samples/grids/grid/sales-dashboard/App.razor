@@ -1,0 +1,321 @@
+@using IgniteUI.Blazor.Controls
+@implements IAsyncDisposable
+@inject IJSRuntime JS
+
+<div class="container vertical sales-dashboard-sample ig-typography ig-scrollbar">
+    @* The dashboard itself: one CSS grid, four tracks wide, and the container its breakpoints
+       query (index.css, "Layout"). The theme class sits here, so both palettes stay inside the
+       sample's subtree. *@
+    <div class="@DashboardClass" @ref="Dashboard">
+        <header class="title-row">
+            <h1>Sales Overview</h1>
+            <div class="status-row">
+                <IgbBadge Class="success-badge" Variant="StyleVariant.Success" Shape="BadgeShape.Square" Dot="true" aria-label="Live status"></IgbBadge>
+                <span>LIVE &middot; UPDATED JUST NOW</span>
+                <IgbIconButton Class="theme-toggle" Variant="IconButtonVariant.Flat" IconName="@(IsDark ? "light_mode" : "dark_mode")" Collection="@IconCollection"
+                               title="@ThemeButtonLabel" aria-label="@ThemeButtonLabel" @onclick="ToggleThemeAsync"></IgbIconButton>
+            </div>
+        </header>
+
+        <section class="metrics-grid" aria-label="KPI metrics">
+            @foreach (var item in Metrics)
+            {
+                @* role and aria-label restate what the Angular sample's igx-card and igx-badge
+                   expose (a group; a status named "badge"); igc-card and igc-badge do not. *@
+                <IgbCard Class="metric-tile" role="group">
+                    <IgbCardContent Class="metric-body">
+                        <div class="metric-head">
+                            <span class="metric-label">@item.Label</span>
+                            <IgbAvatar Class="@MetricIconClass(item)">
+                                <IgbIcon @ref="RegistrationIcon" IconName="@item.Icon" Collection="@IconCollection" aria-hidden="true"></IgbIcon>
+                            </IgbAvatar>
+                        </div>
+                        <div class="metric-value">@item.Value</div>
+                        @* The arrow repeats the tint's meaning for anyone who cannot tell the two
+                           colours apart. *@
+                        <IgbBadge Class="@MetricDeltaClass(item)" Variant="@(item.IsPositive ? StyleVariant.Success : StyleVariant.Danger)" aria-label="badge">
+                            <IgbIcon IconName="@(item.IsPositive ? "arrow_upward" : "arrow_downward")" Collection="@IconCollection" aria-hidden="true"></IgbIcon>
+                            <span>@item.Delta</span>
+                        </IgbBadge>
+                    </IgbCardContent>
+                </IgbCard>
+            }
+        </section>
+
+        <section class="upper-panels">
+            <article class="panel trend-panel">
+                <header class="panel-title split">
+                    <span>Revenue Trend</span>
+                    <div class="trend-legend" aria-label="Revenue trend legend">
+                        <span class="trend-legend-item">
+                            <span class="trend-legend-swatch" style="background: @Palette.Trend[0]"></span>
+                            <span>Revenue</span>
+                        </span>
+                        <span class="trend-legend-item">
+                            <span class="trend-legend-swatch" style="background: @Palette.Trend[1]"></span>
+                            <span>Target</span>
+                        </span>
+                    </div>
+                </header>
+                <div class="panel-body">
+                    @* The charts render once events.js is connected (ChartsReady): the rectangle
+                       the chart engine paints behind an item tooltip is read when a chart is
+                       created, and salesDashboardConnect sets it first. Each chart is keyed by the
+                       palette, so a theme toggle creates it again, as the Angular sample does: a
+                       ring series keeps drawing its slice labels in the colour it was created
+                       with. The X axis is labelled by month from events.js
+                       (SalesDashboardTrendSeriesAdded). *@
+                    <div class="chart-box">
+                        @if (ChartsReady)
+                        {
+                            <IgbCategoryChart @key="Palette" Width="100%" Height="100%" DataSource="RevenueTrend" ChartType="CategoryChartType.Line"
+                                              IncludedProperties="@TrendProperties"
+                                              XAxisLabelTextStyle="@AxisLabelTextStyle" YAxisLabelTextStyle="@AxisLabelTextStyle"
+                                              XAxisLabelTextColor="@Palette.Label" YAxisLabelTextColor="@Palette.Label"
+                                              XAxisMajorStroke="@Palette.Gridline" YAxisMajorStroke="@Palette.Gridline"
+                                              CrosshairsAnnotationXAxisBackground="@Palette.Bubble" CrosshairsAnnotationXAxisTextColor="@Palette.BubbleText"
+                                              CrosshairsAnnotationYAxisBackground="@Palette.Bubble" CrosshairsAnnotationYAxisTextColor="@Palette.BubbleText"
+                                              Brushes="@Palette.TrendBrushes" Outlines="@Palette.TrendBrushes"
+                                              MarkerBrushes="@Palette.TrendBrushes" MarkerOutlines="@Palette.TrendBrushes"
+                                              ToolTipType="ToolTipType.Item" SeriesAddedScript="SalesDashboardTrendSeriesAdded"
+                                              IsItemHighlightingEnabled="false" IsHorizontalZoomEnabled="false" IsVerticalZoomEnabled="false"
+                                              Thickness="2" YAxisInterval="25" YAxisMinimumValue="620" YAxisMaximumValue="810"></IgbCategoryChart>
+                        }
+                    </div>
+                </div>
+            </article>
+
+            <article class="panel region-panel">
+                <header class="panel-title">Revenue by Region</header>
+                <div class="panel-body">
+                    <p class="subtle">$842K total</p>
+                    <div class="donut-box">
+                        @if (ChartsReady)
+                        {
+                            <IgbDoughnutChart @key="Palette" Width="100%" Height="190px" AllowSliceSelection="true" AllowSliceExplosion="true" InnerExtent="55">
+                                <IgbRingSeries DataSource="RevenueByRegion" ValueMemberPath="Value" LabelMemberPath="Region"
+                                               LabelsPosition="LabelsPosition.OutsideEnd"
+                                               Brushes="@Palette.SeriesBrushes" Outlines="@Palette.SeriesBrushes"
+                                               LabelOuterColor="@Palette.SliceLabel" LabelInnerColor="@Palette.SliceLabel"></IgbRingSeries>
+                            </IgbDoughnutChart>
+                        }
+                    </div>
+
+                    <ul class="legend-list" aria-label="Revenue by region legend">
+                        @for (var index = 0; index < RevenueByRegion.Count; index++)
+                        {
+                            var region = RevenueByRegion[index];
+                            <li>
+                                <span class="legend-name-wrap">
+                                    <span class="legend-swatch" style="background: @Palette.Series[index]"></span>
+                                    <span class="legend-name">@region.Region</span>
+                                </span>
+                                <span class="legend-value">@(region.Value)%</span>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </article>
+
+            <article class="panel deals-panel">
+                <header class="panel-title split">
+                    <span>Deals Closed This Week</span>
+                    <span class="subtle">37 total</span>
+                </header>
+                <div class="panel-body">
+                    <div class="deals-chart">
+                        @if (ChartsReady)
+                        {
+                            <IgbCategoryChart @key="Palette" Width="100%" Height="100%" DataSource="WeeklyDeals" ChartType="CategoryChartType.Column"
+                                              XAxisLabelTextStyle="@AxisLabelTextStyle" YAxisLabelTextStyle="@AxisLabelTextStyle"
+                                              XAxisLabelTextColor="@Palette.Label" YAxisLabelTextColor="@Palette.Label"
+                                              XAxisMajorStroke="@Palette.Gridline" YAxisMajorStroke="@Palette.Gridline"
+                                              CrosshairsAnnotationXAxisBackground="@Palette.Bubble" CrosshairsAnnotationXAxisTextColor="@Palette.BubbleText"
+                                              CrosshairsAnnotationYAxisBackground="@Palette.Bubble" CrosshairsAnnotationYAxisTextColor="@Palette.BubbleText"
+                                              Brushes="@Palette.DealsBrushes" Outlines="@Palette.DealsBrushes"
+                                              ToolTipType="ToolTipType.Item" SeriesAddedScript="SalesDashboardDealsSeriesAdded"
+                                              IsHorizontalZoomEnabled="false" IsVerticalZoomEnabled="false"
+                                              Thickness="1" YAxisInterval="10" YAxisMinimumValue="0" YAxisMaximumValue="50"></IgbCategoryChart>
+                        }
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <section class="lower-panels">
+            <section class="panel activity-panel">
+                <header class="panel-title split">
+                    <span>Recent Activity</span>
+                </header>
+                <div class="panel-body">
+                    @* Five static rows. The Stage pill is a JavaScript cell template
+                       (BodyTemplateScript, events.js), so no cell needs a round trip to .NET on
+                       either host; its class comes from C# (SalesDashboardStages.ClassFor). *@
+                    <IgbGrid Class="activity-grid" Data="ActivityRows" AutoGenerate="false" Width="100%" Height="100%">
+                        <IgbColumn Field="Company" Header="COMPANY" Sortable="false" Filterable="false"></IgbColumn>
+                        <IgbColumn Field="Region" Header="REGION" Sortable="false" Filterable="false"></IgbColumn>
+                        <IgbColumn Field="Stage" Header="STAGE" Sortable="false" Filterable="false" BodyTemplateScript="SalesDashboardStageTemplate"></IgbColumn>
+                        <IgbColumn Field="Value" Header="VALUE" Sortable="false" Filterable="false"></IgbColumn>
+                        <IgbColumn Field="Rep" Header="REP" Sortable="false" Filterable="false"></IgbColumn>
+                        <IgbColumn Field="Source" Header="SOURCE" Sortable="false" Filterable="false"></IgbColumn>
+                        <IgbColumn Field="When" Header="WHEN" Sortable="false" Filterable="false"></IgbColumn>
+                    </IgbGrid>
+                </div>
+            </section>
+
+            <article class="panel leaderboard-panel">
+                <header class="panel-title">Leaderboard</header>
+                <div class="panel-body">
+                    <IgbList>
+                        @foreach (var person in Leaderboard)
+                        {
+                            <IgbListItem>
+                                <div class="leader-row">
+                                    <div class="leader-left">
+                                        <IgbAvatar Class="@person.BadgeClass" Initials="@person.Rank.ToString()"></IgbAvatar>
+                                        <div>
+                                            <div class="leader-name">@person.Name</div>
+                                            <small>@person.Quota</small>
+                                        </div>
+                                    </div>
+                                    <div class="leader-right">
+                                        <div class="leader-amount">@person.Amount</div>
+                                        <small class="@(person.IsPositive ? "" : "negative")">@person.Delta</small>
+                                    </div>
+                                </div>
+                            </IgbListItem>
+                        }
+                    </IgbList>
+                </div>
+            </article>
+        </section>
+    </div>
+</div>
+
+@code {
+    // A collection of the sample's own: other samples in the samples browser register different
+    // icons under "material".
+    private const string IconCollection = "sales-dashboard";
+
+    private const string AxisLabelTextStyle = "500 13px 'Barlow', sans-serif";
+
+    // Material Icons (Apache-2.0): the outlines of the Material Icons font glyphs the Angular sample
+    // shows, in a 24px viewBox. igc-icon renders registered SVGs, not ligatures.
+    private const string AttachMoneyIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M11.813 10.922Q12.844 11.203 13.523 11.484Q14.203 11.766 14.953 12.258Q15.703 12.75 16.102 13.5Q16.5 14.25 16.5 15.281Q16.5 16.734 15.539 17.648Q14.578 18.563 12.984 18.844L12.984 21L9.984 21L9.984 18.844Q8.438 18.516 7.43 17.531Q6.422 16.547 6.328 15L8.531 15Q8.719 17.109 11.484 17.109Q12.938 17.109 13.57 16.57Q14.203 16.031 14.203 15.328Q14.203 13.641 11.203 12.891Q6.516 11.813 6.516 8.766Q6.516 7.406 7.5 6.445Q8.484 5.484 9.984 5.156L9.984 3L12.984 3L12.984 5.203Q14.531 5.578 15.352 6.609Q16.172 7.641 16.219 9L14.016 9Q13.922 6.891 11.484 6.891Q10.266 6.891 9.539 7.406Q8.813 7.922 8.813 8.766Q8.813 10.125 11.813 10.922Z'/></svg>";
+    private const string PercentIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M7.5 11.016Q8.484 11.016 9.258 10.523Q10.031 10.031 10.523 9.258Q11.016 8.484 11.016 7.5Q11.016 6.516 10.523 5.742Q10.031 4.969 9.258 4.477Q8.484 3.984 7.5 3.984Q6.516 3.984 5.742 4.477Q4.969 4.969 4.477 5.742Q3.984 6.516 3.984 7.5Q3.984 8.484 4.477 9.258Q4.969 10.031 5.742 10.523Q6.516 11.016 7.5 11.016ZM7.5 6Q8.109 6 8.555 6.445Q9 6.891 9 7.5Q9 8.109 8.555 8.555Q8.109 9 7.5 9Q6.891 9 6.445 8.555Q6 8.109 6 7.5Q6 6.891 6.445 6.445Q6.891 6 7.5 6ZM5.438 20.016L3.984 18.563L18.609 3.984L20.016 5.391L5.438 20.016ZM16.5 12.984Q15.516 12.984 14.742 13.477Q13.969 13.969 13.477 14.742Q12.984 15.516 12.984 16.5Q12.984 17.484 13.477 18.258Q13.969 19.031 14.742 19.523Q15.516 20.016 16.5 20.016Q17.484 20.016 18.258 19.523Q19.031 19.031 19.523 18.258Q20.016 17.484 20.016 16.5Q20.016 15.516 19.523 14.742Q19.031 13.969 18.258 13.477Q17.484 12.984 16.5 12.984ZM16.5 18Q15.891 18 15.445 17.555Q15 17.109 15 16.5Q15 15.891 15.445 15.445Q15.891 15 16.5 15Q17.109 15 17.555 15.445Q18 15.891 18 16.5Q18 17.109 17.555 17.555Q17.109 18 16.5 18Z'/></svg>";
+    private const string TagIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9.984 14.016L14.016 14.016L14.016 9.984L9.984 9.984L9.984 14.016ZM20.016 8.016L20.016 9.984L15.984 9.984L15.984 14.016L20.016 14.016L20.016 15.984L15.984 15.984L15.984 20.016L14.016 20.016L14.016 15.984L9.984 15.984L9.984 20.016L8.016 20.016L8.016 15.984L3.984 15.984L3.984 14.016L8.016 14.016L8.016 9.984L3.984 9.984L3.984 8.016L8.016 8.016L8.016 3.984L9.984 3.984L9.984 8.016L14.016 8.016L14.016 3.984L15.984 3.984L15.984 8.016L20.016 8.016Z'/></svg>";
+    private const string DiamondIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M14.813 8.25L12.141 3L11.859 3L9.188 8.25L14.813 8.25ZM13.828 3L16.453 8.25L21.609 8.25L18.984 3L13.828 3ZM12.75 20.109L21.375 9.75L12.75 9.75L12.75 20.109ZM2.625 9.75L11.25 20.109L11.25 9.75L2.625 9.75ZM2.391 8.25L7.547 8.25L10.172 3L5.016 3L2.391 8.25Z'/></svg>";
+    private const string ArrowUpwardIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M5.391 13.406L3.984 12L12 3.984L20.016 12L18.563 13.406L12.984 7.828L12.984 20.016L11.016 20.016L11.016 7.828L5.391 13.406Z'/></svg>";
+    private const string ArrowDownwardIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M18.609 10.594L20.016 12L12 20.016L3.984 12L5.438 10.594L11.016 16.172L11.016 3.984L12.984 3.984L12.984 16.172L18.609 10.594Z'/></svg>";
+    private const string LightModeIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 6.984Q10.641 6.984 9.492 7.664Q8.344 8.344 7.664 9.492Q6.984 10.641 6.984 12Q6.984 13.359 7.664 14.508Q8.344 15.656 9.492 16.336Q10.641 17.016 12 17.016Q13.359 17.016 14.508 16.336Q15.656 15.656 16.336 14.508Q17.016 13.359 17.016 12Q17.016 10.641 16.336 9.492Q15.656 8.344 14.508 7.664Q13.359 6.984 12 6.984ZM2.016 12.984L3.984 12.984Q4.406 12.984 4.711 12.703Q5.016 12.422 5.016 12Q5.016 11.578 4.711 11.297Q4.406 11.016 3.984 11.016L2.016 11.016Q1.594 11.016 1.289 11.297Q0.984 11.578 0.984 12Q0.984 12.422 1.289 12.703Q1.594 12.984 2.016 12.984ZM20.016 12.984L21.984 12.984Q22.406 12.984 22.711 12.703Q23.016 12.422 23.016 12Q23.016 11.578 22.711 11.297Q22.406 11.016 21.984 11.016L20.016 11.016Q19.594 11.016 19.289 11.297Q18.984 11.578 18.984 12Q18.984 12.422 19.289 12.703Q19.594 12.984 20.016 12.984ZM11.016 2.016L11.016 3.984Q11.016 4.406 11.297 4.711Q11.578 5.016 12 5.016Q12.422 5.016 12.703 4.711Q12.984 4.406 12.984 3.984L12.984 2.016Q12.984 1.594 12.703 1.289Q12.422 0.984 12 0.984Q11.578 0.984 11.297 1.289Q11.016 1.594 11.016 2.016ZM11.016 20.016L11.016 21.984Q11.016 22.406 11.297 22.711Q11.578 23.016 12 23.016Q12.422 23.016 12.703 22.711Q12.984 22.406 12.984 21.984L12.984 20.016Q12.984 19.594 12.703 19.289Q12.422 18.984 12 18.984Q11.578 18.984 11.297 19.289Q11.016 19.594 11.016 20.016ZM7.031 5.625L6 4.594Q5.719 4.266 5.297 4.266Q4.875 4.266 4.594 4.594Q4.266 4.875 4.266 5.297Q4.266 5.719 4.594 6L5.625 7.031Q5.953 7.359 6.352 7.359Q6.75 7.359 7.031 7.031Q7.313 6.75 7.336 6.328Q7.359 5.906 7.031 5.625ZM19.406 18L18.375 16.969Q18.047 16.641 17.648 16.641Q17.25 16.641 16.969 16.969Q16.641 17.25 16.641 17.672Q16.641 18.094 16.969 18.375L18 19.406Q18.281 19.734 18.703 19.734Q19.125 19.734 19.406 19.406Q19.734 19.125 19.734 18.703Q19.734 18.281 19.406 18ZM18.375 7.031L19.406 6Q19.734 5.719 19.734 5.297Q19.734 4.875 19.406 4.594Q19.125 4.266 18.703 4.266Q18.281 4.266 18 4.594L16.969 5.625Q16.641 5.953 16.641 6.352Q16.641 6.75 16.969 7.031Q17.25 7.313 17.672 7.336Q18.094 7.359 18.375 7.031ZM6 19.406L7.031 18.375Q7.359 18.047 7.359 17.648Q7.359 17.25 7.031 16.969Q6.75 16.641 6.328 16.641Q5.906 16.641 5.625 16.969L4.594 18Q4.266 18.281 4.266 18.703Q4.266 19.125 4.594 19.406Q4.875 19.688 5.297 19.711Q5.719 19.734 6 19.406Z'/></svg>";
+    private const string DarkModeIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 3Q10.125 3 8.508 3.703Q6.891 4.406 5.648 5.648Q4.406 6.891 3.703 8.508Q3 10.125 3 12Q3 13.875 3.703 15.492Q4.406 17.109 5.648 18.352Q6.891 19.594 8.508 20.297Q10.125 21 12 21Q13.875 21 15.492 20.297Q17.109 19.594 18.352 18.352Q19.594 17.109 20.297 15.492Q21 13.875 21 12Q21 11.672 20.977 11.32Q20.953 10.969 20.906 10.641Q20.156 11.672 19.008 12.281Q17.859 12.891 16.5 12.891Q15 12.891 13.781 12.164Q12.563 11.438 11.836 10.219Q11.109 9 11.109 7.5Q11.109 6.141 11.719 4.992Q12.328 3.844 13.359 3.094Q13.031 3.047 12.68 3.023Q12.328 3 12 3Z'/></svg>";
+
+    // Revenue and TargetLine, as the Angular sample lists them. With Month left out, the chart
+    // takes Revenue as its categories and plots TargetLine alone, as the Angular sample's chart
+    // does; events.js labels the axis by Month (SalesDashboardTrendSeriesAdded).
+    private static readonly string[] TrendProperties = new string[] { "Revenue", "TargetLine" };
+
+    private readonly List<SalesDashboardMetric> Metrics = SalesDashboardData.CreateMetrics();
+    private readonly List<SalesDashboardTrendPoint> RevenueTrend = SalesDashboardData.CreateRevenueTrend();
+    private readonly List<SalesDashboardRegionShare> RevenueByRegion = SalesDashboardData.CreateRevenueByRegion();
+    private readonly List<SalesDashboardDealDay> WeeklyDeals = SalesDashboardData.CreateWeeklyDeals();
+    private readonly List<SalesDashboardLeader> Leaderboard = SalesDashboardData.CreateLeaderboard();
+    private readonly List<SalesDashboardActivityRow> ActivityRows = SalesDashboardData.CreateActivityRows();
+
+    // Any one of the icons: the registrations go to a registry every igc-icon on the page reads.
+    private IgbIcon RegistrationIcon;
+
+    // The dashboard element, for events.js (salesDashboardConnect).
+    private ElementReference Dashboard;
+
+    private bool IsDark;
+    private bool ChartsReady;
+
+    // True from the salesDashboardConnect call to salesDashboardDisconnect: set before the call is
+    // awaited, so a disposal during that await still disconnects.
+    private bool IsConnected;
+    private bool IsDisposed;
+
+    private SalesDashboardChartPalette Palette => IsDark ? SalesDashboardChartPalette.Dark : SalesDashboardChartPalette.Light;
+    private string DashboardClass => IsDark ? "sales-dashboard dark-theme" : "sales-dashboard";
+    private string ThemeButtonLabel => IsDark ? "Switch to light mode" : "Switch to dark mode";
+
+    private static string MetricIconClass(SalesDashboardMetric item) => "metric-icon " + item.IconClass;
+    private static string MetricDeltaClass(SalesDashboardMetric item) => item.IsPositive ? "metric-delta" : "metric-delta negative";
+
+    protected override void OnInitialized()
+    {
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            return;
+        }
+
+        // events.js is connected before anything else is awaited: on Blazor Server every await is
+        // a round trip, and a component disposed in between would otherwise connect afterwards.
+        IsConnected = true;
+        try
+        {
+            await JS.InvokeVoidAsync("salesDashboardConnect", Dashboard, IsDark);
+        }
+        catch (JSException)
+        {
+            // events.js is not on the page: the charts keep the engine's default tooltips.
+            IsConnected = false;
+        }
+
+        if (IsDisposed)
+        {
+            return;
+        }
+
+        // The charts are created now, after the tooltip styling above is in place.
+        ChartsReady = true;
+        StateHasChanged();
+
+        await RegistrationIcon.EnsureReady();
+        await RegistrationIcon.RegisterIconFromTextAsync("attach_money", AttachMoneyIcon, IconCollection);
+        await RegistrationIcon.RegisterIconFromTextAsync("percent", PercentIcon, IconCollection);
+        await RegistrationIcon.RegisterIconFromTextAsync("tag", TagIcon, IconCollection);
+        await RegistrationIcon.RegisterIconFromTextAsync("diamond", DiamondIcon, IconCollection);
+        await RegistrationIcon.RegisterIconFromTextAsync("arrow_upward", ArrowUpwardIcon, IconCollection);
+        await RegistrationIcon.RegisterIconFromTextAsync("arrow_downward", ArrowDownwardIcon, IconCollection);
+        await RegistrationIcon.RegisterIconFromTextAsync("light_mode", LightModeIcon, IconCollection);
+        await RegistrationIcon.RegisterIconFromTextAsync("dark_mode", DarkModeIcon, IconCollection);
+    }
+
+    private async Task ToggleThemeAsync()
+    {
+        IsDark = !IsDark;
+
+        // The palette follows the dashboard's class and the charts follow Palette, both through
+        // this component's own render. The chart tooltips are rendered by events.js outside the
+        // sample's subtree, so they take the appearance from this call; until events.js is
+        // connected, salesDashboardConnect hands it over instead.
+        if (IsConnected)
+        {
+            await JS.InvokeVoidAsync("salesDashboardSetTheme", IsDark);
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        IsDisposed = true;
+        if (!IsConnected)
+        {
+            return;
+        }
+
+        IsConnected = false;
+        try
+        {
+            await JS.InvokeVoidAsync("salesDashboardDisconnect");
+        }
+        catch (JSDisconnectedException)
+        {
+        }
+    }
+}
