@@ -4,6 +4,16 @@ using System.Linq;
 
 namespace Infragistics.Samples
 {
+    /// <summary>What one pass of the feed changed.</summary>
+    public class FinanceGridTick
+    {
+        /// <summary>The holdings whose price moved.</summary>
+        public List<FinanceGridRow> Repriced { get; } = new List<FinanceGridRow>();
+
+        /// <summary>The holdings that moved on the pass before and not on this one: their flash ends.</summary>
+        public List<FinanceGridRow> Settled { get; } = new List<FinanceGridRow>();
+    }
+
     /// <summary>
     /// The portfolio's simulated market feed.
     /// Every tick re-prices a random 35% of the holdings in place: a random walk with a light pull
@@ -37,10 +47,10 @@ namespace Infragistics.Samples
         }
 
         /// <summary>
-        /// Re-prices a random slice of the portfolio and returns the holdings whose price moved.
-        /// Holdings left out of the batch lose their up/down flag, so a flash lasts one tick.
+        /// Re-prices a random slice of the portfolio. Every holding whose price did not move loses its
+        /// up/down flag, so a flash lasts one tick; the ones that had a flag are reported as settled.
         /// </summary>
-        public List<FinanceGridRow> RepriceBatch()
+        public FinanceGridTick RepriceBatch()
         {
             var batchSize = Math.Max(1, (int)Math.Round(rows.Count * TickCoverage, MidpointRounding.AwayFromZero));
             var moved = new HashSet<int>();
@@ -49,24 +59,31 @@ namespace Infragistics.Samples
                 moved.Add(random.Next(rows.Count));
             }
 
-            var repriced = new List<FinanceGridRow>();
+            var tick = new FinanceGridTick();
             for (var index = 0; index < rows.Count; index++)
             {
                 var row = rows[index];
-                if (!moved.Contains(index))
+                if (moved.Contains(index) && Reprice(row))
                 {
-                    row.SetDirection(FinanceGridTickDirection.None);
+                    tick.Repriced.Add(row);
+                    continue;
                 }
-                else if (Reprice(row))
+
+                var wasMoving = row.Direction != FinanceGridTickDirection.None;
+                row.SetDirection(FinanceGridTickDirection.None);
+                if (wasMoving)
                 {
-                    repriced.Add(row);
+                    tick.Settled.Add(row);
                 }
             }
 
-            return repriced;
+            return tick;
         }
 
-        /// <summary>Marks one holding to a new market price and recomputes everything off it.</summary>
+        /// <summary>
+        /// Marks one holding to a new market price and recomputes everything off it. Returns false,
+        /// with the holding untouched, when the new price rounds to the old one.
+        /// </summary>
         private bool Reprice(FinanceGridRow row)
         {
             var reference = previousClose.TryGetValue(row.Ticker, out var close) ? close : row.LastPrice;
@@ -76,7 +93,6 @@ namespace Infragistics.Samples
 
             if (nextPrice == row.LastPrice)
             {
-                row.SetDirection(FinanceGridTickDirection.None);
                 return false;
             }
 
@@ -89,11 +105,16 @@ namespace Infragistics.Samples
             row.MarketValue = Round2(nextPrice * row.Position);
 
             var costBasis = row.AverageCost * row.Position;
+            var previousNetProfit = row.NetProfit;
             row.NetProfit = Round2((nextPrice - row.AverageCost) * row.Position);
             row.NetProfitPct = costBasis == 0 ? 0 : Round2((row.NetProfit / costBasis) * 100);
 
-            // A new series rather than an in-place append: the sparkline redraws when its
-            // DataSource reference changes.
+            // The Total Revenue cell renders only when NetProfit changes, so its chip counts only the
+            // flashes that come with a new NetProfit.
+            row.CountProfitFlash(previousNetProfit);
+
+            // The Price Trend column's field is TrendRevision: the bump is what makes its cell
+            // template run again and draw the new series.
             row.PriceTrend = AppendTrendPoint(row.PriceTrend, row.ChangePct);
             row.TrendRevision++;
             return true;
@@ -101,12 +122,14 @@ namespace Infragistics.Samples
 
         private static double Round2(double value) => Math.Round(value, 2, MidpointRounding.AwayFromZero);
 
-        private static List<FinanceGridTrendPoint> AppendTrendPoint(List<FinanceGridTrendPoint> series, double value)
+        // The newest value goes last; the oldest drops off once the series holds TrendPoints values.
+        private static double[] AppendTrendPoint(double[] series, double value)
         {
-            var next = new List<FinanceGridTrendPoint>(series) { new FinanceGridTrendPoint { Value = value } };
-            return next.Count > FinanceGridDataService.TrendPoints
-                ? next.GetRange(next.Count - FinanceGridDataService.TrendPoints, FinanceGridDataService.TrendPoints)
-                : next;
+            var kept = Math.Min(series.Length, FinanceGridDataService.TrendPoints - 1);
+            var next = new double[kept + 1];
+            Array.Copy(series, series.Length - kept, next, 0, kept);
+            next[kept] = value;
+            return next;
         }
     }
 }

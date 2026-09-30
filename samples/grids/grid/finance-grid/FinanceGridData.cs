@@ -1,15 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 
 namespace Infragistics.Samples
 {
-    /// <summary>One point of a holding's price-trend sparkline: the day's change, in percent.</summary>
-    public class FinanceGridTrendPoint
-    {
-        public double Value { get; set; }
-    }
-
     /// <summary>Direction of a holding's most recent re-pricing, or None while it is idle.</summary>
     public enum FinanceGridTickDirection
     {
@@ -19,11 +14,18 @@ namespace Infragistics.Samples
     }
 
     /// <summary>
-    /// One holding of the portfolio. The live feed re-prices these objects in place; the cell
-    /// templates find them through the grid's primary key (the ticker).
+    /// One holding of the portfolio, and the source of truth for its figures and rules. The live
+    /// feed re-prices these objects in place; the grid only gets copies: ToRecord for its data,
+    /// ToTickPatch and ToSettlePatch for the live patch.
     /// </summary>
     public class FinanceGridRow
     {
+        /// <summary>Year length the holding period is measured in.</summary>
+        public const int DaysPerYear = 365;
+
+        /// <summary>Held *more* than a year is long-term, so the day after the anniversary is the one that counts.</summary>
+        public const int LongTermDays = DaysPerYear + 1;
+
         public string Ticker { get; set; }
         public string Company { get; set; }
         public double LastPrice { get; set; }
@@ -37,8 +39,14 @@ namespace Infragistics.Samples
         public int HoldingPeriodDays { get; set; }
         public string Tone { get; set; }
 
-        /// <summary>The sparkline series. Replaced (never mutated) on every re-pricing.</summary>
-        public List<FinanceGridTrendPoint> PriceTrend { get; set; }
+        /// <summary>The Allocation bar's value: AllocationPct scaled against the largest holding.</summary>
+        public double AllocationBarValue { get; set; }
+
+        /// <summary>
+        /// The sparkline series, one day's change (in percent) per point. Replaced (never mutated) on
+        /// every re-pricing.
+        /// </summary>
+        public double[] PriceTrend { get; set; }
 
         public FinanceGridTickDirection Direction { get; private set; }
 
@@ -47,15 +55,43 @@ namespace Infragistics.Samples
 
         /// <summary>
         /// Bumped whenever a new flash starts: the direction changes, or the row moves again after
-        /// an idle tick. The delta chips use it as their @key, so a new flash gets a new element.
+        /// an idle tick. The Price (Change) chip switches keyframe sets on its parity, so a new flash
+        /// starts over even on a chip element that still shows the last one.
         /// </summary>
         public int FlashSerial { get; private set; }
 
         /// <summary>
+        /// The Total Revenue chip's FlashSerial, bumped only for a new flash that also changed
+        /// NetProfit (CountProfitFlash). The Total Revenue cell renders again only when NetProfit
+        /// changes, so its chip counts the flashes it actually shows, and each of them switches
+        /// keyframe sets.
+        /// </summary>
+        public int ProfitFlashSerial { get; private set; }
+
+        /// <summary>
         /// True when the latest move went the same way as the one on the tick before. The delta chips
-        /// then add is-repeat, which switches their flash off: re-rendering a chip would restart it.
+        /// then add is-repeat, which switches their flash off.
         /// </summary>
         public bool IsRepeatMove { get; private set; }
+
+        /// <summary>True once the holding is past its first year (LongTermDays).</summary>
+        public bool IsLongTerm => Math.Max(0, HoldingPeriodDays) >= LongTermDays;
+
+        /// <summary>Days left until the holding turns long-term; 0 once it has.</summary>
+        public int DaysToLongTerm => Math.Max(0, LongTermDays - Math.Max(0, HoldingPeriodDays));
+
+        /// <summary>
+        /// The holding period as a 0-100 bar value, full at the long-term threshold. Short holdings
+        /// get a visible floor (6), as the Allocation bar does; zero stays zero.
+        /// </summary>
+        public double HoldingBarValue
+        {
+            get
+            {
+                var held = Math.Max(0, HoldingPeriodDays);
+                return held > 0 ? Math.Min(100, Math.Max(6, ((double)held / LongTermDays) * 100)) : 0;
+            }
+        }
 
         public void SetDirection(FinanceGridTickDirection direction)
         {
@@ -69,9 +105,25 @@ namespace Infragistics.Samples
             Direction = direction;
         }
 
-        /// <summary>The flat record the grid is bound to: one property per column field.</summary>
-        public FinanceGridRecord ToRecord()
+        /// <summary>
+        /// Called once a re-pricing has set NetProfit, with the value it replaced. A new flash that
+        /// changed NetProfit is one the Total Revenue chip shows.
+        /// </summary>
+        public void CountProfitFlash(double previousNetProfit)
         {
+            if (Direction != FinanceGridTickDirection.None && !IsRepeatMove && NetProfit != previousNetProfit)
+            {
+                ProfitFlashSerial++;
+            }
+        }
+
+        /// <summary>
+        /// The record the grid is bound to. normalizedQuery is the toolbar filter as
+        /// FinanceGridTextHighlighter.Normalize returns it; the Asset cell marks its matches.
+        /// </summary>
+        public FinanceGridRecord ToRecord(string normalizedQuery)
+        {
+            var isFiltered = normalizedQuery.Length > 0;
             return new FinanceGridRecord
             {
                 Ticker = Ticker,
@@ -80,16 +132,68 @@ namespace Infragistics.Samples
                 HoldingPeriodDays = HoldingPeriodDays,
                 MarketValue = MarketValue,
                 NetProfit = NetProfit,
-                AllocationPct = AllocationPct
+                AllocationPct = AllocationPct,
+                Company = Company,
+                Tone = Tone,
+                TickerRuns = isFiltered ? JsonSerializer.Serialize(FinanceGridTextHighlighter.SplitOnMatches(Ticker, normalizedQuery)) : null,
+                CompanyRuns = isFiltered ? JsonSerializer.Serialize(FinanceGridTextHighlighter.SplitOnMatches(Company, normalizedQuery)) : null,
+                Trend = JsonSerializer.Serialize(PriceTrend),
+                ChangePct = ChangePct,
+                NetProfitPct = NetProfitPct,
+                Direction = Direction.ToString(),
+                IsRepeatMove = IsRepeatMove,
+                FlashSerial = FlashSerial,
+                ProfitFlashSerial = ProfitFlashSerial,
+                IsLongTerm = IsLongTerm,
+                DaysToLongTerm = DaysToLongTerm,
+                HoldingBarValue = HoldingBarValue,
+                AllocationBarValue = AllocationBarValue
+            };
+        }
+
+        /// <summary>What a re-pricing changed on this holding: its figures, its series and its flash.</summary>
+        public FinanceGridTickPatch ToTickPatch()
+        {
+            return new FinanceGridTickPatch
+            {
+                Ticker = Ticker,
+                PriceTrend = TrendRevision,
+                Trend = JsonSerializer.Serialize(PriceTrend),
+                LastPrice = LastPrice,
+                ChangePct = ChangePct,
+                MarketValue = MarketValue,
+                NetProfit = NetProfit,
+                NetProfitPct = NetProfitPct,
+                Direction = Direction.ToString(),
+                IsRepeatMove = IsRepeatMove,
+                FlashSerial = FlashSerial,
+                ProfitFlashSerial = ProfitFlashSerial
+            };
+        }
+
+        /// <summary>This holding's flash state after a tick it sat out, having moved on the one before.</summary>
+        public FinanceGridSettlePatch ToSettlePatch()
+        {
+            return new FinanceGridSettlePatch
+            {
+                Ticker = Ticker,
+                Direction = Direction.ToString(),
+                IsRepeatMove = IsRepeatMove
             };
         }
     }
 
     /// <summary>
-    /// What IgbGrid.Data holds: sorting, export and the live patch all work on these fields.
-    /// PriceTrend is a revision number rather than the 30-point series, which stays on
-    /// FinanceGridRow: the column is neither sortable nor exported, and keeping the arrays out of
-    /// the grid's data is what keeps a live tick cheap.
+    /// What IgbGrid.Data holds. The column fields come first: sorting and export work on these.
+    /// The rest is what the cell templates in events.js show, every rule already applied here;
+    /// the templates only format it. The live patch changes fields of both kinds. A template runs
+    /// again only when its own column's field changes, so each value a cell shows changes together
+    /// with that field: ChangePct and the flash with LastPrice, NetProfitPct with NetProfit, the
+    /// series with PriceTrend. A flash that leaves NetProfit as it was does not reach the Total
+    /// Revenue chip, which counts the flashes it shows on its own (ProfitFlashSerial). PriceTrend
+    /// is a revision number rather than the series (the column is neither sortable nor exported).
+    /// The series and the highlight runs travel as JSON text: on Blazor Server, IgbGrid delivers an
+    /// array of numbers or strings as null, and a list of objects would get an id on every item.
     /// </summary>
     public class FinanceGridRecord
     {
@@ -100,6 +204,64 @@ namespace Infragistics.Samples
         public double MarketValue { get; set; }
         public double NetProfit { get; set; }
         public double AllocationPct { get; set; }
+
+        public string Company { get; set; }
+        public string Tone { get; set; }
+
+        /// <summary>The ticker split by FinanceGridTextHighlighter.SplitOnMatches, in JSON; null while no filter is set.</summary>
+        public string TickerRuns { get; set; }
+
+        /// <summary>The company name split by FinanceGridTextHighlighter.SplitOnMatches, in JSON; null while no filter is set.</summary>
+        public string CompanyRuns { get; set; }
+
+        /// <summary>The sparkline series (FinanceGridRow.PriceTrend), in JSON.</summary>
+        public string Trend { get; set; }
+
+        public double ChangePct { get; set; }
+        public double NetProfitPct { get; set; }
+
+        /// <summary>FinanceGridTickDirection by name: None, Up or Down.</summary>
+        public string Direction { get; set; }
+
+        public bool IsRepeatMove { get; set; }
+        public int FlashSerial { get; set; }
+        public int ProfitFlashSerial { get; set; }
+        public bool IsLongTerm { get; set; }
+        public int DaysToLongTerm { get; set; }
+        public double HoldingBarValue { get; set; }
+        public double AllocationBarValue { get; set; }
+    }
+
+    /// <summary>
+    /// The live patch of a re-priced holding: every field a re-pricing changes, under its name in
+    /// FinanceGridRecord (events.js copies it onto the grid's record).
+    /// </summary>
+    public class FinanceGridTickPatch
+    {
+        public string Ticker { get; set; }
+        public int PriceTrend { get; set; }
+        public string Trend { get; set; }
+        public double LastPrice { get; set; }
+        public double ChangePct { get; set; }
+        public double MarketValue { get; set; }
+        public double NetProfit { get; set; }
+        public double NetProfitPct { get; set; }
+        public string Direction { get; set; }
+        public bool IsRepeatMove { get; set; }
+        public int FlashSerial { get; set; }
+        public int ProfitFlashSerial { get; set; }
+    }
+
+    /// <summary>
+    /// The live patch of a holding that moved on the tick before and sat this one out: its flash
+    /// state, which ends. No column shows it, so no cell re-renders for it; a cell rendered later
+    /// (after a scroll, say) reads it.
+    /// </summary>
+    public class FinanceGridSettlePatch
+    {
+        public string Ticker { get; set; }
+        public string Direction { get; set; }
+        public bool IsRepeatMove { get; set; }
     }
 
     /// <summary>The 50 seeded holdings and their deterministic synthetic price trends.</summary>
@@ -163,9 +325,11 @@ namespace Infragistics.Samples
             Seed("PYPL", "PayPal Holdings Inc.", 86.57, 0, 32.03, -14.8, -31.6, 0.06, 126.57, 0.37, 412, "orange")
             };
 
+            var maxAllocationPct = GetMaxAllocationPct(rows);
             foreach (var row in rows)
             {
                 row.PriceTrend = BuildPriceTrend(row.Ticker, row.ChangePct);
+                row.AllocationBarValue = ScaleAllocation(row.AllocationPct, maxAllocationPct);
             }
 
             return rows;
@@ -178,11 +342,26 @@ namespace Infragistics.Samples
         }
 
         /// <summary>
+        /// Allocation as a 0-100 bar value, scaled against the largest holding; floored at 6 because
+        /// a narrower fill than its own corner radius renders as a dot.
+        /// </summary>
+        public static double ScaleAllocation(double allocationPct, double maxAllocationPct)
+        {
+            var magnitude = Math.Abs(allocationPct);
+            if (magnitude == 0 || maxAllocationPct <= 0)
+            {
+                return 0;
+            }
+
+            return Math.Min(100, Math.Max(6, (magnitude / maxAllocationPct) * 100));
+        }
+
+        /// <summary>
         /// A deterministic synthetic trend for one ticker: a random walk from an xorshift32 generator
         /// seeded with the ticker, pulled toward the day's change, which is also its last point. The
         /// same ticker draws the same curve on every load.
         /// </summary>
-        public static List<FinanceGridTrendPoint> BuildPriceTrend(string ticker, double changePct)
+        public static double[] BuildPriceTrend(string ticker, double changePct)
         {
             var target = Math.Round(changePct, 2, MidpointRounding.AwayFromZero);
             var volatility = Math.Max(0.2, Math.Min(1.15, Math.Abs(changePct) * 0.55 + 0.25));
@@ -196,7 +375,7 @@ namespace Infragistics.Samples
 
             var seed = hashSeed;
             var value = 0.0;
-            var series = new List<FinanceGridTrendPoint>(TrendPoints);
+            var series = new double[TrendPoints];
 
             for (var index = 0; index < TrendPoints; index++)
             {
@@ -212,10 +391,10 @@ namespace Infragistics.Samples
                 var pull = (directionalTarget - value) * 0.22;
                 var microWave = Math.Sin((t * Math.PI * 9) + (hashSeed % 11)) * 0.06;
                 value += randomStep + pull + microWave;
-                series.Add(new FinanceGridTrendPoint { Value = Math.Round(value, 2, MidpointRounding.AwayFromZero) });
+                series[index] = Math.Round(value, 2, MidpointRounding.AwayFromZero);
             }
 
-            series[series.Count - 1] = new FinanceGridTrendPoint { Value = target };
+            series[series.Length - 1] = target;
             return series;
         }
 

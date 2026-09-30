@@ -19,9 +19,11 @@ https://dl.infragistics.com/x/css//samples/
  * - Dark mode is a second palette: the toggle only adds .dark-theme to .finance-shell. No
  *   stylesheet swap and no IgbThemeProvider; the component themes below only reference palette
  *   and --fin-* variables, so they follow.
- * - The component token blocks set every token of their component (e.g. grid elevation 2 and
- *   toolbar background gray-50) on the igc-* hosts the Blazor components render, so the sample
- *   keeps its look whichever theme the page loads (Fluent here, Bootstrap in the samples browser).
+ * - The component token blocks restate, on the igc-* hosts the sample renders, the
+ *   tokens the sample's look depends on (e.g. grid elevation 2 and toolbar background gray-50),
+ *   so the colours follow the sample's palette whichever theme the page loads (Fluent here,
+ *   Bootstrap in the samples browser). A few shapes still follow the page theme: in the samples
+ *   browser the search field and the column panels' checkboxes and filter box are Bootstrap's.
  */
 
 /* ---------------------------------------------------------------------------------------------
@@ -930,20 +932,28 @@ https://dl.infragistics.com/x/css//samples/
   justify-content: flex-start;
 }
 
-/* Blazor renders a BodyTemplate inside wrapper divs (a display:contents div, then div#host-GUID);
-   the host div is the cell's flex item and would shrink to its content. Let it take the cell's
-   width, so the bars span the column. */
-.finance-grid-sample igc-grid .igx-grid__td div[id^="host-"] {
+/* lit renders a cell template straight into the cell, through a display: contents wrapper, so
+   each template root is the cell's flex item and would shrink to its content. Let the roots take
+   the cell's width, so the bars and the sparkline span the column and a long company name
+   ellipsizes instead of widening the root. */
+.finance-grid-sample igc-grid .ticker-cell,
+.finance-grid-sample igc-grid .price-combined-cell,
+.finance-grid-sample igc-grid .holding-cell,
+.finance-grid-sample igc-grid .allocation-cell,
+.finance-grid-sample igc-grid .net-profit-combined-cell,
+.finance-grid-sample igc-grid igc-sparkline.price-trend-spark {
   flex: 1 1 auto;
   min-width: 0;
 }
 
-/* Every figure is tabular, so a digit changing on a live tick does not shift its neighbours. */
+/* Every figure is tabular, so a digit changing on a live tick does not shift its neighbours. The
+   chip figures take it on their label: the chip's shadow button resets font-variant-numeric (the
+   UA font shorthand on button), so it would not inherit from igc-chip. */
 .finance-grid-sample .numeric-cell,
 .finance-grid-sample .allocation-value,
 .finance-grid-sample .holding-elapsed,
 .finance-grid-sample .ticker-symbol,
-.finance-grid-sample igc-chip.finance-chip {
+.finance-grid-sample .finance-chip-label {
   font-variant-numeric: tabular-nums;
 }
 
@@ -1117,10 +1127,12 @@ https://dl.infragistics.com/x/css//samples/
   padding: 0 0.0625rem;
 }
 
-/* Sparkline */
-.finance-grid-sample .price-trend-spark {
-  /* !important: IgbSparkline writes padding: 0px inline on this wrapper (Class lands on it) */
-  padding-inline: 0.125rem !important;
+/* Sparkline: 2px either side. The class now sits on igc-sparkline itself, which writes no padding
+   of its own, so no !important is needed; border-box keeps the padding inside the width the
+   template gives it (width="100%"). */
+.finance-grid-sample igc-sparkline.price-trend-spark {
+  box-sizing: border-box;
+  padding-inline: 0.125rem;
 }
 
 /* Figure cells */
@@ -1136,65 +1148,98 @@ https://dl.infragistics.com/x/css//samples/
   white-space: nowrap;
 }
 
-/* Figure chips: inert, outlined, coloured by direction. IgbChip draws on its shadow button
-   (part "base"); ::part rules from the page win over the chip's own normal declarations -
-   including the filled background a StyleVariant would paint - so this works with or without
-   Variant. The colour follows the reflected variant attribute:
-   Variant="StyleVariant.Success|Danger|Info". */
+/* Figure chips: inert, outlined, coloured by the sign of their figure (is-positive, is-negative,
+   neither for neutral). Background, text, outline and corners are chip design tokens. The template
+   sets no variant: the chip's own variant rules paint a filled palette background and its
+   contrast text, and they win over every token. */
 .finance-grid-sample igc-chip.finance-chip {
   --ig-size: var(--ig-size-small);
   --_fin-chip-color: var(--fin-neutral-text);
+  --ig-chip-background: transparent;
+  --ig-chip-text-color: var(--_fin-chip-color);
+  --ig-chip-border-color: var(--_fin-chip-color);
+  --ig-chip-border-radius: 0.25rem;
   min-width: 4.375rem;
   pointer-events: none;
 }
 
-.finance-grid-sample igc-chip.finance-chip[variant="success"] {
+.finance-grid-sample igc-chip.finance-chip.is-positive {
   --_fin-chip-color: var(--fin-pos-text);
 }
 
-.finance-grid-sample igc-chip.finance-chip[variant="danger"] {
+.finance-grid-sample igc-chip.finance-chip.is-negative {
   --_fin-chip-color: var(--fin-neg-text);
 }
 
+/* No chip token sizes or centres the label: the button (part "base") spans the chip's minimum
+   width and sets the figure in 12px bold. */
 .finance-grid-sample igc-chip.finance-chip::part(base) {
   width: 100%;
   justify-content: center;
-  box-sizing: border-box;
   padding: 0;
-  border-radius: 0.25rem;
-  box-shadow: none;
-  background: transparent;
-  color: var(--_fin-chip-color);
-  border-color: var(--_fin-chip-color);
-  font-family: var(--ig-font-family);
   font-size: 0.75rem;
   font-weight: 700;
   line-height: 1;
 }
 
-/* Tick flash, contained to the outlined delta chip */
-.finance-grid-sample igc-chip.finance-delta-chip.is-up::part(base) {
-  animation: finance-grid-flash-up 0.9s ease-in-out;
+/* The label span only keeps the text out of the grid cell's accessible name (see events.js).
+   display: contents lays the text out exactly as a bare text node: under the chip's ::slotted(*)
+   rules (inline-flex, overflow: hidden) the span would clip the foot of the arrow glyph. */
+.finance-grid-sample .finance-chip-label {
+  display: contents;
 }
 
-.finance-grid-sample igc-chip.finance-delta-chip.is-down::part(base) {
-  animation: finance-grid-flash-down 0.9s ease-in-out;
+/* Tick flash, contained to the outlined delta chip. lit keeps the chip element from one tick to
+   the next, so a new flash cannot restart by re-creating it: the template adds flash-b on every
+   other flash the chip shows (an odd FlashSerial on Price (Change), an odd ProfitFlashSerial on
+   Total Revenue), which swaps the animation-name between two identical keyframe sets, and a
+   changed animation-name starts the animation over. */
+.finance-grid-sample igc-chip.finance-delta-chip.is-up {
+  --_fin-flash: finance-grid-flash-up-a;
 }
 
-/* A chip whose row keeps moving the same way does not flash again. A Blazor re-render of the chip
-   would restart the animation, so the repeat is switched off explicitly. */
+.finance-grid-sample igc-chip.finance-delta-chip.is-up.flash-b {
+  --_fin-flash: finance-grid-flash-up-b;
+}
+
+.finance-grid-sample igc-chip.finance-delta-chip.is-down {
+  --_fin-flash: finance-grid-flash-down-a;
+}
+
+.finance-grid-sample igc-chip.finance-delta-chip.is-down.flash-b {
+  --_fin-flash: finance-grid-flash-down-b;
+}
+
+.finance-grid-sample igc-chip.finance-delta-chip::part(base) {
+  animation-name: var(--_fin-flash, none);
+  animation-duration: 0.9s;
+  animation-timing-function: ease-in-out;
+}
+
+/* A chip whose row keeps moving the same way does not flash again. The rule is on the part itself,
+   so it switches the flash off whichever of the four names the host selects. */
 .finance-grid-sample igc-chip.finance-delta-chip.is-repeat::part(base) {
   animation: none;
 }
 
-@keyframes finance-grid-flash-up {
-  0% { background: color-mix(in srgb, var(--ig-success-500) 28%, transparent); }
-  100% { color: var(--ig-success-500-contrast); background: var(--ig-success-500); }
+@keyframes finance-grid-flash-up-a {
+  0% { background-color: color-mix(in srgb, var(--ig-success-500) 28%, transparent); }
+  100% { color: var(--ig-success-500-contrast); background-color: var(--ig-success-500); }
 }
 
-@keyframes finance-grid-flash-down {
-  0% { background: color-mix(in srgb, var(--ig-error-500) 28%, transparent); }
-  100% { color: var(--ig-error-500-contrast); background: var(--ig-error-500); }
+@keyframes finance-grid-flash-up-b {
+  0% { background-color: color-mix(in srgb, var(--ig-success-500) 28%, transparent); }
+  100% { color: var(--ig-success-500-contrast); background-color: var(--ig-success-500); }
+}
+
+@keyframes finance-grid-flash-down-a {
+  0% { background-color: color-mix(in srgb, var(--ig-error-500) 28%, transparent); }
+  100% { color: var(--ig-error-500-contrast); background-color: var(--ig-error-500); }
+}
+
+@keyframes finance-grid-flash-down-b {
+  0% { background-color: color-mix(in srgb, var(--ig-error-500) 28%, transparent); }
+  100% { color: var(--ig-error-500-contrast); background-color: var(--ig-error-500); }
 }
 
 /* Screen-reader-only text beside the aria-hidden chips / bars */
@@ -1245,8 +1290,7 @@ https://dl.infragistics.com/x/css//samples/
 
 @media (prefers-reduced-motion: reduce) {
   .finance-grid-sample .finance-feed-dot,
-  .finance-grid-sample igc-chip.finance-delta-chip.is-up::part(base),
-  .finance-grid-sample igc-chip.finance-delta-chip.is-down::part(base) {
+  .finance-grid-sample igc-chip.finance-delta-chip::part(base) {
     animation: none;
   }
 }

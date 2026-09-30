@@ -18,7 +18,9 @@ namespace Infragistics.Samples
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            // registering Ignite UI modules
+            // registering Ignite UI modules. Chip, Avatar, LinearProgress and Sparkline appear only in
+            // the JavaScript cell templates (wwwroot/events.js); registering them is what defines their
+            // elements, so they stay.
             builder.Services.AddIgniteUIBlazor(
                 typeof(IgbGridModule),
                 typeof(IgbGridToolbarModule),
