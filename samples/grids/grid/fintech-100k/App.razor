@@ -1,0 +1,295 @@
+@using IgniteUI.Blazor.Controls
+@using System.Text.Json
+@implements IAsyncDisposable
+@inject IJSRuntime JS
+
+@* The appearance and size classes sit on the sample root, as they sit on the homepage sample's
+   host: both palettes and the density stay inside the sample's subtree, and everything the grid
+   renders inside itself (the excel-style filter menus included) follows them. *@
+<div class="@RootClass">
+    <div class="finjs-grid-wrapper">
+        @* Every column but Price shows its own field with the grid's own formatting. The Price
+           cells, the trend classes and the Contract and Region editors are JavaScript
+           (BodyTemplateScript, CellClassesScript, InlineEditorTemplateScript, registered in
+           events.js): the grid renders them on the client, so a first render or a scroll step
+           through the 100,000 rows needs no round trip to .NET. *@
+        <IgbGrid @ref="Grid"
+                 Id="@GridId"
+                 Class="finjs-grid"
+                 Width="100%"
+                 Height="100%"
+                 PrimaryKey="Id"
+                 AutoGenerate="false"
+                 Data="Rows"
+                 RowSelection="GridSelectionMode.Multiple"
+                 AllowFiltering="true"
+                 FilterMode="FilterMode.ExcelStyleFilter"
+                 Moving="true"
+                 RowSelectionChangingScript="Fintech100kRowSelectionChanging"
+                 CellEditEnterScript="Fintech100kCellEditEnter"
+                 ToolbarExportingScript="Fintech100kToolbarExporting">
+            <IgbGridToolbar>
+                <IgbGridToolbarTitle>
+                    <span class="finjs-title">
+                        <h1>FinTech Trading</h1>
+                        <span class="finjs-row-count">@RowCountLabel</span>
+                    </span>
+                </IgbGridToolbarTitle>
+                <IgbGridToolbarActions>
+                    @* igc-button-group draws its role="group" inside its shadow root, where the host's
+                       aria-label does not reach: the host takes the role as well, so the group keeps
+                       its name, "Component size". *@
+                    <IgbButtonGroup Class="finjs-size-group" Selection="ButtonGroupSelection.SingleRequired"
+                                    role="group" aria-label="Component size" Select="OnSizeSelected">
+                        @foreach (var size in Sizes)
+                        {
+                            <IgbToggleButton Value="@size" Selected="@(Size == size)" title="@($"Render the sample at {size} size")">
+                                <span>@size</span>
+                            </IgbToggleButton>
+                        }
+                    </IgbButtonGroup>
+
+                    <IgbIconButton @ref="ThemeToggle" Class="finjs-theme-toggle" Variant="IconButtonVariant.Outlined"
+                                   IconName="@(IsDark ? "light_mode" : "dark_mode")" Collection="@IconCollection"
+                                   title="@ThemeButtonLabel" aria-label="@ThemeButtonLabel" @onclick="ToggleTheme"></IgbIconButton>
+
+                    @* ColumnListHeight bounds the column list as the homepage sample's
+                       columnsAreaMaxHeight does; it arrives only as a panel opens, so index.css
+                       states the same bound for the first opening. *@
+                    <IgbGridToolbarHiding Title="Indicators" ColumnListHeight="@ColumnsAreaMaxHeight"></IgbGridToolbarHiding>
+                    <IgbGridToolbarPinning ColumnListHeight="@ColumnsAreaMaxHeight"></IgbGridToolbarPinning>
+                    <IgbGridToolbarExporter ExportExcel="true" ExportCSV="false" ExportPDF="true"></IgbGridToolbarExporter>
+                </IgbGridToolbarActions>
+            </IgbGridToolbar>
+
+            <IgbColumn Field="Id" Header="Id" Sortable="true" Hidden="true"></IgbColumn>
+            <IgbColumn Field="Category" Header="Category" Width="fit-content" Sortable="true"></IgbColumn>
+            <IgbColumn Field="Type" Header="Type" Width="fit-content" Sortable="true" Filterable="false"></IgbColumn>
+            <IgbColumn Field="Contract" Header="Contract" Width="fit-content" Sortable="true" Editable="true"
+                       InlineEditorTemplateScript="Fintech100kContractEditor"></IgbColumn>
+            <IgbColumn Field="Settlement" Header="Settlement" Width="fit-content" Sortable="true"></IgbColumn>
+            <IgbColumn Field="Country" Header="Country" Width="fit-content" Sortable="true" Editable="true"></IgbColumn>
+            <IgbColumn Field="Region" Header="Region" Width="fit-content" Sortable="true" Editable="true"
+                       InlineEditorTemplateScript="Fintech100kRegionEditor"></IgbColumn>
+            <IgbColumn Field="LastUpdated" Header="Last Update" Width="fit-content" DataType="GridColumnDataType.Date"
+                       Editable="true"></IgbColumn>
+            <IgbColumn Field="OpenPrice" Header="Open Price" Width="fit-content" DataType="GridColumnDataType.Currency"
+                       PipeArgs="ColumnFormat" Sortable="true"></IgbColumn>
+            <IgbColumn Field="Price" Header="Price" Width="fit-content" Sortable="true"
+                       CellClassesScript="Fintech100kTrendClasses" BodyTemplateScript="Fintech100kPriceTemplate"></IgbColumn>
+            <IgbColumn Field="Change" Header="Change" Width="fit-content" Sortable="true"
+                       CellClassesScript="Fintech100kTrendClasses"></IgbColumn>
+            <IgbColumn Field="ChangeP" Header="Change %" Width="fit-content" DataType="GridColumnDataType.Percent"
+                       PipeArgs="ColumnFormatChangeP" Sortable="true" CellClassesScript="Fintech100kTrendClasses"></IgbColumn>
+            <IgbColumn Field="Buy" Header="Buy" Width="fit-content" DataType="GridColumnDataType.Currency"
+                       PipeArgs="ColumnFormat" Sortable="true"></IgbColumn>
+            <IgbColumn Field="Sell" Header="Sell" Width="fit-content" DataType="GridColumnDataType.Currency"
+                       PipeArgs="ColumnFormat" Sortable="true"></IgbColumn>
+            <IgbColumn Field="Spread" Header="Spread" Width="fit-content"></IgbColumn>
+            <IgbColumn Field="Volume" Header="Volume" Width="fit-content" Sortable="true"></IgbColumn>
+            <IgbColumn Field="HighD" Header="High (Day)" Width="fit-content" DataType="GridColumnDataType.Currency"
+                       PipeArgs="ColumnFormat" Sortable="true"></IgbColumn>
+            <IgbColumn Field="LowD" Header="Low (Day)" Width="fit-content" DataType="GridColumnDataType.Currency"
+                       PipeArgs="ColumnFormat" Sortable="true"></IgbColumn>
+            <IgbColumn Field="HighY" Header="High (Year)" Width="fit-content" DataType="GridColumnDataType.Currency"
+                       PipeArgs="ColumnFormat" Sortable="true"></IgbColumn>
+            <IgbColumn Field="LowY" Header="Low (Year)" Width="fit-content" DataType="GridColumnDataType.Currency"
+                       PipeArgs="ColumnFormat" Sortable="true"></IgbColumn>
+            <IgbColumn Field="StartY" Header="Start (Year)" Width="fit-content" DataType="GridColumnDataType.Currency"
+                       PipeArgs="ColumnFormat" Sortable="true"></IgbColumn>
+
+            <IgbColumn Field="IndGroup" Header="Industry Group" Width="fit-content" Filterable="false"></IgbColumn>
+            <IgbColumn Field="IndSector" Header="Industry Sector" Width="fit-content" Filterable="false" Resizable="true"></IgbColumn>
+            <IgbColumn Field="IndSubgroup" Header="Industry Subgroup" Width="fit-content" Filterable="false"></IgbColumn>
+            <IgbColumn Field="SecType" Header="Security Type" Width="fit-content" Filterable="false"></IgbColumn>
+            <IgbColumn Field="IssuerName" Header="Issuer" Width="fit-content" Filterable="false" Resizable="true"></IgbColumn>
+            <IgbColumn Field="Moodys" Header="Moody's" Width="fit-content" Filterable="false"></IgbColumn>
+            <IgbColumn Field="Fitch" Header="Fitch" Width="fit-content" Filterable="false"></IgbColumn>
+            <IgbColumn Field="Dbrs" Header="DBRS" Width="fit-content" Filterable="false"></IgbColumn>
+            <IgbColumn Field="CollateralType" Header="Collateral Type" Width="fit-content" Filterable="false"></IgbColumn>
+            <IgbColumn Field="Currency" Header="Currency" Width="fit-content" Filterable="false"></IgbColumn>
+            <IgbColumn Field="Security" Header="Security" Width="fit-content" Filterable="false"></IgbColumn>
+            <IgbColumn Field="Sector" Header="Sector" Width="fit-content" Filterable="false"></IgbColumn>
+            <IgbColumn Field="Cusip" Header="CUSIP" Width="fit-content" Filterable="false"></IgbColumn>
+            <IgbColumn Field="Ticker" Header="Ticker" Width="fit-content" Filterable="false"></IgbColumn>
+            <IgbColumn Field="Coupon" Header="Coupon" Width="fit-content" Filterable="false"></IgbColumn>
+            <IgbColumn Field="Maturity" Header="Maturity" Width="fit-content" Filterable="false"></IgbColumn>
+            <IgbColumn Field="Krd3Yr" Header="KRD 3YR" Width="fit-content" Filterable="false"></IgbColumn>
+            <IgbColumn Field="ZSpread" Header="Z-Spread" Width="fit-content" Filterable="false"></IgbColumn>
+            <IgbColumn Field="Krd5Yr" Header="KRD 5YR" Width="fit-content" Filterable="false"></IgbColumn>
+            <IgbColumn Field="Krd1Yr" Header="KRD 1YR" Width="fit-content" Filterable="false"></IgbColumn>
+        </IgbGrid>
+    </div>
+</div>
+
+@code {
+    private const string GridId = "fintech100kGrid";
+
+    // A collection of the sample's own: other samples in the samples browser register different
+    // icons under "material".
+    private const string IconCollection = "fintech-100k";
+
+    private const string ColumnsAreaMaxHeight = "clamp(200px, 40vh, 420px)";
+
+    // Material Icons (Apache-2.0), 24px viewBox. igc-icon renders registered SVGs, not ligatures.
+    private const string ArrowUpwardIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z'/></svg>";
+    private const string ArrowDownwardIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z'/></svg>";
+    private const string LightModeIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z'/></svg>";
+    private const string DarkModeIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z'/></svg>";
+
+    private static readonly string[] Sizes = { "small", "medium", "large" };
+
+    // The homepage sample's column formats: three decimals for the currency columns (1.3-3), and
+    // three integer digits and three decimals for Change % (3.3-3).
+    private static readonly IgbColumnPipeArgs ColumnFormat = new IgbColumnPipeArgs { DigitsInfo = "1.3-3" };
+    private static readonly IgbColumnPipeArgs ColumnFormatChangeP = new IgbColumnPipeArgs { DigitsInfo = "3.3-3" };
+
+    private IgbGrid Grid;
+    private IgbIconButton ThemeToggle;
+
+    private List<Fintech100kRow> Rows;
+
+    private string Size = "medium";
+    private bool IsDark;
+    private bool HasNewSize;
+
+    // True from the fintech100kConnect call to fintech100kDisconnect; false before the first
+    // render, and when events.js is not on the page.
+    private bool IsConnected;
+
+    private string RootClass
+    {
+        get
+        {
+            var names = "container vertical fintech-100k-sample ig-typography ig-scrollbar";
+            if (IsDark)
+            {
+                names += " dark-theme";
+            }
+
+            if (Size != "medium")
+            {
+                names += " finjs-size-" + Size;
+            }
+
+            return names;
+        }
+    }
+
+    private string ThemeButtonLabel => IsDark ? "Switch to light mode" : "Switch to dark mode";
+
+    // Read off the data rather than written into the markup, so the toolbar cannot claim a row
+    // count the sample is not generating: 100000 reads "100K rows".
+    private string RowCountLabel => FormatRowCount(Rows.Count);
+
+    protected override void OnInitialized()
+    {
+        Rows = Fintech100kDataService.CreateRows();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (HasNewSize)
+        {
+            // Row height follows --ig-size, and at this row count the grid scrolls against the row
+            // height it measured, so it measures again once the new size class is on the page.
+            HasNewSize = false;
+            await Grid.EnsureReady();
+            await Grid.ReflowAsync();
+        }
+
+        if (!firstRender)
+        {
+            return;
+        }
+
+        // events.js is connected before anything else is awaited, so that a disposal from here on
+        // reaches fintech100kDisconnect. It takes the editors' option lists and the PDF export's
+        // columns, which C# owns; they are serialized here because JS interop would camel-case
+        // the property names.
+        IsConnected = true;
+        try
+        {
+            await JS.InvokeVoidAsync("fintech100kConnect", JsonSerializer.Serialize(CreateScriptOptions()));
+        }
+        catch (JSException)
+        {
+            // events.js is not on the page: the grid shows its plain values and default editors.
+            IsConnected = false;
+        }
+
+        await ThemeToggle.EnsureReady();
+        await ThemeToggle.RegisterIconFromTextAsync("arrow_upward", ArrowUpwardIcon, IconCollection);
+        await ThemeToggle.RegisterIconFromTextAsync("arrow_downward", ArrowDownwardIcon, IconCollection);
+        await ThemeToggle.RegisterIconFromTextAsync("light_mode", LightModeIcon, IconCollection);
+        await ThemeToggle.RegisterIconFromTextAsync("dark_mode", DarkModeIcon, IconCollection);
+    }
+
+    private void OnSizeSelected(IgbComponentValueChangedEventArgs e)
+    {
+        var size = e.Detail;
+        if (Array.IndexOf(Sizes, size) < 0 || size == Size)
+        {
+            return;
+        }
+
+        Size = size;
+        HasNewSize = true;
+    }
+
+    private void ToggleTheme()
+    {
+        IsDark = !IsDark;
+    }
+
+    private static object CreateScriptOptions()
+    {
+        return new
+        {
+            Contracts = Fintech100kDataService.ContractTypes,
+            Regions = Fintech100kDataService.Regions.Select(region => region.Name).ToArray(),
+
+            // The columns a PDF export keeps: the homepage sample's own list. Excel exports keep
+            // every visible column.
+            PdfFields = new[]
+            {
+                "Id", "Category", "Type", "Contract", "Settlement", "Country", "Region",
+                "LastUpdated", "OpenPrice", "Price", "Change", "ChangeP", "Buy", "Sell"
+            },
+            PdfPageSize = "A3"
+        };
+    }
+
+    // 1000000 reads "1M rows" and 100000 "100K rows": whole units only, the counts are round.
+    private static string FormatRowCount(int count)
+    {
+        if (count >= 1000000)
+        {
+            return (count / 1000000) + "M rows";
+        }
+
+        if (count >= 1000)
+        {
+            return (count / 1000) + "K rows";
+        }
+
+        return count + " rows";
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (!IsConnected)
+        {
+            return;
+        }
+
+        IsConnected = false;
+        try
+        {
+            await JS.InvokeVoidAsync("fintech100kDisconnect");
+        }
+        catch (JSDisconnectedException)
+        {
+        }
+    }
+}
