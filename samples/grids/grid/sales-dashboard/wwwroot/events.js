@@ -55,17 +55,7 @@
 
     // The category charts hand each series they create to SeriesAddedScript, which is where a
     // series takes its tooltip template.
-    //
-    // The Revenue Trend chart is also labelled here. Like the Angular sample, it lists only Revenue
-    // and TargetLine in IncludedProperties, so the chart takes Revenue as its categories and plots
-    // TargetLine; the Angular sample then labels the axis by month (xAxisLabel="month"). In Blazor,
-    // IgbCategoryChart.XAxisLabel does not reach the chart (a string throws, and XAxisLabelScript is
-    // never sent), so the chart element takes the member path directly.
     igRegisterScript("SalesDashboardTrendSeriesAdded", (chart, args) => {
-        if (chart && chart.xAxisLabel !== "Month") {
-            chart.xAxisLabel = "Month";
-        }
-
         if (args && args.series && args.series.tooltipTemplate !== trendTooltip) {
             args.series.tooltipTemplate = trendTooltip;
         }

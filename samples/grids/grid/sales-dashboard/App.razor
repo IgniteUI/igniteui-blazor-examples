@@ -63,8 +63,7 @@
                        created, and salesDashboardConnect sets it first. Each chart is keyed by the
                        palette, so a theme toggle creates it again, as the Angular sample does: a
                        ring series keeps drawing its slice labels in the colour it was created
-                       with. The X axis is labelled by month from events.js
-                       (SalesDashboardTrendSeriesAdded). *@
+                       with. *@
                     <div class="chart-box">
                         @if (ChartsReady)
                         {
@@ -210,10 +209,8 @@
     private const string LightModeIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 6.984Q10.641 6.984 9.492 7.664Q8.344 8.344 7.664 9.492Q6.984 10.641 6.984 12Q6.984 13.359 7.664 14.508Q8.344 15.656 9.492 16.336Q10.641 17.016 12 17.016Q13.359 17.016 14.508 16.336Q15.656 15.656 16.336 14.508Q17.016 13.359 17.016 12Q17.016 10.641 16.336 9.492Q15.656 8.344 14.508 7.664Q13.359 6.984 12 6.984ZM2.016 12.984L3.984 12.984Q4.406 12.984 4.711 12.703Q5.016 12.422 5.016 12Q5.016 11.578 4.711 11.297Q4.406 11.016 3.984 11.016L2.016 11.016Q1.594 11.016 1.289 11.297Q0.984 11.578 0.984 12Q0.984 12.422 1.289 12.703Q1.594 12.984 2.016 12.984ZM20.016 12.984L21.984 12.984Q22.406 12.984 22.711 12.703Q23.016 12.422 23.016 12Q23.016 11.578 22.711 11.297Q22.406 11.016 21.984 11.016L20.016 11.016Q19.594 11.016 19.289 11.297Q18.984 11.578 18.984 12Q18.984 12.422 19.289 12.703Q19.594 12.984 20.016 12.984ZM11.016 2.016L11.016 3.984Q11.016 4.406 11.297 4.711Q11.578 5.016 12 5.016Q12.422 5.016 12.703 4.711Q12.984 4.406 12.984 3.984L12.984 2.016Q12.984 1.594 12.703 1.289Q12.422 0.984 12 0.984Q11.578 0.984 11.297 1.289Q11.016 1.594 11.016 2.016ZM11.016 20.016L11.016 21.984Q11.016 22.406 11.297 22.711Q11.578 23.016 12 23.016Q12.422 23.016 12.703 22.711Q12.984 22.406 12.984 21.984L12.984 20.016Q12.984 19.594 12.703 19.289Q12.422 18.984 12 18.984Q11.578 18.984 11.297 19.289Q11.016 19.594 11.016 20.016ZM7.031 5.625L6 4.594Q5.719 4.266 5.297 4.266Q4.875 4.266 4.594 4.594Q4.266 4.875 4.266 5.297Q4.266 5.719 4.594 6L5.625 7.031Q5.953 7.359 6.352 7.359Q6.75 7.359 7.031 7.031Q7.313 6.75 7.336 6.328Q7.359 5.906 7.031 5.625ZM19.406 18L18.375 16.969Q18.047 16.641 17.648 16.641Q17.25 16.641 16.969 16.969Q16.641 17.25 16.641 17.672Q16.641 18.094 16.969 18.375L18 19.406Q18.281 19.734 18.703 19.734Q19.125 19.734 19.406 19.406Q19.734 19.125 19.734 18.703Q19.734 18.281 19.406 18ZM18.375 7.031L19.406 6Q19.734 5.719 19.734 5.297Q19.734 4.875 19.406 4.594Q19.125 4.266 18.703 4.266Q18.281 4.266 18 4.594L16.969 5.625Q16.641 5.953 16.641 6.352Q16.641 6.75 16.969 7.031Q17.25 7.313 17.672 7.336Q18.094 7.359 18.375 7.031ZM6 19.406L7.031 18.375Q7.359 18.047 7.359 17.648Q7.359 17.25 7.031 16.969Q6.75 16.641 6.328 16.641Q5.906 16.641 5.625 16.969L4.594 18Q4.266 18.281 4.266 18.703Q4.266 19.125 4.594 19.406Q4.875 19.688 5.297 19.711Q5.719 19.734 6 19.406Z'/></svg>";
     private const string DarkModeIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 3Q10.125 3 8.508 3.703Q6.891 4.406 5.648 5.648Q4.406 6.891 3.703 8.508Q3 10.125 3 12Q3 13.875 3.703 15.492Q4.406 17.109 5.648 18.352Q6.891 19.594 8.508 20.297Q10.125 21 12 21Q13.875 21 15.492 20.297Q17.109 19.594 18.352 18.352Q19.594 17.109 20.297 15.492Q21 13.875 21 12Q21 11.672 20.977 11.32Q20.953 10.969 20.906 10.641Q20.156 11.672 19.008 12.281Q17.859 12.891 16.5 12.891Q15 12.891 13.781 12.164Q12.563 11.438 11.836 10.219Q11.109 9 11.109 7.5Q11.109 6.141 11.719 4.992Q12.328 3.844 13.359 3.094Q13.031 3.047 12.68 3.023Q12.328 3 12 3Z'/></svg>";
 
-    // Revenue and TargetLine, as the Angular sample lists them. With Month left out, the chart
-    // takes Revenue as its categories and plots TargetLine alone, as the Angular sample's chart
-    // does; events.js labels the axis by Month (SalesDashboardTrendSeriesAdded).
-    private static readonly string[] TrendProperties = new string[] { "Revenue", "TargetLine" };
+    // Month labels the categories; Revenue and TargetLine are the two lines.
+    private static readonly string[] TrendProperties = new string[] { "Month", "Revenue", "TargetLine" };
 
     private readonly List<SalesDashboardMetric> Metrics = SalesDashboardData.CreateMetrics();
     private readonly List<SalesDashboardTrendPoint> RevenueTrend = SalesDashboardData.CreateRevenueTrend();
