@@ -1,0 +1,113 @@
+@namespace Infragistics.Samples
+@inherits FintechDockManagerPaneBase
+@using IgniteUI.Blazor.Controls
+
+<div class="pane positions-pane">
+    <div class="grid-host">
+        @* The book, marked to market on every tick through the live patch (events.js). The money
+           columns total with the desk's own summary operand (FintechDockManagerPositionsColumnInit). *@
+        <IgbGrid @ref="Grid"
+                 Id="@GridId"
+                 class="positions-grid"
+                 Data="Rows"
+                 PrimaryKey="Symbol"
+                 AutoGenerate="false"
+                 HideRowSelectors="true"
+                 RowSelection="GridSelectionMode.Single"
+                 SelectedRows="SelectedRows"
+                 RowHeight="38"
+                 SummaryRowHeight="42"
+                 Width="100%"
+                 EmptyGridMessage="No open positions &#x2014; place an order to build the book."
+                 ColumnInitScript="FintechDockManagerPositionsColumnInit"
+                 RowClickScript="FintechDockManagerPositionsRowClick">
+            <IgbColumn Field="Symbol" Header="Symbol" Sortable="true" Pinned="true" Width="88px" BodyTemplateScript="FintechDockManagerSymbolTemplate"></IgbColumn>
+            <IgbColumn Field="Quantity" Header="Qty" DataType="GridColumnDataType.Number" Sortable="true" Width="64px"></IgbColumn>
+            <IgbColumn Field="AvgCost" Header="Avg cost" DataType="GridColumnDataType.Number" Sortable="true" Width="94px" BodyTemplateScript="FintechDockManagerMoneyTemplate"></IgbColumn>
+            <IgbColumn Field="Last" Header="Last" DataType="GridColumnDataType.Number" Sortable="true" Width="94px" BodyTemplateScript="FintechDockManagerLiveMoneyTemplate"></IgbColumn>
+            <IgbColumn Field="MarketValue" Header="Market value" DataType="GridColumnDataType.Number" Sortable="true" HasSummary="true" Width="120px" BodyTemplateScript="FintechDockManagerMoneyTemplate"></IgbColumn>
+            <IgbColumn Field="DayChange" Header="Day P&amp;L" DataType="GridColumnDataType.Number" Sortable="true" HasSummary="true" Width="118px" BodyTemplateScript="FintechDockManagerDayPlTemplate"></IgbColumn>
+            <IgbColumn Field="OpenPl" Header="Open P&amp;L" DataType="GridColumnDataType.Number" Sortable="true" HasSummary="true" Width="118px" BodyTemplateScript="FintechDockManagerOpenPlTemplate"></IgbColumn>
+            <IgbColumn Field="Weight" Header="Weight" DataType="GridColumnDataType.Number" Sortable="true" Width="96px" BodyTemplateScript="FintechDockManagerWeightTemplate"></IgbColumn>
+
+            <IgbActionStrip>
+                <IgbIconButton Variant="IconButtonVariant.Flat" IconName="add" Collection="@FintechDockManagerIcons.Collection"
+                               title="Add to position" aria-label="Add to position" data-fintech-action="add"></IgbIconButton>
+                <IgbIconButton class="flatten-btn" Variant="IconButtonVariant.Flat" IconName="close_fullscreen" Collection="@FintechDockManagerIcons.Collection"
+                               title="Flatten position at market" aria-label="Flatten position at market" data-fintech-action="flatten"></IgbIconButton>
+            </IgbActionStrip>
+        </IgbGrid>
+    </div>
+
+    @* Net liq. and Day P&L are account-wide and already sit in the command bar. What is left here is
+       what the book itself says: unrealised, realised, and how much of the account it uses. *@
+    <footer class="account-footer">
+        <div class="footer-stat">
+            <span class="footer-label">Open P&amp;L</span>
+            <span class="@FigureClass(Account.OpenPl)">@FintechDockManagerFormat.SignedMoney(Account.OpenPl)</span>
+        </div>
+        <div class="footer-stat">
+            <span class="footer-label">Realised</span>
+            <span class="@FigureClass(Account.RealizedPl)">@FintechDockManagerFormat.SignedMoney(Account.RealizedPl)</span>
+        </div>
+        <div class="footer-stat">
+            <span class="footer-label">Exposure</span>
+            <span class="footer-value mono">@(FintechDockManagerFormat.Price(Account.Utilisation, 1))%</span>
+        </div>
+    </footer>
+</div>
+
+@code {
+    public const string GridId = "fintechDockManagerPositionsGrid";
+
+    private IgbGrid Grid;
+    private List<FintechDockManagerPositionRow> Rows;
+    private object[] SelectedRows;
+    private FintechDockManagerAccount Account;
+    private int SeenBookVersion;
+    private bool HasNewGridRows;
+
+    protected override FintechDockManagerChange WatchedChanges =>
+        FintechDockManagerChange.Tick | FintechDockManagerChange.Book | FintechDockManagerChange.Selection | FintechDockManagerChange.Reset;
+
+    protected override void OnInitialized()
+    {
+        Rows = CreateRows();
+        SeenBookVersion = Desk.Trading.BookVersion;
+        SelectedRows = new object[] { Desk.SelectedSymbol };
+        Account = Desk.Trading.Account;
+    }
+
+    protected override void OnDeskChange(FintechDockManagerChange change)
+    {
+        // The book's rows are marked in place on every tick and reach the grid through the live
+        // patch; a new list only when the lots change (a fill, a flatten, a reset).
+        if (Desk.Trading.BookVersion != SeenBookVersion)
+        {
+            SeenBookVersion = Desk.Trading.BookVersion;
+            Rows = CreateRows();
+            HasNewGridRows = true;
+        }
+
+        if (!Equals(SelectedRows[0], Desk.SelectedSymbol))
+        {
+            SelectedRows = new object[] { Desk.SelectedSymbol };
+        }
+
+        Account = Desk.Trading.Account;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (HasNewGridRows)
+        {
+            HasNewGridRows = false;
+            await Grid.EnsureReady();
+            await Grid.GetDefaultRowHeightAsync();
+        }
+    }
+
+    private List<FintechDockManagerPositionRow> CreateRows() => Desk.Trading.Positions.Select(FintechDockManagerPositionRow.From).ToList();
+
+    private static string FigureClass(double value) => value >= 0 ? "footer-value mono pos-pnl" : "footer-value mono neg-pnl";
+}

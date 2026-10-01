@@ -1,0 +1,82 @@
+@namespace Infragistics.Samples
+@inherits FintechDockManagerPaneBase
+@using IgniteUI.Blazor.Controls
+
+@* The news wire, as a docked pane. The symbol filter is shared rather than local: clicking a
+   watchlist row narrows the wire too, and a desk reset clears it. *@
+<div class="pane news-pane">
+    <div class="panel-body">
+        <div class="panel-actions">
+            <IgbSelect class="news-filter" Value="@SelectValue" ValueChanged="OnFilterChanged" aria-label="Filter the wire by symbol">
+                <IgbIcon slot="prefix" IconName="filter_alt" Collection="@FintechDockManagerIcons.Collection" aria-hidden="true"></IgbIcon>
+                <IgbSelectItem Value="@AllSymbols">All symbols</IgbSelectItem>
+                @foreach (var symbol in WireSymbols)
+                {
+                    <IgbSelectItem Value="@symbol">@symbol</IgbSelectItem>
+                }
+            </IgbSelect>
+        </div>
+
+        <IgbList class="item-list">
+            @foreach (var article in Articles)
+            {
+                var symbol = article.Symbol;
+                <IgbListItem>
+                    <div class="news-item">
+                        @* Jumps the desk to the instrument a headline is about. *@
+                        <button type="button" class="news-headline" disabled="@(symbol == null)" @onclick="() => Desk.SelectSymbol(symbol)">@article.Headline</button>
+                        <div class="news-meta">
+                            @if (symbol != null)
+                            {
+                                <span class="news-symbol">@symbol</span>
+                            }
+                            <span>@article.Source</span>
+                            <span aria-hidden="true">&#xB7;</span>
+                            <time>@FintechDockManagerFormat.Since(article.At, Desk.Notifications.Now)</time>
+                        </div>
+                    </div>
+                </IgbListItem>
+            }
+
+            @if (Articles.Count == 0)
+            {
+                <p class="list-empty">@EmptyText</p>
+            }
+        </IgbList>
+    </div>
+</div>
+
+@code {
+    // The select's value for "no symbol filter".
+    private const string AllSymbols = "all";
+
+    protected override FintechDockManagerChange WatchedChanges =>
+        FintechDockManagerChange.News | FintechDockManagerChange.NewsFilter | FintechDockManagerChange.Clock | FintechDockManagerChange.Reset;
+
+    private string SelectValue => string.IsNullOrEmpty(Desk.NewsFilter) ? AllSymbols : Desk.NewsFilter;
+
+    // Only the symbols the wire is carrying, so the list never offers a filter that would empty the
+    // pane; plus a symbol focused from another pane, so the select never shows an empty box.
+    private List<string> WireSymbols
+    {
+        get
+        {
+            var symbols = new HashSet<string>(Desk.Notifications.News.Where(article => article.Symbol != null).Select(article => article.Symbol));
+            if (!string.IsNullOrEmpty(Desk.NewsFilter))
+            {
+                symbols.Add(Desk.NewsFilter);
+            }
+
+            return symbols.OrderBy(symbol => symbol, StringComparer.Ordinal).ToList();
+        }
+    }
+
+    // The untagged macro wire stays alongside the instrument: a filtered desk still wants the Fed headline.
+    private List<FintechDockManagerArticle> Articles => string.IsNullOrEmpty(Desk.NewsFilter)
+        ? Desk.Notifications.News
+        : Desk.Notifications.NewsFor(Desk.NewsFilter).ToList();
+
+    private string EmptyText => "Nothing on the wire" + (string.IsNullOrEmpty(Desk.NewsFilter) ? "" : " for " + Desk.NewsFilter) + " yet.";
+
+    private void OnFilterChanged(string value) => Desk.SetNewsFilter(value == AllSymbols ? "" : value);
+}

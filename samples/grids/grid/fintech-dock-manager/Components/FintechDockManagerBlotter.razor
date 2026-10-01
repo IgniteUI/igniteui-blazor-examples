@@ -1,0 +1,108 @@
+@namespace Infragistics.Samples
+@inherits FintechDockManagerPaneBase
+@using IgniteUI.Blazor.Controls
+
+<div class="pane blotter-pane">
+    <header class="blotter-bar">
+        @* A single-choice filter that is always applied: events.js (FintechDockManagerBlotterChipSelect)
+           cancels a click on the active chip rather than letting it clear the filter. *@
+        <div class="blotter-filters" role="group" aria-label="Filter orders by status">
+            @foreach (var filter in Filters)
+            {
+                <IgbChip class="blotter-chip" Selectable="true" Selected="@(Desk.BlotterFilter == filter)" data-filter="@filter"
+                         SelectScript="FintechDockManagerBlotterChipSelect">
+                    @filter
+                    <span slot="end" class="filter-count">@CountOf(filter)</span>
+                </IgbChip>
+            }
+        </div>
+
+        <IgbButton class="cancel-all" Variant="ButtonVariant.Flat" Disabled="@(Desk.Trading.WorkingCount == 0)" @onclick="CancelAll">
+            <IgbIcon IconName="cancel" Collection="@FintechDockManagerIcons.Collection" aria-hidden="true"></IgbIcon>
+            Cancel all
+        </IgbButton>
+    </header>
+
+    <div class="grid-host">
+        <IgbGrid @ref="Grid"
+                 Id="@GridId"
+                 class="blotter-grid"
+                 Data="Rows"
+                 PrimaryKey="Id"
+                 AutoGenerate="false"
+                 HideRowSelectors="true"
+                 RowHeight="36"
+                 Width="100%"
+                 EmptyGridMessage="No orders yet &#x2014; place one from the ticket."
+                 RowClickScript="FintechDockManagerBlotterRowClick">
+            <IgbColumn Field="PlacedAt" Header="Time" DataType="GridColumnDataType.Number" Sortable="true" Width="70px" BodyTemplateScript="FintechDockManagerTimeTemplate"></IgbColumn>
+            <IgbColumn Field="Symbol" Header="Symbol" Sortable="true" Width="82px" BodyTemplateScript="FintechDockManagerSymbolTemplate"></IgbColumn>
+            <IgbColumn Field="Side" Header="Side" Sortable="true" Width="62px" BodyTemplateScript="FintechDockManagerSideTemplate"></IgbColumn>
+            <IgbColumn Field="Quantity" Header="Qty" DataType="GridColumnDataType.Number" Sortable="true" Width="62px"></IgbColumn>
+            <IgbColumn Field="Type" Header="Type" Sortable="true" Width="104px"></IgbColumn>
+            <IgbColumn Field="DisplayPrice" Header="Price" DataType="GridColumnDataType.Number" Sortable="true" Width="112px" BodyTemplateScript="FintechDockManagerOrderPriceTemplate"></IgbColumn>
+            <IgbColumn Field="TimeInForce" Header="TIF" Sortable="true" Width="62px"></IgbColumn>
+            <IgbColumn Field="Status" Header="Status" Sortable="true" Width="96px" BodyTemplateScript="FintechDockManagerStatusTemplate"></IgbColumn>
+            <IgbColumn Field="Note" Header="Detail" Width="240px" BodyTemplateScript="FintechDockManagerNoteTemplate"></IgbColumn>
+
+            @* Enabled only while the row's order is working (events.js updates it as the strip moves). *@
+            <IgbActionStrip>
+                <IgbIconButton Variant="IconButtonVariant.Flat" IconName="delete_outline" Collection="@FintechDockManagerIcons.Collection"
+                               title="Cancel order" aria-label="Cancel order" data-fintech-action="cancel" data-fintech-requires-working="true"></IgbIconButton>
+            </IgbActionStrip>
+        </IgbGrid>
+    </div>
+</div>
+
+@code {
+    public const string GridId = "fintechDockManagerBlotterGrid";
+
+    private static readonly string[] Filters = { "All", FintechDockManagerOrderTerms.Working, FintechDockManagerOrderTerms.Filled, FintechDockManagerOrderTerms.Cancelled };
+
+    private IgbGrid Grid;
+    private List<FintechDockManagerOrderRow> Rows;
+    private bool HasNewGridRows;
+
+    protected override FintechDockManagerChange WatchedChanges =>
+        FintechDockManagerChange.Orders | FintechDockManagerChange.BlotterFilter | FintechDockManagerChange.Reset;
+
+    protected override void OnInitialized() => Rows = CreateRows();
+
+    protected override void OnDeskChange(FintechDockManagerChange change)
+    {
+        Rows = CreateRows();
+        HasNewGridRows = true;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (HasNewGridRows)
+        {
+            HasNewGridRows = false;
+            await Grid.EnsureReady();
+            await Grid.GetDefaultRowHeightAsync();
+        }
+    }
+
+    private List<FintechDockManagerOrderRow> CreateRows() => Desk.Trading.Orders
+        .Where(order => Desk.BlotterFilter == "All" || order.Status == Desk.BlotterFilter)
+        .Select(FintechDockManagerOrderRow.From)
+        .ToList();
+
+    // Per-status counts for the filter chips; rejected orders count as cancelled.
+    private int CountOf(string filter)
+    {
+        var orders = Desk.Trading.Orders;
+        switch (filter)
+        {
+            case "All":
+                return orders.Count;
+            case FintechDockManagerOrderTerms.Cancelled:
+                return orders.Count(order => order.Status == FintechDockManagerOrderTerms.Cancelled || order.Status == FintechDockManagerOrderTerms.Rejected);
+            default:
+                return orders.Count(order => order.Status == filter);
+        }
+    }
+
+    private void CancelAll() => Desk.CancelAllWorking();
+}

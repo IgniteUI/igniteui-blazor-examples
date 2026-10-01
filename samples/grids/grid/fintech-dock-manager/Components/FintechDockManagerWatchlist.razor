@@ -1,0 +1,209 @@
+@namespace Infragistics.Samples
+@inherits FintechDockManagerPaneBase
+@using IgniteUI.Blazor.Controls
+@using System.Text.Json
+@inject IJSRuntime JS
+
+<div class="pane watchlist-pane">
+    <div class="wl-toolbar">
+        @* Scoped to this pane: the query filters the grid below and the movers tabs. Enter opens a
+           chart for the first row the filter leaves. The field is the only writer of its text (no
+           Value binding, which would race typing on Blazor Server); a desk reset gives it a new key,
+           which clears it. *@
+        <div class="wl-search-wrap" @onkeydown="OnSearchKeyDown">
+            <IgbInput @key="Desk.ResetToken" id="fintech-dock-manager-watchlist-search" class="wl-search" DisplayType="InputType.Search"
+                      Placeholder="Filter &#x2014; Enter opens a chart" InputOcurred="OnSearchInput">
+                <IgbIcon slot="prefix" IconName="filter_alt" Collection="@FintechDockManagerIcons.Collection" aria-hidden="true"></IgbIcon>
+            </IgbInput>
+        </div>
+
+        @* A picker rather than a value holder: it fires the add and keeps no selection
+           (events.js, FintechDockManagerAddSymbolChange). Symbols already on the list stay visible,
+           marked and inert, so the universe reads the same every time. *@
+        <IgbCombo T="string" class="wl-add" Data="SymbolOptions" ValueKey="Symbol" DisplayKey="Symbol" SingleSelect="true"
+                  Placeholder="Add symbol" PlaceholderSearch="Search the universe&#x2026;"
+                  ItemTemplateScript="FintechDockManagerAddSymbolItem" ChangeScript="FintechDockManagerAddSymbolChange">
+            <IgbIcon slot="prefix" IconName="add" Collection="@FintechDockManagerIcons.Collection" aria-hidden="true"></IgbIcon>
+        </IgbCombo>
+    </div>
+
+    <div class="watchlist-grid-wrap">
+        @* No Height: events.js keeps the grid's height equal to its container's, in pixels, because
+           the live patch hands the grid a new array on every tick. *@
+        <IgbGrid @ref="Grid"
+                 Id="@GridId"
+                 class="watchlist-grid"
+                 Data="Rows"
+                 PrimaryKey="Symbol"
+                 AutoGenerate="false"
+                 AllowFiltering="true"
+                 FilterMode="FilterMode.ExcelStyleFilter"
+                 AllowAdvancedFiltering="true"
+                 Moving="true"
+                 RowSelection="GridSelectionMode.Single"
+                 HideRowSelectors="true"
+                 SelectedRows="SelectedRows"
+                 RowHeight="38"
+                 Width="100%"
+                 RowClickScript="FintechDockManagerWatchlistRowClick">
+            <IgbGridToolbar>
+                <IgbGridToolbarActions>
+                    <IgbGridToolbarAdvancedFiltering></IgbGridToolbarAdvancedFiltering>
+                    <IgbGridToolbarPinning></IgbGridToolbarPinning>
+                    <IgbGridToolbarHiding></IgbGridToolbarHiding>
+                    <IgbGridToolbarExporter ExportCSV="true" ExportExcel="true" Filename="watchlist"></IgbGridToolbarExporter>
+                </IgbGridToolbarActions>
+            </IgbGridToolbar>
+
+            @foreach (var column in Columns)
+            {
+                @* A column without a cell template gets no BodyTemplateScript at all: assigning null
+                   to it throws while the column initializes. *@
+                if (column.Template != null)
+                {
+                    <IgbColumn Field="@column.Field" Header="@column.Header" DataType="@column.DataType" Sortable="true"
+                               Pinned="@column.Pinned" Hidden="@column.Hidden" DisableHiding="@column.DisableHiding"
+                               Width="@column.Width" BodyTemplateScript="@column.Template"></IgbColumn>
+                }
+                else
+                {
+                    <IgbColumn Field="@column.Field" Header="@column.Header" DataType="@column.DataType" Sortable="true"
+                               Pinned="@column.Pinned" Hidden="@column.Hidden" DisableHiding="@column.DisableHiding"
+                               Width="@column.Width"></IgbColumn>
+                }
+            }
+
+            @* Removing the symbol is the one thing a row click cannot do for you: the click already
+               opens the chart and narrows the wire. *@
+            <IgbActionStrip>
+                <IgbIconButton Variant="IconButtonVariant.Flat" IconName="playlist_remove" Collection="@FintechDockManagerIcons.Collection"
+                               title="Remove from watchlist" aria-label="Remove from watchlist" data-fintech-action="remove"></IgbIconButton>
+            </IgbActionStrip>
+        </IgbGrid>
+    </div>
+
+    <FintechDockManagerMovers Desk="Desk" />
+</div>
+
+@code {
+    public const string GridId = "fintechDockManagerWatchlistGrid";
+
+    /// <summary>One watchlist column as declared: what the desk reset puts back.</summary>
+    public class ColumnSpec
+    {
+        public string Field { get; set; }
+        public string Header { get; set; }
+        public GridColumnDataType DataType { get; set; }
+        public string Width { get; set; }
+        public bool Pinned { get; set; }
+        public bool Hidden { get; set; }
+        public bool DisableHiding { get; set; }
+        public string Template { get; set; }
+    }
+
+    private static readonly ColumnSpec[] Columns =
+    {
+        new ColumnSpec { Field = "Symbol", Header = "Symbol", DataType = GridColumnDataType.String, Width = "90px", Pinned = true, DisableHiding = true, Template = "FintechDockManagerSymbolTemplate" },
+        new ColumnSpec { Field = "LastPrice", Header = "Last", DataType = GridColumnDataType.Number, Width = "100px", Template = "FintechDockManagerPriceTemplate" },
+        new ColumnSpec { Field = "ChangePct", Header = "Change %", DataType = GridColumnDataType.Number, Width = "105px", Template = "FintechDockManagerChangePctTemplate" },
+        new ColumnSpec { Field = "Change", Header = "Change", DataType = GridColumnDataType.Number, Width = "95px", Template = "FintechDockManagerChangeTemplate" },
+        new ColumnSpec { Field = "Bid", Header = "Bid", DataType = GridColumnDataType.Number, Width = "95px", Hidden = true, Template = "FintechDockManagerPriceTemplate" },
+        new ColumnSpec { Field = "Ask", Header = "Ask", DataType = GridColumnDataType.Number, Width = "95px", Hidden = true, Template = "FintechDockManagerPriceTemplate" },
+        new ColumnSpec { Field = "Sector", Header = "Sector", DataType = GridColumnDataType.String, Width = "120px" },
+        new ColumnSpec { Field = "MarketTime", Header = "Market Time", DataType = GridColumnDataType.String, Width = "120px" },
+        new ColumnSpec { Field = "Volume", Header = "Volume", DataType = GridColumnDataType.Number, Width = "105px", Template = "FintechDockManagerCompactTemplate" },
+        new ColumnSpec { Field = "AvgVol3M", Header = "Avg Vol 3M", DataType = GridColumnDataType.Number, Width = "110px", Hidden = true, Template = "FintechDockManagerCompactTemplate" },
+        new ColumnSpec { Field = "DayHigh", Header = "Day Range", DataType = GridColumnDataType.Number, Width = "230px", Template = "FintechDockManagerDayRangeTemplate" },
+        new ColumnSpec { Field = "Week52High", Header = "52-Wk Range", DataType = GridColumnDataType.Number, Width = "230px", Template = "FintechDockManagerWeekRangeTemplate" },
+        new ColumnSpec { Field = "MarketCap", Header = "Market Cap", DataType = GridColumnDataType.Number, Width = "110px", Template = "FintechDockManagerCompactTemplate" },
+    };
+
+    private IgbGrid Grid;
+    private List<FintechDockManagerWatchRow> Rows;
+    private List<FintechDockManagerSymbolOption> SymbolOptions;
+    private object[] SelectedRows;
+    private int SeenResetToken;
+    private bool HasNewGridRows;
+    private bool HasReset;
+
+    protected override FintechDockManagerChange WatchedChanges =>
+        FintechDockManagerChange.Watchlist | FintechDockManagerChange.Search | FintechDockManagerChange.Selection | FintechDockManagerChange.Reset;
+
+    protected override void OnInitialized()
+    {
+        Rows = CreateRows();
+        SymbolOptions = CreateSymbolOptions();
+        SelectedRows = new object[] { Desk.SelectedSymbol };
+        SeenResetToken = Desk.ResetToken;
+    }
+
+    protected override void OnDeskChange(FintechDockManagerChange change)
+    {
+        if ((change & (FintechDockManagerChange.Watchlist | FintechDockManagerChange.Search | FintechDockManagerChange.Reset)) != 0)
+        {
+            Rows = CreateRows();
+            SymbolOptions = CreateSymbolOptions();
+            HasNewGridRows = true;
+        }
+
+        if (!Equals(SelectedRows[0], Desk.SelectedSymbol))
+        {
+            SelectedRows = new object[] { Desk.SelectedSymbol };
+        }
+
+        if (Desk.ResetToken != SeenResetToken)
+        {
+            SeenResetToken = Desk.ResetToken;
+            HasReset = true;
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (HasNewGridRows)
+        {
+            // IgbGrid passes a new Data list to the grid with its next update; any grid method call
+            // sends that update first, so a live patch cannot be overwritten by the older copy.
+            HasNewGridRows = false;
+            await Grid.EnsureReady();
+            await Grid.GetDefaultRowHeightAsync();
+        }
+
+        if (HasReset)
+        {
+            // Hiding, pinning, sorting and filtering live on the grid's own columns, out of the desk's
+            // reach, so a reset puts them back here.
+            HasReset = false;
+            var presets = JsonSerializer.Serialize(Columns.Select(column => new { column.Field, column.Hidden, column.Pinned }));
+            try
+            {
+                await JS.InvokeVoidAsync("fintechDockManagerRestoreColumns", GridId, presets);
+            }
+            catch (JSException)
+            {
+            }
+        }
+    }
+
+    private List<FintechDockManagerWatchRow> CreateRows() => Desk.WatchlistQuotes().Select(FintechDockManagerWatchRow.From).ToList();
+
+    private List<FintechDockManagerSymbolOption> CreateSymbolOptions() => FintechDockManagerSeed.TradableSymbols
+        .Select(symbol => new FintechDockManagerSymbolOption { Symbol = symbol, Added = Desk.IsWatched(symbol) })
+        .ToList();
+
+    private void OnSearchInput(IgbComponentValueChangedEventArgs e) => Desk.UpdateSearchQuery(e.Detail?.ToString() ?? "");
+
+    // Enter opens a chart for the first row the filter leaves: the rows the trader can see, rather
+    // than a match against the whole universe.
+    private void OnSearchKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            var first = Desk.WatchlistQuotes().FirstOrDefault();
+            if (first != null)
+            {
+                Desk.FocusSymbol(first.Symbol);
+            }
+        }
+    }
+}

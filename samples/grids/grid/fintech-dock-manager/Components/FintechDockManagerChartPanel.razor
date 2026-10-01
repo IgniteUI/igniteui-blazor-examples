@@ -1,0 +1,234 @@
+@namespace Infragistics.Samples
+@inherits FintechDockManagerPaneBase
+@using IgniteUI.Blazor.Controls
+@inject IJSRuntime JS
+
+@* A chart document. The price header follows the tape (FintechDockManagerChartHeader); the chart's
+   data is set and kept live from events.js, from the series this panel owns: C# builds the window,
+   and each tick's appended and updated candles travel in the tick's single interop call. *@
+<div class="pane chart-pane">
+    <div class="chart-panel">
+        <FintechDockManagerChartHeader Desk="Desk" Series="Series" Revision="RangeRevision" />
+
+        <div class="chart-toolbar">
+            <IgbButtonGroup class="chart-group range-group" Selection="ButtonGroupSelection.SingleRequired" Select="OnRangeSelected">
+                @for (var index = 0; index < FintechDockManagerPriceHistory.Ranges.Count; index++)
+                {
+                    var range = FintechDockManagerPriceHistory.Ranges[index];
+                    <IgbToggleButton Value="@index.ToString()" Selected="@(range == Series.Spec)"><span>@range.Label</span></IgbToggleButton>
+                }
+            </IgbButtonGroup>
+
+            <IgbButtonGroup class="chart-group" Selection="ButtonGroupSelection.SingleRequired" Select="OnChartTypeSelected">
+                @foreach (var type in ChartTypes)
+                {
+                    <IgbToggleButton Value="@type.ToString()" Selected="@(type == ChartType)"><span>@type</span></IgbToggleButton>
+                }
+            </IgbButtonGroup>
+
+            @* The studies group is multi-select, so both of its events route through here. *@
+            <IgbButtonGroup class="chart-group" Selection="ButtonGroupSelection.Multiple" Select="OnStudySelected" Deselect="OnStudyDeselected">
+                <IgbToggleButton Value="volume" Selected="@ShowVolume">
+                    <IgbIcon IconName="bar_chart" Collection="@FintechDockManagerIcons.Collection" aria-hidden="true"></IgbIcon>
+                    <span>Volume</span>
+                </IgbToggleButton>
+                <IgbToggleButton Value="rsi" Selected="@ShowRsi">
+                    <IgbIcon IconName="show_chart" Collection="@FintechDockManagerIcons.Collection" aria-hidden="true"></IgbIcon>
+                    <span>RSI</span>
+                </IgbToggleButton>
+            </IgbButtonGroup>
+        </div>
+
+        @* Ordinal rather than Time: a time scale would leave a two-day hole at every weekend the daily
+           windows skip. The chart paints to a canvas and takes resolved colours, one set per theme. *@
+        <div class="chart-area" data-fintech-chart="@Series.ContentId">
+            <IgbFinancialChart Width="100%" Height="100%"
+                               ChartType="ChartType"
+                               VolumeType="@(ShowVolume ? FinancialChartVolumeType.Column : FinancialChartVolumeType.None)"
+                               XAxisMode="FinancialChartXAxisMode.Ordinal"
+                               XAxisLabelBottomMargin="14"
+                               ZoomSliderType="FinancialChartZoomSliderType.None"
+                               IsToolbarVisible="false"
+                               Brushes="@Palette.Up"
+                               Outlines="@Palette.Up"
+                               NegativeBrushes="@Palette.Down"
+                               NegativeOutlines="@Palette.Down"
+                               XAxisLabelTextColor="@Palette.Label"
+                               YAxisLabelTextColor="@Palette.Label"
+                               XAxisMajorStroke="@Palette.Gridline"
+                               YAxisMajorStroke="@Palette.Gridline"
+                               FinalValueAnnotationsTextColor="@Palette.AnnotationText"
+                               CrosshairsAnnotationXAxisBackground="@Palette.AxisChipBackground"
+                               CrosshairsAnnotationXAxisTextColor="@Palette.AxisChipText"
+                               CrosshairsAnnotationYAxisTextColor="@Palette.AnnotationText"
+                               ToolTipType="ToolTipType.Data"
+                               DataToolTipHeaderTextColor="@Palette.TooltipText"
+                               DataToolTipTitleTextColor="@Palette.TooltipText"
+                               DataToolTipLabelTextColor="@Palette.Label"
+                               DataToolTipValueTextColor="@Palette.TooltipText"
+                               DataToolTipHeaderTextFontFamily="@TooltipFont"
+                               DataToolTipHeaderTextFontSize="11"
+                               DataToolTipHeaderTextFontWeight="700"
+                               DataToolTipTitleTextFontFamily="@TooltipFont"
+                               DataToolTipTitleTextFontSize="11"
+                               DataToolTipTitleTextFontWeight="700"
+                               DataToolTipLabelTextFontFamily="@TooltipFont"
+                               DataToolTipLabelTextFontSize="11"
+                               DataToolTipValueTextFontFamily="@TooltipFont"
+                               DataToolTipValueTextFontSize="11" />
+        </div>
+    </div>
+</div>
+
+@code {
+    /// <summary>
+    /// Chart colours per theme: literal copies of the desk palette (index.css), because the chart
+    /// paints to a canvas and cannot read a var(). Success and error for the series, gray-700 for the
+    /// axis labels, the hairline for the gridlines, gray-100/300/900 for the tooltip.
+    /// </summary>
+    private class ChartPalette
+    {
+        public string Up { get; init; }
+        public string Down { get; init; }
+        public string Label { get; init; }
+        public string Gridline { get; init; }
+        public string TooltipText { get; init; }
+
+        // The badges the engine paints in the series brush (the final value on each axis and the
+        // crosshair's price bubble) contrast with the brush, not with the desk.
+        public string AnnotationText { get; init; }
+
+        // The crosshair's time bubble is not brushed by the engine, so it is stated as a neutral chip.
+        public string AxisChipBackground { get; init; }
+        public string AxisChipText { get; init; }
+    }
+
+    private static readonly ChartPalette DarkPalette = new ChartPalette
+    {
+        Up = "#34d399",
+        Down = "#ff4d6a",
+        Label = "#7a93b5",
+        Gridline = "#1e2d44",
+        TooltipText = "#e2e8f0",
+        AnnotationText = "#0a0d14",
+        AxisChipBackground = "#273d58",
+        AxisChipText = "#e2e8f0",
+    };
+
+    private static readonly ChartPalette LightPalette = new ChartPalette
+    {
+        Up = "#147b55",
+        Down = "#a60722",
+        Label = "#646a78",
+        Gridline = "#eeeff2",
+        TooltipText = "#212936",
+        AnnotationText = "#ffffff",
+        AxisChipBackground = "#cad0d8",
+        AxisChipText = "#212936",
+    };
+
+    private static readonly FinancialChartType[] ChartTypes =
+    {
+        FinancialChartType.Candle, FinancialChartType.Line, FinancialChartType.Column, FinancialChartType.Bar,
+    };
+
+    // The desk's own 11px type for the tooltip rather than the chart package's default.
+    private const string TooltipFont = "'DM Sans', sans-serif";
+
+    [Parameter]
+    public string Symbol { get; set; }
+
+    private FintechDockManagerChartSeries Series;
+    private FinancialChartType ChartType = FinancialChartType.Line;
+    private bool ShowVolume = true;
+    private bool ShowRsi;
+    private int RangeRevision;
+    private bool HasNewData = true;
+    private bool HasNewStudies;
+
+    private ChartPalette Palette => Desk.IsDark ? DarkPalette : LightPalette;
+
+    protected override FintechDockManagerChange WatchedChanges => FintechDockManagerChange.Theme;
+
+    protected override void OnInitialized()
+    {
+        Series = new FintechDockManagerChartSeries(Symbol);
+        Series.Rebuild(FintechDockManagerPriceHistory.Ranges[0], Desk.Market.QuoteOf(Symbol)?.LastPrice, Desk.NowMs, Desk.UtcOffsetMinutes);
+        Desk.RegisterChart(Series);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        try
+        {
+            if (HasNewData)
+            {
+                HasNewData = false;
+                await JS.InvokeVoidAsync("fintechDockManagerSetChartData", Series.ContentId, FintechDockManagerDesk.SerializeCandles(Series.Data));
+            }
+
+            if (HasNewStudies)
+            {
+                HasNewStudies = false;
+                await JS.InvokeVoidAsync("fintechDockManagerSetChartStudies", Series.ContentId, ShowRsi);
+            }
+        }
+        catch (JSException)
+        {
+            // events.js is not on the page: the chart stays empty.
+        }
+        catch (JSDisconnectedException)
+        {
+        }
+    }
+
+    // A window implies an interval: the series is rebuilt for it, and the chart handed the new window.
+    private void OnRangeSelected(IgbComponentValueChangedEventArgs e)
+    {
+        if (!int.TryParse(e.Detail?.ToString(), out var index) || index < 0 || index >= FintechDockManagerPriceHistory.Ranges.Count)
+        {
+            return;
+        }
+
+        var spec = FintechDockManagerPriceHistory.Ranges[index];
+        if (spec == Series.Spec)
+        {
+            return;
+        }
+
+        Series.Rebuild(spec, Desk.Market.QuoteOf(Symbol)?.LastPrice, Desk.NowMs, Desk.UtcOffsetMinutes);
+        RangeRevision++;
+        HasNewData = true;
+    }
+
+    private void OnChartTypeSelected(IgbComponentValueChangedEventArgs e)
+    {
+        if (Enum.TryParse<FinancialChartType>(e.Detail?.ToString(), out var type))
+        {
+            ChartType = type;
+        }
+    }
+
+    private void OnStudySelected(IgbComponentValueChangedEventArgs e) => SetStudy(e.Detail?.ToString(), true);
+
+    private void OnStudyDeselected(IgbComponentValueChangedEventArgs e) => SetStudy(e.Detail?.ToString(), false);
+
+    private void SetStudy(string study, bool selected)
+    {
+        if (study == "volume")
+        {
+            ShowVolume = selected;
+        }
+        else if (study == "rsi" && ShowRsi != selected)
+        {
+            ShowRsi = selected;
+            HasNewStudies = true;
+        }
+    }
+
+    public override void Dispose()
+    {
+        base.Dispose();
+        Desk.UnregisterChart(Series);
+    }
+}

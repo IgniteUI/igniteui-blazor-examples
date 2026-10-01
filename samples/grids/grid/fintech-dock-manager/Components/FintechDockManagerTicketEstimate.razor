@@ -1,0 +1,27 @@
+@namespace Infragistics.Samples
+@inherits FintechDockManagerTicketPart
+
+@* Notional, commission and total against the buying power that remains. *@
+<dl class="estimate">
+    <div class="estimate-row">
+        <dt>Notional</dt>
+        <dd class="mono">@FintechDockManagerFormat.Money(Estimate.Notional)</dd>
+    </div>
+    <div class="estimate-row">
+        <dt>Commission</dt>
+        <dd class="mono">@FintechDockManagerFormat.Money(Estimate.Commission)</dd>
+    </div>
+    <div class="estimate-row total">
+        <dt>Est. total</dt>
+        <dd class="mono">@FintechDockManagerFormat.Money(Estimate.Total)</dd>
+    </div>
+    <div class="estimate-row muted">
+        <dt>Buying power</dt>
+        <dd class="mono">@FintechDockManagerFormat.Money(Desk.Trading.BuyingPower)</dd>
+    </div>
+</dl>
+
+@code {
+    private (double Notional, double Commission, double Total) Estimate =>
+        Model.Estimate(Desk.Market.QuoteOf(Desk.SelectedSymbol), Desk.TicketSide);
+}

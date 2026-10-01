@@ -1,0 +1,188 @@
+@namespace Infragistics.Samples
+@inherits FintechDockManagerPaneBase
+@using IgniteUI.Blazor.Controls
+
+<div class="pane ticket-pane">
+    <div class="ticket">
+        <header class="ticket-header">
+            <div class="ticket-id">
+                <span class="ticket-symbol">@Desk.SelectedSymbol</span>
+                <span class="ticket-name">@Quote?.Name</span>
+            </div>
+            @if (HeldQuantity > 0)
+            {
+                <div class="held-badge" aria-label="@HeldLabel">@(FintechDockManagerFormat.InputNumber(HeldQuantity) + " held")</div>
+            }
+        </header>
+
+        <FintechDockManagerTicketLadder Desk="Desk" Model="Model" />
+
+        @* A single-choice group, not two toggles: the ticket always has a side. *@
+        <IgbButtonGroup class="bs-toggle" Selection="ButtonGroupSelection.SingleRequired" aria-label="Order side" Select="OnSideSelected">
+            <IgbToggleButton class="bs-btn bs-buy" Value="@FintechDockManagerOrderTerms.Buy" Selected="@(Desk.TicketSide == FintechDockManagerOrderTerms.Buy)">Buy</IgbToggleButton>
+            <IgbToggleButton class="bs-btn bs-sell" Value="@FintechDockManagerOrderTerms.Sell" Selected="@(Desk.TicketSide == FintechDockManagerOrderTerms.Sell)">Sell</IgbToggleButton>
+        </IgbButtonGroup>
+
+        @* novalidate: the form's own rules (FintechDockManagerTicketModel.IsValid) decide what can be sent,
+           and the engine rejects the rest with a reason, as the Angular reactive form does. Native
+           validation would block a fractional quantity silently instead. *@
+        <form class="ticket-form" novalidate @onsubmit="Submit">
+            <div class="inline-row">
+                <div class="form-row">
+                    <FintechDockManagerTicketField Model="Model" Field="@FintechDockManagerTicketModel.QuantityField" InputId="fintech-dock-manager-ticket-quantity"
+                                                   Label="Quantity" Min="1" Step="1" />
+                </div>
+
+                <div class="form-row">
+                    <IgbSelect class="form-field" Label="Order type" Placeholder="Select type" Value="@Model.Type" ValueChanged="OnTypeChanged">
+                        @foreach (var type in FintechDockManagerOrderTerms.OrderTypes)
+                        {
+                            <IgbSelectItem Value="@type">@type</IgbSelectItem>
+                        }
+                    </IgbSelect>
+                </div>
+            </div>
+
+            <FintechDockManagerTicketSizes Desk="Desk" Model="Model" />
+
+            <div class="inline-row">
+                @if (Model.NeedsLimitPrice)
+                {
+                    <div class="form-row">
+                        <FintechDockManagerTicketField Model="Model" Field="@FintechDockManagerTicketModel.LimitField" InputId="fintech-dock-manager-ticket-limit"
+                                                       Label="Limit price" Money="true" Min="0.01" Step="0.01" />
+                    </div>
+                }
+
+                @if (Model.NeedsStopPrice)
+                {
+                    <div class="form-row">
+                        <FintechDockManagerTicketField @key="Model.IsTrailing" Model="Model" Field="@FintechDockManagerTicketModel.StopField" InputId="fintech-dock-manager-ticket-stop"
+                                                       Label="@(Model.IsTrailing ? "Trail amount" : "Stop price")" Money="true" Min="0.01" Step="0.01" />
+                    </div>
+                }
+
+                <div class="form-row tif-row">
+                    <IgbSelect class="form-field" Label="Time in force" Placeholder="TIF" Value="@Model.TimeInForce" ValueChanged="OnTimeInForceChanged">
+                        @foreach (var tif in FintechDockManagerOrderTerms.TimesInForce)
+                        {
+                            <IgbSelectItem Value="@tif">@tif</IgbSelectItem>
+                        }
+                    </IgbSelect>
+                </div>
+            </div>
+
+            <FintechDockManagerTicketEstimate Desk="Desk" Model="Model" />
+
+            @if (Model.Rejection != null)
+            {
+                <p class="ticket-error" role="alert">
+                    <IgbIcon IconName="error_outline" Collection="@FintechDockManagerIcons.Collection" aria-hidden="true"></IgbIcon>
+                    @Model.Rejection
+                </p>
+            }
+
+            @* The form closes on the button's line: the samples browser's lint would rewrite a lone closing form tag. *@
+
+            <IgbButton class="@SubmitClass" Variant="ButtonVariant.Contained" DisplayType="ButtonBaseType.Submit" Disabled="@(!CanSubmit)">@SubmitLabel</IgbButton></form>
+
+        <IgbSnackbar @ref="Snackbar" class="ticket-snackbar" DisplayTime="3200">@SnackMessage</IgbSnackbar>
+    </div>
+</div>
+
+@code {
+    private readonly FintechDockManagerTicketModel Model = new FintechDockManagerTicketModel();
+    private IgbSnackbar Snackbar;
+    private string SnackMessage = "";
+    private bool HasPendingSnack;
+    private string SeededSymbol;
+
+    protected override FintechDockManagerChange WatchedChanges =>
+        FintechDockManagerChange.Selection | FintechDockManagerChange.Ticket | FintechDockManagerChange.Book | FintechDockManagerChange.Reset;
+
+    private FintechDockManagerQuote Quote => Desk.Market.QuoteOf(Desk.SelectedSymbol);
+
+    private double HeldQuantity => Desk.Trading.QuantityHeld(Desk.SelectedSymbol);
+
+    private string HeldLabel => FintechDockManagerFormat.InputNumber(HeldQuantity) + " shares currently held";
+
+    private bool CanSubmit => Model.IsValid && Quote != null;
+
+    private string SubmitLabel => (Desk.TicketSide == FintechDockManagerOrderTerms.Buy ? "Buy " : "Sell ") + Desk.SelectedSymbol;
+
+    private string SubmitClass => Desk.TicketSide == FintechDockManagerOrderTerms.Buy ? "place-btn buy-action" : "place-btn sell-action";
+
+    protected override void OnInitialized()
+    {
+        Model.Changed += OnModelChanged;
+        SeedForSymbol();
+    }
+
+    protected override void OnDeskChange(FintechDockManagerChange change) => SeedForSymbol();
+
+    // Following the selected symbol re-seeds the price fields.
+    private void SeedForSymbol()
+    {
+        if (SeededSymbol == Desk.SelectedSymbol)
+        {
+            return;
+        }
+
+        SeededSymbol = Desk.SelectedSymbol;
+        Model.SeedFor(Quote);
+    }
+
+    private void OnModelChanged() => Refresh();
+
+    private void OnSideSelected(IgbComponentValueChangedEventArgs e)
+    {
+        var side = e.Detail?.ToString();
+        if (side == FintechDockManagerOrderTerms.Buy || side == FintechDockManagerOrderTerms.Sell)
+        {
+            Desk.SetTicketSide(side);
+        }
+    }
+
+    private void OnTypeChanged(string type) => Model.SetType(type);
+
+    private void OnTimeInForceChanged(string tif) => Model.SetTimeInForce(tif);
+
+    private void Submit()
+    {
+        if (!CanSubmit)
+        {
+            return;
+        }
+
+        var result = Desk.SubmitOrder(Model.ToDraft(Desk.SelectedSymbol, Desk.TicketSide));
+        if (!result.Accepted)
+        {
+            Model.Reject(result.Reason);
+            return;
+        }
+
+        var order = result.Order;
+        var outcome = order.Status == FintechDockManagerOrderTerms.Filled
+            ? "filled at " + FintechDockManagerFormat.Fixed2(order.FillPrice ?? 0)
+            : "working (" + order.TimeInForce + ")";
+        SnackMessage = order.Id + " \u00B7 " + order.Side + " " + FintechDockManagerFormat.InputNumber(order.Quantity) + " " + order.Symbol + " \u2014 " + outcome;
+        HasPendingSnack = true;
+        Refresh();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (HasPendingSnack && Snackbar != null)
+        {
+            // Opened once its message has rendered.
+            HasPendingSnack = false;
+            await Snackbar.ShowAsync();
+        }
+    }
+
+    public override void Dispose()
+    {
+        base.Dispose();
+        Model.Changed -= OnModelChanged;
+    }
+}
