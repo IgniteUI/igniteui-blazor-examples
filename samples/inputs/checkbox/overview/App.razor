@@ -1,10 +1,83 @@
 @using IgniteUI.Blazor.Controls
 
+<div class="container sample">
+    <div class="shopping-list">
+        <IgbList class="list">
+            @foreach (var group in Groups)
+            {
+                <IgbListHeader class="group-header">
+                    <span class="group-title">@group.Title</span>
+                </IgbListHeader>
 
-<div class="container vertical">
-    <IgbCheckbox>Checkbox</IgbCheckbox>
+                @foreach (var item in group.Items)
+                {
+                    <IgbListItem class="@(item.Checked ? "shopping-item shopping-item-checked" : "shopping-item")">
+                        <IgbCheckbox slot="start" Checked="item.Checked" Change="@(args => item.Checked = args.Detail.Checked)">
+                            <span>@item.Label</span>
+                        </IgbCheckbox>
+                        <IgbIconButton slot="end" class="item-menu" Variant="IconButtonVariant.Flat"
+                                       IconName="more_vert" Collection="material" />
+                    </IgbListItem>
+                }
+            }
+        </IgbList>
+        <IgbButton class="add-item" Variant="ButtonVariant.Fab">
+            <IgbIcon @ref="IconRef" IconName="add" Collection="material" />
+        </IgbButton>
+    </div>
 </div>
 
 @code {
+    private const string MoreVertIcon = "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z'/></svg>";
+    private const string AddIcon = "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z'/></svg>";
 
+    private IgbIcon IconRef;
+
+    private class ShoppingItem
+    {
+        public string Label { get; set; }
+        public bool Checked { get; set; }
+    }
+
+    private class ShoppingGroup
+    {
+        public string Title { get; set; }
+        public List<ShoppingItem> Items { get; set; }
+    }
+
+    private List<ShoppingGroup> Groups { get; set; } = new List<ShoppingGroup>
+    {
+        new ShoppingGroup
+        {
+            Title = "Grocery store",
+            Items = new List<ShoppingItem>
+            {
+                new ShoppingItem { Label = "Bread", Checked = false },
+                new ShoppingItem { Label = "Milk 4l", Checked = false },
+                new ShoppingItem { Label = "Eggs 1 pack", Checked = true },
+            }
+        },
+        new ShoppingGroup
+        {
+            Title = "Fruit and vegetable shop",
+            Items = new List<ShoppingItem>
+            {
+                new ShoppingItem { Label = "Strawberries", Checked = false },
+                new ShoppingItem { Label = "Lemons", Checked = false },
+                new ShoppingItem { Label = "Single Line Item", Checked = true },
+            }
+        }
+    };
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender && IconRef != null)
+        {
+            IconRef.EnsureReady().ContinueWith(_ =>
+            {
+                IconRef.RegisterIconFromText("more_vert", MoreVertIcon, "material");
+                IconRef.RegisterIconFromText("add", AddIcon, "material");
+            });
+        }
+    }
 }

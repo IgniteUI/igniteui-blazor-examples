@@ -1,10 +1,59 @@
 @using IgniteUI.Blazor.Controls
 
+<div class="container sample">
+    <div class="team-card">
+        <p class="team-title">Team members</p>
 
-<div class="container vertical">
-    <IgbCheckbox Checked=true>Label</IgbCheckbox>
+        <IgbCheckbox class="select-all"
+                     LabelPosition="ToggleLabelPosition.Before"
+                     Checked="AllSelected"
+                     Indeterminate="SomeSelected && !AllSelected"
+                     Change="OnSelectAllChange">
+            <span>Select all</span>
+        </IgbCheckbox>
+
+        <IgbList class="members">
+            @foreach (var member in Members)
+            {
+                <IgbListItem class="@(member.Selected ? "member member-selected" : "member")">
+                    <IgbAvatar slot="start" Src="@member.Avatar" Shape="AvatarShape.Circle" Alt="@member.Name" />
+                    <span slot="title" class="member-name">@member.Name</span>
+                    <span slot="subtitle" class="member-email">@member.Email</span>
+                    <IgbCheckbox slot="end" class="member-check"
+                                 aria-label="@member.Name"
+                                 Checked="member.Selected"
+                                 Change="@(args => member.Selected = args.Detail.Checked)" />
+                </IgbListItem>
+            }
+        </IgbList>
+
+        <IgbButton class="continue-button" Variant="ButtonVariant.Contained">Continue</IgbButton>
+    </div>
 </div>
 
 @code {
+    private class TeamMember
+    {
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Avatar { get; set; }
+        public bool Selected { get; set; }
+    }
 
+    private List<TeamMember> Members { get; set; } = new List<TeamMember>
+    {
+        new TeamMember { Name = "Emily Potter", Email = "emily@team.com", Avatar = "https://dl.infragistics.com/x/img/avatars/avatar-profile-06.png", Selected = false },
+        new TeamMember { Name = "Alex Lima", Email = "alex@team.com", Avatar = "https://dl.infragistics.com/x/img/avatars/avatar-profile-05.png", Selected = true },
+        new TeamMember { Name = "Mateo García", Email = "mateo@team.com", Avatar = "https://dl.infragistics.com/x/img/avatars/avatar-profile-07.png", Selected = false },
+        new TeamMember { Name = "Kate Roberts", Email = "kate@team.com", Avatar = "https://dl.infragistics.com/x/img/avatars/avatar-profile-08.png", Selected = false },
+    };
+
+    private bool AllSelected => this.Members.TrueForAll(m => m.Selected);
+
+    private bool SomeSelected => this.Members.Exists(m => m.Selected);
+
+    private void OnSelectAllChange(IgbCheckboxChangeEventArgs args)
+    {
+        this.Members.ForEach(m => m.Selected = args.Detail.Checked);
+    }
 }
