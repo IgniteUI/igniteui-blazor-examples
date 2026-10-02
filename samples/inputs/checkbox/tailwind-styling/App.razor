@@ -3,16 +3,16 @@
 <div class="container sample flex items-center justify-center">
     <div class="flex w-[218px] flex-col rounded-2xl border-[1px] border-solid border-[var(--color-filter-primary)] bg-white p-[7px] [--ig-font-family:aktiv-grotesk,sans-serif]">
         <IgbAccordion class="flex flex-col divide-y divide-[var(--color-filter-divider)] pb-2">
-            @foreach (var section in Sections)
+            @foreach (var filterSection in Sections)
             {
                 <IgbExpansionPanel class="my-0 [--ig-expansion-panel-body-background:transparent] [--ig-expansion-panel-header-background:transparent] [--ig-expansion-panel-header-icon-color:var(--color-filter-ink)]"
                                    IndicatorPosition="ExpansionPanelIndicatorPosition.End"
-                                   Open="section.Open"
-                                   Opened="@(args => section.Open = true)"
-                                   Closed="@(args => section.Open = false)">
-                    <span class="pb-2 text-base font-bold leading-5 text-[var(--color-filter-title)]" slot="title">@section.Title</span>
+                                   Open="filterSection.Open"
+                                   Opened="@(args => filterSection.Open = true)"
+                                   Closed="@(args => filterSection.Open = false)">
+                    <span class="pb-2 text-base font-bold leading-5 text-[var(--color-filter-title)]" slot="title">@filterSection.Title</span>
                     <div class="-mx-2 -my-4 flex flex-col">
-                        @foreach (var option in section.Options)
+                        @foreach (var option in filterSection.Options)
                         {
                             <IgbCheckbox class="filter-option [--ig-checkbox-border-radius:0.125rem] [--ig-checkbox-empty-color-hover:var(--color-filter-primary)] [--ig-checkbox-empty-color:var(--color-filter-empty)] [--ig-checkbox-fill-color-hover:var(--color-filter-primary)] [--ig-checkbox-fill-color:var(--color-filter-primary)] [--ig-checkbox-label-color-hover:var(--color-filter-ink)] [--ig-checkbox-label-color:var(--color-filter-ink)] [--ig-checkbox-tick-color-hover:#fff] [--ig-checkbox-tick-color:#fff]"
                                          Checked="option.Checked"
