@@ -1,11 +1,12 @@
 @using IgniteUI.Blazor.Controls
 
+
 <div class="badge-outlined">
     <div class="outlined-example">
         <div class="icon-circle">
             <IgbIcon @ref="iconRef" IconName="favorite_border" Collection="material" />
         </div>
-        <IgbBadge Variant="@StyleVariant.Info" Outlined="true" class="badge-info-blue">23</IgbBadge>
+        <IgbBadge Variant="@StyleVariant.Info" Outlined="true">23</IgbBadge>
     </div>
     <div class="outlined-example">
         <IgbAvatar Initials="AZ" Shape="AvatarShape.Rounded" />
@@ -13,28 +14,19 @@
             <IgbIcon IconName="close" Collection="material" />
         </IgbBadge>
     </div>
-    <div class="steps">
-        <div class="step">
-            <div class="step-marker">
-                <span class="step-circle">1</span>
-            </div>
-            <span class="step-label">Orders</span>
-        </div>
-        <span class="step-connector"></span>
-        <div class="step">
-            <div class="step-marker">
-                <span class="step-circle">2</span>
-                <IgbBadge Dot="true" Variant="@StyleVariant.Info" Outlined="true" class="payment-dot-blue" />
-            </div>
-            <span class="step-label">Payment</span>
-        </div>
-        <span class="step-connector pending"></span>
-        <div class="step">
-            <div class="step-marker">
-                <span class="step-circle pending">3</span>
-            </div>
-            <span class="step-label">Shipping</span>
-        </div>
+    <div class="stepper-wrapper">
+        <IgbStepper class="steps" Orientation="@StepperOrientation.Horizontal">
+            <IgbStep Complete="true">
+                <span slot="title">Orders</span>
+            </IgbStep>
+            <IgbStep Active="true">
+                <span slot="title">Payment</span>
+            </IgbStep>
+            <IgbStep>
+                <span slot="title">Shipping</span>
+            </IgbStep>
+        </IgbStepper>
+        <IgbBadge class="flagged-badge" Dot="true" Variant="@StyleVariant.Info" Outlined="true" />
     </div>
 </div>
 
@@ -43,16 +35,18 @@
     private const string CloseIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>";
 
     private IgbIcon iconRef;
-
     protected override void OnAfterRender(bool firstRender)
     {
-        if (firstRender && iconRef != null)
+        if (firstRender)
         {
-            iconRef.EnsureReady().ContinueWith(_ =>
+            if (iconRef != null)
             {
-                iconRef.RegisterIconFromText("favorite_border", FavoriteBorderIcon, "material");
-                iconRef.RegisterIconFromText("close", CloseIcon, "material");
-            });
+                iconRef.EnsureReady().ContinueWith(_ =>
+                {
+                    iconRef.RegisterIconFromText("favorite_border", FavoriteBorderIcon, "material");
+                    iconRef.RegisterIconFromText("close", CloseIcon, "material");
+                });
+            }
         }
     }
 }

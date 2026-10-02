@@ -1,194 +1,167 @@
-﻿@using IgniteUI.Blazor.Controls
+@using IgniteUI.Blazor.Controls
 
+<div class="accordion-sample">
+    <div class="accordion-content">
+        <IgbAccordion>
+            <IgbExpansionPanel Open>
+                <span slot="title">@TransportationTitle</span>
+                <span slot="subtitle">Choose how you want to travel</span>
+                <span>
+                    <p class="panel-description">Select one or more transportation options for your trip.</p>
+                    <div class="categories-container">
+                        @foreach (var category in Categories)
+                        {
+                            <IgbCheckbox class="category-option" Value="@category.Id" Checked="@category.Selected" Change="OnCategoryChange">@category.Label</IgbCheckbox>
+                        }
+                    </div>
+                </span>
+            </IgbExpansionPanel>
 
-<style>
-    igc-accordion {
-        width: 100%;
-    }
+            <IgbExpansionPanel>
+                <span slot="title">Budget: $@SliderLower - $@SliderUpper</span>
+                <span slot="subtitle">Set the price range</span>
+                <span>
+                    <p class="panel-description">Adjust the minimum and maximum cost for available options.</p>
+                    <div class="range-summary">
+                        <span>$@SliderLower</span>
+                        <span>$@SliderUpper</span>
+                    </div>
+                    <IgbRangeSlider class="cost-slider" Min="0" Max="1000" Lower="@SliderLower" Upper="@SliderUpper" Change="OnSliderChange"></IgbRangeSlider>
+                </span>
+            </IgbExpansionPanel>
 
-    .sample-wrapper {
-        overflow-y: auto;
-        max-height: 530px;
-        margin: 8px;
-    }
+            <IgbExpansionPanel>
+                <span slot="title">@RatingTitle</span>
+                <span slot="subtitle">Filter by review score</span>
+                <span>
+                    <p class="panel-description">Choose the lowest rating you want to include in the results.</p>
+                    <IgbRadioGroup class="rating-options">
+                        @foreach (var rating in Ratings)
+                        {
+                            <IgbRadio class="rating-option" name="rating" Value="@rating.Id" Change="OnRadioChange">
+                                <IgbRating Label="@rating.Label" Value="@rating.Value" Max="5" class="rating-control size-small" ReadOnly="true"></IgbRating>
+                            </IgbRadio>
+                        }
+                    </IgbRadioGroup>
+                </span>
+            </IgbExpansionPanel>
 
-    igc-range-slider {
-        margin: 24px;
-    }
+            <IgbExpansionPanel>
+                <span slot="title">@ArrivalTimeTitle</span>
+                <span slot="subtitle">Set the latest arrival time</span>
+                <span>
+                    <p class="panel-description">Pick the latest acceptable arrival time for your trip.</p>
+                    <IgbDateTimeInput @ref="DateTimeInputRef" InputFormat="hh:mm tt" Label="Arrive before" class="time-input size-small" Change="OnTimeChange">
+                        <IgbIcon IconName="clock" Collection="material" slot="prefix"></IgbIcon>
+                        <IgbIcon IconName="clear" Collection="material" slot="suffix" @onclick="OnTimeClear"></IgbIcon>
+                    </IgbDateTimeInput>
+                </span>
+            </IgbExpansionPanel>
+        </IgbAccordion>
 
-    .categories-container {
-        display: flex;
-        flex-flow: column nowrap;
-    }
-
-    igc-checkbox,
-    igc-radio {
-        margin: 4px 0;
-    }
-
-    igc-expansion-panel {
-        border: 1px solid rgba(174, 174, 174, 0.25);
-    }
-
-    igc-rating {
-        flex-direction: row;
-    }
-</style>
-
-<div class="container vertical scrollable">
-    <IgbAccordion>
-        <IgbExpansionPanel>
-            <span slot="title" id="categories">@CategoryTitle</span>
-            <div class="categories-container">
-                @foreach (var category in Categories)
-                {
-                    <IgbCheckbox Value="@category.Id" Checked="@category.Selected" Change="OnCategoryChange">@category.Label</IgbCheckbox>
-                }
-            </div>
-        </IgbExpansionPanel>
-        <IgbExpansionPanel>
-            <span slot="title">Cost: $<span id="lowerCost">@SliderLower</span> to $<span id="upperCost">@SliderUpper</span></span>
-            <IgbRangeSlider Min="0" Max="1000" Lower="@SliderLower" Upper="@SliderUpper" Change="OnSliderChange"></IgbRangeSlider>
-        </IgbExpansionPanel>
-        <IgbExpansionPanel>
-            <span slot="title" id="rating">@RatingTitle</span>
-            <IgbRadioGroup>
-                @foreach (var rating in Ratings)
-                {
-                    <IgbRadio name="rating" Value="@rating.Id" Change="OnRadioChange">
-                        <IgbRating Label="@rating.Label" Value="@rating.Value" Max="5" class="size-small" ReadOnly="true"></IgbRating>
-                    </IgbRadio>
-                }
-            </IgbRadioGroup>
-        </IgbExpansionPanel>
-        <IgbExpansionPanel>
-            <span slot="title" id="timeTitle">@TimeTitle</span>
-            <IgbDateTimeInput @ref="DateTimeInputRef" InputFormat="hh:mm tt" Label="Arrive before" class="size-small" Change="OnTimeChange">
-                <IgbIcon IconName="clock" Collection="material" slot="prefix"></IgbIcon>
-                <IgbIcon IconName="clear" Collection="material" slot="suffix" @onclick="OnTimeClear"></IgbIcon>
-            </IgbDateTimeInput>
-        </IgbExpansionPanel>
-    </IgbAccordion>
-
-    <IgbIcon @ref="@RegisterIconRef"/>
+        <IgbIcon @ref="RegisterIconRef" />
+    </div>
 </div>
 
 @code {
-    IgbIcon? RegisterIconRef;
+    private IgbIcon? RegisterIconRef;
+    private IgbDateTimeInput? DateTimeInputRef;
+    private double SliderLower = 200;
+    private double SliderUpper = 800;
+    private string SelectedRating = string.Empty;
+    private string ArrivalTime = "Any time";
 
-    IgbDateTimeInput? DateTimeInputRef;
+    private List<Category> Categories { get; } = [
+        new() { Id = "0", Label = "Bike" },
+        new() { Id = "1", Label = "Motorcycle" },
+        new() { Id = "2", Label = "Car" },
+        new() { Id = "3", Label = "Taxi" },
+        new() { Id = "4", Label = "Public Transport" }
+    ];
 
-    double SliderLower = 200;
-    double SliderUpper = 800;
+    private List<Rating> Ratings { get; } = [
+        new() { Id = "2", Label = "2 stars or more", Value = 2 },
+        new() { Id = "3", Label = "3 stars or more", Value = 3 },
+        new() { Id = "4", Label = "4 stars or more", Value = 4 },
+        new() { Id = "5", Label = "5 stars or more", Value = 5 }
+    ];
 
-    string CategoryTitle = "Categories";
-    List<Category> Categories = new List<Category>();
+    private string TransportationTitle => Categories.Where(category => category.Selected).Select(category => category.Label) is var selected && selected.Any()
+        ? $"Transportation: {string.Join(", ", selected)}"
+        : "Transportation";
 
-    string RatingTitle = "Rating";
-    List<Rating> Ratings = new List<Rating>();
+    private string RatingTitle => string.IsNullOrEmpty(SelectedRating) ? "Minimum Rating" : $"Minimum Rating: {SelectedRating}";
 
-    string TimeTitle = "Time";
-
-    protected override async Task OnInitializedAsync()
-    {
-        Categories.Add(new Category { Id = "0", Label = "Bike" });
-        Categories.Add(new Category { Id = "1", Label = "Motorcycle" });
-        Categories.Add(new Category { Id = "2", Label = "Car" });
-        Categories.Add(new Category { Id = "3", Label = "Taxi" });
-        Categories.Add(new Category { Id = "4", Label = "Public Transport" });
-
-        Ratings.Add(new Rating { Id = "0", Label = "1 star or more", Value = 1.5 });
-        Ratings.Add(new Rating { Id = "1", Label = "2 star or more", Value = 2.5 });
-        Ratings.Add(new Rating { Id = "2", Label = "3 star or more", Value = 3.5 });
-        Ratings.Add(new Rating { Id = "3", Label = "4 star or more", Value = 4.5 });
-    }
+    private string ArrivalTimeTitle => ArrivalTime == "Any time" ? "Arrival Time" : $"Arrival Time: {ArrivalTime}";
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender && this.RegisterIconRef != null)
+        if (firstRender && RegisterIconRef is not null)
         {
-            await this.RegisterIconRef.EnsureReady();
-            string clearIcon = "<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' width='24' height='24' viewBox='0 0 24 24'><path d='M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z' /></svg>";
-            string clockIcon = "<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' width='24' height='24' viewBox='0 0 24 24'><path d='M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z' /></svg>";
-            await this.RegisterIconRef.RegisterIconFromTextAsync("clear", clearIcon, "material");
-            await this.RegisterIconRef.RegisterIconFromTextAsync("clock", clockIcon, "material");
+            await RegisterIconRef.EnsureReady();
+            const string clearIcon = "<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' width='24' height='24' viewBox='0 0 24 24'><path d='M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z' /></svg>";
+            const string clockIcon = "<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' width='24' height='24' viewBox='0 0 24 24'><path d='M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z' /></svg>";
+            await RegisterIconRef.RegisterIconFromTextAsync("clear", clearIcon, "material");
+            await RegisterIconRef.RegisterIconFromTextAsync("clock", clockIcon, "material");
         }
     }
 
-    public void OnCategoryChange(IgbCheckboxChangeEventArgs args)
+    private void OnCategoryChange(IgbCheckboxChangeEventArgs args)
     {
-        var id = (args.Parent as IgbCheckbox).Value;
-        var category = Categories.Where(x => x.Id == id).FirstOrDefault();
-        if (category != null)
-            category.Selected = args.Detail.Checked;
-
-        UpdateCheckedCategories();
-    }
-
-    private void UpdateCheckedCategories()
-    {
-        string checkedItems = "";
-        Categories.ForEach(category =>
+        var id = (args.Parent as IgbCheckbox)?.Value;
+        var category = Categories.FirstOrDefault(item => item.Id == id);
+        if (category is not null)
         {
-            if (category.Selected)
-            {
-                checkedItems += checkedItems != "" ? ", " + category.Label : "Categories: " + category.Label;
-            }
-        });
-        CategoryTitle = checkedItems == "" ? "Categories" : checkedItems;
-        StateHasChanged();
+            category.Selected = args.Detail.Checked;
+        }
     }
 
     private void OnSliderChange(IgbRangeSliderValueEventArgs args)
     {
-        if (args.Detail != null)
+        if (args.Detail is not null)
         {
             SliderLower = args.Detail.Lower;
             SliderUpper = args.Detail.Upper;
-            StateHasChanged();
         }
     }
 
     private void OnRadioChange(IgbRadioChangeEventArgs args)
     {
-        var id = (args.Parent as IgbRadio).Value;
-        var rating = Ratings.Where(x => x.Id == id).FirstOrDefault();
-        if (rating != null)
+        var id = (args.Parent as IgbRadio)?.Value;
+        var rating = Ratings.FirstOrDefault(item => item.Id == id);
+        if (rating is not null)
         {
-            RatingTitle = "Rating: " + rating.Label;
-            StateHasChanged();
+            SelectedRating = rating.Label;
         }
     }
 
-    private async Task OnTimeChange(IgbComponentDateValueChangedEventArgs args)
+    private Task OnTimeChange(IgbComponentDateValueChangedEventArgs args)
     {
-        TimeTitle = "Time: " + (args.Parent as IgbDateTimeInput).Label + " " + args.Detail.ToShortTimeString();
-        StateHasChanged();
-
-
+        ArrivalTime = args.Detail.ToShortTimeString();
+        return Task.CompletedTask;
     }
 
     private async Task OnTimeClear()
     {
-        if (DateTimeInputRef != null)
+        if (DateTimeInputRef is not null)
         {
             await DateTimeInputRef.ClearAsync();
         }
-        TimeTitle = "Time";
-        StateHasChanged();
+
+        ArrivalTime = "Any time";
     }
 
-    public class Category
+    private sealed class Category
     {
-        public string Id { get; set; }
+        public string Id { get; init; } = string.Empty;
         public bool Selected { get; set; }
-        public string Label { get; set; }
+        public string Label { get; init; } = string.Empty;
     }
 
-    public class Rating
+    private sealed class Rating
     {
-        public string Id { get; set; }
-        public string Label { get; set; }
-        public double Value { get; set; }
+        public string Id { get; init; } = string.Empty;
+        public string Label { get; init; } = string.Empty;
+        public double Value { get; init; }
     }
 }

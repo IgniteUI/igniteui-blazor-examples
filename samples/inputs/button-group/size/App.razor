@@ -1,27 +1,27 @@
 @using IgniteUI.Blazor.Controls
 
-<link href="_content/IgniteUI.Blazor/themes/light/material.css" rel="stylesheet" />
-
-<div class="button-group-size">
-    @foreach (var size in Sizes)
-    {
-        <div class="button-group-size-item">
-            <span>@(char.ToUpperInvariant(size[0]) + size.Substring(1))</span>
-            <IgbButtonGroup style="@($"--ig-size: var(--ig-size-{size})")">
-                @foreach (var city in Cities)
-                {
-                    <IgbToggleButton Value="@city.ToLowerInvariant()">
-                        @city
-                        <IgbRipple />
-                    </IgbToggleButton>
-                }
-            </IgbButtonGroup>
-        </div>
-    }
+<div class="states-container">
+<article class="button-group-size">
+    <span class="sample-label">Small</span>
+    <IgbButtonGroup>
+        <IgbToggleButton Value="sofia">Sofia<IgbRipple /></IgbToggleButton>
+        <IgbToggleButton Value="london">London<IgbRipple /></IgbToggleButton>
+        <IgbToggleButton Value="new-york">New York<IgbRipple /></IgbToggleButton>
+    </IgbButtonGroup>
+    <span class="sample-label">Medium</span>
+    <IgbButtonGroup>
+        <IgbToggleButton Value="sofia">Sofia<IgbRipple /></IgbToggleButton>
+        <IgbToggleButton Value="london">London<IgbRipple /></IgbToggleButton>
+        <IgbToggleButton Value="new-york">New York<IgbRipple /></IgbToggleButton>
+    </IgbButtonGroup>
+    <span class="sample-label">Large</span>
+    <IgbButtonGroup>
+        <IgbToggleButton Value="sofia">Sofia<IgbRipple /></IgbToggleButton>
+        <IgbToggleButton Value="london">London<IgbRipple /></IgbToggleButton>
+        <IgbToggleButton Value="new-york">New York<IgbRipple /></IgbToggleButton>
+    </IgbButtonGroup>
+</article>
 </div>
 
 @code {
-    private static readonly string[] Cities = { "Sofia", "London", "New York" };
-
-    private static readonly string[] Sizes = { "small", "medium", "large" };
 }

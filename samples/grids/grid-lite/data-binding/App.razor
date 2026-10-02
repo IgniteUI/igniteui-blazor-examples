@@ -7,11 +7,10 @@
 
     <button class="btn btn-primary" @onclick="SwitchData">Switch Data: @(showingProducts ? "Show Users" : "Show Products")</button>
 
-    <IgbGridLite @ref="grid" Data="data" AutoGenerate="true" class="grid-lite-sample" />
+    <IgbGridLite Data="data" AutoGenerate="true" class="grid-lite-sample" />
 </div>
 
 @code {
-    private IgbGridLite<object> grid;
     private List<User> users;
     private List<ProductInfo> products;
     private List<object> data;
@@ -23,16 +22,6 @@
         users = MockDataGenerator.CreateUsers(50);
         data = products.ToList<object>();
 
-    }
-
-    protected override void OnAfterRender(bool firstRender)
-    {
-        if (firstRender)
-        {
-            grid.Data = data;
-        }
-
-        base.OnAfterRender(firstRender);
     }
 
     private async void SwitchData()

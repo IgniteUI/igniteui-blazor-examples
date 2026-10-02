@@ -1,0 +1,47 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample">
+    <div class="dashboard-card @(IsDarkMode ? "dark" : "") w-full max-w-[384px] shadow-[0_2px_6px_rgba(0,0,0,0.18)] bg-white dark:bg-[#1A314A]">
+        <div class="flex items-center justify-between gap-4 border-b border-gray-700 bg-gray-900 px-4 py-3">
+            <span class="font-sans text-[14px] font-medium leading-6 tracking-[0.1px] text-[#E6F2FF]">Dashboard</span>
+            <IgbSwitch LabelPosition="ToggleLabelPosition.Before" Checked="IsDarkMode" Change="OnDarkModeChange"
+                       class="[--track-on-color:#3B82F6] [--track-off-color:#475569] [--thumb-on-color:#FFFFFF] [--thumb-off-color:#CBD5E1] [--track-on-hover-color:#2563EB]">
+                <span class="flex items-center gap-2 font-sans text-[14px] font-medium leading-6 tracking-[0.1px] text-[#E6F2FF]">
+                    <IgbIcon @ref="iconRef" IconName="dark_mode" Collection="material" class="[--size:20px] text-[#FFD08A]" />
+                    Dark mode
+                </span>
+            </IgbSwitch>
+        </div>
+        <div class="px-4 py-3 @(IsDarkMode ? "bg-[#1A314A]" : "bg-white")">
+            <h6 class="m-0 font-sans text-[16px] font-semibold leading-6 text-gray-800 dark:text-gray-50">Revenue overview</h6>
+            <p class="m-0 mt-2 font-sans text-[14px] font-medium leading-5 tracking-[0.25px] text-gray-700 dark:text-gray-400">
+                $84,290 this month, up 12% from July.<br />
+                Your top-performing channel is Direct, driving 41% of total revenue.
+            </p>
+        </div>
+    </div>
+</div>
+
+@code {
+    private const string DarkModeIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path style='fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round' d='M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.39 5.39 0 0 1-4.4 2.26 5.4 5.4 0 0 1-5.4-5.4c0-1.81.89-3.41 2.26-4.4A9.4 9.4 0 0 0 12 3z'/></svg>";
+
+    private IgbIcon iconRef;
+
+    private bool IsDarkMode { get; set; } = true;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender && iconRef != null)
+        {
+            iconRef.EnsureReady().ContinueWith(_ =>
+            {
+                iconRef.RegisterIconFromText("dark_mode", DarkModeIcon, "material");
+            });
+        }
+    }
+
+    private void OnDarkModeChange()
+    {
+        this.IsDarkMode = !this.IsDarkMode;
+    }
+}
