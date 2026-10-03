@@ -1,0 +1,31 @@
+@namespace Infragistics.Samples
+@inherits FintechDockManagerTicketPart
+@using IgniteUI.Blazor.Controls
+
+@* Sizes are one choice, not five actions: the field holds one quantity, so the group shows which size
+   that is. Single rather than the side toggle's SingleRequired: a hand-typed size belongs to none of
+   these and leaves every button unlit. Max sizes the order to the buying power (or the position, for
+   a sell), with commission priced in. *@
+<IgbButtonGroup class="quick-qty" Selection="ButtonGroupSelection.Single" aria-label="Quick quantities" Select="OnSelected">
+    @for (var index = 0; index < Sizes.Count; index++)
+    {
+        var size = Sizes[index];
+        <IgbToggleButton class="@(size.Label == "Max" ? "qty-chip qty-max" : "qty-chip")" Value="@index.ToString()"
+                         Disabled="@size.Disabled" Selected="@(index == Selected)" title="@size.Hint"><span>@size.Label</span></IgbToggleButton>
+    }
+</IgbButtonGroup>
+
+@code {
+    private List<FintechDockManagerQuickSize> Sizes => Model.QuickSizes(Model.MaxQuantity(Desk, Desk.Market.QuoteOf(Desk.SelectedSymbol), Desk.TicketSide));
+
+    private int Selected => Model.SelectedQuickSize(Sizes);
+
+    private void OnSelected(IgbComponentValueChangedEventArgs e)
+    {
+        var sizes = Sizes;
+        if (int.TryParse(e.Detail?.ToString(), out var index) && index >= 0 && index < sizes.Count && !sizes[index].Disabled)
+        {
+            Model.SetQuantity(sizes[index].Quantity);
+        }
+    }
+}

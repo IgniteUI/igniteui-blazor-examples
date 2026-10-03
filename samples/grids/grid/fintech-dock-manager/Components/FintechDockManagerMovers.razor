@@ -1,0 +1,80 @@
+@namespace Infragistics.Samples
+@inherits FintechDockManagerPaneBase
+@using IgniteUI.Blazor.Controls
+
+@* The watchlist's movers strip: its own component, because the ranking is price-dependent and
+   re-renders on every tick, while the grid above it takes its ticks through the live patch. *@
+<section class="movers-panel" aria-label="Market movers">
+    <IgbTabs class="movers-tabs" Alignment="TabsAlignment.Justify">
+        @for (var index = 0; index < Tabs.Length; index++)
+        {
+            var tab = index;
+            <IgbTab Label="@Tabs[tab]" Selected="@(tab == ActiveTab)" SelectedChanged="(bool selected) => OnTabSelected(tab, selected)">
+                @if (tab == ActiveTab)
+                {
+                    <IgbList class="movers-list">
+                        @foreach (var mover in Movers)
+                        {
+                            var symbol = mover.Symbol;
+                            <IgbListItem class="mover-item" role="button" tabindex="0" data-fintech-activate="true" @onclick="() => Desk.FocusSymbol(symbol)">
+                                <div class="mover-row">
+                                    <span class="mover-symbol">@mover.Symbol</span>
+                                    <span class="mover-last">@FintechDockManagerFormat.Price(mover.LastPrice)</span>
+                                    <span class="@ChangeClass(mover.ChangePct)">@FintechDockManagerFormat.SignedPct(mover.ChangePct)</span>
+                                </div>
+                            </IgbListItem>
+                        }
+
+                        @if (Movers.Count == 0)
+                        {
+                            <p class="movers-empty">No symbols match the current search.</p>
+                        }
+                    </IgbList>
+                }
+            </IgbTab>
+        }
+    </IgbTabs>
+</section>
+
+@code {
+    private static readonly string[] Tabs = { "Gainers", "Losers", "Most Active" };
+
+    /// <summary>How many rows each movers tab shows.</summary>
+    private const int MoversLimit = 5;
+
+    private int ActiveTab;
+    private List<FintechDockManagerQuote> Movers = new List<FintechDockManagerQuote>();
+
+    protected override FintechDockManagerChange WatchedChanges =>
+        FintechDockManagerChange.Tick | FintechDockManagerChange.Watchlist | FintechDockManagerChange.Search | FintechDockManagerChange.Reset;
+
+    protected override void OnInitialized() => Movers = RankMovers();
+
+    protected override void OnDeskChange(FintechDockManagerChange change) => Movers = RankMovers();
+
+    private void OnTabSelected(int tab, bool selected)
+    {
+        if (selected && tab != ActiveTab)
+        {
+            ActiveTab = tab;
+            Movers = RankMovers();
+        }
+    }
+
+    // Recomputed per tick: the ordering, unlike the grid's, is price-dependent.
+    private List<FintechDockManagerQuote> RankMovers()
+    {
+        var rows = Desk.WatchlistQuotes();
+        switch (ActiveTab)
+        {
+            case 0:
+                return rows.Where(row => row.ChangePct > 0).OrderByDescending(row => row.ChangePct).Take(MoversLimit).ToList();
+            case 1:
+                return rows.Where(row => row.ChangePct < 0).OrderBy(row => row.ChangePct).Take(MoversLimit).ToList();
+            default:
+                return rows.OrderByDescending(row => row.Volume).Take(MoversLimit).ToList();
+        }
+    }
+
+    private static string ChangeClass(double value) => value >= 0 ? "mover-change pos" : "mover-change neg";
+}

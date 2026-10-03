@@ -1,0 +1,127 @@
+@namespace Infragistics.Samples
+@using IgniteUI.Blazor.Controls
+@implements IDisposable
+@inject IJSRuntime JS
+
+@* One numeric field of the order ticket. The input has no Value binding: bound, every render of the
+   field hands the input its Value again, and a render that lands a keystroke behind the typing
+   reverts it (under fast typing it did). The field is therefore the only writer of its text while
+   the trader types (the model follows it), and events.js sets the text only when the desk chooses
+   one: on first render, and for a quick size, the Bid or the Ask, a new symbol. *@
+<IgbInput id="@InputId" class="form-field" DisplayType="InputType.Number" Label="@Label"
+          Min="@Min" Step="@Step" InputOcurred="OnInput">
+    @if (Money)
+    {
+        <span slot="prefix" class="field-prefix">$</span>
+    }
+</IgbInput>
+
+@code {
+    [Parameter]
+    public FintechDockManagerTicketModel Model { get; set; }
+
+    [Parameter]
+    public string Field { get; set; }
+
+    [Parameter]
+    public string InputId { get; set; }
+
+    [Parameter]
+    public string Label { get; set; }
+
+    [Parameter]
+    public bool Money { get; set; }
+
+    [Parameter]
+    public double Min { get; set; }
+
+    [Parameter]
+    public double Step { get; set; }
+
+    private FintechDockManagerTicketModel subscribed;
+    private bool initialized;
+    private bool skipRender;
+    private bool hasPendingText = true;
+
+    public override Task SetParametersAsync(ParameterView parameters)
+    {
+        // The ticket re-renders as the form changes; the field has nothing new to draw then.
+        skipRender = initialized;
+        initialized = true;
+        return base.SetParametersAsync(parameters);
+    }
+
+    protected override void OnParametersSet()
+    {
+        if (subscribed != Model)
+        {
+            if (subscribed != null)
+            {
+                subscribed.FieldAssigned -= OnFieldAssigned;
+            }
+
+            subscribed = Model;
+            subscribed.FieldAssigned += OnFieldAssigned;
+            hasPendingText = true;
+        }
+    }
+
+    protected override bool ShouldRender()
+    {
+        if (skipRender)
+        {
+            skipRender = false;
+            return false;
+        }
+
+        return true;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!hasPendingText)
+        {
+            return;
+        }
+
+        hasPendingText = false;
+        try
+        {
+            await JS.InvokeVoidAsync("fintechDockManagerSetFieldValue", InputId, Model.TextOf(Field));
+        }
+        catch (JSException)
+        {
+        }
+        catch (JSDisconnectedException)
+        {
+        }
+    }
+
+    private void OnInput(IgbComponentValueChangedEventArgs e)
+    {
+        Model.Typed(Field, e.Detail?.ToString() ?? "");
+
+        // Set after the model: the ticket can re-render inside Typed (this callback does not run in a
+        // render batch), and that render would already have used up the skip.
+        skipRender = true;
+    }
+
+    // Text the desk chose: the element is handed it after the render this schedules.
+    private void OnFieldAssigned(string field)
+    {
+        if (field == Field)
+        {
+            hasPendingText = true;
+            skipRender = false;
+            StateHasChanged();
+        }
+    }
+
+    public void Dispose()
+    {
+        if (subscribed != null)
+        {
+            subscribed.FieldAssigned -= OnFieldAssigned;
+        }
+    }
+}

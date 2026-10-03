@@ -1,0 +1,65 @@
+@namespace Infragistics.Samples
+@inherits FintechDockManagerPaneBase
+
+@* The figure ribbon: the four indices, then the account summary, stamped four times into one track
+   that slides by one run and restarts (index.css, fintech-dock-manager-ticker-slide). The copies are
+   not redundant: it takes more than two to fill a wide bar with no blank stretch. Only the first one
+   is read out; a screen reader hears the ribbon once. *@
+<div class="ticker-track">
+    @for (var run = 0; run < TickerRuns; run++)
+    {
+        <div class="ticker-run" aria-hidden="@(run == 0 ? null : "true")">
+            @foreach (var index in Desk.Market.Indices)
+            {
+                <div class="stat">
+                    <span class="stat-label">@index.Name</span>
+                    <span class="stat-line">
+                        <span class="stat-value mono">@FintechDockManagerFormat.Price(index.Value)</span>
+                        <span class="@DeltaClass(index.Positive)">@FintechDockManagerFormat.SignedPct(index.ChangePct)</span>
+                    </span>
+                </div>
+            }
+
+            <dl class="ticker-account" aria-label="Account summary">
+                <div class="stat">
+                    <dt class="stat-label">Net liq.</dt>
+                    <dd class="stat-line"><span class="stat-value mono">@FintechDockManagerFormat.Money(Account.NetLiquidation)</span></dd>
+                </div>
+                <div class="stat">
+                    <dt class="stat-label">Day P&amp;L</dt>
+                    <dd class="stat-line"><span class="@ValueClass(Account.DayPl)">@FintechDockManagerFormat.SignedMoney(Account.DayPl)</span></dd>
+                </div>
+                <div class="stat">
+                    <dt class="stat-label">Buying power</dt>
+                    <dd class="stat-line"><span class="stat-value mono">@FintechDockManagerFormat.Money(Account.BuyingPower)</span></dd>
+                </div>
+                <div class="stat">
+                    <dt class="stat-label">Working</dt>
+                    <dd class="stat-line"><span class="stat-value mono">@Desk.Trading.WorkingCount</span></dd>
+                </div>
+            </dl>
+        </div>
+    }
+</div>
+
+@code {
+    // The same number as the track's run count in index.css; the two move together.
+    private const int TickerRuns = 4;
+
+    private FintechDockManagerAccount Account;
+
+    protected override FintechDockManagerChange WatchedChanges =>
+        FintechDockManagerChange.Tick | FintechDockManagerChange.Book | FintechDockManagerChange.Orders | FintechDockManagerChange.Reset;
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        Account = Desk.Trading.Account;
+    }
+
+    protected override void OnDeskChange(FintechDockManagerChange change) => Account = Desk.Trading.Account;
+
+    private static string DeltaClass(bool positive) => positive ? "stat-delta mono pos" : "stat-delta mono neg";
+
+    private static string ValueClass(double value) => value >= 0 ? "stat-value mono pos" : "stat-value mono neg";
+}

@@ -1,0 +1,594 @@
+@using IgniteUI.Blazor.Controls
+@using System.Text.Json
+@using System.Threading
+@implements IAsyncDisposable
+@inject IJSRuntime JS
+
+<div class="@RootClass" id="@RootId">
+    @* Signal Desk: the shell owns no trading state. It wires the Dock Manager to the desk's workspace
+       (FintechDockManagerDesk), mounts one component per pane, and renders the account and feed
+       status the desk publishes. The theme class sits on the sample root, so the dialogs and every
+       overlay the grids open stay inside the palette. *@
+    <div class="app-shell">
+        @* The pane rail is a pinned (in-flow) navigation drawer: mini by default, expanded on demand.
+           Both states render the same items. *@
+        <IgbNavDrawer class="platform-rail" Position="NavDrawerPosition.Relative" Open="@NavExpanded">
+            @RailItems(true)
+            <div slot="mini" class="rail-mini">
+                @RailItems(false)
+            </div>
+        </IgbNavDrawer>
+
+        @* Under 1024px the rail stops being pinned and floats over the desk (index.css), as the Angular
+           navigation drawer does below its pin threshold; expanded, it dims the desk, and a click on
+           the dimmed desk closes it. *@
+        @if (NavExpanded)
+        {
+            <div class="rail-backdrop" aria-hidden="true" @onclick="ToggleNav"></div>
+        }
+
+        <div class="workspace">
+            <header class="command-bar" role="banner">
+                @* Three zones, hairline-separated: who we are and what the tape is doing, then the
+                   market, then the account and its controls. *@
+                <div class="bar-zone bar-lead">
+                    <div class="brand">SignalDesk</div>
+
+                    <div class="feed-controls" role="group" aria-label="Market feed">
+                        @* The status is honest: this port has no stream-hub client, so the tape is always
+                           the local simulator, and says so (or that it is paused). *@
+                        <IgbBadge class="@FeedBadgeClass" Variant="@FeedBadgeVariant" aria-label="@FeedStatusLabel">@Desk.Market.Status</IgbBadge>
+
+                        <IgbIconButton Variant="IconButtonVariant.Flat" IconName="@(Desk.Market.IsPaused ? "play_arrow" : "pause")" Collection="@IconCollection"
+                                       aria-label="@PlaybackLabel" title="@PlaybackLabel" @onclick="TogglePlayback"></IgbIconButton>
+
+                        <IgbButtonGroup class="speed-group" Selection="ButtonGroupSelection.SingleRequired" Select="OnSpeedSelected">
+                            @foreach (var speed in FintechDockManagerMarket.Speeds)
+                            {
+                                <IgbToggleButton Value="@speed.Milliseconds.ToString()" Selected="@(Desk.Market.Frequency == speed.Milliseconds)"
+                                                 title="@SpeedTitle(speed)"><span>@speed.Label</span></IgbToggleButton>
+                            }
+                        </IgbButtonGroup>
+                    </div>
+                </div>
+
+                @* The figure ribbon: indices and account summary on one endless loop. The tabindex is
+                   what makes the pause (hover or focus) reachable without a mouse. *@
+                <div class="bar-zone bar-ticker" role="region" aria-label="Market indices and account summary &#x2014; hover or focus to pause" tabindex="0">
+                    <FintechDockManagerTicker Desk="Desk" />
+                </div>
+
+                <div class="bar-zone bar-actions">
+                    <IgbAvatar class="user-avatar" Initials="S" Shape="AvatarShape.Circle"></IgbAvatar>
+
+                    <div class="notification-controls" role="group" aria-label="Alerts">
+                        <IgbIconButton class="alert-bell" Variant="IconButtonVariant.Flat" IconName="notifications" Collection="@IconCollection"
+                                       aria-label="@BellLabel" title="Show alerts" @onclick="ShowAlertsAsync"></IgbIconButton>
+                        @if (Desk.Notifications.UnreadCount > 0)
+                        {
+                            <IgbBadge class="bell-badge" Variant="StyleVariant.Danger" aria-hidden="true">@Desk.Notifications.UnreadCount</IgbBadge>
+                        }
+                    </div>
+
+                    <IgbIconButton Variant="IconButtonVariant.Flat" IconName="@(Desk.IsDark ? "light_mode" : "dark_mode")" Collection="@IconCollection"
+                                   aria-label="@ThemeLabel" title="@ThemeLabel" @onclick="ToggleTheme"></IgbIconButton>
+                </div>
+            </header>
+
+            <div class="main-area">
+                @* No Layout parameter: events.js assigns the layouts the desk builds and reports every
+                   change back (FintechDockManagerLayoutChanged), and cancels the close of a fixed pane
+                   into a hide, which has to be decided while the event is being dispatched. *@
+                <IgbDockManager class="dock-area ig-scrollbar">
+                    <div slot="watchlist" class="pane-host"><FintechDockManagerWatchlist Desk="Desk" /></div>
+                    <div slot="orderTicket" class="pane-host"><FintechDockManagerOrderTicket Desk="Desk" /></div>
+                    <div slot="positions" class="pane-host"><FintechDockManagerPositions Desk="Desk" /></div>
+                    <div slot="blotter" class="pane-host"><FintechDockManagerBlotter Desk="Desk" /></div>
+                    <div slot="news" class="pane-host"><FintechDockManagerNews Desk="Desk" /></div>
+
+                    @* One slot per open chart document; the layout is the source of truth. *@
+                    @foreach (var symbol in Desk.ChartSymbols.Distinct())
+                    {
+                        <div @key="symbol" slot="@FintechDockManagerLayout.ChartContentId(symbol)" class="pane-host">
+                            <FintechDockManagerChartPanel Desk="Desk" Symbol="@symbol" />
+                        </div>
+                    }
+                </IgbDockManager>
+            </div>
+        </div>
+    </div>
+
+    @* The dialogs sit inside the sample root, so they keep its palette in both themes. *@
+    <div class="desk-overlay-host ig-scrollbar">
+        @* Reset throws away the session, so it asks first. *@
+        <IgbDialog @ref="ResetDialog" class="reset-dialog" Title="Reset the desk?" CloseOnOutsideClick="true" HideDefaultAction="true">
+            <p class="reset-message">The layout, watchlist, theme, book and alerts all go back to how they opened. Orders you have placed and positions you have opened are discarded.</p>
+            <IgbButton slot="footer" Variant="ButtonVariant.Flat" @onclick="CloseResetAsync">Cancel</IgbButton>
+            <IgbButton slot="footer" Variant="ButtonVariant.Contained" @onclick="ConfirmResetAsync">Reset</IgbButton>
+        </IgbDialog>
+
+        <IgbDialog @ref="AlertsDialog" class="alerts-dialog" CloseOnOutsideClick="true" HideDefaultAction="true">
+            <div slot="title" class="notifications-title">
+                <IgbIcon IconName="notifications" Collection="@IconCollection" aria-hidden="true"></IgbIcon>
+                <span>Alerts</span>
+            </div>
+            <div class="notifications-body">
+                <FintechDockManagerAlertsPanel Desk="Desk" />
+            </div>
+            <IgbButton slot="footer" Variant="ButtonVariant.Flat" @onclick="CloseAlertsAsync">Close</IgbButton>
+        </IgbDialog>
+    </div>
+</div>
+
+@code {
+    private const string RootId = "fintechDockManagerRoot";
+    private const string IconCollection = FintechDockManagerIcons.Collection;
+
+    // The grids events.js sizes and patches: watchlist, positions, blotter (the order matters).
+    private static readonly string[] GridIds =
+    {
+        FintechDockManagerWatchlist.GridId,
+        FintechDockManagerPositions.GridId,
+        FintechDockManagerBlotter.GridId,
+    };
+
+    private FintechDockManagerDesk Desk;
+    private IgbDialog ResetDialog;
+    private IgbDialog AlertsDialog;
+    private IgbIcon RailIcon;
+
+    private bool NavExpanded;
+    private bool IsDisposed;
+
+    // What events.js reports to, from fintechDockManagerConnect to fintechDockManagerDisconnect. Null
+    // while events.js is not connected: before the first render, and when the script is not on the page.
+    private IDisposable ScriptReference;
+
+    private CancellationTokenSource FeedCancellation;
+    private CancellationTokenSource TimersCancellation;
+    private int FeedLoopFrequency;
+
+    private string RootClass => "container fintech-dock-manager-sample ig-typography"
+        + (Desk.IsDark ? " dark-theme" : " light-theme")
+        + (Desk.IsConnected || ScriptMissing ? "" : " is-connecting");
+
+    private bool ScriptMissing;
+
+    private string FeedBadgeClass => "feed-status feed-" + Desk.Market.Status;
+    private StyleVariant FeedBadgeVariant => Desk.Market.IsPaused ? StyleVariant.Primary : StyleVariant.Info;
+    private string FeedStatusLabel => "Feed status: " + Desk.Market.Status;
+    private string PlaybackLabel => Desk.Market.IsPaused ? "Resume the market feed" : "Pause the market feed";
+    private string BellLabel => Desk.Notifications.UnreadCount + " unread alerts \u2014 show alerts";
+    private string ThemeLabel => Desk.IsDark ? "Switch to light mode" : "Switch to dark mode";
+
+    private static string SpeedTitle(FintechDockManagerFeedSpeed speed) => "Tick every " + speed.Milliseconds + "ms";
+
+    protected override void OnInitialized()
+    {
+        Desk = new FintechDockManagerDesk();
+        Desk.Changed += OnDeskChanged;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            return;
+        }
+
+        // events.js is connected before anything else is awaited: on Blazor Server every await is a
+        // round trip, and a component disposed during one would otherwise connect afterwards to a
+        // page that has already moved on. A disposal from here on reaches fintechDockManagerDisconnect.
+        var selfReference = DotNetObjectReference.Create(this);
+        ScriptReference = selfReference;
+        string state;
+        try
+        {
+            state = await JS.InvokeAsync<string>("fintechDockManagerConnect", RootId, selfReference, GridIds, FintechDockManagerLayout.FixedPaneIds);
+        }
+        catch (JSException)
+        {
+            // events.js is not on the page: the desk renders, but nothing is laid out or live.
+            ScriptReference = null;
+            selfReference.Dispose();
+            ScriptMissing = true;
+            StateHasChanged();
+            return;
+        }
+
+        if (IsDisposed)
+        {
+            return;
+        }
+
+        using (var document = JsonDocument.Parse(state))
+        {
+            var rootElement = document.RootElement;
+            Desk.UtcOffsetMinutes = rootElement.GetProperty("offset").GetDouble();
+            Desk.Hydrate(
+                StringOf(rootElement, "layout"),
+                StringOf(rootElement, "theme"),
+                StringOf(rootElement, "watchlist"),
+                rootElement.GetProperty("width").GetDouble(),
+                rootElement.GetProperty("height").GetDouble());
+        }
+
+        await RegisterIconsAsync();
+
+        StartTimers();
+        StartFeed();
+    }
+
+    private static string StringOf(JsonElement element, string name)
+    {
+        var value = element.GetProperty(name);
+        return value.ValueKind == JsonValueKind.String ? value.GetString() : null;
+    }
+
+    private async Task RegisterIconsAsync()
+    {
+        var icon = RailIcon;
+        if (icon == null || IsDisposed)
+        {
+            return;
+        }
+
+        await icon.EnsureReady();
+        var registrations = FintechDockManagerIcons.Svgs
+            .Select(entry => icon.RegisterIconFromTextAsync(entry.Key, entry.Value, IconCollection))
+            .ToList();
+        await Task.WhenAll(registrations);
+    }
+
+    // Desk changes -------------------------------------------------------------------------------------
+
+    private const FintechDockManagerChange ShellChanges =
+        FintechDockManagerChange.Layout | FintechDockManagerChange.Theme | FintechDockManagerChange.Feed |
+        FintechDockManagerChange.Alerts | FintechDockManagerChange.Reset;
+
+    private void OnDeskChanged(FintechDockManagerChange change)
+    {
+        if (IsDisposed)
+        {
+            return;
+        }
+
+        if ((change & FintechDockManagerChange.Feed) != 0)
+        {
+            SyncFeed();
+        }
+
+        if ((change & ShellChanges) != 0)
+        {
+            StateHasChanged();
+        }
+
+        if (ScriptReference != null && (Desk.PendingLayout != null || (change & (FintechDockManagerChange.Theme | FintechDockManagerChange.Watchlist | FintechDockManagerChange.Reset)) != 0))
+        {
+            _ = FlushToScriptAsync();
+        }
+    }
+
+    // Sends a layout the desk built to the Dock Manager, and the theme and watchlist to localStorage.
+    private async Task FlushToScriptAsync()
+    {
+        try
+        {
+            var layout = Desk.TakePendingLayout();
+            if (layout != null)
+            {
+                await JS.InvokeVoidAsync("fintechDockManagerApplyLayout", layout);
+            }
+
+            foreach (var entry in Desk.TakePendingStores())
+            {
+                if (IsDisposed)
+                {
+                    return;
+                }
+
+                await JS.InvokeVoidAsync("fintechDockManagerStore", entry.Key, entry.Value);
+            }
+        }
+        catch (JSDisconnectedException)
+        {
+        }
+        catch (JSException)
+        {
+        }
+    }
+
+    // Command bar -------------------------------------------------------------------------------------
+
+    private void TogglePlayback() => Desk.TogglePlayback();
+
+    private void OnSpeedSelected(IgbComponentValueChangedEventArgs e)
+    {
+        if (int.TryParse(e.Detail?.ToString(), out var milliseconds) && FintechDockManagerMarket.Speeds.Any(speed => speed.Milliseconds == milliseconds))
+        {
+            Desk.SetFrequency(milliseconds);
+        }
+    }
+
+    private void ToggleTheme() => Desk.ToggleTheme();
+
+    private void ToggleNav() => NavExpanded = !NavExpanded;
+
+    private void TogglePane(string id) => Desk.TogglePane(id);
+
+    // Alerts open in a dialog rather than a pane, and opening it is what marks them read.
+    private async Task ShowAlertsAsync()
+    {
+        Desk.MarkAlertsRead();
+        await AlertsDialog.ShowAsync();
+    }
+
+    private Task CloseAlertsAsync() => AlertsDialog.HideAsync();
+
+    // Reset discards the whole session (the book and the blotter included), so the rail asks first.
+    private Task ResetDeskAsync() => ResetDialog.ShowAsync();
+
+    private Task CloseResetAsync() => ResetDialog.HideAsync();
+
+    // Puts the whole sample back to how it opened: arrangement, book, tape and alerts.
+    private async Task ConfirmResetAsync()
+    {
+        await ResetDialog.HideAsync();
+
+        double width = 1440;
+        double height = 900;
+        if (ScriptReference != null)
+        {
+            try
+            {
+                using var size = JsonDocument.Parse(await JS.InvokeAsync<string>("fintechDockManagerMeasure"));
+                width = size.RootElement.GetProperty("width").GetDouble();
+                height = size.RootElement.GetProperty("height").GetDouble();
+            }
+            catch (JSException)
+            {
+            }
+        }
+
+        if (IsDisposed)
+        {
+            return;
+        }
+
+        Desk.ResetAll(width, height);
+        SyncFeed();
+    }
+
+    // JavaScript calls -------------------------------------------------------------------------------
+
+    [JSInvokable]
+    public Task FintechDockManagerLayoutChanged(string json) => InvokeAsync(() => Desk.ApplyLayout(json));
+
+    [JSInvokable]
+    public Task FintechDockManagerRowClicked(string grid, string key) => InvokeAsync(() =>
+    {
+        switch (grid)
+        {
+            case "watchlist":
+                Desk.FocusSymbol(key);
+                break;
+            case "positions":
+                Desk.SelectSymbol(key);
+                break;
+            case "blotter":
+                Desk.SelectSymbol(Desk.Trading.Orders.FirstOrDefault(order => order.Id == key)?.Symbol);
+                break;
+        }
+    });
+
+    [JSInvokable]
+    public Task FintechDockManagerRowAction(string action, string key) => InvokeAsync(() =>
+    {
+        switch (action)
+        {
+            case "remove":
+                Desk.RemoveFromWatchlist(key);
+                break;
+            case "add":
+                Desk.PrepareOrder(key, FintechDockManagerOrderTerms.Buy);
+                break;
+            case "flatten":
+                Desk.Flatten(key);
+                break;
+            case "cancel":
+                Desk.CancelOrder(key);
+                break;
+        }
+    });
+
+    [JSInvokable]
+    public Task FintechDockManagerAddSymbol(string symbol) => InvokeAsync(() =>
+    {
+        if (Desk.IsWatched(symbol))
+        {
+            return;
+        }
+
+        Desk.AddToWatchlist(symbol);
+        Desk.SelectSymbol(symbol);
+    });
+
+    [JSInvokable]
+    public Task FintechDockManagerSetBlotterFilter(string filter) => InvokeAsync(() => Desk.SetBlotterFilter(filter));
+
+    // Timers ---------------------------------------------------------------------------------------
+
+    // The feed loop follows the desk: stopped while paused, restarted when the speed changes.
+    private void SyncFeed()
+    {
+        if (ScriptReference == null)
+        {
+            return;
+        }
+
+        if (Desk.Market.IsPaused)
+        {
+            StopFeed();
+        }
+        else if (FeedCancellation == null || FeedLoopFrequency != Desk.Market.Frequency)
+        {
+            StopFeed();
+            StartFeed();
+        }
+    }
+
+    private void StartFeed()
+    {
+        if (FeedCancellation != null || Desk.Market.IsPaused || IsDisposed)
+        {
+            return;
+        }
+
+        FeedCancellation = new CancellationTokenSource();
+        FeedLoopFrequency = Desk.Market.Frequency;
+        _ = RunFeedAsync(FeedLoopFrequency, FeedCancellation.Token);
+    }
+
+    private void StopFeed()
+    {
+        FeedCancellation?.Cancel();
+        FeedCancellation?.Dispose();
+        FeedCancellation = null;
+    }
+
+    private async Task RunFeedAsync(int frequency, CancellationToken token)
+    {
+        using var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(frequency));
+        try
+        {
+            while (await timer.WaitForNextTickAsync(token))
+            {
+                // This loop's own token: a tick queued just before a quick pause and resume must not
+                // run on behalf of the new loop.
+                await InvokeAsync(() => ApplyTickAsync(token));
+            }
+        }
+        catch (OperationCanceledException)
+        {
+        }
+        catch (JSDisconnectedException)
+        {
+        }
+        catch (JSException)
+        {
+        }
+    }
+
+    private async Task ApplyTickAsync(CancellationToken token)
+    {
+        if (token.IsCancellationRequested || IsDisposed)
+        {
+            return;
+        }
+
+        // One interop call per tick, carrying JSON built in C#: events.js copies the moved rows onto
+        // new records in the grids' own arrays and applies the charts' candle changes in place.
+        var payload = Desk.AdvanceTick();
+        await JS.InvokeVoidAsync("fintechDockManagerApplyTick", payload);
+    }
+
+    private void StartTimers()
+    {
+        TimersCancellation = new CancellationTokenSource();
+        _ = RunEveryAsync(FintechDockManagerNotifications.ClockIntervalMs, () => Desk.TickClock(), TimersCancellation.Token);
+        _ = RunEveryAsync(FintechDockManagerNotifications.NewsIntervalMs, () => Desk.PublishWireItem(), TimersCancellation.Token);
+    }
+
+    private async Task RunEveryAsync(int milliseconds, Action action, CancellationToken token)
+    {
+        using var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(milliseconds));
+        try
+        {
+            while (await timer.WaitForNextTickAsync(token))
+            {
+                await InvokeAsync(() =>
+                {
+                    if (!token.IsCancellationRequested && !IsDisposed)
+                    {
+                        action();
+                    }
+                });
+            }
+        }
+        catch (OperationCanceledException)
+        {
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        IsDisposed = true;
+        StopFeed();
+        TimersCancellation?.Cancel();
+        TimersCancellation?.Dispose();
+        TimersCancellation = null;
+        Desk.Changed -= OnDeskChanged;
+
+        if (ScriptReference == null)
+        {
+            return;
+        }
+
+        try
+        {
+            // The only JS call on the way out: events.js releases the observers and listeners it holds,
+            // whether or not the render that removes the desk has reached the page yet.
+            await JS.InvokeVoidAsync("fintechDockManagerDisconnect");
+        }
+        catch (JSDisconnectedException)
+        {
+        }
+
+        ScriptReference.Dispose();
+    }
+
+    // The rail's items, rendered in the expanded drawer and in its mini state alike.
+    private RenderFragment RailItems(bool expanded) => @<text>
+        <div class="@(expanded ? "rail-head rail-head-expanded" : "rail-head")">
+            <IgbIconButton class="rail-toggle" Variant="IconButtonVariant.Flat" IconName="@(expanded ? "chevron_left" : "chevron_right")" Collection="@IconCollection"
+                           aria-expanded="@(expanded ? "true" : "false")" aria-label="@(expanded ? "Collapse the pane rail" : "Expand the pane rail")"
+                           @onclick="ToggleNav"></IgbIconButton>
+        </div>
+
+        <nav class="rail-nav" aria-label="Show or hide panes">
+            @foreach (var pane in FintechDockManagerLayout.PaneToggles)
+            {
+                var visible = Desk.VisiblePanes.Contains(pane.Id);
+                @* The row is the control: it carries the switch role and the state, and a click
+                   anywhere on it flips the pane. The switch is an indicator only, inert. *@
+                <IgbNavDrawerItem class="rail-item" Active="@visible" role="switch" tabindex="0" data-fintech-activate="true"
+                                  aria-checked="@(visible ? "true" : "false")" aria-label="@(expanded ? null : pane.Label)" title="@(expanded ? "" : pane.Label)"
+                                  @onclick="() => TogglePane(pane.Id)">
+                    <IgbIcon slot="icon" IconName="@pane.Icon" Collection="@IconCollection" aria-hidden="true"></IgbIcon>
+                    @if (expanded)
+                    {
+                        <span slot="content" class="rail-content">
+                            <span class="rail-label">@pane.Label</span>
+                            <IgbSwitch class="rail-switch" Checked="@visible" aria-hidden="true" tabindex="-1" inert></IgbSwitch>
+                        </span>
+                    }
+                </IgbNavDrawerItem>
+            }
+        </nav>
+
+        <div class="rail-footer">
+            <IgbNavDrawerItem class="rail-item" role="button" tabindex="0" data-fintech-activate="true"
+                              title="Restore the desk to its opening state" aria-label="Reset the desk" @onclick="ResetDeskAsync">
+                @if (expanded)
+                {
+                    <IgbIcon slot="icon" IconName="restart_alt" Collection="@IconCollection" aria-hidden="true"></IgbIcon>
+                    <span slot="content" class="rail-label">Reset desk</span>
+                }
+                else
+                {
+                    <IgbIcon @ref="RailIcon" slot="icon" IconName="restart_alt" Collection="@IconCollection" aria-hidden="true"></IgbIcon>
+                }
+            </IgbNavDrawerItem>
+        </div>
+    </text>;
+}

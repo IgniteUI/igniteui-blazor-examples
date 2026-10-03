@@ -1,0 +1,2062 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+
+/*
+ * Grid FinTech Dock Manager (Signal Desk): the palettes, the component themes and the layout.
+ *
+ * - The samples browser inlines this file into the sample page as a style block, so it acts as
+ *   global CSS on a page that hosts every sample: every rule is nested under
+ *   .fintech-dock-manager-sample and the keyframe names carry a fintech-dock-manager- prefix. Never
+ *   type a less-than sign in this file, not even in a comment: the inlined copy is parsed as Razor.
+ *   The command bar's container queries are written with max-width for the same reason.
+ * - The @import above must stay the first rule of the file.
+ * - Dark is the default appearance, as in the Angular sample; the light palette applies when the
+ *   sample root carries .light-theme. Both are declared on the root itself: the built-in theme
+ *   derives every shade from --ig-COLOR-500 with relative-colour formulas, and a var() inside a
+ *   custom property resolves where the property is declared, so the whole ramp is re-declared here
+ *   and follows whichever seed values the root carries. The dialogs, the grids' overlays and the
+ *   Dock Manager all render inside the root, so they follow too.
+ * - Colour comes only from the palette and a few --fintech-dock-manager-* aliases over it (the
+ *   neutral fill ladder and the hairline). The chart is the exception: it paints to a canvas and
+ *   takes resolved colours (FintechDockManagerChartPanel.razor).
+ */
+
+/* ---------------------------------------------------------------------------------------------
+ * 1. Palettes (igniteui-theming create_custom_palette, fluent: dark default, light on .light-theme)
+ * ------------------------------------------------------------------------------------------- */
+.fintech-dock-manager-sample {
+  --ig-wcag-a: 0.31;
+  --ig-wcag-aa: 0.185;
+  --ig-wcag-aaa: 0.178;
+  --ig-contrast-level: var(--ig-wcag-aa);
+  --y: clamp(0, (y / var(--ig-contrast-level) - 1) * -infinity, 1);
+  --y-contrast: xyz-d65 var(--y) var(--y) var(--y);
+
+  /* Dark seeds. */
+  --ig-primary-500: #5486cf;
+  --ig-secondary-500: #5486cf;
+  --ig-surface-500: #12121a;
+  --ig-info-500: #5486cf;
+  --ig-success-500: #34d399;
+  --ig-warn-500: #fbbf24;
+  --ig-error-500: #ce0e2f;
+
+  /* The dark gray ramp is written out: ten hand-picked blue-tinted steps, 50 the darkest. */
+  --ig-gray-50: #0a0d14;
+  --ig-gray-100: #141e2e;
+  --ig-gray-200: #1e2d44;
+  --ig-gray-300: #273d58;
+  --ig-gray-400: #34506f;
+  --ig-gray-500: #47688c;
+  --ig-gray-600: #5f80a5;
+  --ig-gray-700: #7a93b5;
+  --ig-gray-800: #a3bcd4;
+  --ig-gray-900: #e2e8f0;
+  --ig-primary-50: hsl(from var(--ig-primary-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-primary-50-contrast: hsla(from color(from var(--ig-primary-50) var(--y-contrast)) h 0 l/1);
+  --ig-primary-100: hsl(from var(--ig-primary-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-primary-100-contrast: hsla(from color(from var(--ig-primary-100) var(--y-contrast)) h 0 l/1);
+  --ig-primary-200: hsl(from var(--ig-primary-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-primary-200-contrast: hsla(from color(from var(--ig-primary-200) var(--y-contrast)) h 0 l/1);
+  --ig-primary-300: hsl(from var(--ig-primary-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-primary-300-contrast: hsla(from color(from var(--ig-primary-300) var(--y-contrast)) h 0 l/1);
+  --ig-primary-400: hsl(from var(--ig-primary-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-primary-400-contrast: hsla(from color(from var(--ig-primary-400) var(--y-contrast)) h 0 l/1);
+  --ig-primary-500-contrast: hsla(from color(from var(--ig-primary-500) var(--y-contrast)) h 0 l/1);
+  --ig-primary-600: hsl(from var(--ig-primary-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-primary-600-contrast: hsla(from color(from var(--ig-primary-600) var(--y-contrast)) h 0 l/1);
+  --ig-primary-700: hsl(from var(--ig-primary-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-primary-700-contrast: hsla(from color(from var(--ig-primary-700) var(--y-contrast)) h 0 l/1);
+  --ig-primary-800: hsl(from var(--ig-primary-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-primary-800-contrast: hsla(from color(from var(--ig-primary-800) var(--y-contrast)) h 0 l/1);
+  --ig-primary-900: hsl(from var(--ig-primary-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-primary-900-contrast: hsla(from color(from var(--ig-primary-900) var(--y-contrast)) h 0 l/1);
+  --ig-primary-A100: hsl(from var(--ig-primary-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-primary-A100-contrast: hsla(from color(from var(--ig-primary-A100) var(--y-contrast)) h 0 l/1);
+  --ig-primary-A200: hsl(from var(--ig-primary-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-primary-A200-contrast: hsla(from color(from var(--ig-primary-A200) var(--y-contrast)) h 0 l/1);
+  --ig-primary-A400: hsl(from var(--ig-primary-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-primary-A400-contrast: hsla(from color(from var(--ig-primary-A400) var(--y-contrast)) h 0 l/1);
+  --ig-primary-A700: hsl(from var(--ig-primary-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-primary-A700-contrast: hsla(from color(from var(--ig-primary-A700) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-50: hsl(from var(--ig-secondary-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-secondary-50-contrast: hsla(from color(from var(--ig-secondary-50) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-100: hsl(from var(--ig-secondary-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-secondary-100-contrast: hsla(from color(from var(--ig-secondary-100) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-200: hsl(from var(--ig-secondary-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-secondary-200-contrast: hsla(from color(from var(--ig-secondary-200) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-300: hsl(from var(--ig-secondary-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-secondary-300-contrast: hsla(from color(from var(--ig-secondary-300) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-400: hsl(from var(--ig-secondary-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-secondary-400-contrast: hsla(from color(from var(--ig-secondary-400) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-500-contrast: hsla(from color(from var(--ig-secondary-500) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-600: hsl(from var(--ig-secondary-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-secondary-600-contrast: hsla(from color(from var(--ig-secondary-600) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-700: hsl(from var(--ig-secondary-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-secondary-700-contrast: hsla(from color(from var(--ig-secondary-700) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-800: hsl(from var(--ig-secondary-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-secondary-800-contrast: hsla(from color(from var(--ig-secondary-800) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-900: hsl(from var(--ig-secondary-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-secondary-900-contrast: hsla(from color(from var(--ig-secondary-900) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-A100: hsl(from var(--ig-secondary-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-secondary-A100-contrast: hsla(from color(from var(--ig-secondary-A100) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-A200: hsl(from var(--ig-secondary-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-secondary-A200-contrast: hsla(from color(from var(--ig-secondary-A200) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-A400: hsl(from var(--ig-secondary-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-secondary-A400-contrast: hsla(from color(from var(--ig-secondary-A400) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-A700: hsl(from var(--ig-secondary-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-secondary-A700-contrast: hsla(from color(from var(--ig-secondary-A700) var(--y-contrast)) h 0 l/1);
+  --ig-surface-50: hsl(from var(--ig-surface-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-surface-50-contrast: hsla(from color(from var(--ig-surface-50) var(--y-contrast)) h 0 l/1);
+  --ig-surface-100: hsl(from var(--ig-surface-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-surface-100-contrast: hsla(from color(from var(--ig-surface-100) var(--y-contrast)) h 0 l/1);
+  --ig-surface-200: hsl(from var(--ig-surface-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-surface-200-contrast: hsla(from color(from var(--ig-surface-200) var(--y-contrast)) h 0 l/1);
+  --ig-surface-300: hsl(from var(--ig-surface-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-surface-300-contrast: hsla(from color(from var(--ig-surface-300) var(--y-contrast)) h 0 l/1);
+  --ig-surface-400: hsl(from var(--ig-surface-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-surface-400-contrast: hsla(from color(from var(--ig-surface-400) var(--y-contrast)) h 0 l/1);
+  --ig-surface-500-contrast: hsla(from color(from var(--ig-surface-500) var(--y-contrast)) h 0 l/1);
+  --ig-surface-600: hsl(from var(--ig-surface-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-surface-600-contrast: hsla(from color(from var(--ig-surface-600) var(--y-contrast)) h 0 l/1);
+  --ig-surface-700: hsl(from var(--ig-surface-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-surface-700-contrast: hsla(from color(from var(--ig-surface-700) var(--y-contrast)) h 0 l/1);
+  --ig-surface-800: hsl(from var(--ig-surface-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-surface-800-contrast: hsla(from color(from var(--ig-surface-800) var(--y-contrast)) h 0 l/1);
+  --ig-surface-900: hsl(from var(--ig-surface-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-surface-900-contrast: hsla(from color(from var(--ig-surface-900) var(--y-contrast)) h 0 l/1);
+  --ig-surface-A100: hsl(from var(--ig-surface-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-surface-A100-contrast: hsla(from color(from var(--ig-surface-A100) var(--y-contrast)) h 0 l/1);
+  --ig-surface-A200: hsl(from var(--ig-surface-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-surface-A200-contrast: hsla(from color(from var(--ig-surface-A200) var(--y-contrast)) h 0 l/1);
+  --ig-surface-A400: hsl(from var(--ig-surface-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-surface-A400-contrast: hsla(from color(from var(--ig-surface-A400) var(--y-contrast)) h 0 l/1);
+  --ig-surface-A700: hsl(from var(--ig-surface-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-surface-A700-contrast: hsla(from color(from var(--ig-surface-A700) var(--y-contrast)) h 0 l/1);
+  --ig-info-50: hsl(from var(--ig-info-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-info-50-contrast: hsla(from color(from var(--ig-info-50) var(--y-contrast)) h 0 l/1);
+  --ig-info-100: hsl(from var(--ig-info-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-info-100-contrast: hsla(from color(from var(--ig-info-100) var(--y-contrast)) h 0 l/1);
+  --ig-info-200: hsl(from var(--ig-info-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-info-200-contrast: hsla(from color(from var(--ig-info-200) var(--y-contrast)) h 0 l/1);
+  --ig-info-300: hsl(from var(--ig-info-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-info-300-contrast: hsla(from color(from var(--ig-info-300) var(--y-contrast)) h 0 l/1);
+  --ig-info-400: hsl(from var(--ig-info-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-info-400-contrast: hsla(from color(from var(--ig-info-400) var(--y-contrast)) h 0 l/1);
+  --ig-info-500-contrast: hsla(from color(from var(--ig-info-500) var(--y-contrast)) h 0 l/1);
+  --ig-info-600: hsl(from var(--ig-info-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-info-600-contrast: hsla(from color(from var(--ig-info-600) var(--y-contrast)) h 0 l/1);
+  --ig-info-700: hsl(from var(--ig-info-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-info-700-contrast: hsla(from color(from var(--ig-info-700) var(--y-contrast)) h 0 l/1);
+  --ig-info-800: hsl(from var(--ig-info-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-info-800-contrast: hsla(from color(from var(--ig-info-800) var(--y-contrast)) h 0 l/1);
+  --ig-info-900: hsl(from var(--ig-info-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-info-900-contrast: hsla(from color(from var(--ig-info-900) var(--y-contrast)) h 0 l/1);
+  --ig-info-A100: hsl(from var(--ig-info-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-info-A100-contrast: hsla(from color(from var(--ig-info-A100) var(--y-contrast)) h 0 l/1);
+  --ig-info-A200: hsl(from var(--ig-info-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-info-A200-contrast: hsla(from color(from var(--ig-info-A200) var(--y-contrast)) h 0 l/1);
+  --ig-info-A400: hsl(from var(--ig-info-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-info-A400-contrast: hsla(from color(from var(--ig-info-A400) var(--y-contrast)) h 0 l/1);
+  --ig-info-A700: hsl(from var(--ig-info-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-info-A700-contrast: hsla(from color(from var(--ig-info-A700) var(--y-contrast)) h 0 l/1);
+  --ig-success-50: hsl(from var(--ig-success-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-success-50-contrast: hsla(from color(from var(--ig-success-50) var(--y-contrast)) h 0 l/1);
+  --ig-success-100: hsl(from var(--ig-success-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-success-100-contrast: hsla(from color(from var(--ig-success-100) var(--y-contrast)) h 0 l/1);
+  --ig-success-200: hsl(from var(--ig-success-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-success-200-contrast: hsla(from color(from var(--ig-success-200) var(--y-contrast)) h 0 l/1);
+  --ig-success-300: hsl(from var(--ig-success-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-success-300-contrast: hsla(from color(from var(--ig-success-300) var(--y-contrast)) h 0 l/1);
+  --ig-success-400: hsl(from var(--ig-success-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-success-400-contrast: hsla(from color(from var(--ig-success-400) var(--y-contrast)) h 0 l/1);
+  --ig-success-500-contrast: hsla(from color(from var(--ig-success-500) var(--y-contrast)) h 0 l/1);
+  --ig-success-600: hsl(from var(--ig-success-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-success-600-contrast: hsla(from color(from var(--ig-success-600) var(--y-contrast)) h 0 l/1);
+  --ig-success-700: hsl(from var(--ig-success-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-success-700-contrast: hsla(from color(from var(--ig-success-700) var(--y-contrast)) h 0 l/1);
+  --ig-success-800: hsl(from var(--ig-success-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-success-800-contrast: hsla(from color(from var(--ig-success-800) var(--y-contrast)) h 0 l/1);
+  --ig-success-900: hsl(from var(--ig-success-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-success-900-contrast: hsla(from color(from var(--ig-success-900) var(--y-contrast)) h 0 l/1);
+  --ig-success-A100: hsl(from var(--ig-success-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-success-A100-contrast: hsla(from color(from var(--ig-success-A100) var(--y-contrast)) h 0 l/1);
+  --ig-success-A200: hsl(from var(--ig-success-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-success-A200-contrast: hsla(from color(from var(--ig-success-A200) var(--y-contrast)) h 0 l/1);
+  --ig-success-A400: hsl(from var(--ig-success-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-success-A400-contrast: hsla(from color(from var(--ig-success-A400) var(--y-contrast)) h 0 l/1);
+  --ig-success-A700: hsl(from var(--ig-success-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-success-A700-contrast: hsla(from color(from var(--ig-success-A700) var(--y-contrast)) h 0 l/1);
+  --ig-warn-50: hsl(from var(--ig-warn-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-warn-50-contrast: hsla(from color(from var(--ig-warn-50) var(--y-contrast)) h 0 l/1);
+  --ig-warn-100: hsl(from var(--ig-warn-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-warn-100-contrast: hsla(from color(from var(--ig-warn-100) var(--y-contrast)) h 0 l/1);
+  --ig-warn-200: hsl(from var(--ig-warn-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-warn-200-contrast: hsla(from color(from var(--ig-warn-200) var(--y-contrast)) h 0 l/1);
+  --ig-warn-300: hsl(from var(--ig-warn-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-warn-300-contrast: hsla(from color(from var(--ig-warn-300) var(--y-contrast)) h 0 l/1);
+  --ig-warn-400: hsl(from var(--ig-warn-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-warn-400-contrast: hsla(from color(from var(--ig-warn-400) var(--y-contrast)) h 0 l/1);
+  --ig-warn-500-contrast: hsla(from color(from var(--ig-warn-500) var(--y-contrast)) h 0 l/1);
+  --ig-warn-600: hsl(from var(--ig-warn-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-warn-600-contrast: hsla(from color(from var(--ig-warn-600) var(--y-contrast)) h 0 l/1);
+  --ig-warn-700: hsl(from var(--ig-warn-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-warn-700-contrast: hsla(from color(from var(--ig-warn-700) var(--y-contrast)) h 0 l/1);
+  --ig-warn-800: hsl(from var(--ig-warn-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-warn-800-contrast: hsla(from color(from var(--ig-warn-800) var(--y-contrast)) h 0 l/1);
+  --ig-warn-900: hsl(from var(--ig-warn-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-warn-900-contrast: hsla(from color(from var(--ig-warn-900) var(--y-contrast)) h 0 l/1);
+  --ig-warn-A100: hsl(from var(--ig-warn-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-warn-A100-contrast: hsla(from color(from var(--ig-warn-A100) var(--y-contrast)) h 0 l/1);
+  --ig-warn-A200: hsl(from var(--ig-warn-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-warn-A200-contrast: hsla(from color(from var(--ig-warn-A200) var(--y-contrast)) h 0 l/1);
+  --ig-warn-A400: hsl(from var(--ig-warn-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-warn-A400-contrast: hsla(from color(from var(--ig-warn-A400) var(--y-contrast)) h 0 l/1);
+  --ig-warn-A700: hsl(from var(--ig-warn-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-warn-A700-contrast: hsla(from color(from var(--ig-warn-A700) var(--y-contrast)) h 0 l/1);
+  --ig-error-50: hsl(from var(--ig-error-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-error-50-contrast: hsla(from color(from var(--ig-error-50) var(--y-contrast)) h 0 l/1);
+  --ig-error-100: hsl(from var(--ig-error-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-error-100-contrast: hsla(from color(from var(--ig-error-100) var(--y-contrast)) h 0 l/1);
+  --ig-error-200: hsl(from var(--ig-error-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-error-200-contrast: hsla(from color(from var(--ig-error-200) var(--y-contrast)) h 0 l/1);
+  --ig-error-300: hsl(from var(--ig-error-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-error-300-contrast: hsla(from color(from var(--ig-error-300) var(--y-contrast)) h 0 l/1);
+  --ig-error-400: hsl(from var(--ig-error-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-error-400-contrast: hsla(from color(from var(--ig-error-400) var(--y-contrast)) h 0 l/1);
+  --ig-error-500-contrast: hsla(from color(from var(--ig-error-500) var(--y-contrast)) h 0 l/1);
+  --ig-error-600: hsl(from var(--ig-error-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-error-600-contrast: hsla(from color(from var(--ig-error-600) var(--y-contrast)) h 0 l/1);
+  --ig-error-700: hsl(from var(--ig-error-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-error-700-contrast: hsla(from color(from var(--ig-error-700) var(--y-contrast)) h 0 l/1);
+  --ig-error-800: hsl(from var(--ig-error-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-error-800-contrast: hsla(from color(from var(--ig-error-800) var(--y-contrast)) h 0 l/1);
+  --ig-error-900: hsl(from var(--ig-error-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-error-900-contrast: hsla(from color(from var(--ig-error-900) var(--y-contrast)) h 0 l/1);
+  --ig-error-A100: hsl(from var(--ig-error-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-error-A100-contrast: hsla(from color(from var(--ig-error-A100) var(--y-contrast)) h 0 l/1);
+  --ig-error-A200: hsl(from var(--ig-error-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-error-A200-contrast: hsla(from color(from var(--ig-error-A200) var(--y-contrast)) h 0 l/1);
+  --ig-error-A400: hsl(from var(--ig-error-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-error-A400-contrast: hsla(from color(from var(--ig-error-A400) var(--y-contrast)) h 0 l/1);
+  --ig-error-A700: hsl(from var(--ig-error-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-error-A700-contrast: hsla(from color(from var(--ig-error-A700) var(--y-contrast)) h 0 l/1);
+  --ig-gray-50-contrast: hsla(from color(from var(--ig-gray-50) var(--y-contrast)) h 0 l/1);
+  --ig-gray-100-contrast: hsla(from color(from var(--ig-gray-100) var(--y-contrast)) h 0 l/1);
+  --ig-gray-200-contrast: hsla(from color(from var(--ig-gray-200) var(--y-contrast)) h 0 l/1);
+  --ig-gray-300-contrast: hsla(from color(from var(--ig-gray-300) var(--y-contrast)) h 0 l/1);
+  --ig-gray-400-contrast: hsla(from color(from var(--ig-gray-400) var(--y-contrast)) h 0 l/1);
+  --ig-gray-500-contrast: hsla(from color(from var(--ig-gray-500) var(--y-contrast)) h 0 l/1);
+  --ig-gray-600-contrast: hsla(from color(from var(--ig-gray-600) var(--y-contrast)) h 0 l/1);
+  --ig-gray-700-contrast: hsla(from color(from var(--ig-gray-700) var(--y-contrast)) h 0 l/1);
+  --ig-gray-800-contrast: hsla(from color(from var(--ig-gray-800) var(--y-contrast)) h 0 l/1);
+  --ig-gray-900-contrast: hsla(from color(from var(--ig-gray-900) var(--y-contrast)) h 0 l/1);
+
+  /* The neutral fill ladder and the hairline: steps between the palette's grays, derived from the
+     active palette so each theme gets its own. The even-row zebra is the one thing the two
+     palettes disagree about that is not a colour: none in the dark theme. */
+  --fintech-dock-manager-hairline: color-mix(in srgb, var(--ig-gray-200) 60%, var(--ig-gray-50));
+  --fintech-dock-manager-fill-hover: color-mix(in srgb, var(--ig-gray-100) 30%, var(--ig-gray-50));
+  --fintech-dock-manager-fill-selected: color-mix(in srgb, var(--ig-gray-200) 60%, var(--ig-gray-100));
+  --fintech-dock-manager-zebra: var(--ig-gray-50);
+
+  /* The accent as text on a neutral fill (selected chips, tabs, the active rail item). */
+  --fintech-dock-manager-accent-on-fill: var(--ig-primary-600);
+
+  color-scheme: dark;
+  background: var(--ig-surface-500);
+  color: var(--ig-gray-900);
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* Light appearance: the chrome goes almost colourless and every P and L figure in a grid sits in a
+   tinted cell (section 9). The hues do not move; only lightness and saturation change. */
+.fintech-dock-manager-sample.light-theme {
+  --ig-surface-500: #fbfbfc;
+  --ig-success-500: rgb(6, 117, 71);
+  --ig-warn-500: #9a5b00;
+  --ig-error-500: #a60722;
+
+  --ig-gray-50: #ffffff;
+  --ig-gray-100: #f8f9fb;
+  --ig-gray-200: #e2e5e9;
+  --ig-gray-300: #cad0d8;
+  --ig-gray-400: #b2b8c2;
+  --ig-gray-500: #99a1ad;
+  --ig-gray-600: #828997;
+  --ig-gray-700: #646a78;
+  --ig-gray-800: #434b5b;
+  --ig-gray-900: #212936;
+
+  --fintech-dock-manager-zebra: var(--ig-gray-100);
+  --fintech-dock-manager-accent-on-fill: var(--ig-primary-500);
+
+  color-scheme: light;
+}
+
+/* Until events.js has connected and the stored workspace (theme, layout) is applied. */
+.fintech-dock-manager-sample.is-connecting .app-shell {
+  visibility: hidden;
+}
+
+/* Monospaced, tabular figures inside the panes (the command bar's figures keep the desk font, as
+   in the Angular sample, where the pane styles are encapsulated). */
+.fintech-dock-manager-sample .pane .mono {
+  font-family: 'DM Mono', 'Courier New', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.fintech-dock-manager-sample .pos,
+.fintech-dock-manager-sample .pos-pnl {
+  color: var(--ig-success-500);
+}
+
+.fintech-dock-manager-sample .neg,
+.fintech-dock-manager-sample .neg-pnl {
+  color: var(--ig-error-500);
+}
+
+/* ---------------------------------------------------------------------------------------------
+ * 2. Component themes (igniteui-theming create_component_theme, fluent). Every value is a palette
+ *    reference, declared on an element inside the root, so both themes follow.
+ * ------------------------------------------------------------------------------------------- */
+
+/* grid-theme: the interactive fills come off the neutral ladder; blue keeps only the focus ring,
+   the row-drag marker and the sort glyphs. */
+.fintech-dock-manager-sample igc-grid {
+  --ig-grid-grid-elevation: var(--ig-elevation-0);
+  --ig-grid-header-background: var(--ig-gray-100);
+  --ig-grid-sortable-header-icon-hover-color: var(--ig-primary-500);
+  --ig-grid-sorted-header-icon-color: var(--ig-primary-500);
+  --ig-grid-header-border-width: 0.0625rem;
+  --ig-grid-header-border-style: solid;
+  --ig-grid-header-border-color: var(--ig-gray-200);
+  --ig-grid-header-text-color: var(--ig-gray-700);
+  --ig-grid-grid-border-color: var(--ig-gray-200);
+  --ig-grid-content-background: var(--ig-grid-background);
+  --ig-grid-content-text-color: var(--ig-grid-foreground);
+  --ig-grid-row-odd-background: var(--ig-gray-50);
+  --ig-grid-row-even-background: var(--fintech-dock-manager-zebra);
+  --ig-grid-body-column-border-color-odd: var(--ig-gray-50);
+  --ig-grid-body-column-border-color-even: var(--fintech-dock-manager-zebra);
+  --ig-grid-row-odd-text-color: var(--ig-gray-900);
+  --ig-grid-row-even-text-color: var(--ig-gray-900);
+  --ig-grid-row-selected-text-color: var(--ig-gray-900);
+  --ig-grid-row-hover-background: var(--fintech-dock-manager-fill-hover);
+  --ig-grid-body-column-hover-border-color: var(--fintech-dock-manager-fill-hover);
+  --ig-grid-row-hover-text-color: var(--ig-gray-900);
+  --ig-grid-row-border-width: 0.0625rem;
+  --ig-grid-row-border-style: solid;
+  --ig-grid-row-border-color: var(--fintech-dock-manager-hairline);
+  --ig-grid-pinned-border-width: 0.125rem;
+  --ig-grid-pinned-border-style: solid;
+  --ig-grid-pinned-border-color: var(--ig-gray-300);
+  --ig-grid-cell-active-border-width: 0.0625rem;
+  --ig-grid-cell-active-border-color: var(--ig-primary-500);
+  --ig-grid-cell-selected-background: var(--fintech-dock-manager-fill-selected);
+  --ig-grid-cell-selected-text-color: var(--ig-gray-900);
+  --ig-grid-group-row-background: var(--ig-gray-100);
+  --ig-grid-group-row-selected-background: var(--fintech-dock-manager-fill-selected);
+  --ig-grid-filtering-header-background: var(--ig-gray-100);
+  --ig-grid-filtering-header-text-color: var(--ig-gray-900);
+  --ig-grid-filtering-row-background: var(--ig-gray-100);
+  --ig-grid-filtering-row-text-color: var(--ig-gray-900);
+  --ig-grid-filtering-dialog-background: var(--ig-grid-background);
+  --ig-grid-row-highlight: var(--ig-primary-500);
+  --ig-grid-summaries-border-color: var(--ig-gray-200);
+  --ig-grid-row-selected-background: var(--fintech-dock-manager-fill-selected);
+  --ig-grid-row-selected-hover-background: var(--ig-gray-200);
+  --ig-grid-row-selected-hover-text-color: var(--ig-gray-900);
+  --ig-grid-body-column-selected-border-color: var(--ig-gray-200);
+  --ig-grid-body-column-hover-selected-border-color: var(--fintech-dock-manager-fill-selected);
+  --ig-grid-cell-selected-within-background: var(--ig-gray-200);
+  --ig-grid-cell-selected-within-text-color: var(--ig-gray-900);
+  --ig-grid-background: var(--ig-gray-50);
+  --ig-grid-foreground: var(--ig-gray-900);
+  --ig-grid-accent-color: var(--ig-primary-500);
+
+  /* Compact sizing shared by the desk's grids. */
+  --ig-size: var(--ig-size-small);
+}
+
+/* The toolbar's actions read as a row of icons (borderless outlined buttons). */
+.fintech-dock-manager-sample igc-grid-toolbar-actions {
+  --ig-outlined-button-shadow-color: transparent;
+  --ig-outlined-button-border-color: transparent;
+  --ig-outlined-button-hover-border-color: transparent;
+  --ig-outlined-button-focus-border-color: transparent;
+  --ig-outlined-button-focus-visible-border-color: transparent;
+  --ig-outlined-button-active-border-color: transparent;
+  --ig-outlined-button-disabled-border-color: transparent;
+  --ig-outlined-button-icon-color: var(--ig-gray-700);
+  --ig-outlined-button-background: transparent;
+  --ig-outlined-button-foreground: var(--ig-gray-700);
+  --ig-outlined-button-hover-background: hsl(from var(--ig-outlined-button-foreground) h s l / 0.08);
+  --ig-outlined-button-focus-background: hsl(from var(--ig-outlined-button-foreground) h s l / 0.32);
+  --ig-outlined-button-active-background: hsl(from var(--ig-outlined-button-foreground) h s l / 0.16);
+  --ig-outlined-button-focus-visible-background: transparent;
+}
+
+.fintech-dock-manager-sample igc-nav-drawer {
+  --ig-nav-drawer-elevation: var(--ig-elevation-0);
+  --ig-nav-drawer-background: linear-gradient(180deg, var(--ig-gray-100) 0%, var(--ig-surface-500) 100%);
+  --ig-nav-drawer-item-hover-icon-color: var(--ig-gray-900);
+  --ig-nav-drawer-item-hover-text-color: var(--ig-gray-900);
+  --ig-nav-drawer-item-hover-background: var(--fintech-dock-manager-fill-hover);
+  --ig-nav-drawer-item-text-color: var(--ig-gray-700);
+  /* The reference renders the active items without a fill: the icon and label colour carry the state. */
+  --ig-nav-drawer-item-active-background: transparent;
+  --ig-nav-drawer-item-active-icon-color: var(--fintech-dock-manager-accent-on-fill);
+  --ig-nav-drawer-item-active-text-color: var(--fintech-dock-manager-accent-on-fill);
+  --ig-nav-drawer-border-color: var(--ig-gray-200);
+  --ig-nav-drawer-item-icon-color: var(--ig-gray-700);
+  --ig-nav-drawer-item-header-text-color: var(--ig-gray-700);
+  --ig-nav-drawer-size: 208px;
+  --ig-nav-drawer-size--mini: 58px;
+  --menu-full-width: 208px;
+  --menu-mini-width: 58px;
+}
+
+/* input-group-theme, for the fields, the selects and the add-symbol picker. */
+.fintech-dock-manager-sample igc-input,
+.fintech-dock-manager-sample igc-select,
+.fintech-dock-manager-sample igc-combo {
+  --ig-input-group-input-prefix-background: transparent;
+  --ig-input-group-input-prefix-color: var(--ig-gray-700);
+  --ig-input-group-input-prefix-background--filled: var(--ig-input-group-input-prefix-background);
+  --ig-input-group-input-prefix-color--filled: var(--ig-gray-700);
+  --ig-input-group-input-prefix-background--focused: var(--ig-input-group-input-prefix-background);
+  --ig-input-group-input-prefix-color--focused: var(--ig-gray-900);
+  --ig-input-group-input-suffix-background: transparent;
+  --ig-input-group-input-suffix-color: var(--ig-gray-700);
+  --ig-input-group-input-suffix-background--filled: var(--ig-input-group-input-suffix-background);
+  --ig-input-group-input-suffix-background--focused: var(--ig-input-group-input-suffix-background);
+  --ig-input-group-idle-text-color: var(--ig-gray-700);
+  --ig-input-group-filled-text-color: var(--ig-gray-900);
+  --ig-input-group-filled-text-hover-color: var(--ig-input-group-idle-text-color);
+  --ig-input-group-focused-text-color: var(--ig-gray-900);
+  --ig-input-group-idle-secondary-color: var(--ig-input-group-placeholder-color);
+  --ig-input-group-focused-secondary-color: var(--ig-input-group-focused-border-color);
+  --ig-input-group-idle-bottom-line-color: var(--ig-gray-500);
+  --ig-input-group-hover-bottom-line-color: var(--ig-gray-800);
+  --ig-input-group-focused-bottom-line-color: var(--ig-primary-500);
+  --ig-input-group-border-color: var(--ig-gray-300);
+  --ig-input-group-hover-border-color: var(--ig-primary-500);
+  --ig-input-group-focused-border-color: var(--ig-primary-500);
+  --ig-input-group-border-background: var(--ig-gray-50);
+  --ig-input-group-search-background: var(--ig-gray-50);
+  --ig-input-group-placeholder-color: var(--ig-gray-700);
+  --ig-input-group-hover-placeholder-color: var(--ig-input-group-placeholder-color);
+  --ig-input-group-box-background: var(--ig-gray-200);
+  --ig-input-group-search-resting-elevation: var(--ig-elevation-0);
+  --ig-input-group-search-hover-elevation: var(--ig-elevation-0);
+  --ig-size: var(--ig-size-small);
+  font-size: 12px;
+}
+
+.fintech-dock-manager-sample igc-avatar {
+  --ig-avatar-background: var(--ig-gray-200);
+  --ig-avatar-color: var(--ig-gray-900);
+}
+
+.fintech-dock-manager-sample igc-button-group {
+  --ig-button-group-elevation: none;
+  --ig-button-group-item-text-color: var(--ig-gray-700);
+  --ig-button-group-item-background: var(--ig-gray-50);
+  --ig-button-group-item-border-color: var(--ig-gray-200);
+  --ig-button-group-item-hover-background: var(--fintech-dock-manager-fill-hover);
+  --ig-button-group-item-hover-text-color: var(--ig-gray-900);
+  --ig-button-group-item-focused-background: var(--ig-button-group-item-hover-background);
+  --ig-button-group-item-focused-border-color: var(--ig-button-group-item-border-color);
+  --ig-button-group-item-selected-active-background: var(--ig-gray-200);
+  --ig-button-group-item-active-border-color: var(--ig-button-group-item-hover-border-color);
+  --ig-button-group-disabled-background-color: var(--ig-gray-100);
+  --ig-button-group-item-icon-color: var(--ig-gray-700);
+  --ig-button-group-item-hover-icon-color: var(--ig-gray-900);
+  --ig-button-group-item-hover-border-color: var(--ig-gray-200);
+  --ig-button-group-item-selected-background: var(--ig-gray-50);
+  --ig-button-group-item-selected-text-color: var(--fintech-dock-manager-accent-on-fill);
+  --ig-button-group-item-selected-icon-color: var(--fintech-dock-manager-accent-on-fill);
+  --ig-button-group-item-selected-border-color: var(--ig-gray-200);
+  --ig-button-group-item-selected-hover-background: var(--fintech-dock-manager-fill-hover);
+  --ig-button-group-item-selected-hover-border-color: var(--ig-gray-200);
+  --ig-button-group-item-selected-hover-text-color: var(--fintech-dock-manager-accent-on-fill);
+  --ig-button-group-item-active-background: var(--ig-gray-200);
+  --ig-button-group-disabled-text-color: var(--ig-gray-500);
+  --ig-button-group-item-disabled-border: var(--ig-button-group-item-border-color);
+  --ig-size: var(--ig-size-small);
+}
+
+.fintech-dock-manager-sample igc-chip {
+  --ig-chip-focus-shadow-color: transparent;
+  --ig-chip-focus-selected-shadow-color: transparent;
+  --ig-chip-background: var(--ig-gray-100);
+  --ig-chip-hover-text-color: var(--ig-gray-900);
+  --ig-chip-hover-background: var(--fintech-dock-manager-fill-hover);
+  --ig-chip-focus-text-color: var(--ig-chip-text-color);
+  --ig-chip-selected-text-color: var(--fintech-dock-manager-accent-on-fill);
+  --ig-chip-selected-background: var(--fintech-dock-manager-fill-selected);
+  --ig-chip-hover-selected-text-color: var(--fintech-dock-manager-accent-on-fill);
+  --ig-chip-hover-selected-background: var(--ig-gray-200);
+  --ig-chip-border-color: var(--ig-gray-200);
+  --ig-chip-selected-border-color: var(--ig-primary-500);
+  --ig-chip-hover-border-color: var(--ig-chip-border-color);
+  --ig-chip-hover-selected-border-color: var(--ig-chip-selected-border-color);
+  --ig-chip-focus-border-color: var(--ig-chip-border-color);
+  --ig-chip-focus-selected-border-color: var(--ig-chip-selected-border-color);
+  --ig-chip-text-color: var(--ig-gray-700);
+  --ig-chip-focus-background: lch(from var(--ig-chip-background) calc(l + (50 - l) * 0.1 + sign(50 - l) * 7) c h);
+  --ig-chip-focus-selected-text-color: var(--ig-chip-selected-text-color);
+  --ig-chip-focus-selected-background: lch(from var(--ig-chip-selected-background) calc(l + (50 - l) * 0.1 + sign(50 - l) * 7) c h);
+}
+
+.fintech-dock-manager-sample igc-tabs {
+  --ig-tabs-item-text-color: var(--ig-gray-700);
+  --ig-tabs-item-background: var(--ig-gray-100);
+  --ig-tabs-item-hover-background: var(--fintech-dock-manager-fill-hover);
+  --ig-tabs-item-hover-color: var(--ig-gray-900);
+  --ig-tabs-item-active-color: var(--fintech-dock-manager-accent-on-fill);
+  --ig-tabs-item-active-hover-color: var(--ig-tabs-item-active-color);
+  --ig-tabs-item-icon-color: var(--ig-gray-700);
+  --ig-tabs-item-active-icon-color: var(--fintech-dock-manager-accent-on-fill);
+  --ig-tabs-item-active-background: var(--fintech-dock-manager-fill-selected);
+  --ig-tabs-item-active-hover-background: lch(from var(--ig-tabs-item-active-background) calc(l + (50 - l) * 0.1 + sign(50 - l) * 5) c h);
+  --ig-tabs-indicator-color: var(--ig-primary-500);
+  --ig-tabs-button-background: var(--ig-tabs-item-background);
+  --ig-tabs-tab-ripple-color: var(--fintech-dock-manager-fill-selected);
+  --ig-tabs-border-color: var(--ig-gray-200);
+}
+
+.fintech-dock-manager-sample igc-list {
+  --ig-list-background: var(--ig-gray-100);
+  --ig-list-header-background: var(--ig-gray-100);
+  --ig-list-header-text-color: var(--ig-gray-700);
+  --ig-list-item-background: var(--ig-gray-100);
+  --ig-list-item-background-hover: var(--fintech-dock-manager-fill-hover);
+  --ig-list-item-background-active: var(--fintech-dock-manager-fill-selected);
+  --ig-list-item-background-selected: var(--ig-list-item-background-active);
+  --ig-list-item-text-color: var(--ig-gray-900);
+  --ig-list-item-text-color-hover: var(--ig-gray-900);
+  --ig-list-item-text-color-active: var(--ig-gray-900);
+  --ig-list-item-title-color: var(--ig-gray-900);
+  --ig-list-item-title-color-hover: var(--ig-gray-900);
+  --ig-list-item-title-color-active: var(--ig-gray-900);
+  --ig-list-item-action-color: var(--ig-list-item-text-color);
+  --ig-list-item-subtitle-color: var(--ig-gray-700);
+  --ig-list-item-subtitle-color-hover: var(--ig-gray-700);
+  --ig-list-item-subtitle-color-active: var(--ig-gray-700);
+  --ig-list-item-thumbnail-color: var(--ig-list-item-text-color);
+  --ig-list-border-color: var(--ig-gray-200);
+  /* No dividers between the rows, as in the Angular lists. */
+  --ig-list-border-width: 0;
+  --ig-size: var(--ig-size-small);
+}
+
+.fintech-dock-manager-sample igc-linear-progress {
+  --ig-linear-bar-track-color: var(--ig-gray-200);
+  --ig-linear-bar-fill-color-default: var(--ig-primary-500);
+  --ig-linear-bar-fill-color-danger: var(--ig-error-500);
+  --ig-linear-bar-fill-color-warning: var(--ig-warn-500);
+  --ig-linear-bar-fill-color-info: var(--ig-info-500);
+  --ig-linear-bar-fill-color-success: var(--ig-success-500);
+  --ig-linear-bar-text-color: var(--ig-gray-700);
+}
+
+.fintech-dock-manager-sample igc-badge {
+  --ig-badge-elevation: none;
+}
+
+.fintech-dock-manager-sample igc-snackbar {
+  --ig-snackbar-background: var(--ig-gray-200);
+  --ig-snackbar-text-color: var(--ig-gray-900);
+  --ig-snackbar-button-color: var(--fintech-dock-manager-accent-on-fill);
+}
+
+.fintech-dock-manager-sample igc-dialog {
+  --ig-dialog-background: var(--ig-gray-100);
+  --ig-dialog-title-color: var(--ig-gray-900);
+  --ig-dialog-message-color: var(--ig-gray-900);
+}
+
+/* The order ticket's submit button takes the side's colour (contained-button-theme). */
+.fintech-dock-manager-sample igc-button.buy-action,
+.fintech-dock-manager-sample igc-button.sell-action {
+  --ig-contained-button-shadow-color: transparent;
+  --ig-contained-button-border-color: transparent;
+  --ig-contained-button-hover-border-color: transparent;
+  --ig-contained-button-focus-border-color: transparent;
+  --ig-contained-button-active-border-color: transparent;
+  --ig-contained-button-disabled-border-color: transparent;
+  --ig-contained-button-disabled-background: var(--ig-gray-100);
+  --ig-contained-button-disabled-foreground: var(--ig-gray-500);
+  --ig-contained-button-resting-elevation: var(--ig-elevation-0);
+  --ig-contained-button-hover-elevation: var(--ig-elevation-0);
+  --ig-contained-button-focus-elevation: var(--ig-elevation-0);
+  --ig-contained-button-active-elevation: var(--ig-elevation-0);
+  --ig-contained-button-foreground: hsla(from color(from var(--ig-contained-button-background) var(--y-contrast)) h 0 l/1);
+  --ig-contained-button-hover-background: lch(from var(--ig-contained-button-background) calc(l + (50 - l) * 0.1 + sign(50 - l) * 5) c h);
+  --ig-contained-button-hover-foreground: hsla(from color(from var(--ig-contained-button-hover-background) var(--y-contrast)) h 0 l/1);
+  --ig-contained-button-focus-background: lch(from var(--ig-contained-button-background) calc(l + (50 - l) * 0.1 + sign(50 - l) * 10) c h);
+  --ig-contained-button-focus-foreground: hsla(from color(from var(--ig-contained-button-focus-background) var(--y-contrast)) h 0 l/1);
+  --ig-contained-button-active-background: lch(from var(--ig-contained-button-background) calc(l + (50 - l) * 0.1 + sign(50 - l) * 10) c h);
+  --ig-contained-button-active-foreground: hsla(from color(from var(--ig-contained-button-active-background) var(--y-contrast)) h 0 l/1);
+  --ig-contained-button-focus-hover-background: var(--ig-contained-button-hover-background);
+  --ig-contained-button-focus-hover-foreground: hsla(from color(from var(--ig-contained-button-focus-hover-background) var(--y-contrast)) h 0 l/1);
+  --ig-contained-button-focus-visible-background: var(--ig-contained-button-background);
+  --ig-contained-button-focus-visible-foreground: hsla(from color(from var(--ig-contained-button-focus-visible-background) var(--y-contrast)) h 0 l/1);
+  --ig-contained-button-focus-visible-border-color: var(--ig-contained-button-focus-visible-foreground);
+}
+
+.fintech-dock-manager-sample igc-button.buy-action {
+  --ig-contained-button-background: var(--ig-success-500);
+}
+
+.fintech-dock-manager-sample igc-button.sell-action {
+  --ig-contained-button-background: var(--ig-error-500);
+}
+
+/* Scrollbars (scrollbar-theme) for the scrolling subtrees; mirrored by the Dock Manager's
+   --igc-sb-* below, or the desk would have two kinds of scrollbar. */
+.fintech-dock-manager-sample .ig-scrollbar,
+.fintech-dock-manager-sample igc-grid {
+  --ig-scrollbar-sb-size: 1rem;
+  --ig-scrollbar-sb-thumb-min-height: 2rem;
+  --ig-scrollbar-sb-thumb-bg-color: var(--ig-gray-300);
+  --ig-scrollbar-sb-thumb-bg-color-hover: var(--ig-gray-500);
+  --ig-scrollbar-sb-thumb-border-color: transparent;
+  --ig-scrollbar-sb-thumb-border-size: 0;
+  --ig-scrollbar-sb-thumb-border-radius: 0;
+  --ig-scrollbar-sb-track-bg-color: var(--ig-gray-100);
+  --ig-scrollbar-sb-track-bg-color-hover: var(--ig-gray-100);
+  --ig-scrollbar-sb-track-border-color: transparent;
+  --ig-scrollbar-sb-track-border-size: 0;
+  --ig-scrollbar-sb-corner-bg: var(--ig-gray-100);
+  --ig-scrollbar-sb-corner-border-color: transparent;
+  --ig-scrollbar-sb-corner-border-size: 0;
+}
+
+/* ---------------------------------------------------------------------------------------------
+ * 3. Dock Manager: its own --igc-* variables, mapped onto the palette by hand.
+ * ------------------------------------------------------------------------------------------- */
+.fintech-dock-manager-sample igc-dockmanager {
+  --igc-background-color: var(--ig-surface-500);
+  --igc-accent-color: var(--ig-primary-500);
+  --igc-text-color: var(--ig-gray-900);
+  --igc-border-color: var(--ig-gray-200);
+  --igc-pane-content-background: var(--ig-surface-500);
+  --igc-tab-background-active: var(--ig-gray-100);
+  --igc-tab-text-active: var(--ig-primary-500);
+  --igc-splitter-background: var(--ig-gray-200);
+  --igc-splitter-thickness: 4px;
+  --igc-floating-pane-border-color: var(--ig-gray-200);
+  --igc-joystick-border-color: var(--ig-gray-200);
+
+  /* A joystick is a blue chip, so its icon contrasts the chip, not the desk. */
+  --igc-joystick-icon-color: var(--ig-primary-500-contrast);
+  --igc-joystick-background-active: var(--ig-primary-600);
+  --igc-joystick-icon-color-active: var(--ig-primary-600-contrast);
+  --igc-context-menu-color-active: var(--ig-primary-500);
+  --igc-flyout-shadow-color: hsl(from var(--ig-gray-50) h s l / 0.7);
+
+  /* The Dock Manager scrolls pane content inside its own shadow root. */
+  --igc-sb-size: 1rem;
+  --igc-sb-thumb-min-height: 2rem;
+  --igc-sb-track-bg-color: var(--ig-gray-100);
+  --igc-sb-track-bg-color-hover: var(--ig-gray-100);
+  --igc-sb-thumb-bg-color: var(--ig-gray-300);
+  --igc-sb-thumb-bg-color-hover: var(--ig-gray-500);
+  --igc-sb-corner-bg: var(--ig-gray-100);
+}
+
+/* Docked tab groups render their tab strip under the content (the Dock Manager hardcodes it);
+   reversing that one group's flex direction lifts the Positions / Blotter strip above the grid.
+   The tabs element's part names the content ids, which keeps this off every other tab group. */
+.fintech-dock-manager-sample igc-dockmanager::part(tabs-container positions) {
+  flex-direction: column-reverse;
+}
+
+.fintech-dock-manager-sample igc-dockmanager::part(pane-header) {
+  background: var(--ig-gray-100);
+  color: var(--ig-gray-900);
+}
+
+.fintech-dock-manager-sample igc-dockmanager::part(pane-header-content) {
+  color: var(--ig-gray-900);
+}
+
+.fintech-dock-manager-sample igc-dockmanager::part(pane-header-close-button),
+.fintech-dock-manager-sample igc-dockmanager::part(pane-header-maximize-button),
+.fintech-dock-manager-sample igc-dockmanager::part(pane-header-minimize-button),
+.fintech-dock-manager-sample igc-dockmanager::part(pane-header-pin-button),
+.fintech-dock-manager-sample igc-dockmanager::part(pane-header-unpin-button),
+.fintech-dock-manager-sample igc-dockmanager::part(tab-header-close-button),
+.fintech-dock-manager-sample igc-dockmanager::part(tab-header-more-options) {
+  color: var(--ig-gray-900);
+  opacity: 0.9;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.fintech-dock-manager-sample igc-dockmanager::part(pane-header-close-button):hover,
+.fintech-dock-manager-sample igc-dockmanager::part(pane-header-maximize-button):hover,
+.fintech-dock-manager-sample igc-dockmanager::part(pane-header-minimize-button):hover,
+.fintech-dock-manager-sample igc-dockmanager::part(pane-header-pin-button):hover,
+.fintech-dock-manager-sample igc-dockmanager::part(pane-header-unpin-button):hover,
+.fintech-dock-manager-sample igc-dockmanager::part(tab-header-close-button):hover,
+.fintech-dock-manager-sample igc-dockmanager::part(tab-header-more-options):hover {
+  opacity: 1;
+  background: transparent;
+}
+
+/* ---------------------------------------------------------------------------------------------
+ * 4. Shell: the rail, the command bar and the dock area
+ * ------------------------------------------------------------------------------------------- */
+.fintech-dock-manager-sample .app-shell {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: radial-gradient(circle at 35% 20%, hsl(from var(--ig-primary-500) h s l / 0.13), transparent 40%),
+    radial-gradient(circle at 80% 80%, hsl(from var(--ig-success-500) h s l / 0.08), transparent 45%),
+    var(--ig-surface-500);
+}
+
+.fintech-dock-manager-sample .platform-rail {
+  height: 100%;
+}
+
+.fintech-dock-manager-sample .rail-item {
+  cursor: pointer;
+}
+
+.fintech-dock-manager-sample .rail-item::part(content) {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+}
+
+.fintech-dock-manager-sample .rail-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+}
+
+.fintech-dock-manager-sample .rail-label {
+  color: var(--ig-gray-900);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Pinned right and transparent to the pointer: the row owns the click. */
+.fintech-dock-manager-sample .rail-switch {
+  margin-inline-start: auto;
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+.fintech-dock-manager-sample .rail-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 6px;
+  border-bottom: 1px solid var(--ig-gray-200);
+}
+
+/* The collapse toggle sits at the trailing edge when expanded, and centres in the mini rail. */
+.fintech-dock-manager-sample .rail-head-expanded {
+  justify-content: flex-end;
+  padding-inline: 10px;
+}
+
+.fintech-dock-manager-sample .rail-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 6px;
+  flex: 1;
+}
+
+.fintech-dock-manager-sample .rail-footer {
+  padding: 8px 6px;
+  border-top: 1px solid hsl(from var(--ig-gray-300) h s l / 0.5);
+}
+
+/* Under 1024px (the Angular drawer's pin threshold) the rail floats over the desk instead of
+   sitting beside it, and the expanded rail dims the desk behind it. */
+.fintech-dock-manager-sample .rail-backdrop {
+  display: none;
+}
+
+@media (max-width: 1023.98px) {
+  .fintech-dock-manager-sample .app-shell {
+    position: relative;
+    grid-template-columns: 1fr;
+  }
+
+  .fintech-dock-manager-sample .platform-rail {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    z-index: 20;
+  }
+
+  .fintech-dock-manager-sample .rail-backdrop {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 19;
+    background: hsl(from var(--ig-gray-500) h s l / 0.54);
+  }
+}
+
+.fintech-dock-manager-sample .workspace {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.fintech-dock-manager-sample .command-bar {
+  display: flex;
+  align-items: stretch;
+  height: 46px;
+  padding-inline: 12px;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--ig-gray-100) 0%, var(--ig-surface-500) 100%);
+  border-bottom: 1px solid var(--ig-gray-200);
+  flex-shrink: 0;
+  box-sizing: border-box;
+  container: fintech-dock-manager-command-bar / inline-size;
+}
+
+.fintech-dock-manager-sample .bar-zone {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-inline: 14px;
+  min-width: 0;
+  justify-content: end;
+}
+
+.fintech-dock-manager-sample .bar-zone + .bar-zone {
+  border-inline-start: 1px solid var(--ig-gray-200);
+}
+
+.fintech-dock-manager-sample .bar-zone:first-child {
+  padding-inline-start: 0;
+}
+
+.fintech-dock-manager-sample .bar-zone:last-child {
+  padding-inline-end: 0;
+}
+
+.fintech-dock-manager-sample .bar-lead {
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.fintech-dock-manager-sample .bar-ticker {
+  --fintech-dock-manager-ticker-gap: 16px;
+  --fintech-dock-manager-ticker-runs: 4;
+  --fintech-dock-manager-ticker-duration: 30s;
+
+  flex: 1 1 auto;
+  overflow: hidden;
+  padding-inline: 0;
+  justify-content: start;
+  mask-image: linear-gradient(90deg, transparent, #000 24px, #000 calc(100% - 24px), transparent);
+}
+
+/* The copies are there to cover the seam: the loop slides the track by one run and restarts, and it
+   takes more than two of them to fill a wide bar. */
+.fintech-dock-manager-sample .ticker-track {
+  display: flex;
+  flex: 0 0 auto;
+  width: max-content;
+  animation: fintech-dock-manager-ticker-slide var(--fintech-dock-manager-ticker-duration) linear infinite;
+}
+
+.fintech-dock-manager-sample .bar-ticker:hover .ticker-track,
+.fintech-dock-manager-sample .bar-ticker:focus-within .ticker-track {
+  animation-play-state: paused;
+}
+
+.fintech-dock-manager-sample .bar-ticker:focus-visible {
+  outline: 2px solid var(--ig-primary-500);
+  outline-offset: -2px;
+}
+
+.fintech-dock-manager-sample .ticker-run {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: var(--fintech-dock-manager-ticker-gap);
+  padding-inline-end: var(--fintech-dock-manager-ticker-gap);
+}
+
+.fintech-dock-manager-sample .ticker-account {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: var(--fintech-dock-manager-ticker-gap);
+  margin: 0;
+  padding-inline-start: var(--fintech-dock-manager-ticker-gap);
+  border-inline-start: 1px solid var(--ig-gray-200);
+}
+
+.fintech-dock-manager-sample .bar-ticker .stat {
+  min-width: 7.25rem;
+}
+
+@keyframes fintech-dock-manager-ticker-slide {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(calc(-100% / var(--fintech-dock-manager-ticker-runs)), 0, 0);
+  }
+}
+
+/* Nothing moves on its own here: the copies go, and the ribbon becomes a scroller the zone's
+   tabindex lets the arrow keys reach. */
+@media (prefers-reduced-motion: reduce) {
+  .fintech-dock-manager-sample .ticker-track {
+    animation: none;
+  }
+
+  .fintech-dock-manager-sample .ticker-run + .ticker-run {
+    display: none;
+  }
+
+  .fintech-dock-manager-sample .bar-ticker {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+}
+
+.fintech-dock-manager-sample .bar-actions {
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+/* One block for every figure in the bar: every label on one line and every value on the next,
+   sharing a trailing edge. */
+.fintech-dock-manager-sample .stat {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 2px;
+  white-space: nowrap;
+  justify-items: end;
+}
+
+.fintech-dock-manager-sample .stat-label {
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--ig-gray-700);
+}
+
+.fintech-dock-manager-sample .stat-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 6px;
+  margin: 0;
+}
+
+.fintech-dock-manager-sample .stat-value {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ig-gray-900);
+  text-align: end;
+}
+
+.fintech-dock-manager-sample .stat-value.pos {
+  color: var(--ig-success-500);
+}
+
+.fintech-dock-manager-sample .stat-value.neg {
+  color: var(--ig-error-500);
+}
+
+.fintech-dock-manager-sample .stat-delta {
+  font-size: 10px;
+  font-weight: 600;
+  text-align: end;
+}
+
+.fintech-dock-manager-sample .brand {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ig-gray-900);
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+}
+
+.fintech-dock-manager-sample .feed-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* The badge's text takes the contrast of the background it paints, not of the primary ramp. */
+.fintech-dock-manager-sample .feed-status {
+  --ig-badge-text-color: var(--ig-info-700-contrast);
+}
+
+.fintech-dock-manager-sample .feed-status.feed-paused {
+  --ig-badge-text-color: var(--ig-primary-500-contrast);
+}
+
+.fintech-dock-manager-sample .command-bar igc-icon-button {
+  --ig-size: var(--ig-size-small);
+  flex-shrink: 0;
+}
+
+.fintech-dock-manager-sample .notification-controls {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.fintech-dock-manager-sample .bell-badge {
+  position: absolute;
+  top: -4px;
+  inset-inline-end: -4px;
+  pointer-events: none;
+}
+
+.fintech-dock-manager-sample .speed-group {
+  flex-shrink: 0;
+}
+
+.fintech-dock-manager-sample .user-avatar {
+  --ig-avatar-size: 1.5rem;
+  --ig-size: var(--ig-size-small);
+  flex-shrink: 0;
+}
+
+/* The bar sheds its least critical groups first rather than overflowing: container queries, because
+   the bar is not the viewport wide (the rail sits beside it). */
+@container fintech-dock-manager-command-bar (max-width: 1239.98px) {
+  .fintech-dock-manager-sample .speed-group {
+    display: none;
+  }
+}
+
+@container fintech-dock-manager-command-bar (max-width: 839.98px) {
+  .fintech-dock-manager-sample .brand {
+    display: none;
+  }
+}
+
+.fintech-dock-manager-sample .main-area {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.fintech-dock-manager-sample .dock-area {
+  width: 100%;
+  height: 100%;
+}
+
+.fintech-dock-manager-sample .pane-host {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* A pane fills its dock pane as a flex column. */
+.fintech-dock-manager-sample .pane {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--ig-surface-500);
+  box-sizing: border-box;
+}
+
+.fintech-dock-manager-sample .symbol-cell {
+  color: var(--ig-info-500);
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+/* The grids' wrappers (IgbGrid renders igc-grid inside a div that carries the class). events.js
+   keeps the grid's height equal to this box's, in pixels. */
+.fintech-dock-manager-sample .watchlist-grid,
+.fintech-dock-manager-sample .positions-grid,
+.fintech-dock-manager-sample .blotter-grid {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.fintech-dock-manager-sample .grid-host {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.fintech-dock-manager-sample .igx-grid-toolbar__actions {
+  padding: 0.2rem;
+  gap: 0.2rem;
+}
+
+.fintech-dock-manager-sample .igx-grid-toolbar__actions .igx-button {
+  min-width: 0;
+}
+
+.fintech-dock-manager-sample igc-action-strip igc-icon-button {
+  --ig-size: var(--ig-size-small);
+}
+
+/* Section labels: "QUANTITY", "OPEN P&L" and friends. */
+.fintech-dock-manager-sample .form-field::part(label) {
+  line-height: 15px;
+  margin-block-end: 3px;
+}
+
+.fintech-dock-manager-sample .footer-label,
+.fintech-dock-manager-sample .form-field::part(label) {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--ig-gray-700);
+}
+
+/* ---------------------------------------------------------------------------------------------
+ * 5. Watchlist
+ * ------------------------------------------------------------------------------------------- */
+.fintech-dock-manager-sample .wl-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--ig-gray-200);
+  flex-shrink: 0;
+}
+
+.fintech-dock-manager-sample .wl-toolbar > * {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.fintech-dock-manager-sample .wl-search,
+.fintech-dock-manager-sample .wl-add {
+  width: 100%;
+  min-width: 0;
+}
+
+.fintech-dock-manager-sample .wl-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Present for context, not for picking. */
+.fintech-dock-manager-sample .wl-option-added {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.fintech-dock-manager-sample .wl-option-tag {
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--ig-gray-700);
+}
+
+.fintech-dock-manager-sample .watchlist-grid-wrap {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  border-bottom: 1px solid var(--ig-gray-400);
+}
+
+.fintech-dock-manager-sample .range-cell {
+  display: grid;
+  grid-template-columns: 8ch 1fr 8ch;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.fintech-dock-manager-sample .range-value {
+  text-align: right;
+  display: inline-block;
+}
+
+.fintech-dock-manager-sample .range-value:first-of-type {
+  margin-inline-end: 8px;
+}
+
+/* The rail the marker travels along: neutral and opaque, so the only colour is the marker's. */
+.fintech-dock-manager-sample .range-track {
+  position: relative;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--ig-gray-200);
+  min-width: 40px;
+}
+
+.fintech-dock-manager-sample .range-marker {
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ig-gray-900);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 1px var(--ig-gray-100);
+}
+
+.fintech-dock-manager-sample .range-marker.pos {
+  background: var(--ig-success-500);
+}
+
+.fintech-dock-manager-sample .range-marker.neg {
+  background: var(--ig-error-500);
+}
+
+/* The movers strip. */
+.fintech-dock-manager-sample .movers-panel {
+  flex: 0 0 168px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--ig-gray-100);
+  border-top: 1px solid var(--ig-gray-200);
+}
+
+.fintech-dock-manager-sample .movers-tabs {
+  --ig-size: var(--ig-size-small);
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+  font-size: 11px;
+}
+
+/* Justified tabs: the header row spans the strip, three equal tabs. */
+.fintech-dock-manager-sample .movers-tabs::part(inner) {
+  width: 100%;
+}
+
+.fintech-dock-manager-sample .movers-tabs igc-tab {
+  width: 100%;
+}
+
+.fintech-dock-manager-sample .movers-list {
+  height: 100%;
+  border: none;
+  font-size: 11px;
+}
+
+.fintech-dock-manager-sample .mover-item {
+  cursor: pointer;
+}
+
+/* List rows without a thumbnail or an action: the empty slots take no room. */
+.fintech-dock-manager-sample .mover-item::part(start),
+.fintech-dock-manager-sample .mover-item::part(end),
+.fintech-dock-manager-sample .news-pane igc-list-item::part(start),
+.fintech-dock-manager-sample .news-pane igc-list-item::part(end) {
+  display: none;
+}
+
+.fintech-dock-manager-sample .mover-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  font-size: 11px;
+}
+
+.fintech-dock-manager-sample .movers-empty {
+  margin: 0;
+  padding: 16px 10px;
+  text-align: center;
+  color: var(--ig-gray-700);
+  font-size: 11px;
+}
+
+.fintech-dock-manager-sample .mover-symbol {
+  color: var(--ig-gray-900);
+  font-weight: 700;
+}
+
+.fintech-dock-manager-sample .mover-last {
+  color: var(--ig-gray-700);
+}
+
+.fintech-dock-manager-sample .mover-change {
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------------------------------------
+ * 6. Positions and the blotter
+ * ------------------------------------------------------------------------------------------- */
+.fintech-dock-manager-sample .positions-pane .grid-host {
+  border-bottom: 1px solid var(--ig-gray-200);
+}
+
+.fintech-dock-manager-sample .pl-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.2;
+}
+
+.fintech-dock-manager-sample .pl-amount {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.fintech-dock-manager-sample .pl-pct {
+  font-size: 10px;
+  opacity: 0.9;
+}
+
+.fintech-dock-manager-sample .weight-cell {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 6px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.fintech-dock-manager-sample .weight-bar {
+  --ig-size: var(--ig-size-small);
+  min-width: 0;
+}
+
+/* Label ink inside a grid row: one step darker than the panel labels, so it holds on a selected
+   and hovered row. */
+.fintech-dock-manager-sample .weight-value {
+  font-size: 10px;
+  color: var(--ig-gray-800);
+}
+
+.fintech-dock-manager-sample .flatten-btn {
+  color: var(--ig-error-500);
+}
+
+.fintech-dock-manager-sample .account-footer {
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  align-items: center;
+  padding: 7px 12px;
+  background: var(--ig-gray-100);
+  border-top: 1px solid var(--ig-gray-200);
+}
+
+.fintech-dock-manager-sample .footer-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  line-height: 1.2;
+}
+
+.fintech-dock-manager-sample .footer-value {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ig-gray-900);
+}
+
+.fintech-dock-manager-sample .footer-value.pos-pnl {
+  color: var(--ig-success-500);
+}
+
+.fintech-dock-manager-sample .footer-value.neg-pnl {
+  color: var(--ig-error-500);
+}
+
+.fintech-dock-manager-sample .blotter-bar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--ig-gray-200);
+}
+
+.fintech-dock-manager-sample .blotter-filters {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.fintech-dock-manager-sample .blotter-chip {
+  --ig-size: var(--ig-size-small);
+  font-size: 10px;
+}
+
+.fintech-dock-manager-sample .filter-count {
+  font-variant-numeric: tabular-nums;
+  opacity: 0.75;
+  margin-inline-start: 4px;
+}
+
+.fintech-dock-manager-sample .cancel-all {
+  --ig-size: var(--ig-size-small);
+  flex-shrink: 0;
+  font-size: 10px;
+}
+
+.fintech-dock-manager-sample .cancel-all igc-icon {
+  --ig-size: var(--ig-size-small);
+}
+
+.fintech-dock-manager-sample .side-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+/* Opaque, like every fill inside a grid row. */
+.fintech-dock-manager-sample .side-buy {
+  color: var(--ig-success-500);
+  background: color-mix(in srgb, var(--ig-success-500) 10%, var(--ig-gray-50));
+}
+
+.fintech-dock-manager-sample .side-sell {
+  color: var(--ig-error-500);
+  background: color-mix(in srgb, var(--ig-error-500) 10%, var(--ig-gray-50));
+}
+
+.fintech-dock-manager-sample .price-kind {
+  margin-inline-start: 5px;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--ig-gray-800);
+}
+
+.fintech-dock-manager-sample .status-badge {
+  --ig-size: var(--ig-size-small);
+}
+
+.fintech-dock-manager-sample .note-cell {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ig-gray-800);
+  font-size: 11px;
+  min-width: 0;
+}
+
+/* ---------------------------------------------------------------------------------------------
+ * 7. Order ticket
+ * ------------------------------------------------------------------------------------------- */
+.fintech-dock-manager-sample .ticket {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  height: 100%;
+  padding: 10px;
+  overflow: auto;
+  box-sizing: border-box;
+}
+
+.fintech-dock-manager-sample .ticket-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.fintech-dock-manager-sample .ticket-id {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  min-width: 0;
+}
+
+.fintech-dock-manager-sample .ticket-symbol {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ig-info-500);
+}
+
+.fintech-dock-manager-sample .ticket-name {
+  font-size: 11px;
+  color: var(--ig-gray-700);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fintech-dock-manager-sample .held-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0 0.25rem;
+  border-radius: 0.25rem;
+  background: hsl(from var(--ig-info-500) h s l / 0.14);
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 0.0625rem dashed var(--ig-info-500);
+  color: var(--ig-info-500);
+}
+
+.fintech-dock-manager-sample .ladder {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.0625rem;
+  border: 0.0625rem solid var(--ig-gray-200);
+  border-radius: 0.25rem;
+  background: var(--ig-gray-200);
+}
+
+.fintech-dock-manager-sample .ladder-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.125rem;
+  padding: 0.3125rem 0.25rem;
+  border: none;
+  background: var(--ig-gray-100);
+  font: inherit;
+  color: inherit;
+}
+
+/* Bid and Ask copy their price into the limit field: plain buttons, not a selection. */
+.fintech-dock-manager-sample button.ladder-cell {
+  cursor: pointer;
+}
+
+.fintech-dock-manager-sample button.ladder-cell:hover:not(:disabled) {
+  background: hsl(from var(--ig-primary-500) h s l / 0.12);
+}
+
+.fintech-dock-manager-sample button.ladder-cell:focus-visible {
+  outline: 2px solid var(--ig-primary-500);
+  outline-offset: -2px;
+}
+
+.fintech-dock-manager-sample button.ladder-cell:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.fintech-dock-manager-sample .ladder-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--ig-gray-700);
+}
+
+.fintech-dock-manager-sample .ladder-value {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ig-gray-900);
+}
+
+.fintech-dock-manager-sample .ladder-value.pos {
+  color: var(--ig-success-500);
+}
+
+.fintech-dock-manager-sample .ladder-value.neg {
+  color: var(--ig-error-500);
+}
+
+.fintech-dock-manager-sample .ladder-cell.bid .ladder-value {
+  color: var(--ig-error-500);
+}
+
+.fintech-dock-manager-sample .ladder-cell.ask .ladder-value {
+  color: var(--ig-success-500);
+}
+
+.fintech-dock-manager-sample .bs-toggle,
+.fintech-dock-manager-sample .quick-qty {
+  width: 100%;
+}
+
+.fintech-dock-manager-sample .bs-btn {
+  flex: 1 1 0;
+  min-width: 0;
+  font-weight: 700;
+}
+
+/* The selected side takes its colour. The toggle reads the group's resolved item variables, the same
+   ones the Angular sample sets. */
+.fintech-dock-manager-sample .bs-buy {
+  --item-selected-background: var(--ig-success-500);
+  --item-selected-border-color: var(--ig-success-500);
+  --item-selected-text-color: var(--ig-success-500-contrast);
+  --item-selected-hover-background: var(--ig-success-600);
+  --item-selected-hover-border-color: var(--ig-success-600);
+  --item-selected-hover-text-color: var(--ig-success-600-contrast);
+}
+
+.fintech-dock-manager-sample .bs-sell {
+  --item-selected-background: var(--ig-error-500);
+  --item-selected-border-color: var(--ig-error-500);
+  --item-selected-text-color: var(--ig-error-500-contrast);
+  --item-selected-hover-background: var(--ig-error-500);
+  --item-selected-hover-border-color: var(--ig-error-500);
+  --item-selected-hover-text-color: var(--ig-error-600-contrast);
+}
+
+.fintech-dock-manager-sample .ticket-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+}
+
+.fintech-dock-manager-sample .inline-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.fintech-dock-manager-sample .form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1 1 110px;
+  min-width: 0;
+}
+
+.fintech-dock-manager-sample .tif-row {
+  flex: 0 0 84px;
+}
+
+.fintech-dock-manager-sample .form-field {
+  width: 100%;
+  font-size: 12px;
+}
+
+.fintech-dock-manager-sample .field-prefix {
+  padding-inline-start: 4px;
+}
+
+/* Five equal segments whatever the labels measure. */
+.fintech-dock-manager-sample .qty-chip {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.fintech-dock-manager-sample .qty-chip::part(toggle) {
+  font-size: 10px;
+}
+
+.fintech-dock-manager-sample .qty-max::part(toggle) {
+  font-weight: 700;
+}
+
+.fintech-dock-manager-sample .estimate {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 0;
+  padding: 8px 9px;
+  border: 1px solid var(--ig-gray-200);
+  border-radius: 4px;
+  background: var(--ig-gray-100);
+}
+
+.fintech-dock-manager-sample .estimate-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.fintech-dock-manager-sample .estimate-row dt {
+  font-size: 10px;
+  color: var(--ig-gray-700);
+}
+
+.fintech-dock-manager-sample .estimate-row dd {
+  margin: 0;
+  font-size: 12px;
+  color: var(--ig-gray-900);
+}
+
+.fintech-dock-manager-sample .estimate-row.total dd {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.fintech-dock-manager-sample .estimate-row.muted {
+  padding-top: 3px;
+  border-top: 1px solid var(--ig-gray-200);
+}
+
+.fintech-dock-manager-sample .estimate-row.muted dd {
+  color: var(--ig-gray-700);
+}
+
+.fintech-dock-manager-sample .ticket-error {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 6px 8px;
+  border-radius: 4px;
+  background: hsl(from var(--ig-error-500) h s l / 0.14);
+  color: var(--ig-error-500);
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+.fintech-dock-manager-sample .ticket-error igc-icon {
+  --ig-size: var(--ig-size-small);
+  flex-shrink: 0;
+}
+
+.fintech-dock-manager-sample .place-btn {
+  --ig-size: var(--ig-size-small);
+  width: 100%;
+  font-weight: 700;
+}
+
+/* ---------------------------------------------------------------------------------------------
+ * 8. Chart documents, the news wire and the alerts
+ * ------------------------------------------------------------------------------------------- */
+.fintech-dock-manager-sample .chart-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.fintech-dock-manager-sample .chart-header {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--ig-gray-200);
+}
+
+.fintech-dock-manager-sample .price-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.fintech-dock-manager-sample .chart-symbol {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+}
+
+.fintech-dock-manager-sample .chart-ticker {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ig-info-500);
+  letter-spacing: 0.3px;
+}
+
+.fintech-dock-manager-sample .chart-name {
+  font-size: 11px;
+  color: var(--ig-gray-700);
+}
+
+.fintech-dock-manager-sample .price-line {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+}
+
+/* Each figure has a floor on its box and sits at its end, so a tick moves a value only inside its
+   own box. */
+.fintech-dock-manager-sample .current-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ig-gray-900);
+  line-height: 1.1;
+}
+
+.fintech-dock-manager-sample .price-change {
+  min-width: 7.25rem;
+  text-align: end;
+}
+
+.fintech-dock-manager-sample .ohlc-stats {
+  display: flex;
+  gap: 10px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.fintech-dock-manager-sample .ohlc-stats__label {
+  font-size: 11px;
+  color: var(--ig-gray-700);
+}
+
+.fintech-dock-manager-sample .stat-item {
+  display: grid;
+  gap: 4px;
+  font-size: 14px;
+  justify-items: end;
+}
+
+.fintech-dock-manager-sample .position-chip {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 4px 9px;
+  border-radius: 4px;
+  border: 1px solid currentcolor;
+  line-height: 1.25;
+}
+
+.fintech-dock-manager-sample .chip-qty {
+  font-size: 10px;
+  opacity: 0.85;
+}
+
+.fintech-dock-manager-sample .chip-pl {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.fintech-dock-manager-sample .chart-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px;
+  border-bottom: 1px solid var(--ig-gray-200);
+  background: var(--ig-gray-100);
+}
+
+/* A group never shrinks below its buttons: on a narrow chart the ranges run past the pane's edge,
+   as the Angular sample's do. */
+.fintech-dock-manager-sample .chart-group {
+  flex: 1 0 auto;
+  align-self: flex-start;
+}
+
+/* Each button as wide as its label, the group's spare room shared out: a group is as wide as its
+   buttons together, so two groups share a row where they fit, as in the Angular toolbar. */
+.fintech-dock-manager-sample .chart-group::part(group) {
+  grid-auto-columns: auto;
+}
+
+.fintech-dock-manager-sample .chart-group igc-toggle-button {
+  flex: 1 0 auto;
+  text-transform: capitalize;
+}
+
+.fintech-dock-manager-sample .chart-group igc-icon {
+  --ig-size: var(--ig-size-small);
+}
+
+.fintech-dock-manager-sample .chart-area {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.fintech-dock-manager-sample .panel-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.fintech-dock-manager-sample .panel-actions {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--ig-gray-200);
+}
+
+.fintech-dock-manager-sample .news-filter {
+  width: 100%;
+  font-size: 11px;
+}
+
+.fintech-dock-manager-sample .item-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  border: none;
+  overflow: auto;
+}
+
+.fintech-dock-manager-sample .list-empty {
+  margin: 0;
+  padding: 18px 12px;
+  text-align: center;
+  color: var(--ig-gray-700);
+  font-size: 11px;
+}
+
+.fintech-dock-manager-sample .news-pane igc-list-item {
+  padding: 3.5px 4px;
+}
+
+.fintech-dock-manager-sample .news-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.fintech-dock-manager-sample .news-headline {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--ig-gray-900);
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.35;
+  text-align: left;
+  cursor: pointer;
+}
+
+.fintech-dock-manager-sample .news-headline:disabled {
+  cursor: default;
+}
+
+.fintech-dock-manager-sample .news-headline:hover:not(:disabled) {
+  color: var(--ig-primary-500);
+}
+
+.fintech-dock-manager-sample .news-headline:focus-visible {
+  outline: 2px solid var(--ig-primary-500);
+  outline-offset: 2px;
+}
+
+.fintech-dock-manager-sample .news-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  color: var(--ig-gray-700);
+}
+
+.fintech-dock-manager-sample .news-symbol {
+  color: var(--ig-info-500);
+  font-weight: 700;
+}
+
+/* The dialogs. */
+.fintech-dock-manager-sample .notifications-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fintech-dock-manager-sample .notifications-body {
+  width: min(560px, 82vw);
+  height: min(460px, 60vh);
+  display: flex;
+  min-height: 0;
+}
+
+.fintech-dock-manager-sample .alerts-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  min-height: 0;
+}
+
+.fintech-dock-manager-sample .clear-btn {
+  align-self: flex-end;
+  margin-block-end: 1rem;
+}
+
+.fintech-dock-manager-sample .alert-time {
+  font-size: 12px;
+}
+
+/* The tone colours the alert's icon (the Angular sample also sets a border colour, with no border). */
+.fintech-dock-manager-sample .tone-success .alert-icon {
+  color: var(--ig-success-500);
+}
+
+.fintech-dock-manager-sample .tone-warn .alert-icon {
+  color: var(--ig-warn-500);
+}
+
+.fintech-dock-manager-sample .tone-error .alert-icon {
+  color: var(--ig-error-500);
+}
+
+.fintech-dock-manager-sample .tone-info .alert-icon {
+  color: var(--ig-info-500);
+}
+
+.fintech-dock-manager-sample .reset-message {
+  margin: 0;
+  max-width: 300px;
+}
+
+/* ---------------------------------------------------------------------------------------------
+ * 9. The light theme's heat map: every directional figure inside a grid on a tinted cell, and the
+ *    chart's position chip on a lighter one. Fill only; the dark desk separates by field colour.
+ * ------------------------------------------------------------------------------------------- */
+.fintech-dock-manager-sample.light-theme igc-grid .pos:not(.range-marker),
+.fintech-dock-manager-sample.light-theme igc-grid .neg:not(.range-marker),
+.fintech-dock-manager-sample.light-theme igc-grid .pos-pnl,
+.fintech-dock-manager-sample.light-theme igc-grid .neg-pnl {
+  padding: 1px 6px;
+  border-radius: 3px;
+}
+
+.fintech-dock-manager-sample.light-theme igc-grid .pos:not(.range-marker),
+.fintech-dock-manager-sample.light-theme igc-grid .pos-pnl {
+  background: color-mix(in srgb, var(--ig-success-500) 10%, var(--ig-gray-50));
+}
+
+.fintech-dock-manager-sample.light-theme igc-grid .neg:not(.range-marker),
+.fintech-dock-manager-sample.light-theme igc-grid .neg-pnl {
+  background: color-mix(in srgb, var(--ig-error-500) 10%, var(--ig-gray-50));
+}
+
+.fintech-dock-manager-sample.light-theme .position-chip.pos {
+  background: color-mix(in srgb, var(--ig-success-500) 7%, var(--ig-gray-50));
+}
+
+.fintech-dock-manager-sample.light-theme .position-chip.neg {
+  background: color-mix(in srgb, var(--ig-error-500) 7%, var(--ig-gray-50));
+}

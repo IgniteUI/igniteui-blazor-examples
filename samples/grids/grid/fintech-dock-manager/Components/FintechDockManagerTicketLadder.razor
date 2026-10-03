@@ -1,0 +1,42 @@
+@namespace Infragistics.Samples
+@inherits FintechDockManagerTicketPart
+
+@* The price ladder. Bid and Ask copy their price into the limit field: a one-shot action rather than
+   a selection, so they are plain buttons, disabled while the order type has no limit to fill. Last,
+   the readout between them, has nothing to click. *@
+<div class="ladder" role="group" aria-label="Market prices">
+    <button type="button" class="ladder-cell bid" disabled="@(!Model.NeedsLimitPrice)" @onclick="UseBid">
+        <span class="ladder-label">Bid</span>
+        <span class="ladder-value mono">@FintechDockManagerFormat.Price(Quote?.Bid)</span>
+    </button>
+    <div class="ladder-cell last">
+        <span class="ladder-label">Last</span>
+        <span class="@LastClass">@FintechDockManagerFormat.Price(Quote?.LastPrice)</span>
+    </div>
+    <button type="button" class="ladder-cell ask" disabled="@(!Model.NeedsLimitPrice)" @onclick="UseAsk">
+        <span class="ladder-label">Ask</span>
+        <span class="ladder-value mono">@FintechDockManagerFormat.Price(Quote?.Ask)</span>
+    </button>
+</div>
+
+@code {
+    private FintechDockManagerQuote Quote => Desk.Market.QuoteOf(Desk.SelectedSymbol);
+
+    private string LastClass => Quote == null ? "ladder-value mono" : Quote.Positive ? "ladder-value mono pos" : "ladder-value mono neg";
+
+    private void UseBid()
+    {
+        if (Quote != null)
+        {
+            Model.UsePrice(Quote.Bid);
+        }
+    }
+
+    private void UseAsk()
+    {
+        if (Quote != null)
+        {
+            Model.UsePrice(Quote.Ask);
+        }
+    }
+}

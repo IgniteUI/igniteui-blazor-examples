@@ -1,0 +1,59 @@
+@namespace Infragistics.Samples
+@inherits FintechDockManagerPaneBase
+
+@* The chart document's price header: it follows the tape on every tick. Each figure has a floor on its
+   box and sits at the box's end (index.css), so a digit coming or going does not slide the row. *@
+<header class="chart-header">
+    <div class="price-block">
+        <div class="chart-symbol">
+            <span class="chart-ticker">@Series.Symbol</span>
+            <span class="chart-name">@Quote?.Name</span>
+        </div>
+        <div class="price-line">
+            <span class="current-price mono">@FintechDockManagerFormat.Price(CurrentPrice)</span>
+            <span class="@ChangeClass">@FintechDockManagerFormat.Signed(Quote?.Change) (@FintechDockManagerFormat.SignedPct(Quote?.ChangePct))</span>
+        </div>
+    </div>
+
+    <ul class="ohlc-stats">
+        <li class="stat-item"><div class="ohlc-stats__label">O</div><span>@FintechDockManagerFormat.Price(Latest?.Open)</span></li>
+        <li class="stat-item"><div class="ohlc-stats__label">H</div><span>@FintechDockManagerFormat.Price(Quote?.DayHigh ?? Latest?.High)</span></li>
+        <li class="stat-item"><div class="ohlc-stats__label">L</div><span>@FintechDockManagerFormat.Price(Quote?.DayLow ?? Latest?.Low)</span></li>
+        <li class="stat-item"><div class="ohlc-stats__label">Vol</div><span>@FintechDockManagerFormat.Compact(Quote?.Volume ?? Latest?.Volume)</span></li>
+        <li class="stat-item">
+            <div class="ohlc-stats__label">@Series.Spec.Label</div>
+            <span class="@FintechDockManagerFormat.Direction(RangeChangePct)">@FintechDockManagerFormat.SignedPct(RangeChangePct)</span>
+        </li>
+    </ul>
+
+    @if (Position != null)
+    {
+        <div class="@PositionClass">
+            <span class="chip-qty">@FintechDockManagerFormat.InputNumber(Position.Quantity) &#x40; @FintechDockManagerFormat.Price(Position.AvgCost)</span>
+            <span class="chip-pl mono">@FintechDockManagerFormat.SignedMoney(Position.OpenPl)</span>
+        </div>
+    }
+</header>
+
+@code {
+    [Parameter]
+    public FintechDockManagerChartSeries Series { get; set; }
+
+    protected override FintechDockManagerChange WatchedChanges =>
+        FintechDockManagerChange.Tick | FintechDockManagerChange.Book | FintechDockManagerChange.Reset;
+
+    private FintechDockManagerQuote Quote => Desk.Market.QuoteOf(Series.Symbol);
+
+    private FintechDockManagerCandle Latest => Series.Data.Count > 0 ? Series.Data[Series.Data.Count - 1] : null;
+
+    private FintechDockManagerPosition Position => Desk.Trading.Positions.FirstOrDefault(position => position.Symbol == Series.Symbol);
+
+    private double CurrentPrice => Quote?.LastPrice ?? Latest?.Close ?? 0;
+
+    // Change over the visible window, not just the trading day.
+    private double RangeChangePct => Series.Data.Count < 2 ? 0 : FintechDockManagerFormat.PercentChange(CurrentPrice, Series.Data[0].Close);
+
+    private string ChangeClass => Quote == null ? "price-change" : Quote.Positive ? "price-change pos" : "price-change neg";
+
+    private string PositionClass => Position.OpenPl >= 0 ? "position-chip pos" : "position-chip neg";
+}

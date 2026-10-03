@@ -1,0 +1,36 @@
+@namespace Infragistics.Samples
+@inherits FintechDockManagerPaneBase
+@using IgniteUI.Blazor.Controls
+
+@* Desk alerts: fills, rejections and unusual moves. The body of the command bar's alerts dialog rather
+   than a docked pane; opening the dialog is what marks them read. *@
+<div class="alerts-panel">
+    <IgbButton class="clear-btn" Variant="ButtonVariant.Outlined" Disabled="@(Desk.Notifications.Alerts.Count == 0)" title="Clear alerts" @onclick="Desk.ClearAlerts">
+        <IgbIcon IconName="clear_all" Collection="@FintechDockManagerIcons.Collection" aria-hidden="true"></IgbIcon>
+        Clear
+    </IgbButton>
+
+    <IgbList class="item-list">
+        @foreach (var alert in Desk.Notifications.Alerts)
+        {
+            <IgbListItem class="@ToneClass(alert)">
+                <IgbIcon slot="start" class="alert-icon" IconName="@alert.Icon" Collection="@FintechDockManagerIcons.Collection" aria-hidden="true"></IgbIcon>
+                <span slot="title">@alert.Title</span>
+                <span slot="subtitle">@alert.Detail</span>
+                <small slot="end"><time class="alert-time">@FintechDockManagerFormat.Since(alert.At, Desk.Notifications.Now)</time></small>
+            </IgbListItem>
+        }
+
+        @if (Desk.Notifications.Alerts.Count == 0)
+        {
+            <p class="list-empty">No alerts. Fills and unusual moves will land here.</p>
+        }
+    </IgbList>
+</div>
+
+@code {
+    protected override FintechDockManagerChange WatchedChanges =>
+        FintechDockManagerChange.Alerts | FintechDockManagerChange.Clock | FintechDockManagerChange.Reset;
+
+    private static string ToneClass(FintechDockManagerAlert alert) => "alert-item tone-" + alert.Tone;
+}
