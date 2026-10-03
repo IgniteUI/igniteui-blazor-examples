@@ -1,0 +1,1622 @@
+/*
+CSS styles are loaded from the shared CSS file located at:
+https://dl.infragistics.com/x/css//samples/
+*/
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+/*
+ * Fleet Management (fleet-management): the palettes, the component themes and the layout.
+ *
+ * - The samples browser inlines this file into the sample page as a style block, so it acts as
+ *   global CSS on a page that hosts every sample: every rule is nested under .fleet-management-sample
+ *   and the keyframe names carry a fleet-management- prefix. Never type a less-than sign in this
+ *   file, not even in a comment: the inlined copy is parsed as Razor and the build breaks.
+ * - The @import above must stay the first rule of the file.
+ * - Every colour derives from one of two palettes, declared on the sample's host element rather than
+ *   on :root. The built-in theme derives every shade from --ig-COLOR-500 with relative-colour
+ *   formulas, and a var() inside a custom property is resolved where the property is declared, so
+ *   the whole ramp is declared here (the igniteui-theming create_palette output for these seeds).
+ * - Dark is the default appearance; the toggle only adds .light-theme to the host, beside the size
+ *   classes. The component themes below reference palette variables only, so they follow.
+ */
+
+/* ---------------------------------------------------------------------------------------------
+ * 1. Dark palette (default), light palette, density
+ * ------------------------------------------------------------------------------------------- */
+.fleet-management-sample {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  min-height: 0;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Info is violet in both appearances: it is the Active status, and Active's dot sits beside
+   Available's green in the status column. The light accents are a step deeper than the dark ones,
+   which were picked against a near-black surface. */
+.fleet-management-sample .fleet-management-host {
+  --ig-wcag-a: 0.31;
+  --ig-wcag-aa: 0.185;
+  --ig-wcag-aaa: 0.178;
+  --ig-contrast-level: var(--ig-wcag-aa);
+  --y: clamp(0, (y / var(--ig-contrast-level) - 1) * -infinity, 1);
+  --y-contrast: xyz-d65 var(--y) var(--y) var(--y);
+  --ig-primary-50: hsl(from var(--ig-primary-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-primary-50-contrast: hsla(from color(from var(--ig-primary-50) var(--y-contrast)) h 0 l/1);
+  --ig-primary-100: hsl(from var(--ig-primary-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-primary-100-contrast: hsla(from color(from var(--ig-primary-100) var(--y-contrast)) h 0 l/1);
+  --ig-primary-200: hsl(from var(--ig-primary-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-primary-200-contrast: hsla(from color(from var(--ig-primary-200) var(--y-contrast)) h 0 l/1);
+  --ig-primary-300: hsl(from var(--ig-primary-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-primary-300-contrast: hsla(from color(from var(--ig-primary-300) var(--y-contrast)) h 0 l/1);
+  --ig-primary-400: hsl(from var(--ig-primary-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-primary-400-contrast: hsla(from color(from var(--ig-primary-400) var(--y-contrast)) h 0 l/1);
+  --ig-primary-500: #5099f9;
+  --ig-primary-500-contrast: hsla(from color(from var(--ig-primary-500) var(--y-contrast)) h 0 l/1);
+  --ig-primary-600: hsl(from var(--ig-primary-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-primary-600-contrast: hsla(from color(from var(--ig-primary-600) var(--y-contrast)) h 0 l/1);
+  --ig-primary-700: hsl(from var(--ig-primary-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-primary-700-contrast: hsla(from color(from var(--ig-primary-700) var(--y-contrast)) h 0 l/1);
+  --ig-primary-800: hsl(from var(--ig-primary-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-primary-800-contrast: hsla(from color(from var(--ig-primary-800) var(--y-contrast)) h 0 l/1);
+  --ig-primary-900: hsl(from var(--ig-primary-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-primary-900-contrast: hsla(from color(from var(--ig-primary-900) var(--y-contrast)) h 0 l/1);
+  --ig-primary-seed: #5099f9;
+  --ig-primary-seed-contrast: hsla(from color(from var(--ig-primary-seed) var(--y-contrast)) h 0 l/1);
+  --ig-primary-A100: hsl(from var(--ig-primary-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-primary-A100-contrast: hsla(from color(from var(--ig-primary-A100) var(--y-contrast)) h 0 l/1);
+  --ig-primary-A200: hsl(from var(--ig-primary-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-primary-A200-contrast: hsla(from color(from var(--ig-primary-A200) var(--y-contrast)) h 0 l/1);
+  --ig-primary-A400: hsl(from var(--ig-primary-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-primary-A400-contrast: hsla(from color(from var(--ig-primary-A400) var(--y-contrast)) h 0 l/1);
+  --ig-primary-A700: hsl(from var(--ig-primary-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-primary-A700-contrast: hsla(from color(from var(--ig-primary-A700) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-50: hsl(from var(--ig-secondary-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-secondary-50-contrast: hsla(from color(from var(--ig-secondary-50) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-100: hsl(from var(--ig-secondary-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-secondary-100-contrast: hsla(from color(from var(--ig-secondary-100) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-200: hsl(from var(--ig-secondary-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-secondary-200-contrast: hsla(from color(from var(--ig-secondary-200) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-300: hsl(from var(--ig-secondary-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-secondary-300-contrast: hsla(from color(from var(--ig-secondary-300) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-400: hsl(from var(--ig-secondary-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-secondary-400-contrast: hsla(from color(from var(--ig-secondary-400) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-500: #bda4f7;
+  --ig-secondary-500-contrast: hsla(from color(from var(--ig-secondary-500) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-600: hsl(from var(--ig-secondary-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-secondary-600-contrast: hsla(from color(from var(--ig-secondary-600) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-700: hsl(from var(--ig-secondary-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-secondary-700-contrast: hsla(from color(from var(--ig-secondary-700) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-800: hsl(from var(--ig-secondary-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-secondary-800-contrast: hsla(from color(from var(--ig-secondary-800) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-900: hsl(from var(--ig-secondary-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-secondary-900-contrast: hsla(from color(from var(--ig-secondary-900) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-seed: #bda4f7;
+  --ig-secondary-seed-contrast: hsla(from color(from var(--ig-secondary-seed) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-A100: hsl(from var(--ig-secondary-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-secondary-A100-contrast: hsla(from color(from var(--ig-secondary-A100) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-A200: hsl(from var(--ig-secondary-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-secondary-A200-contrast: hsla(from color(from var(--ig-secondary-A200) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-A400: hsl(from var(--ig-secondary-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-secondary-A400-contrast: hsla(from color(from var(--ig-secondary-A400) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-A700: hsl(from var(--ig-secondary-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-secondary-A700-contrast: hsla(from color(from var(--ig-secondary-A700) var(--y-contrast)) h 0 l/1);
+  --ig-gray-50: hsl(from var(--ig-gray-500) h s 13%);
+  --ig-gray-50-contrast: hsla(from color(from var(--ig-gray-50) var(--y-contrast)) h 0 l/1);
+  --ig-gray-100: hsl(from var(--ig-gray-500) h s 26%);
+  --ig-gray-100-contrast: hsla(from color(from var(--ig-gray-100) var(--y-contrast)) h 0 l/1);
+  --ig-gray-200: hsl(from var(--ig-gray-500) h s 38%);
+  --ig-gray-200-contrast: hsla(from color(from var(--ig-gray-200) var(--y-contrast)) h 0 l/1);
+  --ig-gray-300: hsl(from var(--ig-gray-500) h s 54%);
+  --ig-gray-300-contrast: hsla(from color(from var(--ig-gray-300) var(--y-contrast)) h 0 l/1);
+  --ig-gray-400: hsl(from var(--ig-gray-500) h s 62%);
+  --ig-gray-400-contrast: hsla(from color(from var(--ig-gray-400) var(--y-contrast)) h 0 l/1);
+  --ig-gray-500: hsl(205.71, 22.58%, 74%);
+  --ig-gray-500-contrast: hsla(from color(from var(--ig-gray-500) var(--y-contrast)) h 0 l/1);
+  --ig-gray-600: hsl(from var(--ig-gray-500) h s 88%);
+  --ig-gray-600-contrast: hsla(from color(from var(--ig-gray-600) var(--y-contrast)) h 0 l/1);
+  --ig-gray-700: hsl(from var(--ig-gray-500) h s 93%);
+  --ig-gray-700-contrast: hsla(from color(from var(--ig-gray-700) var(--y-contrast)) h 0 l/1);
+  --ig-gray-800: hsl(from var(--ig-gray-500) h s 96%);
+  --ig-gray-800-contrast: hsla(from color(from var(--ig-gray-800) var(--y-contrast)) h 0 l/1);
+  --ig-gray-900: hsl(from var(--ig-gray-500) h s 98%);
+  --ig-gray-900-contrast: hsla(from color(from var(--ig-gray-900) var(--y-contrast)) h 0 l/1);
+  --ig-gray-seed: #0c1013;
+  --ig-gray-seed-contrast: hsla(from color(from var(--ig-gray-seed) var(--y-contrast)) h 0 l/1);
+  --ig-surface-50: hsl(from var(--ig-surface-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-surface-50-contrast: hsla(from color(from var(--ig-surface-50) var(--y-contrast)) h 0 l/1);
+  --ig-surface-100: hsl(from var(--ig-surface-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-surface-100-contrast: hsla(from color(from var(--ig-surface-100) var(--y-contrast)) h 0 l/1);
+  --ig-surface-200: hsl(from var(--ig-surface-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-surface-200-contrast: hsla(from color(from var(--ig-surface-200) var(--y-contrast)) h 0 l/1);
+  --ig-surface-300: hsl(from var(--ig-surface-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-surface-300-contrast: hsla(from color(from var(--ig-surface-300) var(--y-contrast)) h 0 l/1);
+  --ig-surface-400: hsl(from var(--ig-surface-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-surface-400-contrast: hsla(from color(from var(--ig-surface-400) var(--y-contrast)) h 0 l/1);
+  --ig-surface-500: #0a0e10;
+  --ig-surface-500-contrast: hsla(from color(from var(--ig-surface-500) var(--y-contrast)) h 0 l/1);
+  --ig-surface-600: hsl(from var(--ig-surface-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-surface-600-contrast: hsla(from color(from var(--ig-surface-600) var(--y-contrast)) h 0 l/1);
+  --ig-surface-700: hsl(from var(--ig-surface-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-surface-700-contrast: hsla(from color(from var(--ig-surface-700) var(--y-contrast)) h 0 l/1);
+  --ig-surface-800: hsl(from var(--ig-surface-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-surface-800-contrast: hsla(from color(from var(--ig-surface-800) var(--y-contrast)) h 0 l/1);
+  --ig-surface-900: hsl(from var(--ig-surface-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-surface-900-contrast: hsla(from color(from var(--ig-surface-900) var(--y-contrast)) h 0 l/1);
+  --ig-surface-seed: #0a0e10;
+  --ig-surface-seed-contrast: hsla(from color(from var(--ig-surface-seed) var(--y-contrast)) h 0 l/1);
+  --ig-surface-A100: hsl(from var(--ig-surface-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-surface-A100-contrast: hsla(from color(from var(--ig-surface-A100) var(--y-contrast)) h 0 l/1);
+  --ig-surface-A200: hsl(from var(--ig-surface-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-surface-A200-contrast: hsla(from color(from var(--ig-surface-A200) var(--y-contrast)) h 0 l/1);
+  --ig-surface-A400: hsl(from var(--ig-surface-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-surface-A400-contrast: hsla(from color(from var(--ig-surface-A400) var(--y-contrast)) h 0 l/1);
+  --ig-surface-A700: hsl(from var(--ig-surface-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-surface-A700-contrast: hsla(from color(from var(--ig-surface-A700) var(--y-contrast)) h 0 l/1);
+  --ig-info-50: hsl(from var(--ig-info-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-info-50-contrast: hsla(from color(from var(--ig-info-50) var(--y-contrast)) h 0 l/1);
+  --ig-info-100: hsl(from var(--ig-info-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-info-100-contrast: hsla(from color(from var(--ig-info-100) var(--y-contrast)) h 0 l/1);
+  --ig-info-200: hsl(from var(--ig-info-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-info-200-contrast: hsla(from color(from var(--ig-info-200) var(--y-contrast)) h 0 l/1);
+  --ig-info-300: hsl(from var(--ig-info-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-info-300-contrast: hsla(from color(from var(--ig-info-300) var(--y-contrast)) h 0 l/1);
+  --ig-info-400: hsl(from var(--ig-info-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-info-400-contrast: hsla(from color(from var(--ig-info-400) var(--y-contrast)) h 0 l/1);
+  --ig-info-500: #bda4f7;
+  --ig-info-500-contrast: hsla(from color(from var(--ig-info-500) var(--y-contrast)) h 0 l/1);
+  --ig-info-600: hsl(from var(--ig-info-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-info-600-contrast: hsla(from color(from var(--ig-info-600) var(--y-contrast)) h 0 l/1);
+  --ig-info-700: hsl(from var(--ig-info-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-info-700-contrast: hsla(from color(from var(--ig-info-700) var(--y-contrast)) h 0 l/1);
+  --ig-info-800: hsl(from var(--ig-info-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-info-800-contrast: hsla(from color(from var(--ig-info-800) var(--y-contrast)) h 0 l/1);
+  --ig-info-900: hsl(from var(--ig-info-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-info-900-contrast: hsla(from color(from var(--ig-info-900) var(--y-contrast)) h 0 l/1);
+  --ig-info-seed: #bda4f7;
+  --ig-info-seed-contrast: hsla(from color(from var(--ig-info-seed) var(--y-contrast)) h 0 l/1);
+  --ig-info-A100: hsl(from var(--ig-info-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-info-A100-contrast: hsla(from color(from var(--ig-info-A100) var(--y-contrast)) h 0 l/1);
+  --ig-info-A200: hsl(from var(--ig-info-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-info-A200-contrast: hsla(from color(from var(--ig-info-A200) var(--y-contrast)) h 0 l/1);
+  --ig-info-A400: hsl(from var(--ig-info-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-info-A400-contrast: hsla(from color(from var(--ig-info-A400) var(--y-contrast)) h 0 l/1);
+  --ig-info-A700: hsl(from var(--ig-info-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-info-A700-contrast: hsla(from color(from var(--ig-info-A700) var(--y-contrast)) h 0 l/1);
+  --ig-success-50: hsl(from var(--ig-success-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-success-50-contrast: hsla(from color(from var(--ig-success-50) var(--y-contrast)) h 0 l/1);
+  --ig-success-100: hsl(from var(--ig-success-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-success-100-contrast: hsla(from color(from var(--ig-success-100) var(--y-contrast)) h 0 l/1);
+  --ig-success-200: hsl(from var(--ig-success-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-success-200-contrast: hsla(from color(from var(--ig-success-200) var(--y-contrast)) h 0 l/1);
+  --ig-success-300: hsl(from var(--ig-success-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-success-300-contrast: hsla(from color(from var(--ig-success-300) var(--y-contrast)) h 0 l/1);
+  --ig-success-400: hsl(from var(--ig-success-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-success-400-contrast: hsla(from color(from var(--ig-success-400) var(--y-contrast)) h 0 l/1);
+  --ig-success-500: #85ec97;
+  --ig-success-500-contrast: hsla(from color(from var(--ig-success-500) var(--y-contrast)) h 0 l/1);
+  --ig-success-600: hsl(from var(--ig-success-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-success-600-contrast: hsla(from color(from var(--ig-success-600) var(--y-contrast)) h 0 l/1);
+  --ig-success-700: hsl(from var(--ig-success-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-success-700-contrast: hsla(from color(from var(--ig-success-700) var(--y-contrast)) h 0 l/1);
+  --ig-success-800: hsl(from var(--ig-success-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-success-800-contrast: hsla(from color(from var(--ig-success-800) var(--y-contrast)) h 0 l/1);
+  --ig-success-900: hsl(from var(--ig-success-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-success-900-contrast: hsla(from color(from var(--ig-success-900) var(--y-contrast)) h 0 l/1);
+  --ig-success-seed: #85ec97;
+  --ig-success-seed-contrast: hsla(from color(from var(--ig-success-seed) var(--y-contrast)) h 0 l/1);
+  --ig-success-A100: hsl(from var(--ig-success-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-success-A100-contrast: hsla(from color(from var(--ig-success-A100) var(--y-contrast)) h 0 l/1);
+  --ig-success-A200: hsl(from var(--ig-success-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-success-A200-contrast: hsla(from color(from var(--ig-success-A200) var(--y-contrast)) h 0 l/1);
+  --ig-success-A400: hsl(from var(--ig-success-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-success-A400-contrast: hsla(from color(from var(--ig-success-A400) var(--y-contrast)) h 0 l/1);
+  --ig-success-A700: hsl(from var(--ig-success-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-success-A700-contrast: hsla(from color(from var(--ig-success-A700) var(--y-contrast)) h 0 l/1);
+  --ig-warn-50: hsl(from var(--ig-warn-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-warn-50-contrast: hsla(from color(from var(--ig-warn-50) var(--y-contrast)) h 0 l/1);
+  --ig-warn-100: hsl(from var(--ig-warn-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-warn-100-contrast: hsla(from color(from var(--ig-warn-100) var(--y-contrast)) h 0 l/1);
+  --ig-warn-200: hsl(from var(--ig-warn-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-warn-200-contrast: hsla(from color(from var(--ig-warn-200) var(--y-contrast)) h 0 l/1);
+  --ig-warn-300: hsl(from var(--ig-warn-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-warn-300-contrast: hsla(from color(from var(--ig-warn-300) var(--y-contrast)) h 0 l/1);
+  --ig-warn-400: hsl(from var(--ig-warn-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-warn-400-contrast: hsla(from color(from var(--ig-warn-400) var(--y-contrast)) h 0 l/1);
+  --ig-warn-500: #ed8936;
+  --ig-warn-500-contrast: hsla(from color(from var(--ig-warn-500) var(--y-contrast)) h 0 l/1);
+  --ig-warn-600: hsl(from var(--ig-warn-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-warn-600-contrast: hsla(from color(from var(--ig-warn-600) var(--y-contrast)) h 0 l/1);
+  --ig-warn-700: hsl(from var(--ig-warn-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-warn-700-contrast: hsla(from color(from var(--ig-warn-700) var(--y-contrast)) h 0 l/1);
+  --ig-warn-800: hsl(from var(--ig-warn-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-warn-800-contrast: hsla(from color(from var(--ig-warn-800) var(--y-contrast)) h 0 l/1);
+  --ig-warn-900: hsl(from var(--ig-warn-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-warn-900-contrast: hsla(from color(from var(--ig-warn-900) var(--y-contrast)) h 0 l/1);
+  --ig-warn-seed: #ed8936;
+  --ig-warn-seed-contrast: hsla(from color(from var(--ig-warn-seed) var(--y-contrast)) h 0 l/1);
+  --ig-warn-A100: hsl(from var(--ig-warn-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-warn-A100-contrast: hsla(from color(from var(--ig-warn-A100) var(--y-contrast)) h 0 l/1);
+  --ig-warn-A200: hsl(from var(--ig-warn-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-warn-A200-contrast: hsla(from color(from var(--ig-warn-A200) var(--y-contrast)) h 0 l/1);
+  --ig-warn-A400: hsl(from var(--ig-warn-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-warn-A400-contrast: hsla(from color(from var(--ig-warn-A400) var(--y-contrast)) h 0 l/1);
+  --ig-warn-A700: hsl(from var(--ig-warn-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-warn-A700-contrast: hsla(from color(from var(--ig-warn-A700) var(--y-contrast)) h 0 l/1);
+  --ig-error-50: hsl(from var(--ig-error-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-error-50-contrast: hsla(from color(from var(--ig-error-50) var(--y-contrast)) h 0 l/1);
+  --ig-error-100: hsl(from var(--ig-error-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-error-100-contrast: hsla(from color(from var(--ig-error-100) var(--y-contrast)) h 0 l/1);
+  --ig-error-200: hsl(from var(--ig-error-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-error-200-contrast: hsla(from color(from var(--ig-error-200) var(--y-contrast)) h 0 l/1);
+  --ig-error-300: hsl(from var(--ig-error-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-error-300-contrast: hsla(from color(from var(--ig-error-300) var(--y-contrast)) h 0 l/1);
+  --ig-error-400: hsl(from var(--ig-error-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-error-400-contrast: hsla(from color(from var(--ig-error-400) var(--y-contrast)) h 0 l/1);
+  --ig-error-500: #ed546f;
+  --ig-error-500-contrast: hsla(from color(from var(--ig-error-500) var(--y-contrast)) h 0 l/1);
+  --ig-error-600: hsl(from var(--ig-error-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-error-600-contrast: hsla(from color(from var(--ig-error-600) var(--y-contrast)) h 0 l/1);
+  --ig-error-700: hsl(from var(--ig-error-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-error-700-contrast: hsla(from color(from var(--ig-error-700) var(--y-contrast)) h 0 l/1);
+  --ig-error-800: hsl(from var(--ig-error-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-error-800-contrast: hsla(from color(from var(--ig-error-800) var(--y-contrast)) h 0 l/1);
+  --ig-error-900: hsl(from var(--ig-error-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-error-900-contrast: hsla(from color(from var(--ig-error-900) var(--y-contrast)) h 0 l/1);
+  --ig-error-seed: #ed546f;
+  --ig-error-seed-contrast: hsla(from color(from var(--ig-error-seed) var(--y-contrast)) h 0 l/1);
+  --ig-error-A100: hsl(from var(--ig-error-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-error-A100-contrast: hsla(from color(from var(--ig-error-A100) var(--y-contrast)) h 0 l/1);
+  --ig-error-A200: hsl(from var(--ig-error-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-error-A200-contrast: hsla(from color(from var(--ig-error-A200) var(--y-contrast)) h 0 l/1);
+  --ig-error-A400: hsl(from var(--ig-error-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-error-A400-contrast: hsla(from color(from var(--ig-error-A400) var(--y-contrast)) h 0 l/1);
+  --ig-error-A700: hsl(from var(--ig-error-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-error-A700-contrast: hsla(from color(from var(--ig-error-A700) var(--y-contrast)) h 0 l/1);
+
+  /* Every hairline in the sample: the grid's outline, the overlay panels' edges, the spec and table
+     rules, the KPI boxes. The gray ramp inverts off the surface, so each appearance takes its own
+     shade (light-dark follows color-scheme, set below). */
+  --fleet-border: light-dark(var(--ig-gray-300), var(--ig-gray-200));
+  --fleet-overlay-background: light-dark(var(--ig-surface-500), var(--ig-surface-100));
+  --fleet-tooltip-background: light-dark(var(--ig-surface-600), var(--ig-surface-100));
+  --fleet-tooltip-border: light-dark(var(--ig-surface-700), var(--ig-gray-100));
+
+  /* Native scrollbars under .ig-scrollbar: the theme declares these on :root, where they resolve
+     against the page palette; restated here so they follow this palette. */
+  --ig-scrollbar-thumb-background: var(--ig-gray-400);
+  --ig-scrollbar-track-background: var(--ig-gray-100);
+
+  /* Fluent typography, which the sample is designed on. Pinned so the components keep their text
+     metrics when the page loads another theme (the samples browser loads Bootstrap). */
+  --ig-font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  --ig-button-font-size: 0.875rem;
+  --ig-button-font-weight: 600;
+  --ig-button-line-height: 0.875rem;
+  --ig-button-text-transform: capitalize;
+
+  /* Sample-wide density, driven by the size selector in the filter row. */
+  --ig-size: var(--ig-size-medium);
+
+  color-scheme: dark;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  min-height: 0;
+  color: var(--ig-gray-800);
+  background: var(--ig-gray-50);
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  font-size: 0.875rem;
+}
+
+.fleet-management-sample .fleet-management-host.light-theme {
+  --ig-wcag-a: 0.31;
+  --ig-wcag-aa: 0.185;
+  --ig-wcag-aaa: 0.178;
+  --ig-contrast-level: var(--ig-wcag-aa);
+  --y: clamp(0, (y / var(--ig-contrast-level) - 1) * -infinity, 1);
+  --y-contrast: xyz-d65 var(--y) var(--y) var(--y);
+  --ig-primary-50: hsl(from var(--ig-primary-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-primary-50-contrast: hsla(from color(from var(--ig-primary-50) var(--y-contrast)) h 0 l/1);
+  --ig-primary-100: hsl(from var(--ig-primary-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-primary-100-contrast: hsla(from color(from var(--ig-primary-100) var(--y-contrast)) h 0 l/1);
+  --ig-primary-200: hsl(from var(--ig-primary-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-primary-200-contrast: hsla(from color(from var(--ig-primary-200) var(--y-contrast)) h 0 l/1);
+  --ig-primary-300: hsl(from var(--ig-primary-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-primary-300-contrast: hsla(from color(from var(--ig-primary-300) var(--y-contrast)) h 0 l/1);
+  --ig-primary-400: hsl(from var(--ig-primary-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-primary-400-contrast: hsla(from color(from var(--ig-primary-400) var(--y-contrast)) h 0 l/1);
+  --ig-primary-500: #1145a8;
+  --ig-primary-500-contrast: hsla(from color(from var(--ig-primary-500) var(--y-contrast)) h 0 l/1);
+  --ig-primary-600: hsl(from var(--ig-primary-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-primary-600-contrast: hsla(from color(from var(--ig-primary-600) var(--y-contrast)) h 0 l/1);
+  --ig-primary-700: hsl(from var(--ig-primary-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-primary-700-contrast: hsla(from color(from var(--ig-primary-700) var(--y-contrast)) h 0 l/1);
+  --ig-primary-800: hsl(from var(--ig-primary-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-primary-800-contrast: hsla(from color(from var(--ig-primary-800) var(--y-contrast)) h 0 l/1);
+  --ig-primary-900: hsl(from var(--ig-primary-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-primary-900-contrast: hsla(from color(from var(--ig-primary-900) var(--y-contrast)) h 0 l/1);
+  --ig-primary-seed: #1145a8;
+  --ig-primary-seed-contrast: hsla(from color(from var(--ig-primary-seed) var(--y-contrast)) h 0 l/1);
+  --ig-primary-A100: hsl(from var(--ig-primary-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-primary-A100-contrast: hsla(from color(from var(--ig-primary-A100) var(--y-contrast)) h 0 l/1);
+  --ig-primary-A200: hsl(from var(--ig-primary-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-primary-A200-contrast: hsla(from color(from var(--ig-primary-A200) var(--y-contrast)) h 0 l/1);
+  --ig-primary-A400: hsl(from var(--ig-primary-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-primary-A400-contrast: hsla(from color(from var(--ig-primary-A400) var(--y-contrast)) h 0 l/1);
+  --ig-primary-A700: hsl(from var(--ig-primary-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-primary-A700-contrast: hsla(from color(from var(--ig-primary-A700) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-50: hsl(from var(--ig-secondary-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-secondary-50-contrast: hsla(from color(from var(--ig-secondary-50) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-100: hsl(from var(--ig-secondary-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-secondary-100-contrast: hsla(from color(from var(--ig-secondary-100) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-200: hsl(from var(--ig-secondary-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-secondary-200-contrast: hsla(from color(from var(--ig-secondary-200) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-300: hsl(from var(--ig-secondary-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-secondary-300-contrast: hsla(from color(from var(--ig-secondary-300) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-400: hsl(from var(--ig-secondary-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-secondary-400-contrast: hsla(from color(from var(--ig-secondary-400) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-500: #6d28d9;
+  --ig-secondary-500-contrast: hsla(from color(from var(--ig-secondary-500) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-600: hsl(from var(--ig-secondary-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-secondary-600-contrast: hsla(from color(from var(--ig-secondary-600) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-700: hsl(from var(--ig-secondary-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-secondary-700-contrast: hsla(from color(from var(--ig-secondary-700) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-800: hsl(from var(--ig-secondary-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-secondary-800-contrast: hsla(from color(from var(--ig-secondary-800) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-900: hsl(from var(--ig-secondary-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-secondary-900-contrast: hsla(from color(from var(--ig-secondary-900) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-seed: #6d28d9;
+  --ig-secondary-seed-contrast: hsla(from color(from var(--ig-secondary-seed) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-A100: hsl(from var(--ig-secondary-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-secondary-A100-contrast: hsla(from color(from var(--ig-secondary-A100) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-A200: hsl(from var(--ig-secondary-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-secondary-A200-contrast: hsla(from color(from var(--ig-secondary-A200) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-A400: hsl(from var(--ig-secondary-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-secondary-A400-contrast: hsla(from color(from var(--ig-secondary-A400) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-A700: hsl(from var(--ig-secondary-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-secondary-A700-contrast: hsla(from color(from var(--ig-secondary-A700) var(--y-contrast)) h 0 l/1);
+  --ig-gray-50: hsl(from var(--ig-gray-500) h s 98%);
+  --ig-gray-50-contrast: hsla(from color(from var(--ig-gray-50) var(--y-contrast)) h 0 l/1);
+  --ig-gray-100: hsl(from var(--ig-gray-500) h s 96%);
+  --ig-gray-100-contrast: hsla(from color(from var(--ig-gray-100) var(--y-contrast)) h 0 l/1);
+  --ig-gray-200: hsl(from var(--ig-gray-500) h s 93%);
+  --ig-gray-200-contrast: hsla(from color(from var(--ig-gray-200) var(--y-contrast)) h 0 l/1);
+  --ig-gray-300: hsl(from var(--ig-gray-500) h s 88%);
+  --ig-gray-300-contrast: hsla(from color(from var(--ig-gray-300) var(--y-contrast)) h 0 l/1);
+  --ig-gray-400: hsl(from var(--ig-gray-500) h s 74%);
+  --ig-gray-400-contrast: hsla(from color(from var(--ig-gray-400) var(--y-contrast)) h 0 l/1);
+  --ig-gray-500: hsl(225, 35.29%, 62%);
+  --ig-gray-500-contrast: hsla(from color(from var(--ig-gray-500) var(--y-contrast)) h 0 l/1);
+  --ig-gray-600: hsl(from var(--ig-gray-500) h s 54%);
+  --ig-gray-600-contrast: hsla(from color(from var(--ig-gray-600) var(--y-contrast)) h 0 l/1);
+  --ig-gray-700: hsl(from var(--ig-gray-500) h s 38%);
+  --ig-gray-700-contrast: hsla(from color(from var(--ig-gray-700) var(--y-contrast)) h 0 l/1);
+  --ig-gray-800: hsl(from var(--ig-gray-500) h s 26%);
+  --ig-gray-800-contrast: hsla(from color(from var(--ig-gray-800) var(--y-contrast)) h 0 l/1);
+  --ig-gray-900: hsl(from var(--ig-gray-500) h s 13%);
+  --ig-gray-900-contrast: hsla(from color(from var(--ig-gray-900) var(--y-contrast)) h 0 l/1);
+  --ig-gray-seed: #0b0e17;
+  --ig-gray-seed-contrast: hsla(from color(from var(--ig-gray-seed) var(--y-contrast)) h 0 l/1);
+  --ig-surface-50: hsl(from var(--ig-surface-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-surface-50-contrast: hsla(from color(from var(--ig-surface-50) var(--y-contrast)) h 0 l/1);
+  --ig-surface-100: hsl(from var(--ig-surface-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-surface-100-contrast: hsla(from color(from var(--ig-surface-100) var(--y-contrast)) h 0 l/1);
+  --ig-surface-200: hsl(from var(--ig-surface-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-surface-200-contrast: hsla(from color(from var(--ig-surface-200) var(--y-contrast)) h 0 l/1);
+  --ig-surface-300: hsl(from var(--ig-surface-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-surface-300-contrast: hsla(from color(from var(--ig-surface-300) var(--y-contrast)) h 0 l/1);
+  --ig-surface-400: hsl(from var(--ig-surface-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-surface-400-contrast: hsla(from color(from var(--ig-surface-400) var(--y-contrast)) h 0 l/1);
+  --ig-surface-500: #f6f9fc;
+  --ig-surface-500-contrast: hsla(from color(from var(--ig-surface-500) var(--y-contrast)) h 0 l/1);
+  --ig-surface-600: hsl(from var(--ig-surface-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-surface-600-contrast: hsla(from color(from var(--ig-surface-600) var(--y-contrast)) h 0 l/1);
+  --ig-surface-700: hsl(from var(--ig-surface-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-surface-700-contrast: hsla(from color(from var(--ig-surface-700) var(--y-contrast)) h 0 l/1);
+  --ig-surface-800: hsl(from var(--ig-surface-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-surface-800-contrast: hsla(from color(from var(--ig-surface-800) var(--y-contrast)) h 0 l/1);
+  --ig-surface-900: hsl(from var(--ig-surface-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-surface-900-contrast: hsla(from color(from var(--ig-surface-900) var(--y-contrast)) h 0 l/1);
+  --ig-surface-seed: #f6f9fc;
+  --ig-surface-seed-contrast: hsla(from color(from var(--ig-surface-seed) var(--y-contrast)) h 0 l/1);
+  --ig-surface-A100: hsl(from var(--ig-surface-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-surface-A100-contrast: hsla(from color(from var(--ig-surface-A100) var(--y-contrast)) h 0 l/1);
+  --ig-surface-A200: hsl(from var(--ig-surface-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-surface-A200-contrast: hsla(from color(from var(--ig-surface-A200) var(--y-contrast)) h 0 l/1);
+  --ig-surface-A400: hsl(from var(--ig-surface-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-surface-A400-contrast: hsla(from color(from var(--ig-surface-A400) var(--y-contrast)) h 0 l/1);
+  --ig-surface-A700: hsl(from var(--ig-surface-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-surface-A700-contrast: hsla(from color(from var(--ig-surface-A700) var(--y-contrast)) h 0 l/1);
+  --ig-info-50: hsl(from var(--ig-info-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-info-50-contrast: hsla(from color(from var(--ig-info-50) var(--y-contrast)) h 0 l/1);
+  --ig-info-100: hsl(from var(--ig-info-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-info-100-contrast: hsla(from color(from var(--ig-info-100) var(--y-contrast)) h 0 l/1);
+  --ig-info-200: hsl(from var(--ig-info-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-info-200-contrast: hsla(from color(from var(--ig-info-200) var(--y-contrast)) h 0 l/1);
+  --ig-info-300: hsl(from var(--ig-info-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-info-300-contrast: hsla(from color(from var(--ig-info-300) var(--y-contrast)) h 0 l/1);
+  --ig-info-400: hsl(from var(--ig-info-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-info-400-contrast: hsla(from color(from var(--ig-info-400) var(--y-contrast)) h 0 l/1);
+  --ig-info-500: #6d28d9;
+  --ig-info-500-contrast: hsla(from color(from var(--ig-info-500) var(--y-contrast)) h 0 l/1);
+  --ig-info-600: hsl(from var(--ig-info-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-info-600-contrast: hsla(from color(from var(--ig-info-600) var(--y-contrast)) h 0 l/1);
+  --ig-info-700: hsl(from var(--ig-info-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-info-700-contrast: hsla(from color(from var(--ig-info-700) var(--y-contrast)) h 0 l/1);
+  --ig-info-800: hsl(from var(--ig-info-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-info-800-contrast: hsla(from color(from var(--ig-info-800) var(--y-contrast)) h 0 l/1);
+  --ig-info-900: hsl(from var(--ig-info-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-info-900-contrast: hsla(from color(from var(--ig-info-900) var(--y-contrast)) h 0 l/1);
+  --ig-info-seed: #6d28d9;
+  --ig-info-seed-contrast: hsla(from color(from var(--ig-info-seed) var(--y-contrast)) h 0 l/1);
+  --ig-info-A100: hsl(from var(--ig-info-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-info-A100-contrast: hsla(from color(from var(--ig-info-A100) var(--y-contrast)) h 0 l/1);
+  --ig-info-A200: hsl(from var(--ig-info-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-info-A200-contrast: hsla(from color(from var(--ig-info-A200) var(--y-contrast)) h 0 l/1);
+  --ig-info-A400: hsl(from var(--ig-info-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-info-A400-contrast: hsla(from color(from var(--ig-info-A400) var(--y-contrast)) h 0 l/1);
+  --ig-info-A700: hsl(from var(--ig-info-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-info-A700-contrast: hsla(from color(from var(--ig-info-A700) var(--y-contrast)) h 0 l/1);
+  --ig-success-50: hsl(from var(--ig-success-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-success-50-contrast: hsla(from color(from var(--ig-success-50) var(--y-contrast)) h 0 l/1);
+  --ig-success-100: hsl(from var(--ig-success-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-success-100-contrast: hsla(from color(from var(--ig-success-100) var(--y-contrast)) h 0 l/1);
+  --ig-success-200: hsl(from var(--ig-success-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-success-200-contrast: hsla(from color(from var(--ig-success-200) var(--y-contrast)) h 0 l/1);
+  --ig-success-300: hsl(from var(--ig-success-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-success-300-contrast: hsla(from color(from var(--ig-success-300) var(--y-contrast)) h 0 l/1);
+  --ig-success-400: hsl(from var(--ig-success-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-success-400-contrast: hsla(from color(from var(--ig-success-400) var(--y-contrast)) h 0 l/1);
+  --ig-success-500: #166534;
+  --ig-success-500-contrast: hsla(from color(from var(--ig-success-500) var(--y-contrast)) h 0 l/1);
+  --ig-success-600: hsl(from var(--ig-success-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-success-600-contrast: hsla(from color(from var(--ig-success-600) var(--y-contrast)) h 0 l/1);
+  --ig-success-700: hsl(from var(--ig-success-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-success-700-contrast: hsla(from color(from var(--ig-success-700) var(--y-contrast)) h 0 l/1);
+  --ig-success-800: hsl(from var(--ig-success-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-success-800-contrast: hsla(from color(from var(--ig-success-800) var(--y-contrast)) h 0 l/1);
+  --ig-success-900: hsl(from var(--ig-success-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-success-900-contrast: hsla(from color(from var(--ig-success-900) var(--y-contrast)) h 0 l/1);
+  --ig-success-seed: #166534;
+  --ig-success-seed-contrast: hsla(from color(from var(--ig-success-seed) var(--y-contrast)) h 0 l/1);
+  --ig-success-A100: hsl(from var(--ig-success-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-success-A100-contrast: hsla(from color(from var(--ig-success-A100) var(--y-contrast)) h 0 l/1);
+  --ig-success-A200: hsl(from var(--ig-success-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-success-A200-contrast: hsla(from color(from var(--ig-success-A200) var(--y-contrast)) h 0 l/1);
+  --ig-success-A400: hsl(from var(--ig-success-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-success-A400-contrast: hsla(from color(from var(--ig-success-A400) var(--y-contrast)) h 0 l/1);
+  --ig-success-A700: hsl(from var(--ig-success-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-success-A700-contrast: hsla(from color(from var(--ig-success-A700) var(--y-contrast)) h 0 l/1);
+  --ig-warn-50: hsl(from var(--ig-warn-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-warn-50-contrast: hsla(from color(from var(--ig-warn-50) var(--y-contrast)) h 0 l/1);
+  --ig-warn-100: hsl(from var(--ig-warn-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-warn-100-contrast: hsla(from color(from var(--ig-warn-100) var(--y-contrast)) h 0 l/1);
+  --ig-warn-200: hsl(from var(--ig-warn-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-warn-200-contrast: hsla(from color(from var(--ig-warn-200) var(--y-contrast)) h 0 l/1);
+  --ig-warn-300: hsl(from var(--ig-warn-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-warn-300-contrast: hsla(from color(from var(--ig-warn-300) var(--y-contrast)) h 0 l/1);
+  --ig-warn-400: hsl(from var(--ig-warn-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-warn-400-contrast: hsla(from color(from var(--ig-warn-400) var(--y-contrast)) h 0 l/1);
+  --ig-warn-500: #9a3412;
+  --ig-warn-500-contrast: hsla(from color(from var(--ig-warn-500) var(--y-contrast)) h 0 l/1);
+  --ig-warn-600: hsl(from var(--ig-warn-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-warn-600-contrast: hsla(from color(from var(--ig-warn-600) var(--y-contrast)) h 0 l/1);
+  --ig-warn-700: hsl(from var(--ig-warn-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-warn-700-contrast: hsla(from color(from var(--ig-warn-700) var(--y-contrast)) h 0 l/1);
+  --ig-warn-800: hsl(from var(--ig-warn-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-warn-800-contrast: hsla(from color(from var(--ig-warn-800) var(--y-contrast)) h 0 l/1);
+  --ig-warn-900: hsl(from var(--ig-warn-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-warn-900-contrast: hsla(from color(from var(--ig-warn-900) var(--y-contrast)) h 0 l/1);
+  --ig-warn-seed: #9a3412;
+  --ig-warn-seed-contrast: hsla(from color(from var(--ig-warn-seed) var(--y-contrast)) h 0 l/1);
+  --ig-warn-A100: hsl(from var(--ig-warn-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-warn-A100-contrast: hsla(from color(from var(--ig-warn-A100) var(--y-contrast)) h 0 l/1);
+  --ig-warn-A200: hsl(from var(--ig-warn-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-warn-A200-contrast: hsla(from color(from var(--ig-warn-A200) var(--y-contrast)) h 0 l/1);
+  --ig-warn-A400: hsl(from var(--ig-warn-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-warn-A400-contrast: hsla(from color(from var(--ig-warn-A400) var(--y-contrast)) h 0 l/1);
+  --ig-warn-A700: hsl(from var(--ig-warn-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-warn-A700-contrast: hsla(from color(from var(--ig-warn-A700) var(--y-contrast)) h 0 l/1);
+  --ig-error-50: hsl(from var(--ig-error-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-error-50-contrast: hsla(from color(from var(--ig-error-50) var(--y-contrast)) h 0 l/1);
+  --ig-error-100: hsl(from var(--ig-error-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-error-100-contrast: hsla(from color(from var(--ig-error-100) var(--y-contrast)) h 0 l/1);
+  --ig-error-200: hsl(from var(--ig-error-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-error-200-contrast: hsla(from color(from var(--ig-error-200) var(--y-contrast)) h 0 l/1);
+  --ig-error-300: hsl(from var(--ig-error-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-error-300-contrast: hsla(from color(from var(--ig-error-300) var(--y-contrast)) h 0 l/1);
+  --ig-error-400: hsl(from var(--ig-error-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-error-400-contrast: hsla(from color(from var(--ig-error-400) var(--y-contrast)) h 0 l/1);
+  --ig-error-500: #b91c1c;
+  --ig-error-500-contrast: hsla(from color(from var(--ig-error-500) var(--y-contrast)) h 0 l/1);
+  --ig-error-600: hsl(from var(--ig-error-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-error-600-contrast: hsla(from color(from var(--ig-error-600) var(--y-contrast)) h 0 l/1);
+  --ig-error-700: hsl(from var(--ig-error-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-error-700-contrast: hsla(from color(from var(--ig-error-700) var(--y-contrast)) h 0 l/1);
+  --ig-error-800: hsl(from var(--ig-error-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-error-800-contrast: hsla(from color(from var(--ig-error-800) var(--y-contrast)) h 0 l/1);
+  --ig-error-900: hsl(from var(--ig-error-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-error-900-contrast: hsla(from color(from var(--ig-error-900) var(--y-contrast)) h 0 l/1);
+  --ig-error-seed: #b91c1c;
+  --ig-error-seed-contrast: hsla(from color(from var(--ig-error-seed) var(--y-contrast)) h 0 l/1);
+  --ig-error-A100: hsl(from var(--ig-error-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-error-A100-contrast: hsla(from color(from var(--ig-error-A100) var(--y-contrast)) h 0 l/1);
+  --ig-error-A200: hsl(from var(--ig-error-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-error-A200-contrast: hsla(from color(from var(--ig-error-A200) var(--y-contrast)) h 0 l/1);
+  --ig-error-A400: hsl(from var(--ig-error-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-error-A400-contrast: hsla(from color(from var(--ig-error-A400) var(--y-contrast)) h 0 l/1);
+  --ig-error-A700: hsl(from var(--ig-error-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-error-A700-contrast: hsla(from color(from var(--ig-error-A700) var(--y-contrast)) h 0 l/1);
+
+  color-scheme: light;
+}
+
+.fleet-management-sample .fleet-management-host.fleet-size-small {
+  --ig-size: var(--ig-size-small);
+}
+
+.fleet-management-sample .fleet-management-host.fleet-size-large {
+  --ig-size: var(--ig-size-large);
+}
+
+/* ---------------------------------------------------------------------------------------------
+ * 2. Layout: the filter row above the grid
+ * ------------------------------------------------------------------------------------------- */
+.fleet-management-sample .fleet-shell {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  min-height: 0;
+  gap: 1rem;
+  padding: 1.25rem;
+  overflow: hidden;
+}
+
+/* The snackbar overlays the grid instead of claiming a row, so the grid keeps the whole remaining
+   height and the page never scrolls. */
+.fleet-management-sample .fleet-shell > igc-snackbar {
+  grid-row: 2;
+  grid-column: 1;
+  align-self: end;
+  justify-self: center;
+  max-width: 100%;
+}
+
+/* The reset dialog's message, as the Angular dialog sets it: the dialog's body text, at most 40
+   characters wide, so the dialog sizes to it instead of to the page. */
+.fleet-management-sample .fleet-reset-message {
+  margin: 0;
+  max-width: 40ch;
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+.fleet-management-sample .fleet-chip-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5625rem;
+  flex-wrap: wrap;
+}
+
+.fleet-management-sample .fleet-reset {
+  flex-shrink: 0;
+  /* Pushes itself, the size selector and the theme toggle to the far end. */
+  margin-inline-start: auto;
+}
+
+.fleet-management-sample .fleet-size-group,
+.fleet-management-sample .fleet-theme-toggle {
+  flex-shrink: 0;
+}
+
+.fleet-management-sample igc-button span,
+.fleet-management-sample igc-toggle-button span {
+  text-box: cap alphabetic;
+}
+
+/* The size group comes out as wide as its three labels together, split in three equal buttons, as
+   the Angular button group does (a flex row); igc-button-group's own equal-column grid would make
+   it three times its widest label. */
+.fleet-management-sample igc-button-group.fleet-size-group::part(group) {
+  display: flex;
+}
+
+.fleet-management-sample igc-button-group.fleet-size-group igc-toggle-button {
+  flex: 1 0 0%;
+  min-width: 0;
+}
+
+/* Medium is wider than its third, and runs into its padding as it does in the Angular group rather
+   than being cut to an ellipsis (igc-toggle-button clips what it slots); overflow visible also
+   keeps the descenders the trimmed text box leaves outside the label. */
+.fleet-management-sample igc-button-group.fleet-size-group igc-toggle-button span {
+  overflow: visible;
+  text-overflow: clip;
+}
+
+/* ---------------------------------------------------------------------------------------------
+ * 3. Component themes (tokens). The igniteui-theming create_component_theme output for the Fluent
+ *    dark schema, the sample's own; they reference palette variables only, so the light palette
+ *    restyles them too.
+ * ------------------------------------------------------------------------------------------- */
+
+/* chip-theme($schema: $dark-fluent-schema), scoped to the filter row. */
+.fleet-management-sample .fleet-chip-row igc-chip {
+  --ig-chip-ghost-elevation: var(--ig-elevation-2);
+  --ig-chip-focus-shadow-color: transparent;
+  --ig-chip-focus-selected-shadow-color: transparent;
+  --ig-chip-ghost-background: var(--ig-primary-500);
+  --ig-chip-ghost-text-color: var(--ig-primary-500-contrast);
+  --ig-chip-selected-text-color: var(--ig-primary-700-contrast);
+  --ig-chip-selected-background: var(--ig-primary-500);
+  --ig-chip-hover-selected-text-color: var(--ig-primary-700-contrast);
+  --ig-chip-hover-selected-background: var(--ig-primary-600);
+  --ig-chip-border-radius: clamp(0rem, calc(var(--ig-radius-factor, 1) * 1rem), 1rem);
+  --ig-chip-disabled-text-color: var(--ig-gray-500);
+  --ig-chip-disabled-background: var(--ig-gray-200);
+  --ig-chip-default-size: 2;
+  --ig-chip-outlined-background: transparent;
+  --ig-chip-outlined-text-color: var(--ig-gray-700);
+  --ig-chip-hover-outlined-background: hsl(from var(--ig-gray-200) h s l/0.3);
+  --ig-chip-hover-outlined-text-color: var(--ig-gray-100-contrast);
+  --ig-chip-focus-outlined-background: hsl(from var(--ig-primary-600) h s l/0.2);
+  --ig-chip-focus-outlined-text-color: var(--ig-gray-100-contrast);
+
+  /* Outlined: igc-chip has no outlined mode, and a variant attribute would paint a filled palette
+     background over these tokens, so the chips set no variant and take the outlined values. */
+  --ig-chip-background: var(--ig-chip-outlined-background);
+  --ig-chip-text-color: var(--ig-chip-outlined-text-color);
+  --ig-chip-border-color: var(--ig-gray-700);
+  --ig-chip-hover-background: var(--ig-chip-hover-outlined-background);
+  --ig-chip-hover-text-color: var(--ig-chip-hover-outlined-text-color);
+  --ig-chip-focus-background: var(--ig-chip-focus-outlined-background);
+  --ig-chip-focus-text-color: var(--ig-chip-focus-outlined-text-color);
+}
+
+/* The status chips: the text in their status family, the outline a shade deeper (the Fluent
+   outlined info / success / warning chips). */
+.fleet-management-sample .fleet-chip-row igc-chip.fleet-chip-active {
+  --fleet-chip-family: var(--ig-info-500);
+  --ig-chip-border-color: var(--ig-info-600);
+  --ig-chip-hover-background: hsl(from var(--ig-info-600) h s l/0.16);
+  --ig-chip-focus-background: hsl(from var(--ig-info-800) h s l/0.3);
+}
+
+.fleet-management-sample .fleet-chip-row igc-chip.fleet-chip-available {
+  --fleet-chip-family: var(--ig-success-500);
+  --ig-chip-border-color: var(--ig-success-600);
+  --ig-chip-hover-background: hsl(from var(--ig-success-600) h s l/0.16);
+  --ig-chip-focus-background: hsl(from var(--ig-success-800) h s l/0.3);
+}
+
+.fleet-management-sample .fleet-chip-row igc-chip.fleet-chip-maintenance {
+  --fleet-chip-family: var(--ig-warn-500);
+  --ig-chip-border-color: var(--ig-warn-600);
+  --ig-chip-hover-background: hsl(from var(--ig-warn-600) h s l/0.16);
+  --ig-chip-focus-background: hsl(from var(--ig-warn-800) h s l/0.3);
+}
+
+.fleet-management-sample .fleet-chip-row igc-chip.fleet-chip-active,
+.fleet-management-sample .fleet-chip-row igc-chip.fleet-chip-available,
+.fleet-management-sample .fleet-chip-row igc-chip.fleet-chip-maintenance {
+  --ig-chip-text-color: var(--fleet-chip-family);
+  --ig-chip-hover-text-color: var(--fleet-chip-family);
+  --ig-chip-focus-text-color: var(--fleet-chip-family);
+}
+
+/* button-group-theme($schema: $dark-fluent-schema, $item-selected-*: primary) */
+.fleet-management-sample igc-button-group.fleet-size-group {
+  --ig-button-group-elevation: var(--ig-elevation-0);
+  --ig-button-group-idle-shadow-color: transparent;
+  --ig-button-group-selected-shadow-color: transparent;
+  --ig-button-group-item-text-color: var(--ig-gray-900);
+  --ig-button-group-item-background: var(--ig-gray-900-contrast);
+  --ig-button-group-item-border-color: var(--ig-gray-400);
+  --ig-button-group-item-hover-background: var(--ig-gray-50);
+  --ig-button-group-item-hover-text-color: var(--ig-gray-900);
+  --ig-button-group-item-focused-text-color: var(--ig-gray-900);
+  --ig-button-group-item-focused-border-color: var(--ig-gray-400);
+  --ig-button-group-item-focused-hover-text-color: var(--ig-gray-900);
+  --ig-button-group-item-focused-hover-border-color: var(--ig-gray-400);
+  --ig-button-group-item-focused-hover-background: var(--ig-gray-50);
+  --ig-button-group-item-selected-hover-text-color: lch(from var(--ig-button-group-item-selected-text-color) calc(l + (50 - l) * 0.1 + sign(50 - l) * 5) c h);
+  --ig-button-group-item-selected-hover-icon-color: var(--ig-button-group-item-selected-hover-text-color);
+  --ig-button-group-item-selected-focus-background: var(--ig-button-group-item-selected-background);
+  --ig-button-group-item-selected-focus-hover-background: var(--ig-button-group-item-selected-hover-background);
+  --ig-button-group-item-selected-active-background: lch(from var(--ig-button-group-item-selected-hover-background) calc(l + (50 - l) * 0.1 + sign(50 - l) * 5) c h);
+  --ig-button-group-item-active-border-color: var(--ig-gray-400);
+  --ig-button-group-item-selected-active-border-color: var(--ig-button-group-item-selected-hover-border-color);
+  --ig-button-group-disabled-background-color: var(--ig-gray-50);
+  --ig-button-group-border-radius: clamp(0rem, calc(var(--ig-radius-factor, 0.1) * 1.25rem), 1.25rem);
+  --ig-button-group-default-size: 2;
+  --ig-button-group-item-icon-color: var(--ig-gray-900);
+  --ig-button-group-item-focused-background: var(--ig-gray-900-contrast);
+  --ig-button-group-item-hover-icon-color: var(--ig-gray-900);
+  --ig-button-group-item-hover-border-color: var(--ig-gray-400);
+  --ig-button-group-item-selected-background: var(--ig-primary-500);
+  --ig-button-group-item-selected-text-color: var(--ig-primary-500-contrast);
+  --ig-button-group-item-selected-icon-color: var(--ig-primary-500-contrast);
+  --ig-button-group-item-selected-border-color: var(--ig-primary-500);
+  --ig-button-group-item-selected-hover-background: lch(from var(--ig-button-group-item-selected-background) calc(l + (50 - l) * 0.1 + sign(50 - l) * 5) c h);
+  --ig-button-group-item-selected-hover-border-color: var(--ig-primary-500);
+  --ig-button-group-item-active-background: var(--ig-gray-100);
+  --ig-button-group-disabled-text-color: var(--ig-gray-300);
+  --ig-button-group-item-disabled-border: var(--ig-gray-400);
+  --ig-button-group-disabled-selected-text-color: var(--ig-gray-300);
+  --ig-button-group-disabled-selected-icon-color: var(--ig-gray-300);
+  --ig-button-group-disabled-selected-background: hsl(from var(--ig-button-group-item-selected-background) h s l/0.3);
+  --ig-button-group-disabled-selected-border-color: var(--ig-gray-400);
+  --ig-button-group-border: 1px solid var(--ig-gray-600);
+}
+
+/* outlined-button-theme($schema: $dark-fluent-schema) -> Reset */
+.fleet-management-sample igc-button.fleet-reset {
+  --ig-outlined-button-shadow-color: transparent;
+  --ig-outlined-button-border-color: var(--ig-gray-400);
+  --ig-outlined-button-hover-border-color: var(--ig-gray-400);
+  --ig-outlined-button-focus-border-color: var(--ig-gray-400);
+  --ig-outlined-button-focus-visible-border-color: var(--ig-gray-400);
+  --ig-outlined-button-active-border-color: var(--ig-gray-400);
+  --ig-outlined-button-disabled-border-color: var(--ig-gray-100);
+  --ig-outlined-button-icon-color: currentColor;
+  --ig-outlined-button-icon-color-hover: currentColor;
+  --ig-outlined-button-disabled-background: var(--ig-gray-50);
+  --ig-outlined-button-disabled-foreground: var(--ig-gray-200);
+  --ig-outlined-button-disabled-icon-color: currentColor;
+  --ig-outlined-button-default-size: 2;
+  --ig-outlined-button-resting-elevation: var(--ig-elevation-0);
+  --ig-outlined-button-hover-elevation: var(--ig-elevation-0);
+  --ig-outlined-button-focus-elevation: var(--ig-elevation-0);
+  --ig-outlined-button-active-elevation: var(--ig-elevation-0);
+  --ig-outlined-button-background: transparent;
+  --ig-outlined-button-focus-foreground: var(--ig-gray-900);
+  --ig-outlined-button-border-radius: clamp(0rem, calc(var(--ig-radius-factor, 0.1) * 1.25rem), 1.25rem);
+  --ig-outlined-button-foreground: var(--ig-gray-900);
+  --ig-outlined-button-hover-background: var(--ig-gray-50);
+  --ig-outlined-button-hover-foreground: var(--ig-gray-900);
+  --ig-outlined-button-focus-background: var(--ig-gray-100);
+  --ig-outlined-button-active-background: var(--ig-gray-100);
+  --ig-outlined-button-active-foreground: var(--ig-gray-900);
+  --ig-outlined-button-focus-hover-background: var(--ig-gray-50);
+  --ig-outlined-button-focus-hover-foreground: var(--ig-gray-900);
+  --ig-outlined-button-focus-visible-foreground: var(--ig-gray-900);
+  --ig-outlined-button-focus-visible-background: transparent;
+}
+
+/* grid-theme($schema: $dark-fluent-schema, $background: surface-400, $accent-color: primary-500).
+   Its child themes (toolbar, column actions, filtering, inputs, chips, buttons) derive from it. */
+.fleet-management-sample igc-grid {
+  --ig-grid-grid-elevation: var(--ig-elevation-0);
+  --ig-grid-drag-elevation: var(--ig-elevation-1);
+  --ig-grid-grouparea-color: color-mix(in srgb, var(--ig-grid-header-text-color) 60%, var(--ig-grid-header-background));
+  --ig-grid-grouparea-background: var(--ig-grid-header-background);
+  --ig-grid-drop-area-text-color: color-mix(in srgb, var(--ig-grid-header-text-color) 80%, var(--ig-grid-header-background));
+  --ig-grid-drop-area-icon-color: var(--ig-grid-drop-area-text-color);
+  --ig-grid-drop-area-background: lch(from var(--ig-grid-header-background) calc(l + (50 - l) * 0.1 + sign(50 - l) * 5) c h);
+  --ig-grid-drop-area-on-drop-background: lch(from var(--ig-grid-header-background) calc(l + (50 - l) * 0.1 + sign(50 - l) * 5) c h);
+  --ig-grid-header-background: color-mix(in srgb, var(--ig-grid-foreground) 6%, var(--ig-grid-background));
+  --ig-grid-sortable-header-icon-hover-color: var(--ig-grid-accent-color);
+  --ig-grid-sorted-header-icon-color: hsl(from var(--ig-grid-accent-color) h s l/0.7);
+  --ig-grid-header-border-width: 0.0625rem;
+  --ig-grid-header-border-style: solid;
+  --ig-grid-header-border-color: color-mix(in srgb, var(--ig-grid-header-text-color) 20%, var(--ig-grid-header-background));
+  --ig-grid-action-border-color: color-mix(in srgb, var(--ig-grid-foreground) 20%, var(--ig-grid-background));
+  --ig-grid-ghost-header-background: var(--ig-grid-header-background);
+  --ig-grid-ghost-header-text-color: var(--ig-grid-header-text-color);
+  --ig-grid-ghost-header-icon-color: var(--ig-grid-header-text-color);
+  --ig-grid-excel-filtering-header-foreground: var(--ig-grid-foreground);
+  --ig-grid-excel-filtering-subheader-foreground: var(--ig-grid-foreground);
+  --ig-grid-excel-filtering-actions-foreground: var(--ig-grid-foreground);
+  --ig-grid-excel-filtering-actions-icon-color: var(--ig-grid-foreground);
+  --ig-grid-excel-filtering-actions-hover-foreground: var(--ig-grid-foreground);
+  --ig-grid-excel-filtering-actions-hover-icon-color: var(--ig-grid-foreground);
+  --ig-grid-excel-filtering-actions-selected-icon-color: var(--ig-grid-accent-color);
+  --ig-grid-excel-filtering-actions-hover-background: color-mix(in srgb, var(--ig-grid-accent-color) 8%, var(--ig-grid-background));
+  --ig-grid-excel-filtering-actions-disabled-foreground: color-mix(in srgb, var(--ig-grid-foreground) 50%, var(--ig-grid-background));
+  --ig-grid-excel-filtering-border-color: color-mix(in srgb, var(--ig-grid-foreground) 16%, var(--ig-grid-background));
+  --ig-grid-grid-border-color: color-mix(in srgb, var(--ig-grid-foreground) 12%, var(--ig-grid-background));
+  --ig-grid-content-background: var(--ig-grid-background);
+  --ig-grid-content-text-color: var(--ig-grid-foreground);
+  --ig-grid-row-odd-background: var(--ig-grid-background);
+  --ig-grid-row-even-background: var(--ig-grid-background);
+  --ig-grid-body-column-border-color-odd: var(--ig-grid-background);
+  --ig-grid-body-column-border-color-even: var(--ig-grid-background);
+  --ig-grid-row-odd-text-color: var(--ig-grid-foreground);
+  --ig-grid-row-even-text-color: inherit;
+  --ig-grid-tree-selected-filtered-row-text-color: var(--ig-gray-400);
+  --ig-grid-row-selected-text-color: var(--ig-grid-foreground);
+  --ig-grid-row-hover-background: color-mix(in srgb, var(--ig-grid-accent-color) 8%, var(--ig-grid-row-odd-background));
+  --ig-grid-body-column-hover-border-color: color-mix(in srgb, var(--ig-grid-accent-color) 8%, var(--ig-grid-row-odd-background));
+  --ig-grid-row-hover-text-color: var(--ig-grid-foreground);
+  --ig-grid-row-border-width: 0.0625rem;
+  --ig-grid-row-border-style: solid;
+  --ig-grid-row-border-color: hsl(from color-mix(in srgb, var(--ig-grid-foreground) 16%, var(--ig-grid-background)) h s l/0.38);
+  --ig-grid-row-drag-color: var(--ig-grid-foreground);
+  --ig-grid-pinned-border-width: 0.125rem;
+  --ig-grid-pinned-border-style: solid;
+  --ig-grid-pinned-border-color: color-mix(in srgb, var(--ig-grid-foreground) 20%, var(--ig-grid-background));
+  --ig-grid-cell-active-border-width: 0.0625rem;
+  --ig-grid-cell-active-border-color: var(--ig-grid-accent-color);
+  --ig-grid-cell-selected-background: color-mix(in srgb, var(--ig-grid-accent-color) 24%, var(--ig-grid-background));
+  --ig-grid-tree-selected-filtered-cell-text-color: var(--ig-secondary-500);
+  --ig-grid-cell-selected-text-color: var(--ig-grid-foreground);
+  --ig-grid-cell-editing-background: var(--ig-grid-background);
+  --ig-grid-cell-editing-foreground: var(--ig-grid-foreground);
+  --ig-grid-cell-editing-focus-foreground: var(--ig-grid-foreground);
+  --ig-grid-edit-mode-color: var(--ig-grid-accent-color);
+  --ig-grid-edited-row-indicator: color-mix(in srgb, var(--ig-grid-foreground) 16%, var(--ig-grid-background));
+  --ig-grid-cell-new-color: var(--ig-grid-foreground);
+  --ig-grid-cell-edited-value-color: color-mix(in srgb, var(--ig-grid-foreground) 80%, var(--ig-grid-background));
+  --ig-grid-cell-disabled-color: color-mix(in srgb, var(--ig-grid-foreground) 50%, var(--ig-grid-background));
+  --ig-grid-resize-line-color: var(--ig-grid-accent-color);
+  --ig-grid-drop-indicator-color: var(--ig-grid-accent-color);
+  --ig-grid-group-label-column-name-text: var(--ig-grid-accent-color);
+  --ig-grid-group-label-icon: var(--ig-grid-accent-color);
+  --ig-grid-group-label-text: color-mix(in srgb, var(--ig-grid-foreground) 80%, var(--ig-grid-background));
+  --ig-grid-expand-all-icon-color: color-mix(in srgb, var(--ig-grid-foreground) 70%, var(--ig-grid-background));
+  --ig-grid-expand-all-icon-hover-color: color-mix(in srgb, var(--ig-grid-foreground) 80%, var(--ig-grid-background));
+  --ig-grid-expand-icon-color: color-mix(in srgb, var(--ig-grid-foreground) 60%, var(--ig-grid-background));
+  --ig-grid-expand-icon-hover-color: color-mix(in srgb, var(--ig-grid-foreground) 70%, var(--ig-grid-background));
+  --ig-grid-active-expand-icon-color: var(--ig-gray-500);
+  --ig-grid-active-expand-icon-hover-color: var(--ig-primary-500);
+  --ig-grid-group-count-background: color-mix(in srgb, var(--ig-grid-foreground) 12%, var(--ig-grid-background));
+  --ig-grid-group-count-text-color: var(--ig-grid-foreground);
+  --ig-grid-group-row-background: color-mix(in srgb, var(--ig-grid-foreground) 6%, var(--ig-grid-background));
+  --ig-grid-group-row-selected-background: color-mix(in srgb, var(--ig-grid-foreground) 6%, var(--ig-grid-background));
+  --ig-grid-filtering-header-background: var(--ig-grid-background);
+  --ig-grid-filtering-header-text-color: var(--ig-grid-foreground);
+  --ig-grid-filtering-row-background: var(--ig-grid-background);
+  --ig-grid-filtering-row-text-color: var(--ig-grid-foreground);
+  --ig-grid-filtering-dialog-background: var(--ig-grid-background);
+  --ig-grid-tree-filtered-text-color: var(--ig-gray-500);
+  --ig-grid-row-highlight: var(--ig-grid-accent-color);
+  --ig-grid-row-ghost-background: var(--ig-grid-background);
+  --ig-grid-row-ghost-border-color: hsl(from color-mix(in srgb, var(--ig-grid-foreground) 16%, var(--ig-grid-background)) h s l/0.38);
+  --ig-grid-drop-area-border-radius: clamp(0rem, calc(var(--ig-radius-factor, 0.125) * 1rem), 1rem);
+  --ig-grid-summaries-border-color: var(--ig-gray-400);
+  --ig-grid-summaries-patch-background: color-mix(in srgb, var(--ig-grid-foreground) 12%, var(--ig-grid-background));
+  --ig-grid-active-state-border-style: solid;
+  --ig-grid-header-text-color: var(--ig-grid-foreground);
+  --ig-grid-header-selected-background: color-mix(in srgb, var(--ig-grid-accent-color) 12%, var(--ig-grid-header-background));
+  --ig-grid-header-selected-text-color: var(--ig-grid-header-text-color);
+  --ig-grid-row-selected-background: color-mix(in srgb, var(--ig-grid-accent-color) 12%, var(--ig-grid-background));
+  --ig-grid-row-selected-hover-background: color-mix(in srgb, var(--ig-grid-accent-color) 16%, var(--ig-grid-background));
+  --ig-grid-row-selected-hover-text-color: var(--ig-grid-foreground);
+  --ig-grid-body-column-selected-border-color: color-mix(in srgb, var(--ig-grid-accent-color) 16%, var(--ig-grid-background));
+  --ig-grid-body-column-hover-selected-border-color: color-mix(in srgb, var(--ig-grid-accent-color) 12%, var(--ig-grid-background));
+  --ig-grid-cell-selected-within-background: color-mix(in srgb, var(--ig-grid-accent-color) 24%, var(--ig-grid-background));
+  --ig-grid-cell-selected-within-text-color: var(--ig-grid-foreground);
+  --ig-grid-background: var(--ig-surface-400);
+  --ig-grid-foreground: hsla(from color(from var(--ig-grid-background) var(--y-contrast)) h 0 l/1);
+  --ig-grid-accent-color: var(--ig-primary-500);
+
+  box-sizing: border-box;
+  border: 1px solid var(--fleet-border);
+  border-radius: 0.25rem;
+}
+
+/* IgbGrid's Class lands on a wrapper around igc-grid, which fills it. */
+.fleet-management-sample .fleet-master-grid {
+  height: 100%;
+  min-height: 0;
+}
+
+.fleet-management-sample igc-grid .igx-grid__td,
+.fleet-management-sample igc-grid .igx-grid__drop-area {
+  font-size: 0.875rem;
+}
+
+.fleet-management-sample igc-grid .igx-grid__hierarchical-indent {
+  margin: 0;
+}
+
+/* The toolbar's actions follow the sample size: 8 / 12 / 16px apart. The search field renders in
+   the toolbar's custom-content area just before them, so its spacing is that area's margin. */
+.fleet-management-sample igc-grid-toolbar .igx-grid-toolbar__actions {
+  gap: 0.75rem;
+}
+
+.fleet-management-sample igc-grid-toolbar .igx-grid-toolbar__custom-content {
+  margin-inline-end: 0.75rem;
+}
+
+.fleet-management-sample .fleet-size-small igc-grid-toolbar .igx-grid-toolbar__actions {
+  gap: 0.5rem;
+}
+
+.fleet-management-sample .fleet-size-small igc-grid-toolbar .igx-grid-toolbar__custom-content {
+  margin-inline-end: 0.5rem;
+}
+
+.fleet-management-sample .fleet-size-large igc-grid-toolbar .igx-grid-toolbar__actions {
+  gap: 1rem;
+}
+
+.fleet-management-sample .fleet-size-large igc-grid-toolbar .igx-grid-toolbar__custom-content {
+  margin-inline-end: 1rem;
+}
+
+/* The search field: a primary outline and a plain primary icon, as the Angular toolbar's search input
+   group draws it (the Fluent igc-input fills its prefix with the prefix background the grid theme
+   derives), at the toolbar's 24 / 32 / 38px. */
+.fleet-management-sample igc-input.fleet-search {
+  --ig-input-group-input-prefix-background: transparent;
+  --ig-input-group-input-prefix-background--filled: transparent;
+  --ig-input-group-input-prefix-background--focused: transparent;
+  --ig-input-group-input-prefix-color: var(--ig-primary-500);
+  --ig-input-group-input-prefix-color--filled: var(--ig-primary-500);
+  --ig-input-group-input-prefix-color--focused: var(--ig-primary-500);
+  --size: 2rem;
+
+  width: min(20rem, 40vw);
+}
+
+.fleet-management-sample .fleet-size-small igc-input.fleet-search {
+  --size: 1.5rem;
+}
+
+.fleet-management-sample .fleet-size-large igc-input.fleet-search {
+  --size: 2.375rem;
+}
+
+/* The two toolbar panels (column hiding and pinning) and the advanced filtering dialog open inside
+   the grid, so they take the palette from the host and only need lifting off the grid's own
+   background. */
+.fleet-management-sample igx-column-actions {
+  --ig-column-actions-background: var(--fleet-overlay-background);
+  --ig-column-actions-title-color: var(--ig-column-actions-foreground);
+  --ig-column-actions-foreground: hsla(from color(from var(--ig-column-actions-background) var(--y-contrast)) h 0 l/1);
+
+  border: 1px solid var(--fleet-border);
+  border-radius: 0.25rem;
+}
+
+.fleet-management-sample igx-query-builder {
+  --ig-query-builder-elevation: var(--ig-elevation-0);
+  --ig-query-builder-background: var(--fleet-overlay-background);
+  --ig-query-builder-header-background: var(--ig-query-builder-background);
+  --ig-query-builder-header-foreground: hsla(from color(from var(--ig-query-builder-header-background) var(--y-contrast)) h 0 l/1);
+  --ig-query-builder-header-border: transparent;
+  --ig-query-builder-color-expression-group-and: #da64ff;
+  --ig-query-builder-color-expression-group-or: #19ad87;
+  --ig-query-builder-border-radius: 0.125rem;
+  --ig-query-builder-subquery-header-background: lch(from var(--ig-query-builder-header-background) calc(l + (50 - l) * 0.1 + sign(50 - l) * 5) c h);
+  --ig-query-builder-subquery-border-color: lch(from var(--ig-query-builder-subquery-header-background) calc(l + (50 - l) * 0.1 + sign(50 - l) * 5) c h);
+  --ig-query-builder-subquery-border-radius: 0.75rem;
+  --ig-query-builder-separator-color: lch(from var(--ig-query-builder-subquery-border-color) calc(l + (50 - l) * 0.1 + sign(50 - l) * 5) c h);
+  --ig-query-builder-label-foreground: hsl(from hsla(from color(from var(--ig-query-builder-background) var(--y-contrast)) h 0 l/1) h s l/0.6);
+  --ig-query-builder-foreground: hsla(from color(from var(--fleet-overlay-background) var(--y-contrast)) h 0 l/1);
+  --ig-query-builder-accent-color: var(--ig-primary-500);
+}
+
+/* The dialog's footer sits outside igx-query-builder, whose background stops at the last block. */
+.fleet-management-sample .igx-advanced-filter {
+  border: 1px solid var(--fleet-border);
+  border-radius: 0.25rem;
+  background: var(--fleet-overlay-background);
+  overflow: hidden;
+}
+
+/* ---------------------------------------------------------------------------------------------
+ * 4. The grid's title and cells
+ * ------------------------------------------------------------------------------------------- */
+.fleet-management-sample .fleet-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  user-select: none;
+}
+
+/* type-style(body-2) with margin-block 4px 0, uppercase: every property explicit, because the
+   page's typography (ig-typography) and shared CSS style h1 too. */
+.fleet-management-sample .fleet-title-wrap h1 {
+  display: inline-flex;
+  margin: 0.25rem 0 0;
+  padding: 0;
+  color: var(--ig-gray-800);
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1.25rem;
+  letter-spacing: normal;
+  text-transform: uppercase;
+}
+
+/* Three stacked cars, the back two fading out. */
+.fleet-management-sample .fleet-title-icon-wrap {
+  position: relative;
+  display: grid;
+  padding-inline-start: 0.25rem;
+}
+
+.fleet-management-sample .fleet-title-icon-wrap igc-icon {
+  --ig-icon-size: 30px;
+  --size: 30px;
+  z-index: 3;
+  color: var(--ig-primary-500);
+}
+
+.fleet-management-sample .fleet-title-icon-wrap igc-icon:nth-child(2) {
+  position: absolute;
+  inset-inline-start: 0.0625rem;
+  opacity: 0.5;
+  z-index: 2;
+}
+
+.fleet-management-sample .fleet-title-icon-wrap igc-icon:nth-child(3) {
+  position: absolute;
+  inset-inline-start: -0.125rem;
+  opacity: 0.2;
+  z-index: 1;
+}
+
+/* Status cell (FleetManagementStatusTemplate): igc-badge's dot mode, so the size tracks --ig-size
+   with the rest of the sample; the status word beside it carries the meaning. */
+.fleet-management-sample .status-display {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.fleet-management-sample .badge-text {
+  color: var(--ig-gray-700);
+}
+
+/* A ring drawn with box-shadow: nothing here affects layout. Only the state that needs acting on
+   draws attention to itself. */
+.fleet-management-sample .status-badge-pulse::part(base) {
+  animation: fleet-management-status-pulse 1.8s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fleet-management-sample .status-badge-pulse::part(base) {
+    animation: none;
+    box-shadow: 0 0 0 2px hsl(from var(--ig-warn-500) h s l / 0.5);
+  }
+}
+
+@keyframes fleet-management-status-pulse {
+  from {
+    box-shadow: 0 0 0 0 hsl(from var(--ig-warn-500) h s l / 0.55);
+  }
+
+  to {
+    box-shadow: 0 0 0 0.375rem hsl(from var(--ig-warn-500) h s l / 0);
+  }
+}
+
+/* Row actions. Each icon carries the colour of the status it sets, so the strip reads the way the
+   status column does; the title and aria-label name the action. events.js keeps the strip's
+   data-status on the row it sits on, and the button for that status is not offered. */
+.fleet-management-sample .fleet-row-action-active {
+  --ig-flat-icon-button-foreground: var(--ig-info-500);
+  --ig-flat-icon-button-hover-foreground: var(--ig-info-500);
+  --ig-flat-icon-button-focus-foreground: var(--ig-info-500);
+}
+
+.fleet-management-sample .fleet-row-action-available {
+  --ig-flat-icon-button-foreground: var(--ig-success-500);
+  --ig-flat-icon-button-hover-foreground: var(--ig-success-500);
+  --ig-flat-icon-button-focus-foreground: var(--ig-success-500);
+}
+
+.fleet-management-sample .fleet-row-action-maintenance {
+  --ig-flat-icon-button-foreground: var(--ig-warn-500);
+  --ig-flat-icon-button-hover-foreground: var(--ig-warn-500);
+  --ig-flat-icon-button-focus-foreground: var(--ig-warn-500);
+}
+
+.fleet-management-sample igc-action-strip[data-status="Active"] .fleet-row-action-active,
+.fleet-management-sample igc-action-strip[data-status="Available"] .fleet-row-action-available,
+.fleet-management-sample igc-action-strip[data-status="In Maintenance"] .fleet-row-action-maintenance {
+  display: none;
+}
+
+/* ---------------------------------------------------------------------------------------------
+ * 5. The expanded row (FleetManagementDetailTemplate)
+ * ------------------------------------------------------------------------------------------- */
+.fleet-management-sample .fleet-detail-wrap {
+  width: 100%;
+  background: light-dark(var(--ig-surface-500), var(--ig-surface-900));
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.fleet-management-sample .fleet-detail-wrap *,
+.fleet-management-sample .fleet-detail-wrap *::before,
+.fleet-management-sample .fleet-detail-wrap *::after {
+  box-sizing: border-box;
+}
+
+/* tabs-theme($schema: $dark-fluent-schema, $item-active-color: primary-500) */
+.fleet-management-sample igc-tabs.fleet-detail-tabs {
+  --ig-tabs-item-text-color: var(--ig-gray-800);
+  --ig-tabs-item-background: var(--ig-surface-500);
+  --ig-tabs-item-hover-background: var(--ig-gray-50);
+  --ig-tabs-item-hover-color: var(--ig-gray-900);
+  --ig-tabs-item-active-color: var(--ig-primary-500);
+  --ig-tabs-item-active-hover-color: var(--ig-tabs-item-active-color);
+  --ig-tabs-item-icon-color: var(--ig-gray-800);
+  --ig-tabs-item-active-icon-color: var(--ig-tabs-item-active-color);
+  --ig-tabs-item-active-hover-icon-color: var(--ig-tabs-item-active-icon-color);
+  --ig-tabs-item-hover-icon-color: var(--ig-gray-900);
+  --ig-tabs-item-disabled-icon-color: var(--ig-gray-300);
+  --ig-tabs-item-active-background: var(--ig-surface-500);
+  --ig-tabs-item-active-hover-background: var(--ig-gray-50);
+  --ig-tabs-item-disabled-color: var(--ig-gray-300);
+  --ig-tabs-indicator-color: var(--ig-tabs-item-active-color);
+  --ig-tabs-button-color: var(--ig-gray-500);
+  --ig-tabs-button-background: var(--ig-surface-500);
+  --ig-tabs-button-hover-background: var(--ig-gray-100);
+  --ig-tabs-button-hover-color: var(--ig-gray-600);
+  --ig-tabs-button-disabled-color: var(--ig-gray-200);
+  --ig-tabs-tab-ripple-color: var(--ig-gray-100);
+  --ig-tabs-button-ripple-color: var(--ig-gray-100);
+  --ig-tabs-border-color: transparent;
+  --ig-tabs-border-color--hover: transparent;
+  --ig-tabs-border-radius: clamp(0rem, calc(var(--ig-radius-factor, 0) * 0.375rem), 0.375rem);
+
+  width: 100%;
+  /* The header band (the Angular sample's igx-tabs-header background); the panels below take the
+     expanded row's own background. */
+  background: var(--ig-surface-500);
+}
+
+/* The tab panels sit in the tabs' header grid, which is otherwise only as wide as its content. */
+.fleet-management-sample igc-tabs.fleet-detail-tabs::part(inner) {
+  width: 100%;
+}
+
+/* The Angular tab headers take the sample's own text (DM Sans, regular in every state) and
+   11px / 16px of padding. */
+.fleet-management-sample .fleet-detail-tabs igc-tab::part(tab-header) {
+  padding: 0.6875rem 1rem;
+}
+
+.fleet-management-sample .fleet-detail-tabs igc-tab::part(content) {
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.fleet-management-sample .fleet-detail-tabs igc-tab::part(tab-body) {
+  background: light-dark(var(--ig-surface-500), var(--ig-surface-900));
+}
+
+.fleet-management-sample .fleet-detail-content {
+  display: grid;
+  grid-template-columns: minmax(15rem, 17.5rem) minmax(0, 1fr);
+  gap: 2rem;
+  padding: 1.5rem;
+  align-items: start;
+}
+
+.fleet-management-sample igc-card.fleet-vehicle-card {
+  margin: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.fleet-management-sample .fleet-vehicle-card igc-card-content {
+  padding: 0;
+}
+
+.fleet-management-sample .fleet-vehicle-illustration {
+  display: grid;
+  gap: 0.5625rem;
+  min-height: 11.25rem;
+  text-align: center;
+  color: var(--ig-gray-800);
+}
+
+.fleet-management-sample .fleet-vehicle-photo {
+  display: block;
+  width: 100%;
+  height: 11.25rem;
+  object-fit: cover;
+  border: 1px solid var(--fleet-border);
+  border-radius: 0.375rem;
+  background: var(--ig-surface-400);
+}
+
+/* Stands in when there is no photo to show. A neutral box is the honest answer: any other car would
+   misstate the paint colour. */
+.fleet-management-sample .fleet-vehicle-photo-empty {
+  display: grid;
+  place-content: center;
+  gap: 0.25rem;
+  border-style: dashed;
+  color: var(--ig-gray-600);
+}
+
+.fleet-management-sample .fleet-vehicle-photo-empty igc-icon {
+  justify-self: center;
+}
+
+.fleet-management-sample .fleet-spec-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1rem;
+  align-self: start;
+}
+
+.fleet-management-sample .fleet-spec-item {
+  display: grid;
+  gap: 0.1875rem;
+  padding-bottom: 0.375rem;
+  border-bottom: 1px dashed var(--fleet-border);
+}
+
+.fleet-management-sample .fleet-spec-item span {
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--ig-gray-700);
+}
+
+.fleet-management-sample .fleet-spec-item strong {
+  font-weight: 500;
+  color: var(--ig-gray-800);
+}
+
+.fleet-management-sample .fleet-spec-item .fleet-spec-color {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+/* Sized off the text, so it tracks --ig-size with the rest of the sample. Decorative: the colour
+   name beside it carries the meaning. */
+.fleet-management-sample .fleet-spec-item .fleet-color-swatch {
+  flex: 0 0 auto;
+  width: 1em;
+  height: 1em;
+  border: 0.0625rem solid var(--fleet-border);
+  border-radius: 50%;
+}
+
+/* Tab panels */
+.fleet-management-sample .fleet-tab-panel {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.fleet-management-sample .fleet-tab-kpis {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.fleet-management-sample .fleet-tab-kpis-3up {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.fleet-management-sample .fleet-tab-kpis-4up {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.fleet-management-sample .fleet-tab-kpi {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  border: 0.0625rem dashed var(--fleet-border);
+}
+
+.fleet-management-sample .fleet-tab-kpi strong {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ig-gray-800);
+}
+
+/* The padding of the expanded row follows the sample size: 16 / 24 / 32px, KPI boxes 4 / 8 / 16px. */
+.fleet-management-sample .fleet-size-small .fleet-detail-content,
+.fleet-management-sample .fleet-size-small .fleet-tab-panel {
+  padding: 1rem;
+}
+
+.fleet-management-sample .fleet-size-large .fleet-detail-content,
+.fleet-management-sample .fleet-size-large .fleet-tab-panel {
+  padding: 2rem;
+}
+
+.fleet-management-sample .fleet-size-small .fleet-tab-kpi {
+  padding: 0.25rem;
+}
+
+.fleet-management-sample .fleet-size-large .fleet-tab-kpi {
+  padding: 1rem;
+}
+
+.fleet-management-sample .fleet-tab-kpi span,
+.fleet-management-sample .fleet-utilization-title,
+.fleet-management-sample .fleet-detail-table th,
+.fleet-management-sample .fleet-cost-panel-title {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ig-primary-500);
+}
+
+.fleet-management-sample .fleet-tab-kpi .fleet-accent-value {
+  color: var(--ig-primary-500);
+}
+
+.fleet-management-sample .fleet-detail-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.fleet-management-sample .fleet-detail-table th,
+.fleet-management-sample .fleet-detail-table td {
+  padding: 0.6875rem 0;
+  text-align: left;
+  border-bottom: 1px solid var(--fleet-border);
+}
+
+.fleet-management-sample .fleet-detail-table td {
+  color: var(--ig-gray-700);
+}
+
+/* The tables render inside the grid, so they hover on the grid's own row tokens. */
+.fleet-management-sample .fleet-detail-table tbody tr:hover > td {
+  background: var(--ig-grid-row-hover-background);
+  color: var(--ig-grid-row-hover-text-color);
+}
+
+/* Trip history: the four measures (from Driver on) read as numbers. */
+.fleet-management-sample .fleet-trip-table th:nth-child(4),
+.fleet-management-sample .fleet-trip-table td:nth-child(4),
+.fleet-management-sample .fleet-trip-table th:nth-child(5),
+.fleet-management-sample .fleet-trip-table td:nth-child(5),
+.fleet-management-sample .fleet-trip-table th:nth-child(6),
+.fleet-management-sample .fleet-trip-table td:nth-child(6),
+.fleet-management-sample .fleet-trip-table th:nth-child(7),
+.fleet-management-sample .fleet-trip-table td:nth-child(7),
+.fleet-management-sample .fleet-maintenance-table th:nth-child(3),
+.fleet-management-sample .fleet-maintenance-table td:nth-child(3),
+.fleet-management-sample .fleet-maintenance-table th:nth-child(4),
+.fleet-management-sample .fleet-maintenance-table td:nth-child(4) {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.fleet-management-sample .fleet-detail-table .status-cell {
+  text-align: center;
+}
+
+/* Fixed shares stop Service stretching and leaving a gap before Odometer on a wide monitor. */
+.fleet-management-sample .fleet-maintenance-table th:nth-child(1) {
+  width: 16%;
+}
+
+.fleet-management-sample .fleet-maintenance-table th:nth-child(2) {
+  width: 34%;
+}
+
+.fleet-management-sample .fleet-maintenance-table th:nth-child(3) {
+  width: 18%;
+}
+
+.fleet-management-sample .fleet-maintenance-table th:nth-child(4) {
+  width: 14%;
+}
+
+.fleet-management-sample .fleet-maintenance-table th:nth-child(5) {
+  width: 18%;
+}
+
+.fleet-management-sample .fleet-maintenance-alert {
+  display: flex;
+  align-items: center;
+  gap: 0.6875rem;
+  padding: 0.8125rem 1rem;
+  border: 1px solid hsl(from var(--ig-warn-500) h s l / 0.45);
+  border-radius: 0.5625rem;
+  background: hsl(from var(--ig-warn-500) h s l / 0.14);
+  color: var(--ig-warn-500);
+}
+
+.fleet-management-sample .fleet-maintenance-alert igc-icon {
+  --ig-icon-size: 1rem;
+  --size: 1rem;
+  color: inherit;
+}
+
+.fleet-management-sample .fleet-detail-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.1875rem 0.6875rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.fleet-management-sample .fleet-detail-pill-success {
+  color: var(--ig-success-500);
+  background: hsl(from var(--ig-success-500) h s l / 0.22);
+}
+
+.fleet-management-sample .fleet-detail-pill-warn {
+  color: var(--ig-warn-500);
+  background: hsl(from var(--ig-warn-500) h s l / 0.22);
+}
+
+/* Costs */
+.fleet-management-sample .fleet-cost-charts {
+  display: grid;
+  grid-template-columns: minmax(20rem, 0.9fr) minmax(0, 1.35fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.fleet-management-sample .fleet-cost-panel {
+  display: grid;
+  gap: 0.875rem;
+  align-content: start;
+  min-width: 0;
+}
+
+/* The legend sizes to its content; the donut takes what is left, otherwise its 100% width resolves
+   against an auto track and collapses. */
+.fleet-management-sample .fleet-cost-donut-layout {
+  display: grid;
+  grid-template-columns: minmax(0, auto) minmax(11.25rem, 1fr);
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.fleet-management-sample .fleet-cost-donut-legend {
+  display: grid;
+  gap: 0.875rem;
+  align-self: center;
+}
+
+.fleet-management-sample .fleet-cost-donut-legend-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--ig-gray-700);
+}
+
+.fleet-management-sample .fleet-cost-donut-legend-item strong {
+  font-weight: 700;
+  color: var(--ig-gray-800);
+}
+
+.fleet-management-sample .fleet-cost-donut-legend-main {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.fleet-management-sample .fleet-cost-dot {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 999px;
+}
+
+/* The donut's slice order and brush list (chartThemes.cost in events.js), in the same families. */
+.fleet-management-sample .fleet-cost-tone-fuel {
+  background: var(--ig-primary-500);
+}
+
+.fleet-management-sample .fleet-cost-tone-maintenance {
+  background: var(--ig-warn-500);
+}
+
+.fleet-management-sample .fleet-cost-tone-insurance {
+  background: var(--ig-success-500);
+}
+
+.fleet-management-sample .fleet-cost-tone-tolls {
+  background: var(--ig-error-500);
+}
+
+/* Utilization */
+.fleet-management-sample .fleet-utilization-wrap {
+  display: grid;
+  gap: 0.875rem;
+}
+
+.fleet-management-sample .fleet-utilization-legend {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--ig-gray-700);
+}
+
+.fleet-management-sample .fleet-utilization-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4375rem;
+}
+
+.fleet-management-sample .fleet-utilization-legend-swatch {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 0.125rem;
+}
+
+/* The comparison chart's brush list, in its order (chartThemes.utilization in events.js). */
+.fleet-management-sample .fleet-utilization-legend-swatch-current {
+  background: var(--ig-primary-500);
+}
+
+.fleet-management-sample .fleet-utilization-legend-swatch-prior {
+  background: var(--ig-success-500);
+}
+
+.fleet-management-sample .fleet-cost-donut,
+.fleet-management-sample .fleet-cost-column-chart,
+.fleet-management-sample .fleet-utilization-comparison-chart {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: transparent;
+}
+
+.fleet-management-sample .fleet-cost-donut,
+.fleet-management-sample .fleet-cost-column-chart {
+  min-height: 17.5rem;
+}
+
+.fleet-management-sample .fleet-utilization-comparison-chart {
+  min-height: 20rem;
+}
+
+/* Chart tooltips: the box the charts draw is authored against these custom properties, declared on
+   the box itself because the charts set the background inline on the wrapper they move it into. */
+.fleet-management-sample .ig-tooltip-container-background {
+  --tooltip-container-background-color: var(--fleet-tooltip-background);
+  --tooltip-container-text-color: var(--ig-gray-800);
+  --tooltip-container-padding: 0.5rem 0.625rem;
+  --tooltip-container-font: 0.75rem 'DM Sans', 'Segoe UI', sans-serif;
+
+  border-color: var(--fleet-tooltip-border) !important;
+  border-radius: 0.25rem;
+}
+
+.fleet-management-sample .ui-tooltip-priority,
+.fleet-management-sample .fleet-chart-tooltip-value {
+  font-weight: 700;
+  color: var(--ig-gray-900);
+}
+
+.fleet-management-sample .fleet-chart-tooltip {
+  display: grid;
+  gap: 0.125rem;
+}
+
+.fleet-management-sample .fleet-chart-tooltip-label {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  color: var(--ig-primary-500);
+}
+
+@media (max-width: 999.98px) {
+  .fleet-management-sample .fleet-detail-content,
+  .fleet-management-sample .fleet-cost-charts,
+  .fleet-management-sample .fleet-cost-donut-layout {
+    grid-template-columns: 1fr;
+  }
+}
