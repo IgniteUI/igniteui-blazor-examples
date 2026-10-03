@@ -1,0 +1,738 @@
+/*
+CSS styles are loaded from the shared CSS file located at:
+https://dl.infragistics.com/x/css//samples/
+*/
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&family=DM+Sans:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+
+/*
+ * FinTech Trading (fintech-100k): the palettes, the component themes and the layout.
+ *
+ * - The samples browser inlines this file into the sample page as a style block, so it acts as
+ *   global CSS on a page that hosts every sample: every rule is nested under .fintech-100k-sample
+ *   (keyframes, should any be added, need a fintech-100k- prefix). Never type a less-than sign
+ *   in this file, not even in a comment: the inlined copy is parsed as Razor and the build breaks.
+ * - The @import above must stay the first rule of the file. It loads the homepage app's fonts.
+ * - The palettes are the homepage sample's (_finjs-palette.scss), emitted by the igniteui-theming
+ *   MCP (create_palette, platform blazor, css). They are declared on the sample root, not on
+ *   :root: the built-in theme derives every shade from --ig-COLOR-500 with relative-colour
+ *   formulas, and a var() inside a custom property is resolved where the property is declared, so
+ *   the whole ramp is declared again here; otherwise the shades would keep the page theme's values.
+ * - Dark mode is the second palette: the toggle only adds .dark-theme to the sample root, as the
+ *   homepage sample adds it to its host. The derived shades are declared on that same element, so
+ *   the dark block restates only the values that differ: the -500 and seed colours and the gray
+ *   ramp, which inverts off the surface. Every component theme below references the palette only.
+ * - The component themes (grid, button group, scrollbar) are the homepage sample's
+ *   (_finjs-theme.scss), emitted by the MCP (create_component_theme, fluent, blazor, css).
+ */
+
+/* ---------------------------------------------------------------------------------------------
+ * 1. Light palette (default), trend aliases, density and the root
+ * ------------------------------------------------------------------------------------------- */
+.fintech-100k-sample {
+  --ig-wcag-a: 0.31;
+  --ig-wcag-aa: 0.185;
+  --ig-wcag-aaa: 0.178;
+  --ig-contrast-level: var(--ig-wcag-aa);
+  --y: clamp(0, (y / var(--ig-contrast-level) - 1) * -infinity, 1);
+  --y-contrast: xyz-d65 var(--y) var(--y) var(--y);
+
+  --ig-primary-50: hsl(from var(--ig-primary-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-primary-50-contrast: hsla(from color(from var(--ig-primary-50) var(--y-contrast)) h 0 l/1);
+  --ig-primary-100: hsl(from var(--ig-primary-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-primary-100-contrast: hsla(from color(from var(--ig-primary-100) var(--y-contrast)) h 0 l/1);
+  --ig-primary-200: hsl(from var(--ig-primary-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-primary-200-contrast: hsla(from color(from var(--ig-primary-200) var(--y-contrast)) h 0 l/1);
+  --ig-primary-300: hsl(from var(--ig-primary-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-primary-300-contrast: hsla(from color(from var(--ig-primary-300) var(--y-contrast)) h 0 l/1);
+  --ig-primary-400: hsl(from var(--ig-primary-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-primary-400-contrast: hsla(from color(from var(--ig-primary-400) var(--y-contrast)) h 0 l/1);
+  --ig-primary-500: #0078d4;
+  --ig-primary-500-contrast: hsla(from color(from var(--ig-primary-500) var(--y-contrast)) h 0 l/1);
+  --ig-primary-600: hsl(from var(--ig-primary-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-primary-600-contrast: hsla(from color(from var(--ig-primary-600) var(--y-contrast)) h 0 l/1);
+  --ig-primary-700: hsl(from var(--ig-primary-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-primary-700-contrast: hsla(from color(from var(--ig-primary-700) var(--y-contrast)) h 0 l/1);
+  --ig-primary-800: hsl(from var(--ig-primary-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-primary-800-contrast: hsla(from color(from var(--ig-primary-800) var(--y-contrast)) h 0 l/1);
+  --ig-primary-900: hsl(from var(--ig-primary-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-primary-900-contrast: hsla(from color(from var(--ig-primary-900) var(--y-contrast)) h 0 l/1);
+  --ig-primary-seed: #0078d4;
+  --ig-primary-seed-contrast: hsla(from color(from var(--ig-primary-seed) var(--y-contrast)) h 0 l/1);
+  --ig-primary-A100: hsl(from var(--ig-primary-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-primary-A100-contrast: hsla(from color(from var(--ig-primary-A100) var(--y-contrast)) h 0 l/1);
+  --ig-primary-A200: hsl(from var(--ig-primary-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-primary-A200-contrast: hsla(from color(from var(--ig-primary-A200) var(--y-contrast)) h 0 l/1);
+  --ig-primary-A400: hsl(from var(--ig-primary-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-primary-A400-contrast: hsla(from color(from var(--ig-primary-A400) var(--y-contrast)) h 0 l/1);
+  --ig-primary-A700: hsl(from var(--ig-primary-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-primary-A700-contrast: hsla(from color(from var(--ig-primary-A700) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-50: hsl(from var(--ig-secondary-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-secondary-50-contrast: hsla(from color(from var(--ig-secondary-50) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-100: hsl(from var(--ig-secondary-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-secondary-100-contrast: hsla(from color(from var(--ig-secondary-100) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-200: hsl(from var(--ig-secondary-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-secondary-200-contrast: hsla(from color(from var(--ig-secondary-200) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-300: hsl(from var(--ig-secondary-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-secondary-300-contrast: hsla(from color(from var(--ig-secondary-300) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-400: hsl(from var(--ig-secondary-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-secondary-400-contrast: hsla(from color(from var(--ig-secondary-400) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-500: #2b88d8;
+  --ig-secondary-500-contrast: hsla(from color(from var(--ig-secondary-500) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-600: hsl(from var(--ig-secondary-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-secondary-600-contrast: hsla(from color(from var(--ig-secondary-600) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-700: hsl(from var(--ig-secondary-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-secondary-700-contrast: hsla(from color(from var(--ig-secondary-700) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-800: hsl(from var(--ig-secondary-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-secondary-800-contrast: hsla(from color(from var(--ig-secondary-800) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-900: hsl(from var(--ig-secondary-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-secondary-900-contrast: hsla(from color(from var(--ig-secondary-900) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-seed: #2b88d8;
+  --ig-secondary-seed-contrast: hsla(from color(from var(--ig-secondary-seed) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-A100: hsl(from var(--ig-secondary-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-secondary-A100-contrast: hsla(from color(from var(--ig-secondary-A100) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-A200: hsl(from var(--ig-secondary-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-secondary-A200-contrast: hsla(from color(from var(--ig-secondary-A200) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-A400: hsl(from var(--ig-secondary-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-secondary-A400-contrast: hsla(from color(from var(--ig-secondary-A400) var(--y-contrast)) h 0 l/1);
+  --ig-secondary-A700: hsl(from var(--ig-secondary-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-secondary-A700-contrast: hsla(from color(from var(--ig-secondary-A700) var(--y-contrast)) h 0 l/1);
+  --ig-gray-50: hsl(from var(--ig-gray-500) h s 98%);
+  --ig-gray-50-contrast: hsla(from color(from var(--ig-gray-50) var(--y-contrast)) h 0 l/1);
+  --ig-gray-100: hsl(from var(--ig-gray-500) h s 96%);
+  --ig-gray-100-contrast: hsla(from color(from var(--ig-gray-100) var(--y-contrast)) h 0 l/1);
+  --ig-gray-200: hsl(from var(--ig-gray-500) h s 93%);
+  --ig-gray-200-contrast: hsla(from color(from var(--ig-gray-200) var(--y-contrast)) h 0 l/1);
+  --ig-gray-300: hsl(from var(--ig-gray-500) h s 88%);
+  --ig-gray-300-contrast: hsla(from color(from var(--ig-gray-300) var(--y-contrast)) h 0 l/1);
+  --ig-gray-400: hsl(from var(--ig-gray-500) h s 74%);
+  --ig-gray-400-contrast: hsla(from color(from var(--ig-gray-400) var(--y-contrast)) h 0 l/1);
+  --ig-gray-500: hsl(30, 3.23%, 62%);
+  --ig-gray-500-contrast: hsla(from color(from var(--ig-gray-500) var(--y-contrast)) h 0 l/1);
+  --ig-gray-600: hsl(from var(--ig-gray-500) h s 54%);
+  --ig-gray-600-contrast: hsla(from color(from var(--ig-gray-600) var(--y-contrast)) h 0 l/1);
+  --ig-gray-700: hsl(from var(--ig-gray-500) h s 38%);
+  --ig-gray-700-contrast: hsla(from color(from var(--ig-gray-700) var(--y-contrast)) h 0 l/1);
+  --ig-gray-800: hsl(from var(--ig-gray-500) h s 26%);
+  --ig-gray-800-contrast: hsla(from color(from var(--ig-gray-800) var(--y-contrast)) h 0 l/1);
+  --ig-gray-900: hsl(from var(--ig-gray-500) h s 13%);
+  --ig-gray-900-contrast: hsla(from color(from var(--ig-gray-900) var(--y-contrast)) h 0 l/1);
+  --ig-gray-seed: #201f1e;
+  --ig-gray-seed-contrast: hsla(from color(from var(--ig-gray-seed) var(--y-contrast)) h 0 l/1);
+  --ig-surface-50: hsl(from var(--ig-surface-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-surface-50-contrast: hsla(from color(from var(--ig-surface-50) var(--y-contrast)) h 0 l/1);
+  --ig-surface-100: hsl(from var(--ig-surface-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-surface-100-contrast: hsla(from color(from var(--ig-surface-100) var(--y-contrast)) h 0 l/1);
+  --ig-surface-200: hsl(from var(--ig-surface-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-surface-200-contrast: hsla(from color(from var(--ig-surface-200) var(--y-contrast)) h 0 l/1);
+  --ig-surface-300: hsl(from var(--ig-surface-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-surface-300-contrast: hsla(from color(from var(--ig-surface-300) var(--y-contrast)) h 0 l/1);
+  --ig-surface-400: hsl(from var(--ig-surface-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-surface-400-contrast: hsla(from color(from var(--ig-surface-400) var(--y-contrast)) h 0 l/1);
+  --ig-surface-500: #fff;
+  --ig-surface-500-contrast: hsla(from color(from var(--ig-surface-500) var(--y-contrast)) h 0 l/1);
+  --ig-surface-600: hsl(from var(--ig-surface-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-surface-600-contrast: hsla(from color(from var(--ig-surface-600) var(--y-contrast)) h 0 l/1);
+  --ig-surface-700: hsl(from var(--ig-surface-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-surface-700-contrast: hsla(from color(from var(--ig-surface-700) var(--y-contrast)) h 0 l/1);
+  --ig-surface-800: hsl(from var(--ig-surface-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-surface-800-contrast: hsla(from color(from var(--ig-surface-800) var(--y-contrast)) h 0 l/1);
+  --ig-surface-900: hsl(from var(--ig-surface-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-surface-900-contrast: hsla(from color(from var(--ig-surface-900) var(--y-contrast)) h 0 l/1);
+  --ig-surface-seed: #fff;
+  --ig-surface-seed-contrast: hsla(from color(from var(--ig-surface-seed) var(--y-contrast)) h 0 l/1);
+  --ig-surface-A100: hsl(from var(--ig-surface-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-surface-A100-contrast: hsla(from color(from var(--ig-surface-A100) var(--y-contrast)) h 0 l/1);
+  --ig-surface-A200: hsl(from var(--ig-surface-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-surface-A200-contrast: hsla(from color(from var(--ig-surface-A200) var(--y-contrast)) h 0 l/1);
+  --ig-surface-A400: hsl(from var(--ig-surface-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-surface-A400-contrast: hsla(from color(from var(--ig-surface-A400) var(--y-contrast)) h 0 l/1);
+  --ig-surface-A700: hsl(from var(--ig-surface-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-surface-A700-contrast: hsla(from color(from var(--ig-surface-A700) var(--y-contrast)) h 0 l/1);
+  --ig-info-50: hsl(from var(--ig-info-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-info-50-contrast: hsla(from color(from var(--ig-info-50) var(--y-contrast)) h 0 l/1);
+  --ig-info-100: hsl(from var(--ig-info-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-info-100-contrast: hsla(from color(from var(--ig-info-100) var(--y-contrast)) h 0 l/1);
+  --ig-info-200: hsl(from var(--ig-info-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-info-200-contrast: hsla(from color(from var(--ig-info-200) var(--y-contrast)) h 0 l/1);
+  --ig-info-300: hsl(from var(--ig-info-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-info-300-contrast: hsla(from color(from var(--ig-info-300) var(--y-contrast)) h 0 l/1);
+  --ig-info-400: hsl(from var(--ig-info-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-info-400-contrast: hsla(from color(from var(--ig-info-400) var(--y-contrast)) h 0 l/1);
+  --ig-info-500: #1377d5;
+  --ig-info-500-contrast: hsla(from color(from var(--ig-info-500) var(--y-contrast)) h 0 l/1);
+  --ig-info-600: hsl(from var(--ig-info-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-info-600-contrast: hsla(from color(from var(--ig-info-600) var(--y-contrast)) h 0 l/1);
+  --ig-info-700: hsl(from var(--ig-info-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-info-700-contrast: hsla(from color(from var(--ig-info-700) var(--y-contrast)) h 0 l/1);
+  --ig-info-800: hsl(from var(--ig-info-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-info-800-contrast: hsla(from color(from var(--ig-info-800) var(--y-contrast)) h 0 l/1);
+  --ig-info-900: hsl(from var(--ig-info-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-info-900-contrast: hsla(from color(from var(--ig-info-900) var(--y-contrast)) h 0 l/1);
+  --ig-info-seed: #1377d5;
+  --ig-info-seed-contrast: hsla(from color(from var(--ig-info-seed) var(--y-contrast)) h 0 l/1);
+  --ig-info-A100: hsl(from var(--ig-info-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-info-A100-contrast: hsla(from color(from var(--ig-info-A100) var(--y-contrast)) h 0 l/1);
+  --ig-info-A200: hsl(from var(--ig-info-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-info-A200-contrast: hsla(from color(from var(--ig-info-A200) var(--y-contrast)) h 0 l/1);
+  --ig-info-A400: hsl(from var(--ig-info-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-info-A400-contrast: hsla(from color(from var(--ig-info-A400) var(--y-contrast)) h 0 l/1);
+  --ig-info-A700: hsl(from var(--ig-info-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-info-A700-contrast: hsla(from color(from var(--ig-info-A700) var(--y-contrast)) h 0 l/1);
+  --ig-success-50: hsl(from var(--ig-success-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-success-50-contrast: hsla(from color(from var(--ig-success-50) var(--y-contrast)) h 0 l/1);
+  --ig-success-100: hsl(from var(--ig-success-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-success-100-contrast: hsla(from color(from var(--ig-success-100) var(--y-contrast)) h 0 l/1);
+  --ig-success-200: hsl(from var(--ig-success-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-success-200-contrast: hsla(from color(from var(--ig-success-200) var(--y-contrast)) h 0 l/1);
+  --ig-success-300: hsl(from var(--ig-success-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-success-300-contrast: hsla(from color(from var(--ig-success-300) var(--y-contrast)) h 0 l/1);
+  --ig-success-400: hsl(from var(--ig-success-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-success-400-contrast: hsla(from color(from var(--ig-success-400) var(--y-contrast)) h 0 l/1);
+  --ig-success-500: #0b8f47;
+  --ig-success-500-contrast: hsla(from color(from var(--ig-success-500) var(--y-contrast)) h 0 l/1);
+  --ig-success-600: hsl(from var(--ig-success-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-success-600-contrast: hsla(from color(from var(--ig-success-600) var(--y-contrast)) h 0 l/1);
+  --ig-success-700: hsl(from var(--ig-success-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-success-700-contrast: hsla(from color(from var(--ig-success-700) var(--y-contrast)) h 0 l/1);
+  --ig-success-800: hsl(from var(--ig-success-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-success-800-contrast: hsla(from color(from var(--ig-success-800) var(--y-contrast)) h 0 l/1);
+  --ig-success-900: hsl(from var(--ig-success-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-success-900-contrast: hsla(from color(from var(--ig-success-900) var(--y-contrast)) h 0 l/1);
+  --ig-success-seed: #0b8f47;
+  --ig-success-seed-contrast: hsla(from color(from var(--ig-success-seed) var(--y-contrast)) h 0 l/1);
+  --ig-success-A100: hsl(from var(--ig-success-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-success-A100-contrast: hsla(from color(from var(--ig-success-A100) var(--y-contrast)) h 0 l/1);
+  --ig-success-A200: hsl(from var(--ig-success-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-success-A200-contrast: hsla(from color(from var(--ig-success-A200) var(--y-contrast)) h 0 l/1);
+  --ig-success-A400: hsl(from var(--ig-success-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-success-A400-contrast: hsla(from color(from var(--ig-success-A400) var(--y-contrast)) h 0 l/1);
+  --ig-success-A700: hsl(from var(--ig-success-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-success-A700-contrast: hsla(from color(from var(--ig-success-A700) var(--y-contrast)) h 0 l/1);
+  --ig-warn-50: hsl(from var(--ig-warn-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-warn-50-contrast: hsla(from color(from var(--ig-warn-50) var(--y-contrast)) h 0 l/1);
+  --ig-warn-100: hsl(from var(--ig-warn-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-warn-100-contrast: hsla(from color(from var(--ig-warn-100) var(--y-contrast)) h 0 l/1);
+  --ig-warn-200: hsl(from var(--ig-warn-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-warn-200-contrast: hsla(from color(from var(--ig-warn-200) var(--y-contrast)) h 0 l/1);
+  --ig-warn-300: hsl(from var(--ig-warn-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-warn-300-contrast: hsla(from color(from var(--ig-warn-300) var(--y-contrast)) h 0 l/1);
+  --ig-warn-400: hsl(from var(--ig-warn-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-warn-400-contrast: hsla(from color(from var(--ig-warn-400) var(--y-contrast)) h 0 l/1);
+  --ig-warn-500: #f0a14a;
+  --ig-warn-500-contrast: hsla(from color(from var(--ig-warn-500) var(--y-contrast)) h 0 l/1);
+  --ig-warn-600: hsl(from var(--ig-warn-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-warn-600-contrast: hsla(from color(from var(--ig-warn-600) var(--y-contrast)) h 0 l/1);
+  --ig-warn-700: hsl(from var(--ig-warn-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-warn-700-contrast: hsla(from color(from var(--ig-warn-700) var(--y-contrast)) h 0 l/1);
+  --ig-warn-800: hsl(from var(--ig-warn-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-warn-800-contrast: hsla(from color(from var(--ig-warn-800) var(--y-contrast)) h 0 l/1);
+  --ig-warn-900: hsl(from var(--ig-warn-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-warn-900-contrast: hsla(from color(from var(--ig-warn-900) var(--y-contrast)) h 0 l/1);
+  --ig-warn-seed: #f0a14a;
+  --ig-warn-seed-contrast: hsla(from color(from var(--ig-warn-seed) var(--y-contrast)) h 0 l/1);
+  --ig-warn-A100: hsl(from var(--ig-warn-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-warn-A100-contrast: hsla(from color(from var(--ig-warn-A100) var(--y-contrast)) h 0 l/1);
+  --ig-warn-A200: hsl(from var(--ig-warn-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-warn-A200-contrast: hsla(from color(from var(--ig-warn-A200) var(--y-contrast)) h 0 l/1);
+  --ig-warn-A400: hsl(from var(--ig-warn-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-warn-A400-contrast: hsla(from color(from var(--ig-warn-A400) var(--y-contrast)) h 0 l/1);
+  --ig-warn-A700: hsl(from var(--ig-warn-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-warn-A700-contrast: hsla(from color(from var(--ig-warn-A700) var(--y-contrast)) h 0 l/1);
+  --ig-error-50: hsl(from var(--ig-error-500) h calc(s * 1.23) calc(l * 1.78));
+  --ig-error-50-contrast: hsla(from color(from var(--ig-error-50) var(--y-contrast)) h 0 l/1);
+  --ig-error-100: hsl(from var(--ig-error-500) h calc(s * 0.8) calc(l * 1.66));
+  --ig-error-100-contrast: hsla(from color(from var(--ig-error-100) var(--y-contrast)) h 0 l/1);
+  --ig-error-200: hsl(from var(--ig-error-500) h calc(s * 0.64) calc(l * 1.43));
+  --ig-error-200-contrast: hsla(from color(from var(--ig-error-200) var(--y-contrast)) h 0 l/1);
+  --ig-error-300: hsl(from var(--ig-error-500) h calc(s * 0.73) calc(l * 1.19));
+  --ig-error-300-contrast: hsla(from color(from var(--ig-error-300) var(--y-contrast)) h 0 l/1);
+  --ig-error-400: hsl(from var(--ig-error-500) h calc(s * 0.875) calc(l * 1.08));
+  --ig-error-400-contrast: hsla(from color(from var(--ig-error-400) var(--y-contrast)) h 0 l/1);
+  --ig-error-500: #d1226b;
+  --ig-error-500-contrast: hsla(from color(from var(--ig-error-500) var(--y-contrast)) h 0 l/1);
+  --ig-error-600: hsl(from var(--ig-error-500) h calc(s * 1.26) calc(l * 0.89));
+  --ig-error-600-contrast: hsla(from color(from var(--ig-error-600) var(--y-contrast)) h 0 l/1);
+  --ig-error-700: hsl(from var(--ig-error-500) h calc(s * 1.26) calc(l * 0.81));
+  --ig-error-700-contrast: hsla(from color(from var(--ig-error-700) var(--y-contrast)) h 0 l/1);
+  --ig-error-800: hsl(from var(--ig-error-500) h calc(s * 1.26) calc(l * 0.73));
+  --ig-error-800-contrast: hsla(from color(from var(--ig-error-800) var(--y-contrast)) h 0 l/1);
+  --ig-error-900: hsl(from var(--ig-error-500) h calc(s * 1.26) calc(l * 0.64));
+  --ig-error-900-contrast: hsla(from color(from var(--ig-error-900) var(--y-contrast)) h 0 l/1);
+  --ig-error-seed: #d1226b;
+  --ig-error-seed-contrast: hsla(from color(from var(--ig-error-seed) var(--y-contrast)) h 0 l/1);
+  --ig-error-A100: hsl(from var(--ig-error-500) h calc(s * 1.23) calc(l * 1.34));
+  --ig-error-A100-contrast: hsla(from color(from var(--ig-error-A100) var(--y-contrast)) h 0 l/1);
+  --ig-error-A200: hsl(from var(--ig-error-500) h calc(s * 1.22) calc(l * 1.16));
+  --ig-error-A200-contrast: hsla(from color(from var(--ig-error-A200) var(--y-contrast)) h 0 l/1);
+  --ig-error-A400: hsl(from var(--ig-error-500) h calc(s * 1.23) calc(l * 0.91));
+  --ig-error-A400-contrast: hsla(from color(from var(--ig-error-A400) var(--y-contrast)) h 0 l/1);
+  --ig-error-A700: hsl(from var(--ig-error-500) h calc(s * 1.23) calc(l * 0.65));
+  --ig-error-A700-contrast: hsla(from color(from var(--ig-error-A700) var(--y-contrast)) h 0 l/1);
+
+  /* Shade 700 carries both the arrows and the bars, on both appearances: both palettes were
+     seeded so that the same shade clears WCAG AA against the grid background. */
+  --finjs-pos: var(--ig-success-700);
+  --finjs-neg: var(--ig-error-700);
+
+  /* The scrollbar thumb: the gray ramp inverts off the surface, so the quiet shade on white would
+     be a bright one on the dark surface. */
+  --finjs-sb-thumb: light-dark(var(--ig-gray-300), var(--ig-gray-200));
+
+  /* scrollbar-theme(...): the override layer the scrollbars read. The page theme declares its
+     own scrollbar colours on the body, resolved against the page palette; restated here, they
+     follow this sample's palette (the grid, its menus and the root's own .ig-scrollbar). */
+  --ig-scrollbar-sb-size: 1rem;
+  --ig-scrollbar-sb-thumb-min-height: 2rem;
+  --ig-scrollbar-sb-thumb-bg-color: var(--finjs-sb-thumb);
+  --ig-scrollbar-sb-thumb-bg-color-hover: light-dark(var(--ig-gray-400), var(--ig-gray-300));
+  --ig-scrollbar-sb-thumb-border-color: transparent;
+  --ig-scrollbar-sb-thumb-border-size: 0;
+  --ig-scrollbar-sb-thumb-border-radius: 0;
+  --ig-scrollbar-sb-track-bg-color: var(--ig-surface-500);
+  --ig-scrollbar-sb-track-bg-color-hover: var(--ig-scrollbar-sb-track-bg-color);
+  --ig-scrollbar-sb-track-border-color: transparent;
+  --ig-scrollbar-sb-track-border-size: 0;
+  --ig-scrollbar-sb-corner-bg: var(--ig-surface-500);
+  --ig-scrollbar-sb-corner-border-color: transparent;
+  --ig-scrollbar-sb-corner-border-size: 0;
+
+  /* Firefox never sees the ::-webkit-scrollbar rules those tokens feed. */
+  scrollbar-color: var(--finjs-sb-thumb) var(--ig-surface-500);
+
+  /* Fluent typography, which the homepage sample is designed on. The samples browser loads the
+     Bootstrap theme for every sample; pinning the type the sample shows (the font, the title's
+     h6 and the toolbar buttons) keeps its text metrics there. Open Sans is not loaded by the
+     page, here or in the homepage app: both fall back alike. */
+  --ig-font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  --ig-h6-font-size: 1.25rem;
+  --ig-h6-font-weight: 400;
+  --ig-h6-line-height: 1.75rem;
+  --ig-h6-margin-bottom: 0;
+  --ig-button-font-size: 0.875rem;
+  --ig-button-font-weight: 600;
+  --ig-button-line-height: 0.875rem;
+  --ig-button-text-transform: capitalize;
+
+  /* Sample-wide density, driven by the size selector in the grid toolbar. */
+  --ig-size: var(--ig-size-medium);
+
+  color-scheme: light;
+  display: block;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.fintech-100k-sample.finjs-size-small {
+  --ig-size: var(--ig-size-small);
+}
+
+.fintech-100k-sample.finjs-size-large {
+  --ig-size: var(--ig-size-large);
+}
+
+/* ---------------------------------------------------------------------------------------------
+ * 2. Dark palette - applied when the sample root carries .dark-theme
+ * ------------------------------------------------------------------------------------------- */
+.fintech-100k-sample.dark-theme {
+  --ig-primary-500: #479ef5;
+  --ig-primary-seed: #479ef5;
+  --ig-secondary-500: #6cb8f6;
+  --ig-secondary-seed: #6cb8f6;
+  --ig-gray-50: hsl(from var(--ig-gray-500) h s 13%);
+  --ig-gray-100: hsl(from var(--ig-gray-500) h s 26%);
+  --ig-gray-200: hsl(from var(--ig-gray-500) h s 38%);
+  --ig-gray-300: hsl(from var(--ig-gray-500) h s 54%);
+  --ig-gray-400: hsl(from var(--ig-gray-500) h s 62%);
+  --ig-gray-500: hsl(30, 7.69%, 74%);
+  --ig-gray-600: hsl(from var(--ig-gray-500) h s 88%);
+  --ig-gray-700: hsl(from var(--ig-gray-500) h s 93%);
+  --ig-gray-800: hsl(from var(--ig-gray-500) h s 96%);
+  --ig-gray-900: hsl(from var(--ig-gray-500) h s 98%);
+  --ig-gray-seed: #f3f2f1;
+  --ig-surface-500: #1b1a19;
+  --ig-surface-seed: #1b1a19;
+  --ig-info-500: #479ef5;
+  --ig-info-seed: #479ef5;
+  --ig-success-500: #6bd68a;
+  --ig-success-seed: #6bd68a;
+  --ig-error-500: #ff8fa3;
+  --ig-error-seed: #ff8fa3;
+
+  color-scheme: dark;
+}
+
+/* ---------------------------------------------------------------------------------------------
+ * 3. Component themes. Declared inside the themed subtree: a var() inside a custom property is
+ *    substituted where the property is declared.
+ * ------------------------------------------------------------------------------------------- */
+
+/* grid-theme($background: surface-500, $foreground: gray-900, $accent-color: primary-500,
+              $grid-border-color: light-dark(gray-300, gray-100)). The toolbar, the excel-style
+   filter, the column panels and their buttons all derive from these tokens. The one pair keeps
+   the grid's lines the same weight on both appearances: gray-300 is a hairline on white and a
+   heavy line on the dark surface. */
+.fintech-100k-sample igc-grid {
+  --ig-grid-grid-elevation: var(--ig-elevation-0);
+  --ig-grid-drag-elevation: var(--ig-elevation-1);
+  --ig-grid-grouparea-color: color-mix(in srgb, var(--ig-grid-header-text-color) 60%, var(--ig-grid-header-background));
+  --ig-grid-grouparea-background: var(--ig-grid-header-background);
+  --ig-grid-drop-area-text-color: color-mix(in srgb, var(--ig-grid-header-text-color) 80%, var(--ig-grid-header-background));
+  --ig-grid-drop-area-icon-color: var(--ig-grid-drop-area-text-color);
+  --ig-grid-drop-area-background: lch(from var(--ig-grid-header-background) calc(l + (50 - l) * 0.1 + sign(50 - l) * 5) c h);
+  --ig-grid-drop-area-on-drop-background: lch(from var(--ig-grid-header-background) calc(l + (50 - l) * 0.1 + sign(50 - l) * 5) c h);
+  --ig-grid-header-background: color-mix(in srgb, var(--ig-grid-foreground) 6%, var(--ig-grid-background));
+  --ig-grid-sortable-header-icon-hover-color: var(--ig-grid-accent-color);
+  --ig-grid-sorted-header-icon-color: hsl(from var(--ig-grid-accent-color) h s l/0.7);
+  --ig-grid-header-border-width: 0.0625rem;
+  --ig-grid-header-border-style: solid;
+  --ig-grid-header-border-color: color-mix(in srgb, var(--ig-grid-header-text-color) 20%, var(--ig-grid-header-background));
+  --ig-grid-action-border-color: color-mix(in srgb, var(--ig-grid-foreground) 20%, var(--ig-grid-background));
+  --ig-grid-ghost-header-background: var(--ig-grid-header-background);
+  --ig-grid-ghost-header-text-color: var(--ig-grid-header-text-color);
+  --ig-grid-ghost-header-icon-color: var(--ig-grid-header-text-color);
+  --ig-grid-excel-filtering-header-foreground: var(--ig-grid-foreground);
+  --ig-grid-excel-filtering-subheader-foreground: var(--ig-grid-foreground);
+  --ig-grid-excel-filtering-actions-foreground: var(--ig-grid-foreground);
+  --ig-grid-excel-filtering-actions-icon-color: var(--ig-grid-foreground);
+  --ig-grid-excel-filtering-actions-hover-foreground: var(--ig-grid-foreground);
+  --ig-grid-excel-filtering-actions-hover-icon-color: var(--ig-grid-foreground);
+  --ig-grid-excel-filtering-actions-selected-icon-color: var(--ig-grid-accent-color);
+  --ig-grid-excel-filtering-actions-hover-background: color-mix(in srgb, var(--ig-grid-accent-color) 8%, var(--ig-grid-background));
+  --ig-grid-excel-filtering-actions-disabled-foreground: color-mix(in srgb, var(--ig-grid-foreground) 50%, var(--ig-grid-background));
+  --ig-grid-excel-filtering-border-color: color-mix(in srgb, var(--ig-grid-foreground) 16%, var(--ig-grid-background));
+  --ig-grid-grid-border-color: light-dark(var(--ig-gray-300), var(--ig-gray-100));
+  --ig-grid-content-background: var(--ig-grid-background);
+  --ig-grid-content-text-color: var(--ig-grid-foreground);
+  --ig-grid-row-odd-background: var(--ig-grid-background);
+  --ig-grid-row-even-background: var(--ig-grid-background);
+  --ig-grid-body-column-border-color-odd: var(--ig-grid-background);
+  --ig-grid-body-column-border-color-even: var(--ig-grid-background);
+  --ig-grid-row-odd-text-color: var(--ig-grid-foreground);
+  --ig-grid-row-even-text-color: inherit;
+  --ig-grid-tree-selected-filtered-row-text-color: var(--ig-gray-400);
+  --ig-grid-row-selected-text-color: var(--ig-grid-foreground);
+  --ig-grid-row-hover-background: color-mix(in srgb, var(--ig-grid-accent-color) 8%, var(--ig-grid-row-odd-background));
+  --ig-grid-body-column-hover-border-color: color-mix(in srgb, var(--ig-grid-accent-color) 8%, var(--ig-grid-row-odd-background));
+  --ig-grid-row-hover-text-color: var(--ig-grid-foreground);
+  --ig-grid-row-border-width: 0.0625rem;
+  --ig-grid-row-border-style: solid;
+  --ig-grid-row-border-color: hsl(from color-mix(in srgb, var(--ig-grid-foreground) 16%, var(--ig-grid-background)) h s l/0.38);
+  --ig-grid-row-drag-color: var(--ig-grid-foreground);
+  --ig-grid-pinned-border-width: 0.125rem;
+  --ig-grid-pinned-border-style: solid;
+  --ig-grid-pinned-border-color: color-mix(in srgb, var(--ig-grid-foreground) 20%, var(--ig-grid-background));
+  --ig-grid-cell-active-border-width: 0.0625rem;
+  --ig-grid-cell-active-border-color: var(--ig-grid-accent-color);
+  --ig-grid-cell-selected-background: color-mix(in srgb, var(--ig-grid-accent-color) 24%, var(--ig-grid-background));
+  --ig-grid-tree-selected-filtered-cell-text-color: var(--ig-secondary-500);
+  --ig-grid-cell-selected-text-color: var(--ig-grid-foreground);
+  --ig-grid-cell-editing-background: var(--ig-grid-background);
+  --ig-grid-cell-editing-foreground: var(--ig-grid-foreground);
+  --ig-grid-cell-editing-focus-foreground: var(--ig-grid-foreground);
+  --ig-grid-edit-mode-color: var(--ig-grid-accent-color);
+  --ig-grid-edited-row-indicator: color-mix(in srgb, var(--ig-grid-foreground) 16%, var(--ig-grid-background));
+  --ig-grid-cell-new-color: var(--ig-grid-foreground);
+  --ig-grid-cell-edited-value-color: color-mix(in srgb, var(--ig-grid-foreground) 80%, var(--ig-grid-background));
+  --ig-grid-cell-disabled-color: color-mix(in srgb, var(--ig-grid-foreground) 50%, var(--ig-grid-background));
+  --ig-grid-resize-line-color: var(--ig-grid-accent-color);
+  --ig-grid-drop-indicator-color: var(--ig-grid-accent-color);
+  --ig-grid-group-label-column-name-text: var(--ig-grid-accent-color);
+  --ig-grid-group-label-icon: var(--ig-grid-accent-color);
+  --ig-grid-group-label-text: color-mix(in srgb, var(--ig-grid-foreground) 80%, var(--ig-grid-background));
+  --ig-grid-expand-all-icon-color: color-mix(in srgb, var(--ig-grid-foreground) 70%, var(--ig-grid-background));
+  --ig-grid-expand-all-icon-hover-color: color-mix(in srgb, var(--ig-grid-foreground) 80%, var(--ig-grid-background));
+  --ig-grid-expand-icon-color: color-mix(in srgb, var(--ig-grid-foreground) 60%, var(--ig-grid-background));
+  --ig-grid-expand-icon-hover-color: color-mix(in srgb, var(--ig-grid-foreground) 70%, var(--ig-grid-background));
+  --ig-grid-active-expand-icon-color: var(--ig-gray-500);
+  --ig-grid-active-expand-icon-hover-color: var(--ig-primary-500);
+  --ig-grid-group-count-background: color-mix(in srgb, var(--ig-grid-foreground) 12%, var(--ig-grid-background));
+  --ig-grid-group-count-text-color: var(--ig-grid-foreground);
+  --ig-grid-group-row-background: color-mix(in srgb, var(--ig-grid-foreground) 6%, var(--ig-grid-background));
+  --ig-grid-group-row-selected-background: color-mix(in srgb, var(--ig-grid-foreground) 6%, var(--ig-grid-background));
+  --ig-grid-filtering-header-background: var(--ig-grid-background);
+  --ig-grid-filtering-header-text-color: var(--ig-grid-foreground);
+  --ig-grid-filtering-row-background: var(--ig-grid-background);
+  --ig-grid-filtering-row-text-color: var(--ig-grid-foreground);
+  --ig-grid-filtering-dialog-background: var(--ig-grid-background);
+  --ig-grid-tree-filtered-text-color: var(--ig-gray-500);
+  --ig-grid-row-highlight: var(--ig-grid-accent-color);
+  --ig-grid-row-ghost-background: var(--ig-grid-background);
+  --ig-grid-row-ghost-border-color: hsl(from color-mix(in srgb, var(--ig-grid-foreground) 16%, var(--ig-grid-background)) h s l/0.38);
+  --ig-grid-drop-area-border-radius: clamp(0rem, calc(var(--ig-radius-factor, 0.125) * 1rem), 1rem);
+  --ig-grid-summaries-border-color: var(--ig-gray-400);
+  --ig-grid-summaries-patch-background: color-mix(in srgb, var(--ig-grid-foreground) 12%, var(--ig-grid-background));
+  --ig-grid-active-state-border-style: solid;
+  --ig-grid-header-text-color: var(--ig-grid-foreground);
+  --ig-grid-header-selected-background: color-mix(in srgb, var(--ig-grid-accent-color) 12%, var(--ig-grid-header-background));
+  --ig-grid-header-selected-text-color: var(--ig-grid-header-text-color);
+  --ig-grid-row-selected-background: color-mix(in srgb, var(--ig-grid-accent-color) 12%, var(--ig-grid-background));
+  --ig-grid-row-selected-hover-background: color-mix(in srgb, var(--ig-grid-accent-color) 16%, var(--ig-grid-background));
+  --ig-grid-row-selected-hover-text-color: var(--ig-grid-foreground);
+  --ig-grid-body-column-selected-border-color: color-mix(in srgb, var(--ig-grid-accent-color) 16%, var(--ig-grid-background));
+  --ig-grid-body-column-hover-selected-border-color: color-mix(in srgb, var(--ig-grid-accent-color) 12%, var(--ig-grid-background));
+  --ig-grid-cell-selected-within-background: color-mix(in srgb, var(--ig-grid-accent-color) 24%, var(--ig-grid-background));
+  --ig-grid-cell-selected-within-text-color: var(--ig-grid-foreground);
+  --ig-grid-background: var(--ig-surface-500);
+  --ig-grid-foreground: var(--ig-gray-900);
+  --ig-grid-accent-color: var(--ig-primary-500);
+
+  /* column-actions-theme, which the homepage sample's grid theme composes: the Indicators and
+     pinning panels take the grid's surface, its accent (the checkboxes and Hide All / Show All)
+     and its foreground (the labels). The Blazor grid theme does not derive them from the grid's
+     tokens; the MCP refuses create_component_theme("column-actions") for Blazor
+     (igniteui-theming#610), so they are stated by hand. */
+  --ig-column-actions-background: var(--ig-grid-background);
+  --ig-column-actions-accent-color: var(--ig-grid-accent-color);
+  --ig-column-actions-foreground: var(--ig-grid-foreground);
+
+  border-radius: 0.25rem;
+}
+
+/* button-group-theme(...) for the size selector: the selected size reads as the accent. The item
+   border is a pair for the same reason as the grid's border. */
+.fintech-100k-sample .finjs-size-group {
+  --ig-button-group-elevation: var(--ig-elevation-0);
+  --ig-button-group-idle-shadow-color: transparent;
+  --ig-button-group-selected-shadow-color: transparent;
+  --ig-button-group-item-text-color: var(--ig-gray-900);
+  --ig-button-group-item-background: var(--ig-gray-900-contrast);
+  --ig-button-group-item-border-color: light-dark(var(--ig-gray-600), var(--ig-gray-300));
+  --ig-button-group-item-hover-background: var(--ig-gray-200);
+  --ig-button-group-item-hover-text-color: var(--ig-gray-900);
+  --ig-button-group-item-focused-text-color: var(--ig-gray-900);
+  --ig-button-group-item-focused-border-color: var(--ig-button-group-item-border-color);
+  --ig-button-group-item-focused-hover-text-color: var(--ig-gray-900);
+  --ig-button-group-item-focused-hover-border-color: var(--ig-button-group-item-focused-border-color);
+  --ig-button-group-item-focused-hover-background: var(--ig-gray-200);
+  --ig-button-group-item-selected-hover-text-color: lch(from var(--ig-button-group-item-selected-text-color) calc(l + (50 - l) * 0.1 + sign(50 - l) * 5) c h);
+  --ig-button-group-item-selected-hover-icon-color: var(--ig-button-group-item-selected-hover-text-color);
+  --ig-button-group-item-selected-focus-background: var(--ig-button-group-item-selected-background);
+  --ig-button-group-item-selected-focus-hover-background: var(--ig-button-group-item-selected-hover-background);
+  --ig-button-group-item-selected-active-background: lch(from var(--ig-button-group-item-selected-hover-background) calc(l + (50 - l) * 0.1 + sign(50 - l) * 5) c h);
+  --ig-button-group-item-active-border-color: var(--ig-gray-600);
+  --ig-button-group-item-selected-active-border-color: var(--ig-button-group-item-selected-hover-border-color);
+  --ig-button-group-disabled-background-color: var(--ig-gray-50);
+  --ig-button-group-border-radius: clamp(0rem, calc(var(--ig-radius-factor, 0.1) * 1.25rem), 1.25rem);
+  --ig-button-group-default-size: 2;
+  --ig-button-group-item-icon-color: var(--ig-gray-900);
+  --ig-button-group-item-focused-background: var(--ig-gray-900-contrast);
+  --ig-button-group-item-hover-icon-color: var(--ig-gray-900);
+  --ig-button-group-item-hover-border-color: var(--ig-button-group-item-border-color);
+  --ig-button-group-item-selected-background: var(--ig-primary-500);
+  --ig-button-group-item-selected-text-color: var(--ig-primary-500-contrast);
+  --ig-button-group-item-selected-icon-color: var(--ig-primary-500-contrast);
+  --ig-button-group-item-selected-border-color: var(--ig-primary-500);
+  --ig-button-group-item-selected-hover-background: lch(from var(--ig-button-group-item-selected-background) calc(l + (50 - l) * 0.1 + sign(50 - l) * 5) c h);
+  --ig-button-group-item-selected-hover-border-color: var(--ig-primary-500);
+  --ig-button-group-item-active-background: var(--ig-gray-300);
+  --ig-button-group-disabled-text-color: var(--ig-gray-500);
+  --ig-button-group-item-disabled-border: var(--ig-button-group-item-border-color);
+  --ig-button-group-disabled-selected-text-color: var(--ig-gray-500);
+  --ig-button-group-disabled-selected-icon-color: var(--ig-gray-500);
+  --ig-button-group-disabled-selected-background: hsl(from var(--ig-button-group-item-selected-background) h s l/0.3);
+  --ig-button-group-disabled-selected-border-color: var(--ig-button-group-item-border-color);
+  --ig-button-group-border: 1px solid var(--ig-gray-600);
+}
+
+/* ---------------------------------------------------------------------------------------------
+ * 4. Layout
+ * ------------------------------------------------------------------------------------------- */
+.fintech-100k-sample .finjs-grid-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 0.9375rem;
+  box-sizing: border-box;
+  background: var(--ig-gray-100);
+}
+
+/* IgbGrid's Class lands on the wrapper IgbGrid renders around igc-grid. */
+.fintech-100k-sample .finjs-grid {
+  flex: 1 0 0%;
+  min-height: 0;
+}
+
+/* IgbGridToolbarTitle keeps an empty igc-portal-exit element in front of the title it moves in.
+   Next to that inline element, the title was not painted at all once a narrow toolbar wrapped its
+   actions onto a second line (Chrome); as a flex container, the title box paints at any width. */
+.fintech-100k-sample .igx-grid-toolbar__title {
+  display: flex;
+  align-items: center;
+}
+
+.fintech-100k-sample .finjs-title {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* type-style('h6') */
+.fintech-100k-sample .finjs-title h1 {
+  font-family: var(--ig-h6-font-family, var(--ig-font-family));
+  font-size: var(--ig-h6-font-size);
+  font-weight: var(--ig-h6-font-weight);
+  font-style: var(--ig-h6-font-style);
+  line-height: var(--ig-h6-line-height);
+  letter-spacing: var(--ig-h6-letter-spacing);
+  text-transform: var(--ig-h6-text-transform);
+  margin: 0;
+  color: var(--ig-gray-900);
+}
+
+/* The row count, subordinate to the name it follows: type-style('caption'). */
+.fintech-100k-sample .finjs-row-count {
+  font-family: var(--ig-caption-font-family, var(--ig-font-family));
+  font-size: var(--ig-caption-font-size);
+  font-weight: var(--ig-caption-font-weight);
+  font-style: var(--ig-caption-font-style);
+  line-height: var(--ig-caption-line-height);
+  letter-spacing: var(--ig-caption-letter-spacing);
+  text-transform: var(--ig-caption-text-transform);
+  margin-top: var(--ig-caption-margin-top);
+  margin-bottom: var(--ig-caption-margin-bottom);
+  color: var(--ig-gray-700);
+  font-variant-numeric: tabular-nums;
+}
+
+.fintech-100k-sample .finjs-size-group,
+.fintech-100k-sample .finjs-theme-toggle {
+  flex-shrink: 0;
+}
+
+/* IgbGridToolbarActions places content other than the built-in actions (the size selector and
+   the theme toggle) in the toolbar's custom content area, a box of its own just before the
+   actions, where the actions' 16px gap does not reach. In the homepage sample the two sit in the
+   actions row itself: the toggle keeps that gap from the selector, and the pair stays on one line
+   when a narrow toolbar wraps its actions and shortens the title, as it does there. */
+.fintech-100k-sample .igx-grid-toolbar__custom-content {
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+}
+
+.fintech-100k-sample .finjs-theme-toggle {
+  margin-inline-start: 1rem;
+}
+
+/* The size names render in capitals; the cap trim keeps them centred against the icon button
+   beside them. */
+.fintech-100k-sample .finjs-size-group igc-toggle-button {
+  --ig-button-font-size: 12px;
+  --ig-button-font-weight: 500;
+  --ig-button-text-transform: uppercase;
+}
+
+/* The homepage sample's size buttons share one width, their labels centred; igc-toggle-button
+   sizes each to its label, so a common minimum width and a slightly narrower padding stand in. */
+.fintech-100k-sample .finjs-size-group igc-toggle-button::part(toggle) {
+  min-width: 4.3125rem;
+  padding-inline: 0.625rem;
+}
+
+.fintech-100k-sample .finjs-size-group span {
+  text-box: cap alphabetic;
+}
+
+/* The Price cell: the arrow, then the price. */
+.fintech-100k-sample .finjs-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* A step below the icon's smallest preset (1.125rem). */
+.fintech-100k-sample .finjs-icons igc-icon {
+  --ig-icon-size: 1rem;
+}
+
+/* The column list of the Indicators (hiding) and pinning panels. The homepage sample states its
+   maximum height up front (columnsAreaMaxHeight) because the panel is measured before the
+   toolbar applies its own value: measured at the full height of 41 columns, the panel opens out
+   of place, over the toolbar, the first time. IgbGridToolbarHiding and IgbGridToolbarPinning
+   take the same value only as ColumnListHeight (App.razor), which arrives after that
+   measurement, so it is stated here as well; important, because the panel writes its default
+   (100%) as an inline style. */
+.fintech-100k-sample igx-column-actions .igx-column-actions__columns {
+  max-height: clamp(200px, 40vh, 420px) !important;
+}
+
+.fintech-100k-sample .igx-grid__grouparea {
+  height: auto;
+  max-height: 100%;
+}
+
+.fintech-100k-sample .igx-excel-filter span,
+.fintech-100k-sample .igx-excel-filter header,
+.fintech-100k-sample .igx-excel-filter input {
+  font-size: 0.8125rem;
+}
+
+.fintech-100k-sample .igx-grid__td--number {
+  text-align: start;
+  justify-content: flex-start;
+}
+
+/* The Contract and Region editors fill their cell. */
+.fintech-100k-sample igc-select.finjs-cell-select {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* ---------------------------------------------------------------------------------------------
+ * 5. Trends (_finjs-trends.scss). The classes come from the Fintech100kTrendClasses cell classes
+ *    (events.js), on Price, Change and Change %.
+ * ------------------------------------------------------------------------------------------- */
+
+/* igc-icon resolves its colour from --ig-icon-color, so the token is fed rather than color. */
+.fintech-100k-sample .positive {
+  --ig-icon-color: var(--finjs-pos);
+}
+
+.fintech-100k-sample .negative {
+  --ig-icon-color: var(--finjs-neg);
+}
+
+.fintech-100k-sample .changePos,
+.fintech-100k-sample .strongPositive {
+  --finjs-trend: var(--finjs-pos);
+}
+
+.fintech-100k-sample .changeNeg,
+.fintech-100k-sample .strongNegative {
+  --finjs-trend: var(--finjs-neg);
+}
+
+/* The active-cell outline takes the trend colour. The public token is substituted where the grid
+   declares it, so the private one is shadowed on the cell. */
+.fintech-100k-sample .changePos.igx-grid__td--active,
+.fintech-100k-sample .changeNeg.igx-grid__td--active,
+.fintech-100k-sample .strongPositive.igx-grid__td--active,
+.fintech-100k-sample .strongNegative.igx-grid__td--active {
+  --cell-active-border-color: var(--finjs-trend);
+}
+
+/* The bar in front of every plain cell value; cells with no trend class paint it transparent. */
+.fintech-100k-sample .igx-grid__td-text {
+  position: relative;
+  padding-inline-start: 0.4375rem;
+}
+
+.fintech-100k-sample .igx-grid__td-text::after {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 50%;
+  width: 0.1875rem;
+  height: 100%;
+  border-radius: 0.1875rem;
+  background: var(--finjs-trend, transparent);
+  translate: 0 -50%;
+}
