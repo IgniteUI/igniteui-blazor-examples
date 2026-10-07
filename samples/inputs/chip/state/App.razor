@@ -1,0 +1,47 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample chip-state">
+    <div class="chip-state-item">
+        <span>Idle</span>
+        <IgbChip Removable="true">
+            <IgbIcon @ref="IconRef" slot="prefix" IconName="arrow_upward" Collection="material" />
+            Chip
+        </IgbChip>
+    </div>
+    <div class="chip-state-item">
+        <span>Hover</span>
+        <IgbChip class="state-hover" Removable="true">
+            <IgbIcon slot="prefix" IconName="arrow_upward" Collection="material" />
+            Chip
+        </IgbChip>
+    </div>
+    <div class="chip-state-item">
+        <span>Focused</span>
+        <IgbChip class="state-focused" Removable="true">
+            <IgbIcon slot="prefix" IconName="arrow_upward" Collection="material" />
+            Chip
+        </IgbChip>
+    </div>
+    <div class="chip-state-item">
+        <span>Selected</span>
+        <IgbChip Removable="true" Selectable="true" Selected="true">
+            <IgbIcon slot="prefix" IconName="arrow_upward" Collection="material" />
+            Chip
+        </IgbChip>
+    </div>
+</div>
+
+@code {
+    private IgbIcon IconRef { get; set; }
+
+    private const string ArrowUpwardIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z'/></svg>";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && IconRef != null)
+        {
+            await IconRef.EnsureReady();
+            await IconRef.RegisterIconFromTextAsync("arrow_upward", ArrowUpwardIcon, "material");
+        }
+    }
+}

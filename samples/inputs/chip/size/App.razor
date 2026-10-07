@@ -1,21 +1,45 @@
 @using IgniteUI.Blazor.Controls
 
-
-<div class="container sample center" style="flex-direction: row; gap: 8px; align-items: baseline;">
-    <IgbChip @ref=ChipRef class="size-small" Selectable="true">
-        small
-    </IgbChip>
-
-    <IgbChip class="size-medium" Selectable="true">
-        medium
-    </IgbChip>
-
-    <IgbChip class="size-large" Selectable="true">
-        large
-    </IgbChip>
+<div class="container sample chip-size">
+    <div class="chip-size-item">
+        <span>Small</span>
+        <IgbChip class="size-small" Selectable="true" Selected="true" Removable="true">
+            <IgbIcon @ref="IconRef" slot="prefix" IconName="arrow_upward" Collection="material" />
+            Chip
+            <IgbIcon slot="suffix" IconName="account_circle" Collection="material" />
+        </IgbChip>
+    </div>
+    <div class="chip-size-item">
+        <span>Medium</span>
+        <IgbChip class="size-medium" Selectable="true" Selected="true" Removable="true">
+            <IgbIcon slot="prefix" IconName="arrow_upward" Collection="material" />
+            Chip
+            <IgbIcon slot="suffix" IconName="account_circle" Collection="material" />
+        </IgbChip>
+    </div>
+    <div class="chip-size-item">
+        <span>Large</span>
+        <IgbChip class="size-large" Selectable="true" Selected="true" Removable="true">
+            <IgbIcon slot="prefix" IconName="arrow_upward" Collection="material" />
+            Chip
+            <IgbIcon slot="suffix" IconName="account_circle" Collection="material" />
+        </IgbChip>
+    </div>
 </div>
 
 @code {
-    private IgbChip ChipRef {get; set;}
+    private IgbIcon IconRef { get; set; }
 
+    private const string ArrowUpwardIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z'/></svg>";
+    private const string AccountCircleIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.03 0-4.43-.82-6.14-2.88C7.55 15.8 9.68 15 12 15s4.45.8 6.14 2.12C16.43 19.18 14.03 20 12 20z'/></svg>";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && IconRef != null)
+        {
+            await IconRef.EnsureReady();
+            await IconRef.RegisterIconFromTextAsync("arrow_upward", ArrowUpwardIcon, "material");
+            await IconRef.RegisterIconFromTextAsync("account_circle", AccountCircleIcon, "material");
+        }
+    }
 }
