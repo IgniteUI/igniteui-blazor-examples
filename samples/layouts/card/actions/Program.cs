@@ -21,9 +21,10 @@ namespace Infragistics.Samples
             // registering Ignite UI modules
             builder.Services.AddIgniteUIBlazor(
                 typeof(IgbAvatarModule),
-                typeof(IgbButtonModule),
-                typeof(IgbCardModule)
- );
+                typeof(IgbCardModule),
+                typeof(IgbIconModule),
+                typeof(IgbIconButtonModule)
+            );
             await builder.Build().RunAsync();
         }
     }
