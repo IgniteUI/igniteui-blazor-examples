@@ -1,14 +1,39 @@
 @using IgniteUI.Blazor.Controls
 
-
-<div class="container sample vertical">
-    <IgbChip class="size-medium" Selectable=true Removable=true RemoveScript="handleChipRemove">
-        Chip
-    </IgbChip>
+<div class="container sample chip-overview">
+    <div class="profile-card">
+        <div>
+            <span class="section-header" id="name-header">Name</span>
+            <IgbInput class="name-input" Outlined="true" Value="Jordan Lee" aria-labelledby="name-header" />
+        </div>
+        <div>
+            <span class="section-header" id="skills-header">Skills &middot; @SelectedSkills.Count selected</span>
+            <div class="skills" role="group" aria-labelledby="skills-header">
+                @foreach (var skill in Skills)
+                {
+                    <IgbChip class="skill" Selectable="true" Selected="@SelectedSkills.Contains(skill)" Select="@(args => ToggleSkill(skill, args.Detail))">@skill</IgbChip>
+                }
+            </div>
+        </div>
+        <div class="actions">
+            <IgbButton>Save profile</IgbButton>
+        </div>
+    </div>
 </div>
 
 @code {
+    private readonly string[] Skills = { "Figma", "React", "CSS", "Prototyping", "Motion Design" };
+    private readonly HashSet<string> SelectedSkills = new HashSet<string>();
 
-    private IgbIcon RegisterIconRef { get; set; }
-
+    private void ToggleSkill(string skill, bool selected)
+    {
+        if (selected)
+        {
+            SelectedSkills.Add(skill);
+        }
+        else
+        {
+            SelectedSkills.Remove(skill);
+        }
+    }
 }

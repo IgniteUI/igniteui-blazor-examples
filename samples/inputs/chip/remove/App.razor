@@ -1,0 +1,39 @@
+@using IgniteUI.Blazor.Controls
+@inject IJSRuntime JS
+
+<div class="container sample chip-remove">
+    <div class="chip-remove-item">
+        <span>Remove Chip</span>
+        <div class="chip-remove-slot">
+            @if (IsVisible)
+            {
+                <IgbChip id="chip-remove-chip" Removable="true" Remove="@(args => ToggleChip(false))">Chip</IgbChip>
+            }
+            else
+            {
+                <IgbButton id="chip-remove-restore" class="restore-button" Variant="ButtonVariant.Flat" @onclick="@(() => ToggleChip(true))">Restore chip</IgbButton>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private bool IsVisible = true;
+    private bool HasToggled;
+
+    private void ToggleChip(bool visible)
+    {
+        HasToggled = true;
+        IsVisible = visible;
+    }
+
+    // The control the user activated is gone, so move focus to the one that replaced it.
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (HasToggled)
+        {
+            HasToggled = false;
+            await JS.InvokeVoidAsync("chipRemoveSample.focus", IsVisible ? "chip-remove-chip" : "chip-remove-restore");
+        }
+    }
+}
