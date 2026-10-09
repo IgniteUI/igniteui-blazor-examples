@@ -1,0 +1,108 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<link href="_content/IgniteUI.Blazor/themes/light/material.css" rel="stylesheet" />
+<link href="_content/IgniteUI.Blazor/themes/grid/light/material.css" rel="stylesheet" />
+
+<IgbThemeProvider Theme="Theme.Material" Variant="ThemeVariant.Light">
+    <div class="container sample ig-typography">
+        <div class="grid-theming-sample">
+            <div class="theme-picker">
+                <span class="theme-picker__label">Pick a theme</span>
+                <IgbButtonGroup Selection="ButtonGroupSelection.SingleRequired" Select="OnThemeSelect">
+                    <IgbToggleButton Value="theme-studio" Selected="@(ActiveTheme == "theme-studio")">
+                        <span class="theme-swatch theme-swatch--studio"></span>Studio
+                    </IgbToggleButton>
+                    <IgbToggleButton Value="theme-ledger" Selected="@(ActiveTheme == "theme-ledger")">
+                        <span class="theme-swatch theme-swatch--ledger"></span>Ledger
+                    </IgbToggleButton>
+                    <IgbToggleButton Value="theme-editorial" Selected="@(ActiveTheme == "theme-editorial")">
+                        <span class="theme-swatch theme-swatch--editorial"></span>Editorial
+                    </IgbToggleButton>
+                    <IgbToggleButton Value="theme-midnight" Selected="@(ActiveTheme == "theme-midnight")">
+                        <span class="theme-swatch theme-swatch--midnight"></span>Midnight
+                    </IgbToggleButton>
+                </IgbButtonGroup>
+                <p class="theme-picker__hint">
+                    Custom themes, not built-in: each is a set of <code>--ig-grid-*</code> variables
+                    with its own background and accent.
+                </p>
+            </div>
+            <div class="themed-grid @ActiveTheme">
+                <IgbPivotGrid
+                Data="PivotDataFlat"
+                PivotConfiguration="PivotConfigHierarchy"
+                AllowFiltering="true"
+                FilterMode="FilterMode.ExcelStyleFilter"
+                Height="500px">
+                </IgbPivotGrid>
+            </div>
+        </div>
+    </div>
+</IgbThemeProvider>
+
+@code {
+    public string ActiveTheme { get; set; } = "theme-studio";
+    public void OnThemeSelect(IgbComponentValueChangedEventArgs args)
+    {
+        ActiveTheme = args.Detail;
+    }
+
+    private IgbPivotConfiguration _pivotConfigHierarchy = null;
+    public IgbPivotConfiguration PivotConfigHierarchy
+    {
+        get
+        {
+            if (_pivotConfigHierarchy == null)
+            {
+                var sellerDimension = new IgbPivotDimension();
+                sellerDimension.MemberName = "Seller";
+                sellerDimension.MemberFunctionScript = "PivotGridThemingSellerMember";
+                sellerDimension.Enabled = true;
+
+                var cityDimension = new IgbPivotDimension();
+                cityDimension.MemberName = "City";
+                cityDimension.MemberFunctionScript = "PivotGridThemingCityMember";
+                cityDimension.Enabled = true;
+                cityDimension.ChildLevel = sellerDimension;
+
+                var productDimension = new IgbPivotDimension();
+                productDimension.MemberName = "Product";
+                productDimension.MemberFunctionScript = "PivotGridThemingProductMember";
+                productDimension.Enabled = true;
+
+                var aggregator = new IgbPivotAggregator();
+                aggregator.AggregatorName = PivotAggregationType.SUM;
+                aggregator.Key = "sum";
+                aggregator.Label = "Sum";
+
+                var unitsValue = new IgbPivotValue();
+                unitsValue.Member = "NumberOfUnits";
+                unitsValue.Aggregate = aggregator;
+                unitsValue.Enabled = true;
+
+                var config = new IgbPivotConfiguration();
+                config.Columns = [productDimension];
+                config.Rows = [cityDimension];
+                config.Values = [unitsValue];
+
+                _pivotConfigHierarchy = config;
+            }
+            return _pivotConfigHierarchy;
+        }
+    }
+
+    private PivotDataFlat _pivotDataFlat = null;
+    public PivotDataFlat PivotDataFlat
+    {
+        get
+        {
+            if (_pivotDataFlat == null)
+            {
+                _pivotDataFlat = new PivotDataFlat();
+            }
+            return _pivotDataFlat;
+        }
+    }
+}

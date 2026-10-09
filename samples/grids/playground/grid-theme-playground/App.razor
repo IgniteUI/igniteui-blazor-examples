@@ -1,0 +1,438 @@
+@using IgniteUI.Blazor.Controls
+@using System.Text.RegularExpressions
+
+@inject IJSRuntime JS
+
+<link href="_content/IgniteUI.Blazor/themes/light/material.css" rel="stylesheet" />
+<link href="_content/IgniteUI.Blazor/themes/grid/light/material.css" rel="stylesheet" />
+
+<IgbThemeProvider Theme="Theme.Material" Variant="ThemeVariant.Light">
+    <div class="container sample ig-typography">
+        <IgbIcon @ref="IconRegistrar" IconName="content_copy" Collection="material" style="display: none;"></IgbIcon>
+        <div class="playground">
+            <aside class="playground__rail">
+                <IgbAccordion>
+                    <IgbExpansionPanel>
+                        <span slot="title">Grid Type</span>
+                        <p class="playground__hint">
+                            One set of grid tokens serves every grid. Switch here to see the same
+                            tokens applied to a different one.
+                        </p>
+                        <IgbButtonGroup Alignment="ContentOrientation.Vertical" Selection="ButtonGroupSelection.SingleRequired" Select="OnPreviewSelect">
+                            <IgbToggleButton Value="grid" Selected="@(Preview == "grid")">Flat</IgbToggleButton>
+                            <IgbToggleButton Value="tree" Selected="@(Preview == "tree")">Tree</IgbToggleButton>
+                            <IgbToggleButton Value="hierarchical" Selected="@(Preview == "hierarchical")">Hierarchical</IgbToggleButton>
+                            <IgbToggleButton Value="pivot" Selected="@(Preview == "pivot")">Pivot</IgbToggleButton>
+                        </IgbButtonGroup>
+                    </IgbExpansionPanel>
+                    <IgbExpansionPanel Open="true">
+                        <span slot="title">Primary tokens</span>
+                        <p class="playground__hint">
+                            Start here. Background and accent are enough to theme the whole
+                            grid &mdash; header, rows, icons and popups all derive from them.
+                            Foreground is picked for contrast automatically; set it only to
+                            override that.
+                        </p>
+                        <div class="playground__fields">
+                            @foreach (var token in PrimaryTokens)
+                            {
+                                @ColorField(token)
+                            }
+                        </div>
+                    </IgbExpansionPanel>
+                    <IgbExpansionPanel>
+                        <span slot="title">Header</span>
+                        <p class="playground__hint">
+                            Optional. The header normally derives from the background.
+                            Declare one here and it detaches, becoming a root of its own &mdash;
+                            its text then takes contrast against the new header rather
+                            than following the grid foreground.
+                        </p>
+                        <div class="playground__fields">
+                            @foreach (var token in HeaderTokens)
+                            {
+                                @ColorField(token)
+                            }
+                        </div>
+                    </IgbExpansionPanel>
+                    <IgbExpansionPanel Open="true">
+                        <span slot="title">Structure</span>
+                        <div class="playground__fields">
+                            <div class="playground__control">
+                                <span class="playground__label">Density</span>
+                                <IgbButtonGroup Alignment="ContentOrientation.Vertical" Selection="ButtonGroupSelection.SingleRequired" Select="OnSizeSelect">
+                                    <IgbToggleButton Value="small" Selected="@(Size == "small")">Small</IgbToggleButton>
+                                    <IgbToggleButton Value="medium" Selected="@(Size == "medium")">Medium</IgbToggleButton>
+                                    <IgbToggleButton Value="large" Selected="@(Size == "large")">Large</IgbToggleButton>
+                                </IgbButtonGroup>
+                            </div>
+                            <div class="playground__control">
+                                <span class="playground__label">Roundness</span>
+                                <IgbButtonGroup Alignment="ContentOrientation.Vertical" Selection="ButtonGroupSelection.SingleRequired" Select="OnRoundnessSelect">
+                                    <IgbToggleButton Value="0" Selected="@(RadiusFactor == "0")">Square</IgbToggleButton>
+                                    <IgbToggleButton Value="0.4" Selected="@(RadiusFactor == "0.4")">Soft</IgbToggleButton>
+                                    <IgbToggleButton Value="1" Selected="@(RadiusFactor == "1")">Round</IgbToggleButton>
+                                </IgbButtonGroup>
+                            </div>
+                            <IgbSwitch Checked="@HorizontalDividers" Change="@(e => { HorizontalDividers = e.Detail.Checked; })">Horizontal dividers</IgbSwitch>
+                            <IgbSwitch Checked="@VerticalDividers" Change="@(e => { VerticalDividers = e.Detail.Checked; })">Vertical dividers</IgbSwitch>
+                            <IgbSwitch Checked="@Zebra" Change="@(e => { Zebra = e.Detail.Checked; })">Zebra rows</IgbSwitch>
+                            <p class="playground__hint">
+                                Both dividers use the same derived colour, and switching one
+                                off tints it to the surface rather than removing it, so the
+                                row metrics never change.
+                            </p>
+                        </div>
+                    </IgbExpansionPanel>
+                </IgbAccordion>
+                <div class="playground__actions">
+                    <IgbButton Variant="ButtonVariant.Outlined" @onclick="Reset">Reset</IgbButton>
+                    <IgbButton Variant="ButtonVariant.Contained" @onclick="ShowCode">Show code</IgbButton>
+                </div>
+            </aside>
+            <section class="playground__preview">
+                <div class="playground__stage" id="gridThemePlaygroundStage" style="@StageStyle">
+                    @switch (Preview)
+                    {
+                        case "grid":
+                            <IgbGrid Data="ThemingInvoices" AutoGenerate="false" Width="100%" Height="100%"
+                                AllowFiltering="true" FilterMode="FilterMode.ExcelStyleFilter" RowSelection="GridSelectionMode.Multiple"
+                                ColumnInitScript="GridThemePlaygroundColumnInit">
+                                <IgbColumn Field="ShipCountry" Header="Country" Width="150px" Sortable="true" Filterable="true" Groupable="true"></IgbColumn>
+                                <IgbColumn Field="ShipCity" Header="City" Width="150px" Sortable="true" Filterable="true" Groupable="true"></IgbColumn>
+                                <IgbColumn Field="ShipName" Header="Ship Name" Width="220px" Sortable="true" Filterable="true"></IgbColumn>
+                                <IgbColumn Field="Salesperson" Header="Salesperson" Width="180px" Sortable="true" Filterable="true"></IgbColumn>
+                                <IgbColumn Field="Quantity" Header="Quantity" Width="120px" DataType="GridColumnDataType.Number"
+                                    Sortable="true" HasSummary="true" SummaryFormatterScript="GridThemePlaygroundSummaryFormatter"></IgbColumn>
+                                <IgbPaginator PerPage="50"></IgbPaginator>
+                            </IgbGrid>
+                            break;
+                        case "tree":
+                            <IgbTreeGrid Data="EmployeesFlatAvatars" PrimaryKey="ID" ForeignKey="ParentID"
+                                AutoGenerate="false" Width="100%" Height="100%"
+                                AllowFiltering="true" FilterMode="FilterMode.ExcelStyleFilter" RowSelection="GridSelectionMode.Multiple">
+                                <IgbColumn Field="Name" Width="260px" Sortable="true" Filterable="true"
+                                    BodyTemplateScript="GridThemePlaygroundAvatarCellTemplate"></IgbColumn>
+                                <IgbColumn Field="Title" DataType="GridColumnDataType.String" Sortable="true" Filterable="true"></IgbColumn>
+                                <IgbColumn Field="Age" DataType="GridColumnDataType.Number" Sortable="true" Filterable="true"></IgbColumn>
+                                <IgbColumn Field="HireDate" DataType="GridColumnDataType.Date" Sortable="true" Filterable="true"></IgbColumn>
+                            </IgbTreeGrid>
+                            break;
+                        case "hierarchical":
+                            <IgbHierarchicalGrid Data="SingersNestedData" AutoGenerate="false" Width="100%" Height="100%"
+                                AllowFiltering="true" FilterMode="FilterMode.ExcelStyleFilter">
+                                <IgbColumn Field="Artist" Sortable="true" Filterable="true"></IgbColumn>
+                                <IgbColumn Field="Debut" DataType="GridColumnDataType.Number" Sortable="true" Filterable="true"></IgbColumn>
+                                <IgbColumn Field="GrammyNominations" Header="Nominations" Sortable="true" Filterable="true"></IgbColumn>
+                                <IgbColumn Field="GrammyAwards" Header="Awards" Sortable="true" Filterable="true"></IgbColumn>
+                                <IgbRowIsland ChildDataKey="Albums" AutoGenerate="false">
+                                    <IgbColumn Field="Album" Sortable="true"></IgbColumn>
+                                    <IgbColumn Field="LaunchDate" Header="Launch Date" DataType="GridColumnDataType.Date" Sortable="true"></IgbColumn>
+                                    <IgbColumn Field="BillboardReview" Header="Review" Sortable="true"></IgbColumn>
+                                </IgbRowIsland>
+                            </IgbHierarchicalGrid>
+                            break;
+                        case "pivot":
+                            <IgbPivotGrid Data="PivotDataFlat" PivotConfiguration="PivotConfig"
+                                Width="100%" Height="100%" AllowFiltering="true" FilterMode="FilterMode.ExcelStyleFilter">
+                            </IgbPivotGrid>
+                            break;
+                    }
+                </div>
+            </section>
+        </div>
+        <IgbDialog @ref="CodeDialog" id="gridThemePlaygroundCodeDialog" CloseOnOutsideClick="true">
+            <div slot="title" class="playground__dialog-title">Theme code</div>
+            <div class="playground__dialog-body">
+                <div class="playground__code-header">
+                    <span>CSS variables</span>
+                    <IgbIconButton class="playground__copy" IconName="@(Copied ? "check" : "content_copy")" Collection="material"
+                        Variant="IconButtonVariant.Outlined" title="@(Copied ? "Copied" : "Copy code")" @onclick="Copy"></IgbIconButton>
+                </div>
+                <div class="playground__code">@((MarkupString)CodeHtml)</div>
+            </div>
+            <IgbButton slot="footer" Variant="ButtonVariant.Flat" @onclick="() => CodeDialog.HideAsync()">Close</IgbButton>
+        </IgbDialog>
+    </div>
+</IgbThemeProvider>
+
+@code {
+    private const string CopyIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z\"/></svg>";
+    private const string CheckIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z\"/></svg>";
+
+    public record TokenDescriptor(string Key, string CssVar, string Label);
+
+    private static readonly TokenDescriptor[] PrimaryTokens =
+    {
+        new("background", "--ig-grid-background", "Background"),
+        new("accentColor", "--ig-grid-accent-color", "Accent"),
+        new("foreground", "--ig-grid-foreground", "Foreground")
+    };
+    private static readonly TokenDescriptor[] HeaderTokens =
+    {
+        new("headerBackground", "--ig-grid-header-background", "Header background"),
+        new("headerForeground", "--ig-grid-header-text-color", "Header foreground")
+    };
+    private static readonly TokenDescriptor[] AllTokens = PrimaryTokens.Concat(HeaderTokens).ToArray();
+
+    private const string HeaderTextOnHeader = "hsla(from color(from var(--ig-grid-header-background) var(--y-contrast)) h 0 l/1)";
+    private const string Divider = "hsl(from color-mix(in srgb, var(--ig-grid-foreground) 16%, var(--ig-grid-background)) h s l/0.38)";
+    private const string ZebraRows = "color-mix(in srgb, var(--ig-grid-foreground) 4%, var(--ig-grid-background))";
+    private const string NoDivider = "var(--ig-grid-background)";
+
+    private Dictionary<string, string> Colors = AllTokens.ToDictionary(t => t.Key, t => "");
+    private string Size = "medium";
+    private string RadiusFactor = "0.4";
+    private bool HorizontalDividers = true;
+    private bool VerticalDividers = false;
+    private bool Zebra = false;
+    private string Preview = "grid";
+
+    private string CodeHtml = "";
+    private bool Copied = false;
+
+    private Dictionary<string, string> SeedColors = new();
+    private List<string[]> ThemeTokens = new();
+    private Dictionary<string, int> FieldRevisions = AllTokens.ToDictionary(t => t.Key, t => 0);
+
+    private IgbDialog CodeDialog;
+    private IgbIcon IconRegistrar;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+
+        await IconRegistrar.EnsureReady();
+        await IconRegistrar.RegisterIconFromTextAsync("content_copy", CopyIcon, "material");
+        await IconRegistrar.RegisterIconFromTextAsync("check", CheckIcon, "material");
+
+        ThemeTokens = await JS.InvokeAsync<List<string[]>>("gridThemePlayground.readCompiledTheme");
+        SeedColors = await JS.InvokeAsync<Dictionary<string, string>>("gridThemePlayground.readSeedColors", "gridThemePlaygroundStage");
+        foreach (var seed in SeedColors)
+        {
+            Colors[seed.Key] = seed.Value;
+        }
+        StateHasChanged();
+    }
+
+    private Dictionary<string, string> PreviewStyle
+    {
+        get
+        {
+            var style = new Dictionary<string, string>();
+
+            foreach (var token in AllTokens)
+            {
+                if (!string.IsNullOrEmpty(Colors[token.Key]))
+                {
+                    style[token.CssVar] = Colors[token.Key];
+                }
+            }
+            if (!string.IsNullOrEmpty(Colors["headerBackground"]) && string.IsNullOrEmpty(Colors["headerForeground"]))
+            {
+                style["--ig-grid-header-text-color"] = HeaderTextOnHeader;
+            }
+
+            style["--ig-size"] = $"var(--ig-size-{Size})";
+            style["--ig-radius-factor"] = RadiusFactor;
+            style["--ig-grid-row-border-color"] = HorizontalDividers ? Divider : NoDivider;
+
+            var columnRule = VerticalDividers ? Divider : NoDivider;
+            style["--ig-grid-body-column-border-color-odd"] = columnRule;
+            style["--ig-grid-body-column-border-color-even"] = columnRule;
+
+            if (Zebra)
+            {
+                style["--ig-grid-row-even-background"] = ZebraRows;
+            }
+
+            return style;
+        }
+    }
+
+    private string StageStyle => string.Join(" ", PreviewStyle.Select(kv => $"{kv.Key}: {kv.Value};"));
+
+    private string ExportCss
+    {
+        get
+        {
+            var overrides = PreviewStyle;
+
+            if (ThemeTokens.Count == 0)
+            {
+                var only = overrides.Select(kv => $"  {kv.Key}: {kv.Value};");
+                return "/* Overrides only -- requires a base grid theme to derive from. */\n.my-grid {\n" + string.Join("\n", only) + "\n}";
+            }
+
+            var emitted = new HashSet<string>();
+            var lines = ThemeTokens.Select(token =>
+            {
+                emitted.Add(token[0]);
+                return $"  {token[0]}: {(overrides.TryGetValue(token[0], out var value) ? value : token[1])};";
+            }).ToList();
+            var extras = overrides.Where(kv => !emitted.Contains(kv.Key)).Select(kv => $"  {kv.Key}: {kv.Value};");
+
+            return ".my-grid {\n" + string.Join("\n", extras.Concat(lines)) + "\n}";
+        }
+    }
+
+    private RenderFragment ColorField(TokenDescriptor token) => __builder =>
+    {
+        var value = Colors[token.Key];
+        var isAuto = string.IsNullOrEmpty(value);
+
+        <div class="color-field" @key="@($"{token.Key}-{FieldRevisions[token.Key]}")">
+            <span class="color-field__label">@token.Label</span>
+            <IgbInput Outlined="true" Placeholder="auto" spellcheck="false" Value="@value"
+                Change="@(e => OnTextChange(token.Key, e.Detail))">
+                <span slot="prefix" class="color-field__swatch-wrap">
+                    <input type="color" aria-label="@token.Label" value="@(isAuto ? "#808080" : value)"
+                        @oninput="@(e => SetColor(token.Key, e.Value?.ToString()))" />
+                    <span class="color-field__swatch @(isAuto ? "color-field__swatch--auto" : "")"
+                        style="@(isAuto ? "" : $"background: {value}")"></span>
+                </span>
+                @if (!isAuto)
+                {
+                    <button slot="suffix" type="button" class="color-field__reset" title="Reset to auto"
+                        @onclick="@(() => SetColor(token.Key, ""))">&#8635;</button>
+                }
+            </IgbInput>
+        </div>
+    };
+
+    private void SetColor(string key, string value)
+    {
+        Colors[key] = value ?? "";
+    }
+
+    private void OnTextChange(string key, string text)
+    {
+        var normalized = NormalizeHexColor(text);
+
+        if (normalized != null)
+        {
+            SetColor(key, normalized);
+        }
+        else
+        {
+            FieldRevisions[key]++;
+        }
+    }
+
+    private static string NormalizeHexColor(string raw)
+    {
+        var value = (raw ?? "").Trim();
+        if (value.Length == 0) return null;
+        if (!value.StartsWith("#")) value = "#" + value;
+
+        if (Regex.IsMatch(value, "^#[0-9a-fA-F]{3}$"))
+        {
+            value = "#" + value[1] + value[1] + value[2] + value[2] + value[3] + value[3];
+        }
+
+        return Regex.IsMatch(value, "^#[0-9a-fA-F]{6}$") ? value.ToUpperInvariant() : null;
+    }
+
+    private void OnPreviewSelect(IgbComponentValueChangedEventArgs args)
+    {
+        _pivotConfig = null;
+        Preview = args.Detail;
+    }
+    private void OnSizeSelect(IgbComponentValueChangedEventArgs args) => Size = args.Detail;
+    private void OnRoundnessSelect(IgbComponentValueChangedEventArgs args) => RadiusFactor = args.Detail;
+
+    private void Reset()
+    {
+        foreach (var token in AllTokens)
+        {
+            Colors[token.Key] = SeedColors.TryGetValue(token.Key, out var seed) ? seed : "";
+            FieldRevisions[token.Key]++;
+        }
+        Size = "medium";
+        RadiusFactor = "0.4";
+        HorizontalDividers = true;
+        VerticalDividers = false;
+        Zebra = false;
+    }
+
+    private async Task ShowCode()
+    {
+        CodeHtml = await JS.InvokeAsync<string>("gridThemePlayground.highlight", ExportCss);
+        StateHasChanged();
+        await CodeDialog.ShowAsync();
+    }
+
+    private async Task Copy()
+    {
+        try
+        {
+            await JS.InvokeVoidAsync("navigator.clipboard.writeText", ExportCss);
+        }
+        catch (JSException)
+        {
+            return;
+        }
+
+        Copied = true;
+        StateHasChanged();
+        await Task.Delay(2000);
+        Copied = false;
+        StateHasChanged();
+    }
+
+    private IgbPivotConfiguration _pivotConfig = null;
+    public IgbPivotConfiguration PivotConfig
+    {
+        get
+        {
+            if (_pivotConfig == null)
+            {
+                var sellerDimension = new IgbPivotDimension();
+                sellerDimension.MemberName = "Seller";
+                sellerDimension.MemberFunctionScript = "GridThemePlaygroundSellerMember";
+                sellerDimension.Enabled = true;
+
+                var cityDimension = new IgbPivotDimension();
+                cityDimension.MemberName = "City";
+                cityDimension.MemberFunctionScript = "GridThemePlaygroundCityMember";
+                cityDimension.Enabled = true;
+                cityDimension.ChildLevel = sellerDimension;
+
+                var productDimension = new IgbPivotDimension();
+                productDimension.MemberName = "Product";
+                productDimension.MemberFunctionScript = "GridThemePlaygroundProductMember";
+                productDimension.Enabled = true;
+
+                var aggregator = new IgbPivotAggregator();
+                aggregator.AggregatorName = PivotAggregationType.SUM;
+                aggregator.Key = "sum";
+                aggregator.Label = "Sum";
+
+                var unitsValue = new IgbPivotValue();
+                unitsValue.Member = "NumberOfUnits";
+                unitsValue.Aggregate = aggregator;
+                unitsValue.Enabled = true;
+
+                var config = new IgbPivotConfiguration();
+                config.Columns = [productDimension];
+                config.Rows = [cityDimension];
+                config.Values = [unitsValue];
+
+                _pivotConfig = config;
+            }
+            return _pivotConfig;
+        }
+    }
+
+    private ThemingInvoices _themingInvoices = null;
+    public ThemingInvoices ThemingInvoices => _themingInvoices ??= new ThemingInvoices();
+
+    private EmployeesFlatAvatars _employeesFlatAvatars = null;
+    public EmployeesFlatAvatars EmployeesFlatAvatars => _employeesFlatAvatars ??= new EmployeesFlatAvatars();
+
+    private SingersNestedData _singersNestedData = null;
+    public SingersNestedData SingersNestedData => _singersNestedData ??= new SingersNestedData();
+
+    private PivotDataFlat _pivotDataFlat = null;
+    public PivotDataFlat PivotDataFlat => _pivotDataFlat ??= new PivotDataFlat();
+}
