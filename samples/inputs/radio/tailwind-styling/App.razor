@@ -1,0 +1,51 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample flex items-center justify-center">
+    @* The samples browser also loads Bootstrap 4, whose border and padding classes share Tailwind names but are
+       !important, so the borders and paddings below use arbitrary values. *@
+    <div class="box-border flex w-[280px] flex-col overflow-hidden rounded-2xl border-[1px] border-solid border-[var(--color-export-divider)] bg-white [font-family:aktiv-grotesk,sans-serif] [--ig-font-family:aktiv-grotesk,sans-serif] [--ig-radio-empty-color:var(--color-export-empty)] [--ig-radio-fill-color:var(--color-export-primary)]">
+        <div class="flex flex-col p-[1rem] font-semibold tracking-[0.15px] [border-bottom:1px_solid_var(--color-export-divider)]">
+            <span id="export-title" class="text-base leading-6 text-[var(--color-export-title)]">Export report</span>
+            <span class="text-xs leading-4 text-[var(--color-export-muted)]">Choose a format to export</span>
+        </div>
+        <IgbRadioGroup class="gap-0 px-[1.5rem] py-[0.875rem]" name="format" aria-labelledby="export-title">
+            @foreach (var option in Formats)
+            {
+                <IgbRadio class="format-option" Value="@option.Value" Checked="@(option.Value == Format)" Change="@(args => SelectFormat(option.Value, args.Detail.Checked))">
+                    <span class="text-xs font-semibold leading-4 tracking-[0.15px] text-[var(--color-export-ink)]">@option.Label</span>
+                </IgbRadio>
+            }
+        </IgbRadioGroup>
+        <div class="flex justify-end gap-4 bg-[var(--color-export-tint)] p-[1rem]">
+            @* The base part is styled directly, so the buttons keep the design's look in every theme.
+               Without the theme's shadow, the focused button shows an outline instead. *@
+            <IgbButton Variant="ButtonVariant.Flat" class="[&::part(base)]:h-[30px] [&::part(base)]:min-w-0 [&::part(base)]:px-[0.75rem] [&::part(base)]:shadow-none [&::part(base)]:text-sm [&::part(base)]:font-semibold [&::part(base)]:normal-case [&::part(base)]:leading-4 [&::part(base)]:tracking-[0.75px] [&::part(base_focused)]:outline [&::part(base_focused)]:outline-2 [&::part(base_focused)]:outline-offset-2 [&::part(base_focused)]:outline-[color:var(--color-export-primary)] [&::part(base)]:rounded-[0.25rem] [&::part(base)]:border-transparent [&::part(base)]:bg-transparent [&::part(base)]:text-[var(--color-export-cancel)] [&::part(base):hover]:bg-[var(--color-export-tint-strong)]">Cancel</IgbButton>
+            <IgbButton Variant="ButtonVariant.Contained" class="[&::part(base)]:h-[30px] [&::part(base)]:min-w-0 [&::part(base)]:px-[0.75rem] [&::part(base)]:shadow-none [&::part(base)]:text-sm [&::part(base)]:font-semibold [&::part(base)]:normal-case [&::part(base)]:leading-4 [&::part(base)]:tracking-[0.75px] [&::part(base_focused)]:outline [&::part(base_focused)]:outline-2 [&::part(base_focused)]:outline-offset-2 [&::part(base_focused)]:outline-[color:var(--color-export-primary)] [&::part(base)]:rounded-[0.5rem] [&::part(base)]:border-[var(--color-export-primary)] [&::part(base)]:bg-[var(--color-export-primary)] [&::part(base)]:text-white [&::part(base):hover]:border-[var(--color-export-primary-strong)] [&::part(base):hover]:bg-[var(--color-export-primary-strong)]">Export as @Format.ToUpper()</IgbButton>
+        </div>
+    </div>
+</div>
+
+@code {
+    private class FormatOption
+    {
+        public string Value { get; set; }
+        public string Label { get; set; }
+    }
+
+    private static readonly List<FormatOption> Formats = new List<FormatOption>
+    {
+        new FormatOption { Value = "pdf", Label = "PDF Document" },
+        new FormatOption { Value = "xls", Label = "XLS Editable spreadsheet" },
+        new FormatOption { Value = "csv", Label = "CSV Raw data, no styling" },
+    };
+
+    private string Format { get; set; } = "csv";
+
+    private void SelectFormat(string format, bool isChecked)
+    {
+        if (isChecked)
+        {
+            Format = format;
+        }
+    }
+}
