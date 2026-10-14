@@ -1,0 +1,40 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample flex items-center justify-center">
+    <div class="w-[328px] rounded-xl border border-solid border-[var(--color-product-border)] bg-white p-2 font-[aktiv-grotesk,sans-serif] [--ig-font-family:aktiv-grotesk,sans-serif]">
+        <div class="flex items-center gap-4 px-4 py-2">
+            <div class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-b from-[#d2f7ff] from-0% to-[#8fb0cf] to-100%">
+                <IgbIcon @ref="IconRef" class="text-[#5f83a7] [--ig-icon-size:1.75rem]" IconName="headphones" Collection="material" />
+            </div>
+            <div class="flex-1">
+                <span class="block text-sm leading-5 font-medium text-[var(--color-product-ink)]">Wireless Headphones</span>
+                <span class="block max-w-36 text-xs leading-4 font-semibold text-[var(--color-product-muted)]">Great sound quality and battery life!</span>
+            </div>
+            <span class="text-xl text-[var(--color-product-primary)]">$89</span>
+        </div>
+        <div class="flex items-end justify-between border-0 border-t border-solid border-[var(--color-product-border)] p-2">
+            <IgbRating class="[--ig-rating-label-color:var(--color-rating-label)] [--ig-rating-symbol-empty-color:var(--color-rating-empty)] [--ig-rating-symbol-full-color:var(--color-rating-full)] [&::part(label)]:font-['Titillium_Web',sans-serif] [&::part(label)]:text-xs [&::part(label)]:leading-4 [&::part(label)]:font-normal [&::part(label)]:tracking-[0.4px]"
+                       Label="Rate this product"
+                       HoverPreview="true" />
+            <IgbButton class="[--ig-contained-button-active-background:var(--color-product-primary-active)] [--ig-contained-button-background:var(--color-product-primary)] [--ig-contained-button-border-radius:0.375rem] [--ig-contained-button-focus-background:var(--color-product-primary-active)] [--ig-contained-button-focus-hover-background:var(--color-product-primary-hover)] [--ig-contained-button-focus-visible-background:var(--color-product-primary)] [--ig-contained-button-hover-background:var(--color-product-primary-hover)] [--ig-contained-button-size:1.875rem] [&::part(base)]:px-4 [&::part(base)]:text-sm [&::part(base)]:font-medium [&::part(base)]:tracking-[0.1px] [&::part(base)]:normal-case"
+                       Variant="ButtonVariant.Contained">
+                Submit review
+            </IgbButton>
+        </div>
+    </div>
+</div>
+
+@code {
+    private const string HeadphonesIcon = "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M12 1c-4.97 0-9 4.03-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7c0-4.97-4.03-9-9-9z'/></svg>";
+
+    private IgbIcon IconRef;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && IconRef != null)
+        {
+            await IconRef.EnsureReady();
+            await IconRef.RegisterIconFromTextAsync("headphones", HeadphonesIcon, "material");
+        }
+    }
+}
