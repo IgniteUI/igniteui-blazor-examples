@@ -912,12 +912,13 @@ class Transformer {
             // console.log("NOTE: lintSample() " + file.Path);
 
             let orgContent = file.Content;
-            if (file.isRazorFile()) {
+            // isRazorFile() is also true for Components/*.razor, so components are checked first:
+            // they are only linted, while the routing paths and the sample's CSS go to App.razor.
+            if (file.isRazorComponent()) {
+                this.lintFile(file);
+            } else if (file.isRazorFile()) {
                 // console.log("NOTE: lintRazor() " + file.Path);
                 this.lintRazor(info, generateRoutingPath);
-                this.lintFile(file);
-            } else if (file.isRazorComponent()) {
-                // this.lintRazor(info, false);
                 this.lintFile(file);
             } else{
                 this.lintFile(file);
@@ -1051,7 +1052,15 @@ class Transformer {
         newContent += htmlCodeLines.join('\n') + '\n';
         newContent += csharpCodeLines.join('\n') + '\n';
 
-        sample.SourceFiles[0].Content = newContent;
+        // SourceFiles[0] is App.razor only when the sample has no Components/*.razor files.
+        let razorFile = sample.SourceFiles[0];
+        for (const file of sample.SourceFiles) {
+            if (file.Path === sample.SourceRazorFile.Path) {
+                razorFile = file;
+                break;
+            }
+        }
+        razorFile.Content = newContent;
         sample.SourceRazorFile.Content = newContent;
 
         this.lintFile(sample.SourceRazorFile);
