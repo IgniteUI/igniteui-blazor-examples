@@ -42,6 +42,23 @@
         }
     };
 
+    // Icons the samples use, mapped to the icon Ignite UI bundles for a theme.
+    // Samples register and use their icons as usual; while a listed theme is
+    // active, the icon is pointed at the bundled one instead, through the same
+    // icon references the components use for their own icons. Outside the
+    // browser (exported or standalone samples) a sample keeps its own icon.
+    // igniteui-webcomponents registers the icons its components use in the
+    // `internal` collection, with an `indigo_` prefix for the Indigo versions.
+    var THEME_ICONS = [
+        {
+            name: 'arrow_upward',
+            collection: 'material',
+            themes: {
+                indigo: { name: 'indigo_arrow_upward', collection: 'internal' }
+            }
+        }
+    ];
+
     // The <link> in effect per key, and the replacements a pending selection is loading.
     var activeLinks = {};
     var stagedLinks = [];
@@ -133,6 +150,25 @@
         });
     }
 
+    // igc-icon exposes setIconRef, the same call IgbIcon makes. The components
+    // are only defined once Blazor has started, which can be after the first
+    // theme message, so the references are set as soon as igc-icon exists.
+    // Calls made before that resolve in order, so the newest theme wins.
+    function applyThemeIcons(theme) {
+        if (!window.customElements) {
+            return;
+        }
+        window.customElements.whenDefined('igc-icon').then(function () {
+            var icon = document.createElement('igc-icon');
+            THEME_ICONS.forEach(function (entry) {
+                // A reference can't be removed, so themes without an override
+                // point the icon back at the one the sample registered.
+                var target = entry.themes[theme] || { name: entry.name, collection: entry.collection };
+                icon.setIconRef(entry.name, entry.collection, target);
+            });
+        });
+    }
+
     // Drops the stylesheets a superseded or failed selection was loading; they
     // never applied, so this can't leave the page unstyled.
     function removeStaged() {
@@ -173,6 +209,7 @@
             root.style.colorScheme = resolved;
 
             provideTheme(theme, resolved);
+            applyThemeIcons(theme);
         };
 
         var onLoad = function () {
