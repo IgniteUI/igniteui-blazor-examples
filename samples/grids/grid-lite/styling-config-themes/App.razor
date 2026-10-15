@@ -7,19 +7,12 @@
 
 <div class="container">
 
-    <div class="theme-selector">
-        <label>Theme: </label>
-        <select @onchange="ChangeTheme" class="theme-dropdown">
-            <option value="_content/IgniteUI.Blazor.GridLite/themes/light/bootstrap.css">Light Bootstrap</option>
-            <option value="_content/IgniteUI.Blazor.GridLite/themes/light/material.css">Light Material</option>
-            <option value="_content/IgniteUI.Blazor.GridLite/themes/light/fluent.css">Light Fluent</option>
-            <option value="_content/IgniteUI.Blazor.GridLite/themes/light/indigo.css">Light Indigo</option>
-            <option value="_content/IgniteUI.Blazor.GridLite/themes/dark/bootstrap.css">Dark Bootstrap</option>
-            <option value="_content/IgniteUI.Blazor.GridLite/themes/dark/material.css">Dark Material</option>
-            <option value="_content/IgniteUI.Blazor.GridLite/themes/dark/fluent.css">Dark Fluent</option>
-            <option value="_content/IgniteUI.Blazor.GridLite/themes/dark/indigo.css">Dark Indigo</option>
-        </select>
-    </div>
+    <IgbSelect class="theme-selector" Label="Theme" @bind-Value="currentTheme">
+        @foreach (var theme in themes)
+        {
+            <IgbSelectItem Value="@theme.Path">@theme.Name</IgbSelectItem>
+        }
+    </IgbSelect>
 
     @if (products != null)
     {
@@ -37,15 +30,24 @@
 
 @code {
     private List<ProductInfo> products;
-    private string currentTheme = "_content/IgniteUI.Blazor.GridLite/themes/light/bootstrap.css";
+    private string currentTheme = "_content/IgniteUI.Blazor/themes/light/bootstrap.css";
+
+    private readonly List<ThemeOption> themes = new()
+    {
+        new("Light Bootstrap", "_content/IgniteUI.Blazor/themes/light/bootstrap.css"),
+        new("Light Material", "_content/IgniteUI.Blazor/themes/light/material.css"),
+        new("Light Fluent", "_content/IgniteUI.Blazor/themes/light/fluent.css"),
+        new("Light Indigo", "_content/IgniteUI.Blazor/themes/light/indigo.css"),
+        new("Dark Bootstrap", "_content/IgniteUI.Blazor/themes/dark/bootstrap.css"),
+        new("Dark Material", "_content/IgniteUI.Blazor/themes/dark/material.css"),
+        new("Dark Fluent", "_content/IgniteUI.Blazor/themes/dark/fluent.css"),
+        new("Dark Indigo", "_content/IgniteUI.Blazor/themes/dark/indigo.css"),
+    };
 
     protected override void OnInitialized()
     {
         products = MockDataGenerator.CreateProducts(50);
     }
 
-    private void ChangeTheme(ChangeEventArgs e)
-    {
-        currentTheme = e.Value?.ToString() ?? currentTheme;
-    }
+    private record ThemeOption(string Name, string Path);
 }
