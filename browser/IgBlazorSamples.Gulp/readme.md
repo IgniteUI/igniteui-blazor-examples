@@ -1,27 +1,26 @@
-# Introduction
+# IgBlazorSamples.Gulp
 
-This project allows copying of Blazor samples (.razor, .cs, .js) to Blazor browsers
+Gulp tasks that maintain the samples and copy them into the samples browser apps. Run `npm install` here once, then `npx gulp <task>`.
 
-# Copying Samples to IgBlazorSamples.Client
+## Copying samples to the browser apps
 
-Run `gulp copySamplesToClient` command to copy samples from:
-- `../../samples/**/App.razor` files and
-- `../../samples/**/*Data.cs` files and
-- `../../samples/**/wwwroot/*.js` files to
-- `../../browser/IgBlazorSamples.Client/` folder
+`copySamplesToClient` copies every sample under `samples/` into `IgBlazorSamples.Client`; then open `IgBlazorSamplesBrowser.sln` and run `IgBlazorSamples.Client`. For each sample:
 
-Then open `../../browser/IgBlazorSamplesBrowser.sln`
+- `App.razor` and any `Components/*.razor` go to `Pages/<group>/<component>/<sample>/`, with `@page` routes added and the sample's `wwwroot/*.css` inlined as a `<style>` block.
+- Its C# files, except `Program.cs`, go to `Services/`.
+- Its `wwwroot/*.js` files go to `wwwroot/sb/`, and a script tag for each is inserted into `wwwroot/index.html`.
 
-Run `IgBlazorSamples.Client` as startup project
+It also writes the navigation (`wwwroot/toc.json`) and the code viewer files (`wwwroot/code-viewer/`), and regenerates each sample's `ReadMe.md`.
 
-# Copying Samples to IgBlazorSamples.Server
+`copySamplesToServer` copies the samples into `IgBlazorSamples.Server` the same way, inserting the script tags into `Pages/_Host.cshtml`, and writes its `toc.json`. It doesn't write the code viewer files or regenerate the readmes; `updateReadme` does the latter on its own.
 
-Run `gulp copySamplesToServer` command to copy samples from:
-- `../../samples/**/App.razor` files and
-- `../../samples/**/*Data.cs` files and
-- `../../samples/**/wwwroot/*.js` files to
-- `../../browser/IgBlazorSamples.Server/` folder
+Both tasks also rewrite the host page's `<base href>`: `/` here, `/blazor-client/` in the `*CI` variants that the deployment pipelines run.
 
-Then open `../../browser/IgBlazorSamplesBrowser.sln`
+The copied pages, data classes and scripts, `toc.json` and the code viewer files are git-ignored. The host pages and the samples' `ReadMe.md` files are tracked: commit the regenerated `ReadMe.md` files and the script list in `IgBlazorSamples.Client/wwwroot/index.html` together with the sample they belong to.
 
-Run `IgBlazorSamples.Server` as startup project
+## Maintaining the samples
+
+- `updateIG` — sets the package versions listed in `packageUpgrades` (`tasks/gulp-samples.js`) in every sample and browser `.csproj`.
+- `updateReadme` — regenerates each sample's `ReadMe.md` from `templates/sample/ReadMe.md`.
+- `updateSamples` — `updateReadme`, plus copies the shared `templates/sample/wwwroot/index.css` to every sample and the shared data classes (`templates/sample/Services/`) to the samples that use them.
+- `updateProjects` — replaces every sample's `.csproj` with `templates/sample/BlazorClientApp.csproj`.
