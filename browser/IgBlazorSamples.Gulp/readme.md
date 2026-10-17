@@ -18,7 +18,7 @@ All of this output is git-ignored. The `*CI` variants of both tasks are what the
 
 ## Maintaining the samples
 
-- `updateIG` — sets the package versions listed in `packageUpgrades` (`tasks/gulp-samples.js`) in every sample and browser `.csproj`.
+- `updateIG` — sets the package versions listed in `packageUpgrades` (`tasks/gulp-samples.js`) in every sample and browser `.csproj` and in `templates/sample/BlazorClientApp.csproj`.
 - `updateReadme` — regenerates each sample's `ReadMe.md` from `templates/sample/ReadMe.md`.
 - `updateSamples` — `updateReadme`, plus copies the shared `templates/sample/wwwroot/index.css` to every sample and the shared data classes (`templates/sample/Services/`) to the samples that use them.
 - `updateProjects` — replaces every sample's `.csproj` with `templates/sample/BlazorClientApp.csproj`.
