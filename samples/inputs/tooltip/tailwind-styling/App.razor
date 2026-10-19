@@ -1,0 +1,124 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample">
+    <div class="flex flex-wrap items-start justify-center gap-[6.25rem] pt-14">
+        <IgbList id="btc" class="mt-[2.625rem] w-[16.25rem] overflow-hidden rounded-full border border-solid border-[var(--color-btc-border)]">
+            <IgbListItem class="px-4 py-2 [&::part(start)]:hidden">
+                <span slot="title" class="flex items-center gap-1 font-[aktiv-grotesk,sans-serif] text-sm/[1.125rem] font-semibold text-[var(--color-btc-ink)]">
+                    <IgbIcon @ref="IconRef" IconName="bitcoin" Collection="material" class="text-[var(--color-btc-icon)]" />
+                    BTC
+                </span>
+                <span slot="end" class="font-[aktiv-grotesk,sans-serif] text-sm/5 font-medium tracking-[0.25px] text-[var(--color-btc-accent)]">
+                    Daily: + 2,6%
+                </span>
+            </IgbListItem>
+        </IgbList>
+        <IgbTooltip Anchor="btc"
+                    Placement="PopoverPlacement.BottomStart"
+                    Sticky="true"
+                    class="[--ig-tooltip-background:white] [--ig-tooltip-text-color:var(--color-btc-text)] [--ig-tooltip-border-radius:1rem] [&::part(base)]:w-[16.25rem] [&::part(base)]:border [&::part(base)]:border-solid [&::part(base)]:border-[var(--color-btc-border)] [&::part(base)]:p-4 [&::part(close-button)]:text-[var(--color-btc-muted)]">
+            <div class="flex flex-1 flex-col gap-2 p-2">
+                <span class="flex items-center gap-2.5 text-xl/6 font-semibold tracking-[0.15px]">
+                    BTC
+                    <IgbIcon IconName="bitcoin" Collection="material" class="text-[var(--color-btc-icon)]" />
+                </span>
+                <span class="flex flex-col gap-0.5">
+                    <span class="text-xs/4 font-semibold tracking-[0.15px] text-[var(--color-btc-exchange)]">Exchange Balance</span>
+                    <span class="font-[aktiv-grotesk,sans-serif] text-sm/6 font-medium tracking-[0.1px]">USD 81,459.00</span>
+                </span>
+                <span class="flex flex-col gap-0.5">
+                    <span class="text-xs/4 font-semibold tracking-[0.15px] text-[var(--color-btc-accent)]">Assets Balance</span>
+                    <span class="font-[aktiv-grotesk,sans-serif] text-sm/6 font-medium tracking-[0.1px]">USD 46,287.90</span>
+                </span>
+            </div>
+        </IgbTooltip>
+        <div class="relative me-[13.75rem] size-[12.6875rem]"
+             @onpointerenter="ShowPortfolioTooltip"
+             @onpointerleave="HidePortfolioTooltip">
+            <IgbPieChart Width="100%"
+                         Height="100%"
+                         DataSource="PortfolioData"
+                         ValueMemberPath="Share"
+                         LabelMemberPath="Asset"
+                         LabelsPosition="LabelsPosition.None"
+                         RadiusFactor="1"
+                         StartAngle="-90"
+                         Brushes="#cce4ff #66adff #99c9ff"
+                         Outlines="#cce4ff #66adff #99c9ff" />
+            <span id="portfolio-anchor" class="absolute left-[8.4375rem] top-1/2"></span>
+        </div>
+        <IgbTooltip @ref="PortfolioTooltipRef"
+                    Anchor="portfolio-anchor"
+                    Placement="PopoverPlacement.BottomStart"
+                    Offset="0"
+                    class="pointer-events-none [--ig-tooltip-background:white] [--ig-tooltip-border-radius:0] [&::part(base)]:border [&::part(base)]:border-solid [&::part(base)]:border-[var(--color-chart-border)] [&::part(base)]:p-4">
+            <div class="h-[8.5rem] w-[15.9375rem]">
+                <IgbCategoryChart @ref="ChartRef"
+                                  Width="100%"
+                                  Height="100%"
+                                  ChartType="CategoryChartType.SplineArea"
+                                  DataSource="BalanceHistoryData"
+                                  IncludedProperties="@(new string[] { "Period", "Exchange", "Assets" })"
+                                  Brushes="#ff885c #66adff"
+                                  Outlines="#ff885c #66adff"
+                                  AreaFillOpacity="0.5"
+                                  Thickness="1.5"
+                                  ToolTipType="ToolTipType.None"
+                                  IsHorizontalZoomEnabled="false"
+                                  IsVerticalZoomEnabled="false"
+                                  XAxisInterval="2"
+                                  XAxisStroke="#7d91ab"
+                                  XAxisTickStroke="#7d91ab"
+                                  XAxisTickLength="8"
+                                  XAxisLabelTextColor="#7d91ab"
+                                  XAxisLabelTextStyle="400 10px 'Titillium Web'"
+                                  YAxisMinimumValue="0"
+                                  YAxisMaximumValue="60"
+                                  YAxisInterval="20"
+                                  YAxisMinorInterval="10"
+                                  YAxisMajorStroke="#d2dbe8"
+                                  YAxisMinorStroke="#d2dbe8"
+                                  YAxisLabelTextColor="#7d91ab"
+                                  YAxisLabelTextStyle="400 10px 'Titillium Web'" />
+            </div>
+        </IgbTooltip>
+    </div>
+</div>
+
+@code {
+    private const string BitcoinIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='-2 -2 24 24'><path fill-rule='evenodd' clip-rule='evenodd' d='M12.339 11.5126C12.339 12.9126 9.93898 12.7486 9.17798 12.7476L9.18298 10.2676C9.94498 10.2686 12.34 10.0526 12.339 11.5126ZM11.82 8.01263C11.82 6.68463 9.82001 6.88363 9.18701 6.88363V9.13263C9.81901 9.13263 11.817 9.28463 11.82 8.01163V8.01263ZM20 10C20 15.5228 15.5228 20 10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0C12.6522 0 15.1957 1.05357 17.0711 2.92893C18.9464 4.8043 20 7.34784 20 10ZM12.952 9.406C13.6673 9.0676 14.0651 8.29005 13.921 7.512C13.8 6.177 12.644 5.728 11.189 5.6V3.749H10.062V5.549C9.762 5.549 9.462 5.549 9.162 5.559V3.745H8.036V5.595C7.792 5.6 7.553 5.604 7.319 5.604V5.6H5.765V6.8C5.765 6.8 6.597 6.785 6.584 6.8C6.89841 6.76025 7.18651 6.98023 7.231 7.294L7.223 12.365C7.20855 12.5849 7.01895 12.7517 6.799 12.738C6.813 12.751 5.98 12.738 5.98 12.738L5.754 14.083C6.308 14.083 7.488 14.083 8.025 14.093V15.966H9.15V14.113C9.459 14.12 9.758 14.123 10.05 14.123V15.967H11.177V14.098C13.072 13.992 14.398 13.517 14.565 11.739C14.6866 11.213 14.581 10.6602 14.274 10.2161C13.967 9.77207 13.487 9.47797 12.952 9.406Z'/></svg>";
+
+    private IgbIcon IconRef;
+    private IgbTooltip PortfolioTooltipRef;
+    private IgbCategoryChart ChartRef;
+    private CryptoPortfolio PortfolioData { get; } = new CryptoPortfolio();
+    private CryptoBalanceHistory BalanceHistoryData { get; } = new CryptoBalanceHistory();
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender && IconRef != null)
+        {
+            IconRef.EnsureReady().ContinueWith(_ =>
+            {
+                IconRef.RegisterIconFromText("bitcoin", BitcoinIcon, "material");
+            });
+        }
+
+        if (firstRender && ChartRef != null)
+        {
+            ChartRef.MarkerTypes.Clear();
+            ChartRef.MarkerTypes.Add(MarkerType.None);
+        }
+    }
+
+    private async Task ShowPortfolioTooltip()
+    {
+        await PortfolioTooltipRef.ShowAsync();
+        await ChartRef.NotifyResizedAsync();
+    }
+
+    private async Task HidePortfolioTooltip()
+    {
+        await PortfolioTooltipRef.HideAsync();
+    }
+}

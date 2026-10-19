@@ -1,25 +1,46 @@
 @using IgniteUI.Blazor.Controls
 
-<style>
-    igc-avatar {
-        --ig-size: var(--ig-size-medium);
-    }
-
-    igc-tooltip::part(base) {
-        background-color: var(--ig-primary-300);
-        color: var(--ig-primary-300-contrast);
-    }
-
-    igc-tooltip::part(bottom) {
-        border-bottom-color: var(--ig-primary-300);
-    }
-</style>
-
 <div class="container sample">
-    <IgbAvatar id="avatar" Shape="AvatarShape.Circle" Src="https://dl.infragistics.com/x/img/avatars/10.jpg" />
-    <IgbTooltip Placement="PopoverPlacement.BottomStart" Anchor="avatar">
-        Her name is Madelyn James
+    <IgbList id="status" class="trigger">
+        <IgbListItem>
+            <div slot="start" class="avatar">
+                <IgbAvatar Src="https://dl.infragistics.com/x/img/avatars/avatar-profile-03.png"
+                           Shape="AvatarShape.Circle"
+                           Alt="Aron Watson" />
+                <IgbBadge Variant="StyleVariant.Danger">
+                    <IgbIcon @ref="IconRef" IconName="block" Collection="material" />
+                </IgbBadge>
+            </div>
+            <span slot="title">Aron Watson</span>
+        </IgbListItem>
+    </IgbList>
+    <IgbTooltip Anchor="status" Placement="PopoverPlacement.BottomEnd" WithArrow="true" class="status-tooltip">
+        <IgbIcon IconName="block" Collection="material" />
+        <span>
+            My notifications are silenced to focus. Urgent matters only, please,
+            otherwise I'll reply when I'm free.
+        </span>
     </IgbTooltip>
+    <IgbDatePicker id="registration" class="registration" Outlined="true" Placeholder="First Registration" />
+    <IgbTooltip Anchor="registration"
+                Placement="PopoverPlacement.BottomEnd"
+                class="hint-tooltip"
+                Message="The date when your car was first registered" />
 </div>
 
-@code { }
+@code {
+    private const string BlockIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9A7.902 7.902 0 0 1 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1A7.902 7.902 0 0 1 20 12c0 4.42-3.58 8-8 8z'/></svg>";
+
+    private IgbIcon IconRef;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender && IconRef != null)
+        {
+            IconRef.EnsureReady().ContinueWith(_ =>
+            {
+                IconRef.RegisterIconFromText("block", BlockIcon, "material");
+            });
+        }
+    }
+}
