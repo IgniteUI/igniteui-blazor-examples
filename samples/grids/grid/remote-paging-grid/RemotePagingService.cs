@@ -78,33 +78,32 @@ namespace Infragistics.Samples
                 }
             };
         }
-    }
+        public class CustomersWithPageResponse
+        {
+            public CustomerData[] Items { get; set; }
+            public int TotalRecordsCount { get; set; }
+            public int PageSize { get; set; }
+            public int PageNumber { get; set; }
+            public int TotalPages { get; set; }
+        }
 
-    public class CustomersWithPageResponse
-    {
-        public CustomerData[] Items { get; set; }
-        public int TotalRecordsCount { get; set; }
-        public int PageSize { get; set; }
-        public int PageNumber { get; set; }
-        public int TotalPages { get; set; }
-    }
+        public class CustomerData
+        {
+            public string CustomerId { get; set; }
+            public string CompanyName { get; set; }
+            public string ContactName { get; set; }
+            public string ContactTitle { get; set; }
+            public CustomerAddress Address { get; set; }
+        }
 
-    public class CustomerData
-    {
-        public string CustomerId { get; set; }
-        public string CompanyName { get; set; }
-        public string ContactName { get; set; }
-        public string ContactTitle { get; set; }
-        public CustomerAddress Address { get; set; }
-    }
-
-    public class CustomerAddress
-    {
-        public string Street { get; set; }
-        public string City { get; set; }
-        public string Region { get; set; }
-        public string PostalCode { get; set; }
-        public string Country { get; set; }
-        public string Phone { get; set; }
+        public class CustomerAddress
+        {
+            public string Street { get; set; }
+            public string City { get; set; }
+            public string Region { get; set; }
+            public string PostalCode { get; set; }
+            public string Country { get; set; }
+            public string Phone { get; set; }
+        }
     }
 }

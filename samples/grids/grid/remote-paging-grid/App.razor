@@ -23,7 +23,7 @@
 }
 
 @code {
-    private CustomerData[] data = Array.Empty<CustomerData>();
+    private RemotePagingService.CustomerData[] data = Array.Empty<RemotePagingService.CustomerData>();
     private IgbGrid grid1;
     private int totalRecordsCount;
     private int page = 0;
@@ -57,7 +57,7 @@
         catch (HttpRequestException)
         {
             errorMessage = "Network error. Please check your connection.";
-            data = Array.Empty<CustomerData>();
+            data = Array.Empty<RemotePagingService.CustomerData>();
             grid1.Data = data;
             grid1.IsLoading = false;
             StateHasChanged();
@@ -65,7 +65,7 @@
         catch (Exception ex)
         {
             errorMessage = $"Error loading data: {ex.Message}";
-            data = Array.Empty<CustomerData>();
+            data = Array.Empty<RemotePagingService.CustomerData>();
             grid1.Data = data;
             grid1.IsLoading = false;
             StateHasChanged();

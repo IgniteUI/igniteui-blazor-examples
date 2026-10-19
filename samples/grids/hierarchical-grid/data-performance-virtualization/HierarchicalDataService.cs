@@ -105,39 +105,38 @@ namespace Infragistics.Samples
                 }
             };
         }
-    }
+        public class CustomerData
+        {
+            public string CustomerId { get; set; }
+            public string CompanyName { get; set; }
+            public string ContactName { get; set; }
+            public string ContactTitle { get; set; }
+            public CustomerAddress Address { get; set; }
+        }
 
-    public class CustomerData
-    {
-        public string CustomerId { get; set; }
-        public string CompanyName { get; set; }
-        public string ContactName { get; set; }
-        public string ContactTitle { get; set; }
-        public CustomerAddress Address { get; set; }
-    }
+        public class CustomerAddress
+        {
+            public string Country { get; set; }
+            public string City { get; set; }
+            public string Street { get; set; }
+            public string Phone { get; set; }
+        }
 
-    public class CustomerAddress
-    {
-        public string Country { get; set; }
-        public string City { get; set; }
-        public string Street { get; set; }
-        public string Phone { get; set; }
-    }
+        public class OrderData
+        {
+            public int OrderId { get; set; }
+            public string CustomerId { get; set; }
+            public CustomerAddress ShipAddress { get; set; }
+            public DateTime OrderDate { get; set; }
+        }
 
-    public class OrderData
-    {
-        public int OrderId { get; set; }
-        public string CustomerId { get; set; }
-        public CustomerAddress ShipAddress { get; set; }
-        public DateTime OrderDate { get; set; }
-    }
-
-    public class OrderDetailData
-    {
-        public int OrderId { get; set; }
-        public int ProductId { get; set; }
-        public int Quantity { get; set; }
-        public decimal UnitPrice { get; set; }
-        public decimal Discount { get; set; }
+        public class OrderDetailData
+        {
+            public int OrderId { get; set; }
+            public int ProductId { get; set; }
+            public int Quantity { get; set; }
+            public decimal UnitPrice { get; set; }
+            public decimal Discount { get; set; }
+        }
     }
 }
