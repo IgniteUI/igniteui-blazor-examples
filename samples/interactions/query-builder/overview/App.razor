@@ -1,5 +1,11 @@
 @using IgniteUI.Blazor.Controls
+@using System.Linq
+@using System.Text.Json
+@using Microsoft.Extensions.Logging
+@implements IAsyncDisposable
+@inject QueryBuilderService QueryService
 @inject IJSRuntime JS
+@inject ILogger<App> Logger
 
 <div class="container vertical">
     <div class="options horizontal fill">
@@ -16,22 +22,21 @@
             AutoGenerate="false"
             Width="100%"
             Height="420px">
-            <IgbColumn Field="orderId" DataType="GridColumnDataType.Number"></IgbColumn>
-            <IgbColumn Field="customerId" DataType="GridColumnDataType.String"></IgbColumn>
-            <IgbColumn Field="companyName" DataType="GridColumnDataType.String"></IgbColumn>
-            <IgbColumn Field="contactName" DataType="GridColumnDataType.String"></IgbColumn>
-            <IgbColumn Field="contactTitle" DataType="GridColumnDataType.String"></IgbColumn>
-            <IgbColumn Field="employeeId" DataType="GridColumnDataType.Number"></IgbColumn>
-            <IgbColumn Field="shipperId" DataType="GridColumnDataType.Number"></IgbColumn>
-            <IgbColumn Field="orderDate" DataType="GridColumnDataType.Date"></IgbColumn>
-            <IgbColumn Field="requiredDate" DataType="GridColumnDataType.Date"></IgbColumn>
-            <IgbColumn Field="shipVia" DataType="GridColumnDataType.String"></IgbColumn>
-            <IgbColumn Field="freight" DataType="GridColumnDataType.Number"></IgbColumn>
-            <IgbColumn Field="shipName" DataType="GridColumnDataType.String"></IgbColumn>
-            <IgbColumn Field="completed" DataType="GridColumnDataType.Boolean"></IgbColumn>
+            @foreach (var field in GridFields)
+            {
+                <IgbColumn @key="field.Field" Field="@field.Field" DataType="@field.DataType"
+                    Hidden="@(!visibleFields.Contains(field.Field))"></IgbColumn>
+            }
         </IgbGrid>
     </div>
 </div>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="error-message" role="alert">
+        <p>@errorMessage</p>
+    </div>
+}
 
 @code {
     private static readonly string[] InitialReturnFields =
@@ -76,6 +81,9 @@
         new() { Name = "Orders", Fields = OrderFields }
     ];
 
+    private static readonly IgbFieldType[] GridFields = OrderFields.Concat(CustomerFields)
+        .GroupBy(field => field.Field).Select(group => group.First()).ToArray();
+
     private static readonly IgbExpressionTree ExpressionTree = new()
     {
         FilteringOperands = [],
@@ -86,6 +94,10 @@
 
     private IgbQueryBuilder queryBuilder;
     private IgbGrid grid;
+    private string errorMessage = string.Empty;
+    private int queryVersion;
+    private string[] visibleFields = InitialReturnFields;
+    private DotNetObjectReference<App> serviceReference;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -97,12 +109,66 @@
         await queryBuilder.EnsureReady();
         await grid.EnsureReady();
 
-        await JS.InvokeVoidAsync("queryBuilderOverview.loadInitialData", new
+        serviceReference = DotNetObjectReference.Create(this);
+        await JS.InvokeVoidAsync("queryBuilderOverview.initialize", serviceReference);
+        await LoadGridData(JsonSerializer.Serialize(new
         {
-            filteringOperands = Array.Empty<object>(),
-            @operator = 0,
-            entity = "Orders",
-            returnFields = InitialReturnFields
-        });
+            Entity = ExpressionTree.Entity,
+            ReturnFields = ExpressionTree.ReturnFields,
+            Operator = ExpressionTree.Operator
+        }));
+    }
+
+    [JSInvokable]
+    public Task ExecuteQuery(string expressionJson)
+    {
+        return LoadGridData(expressionJson);
+    }
+
+    private async Task LoadGridData(string expressionJson)
+    {
+        var version = ++queryVersion;
+        try
+        {
+            grid.IsLoading = true;
+            errorMessage = string.Empty;
+            var response = await QueryService.ExecuteQueryAsync(expressionJson);
+            if (version != queryVersion)
+            {
+                return;
+            }
+
+            grid.Data = response.Items;
+            visibleFields = response.Fields;
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "Error executing mock query");
+            if (version == queryVersion)
+            {
+                errorMessage = $"Error executing query: {ex.Message}";
+                grid.Data = Array.Empty<object>();
+            }
+        }
+        finally
+        {
+            if (version == queryVersion)
+            {
+                grid.IsLoading = false;
+                StateHasChanged();
+            }
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        try
+        {
+            await JS.InvokeVoidAsync("queryBuilderOverview.dispose");
+        }
+        finally
+        {
+            serviceReference?.Dispose();
+        }
     }
 }
