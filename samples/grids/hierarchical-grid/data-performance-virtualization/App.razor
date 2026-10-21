@@ -1,33 +1,40 @@
 @using IgniteUI.Blazor.Controls
+@using Microsoft.Extensions.Logging
+@using System.Text.Json
+@implements IAsyncDisposable
+@inject HierarchicalDataService DataService
+@inject ILogger<App> Logger
+@inject IJSRuntime JS
 
 <div class="container vertical ig-typography">
     <div class="container vertical fill">
 
         <IgbHierarchicalGrid
+            @ref="grid"
             Id="hGrid"
-            PrimaryKey="customerId"
+            PrimaryKey="CustomerId"
             Height="600px"
-            RenderedScript="OnGridRendered"
+            AutoGenerate="false"
         >
-            <IgbColumn Field="customerId" Hidden="true"></IgbColumn>
-            <IgbColumn Field="companyName" Header="Company Name"></IgbColumn>
-            <IgbColumn Field="contactName" Header="Contact Name"></IgbColumn>
-            <IgbColumn Field="contactTitle" Header="Contact Title"></IgbColumn>
-            <IgbColumn Field="address.country" Header="Country"></IgbColumn>
-            <IgbColumn Field="address.phone" Header="Phone"></IgbColumn>
+            <IgbColumn Field="CustomerId" Hidden="true"></IgbColumn>
+            <IgbColumn Field="CompanyName" Header="Company Name"></IgbColumn>
+            <IgbColumn Field="ContactName" Header="Contact Name"></IgbColumn>
+            <IgbColumn Field="ContactTitle" Header="Contact Title"></IgbColumn>
+            <IgbColumn Field="Address.Country" Header="Country"></IgbColumn>
+            <IgbColumn Field="Address.Phone" Header="Phone"></IgbColumn>
 
-            <IgbRowIsland ChildDataKey="Orders" PrimaryKey="orderId" GridCreatedScript="OnGridCreated">
-                <IgbColumn Field="orderId" Hidden="true"></IgbColumn>
-                <IgbColumn Field="shipAddress.country" Header="Ship Country"></IgbColumn>
-                <IgbColumn Field="shipAddress.city" Header="Ship City"></IgbColumn>
-                <IgbColumn Field="shipAddress.street" Header="Ship Address"></IgbColumn>
-                <IgbColumn Field="orderDate" Header="Order Date" DataType="GridColumnDataType.Date"></IgbColumn>
+            <IgbRowIsland ChildDataKey="Orders" PrimaryKey="OrderId" AutoGenerate="false" GridCreatedScript="OnGridCreated">
+                <IgbColumn Field="OrderId" Hidden="true"></IgbColumn>
+                <IgbColumn Field="ShipAddress.Country" Header="Ship Country"></IgbColumn>
+                <IgbColumn Field="ShipAddress.City" Header="Ship City"></IgbColumn>
+                <IgbColumn Field="ShipAddress.Street" Header="Ship Address"></IgbColumn>
+                <IgbColumn Field="OrderDate" Header="Order Date" DataType="GridColumnDataType.Date"></IgbColumn>
 
-                <IgbRowIsland ChildDataKey="Details" PrimaryKey="productId" GridCreatedScript="OnGridCreated">
-                    <IgbColumn Field="productId" Hidden="true"></IgbColumn>
-                    <IgbColumn Field="quantity" Header="Quantity"></IgbColumn>
-                    <IgbColumn Field="unitPrice" Header="Unit Price"></IgbColumn>
-                    <IgbColumn Field="discount" Header="Discount"></IgbColumn>
+                <IgbRowIsland ChildDataKey="Details" PrimaryKey="ProductId" AutoGenerate="false" GridCreatedScript="OnGridCreated">
+                    <IgbColumn Field="ProductId" Hidden="true"></IgbColumn>
+                    <IgbColumn Field="Quantity" Header="Quantity"></IgbColumn>
+                    <IgbColumn Field="UnitPrice" Header="Unit Price"></IgbColumn>
+                    <IgbColumn Field="Discount" Header="Discount"></IgbColumn>
                 </IgbRowIsland>
             </IgbRowIsland>
         </IgbHierarchicalGrid>
@@ -35,6 +42,82 @@
     </div>
 </div>
 
-@code {
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="error-message" role="alert">
+        <p>@errorMessage</p>
+    </div>
+}
 
+@code {
+    private IgbHierarchicalGrid grid;
+    private string errorMessage = string.Empty;
+    private DotNetObjectReference<App> serviceReference;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await grid.EnsureReady();
+            serviceReference = DotNetObjectReference.Create(this);
+            await JS.InvokeVoidAsync("hierarchicalGridMock.initialize", serviceReference);
+            await LoadGridData();
+        }
+    }
+
+    [JSInvokable]
+    public async Task<JsonElement> GetChildData(string key, string parentId)
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                errorMessage = string.Empty;
+                await InvokeAsync(StateHasChanged);
+            }
+            var data = await DataService.GetDataAsync(key, parentId);
+            // Preserve the CLR field names used by the child-grid columns.
+            return JsonSerializer.SerializeToElement(data);
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "Error loading {Collection} for parent {ParentId}", key, parentId);
+            errorMessage = $"Error loading data: {ex.Message}";
+            await InvokeAsync(StateHasChanged);
+            throw;
+        }
+    }
+
+    private async Task LoadGridData()
+    {
+        try
+        {
+            grid.IsLoading = true;
+            errorMessage = string.Empty;
+            grid.Data = await DataService.GetDataAsync("Customers", null);
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "Error loading customers");
+            errorMessage = $"Error loading data: {ex.Message}";
+            grid.Data = Array.Empty<object>();
+        }
+        finally
+        {
+            grid.IsLoading = false;
+            StateHasChanged();
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        try
+        {
+            await JS.InvokeVoidAsync("hierarchicalGridMock.dispose");
+        }
+        finally
+        {
+            serviceReference?.Dispose();
+        }
+    }
 }
