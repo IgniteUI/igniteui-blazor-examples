@@ -1,0 +1,89 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<link href="_content/IgniteUI.Blazor/themes/light/material.css" rel="stylesheet" />
+<link href="_content/IgniteUI.Blazor/themes/grid/light/material.css" rel="stylesheet" />
+
+<IgbThemeProvider Theme="Theme.Material" Variant="ThemeVariant.Light">
+    <div class="container sample ig-typography">
+        <div class="grid-theming-sample">
+            <div class="theme-picker">
+                <span class="theme-picker__label">Pick a theme</span>
+                <IgbButtonGroup Selection="ButtonGroupSelection.SingleRequired" Select="OnThemeSelect">
+                    <IgbToggleButton Value="theme-studio" Selected="@(ActiveTheme == "theme-studio")">
+                        <span class="theme-swatch theme-swatch--studio"></span>Studio
+                    </IgbToggleButton>
+                    <IgbToggleButton Value="theme-ledger" Selected="@(ActiveTheme == "theme-ledger")">
+                        <span class="theme-swatch theme-swatch--ledger"></span>Ledger
+                    </IgbToggleButton>
+                    <IgbToggleButton Value="theme-editorial" Selected="@(ActiveTheme == "theme-editorial")">
+                        <span class="theme-swatch theme-swatch--editorial"></span>Editorial
+                    </IgbToggleButton>
+                    <IgbToggleButton Value="theme-midnight" Selected="@(ActiveTheme == "theme-midnight")">
+                        <span class="theme-swatch theme-swatch--midnight"></span>Midnight
+                    </IgbToggleButton>
+                </IgbButtonGroup>
+                <p class="theme-picker__hint">
+                    Custom themes, not built-in: each is a set of <code>--ig-grid-*</code> variables
+                    with its own background and accent.
+                </p>
+            </div>
+            <div class="themed-grid @ActiveTheme">
+                <IgbHierarchicalGrid
+                AutoGenerate="false"
+                Data="SingersNestedData"
+                AllowFiltering="true"
+                FilterMode="FilterMode.ExcelStyleFilter"
+                RowSelection="GridSelectionMode.Multiple"
+                Height="480px"
+                Width="100%">
+                    <IgbColumn Field="Artist" Resizable="true" Sortable="true" Filterable="true"></IgbColumn>
+                    <IgbColumn Field="Photo" Resizable="true" MinWidth="115px" BodyTemplateScript="HierarchicalGridThemingPhotoCellTemplate"></IgbColumn>
+                    <IgbColumn Field="Debut" Resizable="true" MinWidth="88px" MaxWidth="230px" DataType="GridColumnDataType.Number" Sortable="true" Filterable="true" FormatterScript="HierarchicalGridThemingDebutFormatter"></IgbColumn>
+                    <IgbColumn Field="GrammyNominations" Header="Grammy Nominations" Resizable="true" Sortable="true" Filterable="true"></IgbColumn>
+                    <IgbColumn Field="GrammyAwards" Header="Grammy Awards" Resizable="true" Sortable="true" Filterable="true"></IgbColumn>
+                    <IgbRowIsland ChildDataKey="Albums" AutoGenerate="false" AllowFiltering="true" FilterMode="FilterMode.ExcelStyleFilter">
+                        <IgbColumn Field="Album" Resizable="true" Sortable="true" Filterable="true"></IgbColumn>
+                        <IgbColumn Field="LaunchDate" Header="Launch Date" Resizable="true" DataType="GridColumnDataType.Date" Sortable="true" Filterable="true"></IgbColumn>
+                        <IgbColumn Field="BillboardReview" Header="Billboard Review" Resizable="true" Sortable="true" Filterable="true"></IgbColumn>
+                        <IgbColumn Field="USBillboard200" Header="US Billboard 200" Resizable="true" Sortable="true" Filterable="true"></IgbColumn>
+                        <IgbRowIsland ChildDataKey="Songs" AutoGenerate="false">
+                            <IgbColumn Field="Number" Header="No." Resizable="true"></IgbColumn>
+                            <IgbColumn Field="Title" Resizable="true"></IgbColumn>
+                            <IgbColumn Field="Released" DataType="GridColumnDataType.Date" Resizable="true"></IgbColumn>
+                            <IgbColumn Field="Genre" Resizable="true"></IgbColumn>
+                        </IgbRowIsland>
+                    </IgbRowIsland>
+                    <IgbRowIsland ChildDataKey="Tours" AutoGenerate="false" AllowFiltering="true" FilterMode="FilterMode.ExcelStyleFilter">
+                        <IgbColumn Field="Tour" Resizable="true" Sortable="true" Filterable="true"></IgbColumn>
+                        <IgbColumn Field="StartedOn" Header="Started on" Resizable="true" Sortable="true" Filterable="true"></IgbColumn>
+                        <IgbColumn Field="Location" Resizable="true" Sortable="true" Filterable="true"></IgbColumn>
+                        <IgbColumn Field="Headliner" Resizable="true" Sortable="true" Filterable="true"></IgbColumn>
+                    </IgbRowIsland>
+                </IgbHierarchicalGrid>
+            </div>
+        </div>
+    </div>
+</IgbThemeProvider>
+
+@code {
+    public string ActiveTheme { get; set; } = "theme-studio";
+    public void OnThemeSelect(IgbComponentValueChangedEventArgs args)
+    {
+        ActiveTheme = args.Detail;
+    }
+
+    private SingersNestedData _singersNestedData = null;
+    public SingersNestedData SingersNestedData
+    {
+        get
+        {
+            if (_singersNestedData == null)
+            {
+                _singersNestedData = new SingersNestedData();
+            }
+            return _singersNestedData;
+        }
+    }
+}
