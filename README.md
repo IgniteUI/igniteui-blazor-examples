@@ -117,7 +117,7 @@ NOTE Do NOT find replace version of packages in package.json files.
 - run `cd browser/IgBlazorSamples.Gulp` command
 - run `npm install --legacy-peer-deps` command
 - run the `gulp updateIG` command
-- create AND merge a pull request with changes in all *.csproj files in this repository
+- create AND merge a pull request with changes in all *.csproj files in this repository, including `templates/sample/BlazorClientApp.csproj`: new samples start from it and `gulp updateProjects` copies it over every sample's project, so it must carry the current versions
 - create 2nd pull request with similar changes in `/editor-templates/Blazor/main-template/BlazorClientApp.csproj` of the [igniteui-xplat-examples](https://github.com/IgniteUI/igniteui-xplat-examples) repository.
 - also update version in yml files: `/azure-pipelines/build-pipeline-client.yml` and `/azure-pipelines/build-pipeline-server.yml` in the `igVersion` parameter.
 
