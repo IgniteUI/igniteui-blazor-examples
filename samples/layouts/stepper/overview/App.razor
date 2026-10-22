@@ -44,12 +44,12 @@
                     <IgbInput Required="true" DisplayType=InputType.Text Label="Physical Address" @bind-Value="@businessInformation.PhysicalAddress" @oninput="@(e => { businessInformation.PhysicalAddress = e.Value.ToString(); })"></IgbInput>
                     <div class="form-row">
                         <IgbInput Required="true" DisplayType=InputType.Text Label="City" @bind-Value="@businessInformation.City" @oninput="@(e => { businessInformation.City = e.Value.ToString(); })"></IgbInput>
-                        <IgbSelect Label="State" Required="true" Change="e => {  businessInformation.State = (e.Detail as IgbSelectItem).Value.ToString(); }">
-                            <IgbSelectItem Value="Nevada">Nevada</IgbSelectItem>
-                            <IgbSelectItem Value="NewYork">New York</IgbSelectItem>
-                            <IgbSelectItem Value="NewJersey">New Jersey</IgbSelectItem>
-                            <IgbSelectItem Value="Ohio">Ohio</IgbSelectItem>
-                            <IgbSelectItem Value="Texas">Texas</IgbSelectItem>
+                        <IgbSelect TValue="string" Label="State" Required="true" Change="e => {  businessInformation.State = e.Detail.Value; }">
+                            <IgbSelectItem Value="@("Nevada")">Nevada</IgbSelectItem>
+                            <IgbSelectItem Value="@("NewYork")">New York</IgbSelectItem>
+                            <IgbSelectItem Value="@("NewJersey")">New Jersey</IgbSelectItem>
+                            <IgbSelectItem Value="@("Ohio")">Ohio</IgbSelectItem>
+                            <IgbSelectItem Value="@("Texas")">Texas</IgbSelectItem>
                         </IgbSelect>
                         <IgbMaskInput Required="true" Label="ZIP Code" Placeholder="#####" Mask="00000" @bind-Value="@businessInformation.Zip" @oninput="@(e => { businessInformation.Zip = e.Value.ToString(); })"></IgbMaskInput>
                     </div>
@@ -60,9 +60,9 @@
                         <p class="error-message">The Federal Tax ID Number should begin with 9</p>  
                     }
                     <label>Does this business operate outside the United States?<span class="required">*</span></label>
-                    <IgbRadioGroup>
-                        <IgbRadio name="flag" Required="true" Value="yes" Change="OnBusinessRadioChange">Yes.</IgbRadio>
-                        <IgbRadio name="flag" Required="true" Value="no" Change="OnBusinessRadioChange">No.</IgbRadio>                
+                    <IgbRadioGroup TValue="string">
+                        <IgbRadio TValue="string" name="flag" Required="true" Value="@("yes")" Change="OnBusinessRadioChange">Yes.</IgbRadio>
+                        <IgbRadio TValue="string" name="flag" Required="true" Value="@("no")" Change="OnBusinessRadioChange">No.</IgbRadio>                
                     </IgbRadioGroup>
                 </div>
                 <div class="selected-card-wrapper">
@@ -107,12 +107,12 @@
                     <IgbInput Required="true" DisplayType=InputType.Text Label="Mailing Address" @bind-Value="@shippingDetails.MailingAddress" @oninput="@(e => { shippingDetails.MailingAddress = e.Value.ToString(); })"></IgbInput>
                     <div class="form-row">
                         <IgbInput Required="true" DisplayType=InputType.Text Label="City" @bind-Value="@shippingDetails.City" @oninput="@(e => { shippingDetails.City = e.Value.ToString(); })"></IgbInput>
-                        <IgbSelect Label="State" Required="true" Change="e => { shippingDetails.State = (e.Detail as IgbSelectItem).Value.ToString(); }">
-                            <IgbSelectItem Value="Nevada">Nevada</IgbSelectItem>
-                            <IgbSelectItem Value="NewYork">New York</IgbSelectItem>
-                            <IgbSelectItem Value="NewJersey">New Jersey</IgbSelectItem>
-                            <IgbSelectItem Value="Ohio">Ohio</IgbSelectItem>
-                            <IgbSelectItem Value="Texas">Texas</IgbSelectItem>
+                        <IgbSelect TValue="string" Label="State" Required="true" Change="e => { shippingDetails.State = e.Detail.Value; }">
+                            <IgbSelectItem Value="@("Nevada")">Nevada</IgbSelectItem>
+                            <IgbSelectItem Value="@("NewYork")">New York</IgbSelectItem>
+                            <IgbSelectItem Value="@("NewJersey")">New Jersey</IgbSelectItem>
+                            <IgbSelectItem Value="@("Ohio")">Ohio</IgbSelectItem>
+                            <IgbSelectItem Value="@("Texas")">Texas</IgbSelectItem>
                         </IgbSelect>
                         <IgbMaskInput Required="true" Label="ZIP Code" Placeholder="#####" Mask="00000" @bind-Value="@shippingDetails.Zip" @oninput="@(e => { shippingDetails.Zip = e.Value.ToString(); })"></IgbMaskInput>
                     </div>
@@ -232,9 +232,9 @@
         return cardID == selectedCard.ID ? "selected-card" : "";
     }
 
-    public void OnBusinessRadioChange(IgbRadioChangeEventArgs args)
+    public void OnBusinessRadioChange(IgbRadioChangeEventArgs<string> args)
     {
-        businessInformation.NonUSBusinessActivity = (args.Parent as IgbRadio).Value.ToString() == "yes" ? 2 : 1;
+        businessInformation.NonUSBusinessActivity = args.Detail.Value == "yes" ? 2 : 1;
     }
 
     public void checkTaxIDNumberValidity(string value)

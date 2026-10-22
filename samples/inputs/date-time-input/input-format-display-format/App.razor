@@ -2,7 +2,7 @@
 
 
 <div class="container vertical">
-    <IgbDateTimeInput @ref="DateTimeInputRef" InputFormat="dd-MM-yy" DisplayFormat="medium">
+    <IgbDateTimeInput TValue="DateTime?" @ref="DateTimeInputRef" InputFormat="dd-MM-yy" DisplayFormat="medium">
         <IgbIcon IconName="clear" Collection="myIcons" slot="prefix" @onclick="OnClear"></IgbIcon>
         <IgbIcon IconName="up" Collection="myIcons" slot="suffix" @onclick="OnStepUp"></IgbIcon>
         <IgbIcon IconName="down" Collection="myIcons" slot="suffix" @onclick="OnStepDown"></IgbIcon>
@@ -11,7 +11,7 @@
 </div>
 
 @code {
-    IgbDateTimeInput? DateTimeInputRef;
+    IgbDateTimeInput<DateTime?>? DateTimeInputRef;
     IgbIcon? RegisterIconRef;
 
     protected async override Task OnAfterRenderAsync(bool firstRender)

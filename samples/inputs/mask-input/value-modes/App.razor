@@ -6,9 +6,9 @@
     </IgbMaskInput>
 
     <div id="content" style="width: 100%; height: inherit;">
-        <IgbRadioGroup Alignment="ContentOrientation.Horizontal" style="margin-bottom: 10px;">
-            <IgbRadio name="mode" Value="raw" LabelPosition="ToggleLabelPosition.After" Checked="true" Change="OnRadioButtonClick">raw</IgbRadio>
-            <IgbRadio name="mode" Value="withFormatting" LabelPosition="ToggleLabelPosition.After" Change="OnRadioButtonClick">withFormatting</IgbRadio>
+        <IgbRadioGroup TValue="string" Alignment="ContentOrientation.Horizontal" style="margin-bottom: 10px;">
+            <IgbRadio TValue="string" name="mode" Value="@("raw")" LabelPosition="ToggleLabelPosition.After" Checked="true" Change="OnRadioButtonClick">raw</IgbRadio>
+            <IgbRadio TValue="string" name="mode" Value="@("withFormatting")" LabelPosition="ToggleLabelPosition.After" Change="OnRadioButtonClick">withFormatting</IgbRadio>
         </IgbRadioGroup>
         <span id="value-span">Value: @SpanValue</span>
     </div>
@@ -34,7 +34,7 @@
         this.SpanValue = this.MaskInputRef.Value;
     }
 
-    public void OnRadioButtonClick(IgbRadioChangeEventArgs e)
+    public void OnRadioButtonClick(IgbRadioChangeEventArgs<string> e)
     {
         if (e.Detail.Value == "raw")
         {

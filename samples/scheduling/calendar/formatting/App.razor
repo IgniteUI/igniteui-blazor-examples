@@ -2,16 +2,16 @@
 
 
 <div class="container vertical">
-    <IgbRadioGroup Alignment="ContentOrientation.Horizontal">
-        <IgbRadio name="lang" Value="en" Checked="true" Change="OnRadioOptionClick">EN</IgbRadio>
-        <IgbRadio name="lang" Value="de" Change="OnRadioOptionClick">DE</IgbRadio>
-        <IgbRadio name="lang" Value="fr" Change="OnRadioOptionClick">FR</IgbRadio>
-        <IgbRadio name="lang" Value="ar" Change="OnRadioOptionClick">AR</IgbRadio>
-        <IgbRadio name="lang" Value="ja" Change="OnRadioOptionClick">JA</IgbRadio>
+    <IgbRadioGroup TValue="string" Alignment="ContentOrientation.Horizontal">
+        <IgbRadio TValue="string" name="lang" Value="@("en")" Checked="true" Change="OnRadioOptionClick">EN</IgbRadio>
+        <IgbRadio TValue="string" name="lang" Value="@("de")" Change="OnRadioOptionClick">DE</IgbRadio>
+        <IgbRadio TValue="string" name="lang" Value="@("fr")" Change="OnRadioOptionClick">FR</IgbRadio>
+        <IgbRadio TValue="string" name="lang" Value="@("ar")" Change="OnRadioOptionClick">AR</IgbRadio>
+        <IgbRadio TValue="string" name="lang" Value="@("ja")" Change="OnRadioOptionClick">JA</IgbRadio>
     </IgbRadioGroup>
 
     <div style="width: 25rem; border: 1px solid gainsboro;">
-        <IgbCalendar FormatOptions="@CalendarFormat" Locale=@CalendarLocale WeekStart="@WeekDays.Monday" />
+        <IgbCalendar TValue="DateTime" FormatOptions="@CalendarFormat" Locale=@CalendarLocale WeekStart="@WeekDays.Monday" />
     </div>
 </div>
 
@@ -26,10 +26,9 @@
         this.CalendarFormat = new IgbCalendarFormatOptions() { Month = "short", Weekday = "short" };
     }
 
-    public void OnRadioOptionClick(IgbRadioChangeEventArgs e)
+    public void OnRadioOptionClick(IgbRadioChangeEventArgs<string> e)
     {
-        IgbRadio radio = e.Parent as IgbRadio;
-        this.CalendarLocale = radio.Value.ToString();
+        this.CalendarLocale = e.Detail.Value;
 
         StateHasChanged();
     }

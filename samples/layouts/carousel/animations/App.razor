@@ -202,10 +202,10 @@ igc-carousel[vertical]::part(next) {
     <div class="action-wrapper">
         <div class="action">
             <span class="action-label">Animation</span>
-            <IgbSelect Change="OnSelectChange">
-                <IgbSelectItem Value="slide" Selected="true">Slide</IgbSelectItem>
-                <IgbSelectItem Value="fade">Fade</IgbSelectItem>
-                <IgbSelectItem Value="none">None</IgbSelectItem>
+            <IgbSelect TValue="string" Change="OnSelectChange">
+                <IgbSelectItem Value="@("slide")" Selected="true">Slide</IgbSelectItem>
+                <IgbSelectItem Value="@("fade")">Fade</IgbSelectItem>
+                <IgbSelectItem Value="@("none")">None</IgbSelectItem>
             </IgbSelect>
         </div>
         <div class="action">
@@ -258,7 +258,7 @@ igc-carousel[vertical]::part(next) {
 
     private string CarouselCssClass => isOrientationChanging ? "is-orientation-changing" : string.Empty;
 
-    private void OnSelectChange(IgbSelectItemComponentEventArgs args)
+    private void OnSelectChange(IgbSelectItemComponentEventArgs<string> args)
     {
         carouselRef.AnimationType = args.Detail.Value switch
         {

@@ -2,10 +2,10 @@
 
 <div class="container sample center">
     <div class="radioWrapper">
-        <IgbRadioGroup Alignment="ContentOrientation.Horizontal">
-            <IgbRadio name="dragMode" Value="TileHeader" Checked="true" Change="OnRadioButtonClick">Tile-header</IgbRadio>
-            <IgbRadio name="dragMode" Value="Tile" Change="OnRadioButtonClick">Tile</IgbRadio>
-            <IgbRadio name="dragMode" Value="None" Change="OnRadioButtonClick">None</IgbRadio>
+        <IgbRadioGroup TValue="string" Alignment="ContentOrientation.Horizontal">
+            <IgbRadio TValue="string" name="dragMode" Value="@("TileHeader")" Checked="true" Change="OnRadioButtonClick">Tile-header</IgbRadio>
+            <IgbRadio TValue="string" name="dragMode" Value="@("Tile")" Change="OnRadioButtonClick">Tile</IgbRadio>
+            <IgbRadio TValue="string" name="dragMode" Value="@("None")" Change="OnRadioButtonClick">None</IgbRadio>
         </IgbRadioGroup>
     </div>
     <IgbTileManager @ref="TileManagerRef" DragMode="@DragMode" ColumnCount="2" Gap="20px">
@@ -32,7 +32,7 @@
     private IgbTileManager TileManagerRef { get; set; }
     private TileManagerDragMode DragMode = TileManagerDragMode.TileHeader;
 
-    public void OnRadioButtonClick(IgbRadioChangeEventArgs e)
+    public void OnRadioButtonClick(IgbRadioChangeEventArgs<string> e)
     {
         if (this.TileManagerRef != null)
         {

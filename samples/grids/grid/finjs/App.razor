@@ -13,11 +13,11 @@
             </div>
             <div class="control-item">
                 <label>Records: @RecordsCount</label>
-                <IgbSlider @ref=slider1 Class="finjs-slider" Change=OnRecordsChange Max="10000" Step="100"></IgbSlider>
+                <IgbSlider TValue="double" @ref=slider1 Class="finjs-slider" Change=OnRecordsChange Max="10000" Step="100"></IgbSlider>
             </div>
             <div class="control-item">
                 <label>Frequency: @Frequency</label>
-                <IgbSlider @ref=slider2 Class="finjs-slider" Change="OnFrequencyChange" LowerBound="100" Min="100" Max="3000" Step="10"></IgbSlider>
+                <IgbSlider TValue="double" @ref=slider2 Class="finjs-slider" Change="OnFrequencyChange" LowerBound="100" Min="100" Max="3000" Step="10"></IgbSlider>
             </div>
         </div>
         <div class="control-item finjs-play-controls">
@@ -370,8 +370,8 @@
     private IgbButton StartButton;
 
     private IgbButton ShowChartButton;
-    private IgbSlider slider1;
-    private IgbSlider slider2;
+    private IgbSlider<double> slider1;
+    private IgbSlider<double> slider2;
     public int RecordsCount = 1000;
     public int Frequency = 500;
     public System.Threading.Timer Timer;
@@ -417,7 +417,7 @@
 
     }
 
-    private void OnRecordsChange(IgbNumberEventArgs e)
+    private void OnRecordsChange(IgbNumberEventArgs<double> e)
     {
         if (e != null)
         {
@@ -427,7 +427,7 @@
         }
     }
 
-    private void OnFrequencyChange(IgbNumberEventArgs e)
+    private void OnFrequencyChange(IgbNumberEventArgs<double> e)
     {
         if (e != null)
         {

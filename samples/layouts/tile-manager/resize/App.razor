@@ -4,10 +4,10 @@
 
 <div class="container sample center">
     <div class="inputWrapper">
-        <IgbRadioGroup Alignment="ContentOrientation.Horizontal">
-            <IgbRadio name="resize" Value="Always" Checked="true" Change="OnRadioButtonClick">Always</IgbRadio>
-            <IgbRadio name="resize" Value="Hover" Change="OnRadioButtonClick">Hover</IgbRadio>
-            <IgbRadio name="resize" Value="None" Change="OnRadioButtonClick">None</IgbRadio>
+        <IgbRadioGroup TValue="string" Alignment="ContentOrientation.Horizontal">
+            <IgbRadio TValue="string" name="resize" Value="@("Always")" Checked="true" Change="OnRadioButtonClick">Always</IgbRadio>
+            <IgbRadio TValue="string" name="resize" Value="@("Hover")" Change="OnRadioButtonClick">Hover</IgbRadio>
+            <IgbRadio TValue="string" name="resize" Value="@("None")" Change="OnRadioButtonClick">None</IgbRadio>
         </IgbRadioGroup>
         <IgbInput Label="Minimum Column Width" Placeholder="200px" DisplayType="InputType.Text" Change="OnInputChangeColumnWidth"></IgbInput>
         <IgbInput Label="Minimum Row Height" Placeholder="200px" DisplayType="InputType.Text" Change="OnInputChangeRowHeight"></IgbInput>
@@ -36,7 +36,7 @@
     private IgbTileManager TileManagerRef { get; set; }
     private TileManagerResizeMode ResizeMode = TileManagerResizeMode.Always;
 
-    public void OnRadioButtonClick(IgbRadioChangeEventArgs e)
+    public void OnRadioButtonClick(IgbRadioChangeEventArgs<string> e)
     {
         if (this.TileManagerRef != null)
         {

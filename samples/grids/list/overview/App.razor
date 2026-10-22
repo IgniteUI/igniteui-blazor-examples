@@ -2,10 +2,10 @@
 
 
 <div class="container vertical">
-    <IgbRadioGroup Alignment="@ContentOrientation.Horizontal">
-        <IgbRadio name="size" Value="Small" label-position="after" Change="OnRadioOptionClick">Small</IgbRadio>
-        <IgbRadio name="size" Value="Medium" label-position="after" Checked="true" Change="OnRadioOptionClick">Medium</IgbRadio>
-        <IgbRadio name="size" Value="Large" label-position="after" Change="OnRadioOptionClick">Large</IgbRadio>
+    <IgbRadioGroup TValue="string" Alignment="@ContentOrientation.Horizontal">
+        <IgbRadio TValue="string" name="size" Value="@("Small")" label-position="after" Change="OnRadioOptionClick">Small</IgbRadio>
+        <IgbRadio TValue="string" name="size" Value="@("Medium")" label-position="after" Checked="true" Change="OnRadioOptionClick">Medium</IgbRadio>
+        <IgbRadio TValue="string" name="size" Value="@("Large")" label-position="after" Change="OnRadioOptionClick">Large</IgbRadio>
     </IgbRadioGroup>
 
     <IgbList style="margin-top: 10px;" class="@ListSize">
@@ -38,7 +38,7 @@
 
     public string ListSize { get; set; } = "size-medium";
 
-    public void OnRadioOptionClick(IgbRadioChangeEventArgs e)
+    public void OnRadioOptionClick(IgbRadioChangeEventArgs<string> e)
     {
         this.ListSize = $"size-{e.Detail.Value.ToLower()}";
     }

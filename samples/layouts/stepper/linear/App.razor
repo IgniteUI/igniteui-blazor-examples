@@ -31,10 +31,10 @@
         <IgbStep Invalid="@(IsLinear && !IsValid)">
             <span slot="title">Payment</span>
                  
-            <IgbRadioGroup>
-                <IgbRadio name="payment" Required="true" Value="paypal" Change="OnPaymentChange">PayPal (n@mail.com; 18/02/2021)</IgbRadio>
-                <IgbRadio name="payment" Required="true" Value="visa" Change="OnPaymentChange">Visa (**** **** **** 1234; 12/23)</IgbRadio>
-                <IgbRadio name="payment" Required="true" Value="mastercard" Change="OnPaymentChange">MasterCard (**** **** **** 5678; 12/24)</IgbRadio>
+            <IgbRadioGroup TValue="string">
+                <IgbRadio TValue="string" name="payment" Required="true" Value="@("paypal")" Change="OnPaymentChange">PayPal (n@mail.com; 18/02/2021)</IgbRadio>
+                <IgbRadio TValue="string" name="payment" Required="true" Value="@("visa")" Change="OnPaymentChange">Visa (**** **** **** 1234; 12/23)</IgbRadio>
+                <IgbRadio TValue="string" name="payment" Required="true" Value="@("mastercard")" Change="OnPaymentChange">MasterCard (**** **** **** 5678; 12/24)</IgbRadio>
             </IgbRadioGroup>
             <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Previous">PREVIOUS</IgbButton>
             <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Next" Disabled="@(IsLinear && !IsValid)">SUBMIT</IgbButton>
@@ -61,12 +61,12 @@
         IsLinear = args.Detail.Checked;
     }
 
-    public void OnPaymentChange(IgbRadioChangeEventArgs args)
+    public void OnPaymentChange(IgbRadioChangeEventArgs<string> args)
     {
         IsValid = args.Detail.Checked;
         if (IsValid)
         {
-            user.Payment = (args.Parent as IgbRadio).Value.ToString();            
+            user.Payment = args.Detail.Value;            
         }
     }
 

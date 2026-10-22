@@ -8,21 +8,21 @@
 </style>
 
 <div class="container sample center">
-    <IgbSlider @ref="SliderRef"
+    <IgbSlider TValue="double" @ref="SliderRef"
         PrimaryTicks="3"
         SecondaryTicks="4">
     </IgbSlider>
-    <IgbSlider @ref="SliderRef2"
+    <IgbSlider TValue="double" @ref="SliderRef2"
         ValueFormat="Storage: {0} GB">
     </IgbSlider>
 </div>
 
 @code {
-    public IgbNumberFormatSpecifier formatSpecifier;
-    public IgbNumberFormatSpecifier formatSpecifier2;
+    public IgbNumberFormatOptions formatSpecifier;
+    public IgbNumberFormatOptions formatSpecifier2;
 
-    private IgbSlider _slider;
-    public IgbSlider SliderRef
+    private IgbSlider<double> _slider;
+    public IgbSlider<double> SliderRef
     {
         get
         {
@@ -31,7 +31,7 @@
         set
         {
             _slider = value;
-            formatSpecifier = new IgbNumberFormatSpecifier();
+            formatSpecifier = new IgbNumberFormatOptions();
             formatSpecifier.Style = "currency";
             formatSpecifier.Currency = "USD";
             _slider.ValueFormatOptions = formatSpecifier;
@@ -39,8 +39,8 @@
         }
     }
 
-    private IgbSlider _slider2;
-    public IgbSlider SliderRef2
+    private IgbSlider<double> _slider2;
+    public IgbSlider<double> SliderRef2
     {
         get
         {
@@ -49,7 +49,7 @@
         set
         {
             _slider2 = value;
-            formatSpecifier2 = new IgbNumberFormatSpecifier();
+            formatSpecifier2 = new IgbNumberFormatOptions();
             formatSpecifier2.MinimumFractionDigits = 1;
             _slider2.ValueFormatOptions = formatSpecifier2;
             StateHasChanged();

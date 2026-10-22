@@ -2,19 +2,19 @@
 
 <div class="container sample">
     <article class="settings">
-        <IgbSelect Label="Orienation" Change="OrientationChange">
-            <IgbSelectItem Value="Horizontal" Selected="true">Horizontal</IgbSelectItem>
-            <IgbSelectItem Value="Vertical">Vertical</IgbSelectItem>
+        <IgbSelect TValue="string" Label="Orienation" Change="OrientationChange">
+            <IgbSelectItem Value="@("Horizontal")" Selected="true">Horizontal</IgbSelectItem>
+            <IgbSelectItem Value="@("Vertical")">Vertical</IgbSelectItem>
         </IgbSelect>
-        <IgbSelect Label="Vertical Animation" Change="VerticalAnimationChange">
-            <IgbSelectItem Value="Grow" Selected="true">Grow</IgbSelectItem>
-            <IgbSelectItem Value="Fade">Fade</IgbSelectItem>
-            <IgbSelectItem Value="None">None</IgbSelectItem>
+        <IgbSelect TValue="string" Label="Vertical Animation" Change="VerticalAnimationChange">
+            <IgbSelectItem Value="@("Grow")" Selected="true">Grow</IgbSelectItem>
+            <IgbSelectItem Value="@("Fade")">Fade</IgbSelectItem>
+            <IgbSelectItem Value="@("None")">None</IgbSelectItem>
         </IgbSelect>
-        <IgbSelect Label="Horizontal Animation" Change="HorizontalAnimationChange">
-            <IgbSelectItem Value="Slide" Selected="true">Slide</IgbSelectItem>
-            <IgbSelectItem Value="Fade">Fade</IgbSelectItem>
-            <IgbSelectItem Value="None">None</IgbSelectItem>
+        <IgbSelect TValue="string" Label="Horizontal Animation" Change="HorizontalAnimationChange">
+            <IgbSelectItem Value="@("Slide")" Selected="true">Slide</IgbSelectItem>
+            <IgbSelectItem Value="@("Fade")">Fade</IgbSelectItem>
+            <IgbSelectItem Value="@("None")">None</IgbSelectItem>
         </IgbSelect>
         <IgbInput DisplayType=InputType.Number Value="320" Label="Duration" Change="AnimationDurationChange">
             <span slot="suffix">ms</span>
@@ -36,10 +36,10 @@
         </IgbStep>
         <IgbStep>
             <span slot="title">Payment</span>
-            <IgbRadioGroup>
-                <IgbRadio name="payment" Value="paypal" Checked="true">PayPal (n@mail.com; 18/02/2021)</IgbRadio>
-                <IgbRadio name="payment" Value="visa">Visa (**** **** **** 1234; 12/23)</IgbRadio>
-                <IgbRadio name="payment" Value="mastercard">MasterCard (**** **** **** 5678; 12/24)</IgbRadio>
+            <IgbRadioGroup TValue="string">
+                <IgbRadio TValue="string" name="payment" Value="@("paypal")" Checked="true">PayPal (n@mail.com; 18/02/2021)</IgbRadio>
+                <IgbRadio TValue="string" name="payment" Value="@("visa")">Visa (**** **** **** 1234; 12/23)</IgbRadio>
+                <IgbRadio TValue="string" name="payment" Value="@("mastercard")">MasterCard (**** **** **** 5678; 12/24)</IgbRadio>
             </IgbRadioGroup>
             <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Previous">PREVIOUS</IgbButton>
             <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Next">SUBMIT</IgbButton>
@@ -71,19 +71,19 @@
         this.stepper.Reset();
     }
 
-    public void OrientationChange(IgbSelectItemComponentEventArgs args)
+    public void OrientationChange(IgbSelectItemComponentEventArgs<string> args)
     {
         StepperOrientation orientation = Enum.Parse<StepperOrientation>(args.Detail.Value);
         this.stepper.Orientation = orientation;
     }
 
-    public void VerticalAnimationChange(IgbSelectItemComponentEventArgs args)
+    public void VerticalAnimationChange(IgbSelectItemComponentEventArgs<string> args)
     {
         StepperVerticalAnimation animation = Enum.Parse<StepperVerticalAnimation>(args.Detail.Value);
         this.stepper.VerticalAnimation = animation;
     }
 
-    public void HorizontalAnimationChange(IgbSelectItemComponentEventArgs args)
+    public void HorizontalAnimationChange(IgbSelectItemComponentEventArgs<string> args)
     {
         HorizontalTransitionAnimation animation = Enum.Parse<HorizontalTransitionAnimation>(args.Detail.Value);
         this.stepper.HorizontalAnimation = animation;

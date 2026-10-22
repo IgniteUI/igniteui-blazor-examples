@@ -35,11 +35,11 @@
                 <span slot="subtitle">Filter by review score</span>
                 <span>
                     <p class="panel-description">Choose the lowest rating you want to include in the results.</p>
-                    <IgbRadioGroup class="rating-options">
+                    <IgbRadioGroup TValue="string" class="rating-options">
                         @foreach (var rating in Ratings)
                         {
-                            <IgbRadio class="rating-option" name="rating" Value="@rating.Id" Change="OnRadioChange">
-                                <IgbRating Label="@rating.Label" Value="@rating.Value" Max="5" class="rating-control size-small" ReadOnly="true"></IgbRating>
+                            <IgbRadio TValue="string" class="rating-option" name="rating" Value="@rating.Id" Change="OnRadioChange">
+                                <IgbRating TValue="double" Label="@rating.Label" Value="@rating.Value" Max="5" class="rating-control size-small" ReadOnly="true"></IgbRating>
                             </IgbRadio>
                         }
                     </IgbRadioGroup>
@@ -51,7 +51,7 @@
                 <span slot="subtitle">Set the latest arrival time</span>
                 <span>
                     <p class="panel-description">Pick the latest acceptable arrival time for your trip.</p>
-                    <IgbDateTimeInput @ref="DateTimeInputRef" InputFormat="hh:mm tt" Label="Arrive before" class="time-input size-small" Change="OnTimeChange">
+                    <IgbDateTimeInput TValue="DateTime?" @ref="DateTimeInputRef" InputFormat="hh:mm tt" Label="Arrive before" class="time-input size-small" Change="OnTimeChange">
                         <IgbIcon IconName="clock" Collection="material" slot="prefix"></IgbIcon>
                         <IgbIcon IconName="clear" Collection="material" slot="suffix" @onclick="OnTimeClear"></IgbIcon>
                     </IgbDateTimeInput>
@@ -65,7 +65,7 @@
 
 @code {
     private IgbIcon? RegisterIconRef;
-    private IgbDateTimeInput? DateTimeInputRef;
+    private IgbDateTimeInput<DateTime?>? DateTimeInputRef;
     private double SliderLower = 200;
     private double SliderUpper = 800;
     private string SelectedRating = string.Empty;
@@ -108,7 +108,7 @@
 
     private void OnCategoryChange(IgbCheckboxChangeEventArgs args)
     {
-        var id = (args.Parent as IgbCheckbox)?.Value;
+        var id = args.Detail.Value;
         var category = Categories.FirstOrDefault(item => item.Id == id);
         if (category is not null)
         {
@@ -125,9 +125,9 @@
         }
     }
 
-    private void OnRadioChange(IgbRadioChangeEventArgs args)
+    private void OnRadioChange(IgbRadioChangeEventArgs<string> args)
     {
-        var id = (args.Parent as IgbRadio)?.Value;
+        var id = args.Detail.Value;
         var rating = Ratings.FirstOrDefault(item => item.Id == id);
         if (rating is not null)
         {
@@ -135,9 +135,9 @@
         }
     }
 
-    private Task OnTimeChange(IgbComponentDateValueChangedEventArgs args)
+    private Task OnTimeChange(IgbComponentDateValueChangedEventArgs<DateTime?> args)
     {
-        ArrivalTime = args.Detail.ToShortTimeString();
+        ArrivalTime = args.Detail?.ToShortTimeString() ?? "Any time";
         return Task.CompletedTask;
     }
 

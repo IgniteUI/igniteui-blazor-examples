@@ -11,7 +11,7 @@
     </style>
 
     <IgbCombo 
-        T="string"
+        TValue="string" TItem="City"
         Label="Cities" 
         Placeholder="Pick a city" 
         Data="Data" 
@@ -43,22 +43,18 @@
     }
 
     public void OnDisableFilteringClick(IgbCheckboxChangeEventArgs e) {
-        IgbSwitch sw = e.Parent as IgbSwitch;
-        this.DisableFiltering = sw.Checked;
+        this.DisableFiltering = e.Detail.Checked;
     }
 
     public void OnCaseSensitiveClick(IgbCheckboxChangeEventArgs e) {
-        IgbSwitch sw = e.Parent as IgbSwitch;
-        this.CaseSensitiveIcon = sw.Checked;
+        this.CaseSensitiveIcon = e.Detail.Checked;
     }
 
     public void OnGroupClick(IgbCheckboxChangeEventArgs e) {
-        IgbSwitch sw = e.Parent as IgbSwitch;
-        this.Group = sw.Checked ? "Country" : "";
+        this.Group = e.Detail.Checked ? "Country" : "";
     }
 
     public void OnDisableClick(IgbCheckboxChangeEventArgs e) {
-        IgbSwitch sw = e.Parent as IgbSwitch;
-        this.Disabled = sw.Checked;
+        this.Disabled = e.Detail.Checked;
     }
 }

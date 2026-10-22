@@ -1,7 +1,7 @@
 ﻿@using IgniteUI.Blazor.Controls
 
 <div class="container vertical">
-    <IgbDateTimeInput @ref="DateTimeInputRef">
+    <IgbDateTimeInput TValue="DateTime?" @ref="DateTimeInputRef">
         <IgbIcon IconName="clear" Collection="myIcons" slot="prefix" @onclick="OnClear"></IgbIcon>
         <IgbIcon IconName="up" Collection="myIcons" slot="suffix" @onclick="OnStepUp"></IgbIcon>
         <IgbIcon IconName="down" Collection="myIcons" slot="suffix" @onclick="OnStepDown"></IgbIcon>
@@ -12,7 +12,7 @@
 
 @code {
 
-    IgbDateTimeInput? DateTimeInputRef;
+    IgbDateTimeInput<DateTime?>? DateTimeInputRef;
     IgbIcon? RegisterIconRef;
 
     protected async override Task OnAfterRenderAsync(bool firstRender)

@@ -15,7 +15,7 @@
     <div class="container vertical">
         <form @ref="Form" @onsubmit="@HandleSubmit">
             <fieldset class="vertical">
-                <IgbDateRangePicker @ref="DateRangePicker" bind-Value="@Range" Label="Date Range" Required="true" Min="@Min" Change="HandleDateRangeChange" />
+                <IgbDateRangePicker TValue="DateTime" @ref="DateRangePicker" bind-Value="@Range" Label="Date Range" Required="true" Min="@Min" Change="HandleDateRangeChange" />
                 <div class="buttons horizontal">
                     <IgbButton Type="submit" Variant="ButtonVariant.Outlined"><span>Submit</span></IgbButton>
                     <IgbButton Type="reset" Variant="ButtonVariant.Outlined"><span>Reset</span></IgbButton>
@@ -34,14 +34,14 @@
 
 @code {
     private ElementReference Form { get; set; }
-    public IgbDateRangePicker DateRangePicker { get; set; }
+    public IgbDateRangePicker<DateTime> DateRangePicker { get; set; }
     public DateTime Min = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
-    public IgbDateRangeValue Range { get; set; }
+    public IgbDateRangeValue<DateTime> Range { get; set; }
     public IgbDialog DialogRef;
 
-    private void HandleDateRangeChange(IgbDateRangeValueEventArgs e)
+    private void HandleDateRangeChange(IgbDateRangeValueEventArgs<DateTime> e)
     {
-        this.Range = new IgbDateRangeValue
+        this.Range = new IgbDateRangeValue<DateTime>
         {
             Start = e.Detail.Start,
             End = e.Detail.End

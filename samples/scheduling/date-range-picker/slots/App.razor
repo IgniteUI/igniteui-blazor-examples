@@ -4,34 +4,34 @@
 <div class="container vertical">
     <div class="container vertical">
         <h3>Actions</h3>
-        <IgbDateRangePicker Mode="PickerMode.Dialog" @ref="ActionsDateRange">
+        <IgbDateRangePicker TValue="DateTime" Mode="PickerMode.Dialog" @ref="ActionsDateRange">
             <IgbButton slot="actions" @onclick="() => ActionsDateRange.ShowWeekNumbers = !ActionsDateRange.ShowWeekNumbers">Toggle week numbers</IgbButton>
         </IgbDateRangePicker>
 
         <h3>Custom separator</h3>
-        <IgbDateRangePicker UseTwoInputs="true">
+        <IgbDateRangePicker TValue="DateTime" UseTwoInputs="true">
             <span slot="separator">till</span>
         </IgbDateRangePicker>
 
         <h3>Helper text</h3>
-        <IgbDateRangePicker>
+        <IgbDateRangePicker TValue="DateTime">
             <span slot="helper-text">Helper text goes here.</span>
         </IgbDateRangePicker>
 
         <h3>Prefix & Suffix</h3>
-        <IgbDateRangePicker>
+        <IgbDateRangePicker TValue="DateTime">
             <IgbIcon @ref="DropDownIcon" slot="prefix" IconName="dropdown" Collection="material"></IgbIcon>
             <IgbIcon @ref="UploadIcon" slot="suffix" IconName="upload" Collection="material"></IgbIcon>
         </IgbDateRangePicker>
 
         <h3>Clear & Calendar icons</h3>
-        <IgbDateRangePicker>
+        <IgbDateRangePicker TValue="DateTime">
             <IgbIcon slot="clear-icon" @ref="ClearIcon" IconName="bin" Collection="material"></IgbIcon>
             <IgbIcon slot="calendar-icon" @ref="CalendarIcon" IconName="apps" Collection="material"></IgbIcon>
         </IgbDateRangePicker>
 
         <h3>Custom calendar header + title</h3>
-        <IgbDateRangePicker Mode="PickerMode.Dialog">
+        <IgbDateRangePicker TValue="DateTime" Mode="PickerMode.Dialog">
             <span slot="title">Custom calendar title goes here.</span>
             <span slot="header-date">Custom content instead of date goes here.</span>
         </IgbDateRangePicker>
@@ -39,7 +39,7 @@
 </div>
 
 @code {
-    public IgbDateRangePicker ActionsDateRange { get; set; }
+    public IgbDateRangePicker<DateTime> ActionsDateRange { get; set; }
     private IgbIcon DropDownIcon { get; set; }
     private IgbIcon UploadIcon { get; set; }
     private IgbIcon ClearIcon { get; set; }

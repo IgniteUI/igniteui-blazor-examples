@@ -1,4 +1,5 @@
 @using IgniteUI.Blazor.Controls
+@inject IJSRuntime JS
 
 
 <div class="container vertical">
@@ -39,7 +40,7 @@
     {
         if (firstRender)
         {
-            await IgniteUIBlazor.JsRuntime.InvokeVoidAsync("setHighVolumeDataCount", this.DataPoints);
+            await JS.InvokeVoidAsync("setHighVolumeDataCount", this.DataPoints);
         }
     }
 
@@ -62,7 +63,7 @@
 
     private async Task GenerateData()
     {
-        await IgniteUIBlazor.JsRuntime.InvokeVoidAsync("setHighVolumeDataCount", this.DataPoints);
+        await JS.InvokeVoidAsync("setHighVolumeDataCount", this.DataPoints);
     }
 
     public static string ToShortString(double largeValue)

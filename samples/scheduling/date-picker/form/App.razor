@@ -14,7 +14,7 @@
     <div class="container vertical">
         <form @ref="Form">
             <div class="horizontal">
-                <IgbDatePicker @ref="DatePicker"
+                <IgbDatePicker TValue="DateTime?" @ref="DatePicker"
                                Min="@MinDate"
                                Max="@MaxDate"
                                Value="@SelectedDate"
@@ -28,7 +28,7 @@
 </div>
 
 @code {
-    private IgbDatePicker DatePicker { get; set; }
+    private IgbDatePicker<DateTime?> DatePicker { get; set; }
     private ElementReference Form { get; set; }
     private DateTime SelectedDate { get; set; } = DateTime.Today;
     private DateTime MinDate { get; set; }
@@ -54,7 +54,7 @@
         }
     }
 
-    private void HandleDateChange(IgbComponentDateValueChangedEventArgs e)
+    private void HandleDateChange(IgbComponentDateValueChangedEventArgs<DateTime?> e)
     {
         if (DateTime.TryParse(e.Detail.ToString(), out var newValue))
         {

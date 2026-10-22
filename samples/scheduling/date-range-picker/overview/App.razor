@@ -3,15 +3,15 @@
 
 <div class="container vertical">
     <div class="container vertical">
-        <IgbDateRangePicker @ref="DateRangePicker" Value="@Range" Label="Date Range" />
+        <IgbDateRangePicker TValue="DateTime" @ref="DateRangePicker" Value="@Range" Label="Date Range" />
     </div>
 </div>
 
 @code {
 
-    public IgbDateRangePicker DateRangePicker { get; set; }
+    public IgbDateRangePicker<DateTime> DateRangePicker { get; set; }
 
-    public IgbDateRangeValue Range = new IgbDateRangeValue()
+    public IgbDateRangeValue<DateTime> Range = new IgbDateRangeValue<DateTime>()
     {
         Start = DateTime.Today,
         End = DateTime.Today.AddDays(3)

@@ -4,10 +4,10 @@
 <div class="container vertical">   
    <label>Step type</label>
    <div class="radio-group-container">
-        <IgbRadioGroup Alignment="ContentOrientation.Horizontal">
-            <IgbRadio name="type" Value="indicator" Change="onStepTypeChange">Indicator</IgbRadio>
-            <IgbRadio name="type" Value="title" Change="onStepTypeChange">Title</IgbRadio>
-            <IgbRadio name="type" Value="full" Checked="true" Change="onStepTypeChange">Full</IgbRadio>
+        <IgbRadioGroup TValue="string" Alignment="ContentOrientation.Horizontal">
+            <IgbRadio TValue="string" name="type" Value="@("indicator")" Change="onStepTypeChange">Indicator</IgbRadio>
+            <IgbRadio TValue="string" name="type" Value="@("title")" Change="onStepTypeChange">Title</IgbRadio>
+            <IgbRadio TValue="string" name="type" Value="@("full")" Checked="true" Change="onStepTypeChange">Full</IgbRadio>
         </IgbRadioGroup>
    </div>  
 
@@ -27,11 +27,11 @@
 @code {
     public IgbStepper stepper;
 
-    public void onStepTypeChange(IgbRadioChangeEventArgs args)
+    public void onStepTypeChange(IgbRadioChangeEventArgs<string> args)
     {
         if(args.Detail.Checked)
         {
-            string value = (args.Parent as IgbRadio).Value.ToString();           
+            string value = args.Detail.Value;           
             stepper.StepType = (StepperStepType)System.Enum.Parse(typeof(StepperStepType), value, true); 
         }
     }

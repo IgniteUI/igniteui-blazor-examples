@@ -8,11 +8,11 @@
         }
     </style>
 
-    <IgbRadioGroup Alignment=@ContentOrientation.Horizontal>
-        <IgbRadio name="alignment" Value="Start" label-position="after" Checked=true Change="OnRadioOptionClick">Start</IgbRadio>
-        <IgbRadio name="alignment" Value="Center" label-position="after" Change="OnRadioOptionClick">Center</IgbRadio>
-        <IgbRadio name="alignment" Value="End" label-position="after" Change="OnRadioOptionClick">End</IgbRadio>
-        <IgbRadio name="alignment" Value="Justify" label-position="after" Change="OnRadioOptionClick">Justify</IgbRadio>
+    <IgbRadioGroup TValue="string" Alignment=@ContentOrientation.Horizontal>
+        <IgbRadio TValue="string" name="alignment" Value="@("Start")" label-position="after" Checked=true Change="OnRadioOptionClick">Start</IgbRadio>
+        <IgbRadio TValue="string" name="alignment" Value="@("Center")" label-position="after" Change="OnRadioOptionClick">Center</IgbRadio>
+        <IgbRadio TValue="string" name="alignment" Value="@("End")" label-position="after" Change="OnRadioOptionClick">End</IgbRadio>
+        <IgbRadio TValue="string" name="alignment" Value="@("Justify")" label-position="after" Change="OnRadioOptionClick">Justify</IgbRadio>
     </IgbRadioGroup>
 
     <IgbTabs Alignment=@TabAlignment>
@@ -40,11 +40,10 @@
         TabAlignment = TabsAlignment.Start;
     }
 
-    public void OnRadioOptionClick(IgbRadioChangeEventArgs e)
+    public void OnRadioOptionClick(IgbRadioChangeEventArgs<string> e)
     {
-        IgbRadio radio = e.Parent as IgbRadio;
 
-        switch (radio.Value)
+        switch (e.Detail.Value)
         {
             case "Start":
                 {

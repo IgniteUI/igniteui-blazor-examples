@@ -3,28 +3,28 @@
 
 <div class="container vertical">
     <div class="container vertical">
-        <IgbDateRangePicker @ref="DateRangePicker" CustomRanges="@CustomRanges" Mode="PickerMode.Dialog" UsePredefinedRanges="true" Label="Custom Ranges" />
+        <IgbDateRangePicker TValue="DateTime" @ref="DateRangePicker" CustomRanges="@CustomRanges" Mode="PickerMode.Dialog" UsePredefinedRanges="true" Label="Custom Ranges" />
     </div>
 </div>
 
 @code {
 
-    public IgbDateRangePicker DateRangePicker { get; set; }
+    public IgbDateRangePicker<DateTime> DateRangePicker { get; set; }
 
-    public IgbCustomDateRange[] CustomRanges = [
-            new IgbCustomDateRange()
+    public IgbCustomDateRange<DateTime>[] CustomRanges = [
+            new IgbCustomDateRange<DateTime>()
             {
                 Label = "Previous 7 Days",
-                DateRange = new IgbDateRangeValue()
+                DateRange = new IgbDateRangeValue<DateTime>()
                 {
                     Start = DateTime.Today.AddDays(-7),
                     End = DateTime.Today
                 }
             },
-            new IgbCustomDateRange()
+            new IgbCustomDateRange<DateTime>()
             {
                 Label = "Next 7 Days",
-                DateRange = new IgbDateRangeValue()
+                DateRange = new IgbDateRangeValue<DateTime>()
                 {
                     Start = DateTime.Today,
                     End = DateTime.Today.AddDays(7)

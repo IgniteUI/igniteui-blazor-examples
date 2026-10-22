@@ -19,11 +19,11 @@
     </IgbNavDrawer>
 
     <div id="content" style="width: 100%">
-        <IgbRadioGroup id="radio-group" Alignment="ContentOrientation.Horizontal">
-            <IgbRadio name="position" Value="Start" LabelPosition="ToggleLabelPosition.After" Checked="true" Change="OnRadioOptionClick">Start</IgbRadio>
-            <IgbRadio name="position" Value="End" LabelPosition="ToggleLabelPosition.After" Change="OnRadioOptionClick">End</IgbRadio>
-            <IgbRadio name="position" Value="Top" LabelPosition="ToggleLabelPosition.After" Change="OnRadioOptionClick">Top</IgbRadio>
-            <IgbRadio name="position" Value="Bottom" LabelPosition="ToggleLabelPosition.After" Change="OnRadioOptionClick">Bottom</IgbRadio>
+        <IgbRadioGroup TValue="string" id="radio-group" Alignment="ContentOrientation.Horizontal">
+            <IgbRadio TValue="string" name="position" Value="@("Start")" LabelPosition="ToggleLabelPosition.After" Checked="true" Change="OnRadioOptionClick">Start</IgbRadio>
+            <IgbRadio TValue="string" name="position" Value="@("End")" LabelPosition="ToggleLabelPosition.After" Change="OnRadioOptionClick">End</IgbRadio>
+            <IgbRadio TValue="string" name="position" Value="@("Top")" LabelPosition="ToggleLabelPosition.After" Change="OnRadioOptionClick">Top</IgbRadio>
+            <IgbRadio TValue="string" name="position" Value="@("Bottom")" LabelPosition="ToggleLabelPosition.After" Change="OnRadioOptionClick">Bottom</IgbRadio>
         </IgbRadioGroup>
 
         <IgbNavbar>
@@ -66,13 +66,12 @@
         }
     }
 
-    public void OnRadioOptionClick(IgbRadioChangeEventArgs args)
+    public void OnRadioOptionClick(IgbRadioChangeEventArgs<string> args)
     {
-        IgbRadio radio = args.Parent as IgbRadio;
 
         if (this.NavDrawerRef != null)
         {
-            switch (radio.Value)
+            switch (args.Detail.Value)
             {
                 case "Start":
                     {
