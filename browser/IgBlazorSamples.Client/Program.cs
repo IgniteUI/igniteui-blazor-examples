@@ -28,7 +28,7 @@ builder.Services.AddScoped<RemotePagingService>();
 builder.Services.AddScoped<HierarchicalDataService>();
 builder.Services.AddScoped<QueryBuilderService>();
 // registering Infragistics Blazor
-builder.Services.AddScoped(typeof(IIgniteUIBlazor), typeof(IgniteUIBlazor));
+builder.Services.AddIgniteUIBlazor();
 
 await builder.Build().RunAsync();
 
