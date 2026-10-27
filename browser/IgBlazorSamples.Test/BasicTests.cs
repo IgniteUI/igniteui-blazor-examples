@@ -87,7 +87,9 @@ class GridLinks
         "/samples/grids/grid/action-strip",
         "/samples/grids/grid/advanced-filtering-options",
         "/samples/grids/grid/advanced-filtering-style",
-        "/samples/grids/grid/binding-composite-data"
+        "/samples/grids/grid/binding-composite-data",
+        "/samples/grids/grid/action-strip?_gl=1abc",
+        "/samples/grids/grid/action-strip#top"
     };
 }
 
