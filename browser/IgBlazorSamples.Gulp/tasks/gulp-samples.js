@@ -666,6 +666,7 @@ function updateIG(cb) {
     var packagePaths = [
         '../../browser/**/*.csproj', // browser
         '../../samples/**/*.csproj', // all samples
+        '../../templates/sample/*.csproj', // copied by new samples and updateProjects
         // NOTE comment out above line and uncomment below line(s) to update only a subset of samples
         // '../../samples/charts/**/*.csproj',
         // '../../samples/gauges/**/*.csproj',
