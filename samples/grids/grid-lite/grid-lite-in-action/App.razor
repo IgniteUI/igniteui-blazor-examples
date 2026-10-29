@@ -69,7 +69,7 @@
             <IgbGridLite @ref="grid"
                          TItem="TeamMember"
                          Data="members"
-                         class="team-directory__grid"
+                         class="@GridClass"
                          AdoptRootStyles="true"
                          SortingOptions="sortingOptions"
                          SortingExpressions="initialSort"
@@ -229,8 +229,14 @@
 
     private string ColumnsInfo => $"{DataColumnCount - HiddenFields.Length} of {DataColumnCount} columns shown";
 
+    // The narrowest layout also packs its two columns tighter (smaller cell padding, slimmer pill and
+    // avatar, lower minimum widths) so they fit even a 320 px screen without scrolling.
+    private bool IsCompact => tier == LayoutTier.Minimal && !showAllColumns;
+
+    private string GridClass => IsCompact ? "team-directory__grid team-directory__grid--compact" : "team-directory__grid";
+
     private Task ApplyColumnVisibilityAsync() =>
-        JSRuntime.InvokeVoidAsync("gridLiteInAction.setHiddenColumns", gridHost, HiddenFields).AsTask();
+        JSRuntime.InvokeVoidAsync("gridLiteInAction.setLayout", gridHost, HiddenFields, IsCompact).AsTask();
 
     public async ValueTask DisposeAsync()
     {
