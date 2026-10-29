@@ -80,7 +80,54 @@
         }
     };
 
+    // The hidden column the department chips filter on stays hidden whatever the layout does.
+    const CHIP_FILTER_FIELD = 'QuickFilterDepartment';
+
+    // Fields the layout hides, per grid host. Kept here so a column list the grid builds later
+    // (configureColumns) starts from the same state.
+    const layoutHidden = new WeakMap();
+
+    // Applies the layout's hidden fields to the grid's own column list, which is where the grid reads
+    // them from once configureColumns has replaced the slotted columns.
+    function applyLayoutHidden(host, grid) {
+        const hidden = layoutHidden.get(host);
+        if (!hidden || !grid.columns.length) {
+            return;
+        }
+        grid.columns = grid.columns.map(config =>
+            Object.assign({}, config, { hidden: config.field === CHIP_FILTER_FIELD || hidden.has(config.field) }));
+    }
+
+    // One observer per grid host. It reports the host's width to the component once per frame at
+    // most; the component only calls back into the grid when the width crosses into another layout tier.
+    const widthObservers = new WeakMap();
+
     window.gridLiteInAction = {
+        // Reports the host's width to `component.OnHostWidthChanged`: now, and on every resize.
+        observeWidth: function (host, component) {
+            let frame = 0;
+            const report = () => {
+                frame = 0;
+                component.invokeMethodAsync('OnHostWidthChanged', host.clientWidth);
+            };
+            const observer = new ResizeObserver(() => {
+                if (!frame) {
+                    frame = requestAnimationFrame(report);
+                }
+            });
+            observer.observe(host);
+            widthObservers.set(host, { observer, cancel: () => cancelAnimationFrame(frame) });
+        },
+
+        stopObservingWidth: function (host) {
+            const entry = widthObservers.get(host);
+            if (entry) {
+                entry.observer.disconnect();
+                entry.cancel();
+                widthObservers.delete(host);
+            }
+        },
+
         // Adds the cell templates and the sort comparer to the grid's columns.
         configureColumns: async function (host) {
             await customElements.whenDefined('igc-grid-lite');
@@ -95,6 +142,14 @@
             // elements upgrade before the grid, so a later change on them does not reach it. Hand the
             // grid its current configuration (the getter returns every setting) with the additions.
             grid.columns = grid.columns.map(config => Object.assign({}, config, columnSettings[config.field]));
+            applyLayoutHidden(host, grid);
+        },
+
+        // Hides exactly these fields (and the chip filter's column); every other column shows.
+        setHiddenColumns: async function (host, fields) {
+            await customElements.whenDefined('igc-grid-lite');
+            layoutHidden.set(host, new Set(fields));
+            applyLayoutHidden(host, host.querySelector('igc-grid-lite'));
         },
 
         // Returns how many rows pass the grid's current filters.

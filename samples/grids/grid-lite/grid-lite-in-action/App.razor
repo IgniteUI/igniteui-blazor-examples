@@ -3,6 +3,7 @@
 @using Microsoft.AspNetCore.Components.Web
 @using Microsoft.JSInterop
 @using IgniteUI.Blazor.Controls
+@implements IAsyncDisposable
 @inject IJSRuntime JSRuntime
 
 <div class="@RootClass">
@@ -58,28 +59,31 @@
                          SortingExpressions="initialSort"
                          Filtered="OnGridFilteredAsync"
                          Rendered="OnGridRenderedAsync">
+                @* Every width has a floor that keeps its content and the filter row's chip readable, and the
+                   grid scrolls sideways below the sum of the floors. Narrower hosts drop the columns that
+                   matter least first (see LayoutTier and events.js), so what remains still fits. *@
                 <IgbGridLiteColumn Field="@nameof(TeamMember.Name)" Header="Employee"
-                                   DataType="GridLiteColumnDataType.String" Width="23%"
+                                   DataType="GridLiteColumnDataType.String" Width="minmax(180px, 2fr)"
                                    Sortable Filterable />
                 <IgbGridLiteColumn Field="@nameof(TeamMember.Department)" Header="Department"
-                                   DataType="GridLiteColumnDataType.String" Width="14%"
+                                   DataType="GridLiteColumnDataType.String" Width="minmax(150px, 1fr)"
                                    Sortable Filterable />
                 <IgbGridLiteColumn Field="@nameof(TeamMember.EmploymentType)" Header="Employment"
-                                   DataType="GridLiteColumnDataType.String" Width="11%"
+                                   DataType="GridLiteColumnDataType.String" Width="minmax(130px, 1fr)"
                                    Filterable />
                 <IgbGridLiteColumn Field="@nameof(TeamMember.Satisfaction)" Header="Satisfaction"
-                                   DataType="GridLiteColumnDataType.Number" Width="17%"
+                                   DataType="GridLiteColumnDataType.Number" Width="minmax(170px, 1fr)"
                                    Sortable Filterable />
                 @* Grid Lite has no date type: the column holds the displayed label, and events.js gives
                    it a comparer that sorts by date. *@
                 <IgbGridLiteColumn Field="@nameof(TeamMember.RegisteredLabel)" Header="Registered"
-                                   DataType="GridLiteColumnDataType.String" Width="13%"
+                                   DataType="GridLiteColumnDataType.String" Width="minmax(130px, 1fr)"
                                    Sortable Filterable />
                 <IgbGridLiteColumn Field="@nameof(TeamMember.Active)" Header="Status"
-                                   DataType="GridLiteColumnDataType.Boolean" Width="11%"
+                                   DataType="GridLiteColumnDataType.Boolean" Width="minmax(120px, 1fr)"
                                    Filterable />
                 <IgbGridLiteColumn Field="@nameof(TeamMember.Location)" Header="Location"
-                                   DataType="GridLiteColumnDataType.String" Width="11%"
+                                   DataType="GridLiteColumnDataType.String" Width="minmax(140px, 1fr)"
                                    Sortable Filterable />
                 @* Hidden: the department chips filter on this column, so they combine with the
                    Department column's own filter instead of replacing it. *@
@@ -100,6 +104,33 @@
     private const string LightModeIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z'/></svg>";
     private const string DarkModeIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z'/></svg>";
 
+    // How many columns the grid's width leaves room for. Each step to a narrower tier drops one more
+    // column, in this order: Location, Employment, Registered, Satisfaction, Status. Employee and
+    // Department always stay. The limits are the sum of the visible columns' minimum widths
+    // (1020, 880, 750, 620, 450 px) plus room for the scroll bar.
+    private enum LayoutTier { Full, Wide, Medium, Compact, Narrow, Minimal }
+
+    private static LayoutTier TierFor(double width) => width switch
+    {
+        >= 1040 => LayoutTier.Full,
+        >= 900 => LayoutTier.Wide,
+        >= 770 => LayoutTier.Medium,
+        >= 640 => LayoutTier.Compact,
+        >= 470 => LayoutTier.Narrow,
+        _ => LayoutTier.Minimal
+    };
+
+    // The columns a tier drops. They are hidden through the grid's own column list (events.js): the
+    // grid reads its column elements once, so a Hidden parameter changed later would not reach it.
+    private static string[] HiddenFieldsFor(LayoutTier tier) => new[]
+    {
+        tier > LayoutTier.Full ? nameof(TeamMember.Location) : null,
+        tier > LayoutTier.Wide ? nameof(TeamMember.EmploymentType) : null,
+        tier > LayoutTier.Medium ? nameof(TeamMember.RegisteredLabel) : null,
+        tier > LayoutTier.Compact ? nameof(TeamMember.Satisfaction) : null,
+        tier > LayoutTier.Narrow ? nameof(TeamMember.Active) : null
+    }.Where(field => field != null).ToArray();
+
     private readonly IgbGridLiteSortingOptions sortingOptions = new() { Mode = GridLiteSortingMode.Single };
 
     // One stable instance: the grid only re-sends a parameter that changed, so re-rendering (for
@@ -114,6 +145,8 @@
     private readonly HashSet<string> selectedDepartments = new();
     private int visibleCount;
     private bool isDark;
+    private LayoutTier tier = LayoutTier.Full;
+    private DotNetObjectReference<App> selfReference;
 
     private IgbGridLite<TeamMember> grid;
     private IgbIconButton themeToggle;
@@ -134,12 +167,47 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender && themeToggle != null)
+        if (!firstRender)
+        {
+            return;
+        }
+
+        // The grid reports its width from the first measurement on, so the right columns show before
+        // the user sees the first frame, and again whenever the frame is resized.
+        selfReference = DotNetObjectReference.Create(this);
+        await JSRuntime.InvokeVoidAsync("gridLiteInAction.observeWidth", gridHost, selfReference);
+
+        if (themeToggle != null)
         {
             await themeToggle.EnsureReady();
             await themeToggle.RegisterIconFromTextAsync("light_mode", LightModeIcon, IconCollection);
             await themeToggle.RegisterIconFromTextAsync("dark_mode", DarkModeIcon, IconCollection);
         }
+    }
+
+    [JSInvokable]
+    public async Task OnHostWidthChanged(double width)
+    {
+        var next = TierFor(width);
+        if (next != tier)
+        {
+            tier = next;
+            await JSRuntime.InvokeVoidAsync("gridLiteInAction.setHiddenColumns", gridHost, HiddenFieldsFor(tier));
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        try
+        {
+            await JSRuntime.InvokeVoidAsync("gridLiteInAction.stopObservingWidth", gridHost);
+        }
+        catch (JSDisconnectedException)
+        {
+            // The page is already gone, so there is nothing left to stop.
+        }
+
+        selfReference?.Dispose();
     }
 
     // Grid Lite has no Razor cell templates yet, so events.js assigns JavaScript templates and the
