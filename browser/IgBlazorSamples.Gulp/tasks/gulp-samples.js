@@ -641,7 +641,7 @@ function updateIG(cb) {
         { version: "26.1.98", name: "IgniteUI.Blazor.Trial" },
         { version: "26.1.98", name: "IgniteUI.Blazor.Documents.Core.Trial" },
         { version: "26.1.98", name: "IgniteUI.Blazor.Documents.Excel.Trial" },
-        { version: "0.10.0", name: "IgniteUI.Blazor.GridLite" },
+        { version: "1.0.0", name: "IgniteUI.Blazor.GridLite" },
         // these IG packages are sometimes updated:
         { version:  "2.2.0", name: "Microsoft.AspNetCore.Cors" },
         { version:  "2.2.0", name: "Microsoft.AspNetCore.Http.Abstractions" },
@@ -666,6 +666,7 @@ function updateIG(cb) {
     var packagePaths = [
         '../../browser/**/*.csproj', // browser
         '../../samples/**/*.csproj', // all samples
+        '../../templates/sample/*.csproj', // copied by new samples and updateProjects
         // NOTE comment out above line and uncomment below line(s) to update only a subset of samples
         // '../../samples/charts/**/*.csproj',
         // '../../samples/gauges/**/*.csproj',

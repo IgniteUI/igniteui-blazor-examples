@@ -1,0 +1,630 @@
+/* Styles for the Grid Lite in Action sample. The grid's cell templates render inside each cell's
+   shadow root, which receives only document-level styles (the grid sets AdoptRootStyles), so
+   everything is a plain stylesheet with sample-specific class names. */
+
+/* Light theme (default). The palette is the Fluent stylesheet's, on :root; these are the sample's
+   colors that differ between themes. Department accents come from the design and are not palette
+   colors; each text color passes 4.5:1 contrast on its fill. */
+.grid-lite-in-action {
+    --team-directory-canvas: #f7f8fa;
+    --team-directory-divider: var(--ig-gray-300);
+    --team-directory-row-hover: var(--ig-gray-100);
+    --team-directory-control-border: var(--ig-gray-600);
+    --team-directory-muted-text: var(--ig-gray-700);
+    --team-directory-accent-text: var(--ig-primary-900);
+    --team-directory-grid-accent: var(--ig-primary-500);
+    /* success-700 rather than 500, so the Active status keeps 4.5:1 under both the Fluent theme
+       and the Bootstrap theme the samples browser uses. */
+    --team-directory-active-text: var(--ig-success-700);
+    --team-directory-engineering-text: #1e3a8a;
+    --team-directory-engineering-fill: #e8f0ff;
+    --team-directory-engineering-border: #bfd3fb;
+    --team-directory-finance-text: #14532d;
+    --team-directory-finance-fill: #e6f6ec;
+    --team-directory-finance-border: #b7e2c6;
+    --team-directory-marketing-text: #7c2d12;
+    --team-directory-marketing-fill: #fff3dc;
+    --team-directory-marketing-border: #f6d39a;
+    --team-directory-sales-text: #881337;
+    --team-directory-sales-fill: #fdebf0;
+    --team-directory-sales-border: #f5c2d0;
+}
+
+/* Dark theme: the theme button adds .dark-theme to the sample root, and everything below the root
+   (the Lite components, Grid Lite and its cell templates) reads the palette from there. Fluent dark
+   uses the same seeds as Fluent light for every chromatic ramp, so only the gray and surface ramps
+   change. They were generated with the Ignite UI Theming MCP server (create_palette, Fluent dark) and are
+   declared here in full because each shade resolves its var() where it is declared, so shades
+   inherited from :root would keep the light values. */
+.grid-lite-in-action.dark-theme {
+    color-scheme: dark;
+    --ig-theme-variant: dark;
+    --ig-scrollbar-thumb-background: var(--ig-gray-400);
+    --ig-scrollbar-track-background: var(--ig-gray-100);
+
+    --ig-gray-50: hsl(from var(--ig-gray-500) h s 13%);
+    --ig-gray-50-contrast: hsla(from color(from var(--ig-gray-50) var(--y-contrast)) h 0 l/1);
+    --ig-gray-100: hsl(from var(--ig-gray-500) h s 26%);
+    --ig-gray-100-contrast: hsla(from color(from var(--ig-gray-100) var(--y-contrast)) h 0 l/1);
+    --ig-gray-200: hsl(from var(--ig-gray-500) h s 38%);
+    --ig-gray-200-contrast: hsla(from color(from var(--ig-gray-200) var(--y-contrast)) h 0 l/1);
+    --ig-gray-300: hsl(from var(--ig-gray-500) h s 54%);
+    --ig-gray-300-contrast: hsla(from color(from var(--ig-gray-300) var(--y-contrast)) h 0 l/1);
+    --ig-gray-400: hsl(from var(--ig-gray-500) h s 62%);
+    --ig-gray-400-contrast: hsla(from color(from var(--ig-gray-400) var(--y-contrast)) h 0 l/1);
+    --ig-gray-500: hsl(0, 0%, 74%);
+    --ig-gray-500-contrast: hsla(from color(from var(--ig-gray-500) var(--y-contrast)) h 0 l/1);
+    --ig-gray-600: hsl(from var(--ig-gray-500) h s 88%);
+    --ig-gray-600-contrast: hsla(from color(from var(--ig-gray-600) var(--y-contrast)) h 0 l/1);
+    --ig-gray-700: hsl(from var(--ig-gray-500) h s 93%);
+    --ig-gray-700-contrast: hsla(from color(from var(--ig-gray-700) var(--y-contrast)) h 0 l/1);
+    --ig-gray-800: hsl(from var(--ig-gray-500) h s 96%);
+    --ig-gray-800-contrast: hsla(from color(from var(--ig-gray-800) var(--y-contrast)) h 0 l/1);
+    --ig-gray-900: hsl(from var(--ig-gray-500) h s 98%);
+    --ig-gray-900-contrast: hsla(from color(from var(--ig-gray-900) var(--y-contrast)) h 0 l/1);
+    --ig-gray-seed: rgb(188.7, 188.7, 188.7);
+    --ig-gray-seed-contrast: hsla(from color(from var(--ig-gray-seed) var(--y-contrast)) h 0 l/1);
+    --ig-surface-50: hsl(from var(--ig-surface-500) h calc(s * 1.23) calc(l * 1.78));
+    --ig-surface-50-contrast: hsla(from color(from var(--ig-surface-50) var(--y-contrast)) h 0 l/1);
+    --ig-surface-100: hsl(from var(--ig-surface-500) h calc(s * 0.8) calc(l * 1.66));
+    --ig-surface-100-contrast: hsla(from color(from var(--ig-surface-100) var(--y-contrast)) h 0 l/1);
+    --ig-surface-200: hsl(from var(--ig-surface-500) h calc(s * 0.64) calc(l * 1.43));
+    --ig-surface-200-contrast: hsla(from color(from var(--ig-surface-200) var(--y-contrast)) h 0 l/1);
+    --ig-surface-300: hsl(from var(--ig-surface-500) h calc(s * 0.73) calc(l * 1.19));
+    --ig-surface-300-contrast: hsla(from color(from var(--ig-surface-300) var(--y-contrast)) h 0 l/1);
+    --ig-surface-400: hsl(from var(--ig-surface-500) h calc(s * 0.875) calc(l * 1.08));
+    --ig-surface-400-contrast: hsla(from color(from var(--ig-surface-400) var(--y-contrast)) h 0 l/1);
+    --ig-surface-500: #1b1b1b;
+    --ig-surface-500-contrast: hsla(from color(from var(--ig-surface-500) var(--y-contrast)) h 0 l/1);
+    --ig-surface-600: hsl(from var(--ig-surface-500) h calc(s * 1.26) calc(l * 0.89));
+    --ig-surface-600-contrast: hsla(from color(from var(--ig-surface-600) var(--y-contrast)) h 0 l/1);
+    --ig-surface-700: hsl(from var(--ig-surface-500) h calc(s * 1.26) calc(l * 0.81));
+    --ig-surface-700-contrast: hsla(from color(from var(--ig-surface-700) var(--y-contrast)) h 0 l/1);
+    --ig-surface-800: hsl(from var(--ig-surface-500) h calc(s * 1.26) calc(l * 0.73));
+    --ig-surface-800-contrast: hsla(from color(from var(--ig-surface-800) var(--y-contrast)) h 0 l/1);
+    --ig-surface-900: hsl(from var(--ig-surface-500) h calc(s * 1.26) calc(l * 0.64));
+    --ig-surface-900-contrast: hsla(from color(from var(--ig-surface-900) var(--y-contrast)) h 0 l/1);
+    --ig-surface-seed: #1b1b1b;
+    --ig-surface-seed-contrast: hsla(from color(from var(--ig-surface-seed) var(--y-contrast)) h 0 l/1);
+    --ig-surface-A100: hsl(from var(--ig-surface-500) h calc(s * 1.23) calc(l * 1.34));
+    --ig-surface-A100-contrast: hsla(from color(from var(--ig-surface-A100) var(--y-contrast)) h 0 l/1);
+    --ig-surface-A200: hsl(from var(--ig-surface-500) h calc(s * 1.22) calc(l * 1.16));
+    --ig-surface-A200-contrast: hsla(from color(from var(--ig-surface-A200) var(--y-contrast)) h 0 l/1);
+    --ig-surface-A400: hsl(from var(--ig-surface-500) h calc(s * 1.23) calc(l * 0.91));
+    --ig-surface-A400-contrast: hsla(from color(from var(--ig-surface-A400) var(--y-contrast)) h 0 l/1);
+    --ig-surface-A700: hsl(from var(--ig-surface-500) h calc(s * 1.23) calc(l * 0.65));
+    --ig-surface-A700-contrast: hsla(from color(from var(--ig-surface-A700) var(--y-contrast)) h 0 l/1);
+
+    --team-directory-canvas: #111111;
+    --team-directory-divider: var(--ig-gray-100);
+    --team-directory-row-hover: var(--ig-gray-50);
+    --team-directory-control-border: var(--ig-gray-300);
+    --team-directory-muted-text: var(--ig-gray-400);
+    --team-directory-accent-text: var(--ig-primary-100);
+    /* Lighter than the light theme's so the sort arrow (70% opacity) keeps 3:1 on the dark surface. */
+    --team-directory-grid-accent: var(--ig-primary-200);
+    --team-directory-active-text: var(--ig-success-100);
+    --team-directory-engineering-text: #a9c3ff;
+    --team-directory-engineering-fill: #1c2a4d;
+    --team-directory-engineering-border: #34508f;
+    --team-directory-finance-text: #8fdcaa;
+    --team-directory-finance-fill: #13301f;
+    --team-directory-finance-border: #2b6343;
+    --team-directory-marketing-text: #f5c27a;
+    --team-directory-marketing-fill: #3a2a12;
+    --team-directory-marketing-border: #74552a;
+    --team-directory-sales-text: #f4a6bd;
+    --team-directory-sales-fill: #3d1a26;
+    --team-directory-sales-border: #7a3a52;
+}
+
+.grid-lite-in-action {
+    box-sizing: border-box;
+    height: 100%;
+    padding: 24px;
+    background: var(--team-directory-canvas);
+    font-family: var(--ig-font-family);
+    color: var(--ig-gray-900);
+}
+
+.team-directory {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 560px;
+    border: 1px solid var(--team-directory-divider);
+    border-radius: 4px;
+    background: var(--ig-surface-500);
+    overflow: hidden;
+}
+
+.team-directory__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px;
+    padding: 16px 20px 6px;
+}
+
+/* The department chips and the theme switcher. The chips take the free width, which pushes the
+   switcher to the right end; centering lines it up with the chips (with any wrapped rows too). */
+.team-directory__toolbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px 16px 20px;
+    border-bottom: 1px solid var(--team-directory-divider);
+}
+
+/* Two classes, so it outranks the theme's `.ig-typography h2` when the page uses that class. */
+.team-directory .team-directory__title {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    color: var(--ig-gray-900);
+}
+
+.team-directory__count {
+    font-size: 0.8125rem;
+    color: var(--team-directory-muted-text);
+}
+
+/* Flat icon button theme generated with the Ignite UI Theming MCP server (flat-icon-button, Fluent light).
+   Its colors are palette shades, so the dark palette re-colors it too. */
+.team-directory__theme-toggle {
+    --ig-flat-icon-button-shadow-color: transparent;
+    --ig-flat-icon-button-background: transparent;
+    --ig-flat-icon-button-foreground: var(--ig-gray-800);
+    --ig-flat-icon-button-hover-background: hsl(from var(--ig-flat-icon-button-foreground) h s l/0.08);
+    --ig-flat-icon-button-hover-foreground: var(--ig-flat-icon-button-foreground);
+    --ig-flat-icon-button-focus-background: transparent;
+    --ig-flat-icon-button-focus-foreground: var(--ig-flat-icon-button-foreground);
+    --ig-flat-icon-button-focus-hover-background: var(--ig-flat-icon-button-hover-background);
+    --ig-flat-icon-button-focus-hover-foreground: var(--ig-flat-icon-button-foreground);
+    --ig-flat-icon-button-active-background: hsl(from var(--ig-flat-icon-button-foreground) h s l/0.24);
+    --ig-flat-icon-button-active-foreground: var(--ig-flat-icon-button-foreground);
+    --ig-flat-icon-button-border-color: transparent;
+    --ig-flat-icon-button-focus-border-color: var(--ig-gray-700);
+    --ig-flat-icon-button-disabled-background: var(--ig-gray-100);
+    --ig-flat-icon-button-disabled-foreground: var(--ig-gray-500);
+    --ig-flat-icon-button-disabled-border-color: transparent;
+    --ig-flat-icon-button-border-radius: clamp(0rem, calc(var(--ig-radius-factor, 0.1) * 1.25rem), 1.25rem);
+    --ig-flat-icon-button-default-size: 2;
+    flex: none;
+}
+
+/* The grid virtualizes rows only with a bounded height, so it fills whatever the card leaves. */
+.team-directory__grid-host {
+    display: flex;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.team-directory__grid-host .team-directory__grid {
+    flex: 1 1 auto;
+    height: 100%;
+    min-width: 0;
+}
+
+@media (max-width: 600px) {
+    .grid-lite-in-action {
+        padding: 12px;
+    }
+}
+
+.department-filter {
+    display: flex;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+.department-filter__label {
+    margin-inline-end: 4px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--ig-gray-800);
+}
+
+/* Chip theme generated with the Ignite UI Theming MCP server (chip, Fluent light): outlined chips with a
+   light primary tint and the sample's accent text when selected. The tints are opaque mixes with
+   the surface so the derived hover and focus colors keep their contrast, in either theme. */
+.department-filter__chip {
+    --ig-chip-ghost-elevation: var(--ig-elevation-2);
+    --ig-chip-remove-icon-color: 'currentColor';
+    --ig-chip-focus-shadow-color: transparent;
+    --ig-chip-focus-selected-shadow-color: transparent;
+    --ig-chip-remove-icon-color-focus: 'currentColor';
+    --ig-chip-background: var(--ig-gray-200);
+    --ig-chip-ghost-background: var(--ig-primary-500);
+    --ig-chip-ghost-text-color: var(--ig-primary-500-contrast);
+    --ig-chip-hover-text-color: var(--ig-gray-200-contrast);
+    --ig-chip-hover-background: var(--ig-gray-200);
+    --ig-chip-focus-text-color: var(--ig-primary-700-contrast);
+    --ig-chip-selected-text-color: var(--ig-primary-700-contrast);
+    --ig-chip-selected-background: var(--ig-primary-500);
+    --ig-chip-hover-selected-text-color: var(--ig-primary-700-contrast);
+    --ig-chip-hover-selected-background: var(--ig-primary-600);
+    --ig-chip-border-radius: 4px;
+    --ig-chip-disabled-text-color: var(--ig-gray-500);
+    --ig-chip-disabled-background: var(--ig-gray-200);
+    --ig-chip-disabled-selected-text-color: var(--ig-gray-500);
+    --ig-chip-disabled-selected-background: var(--ig-gray-200);
+    --ig-chip-default-size: 2;
+    --ig-chip-outlined-background: var(--ig-surface-500);
+    --ig-chip-outlined-text-color: var(--ig-gray-900);
+    --ig-chip-border-color: var(--team-directory-control-border);
+    --ig-chip-selected-outlined-background: color-mix(in srgb, var(--ig-primary-500) 14%, var(--ig-surface-500));
+    --ig-chip-selected-outlined-text-color: var(--team-directory-accent-text);
+    --ig-chip-selected-border-color: var(--ig-primary-500);
+    --ig-chip-hover-border-color: var(--ig-chip-border-color);
+    --ig-chip-hover-outlined-text-color: var(--ig-gray-900);
+    --ig-chip-hover-selected-border-color: var(--ig-chip-selected-border-color);
+    --ig-chip-hover-selected-outlined-text-color: var(--team-directory-accent-text);
+    --ig-chip-focus-border-color: var(--ig-chip-border-color);
+    --ig-chip-focus-outlined-text-color: var(--ig-gray-900);
+    --ig-chip-focus-selected-border-color: var(--ig-chip-selected-border-color);
+    --ig-chip-focus-selected-outlined-text-color: var(--team-directory-accent-text);
+    --ig-chip-disabled-outlined-background: hsl(from var(--ig-gray-200) h s l/0.3);
+    --ig-chip-disabled-outlined-text-color: var(--ig-gray-500);
+    --ig-chip-disabled-border-color: hsl(from var(--ig-gray-500) h s l/0.3);
+    --ig-chip-disabled-selected-outlined-background: hsl(from var(--ig-gray-200) h s l/0.3);
+    --ig-chip-disabled-selected-outlined-text-color: var(--ig-gray-500);
+    --ig-chip-disabled-selected-border-color: hsl(from var(--ig-gray-500) h s l/0.3);
+    --ig-chip-text-color: var(--ig-gray-700);
+    --ig-chip-focus-background: var(--ig-primary-600);
+    --ig-chip-focus-selected-text-color: var(--ig-primary-700-contrast);
+    --ig-chip-focus-selected-background: var(--ig-primary-800);
+    --ig-chip-hover-outlined-background: var(--ig-gray-100);
+    --ig-chip-hover-selected-outlined-background: color-mix(in srgb, var(--ig-primary-500) 20%, var(--ig-surface-500));
+    --ig-chip-focus-outlined-background: lch(from var(--ig-chip-outlined-background) calc(l + (50 - l) * 0.1 + sign(50 - l) * 7) c h);
+    --ig-chip-focus-selected-outlined-background: lch(from var(--ig-chip-selected-outlined-background) calc(l + (50 - l) * 0.1 + sign(50 - l) * 7) c h);
+    /* The large size gives the chips a comfortable touch target. */
+    --ig-size: var(--ig-size-large);
+}
+
+/* No token covers the label weight: regular until selected, like the design. */
+.department-filter__chip::part(base) {
+    font-size: 0.8125rem;
+    font-weight: 400;
+}
+
+.department-filter__chip[selected]::part(base) {
+    font-weight: 600;
+}
+
+.department-filter__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--department-accent);
+}
+
+.department-filter__dot--engineering {
+    --department-accent: var(--team-directory-engineering-text);
+}
+
+.department-filter__dot--finance {
+    --department-accent: var(--team-directory-finance-text);
+}
+
+.department-filter__dot--marketing {
+    --department-accent: var(--team-directory-marketing-text);
+}
+
+.department-filter__dot--sales {
+    --department-accent: var(--team-directory-sales-text);
+}
+
+.department-filter__count {
+    font-weight: 400;
+    color: var(--team-directory-muted-text);
+}
+
+.department-filter__chip[selected] .department-filter__count {
+    color: inherit;
+}
+
+/* Grid Lite theme generated with the Ignite UI Theming MCP server (grid, Fluent light): white header with
+   gray-800 text, and the sample's per-theme accent, row hover and divider colors. */
+.team-directory__grid {
+    --ig-grid-grid-elevation: var(--ig-elevation-0);
+    --ig-grid-drag-elevation: var(--ig-elevation-1);
+    --ig-grid-grouparea-color: color-mix(in srgb, var(--ig-grid-header-text-color) 60%, var(--ig-grid-header-background));
+    --ig-grid-grouparea-background: var(--ig-grid-header-background);
+    --ig-grid-drop-area-text-color: color-mix(in srgb, var(--ig-grid-header-text-color) 80%, var(--ig-grid-header-background));
+    --ig-grid-drop-area-icon-color: var(--ig-grid-drop-area-text-color);
+    --ig-grid-drop-area-background: lch(from var(--ig-grid-header-background) calc(l + (50 - l) * 0.1 + sign(50 - l) * 5) c h);
+    --ig-grid-drop-area-on-drop-background: lch(from var(--ig-grid-header-background) calc(l + (50 - l) * 0.1 + sign(50 - l) * 5) c h);
+    --ig-grid-header-background: var(--ig-surface-500);
+    --ig-grid-sortable-header-icon-hover-color: var(--ig-grid-accent-color);
+    --ig-grid-sorted-header-icon-color: hsl(from var(--ig-grid-accent-color) h s l/0.7);
+    --ig-grid-header-border-width: 0.0625rem;
+    --ig-grid-header-border-style: solid;
+    --ig-grid-header-border-color: color-mix(in srgb, var(--ig-grid-header-text-color) 20%, var(--ig-grid-header-background));
+    --ig-grid-action-border-color: color-mix(in srgb, var(--ig-grid-foreground) 20%, var(--ig-grid-background));
+    --ig-grid-ghost-header-background: var(--ig-grid-header-background);
+    --ig-grid-ghost-header-text-color: var(--ig-grid-header-text-color);
+    --ig-grid-ghost-header-icon-color: var(--ig-grid-header-text-color);
+    --ig-grid-excel-filtering-header-foreground: var(--ig-grid-foreground);
+    --ig-grid-excel-filtering-subheader-foreground: var(--ig-grid-foreground);
+    --ig-grid-excel-filtering-actions-foreground: var(--ig-grid-foreground);
+    --ig-grid-excel-filtering-actions-icon-color: var(--ig-grid-foreground);
+    --ig-grid-excel-filtering-actions-hover-foreground: var(--ig-grid-foreground);
+    --ig-grid-excel-filtering-actions-hover-icon-color: var(--ig-grid-foreground);
+    --ig-grid-excel-filtering-actions-selected-icon-color: var(--ig-grid-accent-color);
+    --ig-grid-excel-filtering-actions-hover-background: color-mix(in srgb, var(--ig-grid-accent-color) 8%, var(--ig-grid-background));
+    --ig-grid-excel-filtering-actions-disabled-foreground: color-mix(in srgb, var(--ig-grid-foreground) 50%, var(--ig-grid-background));
+    --ig-grid-excel-filtering-border-color: color-mix(in srgb, var(--ig-grid-foreground) 16%, var(--ig-grid-background));
+    --ig-grid-grid-border-color: color-mix(in srgb, var(--ig-grid-foreground) 12%, var(--ig-grid-background));
+    --ig-grid-content-background: var(--ig-grid-background);
+    --ig-grid-content-text-color: var(--ig-grid-foreground);
+    --ig-grid-row-odd-background: var(--ig-grid-background);
+    --ig-grid-row-even-background: var(--ig-grid-background);
+    --ig-grid-body-column-border-color-odd: var(--ig-grid-background);
+    --ig-grid-body-column-border-color-even: var(--ig-grid-background);
+    --ig-grid-row-odd-text-color: var(--ig-grid-foreground);
+    --ig-grid-row-even-text-color: inherit;
+    --ig-grid-tree-selected-filtered-row-text-color: var(--ig-gray-400);
+    --ig-grid-row-selected-text-color: var(--ig-grid-foreground);
+    --ig-grid-row-hover-background: var(--team-directory-row-hover);
+    --ig-grid-body-column-hover-border-color: var(--team-directory-row-hover);
+    --ig-grid-row-hover-text-color: var(--ig-grid-foreground);
+    --ig-grid-row-border-width: 0.0625rem;
+    --ig-grid-row-border-style: solid;
+    --ig-grid-row-border-color: var(--team-directory-divider);
+    --ig-grid-row-drag-color: var(--ig-grid-foreground);
+    --ig-grid-pinned-border-width: 0.125rem;
+    --ig-grid-pinned-border-style: solid;
+    --ig-grid-pinned-border-color: color-mix(in srgb, var(--ig-grid-foreground) 20%, var(--ig-grid-background));
+    --ig-grid-cell-active-border-width: 0.0625rem;
+    --ig-grid-cell-active-border-color: var(--ig-grid-accent-color);
+    --ig-grid-cell-selected-background: color-mix(in srgb, var(--ig-grid-accent-color) 24%, var(--ig-grid-background));
+    --ig-grid-tree-selected-filtered-cell-text-color: var(--ig-secondary-500);
+    --ig-grid-cell-selected-text-color: var(--ig-grid-foreground);
+    --ig-grid-cell-editing-background: var(--ig-grid-background);
+    --ig-grid-cell-editing-foreground: var(--ig-grid-foreground);
+    --ig-grid-cell-editing-focus-foreground: var(--ig-grid-foreground);
+    --ig-grid-edit-mode-color: var(--ig-grid-accent-color);
+    --ig-grid-edited-row-indicator: color-mix(in srgb, var(--ig-grid-foreground) 16%, var(--ig-grid-background));
+    --ig-grid-cell-new-color: var(--ig-grid-foreground);
+    --ig-grid-cell-edited-value-color: color-mix(in srgb, var(--ig-grid-foreground) 80%, var(--ig-grid-background));
+    --ig-grid-cell-disabled-color: color-mix(in srgb, var(--ig-grid-foreground) 50%, var(--ig-grid-background));
+    --ig-grid-resize-line-color: var(--ig-grid-accent-color);
+    --ig-grid-drop-indicator-color: var(--ig-grid-accent-color);
+    --ig-grid-group-label-column-name-text: var(--ig-grid-accent-color);
+    --ig-grid-group-label-icon: var(--ig-grid-accent-color);
+    --ig-grid-group-label-text: color-mix(in srgb, var(--ig-grid-foreground) 80%, var(--ig-grid-background));
+    --ig-grid-expand-all-icon-color: color-mix(in srgb, var(--ig-grid-foreground) 70%, var(--ig-grid-background));
+    --ig-grid-expand-all-icon-hover-color: color-mix(in srgb, var(--ig-grid-foreground) 80%, var(--ig-grid-background));
+    --ig-grid-expand-icon-color: color-mix(in srgb, var(--ig-grid-foreground) 60%, var(--ig-grid-background));
+    --ig-grid-expand-icon-hover-color: color-mix(in srgb, var(--ig-grid-foreground) 70%, var(--ig-grid-background));
+    --ig-grid-active-expand-icon-color: var(--ig-gray-500);
+    --ig-grid-active-expand-icon-hover-color: var(--ig-primary-500);
+    --ig-grid-group-count-background: color-mix(in srgb, var(--ig-grid-foreground) 12%, var(--ig-grid-background));
+    --ig-grid-group-count-text-color: var(--ig-grid-foreground);
+    --ig-grid-group-row-background: color-mix(in srgb, var(--ig-grid-foreground) 6%, var(--ig-grid-background));
+    --ig-grid-group-row-selected-background: color-mix(in srgb, var(--ig-grid-foreground) 6%, var(--ig-grid-background));
+    --ig-grid-filtering-header-background: var(--ig-grid-background);
+    --ig-grid-filtering-header-text-color: var(--ig-grid-foreground);
+    --ig-grid-filtering-row-background: var(--ig-grid-background);
+    --ig-grid-filtering-row-text-color: var(--ig-grid-foreground);
+    --ig-grid-filtering-dialog-background: var(--ig-grid-background);
+    --ig-grid-tree-filtered-text-color: var(--ig-gray-500);
+    --ig-grid-row-highlight: var(--ig-grid-accent-color);
+    --ig-grid-row-ghost-background: var(--ig-grid-background);
+    --ig-grid-row-ghost-border-color: hsl(from color-mix(in srgb, var(--ig-grid-foreground) 16%, var(--ig-grid-background)) h s l/0.38);
+    --ig-grid-drop-area-border-radius: clamp(0rem, calc(var(--ig-radius-factor, 0.125) * 1rem), 1rem);
+    --ig-grid-summaries-border-color: var(--ig-gray-400);
+    --ig-grid-summaries-patch-background: color-mix(in srgb, var(--ig-grid-foreground) 12%, var(--ig-grid-background));
+    --ig-grid-active-state-border-style: solid;
+    --ig-grid-header-text-color: var(--ig-gray-800);
+    --ig-grid-header-selected-background: color-mix(in srgb, var(--ig-grid-accent-color) 12%, var(--ig-grid-header-background));
+    --ig-grid-header-selected-text-color: var(--ig-grid-header-text-color);
+    --ig-grid-row-selected-background: color-mix(in srgb, var(--ig-grid-accent-color) 12%, var(--ig-grid-background));
+    --ig-grid-row-selected-hover-background: color-mix(in srgb, var(--ig-grid-accent-color) 16%, var(--ig-grid-background));
+    --ig-grid-row-selected-hover-text-color: var(--ig-grid-foreground);
+    --ig-grid-body-column-selected-border-color: color-mix(in srgb, var(--ig-grid-accent-color) 16%, var(--ig-grid-background));
+    --ig-grid-body-column-hover-selected-border-color: color-mix(in srgb, var(--ig-grid-accent-color) 12%, var(--ig-grid-background));
+    --ig-grid-cell-selected-within-background: color-mix(in srgb, var(--ig-grid-accent-color) 24%, var(--ig-grid-background));
+    --ig-grid-cell-selected-within-text-color: var(--ig-grid-foreground);
+    --ig-grid-background: var(--ig-surface-500);
+    --ig-grid-foreground: var(--ig-gray-900);
+    --ig-grid-accent-color: var(--team-directory-grid-accent);
+}
+
+/* Grid Lite 1.0 wraps every virtualized row in its own element, so each row matches the row's
+   own `:host(:last-of-type) { border-bottom: 0 }` rule and no divider is drawn. A document rule
+   on the exported row part wins over that, so the theme's divider is restored here. */
+.team-directory__grid::part(row) {
+    border-block-end: var(--ig-grid-row-border-width) var(--ig-grid-row-border-style) var(--ig-grid-row-border-color);
+}
+
+/* Employee: avatar, name and e-mail. The vertical padding sets the row height. */
+.team-directory__person {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+    padding-block: 14px;
+}
+
+/* Avatar theme generated with the Ignite UI Theming MCP server (avatar, Fluent light). Every tone only swaps
+   the background; the initials color is derived from it for contrast. */
+.team-directory__avatar {
+    --ig-avatar-color: hsla(from color(from var(--ig-avatar-background) var(--y-contrast)) h 0 l/1);
+    --ig-avatar-icon-color: hsla(from color(from var(--ig-avatar-background) var(--y-contrast)) h 0 l/1);
+    --ig-avatar-border-radius: 0.5rem;
+    --ig-avatar-default-size: 1;
+    flex: none;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px var(--ig-surface-500), 0 0 0 4px var(--team-directory-divider);
+}
+
+.team-directory__avatar::part(initials) {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.team-directory__avatar--tone-0 {
+    --ig-avatar-background: #005a9e;
+}
+
+.team-directory__avatar--tone-1 {
+    --ig-avatar-background: #6b4ba1;
+}
+
+.team-directory__avatar--tone-2 {
+    --ig-avatar-background: #036c70;
+}
+
+.team-directory__avatar--tone-3 {
+    --ig-avatar-background: #a4262c;
+}
+
+.team-directory__avatar--tone-4 {
+    --ig-avatar-background: #8e562e;
+}
+
+.team-directory__avatar--tone-5 {
+    --ig-avatar-background: #393939;
+}
+
+.team-directory__person-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.team-directory__name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--ig-gray-900);
+}
+
+.team-directory__email {
+    overflow: hidden;
+    font-size: 0.8125rem;
+    color: var(--team-directory-muted-text);
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.team-directory__email:hover,
+.team-directory__email:focus-visible {
+    color: var(--team-directory-accent-text);
+    text-decoration: underline;
+}
+
+/* Department pill */
+.team-directory__department {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border: 1px solid var(--department-border);
+    border-radius: 9999px;
+    background: var(--department-fill);
+    color: var(--department-text);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.team-directory__department-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.team-directory__department--engineering {
+    --department-text: var(--team-directory-engineering-text);
+    --department-fill: var(--team-directory-engineering-fill);
+    --department-border: var(--team-directory-engineering-border);
+}
+
+.team-directory__department--finance {
+    --department-text: var(--team-directory-finance-text);
+    --department-fill: var(--team-directory-finance-fill);
+    --department-border: var(--team-directory-finance-border);
+}
+
+.team-directory__department--marketing {
+    --department-text: var(--team-directory-marketing-text);
+    --department-fill: var(--team-directory-marketing-fill);
+    --department-border: var(--team-directory-marketing-border);
+}
+
+.team-directory__department--sales {
+    --department-text: var(--team-directory-sales-text);
+    --department-fill: var(--team-directory-sales-fill);
+    --department-border: var(--team-directory-sales-border);
+}
+
+/* Satisfaction */
+.team-directory__satisfaction {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Rating theme generated with the Ignite UI Theming MCP server (rating, Fluent light). */
+.team-directory__rating {
+    --ig-rating-label-color: var(--ig-gray-900);
+    --ig-rating-value-label: var(--ig-gray-900);
+    --ig-rating-symbol-empty-color: var(--ig-gray-600);
+    --ig-rating-symbol-full-color: #c25e00;
+    --ig-rating-symbol-empty-filter: grayscale(100%) opacity(50%);
+    --ig-rating-symbol-full-filter: none;
+    --ig-rating-disabled-label-color: var(--ig-gray-400);
+    --ig-rating-disabled-value-label: var(--ig-gray-400);
+    --ig-rating-disabled-empty-symbol-color: var(--ig-warn-100);
+    --ig-rating-disabled-full-symbol-color: var(--ig-warn-100);
+    --ig-rating-symbol-size: 16px;
+    --ig-rating-default-size: 2;
+}
+
+.team-directory__rating::part(label) {
+    display: none;
+}
+
+.team-directory__rating-value {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--team-directory-muted-text);
+}
+
+/* Status */
+.team-directory__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+.team-directory__status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.team-directory__status--active {
+    color: var(--team-directory-active-text);
+}
+
+.team-directory__status--inactive {
+    color: var(--team-directory-muted-text);
+}
+
+.team-directory__status--inactive .team-directory__status-dot {
+    background: var(--ig-gray-500);
+}

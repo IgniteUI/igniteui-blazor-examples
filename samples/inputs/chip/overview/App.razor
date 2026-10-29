@@ -1,14 +1,69 @@
 @using IgniteUI.Blazor.Controls
+@inject IJSRuntime JS
 
-
-<div class="container sample vertical">
-    <IgbChip class="size-medium" Selectable=true Removable=true RemoveScript="handleChipRemove">
-        Chip
-    </IgbChip>
+<div class="container sample chip-overview">
+    <div class="profile-card">
+        <div>
+            <span class="section-header" id="name-header">Name</span>
+            <IgbInput class="name-input" Outlined="true" Value="Jordan Lee" aria-labelledby="name-header" />
+        </div>
+        <div>
+            <span class="section-header" id="skills-header">Skills &middot; @SelectedSkills.Count selected</span>
+            <div class="chip-group" id="chip-overview-skills" role="group" aria-labelledby="skills-header">
+                @foreach (var skill in Skills)
+                {
+                    <IgbChip @key="skill" class="skill" Selectable="true" Selected="@SelectedSkills.Contains(skill)" Select="@(args => ToggleSkill(skill, args.Detail))">@skill</IgbChip>
+                }
+            </div>
+        </div>
+        <div>
+            <span class="section-header" id="selected-header">Selected</span>
+            <div class="chip-group" id="chip-overview-selected" role="group" aria-labelledby="selected-header">
+                @foreach (var skill in SelectedInOrder)
+                {
+                    <IgbChip @key="skill" class="skill" Removable="true" Remove="@(args => RemoveSkill(skill))">@skill</IgbChip>
+                }
+            </div>
+        </div>
+        <div class="actions">
+            <IgbButton>Save profile</IgbButton>
+        </div>
+    </div>
 </div>
 
 @code {
+    private readonly string[] Skills = { "Figma", "React", "CSS", "Prototyping", "Motion Design" };
+    private readonly HashSet<string> SelectedSkills = new HashSet<string> { "Prototyping", "Motion Design" };
+    private (string Skill, int Index)? Removed;
 
-    private IgbIcon RegisterIconRef { get; set; }
+    // Both groups list the selected skills in the order of the skills list.
+    private IEnumerable<string> SelectedInOrder => Skills.Where(SelectedSkills.Contains);
 
+    private void ToggleSkill(string skill, bool selected)
+    {
+        if (selected)
+        {
+            SelectedSkills.Add(skill);
+        }
+        else
+        {
+            SelectedSkills.Remove(skill);
+        }
+    }
+
+    private void RemoveSkill(string skill)
+    {
+        Removed = (skill, SelectedInOrder.ToList().IndexOf(skill));
+        SelectedSkills.Remove(skill);
+    }
+
+    // The removed chip is gone, so move focus to the next selected skill, or back to the skill itself when none is left.
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (Removed is { } removed)
+        {
+            Removed = null;
+            await JS.InvokeVoidAsync("chipOverviewSample.focusAfterRemove", removed.Index, Array.IndexOf(Skills, removed.Skill));
+        }
+    }
 }
