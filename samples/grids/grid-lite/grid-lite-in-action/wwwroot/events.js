@@ -80,7 +80,68 @@
         }
     };
 
+    // The hidden column the department chips filter on stays hidden whatever the layout does.
+    const CHIP_FILTER_FIELD = 'QuickFilterDepartment';
+
+    // The two columns that stay in the narrowest layout get smaller minimum widths there, which the
+    // compact cell padding (index.css) makes room for. Every other layout uses the widths of App.razor.
+    const COMPACT_WIDTHS = { Name: 'minmax(150px, 2fr)', Department: 'minmax(125px, 1fr)' };
+
+    // What the layout asks of each grid host: the fields to hide and whether the columns are compact.
+    // Kept here so a column list the grid builds later (configureColumns) starts from the same state.
+    const layouts = new WeakMap();
+
+    // The widths App.razor declared, read from the first column list seen and put back when the layout
+    // is no longer compact.
+    const declaredWidths = new WeakMap();
+
+    // Applies the layout to the grid's own column list, which is where the grid reads it from once
+    // configureColumns has replaced the slotted columns.
+    function applyLayout(host, grid) {
+        const layout = layouts.get(host);
+        if (!layout || !grid.columns.length) {
+            return;
+        }
+        if (!declaredWidths.has(host)) {
+            declaredWidths.set(host, Object.fromEntries(grid.columns.map(config => [config.field, config.width])));
+        }
+        const declared = declaredWidths.get(host);
+        grid.columns = grid.columns.map(config => Object.assign({}, config, {
+            hidden: config.field === CHIP_FILTER_FIELD || layout.hidden.has(config.field),
+            width: (layout.compact && COMPACT_WIDTHS[config.field]) || declared[config.field]
+        }));
+    }
+
+    // One observer per grid host. It reports the host's width to the component once per frame at
+    // most; the component only calls back into the grid when the width crosses into another layout tier.
+    const widthObservers = new WeakMap();
+
     window.gridLiteInAction = {
+        // Reports the host's width to `component.OnHostWidthChanged`: now, and on every resize.
+        observeWidth: function (host, component) {
+            let frame = 0;
+            const report = () => {
+                frame = 0;
+                component.invokeMethodAsync('OnHostWidthChanged', host.clientWidth);
+            };
+            const observer = new ResizeObserver(() => {
+                if (!frame) {
+                    frame = requestAnimationFrame(report);
+                }
+            });
+            observer.observe(host);
+            widthObservers.set(host, { observer, cancel: () => cancelAnimationFrame(frame) });
+        },
+
+        stopObservingWidth: function (host) {
+            const entry = widthObservers.get(host);
+            if (entry) {
+                entry.observer.disconnect();
+                entry.cancel();
+                widthObservers.delete(host);
+            }
+        },
+
         // Adds the cell templates and the sort comparer to the grid's columns.
         configureColumns: async function (host) {
             await customElements.whenDefined('igc-grid-lite');
@@ -95,6 +156,15 @@
             // elements upgrade before the grid, so a later change on them does not reach it. Hand the
             // grid its current configuration (the getter returns every setting) with the additions.
             grid.columns = grid.columns.map(config => Object.assign({}, config, columnSettings[config.field]));
+            applyLayout(host, grid);
+        },
+
+        // Shows every column except these fields (and the chip filter's), narrowing the two that stay
+        // when `compact`.
+        setLayout: async function (host, fields, compact) {
+            await customElements.whenDefined('igc-grid-lite');
+            layouts.set(host, { hidden: new Set(fields), compact: compact });
+            applyLayout(host, host.querySelector('igc-grid-lite'));
         },
 
         // Returns how many rows pass the grid's current filters.
