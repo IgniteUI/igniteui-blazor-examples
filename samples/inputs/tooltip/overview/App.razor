@@ -1,16 +1,65 @@
 @using IgniteUI.Blazor.Controls
 
-<style>
-    igc-avatar {
-        --ig-size: var(--ig-size-medium);
-    }
-</style>
-
 <div class="container sample">
-    <IgbAvatar id="avatar" Shape="AvatarShape.Circle" Src="https://dl.infragistics.com/x/img/avatars/10.jpg" />
-    <IgbTooltip Placement="PopoverPlacement.BottomStart" Anchor="avatar" DisableArrow="true">
-        Her name is Madelyn James
+    <div class="settings">
+        <IgbRadioGroup Alignment="ContentOrientation.Horizontal">
+            @foreach (var item in Placements)
+            {
+                <IgbRadio name="placement"
+                          Value="@item.Label"
+                          Checked="@(Placement == item.Value)"
+                          Change="@(args => OnPlacementChange(args, item.Value))">
+                    <span>@item.Label</span>
+                </IgbRadio>
+            }
+        </IgbRadioGroup>
+        <IgbSwitch LabelPosition="ToggleLabelPosition.Before"
+                   Checked="CloseButton"
+                   Change="@(args => CloseButton = args.Detail.Checked)">
+            <span>Close Button</span>
+        </IgbSwitch>
+        <IgbSwitch LabelPosition="ToggleLabelPosition.Before"
+                   Checked="Arrow"
+                   Change="@(args => Arrow = args.Detail.Checked)">
+            <span>Arrow</span>
+        </IgbSwitch>
+    </div>
+    <div id="target" class="target"></div>
+    <IgbTooltip Anchor="target"
+                Placement="Placement"
+                WithArrow="Arrow"
+                Sticky="CloseButton"
+                Open="true">
+        This is a tooltip message
+        <br />
+        Multiline message here.
     </IgbTooltip>
 </div>
 
-@code { }
+@code {
+    private class PlacementOption
+    {
+        public string Label { get; set; }
+        public PopoverPlacement Value { get; set; }
+    }
+
+    private List<PlacementOption> Placements { get; set; } = new List<PlacementOption>
+    {
+        new PlacementOption { Label = "Top", Value = PopoverPlacement.Top },
+        new PlacementOption { Label = "Right", Value = PopoverPlacement.Right },
+        new PlacementOption { Label = "Left", Value = PopoverPlacement.Left },
+        new PlacementOption { Label = "Bottom", Value = PopoverPlacement.Bottom },
+    };
+
+    private PopoverPlacement Placement { get; set; } = PopoverPlacement.Bottom;
+    private bool CloseButton { get; set; } = true;
+    private bool Arrow { get; set; } = true;
+
+    private void OnPlacementChange(IgbRadioChangeEventArgs args, PopoverPlacement value)
+    {
+        if (args.Detail.Checked)
+        {
+            this.Placement = value;
+        }
+    }
+}

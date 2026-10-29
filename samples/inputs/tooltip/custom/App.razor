@@ -1,0 +1,105 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample">
+    <IgbList id="income-taxes" class="trigger taxes-trigger">
+        <IgbListItem>
+            <span slot="title">Individual Income Taxes</span>
+            <span slot="end" class="amount">($2.4T)</span>
+        </IgbListItem>
+    </IgbList>
+    <IgbTooltip Anchor="income-taxes"
+                Placement="PopoverPlacement.BottomStart"
+                class="custom-tooltip chart-tooltip"
+                Opened="OnChartTooltipOpened">
+        <span class="tooltip-title">Individual Income Taxes</span>
+        <div class="chart">
+            <IgbCategoryChart @ref="ChartRef"
+                              Width="100%"
+                              Height="100%"
+                              ChartType="CategoryChartType.SplineArea"
+                              DataSource="IncomeTaxesData"
+                              IncludedProperties="@(new string[] { "Year", "Revenue" })"
+                              Brushes="#9de772"
+                              Outlines="#9de772"
+                              AreaFillOpacity="0.5"
+                              Thickness="2"
+                              ToolTipType="ToolTipType.None"
+                              IsHorizontalZoomEnabled="false"
+                              IsVerticalZoomEnabled="false"
+                              YAxisMinimumValue="0"
+                              YAxisMaximumValue="60"
+                              YAxisInterval="20"
+                              YAxisTitle="IFT"
+                              YAxisMajorStroke="transparent"
+                              XAxisStroke="#9e9e9e"
+                              XAxisTickStroke="#9e9e9e"
+                              XAxisTickLength="8"
+                              XAxisLabelTextColor="#616161"
+                              XAxisLabelTextStyle="400 10px 'Titillium Web'"
+                              YAxisLabelTextColor="#616161"
+                              YAxisLabelTextStyle="400 10px 'Titillium Web'"
+                              YAxisTitleTextColor="#212121"
+                              YAxisTitleTextStyle="400 10px 'Titillium Web'" />
+        </div>
+        <span class="tooltip-description">
+            In fiscal year (FY) 2024, the largest source of federal revenue was
+            Individual Income Taxes (49.3% of total revenue).
+        </span>
+    </IgbTooltip>
+    <IgbList id="employee" class="trigger employee-trigger">
+        <IgbListItem>
+            <div slot="start" class="avatar">
+                <IgbAvatar Src="@AvatarUrl" Shape="AvatarShape.Circle" Alt="Eliza Morales" />
+                <IgbBadge Variant="StyleVariant.Danger">
+                    <IgbIcon @ref="IconRef" IconName="block" Collection="material" />
+                </IgbBadge>
+            </div>
+            <span slot="title">Eliza Morales</span>
+        </IgbListItem>
+    </IgbList>
+    <IgbTooltip Anchor="employee" Placement="PopoverPlacement.BottomStart" class="custom-tooltip employee-tooltip">
+        <div class="avatar">
+            <IgbAvatar Src="@AvatarUrl" Shape="AvatarShape.Circle" Alt="Eliza Morales" />
+            <IgbBadge Variant="StyleVariant.Danger">
+                <IgbIcon IconName="block" Collection="material" />
+            </IgbBadge>
+        </div>
+        <div class="employee-details">
+            <span class="tooltip-title">Eliza Morales</span>
+            <span>Software Engineer</span>
+            <span>In a meeting</span>
+            <span>Available at 2:00 pm</span>
+        </div>
+    </IgbTooltip>
+</div>
+
+@code {
+    private const string BlockIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9A7.902 7.902 0 0 1 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1A7.902 7.902 0 0 1 20 12c0 4.42-3.58 8-8 8z'/></svg>";
+    private const string AvatarUrl = "https://dl.infragistics.com/x/img/avatars/avatar-profile-06.png";
+
+    private IgbIcon IconRef;
+    private IgbCategoryChart ChartRef;
+    private IncomeTaxes IncomeTaxesData { get; } = new IncomeTaxes();
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender && IconRef != null)
+        {
+            IconRef.EnsureReady().ContinueWith(_ =>
+            {
+                IconRef.RegisterIconFromText("block", BlockIcon, "material");
+            });
+        }
+
+        if (firstRender && ChartRef != null)
+        {
+            ChartRef.MarkerTypes.Clear();
+            ChartRef.MarkerTypes.Add(MarkerType.None);
+        }
+    }
+
+    private async Task OnChartTooltipOpened()
+    {
+        await ChartRef.NotifyResizedAsync();
+    }
+}
