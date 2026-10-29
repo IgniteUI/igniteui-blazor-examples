@@ -1,30 +1,18 @@
 @using IgniteUI.Blazor.Controls
 
-<div class="container vertical">
-    <IgbButton @onclick="OnDialogShow" Variant=@ButtonVariant.Contained>Show Dialog</IgbButton>
-    <IgbDialog @ref="DialogRef" Title="Confirmation">
-        <p>Are you sure you want to delete the Annual_Report_2016.pdf and Annual_Report_2017.pdf files?</p>
-        <IgbButton slot="footer" @onclick="OnDialogHide" Variant=@ButtonVariant.Flat>Cancel</IgbButton>
-        <IgbButton slot="footer" @onclick="OnDialogHide" Variant=@ButtonVariant.Flat>OK</IgbButton>
+<div class="container sample">
+    <IgbButton class="open-button" Variant="ButtonVariant.Outlined" @onclick="ShowDialog">Open dialog</IgbButton>
+    <IgbDialog Title="Confirmation" Open="IsOpen" Closed="@(args => IsOpen = false)">
+        <span slot="message">Your email will be permanently deleted</span>
+        <IgbButton slot="footer" Variant="ButtonVariant.Flat" @onclick="HideDialog">Cancel</IgbButton>
+        <IgbButton slot="footer" Variant="ButtonVariant.Flat" @onclick="HideDialog">OK</IgbButton>
     </IgbDialog>
 </div>
 
 @code {
-    public IgbDialog DialogRef;
+    private bool IsOpen { get; set; } = true;
 
-    public async Task OnDialogShow()
-    {
-        if (this.DialogRef != null)
-        {
-            await this.DialogRef.ShowAsync();
-        }
-    }
+    private void ShowDialog() => IsOpen = true;
 
-    public async Task OnDialogHide()
-    {
-        if (this.DialogRef != null)
-        {
-            await this.DialogRef.HideAsync();
-        }
-    }
+    private void HideDialog() => IsOpen = false;
 }
