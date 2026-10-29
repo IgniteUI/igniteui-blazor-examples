@@ -49,6 +49,22 @@
                            @onclick="ToggleTheme" />
         </div>
 
+        @* Shown only while the layout hides columns, so they stay reachable: the chip brings all of them
+           back, and the grid scrolls sideways. *@
+        @if (tier > LayoutTier.Full)
+        {
+            <div class="team-directory__columns-bar">
+                <span class="team-directory__columns-info" aria-live="polite">@ColumnsInfo</span>
+                <IgbChip class="department-filter__chip team-directory__columns-chip"
+                         Outlined="true"
+                         Selectable="true"
+                         Selected="showAllColumns"
+                         SelectedChanged="ToggleAllColumnsAsync">
+                    Show all columns
+                </IgbChip>
+            </div>
+        }
+
         <div class="team-directory__grid-host" @ref="gridHost">
             <IgbGridLite @ref="grid"
                          TItem="TeamMember"
@@ -120,6 +136,10 @@
         _ => LayoutTier.Minimal
     };
 
+    // Columns the user can see: Employee, Department, Employment, Satisfaction, Registered, Status and
+    // Location. The hidden quick-filter column does not count.
+    private const int DataColumnCount = 7;
+
     // The columns a tier drops. They are hidden through the grid's own column list (events.js): the
     // grid reads its column elements once, so a Hidden parameter changed later would not reach it.
     private static string[] HiddenFieldsFor(LayoutTier tier) => new[]
@@ -146,6 +166,7 @@
     private int visibleCount;
     private bool isDark;
     private LayoutTier tier = LayoutTier.Full;
+    private bool showAllColumns;
     private DotNetObjectReference<App> selfReference;
 
     private IgbGridLite<TeamMember> grid;
@@ -192,9 +213,24 @@
         if (next != tier)
         {
             tier = next;
-            await JSRuntime.InvokeVoidAsync("gridLiteInAction.setHiddenColumns", gridHost, HiddenFieldsFor(tier));
+            await ApplyColumnVisibilityAsync();
+            await InvokeAsync(StateHasChanged);
         }
     }
+
+    private Task ToggleAllColumnsAsync(bool selected)
+    {
+        showAllColumns = selected;
+        return ApplyColumnVisibilityAsync();
+    }
+
+    // The chip overrides the layout: every column shows and the grid scrolls sideways.
+    private string[] HiddenFields => showAllColumns ? Array.Empty<string>() : HiddenFieldsFor(tier);
+
+    private string ColumnsInfo => $"{DataColumnCount - HiddenFields.Length} of {DataColumnCount} columns shown";
+
+    private Task ApplyColumnVisibilityAsync() =>
+        JSRuntime.InvokeVoidAsync("gridLiteInAction.setHiddenColumns", gridHost, HiddenFields).AsTask();
 
     public async ValueTask DisposeAsync()
     {
