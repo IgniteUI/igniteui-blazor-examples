@@ -156,6 +156,23 @@
     border-bottom: 1px solid var(--team-directory-divider);
 }
 
+/* Says how many columns the layout shows and offers all of them. The chip reuses the department
+   chips' theme through their class. */
+.team-directory__columns-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 12px;
+    padding: 8px 12px 8px 20px;
+    border-bottom: 1px solid var(--team-directory-divider);
+}
+
+.team-directory__columns-info {
+    font-size: 0.8125rem;
+    color: var(--team-directory-muted-text);
+}
+
 /* Two classes, so it outranks the theme's `.ig-typography h2` when the page uses that class. */
 .team-directory .team-directory__title {
     margin: 0;
@@ -436,6 +453,16 @@
     --ig-grid-accent-color: var(--team-directory-grid-accent);
 }
 
+/* The narrowest layout (two columns) packs them tighter so they fit a 320 px screen: the small size cuts the
+   cells' side padding from 24 to 8 px, and the person and pill spacing shrink through the custom properties
+   the cell templates read. The columns' minimum widths are lowered to match in events.js. */
+.team-directory__grid--compact {
+    --ig-size: var(--ig-size-small);
+    --team-directory-person-gap: 10px;
+    --team-directory-pill-gap: 4px;
+    --team-directory-pill-padding-inline: 8px;
+}
+
 /* Grid Lite 1.0 wraps every virtualized row in its own element, so each row matches the row's
    own `:host(:last-of-type) { border-bottom: 0 }` rule and no divider is drawn. A document rule
    on the exported row part wins over that, so the theme's divider is restored here. */
@@ -447,7 +474,7 @@
 .team-directory__person {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: var(--team-directory-person-gap, 14px);
     min-width: 0;
     padding-block: 14px;
 }
@@ -502,9 +529,12 @@
 }
 
 .team-directory__name {
+    overflow: hidden;
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--ig-gray-900);
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .team-directory__email {
@@ -526,8 +556,8 @@
 .team-directory__department {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 5px 12px;
+    gap: var(--team-directory-pill-gap, 6px);
+    padding: 5px var(--team-directory-pill-padding-inline, 12px);
     border: 1px solid var(--department-border);
     border-radius: 9999px;
     background: var(--department-fill);
@@ -574,6 +604,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    white-space: nowrap;
 }
 
 /* Rating theme generated with the Ignite UI Theming MCP server (rating, Fluent light). */
@@ -608,6 +639,7 @@
     align-items: center;
     gap: 8px;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .team-directory__status-dot {
