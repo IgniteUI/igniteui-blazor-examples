@@ -642,6 +642,7 @@ function updateIG(cb) {
         { version: "26.1.98", name: "IgniteUI.Blazor.Documents.Core.Trial" },
         { version: "26.1.98", name: "IgniteUI.Blazor.Documents.Excel.Trial" },
         { version: "1.0.0", name: "IgniteUI.Blazor.GridLite" },
+        { version: "1.0.0", name: "IgniteUI.Blazor.Lite" },
         // these IG packages are sometimes updated:
         { version:  "2.2.0", name: "Microsoft.AspNetCore.Cors" },
         { version:  "2.2.0", name: "Microsoft.AspNetCore.Http.Abstractions" },
