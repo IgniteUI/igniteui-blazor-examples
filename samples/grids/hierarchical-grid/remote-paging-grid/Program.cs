@@ -17,11 +17,7 @@ namespace Infragistics.Samples
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             builder.Services.AddScoped<HGridRemotePagingService>();
 
-            builder.Services.AddIgniteUIBlazor(
-                typeof(IgbInputModule),
-                typeof(IgbPropertyEditorPanelModule),
-                typeof(IgbHierarchicalGridModule)
-            );
+            builder.Services.AddIgniteUIBlazor();
             await builder.Build().RunAsync();
         }
     }
