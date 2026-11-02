@@ -16,13 +16,7 @@ namespace Infragistics.Samples
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             // Avatar and Rating render only inside the grid's JavaScript cell templates, where no
             // Blazor component requests them, so registering their modules is what defines them.
-            builder.Services.AddIgniteUIBlazor(
-                typeof(IgbChipModule),
-                typeof(IgbButtonModule),
-                typeof(IgbIconButtonModule),
-                typeof(IgbAvatarModule),
-                typeof(IgbRatingModule)
-            );
+            builder.Services.AddIgniteUIBlazor();
 
             await builder.Build().RunAsync();
         }

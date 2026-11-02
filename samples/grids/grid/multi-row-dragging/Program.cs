@@ -20,9 +20,7 @@ namespace Infragistics.Samples
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
             // TODO update names of the following modules for the IgbGrid
-            builder.Services.AddIgniteUIBlazor(
-                typeof(IgbGridModule)
-            );
+            builder.Services.AddIgniteUIBlazor();
             await builder.Build().RunAsync();
         }
     }
