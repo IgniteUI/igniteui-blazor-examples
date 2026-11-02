@@ -19,11 +19,8 @@ namespace Infragistics.Samples
             builder.RootComponents.Add<App>("app");
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             builder.Services.AddScoped<HierarchicalDataService>();
-            // registering Ignite UI modules
-            builder.Services.AddIgniteUIBlazor(
-                typeof(IgbHierarchicalGridModule),
-                typeof(IgbButtonModule)
-            );
+            // register Ignite UI for Blazor
+            builder.Services.AddIgniteUIBlazor();
             await builder.Build().RunAsync();
         }
     }

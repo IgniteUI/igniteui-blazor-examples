@@ -18,17 +18,8 @@ namespace Infragistics.Samples
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            // registering Ignite UI modules
-            builder.Services.AddIgniteUIBlazor(
-                typeof(IgbCardModule),
-                typeof(IgbListModule),
-                typeof(IgbTooltipModule),
-                typeof(IgbIconModule),
-                typeof(IgbCategoryChartModule),
-                typeof(IgbAvatarModule),
-                typeof(IgbBadgeModule),
-                typeof(IgbButtonModule)
-            );
+            // register Ignite UI for Blazor
+            builder.Services.AddIgniteUIBlazor();
             await builder.Build().RunAsync();
         }
     }

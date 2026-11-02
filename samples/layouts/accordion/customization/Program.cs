@@ -14,17 +14,6 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-builder.Services.AddIgniteUIBlazor(
-    typeof(IgbIconModule),
-    typeof(IgbDateTimeInputModule),
-    typeof(IgbRadioGroupModule),
-    typeof(IgbRadioModule),
-    typeof(IgbRatingModule),
-    typeof(IgbAccordionModule),
-    typeof(IgbExpansionPanelModule),
-    typeof(IgbCheckboxModule),
-    typeof(IgbSliderModule),
-    typeof(IgbRangeSliderModule)
-);
+builder.Services.AddIgniteUIBlazor();
 
 await builder.Build().RunAsync();
