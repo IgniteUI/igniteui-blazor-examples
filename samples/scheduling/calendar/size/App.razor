@@ -2,22 +2,18 @@
 
 
 <div class="container vertical">
-    <IgbRadioGroup Alignment="@ContentOrientation.Horizontal">
-        <IgbRadio name="size" Value="Small" label-position="after" Change="OnRadioOptionClick">Small</IgbRadio>
-        <IgbRadio name="size" Value="Medium" label-position="after" Checked="true" Change="OnRadioOptionClick">Medium</IgbRadio>
-        <IgbRadio name="size" Value="Large" label-position="after" Change="OnRadioOptionClick">Large</IgbRadio>
+    <IgbRadioGroup Alignment="@ContentOrientation.Horizontal" @bind-Value="CalendarSize">
+        <IgbRadio name="size" Value="@("size-small")" label-position="after">Small</IgbRadio>
+        <IgbRadio name="size" Value="@("size-medium")" label-position="after">Medium</IgbRadio>
+        <IgbRadio name="size" Value="@("size-large")" label-position="after">Large</IgbRadio>
     </IgbRadioGroup>
 
     <div style="width: 25rem; border: 1px solid gainsboro;">
-        <IgbCalendar class="@CalendarSize"/>
+        <IgbCalendar @bind-Value="SelectedDate" class="@CalendarSize"/>
     </div>
 </div>
 
 @code {
     private string CalendarSize = "size-medium";
-
-    public void OnRadioOptionClick(IgbRadioChangeEventArgs e)
-    {
-        this.CalendarSize = $"size-{e.Detail.Value.ToLower()}";
-    }
+    private DateTime SelectedDate = DateTime.Today;
 }

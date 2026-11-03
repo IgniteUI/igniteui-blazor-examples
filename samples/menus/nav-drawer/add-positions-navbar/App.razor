@@ -2,7 +2,7 @@
 
 
 <div class="container vertical" >
-    <IgbNavDrawer @ref="@NavDrawerRef" style="position: relative">
+    <IgbNavDrawer @ref="@NavDrawerRef" Position="@Position" style="position: relative">
         <IgbNavDrawerHeaderItem>
             Sample Drawer
         </IgbNavDrawerHeaderItem>
@@ -19,11 +19,11 @@
     </IgbNavDrawer>
 
     <div id="content" style="width: 100%">
-        <IgbRadioGroup id="radio-group" Alignment="ContentOrientation.Horizontal">
-            <IgbRadio name="position" Value="Start" LabelPosition="ToggleLabelPosition.After" Checked="true" Change="OnRadioOptionClick">Start</IgbRadio>
-            <IgbRadio name="position" Value="End" LabelPosition="ToggleLabelPosition.After" Change="OnRadioOptionClick">End</IgbRadio>
-            <IgbRadio name="position" Value="Top" LabelPosition="ToggleLabelPosition.After" Change="OnRadioOptionClick">Top</IgbRadio>
-            <IgbRadio name="position" Value="Bottom" LabelPosition="ToggleLabelPosition.After" Change="OnRadioOptionClick">Bottom</IgbRadio>
+        <IgbRadioGroup id="radio-group" Alignment="ContentOrientation.Horizontal" @bind-Value="position">
+            <IgbRadio name="position" Value="@("Start")" LabelPosition="ToggleLabelPosition.After">Start</IgbRadio>
+            <IgbRadio name="position" Value="@("End")" LabelPosition="ToggleLabelPosition.After">End</IgbRadio>
+            <IgbRadio name="position" Value="@("Top")" LabelPosition="ToggleLabelPosition.After">Top</IgbRadio>
+            <IgbRadio name="position" Value="@("Bottom")" LabelPosition="ToggleLabelPosition.After">Bottom</IgbRadio>
         </IgbRadioGroup>
 
         <IgbNavbar>
@@ -45,6 +45,10 @@
 
     public string Title { get; set; } = "Home";
 
+    private string position = "Start";
+
+    public NavDrawerPosition Position => Enum.Parse<NavDrawerPosition>(position);
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender && this.IconRef != null)
@@ -63,38 +67,6 @@
             HomeItemRef.Active = true;
             await this.SearchItemRef.EnsureReady();
             NavDrawerTitlesItemRefs.Add("Search", SearchItemRef);
-        }
-    }
-
-    public void OnRadioOptionClick(IgbRadioChangeEventArgs args)
-    {
-        IgbRadio radio = args.Parent as IgbRadio;
-
-        if (this.NavDrawerRef != null)
-        {
-            switch (radio.Value)
-            {
-                case "Start":
-                    {
-                        this.NavDrawerRef.Position = NavDrawerPosition.Start;
-                        break;
-                    }
-                case "End":
-                    {
-                        this.NavDrawerRef.Position = NavDrawerPosition.End;
-                        break;
-                    }
-                case "Top":
-                    {
-                        this.NavDrawerRef.Position = NavDrawerPosition.Top;
-                        break;
-                    }
-                case "Bottom":
-                    {
-                        this.NavDrawerRef.Position = NavDrawerPosition.Bottom;
-                        break;
-                    }
-            }
         }
     }
 

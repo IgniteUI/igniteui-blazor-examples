@@ -8,11 +8,11 @@
         }
     </style>
 
-    <IgbRadioGroup Alignment=@ContentOrientation.Horizontal>
-        <IgbRadio name="alignment" Value="Start" label-position="after" Checked=true Change="OnRadioOptionClick">Start</IgbRadio>
-        <IgbRadio name="alignment" Value="Center" label-position="after" Change="OnRadioOptionClick">Center</IgbRadio>
-        <IgbRadio name="alignment" Value="End" label-position="after" Change="OnRadioOptionClick">End</IgbRadio>
-        <IgbRadio name="alignment" Value="Justify" label-position="after" Change="OnRadioOptionClick">Justify</IgbRadio>
+    <IgbRadioGroup Alignment=@ContentOrientation.Horizontal @bind-Value="alignment">
+        <IgbRadio name="alignment" Value="@("Start")" label-position="after">Start</IgbRadio>
+        <IgbRadio name="alignment" Value="@("Center")" label-position="after">Center</IgbRadio>
+        <IgbRadio name="alignment" Value="@("End")" label-position="after">End</IgbRadio>
+        <IgbRadio name="alignment" Value="@("Justify")" label-position="after">Justify</IgbRadio>
     </IgbRadioGroup>
 
     <IgbTabs Alignment=@TabAlignment>
@@ -33,39 +33,7 @@
 
 @code {
 
-    public TabsAlignment TabAlignment { get; set; }
+    private string alignment = "Start";
 
-    protected override void OnInitialized()
-    {
-        TabAlignment = TabsAlignment.Start;
-    }
-
-    public void OnRadioOptionClick(IgbRadioChangeEventArgs e)
-    {
-        IgbRadio radio = e.Parent as IgbRadio;
-
-        switch (radio.Value)
-        {
-            case "Start":
-                {
-                    this.TabAlignment = TabsAlignment.Start;
-                    break;
-                }
-            case "Center":
-                {
-                    this.TabAlignment = TabsAlignment.Center;
-                    break;
-                }
-            case "End":
-                {
-                    this.TabAlignment = TabsAlignment.End;
-                    break;
-                }
-            case "Justify":
-                {
-                    this.TabAlignment = TabsAlignment.Justify;
-                    break;
-                }
-        }
-    }
+    public TabsAlignment TabAlignment => Enum.Parse<TabsAlignment>(alignment);
 }
