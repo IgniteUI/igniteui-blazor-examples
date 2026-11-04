@@ -25,8 +25,10 @@ builder.Services.AddScoped(typeof(Infragistics.Samples.Core.SampleTimer));
 builder.Services.AddSingleton<FlatGridData>();
 builder.Services.AddScoped<HGridRemotePagingService>();
 builder.Services.AddScoped<RemotePagingService>();
+builder.Services.AddScoped<HierarchicalDataService>();
+builder.Services.AddScoped<QueryBuilderService>();
 // registering Infragistics Blazor
-builder.Services.AddScoped(typeof(IIgniteUIBlazor), typeof(IgniteUIBlazor));
+builder.Services.AddIgniteUIBlazor();
 
 await builder.Build().RunAsync();
 

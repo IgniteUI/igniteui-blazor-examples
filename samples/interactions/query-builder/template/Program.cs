@@ -14,9 +14,8 @@ namespace Infragistics.Samples
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
 
-            // registering Infragistics Blazor
+            // register Ignite UI for Blazor and load modules
             builder.Services.AddIgniteUIBlazor(
-                typeof(IgbQueryBuilderModule),
                 typeof(IgbDatePickerModule),
                 typeof(IgbDateTimeInputModule),
                 typeof(IgbSelectModule),

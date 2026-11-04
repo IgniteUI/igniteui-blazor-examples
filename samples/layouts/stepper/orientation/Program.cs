@@ -22,11 +22,8 @@ namespace Infragistics.Samples
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            // registering Infragistics Blazor
-            builder.Services.AddIgniteUIBlazor(typeof(IgbStepperModule),
-               typeof(IgbRadioGroupModule),
-               typeof(IgbRadioModule),
-               typeof(IgbButtonModule));
+            // register Ignite UI for Blazor
+            builder.Services.AddIgniteUIBlazor();
 
             await builder.Build().RunAsync();
         }

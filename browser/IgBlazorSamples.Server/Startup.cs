@@ -35,7 +35,7 @@ namespace Infragistics.Samples
             services.AddServerSideBlazor();
 
             // required for Infragistics Blazor controls:
-            services.AddScoped(typeof(IIgniteUIBlazor), typeof(IgniteUIBlazor));
+            services.AddIgniteUIBlazor();
 
             // Server Side Blazor doesn't register HttpClient by default
             if (!services.Any(x => x.ServiceType == typeof(HttpClient)))
