@@ -1,29 +1,19 @@
 @using IgniteUI.Blazor.Controls
 
-
-<div class="container vertical">
-    <div style="width: 16rem; border: 1px solid gainsboro">
-        <style>
-            :root {
-                --igc-primary-h: 60deg;
-                --igc-primary-s: 100%;
-                --igc-primary-l: 25%;
-            }
-
-            igc-radio::part(control) {
-                --size: 18px;
-            }
-        </style>
-        <IgbRadioGroup>
-            <IgbRadio name="fruit">Apple</IgbRadio>
-            <IgbRadio name="fruit" Checked="true">Banana</IgbRadio>
-            <IgbRadio name="fruit">Mango</IgbRadio>
-            <IgbRadio name="fruit">Orange</IgbRadio>
+<div class="container sample radio-styling">
+    <div class="shipping-card">
+        <div class="shipping-header">
+            <span id="shipping-title" class="shipping-title">Shipping method</span>
+        </div>
+        <IgbRadioGroup class="shipping-methods" name="shipping" aria-labelledby="shipping-title">
+            <IgbRadio class="shipping-method" Value="standard" Checked="true">Standard <span class="shipping-detail">(2-4 business days)</span></IgbRadio>
+            <IgbRadio class="shipping-method" Value="express">Express <span class="shipping-detail">(next day by 6 pm)</span></IgbRadio>
+            <IgbRadio class="shipping-method" Value="pickup">Pickup point <span class="shipping-detail">(400 + locations)</span></IgbRadio>
+            <IgbRadio class="shipping-method" Value="same-day" Disabled="true">Same-day <span class="shipping-detail">(not available)</span></IgbRadio>
         </IgbRadioGroup>
     </div>
 </div>
 
 @code {
-
 
 }

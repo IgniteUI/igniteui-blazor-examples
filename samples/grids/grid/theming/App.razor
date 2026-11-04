@@ -1,0 +1,124 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<link href="_content/IgniteUI.Blazor/themes/light/material.css" rel="stylesheet" />
+<link href="_content/IgniteUI.Blazor/themes/grid/light/material.css" rel="stylesheet" />
+
+<IgbThemeProvider Theme="Theme.Material" Variant="ThemeVariant.Light">
+    <div class="container sample ig-typography">
+        <div class="grid-theming-sample">
+            <div class="theme-picker">
+                <span class="theme-picker__label">Pick a theme</span>
+                <IgbButtonGroup Selection="ButtonGroupSelection.SingleRequired" Select="OnThemeSelect">
+                    <IgbToggleButton Value="theme-studio" Selected="@(ActiveTheme == "theme-studio")">
+                        <span class="theme-swatch theme-swatch--studio"></span>Studio
+                    </IgbToggleButton>
+                    <IgbToggleButton Value="theme-ledger" Selected="@(ActiveTheme == "theme-ledger")">
+                        <span class="theme-swatch theme-swatch--ledger"></span>Ledger
+                    </IgbToggleButton>
+                    <IgbToggleButton Value="theme-editorial" Selected="@(ActiveTheme == "theme-editorial")">
+                        <span class="theme-swatch theme-swatch--editorial"></span>Editorial
+                    </IgbToggleButton>
+                    <IgbToggleButton Value="theme-midnight" Selected="@(ActiveTheme == "theme-midnight")">
+                        <span class="theme-swatch theme-swatch--midnight"></span>Midnight
+                    </IgbToggleButton>
+                </IgbButtonGroup>
+                <p class="theme-picker__hint">
+                    Custom themes, not built-in: each is a set of <code>--ig-grid-*</code> variables
+                    with its own background and accent.
+                </p>
+            </div>
+            <div class="themed-grid @ActiveTheme">
+                <IgbGrid
+                AutoGenerate="false"
+                Data="ThemingInvoices"
+                Width="100%"
+                Height="560px"
+                AllowFiltering="true"
+                FilterMode="FilterMode.ExcelStyleFilter"
+                RowSelection="GridSelectionMode.Multiple"
+                ColumnSelection="GridSelectionMode.Multiple"
+                ColumnInitScript="GridThemingColumnInit">
+                    <IgbGridToolbar>
+                        <IgbGridToolbarTitle>Invoices</IgbGridToolbarTitle>
+                        <IgbGridToolbarActions>
+                            <IgbGridToolbarPinning></IgbGridToolbarPinning>
+                            <IgbGridToolbarHiding></IgbGridToolbarHiding>
+                        </IgbGridToolbarActions>
+                    </IgbGridToolbar>
+                    <IgbColumn
+                    Field="ShipCountry"
+                    Header="Country"
+                    Width="160px"
+                    Sortable="true"
+                    Filterable="true"
+                    Pinned="true">
+                    </IgbColumn>
+                    <IgbColumn
+                    Field="ShipCity"
+                    Header="City"
+                    Width="160px"
+                    Sortable="true"
+                    Filterable="true">
+                    </IgbColumn>
+                    <IgbColumn
+                    Field="ShipName"
+                    Header="Ship Name"
+                    Width="240px"
+                    Sortable="true"
+                    Filterable="true">
+                    </IgbColumn>
+                    <IgbColumn
+                    Field="Salesperson"
+                    Header="Salesperson"
+                    Width="200px"
+                    Sortable="true"
+                    Filterable="true">
+                    </IgbColumn>
+                    <IgbColumn
+                    Field="UnitPrice"
+                    Header="Unit Price"
+                    Width="140px"
+                    DataType="GridColumnDataType.Number"
+                    Sortable="true"
+                    HasSummary="true"
+                    FormatterScript="GridThemingCurrencyFormatter"
+                    SummaryFormatterScript="GridThemingSummaryFormatter">
+                    </IgbColumn>
+                    <IgbColumn
+                    Field="Quantity"
+                    Header="Quantity"
+                    Width="140px"
+                    DataType="GridColumnDataType.Number"
+                    Sortable="true">
+                    </IgbColumn>
+                    <IgbPaginator
+                    PerPage="10">
+                    </IgbPaginator>
+                </IgbGrid>
+            </div>
+        </div>
+    </div>
+</IgbThemeProvider>
+
+@code {
+    public string ActiveTheme { get; set; } = "theme-studio";
+    public void OnThemeSelect(IgbComponentValueChangedEventArgs args)
+    {
+        ActiveTheme = args.Detail;
+    }
+
+    private ThemingInvoices _themingInvoices = null;
+    public ThemingInvoices ThemingInvoices
+    {
+        get
+        {
+            if (_themingInvoices == null)
+            {
+                _themingInvoices = new ThemingInvoices();
+            }
+            return _themingInvoices;
+        }
+    }
+}

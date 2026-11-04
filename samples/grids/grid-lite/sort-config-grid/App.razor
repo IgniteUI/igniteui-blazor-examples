@@ -6,7 +6,7 @@
 <div class="container">
 
     <div class="switch-container">
-        <IgbSwitch Checked Change="@MultiSortChanged">Enable multi-sort
+        <IgbSwitch @bind-Checked="multiSort" @bind-Checked:after="MultiSortChanged">Enable multi-sort
         </IgbSwitch>
     </div>
 
@@ -27,6 +27,7 @@
     private List<ProductInfo> products;
     private IgbGridLite<ProductInfo> grid;
     private IgbGridLiteSortingOptions sortingOptions;
+    private bool multiSort = true;
 
     protected override void OnInitialized()
     {
@@ -39,12 +40,15 @@
         };
     }
 
-    private void MultiSortChanged(IgbCheckboxChangeEventArgs e)
+    private async Task MultiSortChanged()
     {
         sortingOptions = new IgbGridLiteSortingOptions
         {
-            Mode = e.Detail.Checked ? GridLiteSortingMode.Multiple : GridLiteSortingMode.Single
+            Mode = multiSort ? GridLiteSortingMode.Multiple : GridLiteSortingMode.Single
         };
-        grid?.ClearSortAsync(); // Clear existing sorting when changing mode
+        if (grid != null)
+        {
+            await grid.ClearSortAsync(); // Clear existing sorting when changing mode
+        }
     }
 }

@@ -1,0 +1,92 @@
+@using IgniteUI.Blazor.Controls
+
+@inject IJSRuntime JS
+
+<link href="_content/IgniteUI.Blazor/themes/light/material.css" rel="stylesheet" />
+<link href="_content/IgniteUI.Blazor/themes/grid/light/material.css" rel="stylesheet" />
+
+<IgbThemeProvider Theme="Theme.Material" Variant="ThemeVariant.Light">
+    <div class="container sample ig-typography">
+        <div class="grid-theming-sample">
+            <div class="theme-picker">
+                <span class="theme-picker__label">Pick a theme</span>
+                <IgbButtonGroup Selection="ButtonGroupSelection.SingleRequired" Select="OnThemeSelect">
+                    <IgbToggleButton Value="theme-studio" Selected="@(ActiveTheme == "theme-studio")">
+                        <span class="theme-swatch theme-swatch--studio"></span>Studio
+                    </IgbToggleButton>
+                    <IgbToggleButton Value="theme-ledger" Selected="@(ActiveTheme == "theme-ledger")">
+                        <span class="theme-swatch theme-swatch--ledger"></span>Ledger
+                    </IgbToggleButton>
+                    <IgbToggleButton Value="theme-editorial" Selected="@(ActiveTheme == "theme-editorial")">
+                        <span class="theme-swatch theme-swatch--editorial"></span>Editorial
+                    </IgbToggleButton>
+                    <IgbToggleButton Value="theme-midnight" Selected="@(ActiveTheme == "theme-midnight")">
+                        <span class="theme-swatch theme-swatch--midnight"></span>Midnight
+                    </IgbToggleButton>
+                </IgbButtonGroup>
+                <p class="theme-picker__hint">
+                    Custom themes, not built-in: each is a set of <code>--ig-grid-*</code> variables
+                    with its own background and accent.
+                </p>
+            </div>
+            <div class="themed-grid @ActiveTheme">
+                <IgbTreeGrid
+                AutoGenerate="false"
+                Data="EmployeesFlatAvatars"
+                PrimaryKey="ID"
+                ForeignKey="ParentID"
+                AllowFiltering="true"
+                FilterMode="FilterMode.ExcelStyleFilter"
+                RowSelection="GridSelectionMode.Multiple"
+                Height="560px">
+                    <IgbColumn
+                    Field="Name"
+                    Width="300px"
+                    Sortable="true"
+                    Filterable="true"
+                    BodyTemplateScript="TreeGridThemingNameCellTemplate">
+                    </IgbColumn>
+                    <IgbColumn
+                    Field="Title"
+                    DataType="GridColumnDataType.String"
+                    Sortable="true"
+                    Filterable="true">
+                    </IgbColumn>
+                    <IgbColumn
+                    Field="Age"
+                    DataType="GridColumnDataType.Number"
+                    Sortable="true"
+                    Filterable="true">
+                    </IgbColumn>
+                    <IgbColumn
+                    Field="HireDate"
+                    DataType="GridColumnDataType.Date"
+                    Sortable="true"
+                    Filterable="true">
+                    </IgbColumn>
+                </IgbTreeGrid>
+            </div>
+        </div>
+    </div>
+</IgbThemeProvider>
+
+@code {
+    public string ActiveTheme { get; set; } = "theme-studio";
+    public void OnThemeSelect(IgbComponentValueChangedEventArgs args)
+    {
+        ActiveTheme = args.Detail;
+    }
+
+    private EmployeesFlatAvatars _employeesFlatAvatars = null;
+    public EmployeesFlatAvatars EmployeesFlatAvatars
+    {
+        get
+        {
+            if (_employeesFlatAvatars == null)
+            {
+                _employeesFlatAvatars = new EmployeesFlatAvatars();
+            }
+            return _employeesFlatAvatars;
+        }
+    }
+}

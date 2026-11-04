@@ -34,6 +34,16 @@ namespace IgBlazorSamples.Test.Models
         public string? Route { get; set; }
     }
 
+    /// <summary>
+    /// Model for the test setting <c>overrideTests</c> section.
+    /// </summary>
+    public class TestOverride
+    {
+        public string? Route { get; set; }
+
+        public string? TestSelector { get; set; }
+    }
+
     public class SampleTestData
     {
         public required string ComponentName { get; set; }
