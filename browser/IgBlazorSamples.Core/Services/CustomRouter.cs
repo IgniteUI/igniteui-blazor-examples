@@ -46,6 +46,12 @@ namespace Microsoft.AspNetCore.Routing
             if (IsLazyLoading) { return; }
 
             var relativeUri = NavigationManager.ToBaseRelativePath(_currentLocation);
+            // ignore query string and fragment (e.g. ?_gl=... added by Google Analytics) when matching routes
+            var queryOrHashIndex = relativeUri.IndexOfAny(new[] { '?', '#' });
+            if (queryOrHashIndex >= 0)
+            {
+                relativeUri = relativeUri.Substring(0, queryOrHashIndex);
+            }
             if (!relativeUri.StartsWith("/"))
             {
                 relativeUri = "/" + relativeUri;

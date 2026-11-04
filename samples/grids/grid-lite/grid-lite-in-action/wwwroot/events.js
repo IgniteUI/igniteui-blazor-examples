@@ -1,0 +1,184 @@
+// Cell templates, the Registered comparer and the row count for the Grid Lite in Action sample.
+//
+// IgniteUI.Blazor.GridLite has no Razor cell templates yet, but the <igc-grid-lite-column> elements
+// it renders accept `cellTemplate` and `sortConfiguration`. A template returns DOM nodes, which the
+// grid renders as is. They live in each cell's shadow root, so the grid sets AdoptRootStyles and
+// index.css styles them. <igc-avatar> and <igc-rating> are defined by the modules in Program.cs.
+(function () {
+    'use strict';
+
+    const MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+
+    // TeamMember.RegisteredLabel is formatted as "MMM d, yyyy". The grid lower-cases values before
+    // comparing them unless the column sorts case-sensitively.
+    function dateKey(label) {
+        const [month, day, year] = label.replace(',', '').split(' ');
+        return Number(year) * 10000 + (MONTHS.indexOf(month.toLowerCase()) + 1) * 100 + Number(day);
+    }
+
+    // Creates an element: `attrs` become attributes, `props` are set as properties.
+    function el(tag, { className, attrs, props } = {}, ...children) {
+        const node = document.createElement(tag);
+        if (className) {
+            node.className = className;
+        }
+        for (const [name, value] of Object.entries(attrs || {})) {
+            node.setAttribute(name, value);
+        }
+        Object.assign(node, props);
+        node.append(...children);
+        return node;
+    }
+
+    // Keyed by the column's Field (the C# property name, which the grid keeps when serializing rows).
+    const columnSettings = {
+        Name: {
+            cellTemplate: ({ row }) => {
+                const member = row.data;
+                return el('div', { className: 'team-directory__person' },
+                    el('igc-avatar', {
+                        className: `team-directory__avatar team-directory__avatar--tone-${member.AvatarTone}`,
+                        attrs: { shape: 'circle', 'aria-hidden': 'true' },
+                        props: { initials: member.Initials }
+                    }),
+                    el('div', { className: 'team-directory__person-text' },
+                        el('span', { className: 'team-directory__name' }, member.Name),
+                        el('a', { className: 'team-directory__email', attrs: { href: `mailto:${member.Email}` } }, member.Email)));
+            }
+        },
+
+        Department: {
+            cellTemplate: ({ value }) =>
+                el('span', { className: `team-directory__department team-directory__department--${value.toLowerCase()}` },
+                    el('span', { className: 'team-directory__department-dot', attrs: { 'aria-hidden': 'true' } }),
+                    value)
+        },
+
+        // Read-only and out of the tab order: the score is information, not a control. The label is
+        // hidden visually (see index.css) but still names the rating for assistive technology.
+        Satisfaction: {
+            cellTemplate: ({ value }) =>
+                el('span', { className: 'team-directory__satisfaction' },
+                    el('igc-rating', {
+                        className: 'team-directory__rating',
+                        attrs: { readonly: '', tabindex: '-1' },
+                        props: { max: 5, value: value, label: 'Satisfaction', valueFormat: '{0} out of {1}' }
+                    }),
+                    el('span', { className: 'team-directory__rating-value', attrs: { 'aria-hidden': 'true' } }, value.toFixed(1)))
+        },
+
+        // The column shows and filters the label; this keeps its sort chronological.
+        RegisteredLabel: {
+            sortConfiguration: { comparer: (a, b) => dateKey(a) - dateKey(b) }
+        },
+
+        Active: {
+            cellTemplate: ({ value }) =>
+                el('span', { className: `team-directory__status team-directory__status--${value ? 'active' : 'inactive'}` },
+                    el('span', { className: 'team-directory__status-dot', attrs: { 'aria-hidden': 'true' } }),
+                    value ? 'Active' : 'Inactive')
+        }
+    };
+
+    // The hidden column the department chips filter on stays hidden whatever the layout does.
+    const CHIP_FILTER_FIELD = 'QuickFilterDepartment';
+
+    // The two columns that stay in the narrowest layout get smaller minimum widths there, which the
+    // compact cell padding (index.css) makes room for. Every other layout uses the widths of App.razor.
+    const COMPACT_WIDTHS = { Name: 'minmax(150px, 2fr)', Department: 'minmax(125px, 1fr)' };
+
+    // What the layout asks of each grid host: the fields to hide and whether the columns are compact.
+    // Kept here so a column list the grid builds later (configureColumns) starts from the same state.
+    const layouts = new WeakMap();
+
+    // The widths App.razor declared, read from the first column list seen and put back when the layout
+    // is no longer compact.
+    const declaredWidths = new WeakMap();
+
+    // Applies the layout to the grid's own column list, which is where the grid reads it from once
+    // configureColumns has replaced the slotted columns.
+    function applyLayout(host, grid) {
+        const layout = layouts.get(host);
+        if (!layout || !grid.columns.length) {
+            return;
+        }
+        if (!declaredWidths.has(host)) {
+            declaredWidths.set(host, Object.fromEntries(grid.columns.map(config => [config.field, config.width])));
+        }
+        const declared = declaredWidths.get(host);
+        grid.columns = grid.columns.map(config => Object.assign({}, config, {
+            hidden: config.field === CHIP_FILTER_FIELD || layout.hidden.has(config.field),
+            width: (layout.compact && COMPACT_WIDTHS[config.field]) || declared[config.field]
+        }));
+    }
+
+    // One observer per grid host. It reports the host's width to the component once per frame at
+    // most; the component only calls back into the grid when the width crosses into another layout tier.
+    const widthObservers = new WeakMap();
+
+    window.gridLiteInAction = {
+        // Reports the host's width to `component.OnHostWidthChanged`: now, and on every resize.
+        observeWidth: function (host, component) {
+            let frame = 0;
+            const report = () => {
+                frame = 0;
+                component.invokeMethodAsync('OnHostWidthChanged', host.clientWidth);
+            };
+            const observer = new ResizeObserver(() => {
+                if (!frame) {
+                    frame = requestAnimationFrame(report);
+                }
+            });
+            observer.observe(host);
+            widthObservers.set(host, { observer, cancel: () => cancelAnimationFrame(frame) });
+        },
+
+        stopObservingWidth: function (host) {
+            const entry = widthObservers.get(host);
+            if (entry) {
+                entry.observer.disconnect();
+                entry.cancel();
+                widthObservers.delete(host);
+            }
+        },
+
+        // Adds the cell templates and the sort comparer to the grid's columns.
+        configureColumns: async function (host) {
+            await customElements.whenDefined('igc-grid-lite');
+            const grid = host.querySelector('igc-grid-lite');
+
+            // Set on each column element, so the settings survive the grid re-reading its columns.
+            for (const column of host.querySelectorAll('igc-grid-lite-column')) {
+                Object.assign(column, columnSettings[column.getAttribute('field')]);
+            }
+
+            // The grid copies column settings only when the columns are slotted, and the column
+            // elements upgrade before the grid, so a later change on them does not reach it. Hand the
+            // grid its current configuration (the getter returns every setting) with the additions.
+            grid.columns = grid.columns.map(config => Object.assign({}, config, columnSettings[config.field]));
+            applyLayout(host, grid);
+        },
+
+        // Shows every column except these fields (and the chip filter's), narrowing the two that stay
+        // when `compact`.
+        setLayout: async function (host, fields, compact) {
+            await customElements.whenDefined('igc-grid-lite');
+            layouts.set(host, { hidden: new Set(fields), compact: compact });
+            applyLayout(host, host.querySelector('igc-grid-lite'));
+        },
+
+        // Returns how many rows pass the grid's current filters.
+        countVisibleRows: async function (host) {
+            const grid = host.querySelector('igc-grid-lite');
+            if (!grid) {
+                return 0;
+            }
+
+            // A filter change re-runs the grid's data pipeline asynchronously. Yield one task so it
+            // settles, then wait for the render it triggered before reading the count.
+            await new Promise(resolve => setTimeout(resolve));
+            await grid.updateComplete;
+            return grid.totalItems;
+        }
+    };
+})();
