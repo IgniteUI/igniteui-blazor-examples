@@ -2,33 +2,26 @@
 
 <div class="container sample">
     <div class="settings">
-        <IgbRadioGroup Alignment="ContentOrientation.Horizontal">
+        <IgbRadioGroup Alignment="ContentOrientation.Horizontal" @bind-Value="placement">
             @foreach (var item in Placements)
             {
-                <IgbRadio name="placement"
-                          Value="@item.Label"
-                          Checked="@(Placement == item.Value)"
-                          Change="@(args => OnPlacementChange(args, item.Value))">
+                <IgbRadio name="placement" Value="@item.Label">
                     <span>@item.Label</span>
                 </IgbRadio>
             }
         </IgbRadioGroup>
-        <IgbSwitch LabelPosition="ToggleLabelPosition.Before"
-                   Checked="CloseButton"
-                   Change="@(args => CloseButton = args.Detail.Checked)">
+        <IgbSwitch LabelPosition="ToggleLabelPosition.Before" @bind-Checked="closeButton">
             <span>Close Button</span>
         </IgbSwitch>
-        <IgbSwitch LabelPosition="ToggleLabelPosition.Before"
-                   Checked="Arrow"
-                   Change="@(args => Arrow = args.Detail.Checked)">
+        <IgbSwitch LabelPosition="ToggleLabelPosition.Before" @bind-Checked="arrow">
             <span>Arrow</span>
         </IgbSwitch>
     </div>
     <div id="target" class="target"></div>
     <IgbTooltip Anchor="target"
                 Placement="Placement"
-                WithArrow="Arrow"
-                Sticky="CloseButton"
+                WithArrow="arrow"
+                Sticky="closeButton"
                 Open="true">
         This is a tooltip message
         <br />
@@ -51,15 +44,9 @@
         new PlacementOption { Label = "Bottom", Value = PopoverPlacement.Bottom },
     };
 
-    private PopoverPlacement Placement { get; set; } = PopoverPlacement.Bottom;
-    private bool CloseButton { get; set; } = true;
-    private bool Arrow { get; set; } = true;
+    private string placement = "Bottom";
+    private bool closeButton = true;
+    private bool arrow = true;
 
-    private void OnPlacementChange(IgbRadioChangeEventArgs args, PopoverPlacement value)
-    {
-        if (args.Detail.Checked)
-        {
-            this.Placement = value;
-        }
-    }
+    private PopoverPlacement Placement => Placements.First(item => item.Label == placement).Value;
 }
