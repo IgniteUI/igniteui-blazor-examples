@@ -638,9 +638,9 @@ function updateIG(cb) {
     let dotNetVersion = "10.0.1";
     let packageUpgrades = [
         // update version of IG packages and change to Trial or non-trial
-        { version: "26.1.98", name: "IgniteUI.Blazor.Trial" },
-        { version: "26.1.98", name: "IgniteUI.Blazor.Documents.Core.Trial" },
-        { version: "26.1.98", name: "IgniteUI.Blazor.Documents.Excel.Trial" },
+        { version: "26.1.158", name: "IgniteUI.Blazor.Trial" },
+        { version: "26.1.158", name: "IgniteUI.Blazor.Documents.Core.Trial" },
+        { version: "26.1.158", name: "IgniteUI.Blazor.Documents.Excel.Trial" },
         { version: "1.0.0", name: "IgniteUI.Blazor.GridLite" },
         { version: "1.0.0", name: "IgniteUI.Blazor.Lite" },
         // these IG packages are sometimes updated:
