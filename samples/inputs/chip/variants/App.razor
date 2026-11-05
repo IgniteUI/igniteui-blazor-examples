@@ -1,28 +1,39 @@
 @using IgniteUI.Blazor.Controls
+@inject IJSRuntime JS
 
-
-<div class="container sample center" style="flex-direction: row; gap: 8px">
-    <IgbChip Variant="StyleVariant.Primary" Selectable="true" Removable="true" RemoveScript="handleChipRemove">
-        Primary
-    </IgbChip>
-
-    <IgbChip Variant="StyleVariant.Info" Selectable="true" Removable="true" RemoveScript="handleChipRemove">
-        Info
-    </IgbChip>
-
-    <IgbChip Variant="StyleVariant.Success" Selectable="true" Removable="true" RemoveScript="handleChipRemove">
-        Success
-    </IgbChip>
-
-    <IgbChip Variant="StyleVariant.Warning" Selectable="true" Removable="true" RemoveScript="handleChipRemove">
-        Warning
-    </IgbChip>
-
-    <IgbChip Variant="StyleVariant.Danger" Selectable="true" Removable="true" RemoveScript="handleChipRemove">
-        Danger
-    </IgbChip>
+<div class="container sample center" id="chip-variants" style="flex-direction: row; gap: 8px">
+    @foreach (var variant in Variants)
+    {
+        <IgbChip @key="variant" Variant="@variant" Selectable="true" Removable="true" Remove="@(() => RemoveVariant(variant))">
+            @variant
+        </IgbChip>
+    }
 </div>
 
 @code {
+    private readonly List<StyleVariant> Variants = new List<StyleVariant>
+    {
+        StyleVariant.Primary,
+        StyleVariant.Info,
+        StyleVariant.Success,
+        StyleVariant.Warning,
+        StyleVariant.Danger
+    };
+    private int? RemovedIndex;
 
+    private void RemoveVariant(StyleVariant variant)
+    {
+        RemovedIndex = Variants.IndexOf(variant);
+        Variants.Remove(variant);
+    }
+
+    // The removed chip is gone, so move focus to the chip that took its place, or the one before it.
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (RemovedIndex is int index)
+        {
+            RemovedIndex = null;
+            await JS.InvokeVoidAsync("chipVariantsSample.focusAfterRemove", index);
+        }
+    }
 }
