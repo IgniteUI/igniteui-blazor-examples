@@ -18,7 +18,7 @@
 </style>
 
 <div class="container sample center">
-    <IgbSlider Value=@ValueInt Change=OnChange
+    <IgbSlider @bind-Value="ValueInt"
         >
     </IgbSlider>
     <div class="value-container">
@@ -37,14 +37,6 @@
     private double ValueInt = 40;
     private double LowerInt = 20;
     private double UpperInt = 70;
-
-    private void OnChange(IgbNumberEventArgs e)
-    {
-        if(e != null)
-        {
-            ValueInt = e.Detail;
-        }
-    }
 
     private void OnRangeChange(IgbRangeSliderValueEventArgs e)
     {

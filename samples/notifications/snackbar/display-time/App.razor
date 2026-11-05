@@ -5,33 +5,25 @@
     <div class="button-container">
         <IgbCheckbox Change=OnChange2>Increase Display Time</IgbCheckbox>
         <IgbButton onclick="snackbar1.show()" >Show Snackbar</IgbButton>
-        <IgbSnackbar @ref="ToggleSnackbarRef" id="snackbar1" KeepOpen="false"> @SnackbarDisplayText </IgbSnackbar>
+        <IgbSnackbar id="snackbar1" KeepOpen="false" DisplayTime="@DisplayTime"> @SnackbarDisplayText </IgbSnackbar>
     </div>
 </div>
 
 @code {
     public string SnackbarDisplayText { get; set; } = "Hello there!";
 
-    private IgbSnackbar snackbar1;
-    public IgbSnackbar ToggleSnackbarRef
-    {
-        get { return snackbar1; }
-        set {
-            snackbar1 = value; StateHasChanged();
-            snackbar1.DisplayTime = 1000;
-        }
-    }
+    private double DisplayTime = 1000;
 
     private void OnChange2(IgbCheckboxChangeEventArgs e)
     {
-        if(snackbar1.DisplayTime != 5000)
+        if(DisplayTime != 5000)
         {
-            snackbar1.DisplayTime = 5000;
+            DisplayTime = 5000;
             this.SnackbarDisplayText = "Displaying for 5 seconds...";
         }
         else
         {
-            snackbar1.DisplayTime = 1000;
+            DisplayTime = 1000;
             this.SnackbarDisplayText = "Hello there!";
         }
     }
