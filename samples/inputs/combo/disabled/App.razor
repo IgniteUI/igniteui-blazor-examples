@@ -1,0 +1,79 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample">
+    <div class="states">
+        <span></span>
+        <span class="state-label state-column">Enabled</span>
+        <span class="state-label state-column">Disabled</span>
+        @for (var index = 0; index < Rows.Count; index++)
+        {
+            var row = Rows[index];
+            var groupStart = index == 2 ? "group-start" : "";
+            <span class="state-label @groupStart">@row.Label</span>
+            @foreach (var combo in row.Combos)
+            {
+                <div class="@groupStart">
+                    <IgbCombo @bind-Value="combo.Value"
+                              class="state-combo"
+                              Outlined="row.Outlined"
+                              Disabled="combo.Disabled"
+                              Placeholder="Country"
+                              PlaceholderSearch="Search"
+                              ValueKey="Id"
+                              DisplayKey="Name"
+                              GroupKey="Region"
+                              Data="Countries" />
+                </div>
+            }
+        }
+    </div>
+</div>
+
+@code {
+    private class Country
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Region { get; set; }
+    }
+
+    private class StateCombo
+    {
+        public bool Disabled { get; set; }
+        public string[] Value { get; set; }
+    }
+
+    private class StateRow
+    {
+        public string Label { get; set; }
+        public bool Outlined { get; set; }
+        public List<StateCombo> Combos { get; set; }
+    }
+
+    private List<Country> Countries { get; set; } = new List<Country>
+    {
+        new Country { Id = "BY", Name = "Belarus", Region = "Europe" },
+        new Country { Id = "BE", Name = "Belgium", Region = "Europe" },
+        new Country { Id = "BG", Name = "Bulgaria", Region = "Europe" },
+    };
+
+    private List<StateRow> Rows { get; set; } = new List<StateRow>
+    {
+        CreateRow("Idle", true),
+        CreateRow("Filled", true, "BY", "BE"),
+        CreateRow("Idle", false),
+        CreateRow("Filled", false, "BY", "BE"),
+    };
+
+    // each row shows an enabled and a disabled combo, and each combo binds a value of its own
+    private static StateRow CreateRow(string label, bool outlined, params string[] value) => new StateRow
+    {
+        Label = label,
+        Outlined = outlined,
+        Combos = new List<StateCombo>
+        {
+            new StateCombo { Value = value },
+            new StateCombo { Disabled = true, Value = value },
+        },
+    };
+}
