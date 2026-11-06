@@ -4,8 +4,8 @@
 <div class="container vertical">
     <div class="container vertical">
         <h3>Actions</h3>
-        <IgbDateRangePicker Mode="PickerMode.Dialog" @ref="ActionsDateRange">
-            <IgbButton slot="actions" @onclick="() => ActionsDateRange.ShowWeekNumbers = !ActionsDateRange.ShowWeekNumbers">Toggle week numbers</IgbButton>
+        <IgbDateRangePicker Mode="PickerMode.Dialog" ShowWeekNumbers="@ShowWeekNumbers">
+            <IgbButton slot="actions" @onclick="() => ShowWeekNumbers = !ShowWeekNumbers">Toggle week numbers</IgbButton>
         </IgbDateRangePicker>
 
         <h3>Custom separator</h3>
@@ -39,7 +39,7 @@
 </div>
 
 @code {
-    public IgbDateRangePicker ActionsDateRange { get; set; }
+    private bool ShowWeekNumbers;
     private IgbIcon DropDownIcon { get; set; }
     private IgbIcon UploadIcon { get; set; }
     private IgbIcon ClearIcon { get; set; }
