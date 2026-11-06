@@ -1,0 +1,32 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample">
+    <IgbCombo @bind-Value="SelectedCountries"
+              class="styled-combo"
+              SingleSelect="true"
+              Outlined="true"
+              Placeholder="Country"
+              ValueKey="Id"
+              DisplayKey="Name"
+              GroupKey="Region"
+              Open="true"
+              Data="Countries" />
+</div>
+
+@code {
+    private class Country
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Region { get; set; }
+    }
+
+    private List<Country> Countries { get; set; } = new List<Country>
+    {
+        new Country { Id = "BY", Name = "Belarus", Region = "Europe" },
+        new Country { Id = "BE", Name = "Belgium", Region = "Europe" },
+        new Country { Id = "BG", Name = "Bulgaria", Region = "Europe" },
+    };
+
+    private string[] SelectedCountries { get; set; } = new string[] { "BY" };
+}

@@ -1,0 +1,81 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample">
+    <div class="sizes">
+        <span></span>
+        @foreach (var size in Sizes)
+        {
+            <span class="state-label state-column">@size.Label</span>
+        }
+        @foreach (var type in Types)
+        {
+            <span class="state-label type-label">@type.Label</span>
+            @foreach (var combo in type.Combos)
+            {
+                <IgbCombo @bind-Value="combo.Value"
+                          class="@combo.ClassName"
+                          SingleSelect="true"
+                          Outlined="type.Outlined"
+                          Placeholder="Country"
+                          ValueKey="Id"
+                          DisplayKey="Name"
+                          GroupKey="Region"
+                          Open="true"
+                          ClosingScript="ComboKeepOpenOnOutsideClick"
+                          Data="Countries" />
+            }
+        }
+    </div>
+</div>
+
+@code {
+    private class Country
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Region { get; set; }
+    }
+
+    private class ComboSize
+    {
+        public string Label { get; set; }
+        public string ClassName { get; set; }
+    }
+
+    private class SizedCombo
+    {
+        public string ClassName { get; set; }
+        public string[] Value { get; set; } = new string[] { };
+    }
+
+    private class ComboType
+    {
+        public string Label { get; set; }
+        public bool Outlined { get; set; }
+
+        // a combo of each size, and each combo binds a value of its own
+        public List<SizedCombo> Combos { get; } = Sizes
+            .Select(size => new SizedCombo { ClassName = size.ClassName })
+            .ToList();
+    }
+
+    private List<Country> Countries { get; set; } = new List<Country>
+    {
+        new Country { Id = "BY", Name = "Belarus", Region = "Europe" },
+        new Country { Id = "BE", Name = "Belgium", Region = "Europe" },
+        new Country { Id = "BG", Name = "Bulgaria", Region = "Europe" },
+    };
+
+    private static List<ComboSize> Sizes { get; set; } = new List<ComboSize>
+    {
+        new ComboSize { Label = "Small", ClassName = "small" },
+        new ComboSize { Label = "Medium", ClassName = "medium" },
+        new ComboSize { Label = "Large", ClassName = "large" },
+    };
+
+    private List<ComboType> Types { get; set; } = new List<ComboType>
+    {
+        new ComboType { Label = "Border Type", Outlined = true },
+        new ComboType { Label = "Box Type", Outlined = false },
+    };
+}
