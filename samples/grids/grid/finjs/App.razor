@@ -39,6 +39,7 @@
                  PrimaryKey="id"
                  AllowFiltering="true"
                  FilterMode="FilterMode.ExcelStyleFilter"
+                 GroupingExpressions="GroupingExpressions"
                  HideGroupedColumns=true
                  CellClick="OnCellClick"
                  Name="grid1"
@@ -350,8 +351,8 @@
 </div>
 
 @code {
-
-    public IgbGroupingExpression[] GroupingExpressions = new IgbGroupingExpression[3]
+    public IgbGroupingExpression[] GroupingExpressions = new IgbGroupingExpression[0];
+    public IgbGroupingExpression[] PredefinedGroupingExpressions = new IgbGroupingExpression[3]
     {
         new IgbGroupingExpression(){ FieldName = "category", Dir= SortingDirection.Desc },
         new IgbGroupingExpression() { FieldName = "type", Dir= SortingDirection.Desc  },
@@ -372,7 +373,7 @@
 
     private IgbButton ShowChartButton;
     public double RecordsCount = 0;
-    public double Frequency = 99999;
+    public double Frequency = 0;
     public System.Threading.Timer Timer;
     public IgbCategoryChart Chart;
     public IgbDialog Dialog;
@@ -399,7 +400,7 @@
             Frequency = 500;
             RecordsCount = 1000;
             CurrentData = FinancialLiveData.Generate((int)RecordsCount);
-            grid1.GroupingExpressions = GroupingExpressions;
+            GroupingExpressions = PredefinedGroupingExpressions;
             StateHasChanged();
         }
     }
@@ -535,11 +536,11 @@
     {
         if (isChecked)
         {
-            this.grid1.GroupingExpressions = this.GroupingExpressions;
+            GroupingExpressions = PredefinedGroupingExpressions;
         }
         else
         {
-            this.grid1.GroupingExpressions = new IgbGroupingExpression[0];
+            GroupingExpressions = new IgbGroupingExpression[0];
         }
 
     }
