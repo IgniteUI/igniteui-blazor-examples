@@ -1,0 +1,39 @@
+@using IgniteUI.Blazor.Controls
+@implements IAsyncDisposable
+@inject IJSRuntime JSRuntime
+
+<div class="container sample">
+    <div class="positions">
+        <div id="top" class="target"></div>
+        <div id="left" class="target"></div>
+        <div id="right" class="target"></div>
+        <div id="bottom" class="target"></div>
+    </div>
+    <IgbTooltip Anchor="top" Placement="PopoverPlacement.Top" WithArrow="true" Open="true">
+        Tooltip message Top
+    </IgbTooltip>
+    <IgbTooltip Anchor="left" Placement="PopoverPlacement.Left" WithArrow="true" Open="true">
+        Tooltip message Left
+    </IgbTooltip>
+    <IgbTooltip Anchor="right" Placement="PopoverPlacement.Right" WithArrow="true" Open="true">
+        Tooltip message Right
+    </IgbTooltip>
+    <IgbTooltip Anchor="bottom" Placement="PopoverPlacement.Bottom" WithArrow="true" Open="true">
+        Tooltip message Bottom
+    </IgbTooltip>
+</div>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("tooltipBlockEscapeAttach");
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await JSRuntime.InvokeVoidAsync("tooltipBlockEscapeDetach");
+    }
+}

@@ -1,16 +1,52 @@
 @using IgniteUI.Blazor.Controls
 
-<style>
-    igc-avatar {
-        --ig-size: var(--ig-size-medium);
-    }
-</style>
-
 <div class="container sample">
-    <IgbAvatar id="avatar" Shape="AvatarShape.Circle" Src="https://dl.infragistics.com/x/img/avatars/10.jpg" />
-    <IgbTooltip Placement="PopoverPlacement.BottomStart" Anchor="avatar" DisableArrow="true">
-        Her name is Madelyn James
+    <div class="settings">
+        <IgbRadioGroup Alignment="ContentOrientation.Horizontal" @bind-Value="placement">
+            @foreach (var item in Placements)
+            {
+                <IgbRadio name="placement" Value="@item.Label">
+                    <span>@item.Label</span>
+                </IgbRadio>
+            }
+        </IgbRadioGroup>
+        <IgbSwitch LabelPosition="ToggleLabelPosition.Before" @bind-Checked="closeButton">
+            <span>Close Button</span>
+        </IgbSwitch>
+        <IgbSwitch LabelPosition="ToggleLabelPosition.Before" @bind-Checked="arrow">
+            <span>Arrow</span>
+        </IgbSwitch>
+    </div>
+    <div id="target" class="target"></div>
+    <IgbTooltip Anchor="target"
+                Placement="Placement"
+                WithArrow="arrow"
+                Sticky="closeButton"
+                Open="true">
+        This is a tooltip message
+        <br />
+        Multiline message here.
     </IgbTooltip>
 </div>
 
-@code { }
+@code {
+    private class PlacementOption
+    {
+        public string Label { get; set; }
+        public PopoverPlacement Value { get; set; }
+    }
+
+    private List<PlacementOption> Placements { get; set; } = new List<PlacementOption>
+    {
+        new PlacementOption { Label = "Top", Value = PopoverPlacement.Top },
+        new PlacementOption { Label = "Right", Value = PopoverPlacement.Right },
+        new PlacementOption { Label = "Left", Value = PopoverPlacement.Left },
+        new PlacementOption { Label = "Bottom", Value = PopoverPlacement.Bottom },
+    };
+
+    private string placement = "Bottom";
+    private bool closeButton = true;
+    private bool arrow = true;
+
+    private PopoverPlacement Placement => Placements.First(item => item.Label == placement).Value;
+}
