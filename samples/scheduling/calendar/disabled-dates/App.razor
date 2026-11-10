@@ -3,12 +3,12 @@
 
 <div class="container vertical">
     <div style="border: 1px solid gainsboro;">
-        <IgbCalendar @ref="CalendarRef" DisabledDates="@DisabledDateDescriptor" />
+        <IgbCalendar @bind-Value="date" DisabledDates="@DisabledDateDescriptor" />
     </div>
 </div>
 
 @code {
-    public IgbCalendar CalendarRef { get; set; }
+    private DateTime date = DateTime.Today;
 
     public IgbDateRangeDescriptor[] DisabledDateDescriptor { get; set; }
 

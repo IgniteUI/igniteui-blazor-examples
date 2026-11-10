@@ -13,12 +13,12 @@
 
 <div class="container vertical">
     <div class="container vertical">
-        <form @ref="Form" @onsubmit="@HandleSubmit">
+        <form @onsubmit="HandleSubmit" @onreset="HandleReset">
             <fieldset class="vertical">
-                <IgbDateRangePicker @ref="DateRangePicker" bind-Value="@Range" Label="Date Range" Required="true" Min="@Min" Change="HandleDateRangeChange" />
+                <IgbDateRangePicker @bind-Value="Range" Label="Date Range" Required="true" Min="@Min" />
                 <div class="buttons horizontal">
-                    <IgbButton Type="submit" Variant="ButtonVariant.Outlined"><span>Submit</span></IgbButton>
-                    <IgbButton Type="reset" Variant="ButtonVariant.Outlined"><span>Reset</span></IgbButton>
+                    <IgbButton DisplayType="ButtonBaseType.Submit" Variant="ButtonVariant.Outlined"><span>Submit</span></IgbButton>
+                    <IgbButton DisplayType="ButtonBaseType.Reset" Variant="ButtonVariant.Outlined"><span>Reset</span></IgbButton>
                 </div>
             </fieldset>
         </form>
@@ -33,28 +33,19 @@
 </div>
 
 @code {
-    private ElementReference Form { get; set; }
-    public IgbDateRangePicker DateRangePicker { get; set; }
     public DateTime Min = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
     public IgbDateRangeValue Range { get; set; }
     public IgbDialog DialogRef;
 
-    private void HandleDateRangeChange(IgbDateRangeValueEventArgs e)
-    {
-        this.Range = new IgbDateRangeValue
-        {
-            Start = e.Detail.Start,
-            End = e.Detail.End
-        };
-    }
-
-    public async void HandleSubmit()
+    public async Task HandleSubmit()
     {
         if (this.DialogRef != null)
         {
             await this.DialogRef.ShowAsync();
         }
     }
+
+    private void HandleReset() => Range = null;
 
     public async Task OnDialogHide()
     {
