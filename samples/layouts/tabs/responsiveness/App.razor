@@ -1,0 +1,26 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample">
+    <div class="modes">
+        <span class="mode-label">Content Fit</span>
+        <IgbTabs Alignment="TabsAlignment.Justify">
+            @foreach (var category in Categories)
+            {
+                <IgbTab Label="@category" />
+            }
+        </IgbTabs>
+        <span class="mode-label">Content Fix</span>
+        <IgbTabs>
+            @foreach (var day in Days)
+            {
+                <IgbTab Label="@day" />
+            }
+        </IgbTabs>
+    </div>
+</div>
+
+@code {
+    private List<string> Categories { get; set; } = new List<string> { "Podcasts", "Playlists", "Genres" };
+
+    private List<string> Days { get; set; } = new List<string> { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
+}
