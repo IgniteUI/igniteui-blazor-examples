@@ -403,21 +403,18 @@
             grid1.GroupingExpressions = this.GroupingExpressions;
         }
 
-        if (firstRender)
+        // The slider receives its initial Value before Min, Max and Step and clamps it to the default 0-100 range,
+        // so step it from Min to the bound value once the slider is ready.
+        if (recordsSlider != null && firstRender)
         {
-            await ShowInitialValue(recordsSlider, RecordsCount);
-            await ShowInitialValue(frequencySlider, Frequency);
+            await recordsSlider.EnsureReady();
+            recordsSlider.StepUp(9);
         }
-
-    }
-
-    // The slider receives its initial Value before Min, Max and Step and clamps it to the default 0-100 range,
-    // so step it from Min to the bound value once the slider is ready.
-    private static async Task ShowInitialValue(IgbSlider slider, double value)
-    {
-        await slider.EnsureReady();
-        await slider.StepDownAsync((slider.Max - slider.Min) / slider.Step);
-        await slider.StepUpAsync((value - slider.Min) / slider.Step);
+        if (frequencySlider != null && firstRender)
+        {
+            await frequencySlider.EnsureReady();
+            frequencySlider.StepUp(40);
+        }
     }
 
     private void OnRecordsChange()
@@ -560,7 +557,4 @@
         }
 
     }
-
-
-
 }
