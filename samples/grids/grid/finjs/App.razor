@@ -13,11 +13,11 @@
             </div>
             <div class="control-item">
                 <label>Records: @RecordsCount</label>
-                <IgbSlider @ref="recordsSlider" @bind-Value="RecordsCount" @bind-Value:after="OnRecordsChange" Class="finjs-slider" Max="10000" Step="100"></IgbSlider>
+                <IgbSlider @bind-Value="RecordsCount" @bind-Value:after="OnRecordsChange" Class="finjs-slider" Max="10000" Step="100"></IgbSlider>
             </div>
             <div class="control-item">
                 <label>Frequency: @Frequency</label>
-                <IgbSlider @ref="frequencySlider" @bind-Value="Frequency" Class="finjs-slider" LowerBound="100" Min="100" Max="3000" Step="10"></IgbSlider>
+                <IgbSlider @bind-Value="Frequency" Class="finjs-slider" LowerBound="100" Min="100" Max="3000" Step="10"></IgbSlider>
             </div>
         </div>
         <div class="control-item finjs-play-controls">
@@ -34,6 +34,7 @@
 
         <IgbGrid Class="gridSize" 
                  AutoGenerate="false"
+                 Data="CurrentData"
                  RowSelection="GridSelectionMode.Multiple"
                  PrimaryKey="id"
                  AllowFiltering="true"
@@ -370,10 +371,8 @@
     private IgbButton StartButton;
 
     private IgbButton ShowChartButton;
-    private IgbSlider recordsSlider;
-    private IgbSlider frequencySlider;
-    public double RecordsCount = 1000;
-    public double Frequency = 500;
+    public double RecordsCount = 0;
+    public double Frequency = 99999;
     public System.Threading.Timer Timer;
     public IgbCategoryChart Chart;
     public IgbDialog Dialog;
@@ -384,8 +383,6 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var grid1 = this.grid1;
-        var icon = this.icon;
         if (icon != null && firstRender)
         {
             await icon.EnsureReady();
@@ -396,31 +393,20 @@
             await icon.RegisterIconFromTextAsync("update", this.updateIcon, "material");
         }
 
-        if (grid1 != null && firstRender)
+        if (firstRender)
         {
-            this.CurrentData = FinancialLiveData.Generate((int)RecordsCount);
-            grid1.Data = this.CurrentData;
-            grid1.GroupingExpressions = this.GroupingExpressions;
-        }
-
-        // The slider receives its initial Value before Min, Max and Step and clamps it to the default 0-100 range,
-        // so step it from Min to the bound value once the slider is ready.
-        if (recordsSlider != null && firstRender)
-        {
-            await recordsSlider.EnsureReady();
-            recordsSlider.StepUp(9);
-        }
-        if (frequencySlider != null && firstRender)
-        {
-            await frequencySlider.EnsureReady();
-            frequencySlider.StepUp(40);
+            // Set initial values for sliders on first render.
+            Frequency = 500;
+            RecordsCount = 1000;
+            CurrentData = FinancialLiveData.Generate((int)RecordsCount);
+            grid1.GroupingExpressions = GroupingExpressions;
+            StateHasChanged();
         }
     }
 
     private void OnRecordsChange()
     {
         this.CurrentData = FinancialLiveData.Generate((int)RecordsCount);
-        grid1.Data = this.CurrentData;
     }
 
     public bool IsFeedDisabled = false;
