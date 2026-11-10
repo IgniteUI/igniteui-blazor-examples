@@ -13,11 +13,11 @@
             </div>
             <div class="control-item">
                 <label>Records: @RecordsCount</label>
-                <IgbSlider @bind-Value="RecordsCount" @bind-Value:after="OnRecordsChange" Class="finjs-slider" Max="10000" Step="100"></IgbSlider>
+                <IgbSlider @ref="recordsSlider" @bind-Value="RecordsCount" @bind-Value:after="OnRecordsChange" Class="finjs-slider" Max="10000" Step="100"></IgbSlider>
             </div>
             <div class="control-item">
                 <label>Frequency: @Frequency</label>
-                <IgbSlider @bind-Value="Frequency" Class="finjs-slider" LowerBound="100" Min="100" Max="3000" Step="10"></IgbSlider>
+                <IgbSlider @ref="frequencySlider" @bind-Value="Frequency" Class="finjs-slider" LowerBound="100" Min="100" Max="3000" Step="10"></IgbSlider>
             </div>
         </div>
         <div class="control-item finjs-play-controls">
@@ -370,6 +370,8 @@
     private IgbButton StartButton;
 
     private IgbButton ShowChartButton;
+    private IgbSlider recordsSlider;
+    private IgbSlider frequencySlider;
     public double RecordsCount = 1000;
     public double Frequency = 500;
     public System.Threading.Timer Timer;
@@ -401,6 +403,21 @@
             grid1.GroupingExpressions = this.GroupingExpressions;
         }
 
+        if (firstRender)
+        {
+            await ShowInitialValue(recordsSlider, RecordsCount);
+            await ShowInitialValue(frequencySlider, Frequency);
+        }
+
+    }
+
+    // The slider receives its initial Value before Min, Max and Step and clamps it to the default 0-100 range,
+    // so step it from Min to the bound value once the slider is ready.
+    private static async Task ShowInitialValue(IgbSlider slider, double value)
+    {
+        await slider.EnsureReady();
+        await slider.StepDownAsync((slider.Max - slider.Min) / slider.Step);
+        await slider.StepUpAsync((value - slider.Min) / slider.Step);
     }
 
     private void OnRecordsChange()
