@@ -13,6 +13,23 @@
                   CaseSensitiveIcon="@caseSensitiveIcon"
                   GroupKey="@groupKey"
                   Disabled="@disabled" />
+
+        <div class="selection-panel">
+            <span class="selection-title" id="selection-title">Selection</span>
+            @if (selectedStates.Length > 0)
+            {
+                <ul class="selection-list" aria-labelledby="selection-title">
+                    @foreach (var name in selectedNames)
+                    {
+                        <li>@name</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <span class="selection-empty">No items selected</span>
+            }
+        </div>
     </div>
 
     <div class="controls">
@@ -33,4 +50,8 @@
     private bool disabled;
 
     private string groupKey => grouping ? "Region" : "";
+
+    // The names of the selected states, for the panel under the combo.
+    private IEnumerable<string> selectedNames =>
+        selectedStates.Select(id => usStates.FirstOrDefault(state => state.Id == id)?.Name ?? id);
 }
