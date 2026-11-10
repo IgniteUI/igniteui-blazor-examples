@@ -631,7 +631,7 @@ function updateIG(cb) {
     // 1. change 'igVersion' in this file: ./azure-pipelines/build-pipeline-client.yml
     // 2. change 'igVersion' in this file: ./azure-pipelines/build-pipeline-server.yml
     // 3. change the 'packageUpgrades' array with new version of IG packages, e.g.
-    // { version: "26.1.51", name: "IgniteUI.Blazor.Trial" }, // ALWAYS use trial packages
+    // { version: "26.2.2", name: "IgniteUI.Blazor.Trial" }, // ALWAYS use trial packages
     // that will be downloaded from - PUBLIC NUGET https://www.nuget.org/packages/IgniteUI.Blazor.Trial
 
     let dotNetTarget = "10.0";
