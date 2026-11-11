@@ -22,21 +22,25 @@ variables:
 jobs:
 - job: BuildAndValidate
   displayName: 'Build & Validate'
+  # Each slice builds the samples browser and runs its share of the tests: VSTest splits them between the slices.
+  # The slices run at the same time only when the pool has as many free agents.
+  strategy:
+    parallel: 3
   steps:
   # Same checkout as the deployment pipelines: the gulp processes rely on the repository folder name.
   - checkout: self
     path: $(Build.Repository.Name)
     fetchDepth: 1
 
-  # Copies the samples into the client, pins the trial packages to igVersion, restores them from the IG feed
-  # and publishes the client. Cleanup is left to the end of this job, so the tests can run.
+  # Copies the samples into the client, pins the trial packages to igVersion and restores them from the IG feed.
+  # Cleanup is left to the end of this job, so the tests can run.
   - template: templates/build-steps-template.yml
     parameters:
       igVersion: '26.2.2'
       igNuGetFeedUrl: $(IG_Nuget_Feed_URL)
       projectToBuild: Client
       shouldCleanPostExectuion: false
-      useTrialPackages: true
+      shouldPublish: false
       username: $(IG_Nuget_Feed_Username)
       password: $(IG_Nuget_Feed_Password)
 
@@ -49,39 +53,35 @@ jobs:
     displayName: 'Install Playwright Chromium'
     workingDirectory: '$(testDir)'
 
-  - script: >-
-      dotnet test --no-build --settings ../.runsettings
-      --logger "console;verbosity=normal" --logger trx --results-directory TestResults
-      -- Playwright.LaunchOptions.Headless=true
+  - task: VisualStudioTestPlatformInstaller@1
+    displayName: 'Install Visual Studio Test Platform'
+    inputs:
+      packageFeedSelector: 'nugetOrg'
+      versionSelector: 'specificVersion'
+      testPlatformVersion: '17.12.0'
+
+  # Splits the tests between the slices by their duration in earlier runs and publishes the results.
+  - task: VSTest@2
     displayName: 'Run tests'
-    workingDirectory: '$(testDir)'
-
-  - task: PublishTestResults@2
-    displayName: 'Publish test results'
-    condition: succeededOrFailed()
     inputs:
-      testResultsFormat: 'VSTest'
-      testResultsFiles: '**/*.trx'
-      searchFolder: '$(testDir)/TestResults'
+      testSelector: 'testAssemblies'
+      testAssemblyVer2: 'IgBlazorSamples.Test.dll'
+      searchFolder: '$(testDir)/bin/Debug'
+      vsTestVersion: 'toolsInstaller'
+      runSettingsFile: '$(Build.SourcesDirectory)/browser/.runsettings'
+      distributionBatchType: 'basedOnExecutionTime'
+      batchingBasedOnExecutionTimeOption: 'customTimeBatchSize'
+      customRunTimePerBatchValue: '600'
       testRunTitle: 'Samples browser tests'
-      failTaskOnMissingResultsFile: false
-
-  - task: CopyFiles@2
-    displayName: 'Collect test results and traces'
-    condition: failed()
-    inputs:
-      SourceFolder: '$(testDir)'
-      Contents: |
-        TestResults/**
-        bin/Debug/playwright-traces/**
-      TargetFolder: '$(Build.ArtifactStagingDirectory)/browser-test-results'
+      rerunFailedTests: true
+      rerunMaxAttempts: '2'
 
   - task: PublishPipelineArtifact@1
-    displayName: 'Upload test results and traces'
+    displayName: 'Upload Playwright traces'
     condition: failed()
     inputs:
-      targetPath: '$(Build.ArtifactStagingDirectory)/browser-test-results'
-      artifact: 'browser-test-results'
+      targetPath: '$(testDir)/bin/Debug/playwright-traces'
+      artifact: 'playwright-traces-$(System.JobPositionInPhase)'
 
   - task: PostBuildCleanup@4
     displayName: 'Clean pipeline directories'
