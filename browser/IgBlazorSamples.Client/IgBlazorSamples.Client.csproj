@@ -45,6 +45,14 @@
       <None Remove="notes.txt" />
     </ItemGroup>
 
+    <!--
+      The deployed site is publish/wwwroot, and wwwroot/web.config serves its pre-compressed
+      .br/.gz sidecars. Copy it after publish so it wins over any web.config the SDK writes.
+    -->
+    <Target Name="EnsureCustomWebConfigInPublish" AfterTargets="Publish">
+      <Copy SourceFiles="$(MSBuildProjectDirectory)/wwwroot/web.config" DestinationFiles="$(PublishDir)wwwroot/web.config" OverwriteReadOnlyFiles="true" />
+    </Target>
+
     <!-- End NPM Updates -->
 
   <ItemGroup>
