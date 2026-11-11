@@ -9,6 +9,13 @@
     <meta name="author" content="Infragistics">
     <!-- NOTE <base> reference path is updated in gulp-samples.js -->
     <base href="/" />
+    <!--
+        Filled in at build time (OverrideHtmlAssetPlaceholders in the .csproj): preload links for
+        the runtime's boot files, so they download while the page is still loading, and an import
+        map from the runtime's module names to their fingerprinted files.
+    -->
+    <link rel="preload" id="webassembly" />
+    <script type="importmap"></script>
     <script>
         var path = window.location.pathname.split('/');
         var base = document.getElementsByTagName('base')[0];
@@ -64,7 +71,7 @@
     <!-- importing blazor scripts for IG excel: -->
     <script src="_content/IgniteUI.Blazor.Documents.excel/excel.js"></script>
     <!-- importing blazor scripts for webassembly: -->
-    <script src="_framework/blazor.webassembly.js" autostart="false"></script>
+    <script src="_framework/blazor.webassembly#[.{fingerprint}].js" autostart="false"></script>
     <script>
         // The runtime fetches its boot resources with cache: "no-cache" unless told otherwise, which
         // turns every page load into one revalidation request per assembly. They are content-hashed
