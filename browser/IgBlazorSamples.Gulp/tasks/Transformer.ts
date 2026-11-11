@@ -75,16 +75,16 @@ class SampleSourceFile extends SampleFile {
         }
         this.Content = newLines.join("\r\n");
 
-        // add OnInitialized() if it is missing
-        if (this.Content.indexOf("OnInitialized()") < 0) {
-            var codeReplace = "@code {\r\n";
-            var codePaste   = "    protected override void OnInitialized()\r\n    {\r\n    }\r\n";
-            this.Content = this.Content.replace(codeReplace, codeReplace + codePaste);
-        }
-
         // add lines with new Register(IgniteUIBlazor)
         if (modules !== undefined && modules.length > 0) {
             // console.log("update " + this.Path + " modules: " + (modules.join(','));
+
+            // add OnInitialized() to register the modules in, if it is missing
+            if (this.Content.indexOf("OnInitialized()") < 0) {
+                var codeReplace = "@code {\r\n";
+                var codePaste   = "    protected override void OnInitialized()\r\n    {\r\n    }\r\n";
+                this.Content = this.Content.replace(codeReplace, codeReplace + codePaste);
+            }
 
             // adding IG injection if it is missing
             var codeUsingIG  = "@using IgniteUI.Blazor.Controls";
@@ -632,18 +632,14 @@ class Transformer {
         return info;
     }
 
-    public static getRelative(path: string): string {
-        // let path = filePath;
-        if (path.indexOf(igConfig.RepositoryName) > -1) {
-            path = path.split(igConfig.RepositoryName)[1];
-            path = path.split("\\").join("/");
-            // return "." + path;
-            return "../.." + path;
-            // return path;
-        }
-
-        console.log("failed on getRelative " + path);
-        return path;
+    // returns a repository path relative to the gulp folder, e.g. "../../samples/inputs/chip/overview",
+    // with forward slashes on any OS and whatever folder the repository is checked out to
+    public static getRelative(dir: string): string {
+        const nodePath = require('path');
+        // this file is evaluated by tasks/gulp-samples.js, so __dirname is the tasks folder
+        const repoRoot = nodePath.resolve(__dirname, '../../..');
+        const relative = nodePath.relative(repoRoot, dir).split(nodePath.sep).join("/");
+        return "../../" + relative;
     }
 
     public static getFileName(relativePath: string): string {

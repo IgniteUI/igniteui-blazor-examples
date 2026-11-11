@@ -5,6 +5,9 @@ parameters:
   - name: isVerbose
     default: false
   - name: shouldCleanPostExectuion
+  # Publishes the client and uploads it as a pipeline artifact. CI turns it off: its tests build the client themselves.
+  - name: shouldPublish
+    default: true
   - name: username
   - name: password
 
@@ -127,29 +130,30 @@ steps:
       SourceFolder: '$(Build.SourcesDirectory)\'
       Contents: '**/nuget.config'
 
-  - task: CmdLine@2
-    # Using a CmldLine call for this opeation, because I couldn't get it to work as expected with the DotNetCoreCLI task
-    displayName: 'dotnet publish'
-    inputs:
-      # Skip the restore process as it is already done. Got an error when I tried skipping the build process (which is already done as well) 
-      script: 'dotnet publish --interactive --no-restore -c release -o $(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\publish'
-      workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
+  - ${{ if eq(parameters.shouldPublish, true) }}:
+    - task: CmdLine@2
+      # Using a CmldLine call for this opeation, because I couldn't get it to work as expected with the DotNetCoreCLI task
+      displayName: 'dotnet publish'
+      inputs:
+        # Skip the restore process as it is already done. Got an error when I tried skipping the build process (which is already done as well) 
+        script: 'dotnet publish --interactive --no-restore -c release -o $(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}\publish'
+        workingDirectory:  '$(Build.SourcesDirectory)\browser\IgBlazorSamples.${{ parameters.projectToBuild }}'
 
-  - task: ArchiveFiles@2
-    displayName: 'Package samples browser'
-    inputs:
-      verbose: ${{ parameters.isVerbose }}
-      rootFolderOrFile: '$(Build.SourcesDirectory)/browser/IgBlazorSamples.${{ parameters.projectToBuild }}/publish'
-      includeRootFolder: false
-      archiveType: 'zip'
-      archiveFile: '$(Build.ArtifactStagingDirectory)/BlazorSamples${{ parameters.projectToBuild }}.zip'
-      replaceExistingArchive: true
+    - task: ArchiveFiles@2
+      displayName: 'Package samples browser'
+      inputs:
+        verbose: ${{ parameters.isVerbose }}
+        rootFolderOrFile: '$(Build.SourcesDirectory)/browser/IgBlazorSamples.${{ parameters.projectToBuild }}/publish'
+        includeRootFolder: false
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/BlazorSamples${{ parameters.projectToBuild }}.zip'
+        replaceExistingArchive: true
 
-  - task: PublishPipelineArtifact@1
-    displayName: 'Publish pipeline artifact'
-    inputs:
-      targetPath: '$(Build.ArtifactStagingDirectory)/BlazorSamples${{ parameters.projectToBuild }}.zip'
-      artifact: 'BlazorSamples${{ parameters.projectToBuild }}'
+    - task: PublishPipelineArtifact@1
+      displayName: 'Publish pipeline artifact'
+      inputs:
+        targetPath: '$(Build.ArtifactStagingDirectory)/BlazorSamples${{ parameters.projectToBuild }}.zip'
+        artifact: 'BlazorSamples${{ parameters.projectToBuild }}'
 
   - ${{ if eq(parameters.shouldCleanPostExectuion, true) }}:
     - task: PostBuildCleanup@4

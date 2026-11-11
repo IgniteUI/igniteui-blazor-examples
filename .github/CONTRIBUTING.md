@@ -3,7 +3,7 @@
 This repository holds the Ignite UI for Blazor samples: the standalone sample apps under `samples/`, which the documentation embeds, and the samples browser under `browser/`, which lists them all. To contribute:
 
 1. Create a branch, or fork the repository (see [Branches](#branches) for where to branch from).
-2. Make the change and build every sample you add or change (`dotnet build` on its `BlazorClientApp.csproj`; `dotnet run` serves it at http://localhost:4200). No checks run on pull requests in this repository, so the local build is the check.
+2. Make the change and build every sample you add or change (`dotnet build` on its `BlazorClientApp.csproj`; `dotnet run` serves it at http://localhost:4200). Every pull request also runs the samples browser tests, which open each sample in the browser and fail on errors it throws (see [the tests readme](../browser/IgBlazorSamples.Test/ReadMe.md) to run them locally).
 3. Open a pull request that references the issue you're working on.
 
 The pull request is reviewed and tested before it's merged.
