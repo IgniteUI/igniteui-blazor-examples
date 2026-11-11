@@ -11,7 +11,6 @@
     <AssemblyName>Infragistics.Samples</AssemblyName>
     <RootNamespace>Infragistics.Samples</RootNamespace>
     <Version>4.0.0</Version>
-    <BlazorCacheBootResources>false</BlazorCacheBootResources>
     <!-- this is required for excel WASM samples for fast file download -->
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
@@ -63,15 +62,41 @@
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="10.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.JSInterop.WebAssembly" Version="10.0.1" />
     <PackageReference Include="System.Net.Http.Json" Version="10.0.1" />
   </ItemGroup>
 
+  <!--
+    The Excel library loads only on /excel/ routes (App.razor, which lists the same assemblies).
+    The other assemblies here are referenced only by it, so the other samples don't download them.
+  -->
   <ItemGroup>
       <BlazorWebAssemblyLazyLoad Include="IgniteUI.Blazor.Documents.Core.wasm" />
       <BlazorWebAssemblyLazyLoad Include="IgniteUI.Blazor.Documents.Excel.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="HarfBuzzSharp.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="Microsoft.Win32.Primitives.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="Microsoft.Win32.SystemEvents.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="SkiaSharp.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.ComponentModel.Annotations.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Diagnostics.Process.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Drawing.Common.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.IO.Compression.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.IO.Packaging.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Net.Requests.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Net.WebClient.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Net.WebProxy.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Numerics.Vectors.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Private.Windows.Core.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Private.Windows.GdiPlus.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Private.Xml.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Reflection.Metadata.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Runtime.Serialization.Formatters.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Security.AccessControl.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Security.Principal.Windows.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Text.Encoding.Extensions.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Threading.Thread.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Xml.ReaderWriter.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="Topten.RichTextKit.wasm" />
   </ItemGroup>
 
   <ItemGroup>

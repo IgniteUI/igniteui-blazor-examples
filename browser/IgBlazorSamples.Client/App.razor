@@ -52,6 +52,37 @@
 
     private List<Assembly> LazyLoadedAssemblies = new List<Assembly>();
 
+    // Must match the BlazorWebAssemblyLazyLoad items in IgBlazorSamples.Client.csproj: the Excel
+    // library and the assemblies that only it references, which every other sample doesn't need.
+    private static readonly string[] ExcelAssemblies = {
+        "IgniteUI.Blazor.Documents.Core.wasm",
+        "IgniteUI.Blazor.Documents.Excel.wasm",
+        "HarfBuzzSharp.wasm",
+        "Microsoft.Win32.Primitives.wasm",
+        "Microsoft.Win32.SystemEvents.wasm",
+        "SkiaSharp.wasm",
+        "System.ComponentModel.Annotations.wasm",
+        "System.Diagnostics.Process.wasm",
+        "System.Drawing.Common.wasm",
+        "System.IO.Compression.wasm",
+        "System.IO.Packaging.wasm",
+        "System.Net.Requests.wasm",
+        "System.Net.WebClient.wasm",
+        "System.Net.WebProxy.wasm",
+        "System.Numerics.Vectors.wasm",
+        "System.Private.Windows.Core.wasm",
+        "System.Private.Windows.GdiPlus.wasm",
+        "System.Private.Xml.wasm",
+        "System.Reflection.Metadata.wasm",
+        "System.Runtime.Serialization.Formatters.wasm",
+        "System.Security.AccessControl.wasm",
+        "System.Security.Principal.Windows.wasm",
+        "System.Text.Encoding.Extensions.wasm",
+        "System.Threading.Thread.wasm",
+        "System.Xml.ReaderWriter.wasm",
+        "Topten.RichTextKit.wasm",
+    };
+
     private async Task OnNavigateChangedAsync(string navigationPath)
     { 
         await LazyLoadAssemblies(navigationPath, true);
@@ -76,11 +107,7 @@
                 if (Router != null) Router.IsLazyLoading = true;
 
                 Console.WriteLine("SB.APP LazyLoad Excel assemblies... ");
-                var list = new List<string> {
-                    "IgniteUI.Blazor.Documents.Core.wasm",
-                    "IgniteUI.Blazor.Documents.Excel.wasm"
-                };
-                var assemblies = await AssemblyLoader.LoadAssembliesAsync(list);
+                var assemblies = await AssemblyLoader.LoadAssembliesAsync(ExcelAssemblies);
                 Console.WriteLine("SB.APP LazyLoad Excel assemblies... done:");
                 foreach (var asmb in assemblies)
                 {
