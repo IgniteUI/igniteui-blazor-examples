@@ -7,7 +7,8 @@ Samples embedded in the Ignite UI for Blazor documentation and listed in the sam
 - `samples/<group>/<component>/<sample>/` — one standalone Blazor WebAssembly app per sample: `App.razor` holds the sample, plus `Program.cs`, `BlazorClientApp.csproj`, `wwwroot/index.html`, data classes (`*Data.cs`, `Services/`) and any sample scripts in `wwwroot/*.js`.
 - `browser/` — the samples browser: `IgBlazorSamples.Client` (WebAssembly) and `IgBlazorSamples.Server` (Blazor Server). `IgBlazorSamples.Gulp` [copies the samples into them](browser/IgBlazorSamples.Gulp/readme.md) and the copies are git-ignored, so change a sample in `samples/`, never in `browser/`.
 - `templates/sample/` — the starting point for a new sample (steps in its `ReadMe-DEV.md`). Each sample's `ReadMe.md` is generated from it; don't edit those per sample.
-- `azure-pipelines/` — deployment builds of the samples browser; nothing runs on pull requests.
+- `azure-pipelines/` — deployment builds of the samples browser.
+- `.github/workflows` — `.github/workflows/ci.yml` runs builds the samples browser and runs tests (`browser/IgBlazorSamples.Test`) on every pull request.
 
 ## Rules
 
