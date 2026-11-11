@@ -1,7 +1,9 @@
 @using IgniteUI.Blazor.Controls
 @inject IJSRuntime JS
 
-<div class="container sample">
+@* the ig-typography class turns on the type style classes of the theme, so the texts of the sample
+   take their fonts from the theme of the combo *@
+<div class="container sample ig-typography">
     <div class="destinations-area">
         <IgbCombo @bind-Value="SelectedDestinations"
                   class="destinations"
@@ -12,6 +14,7 @@
                   GroupSorting="GroupingDirection.None"
                   Placeholder="Pick one or more cities"
                   PlaceholderSearch="Search cities..."
+                  Open="true"
                   Label="@(Templates.Input ? "Destinations" : null)"
                   ItemTemplateScript="@(Templates.Item ? "ComboItemTemplate" : "ComboDefaultItemTemplate")"
                   GroupHeaderTemplateScript="@(Templates.GroupHeader ? "ComboGroupHeaderTemplate" : "ComboDefaultGroupHeaderTemplate")"
@@ -19,14 +22,14 @@
             @if (Templates.Header)
             {
                 <header slot="header" class="list-header">
-                    <span>Destinations by region</span>
+                    <span class="ig-typography__subtitle-2">Destinations by region</span>
                     <IgbButton Variant="ButtonVariant.Flat" @onclick="SelectAll">Select all</IgbButton>
                 </header>
             }
             @if (Templates.Footer)
             {
                 <footer slot="footer" class="list-footer">
-                    <span>@SelectedDestinations.Length selected</span>
+                    <span class="ig-typography__body-2">@SelectedDestinations.Length selected</span>
                     <IgbButton Variant="ButtonVariant.Flat" @onclick="ClearSelection">Clear</IgbButton>
                 </footer>
             }
@@ -53,19 +56,9 @@
             }
         </IgbCombo>
 
-        <div class="selection">
-            <span class="selection-title">Selection</span>
-            @if (SelectedNames.Any())
-            {
-                @foreach (var name in SelectedNames)
-                {
-                    <span>@name</span>
-                }
-            }
-            else
-            {
-                <span class="selection-empty">No items selected</span>
-            }
+        <div class="selection ig-typography__body-2">
+            <span class="ig-typography__subtitle-2">Selection</span>
+            <span>@(SelectedNames.Any() ? string.Join(", ", SelectedNames) : "No items selected")</span>
         </div>
     </div>
 
@@ -105,7 +98,7 @@
     private ComboTemplates Templates { get; set; } = new ComboTemplates();
 
     // the `Id` values of the selected destinations
-    private string[] SelectedDestinations { get; set; } = new string[] { "SOF", "LON" };
+    private string[] SelectedDestinations { get; set; } = new string[] { };
 
     private IEnumerable<string> SelectedNames => Destinations.Where(d => SelectedDestinations.Contains(d.Id)).Select(d => d.Name);
 
