@@ -19,20 +19,14 @@ class ErrorTestsData : System.Collections.IEnumerable
 [TestFixtureSource(typeof(ErrorTestsData))]
 [Parallelizable(ParallelScope.All)]
 [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
-public class ErrorTest : BlazorTest
+public class ErrorTest : SharedContextTest
 {
     private string testSelector;
-    private string goToUrl;
-    public ErrorTest(string componentName, string goToUrl, string testSelector)
+    private string route;
+    public ErrorTest(string componentName, string route, string testSelector)
     {
-        this.goToUrl = String.Format("{0}/{1}", RootUri.AbsoluteUri.TrimEnd('/'), goToUrl.TrimStart('/'));
+        this.route = route;
         this.testSelector = testSelector;
-    }
-
-    [SetUp]
-    public void InitFixture()
-    {
-        Context.SetDefaultTimeout(TestContext.Parameters.Get<int>("defaultTimeout", 30000));
     }
 
     [Test]
@@ -52,7 +46,7 @@ public class ErrorTest : BlazorTest
                 }
             }
         };
-        await Page.GotoAsync(goToUrl);
+        await Page.GotoAsync(String.Format("{0}/{1}", RootUri.AbsoluteUri.TrimEnd('/'), route.TrimStart('/')));
 
         Assert.That(numPageErrors == 0, $"The following errors were thrown: \\n ${messages}");
 

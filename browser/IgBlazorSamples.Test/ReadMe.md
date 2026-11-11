@@ -40,14 +40,14 @@ For other specific browsers refer to `./playwright.ps1 install --help`
 ### Test settings
 
 The `./browser/IgBlazorSamples.Test/` project once built, will generate all the tests and they should appear in the test explorer.
-Each test once run will start its own instance of the Samples Browser Client, so no need for any other extra steps than just hitting run/debug on the test.
+The test run starts one instance of the Samples Browser Client on a free local port, which all tests use, so no need for any other extra steps than just hitting run/debug on the test. The sample tests of each test worker share a browser context, so its cache keeps the app files and each sample loads them from the cache; after a failed test the context is replaced.
 
 
 - If the tests use too much resource you can decrease number of workers in the  `./browser/.runsettings` or located also in the test solution under `Solution Items/.runsettings`.
 
 - Disabling headless run for tests locally - uncomment the headless launch option in `.runsettings` 
 
-- If you don't want each test using in memory browser server, you can disable it in the `.runsettings` by setting `useInMemoryClient` to `false`. In this case you will need to run your own instance of the `IgBlazorSamples.Client`, either from VS or using `dotnet run` in the project folder.
+- If you don't want the tests to start their own browser server, you can disable it in the `.runsettings` by setting `useInMemoryClient` to `false`. In this case you will need to run your own instance of the `IgBlazorSamples.Client`, either from VS or using `dotnet run` in the project folder.
 You will need to specify the `testUrl` if you use a different the run the `IgBlazorSamples.Client` on.
 
 ### Using Visual Studio
