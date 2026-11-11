@@ -1,0 +1,94 @@
+# Validates the samples browser: copies the samples into the client, builds it and runs the browser tests.
+trigger:
+  branches:
+    include:
+    - vnext
+
+pr:
+  branches:
+    include:
+    - vnext
+
+name: $(BuildDefinitionName)_$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
+
+pool:
+  name: BuildAgentOnPrem
+  demands:
+  - Agent.ComputerName -equals IGBGSOFBUILD90
+
+variables:
+  gulpDir: '$(Build.SourcesDirectory)/browser/IgBlazorSamples.Gulp'
+  browserDir: '$(Build.SourcesDirectory)/browser'
+  testDir: '$(Build.SourcesDirectory)/browser/IgBlazorSamples.Test'
+  npm_config_cache: '$(Pipeline.Workspace)/.npm'
+
+jobs:
+- job: BuildAndValidate
+  displayName: 'Build & Validate'
+  steps:
+  - checkout: self
+    fetchDepth: 1
+
+  - task: NodeTool@0
+    displayName: 'Install Node.js'
+    inputs:
+      versionSource: 'spec'
+      versionSpec: '22.x'
+
+  - task: UseDotNet@2
+    displayName: 'Install .NET SDK'
+    inputs:
+      packageType: 'sdk'
+      version: '10.0.x'
+
+  - script: |
+      npm ci
+      npx gulp copySamplesToClient
+    displayName: 'Copy samples to the browser client'
+    workingDirectory: '$(gulpDir)'
+
+  - script: dotnet build IgBlazorSamplesBrowser.sln
+    displayName: 'Build samples browser'
+    workingDirectory: '$(browserDir)'
+
+  - script: dotnet build IgBlazorSamples.Test.sln
+    displayName: 'Build tests'
+    workingDirectory: '$(browserDir)'
+
+  - pwsh: ./bin/Debug/playwright.ps1 install --with-deps chromium
+    displayName: 'Install Playwright Chromium'
+    workingDirectory: '$(testDir)'
+
+  - script: >-
+      dotnet test --no-build --settings ../.runsettings
+      --logger "console;verbosity=normal" --logger trx --results-directory TestResults
+      -- Playwright.LaunchOptions.Headless=true
+    displayName: 'Run tests'
+    workingDirectory: '$(testDir)'
+
+  - task: PublishTestResults@2
+    displayName: 'Publish test results'
+    condition: succeededOrFailed()
+    inputs:
+      testResultsFormat: 'VSTest'
+      testResultsFiles: '**/*.trx'
+      searchFolder: '$(testDir)/TestResults'
+      testRunTitle: 'Samples browser tests'
+      failTaskOnMissingResultsFile: false
+
+  - task: CopyFiles@2
+    displayName: 'Collect test results and traces'
+    condition: failed()
+    inputs:
+      SourceFolder: '$(testDir)'
+      Contents: |
+        TestResults/**
+        bin/Debug/playwright-traces/**
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/browser-test-results'
+
+  - task: PublishPipelineArtifact@1
+    displayName: 'Upload test results and traces'
+    condition: failed()
+    inputs:
+      targetPath: '$(Build.ArtifactStagingDirectory)/browser-test-results'
+      artifact: 'browser-test-results'
