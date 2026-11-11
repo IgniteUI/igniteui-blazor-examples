@@ -75,7 +75,11 @@ class SampleSourceFile extends SampleFile {
         }
         this.Content = newLines.join("\r\n");
 
-        // add OnInitialized() if it is missing
+        // add lines with new Register(IgniteUIBlazor)
+        if (modules !== undefined && modules.length > 0) {
+            // console.log("update " + this.Path + " modules: " + (modules.join(','));
+
+            // add OnInitialized() to register the modules in, if it is missing
         if (this.Content.indexOf("OnInitialized()") < 0) {
             var codeReplace = "@code {\r\n";
             var codePaste   = "    protected override void OnInitialized()\r\n    {\r\n    }\r\n";
