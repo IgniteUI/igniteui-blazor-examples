@@ -52,36 +52,13 @@
 
     private List<Assembly> LazyLoadedAssemblies = new List<Assembly>();
 
-    // Must match the BlazorWebAssemblyLazyLoad items in IgBlazorSamples.Client.csproj: the Excel
-    // library and the assemblies that only it references, which every other sample doesn't need.
-    private static readonly string[] ExcelAssemblies = {
-        "IgniteUI.Blazor.Documents.Core.wasm",
-        "IgniteUI.Blazor.Documents.Excel.wasm",
-        "HarfBuzzSharp.wasm",
-        "Microsoft.Win32.Primitives.wasm",
-        "Microsoft.Win32.SystemEvents.wasm",
-        "SkiaSharp.wasm",
-        "System.ComponentModel.Annotations.wasm",
-        "System.Diagnostics.Process.wasm",
-        "System.Drawing.Common.wasm",
-        "System.IO.Compression.wasm",
-        "System.IO.Packaging.wasm",
-        "System.Net.Requests.wasm",
-        "System.Net.WebClient.wasm",
-        "System.Net.WebProxy.wasm",
-        "System.Numerics.Vectors.wasm",
-        "System.Private.Windows.Core.wasm",
-        "System.Private.Windows.GdiPlus.wasm",
-        "System.Private.Xml.wasm",
-        "System.Reflection.Metadata.wasm",
-        "System.Runtime.Serialization.Formatters.wasm",
-        "System.Security.AccessControl.wasm",
-        "System.Security.Principal.Windows.wasm",
-        "System.Text.Encoding.Extensions.wasm",
-        "System.Threading.Thread.wasm",
-        "System.Xml.ReaderWriter.wasm",
-        "Topten.RichTextKit.wasm",
-    };
+    // The BlazorWebAssemblyLazyLoad items of IgBlazorSamples.Client.csproj: the Excel library and,
+    // in a published (trimmed) build, the assemblies that only it references.
+    private static readonly string[] ExcelAssemblies = typeof(App).Assembly
+        .GetCustomAttributes<AssemblyMetadataAttribute>()
+        .First(a => a.Key == "BlazorWebAssemblyLazyLoad")
+        .Value!
+        .Split(';', StringSplitOptions.RemoveEmptyEntries);
 
     private async Task OnNavigateChangedAsync(string navigationPath)
     { 
