@@ -6,7 +6,9 @@
         {
             <div class="size">
                 <span class="state-label">@size.Label</span>
-                <IgbCombo @bind-Value="size.Value"
+                <IgbCombo @ref="size.ComboRef"
+                          Value="size.Value"
+                          Change="@(() => OnChange(size))"
                           class="@($"dropdown {size.ClassName}")"
                           PlaceholderSearch="Search"
                           ValueKey="Id"
@@ -15,6 +17,20 @@
                           Open="true"
                           ClosingScript="ComboKeepOpen"
                           Data="Options" />
+                <div class="selection">
+                    <span class="selection-title">Selection</span>
+                    @if (size.Value.Any())
+                    {
+                        @foreach (var id in size.Value)
+                        {
+                            <span>@Options.First(option => option.Id == id).Name</span>
+                        }
+                    }
+                    else
+                    {
+                        <span class="selection-empty">No items selected</span>
+                    }
+                </div>
             </div>
         }
     </div>
@@ -32,11 +48,14 @@
     {
         public string Label { get; set; }
         public string ClassName { get; set; }
+        public IgbCombo<string> ComboRef { get; set; }
+
+        // the `Id` values of the selected options
         public string[] Value { get; set; } = new string[] { };
     }
 
     private List<Option> Options { get; set; } = new[] { 1, 2, 3 }
-        .Select(id => new Option { Id = $"{id}", Name = "Item", Group = "Header" })
+        .Select(id => new Option { Id = $"{id}", Name = $"Item {id}", Group = "Header" })
         .ToList();
 
     private List<DropdownSize> Sizes { get; set; } = new List<DropdownSize>
@@ -45,4 +64,11 @@
         new DropdownSize { Label = "Medium", ClassName = "medium" },
         new DropdownSize { Label = "Large", ClassName = "large" },
     };
+
+    // the value that the combo reports on a change starts with the last selected option, so the value is
+    // read from the combo itself, which keeps the options in the order of their selection
+    private async Task OnChange(DropdownSize size)
+    {
+        size.Value = await size.ComboRef.GetCurrentValueAsync();
+    }
 }

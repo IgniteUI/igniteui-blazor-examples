@@ -6,7 +6,9 @@
         {
             <div class="type">
                 <span class="type-label">@type.Label</span>
-                <IgbCombo @bind-Value="type.Value"
+                <IgbCombo @ref="type.ComboRef"
+                          Value="type.Value"
+                          Change="@(() => OnChange(type))"
                           Outlined="type.Outlined"
                           Label="Label"
                           Placeholder="Select a value"
@@ -19,6 +21,20 @@
                           Data="Options">
                     <IgbIcon slot="prefix" @ref="IconRef" IconName="language" Collection="material" />
                 </IgbCombo>
+                <div class="selection">
+                    <span class="selection-title">Selection</span>
+                    @if (type.Value.Any())
+                    {
+                        @foreach (var id in type.Value)
+                        {
+                            <span>@Options.First(option => option.Id == id).Name</span>
+                        }
+                    }
+                    else
+                    {
+                        <span class="selection-empty">No items selected</span>
+                    }
+                </div>
             </div>
         }
     </div>
@@ -38,11 +54,14 @@
     {
         public string Label { get; set; }
         public bool Outlined { get; set; }
+        public IgbCombo<string> ComboRef { get; set; }
+
+        // the `Id` values of the selected options
         public string[] Value { get; set; } = new string[] { };
     }
 
     private List<Option> Options { get; set; } = new[] { 1, 2, 3, 4, 5 }
-        .Select(id => new Option { Id = $"{id}", Name = "Item", Group = "Header" })
+        .Select(id => new Option { Id = $"{id}", Name = $"Item {id}", Group = "Header" })
         .ToList();
 
     private List<ComboType> Types { get; set; } = new List<ComboType>
@@ -52,6 +71,13 @@
     };
 
     private IgbIcon IconRef { get; set; }
+
+    // the value that the combo reports on a change starts with the last selected option, so the value is
+    // read from the combo itself, which keeps the options in the order of their selection
+    private async Task OnChange(ComboType type)
+    {
+        type.Value = await type.ComboRef.GetCurrentValueAsync();
+    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

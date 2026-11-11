@@ -1,19 +1,36 @@
 @using IgniteUI.Blazor.Controls
 
 <div class="container sample">
-    <IgbCombo @bind-Value="SelectedCities"
-              class="locations"
-              Outlined="true"
-              Label="Locations"
-              Placeholder="Cities"
-              PlaceholderSearch="Search cities"
-              ValueKey="Id"
-              DisplayKey="Name"
-              GroupKey="Country"
-              Open="true"
-              Data="Cities">
-        <IgbIcon slot="prefix" @ref="IconRef" IconName="place" Collection="material" />
-    </IgbCombo>
+    <div class="locations">
+        <IgbCombo @ref="ComboRef"
+                  Value="SelectedCities"
+                  Change="OnChange"
+                  Outlined="true"
+                  Label="Locations"
+                  Placeholder="Cities"
+                  PlaceholderSearch="Search cities"
+                  ValueKey="Id"
+                  DisplayKey="Name"
+                  GroupKey="Country"
+                  Open="true"
+                  Data="Cities">
+            <IgbIcon slot="prefix" @ref="IconRef" IconName="place" Collection="material" />
+        </IgbCombo>
+        <div class="selection">
+            <span class="selection-title">Selection</span>
+            @if (SelectedCities.Any())
+            {
+                @foreach (var id in SelectedCities)
+                {
+                    <span>@Cities.First(city => city.Id == id).Name</span>
+                }
+            }
+            else
+            {
+                <span class="selection-empty">No items selected</span>
+            }
+        </div>
+    </div>
 </div>
 
 @code {
@@ -35,9 +52,19 @@
         new City { Id = "BG05", Name = "Pleven", Country = "Country of Bulgaria" },
     };
 
+    // the `Id` values of the selected cities
     private string[] SelectedCities { get; set; } = new string[] { };
 
+    private IgbCombo<string> ComboRef { get; set; }
+
     private IgbIcon IconRef { get; set; }
+
+    // the value that the combo reports on a change starts with the last selected city, so the value is
+    // read from the combo itself, which keeps the cities in the order of their selection
+    private async Task OnChange()
+    {
+        this.SelectedCities = await this.ComboRef.GetCurrentValueAsync();
+    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

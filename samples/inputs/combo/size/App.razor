@@ -12,17 +12,34 @@
             <span class="state-label type-label">@type.Label</span>
             @foreach (var combo in type.Combos)
             {
-                <IgbCombo @bind-Value="combo.Value"
-                          class="@combo.ClassName"
-                          Outlined="type.Outlined"
-                          Placeholder="Country"
-                          PlaceholderSearch="Search"
-                          ValueKey="Id"
-                          DisplayKey="Name"
-                          GroupKey="Region"
-                          Open="true"
-                          ClosingScript="ComboKeepOpenOnOutsideClick"
-                          Data="Countries" />
+                <div class="size @combo.ClassName">
+                    <IgbCombo @ref="combo.ComboRef"
+                              Value="combo.Value"
+                              Change="@(() => OnChange(combo))"
+                              Outlined="type.Outlined"
+                              Placeholder="Country"
+                              PlaceholderSearch="Search"
+                              ValueKey="Id"
+                              DisplayKey="Name"
+                              GroupKey="Region"
+                              Open="true"
+                              ClosingScript="ComboKeepOpenOnOutsideClick"
+                              Data="Countries" />
+                    <div class="selection">
+                        <span class="selection-title">Selection</span>
+                        @if (combo.Value.Any())
+                        {
+                            @foreach (var id in combo.Value)
+                            {
+                                <span>@Countries.First(country => country.Id == id).Name</span>
+                            }
+                        }
+                        else
+                        {
+                            <span class="selection-empty">No items selected</span>
+                        }
+                    </div>
+                </div>
             }
         }
     </div>
@@ -45,6 +62,9 @@
     private class SizedCombo
     {
         public string ClassName { get; set; }
+        public IgbCombo<string> ComboRef { get; set; }
+
+        // the `Id` values of the selected countries
         public string[] Value { get; set; } = new string[] { };
     }
 
@@ -78,4 +98,11 @@
         new ComboType { Label = "Border Type", Outlined = true },
         new ComboType { Label = "Box Type", Outlined = false },
     };
+
+    // the value that the combo reports on a change starts with the last selected country, so the value is
+    // read from the combo itself, which keeps the countries in the order of their selection
+    private async Task OnChange(SizedCombo combo)
+    {
+        combo.Value = await combo.ComboRef.GetCurrentValueAsync();
+    }
 }
