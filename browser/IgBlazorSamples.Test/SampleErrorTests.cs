@@ -1,4 +1,5 @@
 using IgBlazorSamples.Test;
+using Microsoft.Playwright;
 using System.Text;
 
 namespace SampleErrorTests;
