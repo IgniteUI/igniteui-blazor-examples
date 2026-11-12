@@ -3,18 +3,18 @@
 <div class="container sample">
     @* the combos are display-only, so inert blocks keyboard interaction *@
     <div class="states" inert>
-        <span></span>
+        <span class="type-label"></span>
         @foreach (var state in States)
         {
             <span class="state-label state-column">@state.Label</span>
         }
         @foreach (var type in Types)
         {
-            <span class="state-label type-label">@type.Label</span>
+            <span class="state-label type-label @type.ClassName">@type.Label</span>
             @foreach (var combo in type.Combos)
             {
                 <IgbCombo @bind-Value="combo.Value"
-                          class="@($"state-combo {combo.State.ClassName}")"
+                          class="@($"state-combo {combo.State.ClassName} {type.ClassName}")"
                           Outlined="type.Outlined"
                           Invalid="combo.State.Invalid"
                           Placeholder="Country"
@@ -59,6 +59,7 @@
     {
         public string Label { get; set; }
         public bool Outlined { get; set; }
+        public string ClassName { get; set; }
 
         // a combo for each state, and each combo binds a value of its own
         public List<StateCombo> Combos { get; } = States
@@ -84,7 +85,7 @@
 
     private List<ComboType> Types { get; set; } = new List<ComboType>
     {
-        new ComboType { Label = "Border Type", Outlined = true },
-        new ComboType { Label = "Box Type", Outlined = false },
+        new ComboType { Label = "Border Type", Outlined = true, ClassName = "border-type" },
+        new ComboType { Label = "Box Type", Outlined = false, ClassName = "box-type" },
     };
 }

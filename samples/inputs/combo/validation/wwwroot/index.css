@@ -7,6 +7,7 @@
     justify-content: center;
     height: 100%;
     padding: 1rem;
+    container-name: sample;
 }
 
 .states {
@@ -37,10 +38,6 @@
     --idle-bottom-line-color: var(--ig-warn-500);
 }
 
-.state-combo.warn igc-combo::part(helper-text) {
-    color: var(--ig-warn-500);
-}
-
 .state-label {
     font: 400 13px / 20px "Aktiv Grotesk", sans-serif;
     letter-spacing: 0.3px;
@@ -63,4 +60,18 @@ igc-combo::part(list) {
 
 igc-combo::part(item) {
     overflow: hidden;
+}
+
+/* the box type looks like the border type outside the Material theme, so the other themes show
+   the border type alone, without the type labels */
+@container sample not style(--ig-theme: material) {
+    .states {
+        grid-template-columns: repeat(3, minmax(0, 17.4375rem));
+    }
+
+    /* the element that Blazor renders around a combo sets its own display */
+    .type-label,
+    .box-type {
+        display: none !important;
+    }
 }

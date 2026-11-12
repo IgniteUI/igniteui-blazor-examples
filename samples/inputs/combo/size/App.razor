@@ -2,17 +2,17 @@
 
 <div class="container sample">
     <div class="sizes">
-        <span></span>
+        <span class="type-label"></span>
         @foreach (var size in Sizes)
         {
             <span class="state-label state-column">@size.Label</span>
         }
         @foreach (var type in Types)
         {
-            <span class="state-label type-label">@type.Label</span>
+            <span class="state-label type-label @type.ClassName">@type.Label</span>
             @foreach (var combo in type.Combos)
             {
-                <div class="size @combo.ClassName">
+                <div class="size @combo.ClassName @type.ClassName">
                     <IgbCombo @ref="combo.ComboRef"
                               Value="combo.Value"
                               Change="@(() => OnChange(combo))"
@@ -72,6 +72,7 @@
     {
         public string Label { get; set; }
         public bool Outlined { get; set; }
+        public string ClassName { get; set; }
 
         // a combo of each size, and each combo binds a value of its own
         public List<SizedCombo> Combos { get; } = Sizes
@@ -95,8 +96,8 @@
 
     private List<ComboType> Types { get; set; } = new List<ComboType>
     {
-        new ComboType { Label = "Border Type", Outlined = true },
-        new ComboType { Label = "Box Type", Outlined = false },
+        new ComboType { Label = "Border Type", Outlined = true, ClassName = "border-type" },
+        new ComboType { Label = "Box Type", Outlined = false, ClassName = "box-type" },
     };
 
     // the value that the combo reports on a change starts with the last selected country, so the value is

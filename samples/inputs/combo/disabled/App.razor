@@ -9,10 +9,10 @@
         {
             var row = Rows[index];
             var groupStart = index == 2 ? "group-start" : "";
-            <span class="state-label @groupStart">@row.Label</span>
+            <span class="state-label @row.ClassName @groupStart">@row.Label</span>
             @foreach (var combo in row.Combos)
             {
-                <div class="@groupStart">
+                <div class="@row.ClassName @groupStart">
                     <IgbCombo @bind-Value="combo.Value"
                               class="state-combo"
                               Outlined="row.Outlined"
@@ -47,6 +47,7 @@
     {
         public string Label { get; set; }
         public bool Outlined { get; set; }
+        public string ClassName { get; set; }
         public List<StateCombo> Combos { get; set; }
     }
 
@@ -70,6 +71,7 @@
     {
         Label = label,
         Outlined = outlined,
+        ClassName = outlined ? "border-type" : "box-type",
         Combos = new List<StateCombo>
         {
             new StateCombo { Value = value },

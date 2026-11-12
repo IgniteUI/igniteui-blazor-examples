@@ -4,7 +4,7 @@
     <div class="types">
         @foreach (var type in Types)
         {
-            <div class="type">
+            <div class="type @type.ClassName">
                 <span class="type-label">@type.Label</span>
                 <IgbCombo @ref="type.ComboRef"
                           Value="type.Value"
@@ -54,6 +54,7 @@
     {
         public string Label { get; set; }
         public bool Outlined { get; set; }
+        public string ClassName { get; set; }
         public IgbCombo<string> ComboRef { get; set; }
 
         // the `Id` values of the selected options
@@ -61,13 +62,13 @@
     }
 
     private List<Option> Options { get; set; } = new[] { 1, 2, 3, 4, 5 }
-        .Select(id => new Option { Id = $"{id}", Name = $"Item {id}", Group = "Header" })
+        .Select(id => new Option { Id = $"{id}", Name = "Item", Group = "Header" })
         .ToList();
 
     private List<ComboType> Types { get; set; } = new List<ComboType>
     {
-        new ComboType { Label = "Border Type", Outlined = true },
-        new ComboType { Label = "Box Type", Outlined = false },
+        new ComboType { Label = "Border Type", Outlined = true, ClassName = "border-type" },
+        new ComboType { Label = "Box Type", Outlined = false, ClassName = "box-type" },
     };
 
     private IgbIcon IconRef { get; set; }
