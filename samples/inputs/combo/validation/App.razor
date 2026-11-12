@@ -1,7 +1,7 @@
 @using IgniteUI.Blazor.Controls
 
 <div class="container sample">
-    @* the combos are display-only, so inert blocks keyboard interaction *@
+    @* the combos are display-only, so inert blocks pointer and keyboard interaction *@
     <div class="states" inert>
         <span class="type-label"></span>
         @foreach (var state in States)
@@ -18,10 +18,8 @@
                           Outlined="type.Outlined"
                           Invalid="combo.State.Invalid"
                           Placeholder="Country"
-                          PlaceholderSearch="Search"
                           ValueKey="Id"
                           DisplayKey="Name"
-                          GroupKey="Region"
                           Data="Countries">
                     @if (combo.State.HelperText != null)
                     {

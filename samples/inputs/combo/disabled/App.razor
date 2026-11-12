@@ -8,7 +8,7 @@
         @for (var index = 0; index < Rows.Count; index++)
         {
             var row = Rows[index];
-            var groupStart = index == 2 ? "group-start" : "";
+            var groupStart = index > 0 && row.Outlined != Rows[index - 1].Outlined ? "group-start" : "";
             <span class="state-label @row.ClassName @groupStart">@row.Label</span>
             @foreach (var combo in row.Combos)
             {
