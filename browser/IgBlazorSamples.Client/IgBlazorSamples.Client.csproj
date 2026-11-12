@@ -11,7 +11,6 @@
     <AssemblyName>Infragistics.Samples</AssemblyName>
     <RootNamespace>Infragistics.Samples</RootNamespace>
     <Version>4.0.0</Version>
-    <BlazorCacheBootResources>false</BlazorCacheBootResources>
     <!-- this is required for excel WASM samples for fast file download -->
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
@@ -63,16 +62,59 @@
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="10.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.JSInterop.WebAssembly" Version="10.0.1" />
     <PackageReference Include="System.Net.Http.Json" Version="10.0.1" />
   </ItemGroup>
 
+  <!--
+    The Excel library loads only on /excel/ routes (App.razor loads every assembly listed here).
+  -->
   <ItemGroup>
       <BlazorWebAssemblyLazyLoad Include="IgniteUI.Blazor.Documents.Core.wasm" />
       <BlazorWebAssemblyLazyLoad Include="IgniteUI.Blazor.Documents.Excel.wasm" />
   </ItemGroup>
+  <!--
+    After trimming, only the Excel library references these, so the published app loads them with
+    it and the other samples don't download them. Without trimming (dotnet build, run or watch),
+    other assemblies still reference some of them at startup, e.g. the System.Threading.Thread
+    facade, so those builds keep loading them up front.
+  -->
+  <ItemGroup Condition="'$(_IsPublishing)' == 'true' And '$(PublishTrimmed)' == 'true'">
+      <BlazorWebAssemblyLazyLoad Include="HarfBuzzSharp.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="Microsoft.Win32.Primitives.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="Microsoft.Win32.SystemEvents.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="SkiaSharp.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.ComponentModel.Annotations.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Diagnostics.Process.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Drawing.Common.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.IO.Compression.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.IO.Packaging.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Net.Requests.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Net.WebClient.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Net.WebProxy.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Numerics.Vectors.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Private.Windows.Core.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Private.Windows.GdiPlus.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Private.Xml.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Reflection.Metadata.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Runtime.Serialization.Formatters.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Security.AccessControl.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Security.Principal.Windows.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Text.Encoding.Extensions.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Threading.Thread.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="System.Xml.ReaderWriter.wasm" />
+      <BlazorWebAssemblyLazyLoad Include="Topten.RichTextKit.wasm" />
+  </ItemGroup>
+
+  <!-- Gives App.razor the list above, so it loads exactly the assemblies this build marks as lazy -->
+  <Target Name="EmbedLazyLoadAssemblyList" BeforeTargets="GetAssemblyAttributes">
+    <ItemGroup>
+      <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+        <_Parameter1>BlazorWebAssemblyLazyLoad</_Parameter1>
+        <_Parameter2>@(BlazorWebAssemblyLazyLoad)</_Parameter2>
+      </AssemblyAttribute>
+    </ItemGroup>
+  </Target>
 
   <ItemGroup>
     <ProjectReference Include="..\IgBlazorSamples.Core\IgBlazorSamples.Core.csproj" />

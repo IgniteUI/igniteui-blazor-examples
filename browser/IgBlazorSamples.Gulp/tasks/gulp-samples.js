@@ -11,6 +11,7 @@ let uglify = require('gulp-uglify');
 let rename = require('gulp-rename');
 let fs = require('fs.extra');
 let path = require('path');
+let vm = require('vm');
 let flatten = require('gulp-flatten');
 let del = require('del');
 let es = require('event-stream');
@@ -377,6 +378,7 @@ function copySamplePages(cb, outputPath) {
 
 function copySampleScripts(cb, outputPath, indexName, isLocalBuild) {
     var insertScriptFiles = [];
+    var bundledScripts = [];
 
     log('deleting scripts in: ' + outputPath + '/wwwroot/sb/*.js');
     del.sync('../IgBlazorSamples.Client/wwwroot/sb/' + "*.js", {force:true});
@@ -440,21 +442,40 @@ function copySampleScripts(cb, outputPath, indexName, isLocalBuild) {
                         if (rawName.indexOf("3") >= 0) fileRequiresLoading = false;
                     }
                     if (fileRequiresLoading) {
-                        insertScriptFiles.push(shouldBeModule
-                            ? '<script src="sb/' + fileName + '" type="module"></script>'
-                            : '<script src="sb/' + fileName + '"></script>');
+                        if (shouldBeModule) insertScriptFiles.push('<script src="sb/' + fileName + '" type="module"></script>');
+                        else bundledScripts.push({ fileName: fileName, content: file.Content });
                     }
                 }
                 else {
-                    insertScriptFiles.push(shouldBeModule
-                        ? '<script src="sb/' + fileName + '" type="module"></script>'
-                        : '<script src="sb/' + fileName + '"></script>');
+                    if (shouldBeModule) insertScriptFiles.push('<script src="sb/' + fileName + '" type="module"></script>');
+                    else bundledScripts.push({ fileName: fileName, content: file.Content });
                 }
             }
         }
     }
     // sorting inserts
     //insertScriptFiles.sort((a, b) => a > b ? 1 : -1)
+
+    // The host page loads the samples' classic scripts as one bundle instead of a <script> tag
+    // each: one request on every page load instead of ~200, all parser-blocking. Concatenation
+    // keeps their behavior: classic scripts already share one global scope, so declarations stay
+    // global and run in the same order. Module scripts keep their own tags (and their own scope).
+    if (bundledScripts.length > 0) {
+        var bundleName = 'samples.bundle.js';
+        var bundle = bundledScripts.map(function (s) {
+            return '/* sb/' + s.fileName + ' */\n' + s.content;
+        }).join('\n;\n');
+        try {
+            // Unlike separate script tags, one invalid script (e.g. a top-level const that another
+            // sample also declares) would stop the whole bundle, so fail the build instead.
+            new vm.Script(bundle, { filename: 'sb/' + bundleName });
+        } catch (e) {
+            throw new Error('sb/' + bundleName + ' is not a valid script; check the sample scripts listed in it. ' + e.message);
+        }
+        saveFile(outputPath + '/wwwroot/sb/' + bundleName, bundle);
+        log('bundled ' + bundledScripts.length + ' sample scripts into: ' + outputPath + '/wwwroot/sb/' + bundleName);
+        insertScriptFiles.unshift('<script src="sb/' + bundleName + '"></script>');
+    }
 
     // updating index.html with JavaScripts for samples
     let indexPath = outputPath + indexName;

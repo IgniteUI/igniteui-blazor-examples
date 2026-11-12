@@ -35,7 +35,9 @@ steps:
     displayName: 'Install dotnet if not already present'
     inputs:
       packageType: 'sdk'
-      version: '10.0.100' # '9.0.101' - we are currently building a 8.0 app. TODO: Try upgrading to 8.x in the future
+      # The 10.0.100 SDK published the Hot Reload agent (Microsoft.DotNet.HotReload.WebAssembly.Browser)
+      # with the samples browser, which then loaded it on every page.
+      version: '10.0.404'
       performMultiLevelLookup: false
 
   - task: PowerShell@2
