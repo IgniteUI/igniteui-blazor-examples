@@ -12,9 +12,7 @@ pr:
 name: $(BuildDefinitionName)_$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
 
 pool:
-  name: BuildAgentOnPrem
-  demands:
-  - Agent.ComputerName -equals IGBGSOFBUILD90
+  vmImage: 'windows-latest'
 
 variables:
   testDir: '$(Build.SourcesDirectory)/browser/IgBlazorSamples.Test'
