@@ -1,0 +1,59 @@
+/* shared styles are loaded from: */
+/* https://dl.infragistics.com/x/css/samples/shared.v8.css */
+
+.container.sample {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 1rem;
+}
+
+.states {
+    display: grid;
+    grid-template-columns: max-content repeat(2, minmax(0, 17.4375rem));
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1.75rem;
+    row-gap: 1.5rem;
+}
+
+/* the combo renders in an inline-block element, so both fill the column */
+.state-combo,
+.state-combo igc-combo {
+    width: 100%;
+}
+
+.group-start {
+    margin-top: 1.5rem;
+}
+
+.state-label {
+    font: 400 13px / 20px "Aktiv Grotesk", sans-serif;
+    letter-spacing: 0.3px;
+    color: var(--ig-gray-600);
+}
+
+.state-column {
+    justify-self: center;
+}
+
+/* the list shows a group header and three options */
+.states igc-combo {
+    --item-count: 4;
+}
+
+/* The combo list of the Blazor package estimates its height until it has measured the options,
+   and in a docs frame that loads off screen the estimate can stay. All options of this sample fit,
+   so the list doesn't scroll. The list also ends with a hidden sizer that the page line height makes
+   taller than its space, and in the Material theme the checkbox of an option is taller than a small
+   or medium option, so the list keeps them inside its height. */
+igc-combo::part(list) {
+    overflow: hidden;
+    line-height: 1;
+}
+
+igc-combo::part(item) {
+    overflow: hidden;
+}

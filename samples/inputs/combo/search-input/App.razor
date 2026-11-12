@@ -1,0 +1,43 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample">
+    @* the search inputs are display-only, so inert blocks keyboard interaction *@
+    <div class="states" inert>
+        @foreach (var state in States)
+        {
+            <div class="state">
+                <span class="state-label">@state.Label</span>
+                <IgbCombo @bind-Value="state.Value"
+                          class="@($"search {state.ClassName}")"
+                          PlaceholderSearch="@(state.Text ?? "Search")"
+                          Open="true"
+                          ClosingScript="ComboKeepOpen"
+                          Data="NoOptions" />
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    private class SearchState
+    {
+        public string Label { get; set; }
+        public string ClassName { get; set; } = "";
+        public string Text { get; set; }
+        public object[] Value { get; set; } = new object[] { };
+    }
+
+    private object[] NoOptions { get; set; } = new object[] { };
+
+    // the search input states come from the pointer and the keyboard, so the `hover`,
+    // `disabled`, `filled` and `focused` classes show them on the display-only combos
+    private List<SearchState> States { get; set; } = new List<SearchState>
+    {
+        new SearchState { Label = "Idle" },
+        new SearchState { Label = "Idle & Hover", ClassName = "hover" },
+        new SearchState { Label = "Disabled", ClassName = "disabled" },
+        new SearchState { Label = "Filled", ClassName = "filled", Text = "Input text" },
+        new SearchState { Label = "Filled & Hover", ClassName = "filled hover", Text = "Input text" },
+        new SearchState { Label = "Focused", ClassName = "filled focused", Text = "Input text" },
+    };
+}

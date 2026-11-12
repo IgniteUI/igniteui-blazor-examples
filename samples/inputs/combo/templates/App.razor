@@ -1,42 +1,150 @@
 @using IgniteUI.Blazor.Controls
+@inject IJSRuntime JS
 
-<div class="container sample center">
-    <IgbCombo 
-        @bind-Value="selectedCities"
-        Data="Data" 
-        ValueKey="Id" 
-        DisplayKey="Name"
-        GroupKey="Country"
-        ItemTemplateScript="ComboItemTemplate"
-        GroupHeaderTemplateScript="ComboGroupHeaderTemplate">
-        <header slot="header">
-            Header content goes here
-        </header>
-        <IgbIcon @ref="@iconRef" name="clear" slot="clear-icon"></IgbIcon>
-        <IgbIcon name="down" slot="toggle-icon"></IgbIcon>
-        <footer slot="footer">
-            Footer content goes here
-        </footer>
-    </IgbCombo>
+@* the ig-typography class turns on the type style classes of the theme, so the texts of the sample
+   take their fonts from the theme of the combo *@
+<div class="container sample ig-typography">
+    <div class="destinations-area">
+        <IgbCombo @bind-Value="SelectedDestinations"
+                  class="destinations"
+                  Outlined="true"
+                  ValueKey="Id"
+                  DisplayKey="Name"
+                  GroupKey="Region"
+                  GroupSorting="GroupingDirection.None"
+                  Placeholder="Pick one or more cities"
+                  PlaceholderSearch="Search cities..."
+                  Open="true"
+                  Label="@(Templates.Input ? "Destinations" : null)"
+                  ItemTemplateScript="@(Templates.Item ? "ComboItemTemplate" : "ComboDefaultItemTemplate")"
+                  GroupHeaderTemplateScript="@(Templates.GroupHeader ? "ComboGroupHeaderTemplate" : "ComboDefaultGroupHeaderTemplate")"
+                  Data="Destinations">
+            @if (Templates.Header)
+            {
+                <header slot="header" class="list-header">
+                    <span class="ig-typography__subtitle-2">Destinations by region</span>
+                    <IgbButton Variant="ButtonVariant.Flat" @onclick="SelectAll">Select all</IgbButton>
+                </header>
+            }
+            @if (Templates.Footer)
+            {
+                <footer slot="footer" class="list-footer">
+                    <span class="ig-typography__body-2">@SelectedDestinations.Length selected</span>
+                    <IgbButton Variant="ButtonVariant.Flat" @onclick="ClearSelection">Clear</IgbButton>
+                </footer>
+            }
+            @if (Templates.Empty)
+            {
+                <span slot="empty" class="empty-list">
+                    <IgbIcon @ref="EmptyIconRef" IconName="location_searching" Collection="material" />
+                    No city matches your search. Try another spelling.
+                </span>
+            }
+            @if (Templates.ToggleIcon)
+            {
+                <IgbIcon slot="toggle-icon" @ref="ToggleIconRef" IconName="flight" Collection="material" />
+            }
+            @if (Templates.ClearIcon)
+            {
+                <IgbIcon slot="clear-icon" @ref="ClearIconRef" IconName="close" Collection="material" />
+            }
+            @if (Templates.Input)
+            {
+                <IgbIcon slot="prefix" @ref="PrefixIconRef" IconName="place" Collection="material" />
+                <IgbBadge slot="suffix">@SelectedDestinations.Length</IgbBadge>
+                <span slot="helper-text">@SelectedDestinations.Length of @Destinations.Count destinations selected</span>
+            }
+        </IgbCombo>
+
+        <div class="selection ig-typography__body-2">
+            <span class="ig-typography__subtitle-2">Selection</span>
+            <span>@(SelectedNames.Any() ? string.Join(", ", SelectedNames) : "No items selected")</span>
+        </div>
+    </div>
+
+    <div class="templates">
+        <IgbSwitch @bind-Checked="Templates.Item">Item template</IgbSwitch>
+        <IgbSwitch @bind-Checked="Templates.GroupHeader">Header Item template</IgbSwitch>
+        <IgbSwitch @bind-Checked="Templates.Header">Header template</IgbSwitch>
+        <IgbSwitch @bind-Checked="Templates.Footer">Footer template</IgbSwitch>
+        <IgbSwitch @bind-Checked="Templates.Empty">Empty template</IgbSwitch>
+        <IgbSwitch @bind-Checked="Templates.ToggleIcon">Toggle Icon template</IgbSwitch>
+        <IgbSwitch @bind-Checked="Templates.ClearIcon">Clear Icon template</IgbSwitch>
+        <IgbSwitch @bind-Checked="Templates.Input">Templated input</IgbSwitch>
+    </div>
 </div>
 
 @code {
-    private List<City> Data;
-    private string[] selectedCities = [];
-    private IgbIcon iconRef { get; set; }
-    private string toggleIcon = "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M7 10l5 5 5-5z'/></svg>";
-    private string clearIcon = "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>";
+    private const string PlaceIcon = """<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>""";
+    private const string FlightIcon = """<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M2.5 19h19v2h-19zm7.18-5.73l4.35 1.16 5.31 1.42c.8.21 1.62-.26 1.84-1.06.21-.8-.26-1.62-1.06-1.84l-5.31-1.42-2.76-9.02L10.12 2v8.28L5.15 8.95l-.93-2.32-1.45-.39v5.17l1.6.43 5.31 1.43z"/></svg>""";
+    private const string CloseIcon = """<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>""";
+    private const string LocationSearchingIcon = """<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.94 11c-.46-4.17-3.77-7.48-7.94-7.94V1h-2v2.06C6.83 3.52 3.52 6.83 3.06 11H1v2h2.06c.46 4.17 3.77 7.48 7.94 7.94V23h2v-2.06c4.17-.46 7.48-3.77 7.94-7.94H23v-2h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/></svg>""";
 
-    protected override void OnInitialized() {
-        this.Data = SampleData.Cities;
+    // which templates the switches have turned on
+    private class ComboTemplates
+    {
+        public bool Item { get; set; }
+        public bool GroupHeader { get; set; }
+        public bool Header { get; set; }
+        public bool Footer { get; set; }
+        public bool Empty { get; set; }
+        public bool ToggleIcon { get; set; }
+        public bool ClearIcon { get; set; }
+        public bool Input { get; set; }
     }
 
-    protected override void OnAfterRender(bool firstRender) {
-        if (firstRender) {
-            this.iconRef.EnsureReady().ContinueWith(new Action<Task>((e) => {
-                this.iconRef.RegisterIconFromTextAsync("down", toggleIcon, "default");
-                this.iconRef.RegisterIconFromTextAsync("clear", clearIcon, "default");
-            }));
+    private List<Destination> Destinations { get; set; } = ComboTemplatesData.Destinations;
+
+    private ComboTemplates Templates { get; set; } = new ComboTemplates();
+
+    // the `Id` values of the selected destinations
+    private string[] SelectedDestinations { get; set; } = new string[] { };
+
+    private IEnumerable<string> SelectedNames => Destinations.Where(d => SelectedDestinations.Contains(d.Id)).Select(d => d.Name);
+
+    private IgbIcon ToggleIconRef { get; set; }
+
+    private IgbIcon ClearIconRef { get; set; }
+
+    private IgbIcon PrefixIconRef { get; set; }
+
+    private IgbIcon EmptyIconRef { get; set; }
+
+    private readonly HashSet<string> RegisteredIcons = new HashSet<string>();
+
+    private bool DestinationCountsSent { get; set; }
+
+    private void SelectAll() => SelectedDestinations = Destinations.Select(d => d.Id).ToArray();
+
+    private void ClearSelection() => SelectedDestinations = new string[] { };
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        // the header item template shows the number of destinations in each region, so the sample hands
+        // the counts to its script when that template is first turned on
+        if (Templates.GroupHeader && !DestinationCountsSent)
+        {
+            var counts = Destinations.GroupBy(d => d.Region).ToDictionary(g => g.Key, g => g.Count());
+            await JS.InvokeVoidAsync("setDestinationCounts", counts);
+            DestinationCountsSent = true;
         }
+
+        // the icons render only while their templates are on, so each is registered when it first renders
+        await RegisterIconAsync(PrefixIconRef, "place", PlaceIcon);
+        await RegisterIconAsync(ToggleIconRef, "flight", FlightIcon);
+        await RegisterIconAsync(ClearIconRef, "close", CloseIcon);
+        await RegisterIconAsync(EmptyIconRef, "location_searching", LocationSearchingIcon);
+    }
+
+    private async Task RegisterIconAsync(IgbIcon icon, string name, string svg)
+    {
+        if (icon == null || RegisteredIcons.Contains(name))
+        {
+            return;
+        }
+
+        await icon.EnsureReady();
+        await icon.RegisterIconFromTextAsync(name, svg, "material");
+        RegisteredIcons.Add(name);
     }
 }

@@ -1,0 +1,81 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample">
+    @* the items are display-only, so inert blocks keyboard interaction *@
+    <div class="items" inert>
+        <span></span>
+        @foreach (var state in States)
+        {
+            <span class="state-label state-column">@state.Label</span>
+        }
+        @foreach (var row in Rows)
+        {
+            <span class="state-label">@row.Label</span>
+            @foreach (var combo in row.Combos)
+            {
+                <IgbCombo @bind-Value="combo.Value"
+                          class="@($"dropdown {combo.State.ClassName}")"
+                          SingleSelect="true"
+                          ValueKey="Id"
+                          DisplayKey="Name"
+                          Open="true"
+                          ClosingScript="ComboKeepOpen"
+                          Data="Options" />
+            }
+        }
+    </div>
+</div>
+
+@code {
+    private class Option
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+    }
+
+    private class ItemState
+    {
+        public string Label { get; set; }
+        public string ClassName { get; set; } = "";
+    }
+
+    private class StateCombo
+    {
+        public ItemState State { get; set; }
+        public string[] Value { get; set; }
+    }
+
+    private class ItemRow
+    {
+        public string Label { get; set; }
+        public List<StateCombo> Combos { get; set; }
+    }
+
+    private List<Option> Options { get; set; } = new List<Option>
+    {
+        new Option { Id = "1", Name = "Item" },
+    };
+
+    // hover, focus, and disabled come from the pointer, the keyboard, and the data, so the
+    // `hover`, `focus`, and `disabled` classes show them on the display-only items
+    private static List<ItemState> States { get; set; } = new List<ItemState>
+    {
+        new ItemState { Label = "Idle" },
+        new ItemState { Label = "Hover", ClassName = "hover" },
+        new ItemState { Label = "Focus", ClassName = "focus" },
+        new ItemState { Label = "Disabled", ClassName = "disabled" },
+    };
+
+    private List<ItemRow> Rows { get; set; } = new List<ItemRow>
+    {
+        CreateRow("Unselected", States, new string[] { }),
+        CreateRow("Selected", States.Take(3), new string[] { "1" }),
+    };
+
+    // a combo for each state, and each combo binds a value of its own
+    private static ItemRow CreateRow(string label, IEnumerable<ItemState> states, string[] value) => new ItemRow
+    {
+        Label = label,
+        Combos = states.Select(state => new StateCombo { State = state, Value = value }).ToList(),
+    };
+}
