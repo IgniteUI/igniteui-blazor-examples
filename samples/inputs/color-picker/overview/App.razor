@@ -1,0 +1,54 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample">
+    <IgbIcon @ref="IconRegistrar" IconName="refresh" Collection="material" style="display: none;" />
+    <IgbCard>
+        <IgbCardContent>
+            <h2>Choose your interior color</h2>
+            <IgbSelect Label="Type of wall paints" Outlined="true" @bind-Value="paint">
+                <IgbSelectItem Value="@("matte")"><span>Matte</span></IgbSelectItem>
+                <IgbSelectItem Value="@("satin")"><span>Satin</span></IgbSelectItem>
+                <IgbSelectItem Value="@("eggshell")"><span>Eggshell</span></IgbSelectItem>
+                <IgbSelectItem Value="@("gloss")"><span>Gloss</span></IgbSelectItem>
+            </IgbSelect>
+            <IgbSelect Label="Paint quantity" Outlined="true" @bind-Value="quantity">
+                <IgbSelectItem Value="@("1l")"><span>1 litre</span></IgbSelectItem>
+                <IgbSelectItem Value="@("3l")"><span>3 litres</span></IgbSelectItem>
+                <IgbSelectItem Value="@("5l")"><span>5 litres</span></IgbSelectItem>
+                <IgbSelectItem Value="@("10l")"><span>10 litres</span></IgbSelectItem>
+            </IgbSelect>
+            <div class="color-row">
+                <IgbColorPicker Mode="ColorPickerMode.Input" @bind-Value="color" />
+                <IgbIconButton id="colorReset" IconName="refresh" Collection="material" Variant="IconButtonVariant.Flat"
+                    aria-label="Reset color" @onclick="@(() => color = "")" />
+            </div>
+        </IgbCardContent>
+        <IgbCardActions>
+            <IgbButton Variant="ButtonVariant.Flat">Back</IgbButton>
+            <div class="stepper">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot active"></span>
+            </div>
+            <IgbButton Variant="ButtonVariant.Flat">Confirm</IgbButton>
+        </IgbCardActions>
+    </IgbCard>
+</div>
+
+@code {
+    private const string RefreshIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08a5.99 5.99 0 0 1-5.65 4c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z'/></svg>";
+
+    private IgbIcon IconRegistrar;
+    private string paint = "satin";
+    private string quantity = "3l";
+    private string color = "#0598fa";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await IconRegistrar.EnsureReady();
+            await IconRegistrar.RegisterIconFromTextAsync("refresh", RefreshIcon, "material");
+        }
+    }
+}

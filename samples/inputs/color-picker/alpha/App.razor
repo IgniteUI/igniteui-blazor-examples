@@ -1,0 +1,19 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample">
+    <IgbColorPicker @ref="Picker" Label="Pick a color" ShowAlpha="true" @bind-Value="color" />
+</div>
+
+@code {
+    private IgbColorPicker Picker;
+    private string color = "rgba(25, 118, 210, 0.5)";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await Picker.EnsureReady();
+            await Picker.ToggleAsync();
+        }
+    }
+}
