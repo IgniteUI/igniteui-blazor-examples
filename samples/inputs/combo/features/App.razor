@@ -1,61 +1,57 @@
 @using IgniteUI.Blazor.Controls
 
-<div class="container sample center">
-    <style>
-        .options {
-            display: flex;
-            flex-direction: column;
-            margin-top: 12px; 
-            gap: 8px;
-        }
-    </style>
+<div class="container sample combo-features">
+    <div class="combo-column">
+        <IgbCombo @bind-Value="selectedStates"
+                  Data="usStates"
+                  ValueKey="Id"
+                  DisplayKey="Name"
+                  Label="Location"
+                  PlaceholderSearch="Search…"
+                  Outlined
+                  DisableFiltering="@disableFiltering"
+                  CaseSensitiveIcon="@caseSensitiveIcon"
+                  GroupKey="@groupKey"
+                  Disabled="@disabled" />
 
-    <IgbCombo 
-        @bind-Value="SelectedCities"
-        Label="Cities" 
-        Placeholder="Pick a city" 
-        Data="Data" 
-        ValueKey="Id" 
-        DisplayKey="Name"
-        DisableFiltering="@DisableFiltering"
-        CaseSensitiveIcon="@CaseSensitiveIcon"
-        GroupKey="@Group"
-        Disabled="@Disabled">
-    </IgbCombo>
+        <div class="selection-panel">
+            <span class="selection-title" id="selection-title">Selection</span>
+            @if (selectedStates.Length > 0)
+            {
+                <ul class="selection-list" aria-labelledby="selection-title">
+                    @foreach (var name in selectedNames)
+                    {
+                        <li>@name</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <span class="selection-empty">No items selected</span>
+            }
+        </div>
+    </div>
 
-    <div class="options">
-        <IgbSwitch Change="@OnDisableFilteringClick">Disable Filtering</IgbSwitch>
-        <IgbSwitch Change="@OnCaseSensitiveClick" Disabled="@DisableFiltering">Show Case-sensitive Icon</IgbSwitch>
-        <IgbSwitch Change="@OnGroupClick">Enable Grouping</IgbSwitch>
-        <IgbSwitch Change="@OnDisableClick">Disable Combo</IgbSwitch>
+    <div class="controls">
+        <IgbSwitch @bind-Checked="disableFiltering">Disable Filtering</IgbSwitch>
+        @* Without filtering the combo hides its search input, and the case-sensitive icon with it. *@
+        <IgbSwitch @bind-Checked="caseSensitiveIcon" Disabled="@disableFiltering">Show Case-sensitive Icon</IgbSwitch>
+        <IgbSwitch @bind-Checked="grouping">Enable Grouping</IgbSwitch>
+        <IgbSwitch @bind-Checked="disabled">Disable Combo</IgbSwitch>
     </div>
 </div>
 
 @code {
-    private List<City> Data;
-    private string[] SelectedCities = [];
-    private bool DisableFiltering = false;
-    private bool CaseSensitiveIcon = false;
-    private string Group = "";
-    private bool Disabled = false;
+    private List<UsState> usStates = UsStatesData.States;
+    private string[] selectedStates = [];
+    private bool disableFiltering;
+    private bool caseSensitiveIcon;
+    private bool grouping;
+    private bool disabled;
 
-    protected override void OnInitialized() {
-        this.Data = SampleData.Cities;
-    }
+    private string groupKey => grouping ? "Region" : "";
 
-    public void OnDisableFilteringClick(IgbCheckboxChangeEventArgs e) {
-        this.DisableFiltering = e.Detail.Checked;
-    }
-
-    public void OnCaseSensitiveClick(IgbCheckboxChangeEventArgs e) {
-        this.CaseSensitiveIcon = e.Detail.Checked;
-    }
-
-    public void OnGroupClick(IgbCheckboxChangeEventArgs e) {
-        this.Group = e.Detail.Checked ? "Country" : "";
-    }
-
-    public void OnDisableClick(IgbCheckboxChangeEventArgs e) {
-        this.Disabled = e.Detail.Checked;
-    }
+    // The names of the selected states, for the panel under the combo.
+    private IEnumerable<string> selectedNames =>
+        selectedStates.Select(id => usStates.FirstOrDefault(state => state.Id == id)?.Name ?? id);
 }
