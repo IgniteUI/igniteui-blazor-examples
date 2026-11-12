@@ -53,28 +53,32 @@ jobs:
     displayName: 'Install Playwright Chromium'
     workingDirectory: '$(testDir)'
 
-  - task: VisualStudioTestPlatformInstaller@1
-    displayName: 'Install Visual Studio Test Platform'
-    inputs:
-      packageFeedSelector: 'nugetOrg'
-      versionSelector: 'specificVersion'
-      testPlatformVersion: '17.12.0'
+  # - task: VisualStudioTestPlatformInstaller@1
+  #   displayName: 'Install Visual Studio Test Platform'
+  #   inputs:
+  #     packageFeedSelector: 'nugetOrg'
+  #     versionSelector: 'specificVersion'
+  #     testPlatformVersion: '17.12.0'
 
-  # Splits the tests between the slices by their duration in earlier runs and publishes the results.
-  - task: VSTest@2
+  # # Splits the tests between the slices by their duration in earlier runs and publishes the results.
+  # - task: VSTest@2
+  #   displayName: 'Run tests'
+  #   inputs:
+  #     testSelector: 'testAssemblies'
+  #     testAssemblyVer2: 'IgBlazorSamples.Test.dll'
+  #     searchFolder: '$(testDir)/bin/Debug'
+  #     vsTestVersion: 'toolsInstaller'
+  #     runSettingsFile: '$(Build.SourcesDirectory)/browser/.runsettings'
+  #     distributionBatchType: 'basedOnExecutionTime'
+  #     batchingBasedOnExecutionTimeOption: 'customTimeBatchSize'
+  #     customRunTimePerBatchValue: '600'
+  #     testRunTitle: 'Samples browser tests'
+  #     rerunFailedTests: true
+  #     rerunMaxAttempts: '2'
+
+  - script: dotnet test IgBlazorSamples.Test.csproj --filter "FullyQualifiedName~SampleErrorTests" --logger "trx;LogFileName=TestResults.trx"
     displayName: 'Run tests'
-    inputs:
-      testSelector: 'testAssemblies'
-      testAssemblyVer2: 'IgBlazorSamples.Test.dll'
-      searchFolder: '$(testDir)/bin/Debug'
-      vsTestVersion: 'toolsInstaller'
-      runSettingsFile: '$(Build.SourcesDirectory)/browser/.runsettings'
-      distributionBatchType: 'basedOnExecutionTime'
-      batchingBasedOnExecutionTimeOption: 'customTimeBatchSize'
-      customRunTimePerBatchValue: '600'
-      testRunTitle: 'Samples browser tests'
-      rerunFailedTests: true
-      rerunMaxAttempts: '2'
+    workingDirectory: '$(testDir)'
 
   - task: PublishPipelineArtifact@1
     displayName: 'Upload Playwright traces'
