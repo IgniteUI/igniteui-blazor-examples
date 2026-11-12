@@ -1,5 +1,4 @@
 @using IgniteUI.Blazor.Controls
-@using System.Text.RegularExpressions
 
 @inject IJSRuntime JS
 
@@ -160,6 +159,8 @@
     private const string CopyIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z\"/></svg>";
     private const string CheckIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z\"/></svg>";
 
+    private const string RestartIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M12 5V2L8 6l4 4V7c3.31 0 6 2.69 6 6 0 2.97-2.17 5.43-5 5.91v2.02c3.95-.49 7-3.85 7-7.93 0-4.42-3.58-8-8-8zm-6 8c0-1.65.67-3.15 1.76-4.24L6.34 7.34C4.9 8.79 4 10.79 4 13c0 4.08 3.05 7.44 7 7.93v-2.02c-2.83-.48-5-2.94-5-5.91z\"/></svg>";
+
     public record TokenDescriptor(string Key, string CssVar, string Label);
 
     private static readonly TokenDescriptor[] PrimaryTokens =
@@ -193,7 +194,6 @@
 
     private Dictionary<string, string> SeedColors = new();
     private List<string[]> ThemeTokens = new();
-    private Dictionary<string, int> FieldRevisions = AllTokens.ToDictionary(t => t.Key, t => 0);
 
     private IgbDialog CodeDialog;
     private IgbIcon IconRegistrar;
@@ -205,6 +205,7 @@
         await IconRegistrar.EnsureReady();
         await IconRegistrar.RegisterIconFromTextAsync("content_copy", CopyIcon, "material");
         await IconRegistrar.RegisterIconFromTextAsync("check", CheckIcon, "material");
+        await IconRegistrar.RegisterIconFromTextAsync("restart_alt", RestartIcon, "material");
 
         ThemeTokens = await JS.InvokeAsync<List<string[]>>("gridThemePlayground.readCompiledTheme");
         SeedColors = await JS.InvokeAsync<Dictionary<string, string>>("gridThemePlayground.readSeedColors", "gridThemePlaygroundStage");
@@ -278,60 +279,13 @@
 
     private RenderFragment ColorField(TokenDescriptor token) => __builder =>
     {
-        var value = Colors[token.Key];
-        var isAuto = string.IsNullOrEmpty(value);
-
-        <div class="color-field" @key="@($"{token.Key}-{FieldRevisions[token.Key]}")">
-            <span class="color-field__label">@token.Label</span>
-            <IgbInput Outlined="true" Placeholder="auto" spellcheck="false" Value="@value"
-                Change="@(e => OnTextChange(token.Key, e.Detail))">
-                <span slot="prefix" class="color-field__swatch-wrap">
-                    <input type="color" aria-label="@token.Label" value="@(isAuto ? "#808080" : value)"
-                        @oninput="@(e => SetColor(token.Key, e.Value?.ToString()))" />
-                    <span class="color-field__swatch @(isAuto ? "color-field__swatch--auto" : "")"
-                        style="@(isAuto ? "" : $"background: {value}")"></span>
-                </span>
-                @if (!isAuto)
-                {
-                    <button slot="suffix" type="button" class="color-field__reset" title="Reset to auto"
-                        @onclick="@(() => SetColor(token.Key, ""))">&#8635;</button>
-                }
-            </IgbInput>
+        <div class="playground__color-control">
+            <IgbColorPicker Mode="ColorPickerMode.Input" Label="@token.Label" @bind-Value="Colors[token.Key]"></IgbColorPicker>
+            <IgbIconButton Variant="IconButtonVariant.Flat" IconName="restart_alt" Collection="material"
+                Disabled="@string.IsNullOrEmpty(Colors[token.Key])" aria-label="@($"Reset {token.Label} to auto")" title="Reset to auto"
+                @onclick="@(() => Colors[token.Key] = "")"></IgbIconButton>
         </div>
     };
-
-    private void SetColor(string key, string value)
-    {
-        Colors[key] = value ?? "";
-    }
-
-    private void OnTextChange(string key, string text)
-    {
-        var normalized = NormalizeHexColor(text);
-
-        if (normalized != null)
-        {
-            SetColor(key, normalized);
-        }
-        else
-        {
-            FieldRevisions[key]++;
-        }
-    }
-
-    private static string NormalizeHexColor(string raw)
-    {
-        var value = (raw ?? "").Trim();
-        if (value.Length == 0) return null;
-        if (!value.StartsWith("#")) value = "#" + value;
-
-        if (Regex.IsMatch(value, "^#[0-9a-fA-F]{3}$"))
-        {
-            value = "#" + value[1] + value[1] + value[2] + value[2] + value[3] + value[3];
-        }
-
-        return Regex.IsMatch(value, "^#[0-9a-fA-F]{6}$") ? value.ToUpperInvariant() : null;
-    }
 
     private void OnPreviewSelect(IgbComponentValueChangedEventArgs args)
     {
@@ -346,7 +300,6 @@
         foreach (var token in AllTokens)
         {
             Colors[token.Key] = SeedColors.TryGetValue(token.Key, out var seed) ? seed : "";
-            FieldRevisions[token.Key]++;
         }
         Size = "medium";
         RadiusFactor = "0.4";
