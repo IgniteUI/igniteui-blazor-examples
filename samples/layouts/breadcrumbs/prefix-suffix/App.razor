@@ -1,0 +1,33 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="sample">
+    <nav aria-label="Breadcrumb">
+        <IgbBreadcrumbs>
+            <IgbBreadcrumb>
+                <IgbIcon @ref="IconRef" slot="prefix" IconName="home" />
+                <a href="/home" @onclick:preventDefault>Home</a>
+            </IgbBreadcrumb>
+            <IgbBreadcrumb><a href="/home/profile" @onclick:preventDefault>Mail</a></IgbBreadcrumb>
+            <IgbBreadcrumb><a href="/home/profile" @onclick:preventDefault>Messages</a></IgbBreadcrumb>
+            <IgbBreadcrumb Current="true">
+                <a href="/home/inbox" @onclick:preventDefault>Inbox</a>
+                <IgbBadge slot="suffix" Outlined="true" Variant="StyleVariant.Danger">3</IgbBadge>
+            </IgbBreadcrumb>
+        </IgbBreadcrumbs>
+    </nav>
+</div>
+
+@code {
+    private const string HomeIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/></svg>";
+
+    private IgbIcon IconRef;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await IconRef.EnsureReady();
+            await IconRef.RegisterIconFromTextAsync("home", HomeIcon, "default");
+        }
+    }
+}

@@ -1,0 +1,35 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample">
+    <div class="qr-controls">
+        <IgbRadioGroup Alignment="ContentOrientation.Horizontal" @bind-Value="shape">
+            <IgbRadio name="shape" Value="@("square")">Square</IgbRadio>
+            <IgbRadio name="shape" Value="@("circle")">Circle</IgbRadio>
+            <IgbRadio name="shape" Value="@("rounded")">Rounded</IgbRadio>
+        </IgbRadioGroup>
+        <IgbRadioGroup Alignment="ContentOrientation.Horizontal" @bind-Value="size">
+            <IgbRadio name="size" Value="@("120")">Small</IgbRadio>
+            <IgbRadio name="size" Value="@("180")">Medium</IgbRadio>
+            <IgbRadio name="size" Value="@("240")">Large</IgbRadio>
+            <IgbRadio name="size" Value="@("300")">Extra large</IgbRadio>
+        </IgbRadioGroup>
+        <IgbSwitch LabelPosition="ToggleLabelPosition.Before" @bind-Checked="logoEnabled">Logo</IgbSwitch>
+    </div>
+    <IgbQrCode Value="https://www.infragistics.com/products/ignite-ui-web-components"
+        Size="@QrSize" DotStyle="@DotStyle" SquareStyle="@SquareStyle"
+        LogoMargin="3" ErrorLevel="QrErrorCorrectionLevel.High"
+        LogoSrc="@(logoEnabled ? LogoSrc : null)" LogoSize="1" />
+</div>
+
+@code {
+    private const string LogoSrc = "https://static.infragistics.com/marketing/Website/products/ignite-ui/shared/ignite-ui-logo-light-background-horizontal.svg";
+
+    private string shape = "square";
+    private string size = "300";
+    private bool logoEnabled = true;
+
+    // One shape drives both the dots and the corner squares.
+    private QrDotStyle DotStyle => Enum.Parse<QrDotStyle>(shape, true);
+    private QrCornerSquareStyle SquareStyle => Enum.Parse<QrCornerSquareStyle>(shape, true);
+    private int QrSize => int.Parse(size);
+}
