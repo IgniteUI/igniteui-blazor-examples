@@ -45,9 +45,9 @@ jobs:
       password: $(IG_Nuget_Feed_Password)
 
   # Builds TestServer and, through it, Client, Core and Shared.
-  - script: dotnet build
-    displayName: 'Build tests'
-    workingDirectory: '$(testDir)'
+  - script: dotnet build IgBlazorSamples.Test.sln
+    displayName: 'Build test solution'
+    workingDirectory: '$(Build.SourcesDirectory)/browser'
 
   - pwsh: ./bin/Debug/playwright.ps1 install --with-deps chromium
     displayName: 'Install Playwright Chromium'
