@@ -202,10 +202,10 @@ igc-carousel[vertical]::part(next) {
     <div class="action-wrapper">
         <div class="action">
             <span class="action-label">Animation</span>
-            <IgbSelect Change="OnSelectChange">
-                <IgbSelectItem Value="slide" Selected="true">Slide</IgbSelectItem>
-                <IgbSelectItem Value="fade">Fade</IgbSelectItem>
-                <IgbSelectItem Value="none">None</IgbSelectItem>
+            <IgbSelect @bind-Value="animationType">
+                <IgbSelectItem Value="@("slide")">Slide</IgbSelectItem>
+                <IgbSelectItem Value="@("fade")">Fade</IgbSelectItem>
+                <IgbSelectItem Value="@("none")">None</IgbSelectItem>
             </IgbSelect>
         </div>
         <div class="action">
@@ -213,7 +213,7 @@ igc-carousel[vertical]::part(next) {
         </div>
     </div>
 
-    <IgbCarousel @ref="carouselRef" class="@CarouselCssClass" HideIndicators="true" Vertical="@isCarouselVertical">
+    <IgbCarousel class="@CarouselCssClass" HideIndicators="true" Vertical="@isCarouselVertical" AnimationType="@CarouselAnimationType">
         <IgbCarouselSlide>
             <article class="slide-wrapper">
                 <div class="slide-content">
@@ -251,22 +251,19 @@ igc-carousel[vertical]::part(next) {
 </div>
 
 @code {
-    private IgbCarousel carouselRef;
+    private string animationType = "slide";
     private bool isCarouselVertical;
     private bool isOrientationChanging;
     private int orientationChangeVersion;
 
     private string CarouselCssClass => isOrientationChanging ? "is-orientation-changing" : string.Empty;
 
-    private void OnSelectChange(IgbSelectItemComponentEventArgs args)
+    private HorizontalTransitionAnimation CarouselAnimationType => animationType switch
     {
-        carouselRef.AnimationType = args.Detail.Value switch
-        {
-            "slide" => HorizontalTransitionAnimation.Slide,
-            "fade" => HorizontalTransitionAnimation.Fade,
-            _ => HorizontalTransitionAnimation.None
-        };
-    }
+        "slide" => HorizontalTransitionAnimation.Slide,
+        "fade" => HorizontalTransitionAnimation.Fade,
+        _ => HorizontalTransitionAnimation.None
+    };
 
     private async Task OnSwitchChange(IgbCheckboxChangeEventArgs args)
     {

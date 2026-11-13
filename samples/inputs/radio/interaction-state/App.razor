@@ -1,0 +1,42 @@
+@using IgniteUI.Blazor.Controls
+@inject IJSRuntime JS
+
+<div class="container sample radio-states">
+    @* The radios only show their states, so they take no pointer or keyboard input. *@
+    <div class="radio-states-grid" inert>
+        <span></span>
+        <span class="column-caption">Hover</span>
+        <span class="column-caption">Focused</span>
+        <span class="column-caption">Focused &amp; Hover</span>
+        <div class="radio-states-group">
+            <span class="row-caption">Enabled / On</span>
+            <IgbRadio class="hover" Value="@("daily")" Checked="true">Daily Updates</IgbRadio>
+            <IgbRadio class="focused" Value="@("weekly")" Checked="true">Weekly Updates</IgbRadio>
+            <IgbRadio class="focused-hover" Value="@("monthly")" Checked="true">Monthly Updates</IgbRadio>
+            <span class="row-caption">Enabled / Off</span>
+            <IgbRadio class="hover off" Value="@("daily")">Daily Updates</IgbRadio>
+            <IgbRadio class="focused off" Value="@("weekly")">Weekly Updates</IgbRadio>
+            <IgbRadio class="focused-hover off" Value="@("monthly")">Monthly Updates</IgbRadio>
+        </div>
+        <div class="radio-states-group">
+            <span class="row-caption">Invalid / On</span>
+            <IgbRadio class="hover" Value="@("daily")" Checked="true" Invalid="true">Daily Updates</IgbRadio>
+            <IgbRadio class="focused" Value="@("weekly")" Checked="true" Invalid="true">Weekly Updates</IgbRadio>
+            <IgbRadio class="focused-hover" Value="@("monthly")" Checked="true" Invalid="true">Monthly Updates</IgbRadio>
+            <span class="row-caption">Invalid / Off</span>
+            <IgbRadio class="hover off" Value="@("daily")" Invalid="true">Daily Updates</IgbRadio>
+            <IgbRadio class="focused off" Value="@("weekly")" Invalid="true">Weekly Updates</IgbRadio>
+            <IgbRadio class="focused-hover off" Value="@("monthly")" Invalid="true">Monthly Updates</IgbRadio>
+        </div>
+    </div>
+</div>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("radioInteractionState.showFocus");
+        }
+    }
+}

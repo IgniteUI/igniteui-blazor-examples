@@ -1,0 +1,18 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="sample">
+    <IgbButton Variant="ButtonVariant.Contained" @onclick="ToggleDirection">Change Directionality</IgbButton>
+    <div class="calendar-container" dir="@Direction">
+        <IgbCalendar @bind-Value="SelectedDate" />
+    </div>
+</div>
+
+@code {
+    private string Direction = "rtl";
+    private DateTime SelectedDate = DateTime.Today;
+
+    private void ToggleDirection()
+    {
+        Direction = Direction == "rtl" ? "ltr" : "rtl";
+    }
+}
