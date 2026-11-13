@@ -1,14 +1,77 @@
 @using IgniteUI.Blazor.Controls
 
-<div class="container sample center">
-    <IgbCombo @bind-Value="SelectedCities" Data="Data" ValueKey="Id" DisplayKey="Name"></IgbCombo>
+<div class="container sample">
+    <div class="locations">
+        <IgbCombo @ref="ComboRef"
+                  Value="SelectedCities"
+                  Change="OnChange"
+                  Outlined="true"
+                  Label="Locations"
+                  Placeholder="Cities"
+                  PlaceholderSearch="Search cities"
+                  ValueKey="Id"
+                  DisplayKey="Name"
+                  GroupKey="Country"
+                  Open="true"
+                  Data="Cities">
+            <IgbIcon slot="prefix" @ref="IconRef" IconName="place" Collection="material" />
+        </IgbCombo>
+        <div class="selection">
+            <span class="selection-title">Selection</span>
+            @if (SelectedCities.Any())
+            {
+                @foreach (var id in SelectedCities)
+                {
+                    <span>@Cities.First(city => city.Id == id).Name</span>
+                }
+            }
+            else
+            {
+                <span>No items selected</span>
+            }
+        </div>
+    </div>
 </div>
 
 @code {
-    private List<City> Data;
-    private string[] SelectedCities = [];
+    private const string PlaceIcon = """<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>""";
 
-    protected override void OnInitialized() {
-        this.Data = SampleData.Cities;
+    private class City
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Country { get; set; }
+    }
+
+    private List<City> Cities { get; set; } = new List<City>
+    {
+        new City { Id = "BG01", Name = "Sofia", Country = "Country of Bulgaria" },
+        new City { Id = "BG02", Name = "Plovdiv", Country = "Country of Bulgaria" },
+        new City { Id = "BG03", Name = "Varna", Country = "Country of Bulgaria" },
+        new City { Id = "BG04", Name = "Burgas", Country = "Country of Bulgaria" },
+        new City { Id = "BG05", Name = "Pleven", Country = "Country of Bulgaria" },
+    };
+
+    // the `Id` values of the selected cities
+    private string[] SelectedCities { get; set; } = new string[] { };
+
+    private IgbCombo<string> ComboRef { get; set; }
+
+    private IgbIcon IconRef { get; set; }
+
+    // the value that the combo reports on a change starts with the last selected city, so the value is
+    // read from the combo itself, which keeps the cities in the order of their selection
+    private async Task OnChange()
+    {
+        this.SelectedCities = await this.ComboRef.GetCurrentValueAsync();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && this.IconRef != null)
+        {
+            await this.IconRef.EnsureReady();
+            await this.IconRef.RegisterIconFromTextAsync("place", PlaceIcon, "material");
+        }
     }
 }

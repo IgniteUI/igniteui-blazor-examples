@@ -1,0 +1,89 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample">
+    @* the combos are display-only, so inert blocks pointer and keyboard interaction *@
+    <div class="states" inert>
+        <span class="type-label"></span>
+        @foreach (var state in States)
+        {
+            <span class="state-label state-column">@state.Label</span>
+        }
+        @foreach (var type in Types)
+        {
+            <span class="state-label type-label @type.ClassName">@type.Label</span>
+            @foreach (var combo in type.Combos)
+            {
+                <IgbCombo @bind-Value="combo.Value"
+                          class="@($"state-combo {combo.State.ClassName} {type.ClassName}")"
+                          Outlined="type.Outlined"
+                          Invalid="combo.State.Invalid"
+                          Placeholder="Country"
+                          ValueKey="Id"
+                          DisplayKey="Name"
+                          Data="Countries">
+                    @if (combo.State.HelperText != null)
+                    {
+                        <span slot="helper-text">@combo.State.HelperText</span>
+                    }
+                </IgbCombo>
+            }
+        }
+    </div>
+</div>
+
+@code {
+    private class Country
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Region { get; set; }
+    }
+
+    private class ValidationState
+    {
+        public string Label { get; set; }
+        public string ClassName { get; set; }
+        public bool Invalid { get; set; }
+        public string HelperText { get; set; }
+    }
+
+    private class StateCombo
+    {
+        public ValidationState State { get; set; }
+        public string[] Value { get; set; } = new string[] { "BY", "BE" };
+    }
+
+    private class ComboType
+    {
+        public string Label { get; set; }
+        public bool Outlined { get; set; }
+        public string ClassName { get; set; }
+
+        // a combo for each state, and each combo binds a value of its own
+        public List<StateCombo> Combos { get; } = States
+            .Select(state => new StateCombo { State = state })
+            .ToList();
+    }
+
+    private List<Country> Countries { get; set; } = new List<Country>
+    {
+        new Country { Id = "BY", Name = "Belarus", Region = "Europe" },
+        new Country { Id = "BE", Name = "Belgium", Region = "Europe" },
+        new Country { Id = "BG", Name = "Bulgaria", Region = "Europe" },
+    };
+
+    // the combo has a built-in invalid state and no success or warn state: the `success` class draws
+    // the success state, and the warn combo is an invalid combo that the `warn` class gives the warning color
+    private static List<ValidationState> States { get; set; } = new List<ValidationState>
+    {
+        new ValidationState { Label = "Success", ClassName = "success" },
+        new ValidationState { Label = "Warn", ClassName = "warn", Invalid = true, HelperText = "Additional fees might be included" },
+        new ValidationState { Label = "Error", ClassName = "error", Invalid = true, HelperText = "Please select a different region" },
+    };
+
+    private List<ComboType> Types { get; set; } = new List<ComboType>
+    {
+        new ComboType { Label = "Border Type", Outlined = true, ClassName = "border-type" },
+        new ComboType { Label = "Box Type", Outlined = false, ClassName = "box-type" },
+    };
+}

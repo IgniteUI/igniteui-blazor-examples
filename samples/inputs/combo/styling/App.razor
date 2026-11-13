@@ -1,34 +1,60 @@
 @using IgniteUI.Blazor.Controls
 
-<div class="container sample center">
-    <IgbCombo 
-        @bind-Value="selectedCities"
-        Label="Destinations" 
-        Data="Data" 
-        ValueKey="Id"
-        DisplayKey="Name"
-        GroupKey="Country"
-        CaseSensitiveIcon>
-        <span slot="helper-text">Choose the desired place</span>
-        <IgbIcon @ref="locationIconRef" slot="prefix" name="place" collection="material"></IgbIcon>
-    </IgbCombo>
+<div class="container sample">
+    <div class="country">
+        <IgbCombo @ref="ComboRef"
+                  Value="SelectedCountries"
+                  Change="OnChange"
+                  class="styled-combo"
+                  Outlined="true"
+                  Placeholder="Country"
+                  PlaceholderSearch="Search"
+                  ValueKey="Id"
+                  DisplayKey="Name"
+                  GroupKey="Region"
+                  Open="true"
+                  Data="Countries" />
+        <div class="selection">
+            <span class="selection-title">Selection</span>
+            @if (SelectedCountries.Any())
+            {
+                @foreach (var id in SelectedCountries)
+                {
+                    <span>@Countries.First(country => country.Id == id).Name</span>
+                }
+            }
+            else
+            {
+                <span>No items selected</span>
+            }
+        </div>
+    </div>
 </div>
 
 @code {
-    private List<City> Data;
-    private string[] selectedCities = [];
-    private IgbIcon locationIconRef { get; set; }
-    private string placeSvg = "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px'><path d='M0 0h24v24H0z' fill='none'/><path d='M12 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6-1.8C18 6.57 15.35 4 12 4s-6 2.57-6 6.2c0 2.34 1.95 5.44 6 9.14 4.05-3.7 6-6.8 6-9.14zM12 2c4.2 0 8 3.22 8 8.2 0 3.32-2.67 7.25-8 11.8-5.33-4.55-8-8.48-8-11.8C4 5.22 7.8 2 12 2z'/></svg>";
-
-    protected override void OnInitialized() {
-        this.Data = SampleData.Cities;
+    private class Country
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Region { get; set; }
     }
 
-    protected override void OnAfterRender(bool firstRender) {
-        if (firstRender) {
-            this.locationIconRef.EnsureReady().ContinueWith(new Action<Task>((e) => {
-                this.locationIconRef.RegisterIconFromTextAsync("place", placeSvg, "material");
-            }));
-        }
+    private List<Country> Countries { get; set; } = new List<Country>
+    {
+        new Country { Id = "BY", Name = "Belarus", Region = "Europe" },
+        new Country { Id = "BE", Name = "Belgium", Region = "Europe" },
+        new Country { Id = "BG", Name = "Bulgaria", Region = "Europe" },
+    };
+
+    // the `Id` values of the selected countries
+    private string[] SelectedCountries { get; set; } = new string[] { "BY" };
+
+    private IgbCombo<string> ComboRef { get; set; }
+
+    // the value that the combo reports on a change starts with the last selected country, so the value is
+    // read from the combo itself, which keeps the countries in the order of their selection
+    private async Task OnChange()
+    {
+        this.SelectedCountries = await this.ComboRef.GetCurrentValueAsync();
     }
 }

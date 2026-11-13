@@ -1,4 +1,46 @@
-/* 
-CSS styles are loaded from the shared CSS file located at:
-https://dl.infragistics.com/x/css//samples/
-*/
+/* shared styles are loaded from: */
+/* https://dl.infragistics.com/x/css/samples/shared.v8.css */
+
+.container.sample {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+    padding: 2rem 1rem;
+}
+
+.locations {
+    display: flex;
+    flex-direction: column;
+    width: 22.5rem;
+}
+
+.selection {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    margin-top: 1.625rem;
+    padding: 0.75rem 1rem;
+    font: 400 13px / 20px "Aktiv Grotesk", sans-serif;
+    letter-spacing: 0.3px;
+    color: var(--ig-gray-600);
+}
+
+.selection-title {
+    color: var(--ig-gray-900);
+}
+
+/* The combo list of the Blazor package estimates its height until it has measured the options,
+   and in a docs frame that loads off screen the estimate can stay. All options of this sample fit,
+   so the list doesn't scroll. The list also ends with a hidden sizer that the page line height makes
+   taller than its space, and in the Material theme the checkbox of an option is taller than a small
+   or medium option, so the list keeps them inside its height. */
+igc-combo::part(list) {
+    overflow: hidden;
+    line-height: 1;
+}
+
+igc-combo::part(item) {
+    overflow: hidden;
+}
