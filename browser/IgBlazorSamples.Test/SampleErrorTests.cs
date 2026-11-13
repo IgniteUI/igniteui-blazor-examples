@@ -1,4 +1,5 @@
 using IgBlazorSamples.Test;
+using Microsoft.Playwright;
 using System.Text;
 
 namespace SampleErrorTests;
@@ -55,7 +56,9 @@ public class ErrorTest : BlazorTest
 
         Assert.That(numPageErrors == 0, $"The following errors were thrown: \\n ${messages}");
 
-        await Page.WaitForSelectorAsync(testSelector);
+        // Wait for the element to be rendered, not visible: custom element hosts such as igc-tab
+        // can have no box of their own, and Playwright never reports those as visible.
+        await Page.WaitForSelectorAsync(testSelector, new() { State = WaitForSelectorState.Attached });
 
         Assert.That(numPageErrors == 0, $"The following errors were thrown: \\n ${messages}");
     }
