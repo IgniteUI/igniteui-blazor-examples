@@ -1,0 +1,34 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample">
+    <div class="amounts">
+        <span class="amount-label">Two Tabs</span>
+        <IgbTabs class="two-tabs" Alignment="TabsAlignment.Justify">
+            @foreach (var category in Categories.Take(2))
+            {
+                <IgbTab Label="@category" />
+            }
+        </IgbTabs>
+        <span class="amount-label">Five Tabs</span>
+        <IgbTabs class="five-tabs" Alignment="TabsAlignment.Justify">
+            @foreach (var category in Categories.Take(5))
+            {
+                <IgbTab Label="@category" />
+            }
+        </IgbTabs>
+        <span class="amount-label">5+ Tabs</span>
+        <IgbTabs>
+            @foreach (var category in Categories)
+            {
+                <IgbTab Label="@category" />
+            }
+        </IgbTabs>
+    </div>
+</div>
+
+@code {
+    private List<string> Categories { get; set; } = new List<string>
+    {
+        "Podcasts", "Playlists", "Genres", "Albums", "Artists", "Audiobooks", "Radio"
+    };
+}
