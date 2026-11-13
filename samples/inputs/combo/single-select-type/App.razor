@@ -4,7 +4,7 @@
     <div class="types">
         @foreach (var type in Types)
         {
-            <div class="type">
+            <div class="type @type.ClassName">
                 <span class="type-label">@type.Label</span>
                 <IgbCombo @bind-Value="type.Value"
                           SingleSelect="true"
@@ -38,6 +38,7 @@
     {
         public string Label { get; set; }
         public bool Outlined { get; set; }
+        public string ClassName { get; set; }
         public string[] Value { get; set; } = new string[] { };
     }
 
@@ -47,8 +48,8 @@
 
     private List<ComboType> Types { get; set; } = new List<ComboType>
     {
-        new ComboType { Label = "Border Type", Outlined = true },
-        new ComboType { Label = "Box Type", Outlined = false },
+        new ComboType { Label = "Border Type", Outlined = true, ClassName = "border-type" },
+        new ComboType { Label = "Box Type", Outlined = false, ClassName = "box-type" },
     };
 
     private IgbIcon IconRef { get; set; }

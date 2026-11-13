@@ -35,7 +35,6 @@
 /* the element around the combo is inline otherwise, and then its line adds height */
 .dropdown {
     display: block;
-    pointer-events: none;
 }
 
 .dropdown igc-combo::part(input) {
@@ -50,6 +49,17 @@
 
 .dropdown {
     height: 2rem;
+}
+
+/* each cell shows an item on its own, so the dropdown around it is as tall as its one row and has
+   no shadow, border, or padding */
+.dropdown igc-combo::part(list-wrapper) {
+    height: calc(var(--size) * var(--item-count));
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    box-shadow: none;
 }
 
 /* the states use the colors of the drop-down theme */

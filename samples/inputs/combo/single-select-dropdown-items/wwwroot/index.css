@@ -46,6 +46,17 @@
     --item-count: 1;
 }
 
+/* each cell shows a header or an item on its own, so the dropdown around it is as tall as its one row and has
+   no shadow, border, or padding */
+.dropdown igc-combo::part(list-wrapper) {
+    height: calc(var(--size) * var(--item-count));
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    box-shadow: none;
+}
+
 .header-only igc-combo::part(item) {
     display: none;
 }
