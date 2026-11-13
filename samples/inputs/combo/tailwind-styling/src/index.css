@@ -1,0 +1,35 @@
+/* shared styles are loaded from: */
+/* https://dl.infragistics.com/x/css/samples/shared.v8.css */
+
+@import url("https://use.typekit.net/bng2zgw.css");
+
+@tailwind utilities;
+
+:root {
+    --color-combo-border: #a9b8cc;
+    --color-combo-toggle: #e5ebf3;
+    --color-combo-surface: #f3f6fa;
+    --color-combo-selected: #d2dbe8;
+    --color-combo-accent: #7d91ab;
+    --color-combo-header: #005dcc;
+    --color-combo-ink: #212121;
+}
+
+/* overrides the padding of the shared .sample rule */
+.container.sample {
+    padding: 2rem 1rem;
+}
+
+/* The combo list of the Blazor package estimates its height until it has measured the options,
+   and in a docs frame that loads off screen the estimate can stay. All options of this sample fit,
+   so the list doesn't scroll. The list also ends with a hidden sizer that the page line height makes
+   taller than its space, and in the Material theme the checkbox of an option is taller than a small
+   or medium option, so the list keeps them inside its height. */
+igc-combo::part(list) {
+    overflow: hidden;
+    line-height: 1;
+}
+
+igc-combo::part(item) {
+    overflow: hidden;
+}

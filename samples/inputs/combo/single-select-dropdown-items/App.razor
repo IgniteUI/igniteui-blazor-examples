@@ -1,0 +1,87 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample">
+    @* the items are display-only, so inert blocks pointer and keyboard interaction *@
+    <div class="items" inert>
+        <span></span>
+        @foreach (var size in Sizes)
+        {
+            <span class="state-label state-column">@size.Label</span>
+        }
+        @foreach (var row in Rows)
+        {
+            <span class="state-label">@row.Label</span>
+            @foreach (var combo in row.Combos)
+            {
+                <IgbCombo @bind-Value="combo.Value"
+                          class="@($"dropdown {row.ClassName} {combo.ClassName}")"
+                          SingleSelect="true"
+                          ValueKey="Id"
+                          DisplayKey="Name"
+                          GroupKey="@row.GroupKey"
+                          Open="true"
+                          ClosingScript="ComboKeepOpen"
+                          Data="row.Data" />
+            }
+        }
+    </div>
+</div>
+
+@code {
+    private class Option
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Group { get; set; }
+    }
+
+    private class DropdownSize
+    {
+        public string Label { get; set; }
+        public string ClassName { get; set; }
+    }
+
+    private class SizedCombo
+    {
+        public string ClassName { get; set; }
+        public string[] Value { get; set; } = new string[] { };
+    }
+
+    private class ItemRow
+    {
+        public string Label { get; set; }
+        public string ClassName { get; set; }
+        public string GroupKey { get; set; } = "";
+        public List<Option> Data { get; set; }
+
+        // a combo of each size, and each combo binds a value of its own
+        public List<SizedCombo> Combos { get; } = Sizes
+            .Select(size => new SizedCombo { ClassName = size.ClassName })
+            .ToList();
+    }
+
+    private static List<DropdownSize> Sizes { get; set; } = new List<DropdownSize>
+    {
+        new DropdownSize { Label = "Small", ClassName = "small" },
+        new DropdownSize { Label = "Medium", ClassName = "medium" },
+        new DropdownSize { Label = "Large", ClassName = "large" },
+    };
+
+    // the header row hides its option, so only the group header shows
+    private List<ItemRow> Rows { get; set; } = new List<ItemRow>
+    {
+        new ItemRow
+        {
+            Label = "Header",
+            ClassName = "header-only",
+            GroupKey = "Group",
+            Data = new List<Option> { new Option { Id = "1", Name = "Item", Group = "Header" } },
+        },
+        new ItemRow
+        {
+            Label = "Item",
+            ClassName = "item-only",
+            Data = new List<Option> { new Option { Id = "1", Name = "Item" } },
+        },
+    };
+}
