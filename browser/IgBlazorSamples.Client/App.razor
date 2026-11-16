@@ -52,6 +52,14 @@
 
     private List<Assembly> LazyLoadedAssemblies = new List<Assembly>();
 
+    // The BlazorWebAssemblyLazyLoad items of IgBlazorSamples.Client.csproj: the Excel library and,
+    // in a published (trimmed) build, the assemblies that only it references.
+    private static readonly string[] ExcelAssemblies = typeof(App).Assembly
+        .GetCustomAttributes<AssemblyMetadataAttribute>()
+        .First(a => a.Key == "BlazorWebAssemblyLazyLoad")
+        .Value!
+        .Split(';', StringSplitOptions.RemoveEmptyEntries);
+
     private async Task OnNavigateChangedAsync(string navigationPath)
     { 
         await LazyLoadAssemblies(navigationPath, true);
@@ -76,11 +84,7 @@
                 if (Router != null) Router.IsLazyLoading = true;
 
                 Console.WriteLine("SB.APP LazyLoad Excel assemblies... ");
-                var list = new List<string> {
-                    "IgniteUI.Blazor.Documents.Core.wasm",
-                    "IgniteUI.Blazor.Documents.Excel.wasm"
-                };
-                var assemblies = await AssemblyLoader.LoadAssembliesAsync(list);
+                var assemblies = await AssemblyLoader.LoadAssembliesAsync(ExcelAssemblies);
                 Console.WriteLine("SB.APP LazyLoad Excel assemblies... done:");
                 foreach (var asmb in assemblies)
                 {
