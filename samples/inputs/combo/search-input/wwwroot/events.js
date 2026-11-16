@@ -35,15 +35,22 @@ igRegisterScript("ComboKeepOpen", (evt) => evt.preventDefault(), false);
     // display-only search input is never hovered or focused. This copies those rules of the search input, and of the combo list around it,
     // with the condition turned around, so the theme draws the state while the search input is not in it. The
     // sample adds no styles of its own.
-    async function showState(combo, state) {
+    async function showState(combo, cell) {
         await customElements.whenDefined("igc-combo");
         await combo.updateComplete;
         const input = combo.renderRoot.querySelector('[part~="search-input"]');
         await input.updateComplete;
 
-        // of the rules of the combo, only those for its list take part
-        showStateRules(combo, state, (selector) => selector.includes("list-wrapper"));
-        showStateRules(input, state, () => true);
+        // the search input is an input inside the combo, so its text and its disabled state are set on it
+        input.value = cell.getAttribute("data-search-text") ?? "";
+        input.disabled = cell.hasAttribute("data-search-disabled");
+
+        const state = cell.getAttribute("data-search-shows");
+        if (state) {
+            // of the rules of the combo, only those for its list take part
+            showStateRules(combo, state, (selector) => selector.includes("list-wrapper"));
+            showStateRules(input, state, () => true);
+        }
     }
 
     // the combo of a cell is rendered after the cell itself, so the cell is watched until it is there
@@ -66,7 +73,8 @@ igRegisterScript("ComboKeepOpen", (evt) => evt.preventDefault(), false);
         });
     }
 
-    // the sample calls this after it renders; each cell names the state of its combo in `data-search-shows`
-    window.showComboSearchStates = () => document.querySelectorAll("[data-search-shows]")
-        .forEach(async (cell) => showState(await whenRendered(cell), cell.getAttribute("data-search-shows")));
+    // the sample calls this after it renders; each cell names the state, the text, and the disabled state
+    // of its search input in its `data-search-*` attributes
+    window.showComboSearchStates = () => document.querySelectorAll("[data-search-input]")
+        .forEach(async (cell) => showState(await whenRendered(cell), cell));
 })();
