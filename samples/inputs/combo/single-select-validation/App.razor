@@ -73,11 +73,11 @@
         new Country { Id = "BG", Name = "Bulgaria", Region = "Europe" },
     };
 
-    // the combo has a built-in invalid state and no success or warn state: the `success` class draws
-    // the success state, and the warn combo is an invalid combo that the `warn` class gives the warning color
+    // the combo has a built-in invalid state and no success or warn state: the success and the warn combos
+    // are invalid combos that the `success` and `warn` classes give the success and the warning color
     private static List<ValidationState> States { get; set; } = new List<ValidationState>
     {
-        new ValidationState { Label = "Success", ClassName = "success" },
+        new ValidationState { Label = "Success", ClassName = "success", Invalid = true },
         new ValidationState { Label = "Warn", ClassName = "warn", Invalid = true, HelperText = "Additional fees might be included" },
         new ValidationState { Label = "Error", ClassName = "error", Invalid = true, HelperText = "Please select a different region" },
     };
