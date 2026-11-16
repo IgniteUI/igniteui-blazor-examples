@@ -56,9 +56,21 @@
             }
         </IgbCombo>
 
-        <div class="selection ig-typography__body-2">
-            <span class="ig-typography__subtitle-2">Selection</span>
-            <span>@(SelectedNames.Any() ? string.Join(", ", SelectedNames) : "No items selected")</span>
+        <div class="selection-panel">
+            <span class="selection-title" id="selection-title">Selection</span>
+            @if (SelectedNames.Any())
+            {
+                <ul class="selection-list" aria-labelledby="selection-title">
+                    @foreach (var name in SelectedNames)
+                    {
+                        <li>@name</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <span class="selection-empty">No items selected</span>
+            }
         </div>
     </div>
 
