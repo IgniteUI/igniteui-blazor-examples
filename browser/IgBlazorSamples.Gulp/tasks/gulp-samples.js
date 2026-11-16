@@ -376,9 +376,18 @@ function copySamplePages(cb, outputPath) {
     cb();
 }
 
-function copySampleScripts(cb, outputPath, indexName, isLocalBuild) {
+function copySampleScripts(cb, outputPath, indexName, isLocalBuild, bundleClassicScripts) {
     var insertScriptFiles = [];
     var bundledScripts = [];
+
+    // Module scripts always get their own tag. Classic scripts go into the bundle below when
+    // bundleClassicScripts is set (the client samples browser), otherwise each gets its own tag
+    // too (the server samples browser, see #1377).
+    function addScript(fileName, content, shouldBeModule) {
+        if (shouldBeModule) insertScriptFiles.push('<script src="sb/' + fileName + '" type="module"></script>');
+        else if (bundleClassicScripts) bundledScripts.push({ fileName: fileName, content: content });
+        else insertScriptFiles.push('<script src="sb/' + fileName + '"></script>');
+    }
 
     log('deleting scripts in: ' + outputPath + '/wwwroot/sb/*.js');
     del.sync('../IgBlazorSamples.Client/wwwroot/sb/' + "*.js", {force:true});
@@ -442,13 +451,11 @@ function copySampleScripts(cb, outputPath, indexName, isLocalBuild) {
                         if (rawName.indexOf("3") >= 0) fileRequiresLoading = false;
                     }
                     if (fileRequiresLoading) {
-                        if (shouldBeModule) insertScriptFiles.push('<script src="sb/' + fileName + '" type="module"></script>');
-                        else bundledScripts.push({ fileName: fileName, content: file.Content });
+                        addScript(fileName, file.Content, shouldBeModule);
                     }
                 }
                 else {
-                    if (shouldBeModule) insertScriptFiles.push('<script src="sb/' + fileName + '" type="module"></script>');
-                    else bundledScripts.push({ fileName: fileName, content: file.Content });
+                    addScript(fileName, file.Content, shouldBeModule);
                 }
             }
         }
@@ -456,8 +463,8 @@ function copySampleScripts(cb, outputPath, indexName, isLocalBuild) {
     // sorting inserts
     //insertScriptFiles.sort((a, b) => a > b ? 1 : -1)
 
-    // The host page loads the samples' classic scripts as one bundle instead of a <script> tag
-    // each: one request on every page load instead of ~200, all parser-blocking. Concatenation
+    // The client host page loads the samples' classic scripts as one bundle instead of a <script>
+    // tag each: one request on every page load instead of ~200, all parser-blocking. Concatenation
     // keeps their behavior: classic scripts already share one global scope, so declarations stay
     // global and run in the same order. Module scripts keep their own tags (and their own scope).
     if (bundledScripts.length > 0) {
@@ -544,13 +551,13 @@ function copySampleScripts(cb, outputPath, indexName, isLocalBuild) {
 // '../../browser/IgBlazorSamples.Server/wwwroot'
 function copySamplesToServer(cb) {
     cleanupSampleBrowser( "../../browser/IgBlazorSamples.Server");
-    copySampleScripts(cb, "../../browser/IgBlazorSamples.Server", "/Pages/_Host.cshtml", true);
+    copySampleScripts(cb, "../../browser/IgBlazorSamples.Server", "/Pages/_Host.cshtml", true, false);
     copySamplePages(cb,   "../../browser/IgBlazorSamples.Server");
 } exports.copySamplesToServer = copySamplesToServer;
 
 function copySamplesToServerCI(cb) {
     cleanupSampleBrowser( "../../browser/IgBlazorSamples.Server");
-    copySampleScripts(cb, "../../browser/IgBlazorSamples.Server", "/Pages/_Host.cshtml", false);
+    copySampleScripts(cb, "../../browser/IgBlazorSamples.Server", "/Pages/_Host.cshtml", false, false);
     copySamplePages(cb,   "../../browser/IgBlazorSamples.Server");
 } exports.copySamplesToServerCI = copySamplesToServerCI;
 
@@ -559,13 +566,13 @@ function copySamplesToServerCI(cb) {
 // '../../browser/IgBlazorSamples.Client/wwwroot'
 function copySamplesToClient(cb) {
     cleanupSampleBrowser( "../../browser/IgBlazorSamples.Client");
-    copySampleScripts(cb, "../../browser/IgBlazorSamples.Client", "/wwwroot/index.html", true);
+    copySampleScripts(cb, "../../browser/IgBlazorSamples.Client", "/wwwroot/index.html", true, true);
     copySamplePages(cb,   "../../browser/IgBlazorSamples.Client");
 } exports.copySamplesToClient = copySamplesToClient;
 
 function copySamplesToClientCI(cb) {
     cleanupSampleBrowser( "../../browser/IgBlazorSamples.Client");
-    copySampleScripts(cb, "../../browser/IgBlazorSamples.Client", "/wwwroot/index.html", false);
+    copySampleScripts(cb, "../../browser/IgBlazorSamples.Client", "/wwwroot/index.html", false, true);
     copySamplePages(cb,   "../../browser/IgBlazorSamples.Client");
 } exports.copySamplesToClientCI = copySamplesToClientCI;
 
