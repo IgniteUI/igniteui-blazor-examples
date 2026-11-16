@@ -1,6 +1,2 @@
-// a click outside a combo moves the focus out of it, and then its dropdown stays open, so each combo opens and closes on its own
-igRegisterScript("ComboKeepOpenOnOutsideClick", (evt) => {
-    if (!evt.target.matches(':focus-within')) {
-        evt.preventDefault();
-    }
-}, false);
+// the display-only dropdowns stay open when the user clicks outside them
+igRegisterScript("ComboKeepOpen", (evt) => evt.preventDefault(), false);
