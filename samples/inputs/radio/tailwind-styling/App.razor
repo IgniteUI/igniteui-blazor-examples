@@ -8,10 +8,10 @@
             <span id="export-title" class="text-base leading-6 text-[var(--color-export-title)]">Export report</span>
             <span class="text-xs leading-4 text-[var(--color-export-muted)]">Choose a format to export</span>
         </div>
-        <IgbRadioGroup class="gap-0 px-[1.5rem] py-[0.875rem]" name="format" aria-labelledby="export-title">
+        <IgbRadioGroup class="gap-0 px-[1.5rem] py-[0.875rem]" name="format" aria-labelledby="export-title" @bind-Value="Format">
             @foreach (var option in Formats)
             {
-                <IgbRadio class="format-option" Value="@option.Value" Checked="@(option.Value == Format)" Change="@(args => SelectFormat(option.Value, args.Detail.Checked))">
+                <IgbRadio class="format-option" Value="@option.Value">
                     <span class="text-xs font-semibold leading-4 tracking-[0.15px] text-[var(--color-export-ink)]">@option.Label</span>
                 </IgbRadio>
             }
@@ -40,12 +40,4 @@
     };
 
     private string Format { get; set; } = "csv";
-
-    private void SelectFormat(string format, bool isChecked)
-    {
-        if (isChecked)
-        {
-            Format = format;
-        }
-    }
 }

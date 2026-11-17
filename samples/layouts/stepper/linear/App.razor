@@ -31,10 +31,10 @@
         <IgbStep Invalid="@(IsLinear && !IsValid)">
             <span slot="title">Payment</span>
                  
-            <IgbRadioGroup>
-                <IgbRadio name="payment" Required="true" Value="paypal" Change="OnPaymentChange">PayPal (n@mail.com; 18/02/2021)</IgbRadio>
-                <IgbRadio name="payment" Required="true" Value="visa" Change="OnPaymentChange">Visa (**** **** **** 1234; 12/23)</IgbRadio>
-                <IgbRadio name="payment" Required="true" Value="mastercard" Change="OnPaymentChange">MasterCard (**** **** **** 5678; 12/24)</IgbRadio>
+            <IgbRadioGroup @bind-Value="user.Payment">
+                <IgbRadio name="payment" Required="true" Value="@("paypal")">PayPal (n@mail.com; 18/02/2021)</IgbRadio>
+                <IgbRadio name="payment" Required="true" Value="@("visa")">Visa (**** **** **** 1234; 12/23)</IgbRadio>
+                <IgbRadio name="payment" Required="true" Value="@("mastercard")">MasterCard (**** **** **** 5678; 12/24)</IgbRadio>
             </IgbRadioGroup>
             <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Previous">PREVIOUS</IgbButton>
             <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Next" Disabled="@(IsLinear && !IsValid)">SUBMIT</IgbButton>
@@ -50,7 +50,7 @@
 
 @code {
     public bool IsLinear { get; set; }
-    public bool IsValid = false;
+    public bool IsValid => !String.IsNullOrEmpty(user.Payment);
 
     private IgbStepper stepper;
     private StepperUserModel user = new StepperUserModel();
@@ -59,15 +59,6 @@
     public void OnSwitchChange(IgbCheckboxChangeEventArgs args)
     {
         IsLinear = args.Detail.Checked;
-    }
-
-    public void OnPaymentChange(IgbRadioChangeEventArgs args)
-    {
-        IsValid = args.Detail.Checked;
-        if (IsValid)
-        {
-            user.Payment = (args.Parent as IgbRadio).Value.ToString();            
-        }
     }
 
     public void Previous()

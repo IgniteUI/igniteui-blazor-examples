@@ -5,15 +5,15 @@
         <div class="shipping-header">
             <span id="shipping-title" class="shipping-title">Shipping method</span>
         </div>
-        <IgbRadioGroup class="shipping-methods" name="shipping" aria-labelledby="shipping-title">
-            <IgbRadio class="shipping-method" Value="standard" Checked="true">Standard <span class="shipping-detail">(2-4 business days)</span></IgbRadio>
-            <IgbRadio class="shipping-method" Value="express">Express <span class="shipping-detail">(next day by 6 pm)</span></IgbRadio>
-            <IgbRadio class="shipping-method" Value="pickup">Pickup point <span class="shipping-detail">(400 + locations)</span></IgbRadio>
-            <IgbRadio class="shipping-method" Value="same-day" Disabled="true">Same-day <span class="shipping-detail">(not available)</span></IgbRadio>
+        <IgbRadioGroup class="shipping-methods" name="shipping" aria-labelledby="shipping-title" @bind-Value="shipping">
+            <IgbRadio class="shipping-method" Value="@("standard")">Standard <span class="shipping-detail">(2-4 business days)</span></IgbRadio>
+            <IgbRadio class="shipping-method" Value="@("express")">Express <span class="shipping-detail">(next day by 6 pm)</span></IgbRadio>
+            <IgbRadio class="shipping-method" Value="@("pickup")">Pickup point <span class="shipping-detail">(400 + locations)</span></IgbRadio>
+            <IgbRadio class="shipping-method" Value="@("same-day")" Disabled="true">Same-day <span class="shipping-detail">(not available)</span></IgbRadio>
         </IgbRadioGroup>
     </div>
 </div>
 
 @code {
-
+    private string shipping = "standard";
 }

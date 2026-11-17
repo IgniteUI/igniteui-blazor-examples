@@ -12,67 +12,35 @@
 
 <div class="container vertical">
     <div class="container vertical">
-        <form @ref="Form">
+        <form @onsubmit="HandleSubmit" @onreset="HandleReset">
             <div class="horizontal">
-                <IgbDatePicker @ref="DatePicker"
+                <IgbDatePicker Required
                                Min="@MinDate"
                                Max="@MaxDate"
-                               Value="@SelectedDate"
-                               Change="HandleDateChange" />
-                <IgbButton onclick="@HandleReset"><span>Reset</span></IgbButton>
+                               @bind-Value="SelectedDate" />
+                <IgbButton DisplayType="ButtonBaseType.Submit"><span>Submit</span></IgbButton>
+                <IgbButton DisplayType="ButtonBaseType.Reset"><span>Reset</span></IgbButton>
             </div>
         </form>
-        <p>Date picker value: @(SelectedDate != default ? SelectedDate.ToString("G") : "None")</p>
-        <p>Form valid: @FormStatus</p>
+        <p>Date picker value: @(SelectedDate?.ToLocalTime().ToString("G") ?? "None")</p>
+        @if (SubmittedDate is not null)
+        {
+            <p>Submitted: @SubmittedDate.Value.ToLocalTime().ToString("d")</p>
+        }
     </div>
 </div>
 
 @code {
-    private IgbDatePicker DatePicker { get; set; }
-    private ElementReference Form { get; set; }
-    private DateTime SelectedDate { get; set; } = DateTime.Today;
-    private DateTime MinDate { get; set; }
-    private DateTime MaxDate { get; set; }
-    private String FormStatus { get; set; } = "true";
+    private DateTime? SelectedDate { get; set; }
+    private DateTime? SubmittedDate { get; set; }
+    private DateTime MinDate { get; set; } = DateTime.Today.AddDays(-10);
+    private DateTime MaxDate { get; set; } = DateTime.Today.AddDays(15);
 
-    protected override void OnInitialized()
+    private void HandleSubmit() => SubmittedDate = SelectedDate;
+
+    private void HandleReset()
     {
-        var initialDate = DateTime.Today;
-        MinDate = initialDate.AddDays(-10);
-        MaxDate = initialDate.AddDays(15);
-
-        UpdateFormStatus();
+        SelectedDate = null;
+        SubmittedDate = null;
     }
-
-    private void UpdateFormStatus()
-    {
-        FormStatus = "true";
-
-        if (SelectedDate < MinDate || SelectedDate > MaxDate)
-        {
-            FormStatus = "false";
-        }
-    }
-
-    private void HandleDateChange(IgbComponentDateValueChangedEventArgs e)
-    {
-        if (DateTime.TryParse(e.Detail.ToString(), out var newValue))
-        {
-            SelectedDate = newValue;
-        }
-        else
-        {
-            SelectedDate = default;
-        }
-        UpdateFormStatus();
-    }
-
-    private void HandleReset(MouseEventArgs e)
-    {
-        SelectedDate = default;
-        DatePicker.Clear();
-        UpdateFormStatus();
-    }
-
-
 }

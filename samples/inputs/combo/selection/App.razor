@@ -10,7 +10,7 @@
     </style>
 
     <IgbCombo 
-        T="string"
+        TValue="string" TItem="City"
         Label="Cities" 
         Placeholder="Pick a city" 
         Data="Data" 
@@ -29,12 +29,12 @@
 
 @code {
     private List<City> Data;
-    private IgbCombo<string> Combo;
-    private object[] UKCities; 
+    private IgbCombo<string, City> Combo;
+    private string[] UKCities; 
 
     protected override void OnInitialized() {
         this.Data = SampleData.Cities;
-        this.UKCities = new object[] { "UK01", "UK02", "UK03", "UK04", "UK05" };
+        this.UKCities = new string[] { "UK01", "UK02", "UK03", "UK04", "UK05" };
     }
 
     public void SelectUKCities() {
@@ -46,10 +46,10 @@
     }
 
     public void SelectAll() {
-        this.Combo.Select(new object[] {});
+        this.Combo.Select(new string[] {});
     }
 
     public void DeselectAll() {
-        this.Combo.Deselect(new object[] {});
+        this.Combo.Deselect(new string[] {});
     }
 }
