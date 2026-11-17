@@ -8,22 +8,24 @@
 </style>
 
 <div class="container sample center">
-    <IgbSlider PrimaryTicks="3"
+    <IgbSlider Value="@Value1" PrimaryTicks="3"
         SecondaryTicks="4"
         ValueFormatOptions="@formatSpecifier">
     </IgbSlider>
-    <IgbSlider ValueFormat="Storage: {0} GB"
+    <IgbSlider Value="@Value2" ValueFormat="Storage: {0} GB"
         ValueFormatOptions="@formatSpecifier2">
     </IgbSlider>
 </div>
 
 @code {
-    public IgbNumberFormatSpecifier formatSpecifier = new IgbNumberFormatSpecifier()
+    public double Value1;
+    public double Value2;
+    public IgbNumberFormatOptions formatSpecifier = new IgbNumberFormatOptions()
     {
         Style = "currency",
         Currency = "USD"
     };
-    public IgbNumberFormatSpecifier formatSpecifier2 = new IgbNumberFormatSpecifier()
+    public IgbNumberFormatOptions formatSpecifier2 = new IgbNumberFormatOptions()
     {
         MinimumFractionDigits = 1
     };
