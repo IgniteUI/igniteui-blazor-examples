@@ -10,10 +10,10 @@
         }
     </style>
 
-    <IgbRadioGroup id="radioGroup" Alignment="@ContentOrientation.Horizontal">
-        <IgbRadio name="size" Value="Small" LabelPosition="@ToggleLabelPosition.After" Change="@OnRadioOptionClick">Small</IgbRadio>
-        <IgbRadio name="size" Value="Medium" LabelPosition="@ToggleLabelPosition.After" Checked="true" Change="@OnRadioOptionClick">Medium</IgbRadio>
-        <IgbRadio name="size" Value="Large" LabelPosition="@ToggleLabelPosition.After" Change="@OnRadioOptionClick">Large</IgbRadio>
+    <IgbRadioGroup id="radioGroup" Alignment="@ContentOrientation.Horizontal" @bind-Value="InputSize">
+        <IgbRadio name="size" Value="@("size-small")">Small</IgbRadio>
+        <IgbRadio name="size" Value="@("size-medium")">Medium</IgbRadio>
+        <IgbRadio name="size" Value="@("size-large")">Large</IgbRadio>
     </IgbRadioGroup>
 
     <IgbInput class="@InputSize" DisplayType="@InputType.Text" Label="Required" Value="This input is required" Required="true" />
@@ -24,9 +24,4 @@
 @code {
 
     private string InputSize { get; set; } = "size-medium";
-
-    public void OnRadioOptionClick(IgbRadioChangeEventArgs e)
-    {
-        this.InputSize = $"size-{e.Detail.Value.ToLower()}";
-    }
 }

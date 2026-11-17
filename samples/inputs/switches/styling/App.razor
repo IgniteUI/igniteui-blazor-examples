@@ -12,16 +12,17 @@
             <span class="option__hint">Extra sign-in verification</span>
         </div>
         <IgbSwitch slot="indicator" Checked="IsOpen" />
-        <IgbRadioGroup Alignment="ContentOrientation.Vertical">
-            <IgbRadio Name="method" Value="app" Checked="true">Authenticator app</IgbRadio>
-            <IgbRadio Name="method" Value="key">Security key</IgbRadio>
-            <IgbRadio Name="method" Value="codes">Backup codes</IgbRadio>
+        <IgbRadioGroup Alignment="ContentOrientation.Vertical" @bind-Value="method">
+            <IgbRadio Name="method" Value="@("app")">Authenticator app</IgbRadio>
+            <IgbRadio Name="method" Value="@("key")">Security key</IgbRadio>
+            <IgbRadio Name="method" Value="@("codes")">Backup codes</IgbRadio>
         </IgbRadioGroup>
     </IgbExpansionPanel>
 </div>
 
 @code {
     private bool IsOpen { get; set; } = true;
+    private string method = "app";
 
     private void OnOpened(IgbExpansionPanelComponentEventArgs args)
     {

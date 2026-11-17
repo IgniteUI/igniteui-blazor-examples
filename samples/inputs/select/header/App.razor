@@ -1,13 +1,15 @@
 @using IgniteUI.Blazor.Controls
 
 <div class="container sample center">
-    <IgbSelect>
+    <IgbSelect @bind-Value="task">
         <IgbSelectHeader>Tasks</IgbSelectHeader>
-        <IgbSelectItem Value="spec" Selected>Specification</IgbSelectItem>
-        <IgbSelectItem Value="implement">Implementation</IgbSelectItem>
-        <IgbSelectItem Value="test" Disabled>Testing</IgbSelectItem>
-        <IgbSelectItem Value="docs">Documentation</IgbSelectItem>
+        <IgbSelectItem Value="@("spec")">Specification</IgbSelectItem>
+        <IgbSelectItem Value="@("implement")">Implementation</IgbSelectItem>
+        <IgbSelectItem Value="@("test")" Disabled>Testing</IgbSelectItem>
+        <IgbSelectItem Value="@("docs")">Documentation</IgbSelectItem>
     </IgbSelect>
 </div>
 
-@code { }
+@code {
+    private string task = "spec";
+}

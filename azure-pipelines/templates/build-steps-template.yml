@@ -139,7 +139,15 @@ steps:
     displayName: 'Package samples browser'
     inputs:
       verbose: ${{ parameters.isVerbose }}
-      rootFolderOrFile: '$(Build.SourcesDirectory)/browser/IgBlazorSamples.${{ parameters.projectToBuild }}/publish'
+      ${{ if eq(parameters.projectToBuild, 'Client') }}:
+        # The WebAssembly app is a static site: publish/wwwroot holds all of it, including the
+        # web.config that serves the pre-compressed .br/.gz sidecars. The publish root only has
+        # ASP.NET Core host leftovers (an SDK web.config that rewrites into wwwroot\, dotnet.js,
+        # runtimeconfig.json, staticwebassets.endpoints.json). Removing additional files on
+        # deployment deletes them from the server.
+        rootFolderOrFile: '$(Build.SourcesDirectory)/browser/IgBlazorSamples.${{ parameters.projectToBuild }}/publish/wwwroot'
+      ${{ else }}:
+        rootFolderOrFile: '$(Build.SourcesDirectory)/browser/IgBlazorSamples.${{ parameters.projectToBuild }}/publish'
       includeRootFolder: false
       archiveType: 'zip'
       archiveFile: '$(Build.ArtifactStagingDirectory)/BlazorSamples${{ parameters.projectToBuild }}.zip'

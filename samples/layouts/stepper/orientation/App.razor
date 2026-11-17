@@ -6,12 +6,12 @@
         <div class="radio-group">
             <label>Title position</label>
             <div class="radio-group-container">
-                <IgbRadioGroup Alignment="ContentOrientation.Horizontal">
-                    <IgbRadio name="alignment" Value="top" Change="onTitlePositionChange">Top</IgbRadio>
-                    <IgbRadio name="alignment" Value="bottom" Change="onTitlePositionChange">Bottom</IgbRadio>
-                    <IgbRadio name="alignment" Value="start" Change="onTitlePositionChange">Start</IgbRadio>
-                    <IgbRadio name="alignment" Value="end" Change="onTitlePositionChange">End</IgbRadio>
-                    <IgbRadio name="alignment" Value="" Checked="true" Change="onTitlePositionChange">Default</IgbRadio>
+                <IgbRadioGroup Alignment="ContentOrientation.Horizontal" @bind-Value="titlePosition">
+                    <IgbRadio name="alignment" Value="@("top")">Top</IgbRadio>
+                    <IgbRadio name="alignment" Value="@("bottom")">Bottom</IgbRadio>
+                    <IgbRadio name="alignment" Value="@("start")">Start</IgbRadio>
+                    <IgbRadio name="alignment" Value="@("end")">End</IgbRadio>
+                    <IgbRadio name="alignment" Value="@("auto")">Default</IgbRadio>
                 </IgbRadioGroup>
             </div>
         </div>
@@ -19,15 +19,15 @@
         <div class="radio-group">
             <label>Orientation</label>
             <div class="radio-group-container">
-                <IgbRadioGroup Alignment="ContentOrientation.Horizontal">
-                    <IgbRadio name="orientation" Value="horizontal" Checked="true" Change="onOrientationChange">Horizontal</IgbRadio>
-                    <IgbRadio name="orientation" Value="vertical" Change="onOrientationChange">Vertical</IgbRadio>
+                <IgbRadioGroup Alignment="ContentOrientation.Horizontal" @bind-Value="orientation">
+                    <IgbRadio name="orientation" Value="@("horizontal")">Horizontal</IgbRadio>
+                    <IgbRadio name="orientation" Value="@("vertical")">Vertical</IgbRadio>
                 </IgbRadioGroup>
             </div>
         </div>
    </div>
 
-   <IgbStepper Name="stepper" @ref="stepper" Orientation="@Orientation">
+   <IgbStepper Name="stepper" @ref="stepper" Orientation="@Orientation" TitlePosition="@TitlePosition">
         <IgbStep>
             <span slot="title">Order</span>
              <IgbButton DisplayType="ButtonBaseType.Button" @onclick="Next">NEXT</IgbButton>
@@ -48,41 +48,10 @@
 
 @code {
     public IgbStepper stepper;
-    public StepperOrientation Orientation = StepperOrientation.Horizontal;
-    public StepperTitlePosition TitlePosition;
-
-    private bool IsDefaultTitlePosition;
-
-    public void onTitlePositionChange(IgbRadioChangeEventArgs args)
-    {
-        if(args.Detail.Checked)
-        {
-            string value = (args.Parent as IgbRadio).Value.ToString();
-            if (String.IsNullOrEmpty(value))
-            {
-                IsDefaultTitlePosition = true;
-                setDefaultTitleOrientation(stepper.Orientation);
-
-            } else
-            {
-                IsDefaultTitlePosition = false;
-                stepper.TitlePosition = (StepperTitlePosition)System.Enum.Parse(typeof(StepperTitlePosition), value, true);                
-            }
-        }
-    }
-
-    public void onOrientationChange(IgbRadioChangeEventArgs args)
-    {
-        if(args.Detail.Checked)
-        {
-            string value = (args.Parent as IgbRadio).Value.ToString();          
-            Orientation = (StepperOrientation)System.Enum.Parse(typeof(StepperOrientation), value, true);
-
-            if (IsDefaultTitlePosition)
-                setDefaultTitleOrientation(Orientation);
-
-        }
-    }
+    private string orientation = "horizontal";
+    private string titlePosition = "auto";
+    public StepperOrientation Orientation => (StepperOrientation)System.Enum.Parse(typeof(StepperOrientation), orientation, true);
+    public StepperTitlePosition TitlePosition => (StepperTitlePosition)System.Enum.Parse(typeof(StepperTitlePosition), titlePosition, true);
 
     public void Previous()
     {
@@ -97,15 +66,5 @@
     public void Reset()
     {
         this.stepper.Reset();
-    }
-
-    private void setDefaultTitleOrientation(StepperOrientation orientation)
-    {
-        if( orientation == StepperOrientation.Horizontal )
-        {
-            stepper.TitlePosition = StepperTitlePosition.Bottom;
-        } else {
-            stepper.TitlePosition = StepperTitlePosition.End;
-        }
     }
 }
