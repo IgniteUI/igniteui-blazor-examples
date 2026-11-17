@@ -1,3 +1,5 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
+
 function addRowAndChildrenTreeGrid(row, newData) {
     if (newData.includes(row)) {
         return;
@@ -38,4 +40,4 @@ function OnTreeGridRowDragEndHandler(evt) {
     }
 }
 
-igRegisterScript("OnTreeGridRowDragEndHandler", OnTreeGridRowDragEndHandler, false);
+registerScript("OnTreeGridRowDragEndHandler", OnTreeGridRowDragEndHandler);

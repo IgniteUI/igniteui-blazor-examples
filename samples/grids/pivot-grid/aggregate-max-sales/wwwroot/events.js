@@ -1,9 +1,9 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
 
-
-igRegisterScript("PivotSalesDataAggregateMaxSales", (members, data) => {
+registerScript("PivotSalesDataAggregateMaxSales", (members, data) => {
     if (!data) {
         return [];
     }
     return data.map(x => x.Sales).reduce((a, b) => Math.max(a, b));
-}, false);
+});
 

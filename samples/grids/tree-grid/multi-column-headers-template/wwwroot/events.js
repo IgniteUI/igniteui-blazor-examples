@@ -1,3 +1,4 @@
+import { registerScript, html } from './_content/IgniteUI.Blazor/api.js';
 
 const columnGroupStatesTreeGrid = new Map();
 function toggleTreeGridColumnGroup(name) {
@@ -14,12 +15,14 @@ function toggleTreeGridColumnGroup(name) {
     }
     columnGroupStatesTreeGrid.set(name, !columnGroupStatesTreeGrid.get(name));
 }
-igRegisterScript("WebTreeGridColumnGroupHeaderTemplate", (ctx) => {
-    var html = window.igTemplating.html;
+registerScript("WebTreeGridColumnGroupHeaderTemplate", (ctx) => {
     var iconName = columnGroupStatesTreeGrid.get(ctx.column.header) ? '🔽' : '🔼';
     return html`<div>
     <span draggable="false" onclick='toggleTreeGridColumnGroup("${ctx.column.header}")'>${iconName}</span>
     <span>${ctx.column.header}</span>
 </div>`;
-}, false);
+});
 
+
+// called by name from the page, so keep it reachable from the module
+window.toggleTreeGridColumnGroup = toggleTreeGridColumnGroup;

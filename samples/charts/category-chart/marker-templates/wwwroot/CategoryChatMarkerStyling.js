@@ -1,4 +1,6 @@
-﻿function renderCircle(ctx, x, y, r, fill, outline) {
+﻿import { registerScript } from './_content/IgniteUI.Blazor/api.js';
+
+function renderCircle(ctx, x, y, r, fill, outline) {
     ctx.strokeStyle = outline;
     ctx.fillStyle = fill;
     ctx.beginPath();
@@ -68,7 +70,7 @@ function onCategoryChatMarkerStylingTemplate() {
     }
 }
 
-igRegisterScript("onCategoryChatMarkerStylingTemplate", onCategoryChatMarkerStylingTemplate, true);
+registerScript("onCategoryChatMarkerStylingTemplate", onCategoryChatMarkerStylingTemplate, true);
 
 function onCategoryChatMarkerStylingSeries(o, e) {
 
@@ -76,4 +78,4 @@ function onCategoryChatMarkerStylingSeries(o, e) {
         e.series.markerTemplate = onCategoryChatMarkerStylingTemplate();
     }
 }
-igRegisterScript("onCategoryChatMarkerStylingSeries", onCategoryChatMarkerStylingSeries, false);
+registerScript("onCategoryChatMarkerStylingSeries", onCategoryChatMarkerStylingSeries);

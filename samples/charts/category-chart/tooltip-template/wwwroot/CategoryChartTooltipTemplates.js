@@ -1,7 +1,9 @@
-﻿function onCategoryChatTooltipCreated(o, e) {
+﻿import { registerScript } from './_content/IgniteUI.Blazor/api.js';
+
+function onCategoryChatTooltipCreated(o, e) {
     console.log("onCategoryChatTooltipCreated ");
 }
-igRegisterScript("onCategoryChatTooltipCreated", onCategoryChatTooltipCreated, false);
+registerScript("onCategoryChatTooltipCreated", onCategoryChatTooltipCreated);
 
 function onCategoryChatTooltipSeriesAdded(o, e) {
     console.log("onCategoryChatTooltipSeriesAdded");
@@ -11,7 +13,7 @@ function onCategoryChatTooltipSeriesAdded(o, e) {
         //console.log("onCategoryChatTooltipSeriesAdded tooltipTemplate");
     }
 }
-igRegisterScript("onCategoryChatTooltipSeriesAdded", onCategoryChatTooltipSeriesAdded, false);
+registerScript("onCategoryChatTooltipSeriesAdded", onCategoryChatTooltipSeriesAdded);
 
 function createCategoryChatTooltipTooltip(context) {
 

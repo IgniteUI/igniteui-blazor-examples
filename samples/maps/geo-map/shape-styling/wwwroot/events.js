@@ -1,5 +1,7 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
+
 //begin eventHandler
-igRegisterScript("ShapeFileStyling", (o, e) => {
+registerScript("ShapeFileStyling", (o, e) => {
     // applying conditional styling based on Contient field loaded from DBF file
     var c = e.item.getFieldValue("Continent")
     if (c == "Africa") {
@@ -16,6 +18,6 @@ igRegisterScript("ShapeFileStyling", (o, e) => {
         e.shapeFill = "gray";
     }
     e.shapeOutline = "black";
-}, false);
+});
 //end eventHandler
 

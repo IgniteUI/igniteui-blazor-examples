@@ -1,11 +1,12 @@
-igRegisterScript("WebTreeGridAvatarCellTemplate", (ctx) => {
-    var html = window.igTemplating.html;
+import { registerScript, html } from './_content/IgniteUI.Blazor/api.js';
+
+registerScript("WebTreeGridAvatarCellTemplate", (ctx) => {
     return html`<div style="display: flex; align-items: center;">
     <igc-avatar shape="circle" src="${ctx.cell.row.data.Avatar}">
     </igc-avatar>
     <span style="margin-left: 30px;">${ctx.cell.value}</span>
 </div>`;
-}, false);
+});
 
 var EnableFiltering = () => {
     var toolbarFiltering = document.getElementsByTagName("igc-grid-toolbar-advanced-filtering")[0];
@@ -26,3 +27,9 @@ var EnableExport = () => {
     var toolbarExporter = document.getElementsByTagName("igc-grid-toolbar-exporter")[0];
     toolbarExporter.hidden = !toolbarExporter.hidden;
 }
+
+// called by name from the page, so keep them reachable from the module
+window.EnableFiltering = EnableFiltering;
+window.EnableHiding = EnableHiding;
+window.EnablePinning = EnablePinning;
+window.EnableExport = EnableExport;

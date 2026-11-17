@@ -1,7 +1,9 @@
-﻿function onProvideCalculator(grid, args) {
+﻿import { registerScript } from './_content/IgniteUI.Blazor/api.js';
+
+function onProvideCalculator(grid, args) {
 
     args.setCalculator(null);
 
 }
 
-igRegisterScript("onProvideCalculator", onProvideCalculator, false);
+registerScript("onProvideCalculator", onProvideCalculator);

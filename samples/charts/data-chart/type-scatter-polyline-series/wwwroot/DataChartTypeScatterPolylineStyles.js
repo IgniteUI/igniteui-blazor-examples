@@ -1,4 +1,6 @@
-﻿function onPolylineShapeStyle(o, e) {
+﻿import { registerScript } from './_content/IgniteUI.Blazor/api.js';
+
+function onPolylineShapeStyle(o, e) {
 
     e.shapeOpacity = 1.0;
     e.shapeStrokeThickness = 1.0;
@@ -22,7 +24,7 @@
         e.shapeStroke = 'Gray';
     }
 }
-igRegisterScript("onPolylineShapeStyle", onPolylineShapeStyle, false);
+registerScript("onPolylineShapeStyle", onPolylineShapeStyle);
 
 function onPolylineSeriesMouseEnter(o, e) {
     if (e.series.title !== "AirplaneSeats") return;
@@ -33,7 +35,7 @@ function onPolylineSeriesMouseEnter(o, e) {
         console.log("onPolylineSeriesMouseEnter");
     }
 }
-igRegisterScript("onPolylineSeriesMouseEnter", onPolylineSeriesMouseEnter, false);
+registerScript("onPolylineSeriesMouseEnter", onPolylineSeriesMouseEnter);
 
 function createPolylineSeriesTooltip(context) {
 

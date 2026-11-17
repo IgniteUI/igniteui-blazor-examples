@@ -1,3 +1,4 @@
+import { registerScript, html } from './_content/IgniteUI.Blazor/api.js';
 
 const columnGroupStatesHGrid = new Map();
 function toggleHierarchicalColumnGroup(columnGroup) {
@@ -29,12 +30,11 @@ function toggleHierarchicalColumnGroup(columnGroup) {
     }
     columnGroupStatesHGrid.set(name, !columnGroupStatesHGrid.get(name));
 }
-igRegisterScript("WebHierarchicalGridColumnGroupHeaderTemplate", (ctx) => {
-    var html = window.igTemplating.html;
+registerScript("WebHierarchicalGridColumnGroupHeaderTemplate", (ctx) => {
     var iconName = columnGroupStatesHGrid.get(ctx.column.header) ? '🔽' : '🔼';
     return html`<div>
     <span draggable="false" @click=${() => toggleHierarchicalColumnGroup(ctx.column)}>${iconName}</span>
     <span>${ctx.column.header}</span>
 </div>`;
-}, false);
+});
 

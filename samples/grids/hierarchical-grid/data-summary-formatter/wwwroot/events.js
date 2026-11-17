@@ -1,13 +1,14 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
 
-
-igRegisterScript("WebHierarchicalGridRenderedExpand", (event) => {
-    this.hierarchicalGrid.expandAll();
+registerScript("WebHierarchicalGridRenderedExpand", (event) => {
+    const hierarchicalGrid = event.target;
+    hierarchicalGrid.expandAll();
     setTimeout(() => {
-        this.hierarchicalGrid.getColumnByName("Debut").formatter = (value) => Math.floor(value / 10) * 10 + 's';
+        hierarchicalGrid.getColumnByName("Debut").formatter = (value) => Math.floor(value / 10) * 10 + 's';
     }, 50);
-}, false);
+});
 
-igRegisterScript("WebHierarchicalGridSummaryFormatter", (summary) => {
+registerScript("WebHierarchicalGridSummaryFormatter", (summary) => {
     const result = summary.summaryResult;
     if (summaryOperand instanceof IgcDateSummaryOperand && summary.key !== "count" && result !== null && result !== undefined) {
         const format = new Intl.DateTimeFormat("en", { year: "numeric" });

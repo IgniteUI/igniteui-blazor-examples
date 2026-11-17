@@ -1,4 +1,4 @@
-
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
 
 class WebGridDiscontinuedSummary {
     operate(data, allData, fieldName) {
@@ -45,13 +45,13 @@ class DiscontinuedSummary {
     }
 }
 
-igRegisterScript("ColumnInitScript", (event) => {
+registerScript("WebGridDisabledSummariesColumnInit", (event) => {
     if (event.detail.field === "UnitsInStock") {
         event.detail.summaries = WebGridDiscontinuedSummary;
     } else if (event.detail.field === "Discontinued") {
         event.detail.summaries = DiscontinuedSummary;
     }
-}, false);
+});
 
 
 window.getGridSummaries = (field) => {

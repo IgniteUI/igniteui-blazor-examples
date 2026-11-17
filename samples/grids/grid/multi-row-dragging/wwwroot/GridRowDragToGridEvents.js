@@ -1,4 +1,6 @@
-﻿function OnMultiRowDragEndHandler(evt) {
+﻿import { registerScript } from './_content/IgniteUI.Blazor/api.js';
+
+function OnMultiRowDragEndHandler(evt) {
     const ghostElement = evt.detail.dragDirective.ghostElement;
     if (!ghostElement) {
         return;
@@ -17,4 +19,4 @@
     }
 }
 
-igRegisterScript("OnMultiRowDragEndHandler", OnMultiRowDragEndHandler, false);
+registerScript("OnMultiRowDragEndHandler", OnMultiRowDragEndHandler);

@@ -1,12 +1,14 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
+
 let shouldAppendValue = false;
 
-igRegisterScript("onActiveNodeChange", (ev) => {
+registerScript("onActiveNodeChange", (ev) => {
     const grid = ev.target;
     grid.endEdit();
     setTimeout(() => {
         (grid.getElementsByClassName("igx-grid__tbody-content")[0]).focus();
     }, 0);
-}, false);
+});
 
 window.keydownHandler = (e) => {
     const grid = document.getElementById("grid1");
