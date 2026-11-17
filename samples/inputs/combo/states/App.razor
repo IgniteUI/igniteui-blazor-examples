@@ -1,14 +1,16 @@
 @using IgniteUI.Blazor.Controls
+@inject IJSRuntime JS
 
 <div class="container sample">
-    @* the combos are display-only, so inert blocks keyboard interaction *@
+    @* the combos are display-only, so inert blocks pointer and keyboard interaction *@
     <div class="states" inert>
         @foreach (var state in States)
         {
-            <div class="state">
+            @* the cell names the state that its display-only combo shows *@
+            <div class="state" data-combo-shows="@state.Shows">
                 <span class="state-label">@state.Label</span>
                 <IgbCombo @bind-Value="state.Value"
-                          class="@($"state-combo {state.ClassName}")"
+                          class="state-combo"
                           Outlined="true"
                           Placeholder="Country"
                           PlaceholderSearch="Search"
@@ -34,7 +36,8 @@
     private class ComboState
     {
         public string Label { get; set; }
-        public string ClassName { get; set; } = "";
+        // the state that the display-only combo shows: `:hover` or `:focus-within`
+        public string Shows { get; set; }
         public string[] Value { get; set; }
         public bool Open { get; set; }
     }
@@ -46,15 +49,24 @@
         new Country { Id = "BG", Name = "Bulgaria", Region = "Europe" },
     };
 
-    // hover and focus come from the pointer and the keyboard, so the `hover` and `focused`
-    // classes show them on the display-only combos
     private List<ComboState> States { get; set; } = new List<ComboState>
     {
         new ComboState { Label = "Idle", Value = new string[] { } },
-        new ComboState { Label = "Idle & Hover", ClassName = "hover", Value = new string[] { } },
+        new ComboState { Label = "Idle & Hover", Shows = ":hover", Value = new string[] { } },
         new ComboState { Label = "Filled", Value = new string[] { "BY", "BE" } },
-        new ComboState { Label = "Filled & Hover", ClassName = "hover", Value = new string[] { "BY", "BE" } },
-        new ComboState { Label = "Focused", ClassName = "focused", Value = new string[] { "BY", "BE" } },
-        new ComboState { Label = "Focused (Dropdown On)", ClassName = "focused", Value = new string[] { "BY", "BE" }, Open = true },
+        new ComboState { Label = "Filled & Hover", Shows = ":hover", Value = new string[] { "BY", "BE" } },
+        new ComboState { Label = "Focused", Shows = ":focus-within", Value = new string[] { "BY", "BE" } },
+        new ComboState { Label = "Focused (Dropdown On)", Shows = ":focus-within", Value = new string[] { "BY", "BE" }, Open = true },
     };
+
+    // The themes draw the hover and the focus of the combo with `:hover` and `:focus-within` rules, and a
+    // display-only combo is never hovered or focused, so the script of the sample (events.js)
+    // turns on those rules of the theme for the cells that name a state.
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("showComboStates");
+        }
+    }
 }
