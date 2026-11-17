@@ -2,7 +2,8 @@
 
 <div class="container sample">
     <div class="locations">
-        <IgbCombo @ref="ComboRef"
+        <IgbCombo TValue="string" TItem="City"
+                  @ref="ComboRef"
                   Value="SelectedCities"
                   Change="OnChange"
                   Outlined="true"
@@ -55,7 +56,7 @@
     // the `Id` values of the selected cities
     private string[] SelectedCities { get; set; } = new string[] { };
 
-    private IgbCombo<string> ComboRef { get; set; }
+    private IgbCombo<string, City> ComboRef { get; set; }
 
     private IgbIcon IconRef { get; set; }
 
