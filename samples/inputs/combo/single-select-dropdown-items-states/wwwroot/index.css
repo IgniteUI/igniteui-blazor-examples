@@ -25,35 +25,24 @@
     margin-top: 2rem;
 }
 
-/* only the dropdown of the combo is shown, so the input field is hidden */
-.dropdown,
-.dropdown igc-combo {
-    width: 100%;
-    min-width: 0;
-}
-
-/* the element around the combo is inline otherwise, and then its line adds height */
-.dropdown {
-    display: block;
-}
-
-.dropdown igc-combo::part(input) {
-    display: none;
-}
-
 /* each list shows a single option, and because the list floats, the element takes the height of
    one medium item */
-.dropdown igc-combo {
+.dropdown {
+    width: 100%;
+    min-width: 0;
+    height: 2rem;
+
     --item-count: 1;
 }
 
-.dropdown {
-    height: 2rem;
+/* only the dropdown of the combo is shown, so the input field is hidden */
+.dropdown::part(input) {
+    display: none;
 }
 
 /* each cell shows an item on its own, so the dropdown around it is as tall as its one row and has
    no shadow, border, or padding */
-.dropdown igc-combo::part(list-wrapper) {
+.dropdown::part(list-wrapper) {
     height: calc(var(--size) * var(--item-count));
     padding: 0;
     border: none;
