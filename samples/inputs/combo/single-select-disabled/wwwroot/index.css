@@ -7,6 +7,7 @@
     justify-content: center;
     height: 100%;
     padding: 1rem;
+    container-name: sample;
 }
 
 .states {
@@ -19,14 +20,23 @@
     row-gap: 1.5rem;
 }
 
-/* the combo renders in an inline-block element, so both fill the column */
-.state-combo,
-.state-combo igc-combo {
+.states igc-combo {
     width: 100%;
+
+    /* the list shows a group header and three options */
+    --item-count: 4;
 }
 
 .group-start {
     margin-top: 1.5rem;
+}
+
+/* the box type looks like the border type outside the Material theme, so the other themes show
+   the border type alone */
+@container sample not style(--ig-theme: material) {
+    .box-type {
+        display: none;
+    }
 }
 
 .state-label {
@@ -37,11 +47,6 @@
 
 .state-column {
     justify-self: center;
-}
-
-/* the list shows a group header and three options */
-.states igc-combo {
-    --item-count: 4;
 }
 
 /* The combo list of the Blazor package estimates its height until it has measured the options,
