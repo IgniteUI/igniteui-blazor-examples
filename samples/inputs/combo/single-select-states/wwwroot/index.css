@@ -1,0 +1,80 @@
+/* shared styles are loaded from: */
+/* https://dl.infragistics.com/x/css/samples/shared.v8.css */
+
+.container.sample {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+    padding: 2rem 1rem;
+}
+
+.states {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 17.4375rem));
+    width: 100%;
+    justify-content: center;
+    column-gap: 1.75rem;
+    row-gap: 1.25rem;
+}
+
+.state {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.state-combo {
+    width: 100%;
+    pointer-events: none;
+}
+
+.state-combo.hover igc-combo::part(input) {
+    --border-color: var(--hover-border-color);
+    --idle-bottom-line-color: var(--hover-bottom-line-color);
+}
+
+.state-combo.focused igc-combo::part(input) {
+    --border-color: var(--focused-border-color);
+    --idle-bottom-line-color: var(--focused-bottom-line-color);
+
+    box-shadow: inset 0 0 0 0.125rem var(--focused-border-color);
+}
+
+.state-combo.focused igc-combo::part(toggle-icon) {
+    color: var(--toggle-button-foreground-focus);
+    background: var(--toggle-button-background-focus--border);
+}
+
+.state-combo.focused igc-combo::part(clear-icon) {
+    color: var(--clear-button-foreground-focus);
+    background: var(--clear-button-background-focus);
+}
+
+.state-label {
+    font: 400 13px / 20px "Aktiv Grotesk", sans-serif;
+    letter-spacing: 0.3px;
+    color: var(--ig-gray-600);
+}
+
+/* the list shows a group header and three options */
+.state-combo igc-combo {
+    --item-count: 4;
+}
+
+/* The combo list of the Blazor package estimates its height until it has measured the options,
+   and in a docs frame that loads off screen the estimate can stay. All options of this sample fit,
+   so the list doesn't scroll. The list also ends with a hidden sizer that the page line height makes
+   taller than its space, and in the Material theme the checkbox of an option is taller than a small
+   or medium option, so the list keeps them inside its height. */
+igc-combo::part(list) {
+    overflow: hidden;
+    line-height: 1;
+}
+
+igc-combo::part(item) {
+    overflow: hidden;
+}

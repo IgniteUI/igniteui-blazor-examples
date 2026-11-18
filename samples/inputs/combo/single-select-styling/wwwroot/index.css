@@ -1,0 +1,58 @@
+/* shared styles are loaded from: */
+/* https://dl.infragistics.com/x/css/samples/shared.v8.css */
+
+.container.sample {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+    padding: 2rem 1rem;
+}
+
+.styled-combo {
+    --ig-font-family: "Titillium Web", sans-serif;
+    --ig-input-group-border-color: #1377d5;
+    --ig-input-group-hover-border-color: #1377d5;
+    --ig-input-group-focused-border-color: #1377d5;
+    --ig-input-group-filled-text-color: #212121;
+    --ig-input-group-focused-bottom-line-color: #007ccf;
+    --ig-combo-toggle-button-background: #e0e0e0;
+    --ig-combo-toggle-button-background-focus: #e0e0e0;
+    --ig-combo-toggle-button-background-focus--border: #e0e0e0;
+    --ig-combo-toggle-button-foreground: #212121;
+    --ig-combo-toggle-button-foreground-focus: #212121;
+    --ig-combo-toggle-button-foreground-filled: #212121;
+    --ig-drop-down-background-color: #e6f2ff;
+    --ig-drop-down-header-text-color: #005dcc;
+    --ig-drop-down-item-text-color: #212121;
+    --ig-drop-down-hover-item-background: #cce4ff;
+    --ig-drop-down-focused-item-background: #cce4ff;
+    --ig-drop-down-selected-item-background: #4ca7e3;
+    --ig-drop-down-selected-item-text-color: #000;
+    --ig-drop-down-selected-hover-item-background: #4ca7e3;
+    --ig-drop-down-selected-hover-item-text-color: #000;
+    --ig-drop-down-selected-focus-item-background: #4ca7e3;
+    --ig-drop-down-selected-focus-item-text-color: #000;
+
+    width: 17.4375rem;
+}
+
+.styled-combo igc-combo {
+    /* the list shows a group header and three options */
+    --item-count: 4;
+}
+
+/* The combo list of the Blazor package estimates its height until it has measured the options,
+   and in a docs frame that loads off screen the estimate can stay. All options of this sample fit,
+   so the list doesn't scroll. The list also ends with a hidden sizer that the page line height makes
+   taller than its space, and in the Material theme the checkbox of an option is taller than a small
+   or medium option, so the list keeps them inside its height. */
+igc-combo::part(list) {
+    overflow: hidden;
+    line-height: 1;
+}
+
+igc-combo::part(item) {
+    overflow: hidden;
+}
