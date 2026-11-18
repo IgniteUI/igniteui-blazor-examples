@@ -1,0 +1,63 @@
+@using IgniteUI.Blazor.Controls
+@implements IAsyncDisposable
+@inject IJSRuntime JSRuntime
+
+<div class="container sample">
+    <div class="placements">
+        @foreach (var item in Placements)
+        {
+            <div class="placement">
+                <span class="placement-label">@item.Label</span>
+                <div class="placement-area @item.Side">
+                    <span id="@item.Anchor" class="anchor @item.Alignment"></span>
+                </div>
+                <IgbTooltip Anchor="@item.Anchor"
+                            Placement="@item.Value"
+                            WithArrow="true"
+                            Open="true"
+                            Message="This is a tooltip message. This tooltip shows a long message." />
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    private class PlacementOption
+    {
+        public string Label { get; set; }
+        public string Anchor { get; set; }
+        public PopoverPlacement Value { get; set; }
+
+        public string Side => Anchor.Split('-')[0];
+        public string Alignment => Anchor.Contains('-') ? Anchor.Split('-')[1] : "center";
+    }
+
+    private List<PlacementOption> Placements { get; set; } = new List<PlacementOption>
+    {
+        new PlacementOption { Label = "Arrow Top", Anchor = "top", Value = PopoverPlacement.Top },
+        new PlacementOption { Label = "Arrow Top Start", Anchor = "top-start", Value = PopoverPlacement.TopStart },
+        new PlacementOption { Label = "Arrow Top End", Anchor = "top-end", Value = PopoverPlacement.TopEnd },
+        new PlacementOption { Label = "Arrow Left", Anchor = "left", Value = PopoverPlacement.Left },
+        new PlacementOption { Label = "Arrow Left Start", Anchor = "left-start", Value = PopoverPlacement.LeftStart },
+        new PlacementOption { Label = "Arrow Left End", Anchor = "left-end", Value = PopoverPlacement.LeftEnd },
+        new PlacementOption { Label = "Arrow Right", Anchor = "right", Value = PopoverPlacement.Right },
+        new PlacementOption { Label = "Arrow Right Start", Anchor = "right-start", Value = PopoverPlacement.RightStart },
+        new PlacementOption { Label = "Arrow Right End", Anchor = "right-end", Value = PopoverPlacement.RightEnd },
+        new PlacementOption { Label = "Arrow Bottom", Anchor = "bottom", Value = PopoverPlacement.Bottom },
+        new PlacementOption { Label = "Arrow Bottom Start", Anchor = "bottom-start", Value = PopoverPlacement.BottomStart },
+        new PlacementOption { Label = "Arrow Bottom End", Anchor = "bottom-end", Value = PopoverPlacement.BottomEnd },
+    };
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("tooltipBlockEscapeAttach");
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await JSRuntime.InvokeVoidAsync("tooltipBlockEscapeDetach");
+    }
+}
