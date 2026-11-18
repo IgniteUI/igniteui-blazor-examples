@@ -1,2 +1,2 @@
-// the input fields are hidden, so the dropdowns stay open and each one works on its own
+// the display-only dropdowns stay open when the user clicks outside them
 igRegisterScript("ComboKeepOpen", (evt) => evt.preventDefault(), false);

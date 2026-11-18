@@ -7,6 +7,7 @@
     justify-content: center;
     height: 100%;
     padding: 1rem;
+    container-name: sample;
 }
 
 .states {
@@ -23,22 +24,27 @@
     padding-top: 0.75rem;
 }
 
-.state-combo {
-    pointer-events: none;
+/* the box type looks like the border type outside the Material theme, so the other themes show
+   the border type alone, without the type labels */
+@container sample not style(--ig-theme: material) {
+    .states {
+        grid-template-columns: repeat(3, minmax(0, 17.4375rem));
+    }
+
+    .type-label,
+    .box-type {
+        display: none;
+    }
 }
 
-.state-combo.success igc-combo::part(input) {
-    --border-color: var(--ig-success-500);
-    --idle-bottom-line-color: var(--ig-success-500);
+/* the success and the warn combos are invalid combos that take the success or the warning color in place
+   of the error color, so each theme draws them the way it draws its invalid state */
+.state-combo.success {
+    --ig-input-group-error-secondary-color: var(--ig-success-500);
 }
 
-.state-combo.warn igc-combo::part(input) {
-    --border-color: var(--ig-warn-500);
-    --idle-bottom-line-color: var(--ig-warn-500);
-}
-
-.state-combo.warn igc-combo::part(helper-text) {
-    color: var(--ig-warn-500);
+.state-combo.warn {
+    --ig-input-group-error-secondary-color: var(--ig-warn-500);
 }
 
 .state-label {
@@ -49,18 +55,4 @@
 
 .state-column {
     justify-self: center;
-}
-
-/* The combo list of the Blazor package estimates its height until it has measured the options,
-   and in a docs frame that loads off screen the estimate can stay. All options of this sample fit,
-   so the list doesn't scroll. The list also ends with a hidden sizer that the page line height makes
-   taller than its space, and in the Material theme the checkbox of an option is taller than a small
-   or medium option, so the list keeps them inside its height. */
-igc-combo::part(list) {
-    overflow: hidden;
-    line-height: 1;
-}
-
-igc-combo::part(item) {
-    overflow: hidden;
 }
