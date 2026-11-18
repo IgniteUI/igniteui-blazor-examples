@@ -404,7 +404,10 @@ function copySampleScripts(cb, outputPath, indexName, isLocalBuild) {
                 log("copying scripts to:  " + scriptPath);
 
                 // console.log("copySampleScripts " + scriptName);
-                saveFile(scriptPath, file.Content);
+                // module imports such as './_content/IgniteUI.Blazor/api.js' are relative to the sample's wwwroot,
+                // so they need to go one level up from the 'sb' folder
+                var scriptContent = file.Content.replace(/(\bfrom\s*['"])\.\/_content\//g, '$1../_content/');
+                saveFile(scriptPath, scriptContent);
 
                 // ----- robust detection for module files -----
                 // prefer any real name-ish property, fallback to generated fileName
@@ -420,6 +423,10 @@ function copySampleScripts(cb, outputPath, indexName, isLocalBuild) {
                 }
                 // fallback: scan the file content for the problematic identifier
                 else if (file.Content && file.Content.indexOf('WebGridDiscontinuedSummary') >= 0) {
+                    shouldBeModule = true;
+                }
+                // scripts with ES imports (e.g. registerScript from api.js) -> module
+                else if (file.Content && /^\s*import\s/m.test(file.Content)) {
                     shouldBeModule = true;
                 }
                 // .mjs -> module
