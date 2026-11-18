@@ -1,0 +1,99 @@
+/* shared styles are loaded from: */
+/* https://dl.infragistics.com/x/css/samples/shared.v8.css */
+
+.container.sample {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+    padding: 2rem 1rem;
+}
+
+.items {
+    display: grid;
+    grid-template-columns: max-content repeat(3, minmax(0, 11.25rem));
+    width: 100%;
+    justify-content: center;
+    align-items: start;
+    column-gap: 1.875rem;
+    row-gap: 1rem;
+}
+
+/* the second row is further from the first one than the column labels are */
+.items > :nth-child(n + 9) {
+    margin-top: 1.5rem;
+}
+
+/* only the dropdown of the combo is shown, so the input field is hidden */
+.dropdown,
+.dropdown igc-combo {
+    width: 100%;
+    min-width: 0;
+}
+
+/* the element around the combo is inline otherwise, and then its line adds height */
+.dropdown {
+    display: block;
+}
+
+.dropdown igc-combo::part(input) {
+    display: none;
+}
+
+/* each list shows a single group header or a single option */
+.dropdown igc-combo {
+    --item-count: 1;
+}
+
+.header-only igc-combo::part(item) {
+    display: none;
+}
+
+/* because the list floats, the element takes the height of its one item in each size */
+.small {
+    --ig-size: var(--ig-size-small);
+
+    height: 1.75rem;
+}
+
+.medium {
+    --ig-size: var(--ig-size-medium);
+
+    height: 2rem;
+}
+
+.large {
+    --ig-size: var(--ig-size-large);
+
+    height: 2.5rem;
+}
+
+.state-label {
+    font: 400 13px / 20px "Aktiv Grotesk", sans-serif;
+    letter-spacing: 0.3px;
+    color: var(--ig-gray-600);
+}
+
+/* the row labels are centered on the small items */
+.state-label:not(.state-column) {
+    justify-self: end;
+    line-height: 1.75rem;
+}
+
+.state-column {
+    justify-self: center;
+}
+
+/* The combo list of the Blazor package estimates its height until it has measured the options,
+   and in a docs frame that loads off screen the estimate can stay. The list also ends with a hidden
+   sizer that the page line height makes taller than its space, so the list keeps the option inside
+   its height. */
+igc-combo::part(list) {
+    overflow: hidden;
+    line-height: 1;
+}
+
+igc-combo::part(item) {
+    overflow: hidden;
+}

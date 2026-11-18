@@ -1,0 +1,48 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample">
+    <div class="sizes">
+        @foreach (var size in Sizes)
+        {
+            <div class="size">
+                <span class="state-label">@size.Label</span>
+                <IgbCombo @bind-Value="size.Value"
+                          class="@($"dropdown {size.ClassName}")"
+                          SingleSelect="true"
+                          ValueKey="Id"
+                          DisplayKey="Name"
+                          GroupKey="Group"
+                          Open="true"
+                          ClosingScript="ComboKeepOpen"
+                          Data="Options" />
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    private class Option
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Group { get; set; }
+    }
+
+    private class DropdownSize
+    {
+        public string Label { get; set; }
+        public string ClassName { get; set; }
+        public string[] Value { get; set; } = new string[] { };
+    }
+
+    private List<Option> Options { get; set; } = new[] { 1, 2, 3 }
+        .Select(id => new Option { Id = $"{id}", Name = "Item", Group = "Header" })
+        .ToList();
+
+    private List<DropdownSize> Sizes { get; set; } = new List<DropdownSize>
+    {
+        new DropdownSize { Label = "Small", ClassName = "small" },
+        new DropdownSize { Label = "Medium", ClassName = "medium" },
+        new DropdownSize { Label = "Large", ClassName = "large" },
+    };
+}
