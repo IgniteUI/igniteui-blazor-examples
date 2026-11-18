@@ -2,7 +2,7 @@
 
 <div class="container sample flex h-full flex-row items-start justify-center">
     <div class="flex flex-col">
-        <IgbCombo TValue="string" TItem="Country"
+        <IgbCombo T="string"
                   @ref="ComboRef"
                   Value="SelectedCountries"
                   Change="OnChange"
@@ -50,7 +50,7 @@
     // the `Id` values of the selected countries
     private string[] SelectedCountries { get; set; } = new string[] { "BY" };
 
-    private IgbCombo<string, Country> ComboRef { get; set; }
+    private IgbCombo<string> ComboRef { get; set; }
 
     // the value that the combo reports on a change starts with the last selected country, so the value is
     // read from the combo itself, which keeps the countries in the order of their selection
