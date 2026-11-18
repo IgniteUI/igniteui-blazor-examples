@@ -20,33 +20,15 @@
 
 @code {
 
-    public List<GeoPlace> Data;
-    public Rect GeoBound;
+    public List<GeoPlace> Data = new GeoPlaceData();
     public IgbGeographicMap MapRef;
-    public bool MapZoomed = false;
-    public bool MapRendered = false;
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        this.Data = new GeoPlaceData();
-
-        this.GeoBound = new Rect(100, -40, new Size(50, 25));
-        await Task.Delay(100);
-    }
-
-    protected override void OnAfterRender(bool firstRender)
-    {
-        if (MapRef != null && !firstRender)
+        if (firstRender)
         {
-            Task.Delay(500).ContinueWith((t) => OnMapRender());
-        }
-    }
-
-    private void OnMapRender()
-    {
-        if (MapRef != null)
-        {
-            MapRef.ZoomToGeographic(this.GeoBound);
+            await MapRef.EnsureReady();
+            await MapRef.ZoomToGeographicAsync(new Rect(100, -40, new Size(50, 25)));
         }
     }
 
