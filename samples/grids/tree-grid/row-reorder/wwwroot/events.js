@@ -36,7 +36,7 @@ function findChildRows(rows, parent) {
         if (row.ParentID === parent.ID) {
             childRows.push(row);
             // Recursively find children of current row
-            const grandchildren = this.findChildRows(rows, row);
+            const grandchildren = findChildRows(rows, row);
             childRows.push(...grandchildren);
         }
     });
