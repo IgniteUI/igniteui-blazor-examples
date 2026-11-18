@@ -1,0 +1,98 @@
+@using IgniteUI.Blazor.Controls
+@inject IJSRuntime JS
+
+<div class="container sample">
+    @* the items are display-only, so inert blocks pointer and keyboard interaction *@
+    <div class="items" inert @ref="Items">
+        <span></span>
+        @foreach (var state in States)
+        {
+            <span class="state-label state-column">@state.Label</span>
+        }
+        @foreach (var row in Rows)
+        {
+            <span class="state-label">@row.Label</span>
+            @foreach (var combo in row.Combos)
+            {
+                <IgbCombo @bind-Value="combo.Value"
+                          class="dropdown"
+                          SingleSelect="true"
+                          ValueKey="Id"
+                          DisplayKey="Name"
+                          Open="true"
+                          ClosingScript="ComboKeepOpen"
+                          Data="Options" />
+            }
+        }
+    </div>
+</div>
+
+@code {
+    private class Option
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+    }
+
+    private class ItemState
+    {
+        public string Label { get; set; }
+        // the state that the display-only item shows: `:hover`, or the `active` or `disabled` attribute
+        public string Shows { get; set; }
+    }
+
+    private class StateCombo
+    {
+        public ItemState State { get; set; }
+        public string[] Value { get; set; }
+    }
+
+    private class ItemRow
+    {
+        public string Label { get; set; }
+        public List<StateCombo> Combos { get; set; }
+    }
+
+    private List<Option> Options { get; set; } = new List<Option>
+    {
+        new Option { Id = "1", Name = "Item" },
+    };
+
+    // the element around the combos, for the script of the sample
+    private ElementReference Items { get; set; }
+
+    // an item that has the keyboard focus is the active item of the list
+    private static List<ItemState> States { get; set; } = new List<ItemState>
+    {
+        new ItemState { Label = "Idle" },
+        new ItemState { Label = "Hover", Shows = ":hover" },
+        new ItemState { Label = "Focus", Shows = "[active]" },
+        new ItemState { Label = "Disabled", Shows = "[disabled]" },
+    };
+
+    private List<ItemRow> Rows { get; set; } = new List<ItemRow>
+    {
+        CreateRow("Unselected", States, new string[] { }),
+        CreateRow("Selected", States.Take(3), new string[] { "1" }),
+    };
+
+    // a combo for each state, and each combo binds a value of its own
+    private static ItemRow CreateRow(string label, IEnumerable<ItemState> states, string[] value) => new ItemRow
+    {
+        Label = label,
+        Combos = states.Select(state => new StateCombo { State = state, Value = value }).ToList(),
+    };
+
+    // The themes draw the hover of an item with `:hover` rules, and its focus and its disabled state with
+    // rules for the `active` and the `disabled` attribute, and a display-only item is in none of these
+    // states, so the script of the sample (events.js) turns on those rules of the theme. It takes the
+    // state of each combo, in the order of the combos.
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var states = Rows.SelectMany(row => row.Combos).Select(combo => combo.State.Shows).ToArray();
+            await JS.InvokeVoidAsync("showSingleSelectComboItemStates", Items, states);
+        }
+    }
+}
