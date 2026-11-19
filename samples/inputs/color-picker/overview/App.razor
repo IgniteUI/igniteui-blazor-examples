@@ -1,0 +1,37 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample">
+    <IgbCard>
+        <IgbCardContent>
+            <h2>Choose your interior color</h2>
+            <IgbSelect @bind-Value="Paint" Label="Type of wall paints" Outlined="true">
+                <IgbSelectItem Value="@("matte")">Matte</IgbSelectItem>
+                <IgbSelectItem Value="@("satin")">Satin</IgbSelectItem>
+                <IgbSelectItem Value="@("eggshell")">Eggshell</IgbSelectItem>
+                <IgbSelectItem Value="@("gloss")">Gloss</IgbSelectItem>
+            </IgbSelect>
+            <IgbSelect @bind-Value="Quantity" Label="Paint quantity" Outlined="true">
+                <IgbSelectItem Value="@("1l")">1 litre</IgbSelectItem>
+                <IgbSelectItem Value="@("3l")">3 litres</IgbSelectItem>
+                <IgbSelectItem Value="@("5l")">5 litres</IgbSelectItem>
+                <IgbSelectItem Value="@("10l")">10 litres</IgbSelectItem>
+            </IgbSelect>
+            <IgbColorPicker @bind-Value="Color" Mode="ColorPickerMode.Input" />
+        </IgbCardContent>
+        <IgbCardActions>
+            <IgbButton Variant="ButtonVariant.Flat">Back</IgbButton>
+            <div class="stepper">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot active"></span>
+            </div>
+            <IgbButton Variant="ButtonVariant.Flat">Confirm</IgbButton>
+        </IgbCardActions>
+    </IgbCard>
+</div>
+
+@code {
+    private string Paint = "satin";
+    private string Quantity = "3l";
+    private string Color = "#0598fa";
+}
