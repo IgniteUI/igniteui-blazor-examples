@@ -327,6 +327,7 @@ class Transformer {
             info.ComponentName = Strings.toTitleCase(info.ComponentFolder, '-');
             info.ComponentName = info.ComponentName.replace("Geo Map", "Geographic Map");
             info.ComponentName = info.ComponentName.replace("Combobox", "ComboBox");
+            info.ComponentName = info.ComponentName.replace("Qr Code", "QR Code");
 
             // info.SampleFolderPath = relativePath;
             info.SampleRouteOld = "/" +  info.ComponentGroup + "/" + info.ComponentFolder + "-" + info.SampleFolderName;
