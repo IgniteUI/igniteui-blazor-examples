@@ -1,4 +1,6 @@
-﻿function onNetworkGrahpMouseEnter(o, e) {
+﻿import { registerScript } from './_content/IgniteUI.Blazor/api.js';
+
+function onNetworkGrahpMouseEnter(o, e) {
 
     if (e.series.tooltipTemplate !== null &&
         e.series.tooltipTemplate !== undefined) {
@@ -17,7 +19,7 @@
         console.log("createNodeConnectionTooltip ");
     }
 }
-igRegisterScript("onNetworkGrahpMouseEnter", onNetworkGrahpMouseEnter, false);
+registerScript("onNetworkGrahpMouseEnter", onNetworkGrahpMouseEnter);
 
 function createNodeInfoTooltip(context) {
 

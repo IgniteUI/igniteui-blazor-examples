@@ -1,6 +1,6 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
 
-
-igRegisterScript("WebGridColumnResized", (event) => {
+registerScript("WebGridColumnResized", (event) => {
     console.log("TODO WebGridColumnResized");
-}, false);
+});
 

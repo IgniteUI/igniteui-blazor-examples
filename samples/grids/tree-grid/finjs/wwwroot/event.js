@@ -1,8 +1,9 @@
-﻿igRegisterScript("PriceTemplate", (ctx) => {
-    var html = window.igTemplating.html;
+﻿import { registerScript, html } from './_content/IgniteUI.Blazor/api.js';
+
+registerScript("PriceTemplate", (ctx) => {
     var cell = ctx.cell;
     var rowData = grid1.getRowData(cell.id.rowID);
-    var icon = this.trends.positive(rowData) ? "trending_up" : "trending_down";
+    var icon = trends.positive(rowData) ? "trending_up" : "trending_down";
     var value = cell.value.toFixed(2);
     return html`
         <div class="finjs-icons">
@@ -10,11 +11,11 @@
         <igc-icon name="${icon}" collection="material"></igc-icon>
         </div>
         `;
-}, false);
+});
 
 
-igRegisterScript("trends", () => this.trends, true);
-igRegisterScript("trendsChange", () => this.trendsChange, true);
+registerScript("trends", () => trends, true);
+registerScript("trendsChange", () => trendsChange, true);
 
 
 var ToobarToggle = () => {
@@ -31,17 +32,20 @@ var changePositive = (rowData) => rowData['changeP'] > 0 && rowData['changeP'] <
 var strongPositive = (rowData) => rowData['changeP'] >= 1;
 var strongNegative = (rowData) => rowData['changeP'] <= -1;
 var trends = {
-    changeNeg: this.changeNegative,
-    changePos: this.changePositive,
-    negative: this.negative,
-    positive: this.positive,
-    strongNegative: this.strongNegative,
-    strongPositive: this.strongPositive
+    changeNeg: changeNegative,
+    changePos: changePositive,
+    negative: negative,
+    positive: positive,
+    strongNegative: strongNegative,
+    strongPositive: strongPositive
 };
 
 var trendsChange = {
-    changeNeg2: this.changeNegative,
-    changePos2: this.changePositive,
-    strongNegative2: this.strongNegative,
-    strongPositive2: this.strongPositive
+    changeNeg2: changeNegative,
+    changePos2: changePositive,
+    strongNegative2: strongNegative,
+    strongPositive2: strongPositive
 };
+
+// called by name from the page, so keep it reachable from the module
+window.ToobarToggle = ToobarToggle;

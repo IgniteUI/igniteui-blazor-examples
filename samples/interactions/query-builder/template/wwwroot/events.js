@@ -1,3 +1,5 @@
+import { registerScript, html } from './_content/IgniteUI.Blazor/api.js';
+
 let regionOptions = [];
 let statusOptions = [];
 
@@ -35,7 +37,6 @@ function normalizeTimeValue(value) {
 }
 
 function buildRegionSelect(ctx) {
-    const html = window.igTemplating.html;
     const currentValue = ctx?.implicit?.value;
     const changeHandler = (event) => {
         const value = event && event.detail ? event.detail.value : null;
@@ -55,7 +56,6 @@ function buildRegionSelect(ctx) {
 }
 
 function buildStatusRadios(ctx) {
-    const html = window.igTemplating.html;
     const implicitValue = ctx?.implicit?.value;
     const currentValue = implicitValue == null ? '' : implicitValue.toString();
 
@@ -86,7 +86,6 @@ function buildStatusRadios(ctx) {
 }
 
 function buildDatePicker(ctx) {
-    const html = window.igTemplating.html;
     const implicitValue = ctx.implicit?.value;
     const currentValue = implicitValue instanceof Date
         ? implicitValue
@@ -110,7 +109,6 @@ function buildDatePicker(ctx) {
 }
 
 function buildTimeInput(ctx) {
-    const html = window.igTemplating.html;
     const currentValue = normalizeTimeValue(ctx.implicit?.value);
     const allowedConditions = ['at', 'not_at', 'at_before', 'at_after', 'before', 'after'];
     const isDisabled = ctx.selectedField == null || !allowedConditions.includes(ctx.selectedCondition ?? '');
@@ -130,7 +128,6 @@ function buildTimeInput(ctx) {
 }
 
 function buildDefaultInput(ctx, equalityCondition) {
-    const html = window.igTemplating.html;
     const selectedField = ctx.selectedField;
     const dataType = selectedField?.dataType;
     const isNumber = dataType === 'number';
@@ -197,7 +194,7 @@ window.queryBuilderTemplate = {
     renderExpressionTree,
 };
 
-igRegisterScript('SearchValueTemplate', (ctx) => {
+registerScript('SearchValueTemplate', (ctx) => {
     const field = ctx && ctx.selectedField ? ctx.selectedField.field : null;
     const equalityCondition = matchesEqualityCondition(ctx ? ctx.selectedCondition : null);
 
@@ -220,9 +217,9 @@ igRegisterScript('SearchValueTemplate', (ctx) => {
     }
 
     return buildDefaultInput(ctx, equalityCondition);
-}, false);
+});
 
-igRegisterScript('WebQueryBuilderTemplateExpressionTreeChange', (evtArgs) => {
+registerScript('WebQueryBuilderTemplateExpressionTreeChange', (evtArgs) => {
     const expressionTree = evtArgs?.detail;
     renderExpressionTree(expressionTree);
-}, false);
+});

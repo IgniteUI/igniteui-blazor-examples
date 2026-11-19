@@ -1,6 +1,6 @@
+import { registerScript, html } from './_content/IgniteUI.Blazor/api.js';
 
-igRegisterScript("WebGridCurrencyCellTemplate", (ctx) => {
-    var html = window.igTemplating.html;
+registerScript("WebGridCurrencyCellTemplate", (ctx) => {
     if (ctx.cell.value > 0) {
         return html`<div style='width: 80px;
         float: right;'>
@@ -14,9 +14,9 @@ igRegisterScript("WebGridCurrencyCellTemplate", (ctx) => {
         <span style='color:green;float: right;'>${ctx.cell.value.toFixed(2)}</span>
         </div>`;
     }
-}, false);
+});
 
-igRegisterScript("WebGridRowStylesHandler", () => {
+registerScript("WebGridRowStylesHandler", () => {
     return {
         'background': (row) => (+row.data['Change'] < 0 && +row.data['YearlyChange'] < 0) ? '#FF000088' : '#00000000',
         'border': (row) => (+row.data['Change'] < 0 && +row.data['YearlyChange'] < 0) ? '2px solid' : '1px solid',

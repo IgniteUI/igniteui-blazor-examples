@@ -1,33 +1,30 @@
-var defaultSeparator;
-var grid;
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
 
-function toggleClipboardOperations() {
-    grid.clipboardOptions.enabled = !grid.clipboardOptions.enabled;
-}
+registerScript("WebTreeGridClipboardCustomOperationsRendered", (e) => {
+    const grid = e.target;
+    const defaultSeparator = grid.clipboardOptions.separator;
 
-function toggleHeaderCopy() {
-    grid.clipboardOptions.copyHeaders = !grid.clipboardOptions.copyHeaders;
-}
+    // the page's switches and input call these by name, so they go on window,
+    // bound to the grid that rendered
+    window.toggleClipboardOperations = () => {
+        grid.clipboardOptions.enabled = !grid.clipboardOptions.enabled;
+    };
+    window.toggleHeaderCopy = () => {
+        grid.clipboardOptions.copyHeaders = !grid.clipboardOptions.copyHeaders;
+    };
+    window.toggleFormatterCopy = () => {
+        grid.clipboardOptions.copyFormatters = !grid.clipboardOptions.copyFormatters;
+    };
+    window.clearSelection = () => {
+        grid.clearCellSelection();
+    };
+    window.inputChange = () => {
+        grid.clipboardOptions.separator = document.getElementById("input").value || defaultSeparator;
+    };
+});
 
-function toggleFormatterCopy() {
-    grid.clipboardOptions.copyFormatters = !grid.clipboardOptions.copyFormatters;
-}
-
-function clearSelection() {
-    grid.clearCellSelection();
-}
-
-function inputChange() {
-    grid.clipboardOptions.separator = input.value || defaultSeparator;
-}
-
-igRegisterScript("WebTreeGridClipboardCustomOperationsRendered", (e) => {
-    grid = e.target;
-    defaultSeparator = grid.clipboardOptions.separator;
-}, false);
-
-igRegisterScript("WebTreeGridClipboardCustomOperationsColumnInit", (e) => {
+registerScript("WebTreeGridClipboardCustomOperationsColumnInit", (e) => {
     var column = e.detail;
     column.formatter = (e) => { return "** " + e + " **" };
     column.header = "🎉" + column.field;
-}, false);
+});

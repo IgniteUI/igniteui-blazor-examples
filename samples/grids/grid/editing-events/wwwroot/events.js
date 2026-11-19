@@ -1,6 +1,6 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
 
-
-igRegisterScript("WebGridEditingEventsCellEdit", (ev) => {
+registerScript("WebGridEditingEventsCellEdit", (ev) => {
     var d = ev.detail;
 
     if (d.column != null && d.column.field == "UnitsOnOrder") {
@@ -9,5 +9,5 @@ igRegisterScript("WebGridEditingEventsCellEdit", (ev) => {
             alert("You cannot order more than the units in stock!")
         }
     }
-}, false);
+});
 

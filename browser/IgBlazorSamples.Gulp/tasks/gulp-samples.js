@@ -403,33 +403,20 @@ function copySampleScripts(cb, outputPath, indexName, isLocalBuild) {
 
                 log("copying scripts to:  " + scriptPath);
 
-                // console.log("copySampleScripts " + scriptName);
-                saveFile(scriptPath, file.Content);
+                var rawName = (file.Name || "").toString();
+                var content = file.Content || "";
 
-                // ----- robust detection for module files -----
-                // prefer any real name-ish property, fallback to generated fileName
-                var rawName = (file.Name || file.FileName || file.name || file.filename || "").toString();
-                var normalizedRawName = rawName.toLowerCase();
-                var normalizedGenerated = fileName.toLowerCase();
-
-                var shouldBeModule = false;
-
-                // explicit name match (covers "grid-disabled-summaries", "grid-disabled-summaries.js", etc.)
-                if (normalizedRawName.indexOf('grid-disabled-summaries') >= 0 || normalizedGenerated.indexOf('grid-disabled-summaries') >= 0) {
-                    shouldBeModule = true;
-                }
-                // fallback: scan the file content for the problematic identifier
-                else if (file.Content && file.Content.indexOf('WebGridDiscontinuedSummary') >= 0) {
-                    shouldBeModule = true;
-                }
-                // .mjs -> module
-                else if (normalizedGenerated.endsWith('.mjs')) {
-                    shouldBeModule = true;
-                }
-
+                // a script with import or export statements is an ES module, e.g. one that
+                // imports registerScript and html from './_content/IgniteUI.Blazor/api.js'
+                var shouldBeModule = /^\s*(import\s*[\w{*'"]|export\s)/m.test(content);
                 if (shouldBeModule) {
                     log('-> marking as module: ' + fileName + ' (rawName=' + rawName + ')');
+                    // a module resolves its imports against its own URL, and the samples
+                    // browser serves it from sb/ instead of the root of wwwroot
+                    content = content.replace(/(\bfrom\s*|\bimport\s*\(?\s*)(['"])\.\/_content\//g, '$1$2../_content/');
                 }
+
+                saveFile(scriptPath, content);
 
                 // DockManager special handling (keep original behaviour)
                 if ((rawName.indexOf("DockManager") >= 0) || (file.Name && file.Name.indexOf("DockManager") >= 0)) {

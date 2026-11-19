@@ -1,4 +1,6 @@
-﻿function onColumnChartStylingMarkerTemplate(o, e) {
+﻿import { registerScript } from './_content/IgniteUI.Blazor/api.js';
+
+function onColumnChartStylingMarkerTemplate(o, e) {
 
     let style = { text: "black" };
     let size = 12;
@@ -74,4 +76,4 @@
     }
 }
 
-igRegisterScript("onColumnChartStylingMarkerTemplate", onColumnChartStylingMarkerTemplate, true);
+registerScript("onColumnChartStylingMarkerTemplate", onColumnChartStylingMarkerTemplate, true);

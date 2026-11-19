@@ -1,4 +1,6 @@
-﻿function onAvgSaleCellUpdating(column, args) {
+﻿import { registerScript } from './_content/IgniteUI.Blazor/api.js';
+
+function onAvgSaleCellUpdating(column, args) {
     let row = args.cellInfo.rowItem;
     let priceShiftUp = row.Change >= 0;
     let templ = args.cellInfo;
@@ -106,7 +108,7 @@ function onKPIColumnDataBound(column, args) {
     }
 }
 
-igRegisterScript("onAvgSaleCellUpdating", onAvgSaleCellUpdating, false);
-igRegisterScript("onChangeCellUpdating", onChangeCellUpdating, false);
-igRegisterScript("onPercentChangeCellUpdating", onPercentChangeCellUpdating, false);
-igRegisterScript("onKPIColumnDataBound", onKPIColumnDataBound, false);
+registerScript("onAvgSaleCellUpdating", onAvgSaleCellUpdating);
+registerScript("onChangeCellUpdating", onChangeCellUpdating);
+registerScript("onPercentChangeCellUpdating", onPercentChangeCellUpdating);
+registerScript("onKPIColumnDataBound", onKPIColumnDataBound);

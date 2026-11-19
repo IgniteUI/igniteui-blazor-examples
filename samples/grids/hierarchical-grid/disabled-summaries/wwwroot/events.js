@@ -1,4 +1,6 @@
-﻿class GrammySummary {
+﻿import { registerScript } from './_content/IgniteUI.Blazor/api.js';
+
+class GrammySummary {
     operate(data, allData, fieldName) {
         const result = [];
 
@@ -40,11 +42,11 @@
     }
 }
 
-igRegisterScript("ColumnInitScript", (event) => {
+registerScript("WebHierarchicalGridDisabledSummariesColumnInit", (event) => {
     if (event.detail.field === "Photo") {
         event.detail.summaries = GrammySummary;
     }
-}, false);
+});
 
 window.getHGridSummaries = (field) => {
     const grid = document.getElementById("hierarchicalGrid");

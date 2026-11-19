@@ -1,3 +1,5 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
+
 function onStylingShape(o, e) {
     // applying conditional styling based on Contient field loaded from DBF file
     var c = e.item.getFieldValue("Continent")
@@ -16,7 +18,7 @@ function onStylingShape(o, e) {
     }
     e.shapeOutline = "black";
 }
-igRegisterScript("onStylingShape", onStylingShape, false);
+registerScript("onStylingShape", onStylingShape);
 
 function onStylingMarker(o, e) {
 
@@ -77,5 +79,5 @@ function onStylingMarker(o, e) {
     }
 }
  
-igRegisterScript("onStylingMarker", onStylingMarker, true);
+registerScript("onStylingMarker", onStylingMarker, true);
  

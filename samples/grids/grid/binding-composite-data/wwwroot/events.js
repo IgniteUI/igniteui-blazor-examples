@@ -1,6 +1,6 @@
+import { registerScript, html } from './_content/IgniteUI.Blazor/api.js';
 
-igRegisterScript("WebGridCompositeContactCellTemplate", (ctx) => {
-    var html = window.igTemplating.html;
+registerScript("WebGridCompositeContactCellTemplate", (ctx) => {
     return html` <div class="contact-container">
     <span><strong>Name:</strong> ${ctx.cell.row.data.ContactName}</span>
     <br />
@@ -9,10 +9,9 @@ igRegisterScript("WebGridCompositeContactCellTemplate", (ctx) => {
     <span><strong>Company:</strong> ${ctx.cell.row.data.Company}</span>
     <br />
 </div>`;
-}, false);
+});
 
-igRegisterScript("WebGridCompositeContactEditCellTemplate", (ctx) => {
-    var html = window.igTemplating.html;
+registerScript("WebGridCompositeContactEditCellTemplate", (ctx) => {
     window.keyUpHandler = function () {
         ctx.cell.row.data[window.event.target.id] = window.event.target.value;
     }
@@ -22,10 +21,9 @@ igRegisterScript("WebGridCompositeContactEditCellTemplate", (ctx) => {
                     <igc-input id="Company" label='Company' type="text" name="name" value="${ctx.cell.row.data.Company}" onkeyup='keyUpHandler()'></igc-input>
                 </div>
    `;
-}, false);
+});
 
-igRegisterScript("WebGridCompositeAddressCellTemplate", (ctx) => {
-    var html = window.igTemplating.html;
+registerScript("WebGridCompositeAddressCellTemplate", (ctx) => {
     return html`<div class="address-container">
     <div class="country-city">
         <span><strong>Country:</strong> ${ctx.cell.row.data.Country}</span>
@@ -39,10 +37,9 @@ igRegisterScript("WebGridCompositeAddressCellTemplate", (ctx) => {
     </div>
     <br />
 </div>`;
-}, false);
+});
 
-igRegisterScript("WebGridCompositeAddressEditCellTemplate", (ctx) => {
-    var html = window.igTemplating.html;
+registerScript("WebGridCompositeAddressEditCellTemplate", (ctx) => {
     window.keyUpHandler = function () {
         ctx.cell.row.data[window.event.target.id] = window.event.target.value;
     }
@@ -54,5 +51,5 @@ igRegisterScript("WebGridCompositeAddressEditCellTemplate", (ctx) => {
                     <igc-input id="PostalCode" label='PostalCode' type="text" name="postalcode" value="${ctx.cell.row.data.PostalCode}" onkeyup='keyUpHandler()'></igc-input>
                     <igc-input id="Phone" label='Phone' type="text" name="phone" value="${ctx.cell.row.data.Phone}" onkeyup='keyUpHandler()'></igc-input>
                 </div>`;
-}, false);
+});
 

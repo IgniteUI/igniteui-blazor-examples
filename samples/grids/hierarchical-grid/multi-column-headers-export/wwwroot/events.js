@@ -1,6 +1,6 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
 
-
-igRegisterScript("WebHierarchicalGridExportMultiColumnHeaders", (ev) => {
+registerScript("WebHierarchicalGridExportMultiColumnHeaders", (ev) => {
     ev.detail.options.ignoreMultiColumnHeaders = false;
-}, false);
+});
 
