@@ -1,0 +1,95 @@
+/*
+CSS styles are loaded from the shared CSS file located at:
+https://dl.infragistics.com/x/css//samples/
+*/
+
+.inventory-grid {
+    --ig-size: var(--ig-size-medium);
+}
+
+.inventory-product {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.inventory-product img {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.inventory-product span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--ig-gray-900);
+}
+
+/* The chip border and icon share the color of the storage, a darker shade
+   on light surfaces and a lighter one on dark surfaces. */
+.inventory-storage {
+    --ig-chip-border-color: var(--storage-color);
+    --ig-chip-hover-border-color: var(--storage-color);
+    --ig-chip-focus-border-color: var(--storage-color);
+}
+
+.inventory-storage igc-icon {
+    color: var(--storage-color);
+}
+
+.inventory-storage[data-storage="Chilled"] {
+    --storage-color: light-dark(var(--ig-info-800), var(--ig-info-200));
+}
+
+.inventory-storage[data-storage="Dry"] {
+    --storage-color: light-dark(var(--ig-warn-800), var(--ig-warn-300));
+}
+
+.inventory-storage[data-storage="Ambient"] {
+    --storage-color: light-dark(var(--ig-success-800), var(--ig-success-100));
+}
+
+.inventory-stock-level {
+    width: 100%;
+}
+
+.inventory-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.inventory-status igc-badge {
+    --ig-badge-dot-size: 10px;
+    --ig-badge-elevation: var(--ig-elevation-0);
+}
+
+.inventory-status[data-status="In stock"] igc-badge {
+    --ig-badge-background-color: light-dark(var(--ig-success-900), var(--ig-success-100));
+}
+
+.inventory-status[data-status="Low"] igc-badge {
+    --ig-badge-background-color: light-dark(var(--ig-warn-500), var(--ig-warn-300));
+}
+
+.inventory-status[data-status="Out of stock"] igc-badge {
+    --ig-badge-background-color: light-dark(var(--ig-error-700), var(--ig-error-100));
+}
+
+/* The buttons are centred: next to the stock cell padding, the stock medium
+   buttons of some themes are wider than the cell. */
+.inventory-actions {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+    justify-content: center;
+    gap: 4px;
+}
+
+.inventory-actions igc-icon-button {
+    --ig-flat-icon-button-foreground: var(--ig-gray-900);
+}
