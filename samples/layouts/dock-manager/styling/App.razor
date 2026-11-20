@@ -1,6 +1,6 @@
 ﻿@inject IJSRuntime JSRuntime;
 @using IgniteUI.Blazor.Controls
-@using System.Timers
+@implements IAsyncDisposable
 
 <style>
 :root {
@@ -208,8 +208,8 @@ igc-card-content {
 </style>
 
 
-<div id="root">
-    <IgbDockManager @ref=dockManager id="dockManager" Height="100%" Width="100%" Layout="Layout">
+<div id="root" @ref="root">
+    <IgbDockManager id="dockManager" Height="100%" Width="100%" Layout="Layout">
         <div slot="accountHeader" class="header">
             <span>ACCOUNTS</span>
             <menu-component></menu-component>
@@ -570,7 +570,6 @@ igc-card-content {
 
 @code {
 
-    public IgbDockManager dockManager { get; set; }
     public IgbDockManagerLayout Layout { get; set; }
     public IgbIcon RegisterIconRef{ get; set; }    
 
@@ -578,7 +577,9 @@ igc-card-content {
     private double MinWidth = 800;
 
     public IgbDockManagerLayout[] layouts;
-    private Timer _timer;
+    private ElementReference root;
+    private DotNetObjectReference<App> selfReference;
+    private IJSObjectReference widthObserver;
 
     protected override void OnInitialized()
     {
@@ -590,37 +591,42 @@ igc-card-content {
         layouts = new IgbDockManagerLayout[] { layout1, layout2, layout3 };        
     }
 
-    public async void TimerElapsed(object sender, ElapsedEventArgs e)
+    // Called with the root's width when observing starts and whenever it changes.
+    [JSInvokable]
+    public async Task OnRootWidthChanged(double width)
     {
-        double dockWidth = await JSRuntime.InvokeAsync<double>("getDockManagerOffset", null);
+        IgbDockManagerLayout newLayout;
 
-        if (dockWidth != double.NaN)
+        if (width >= this.MaxWidth)
         {
-            IgbDockManagerLayout newLayout = null;
+            newLayout = this.layouts[0];
+        }
+        else if (width > this.MinWidth)
+        {
+            newLayout = this.layouts[1];
+        }
+        else
+        {
+            newLayout = this.layouts[2];
+        }
 
-            if (dockWidth >= this.MaxWidth)
-            {
-                newLayout = this.layouts[0];
-            }
-            else if (dockWidth < this.MaxWidth && dockWidth > this.MinWidth)
-            {
-                newLayout = this.layouts[1];
-            }
-            else if (dockWidth <= this.MinWidth)
-            {
-                newLayout = this.layouts[2];
-            }
-
-            if (newLayout != null && this.Layout != newLayout && this.dockManager != null)
-            {
-                this.Layout = newLayout;
-                this.dockManager.Layout = this.Layout;
-            }
-        }        
-    }    
+        if (this.Layout != newLayout)
+        {
+            this.Layout = newLayout;
+            await InvokeAsync(StateHasChanged);
+        }
+    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        if (firstRender)
+        {
+            // The root is in the page from the first render on, unlike the dock manager, which
+            // appears once its script has loaded.
+            selfReference = DotNetObjectReference.Create(this);
+            widthObserver = await JSRuntime.InvokeAsync<IJSObjectReference>("observeDockManagerStylingWidth", root, selfReference);
+        }
+
         if(firstRender && this.RegisterIconRef != null)
         {
             await this.RegisterIconRef.EnsureReady();
@@ -630,16 +636,25 @@ igc-card-content {
 
             await this.RegisterIconRef.RegisterIconFromTextAsync("arrow-down", arrowDown, "material");
             await this.RegisterIconRef.RegisterIconFromTextAsync("arrow-up", arrowUp, "material");            
-
-            if(_timer == null)
-            {
-                _timer = new Timer();
-                _timer.AutoReset = true;
-                _timer.Elapsed += TimerElapsed;
-                _timer.Interval = 500;
-                _timer.Start();   
-            }            
         } 
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        try
+        {
+            if (widthObserver != null)
+            {
+                await widthObserver.InvokeVoidAsync("disconnect");
+                await widthObserver.DisposeAsync();
+            }
+        }
+        catch (JSDisconnectedException)
+        {
+            // The page is already gone, so there is nothing left to stop.
+        }
+
+        selfReference?.Dispose();
     }
 
     public IgbContentPane GetContentPane(string header, string contentId, string headerId, string floatingHeaderId)
