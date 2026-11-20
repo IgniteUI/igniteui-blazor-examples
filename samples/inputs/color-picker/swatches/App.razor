@@ -1,0 +1,35 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample">
+    <IgbColorPicker @ref="OneLinePicker" id="one-line" Label="Pick a color" Swatches="OneLineSwatches" />
+    <IgbColorPicker @ref="MultiLinePicker" id="multi-line" Label="Pick a color" Swatches="MultiLineSwatches" />
+</div>
+
+@code {
+    private static readonly string[] OneLineSwatches =
+    {
+        "#f44336", "#e91e63", "#9c27b0", "#3f51b5", "#2196f3", "#4caf50"
+    };
+
+    private static readonly string[] MultiLineSwatches =
+    {
+        "#f44336", "#e91e63", "#9c27b0", "#3f51b5", "#2196f3", "#4caf50",
+        "#ffeb3b", "#ff9800", "#795548", "#607d8b", "#ffffff", "#000000",
+        "#0000ff", "#00ff00", "#ff00ff", "#00ffff", "#ff0000", "#ffff00",
+        "#ff00ff", "#00ffff", "#c0c0c0", "#808080", "#800000", "#808000"
+    };
+
+    private IgbColorPicker OneLinePicker;
+    private IgbColorPicker MultiLinePicker;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await OneLinePicker.EnsureReady();
+            await OneLinePicker.ToggleAsync();
+            await MultiLinePicker.EnsureReady();
+            await MultiLinePicker.ToggleAsync();
+        }
+    }
+}

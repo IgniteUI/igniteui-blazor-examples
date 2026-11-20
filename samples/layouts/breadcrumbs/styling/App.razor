@@ -1,0 +1,33 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="sample">
+    <nav aria-label="Breadcrumb">
+        <IgbBreadcrumbs Separator="music_note">
+            <IgbBreadcrumb>
+                <IgbIcon @ref="IconRef" slot="prefix" IconName="home" />
+                <a href="/home" @onclick:preventDefault>Home</a>
+            </IgbBreadcrumb>
+            <IgbBreadcrumb><a href="/home/item" @onclick:preventDefault>Item</a></IgbBreadcrumb>
+            <IgbBreadcrumb><a href="/home/item/item" @onclick:preventDefault>Item</a></IgbBreadcrumb>
+            <IgbBreadcrumb><a href="/home/item/item/item" @onclick:preventDefault>Item</a></IgbBreadcrumb>
+            <IgbBreadcrumb Current="true"><a href="/home/item/item/item/current" @onclick:preventDefault>Current Item</a></IgbBreadcrumb>
+        </IgbBreadcrumbs>
+    </nav>
+</div>
+
+@code {
+    private const string HomeIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/></svg>";
+    private const string MusicNoteIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z'/></svg>";
+
+    private IgbIcon IconRef;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await IconRef.EnsureReady();
+            await IconRef.RegisterIconFromTextAsync("home", HomeIcon, "default");
+            await IconRef.RegisterIconFromTextAsync("music_note", MusicNoteIcon, "default");
+        }
+    }
+}

@@ -1,0 +1,29 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="sample">
+    <IgbIcon @ref="IconRegistrar" IconName="slash" style="display: none;" />
+    <nav aria-label="Breadcrumb">
+        <IgbBreadcrumbs Separator="slash" class="![--ig-breadcrumb-text-color:var(--ig-primary-50)] ![--ig-breadcrumb-hover-text-color:var(--ig-primary-50)] ![--ig-breadcrumb-focus-text-color:var(--ig-primary-50)] ![--ig-breadcrumb-current-text-color:var(--ig-primary-200)] ![--ig-breadcrumb-separator-color:var(--ig-primary-200)] ![--ig-breadcrumb-focus-pressed-text-color:var(--ig-primary-50)] ![padding:0.5rem_1.125rem] ![background:#002146] ![border-radius:3.125rem] max-[235px]:![border-radius:0]">
+            <IgbBreadcrumb><a href="/" @onclick:preventDefault>Home</a></IgbBreadcrumb>
+            <IgbBreadcrumb><a href="/electronics" @onclick:preventDefault>Electronics</a></IgbBreadcrumb>
+            <IgbBreadcrumb><a href="/electronics/audio" @onclick:preventDefault>Audio</a></IgbBreadcrumb>
+            <IgbBreadcrumb><a href="/electronics/audio/headphones" @onclick:preventDefault>Headphones</a></IgbBreadcrumb>
+            <IgbBreadcrumb Current="true"><a href="/electronics/audio/headphones/sony-x" @onclick:preventDefault>Sony X Wireless</a></IgbBreadcrumb>
+        </IgbBreadcrumbs>
+    </nav>
+</div>
+
+@code {
+    private const string SlashIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'><path d='M12.8535 3C13.3976 3 13.7655 3.55489 13.5537 4.05604L7.85788 17.5331C7.73829 17.8161 7.46093 18 7.15374 18C6.60638 18 6.23639 17.4416 6.44976 16.9375L12.1535 3.46381C12.2725 3.18266 12.5482 3 12.8535 3Z' fill='currentColor'/></svg>";
+
+    private IgbIcon IconRegistrar;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await IconRegistrar.EnsureReady();
+            await IconRegistrar.RegisterIconFromTextAsync("slash", SlashIcon, "default");
+        }
+    }
+}

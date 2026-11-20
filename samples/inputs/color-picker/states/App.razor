@@ -1,0 +1,32 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample">
+    <div>
+        <span>Default state</span>
+        <IgbColorPicker @ref="DefaultPicker" id="defaultPicker" Label="Pick a color" />
+    </div>
+    <div>
+        <span>Invalid state</span>
+        @* Required and still empty, so it shows as invalid until a color is picked. *@
+        <IgbColorPicker id="invalidPicker" Required="true" Invalid="@string.IsNullOrEmpty(requiredColor)"
+            Label="Pick a color" @bind-Value="requiredColor" />
+    </div>
+    <div>
+        <span>Disabled state</span>
+        <IgbColorPicker Disabled="true" Label="Pick a color" />
+    </div>
+</div>
+
+@code {
+    private IgbColorPicker DefaultPicker;
+    private string requiredColor;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await DefaultPicker.EnsureReady();
+            await DefaultPicker.ToggleAsync();
+        }
+    }
+}

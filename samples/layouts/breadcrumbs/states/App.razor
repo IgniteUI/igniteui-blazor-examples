@@ -1,0 +1,77 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="sample">
+    <nav aria-label="Breadcrumb">
+        <IgbBreadcrumbs>
+            <span>Idle</span>
+            <IgbBreadcrumb>
+                <IgbIcon @ref="IconRef" slot="prefix" IconName="home" />
+                <a href="/home" @onclick:preventDefault>Home</a>
+                <IgbIcon slot="suffix" IconName="home" />
+            </IgbBreadcrumb>
+        </IgbBreadcrumbs>
+        <IgbBreadcrumbs>
+            <span>Hover</span>
+            <IgbBreadcrumb class="state-hover">
+                <IgbIcon slot="prefix" IconName="home" />
+                <a href="/home" @onclick:preventDefault>Home</a>
+                <IgbIcon slot="suffix" IconName="home" />
+            </IgbBreadcrumb>
+        </IgbBreadcrumbs>
+        <IgbBreadcrumbs>
+            <span>Focused</span>
+            <IgbBreadcrumb class="state-focused">
+                <IgbIcon slot="prefix" IconName="home" />
+                <a href="/home" @onclick:preventDefault>Home</a>
+                <IgbIcon slot="suffix" IconName="home" />
+            </IgbBreadcrumb>
+        </IgbBreadcrumbs>
+        <IgbBreadcrumbs>
+            <span>Pressed</span>
+            <IgbBreadcrumb class="state-pressed">
+                <IgbIcon slot="prefix" IconName="home" />
+                <a href="/home" @onclick:preventDefault>Home</a>
+                <IgbIcon slot="suffix" IconName="home" />
+            </IgbBreadcrumb>
+        </IgbBreadcrumbs>
+        <IgbBreadcrumbs>
+            <span>Focused &amp; Hover</span>
+            <IgbBreadcrumb class="state-focused-hover">
+                <IgbIcon slot="prefix" IconName="home" />
+                <a href="/home" @onclick:preventDefault>Home</a>
+                <IgbIcon slot="suffix" IconName="home" />
+            </IgbBreadcrumb>
+        </IgbBreadcrumbs>
+        <IgbBreadcrumbs>
+            <span>Focused &amp; Pressed</span>
+            <IgbBreadcrumb class="state-focused-pressed">
+                <IgbIcon slot="prefix" IconName="home" />
+                <a href="/home" @onclick:preventDefault>Home</a>
+                <IgbIcon slot="suffix" IconName="home" />
+            </IgbBreadcrumb>
+        </IgbBreadcrumbs>
+        <IgbBreadcrumbs>
+            <span>Disabled</span>
+            <IgbBreadcrumb class="state-disabled">
+                <IgbIcon slot="prefix" IconName="home" />
+                <a href="/home" @onclick:preventDefault>Home</a>
+                <IgbIcon slot="suffix" IconName="home" />
+            </IgbBreadcrumb>
+        </IgbBreadcrumbs>
+    </nav>
+</div>
+
+@code {
+    private const string HomeIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/></svg>";
+
+    private IgbIcon IconRef;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await IconRef.EnsureReady();
+            await IconRef.RegisterIconFromTextAsync("home", HomeIcon, "default");
+        }
+    }
+}

@@ -1,0 +1,41 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="sample">
+    <nav aria-label="Breadcrumb">
+        <IgbBreadcrumbs>
+            <IgbBreadcrumb><a href="/my-drive" @onclick:preventDefault>My drive</a></IgbBreadcrumb>
+            <IgbBreadcrumb>
+                <IgbDropdown Distance="10">
+                    <IgbIcon @ref="IconRef" slot="target" IconName="three-dots" />
+                    <IgbDropdownItem>
+                        <IgbIcon IconName="folder" slot="prefix" />
+                        Projects
+                    </IgbDropdownItem>
+                    <IgbDropdownItem>
+                        <IgbIcon IconName="folder" slot="prefix" />
+                        Website redesign
+                    </IgbDropdownItem>
+                </IgbDropdown>
+            </IgbBreadcrumb>
+            <IgbBreadcrumb><a href="/my-drive/assets" @onclick:preventDefault>Assets</a></IgbBreadcrumb>
+            <IgbBreadcrumb Current="true"><a href="/my-drive/assets/icons" @onclick:preventDefault>Icons</a></IgbBreadcrumb>
+        </IgbBreadcrumbs>
+    </nav>
+</div>
+
+@code {
+    private const string ThreeDotsIcon = "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 -960 960 960'><path d='M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z'></path></svg>";
+    private const string FolderIcon = "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z'></path></svg>";
+
+    private IgbIcon IconRef;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await IconRef.EnsureReady();
+            await IconRef.RegisterIconFromTextAsync("three-dots", ThreeDotsIcon, "default");
+            await IconRef.RegisterIconFromTextAsync("folder", FolderIcon, "default");
+        }
+    }
+}

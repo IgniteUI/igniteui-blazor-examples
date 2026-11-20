@@ -1,0 +1,29 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container sample">
+    <div>
+        <span>Small</span>
+        <IgbColorPicker @ref="SmallPicker" class="smallPicker" Mode="ColorPickerMode.Input" Label="Pick a color" />
+    </div>
+    <div>
+        <span>Medium</span>
+        <IgbColorPicker class="mediumPicker" Mode="ColorPickerMode.Input" Label="Pick a color" />
+    </div>
+    <div>
+        <span>Large</span>
+        <IgbColorPicker class="largePicker" Mode="ColorPickerMode.Input" Label="Pick a color" />
+    </div>
+</div>
+
+@code {
+    private IgbColorPicker SmallPicker;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await SmallPicker.EnsureReady();
+            await SmallPicker.ToggleAsync();
+        }
+    }
+}
