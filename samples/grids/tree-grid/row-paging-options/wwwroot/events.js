@@ -1,8 +1,8 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
 
-
-igRegisterScript("WebTreeGridSetGridSize", (sender, evtArgs) => {
+registerScript("WebTreeGridSetGridSize", (sender, evtArgs) => {
     var newVal = evtArgs.newValue.toLowerCase();
     var grid = document.getElementById("treeGrid");
     grid.style.setProperty('--ig-size', `var(--ig-size-${newVal})`);
-}, false);
+});
 

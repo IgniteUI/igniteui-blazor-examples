@@ -1,4 +1,6 @@
-﻿
+﻿import { registerScript } from './_content/IgniteUI.Blazor/api.js';
+
+
 function onMapMarkerTemplate(o, e) {
     //console.log("onMapMarkerTemplate ");
      
@@ -93,7 +95,7 @@ function onMapMarkerTemplate(o, e) {
     }
 }
 
-igRegisterScript("onMapMarkerTemplate", onMapMarkerTemplate, true);
+registerScript("onMapMarkerTemplate", onMapMarkerTemplate, true);
 
 
 function onMapMarkerClear(o, e) {
@@ -111,4 +113,4 @@ function onMapMarkerClear(o, e) {
     }
 }
 
-igRegisterScript("onMapMarkerClear", onMapMarkerClear, true);
+registerScript("onMapMarkerClear", onMapMarkerClear, true);

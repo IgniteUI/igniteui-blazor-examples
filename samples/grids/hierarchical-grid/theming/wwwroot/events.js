@@ -1,12 +1,12 @@
+import { registerScript, html } from './_content/IgniteUI.Blazor/api.js';
 
-igRegisterScript("HierarchicalGridThemingPhotoCellTemplate", (ctx) => {
-    var html = window.igTemplating.html;
+registerScript("HierarchicalGridThemingPhotoCellTemplate", (ctx) => {
     return html`<div class="cell__inner_2">
     <img src="${ctx.cell.value}" class="photo" />
 </div>`;
-}, false);
+});
 
 // Show the debut year as is, without a thousands separator.
-igRegisterScript("HierarchicalGridThemingDebutFormatter", (value) => {
+registerScript("HierarchicalGridThemingDebutFormatter", (value) => {
     return value;
-}, false);
+});

@@ -1,5 +1,7 @@
-﻿// NOTE this JavaScript file implements functions for styling/templating columnd of the DataGrid control
-// at end of this file, the igRegisterScript registers functions that are used .razor file
+﻿import { registerScript } from './_content/IgniteUI.Blazor/api.js';
+
+// NOTE this JavaScript file implements functions for styling/templating columnd of the DataGrid control
+// at end of this file, registerScript registers the functions that the .razor file uses
 
 function onUpdatingSalesColumn(grid, args) {
     let content = args.content;
@@ -138,9 +140,9 @@ function onUpdatingPhoneColumn(grid, args) {
 }
 
 // this code allows calling above functions from a .razor file
-igRegisterScript("onUpdatingSalesColumn", onUpdatingSalesColumn, false);
-igRegisterScript("onUpdatingAddressColumn", onUpdatingAddressColumn, false);
-igRegisterScript("onUpdatingPhoneColumn", onUpdatingPhoneColumn, false);
+registerScript("onUpdatingSalesColumn", onUpdatingSalesColumn);
+registerScript("onUpdatingAddressColumn", onUpdatingAddressColumn);
+registerScript("onUpdatingPhoneColumn", onUpdatingPhoneColumn);
 
 function onSummarziePeopleGender(grid, args) {
 
@@ -149,4 +151,4 @@ function onSummarziePeopleGender(grid, args) {
     //let gender = info.rowItem.Gender;
     args.setCalculator(10);
 }
-igRegisterScript("onSummarziePeopleGender", onSummarziePeopleGender, false);
+registerScript("onSummarziePeopleGender", onSummarziePeopleGender);

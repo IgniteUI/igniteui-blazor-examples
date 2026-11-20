@@ -6,7 +6,6 @@ registerScript("WebGridSetGridSize", (sender, evtArgs) => {
     grid.style.setProperty('--ig-size', `var(--ig-size-${newVal})`);
 });
 
-
 class WebGridDiscontinuedSummary {
     operate(data, allData, fieldName) {
         const discontinuedData = allData.filter((rec) => rec['Discontinued']).map(r => r[fieldName]);

@@ -1,3 +1,5 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
+
 const totalSale = (members, data) => {
     return data.reduce((accumulator, value) => accumulator + value.ProductUnitPrice * value.NumberOfUnits, 0);
 };
@@ -25,13 +27,13 @@ const totalMax = (members, data) => {
 };
 
 
-igRegisterScript("PivotDataFlatAggregateSumSale", totalSale, false);
+registerScript("PivotDataFlatAggregateSumSale", totalSale);
 
-igRegisterScript("PivotDataFlatAggregateMinSale", totalMin, false);
+registerScript("PivotDataFlatAggregateMinSale", totalMin);
 
-igRegisterScript("PivotDataFlatAggregateMaxSale", totalMax, false);
+registerScript("PivotDataFlatAggregateMaxSale", totalMax);
 
-igRegisterScript("OnValueInit", (args) => {
+registerScript("OnValueInit", (args) => {
     const value = args.detail;
     if (value.member === "AmountOfSale") {
       value.aggregate.aggregator = totalSale;
@@ -49,5 +51,5 @@ igRegisterScript("OnValueInit", (args) => {
         }
       });
     }
-}, false);
+});
 

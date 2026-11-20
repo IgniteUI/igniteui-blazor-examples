@@ -1,6 +1,6 @@
+import { registerScript, html } from './_content/IgniteUI.Blazor/api.js';
 
-igRegisterScript("WebGridMasterDetailTemplate", (ctx) => {
-    var html = window.igTemplating.html;
+registerScript("WebGridMasterDetailTemplate", (ctx) => {
     var data = ctx.implicit;
     return html` <div class="contact-container">
         <span><strong>Name:</strong> ${data.ContactName}</span>
@@ -10,5 +10,5 @@ igRegisterScript("WebGridMasterDetailTemplate", (ctx) => {
         <span><strong>Company:</strong> ${data.Company}</span>
         <br />
     </div>`;
-}, false);
+});
 

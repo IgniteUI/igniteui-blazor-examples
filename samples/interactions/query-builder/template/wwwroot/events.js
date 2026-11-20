@@ -1,3 +1,5 @@
+import { registerScript, html } from './_content/IgniteUI.Blazor/api.js';
+
 let regionOptions = [];
 let statusOptions = [];
 
@@ -192,7 +194,7 @@ window.queryBuilderTemplate = {
     renderExpressionTree,
 };
 
-igRegisterScript('SearchValueTemplate', (ctx) => {
+registerScript('SearchValueTemplate', (ctx) => {
     const field = ctx && ctx.selectedField ? ctx.selectedField.field : null;
     const equalityCondition = matchesEqualityCondition(ctx ? ctx.selectedCondition : null);
 
@@ -215,9 +217,9 @@ igRegisterScript('SearchValueTemplate', (ctx) => {
     }
 
     return buildDefaultInput(ctx, equalityCondition);
-}, false);
+});
 
-igRegisterScript('WebQueryBuilderTemplateExpressionTreeChange', (evtArgs) => {
+registerScript('WebQueryBuilderTemplateExpressionTreeChange', (evtArgs) => {
     const expressionTree = evtArgs?.detail;
     renderExpressionTree(expressionTree);
-}, false);
+});

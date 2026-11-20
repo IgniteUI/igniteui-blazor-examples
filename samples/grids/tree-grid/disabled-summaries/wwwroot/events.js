@@ -1,3 +1,5 @@
+import { registerScript, html } from './_content/IgniteUI.Blazor/api.js';
+
 class UnitsSummary {
     operate(data, allData, fieldName) {
         const result = [];
@@ -81,11 +83,21 @@ class UnitsSummary {
     }
 }
 
-igRegisterScript("ColumnInitScript", (event) => {
+registerScript("WebTreeGridSummariesHeaderTemplate", (ctx) => {
+    window.toggleSummary = function toggleSummary(column) {
+        column.hasSummary = !column.hasSummary;
+    }
+    return html`<div>
+    <span style="float:left">${ctx.column.field}</span>
+	<span style="float:right; color:${ctx.column.hasSummary ? '#e41c77' : ''}" @pointerdown=${() => toggleSummary(ctx.column)}>∑</span>
+</div>`;
+});
+
+registerScript("WebTreeGridDisabledSummariesColumnInit", (event) => {
     if (event.detail.field === "Units") {
         event.detail.summaries = UnitsSummary;
     }
-}, false);
+});
 
 window.getTreeGridSummaries = (field) => {
     const grid = document.getElementById("treeGrid");

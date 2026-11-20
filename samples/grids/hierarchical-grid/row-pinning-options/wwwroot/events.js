@@ -1,6 +1,6 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
 
-
-igRegisterScript("WebHierarchicalGridChangePinningConfig", (sender, evtArgs) => {
+registerScript("WebHierarchicalGridChangePinningConfig", (sender, evtArgs) => {
     var newPinningPosition = evtArgs.newValue === "Top" ? 0 : 1;
     var hierarchicalGrid = document.getElementById("grid");
     hierarchicalGrid.pinning.rows = newPinningPosition;
@@ -14,11 +14,11 @@ igRegisterScript("WebHierarchicalGridChangePinningConfig", (sender, evtArgs) => 
     if (rowIsland3) {
         rowIsland3.pinning.rows = newPinningPosition;
     }
-}, false);
+});
 
-igRegisterScript("WebHierarchicalGridPinRowOnRendered", (event) => {
+registerScript("WebHierarchicalGridPinRowOnRendered", (event) => {
 	var hierarchicalGrid = document.getElementById("grid");
 	hierarchicalGrid.pinRow(hierarchicalGrid.data[0].Photo);
 	hierarchicalGrid.pinRow(hierarchicalGrid.data[1].Photo);
-}, false);
+});
 

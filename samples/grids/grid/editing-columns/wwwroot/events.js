@@ -1,6 +1,6 @@
+import { registerScript, html } from './_content/IgniteUI.Blazor/api.js';
 
-igRegisterScript("WebGridNumericColEditCellTemplate", (ctx) => {
-    var html = window.igTemplating.html;
+registerScript("WebGridNumericColEditCellTemplate", (ctx) => {
     const cell = ctx.cell;
     const columnName = cell.column.field;
     const cellValue = cell.row.data[columnName];
@@ -19,9 +19,9 @@ igRegisterScript("WebGridNumericColEditCellTemplate", (ctx) => {
                 cell.editValue = e.detail;
             }}>
         </igc-input>`
-}, false);
+});
 
-igRegisterScript("WebGridOnEditEnter", (evtArgs) => {
+registerScript("WebGridOnEditEnter", (evtArgs) => {
     const column = evtArgs.detail.column;
     if(column.field === 'ReorderLevel') {
         setTimeout(() => {
@@ -32,5 +32,5 @@ igRegisterScript("WebGridOnEditEnter", (evtArgs) => {
             element?.focus();
         });
     }
-}, false);
+});
 

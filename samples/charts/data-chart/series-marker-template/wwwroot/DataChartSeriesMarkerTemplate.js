@@ -1,4 +1,6 @@
-﻿function onDataChartSeriesMarkerTemplate(o, e) {
+﻿import { registerScript } from './_content/IgniteUI.Blazor/api.js';
+
+function onDataChartSeriesMarkerTemplate(o, e) {
 
     var desiredSize = 8;
     let style = { outline: "#9FB328", fill: "white", text: "black" };
@@ -63,4 +65,4 @@
     }
 }
 
-igRegisterScript("onDataChartSeriesMarkerTemplate", onDataChartSeriesMarkerTemplate, true);
+registerScript("onDataChartSeriesMarkerTemplate", onDataChartSeriesMarkerTemplate, true);

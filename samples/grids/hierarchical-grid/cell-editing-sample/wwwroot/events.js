@@ -1,6 +1,6 @@
+import { registerScript, html } from './_content/IgniteUI.Blazor/api.js';
 
-igRegisterScript("HGridCellEditCellTemplate", (ctx) => {
-    var html = window.igTemplating.html;
+registerScript("HGridCellEditCellTemplate", (ctx) => {
     let cellValues = [];
     let uniqueValues = [];
     for (const i of ctx.cell.grid.data) {
@@ -17,5 +17,5 @@ igRegisterScript("HGridCellEditCellTemplate", (ctx) => {
           ${cellValues}
     </igc-select>
 `
-}, false);
+});
 

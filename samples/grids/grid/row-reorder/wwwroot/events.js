@@ -1,6 +1,6 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
 
-
-igRegisterScript("WebGridReorderRowHandler", (args) => {
+registerScript("WebGridReorderRowHandler", (args) => {
     const ghostElement = args.detail.dragDirective.ghostElement;
     if (!ghostElement) {
         return;
@@ -8,13 +8,13 @@ igRegisterScript("WebGridReorderRowHandler", (args) => {
     const dragElementPos = ghostElement.getBoundingClientRect();
     const grid = document.getElementsByTagName("igc-grid")[0];
     const rows = Array.prototype.slice.call(document.getElementsByTagName("igx-grid-row"));
-    const currRowIndex = this.getCurrentRowIndex(rows,
+    const currRowIndex = getCurrentRowIndex(rows,
     { x: dragElementPos.x, y: dragElementPos.y });
     if (currRowIndex === -1) { return; }
     // remove the row that was dragged and place it onto its new location
     grid.deleteRow(args.detail.dragData.key);
     grid.data.splice(currRowIndex, 0, args.detail.dragData.data);
-}, false);
+});
 
 function getCurrentRowIndex(rowList, cursorPosition) {
     for (const row of rowList) {

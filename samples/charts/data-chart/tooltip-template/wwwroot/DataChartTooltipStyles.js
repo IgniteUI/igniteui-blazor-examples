@@ -1,11 +1,13 @@
-﻿function onSeriesMouseEnter(o, e) {
+﻿import { registerScript } from './_content/IgniteUI.Blazor/api.js';
+
+function onSeriesMouseEnter(o, e) {
     if (e.series.tooltipTemplate === null ||
         e.series.tooltipTemplate === undefined) {
         e.series.tooltipTemplate = createDataChartTooltip;
         console.log("onSeriesMouseEnter");
     }
 }
-igRegisterScript("onSeriesMouseEnter", onSeriesMouseEnter, false);
+registerScript("onSeriesMouseEnter", onSeriesMouseEnter);
 
 function createDataChartTooltip(context) {
     if (!context) return null;

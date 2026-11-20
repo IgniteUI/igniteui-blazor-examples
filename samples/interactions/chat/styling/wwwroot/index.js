@@ -1,5 +1,6 @@
-﻿igRegisterScript("OnMessageHeaderTemplate", (ctx) => {
-    var html = window.igTemplating.html;
+﻿import { registerScript, html } from './_content/IgniteUI.Blazor/api.js';
+
+registerScript("OnMessageHeaderTemplate", (ctx) => {
     return ctx.message.sender !== 'user'
         ? html`
           <div style="display: flex; align-items: center; gap: 8px;">
@@ -13,4 +14,4 @@
           </div>
         `
         : "";
-}, false);
+});

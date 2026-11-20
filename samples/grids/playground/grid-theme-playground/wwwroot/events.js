@@ -1,5 +1,6 @@
+import { registerScript, html } from './_content/IgniteUI.Blazor/api.js';
 
-igRegisterScript("GridThemePlaygroundColumnInit", (event) => {
+registerScript("GridThemePlaygroundColumnInit", (event) => {
     if (event.detail.field === "Quantity") {
         event.detail.summaries = class {
             operate(data) {
@@ -11,32 +12,31 @@ igRegisterScript("GridThemePlaygroundColumnInit", (event) => {
             }
         };
     }
-}, false);
+});
 
-igRegisterScript("GridThemePlaygroundSummaryFormatter", (summary) => {
+registerScript("GridThemePlaygroundSummaryFormatter", (summary) => {
     const result = summary.summaryResult;
     return typeof result === "number" ? new Intl.NumberFormat("en-US", { maximumFractionDigits: 3 }).format(result) : result;
-}, false);
+});
 
-igRegisterScript("GridThemePlaygroundAvatarCellTemplate", (ctx) => {
-    var html = window.igTemplating.html;
+registerScript("GridThemePlaygroundAvatarCellTemplate", (ctx) => {
     return html`<div class="playground__cell">
     <igc-avatar src="${ctx.cell.row.data.Avatar}" shape="circle"></igc-avatar>
     <span>${ctx.cell.value}</span>
 </div>`;
-}, false);
+});
 
-igRegisterScript("GridThemePlaygroundProductMember", (data) => {
+registerScript("GridThemePlaygroundProductMember", (data) => {
     return data.ProductName;
-}, false);
+});
 
-igRegisterScript("GridThemePlaygroundCityMember", (data) => {
+registerScript("GridThemePlaygroundCityMember", (data) => {
     return data.SellerCity;
-}, false);
+});
 
-igRegisterScript("GridThemePlaygroundSellerMember", (data) => {
+registerScript("GridThemePlaygroundSellerMember", (data) => {
     return data.SellerName;
-}, false);
+});
 
 window.gridThemePlayground = {
     highlighter: null,

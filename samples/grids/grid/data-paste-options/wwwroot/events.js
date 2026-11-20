@@ -1,11 +1,11 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
 
-
-igRegisterScript("WebGridPasteOptions", (event) => {
+registerScript("WebGridPasteOptions", (event) => {
     console.log("TODO WebGridPasteOptions");
-}, false);
+});
 
 
-igRegisterScript("WebGridExcelDownload", (event) => {
+registerScript("WebGridExcelDownload", (event) => {
     console.log("TODO WebGridExcelDownload");
-}, false);
+});
 

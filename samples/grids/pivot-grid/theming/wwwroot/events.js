@@ -1,12 +1,13 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
 
-igRegisterScript("PivotGridThemingProductMember", (data) => {
+registerScript("PivotGridThemingProductMember", (data) => {
     return data.ProductName;
-}, false);
+});
 
-igRegisterScript("PivotGridThemingCityMember", (data) => {
+registerScript("PivotGridThemingCityMember", (data) => {
     return data.SellerCity;
-}, false);
+});
 
-igRegisterScript("PivotGridThemingSellerMember", (data) => {
+registerScript("PivotGridThemingSellerMember", (data) => {
     return data.SellerName;
-}, false);
+});

@@ -6,8 +6,6 @@ registerScript("WebHierarchicalGridSetGridSize", (sender, evtArgs) => {
     grid.style.setProperty('--ig-size', `var(--ig-size-${newVal})`);
 });
 
-
-
 class WebHierarchicalGridSingerSummary {
     operate(data, allData, fieldName) {
         const sum = (values) => values.reduce((a, b) => +a + +b, 0);

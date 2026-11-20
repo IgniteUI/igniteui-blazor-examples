@@ -1,6 +1,6 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
 
-
-igRegisterScript("WebGridCustomKBNav", (evtArgs) => {
+registerScript("WebGridCustomKBNav", (evtArgs) => {
     const args = evtArgs.detail;
     const target = args.target;
     const evt = args.event;
@@ -29,5 +29,5 @@ igRegisterScript("WebGridCustomKBNav", (evtArgs) => {
             obj.target.activate();
         });
     }
-}, false);
+});
 

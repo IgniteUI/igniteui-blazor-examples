@@ -1,5 +1,6 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
 
-igRegisterScript("GridThemingColumnInit", (event) => {
+registerScript("GridThemingColumnInit", (event) => {
     if (event.detail.field === "UnitPrice") {
         event.detail.summaries = class {
             operate(data) {
@@ -11,13 +12,13 @@ igRegisterScript("GridThemingColumnInit", (event) => {
             }
         };
     }
-}, false);
+});
 
-igRegisterScript("GridThemingCurrencyFormatter", (value) => {
+registerScript("GridThemingCurrencyFormatter", (value) => {
     return "$" + Number(value).toFixed(2);
-}, false);
+});
 
-igRegisterScript("GridThemingSummaryFormatter", (summary) => {
+registerScript("GridThemingSummaryFormatter", (summary) => {
     const result = summary.summaryResult;
     return typeof result === "number" ? new Intl.NumberFormat("en-US", { maximumFractionDigits: 3 }).format(result) : result;
-}, false);
+});

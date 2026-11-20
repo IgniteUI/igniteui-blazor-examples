@@ -1,6 +1,6 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
 
-
-igRegisterScript("WebGridCellStylesHandler", () => {
+registerScript("WebGridCellStylesHandler", () => {
     return {
         background: (rowData, columnKey, cellValue, rowIndex) => rowIndex % 2 === 0 ? "#EFF4FD" : null,
         color: (rowData, columnKey, cellValue, rowIndex) => {

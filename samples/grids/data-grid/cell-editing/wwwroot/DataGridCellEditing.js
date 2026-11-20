@@ -1,4 +1,6 @@
-﻿function onUpdatingTemplateColumn(grid, args) {
+﻿import { registerScript } from './_content/IgniteUI.Blazor/api.js';
+
+function onUpdatingTemplateColumn(grid, args) {
     let content = args.content;
      
     var row = args.cellInfo.dataRow;
@@ -22,4 +24,4 @@
 }
 
 // this code allows calling above functions from a .razor file
-igRegisterScript("onUpdatingTemplateColumn", onUpdatingTemplateColumn, false);
+registerScript("onUpdatingTemplateColumn", onUpdatingTemplateColumn);

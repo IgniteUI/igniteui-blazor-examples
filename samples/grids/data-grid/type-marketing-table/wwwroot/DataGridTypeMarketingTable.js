@@ -1,5 +1,7 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
+
 // NOTE this JavaScript file implements functions for styling/templating columnd of the DataGrid control
-// at end of this file, the igRegisterScript registers functions that are used .razor file
+// at end of this file, registerScript registers the functions that the .razor file uses
 
 var valuesIncreasedColor = "#4EB862";
 var valuesDecreasedColor = "#FF134A";
@@ -402,6 +404,6 @@ function onPriceDataBound(grid, args) {
 }
 
 // this code allows calling above functions from a .razor file
-igRegisterScript("onPriceStyleKey", onPriceStyleKey, false);
-igRegisterScript("onPriceCellUpdating", onPriceCellUpdating, false);
-igRegisterScript("onPriceDataBound", onPriceDataBound, false);
+registerScript("onPriceStyleKey", onPriceStyleKey);
+registerScript("onPriceCellUpdating", onPriceCellUpdating);
+registerScript("onPriceDataBound", onPriceDataBound);

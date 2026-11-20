@@ -1,8 +1,8 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
 
-
-igRegisterScript("WebGridPinRowOnRendered", (event) => {
+registerScript("WebGridPinRowOnRendered", (event) => {
         var grid = document.getElementById("grid");
         grid.pinRow("ALFKI");
         grid.pinRow("AROUT");
-}, false);
+});
 
