@@ -327,6 +327,7 @@ class Transformer {
             info.ComponentName = Strings.toTitleCase(info.ComponentFolder, '-');
             info.ComponentName = info.ComponentName.replace("Geo Map", "Geographic Map");
             info.ComponentName = info.ComponentName.replace("Combobox", "ComboBox");
+            info.ComponentName = info.ComponentName.replace("Qr Code", "QR Code");
 
             // info.SampleFolderPath = relativePath;
             info.SampleRouteOld = "/" +  info.ComponentGroup + "/" + info.ComponentFolder + "-" + info.SampleFolderName;
@@ -1036,6 +1037,8 @@ class Transformer {
                         console.log("- injecting CSS from " + css.Path)
                         // escape @ as @@ since CSS is inlined into a .razor file where @ is Blazor syntax
                         let inlineCss = Strings.replaceAll(cssContent, '@', '@@');
+                        // Razor parses < as the start of a tag even inside <style>, e.g. in @media (width < 600px)
+                        inlineCss = Strings.replaceAll(inlineCss, '<', '@("<")');
                         stylingLines.push('<style>');
                         stylingLines.push(inlineCss);
                         stylingLines.push('</style>');
