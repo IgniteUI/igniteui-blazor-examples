@@ -80,3 +80,14 @@ registerScript('InventoryActionsTemplate', ({ cell }) => {
         </div>
     `;
 });
+
+/** The Actions column holds only buttons, so it is left out of the exported file. */
+registerScript('InventoryExcludeActions', ({ detail: { exporter } }) => {
+    const columns = exporter.columnExporting.subscribe((column) => {
+        column.cancel = column.header === 'Actions';
+    });
+    const ended = exporter.exportEnded.subscribe(() => {
+        columns.unsubscribe();
+        ended.unsubscribe();
+    });
+});
