@@ -12,12 +12,14 @@ namespace Infragistics.Samples
         public bool Organic { get; set; }
         public string Storage { get; set; }
         public int Quantity { get; set; }
+        /// <summary>Percent of the target stock, 0 to 100.</summary>
         public int StockLevel { get; set; }
         public string Unit { get; set; }
         public string Status { get; set; }
         public double UnitPrice { get; set; }
         public double RetailPrice { get; set; }
         public DateTime ExpiryDate { get; set; }
+        /// <summary>The product photo.</summary>
         public string Image { get; set; }
     }
 

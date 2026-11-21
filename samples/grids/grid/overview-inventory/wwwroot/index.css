@@ -3,18 +3,20 @@ CSS styles are loaded from the shared CSS file located at:
 https://dl.infragistics.com/x/css//samples/
 */
 
+/* The grid takes the theme's font family, not the font of the page around it. */
 .inventory-grid {
     --ig-size: var(--ig-size-medium);
+    font-family: var(--ig-font-family);
 }
 
-.inventory-product {
+.product {
     display: flex;
     align-items: center;
     gap: 12px;
     min-width: 0;
 }
 
-.inventory-product img {
+.product__photo {
     flex: none;
     width: 40px;
     height: 40px;
@@ -22,67 +24,93 @@ https://dl.infragistics.com/x/css//samples/
     object-fit: cover;
 }
 
-.inventory-product span {
+.product__name,
+.status__text {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+
+/* The subtitle 2 type style of the theme. */
+.product__name {
+    font-family: var(--ig-subtitle-2-font-family, var(--ig-font-family));
+    font-size: var(--ig-subtitle-2-font-size);
+    font-weight: var(--ig-subtitle-2-font-weight);
+    line-height: var(--ig-subtitle-2-line-height);
+    letter-spacing: var(--ig-subtitle-2-letter-spacing);
     color: var(--ig-gray-900);
 }
 
-/* The chip border and icon share the color of the storage, a darker shade
-   on light surfaces and a lighter one on dark surfaces. */
-.inventory-storage {
+/*
+ * The storage chips and the status dots take one palette colour per value: a dark shade on a
+ * light surface and a lighter shade of the same colour on a dark one, so that they keep their
+ * contrast against the row. The chip border and its icon share the colour; the transparent
+ * background keeps the chip outlined where the installed chip has no outlined style.
+ */
+.storage {
+    --ig-chip-background: transparent;
     --ig-chip-border-color: var(--storage-color);
     --ig-chip-hover-border-color: var(--storage-color);
     --ig-chip-focus-border-color: var(--storage-color);
 }
 
-.inventory-storage igc-icon {
-    color: var(--storage-color);
-}
-
-.inventory-storage[data-storage="Chilled"] {
+.storage[data-storage="Chilled"] {
     --storage-color: light-dark(var(--ig-info-800), var(--ig-info-200));
 }
 
-.inventory-storage[data-storage="Dry"] {
+.storage[data-storage="Dry"] {
     --storage-color: light-dark(var(--ig-warn-800), var(--ig-warn-300));
 }
 
-.inventory-storage[data-storage="Ambient"] {
+.storage[data-storage="Ambient"] {
     --storage-color: light-dark(var(--ig-success-800), var(--ig-success-100));
 }
 
-.inventory-stock-level {
+.storage igc-icon {
+    color: var(--storage-color);
+}
+
+.stock-level {
     width: 100%;
 }
 
-.inventory-status {
+.status {
     display: flex;
     align-items: center;
     gap: 8px;
+    min-width: 0;
 }
 
-.inventory-status igc-badge {
+.status__dot {
     --ig-badge-dot-size: 10px;
     --ig-badge-elevation: var(--ig-elevation-0);
+    --ig-badge-background-color: var(--status-color);
 }
 
-.inventory-status[data-status="In stock"] igc-badge {
-    --ig-badge-background-color: light-dark(var(--ig-success-900), var(--ig-success-100));
+.status__dot[data-status="In stock"] {
+    --status-color: light-dark(var(--ig-success-900), var(--ig-success-100));
 }
 
-.inventory-status[data-status="Low"] igc-badge {
-    --ig-badge-background-color: light-dark(var(--ig-warn-500), var(--ig-warn-300));
+.status__dot[data-status="Low"] {
+    --status-color: light-dark(var(--ig-warn-500), var(--ig-warn-300));
 }
 
-.inventory-status[data-status="Out of stock"] igc-badge {
-    --ig-badge-background-color: light-dark(var(--ig-error-700), var(--ig-error-100));
+.status__dot[data-status="Out of stock"] {
+    --status-color: light-dark(var(--ig-error-700), var(--ig-error-100));
 }
 
-/* The buttons are centred: next to the stock cell padding, the stock medium
-   buttons of some themes are wider than the cell. */
-.inventory-actions {
+/*
+ * Centred across the whole cell, padding included: two stock icon buttons can be wider than the
+ * cell's content box (Bootstrap's are 38px each). Flat icon buttons are primary-coloured in some
+ * themes, which fades on hovered and selected rows, so the icons take the colour of the product name.
+ */
+.actions {
+    --ig-flat-icon-button-foreground: var(--ig-gray-900);
+    --ig-flat-icon-button-hover-foreground: var(--ig-gray-900);
+    --ig-flat-icon-button-focus-foreground: var(--ig-gray-900);
+    --ig-flat-icon-button-focus-hover-foreground: var(--ig-gray-900);
+    --ig-flat-icon-button-active-foreground: var(--ig-gray-900);
+
     display: flex;
     flex: 1;
     min-width: 0;
@@ -90,6 +118,6 @@ https://dl.infragistics.com/x/css//samples/
     gap: 4px;
 }
 
-.inventory-actions igc-icon-button {
-    --ig-flat-icon-button-foreground: var(--ig-gray-900);
+.actions igc-icon-button {
+    flex: none;
 }
