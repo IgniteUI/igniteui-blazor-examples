@@ -24,7 +24,8 @@ namespace Infragistics.Samples
                 typeof(IgbDataChartCategoryCoreModule),
                 typeof(IgbDataChartCategoryModule),
                 typeof(IgbDataChartInteractivityModule),
-                typeof(IgbColumnSeriesModule)
+                typeof(IgbColumnSeriesModule),
+                typeof(IgbValueOverlayModule)
 );
             await builder.Build().RunAsync();
         }
