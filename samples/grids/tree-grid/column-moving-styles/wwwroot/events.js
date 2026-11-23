@@ -1,6 +1,6 @@
+import { registerScript, html } from './_content/IgniteUI.Blazor/api.js';
 
-igRegisterScript("WebTreeGridPinHeaderTemplate", (ctx) => {
-    var html = window.igTemplating.html;
+registerScript("WebTreeGridPinHeaderTemplate", (ctx) => {
     window.toggleColumnPin = function toggleColumnPin(field) {
         var grid = document.getElementsByTagName("igc-tree-grid")[0];
         var col = grid.getColumnByName(field);
@@ -11,5 +11,5 @@ igRegisterScript("WebTreeGridPinHeaderTemplate", (ctx) => {
     <span>${ctx.column.field}</span>
     <span style="margin-left: auto; cursor: pointer;" onpointerdown='toggleColumnPin("${ctx.column.field}")'>📌</span>
 </div>`;
-}, false);
+});
 

@@ -1,27 +1,27 @@
+import { registerScript, html } from './_content/IgniteUI.Blazor/api.js';
 
-igRegisterScript("WebGridDeleteCellTemplate", (ctx) => {
-    var html = window.igTemplating.html;
+registerScript("WebGridDeleteCellTemplate", (ctx) => {
     // window.keyUpHandler = function () {
     //     ctx.cell.row.data[window.event.target.id] = window.event.target.value;
     // }
     return html`<div class="contact-container--edit">
  TODO
 </div>`;
-}, false);
+});
 
-igRegisterScript("WebGridAddRow", (event) => {
+registerScript("WebGridAddRow", (event) => {
     console.log("TODO WebGridAddRow");
-}, false);
+});
 
-igRegisterScript("WebGridUndo", (event) => {
+registerScript("WebGridUndo", (event) => {
     console.log("TODO WebGridUndo");
-}, false);
+});
 
-igRegisterScript("WebGridRedo", (event) => {
+registerScript("WebGridRedo", (event) => {
     console.log("TODO WebGridRedo");
-}, false);
+});
 
-igRegisterScript("WebGridCommit", (event) => {
+registerScript("WebGridCommit", (event) => {
     console.log("TODO WebGridCommit");
-}, false);
+});
 

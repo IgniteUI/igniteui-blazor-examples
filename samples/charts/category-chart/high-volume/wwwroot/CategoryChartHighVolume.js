@@ -1,9 +1,10 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
 
 var __highVolumeDataCount = 1000000;
 var __highVolumeData = [];
 function setHighVolumeDataCount(dataCount) {
     __highVolumeDataCount = dataCount;
-    __highVoluenData = generateHighVolumeData();
+    __highVolumeData = generateHighVolumeData();
     var chart = document.querySelectorAll("igc-category-chart");
     if (chart && chart.length > 0) {
         for (var  i = 0; i < chart.length; i++) {
@@ -36,4 +37,7 @@ function getHighVolumeData() {
     return __highVolumeData;
 }
 
-igRegisterScript("getHighVolumeData", getHighVolumeData, true);
+registerScript("getHighVolumeData", getHighVolumeData, true);
+
+// called by name from the page, so keep it reachable from the module
+window.setHighVolumeDataCount = setHighVolumeDataCount;

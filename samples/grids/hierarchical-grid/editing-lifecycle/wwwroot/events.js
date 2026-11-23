@@ -1,6 +1,6 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
 
-
-igRegisterScript("WebHierarchicalGridRendered", (event) => {
+registerScript("WebHierarchicalGridRendered", (event) => {
         const hierarchicalGrid = document.getElementById("hierarchicalGrid");
         hierarchicalGrid.parentElement.style.display = "flex";
         const container = document.createElement("div");
@@ -12,103 +12,103 @@ igRegisterScript("WebHierarchicalGridRendered", (event) => {
         const title = document.createElement("span");
         title.textContent = "Events execution sequence:";
         container.appendChild(title);
-}, false);
+});
 
-igRegisterScript("WebHierarchicalGridRowEditEnter", (event) => {
+registerScript("WebHierarchicalGridRowEditEnter", (event) => {
     const container = document.getElementById("container");
     const message = document.createElement("p");
     message.textContent = `Hierarchical Grid => 'rowEditEnter' with 'RowID':` + event.detail.rowID;
     container.appendChild(message);
-}, false);
+});
 
-igRegisterScript("WebHierarchicalGridRowEdit", (event) => {
+registerScript("WebHierarchicalGridRowEdit", (event) => {
     const container = document.getElementById("container");
     const message = document.createElement("p");
     message.textContent = `Hierarchical Grid => 'rowEdit'`;
     container.appendChild(message);
-}, false);
+});
 
-igRegisterScript("WebHierarchicalGridRowEditDone", (event) => {
+registerScript("WebHierarchicalGridRowEditDone", (event) => {
     const container = document.getElementById("container");
     const message = document.createElement("p");
     message.textContent = `Hierarchical Grid => 'rowEditDone'`;
     container.appendChild(message);
-}, false);
+});
 
-igRegisterScript("WebHierarchicalGridRowEditExit", (event) => {
+registerScript("WebHierarchicalGridRowEditExit", (event) => {
     const container = document.getElementById("container");
     const message = document.createElement("p");
     message.textContent = `Hierarchical Grid => 'rowEditExit'  << End of cycle >>`;
     container.appendChild(message);
-}, false);
+});
 
-igRegisterScript("WebHierarchicalGridCellEditEnter", (event) => {
+registerScript("WebHierarchicalGridCellEditEnter", (event) => {
     const container = document.getElementById("container");
     const message = document.createElement("p");
     message.textContent = `Hierarchical Grid => 'cellEditEnter' with 'value':` + event.detail.oldValue, event.detail.cancel;
     container.appendChild(message);
-}, false);
+});
 
-igRegisterScript("WebHierarchicalGridCellEdit", (event) => {
+registerScript("WebHierarchicalGridCellEdit", (event) => {
     const container = document.getElementById("container");
     const message = document.createElement("p");
     message.textContent = `Hierarchical Grid => 'cellEdit' with 'newValue':` + event.detail.newValue, event.detail.cancel;
     container.appendChild(message);
-}, false);
+});
 
-igRegisterScript("WebHierarchicalGridCellEditExit", (event) => {
+registerScript("WebHierarchicalGridCellEditExit", (event) => {
     const container = document.getElementById("container");
     const message = document.createElement("p");
     message.textContent = `Hierarchical Grid => 'cellEditExit'`;
     container.appendChild(message);
-}, false);
+});
 
-igRegisterScript("WebRowIslandGridRowEditEnter", (event) => {
+registerScript("WebRowIslandGridRowEditEnter", (event) => {
     const container = document.getElementById("container");
     const message = document.createElement("p");
     message.textContent = `Row Island => 'rowEditEnter' with 'RowID':` + event.detail.rowID;
     container.appendChild(message);
-}, false);
+});
 
-igRegisterScript("WebRowIslandGridRowEdit", (event) => {
+registerScript("WebRowIslandGridRowEdit", (event) => {
     const container = document.getElementById("container");
     const message = document.createElement("p");
     message.textContent = `Row Island => 'rowEdit'`;
     container.appendChild(message);
-}, false);
+});
 
-igRegisterScript("WebRowIslandGridRowEditDone", (event) => {
+registerScript("WebRowIslandGridRowEditDone", (event) => {
     const container = document.getElementById("container");
     const message = document.createElement("p");
     message.textContent = `Row Island => 'rowEditDone'`;
     container.appendChild(message);
-}, false);
+});
 
-igRegisterScript("WebRowIslandGridRowEditExit", (event) => {
+registerScript("WebRowIslandGridRowEditExit", (event) => {
     const container = document.getElementById("container");
     const message = document.createElement("p");
     message.textContent = `Row Island => 'rowEditExit'  << End of cycle >>`;
     container.appendChild(message);
-}, false);
+});
 
-igRegisterScript("WebRowIslandGridCellEditEnter", (event) => {
+registerScript("WebRowIslandGridCellEditEnter", (event) => {
     const container = document.getElementById("container");
     const message = document.createElement("p");
     message.textContent = `Row Island => 'cellEditEnter' with 'value':` + event.detail.oldValue, event.detail.cancel;
     container.appendChild(message);
-}, false);
+});
 
-igRegisterScript("WebRowIslandGridCellEdit", (event) => {
+registerScript("WebRowIslandGridCellEdit", (event) => {
     const container = document.getElementById("container");
     const message = document.createElement("p");
     message.textContent = `Row Island => 'cellEdit' with 'newValue':` + event.detail.newValue, event.detail.cancel;
     container.appendChild(message);
-}, false);
+});
 
-igRegisterScript("WebRowIslandGridCellEditExit", (event) => {
+registerScript("WebRowIslandGridCellEditExit", (event) => {
     const container = document.getElementById("container");
     const message = document.createElement("p");
     message.textContent = `Row Island => 'cellEditExit'`;
     container.appendChild(message);
-}, false);
+});
 

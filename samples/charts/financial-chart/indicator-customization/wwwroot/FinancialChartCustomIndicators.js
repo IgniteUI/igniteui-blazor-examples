@@ -1,5 +1,7 @@
-﻿// NOTE this JavaScript file implements functions for styling/templating columnd of the Financial Chart control
-// at end of this file, the igRegisterScript registers functions that are used .razor file
+﻿import { registerScript } from './_content/IgniteUI.Blazor/api.js';
+
+// NOTE this JavaScript file implements functions for styling/templating columnd of the Financial Chart control
+// at end of this file, registerScript registers the functions that the .razor file uses
 
 function onApplyCustomIndicators(chart, args) {
 
@@ -32,7 +34,7 @@ function onApplyCustomIndicators(chart, args) {
         let max = int.MinValue;
 
         // calculating price changes using start price as reference
-        for (i = 0; i < ds.indicatorColumn.length; i++)
+        for (let i = 0; i < ds.indicatorColumn.length; i++)
         {
             let priceChange = prices[i] - priceStart;
             let pricePercentage = (priceChange / priceStart) * 100;
@@ -51,4 +53,4 @@ function onApplyCustomIndicators(chart, args) {
 }
 
 // this code allows calling above functions from a .razor file
-igRegisterScript("onApplyCustomIndicators", onApplyCustomIndicators, false);
+registerScript("onApplyCustomIndicators", onApplyCustomIndicators);

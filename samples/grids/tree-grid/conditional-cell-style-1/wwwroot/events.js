@@ -1,6 +1,6 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
 
-
-igRegisterScript("WebTreeGridAllergensCellClassesHandler", () => {
+registerScript("WebTreeGridAllergensCellClassesHandler", () => {
     let allergenItems = ['Frozen Shrimps', 'Wild Salmon Fillets', 'Fresh Cheese', 'Skimmed Milk 1L', 'Butter'];
 
     return {
@@ -8,7 +8,7 @@ igRegisterScript("WebTreeGridAllergensCellClassesHandler", () => {
     };
 }, true);
 
-igRegisterScript("WebTreeGridUnitPriceCellClassesHandler", () => {
+registerScript("WebTreeGridUnitPriceCellClassesHandler", () => {
     return {
         downPrice: (rowData, columnKey) => rowData[columnKey] <= 5,
         upPrice: (rowData, columnKey) => rowData[columnKey] > 5,

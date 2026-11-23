@@ -1,5 +1,6 @@
-﻿igRegisterScript("OnMessageHeaderTemplate", (ctx) => {
-    var html = window.igTemplating.html;
+﻿import { registerScript, html } from './_content/IgniteUI.Blazor/api.js';
+
+registerScript("OnMessageHeaderTemplate", (ctx) => {
     return ctx.message.sender !== 'user'
         ? html`
         <div>
@@ -10,10 +11,9 @@
           </div>
         `
         : "";
-}, false);
+});
 
 
-igRegisterScript("OnSuggestionPrefixTemplate", (ctx) => {
-    var html = window.igTemplating.html;
+registerScript("OnSuggestionPrefixTemplate", (ctx) => {
     return html`<span style="font-weight: bold;">💡</span>&nbsp;`;
-}, false);
+});

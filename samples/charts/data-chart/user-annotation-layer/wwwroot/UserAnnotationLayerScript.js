@@ -1,4 +1,6 @@
-﻿function onUserAnnotationToggleDialog(open) {
+﻿import { registerScript } from './_content/IgniteUI.Blazor/api.js';
+
+function onUserAnnotationToggleDialog(open) {
     var dialog = document.getElementsByClassName("annotationDialogPopup")[0];
 
     if (open) {
@@ -24,7 +26,7 @@ function onUserAnnotationToolTipContentUpdatingScript(o, e) {
     }
 }
 
-igRegisterScript("onUserAnnotationToolTipContentUpdatingScript", onUserAnnotationToolTipContentUpdatingScript, false);
+registerScript("onUserAnnotationToolTipContentUpdatingScript", onUserAnnotationToolTipContentUpdatingScript);
 
 function getBadgeColor() {
     var badgeColorEditor = document.getElementById("annotationBadgeColorEditor").childNodes[0].childNodes[0];
@@ -35,3 +37,8 @@ function getMainColor() {
     var mainColorEditor = document.getElementById("annotationMainColorEditor").childNodes[0].childNodes[0];
     return mainColorEditor.value;
 }
+
+// called by name from the page, so keep them reachable from the module
+window.onUserAnnotationToggleDialog = onUserAnnotationToggleDialog;
+window.getBadgeColor = getBadgeColor;
+window.getMainColor = getMainColor;

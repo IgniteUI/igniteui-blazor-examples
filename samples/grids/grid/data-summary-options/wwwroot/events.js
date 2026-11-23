@@ -1,4 +1,4 @@
-
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
 
 class WebGridDiscontinuedSummary {
     operate(data, allData, fieldName) {
@@ -27,9 +27,9 @@ class WebGridDiscontinuedSummary {
         return result;
     }
 }
-igRegisterScript("WebGridCustomSummary", (event) => {
+registerScript("WebGridCustomSummary", (event) => {
     if (event.detail.field === "UnitsInStock") {
         event.detail.summaries = WebGridDiscontinuedSummary;
     }
-}, false);
+});
 

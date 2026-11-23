@@ -1,3 +1,4 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
 
 class PtoSummary {
     count(data) {
@@ -34,10 +35,10 @@ class PtoSummary {
     }
 }
 
-igRegisterScript("WebTreeGridCustomSummary", (event) => {
+registerScript("WebTreeGridCustomSummary", (event) => {
     if (event.detail.field === "Title") {
         event.detail.summaries = PtoSummary;
     }
-}, false);
+});
 
 

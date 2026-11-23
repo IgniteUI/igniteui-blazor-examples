@@ -1,14 +1,14 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
 
-
-igRegisterScript("WebGridUndo", (event) => {
+registerScript("WebGridUndo", (event) => {
     console.log("TODO WebGridUndo");
-}, false);
+});
 
-igRegisterScript("WebGridRedo", (event) => {
+registerScript("WebGridRedo", (event) => {
     console.log("TODO WebGridRedo");
-}, false);
+});
 
-igRegisterScript("WebGridCommit", (event) => {
+registerScript("WebGridCommit", (event) => {
     console.log("TODO WebGridCommit");
-}, false);
+});
 
