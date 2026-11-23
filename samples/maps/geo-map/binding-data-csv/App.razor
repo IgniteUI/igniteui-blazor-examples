@@ -46,12 +46,12 @@
         this.Data = dataItems;
     }
 
-    protected override void OnAfterRender(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (MapRef != null && !firstRender)
+        if (firstRender)
         {
-            var geoRegion = new Rect(-130, 15, new Size(65, 35));
-            MapRef.ZoomToGeographic(geoRegion);
+            await MapRef.EnsureReady();
+            await MapRef.ZoomToGeographicAsync(new Rect(-130, 15, new Size(65, 35)));
         }
     }
 
