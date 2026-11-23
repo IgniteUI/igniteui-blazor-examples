@@ -80,7 +80,7 @@
             Editable="true"
             Groupable="true"
             HasSummary="true"
-            Summaries="DiscontinuedSummary"
+            SummariesScript="WebGridDiscontinuedSummary"
             Name="column1"
             @ref="column1">
             </IgbColumn>
@@ -158,48 +158,6 @@
         </div>;
     };
 
-        private object DiscontinuedSummary = new
-        {
-            operate = new Func<object[], object[], string, IgbSummaryResult[]>((data, allData, fieldName) =>
-            {
-                var sum = (object[] data) =>
-                {
-                    return data.Length > 0 && data.Select(el => (double)el).Where((el) => el != null).Count() > 0 ?
-                        data.Select(el => (double)el).Where((el) => el != null).Aggregate((a, b) => a + b) :
-                        0;
-                };
-                var result = new IgbSummaryResult[] { };
-                result.Append(new IgbSummaryResult
-                {
-                    Key = "products",
-                    Label = "Producs",
-                    Result = data?.Length
-                });
-                result.Append(new IgbSummaryResult
-                {
-                    Key = "total",
-                    Label = "Total Items",
-                    Result = sum(data)
-                });
-                result.Append(new IgbSummaryResult
-                {
-                    Key = "discontinued",
-                    Label = "Discontinued Producs",
-                    Result = allData.Select(r => r.GetType().GetProperty("Discontinued")?.GetValue(r)).Where((rec) => rec != null).Count()
-                });
-                result.Append(new IgbSummaryResult
-                {
-                    Key = "totalDiscontinued",
-                    Label = "Total Discontinued Items",
-                    Result = sum(
-                        allData
-                        .Where((rec) => rec.GetType().GetProperty("Discontinued")?.GetValue(rec) != null)
-                        .Select(r => r.GetType().GetProperty(fieldName)?.GetValue(r)).ToArray()
-                    )
-                });
-                return result;
-            })
-        };
     private NwindData _nwindData = null;
     public NwindData NwindData
     {

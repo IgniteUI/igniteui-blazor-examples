@@ -1,4 +1,6 @@
-﻿function onNetworkPolarChartMouseEnter(o, e) {
+﻿import { registerScript } from './_content/IgniteUI.Blazor/api.js';
+
+function onNetworkPolarChartMouseEnter(o, e) {
 
     if (e.series.tooltipTemplate === null ||
         e.series.tooltipTemplate === undefined) {
@@ -6,7 +8,7 @@
         console.log("onNetworkPolarChartMouseEnter");
     }
 }
-igRegisterScript("onNetworkPolarChartMouseEnter", onNetworkPolarChartMouseEnter, false);
+registerScript("onNetworkPolarChartMouseEnter", onNetworkPolarChartMouseEnter);
 
 function onNetworkPolarChartTooltip(context) {
 
@@ -87,4 +89,4 @@ function onNetworkPolarChartMarker(o, e) {
         }
     }
 }
-igRegisterScript("onNetworkPolarChartMarker", onNetworkPolarChartMarker, true);
+registerScript("onNetworkPolarChartMarker", onNetworkPolarChartMarker, true);

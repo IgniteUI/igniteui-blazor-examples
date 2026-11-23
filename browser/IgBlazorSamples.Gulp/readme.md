@@ -7,7 +7,7 @@ Gulp tasks that maintain the samples and copy them into the samples browser apps
 `copySamplesToClient` copies every sample under `samples/` into `IgBlazorSamples.Client`; then open `IgBlazorSamplesBrowser.sln` and run `IgBlazorSamples.Client`. For each sample:
 
 - `App.razor` and any `Components/*.razor` go to `Pages/<group>/<component>/<sample>/`, with `@page` routes added and the sample's `wwwroot/*.css` inlined as a `<style>` block.
-- Its C# files, except `Program.cs`, go to `Services/`.
+- Its C# files, except `Program.cs`, go to `Services/`. The page registers the modules that `Program.cs` lists in its `OnInitialized` instead, so a sample's own module list also applies in the browser.
 - Its `wwwroot/*.js` files go to `wwwroot/sb/`, and a script tag for each is inserted into `wwwroot/index.html`.
 
 It also writes the navigation (`wwwroot/toc.json`) and the code viewer files (`wwwroot/code-viewer/`), and regenerates each sample's `ReadMe.md`.

@@ -1,5 +1,7 @@
+import { registerScript } from "./_content/IgniteUI.Blazor/api.js";
+
 // the display-only dropdowns stay open when the user clicks outside them
-igRegisterScript("ComboKeepOpen", (evt) => evt.preventDefault(), false);
+registerScript("ComboKeepOpen", (evt) => evt.preventDefault());
 
 (() => {
     // each state sheet, with the theme sheets that it was copied from

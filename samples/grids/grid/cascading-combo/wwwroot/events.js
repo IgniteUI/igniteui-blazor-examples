@@ -1,31 +1,29 @@
+import { registerScript, html } from './_content/IgniteUI.Blazor/api.js';
 
-igRegisterScript("WebGridCountryDropDownTemplate", (ctx) => {
-    var html = window.igTemplating.html;
+registerScript("WebGridCountryDropDownTemplate", (ctx) => {
     var id = ctx.cell.id.rowID;
     var comboId = "country_" + id;
     return html`<igc-combo placeholder="Choose Country..." value-key="Country" display-key="Country" id="${comboId}" single-select></igc-combo>`;
-}, false);
+});
 
-igRegisterScript("WebGridRegionDropDownTemplate", (ctx) => {
-    var html = window.igTemplating.html;
+registerScript("WebGridRegionDropDownTemplate", (ctx) => {
     var id = ctx.cell.id.rowID;
     var comboId = "region_" + id;
     var progressId = "progress_region_" + id;
     return html`<div style="display:flex; flex-direction: column;"><igc-combo placeholder="Choose Region..." disabled value-key="Region"  display-key="Region" id="${comboId}" single-select></igc-combo><igc-linear-progress style="display:none;" indeterminate id="${progressId}"></<igc-linear-progress><div>`;
-}, false);
+});
 
-igRegisterScript("WebGridCityDropDownTemplate", (ctx) => {
-    var html = window.igTemplating.html;
+registerScript("WebGridCityDropDownTemplate", (ctx) => {
     var id = ctx.cell.id.rowID;
     var comboId = "city_" + id;
     var progressId = "progress_city_" + id;
     return html`<div style="display:flex; flex-direction: column;"><igc-combo placeholder="Choose City..." disabled value-key="Name"  display-key="Name" id="${comboId}" single-select></igc-combo><igc-linear-progress style="display:none;" indeterminate id="${progressId}"></<igc-linear-progress></div>`;
-}, false);
+});
 
-igRegisterScript("WebGridWithComboRendered", (event) => {
+registerScript("WebGridWithComboRendered", (event) => {
         const grid = document.getElementsByTagName("igc-grid")[0];
         var worldCitiesAbove500K = grid.data;
-        countries = worldCitiesAbove500K.filter(x => this.countryNames.indexOf(x.Country) !== -1).filter((value, index, array) => array.findIndex(x => x.Country === value.Country) === index);
+        countries = worldCitiesAbove500K.filter(x => countryNames.indexOf(x.Country) !== -1).filter((value, index, array) => array.findIndex(x => x.Country === value.Country) === index);
         regions = worldCitiesAbove500K.filter((value, index, array) => array.findIndex(x => x.Region === value.Region) === index);
         cities = worldCitiesAbove500K.filter((value, index, array) => array.findIndex(x => x.Name === value.Name) === index);
         grid.data = [
@@ -52,13 +50,13 @@ igRegisterScript("WebGridWithComboRendered", (event) => {
         setTimeout(() => {
                 for (let index = 0; index < grid.data.length; index++) {
                         const rowId = grid.data[index].ID;
-                        this.bindEventsCountryCombo(rowId, grid.getCellByKey(rowId, "Country"));
-                        this.bindEventsRegionCombo(rowId, grid.getCellByKey(rowId, "Region"));
-                        this.bindEventsCityCombo(rowId, grid.getCellByKey(rowId, "City"));
+                        bindEventsCountryCombo(rowId, grid.getCellByKey(rowId, "Country"));
+                        bindEventsRegionCombo(rowId, grid.getCellByKey(rowId, "Region"));
+                        bindEventsCityCombo(rowId, grid.getCellByKey(rowId, "City"));
                 }
         }, 100);
 
-}, false);
+});
 var countryNames = [
         'United States',
         'Japan',
@@ -85,7 +83,7 @@ function bindEventsCountryCombo(rowId, cell) {
                         setTimeout(() => {
                                 nextProgress.style.display = "none";
                                 nextCombo.disabled = false;
-                                nextCombo.data = this.regions.filter(x => x.Country === value);
+                                nextCombo.data = regions.filter(x => x.Country === value);
                         }, 2000);
 
                 }
@@ -115,7 +113,7 @@ function bindEventsRegionCombo(rowId, cell) {
                         setTimeout(() => {
                                 nextProgress.style.display = "none";
                                 nextCombo.disabled = false;
-                                nextCombo.data = this.cities.filter(x => x.Region === value);
+                                nextCombo.data = cities.filter(x => x.Region === value);
                         }, 2000);
                 }
         });

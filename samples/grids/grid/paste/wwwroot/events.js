@@ -1,15 +1,15 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
 
-
-igRegisterScript("WebGridPasteModeChange", (sender, evtArgs) => {
+registerScript("WebGridPasteModeChange", (sender, evtArgs) => {
     var item = sender;
     var newVal = item.primitiveValue;
-    this["pasteMode"] = newVal === "NewRecords" ? "Paste data as new records" : "Paste starting from active cell";
-}, false);
+    pasteMode = newVal === "NewRecords" ? "Paste data as new records" : "Paste starting from active cell";
+});
 
-igRegisterScript("WebGridPasteFromExcel", (evtArgs) => {
+registerScript("WebGridPasteFromExcel", (evtArgs) => {
     const grid = document.getElementById("grid");
     grid.addEventListener("keydown", onWebGridPasteFromExcelKeyDown);
-}, false);
+});
 
 function onWebGridPasteFromExcelKeyDown(eventArgs) {
     const ctrl = eventArgs.ctrlKey;
@@ -137,7 +137,7 @@ function onPaste(eventArgs) {
         return pasteData;
     }
 
-igRegisterScript("WebGridEditedRowClassesHandler", () => {
+registerScript("WebGridEditedRowClassesHandler", () => {
     return {
         edited: (row) => updatedRecsPK.indexOf(row.data[row.grid.primaryKey]) !== -1
     };

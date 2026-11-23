@@ -1,3 +1,5 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
+
 // Child-grid references are not available in Blazor's GridCreated callback.
 window.hierarchicalGridMock = {
     initialize(service) {
@@ -8,7 +10,7 @@ window.hierarchicalGridMock = {
     }
 };
 
-igRegisterScript("OnGridCreated", (args) => {
+registerScript("OnGridCreated", (args) => {
     const context = args.detail;
     const grid = context.grid;
     grid.isLoading = true;
@@ -25,4 +27,4 @@ igRegisterScript("OnGridCreated", (args) => {
             grid.isLoading = false;
             grid.markForCheck();
         });
-}, false);
+});

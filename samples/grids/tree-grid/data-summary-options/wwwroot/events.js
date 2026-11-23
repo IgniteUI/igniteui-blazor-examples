@@ -1,6 +1,6 @@
+import { registerScript, html } from './_content/IgniteUI.Blazor/api.js';
 
-igRegisterScript("WebTreeGridSummariesHeaderTemplate", (ctx) => {
-    var html = window.igTemplating.html;
+registerScript("WebTreeGridSummariesHeaderTemplate", (ctx) => {
     window.toggleSummary = function toggleSummary(column) {
         column.hasSummary = !column.hasSummary;
     }
@@ -8,5 +8,5 @@ igRegisterScript("WebTreeGridSummariesHeaderTemplate", (ctx) => {
     <span style="float:left">${ctx.column.field}</span>
 	<span style="float:right; color:${ctx.column.hasSummary ? '#e41c77' : ''}" @pointerdown=${() => toggleSummary(ctx.column)}>∑</span>
 </div>`;
-}, false);
+});
 

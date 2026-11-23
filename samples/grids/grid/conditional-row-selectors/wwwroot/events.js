@@ -1,6 +1,6 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
 
-
-igRegisterScript("WebGridRowSelectionConditional", (event) => {
+registerScript("WebGridRowSelectionConditional", (event) => {
     const eventArgs = event.detail;
     if (!eventArgs.added.length && eventArgs.removed.length) {
         // ignore deselect
@@ -18,5 +18,5 @@ igRegisterScript("WebGridRowSelectionConditional", (event) => {
             // all selected from header, deselect instead
             eventArgs.newSelection = [];
     }
-}, false);
+});
 

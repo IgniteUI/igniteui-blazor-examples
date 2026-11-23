@@ -1,4 +1,6 @@
-﻿function onGanttChartMouseEnter(o, e) {
+﻿import { registerScript } from './_content/IgniteUI.Blazor/api.js';
+
+function onGanttChartMouseEnter(o, e) {
 
     if (e.series.tooltipTemplate === null ||
         e.series.tooltipTemplate === undefined) {
@@ -6,7 +8,7 @@
         console.log("onGanttChartMouseEnter ");
     }
 }
-igRegisterScript("onGanttChartMouseEnter", onGanttChartMouseEnter, false);
+registerScript("onGanttChartMouseEnter", onGanttChartMouseEnter);
 
 function onGanttTooltip(context) {
 
@@ -98,4 +100,4 @@ function onGanttMarker(o, e) {
         }
     }
 }
-igRegisterScript("onGanttMarker", onGanttMarker, true);
+registerScript("onGanttMarker", onGanttMarker, true);

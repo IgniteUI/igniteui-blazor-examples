@@ -1,3 +1,4 @@
+import { registerScript } from './_content/IgniteUI.Blazor/api.js';
 
     var ___intervalDays = 0;
     var ___intervalHours = 1;
@@ -95,6 +96,9 @@
         return stock;
     }
 
-    igRegisterScript("getFCHighVolumeData", getFCHighVolumeData, true);
+    registerScript("getFCHighVolumeData", getFCHighVolumeData, true);
 
     
+
+// called by name from the page, so keep it reachable from the module
+window.setFCGenerationRange = setFCGenerationRange;

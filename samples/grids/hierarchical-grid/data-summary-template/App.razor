@@ -60,7 +60,7 @@
             Header="Photo"
             DataType="GridColumnDataType.Image"
             HasSummary="true"
-            Summaries="SingerSummary"
+            SummariesScript="WebHierarchicalGridSingerSummary"
             Name="column1"
             @ref="column1">
             </IgbColumn>
@@ -237,44 +237,6 @@
         </div>;
     };
 
-        private object SingerSummary = new
-        {
-            operate = new Func<object[], object[], string, IgbSummaryResult[]>((data, allData, fieldName) =>
-            {
-                var sum = (object[] data) =>
-                {
-                    return data.Length > 0 && data.Select(el => (double)el).Where((el) => el != null).Count() > 0 ?
-                        data.Select(el => (double)el).Where((el) => el != null).Aggregate((a, b) => a + b) :
-                        0;
-                };
-                var result = new IgbSummaryResult[] { };
-                result.Append(new IgbSummaryResult
-                    {
-                        Key = "nominatedSingers",
-                        Label =  "Nominated Singers",
-                        Result = allData.Count(rec => (int)((Dictionary<string, object>)rec)["GrammyNominations"] > 0)
-                    });
-                result.Append(new IgbSummaryResult
-                    {
-                        Key = "singersWithAwards",
-                        Label = "Singers with Awards",
-                        Result = allData.Count(rec => (int)((Dictionary<string, object>)rec)["GrammyAwards"] > 0)
-                    });
-                result.Append(new IgbSummaryResult
-                    {
-                        Key = "nominations",
-                        Label = "Total Nominations",
-                        Result = sum(allData.Select(r => (object)((int)((Dictionary<string, object>)r)["GrammyNominations"])).ToArray())
-                    });
-                result.Append(new IgbSummaryResult
-                    {
-                        Key = "awards",
-                        Label = "Total Awards",
-                        Result = sum(allData.Select(r => (object)((int)((Dictionary<string, object>)r)["GrammyAwards"])).ToArray())
-                    });
-                return result;
-            })
-        };
     private SingersData _singersData = null;
     public SingersData SingersData
     {

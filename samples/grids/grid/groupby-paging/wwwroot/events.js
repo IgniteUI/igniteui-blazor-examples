@@ -1,6 +1,6 @@
+import { registerScript, html } from './_content/IgniteUI.Blazor/api.js';
 
-igRegisterScript("WebGridGroupByRowTemplate", (ctx) => {
-    var html = window.igTemplating.html;
+registerScript("WebGridGroupByRowTemplate", (ctx) => {
     var groupRow = ctx.implicit;
     window.calc2017 = function calc2017(values) {
         const startDate = new Date('1/1/2017');
@@ -15,5 +15,5 @@ igRegisterScript("WebGridGroupByRowTemplate", (ctx) => {
         <igc-badge>${groupRow.records.length}</igc-badge>
         <span style="color:#09f;"> Ordered in 2017:</span><span>${ calc2017(groupRow.records)}</span>
 </div>`;
-}, false);
+});
 

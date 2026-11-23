@@ -1,6 +1,6 @@
+import { registerScript, html } from './_content/IgniteUI.Blazor/api.js';
 
-igRegisterScript("WebGridNestedDataCellTemplate", (ctx) => {
-    var html = window.igTemplating.html;
+registerScript("WebGridNestedDataCellTemplate", (ctx) => {
     window.keyUpHandler = function () {
         ctx.cell.row.data[window.event.target.id] = window.event.target.value;
     }
@@ -20,5 +20,5 @@ igRegisterScript("WebGridNestedDataCellTemplate", (ctx) => {
     </igc-expansion-panel>
         `;
     }
-}, false);
+});
 
