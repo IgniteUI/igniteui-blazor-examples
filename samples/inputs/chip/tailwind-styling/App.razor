@@ -2,10 +2,10 @@
 @inject IJSRuntime JS
 
 <div class="container sample flex items-center justify-center">
-    <div role="group" aria-labelledby="activity-title" class="box-border flex w-full max-w-[517px] flex-col gap-4 rounded-2xl bg-[var(--color-activity-surface)] p-[1rem] [font-family:aktiv-grotesk,sans-serif] [--ig-font-family:aktiv-grotesk,sans-serif] [--ig-size:var(--ig-size-large)]">
+    <div role="group" aria-labelledby="activity-title" class="box-border flex w-full max-w-[517px] flex-col gap-4 rounded-2xl bg-[var(--color-activity-surface)] p-4 [font-family:aktiv-grotesk,sans-serif] [--ig-font-family:aktiv-grotesk,sans-serif] [--ig-size:var(--ig-size-large)]">
         @* Not a heading: the theme's heading styles would override these utilities. *@
         <span id="activity-title" class="flex h-8 items-center text-xl font-medium leading-6 text-[var(--color-activity-ink)]">Preferred Activity</span>
-        <div role="group" aria-label="Selected activities" class="box-border flex min-h-[72px] flex-wrap items-center gap-4 rounded-2xl bg-white px-[1.5rem] py-[1.25rem]">
+        <div role="group" aria-label="Selected activities" class="box-border flex min-h-[72px] flex-wrap items-center gap-4 rounded-2xl bg-white px-6 py-5">
             @foreach (var activity in Selected)
             {
                 <IgbChip @key="activity.Label" data-activity="@activity.Label" class="flex [--ig-chip-border-radius:0.5rem] [--ig-chip-background:var(--color-activity-primary)] [--ig-chip-text-color:white] [--ig-chip-hover-background:var(--color-activity-primary-strong)] [--ig-chip-hover-text-color:white] [--ig-chip-focus-background:var(--color-activity-primary-strong)] [--ig-chip-focus-text-color:white] [--ig-chip-remove-icon-color:white] [--ig-chip-remove-icon-color-focus:white]" Removable="true" Remove="@(args => RemoveActivity(activity))">
@@ -16,7 +16,7 @@
             }
             <IgbIcon @ref="IconRef" class="ms-auto text-[var(--color-activity-primary)] [--ig-icon-size:1.125rem]" IconName="add" Collection="material" aria-hidden="true" />
         </div>
-        <div role="group" aria-label="Add an activity" class="flex flex-wrap gap-4 rounded-2xl bg-white p-[1.25rem]">
+        <div role="group" aria-label="Add an activity" class="flex flex-wrap gap-4 rounded-2xl bg-white p-5">
             @foreach (var activity in Available)
             {
                 @* IgniteUI.Blazor has no outlined chips yet, so the border color tokens draw them. *@
