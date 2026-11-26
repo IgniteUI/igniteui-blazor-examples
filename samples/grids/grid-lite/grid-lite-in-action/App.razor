@@ -63,56 +63,64 @@
             {
                 <div class="team-directory__columns-bar">
                     <span class="team-directory__columns-info" aria-live="polite">@ColumnsInfo</span>
-                    <IgbChip class="department-filter__chip"
-                             Selectable="true"
-                             Selected="showAllColumns"
-                             SelectedChanged="ToggleAllColumnsAsync">
+                    <IgbChip class="department-filter__chip" Selectable="true" @bind-Selected="showAllColumns">
                         Show all columns
                     </IgbChip>
                 </div>
             }
 
             <div class="team-directory__grid-host" @ref="gridHost">
-                <IgbGridLite @ref="grid"
-                             TItem="TeamMember"
-                             Data="members"
-                             class="@GridClass"
-                             AdoptRootStyles="true"
-                             SortingOptions="sortingOptions"
-                             SortingExpressions="initialSort"
-                             Filtered="OnGridFilteredAsync"
-                             Rendered="OnGridRenderedAsync">
-                    @* Every width has a floor that keeps its content and the filter row's chip readable, and the
-                       grid scrolls sideways below the sum of the floors. Narrower hosts drop the columns that
-                       matter least first (see LayoutTier and events.js), so what remains still fits. *@
-                    <IgbGridLiteColumn Field="@nameof(TeamMember.Name)" Header="Employee"
-                                       DataType="GridLiteColumnDataType.String" Width="minmax(180px, 2fr)"
-                                       Sortable Filterable />
-                    <IgbGridLiteColumn Field="@nameof(TeamMember.Department)" Header="Department"
-                                       DataType="GridLiteColumnDataType.String" Width="minmax(150px, 1fr)"
-                                       Sortable Filterable />
-                    <IgbGridLiteColumn Field="@nameof(TeamMember.EmploymentType)" Header="Employment"
-                                       DataType="GridLiteColumnDataType.String" Width="minmax(130px, 1fr)"
-                                       Filterable />
-                    <IgbGridLiteColumn Field="@nameof(TeamMember.Satisfaction)" Header="Satisfaction"
-                                       DataType="GridLiteColumnDataType.Number" Width="minmax(170px, 1fr)"
-                                       Sortable Filterable />
-                    @* Grid Lite has no date type: the column holds the displayed label, and events.js gives
-                       it a comparer that sorts by date. *@
-                    <IgbGridLiteColumn Field="@nameof(TeamMember.RegisteredLabel)" Header="Registered"
-                                       DataType="GridLiteColumnDataType.String" Width="minmax(130px, 1fr)"
-                                       Sortable Filterable />
-                    <IgbGridLiteColumn Field="@nameof(TeamMember.Active)" Header="Status"
-                                       DataType="GridLiteColumnDataType.Boolean" Width="minmax(120px, 1fr)"
-                                       Filterable />
-                    <IgbGridLiteColumn Field="@nameof(TeamMember.Location)" Header="Location"
-                                       DataType="GridLiteColumnDataType.String" Width="minmax(140px, 1fr)"
-                                       Sortable Filterable />
-                    @* Hidden: the department chips filter on this column, so they combine with the
-                       Department column's own filter instead of replacing it. *@
-                    <IgbGridLiteColumn Field="@nameof(TeamMember.QuickFilterDepartment)"
-                                       DataType="GridLiteColumnDataType.String" Hidden />
-                </IgbGridLite>
+                @if (gridDefined)
+                {
+                    <IgbGridLite @ref="grid"
+                                 TItem="TeamMember"
+                                 Data="members"
+                                 class="@GridClass"
+                                 AdoptRootStyles="true"
+                                 SortingOptions="sortingOptions"
+                                 SortingExpressions="initialSort"
+                                 Filtered="OnGridFilteredAsync"
+                                 Rendered="OnGridRenderedAsync">
+                        @* Every width has a floor that keeps its content and the filter row's chip readable, and the
+                           grid scrolls sideways below the sum of the floors. Narrower hosts drop the columns that
+                           matter least first (see LayoutTier), so what remains still fits; the compact layout
+                           lowers the floors of the two columns that always stay. *@
+                        <IgbGridLiteColumn Field="@nameof(TeamMember.Name)" Header="Employee"
+                                           DataType="GridLiteColumnDataType.String"
+                                           Width="@(IsCompact ? "minmax(150px, 2fr)" : "minmax(180px, 2fr)")"
+                                           Sortable Filterable />
+                        <IgbGridLiteColumn Field="@nameof(TeamMember.Department)" Header="Department"
+                                           DataType="GridLiteColumnDataType.String"
+                                           Width="@(IsCompact ? "minmax(125px, 1fr)" : "minmax(150px, 1fr)")"
+                                           Sortable Filterable />
+                        <IgbGridLiteColumn Field="@nameof(TeamMember.EmploymentType)" Header="Employment"
+                                           DataType="GridLiteColumnDataType.String" Width="minmax(130px, 1fr)"
+                                           Hidden="@HiddenFrom(LayoutTier.Medium)"
+                                           Filterable />
+                        <IgbGridLiteColumn Field="@nameof(TeamMember.Satisfaction)" Header="Satisfaction"
+                                           DataType="GridLiteColumnDataType.Number" Width="minmax(170px, 1fr)"
+                                           Hidden="@HiddenFrom(LayoutTier.Narrow)"
+                                           Sortable Filterable />
+                        @* Grid Lite has no date type: the column holds the displayed label, and events.js gives
+                           it a comparer that sorts by date. *@
+                        <IgbGridLiteColumn Field="@nameof(TeamMember.RegisteredLabel)" Header="Registered"
+                                           DataType="GridLiteColumnDataType.String" Width="minmax(130px, 1fr)"
+                                           Hidden="@HiddenFrom(LayoutTier.Compact)"
+                                           Sortable Filterable />
+                        <IgbGridLiteColumn Field="@nameof(TeamMember.Active)" Header="Status"
+                                           DataType="GridLiteColumnDataType.Boolean" Width="minmax(120px, 1fr)"
+                                           Hidden="@HiddenFrom(LayoutTier.Minimal)"
+                                           Filterable />
+                        <IgbGridLiteColumn Field="@nameof(TeamMember.Location)" Header="Location"
+                                           DataType="GridLiteColumnDataType.String" Width="minmax(140px, 1fr)"
+                                           Hidden="@HiddenFrom(LayoutTier.Wide)"
+                                           Sortable Filterable />
+                        @* Hidden: the department chips filter on this column, so they combine with the
+                           Department column's own filter instead of replacing it. *@
+                        <IgbGridLiteColumn Field="@nameof(TeamMember.QuickFilterDepartment)"
+                                           DataType="GridLiteColumnDataType.String" Hidden />
+                    </IgbGridLite>
+                }
             </div>
         </section>
     </div>
@@ -148,17 +156,6 @@
     // Location. The hidden quick-filter column does not count.
     private const int DataColumnCount = 7;
 
-    // The columns a tier drops. They are hidden through the grid's own column list (events.js): the
-    // grid reads its column elements once, so a Hidden parameter changed later would not reach it.
-    private static string[] HiddenFieldsFor(LayoutTier tier) => new[]
-    {
-        tier > LayoutTier.Full ? nameof(TeamMember.Location) : null,
-        tier > LayoutTier.Wide ? nameof(TeamMember.EmploymentType) : null,
-        tier > LayoutTier.Medium ? nameof(TeamMember.RegisteredLabel) : null,
-        tier > LayoutTier.Compact ? nameof(TeamMember.Satisfaction) : null,
-        tier > LayoutTier.Narrow ? nameof(TeamMember.Active) : null
-    }.Where(field => field != null).ToArray();
-
     private readonly IgbGridLiteSortingOptions sortingOptions = new() { Mode = GridLiteSortingMode.Single };
 
     // One stable instance: the grid only re-sends a parameter that changed, so re-rendering (for
@@ -175,6 +172,7 @@
     private LayoutTier tier = LayoutTier.Full;
     private bool showAllColumns;
     private bool isDark;
+    private bool gridDefined;
     private DotNetObjectReference<App> selfReference;
 
     private IgbGridLite<TeamMember> grid;
@@ -185,11 +183,18 @@
 
     private string ThemeButtonLabel => isDark ? "Switch to light theme" : "Switch to dark theme";
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         members = TeamDirectoryData.CreateMembers();
         departmentOptions = TeamDirectoryData.CreateDepartmentOptions(members);
         visibleCount = members.Count;
+
+        // Grid Lite defines its column element before the grid, so a column rendered before the grid's
+        // script loads never passes later changes on to the grid: Hidden and Width would keep their
+        // first values (https://github.com/IgniteUI/igniteui-grid-lite/issues/95). Loading the script
+        // before rendering the grid avoids that.
+        await JSRuntime.InvokeVoidAsync("import", "./_content/IgniteUI.Blazor.GridLite/js/blazor-igc-grid-lite.js");
+        gridDefined = true;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -210,36 +215,30 @@
     }
 
     [JSInvokable]
-    public async Task OnHostWidthChanged(double width)
+    public void OnHostWidthChanged(double width)
     {
         var next = TierFor(width);
         if (next != tier)
         {
             tier = next;
-            await ApplyColumnVisibilityAsync();
-            await InvokeAsync(StateHasChanged);
+            StateHasChanged();
         }
     }
 
-    private Task ToggleAllColumnsAsync(bool selected)
-    {
-        showAllColumns = selected;
-        return ApplyColumnVisibilityAsync();
-    }
+    // Whether a column is hidden: from the tier that drops it on, unless the chip shows all columns,
+    // and then the grid scrolls sideways.
+    private bool HiddenFrom(LayoutTier dropsAt) => !showAllColumns && tier >= dropsAt;
 
-    // The chip overrides the layout: every column shows and the grid scrolls sideways.
-    private string[] HiddenFields => showAllColumns ? Array.Empty<string>() : HiddenFieldsFor(tier);
+    // Each tier drops one more column than the one before it.
+    private int HiddenColumnCount => showAllColumns ? 0 : (int)tier;
 
-    private string ColumnsInfo => $"{DataColumnCount - HiddenFields.Length} of {DataColumnCount} columns shown";
+    private string ColumnsInfo => $"{DataColumnCount - HiddenColumnCount} of {DataColumnCount} columns shown";
 
     // The narrowest layout also packs its two columns tighter (smaller cell padding, slimmer pill and
     // avatar, lower minimum widths) so they fit even a 320 px screen without scrolling.
     private bool IsCompact => tier == LayoutTier.Minimal && !showAllColumns;
 
     private string GridClass => IsCompact ? "team-directory__grid team-directory__grid--compact" : "team-directory__grid";
-
-    private Task ApplyColumnVisibilityAsync() =>
-        JSRuntime.InvokeVoidAsync("gridLiteInAction.setLayout", gridHost, HiddenFields, IsCompact).AsTask();
 
     public async ValueTask DisposeAsync()
     {
