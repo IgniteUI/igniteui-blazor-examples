@@ -1,0 +1,97 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="container vertical ig-typography">
+    @* Registers the icons that the cell templates in wwwroot/events.js show. *@
+    <IgbIcon @ref="iconRegistrar" hidden></IgbIcon>
+    <div class="container vertical fill">
+        <IgbGrid Class="inventory-grid"
+                 Data="organicFoods"
+                 PrimaryKey="SKU"
+                 RowHeight="51"
+                 RowSelection="GridSelectionMode.Multiple"
+                 RowEditable="true"
+                 AllowFiltering="true"
+                 FilterMode="FilterMode.ExcelStyleFilter"
+                 AllowAdvancedFiltering="true"
+                 SortingExpressions="sortingExpressions"
+                 GroupingExpressions="groupingExpressions"
+                 HideGroupedColumns="true">
+            <IgbGridToolbar>
+                <IgbGridToolbarTitle>Organic and natural foods</IgbGridToolbarTitle>
+                <IgbGridToolbarActions>
+                    <IgbGridToolbarHiding></IgbGridToolbarHiding>
+                    <IgbGridToolbarPinning></IgbGridToolbarPinning>
+                    <IgbGridToolbarExporter ExportStartedScript="InventoryExcludeActions"></IgbGridToolbarExporter>
+                    <IgbGridToolbarAdvancedFiltering></IgbGridToolbarAdvancedFiltering>
+                </IgbGridToolbarActions>
+            </IgbGridToolbar>
+
+            <IgbColumn Field="ProductName" Header="Product" Width="304px" Sortable="true" Editable="false"
+                       BodyTemplateScript="InventoryProductTemplate"></IgbColumn>
+            <IgbColumn Field="SKU" Header="SKU" Width="88px" Sortable="true" Editable="false"></IgbColumn>
+            <IgbColumn Field="Category" Header="Category" Width="160px" Sortable="true" Groupable="true" Editable="false"></IgbColumn>
+            <IgbColumn Field="Supplier" Header="Supplier" Width="156px" Sortable="true" Groupable="true" Editable="true"></IgbColumn>
+            <IgbColumn Field="Organic" Header="Organic" DataType="GridColumnDataType.Boolean" Width="104px"
+                       Sortable="true" Groupable="true" Editable="false"></IgbColumn>
+            <IgbColumn Field="Storage" Header="Storage" Width="128px" Sortable="true" Groupable="true" Editable="false"
+                       BodyTemplateScript="InventoryStorageTemplate"></IgbColumn>
+            <IgbColumn Field="Quantity" Header="Quantity" DataType="GridColumnDataType.Number" Width="108px"
+                       Sortable="true" Editable="false"></IgbColumn>
+            <IgbColumn Field="StockLevel" Header="Stock Level" DataType="GridColumnDataType.Number" Width="132px"
+                       Sortable="true" Editable="false" BodyTemplateScript="InventoryStockLevelTemplate"></IgbColumn>
+            <IgbColumn Field="Unit" Header="Unit" Width="120px" Sortable="true" Editable="false"></IgbColumn>
+            <IgbColumn Field="Status" Header="Status" Width="120px" Sortable="true" Groupable="true" Editable="false"
+                       BodyTemplateScript="InventoryStatusTemplate"></IgbColumn>
+            <IgbColumn Field="UnitPrice" Header="Unit Price" DataType="GridColumnDataType.Currency" PipeArgs="euroPipeArgs"
+                       Width="116px" Sortable="true" Editable="true"></IgbColumn>
+            <IgbColumn Field="RetailPrice" Header="Retail Price" DataType="GridColumnDataType.Currency" PipeArgs="euroPipeArgs"
+                       Width="124px" Sortable="true" Editable="true"></IgbColumn>
+            <IgbColumn Field="ExpiryDate" Header="Expiry Date" DataType="GridColumnDataType.Date" Width="124px"
+                       Sortable="true" Editable="true"></IgbColumn>
+            <IgbColumn Header="Actions" Width="84px" Pinned="true" PinningPosition="ColumnPinningPosition.End"
+                       Filterable="false" Editable="false" DisableHiding="true" DisablePinning="true"
+                       BodyTemplateScript="InventoryActionsTemplate"></IgbColumn>
+
+            <IgbPaginator PerPage="15"></IgbPaginator>
+        </IgbGrid>
+    </div>
+</div>
+
+@code {
+    // The Material icons of the cell templates, as SVG; they take the colour of the text.
+    private const string IconCollection = "material";
+    private const string AcUnitIcon = "<svg viewBox='0 0 20 20'><path d='M18.3333 9.16667H14.8583L17.5583 6.46667L16.3833 5.28333L12.5 9.16667H10.8333V7.5L14.7167 3.61667L13.5333 2.44167L10.8333 5.14167V1.66667H9.16667V5.14167L6.46667 2.44167L5.28333 3.61667L9.16667 7.5V9.16667H7.5L3.61667 5.28333L2.44167 6.46667L5.14167 9.16667H1.66667V10.8333H5.14167L2.44167 13.5333L3.61667 14.7167L7.5 10.8333H9.16667V12.5L5.28333 16.3833L6.46667 17.5583L9.16667 14.8583V18.3333H10.8333V14.8583L13.5333 17.5583L14.7167 16.3833L10.8333 12.5V10.8333H12.5L16.3833 14.7167L17.5583 13.5333L14.8583 10.8333H18.3333V9.16667Z'/></svg>";
+    private const string FormatColorResetIcon = "<svg viewBox='0 0 20 20'><path d='M15 11.6667C15 8.33333 10 2.66667 10 2.66667C10 2.66667 8.89167 3.925 7.725 5.6L14.8833 12.7583C14.9583 12.4083 15 12.0417 15 11.6667ZM14.2667 14.2667L10.4167 10.4167L4.39167 4.39167L3.33333 5.45833L6.1 8.225C5.45833 9.43333 5 10.6583 5 11.6667C5 14.425 7.24167 16.6667 10 16.6667C11.2667 16.6667 12.4167 16.1917 13.3 15.4167L15.4917 17.6083L16.55 16.55L14.2667 14.2667Z'/></svg>";
+    private const string ThermostatIcon = "<svg viewBox='0 0 20 20'><path d='M12.5 10.8333V4.16667C12.5 2.78333 11.3833 1.66667 10 1.66667C8.61667 1.66667 7.5 2.78333 7.5 4.16667V10.8333C6.49167 11.5917 5.83333 12.8083 5.83333 14.1667C5.83333 16.4667 7.7 18.3333 10 18.3333C12.3 18.3333 14.1667 16.4667 14.1667 14.1667C14.1667 12.8083 13.5083 11.5917 12.5 10.8333ZM9.16667 9.16667V4.16667C9.16667 3.70833 9.54167 3.33333 10 3.33333C10.4583 3.33333 10.8333 3.70833 10.8333 4.16667V5H10V5.83333H10.8333V7.5H10V8.33333H10.8333V9.16667H9.16667Z'/></svg>";
+    private const string EditIcon = "<svg viewBox='0 0 18 18'><path d='M2.25 12.9372V15.7497H5.0625L13.3575 7.45468L10.545 4.64218L2.25 12.9372ZM15.5325 5.27968C15.825 4.98718 15.825 4.51468 15.5325 4.22218L13.7775 2.46718C13.485 2.17468 13.0125 2.17468 12.72 2.46718L11.3475 3.83968L14.16 6.65218L15.5325 5.27968Z'/></svg>";
+    private const string DeleteIcon = "<svg viewBox='0 0 18 18'><path d='M4.5 14.25C4.5 15.075 5.175 15.75 6 15.75H12C12.825 15.75 13.5 15.075 13.5 14.25V5.25H4.5V14.25ZM14.25 3H11.625L10.875 2.25H7.125L6.375 3H3.75V4.5H14.25V3Z'/></svg>";
+
+    private readonly OrganicFoodsData organicFoods = new OrganicFoodsData();
+
+    private readonly IgbSortingExpression[] sortingExpressions =
+    {
+        new IgbSortingExpression { FieldName = "ProductName", Dir = SortingDirection.Asc, IgnoreCase = true }
+    };
+
+    private readonly IgbGroupingExpression[] groupingExpressions =
+    {
+        new IgbGroupingExpression { FieldName = "Category", Dir = SortingDirection.Asc, IgnoreCase = true }
+    };
+
+    private readonly IgbColumnPipeArgs euroPipeArgs = new IgbColumnPipeArgs { CurrencyCode = "EUR", DigitsInfo = "1.2-2" };
+
+    private IgbIcon iconRegistrar;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await iconRegistrar.EnsureReady();
+            await iconRegistrar.RegisterIconFromTextAsync("ac_unit", AcUnitIcon, IconCollection);
+            await iconRegistrar.RegisterIconFromTextAsync("format_color_reset", FormatColorResetIcon, IconCollection);
+            await iconRegistrar.RegisterIconFromTextAsync("thermostat", ThermostatIcon, IconCollection);
+            await iconRegistrar.RegisterIconFromTextAsync("edit", EditIcon, IconCollection);
+            await iconRegistrar.RegisterIconFromTextAsync("delete", DeleteIcon, IconCollection);
+        }
+    }
+}
