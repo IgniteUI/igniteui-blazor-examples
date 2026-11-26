@@ -6,6 +6,16 @@ app {
     background: transparent !important;
 }
 
+/* Ignite UI grids mark the elements that keep their own typography with data-no-typography,
+   but the theme's unlayered .ig-typography heading styles still override them. Drop the
+   unlayered rules on those elements so the grid's own layered styles apply. */
+.ig-typography [data-no-typography] {
+    font: revert-layer;
+    letter-spacing: revert-layer;
+    text-transform: revert-layer;
+    margin: revert-layer;
+}
+
 .no-selection {
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
