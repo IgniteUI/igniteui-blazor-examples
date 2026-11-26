@@ -43,7 +43,7 @@ namespace Infragistics.Samples
         public static readonly string[] Departments = { "Engineering", "Finance", "Marketing", "Sales" };
 
         // The number of avatar color tones in index.css; people cycle through them.
-        private const int AvatarToneCount = 6;
+        private const int AvatarToneCount = 4;
 
         private static readonly (string First, string Last, string Department, string Type, int Satisfaction, string Registered, bool Active, string Location)[] Seed =
         {

@@ -6,109 +6,117 @@
 @implements IAsyncDisposable
 @inject IJSRuntime JSRuntime
 
-<div class="@RootClass">
-    <section class="team-directory" aria-labelledby="team-directory-title">
-        <div class="team-directory__header">
-            <h2 id="team-directory-title" class="team-directory__title">Team Directory</h2>
-            <span class="team-directory__count" aria-live="polite">@visibleCount of @members.Count people</span>
-        </div>
+@* The theme toggle switches the whole page to dark Bootstrap: the dark stylesheet overrides the page's
+   light palette, and the theme provider gives the components inside it their dark styles. *@
+@if (isDark)
+{
+    <link href="_content/IgniteUI.Blazor/themes/dark/bootstrap.css" rel="stylesheet" />
+}
 
-        <div class="team-directory__toolbar">
-            @* Department quick filter: selected chips show the chip's check icon instead of the dot. *@
-            <div class="department-filter" role="group" aria-label="Filter by department">
-                <span class="department-filter__label" aria-hidden="true">Department</span>
-                @foreach (var option in departmentOptions)
-                {
-                    var isSelected = selectedDepartments.Contains(option.Name);
-                    <IgbChip @key="option.Name"
-                             class="department-filter__chip"
-                             Outlined="true"
+<IgbThemeProvider Variant="Variant">
+    <div class="grid-lite-in-action">
+        <section class="team-directory" aria-labelledby="team-directory-title">
+            <div class="team-directory__header">
+                <h2 id="team-directory-title" class="team-directory__title">Team Directory</h2>
+                <span class="team-directory__count" aria-live="polite">@visibleCount of @members.Count people</span>
+            </div>
+
+            <div class="team-directory__toolbar">
+                @* Department quick filter: selected chips show the chip's check icon instead of the dot. *@
+                <div class="department-filter" role="group" aria-label="Filter by department">
+                    <span class="department-filter__label" aria-hidden="true">Department</span>
+                    @foreach (var option in departmentOptions)
+                    {
+                        var isSelected = selectedDepartments.Contains(option.Name);
+                        <IgbChip @key="option.Name"
+                                 class="department-filter__chip"
+                                 Selectable="true"
+                                 Selected="isSelected"
+                                 SelectedChanged="@(selected => ToggleDepartmentAsync(option.Name, selected))">
+                            @if (!isSelected)
+                            {
+                                <span slot="prefix" class="@DotClass(option.Name)" aria-hidden="true"></span>
+                            }
+                            @option.Name
+                            <span slot="suffix" class="department-filter__count">@option.Count</span>
+                        </IgbChip>
+                    }
+                    @if (selectedDepartments.Count > 0)
+                    {
+                        <IgbButton Variant="ButtonVariant.Flat" @onclick="ClearDepartmentsAsync">Clear</IgbButton>
+                    }
+                </div>
+                @* The icon shows the theme it switches to. *@
+                <IgbIconButton @ref="themeToggle"
+                               class="team-directory__theme-toggle"
+                               Variant="IconButtonVariant.Flat"
+                               IconName="@(isDark ? "light_mode" : "dark_mode")"
+                               Collection="@IconCollection"
+                               title="@ThemeButtonLabel"
+                               aria-label="@ThemeButtonLabel"
+                               @onclick="ToggleTheme" />
+            </div>
+
+            @* Shown only while the layout hides columns, so they stay reachable: the chip brings all of them
+               back, and the grid scrolls sideways. *@
+            @if (tier > LayoutTier.Full)
+            {
+                <div class="team-directory__columns-bar">
+                    <span class="team-directory__columns-info" aria-live="polite">@ColumnsInfo</span>
+                    <IgbChip class="department-filter__chip"
                              Selectable="true"
-                             Selected="isSelected"
-                             SelectedChanged="@(selected => ToggleDepartmentAsync(option.Name, selected))">
-                        @if (!isSelected)
-                        {
-                            <span slot="prefix" class="@DotClass(option.Name)" aria-hidden="true"></span>
-                        }
-                        @option.Name
-                        <span slot="suffix" class="department-filter__count">@option.Count</span>
+                             Selected="showAllColumns"
+                             SelectedChanged="ToggleAllColumnsAsync">
+                        Show all columns
                     </IgbChip>
-                }
-                @if (selectedDepartments.Count > 0)
-                {
-                    <IgbButton class="department-filter__clear" Variant="ButtonVariant.Flat" @onclick="ClearDepartmentsAsync">Clear</IgbButton>
-                }
-            </div>
-            <IgbIconButton @ref="themeToggle"
-                           class="team-directory__theme-toggle"
-                           Variant="IconButtonVariant.Flat"
-                           IconName="@(isDark ? "light_mode" : "dark_mode")"
-                           Collection="@IconCollection"
-                           title="@ThemeButtonLabel"
-                           aria-label="@ThemeButtonLabel"
-                           @onclick="ToggleTheme" />
-        </div>
+                </div>
+            }
 
-        @* Shown only while the layout hides columns, so they stay reachable: the chip brings all of them
-           back, and the grid scrolls sideways. *@
-        @if (tier > LayoutTier.Full)
-        {
-            <div class="team-directory__columns-bar">
-                <span class="team-directory__columns-info" aria-live="polite">@ColumnsInfo</span>
-                <IgbChip class="department-filter__chip team-directory__columns-chip"
-                         Outlined="true"
-                         Selectable="true"
-                         Selected="showAllColumns"
-                         SelectedChanged="ToggleAllColumnsAsync">
-                    Show all columns
-                </IgbChip>
+            <div class="team-directory__grid-host" @ref="gridHost">
+                <IgbGridLite @ref="grid"
+                             TItem="TeamMember"
+                             Data="members"
+                             class="@GridClass"
+                             AdoptRootStyles="true"
+                             SortingOptions="sortingOptions"
+                             SortingExpressions="initialSort"
+                             Filtered="OnGridFilteredAsync"
+                             Rendered="OnGridRenderedAsync">
+                    @* Every width has a floor that keeps its content and the filter row's chip readable, and the
+                       grid scrolls sideways below the sum of the floors. Narrower hosts drop the columns that
+                       matter least first (see LayoutTier and events.js), so what remains still fits. *@
+                    <IgbGridLiteColumn Field="@nameof(TeamMember.Name)" Header="Employee"
+                                       DataType="GridLiteColumnDataType.String" Width="minmax(180px, 2fr)"
+                                       Sortable Filterable />
+                    <IgbGridLiteColumn Field="@nameof(TeamMember.Department)" Header="Department"
+                                       DataType="GridLiteColumnDataType.String" Width="minmax(150px, 1fr)"
+                                       Sortable Filterable />
+                    <IgbGridLiteColumn Field="@nameof(TeamMember.EmploymentType)" Header="Employment"
+                                       DataType="GridLiteColumnDataType.String" Width="minmax(130px, 1fr)"
+                                       Filterable />
+                    <IgbGridLiteColumn Field="@nameof(TeamMember.Satisfaction)" Header="Satisfaction"
+                                       DataType="GridLiteColumnDataType.Number" Width="minmax(170px, 1fr)"
+                                       Sortable Filterable />
+                    @* Grid Lite has no date type: the column holds the displayed label, and events.js gives
+                       it a comparer that sorts by date. *@
+                    <IgbGridLiteColumn Field="@nameof(TeamMember.RegisteredLabel)" Header="Registered"
+                                       DataType="GridLiteColumnDataType.String" Width="minmax(130px, 1fr)"
+                                       Sortable Filterable />
+                    <IgbGridLiteColumn Field="@nameof(TeamMember.Active)" Header="Status"
+                                       DataType="GridLiteColumnDataType.Boolean" Width="minmax(120px, 1fr)"
+                                       Filterable />
+                    <IgbGridLiteColumn Field="@nameof(TeamMember.Location)" Header="Location"
+                                       DataType="GridLiteColumnDataType.String" Width="minmax(140px, 1fr)"
+                                       Sortable Filterable />
+                    @* Hidden: the department chips filter on this column, so they combine with the
+                       Department column's own filter instead of replacing it. *@
+                    <IgbGridLiteColumn Field="@nameof(TeamMember.QuickFilterDepartment)"
+                                       DataType="GridLiteColumnDataType.String" Hidden />
+                </IgbGridLite>
             </div>
-        }
-
-        <div class="team-directory__grid-host" @ref="gridHost">
-            <IgbGridLite @ref="grid"
-                         TItem="TeamMember"
-                         Data="members"
-                         class="@GridClass"
-                         AdoptRootStyles="true"
-                         SortingOptions="sortingOptions"
-                         SortingExpressions="initialSort"
-                         Filtered="OnGridFilteredAsync"
-                         Rendered="OnGridRenderedAsync">
-                @* Every width has a floor that keeps its content and the filter row's chip readable, and the
-                   grid scrolls sideways below the sum of the floors. Narrower hosts drop the columns that
-                   matter least first (see LayoutTier and events.js), so what remains still fits. *@
-                <IgbGridLiteColumn Field="@nameof(TeamMember.Name)" Header="Employee"
-                                   DataType="GridLiteColumnDataType.String" Width="minmax(180px, 2fr)"
-                                   Sortable Filterable />
-                <IgbGridLiteColumn Field="@nameof(TeamMember.Department)" Header="Department"
-                                   DataType="GridLiteColumnDataType.String" Width="minmax(150px, 1fr)"
-                                   Sortable Filterable />
-                <IgbGridLiteColumn Field="@nameof(TeamMember.EmploymentType)" Header="Employment"
-                                   DataType="GridLiteColumnDataType.String" Width="minmax(130px, 1fr)"
-                                   Filterable />
-                <IgbGridLiteColumn Field="@nameof(TeamMember.Satisfaction)" Header="Satisfaction"
-                                   DataType="GridLiteColumnDataType.Number" Width="minmax(170px, 1fr)"
-                                   Sortable Filterable />
-                @* Grid Lite has no date type: the column holds the displayed label, and events.js gives
-                   it a comparer that sorts by date. *@
-                <IgbGridLiteColumn Field="@nameof(TeamMember.RegisteredLabel)" Header="Registered"
-                                   DataType="GridLiteColumnDataType.String" Width="minmax(130px, 1fr)"
-                                   Sortable Filterable />
-                <IgbGridLiteColumn Field="@nameof(TeamMember.Active)" Header="Status"
-                                   DataType="GridLiteColumnDataType.Boolean" Width="minmax(120px, 1fr)"
-                                   Filterable />
-                <IgbGridLiteColumn Field="@nameof(TeamMember.Location)" Header="Location"
-                                   DataType="GridLiteColumnDataType.String" Width="minmax(140px, 1fr)"
-                                   Sortable Filterable />
-                @* Hidden: the department chips filter on this column, so they combine with the
-                   Department column's own filter instead of replacing it. *@
-                <IgbGridLiteColumn Field="@nameof(TeamMember.QuickFilterDepartment)"
-                                   DataType="GridLiteColumnDataType.String" Hidden />
-            </IgbGridLite>
-        </div>
-    </section>
-</div>
+        </section>
+    </div>
+</IgbThemeProvider>
 
 @code {
     private const string ChipFilterKey = nameof(TeamMember.QuickFilterDepartment);
@@ -164,18 +172,16 @@
     private List<DepartmentOption> departmentOptions = new();
     private readonly HashSet<string> selectedDepartments = new();
     private int visibleCount;
-    private bool isDark;
     private LayoutTier tier = LayoutTier.Full;
     private bool showAllColumns;
+    private bool isDark;
     private DotNetObjectReference<App> selfReference;
 
     private IgbGridLite<TeamMember> grid;
     private IgbIconButton themeToggle;
     private ElementReference gridHost;
 
-    // The theme class sits on the root: the dark palette in index.css is declared there, so
-    // everything below it, the grid's cell templates included, follows.
-    private string RootClass => isDark ? "grid-lite-in-action dark-theme" : "grid-lite-in-action";
+    private ThemeVariant Variant => isDark ? ThemeVariant.Dark : ThemeVariant.Light;
 
     private string ThemeButtonLabel => isDark ? "Switch to light theme" : "Switch to dark theme";
 
@@ -198,12 +204,9 @@
         selfReference = DotNetObjectReference.Create(this);
         await JSRuntime.InvokeVoidAsync("gridLiteInAction.observeWidth", gridHost, selfReference);
 
-        if (themeToggle != null)
-        {
-            await themeToggle.EnsureReady();
-            await themeToggle.RegisterIconFromTextAsync("light_mode", LightModeIcon, IconCollection);
-            await themeToggle.RegisterIconFromTextAsync("dark_mode", DarkModeIcon, IconCollection);
-        }
+        await themeToggle.EnsureReady();
+        await themeToggle.RegisterIconFromTextAsync("light_mode", LightModeIcon, IconCollection);
+        await themeToggle.RegisterIconFromTextAsync("dark_mode", DarkModeIcon, IconCollection);
     }
 
     [JSInvokable]
