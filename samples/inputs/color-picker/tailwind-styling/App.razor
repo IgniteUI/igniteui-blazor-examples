@@ -1,0 +1,89 @@
+@using IgniteUI.Blazor.Controls
+
+<div class="sample">
+    <div class="theme-editor">
+        <div class="theme-editor-header">
+            <div>
+                <h2>Theme Editor</h2>
+                <p>Use the pickers to style the card.</p>
+            </div>
+            <IgbIconButton @ref="ResetButton" IconName="refresh" Collection="material" Variant="IconButtonVariant.Flat"
+                           aria-label="Reset theme"
+                           @onclick="ResetTheme" />
+        </div>
+        <div class="swatches">
+            <div class="swatch-item">
+                <IgbColorPicker TValue="string" class="@PickerClass" Value="@Background" Input="@(e => Background = e.Detail)" Label="Background">
+                    <span slot="helper-text">Card surface color</span>
+                </IgbColorPicker>
+            </div>
+            <div class="swatch-item">
+                <IgbColorPicker TValue="string" class="@PickerClass" Value="@Text" Input="@(e => Text = e.Detail)" Label="Text">
+                    <span slot="helper-text" class="swatch-hint">Body &amp; heading color</span>
+                </IgbColorPicker>
+            </div>
+            <div class="swatch-item">
+                <IgbColorPicker TValue="string" class="@PickerClass" Value="@Accent" Input="@(e => Accent = e.Detail)" Label="Accent">
+                    <span slot="helper-text" class="swatch-hint">Button &amp; tag color</span>
+                </IgbColorPicker>
+            </div>
+            <div class="swatch-item">
+                <IgbColorPicker TValue="string" class="@PickerClass" Value="@Border" Input="@(e => Border = e.Detail)" Label="Border">
+                    <span slot="helper-text" class="swatch-hint">Card edge color</span>
+                </IgbColorPicker>
+            </div>
+            <div class="swatch-item disabled">
+                <IgbColorPicker class="@PickerClass" @bind-Value="Shadow" Disabled="true" Label="Shadow (Pro)">
+                    <span slot="helper-text" class="swatch-hint">Upgrade to unlock</span>
+                </IgbColorPicker>
+            </div>
+        </div>
+        <IgbCard style="@PreviewStyle">
+            <IgbCardContent>
+                <IgbChip>Design</IgbChip>
+                <h3 id="previewTitle">Color Picker in Practice</h3>
+                <p id="previewText">Pick colors above to see them applied live across every element of this card.</p>
+                <div class="preview-actions">
+                    <IgbButton id="readMoreBtn">Read more</IgbButton>
+                    <IgbButton id="saveBtn" Variant="ButtonVariant.Outlined">Save</IgbButton>
+                </div>
+            </IgbCardContent>
+        </IgbCard>
+    </div>
+</div>
+
+@code {
+    private const string PickerClass = "!light-color-picker [--ig-color-picker-picker-background:#FFF0EB] [--ig-color-picker-picker-border-color:#F95924] [--ig-color-picker-picker-border-radius:0.5rem]";
+    private const string RefreshIcon = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08a5.99 5.99 0 0 1-5.65 4c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z'/></svg>";
+
+    private const string DefaultBackground = "#1a314a";
+    private const string DefaultText = "#e5ebf3";
+    private const string DefaultAccent = "#f9592a";
+    private const string DefaultBorder = "#00142b";
+
+    private IgbIconButton ResetButton;
+    private string Background = DefaultBackground;
+    private string Text = DefaultText;
+    private string Accent = DefaultAccent;
+    private string Border = DefaultBorder;
+    private string Shadow = "#7d91ab";
+
+    private string PreviewStyle => $"--preview-bg: {Background}; --preview-text: {Text}; --preview-accent: {Accent}; --preview-border: {Border};";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await ResetButton.EnsureReady();
+            await ResetButton.RegisterIconFromTextAsync("refresh", RefreshIcon, "material");
+        }
+    }
+
+    private void ResetTheme()
+    {
+        Background = DefaultBackground;
+        Text = DefaultText;
+        Accent = DefaultAccent;
+        Border = DefaultBorder;
+    }
+}

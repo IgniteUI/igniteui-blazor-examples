@@ -1,0 +1,149 @@
+/* 
+CSS styles are loaded from the shared CSS file located at:
+https://dl.infragistics.com/x/css//samples/
+*/
+.sample .state-hover {
+    igc-icon {
+        color: var(--hover-icon-color);
+    }
+
+    a {
+        color: var(--hover-text-color);
+    }
+}
+
+.sample .state-focused {
+    igc-icon {
+        color: var(--focus-icon-color);
+    }
+
+    a {
+        color: var(--focus-text-color);
+    }
+}
+
+.sample .state-pressed {
+    igc-icon {
+        color: var(--pressed-icon-color);
+    }
+
+    a {
+        color: var(--pressed-text-color);
+    }
+}
+
+.sample .state-focused-hover {
+    igc-icon {
+        color: var(--focus-hover-icon-color);
+    }
+
+    a {
+        color: var(--focus-hover-text-color);
+    }
+}
+
+.sample .state-focused-pressed {
+    igc-icon {
+        color: var(--focus-pressed-icon-color);
+    }
+
+    a {
+        color: var(--focus-pressed-text-color);
+    }
+}
+
+.sample .state-disabled {
+    igc-icon {
+        color: var(--disabled-icon-color);
+    }
+
+    a {
+        color: var(--disabled-text-color);
+    }
+}
+
+[data-igd-theme="material"] {
+    .sample .state-focused-pressed a,
+    .sample .state-focused-hover a,
+    .sample .state-focused a {
+        text-decoration: underline var(--focus-pressed-underline-color);
+    }
+} 
+
+[data-igd-theme="fluent"] {
+    .sample .state-focused-pressed::part(label),
+    .sample .state-focused-hover::part(label),
+    .sample .state-focused::part(label) { 
+        outline: .0625rem solid var(--focus-border-color);
+    }
+}
+
+[data-igd-theme="bootstrap"] {
+    .sample .state-focused-pressed::part(label),
+    .sample .state-focused-hover::part(label),
+    .sample .state-focused::part(label) {
+        outline: .25rem solid var(--focus-border-color);
+        border-radius: 0.25rem;
+    }
+}
+
+[data-igd-theme="indigo"] {
+    .sample .state-focused-pressed::part(label),
+    .sample .state-focused-hover::part(label),
+    .sample .state-focused::part(label) {
+        outline: .1875rem solid var(--focus-border-color);
+        border-radius: 2rem;
+    }
+
+    .sample .state-disabled igc-icon {
+        opacity: 0.2;
+    }
+}
+
+.sample {
+    display: flex;
+    justify-content: center;
+    max-height: 15rem;
+    font-family: var(--ig-font-family);
+}
+
+.sample span {
+    color: #7d8a96;
+    font-size: 0.875rem;
+    margin-block-end: 1rem;
+    font-family: "Aktiv Grotesk", sans-serif;
+}
+
+.sample nav {
+    display: grid;
+    column-gap: 3rem;
+    row-gap: 1rem;
+}
+
+.sample igc-breadcrumbs {
+    flex-direction: column;
+    height: fit-content;
+}
+
+.sample igc-breadcrumbs:nth-of-type(-n+3) {
+    grid-row: 1;
+}
+
+.sample igc-breadcrumbs:nth-of-type(n+4) {
+    grid-row: 2;
+}
+
+@media (width < 510px) {
+    .sample igc-breadcrumbs:nth-of-type(-n+3),
+    .sample igc-breadcrumbs:nth-of-type(n+4) {
+        grid-row: unset;
+    }
+
+    .sample nav {
+        row-gap: 3rem;
+    }
+
+    .sample {
+        max-height: unset;
+    }
+}

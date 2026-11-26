@@ -1,0 +1,27 @@
+/* 
+CSS styles are loaded from the shared CSS file located at:
+https://dl.infragistics.com/x/css//samples/
+*/
+@import "tailwindcss/theme.css";
+@import "tailwindcss/utilities.css" source(none);
+@import "igniteui-theming/tailwind/utilities/bootstrap.css";
+@source "../App.razor";
+/* .container is the sample's own class below, not Tailwind's container utility */
+@source not inline("container");
+
+.container {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1rem;
+    background: #111;
+    width: fit-content;
+    height: fit-content;
+    flex-direction: row;
+    margin-inline: auto;
+}
+
+@media (width < 800px) {
+    .container {
+        flex-direction: column;
+    }
+}
