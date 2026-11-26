@@ -10,7 +10,9 @@
  * validate the sender, repoint the Ignite UI theme <link> elements and provide
  * the selection to the web components as their theme context.
  *
- * Dormant unless a trusted docs host asks for a theme.
+ * Dormant unless a trusted docs host asks for a theme, or the URL carries one:
+ * "Open in full screen" opens the sample in its own tab, where no message
+ * arrives, so the docs pass the selection as `?igd-theme=<theme>&igd-mode=<mode>`.
  */
 (function () {
     'use strict';
@@ -235,6 +237,16 @@
         applyTheme(next.theme, next.mode);
     }
 
+    // The selection that "Open in full screen" passes in the URL, if any.
+    function themeFromUrl() {
+        var params = new URLSearchParams(window.location.search);
+        return parseMessage({
+            type: MESSAGE_TYPE,
+            theme: params.get('igd-theme'),
+            mode: params.get('igd-mode')
+        });
+    }
+
     function watchSystemMode() {
         var query = window.matchMedia && window.matchMedia(DARK_QUERY);
         if (!query || !query.addEventListener) {
@@ -247,7 +259,8 @@
         });
     }
 
-    if (window.parent === window) {
+    var fromUrl = themeFromUrl();
+    if (window.parent === window && !fromUrl) {
         return;
     }
 
@@ -260,6 +273,13 @@
     // index.html loads this script before any component bundle, so every
     // component's theme request reaches this listener.
     window.addEventListener('context-request', onContextRequest);
-    window.addEventListener('message', onMessage);
+    if (window.parent !== window) {
+        window.addEventListener('message', onMessage);
+    }
     watchSystemMode();
+
+    if (fromUrl) {
+        selected = fromUrl;
+        applyTheme(fromUrl.theme, fromUrl.mode);
+    }
 })();
